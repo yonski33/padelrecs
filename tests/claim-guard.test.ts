@@ -1,6 +1,6 @@
 import { describe, it } from "node:test";
 import assert from "node:assert/strict";
-import { claimBlock, firmness, shapeRank, weightMid, balanceRank } from "../lib/claim-guard";
+import { claimBlock, firmness, shapeRank, weightMid, balanceRank, flightFact } from "../lib/claim-guard";
 import { distinctEdges } from "../lib/other-picks";
 
 const tr = (dots: number, voices = 10) => ({ dots, plus: voices, minus: 0 });
@@ -52,5 +52,27 @@ describe("distinctEdges with the guard", () => {
   it("passes over a racket with no give-up when both lines are needed", () => {
     const e = distinctEdges([3, 3, 3], [{ id: "a", dots: [4, 3, 3] }, { id: "b", dots: [3, 4, 2] }], KEYS, 3, "arm", undefined, undefined, true);
     assert.deepEqual(e.map(x => x.id), ["b"]);
+  });
+});
+
+describe("disc golf flight numbers as evidence (owner 2026-11-18)", () => {
+  const none = { dots: 3, plus: 0, minus: 0 };
+  const wraith = { flight: [11, 5, -1, 3] }, tesla = { flight: [9, 5, -1, 2] }, aspect = { flight: [9, 5, 0, 2] };
+  it("lets a faster disc be longer without player voices, and gives the numbers", () => {
+    assert.equal(claimBlock("discgolf", "distance", 1, { spec: wraith, tr: none }, { spec: aspect, tr: none }), null);
+    assert.equal(flightFact("discgolf", "distance", wraith.flight, aspect.flight)!.note(1), "speed 11 vs 9");
+  });
+  it("blocks a line the flight numbers contradict", () => {
+    assert.equal(claimBlock("discgolf", "distance", 1, { spec: tesla, tr: { dots: 5, plus: 30, minus: 0 } }, { spec: wraith, tr: { dots: 3, plus: 9, minus: 0 } }), "flight numbers");
+    assert.equal(claimBlock("discgolf", "wind", 1, { spec: tesla, tr: none }, { spec: wraith, tr: none }), "flight numbers");
+  });
+  it("reads a slower disc as easier for a slower arm, and stability as turn + fade", () => {
+    assert.equal(claimBlock("discgolf", "arm", 1, { spec: tesla, tr: none }, { spec: wraith, tr: none }), null);
+    assert.equal(flightFact("discgolf", "wind", wraith.flight, tesla.flight)!.note(1), "turn + fade 2 vs 1");
+  });
+  it("leaves player-feel traits to the voice rule", () => {
+    assert.equal(flightFact("discgolf", "accuracy", wraith.flight, tesla.flight), null);
+    assert.equal(claimBlock("discgolf", "accuracy", 1, { spec: wraith, tr: { dots: 4, plus: 1, minus: 0 } }, { spec: tesla, tr: none }), "too few reports");
+    assert.equal(flightFact("padel", "distance", [1, 1, 1, 1], [0, 0, 0, 0]), null);
   });
 });

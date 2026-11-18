@@ -13,11 +13,13 @@ export function distinctEdges(me: number[], cands: Cand[], keys: string[], n = 3
    *  beside this one (a dot gap from enough reports, no spec against it); a blocked trait gives way to the next that holds. */
   allow?: (id: string, i: number, dir: 1 | -1) => boolean,
   /** Only cards with both lines, a gain and a give-up (owner 2026-11-18: no blank cards); a racket without both is passed over. */
-  needGive = false): Edge[] {
+  needGive = false,
+  /** A gap from other evidence than the dots (disc golf flight numbers), signed as `cand − me`, used where given. */
+  gapOf?: (id: string, i: number) => number | undefined): Edge[] {
   const out: Edge[] = [], gains = new Set<number>(), gives = new Set<number>();
   for (const c of cands) {
     if (out.length >= n) break;
-    const gaps = keys.map((k, i) => ({ i, k, g: c.dots[i] && me[i] ? c.dots[i] - me[i] : 0 }));
+    const gaps = keys.map((k, i) => ({ i, k, g: gapOf?.(c.id, i) ?? (c.dots[i] && me[i] ? c.dots[i] - me[i] : 0) }));
     const gain = gaps.filter(x => x.g > 0 && !gains.has(x.i) && (x.k !== armKey || c.dots[x.i] >= 4) && (!gainOk || gainOk(c.id, x.k)) && (!allow || allow(c.id, x.i, 1)))
       .sort((a, b) => b.g - a.g || a.i - b.i)[0];
     if (!gain) continue;
