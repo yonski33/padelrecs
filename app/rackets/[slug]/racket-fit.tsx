@@ -52,6 +52,7 @@ import { listYear } from "../../../lib/top-lists";
 import { scoreTone as v11Tone } from "../../../lib/score-tone";
 import { V11_SITES } from "../../../lib/v11-site";
 import { distinctEdges } from "../../../lib/other-picks";
+import { claimBlock } from "../../../lib/claim-guard";
 import { CompareWith } from "./compare-with";
 import { refName } from "../../../lib/compare-names";
 import { suggestionFloor } from "../../../lib/suggestion-floor";
@@ -428,17 +429,25 @@ export default async function RacketFit(props: {
   const refOf = (otherId: string) => refName(0, [modelOf(props.racketId), modelOf(otherId)]);
   // The better-matches strip's cards: every racket the strip can show for any pick (the alternatives for each style × level ×
   // sore arm), so a pick in the browser never waits for more data.
+  // "More X than the Y" holds only on a dot gap from enough reports with no spec against it (owner 2026-11-18,
+  // lib/claim-guard.ts), plus the disc golf flight check; the same answer goes to the browser per pool racket.
+  const specOf = (rid: string) => { const x = racketOf(rid); return { shape: x.shape, core: x.core, surface: x.surface, balance: x.balance, weight: x.weight }; };
+  const allow = (oid: string, i: number, dir: 1 | -1) => { const k = TRAITS[i];
+    if (dir > 0 && gainOk && !gainOk(oid, k)) return false;
+    return claimBlock(niche.id, k, dir, { spec: specOf(oid), tr: ctx.traits(oid).scores?.[k as Trait] }, { spec: specOf(props.racketId), tr: tr.scores?.[k as Trait] }) === null; };
+  const okOf = (oid: string) => ({ gain: TRAITS.flatMap((_, i) => allow(oid, i, 1) ? [i] : []), give: TRAITS.flatMap((_, i) => allow(oid, i, -1) ? [i] : []) });
   const v11Strip: V11Pool = {};
   if (V11) for (const style of STYLES) for (const level of [undefined, ...LEVELS]) for (const arm of [false, true]) {
     for (const a of alternatives(payload.items, RANK_SETUP, NEGATIVE_TAGS, { style, ...(level ? { level } : {}), arm }, props.racketId, 8)) {
       if (v11Strip[a.id] || !ctx.data.rackets.some(x => x.id === a.id) || superseded(a.id) || !goodEnough(a.id)) continue;
       const c = cardOf(a.id), bf = bestFor(ctx.facts(a.id));
-      v11Strip[a.id] = { name: c.name, href: c.href, pic: c.pic, line: lineOf(a.id), shop: shopOf(a.id), score: ctx.signal(a.id), best: bf.length ? bf.join(", ") : null, dots: c.dots, ref: refOf(a.id) };
+      v11Strip[a.id] = { name: c.name, href: c.href, pic: c.pic, line: lineOf(a.id), shop: shopOf(a.id), score: ctx.signal(a.id), best: bf.length ? bf.join(", ") : null, dots: c.dots, ref: refOf(a.id), ok: okOf(a.id) };
     }
   }
   const DOT_KEYS = TRAITS, TRAIT_DEF = Object.fromEntries(SITE_FIT.traits.map(t => [t.key, t]));
   // Each card leads with its own main gain and at most one give-up, none repeated in the section (lib/other-picks.ts).
-  const v11Cards: V11Card[] = V11 ? distinctEdges(compareMe.dots, [...byBand(simPool), ...widePool.slice(simPool.length)].map(id => ({ id, dots: cardOf(id).dots })), DOT_KEYS, 3, "arm", gainOk).map(({ id: oid, gain, give }) => {
+  // Only rackets we can write both lines for (owner 2026-11-18: no blank cards); the next candidate takes a blocked one's place.
+  const v11Cards: V11Card[] = V11 ? distinctEdges(compareMe.dots, [...byBand(simPool), ...widePool.slice(simPool.length)].map(id => ({ id, dots: cardOf(id).dots })), DOT_KEYS, 3, "arm", gainOk, allow, true).map(({ id: oid, gain, give }) => {
     const c = cardOf(oid), t = TRAIT_DEF[DOT_KEYS[gain]] ?? null, d = give !== null ? DOT_KEYS[give] : null;
     const bf = bestFor(ctx.facts(oid));
     const me = refOf(oid);

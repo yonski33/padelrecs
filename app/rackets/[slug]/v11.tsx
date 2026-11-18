@@ -18,7 +18,9 @@ const word = (n: number) => fitStep(n).word;
 const WEAK = FIT_MIN;
 /** A racket for the "for your game" cards: the server sends one for every racket the picks can bring up. */
 export type V11Pool = Record<string, { name: string; href: string; pic: string | null; line: string | null; shop: { url: string; rel: string } | null;
-  score: number | null; best: string | null; dots: number[]; /** As V11Card.ref. */ ref: string }>;
+  score: number | null; best: string | null; dots: number[]; /** As V11Card.ref. */ ref: string;
+  /** The traits this racket may be called better (gain) or worse (give) at beside this one: lib/claim-guard.ts, on the server. */
+  ok: { gain: number[]; give: number[] } }>;
 /** The photo, or a tile with the name when the catalog has none. */
 const Pic = ({ pic, name, w, h }: { pic: string | null; name: string; w: number; h: number }) => pic ? <img src={pic} alt={name} width={w} height={h} loading="lazy" decoding="async"/>
   : <span className="v11-tile">{name.split(" ").slice(0, 2).join(" ")}</span>;
@@ -63,6 +65,7 @@ export function V11Others({ id, slug, facts, better, cards, pool, me, keys, gain
   const fitting = m.picked && alts ? fittingRows(alts, id, x => !!pool[x]) : [];
   const picked = m.picked && fitting.length > 0;
   const list = (picked ? withEdges(fitting, pool, me, keys, gainWord, giveWord) : cards.map(c => ({ ...c, pct: null as number | null }))).slice(0, 2);
+  // Fewer cards, or none, rather than a card without both lines (owner 2026-11-18).
   if (!list.length) return null;
   return <section className="v11-sec" id="alternatives">
     <div className="v11-sh v11-rule"><h2>{picked ? `Other ${words.many} for your game` : `Other ${words.many} to consider`}</h2><span>{picked ? "the best fits for your picks, by match" : `similar ${words.many}, same quick answer`}</span></div>
@@ -91,6 +94,7 @@ export function V11More({ id, slug, facts, better, pool, me, keys, gainWord, giv
   const next = alts.filter(r => r.id !== id && pool[r.id] && !shown.has(r.id) && (r.pct ?? 0) >= FIT_MIN).sort((x, y) => (y.pct ?? 0) - (x.pct ?? 0)).slice(0, 3);
   if (next.length < 2) return null;
   const list = withEdges(next, pool, me, keys, gainWord, giveWord);
+  if (list.length < 2) return null;
   return <section className="v11-sec v11-more2" id="more-for-you">
     <div className="v11-sh v11-rule"><h2>{`More ${words.many} for your game`}</h2><span>the next best fits for your picks, by match</span></div>
     <div className="v11-mlist">{list.map(c => <article key={c.id} className="v11-ocard">
@@ -115,8 +119,10 @@ export function V11More({ id, slug, facts, better, pool, me, keys, gainWord, giv
 type Row = { id: string; pct: number | null };
 /** A pool racket as a card with its gain and give-up against this one, in the short names. */
 function withEdges(rows: Row[], pool: V11Pool, me: number[], keys: string[], gainWord: string[], giveWord: string[]) {
-  const edges = new Map(distinctEdges(me, rows.map(r => ({ id: r.id, dots: pool[r.id].dots })), keys, 3).map(e => [e.id, e]));
-  return rows.map(r => { const c = pool[r.id], e = edges.get(r.id);
+  // The server's verdicts per trait (lib/claim-guard.ts); only rows with both a gain and a give-up are kept (owner 2026-11-18).
+  const allow = (id: string, i: number, dir: 1 | -1) => (dir > 0 ? pool[id].ok.gain : pool[id].ok.give).includes(i);
+  const edges = new Map(distinctEdges(me, rows.map(r => ({ id: r.id, dots: pool[r.id].dots })), keys, 3, "arm", undefined, allow, true).map(e => [e.id, e]));
+  return rows.filter(r => edges.has(r.id)).map(r => { const c = pool[r.id], e = edges.get(r.id);
     return { id: r.id, name: c.name, href: c.href, pic: c.pic, line: c.line, best: c.best, score: c.score, shop: c.shop, pct: r.pct, ref: c.ref,
       vs: e ? gainWord[e.gain] : null, gain: e ? `${cap(gainWord[e.gain])} than the ${c.ref}.` : null, give: e && e.give !== null ? `${cap(giveWord[e.give])} than the ${c.ref}.` : null }; });
 }
