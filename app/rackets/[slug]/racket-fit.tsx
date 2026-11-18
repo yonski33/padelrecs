@@ -1,4 +1,6 @@
 import { withoutYear } from "../../../lib/brand-name";
+import { sideWord } from "../../../lib/byline";
+import { NoBreak } from "../../no-break";
 import { productPhoto } from "../../visual";
 import { ownScore } from "../../../lib/niche";
 import type { ReactNode } from "react";
@@ -277,7 +279,6 @@ export default async function RacketFit(props: {
   // reports say "A player" and link their source; a verdict pill only where the sentiment was judged.
   const lv = (v?: string | null) => v ? (v === "Competitive" ? "competitive" : v.toLowerCase()) : null;
   // v11c: a card's second line is the writer's own level · court side, only what they gave us (never inferred).
-  const sideWord = (v?: string | null) => !v ? null : /^both$/i.test(v) ? "both sides" : `${v.toLowerCase()} side`;
   const givenMeta = (r: QtReview) => [lv(r.playerLevel), V11 ? sideWord(r.playingSide) : null].filter(Boolean).join(" · ") || null;
   const sentences = (t: string) => t.split(/(?<=[.!?])\s+(?=[A-Z0-9“"])/).map(x => x.trim()).filter(Boolean);
   const vid = (url: string) => { try { const u = new URL(url); return u.searchParams.get("v") ?? (u.hostname === "youtu.be" ? u.pathname.slice(1) : null); } catch { return null; } };
@@ -514,7 +515,7 @@ export default async function RacketFit(props: {
             <div className="rf-chips">{[soon ? "not shipping yet" : gone ? "discontinued" : null, leanWord, props.shape, hasYears && !V11 ? String(props.year) : null].filter(Boolean).map(x => <span key={x}>{x!.toLowerCase()}</span>)}
               {older && <a className="rp-older" href={older.href}>{`${older.year} version →`}</a>}</div>
             {/* H1 "<name> review" for search (owner spec); the year is in the chips. */}
-            <h1>{V11 ? (hasYears ? `${props.shortName} (${props.year})` : props.shortName) : `${props.shortName} review`}</h1>
+            <h1><NoBreak name={V11 ? (hasYears ? `${props.shortName} (${props.year})` : props.shortName) : `${props.shortName} review`}/></h1>
             {(page || qt || props.line) && <p className="rf-hook">{page ? page.tagline : qt ? `${qt.hook.good} ${qt.hook.catch}` : props.line}</p>}
             {/* Owner 2026-11-18: people who came for opinions skip straight down (the score box links there too). */}
             {V11 && cards.length > 0 && <a className="v11-jump" href="#reviews">{`Jump to reviews (${cards.length}) ↓`}</a>}

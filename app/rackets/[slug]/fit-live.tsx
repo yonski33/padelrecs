@@ -149,7 +149,7 @@ export function FitBox({ id, facts, hook, total, rated = total, yt = 0, bestLine
       {levelDisagree && <p className="rf-lvl">{levelDisagree}</p>}
     </div> : <div className="rf-ans" aria-live="polite">
       {choice.level && <RememberPicks style={choice.style} level={choice.level} arm={choice.arm} {...(choice.ff ? { ff: choice.ff } : {})}/>}
-      <div className="rf-chipsrow"><span className="rf-k">⚡ your match</span>
+      <div className="rf-chipsrow"><span className="rf-k">your match</span>
         <span className={`rf-vpill ${verdict.kind}`} title={`How well it fits your picks, from ${QUICK?.words?.person ?? "player"} reports. Not a % of happy ${QUICK?.words ? niche.people.many : "players"}.`}>{pct === null ? "— · not enough reports yet" : `${pct}% · ${verdictWord}`}</span>
           {verdict.kind !== "thin" && total < FEW_FIT_REPORTS && <span className="rf-few">{`based on fewer reports (${total})`}</span>}</div>
       <h2>{headline}</h2>
@@ -185,7 +185,7 @@ export function FitSaid({ views }: { views: Record<string, SaidView> }) {
       <div className="rf-sum">
         {v.badge && <div className="rf-badge" title={`${ownScore("Player score")}: not a % of happy players. It blends how much players like it with how many have weighed in.`}><b>{v.badge.n}</b><span>{v.badge.label}</span></div>}
         {v.pos + v.mix + v.neg > 0 && <div className="rf-sumr"><div className="rf-sbar" role="img" aria-label={`${v.pos} positive, ${v.mix} mixed, ${v.neg} negative`}><i className="p" style={{ flex: v.pos }}/><i className="m" style={{ flex: v.mix }}/><i className="n" style={{ flex: v.neg }}/></div>
-          <p className="rf-counts"><span>{`👍 ${v.pos} loved`}</span><span>{`🤷 ${v.mix} mixed`}</span><span>{`👎 ${v.neg} nope`}</span></p></div>}
+          <p className="rf-counts"><span>{`${v.pos} loved`}</span><span>{`${v.mix} mixed`}</span><span>{`${v.neg} nope`}</span></p></div>}
       </div>
       {v.takes.length > 0 && <div className="rf-quotes">{v.takes.map(t => { const [tag, cls] = QUOTE_TAG[t.tone] ?? QUOTE_TAG.mixed; return <div key={t.id} className={cls}>
         <span>{tag}</span>
@@ -230,7 +230,7 @@ export function FitSticky({ buy, name }: { buy: { url: string; label: string; re
   }, []);
   return <div className={`rp-stick${on ? " on" : ""}`} aria-label={`Your match with the ${name}`}>
     <div className="rp-sk">
-      <span className="rp-k">⚡ your match</span>
+      <span className="rp-k">your match</span>
       {shown ? <a href="#fit" className={`rp-pct ${shown.kind}`}><b>{`${shown.pct}%`}</b><span className="rp-vw">{shown.word}</span></a>
         : <a href="#fit" className="rp-check">{picked && result?.kind === "thin" ? "not enough reports yet" : "Check your fit ↑"}</a>}
     </div>

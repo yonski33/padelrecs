@@ -8,7 +8,8 @@ import { amazonPhoto } from "../../lib/amazon-photos";
 import { qtFontVars } from "../qt-fonts";
 import { V2Footer } from "../v2-footer";
 import { rowOfFamily } from "../../lib/compare-pairs";
-import { newThisWeek } from "../../lib/new-this-week";
+import { newThisWeek, WEEK_LONG } from "../../lib/new-this-week";
+import { sideWord, playedWord } from "../../lib/byline";
 import { fitConfigFor } from "../../lib/fit-config";
 import { MIN_FIT_REPORTS } from "../../lib/fit-verdict";
 import "./latest-v2.css";
@@ -54,14 +55,13 @@ export default async function LatestReviewsV2({ search }: { search: Search }) {
   const now = requestTime();
   const byId = new Map(data.rackets.map(r => [r.id, r]));
   const brand = (id: string) => data.brands.find(b => b.id === id)?.name;
-  const timeWord = new Map(niche.profile.timeWithRacket?.options.map(o => [o.value, (o as { display?: string }).display ?? o.value.toLowerCase()]) ?? []);
   type Item = { key: string; racketId: string; date: string; verdict: Verdict | null; kind: "player" | "yt"; skinType?: string | null } & (
     { kind: "player"; who: string; meta: string[]; text: string; tags: string[] } | { kind: "yt"; who: string; url: string; comment: boolean; points: string[] });
   const all: Item[] = [
     ...data.reviews.map(r => ({ key: `p-${r.id}`, racketId: r.racketId, date: r.createdAt, kind: "player" as const,
       verdict: (r.rating >= 4 ? "positive" : r.rating === 3 ? "mixed" : "negative") as Verdict,
-      who: r.alias || (skinSite ? `A ${niche.site.name.toLowerCase()} reviewer` : `A ${niche.site.name} player`), skinType: r.playerLevel?.toLowerCase() ?? null, meta: skinSite ? [r.playerLevel ? `${r.playerLevel.toLowerCase()} skin` : null].filter((x): x is string => !!x) : [r.playerLevel?.toLowerCase(), r.playingSide ? `${r.playingSide.toLowerCase()} side` : null].filter((x): x is string => !!x),
-      text: r.reviewText, tags: [r.timeWithRacket ? `${skinSite ? "used" : "played"} ${timeWord.get(r.timeWithRacket) ?? r.timeWithRacket.toLowerCase()}` : null, ...r.tags].filter((x): x is string => !!x).slice(0, 4) })),
+      who: r.alias || (skinSite ? `A ${niche.site.name.toLowerCase()} reviewer` : `A ${niche.site.name} player`), skinType: r.playerLevel?.toLowerCase() ?? null, meta: skinSite ? [r.playerLevel ? `${r.playerLevel.toLowerCase()} skin` : null].filter((x): x is string => !!x) : [r.playerLevel?.toLowerCase(), sideWord(r.playingSide)].filter((x): x is string => !!x),
+      text: r.reviewText, tags: [playedWord(r.timeWithRacket, skinSite ? "used" : "played"), ...r.tags].filter((x): x is string => !!x).slice(0, 4) })),
     ...data.external.filter(e => e.sourcePlatform === "YouTube" && (e.summary || e.excerptTranslation || e.excerpt)).map(e => {
       const comment = /[?&]lc=/.test(e.sourceUrl), text = e.summary ? plainSummary(e.summary) : e.excerptTranslation || e.excerpt || "";
       return { key: `w-${e.id}`, racketId: e.racketId, date: e.sourceDate || e.createdAt, kind: "yt" as const, verdict: (e.sentiment ?? null) as Verdict | null,
@@ -102,7 +102,7 @@ export default async function LatestReviewsV2({ search }: { search: Search }) {
       <section className="lr2-hero">
         <div><h1>{skinSite ? <>Latest <em>reviews</em></> : "Latest reviews"}</h1>
           <p>{`Straight from ${skinSite ? "people" : fitConfigFor(niche)?.words ? niche.people.many : "players"} who use this site, plus the useful bits of YouTube reviews so you don't have to watch 20 minutes.`}</p></div>
-        <p className="lr2-live"><i aria-hidden="true"/>{`${newThisWeek(data, now)} ${fitConfigFor(niche)?.words?.added ?? "added this week"}`}</p>
+        <p className="lr2-live"><i aria-hidden="true"/>{`${newThisWeek(data, now).toLocaleString("en-US")} ${WEEK_LONG}`}</p>
       </section>
       <div className="lr2-bar">
         <nav className="lr2-tabs" aria-label="Source">{([["all", "all"], ["players", skinSite ? "from people" : "from players"], ["yt", "youtube summaries"]] as const).map(([k, label]) =>
@@ -135,7 +135,7 @@ export default async function LatestReviewsV2({ search }: { search: Search }) {
               </div>
             </article>; })}
           </div>)}
-          {items.length === 0 && <div className="lr2-empty">{skinSite ? "Nothing like that yet" : "Nothing like that yet 🤷"}</div>}
+          {items.length === 0 && <div className="lr2-empty">Nothing like that yet</div>}
           {olderN > 0 && <Link className="lr2-older" href={href({ older: older ? undefined : "1", show: undefined })} scroll={false}>{older ? "hide older models ▴" : `show older models (${olderN} reviews) ▾`}</Link>}
           {items.length > show && <Link className="lr2-more" href={href({ show: String(show + PAGE) })} scroll={false}>load older reviews ↓</Link>}
         </section>

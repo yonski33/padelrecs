@@ -60,10 +60,12 @@ export const pickleballGuide: GuideConfig = {
     ] },
   ],
   buys: { section: "shape", kicker: "// what players actually buy", tail: { unlessTop: "elongated", text: "Elongated is for players who already hit clean." } },
-  // The home's tiles keep the home mock's own words and paddle icons (three shapes, no widebody).
+  // The home's tiles keep the home mock's own words and paddle icons; widebody too, so the tiles add up to the catalogue
+  // (Grok audit 2026-11-18).
   home: { section: "shape", title: "Which shape is for you?", link: "Core, face & weight explained → paddle guide", tiles: {
     standard: { icon: "standard", text: "Widest sweet spot and quickest hands. The safe pick for most players." },
     elongated: { icon: "elongated", text: "More reach and power on drives and serves. Smaller sweet spot." },
-    hybrid: { icon: "hybrid-paddle", text: "A little extra reach without losing much forgiveness." } } },
+    hybrid: { icon: "hybrid-paddle", text: "A little extra reach without losing much forgiveness." },
+    widebody: { icon: "widebody", text: "Extra-wide face for the most forgiveness, with the least reach." } } },
   cta: { title: "Skip the theory. Get matched.", text: "Pick your level and style to see every paddle ranked for you.", button: "Find your paddle →" },
 };

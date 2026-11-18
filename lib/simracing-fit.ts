@@ -78,7 +78,7 @@ export const SIMRACING_FIT: FitConfig = {
   levelLabels: { beginner: "new", intermediate: "serious", advanced: "all-in" },
   levelPeople: { beginner: "new racers", intermediate: "serious racers", advanced: "all-in racers" },
   words: { person: "driver", game: "setup", tryFirst: "try one first", howIt: "drives", catalogPromo: "Filter by type, level, drive, torque and console.",
-    guidePromo: "Gear, belt or direct drive, explained in two minutes.", added: "added to the site this week",
+    guidePromo: "Gear, belt or direct drive, explained in two minutes.",
     armShort: "console", hardArm: "PC only: it won't work on PlayStation or Xbox.", hardArmShort: "PC only" },
   levelWords: { beginner: ["first wheel", "first rig", "first sim", "new to sim racing", "just getting into sim racing", "beginner"],
     intermediate: ["upgraded from", "coming from", "moved up from"], advanced: ["league", "esports", "endgame"] },

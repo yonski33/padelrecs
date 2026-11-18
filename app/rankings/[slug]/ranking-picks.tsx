@@ -54,7 +54,7 @@ export function MatchBox({ finder }: { finder?: string }) {
   return <section className="rl2-match" aria-label="Your match">
     <input type="checkbox" id="rl2-edit" className="rl2-edit-t"/>
     {c ? <>
-      <span className="rl2-you"><span className="rl2-badge">⚡ your match</span><span>Showing how each fits <strong>{profileLine}</strong></span></span>
+      <span className="rl2-you"><span className="rl2-badge">your match</span><span>Showing how each fits <strong>{profileLine}</strong></span></span>
       <span className="rl2-ctl">
         <a className="rl2-sw" href={`${href}${picksQuery(c)}${s.showPct ? "&pct=0" : ""}`} role="switch" aria-checked={s.showPct}
           onClick={e => { e.preventDefault(); set({ ...s, showPct: !s.showPct }); }}><i aria-hidden="true"/>show match %</a>

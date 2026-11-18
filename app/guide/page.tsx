@@ -31,7 +31,8 @@ export async function generateMetadata(): Promise<Metadata> {
   if (!g && attrProfileFor(niche)) { const title = "Skincare, decoded", description = "Skin type, texture, actives, fragrance, layering, sunscreen and budget, in plain words, with the products reviewers rate for each.";
     return { title, description, alternates: { canonical: "/guide" }, openGraph: { title, description, url: "/guide", type: "article", images }, twitter }; }
   if (!g) return {};
-  return { title: { absolute: g.title }, description: g.description, alternates: { canonical: "/guide" },
+  // "| SiteName" as on the other pages (Grok audit 2026-11-18).
+  return { title: { absolute: `${g.title} | ${niche.site.name}` }, description: g.description, alternates: { canonical: "/guide" },
     openGraph: { title: g.title, description: g.description, url: "/guide", type: "article", images }, twitter };
 }
 

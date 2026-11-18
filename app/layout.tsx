@@ -13,6 +13,7 @@ import { Analytics } from "./analytics";
 import { niche, catalogPath } from "../lib/niche";
 import { amazonLinksOn } from "../lib/amazon-offer";
 import { rankedSlugs } from "./rankings/lists";
+import { attrProfileFor } from "../lib/attr-profile";
 import { HIGHLIGHT_BOOT } from "../lib/highlight-boot";
 
 const display = Bricolage_Grotesque({ subsets: ["latin"], axes: ["opsz"], variable: "--font-display" });
@@ -30,7 +31,7 @@ export const metadata: Metadata = { metadataBase: new URL(process.env.SITE_URL |
 export default async function Layout({children}: {children: React.ReactNode}) {
   const ranked = process.env.DATABASE_URL ? await rankedSlugs() : [];
   return <html lang="en" suppressHydrationWarning className={`${display.variable} ${sans.variable} ${serif.variable} ${headline.variable}`} style={niche.theme as CSSProperties}>{/* A saved "Highlights off" applies before the reviews paint (lib/highlight-boot.ts). */}<head><script dangerouslySetInnerHTML={{ __html: HIGHLIGHT_BOOT }}/>{niche.v2fonts?.length ? <><link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin=""/><link rel="stylesheet" href={`https://fonts.googleapis.com/css2?${niche.v2fonts.map(f => `family=${f}`).join("&")}&display=swap`}/></> : null}{niche.v2style ? <style dangerouslySetInnerHTML={{ __html: niche.v2style }}/> : null}</head>{/* The light design (owner, 2026-11-12): one rounded sans and calm colours on every page. */}<body className={`lt-site ${lightFont.variable}`}>
-    <SiteHeader ranked={ranked}/>
+    <SiteHeader ranked={ranked} guide={!!niche.guide || !!attrProfileFor(niche)}/>
     <div className="site">{children}</div>
     <footer className="site-footer"><div className="wrap">
       <span className="footer-line"><LogoIcon/>{`${niche.site.domain} — ${niche.site.footer}`}</span>

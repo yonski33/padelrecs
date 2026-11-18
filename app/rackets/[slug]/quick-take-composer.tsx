@@ -84,7 +84,7 @@ export default function QuickTakeComposer({ racketId, name, tags, nicknames, has
       {p.text && <p>{p.text}</p>}
       {p.tags.length > 0 && <div className="cm-tags">{p.tags.map(t => <span key={t}>{t}</span>)}</div>}
     </div></li>)}</ul>}
-    {!hasReviews && !posts.length && <p className="cs-empty">No takes yet. The first one gets the spotlight. 🎾</p>}
+    {!hasReviews && !posts.length && <p className="cs-empty">No takes yet. The first one gets the spotlight.</p>}
   </>;
 }
 

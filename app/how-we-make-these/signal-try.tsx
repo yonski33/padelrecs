@@ -21,7 +21,7 @@ export default function SignalTry({ products, tones, plain }: { products: Signal
   const row = (k: keyof typeof c, label: string) => <label key={k}><span>{label}</span>
     <input type="range" min={0} max={60} value={c[k]} onChange={e => setC(x => ({ ...x, [k]: +e.target.value }))}/><b>{c[k]}</b></label>;
   return <div className="hw-try">
-    <div className="hw-sliders"><p>{plain ? "try it, drag the sliders" : "// try it — drag the sliders"}</p>{row("pos", plain ? "loved it" : "👍 loved it")}{row("mix", plain ? "mixed" : "🤷 mixed")}{row("neg", plain ? "not for me" : "👎 not for me")}</div>
+    <div className="hw-sliders"><p>{plain ? "try it, drag the sliders" : "// try it: drag the sliders"}</p>{row("pos", "loved it")}{row("mix", "mixed")}{row("neg", "not for me")}</div>
     <div className="hw-out">
       <span className="hw-score" style={{ background: badge }}>{shown ?? (total < NEW_UNDER ? "New" : "–")}</span>
       <div><span className="hw-bar" aria-hidden="true"><i className="p" style={{ flex: c.pos }}/><i className="m" style={{ flex: c.mix }}/><i className="n" style={{ flex: c.neg }}/></span>

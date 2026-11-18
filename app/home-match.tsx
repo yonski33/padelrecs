@@ -3,6 +3,7 @@
 // instant"). The server renders it for the address's picks (so every combination is still a real, shareable page); a chip tap
 // re-ranks the same payload in the browser with the same functions (lib/home-rank.ts) and updates the address, with no round
 // trip. Links stay real links: a new tab, or no JavaScript, still gets the server's page.
+import { NoBreak } from "./no-break";
 import { scoreBox, matchBox } from "../lib/score-tone";
 import { whyHere } from "../lib/curated";
 import { useEffect, useState, type ReactNode } from "react";
@@ -153,7 +154,7 @@ export function HomeMatch({ seed, listed, children }: { seed: HomeSeed; listed: 
         if (M) return <li key={id} className={i === 0 && picked ? "top" : undefined}><div className="hv2-row m">
           <span className="hv2-rank">{i + 1}</span>
           <span className="hv2-pic">{r.pic ? <img src={r.pic} alt="" width={408} height={620} decoding="async" loading={i < 3 ? "eager" : "lazy"}/> : <span className="hv2-tile">{r.name.split(" ").slice(0, 2).join(" ")}</span>}</span>
-          <span className="hv2-body"><span className="hv2-nrow"><b className="hv2-rk" aria-hidden="true">{`#${i + 1}`}</b><a className="hv2-name" href={`${r.href}${picks}`}>{r.name}</a>{chips.map(c => <span key={c.k} className={`hv2-chip ${c.k}`}>{c.t}</span>)}</span>
+          <span className="hv2-body"><span className="hv2-nrow"><b className="hv2-rk" aria-hidden="true">{`#${i + 1}`}</b><a className="hv2-name" href={`${r.href}${picks}`}><NoBreak name={r.name}/></a>{chips.map(c => <span key={c.k} className={`hv2-chip ${c.k}`}>{c.t}</span>)}</span>
             {line && <span className={`hv2-line${low ? " why" : ""}`}>{line}</span>}
             {r.best && <span className="hv2-best">{`best for ${r.best}`}</span>}
             {/* "check price" sits with the name and line, as on padel's rows (owner 2026-11-17). */}
@@ -170,7 +171,7 @@ export function HomeMatch({ seed, listed, children }: { seed: HomeSeed; listed: 
         return <li key={id} className={i === 0 && picked ? "top" : undefined}><div className="hv2-row">
           <span className="hv2-rank">{i + 1}</span>
           <span className="hv2-pic">{r.pic ? <img src={r.pic} alt="" width={408} height={620} decoding="async" loading={i < 3 ? "eager" : "lazy"}/> : QUICK?.flightLabel ? <span className={`hv2-disc t${i % 6}`} aria-hidden="true"/> : <span className="hv2-tile">{r.name.split(" ").slice(0, 2).join(" ")}</span>}</span>
-          <span className="hv2-body"><span className="hv2-nrow"><a className="hv2-name" href={`${r.href}${picks}`}>{r.name}</a>{chips.map(c => <span key={c.k} className={`hv2-chip ${c.k}`}>{c.t}</span>)}</span>
+          <span className="hv2-body"><span className="hv2-nrow"><a className="hv2-name" href={`${r.href}${picks}`}><NoBreak name={r.name}/></a>{chips.map(c => <span key={c.k} className={`hv2-chip ${c.k}`}>{c.t}</span>)}</span>
             {line && <span className={`hv2-line${low ? " why" : ""}`}>{line}</span>}
             {r.best && <span className="hv2-best">{`best for ${r.best}`}</span>}
             {/* Flight numbers (type-picker sites): labelled once over the first row, and each box names its number. */}
