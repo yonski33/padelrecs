@@ -56,12 +56,18 @@ if (write) {
     if (check) throw new Error("ROLLBACK (--check)");
   }).catch(e => { if (check && String(e?.message).includes("ROLLBACK (--check)")) return; console.error("FAILED:", e?.message, e?.cause?.message ?? ""); process.exit(1); });
   if (!check) {
+    // The file keeps one product per line: only the changed products' lines are rewritten, so the diff stays readable.
     const path = new URL("../db/catalogs/coffee.json", import.meta.url);
-    const cat = JSON.parse(readFileSync(path, "utf8")) as { products: ({ name: string; sources?: string[] } & Partial<Record<Col, string | null>>)[] };
-    for (const p of plan) { const c = cat.products.find(x => x.name === p.name); if (!c) continue;
-      Object.assign(c, p.cols); c.sources = [...new Set([...(c.sources ?? []), p.source])]; }
-    writeFileSync(path, JSON.stringify(cat, null, 1) + "\n");
-    console.log("db/catalogs/coffee.json updated");
+    let n = 0;
+    const lines = readFileSync(path, "utf8").split("\n").map(line => {
+      const t = line.trim(); if (!t.startsWith('{"brand"')) return line;
+      const comma = t.endsWith(",") ? "," : "", c = JSON.parse(t.replace(/,$/, "")) as { name: string; sources?: string[] } & Partial<Record<Col, string | null>>;
+      const p = plan.find(x => x.name === c.name); if (!p) return line;
+      Object.assign(c, p.cols); c.sources = [...new Set([...(c.sources ?? []), p.source])]; n++;
+      return `${line.slice(0, line.length - line.trimStart().length)}${JSON.stringify(c)}${comma}`;
+    });
+    writeFileSync(path, lines.join("\n"));
+    console.log(`db/catalogs/coffee.json updated (${n} products)`);
   }
 }
 process.exit(0);
