@@ -217,7 +217,9 @@ export const padel: Niche = {
   topLists: [
     // This season's models only: padel players mostly buy the current year. Last season's get their own list below.
     { slug: "best-padel-rackets", label: "Best overall", title: "Best Padel Rackets", minReviews: 10, maxAgeYears: 0,
-      intro: "This season's rackets players are most consistently happy with." },
+      intro: "This season's rackets players are most consistently happy with.",
+      // The deep section, pilot on this list only (owner-approved mock 2026-11-19).
+      deep: { soon: ["Best for beginners", "Best for tennis elbow"] } },
     { slug: "best-padel-rackets-{year}", label: "Best of {year}", title: "Best Padel Rackets", minReviews: 10, modelYearsBack: 1,
       intro: "Last season's {year} rackets players are most consistently happy with. Often cheaper now that the new models are out." },
     { slug: "best-power-padel-rackets", label: "Best for power", title: "Best Padel Rackets for Power", minReviews: 12, maxAgeYears: 0,

@@ -30,6 +30,7 @@ import { catalogRows } from "../../rackets/catalog-rows";
 import { scoreState } from "../../../lib/score-view";
 import { NewPill } from "../../score-tags";
 import { fitConfigFor } from "../../../lib/fit-config";
+import RankingDeep, { deepFaq } from "./ranking-deep";
 /** A type-picker site (DiscGolfRecs): its type lists read "The 10 best disc golf distance drivers" (audit 2026-11-17 #24). */
 const QUICK = !!fitConfigFor(niche)?.quick, WORDS = fitConfigFor(niche)?.words;
 
@@ -105,8 +106,15 @@ export default async function RankingV2({ data, lists, found, amazon, affiliate,
       line: "Your verdict moves the list. One tap, no account.", cta: "+ add a review" },
   ];
 
+  // "Get to know the top 10" (owner-approved mock 2026-11-19): lists with `deep` only, on a site with the match engine. Its own
+  // short FAQ replaces the page's, in the FAQPage data too; after the list come the section's end parts instead of the cards.
+  const deep = !!list.deep && !!ctx;
+  const dFaq = deep ? deepFaq(list, affiliate) : faq;
+  const ld = deep ? { ...(jsonLd as { "@graph": { "@type": string }[] }), "@graph": (jsonLd as { "@graph": { "@type": string }[] })["@graph"].map(g => g["@type"] === "FAQPage"
+    ? { "@type": "FAQPage", mainEntity: dFaq.map(f => ({ "@type": "Question", name: f.q, acceptedAnswer: { "@type": "Answer", text: f.a } })) } : g) } : jsonLd;
+
   return <main className={`rl2 rk3 ${qtFontVars}`}>
-    <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c") }}/>
+    <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(ld).replace(/</g, "\\u003c") }}/>
     <div className="rk3-wrap">
       <div className="rk3-crumbs"><a href={RANKINGS_PATH}>rankings</a><span>/</span><span className="here">{list.label.toLowerCase()}</span></div>
       <div className="rk3-head">
@@ -164,9 +172,11 @@ export default async function RankingV2({ data, lists, found, amazon, affiliate,
       </li>)}</ol>}
       </MatchWrap>
 
-      {more.length === 0 && <a className="rk3-all" href={RANKINGS_PATH}>see all rankings →</a>}
+      {!deep && more.length === 0 && <a className="rk3-all" href={RANKINGS_PATH}>see all rankings →</a>}
       {affiliate && <p className="rk3-aff">{"* some links are affiliate links; they never change the order."}</p>}
 
+      {deep && ctx ? <RankingDeep data={data} ctx={ctx} list={list} lists={tabs} faq={dFaq}
+        rows={rows.map(x => ({ r: x.r, rank: x.e.rank, name: x.name, url: x.url, pic: x.pic, sig: x.sig, shop: x.shop }))}/> : <>
       <div className="rk3-next">
         {top3.length >= 2 && <section className="rk3-cta">
           <div><b>{`Torn between the top ${top3.length}? Put them side by side.`}</b><span>{`Trait by trait, from ${niche.people.one} reviews.`}</span></div>
@@ -187,6 +197,7 @@ export default async function RankingV2({ data, lists, found, amazon, affiliate,
 
       <section className="rl2-faq rk3-faq" id="how-we-rank"><h2>Questions</h2>
         <div className="box">{faq.map(f => <details key={f.q}><summary>{f.q}<i aria-hidden="true"/></summary><p>{f.a}</p></details>)}</div></section>
+      </>}
     </div>
     <V2Footer/>
   </main>;
