@@ -1,5 +1,6 @@
 "use client";
 import { scoreBox } from "../../../lib/score-tone";
+import { niche } from "../../../lib/niche";
 import { useFormToken } from "../../form-token-client";
 import { VERDICT_PILL } from "../../../lib/review-pill";
 import { useEffect, useRef, useState } from "react";
@@ -39,13 +40,15 @@ function countLine(m: { pos: number; mix: number; neg: number }, rated: number, 
   return [...([[m.pos, "loved"], [m.mix, "mixed"], [m.neg, "nope"]] as const).filter(([n]) => n >= min).map(([n, w]) => `${n} ${w}`), `${rated} rated`, "tap a colour to filter"].join(" · ");
 }
 
+/** Who reviews, in the site's words (lib/niche reviewers, else people). */
+const RV = (niche.reviewers ?? niche.people).many;
 export default function RacketReviews({ racketId, name, cards, nicknames = [], total, mood, words, v11c, hideUnder }: { /** SkinRecs (owner rule): counts
    *  under this are never shown (the score row and the mention tags). Unset: every count, as before. */ hideUnder?: number; /** v11c (owner 2026-11-17): "What players say",
    *  the new-this-week dot, a one-row "Played it?" (dots, no emoji; a few words optional) and the thin state. */ v11c?: { fresh: number; thin: boolean; /** Each mention tag's tone: praise or complaint. */ tone?: Record<string, "pos" | "neg" | "neutral"> }; racketId: string; name: string; cards: ReviewCard[]; nicknames?: string[]; /** All reports, the page's one count. */ total?: number;
   /** Every judged report's sentiment and the Player score for the header (owner's final mock: badge, bar, no %). */ mood?: { pos: number; mix: number; neg: number; score?: number | null };
   /** Another site's words (SkinRecs): the profile chips ("I have" dry / oily…), the score's name, the composer's title, who the
    *  reviewers are. Padel's by default. */ words?: { levelLead: string; levels: { value: string; label: string }[]; score: string; ask: string; people: string; peopleTab: string } }) {
-  const W = words ?? { levelLead: "I'm", levels: LEVELS.map(l => ({ value: l[0].toUpperCase() + l.slice(1), label: l as string })), score: "Player score", ask: "Played it?", people: "players", peopleTab: "players" };
+  const W = words ?? { levelLead: "I'm", levels: LEVELS.map(l => ({ value: l[0].toUpperCase() + l.slice(1), label: l as string })), score: "Player score", ask: "Played it?", people: RV, peopleTab: RV };
   const [tab, setTab] = useState<"all" | "players" | "youtube" | "blogs" | "reddit">("all"), [shown, setShown] = useState(PAGE);
   const formToken = useFormToken();
   // v11c filters (owner 2026-11-17, the approved mock): a verdict from the vote bar, a tag from "What players mention".

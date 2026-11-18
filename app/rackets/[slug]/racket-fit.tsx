@@ -70,6 +70,8 @@ const SCORE_WORD = v2copy.score ?? "player score";
 /** "Still deciding?" link wording per site (owner 2026-11-18): each site's own verb, played it? by default. */
 const ASK_LINK: Record<string, string> = { discgolf: "thrown it?", simracing: "raced on it?" };
 const V11_SITE = V11_SITES[niche.id] ?? null, V11 = !!V11_SITE, PADEL = niche.id === "padel";
+/** Who reviews on this page, in the site's words (lib/niche reviewers, else people): disc golf's throwers. */
+const RV = niche.reviewers ?? { one: SITE_FIT.words?.person ?? niche.people.one, many: niche.people.many };
 const SCORE_CAP = `${SCORE_WORD[0].toUpperCase()}${SCORE_WORD.slice(1)}`;
 /** v11 "How it plays": three bands (trait key, label). */
 const V11_BANDS_OF = (shape: string | null): [string, string][] => { const b = V11_SITE?.bands; return typeof b === "function" ? b(shape) : b ?? []; };
@@ -514,6 +516,8 @@ export default async function RacketFit(props: {
             {/* H1 "<name> review" for search (owner spec); the year is in the chips. */}
             <h1>{V11 ? (hasYears ? `${props.shortName} (${props.year})` : props.shortName) : `${props.shortName} review`}</h1>
             {(page || qt || props.line) && <p className="rf-hook">{page ? page.tagline : qt ? `${qt.hook.good} ${qt.hook.catch}` : props.line}</p>}
+            {/* Owner 2026-11-18: people who came for opinions skip straight down (the score box links there too). */}
+            {V11 && cards.length > 0 && <a className="v11-jump" href="#reviews">{`Jump to reviews (${cards.length}) ↓`}</a>}
             {/* The Player score as a quiet line with its bar (owner's final mock), then Check price. */}
             {!V11 && (page?.source === "research" ? <p className="rp-score">{RESEARCH_LINE}</p> :
             <a className="rp-score" href="#reviews" title={`${SCORE_WORD[0].toUpperCase()}${SCORE_WORD.slice(1)}: not a % of happy players. It blends how much players like it with how many have weighed in.`}>
@@ -527,7 +531,7 @@ export default async function RacketFit(props: {
                 {scoreState(rated) === "new" ? <NewPill n={rated}/> : <b className={`v11-sq ${v11Tone(overallScore)}`}>{overallScore ?? "–"}</b>}
                 <span className="v11-sm"><b>{SCORE_CAP}</b>
                   {rated > 0 && <span className="v11-sbar" aria-hidden="true"><i className="p" style={{ flex: mood.pos }}/><i className="m" style={{ flex: mood.mix }}/><i className="n" style={{ flex: mood.neg }}/></span>}
-                  <small>{ytRated > 0 ? `${rated} rated it` : `${rated} ${rated === 1 ? niche.people.one : niche.people.many} rated it`}</small></span></a>}
+                  <small>{ytRated > 0 ? `${rated} rated it` : `${rated} ${rated === 1 ? RV.one : RV.many} rated it`}</small></span></a>}
               {buy && <a className="v11-buy" href={buy.url} target="_blank" rel={buy.rel}>{buy.label} ↗</a>}
               {/* No "compare with…" here (owner 2026-11-18): it sent people off the page they just landed on. Compare lives in the
                   "Still deciding?" card and on the Other rackets cards. */}
@@ -548,7 +552,8 @@ export default async function RacketFit(props: {
         <div className="rp-main">
           {!V11 && page && tier && <BeforePicks><p className="rp-bottom"><span className="rp-bl">bottom line</span><b>{page.bottom}</b></p></BeforePicks>}
           {page && tier && <div id="yes-no">
-            <div className="rf-h"><h2>Why yes, why not</h2><span>{page.source === "research" ? RESEARCH_LINE.toLowerCase() : tier === "short" ? `based on ${total} reports` : `from ${SITE_FIT.words?.person ?? "player"} reports & YouTube`}</span></div>
+            {/* No heading (owner 2026-11-18): the two boxes say Why yes / Why not; the source line sits small, right, above them. */}
+            <p className="v11-ysrc">{page.source === "research" ? RESEARCH_LINE.toLowerCase() : tier === "short" ? `based on ${total} reports` : `from ${RV.one} reports & YouTube`}</p>
             <FitYesNo yes={page.yes} no={page.no} tier={tier} research={page.source === "research"} fold={V11}/>
           </div>}
 
@@ -564,7 +569,7 @@ export default async function RacketFit(props: {
           <section id="reviews" className="rv">
             {soon && <p className="rv-soon">Not shipping yet: the maker says first units arrive in December 2026, so these are pre-release impressions, not owner reviews.</p>}
             <RacketReviews racketId={props.racketId} name={props.shortName} cards={cards} nicknames={props.nicknames} total={total} v11c={V11 ? { fresh: freshN, thin: rated < 10, tone: Object.fromEntries(niche.tags.map(t => [t.label, t.tone === "pos" ? "pos" : t.tone === "neg" ? "neg" : "neutral"])) } : undefined}
-              mood={{ ...mood, score: scoreState(rated) === "new" ? null : overallScore }}{...(QUICK ? { words: { levelLead: "I'm", levels: ["Beginner", "Intermediate", "Advanced"].map(v => ({ value: v, label: SITE_FIT.levelPeople ? SITE_FIT.levelLabels?.[v.toLowerCase() as "beginner"] ?? v.toLowerCase() : v.toLowerCase() })), score: `${SCORE_WORD[0].toUpperCase()}${SCORE_WORD.slice(1)}`, ask: SITE_FIT.words ? niche.copy.ui.triedIt : "Thrown it?", people: SITE_FIT.words ? niche.people.many : "players", peopleTab: SITE_FIT.words ? niche.people.many : "players" } } : {})}/>
+              mood={{ ...mood, score: scoreState(rated) === "new" ? null : overallScore }}{...(QUICK ? { words: { levelLead: "I'm", levels: ["Beginner", "Intermediate", "Advanced"].map(v => ({ value: v, label: SITE_FIT.levelPeople ? SITE_FIT.levelLabels?.[v.toLowerCase() as "beginner"] ?? v.toLowerCase() : v.toLowerCase() })), score: `${SCORE_WORD[0].toUpperCase()}${SCORE_WORD.slice(1)}`, ask: niche.copy.ui.triedIt, people: RV.many, peopleTab: RV.many } } : {})}/>
           </section>
 
           {/* v11c: the closing card and the rankings, after the reviews. */}

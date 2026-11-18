@@ -221,6 +221,10 @@ export const skin: Niche = {
   sourcePlatforms: ["Reddit", "YouTube", "Beauty retailer", "Forum", "Blog"],
   examples: { brand: "CeraVe", model: "Moisturizing Cream", year: 2026, search: "cerave" },
   form: {
+    // Nicknames in skincare words (owner 2026-11-18: SkinRecs showed "SharpSpin899"), kind and neutral.
+    quickVote: { question: "Have you used this?", placeholder: "What stood out? Texture, results, how your skin took it…",
+      nickFirst: ["Dewy", "Calm", "Soft", "Bright", "Gentle", "Fresh", "Sunny", "Happy", "Mellow", "Clear", "Rosy", "Lucky"],
+      nicknames: ["Glow", "Bloom", "Petal", "Balm", "Cloud", "Mist", "Silk", "Honey", "Aloe", "Velvet", "Serum", "Lotus"] },
     prompts: [["What did you use before?", "Before this I used "], ["How long until results?", "I noticed a difference after "], ["Any irritation?", "On my skin it "]],
     tips: ["What you used before, and how this compares", "Your skin type and what you hoped it would fix", "How long it took to see a difference, if at all", "Texture and scent, and whether it works under makeup or sunscreen", "Any irritation, breakouts or stinging"],
   },
