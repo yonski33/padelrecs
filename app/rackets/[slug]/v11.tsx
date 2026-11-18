@@ -131,8 +131,8 @@ const Links = ({ c, slug }: { c: { href: string; shop: V11Card["shop"] }; slug: 
 
 /** "How it plays" (v11c): one slim box. Three bars in a row, the build as chips (a tap shows its line, the key phrase marked),
  *  then the rule of thumb. */
-export function V11Plays({ bands, top, chips, tip }: { bands: { k: string; label: string; dots: number; note: string | null }[]; top: number;
-  chips: { key: string; title: string; line: string }[]; tip: string }) {
+export function V11Plays({ bands, top, chips, tip, title = "How it plays" }: { bands: { k: string; label: string; dots: number; note: string | null }[]; top: number;
+  chips: { key: string; title: string; line: string }[]; tip: string; /** SimRacingRecs: "How it drives". */ title?: string }) {
   const [open, setOpen] = useState<string | null>(null);
   const shown = chips.find(c => c.key === open);
   // The key phrase: what follows the first colon or semicolon ("Black EVA sits between soft and firm: ==some comfort…=="),
@@ -140,7 +140,7 @@ export function V11Plays({ bands, top, chips, tip }: { bands: { k: string; label
   const mark = (t: string) => { const m = t.match(/^(.*?[:;]\s+)(.+?)(\.?)$/); if (m) return [m[1], m[2], m[3]];
     const k = t.search(/[,.]\s/); return k > 0 ? ["", t.slice(0, k), t.slice(k)] : ["", t, ""]; };
   return <div id="plays" className="v11-plays v11c">
-    <h2>How it plays</h2>
+    <h2>{title}</h2>
     <div className="v11-bands">{bands.map(b => <div key={b.k} className={b.dots === top ? "top" : undefined}>
       <span className="v11-bh"><b>{b.label}</b><span className="v11-bn">{b.dots}<small>/5</small></span></span>
       <span className="v11-segs" aria-label={`${b.dots} of 5`}>{[1, 2, 3, 4, 5].map(x => <i key={x} className={x <= b.dots ? `on t${b.dots}` : undefined}/>)}</span>

@@ -4,4 +4,5 @@ export const V11_HEADLINES: Record<string, { good: string; maybe: string; no: st
   padel: { good: "Good match for you", maybe: "Maybe, demo it first", no: "Probably not your racket", thin: "Not enough reports from players like you yet." },
   pickleball: { good: "Good match for you", maybe: "Maybe, demo it first", no: "Probably not your paddle", thin: "Not enough reports from players like you yet." },
   discgolf: { good: "Good match for you", maybe: "Maybe, try it first", no: "Probably not your disc", thin: "Not enough reports from players like you yet." },
+  simracing: { good: "Good match for you", maybe: "Maybe, try it first", no: "Probably not for your rig", thin: "Not enough reports from drivers like you yet." },
 };
