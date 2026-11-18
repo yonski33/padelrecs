@@ -99,8 +99,20 @@ const PICKLEBALL: { fixes: Fix[]; merges: Merge[] } = {
   ],
 };
 
-const PLAN = niche.id === "padel" ? PADEL : niche.id === "pickleball" ? PICKLEBALL : null;
-if (!PLAN) throw new Error("NICHE=padel or NICHE=pickleball");
+// TennisRecs (Grok's scoring pass 2026-11-19, grok/tennis-play-scores/results/CATALOG-FIXES-tennis.md): only the flags that
+// tennis-warehouse.com confirmed. Columns here: weight = strung weight, balance = strung balance, surface = stiffness (RA).
+const TENNIS: { fixes: Fix[]; merges: Merge[] } = {
+  fixes: [
+    { slug: "wilson-burn-100s-v6", set: { surface: "71 RA" }, why: "TW lists 71 (73 was copied from the V5)" },
+    { slug: "head-instinct-pwr-110-2025", name: "Head PWR 110 2025", set: { weight: "278 g strung", surface: "65 RA" }, why: "sold as Head PWR 110; TW: 278 g strung, 65 stiffness" },
+    { slug: "head-instinct-pwr-115-2025", name: "Head PWR 115 2025", why: "sold as Head PWR 115 (specs already match TW)" },
+    { slug: "yonex-ezone-98-tour-8th-gen", set: { balance: "4 pts HL strung", surface: "62 RA" }, why: "TW: 4 pts HL, 62 stiffness" },
+    { slug: "prince-ripstick-100-280g", name: "Prince Ripstick 100 280g 2025", why: "the current version is the 2025 (TW); tells it apart from the 2021" },
+  ],
+  merges: [],
+};
+const PLAN = niche.id === "padel" ? PADEL : niche.id === "pickleball" ? PICKLEBALL : niche.id === "tennis" ? TENNIS : null;
+if (!PLAN) throw new Error("NICHE=padel, pickleball or tennis");
 const args = process.argv.slice(2), write = args.includes("--write"), backupDir = args[args.indexOf("--backup") + 1];
 if (write && (!args.includes("--backup") || !backupDir)) throw new Error("--write needs --backup <dir>");
 

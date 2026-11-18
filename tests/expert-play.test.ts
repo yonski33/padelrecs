@@ -4,9 +4,10 @@ import { test } from "node:test";
 import assert from "node:assert/strict";
 import padel from "../db/expert-play/padel.json";
 import pickleball from "../db/expert-play/pickleball.json";
+import tennis from "../db/expert-play/tennis.json";
 import { readExpertPlay, lineProblem, shownDots } from "../lib/expert-play";
 
-for (const [site, raw, keys] of [["padel", padel, ["power", "control", "forgiveness", "arm"]], ["pickleball", pickleball, ["power", "control", "spin"]]] as const) {
+for (const [site, raw, keys] of [["padel", padel, ["power", "control", "forgiveness", "arm"]], ["pickleball", pickleball, ["power", "control", "spin"]], ["tennis", tennis, ["power", "control", "spin", "arm"]]] as const) {
   test(`${site}: every expert bar has dots and a clean line`, () => {
     const f = readExpertPlay(raw), bad: string[] = [];
     assert.ok(Object.keys(f.products).length > 100);
