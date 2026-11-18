@@ -1,4 +1,5 @@
 "use client";
+import { siteVoice } from "../../lib/site-voice";
 // The SkinRecs home's quick match, list and texture links in the browser (owner 2026-11-16: "changing filters, categories,
 // skin picks … is slow"). The server renders the address's picks (a cached page per combination, app/v/home); a tap re-ranks
 // the products sent with the page with the server's own functions (app/skin/rank.ts) and updates the address, with no request
@@ -74,7 +75,7 @@ export function SkinHomeMatch({ pack, choice: first, counts, textures, children 
           {CATS.map(typeOf).filter(t => !!t).map(t => <span key={t.slug}>{pill(t.label.toLowerCase(), { ...choice, type: t.shape, typeSlug: t.slug }, choice.typeSlug === t.slug)}</span>)}
         </div>
         <div className="bh-box">
-          {rows.length === 0 && <p className="bh-empty">Nothing matches that yet. Try fewer filters.</p>}
+          {rows.length === 0 && <p className="bh-empty">{siteVoice()?.empty.filters ?? "Nothing matches that yet. Try fewer filters."}</p>}
           <ol className="bh-list">{rows.map((x, i) => {
             const r = x.r, card = cards[r.id];
             const top = i === 0 && picked && x.pct !== null && x.pct >= 75;

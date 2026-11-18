@@ -85,6 +85,7 @@ const GIVE_UP: Record<string, string> = V11_SITE?.giveUp ?? {};
 import type { QtReport, QtReview } from "./quick-take";
 import { scoreState } from "../../../lib/score-view";
 import { NewPill } from "../../score-tags";
+import { voiceTagline } from "../../../lib/voice-taglines";
 
 /** The racket fit page (owner 2026-11-15, site-jobs/RACKET-FIT-PAGE.md; Claude Design layout, our data): a tight page with
  *  the important things and our recommendation. One fit-check box with two states: no picks asks "Is this the right racket
@@ -371,6 +372,9 @@ export default async function RacketFit(props: {
     const r = ctx.data.rackets.find(x => x.slug === slug); return r ? [[slug, { href: productHref(r), name: displayName(r.name, brand(r.brandId)) }]] : []; })) } : null;
   // The page's own words (lib/racket-page.ts): tagline, bottom line, Why yes / Why not. Rackets without them keep the hook.
   const page = pageForCard, tier = pageTier(page);
+  // The site-voice tagline (owner 2026-11-18, lib/voice-taglines.ts) leads, unless padel's trait bars contradict it (one story).
+  const voiced = voiceTagline(props.slug), voiceOk = voiced && !(PADEL && contradicts(voiced, dotsNow)) ? voiced : null;
+  const tagline = voiceOk ?? (page ? page.tagline : qt ? `${qt.hook.good} ${qt.hook.catch}` : props.line ?? null);
   // The compare tabs: six trait dots per racket (lib/trait-score.ts), this one and every racket an alternative can be.
   const dotsOf = (rid: string) => { const sc = ctx.traits(rid).scores; return TRAITS.map(t => sc?.[t as Trait]?.dots ?? 0); };
   const shortOf = (r: ReturnType<typeof racketOf>) => withoutYear(displayName(r.name, brand(r.brandId)));
@@ -397,7 +401,7 @@ export default async function RacketFit(props: {
   const typeOf = (kind: string | undefined) => quickTypes.find(t => t.key === kind);
   const tagOf = (id: string) => { const c = payload.cards[id]; return c?.flight ? c.flight.join(" ") : c?.shape ?? racketOf(id).shape?.toLowerCase() ?? niche.words.one; };
   // One line per card: the racket's own tagline (lib/racket-page.ts, expert voice), else its home line or short line.
-  const lineOf = (id: string) => [pageContent(racketOf(id).slug)?.tagline, payload.cards[id]?.line, shortLine(racketOf(id)), listLine(racketOf(id))]
+  const lineOf = (id: string) => [voiceTagline(racketOf(id).slug), pageContent(racketOf(id).slug)?.tagline, payload.cards[id]?.line, shortLine(racketOf(id)), listLine(racketOf(id))]
     .map(expertLine).find((t): t is string => !!t) ?? null;
   // A gain on a disc card must hold in its flight numbers (site audit 2026-11-17 #8, #14): "better in wind" only with more fade or
   // less turn than this disc; "easier for a slower arm" never from a disc its page or its numbers warn slower arms off.
@@ -529,7 +533,7 @@ export default async function RacketFit(props: {
               {older && <a className="rp-older" href={older.href}>{`${older.year} version →`}</a>}</div>
             {/* H1 "<name> review" for search (owner spec); the year is in the chips. */}
             <h1>{V11 ? (hasYears ? `${props.shortName} (${props.year})` : props.shortName) : `${props.shortName} review`}</h1>
-            {(page || qt || props.line) && <p className="rf-hook">{page ? page.tagline : qt ? `${qt.hook.good} ${qt.hook.catch}` : props.line}</p>}
+            {tagline && <p className="rf-hook">{tagline}</p>}
             {/* Owner 2026-11-18: people who came for opinions skip straight down (the score box links there too). */}
             {V11 && cards.length > 0 && <a className="v11-jump" href="#reviews">{`Jump to reviews (${cards.length}) ↓`}</a>}
             {/* The Player score as a quiet line with its bar (owner's final mock), then Check price. */}
@@ -591,7 +595,7 @@ export default async function RacketFit(props: {
           {/* Not-a-fit state only: the next best fits after the Better matches strip (owner 2026-11-17). */}
           {V11 && <V11More id={props.racketId} slug={props.slug} facts={facts} better={v11Strip} pool={v11Strip} {...edgeWords}/>}
           {V11 && <V11Decide id={props.racketId} facts={facts} name={hasYears ? `${props.shortName} (${props.year})` : props.shortName} pic={props.photo}
-            score={scoreState(rated) === "new" ? null : overallScore} line={page ? page.tagline : props.line ?? null} buy={buy}
+            score={scoreState(rated) === "new" ? null : overallScore} line={voiceOk ?? (page ? page.tagline : props.line ?? null)} buy={buy}
             compare={{ href: `${catalogPath}?compare=1`, pick: { id: props.racketId, slug: props.slug, name: props.name, pic: props.photo } }}
             one={niche.words.one} ask={`${ASK_LINK[niche.id] ?? "played it?"} add your review →`}/>}
           {V11 && tiles.length > 0 && <section className="v11-rt" aria-labelledby="v11-rt-t">
