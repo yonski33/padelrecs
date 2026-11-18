@@ -483,3 +483,6 @@
 .rf .v11-works .v11-wn b { font: 600 14px/1.25 inherit; }
 .rf .v11-works .v11-wn small { font: 12px var(--v-mono); color: #8a4a1a; }
 .rf .v11-works .v11-wmore { margin: 6px 0 0; font: 12px var(--v-mono); color: var(--v-mute2); }
+/* Desktop (owner 2026-11-18): no sticky fit / price bar. The hero's fit card and Check price, the Other rackets links and the
+   "Still deciding?" card are enough; phones (< 1024px) keep the bottom bar. Its bottom padding only applies under 900px. */
+@media (min-width: 1024px) { .rf:has(.v11-score) .rp-stick, .rf:has(.v11-score) .rp-stick.on { display: none; } }

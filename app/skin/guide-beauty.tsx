@@ -142,7 +142,7 @@ export default async function GuideBeauty() {
         <Rule>{"Save on cleanser and moisturizer. Spend on sunscreen you'll actually wear."}</Rule>
       </section>
 
-      <section className="bg-cta"><div><b>Skip the theory. Get matched.</b><span>{"Tell us your skin type and goal. We'll rank every product for you."}</span></div>
+      <section className="bg-cta"><div><b>Skip the theory. Get matched.</b><span>{"Pick your skin type and goal to see every product ranked for you."}</span></div>
         <Link className="bp-btn" href="/#match">Find my match →</Link></section>
       <p className="bg-mono">{`Counts are from the ${listed.length} products we track. "Good for" means people with that skin type rated it well, at least ${FEW_VOICES} of them.`}</p>
     </div>

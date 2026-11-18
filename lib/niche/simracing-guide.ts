@@ -76,5 +76,5 @@ export const simracingGuide: GuideConfig = {
   ],
   buys: { section: "drive", kicker: "// what racers actually run" },
   home: { section: "drive", title: "Which wheelbase drive is for you?", link: "Torque, load cells & rigs explained → sim racing guide" },
-  cta: { title: "Skip the theory. Get matched.", text: "Tell us what you need and how you race; we'll rank the gear for you.", button: "Find your gear →" },
+  cta: { title: "Skip the theory. Get matched.", text: "Pick what you need and how you race to see the gear ranked for you.", button: "Find your gear →" },
 };

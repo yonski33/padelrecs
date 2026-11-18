@@ -75,10 +75,10 @@ export default async function HomeBeauty({ choice }: { choice: SkinChoice }) {
     <style>{bpBodyFonts}</style>
     <div className="bh-wrap">
       <section className="bh-hero">
-        {/* One row on desktop (owner 2026-11-16, as PickleballRecs), the live pill on the subtitle's line; both wrap on phones. */}
-        <div><h1>{"Less guessing. "}<em>Better skincare.</em></h1>
-          <div className="bh-subrow"><p>{"Tell us about your skin. We'll handle the homework."}</p>
-            <span className="bh-live"><i aria-hidden="true"/>{`${total.toLocaleString("en-US")} reviews · ${newThisWeek(data, now).toLocaleString("en-US")} added this week`}</span></div></div>
+        {/* The live pill on the headline's line, to its right (owner 2026-11-18, every site). */}
+        <div><div className="bh-hrow"><h1>{`${niche.v2copy?.homeH1?.[0] ?? "Less guessing."} `}<em>{niche.v2copy?.homeH1?.[1] ?? "Better skincare."}</em></h1>
+            <span className="bh-live"><i aria-hidden="true"/>{`${total.toLocaleString("en-US")} reviews · ${newThisWeek(data, now).toLocaleString("en-US")} added this week`}</span></div>
+          {!niche.v2copy?.homeH1 && <div className="bh-subrow"><p>{"Tell us about your skin. We'll handle the homework."}</p></div>}</div>
       </section>
 
       {/* The picks, the list and the texture links work in the browser (app/skin/home-match-skin.tsx). */}

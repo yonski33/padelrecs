@@ -106,7 +106,7 @@ export default function AddReviewV2({ rackets, initial, levels, sides, times, tr
           <div className="ar-h"><h2>5. In your words</h2><span>optional</span></div>
           <div className="ar-prompts">{prompts.map(p => <button key={p} type="button" onClick={() => setText(t => (t ? t.trimEnd() + " " : "") + p[0].toUpperCase() + p.slice(1) + ": ")}>+ {p}</button>)}</div>
           <textarea rows={5} maxLength={2000} value={text} onChange={e => { setText(e.target.value); setError(""); }} placeholder="What would you tell a friend thinking of buying it?" aria-label="Your review"/>
-          <div className="ar-row"><span>show my name as</span><input value={name} maxLength={50} onChange={e => setName(e.target.value)} placeholder="first name or nickname (blank = we pick one for you)" aria-label="Show my name as"/></div>
+          <div className="ar-row"><span>show my name as</span><input value={name} maxLength={50} onChange={e => setName(e.target.value)} placeholder="first name or nickname (blank = a nickname is picked for you)" aria-label="Show my name as"/></div>
         </div>
       </section>
       <aside className="ar-side">
@@ -121,7 +121,7 @@ export default function AddReviewV2({ rackets, initial, levels, sides, times, tr
         </article>
         <button type="button" className="ar-submit" disabled={!ready || busy} onClick={submit}>{busy ? "posting…" : ready ? "Post my review →" : !racket ? `pick a ${niche.words.one} first` : "pick a verdict first"}</button>
         {error && <p className="ar-err" role="alert">{error}</p>}
-        <p className="ar-small">{"Every review gets a check before it counts. No ads in your inbox: we don't ask for an email."}</p>
+        <p className="ar-small">{"Every review gets a check before it counts. No ads in your inbox: no email needed."}</p>
       </aside>
     </div>
   </>;

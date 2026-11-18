@@ -65,5 +65,5 @@ export const pickleballGuide: GuideConfig = {
     standard: { icon: "standard", text: "Widest sweet spot and quickest hands. The safe pick for most players." },
     elongated: { icon: "elongated", text: "More reach and power on drives and serves. Smaller sweet spot." },
     hybrid: { icon: "hybrid-paddle", text: "A little extra reach without losing much forgiveness." } } },
-  cta: { title: "Skip the theory. Get matched.", text: "Tell us your level and style; we'll rank every paddle for you.", button: "Find your paddle →" },
+  cta: { title: "Skip the theory. Get matched.", text: "Pick your level and style to see every paddle ranked for you.", button: "Find your paddle →" },
 };
