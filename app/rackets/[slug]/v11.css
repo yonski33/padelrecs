@@ -452,5 +452,8 @@
 .rf .rv-psend .rv-post { margin-left: auto; }
 @media (max-width: 520px) { .rf .rv-psend .rv-nick { flex-basis: 100%; max-width: none; } }
 
+/* Full content width for the sections above the reviews (owner 2026-11-18): rp-body is a flex column that doesn't stretch, and
+   since the bottom line moved out of rp-main (#472) nothing held rp-main at the full width any more. */
+.rf:has(.v11-score) .rp-main { width: 100%; }
 /* The bottom bar's compare link, for a product with no shop link (SimRacingRecs #469). */
 .rf .rp-stick .rp-cmp { margin-left: auto; font: 13px var(--v-mono, var(--mono)); color: inherit; text-decoration: underline; text-underline-offset: 3px; white-space: nowrap; }
