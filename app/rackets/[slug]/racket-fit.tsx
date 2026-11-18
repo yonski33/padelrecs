@@ -53,7 +53,7 @@ import { listYear } from "../../../lib/top-lists";
 import { scoreTone as v11Tone } from "../../../lib/score-tone";
 import { V11_SITES } from "../../../lib/v11-site";
 import { distinctEdges } from "../../../lib/other-picks";
-import { claimBlock } from "../../../lib/claim-guard";
+import { claimBlock, flightFact, sameFlightFact } from "../../../lib/claim-guard";
 import { refName } from "../../../lib/compare-names";
 import { suggestionFloor } from "../../../lib/suggestion-floor";
 import { contradicts, padelWords, claims } from "../../../lib/content-consistency";
@@ -432,11 +432,18 @@ export default async function RacketFit(props: {
   // sore arm), so a pick in the browser never waits for more data.
   // "More X than the Y" holds only on a dot gap from enough reports with no spec against it (owner 2026-11-18,
   // lib/claim-guard.ts), plus the disc golf flight check; the same answer goes to the browser per pool racket.
-  const specOf = (rid: string) => { const x = racketOf(rid); return { shape: x.shape, core: x.core, surface: x.surface, balance: x.balance, weight: x.weight }; };
+  const specOf = (rid: string) => { const x = racketOf(rid); return { shape: x.shape, core: x.core, surface: x.surface, balance: x.balance, weight: x.weight, flight: QUICK ? flightOfId(rid) : null }; };
+  // Disc golf (owner 2026-11-18): a 1+ point flight gap stands in for the dots on distance, arm, glide and wind (capped at 2 so it
+  // doesn't always win the card), and the line carries the numbers.
+  const flightOn = (oid: string, i: number) => { const f = flightFact(niche.id, TRAITS[i], flightOfId(oid), flightOfId(props.racketId)); return f && Math.abs(f.gap) >= 1 ? f : null; };
+  const gapOf = (oid: string, i: number) => { const f = flightOn(oid, i); return f ? Math.max(-2, Math.min(2, f.gap)) : undefined; };
+  const noteOf = (oid: string, i: number) => { const f = flightOn(oid, i); return f ? ` (${f.note(1)})` : ""; };
   const allow = (oid: string, i: number, dir: 1 | -1) => { const k = TRAITS[i];
     if (dir > 0 && gainOk && !gainOk(oid, k)) return false;
     return claimBlock(niche.id, k, dir, { spec: specOf(oid), tr: ctx.traits(oid).scores?.[k as Trait] }, { spec: specOf(props.racketId), tr: tr.scores?.[k as Trait] }) === null; };
-  const okOf = (oid: string) => ({ gain: TRAITS.flatMap((_, i) => allow(oid, i, 1) ? [i] : []), give: TRAITS.flatMap((_, i) => allow(oid, i, -1) ? [i] : []) });
+  const okOf = (oid: string) => ({ gain: TRAITS.flatMap((_, i) => allow(oid, i, 1) ? [i] : []), give: TRAITS.flatMap((_, i) => allow(oid, i, -1) ? [i] : []),
+    gap: Object.fromEntries(TRAITS.flatMap((_, i) => { const g = gapOf(oid, i); return g === undefined ? [] : [[i, g]]; })),
+    note: Object.fromEntries(TRAITS.flatMap((_, i) => { const n = noteOf(oid, i); return n ? [[i, n]] : []; })) });
   const v11Strip: V11Pool = {};
   if (V11) for (const style of STYLES) for (const level of [undefined, ...LEVELS]) for (const arm of [false, true]) {
     for (const a of alternatives(payload.items, RANK_SETUP, NEGATIVE_TAGS, { style, ...(level ? { level } : {}), arm }, props.racketId, 8)) {
@@ -448,14 +455,14 @@ export default async function RacketFit(props: {
   const DOT_KEYS = TRAITS, TRAIT_DEF = Object.fromEntries(SITE_FIT.traits.map(t => [t.key, t]));
   // Each card leads with its own main gain and at most one give-up, none repeated in the section (lib/other-picks.ts).
   // Only rackets we can write both lines for (owner 2026-11-18: no blank cards); the next candidate takes a blocked one's place.
-  const v11Cards: V11Card[] = V11 ? distinctEdges(compareMe.dots, [...byBand(simPool), ...widePool.slice(simPool.length)].map(id => ({ id, dots: cardOf(id).dots })), DOT_KEYS, 3, "arm", gainOk, allow, true).map(({ id: oid, gain, give }) => {
+  const v11Cards: V11Card[] = V11 ? distinctEdges(compareMe.dots, [...byBand(simPool), ...widePool.slice(simPool.length)].map(id => ({ id, dots: cardOf(id).dots })), DOT_KEYS, 3, "arm", gainOk, allow, true, gapOf, (g, v) => sameFlightFact(niche.id, DOT_KEYS[g], DOT_KEYS[v])).map(({ id: oid, gain, give }) => {
     const c = cardOf(oid), t = TRAIT_DEF[DOT_KEYS[gain]] ?? null, d = give !== null ? DOT_KEYS[give] : null;
     const bf = bestFor(ctx.facts(oid));
     const me = refOf(oid);
     return { id: oid, name: c.name, href: c.href, pic: c.pic, line: lineOf(oid), best: bf.length ? bf.join(", ") : null, score: ctx.signal(oid), shop: shopOf(oid), ref: me,
       vs: t ? (t.diff ?? `more ${t.label.toLowerCase()}`) : null, pick: t ? `Pick it if you ${t.ifYou ?? `want more ${t.label.toLowerCase()}`}.` : null,
-      gain: t ? `${(t.diff ?? `more ${t.label.toLowerCase()}`).replace(/^./, x => x.toUpperCase())} than the ${me}.` : null,
-      give: d ? `${(GIVE_UP[d] ?? `less ${TRAIT_DEF[d]?.label.toLowerCase()}`).replace(/^./, x => x.toUpperCase())} than the ${me}.` : null };
+      gain: t ? `${(t.diff ?? `more ${t.label.toLowerCase()}`).replace(/^./, x => x.toUpperCase())} than the ${me}${noteOf(oid, gain)}.` : null,
+      give: d ? `${(GIVE_UP[d] ?? `less ${TRAIT_DEF[d]?.label.toLowerCase()}`).replace(/^./, x => x.toUpperCase())} than the ${me}${noteOf(oid, give!)}.` : null };
   }) : [];
   // "How it plays": three bands from the trait dots and their notes; the strongest is marked. A rule of thumb only from a tip
   // with 2+ players behind it.

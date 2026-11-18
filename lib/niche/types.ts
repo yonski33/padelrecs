@@ -221,7 +221,8 @@ export type Niche = {
   /** Chart segment colours in the "Who's playing it" panel. */
   chartColors: string[];
   /** Share-card (Open Graph) colours and rating icons as standalone SVG markup. */
-  og: { background: string; accent: string; muted: string; text: string; scoreOn: string; scoreOff: string };
+  og: { background: string; accent: string; muted: string; text: string; scoreOn: string; scoreOff: string;
+    /** How many product photos the home / guide share card shows (default 3; TennisRecs 2: its photos show each racket twice). */ photos?: number };
   /** Overall-rating hover words, keyed "1".."5". */
   ratingWords: Record<string, string>;
   categories: { column: CategoryColumn; label: string; hint: string; adminLabel?: string }[];
