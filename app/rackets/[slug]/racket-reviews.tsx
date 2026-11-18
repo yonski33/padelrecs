@@ -1,5 +1,6 @@
 "use client";
 import { scoreBox } from "../../../lib/score-tone";
+import { niche } from "../../../lib/niche";
 import { useFormToken } from "../../form-token-client";
 import { VERDICT_PILL } from "../../../lib/review-pill";
 import { useEffect, useRef, useState } from "react";
@@ -32,13 +33,22 @@ const PILL: Record<Verdict, string> = { positive: "👍 loved it", mixed: "🤷 
 const TABS = [["all", "all"], ["players", "players"], ["youtube", "youtube"], ["blogs", "blogs"], ["reddit", "reddit"]] as const;
 
 const PLAIN: Record<Verdict, string> = { positive: "loved it", mixed: "mixed", negative: "not for me" };
+/** The score row's counts with every count under `min` left out ("12 loved · 6 nope · 21 rated"); under `min` rated, none. */
+function countLine(m: { pos: number; mix: number; neg: number }, rated: number, min: number, thin: boolean) {
+  if (rated < min) return "first ratings in";
+  if (thin) return `${rated} rated so far`;
+  return [...([[m.pos, "loved"], [m.mix, "mixed"], [m.neg, "nope"]] as const).filter(([n]) => n >= min).map(([n, w]) => `${n} ${w}`), `${rated} rated`, "tap a colour to filter"].join(" · ");
+}
 
-export default function RacketReviews({ racketId, name, cards, nicknames = [], total, mood, words, v11c }: { /** v11c (owner 2026-11-17): "What players say",
+/** Who reviews, in the site's words (lib/niche reviewers, else people). */
+const RV = (niche.reviewers ?? niche.people).many;
+export default function RacketReviews({ racketId, name, cards, nicknames = [], total, mood, words, v11c, hideUnder }: { /** SkinRecs (owner rule): counts
+   *  under this are never shown (the score row and the mention tags). Unset: every count, as before. */ hideUnder?: number; /** v11c (owner 2026-11-17): "What players say",
    *  the new-this-week dot, a one-row "Played it?" (dots, no emoji; a few words optional) and the thin state. */ v11c?: { fresh: number; thin: boolean; /** Each mention tag's tone: praise or complaint. */ tone?: Record<string, "pos" | "neg" | "neutral"> }; racketId: string; name: string; cards: ReviewCard[]; nicknames?: string[]; /** All reports, the page's one count. */ total?: number;
   /** Every judged report's sentiment and the Player score for the header (owner's final mock: badge, bar, no %). */ mood?: { pos: number; mix: number; neg: number; score?: number | null };
   /** Another site's words (SkinRecs): the profile chips ("I have" dry / oily…), the score's name, the composer's title, who the
    *  reviewers are. Padel's by default. */ words?: { levelLead: string; levels: { value: string; label: string }[]; score: string; ask: string; people: string; peopleTab: string } }) {
-  const W = words ?? { levelLead: "I'm", levels: LEVELS.map(l => ({ value: l[0].toUpperCase() + l.slice(1), label: l as string })), score: "Player score", ask: "Played it?", people: "players", peopleTab: "players" };
+  const W = words ?? { levelLead: "I'm", levels: LEVELS.map(l => ({ value: l[0].toUpperCase() + l.slice(1), label: l as string })), score: "Player score", ask: "Played it?", people: RV, peopleTab: RV };
   const [tab, setTab] = useState<"all" | "players" | "youtube" | "blogs" | "reddit">("all"), [shown, setShown] = useState(PAGE);
   const formToken = useFormToken();
   // v11c filters (owner 2026-11-17, the approved mock): a verdict from the vote bar, a tag from "What players mention".
@@ -98,7 +108,7 @@ export default function RacketReviews({ racketId, name, cards, nicknames = [], t
   if (v11c) {
     const top5 = mentions.slice(0, 5);
     const tagButton = (t: string, n: number, row: boolean) => <button key={t} type="button" className={`rv12-tag ${toneOf(t) === "neg" ? "neg" : toneOf(t) === "pos" ? "pos" : "neu"}${row ? " chip" : ""}`} aria-pressed={tf === t}
-      onClick={() => { setTf(tf === t ? null : t); setShown(PAGE); }}><i aria-hidden="true"/><span>{t}</span><small>{n}</small></button>;
+      onClick={() => { setTf(tf === t ? null : t); setShown(PAGE); }}><i aria-hidden="true"/><span>{t}</span>{(!hideUnder || n >= hideUnder) && <small>{n}</small>}</button>;
     return <div className={`rv12${top5.length ? " side" : ""}`}>
       <div className="rv12-main">
         <div className="rv12-head"><h2>{`What ${W.people} say`}</h2>{v11c.fresh > 0 && <span className="rv-new"><i aria-hidden="true"/>{`${v11c.fresh} new this week`}</span>}
@@ -110,7 +120,7 @@ export default function RacketReviews({ racketId, name, cards, nicknames = [], t
           <span className="rv12-bar"><span className="rv12-vbar" role="group" aria-label="Show reviews by verdict">{([["positive", mood.pos, "p"], ["mixed", mood.mix, "m"], ["negative", mood.neg, "n"]] as const).map(([k, n, cls]) =>
             n > 0 && <button key={k} type="button" className={cls} style={{ flex: n }} aria-pressed={vf === k} title={`show ${VERDICT_PILL[k]} reviews`}
               onClick={() => { setVf(vf === k ? null : k); setShown(PAGE); }}><span className="sr-only">{`${n} ${VERDICT_PILL[k]}`}</span></button>)}</span>
-            <small>{v11c.thin ? `${rated} rated so far` : `${mood.pos} loved · ${mood.mix} mixed · ${mood.neg} nope · ${rated} rated · tap a colour to filter`}</small></span></div>}
+            <small>{hideUnder ? countLine(mood, rated, hideUnder, v11c.thin) : v11c.thin ? `${rated} rated so far` : `${mood.pos} loved · ${mood.mix} mixed · ${mood.neg} nope · ${rated} rated · tap a colour to filter`}</small></span></div>}
         {posted ? <div className="rv12-thanks" role="status">{THANKS[posted]}</div>
         : <div id="played" className="rv-played">
           <div className="rv-prow"><b>{W.ask}</b>

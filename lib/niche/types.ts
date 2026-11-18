@@ -134,6 +134,8 @@ export type Niche = {
   talkLabel?: string;
   /** Who writes reviews: "player" / "players" on sports sites, "user" / "users" on SkinRecs. */
   people: Words;
+  /** Who reviews on the product page, where it differs from `people` (DiscGolfRecs: "throwers"). Defaults to people. */
+  reviewers?: { one: string; many: string };
   /** Products have model years (rackets, paddles). When false, years are not asked, shown, filtered or put in names. */
   productYears?: boolean;
   /** Without real years: versions of one model line still share a row ("Jelly Bean" and "Jelly Bean 2", the higher name
@@ -170,6 +172,9 @@ export type Niche = {
     /** The quick match's summary label on a type-picker site ("Your rig"); default "Your throw". */ yourPicks?: string;
     /** The home headline's last word ("Less guessing. Better rigs."); default the product word. */ better?: string;
     /** The v2 header's catalogue link ("gear"); default the product word. */ catalogNav?: string;
+    /** "Better matches for your …" on product pages ("setup"); default "game". */ game?: string;
+    /** No "we / us" service voice in the shared page chrome (CoffeeRecs, owner 2026-11-18): "how it works", "how scoring works",
+     *  "Two taps to check it", "report it" and so on. Unset: every other site keeps its words. */ plain?: boolean;
     /** The footer's line (default "we read forums, YouTube & your reviews, …"); and a "brands" link in the footer. */ footLine?: string; footBrands?: boolean;
   };
   /** The v2 home in a site's own mock (PickleballRecs, owner 2026-11-16), on the shared components; unset = padel's home. */
@@ -288,8 +293,9 @@ export type Niche = {
     prompts: [string, string][];
     tips: string[];
     /** The one-tap card on product pages (app/quick-vote.tsx): its question, the "few words" hint, and the second half of
-     *  the generated nicknames (e.g. "Volley" in SteadyVolley482). Generic racket-sport wording when left out. */
-    quickVote?: { question: string; placeholder: string; nicknames: string[] };
+     *  the generated nicknames (e.g. "Volley" in SteadyVolley482), each niche in its own words. Generic racket-sport wording when left out. */
+    quickVote?: { question: string; placeholder: string; nicknames: string[];
+      /** The first halves ("Dewy" in DewyGlow482) where the generic ones read wrong (SkinRecs). */ nickFirst?: string[] };
   };
   seo: {
     homeTitle: string;

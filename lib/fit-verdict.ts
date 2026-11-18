@@ -17,6 +17,8 @@ export type FitFacts = {
   reports: number;
   /** The product's hard-filter facts (fit-config quick.factValues), for a main filter's check (SimRacingRecs: platform). */
   ff?: Record<string, string[]>;
+  /** The site's reason per main-filter value the product lacks, keyed "key:value" (fit-config quick.missWhy, CoffeeRecs). */
+  ffWhy?: Record<string, { short: string; reason: string }>;
   /** Tag mentions: good tags counted from positive and mixed reports only (like the finder), the rest from all. */
   tags: Record<string, number>;
   /** Quick-take level band (from player reports), 0 beginner … 2 advanced. */
@@ -232,7 +234,8 @@ export function fitVerdict(c: QuickChoice, f: FitFacts, cfg: FitConfig = SITE_FI
   // A main filter's pick the product lacks (SimRacingRecs: PlayStation picked, an Xbox / PC base): "no", with the reason.
   const mainMiss = cfg.quick?.filters?.find(q => q.main && c.ff?.[q.key] && f.ff && !f.ff[q.key]?.includes(c.ff[q.key]));
   const as = (cfg.quick?.armFilter && c.arm && f.hard?.arm) || mainMiss ? (asKind === "thin" ? asKind : "no") : asKind;
-  const missCheck: Check | null = mainMiss ? { level: "hard", short: `Not on ${mainMiss.options.find(([v]) => v === c.ff![mainMiss.key])?.[1] ?? c.ff![mainMiss.key]}`,
+  const why = mainMiss ? f.ffWhy?.[`${mainMiss.key}:${c.ff![mainMiss.key]}`] : undefined;
+  const missCheck: Check | null = why ? { level: "hard", short: why.short, reason: why.reason } : mainMiss ? { level: "hard", short: `Not on ${mainMiss.options.find(([v]) => v === c.ff![mainMiss.key])?.[1] ?? c.ff![mainMiss.key]}`,
     reason: `Not on ${mainMiss.options.find(([v]) => v === c.ff![mainMiss.key])?.[1] ?? c.ff![mainMiss.key]}: it works on ${mainMiss.options.filter(([v]) => f.ff![mainMiss.key]?.includes(v)).map(([, l]) => l).join(" and ") || "other platforms"}.` } : null;
   const checks = [...(missCheck ? [missCheck] : []), styleCheck(c, f, cfg), levelCheck(c, f, cfg), armCheck(c, f, cfg), fineCheck(c, f)];
   const reasons = (pick: Check["level"][]) => checks.filter(x => pick.includes(x.level) && x.reason).map(x => x.reason!);
@@ -265,7 +268,7 @@ export function bestFor(f: FitFacts, cfg: FitConfig = SITE_FIT): string[] {
   if (lean) out.push(cfg.quick ? (cfg.quick.leanFor?.[lean] ?? cfg.styleLabels[lean].toLowerCase()) : lean === "balance" ? "all-round players" : `${lean} players`);
   const kind = f.tags[cfg.arm.plus] ?? 0, harsh = cfg.arm.minus ? f.tags[cfg.arm.minus] ?? 0 : 0;
   // Sore arms only when the Arm comfort bar backs it (4+), not on the tag count alone (audit: the AT10 12K XTREM).
-  if (kind >= 5 && kind > 2 * harsh && (f.armDots === undefined || f.armDots >= 4) && !f.hard?.arm && !f.warn?.arm) { if (!cfg.quick?.armFilter) out.push(cfg.quick ? "slower arms" : "sore arms"); }
+  if (kind >= 5 && kind > 2 * harsh && (f.armDots === undefined || f.armDots >= 4) && !f.hard?.arm && !f.warn?.arm) { if (!cfg.quick?.armFilter && !cfg.quick?.filters?.some(q => q.main)) out.push(cfg.quick ? "slower arms" : "sore arms"); }
   return out;
 }
 /** One style per racket (owner audit 2026-11-17): from the Attack and Control bars the page shows (a clear lead of 1+ dots),

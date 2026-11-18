@@ -72,6 +72,8 @@ const SCORE_WORD = v2copy.score ?? "player score";
 /** "Still deciding?" link wording per site (owner 2026-11-18): each site's own verb, played it? by default. */
 const ASK_LINK: Record<string, string> = { discgolf: "thrown it?", simracing: "raced on it?" };
 const V11_SITE = V11_SITES[niche.id] ?? null, V11 = !!V11_SITE, PADEL = niche.id === "padel";
+/** Who reviews on this page, in the site's words (lib/niche reviewers, else people): disc golf's throwers. */
+const RV = niche.reviewers ?? { one: SITE_FIT.words?.person ?? niche.people.one, many: niche.people.many };
 const SCORE_CAP = `${SCORE_WORD[0].toUpperCase()}${SCORE_WORD.slice(1)}`;
 /** v11 "How it plays": three bands (trait key, label). */
 const V11_BANDS_OF = (shape: string | null): [string, string][] => { const b = V11_SITE?.bands; return typeof b === "function" ? b(shape) : b ?? []; };
@@ -131,12 +133,15 @@ export default async function RacketFit(props: {
   const axis = engineAxis(payload.items, niche.fit?.engine).get(props.racketId);
   // Padel (owner audit 2026-11-17): the one style every page uses, from the bars it shows (lib/fit-verdict styleOf).
   const lean = PADEL ? styleOf(facts) : axis === undefined ? styleLean(facts).lean : axis < AXIS_CONTROL ? "control" : axis > AXIS_POWER ? "power" : "balance";
-  const leanWord = lean ? QUICK ? QUICK.styleLabels[lean].toLowerCase() : lean === "balance" ? "all-round" : lean : null;
+  const leanWord = lean && !SITE_FIT.noLeanChip ? QUICK ? QUICK.styleLabels[lean].toLowerCase() : lean === "balance" ? "all-round" : lean : null;
   // "beginner → intermediate control players, and sore arms." (owner 2026-11-15, mockup): the level band and lean as one phrase.
   // A site whose arm pick is a hard filter (SimRacingRecs: console) has no arm words in "best for".
   const armWords = SITE_FIT.quick?.armFilter ? "\u0000" : QUICK ? "slower arms" : "sore arms";
   // A product the maker no longer sells (SimRacingRecs, Grok audit 2026-11-17 #8): a visible badge, and "used only" for the price.
-  const gone = !!payload.items.find(x => x.id === props.racketId)?.ff?.gone, buy = gone && props.buy ? { ...props.buy, label: "used only" } : props.buy;
+  // Not shipping yet (CoffeeRecs' Decent Bengle): out of the match like a gone product, but labelled as pre-release, and its shop
+  // link stays a plain one.
+  const soon = !!payload.items.find(x => x.id === props.racketId)?.ff?.soon;
+  const gone = !!payload.items.find(x => x.id === props.racketId)?.ff?.gone, buy = gone && !soon && props.buy ? { ...props.buy, label: "used only" } : props.buy;
   const bf = bestFor(facts), bfArm = bf.includes(armWords), bfLevel = bf.find(b => /beginner|intermediate|advanced/.test(b) || (!!SITE_FIT.levelPeople && Object.values(SITE_FIT.levelLabels ?? {}).some(w => b.split(" → ").includes(w)))), bfLean = QUICK ? null : lean ? `${lean === "balance" ? "all-round" : lean} players` : bf.find(b => / players$/.test(b));
   // A site with its own level words (SimRacingRecs: new / serious / all-in; bestFor says them) says its own people ("drivers").
   const ownLevels = SITE_FIT.levelPeople ? SITE_FIT.levelLabels : undefined;
@@ -520,11 +525,13 @@ export default async function RacketFit(props: {
         <div className="rf-hero">
           <div className="rf-shot">{props.photo ? <img src={props.photo} alt={props.name} width={408} height={620} fetchPriority="high" decoding="async"/> : <span className="rf-tile">{props.shortName}</span>}</div>
           <div className="rf-id">
-            <div className="rf-chips">{[gone ? "discontinued" : null, leanWord, props.shape, hasYears && !V11 ? String(props.year) : null].filter(Boolean).map(x => <span key={x}>{x!.toLowerCase()}</span>)}
+            <div className="rf-chips">{[soon ? "not shipping yet" : gone ? "discontinued" : null, leanWord, props.shape, hasYears && !V11 ? String(props.year) : null].filter(Boolean).map(x => <span key={x}>{x!.toLowerCase()}</span>)}
               {older && <a className="rp-older" href={older.href}>{`${older.year} version →`}</a>}</div>
             {/* H1 "<name> review" for search (owner spec); the year is in the chips. */}
             <h1>{V11 ? (hasYears ? `${props.shortName} (${props.year})` : props.shortName) : `${props.shortName} review`}</h1>
             {(page || qt || props.line) && <p className="rf-hook">{page ? page.tagline : qt ? `${qt.hook.good} ${qt.hook.catch}` : props.line}</p>}
+            {/* Owner 2026-11-18: people who came for opinions skip straight down (the score box links there too). */}
+            {V11 && cards.length > 0 && <a className="v11-jump" href="#reviews">{`Jump to reviews (${cards.length}) ↓`}</a>}
             {/* The Player score as a quiet line with its bar (owner's final mock), then Check price. */}
             {!V11 && (page?.source === "research" ? <p className="rp-score">{RESEARCH_LINE}</p> :
             <a className="rp-score" href="#reviews" title={`${SCORE_WORD[0].toUpperCase()}${SCORE_WORD.slice(1)}: not a % of happy players. It blends how much players like it with how many have weighed in.`}>
@@ -538,7 +545,7 @@ export default async function RacketFit(props: {
                 {scoreState(rated) === "new" ? <NewPill n={rated}/> : <b className={`v11-sq ${v11Tone(overallScore)}`}>{overallScore ?? "–"}</b>}
                 <span className="v11-sm"><b>{SCORE_CAP}</b>
                   {rated > 0 && <span className="v11-sbar" aria-hidden="true"><i className="p" style={{ flex: mood.pos }}/><i className="m" style={{ flex: mood.mix }}/><i className="n" style={{ flex: mood.neg }}/></span>}
-                  <small>{ytRated > 0 ? `${rated} rated it` : `${rated} ${rated === 1 ? niche.people.one : niche.people.many} rated it`}</small></span></a>}
+                  <small>{ytRated > 0 ? `${rated} rated it` : `${rated} ${rated === 1 ? RV.one : RV.many} rated it`}</small></span></a>}
               {buy && <a className="v11-buy" href={buy.url} target="_blank" rel={buy.rel}>{buy.label} ↗</a>}
               {/* No "compare with…" here (owner 2026-11-18): it sent people off the page they just landed on. Compare lives in the
                   "Still deciding?" card and on the Other rackets cards. */}
@@ -559,7 +566,8 @@ export default async function RacketFit(props: {
         <div className="rp-main">
           {!V11 && page && tier && <BeforePicks><p className="rp-bottom"><span className="rp-bl">bottom line</span><b>{page.bottom}</b></p></BeforePicks>}
           {page && tier && <div id="yes-no">
-            <div className="rf-h"><h2>Why yes, why not</h2><span>{page.source === "research" ? RESEARCH_LINE.toLowerCase() : tier === "short" ? `based on ${total} reports` : `from ${SITE_FIT.words?.person ?? "player"} reports & YouTube`}</span></div>
+            {/* No heading (owner 2026-11-18): the two boxes say Why yes / Why not; the source line sits small, right, above them. */}
+            <p className="v11-ysrc">{page.source === "research" ? RESEARCH_LINE.toLowerCase() : tier === "short" ? `based on ${total} reports` : `from ${RV.one} reports & YouTube`}</p>
             <FitYesNo yes={page.yes} no={page.no} tier={tier} research={page.source === "research"} fold={V11}/>
           </div>}
 
@@ -574,8 +582,9 @@ export default async function RacketFit(props: {
           {V11 && v11Cards.length > 0 && <V11Others id={props.racketId} slug={props.slug} facts={facts} better={v11Strip} cards={v11Cards} pool={v11Strip} {...edgeWords}/>}
           {V11 && worksGroups.length > 0 && <V11Works groups={worksGroups} short={props.shortName}/>}
           <section id="reviews" className="rv">
+            {soon && <p className="rv-soon">Not shipping yet: the maker says first units arrive in December 2026, so these are pre-release impressions, not owner reviews.</p>}
             <RacketReviews racketId={props.racketId} name={props.shortName} cards={cards} nicknames={props.nicknames} total={total} v11c={V11 ? { fresh: freshN, thin: rated < 10, tone: Object.fromEntries(niche.tags.map(t => [t.label, t.tone === "pos" ? "pos" : t.tone === "neg" ? "neg" : "neutral"])) } : undefined}
-              mood={{ ...mood, score: scoreState(rated) === "new" ? null : overallScore }}{...(QUICK ? { words: { levelLead: "I'm", levels: ["Beginner", "Intermediate", "Advanced"].map(v => ({ value: v, label: SITE_FIT.levelPeople ? SITE_FIT.levelLabels?.[v.toLowerCase() as "beginner"] ?? v.toLowerCase() : v.toLowerCase() })), score: `${SCORE_WORD[0].toUpperCase()}${SCORE_WORD.slice(1)}`, ask: SITE_FIT.words ? niche.copy.ui.triedIt : "Thrown it?", people: SITE_FIT.words ? niche.people.many : "players", peopleTab: SITE_FIT.words ? niche.people.many : "players" } } : {})}/>
+              mood={{ ...mood, score: scoreState(rated) === "new" ? null : overallScore }}{...(QUICK ? { words: { levelLead: "I'm", levels: ["Beginner", "Intermediate", "Advanced"].map(v => ({ value: v, label: SITE_FIT.levelPeople ? SITE_FIT.levelLabels?.[v.toLowerCase() as "beginner"] ?? v.toLowerCase() : v.toLowerCase() })), score: `${SCORE_WORD[0].toUpperCase()}${SCORE_WORD.slice(1)}`, ask: niche.copy.ui.triedIt, people: RV.many, peopleTab: RV.many } } : {})}/>
           </section>
 
           {/* v11c: the closing card and the rankings, after the reviews. */}

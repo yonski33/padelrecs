@@ -27,7 +27,7 @@ export async function GET(request: Request) {
   const photos = (await Promise.all(srcs.map(toPng))).filter((p): p is OgPhoto => !!p).slice(0, 3);
   const total = data.reviews.length + data.external.length;
   const title = guide ? `${guide.h1[0]} ${guide.h1[1]}` : niche.id === "skin" ? "Less guessing. Better skincare."
-    : isV2 ? `Less guessing. Better ${v2copy.better ?? niche.words.many}.` : niche.seo.ogTitle;
+    : isV2 ? (v2copy.homeH1 ? v2copy.homeH1.join(" ") : `Less guessing. Better ${v2copy.better ?? niche.words.many}.`) : niche.seo.ogTitle;
   const detail = guide ? `The ${guide.crumb}, in plain words` : `${total.toLocaleString("en-US")} reviews, read and ranked for you`;
   return ogHomeCard({ title, detail, photos });
 }

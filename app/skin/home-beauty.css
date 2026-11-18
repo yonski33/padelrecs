@@ -177,3 +177,5 @@
 
 /* The headline and the live pill on one line (owner 2026-11-18, every site). */
 .bh-hrow { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 24px; }
+/* The live pill is desktop only on every site (owner 2026-11-18: "hide the stats on mobile"). */
+@media (max-width: 640px) { .bh-live { display: none !important; } }

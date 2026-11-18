@@ -45,6 +45,7 @@ export const discgolf: Niche = {
   },
   words: { one: "disc", many: "discs", One: "Disc", Many: "Discs" },
   people: { one: "player", many: "players", One: "Player", Many: "Players" },
+  reviewers: { one: "thrower", many: "throwers" },
   recentMonths: 36,
   // The fit check and quick match (lib/discgolf-fit.ts, PM 2026-11-16 option A). The engine's numbers are padel's (no disc golf
   // tuning; ENGINE-ALGO: other sites supply a profile and a yardstick); the maker words are "SS" / "OS" in a mold's name.

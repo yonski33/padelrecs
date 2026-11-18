@@ -51,7 +51,9 @@
 .rf .v11-ycol.no .v11-ych { background: var(--v-no); }
 .rf .v11-ych i { width: 24px; height: 24px; border-radius: 50%; border: 2px solid var(--v-ink); display: flex; align-items: center; justify-content: center; font: normal 700 13px var(--qt-body, system-ui); background: oklch(0.72 0.15 145); box-sizing: border-box; }
 .rf .v11-ycol.no .v11-ych i { background: oklch(0.85 0.1 60); }
-.rf .v11-yit { border-bottom: 1.5px dashed var(--v-dash); } .rf .v11-yit:last-child { border-bottom: 0; }
+/* Rows sit evenly: no global details margin under each one (owner 2026-11-18: the later rows had extra top space). */
+.rf .v11-yit { margin: 0; border-bottom: 1.5px dashed var(--v-dash); }
+.rf .v11-ysrc { margin: 0 0 8px; text-align: right; font: 12.5px var(--v-mono); color: var(--v-mute); } .rf .v11-yit:last-child { border-bottom: 0; }
 .rf .v11-yit summary { list-style: none; cursor: pointer; padding: 12px 18px; display: flex; justify-content: space-between; align-items: center; gap: 10px; }
 .rf .v11-yit summary::-webkit-details-marker { display: none; }
 .rf .v11-yit summary b { font: 800 17.5px/1.25 var(--v-display); margin-right: auto; }
@@ -483,6 +485,13 @@
 .rf .v11-works .v11-wn b { font: 600 14px/1.25 inherit; }
 .rf .v11-works .v11-wn small { font: 12px var(--v-mono); color: #8a4a1a; }
 .rf .v11-works .v11-wmore { margin: 6px 0 0; font: 12px var(--v-mono); color: var(--v-mute2); }
+/* CoffeeRecs: a product that is not shipping yet (Decent Bengle) says so over its reviews. */
+.rf .rv-soon{margin:0 0 14px;padding:10px 14px;border:1.5px dashed var(--line,#e2d6cd);border-radius:10px;font-size:15px;line-height:1.45;color:var(--text,#3a2a22)}
 /* Desktop (owner 2026-11-18): no sticky fit / price bar. The hero's fit card and Check price, the Other rackets links and the
    "Still deciding?" card are enough; phones (< 1024px) keep the bottom bar. Its bottom padding only applies under 900px. */
 @media (min-width: 1024px) { .rf:has(.v11-score) .rp-stick, .rf:has(.v11-score) .rp-stick.on { display: none; } }
+
+/* "Jump to reviews (N)" under the hook (owner 2026-11-18); the landing clears padel's 98px sticky header. */
+.rf .v11-jump { align-self: start; font: 600 14px var(--v-mono); color: var(--v-ink); text-decoration: underline; text-underline-offset: 3px; }
+.rf .v11-jump:hover, .rf .v11-jump:focus-visible { background: var(--v-hl); }
+.rf:has(.v11-score) #reviews { scroll-margin-top: 112px; }
