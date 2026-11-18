@@ -1,13 +1,21 @@
 {
- "_about": "PickleballRecs curated top 10 per pick (owner \"Import them\" 2026-11-19). Key: style/level/arm-off|arm-on. Built from a consensus of 6 owner-approved expert sources (grok/pickleball-curated/curated-final.json, merge_consensus.py); engine fills and weak spots are flagged in curated-report.md and kept as they are. Every entry counts as the owner's (\"owner\": true). A list shows first, in order, with its real match %; under 55% a row says why it is here.",
+ "_about": "PickleballRecs curated top 10 per pick (owner \"Import them\" 2026-11-19). Key: style/level/arm-off|arm-on. v2 (owner \"Yes, use v2\" 2026-11-19): grok/pickleball-curated/curated-final-v2.json and REVIEW-v2.md, with the owner's calls: Gearbox GX2 Power Hybrid out of the arm lists (score exactly 70), its slot filled only by an arm-dot-4+ engine fill (CRBN2 Genesis on spin intermediate/advanced) else the list stays at 9; arm-2/5 paddles stay out of arm lists; first-gen Loco and Jelly Bean kept; no exception under the 70 score gate; MPP Turbo ArmorGrit stays its own paddle. Every entry counts as the owner's (\"owner\": true). A list shows first, in order, with its real match %; under 55% a row says why it is here.",
  "lists": {
   "control/beginner/arm-off": [
    {
-    "slug": "honolulu-j2cr",
+    "slug": "vatic-pro-prism-flash",
     "owner": true
    },
    {
     "slug": "six-zero-coral-16mm",
+    "owner": true
+   },
+   {
+    "slug": "six-zero-coral-pro-16mm",
+    "owner": true
+   },
+   {
+    "slug": "honolulu-j2cr",
     "owner": true
    },
    {
@@ -19,27 +27,19 @@
     "owner": true
    },
    {
-    "slug": "vatic-pro-prism-flash",
-    "owner": true
-   },
-   {
     "slug": "spartus-spitfire-elongated",
     "owner": true
    },
    {
-    "slug": "six-zero-coral-pro-16mm",
+    "slug": "vatic-pro-v-sol-tour",
+    "owner": true
+   },
+   {
+    "slug": "enhance-mpp-turbo",
     "owner": true
    },
    {
     "slug": "11six24-pegasus-power-2",
-    "owner": true
-   },
-   {
-    "slug": "bread-butter-loco-standard",
-    "owner": true
-   },
-   {
-    "slug": "11six24-vapor-alpha-pro-power",
     "owner": true
    }
   ],
@@ -61,6 +61,10 @@
     "owner": true
    },
    {
+    "slug": "vatic-pro-v-sol-tour",
+    "owner": true
+   },
+   {
     "slug": "11six24-ultre-jelly-bean-2",
     "owner": true
    },
@@ -69,19 +73,11 @@
     "owner": true
    },
    {
-    "slug": "enhance-duo",
+    "slug": "crbn2-trufoam-genesis",
     "owner": true
    },
    {
-    "slug": "11six24-vapor-alpha-pro-power",
-    "owner": true
-   },
-   {
-    "slug": "spartus-apollo",
-    "owner": true
-   },
-   {
-    "slug": "bread-butter-loco-standard",
+    "slug": "honolulu-j2cr",
     "owner": true
    }
   ],
@@ -91,23 +87,11 @@
     "owner": true
    },
    {
-    "slug": "11six24-vapor-power-2",
-    "owner": true
-   },
-   {
-    "slug": "enhance-mpp-turbo",
-    "owner": true
-   },
-   {
-    "slug": "11six24-pegasus-power-2",
-    "owner": true
-   },
-   {
     "slug": "vatic-pro-prism-flash",
     "owner": true
    },
    {
-    "slug": "bread-butter-loco-standard",
+    "slug": "11six24-vapor-power-2",
     "owner": true
    },
    {
@@ -115,15 +99,27 @@
     "owner": true
    },
    {
-    "slug": "spartus-spitfire-elongated",
-    "owner": true
-   },
-   {
     "slug": "six-zero-coral-pro-16mm",
     "owner": true
    },
    {
-    "slug": "vatic-pro-v-sol-tour",
+    "slug": "six-zero-coral-16mm",
+    "owner": true
+   },
+   {
+    "slug": "11six24-pegasus-power-2",
+    "owner": true
+   },
+   {
+    "slug": "enhance-mpp-turbo",
+    "owner": true
+   },
+   {
+    "slug": "spartus-spitfire-elongated",
+    "owner": true
+   },
+   {
+    "slug": "bread-butter-loco-standard",
     "owner": true
    }
   ],
@@ -145,11 +141,11 @@
     "owner": true
    },
    {
-    "slug": "vatic-pro-v-sol-tour",
+    "slug": "joola-agassi-pro",
     "owner": true
    },
    {
-    "slug": "joola-agassi-pro",
+    "slug": "vatic-pro-v-sol-tour",
     "owner": true
    },
    {
@@ -161,41 +157,13 @@
     "owner": true
    },
    {
-    "slug": "vatic-pro-saga",
-    "owner": true
-   },
-   {
-    "slug": "enhance-duo",
+    "slug": "crbn2-trufoam-genesis",
     "owner": true
    }
   ],
   "control/advanced/arm-off": [
    {
-    "slug": "honolulu-j2cr",
-    "owner": true
-   },
-   {
-    "slug": "enhance-mpp-turbo",
-    "owner": true
-   },
-   {
-    "slug": "11six24-vapor-power-2",
-    "owner": true
-   },
-   {
     "slug": "vatic-pro-prism-flash",
-    "owner": true
-   },
-   {
-    "slug": "bread-butter-loco-standard",
-    "owner": true
-   },
-   {
-    "slug": "11six24-pegasus-jelly-bean-2",
-    "owner": true
-   },
-   {
-    "slug": "spartus-spitfire-elongated",
     "owner": true
    },
    {
@@ -203,11 +171,35 @@
     "owner": true
    },
    {
-    "slug": "vatic-pro-v-sol-tour",
+    "slug": "honolulu-j2cr",
+    "owner": true
+   },
+   {
+    "slug": "11six24-vapor-power-2",
+    "owner": true
+   },
+   {
+    "slug": "11six24-pegasus-jelly-bean-2",
     "owner": true
    },
    {
     "slug": "six-zero-coral-16mm",
+    "owner": true
+   },
+   {
+    "slug": "enhance-mpp-turbo",
+    "owner": true
+   },
+   {
+    "slug": "spartus-spitfire-elongated",
+    "owner": true
+   },
+   {
+    "slug": "11six24-pegasus-power-2",
+    "owner": true
+   },
+   {
+    "slug": "joola-perseus-pro-iv",
     "owner": true
    }
   ],
@@ -229,11 +221,11 @@
     "owner": true
    },
    {
-    "slug": "vatic-pro-v-sol-tour",
+    "slug": "joola-agassi-pro",
     "owner": true
    },
    {
-    "slug": "joola-agassi-pro",
+    "slug": "vatic-pro-v-sol-tour",
     "owner": true
    },
    {
@@ -245,19 +237,11 @@
     "owner": true
    },
    {
-    "slug": "vatic-pro-saga",
-    "owner": true
-   },
-   {
-    "slug": "enhance-duo",
+    "slug": "crbn2-trufoam-genesis",
     "owner": true
    }
   ],
   "balance/beginner/arm-off": [
-   {
-    "slug": "honolulu-j2cr",
-    "owner": true
-   },
    {
     "slug": "six-zero-coral-16mm",
     "owner": true
@@ -267,11 +251,23 @@
     "owner": true
    },
    {
+    "slug": "honolulu-j2cr",
+    "owner": true
+   },
+   {
     "slug": "spartus-spitfire-elongated",
     "owner": true
    },
    {
-    "slug": "11six24-vapor-power-2",
+    "slug": "vatic-pro-v-sol-tour",
+    "owner": true
+   },
+   {
+    "slug": "enhance-mpp-turbo",
+    "owner": true
+   },
+   {
+    "slug": "ronbus-quanta-r4-16",
     "owner": true
    },
    {
@@ -279,19 +275,11 @@
     "owner": true
    },
    {
-    "slug": "11six24-pegasus-jelly-bean-2",
-    "owner": true
-   },
-   {
-    "slug": "vatic-pro-saga",
+    "slug": "11six24-vapor-power-2",
     "owner": true
    },
    {
     "slug": "11six24-ultre-jelly-bean-2",
-    "owner": true
-   },
-   {
-    "slug": "ronbus-quanta-r4-16",
     "owner": true
    }
   ],
@@ -309,7 +297,7 @@
     "owner": true
    },
    {
-    "slug": "11six24-pegasus-jelly-bean-2",
+    "slug": "vatic-pro-v-sol-tour",
     "owner": true
    },
    {
@@ -317,23 +305,19 @@
     "owner": true
    },
    {
-    "slug": "pickleball-apes-pulse",
+    "slug": "crbn2-trufoam-genesis",
     "owner": true
    },
    {
-    "slug": "11six24-vapor-alpha-pro-power",
+    "slug": "six-zero-coral-pro-16mm",
     "owner": true
    },
    {
-    "slug": "bread-butter-loco-standard",
+    "slug": "honolulu-j2cr",
     "owner": true
    },
    {
-    "slug": "enhance-duo",
-    "owner": true
-   },
-   {
-    "slug": "spartus-apollo",
+    "slug": "ronbus-quanta-r4-16",
     "owner": true
    }
   ],
@@ -343,23 +327,7 @@
     "owner": true
    },
    {
-    "slug": "11six24-ultre-power-2",
-    "owner": true
-   },
-   {
-    "slug": "enhance-mpp-turbo",
-    "owner": true
-   },
-   {
-    "slug": "11six24-vapor-power-2",
-    "owner": true
-   },
-   {
     "slug": "six-zero-coral-16mm",
-    "owner": true
-   },
-   {
-    "slug": "honolulu-j6cr",
     "owner": true
    },
    {
@@ -367,7 +335,19 @@
     "owner": true
    },
    {
+    "slug": "11six24-vapor-power-2",
+    "owner": true
+   },
+   {
     "slug": "11six24-pegasus-power-2",
+    "owner": true
+   },
+   {
+    "slug": "enhance-mpp-turbo",
+    "owner": true
+   },
+   {
+    "slug": "spartus-spitfire-elongated",
     "owner": true
    },
    {
@@ -375,7 +355,11 @@
     "owner": true
    },
    {
-    "slug": "spartus-spitfire-elongated",
+    "slug": "ronbus-quanta-r4-16",
+    "owner": true
+   },
+   {
+    "slug": "enhance-duo",
     "owner": true
    }
   ],
@@ -389,15 +373,7 @@
     "owner": true
    },
    {
-    "slug": "honolulu-j6cr",
-    "owner": true
-   },
-   {
     "slug": "spartus-spitfire-elongated",
-    "owner": true
-   },
-   {
-    "slug": "vatic-pro-v-sol-tour",
     "owner": true
    },
    {
@@ -405,25 +381,33 @@
     "owner": true
    },
    {
+    "slug": "vatic-pro-v-sol-tour",
+    "owner": true
+   },
+   {
     "slug": "11six24-ultre-jelly-bean-2",
     "owner": true
    },
    {
-    "slug": "gearbox-gx2-power-hybrid",
+    "slug": "crbn2-trufoam-genesis",
     "owner": true
    },
    {
-    "slug": "pickleball-apes-pulse",
+    "slug": "honolulu-j2cr",
     "owner": true
    },
    {
-    "slug": "vatic-pro-saga",
+    "slug": "six-zero-coral-pro-16mm",
     "owner": true
    }
   ],
   "balance/advanced/arm-off": [
    {
-    "slug": "11six24-ultre-power-2",
+    "slug": "six-zero-coral-16mm",
+    "owner": true
+   },
+   {
+    "slug": "six-zero-coral-pro-16mm",
     "owner": true
    },
    {
@@ -435,15 +419,15 @@
     "owner": true
    },
    {
-    "slug": "honolulu-j6cr",
+    "slug": "spartus-spitfire-elongated",
     "owner": true
    },
    {
-    "slug": "six-zero-coral-16mm",
+    "slug": "ronbus-quanta-r4-16",
     "owner": true
    },
    {
-    "slug": "six-zero-coral-pro-16mm",
+    "slug": "joola-perseus-pro-iv",
     "owner": true
    },
    {
@@ -451,15 +435,11 @@
     "owner": true
    },
    {
-    "slug": "spartus-spitfire-elongated",
+    "slug": "joola-scorpeus-pro-iv",
     "owner": true
    },
    {
     "slug": "vatic-pro-v-sol-tour",
-    "owner": true
-   },
-   {
-    "slug": "11six24-vapor-power-2",
     "owner": true
    }
   ],
@@ -469,10 +449,6 @@
     "owner": true
    },
    {
-    "slug": "honolulu-j6cr",
-    "owner": true
-   },
-   {
     "slug": "11six24-vapor-power-2",
     "owner": true
    },
@@ -481,11 +457,11 @@
     "owner": true
    },
    {
-    "slug": "vatic-pro-v-sol-tour",
+    "slug": "joola-agassi-pro",
     "owner": true
    },
    {
-    "slug": "joola-agassi-pro",
+    "slug": "vatic-pro-v-sol-tour",
     "owner": true
    },
    {
@@ -493,15 +469,15 @@
     "owner": true
    },
    {
-    "slug": "gearbox-gx2-power-hybrid",
+    "slug": "crbn2-trufoam-genesis",
     "owner": true
    },
    {
-    "slug": "pickleball-apes-pulse",
+    "slug": "six-zero-coral-pro-16mm",
     "owner": true
    },
    {
-    "slug": "bread-butter-loco-hybrid",
+    "slug": "honolulu-j2cr",
     "owner": true
    }
   ],
@@ -515,6 +491,14 @@
     "owner": true
    },
    {
+    "slug": "honolulu-j6cr",
+    "owner": true
+   },
+   {
+    "slug": "six-zero-coral-pro-16mm",
+    "owner": true
+   },
+   {
     "slug": "six-zero-coral-16mm",
     "owner": true
    },
@@ -523,27 +507,19 @@
     "owner": true
    },
    {
+    "slug": "bread-butter-loco-elongated",
+    "owner": true
+   },
+   {
+    "slug": "bread-butter-loco-hybrid",
+    "owner": true
+   },
+   {
     "slug": "11six24-pegasus-power-2",
     "owner": true
    },
    {
-    "slug": "six-zero-coral-pro-16mm",
-    "owner": true
-   },
-   {
-    "slug": "bread-butter-loco-standard",
-    "owner": true
-   },
-   {
-    "slug": "11six24-hurache-x-power",
-    "owner": true
-   },
-   {
-    "slug": "11six24-vapor-alpha-pro-power",
-    "owner": true
-   },
-   {
-    "slug": "11six24-pegasus-power",
+    "slug": "gearbox-gx2-power-hybrid",
     "owner": true
    }
   ],
@@ -553,6 +529,10 @@
     "owner": true
    },
    {
+    "slug": "honolulu-j6cr",
+    "owner": true
+   },
+   {
     "slug": "six-zero-coral-16mm",
     "owner": true
    },
@@ -561,7 +541,7 @@
     "owner": true
    },
    {
-    "slug": "11six24-vapor-alpha-pro-power",
+    "slug": "vatic-pro-v-sol-tour",
     "owner": true
    },
    {
@@ -569,13 +549,7 @@
     "owner": true
    },
    {
-    "slug": "bread-butter-loco-standard",
-    "owner": true
-   }
-  ],
-  "power/intermediate/arm-off": [
-   {
-    "slug": "11six24-ultre-power-2",
+    "slug": "crbn2-trufoam-genesis",
     "owner": true
    },
    {
@@ -583,19 +557,21 @@
     "owner": true
    },
    {
+    "slug": "six-zero-coral-pro-16mm",
+    "owner": true
+   }
+  ],
+  "power/intermediate/arm-off": [
+   {
+    "slug": "honolulu-j2cr",
+    "owner": true
+   },
+   {
+    "slug": "11six24-ultre-power-2",
+    "owner": true
+   },
+   {
     "slug": "11six24-vapor-power-2",
-    "owner": true
-   },
-   {
-    "slug": "enhance-mpp-turbo",
-    "owner": true
-   },
-   {
-    "slug": "11six24-pegasus-power-2",
-    "owner": true
-   },
-   {
-    "slug": "11six24-hurache-x-power-2",
     "owner": true
    },
    {
@@ -603,15 +579,27 @@
     "owner": true
    },
    {
-    "slug": "spartus-spitfire-elongated",
-    "owner": true
-   },
-   {
-    "slug": "bread-butter-loco-standard",
+    "slug": "enhance-mpp-turbo",
     "owner": true
    },
    {
     "slug": "six-zero-coral-pro-16mm",
+    "owner": true
+   },
+   {
+    "slug": "spartus-spitfire-elongated",
+    "owner": true
+   },
+   {
+    "slug": "bread-butter-loco-elongated",
+    "owner": true
+   },
+   {
+    "slug": "bread-butter-loco-hybrid",
+    "owner": true
+   },
+   {
+    "slug": "six-zero-coral-16mm",
     "owner": true
    }
   ],
@@ -633,27 +621,23 @@
     "owner": true
    },
    {
-    "slug": "vatic-pro-v-sol-tour",
-    "owner": true
-   },
-   {
     "slug": "joola-agassi-pro",
     "owner": true
    },
    {
-    "slug": "gearbox-gx2-power-hybrid",
+    "slug": "vatic-pro-v-sol-tour",
     "owner": true
    },
    {
-    "slug": "bread-butter-loco-hybrid",
+    "slug": "11six24-ultre-jelly-bean-2",
     "owner": true
    },
    {
-    "slug": "11six24-vapor-alpha-pro-power",
+    "slug": "crbn2-trufoam-genesis",
     "owner": true
    },
    {
-    "slug": "11six24-vapor-power",
+    "slug": "honolulu-j2cr",
     "owner": true
    }
   ],
@@ -667,19 +651,7 @@
     "owner": true
    },
    {
-    "slug": "enhance-mpp-turbo",
-    "owner": true
-   },
-   {
     "slug": "11six24-vapor-power-2",
-    "owner": true
-   },
-   {
-    "slug": "11six24-hurache-x-power-2",
-    "owner": true
-   },
-   {
-    "slug": "bread-butter-loco-elongated",
     "owner": true
    },
    {
@@ -687,7 +659,11 @@
     "owner": true
    },
    {
-    "slug": "spartus-spitfire-elongated",
+    "slug": "bread-butter-loco-elongated",
+    "owner": true
+   },
+   {
+    "slug": "six-zero-coral-pro-16mm",
     "owner": true
    },
    {
@@ -695,7 +671,15 @@
     "owner": true
    },
    {
-    "slug": "11six24-pegasus-power-2",
+    "slug": "enhance-mpp-turbo",
+    "owner": true
+   },
+   {
+    "slug": "spartus-spitfire-elongated",
+    "owner": true
+   },
+   {
+    "slug": "luzz-cannon",
     "owner": true
    }
   ],
@@ -717,57 +701,11 @@
     "owner": true
    },
    {
-    "slug": "vatic-pro-v-sol-tour",
-    "owner": true
-   },
-   {
     "slug": "joola-agassi-pro",
     "owner": true
    },
    {
-    "slug": "gearbox-gx2-power-hybrid",
-    "owner": true
-   },
-   {
-    "slug": "bread-butter-loco-hybrid",
-    "owner": true
-   },
-   {
-    "slug": "11six24-vapor-alpha-pro-power",
-    "owner": true
-   },
-   {
-    "slug": "11six24-ultre-jelly-bean-2",
-    "owner": true
-   }
-  ],
-  "spin/beginner/arm-off": [
-   {
-    "slug": "honolulu-j2cr",
-    "owner": true
-   },
-   {
-    "slug": "six-zero-coral-pro-16mm",
-    "owner": true
-   },
-   {
-    "slug": "11six24-vapor-power-2",
-    "owner": true
-   },
-   {
-    "slug": "six-zero-coral-16mm",
-    "owner": true
-   },
-   {
-    "slug": "spartus-spitfire-elongated",
-    "owner": true
-   },
-   {
-    "slug": "11six24-pegasus-jelly-bean-2",
-    "owner": true
-   },
-   {
-    "slug": "bread-butter-loco-standard",
+    "slug": "vatic-pro-v-sol-tour",
     "owner": true
    },
    {
@@ -775,67 +713,17 @@
     "owner": true
    },
    {
-    "slug": "11six24-pegasus-power-2",
-    "owner": true
-   },
-   {
-    "slug": "vatic-pro-prism-flash",
-    "owner": true
-   }
-  ],
-  "spin/beginner/arm-on": [
-   {
-    "slug": "11six24-vapor-power-2",
-    "owner": true
-   },
-   {
-    "slug": "six-zero-coral-16mm",
-    "owner": true
-   },
-   {
-    "slug": "spartus-spitfire-elongated",
-    "owner": true
-   },
-   {
-    "slug": "11six24-pegasus-jelly-bean-2",
-    "owner": true
-   },
-   {
-    "slug": "11six24-ultre-jelly-bean-2",
-    "owner": true
-   },
-   {
-    "slug": "pickleball-apes-pulse",
-    "owner": true
-   },
-   {
-    "slug": "enhance-duo",
-    "owner": true
-   },
-   {
-    "slug": "bread-butter-loco-standard",
-    "owner": true
-   },
-   {
-    "slug": "spartus-apollo",
-    "owner": true
-   },
-   {
-    "slug": "11six24-vapor-alpha-pro-power",
-    "owner": true
-   }
-  ],
-  "spin/intermediate/arm-off": [
-   {
-    "slug": "honolulu-j2cr",
+    "slug": "crbn2-trufoam-genesis",
     "owner": true
    },
    {
     "slug": "11six24-ultre-power-2",
     "owner": true
-   },
+   }
+  ],
+  "spin/beginner/arm-off": [
    {
-    "slug": "enhance-mpp-turbo",
+    "slug": "six-zero-coral-pro-16mm",
     "owner": true
    },
    {
@@ -847,11 +735,15 @@
     "owner": true
    },
    {
-    "slug": "six-zero-coral-pro-16mm",
+    "slug": "honolulu-j2cr",
     "owner": true
    },
    {
-    "slug": "11six24-pegasus-power-2",
+    "slug": "enhance-mpp-turbo",
+    "owner": true
+   },
+   {
+    "slug": "six-zero-coral-16mm",
     "owner": true
    },
    {
@@ -859,11 +751,95 @@
     "owner": true
    },
    {
+    "slug": "11six24-ultre-jelly-bean-2",
+    "owner": true
+   },
+   {
+    "slug": "11six24-pegasus-jelly-bean-2",
+    "owner": true
+   },
+   {
     "slug": "bread-butter-loco-standard",
+    "owner": true
+   }
+  ],
+  "spin/beginner/arm-on": [
+   {
+    "slug": "honolulu-j6cr",
+    "owner": true
+   },
+   {
+    "slug": "11six24-vapor-power-2",
+    "owner": true
+   },
+   {
+    "slug": "six-zero-coral-16mm",
+    "owner": true
+   },
+   {
+    "slug": "spartus-spitfire-elongated",
+    "owner": true
+   },
+   {
+    "slug": "11six24-ultre-jelly-bean-2",
     "owner": true
    },
    {
     "slug": "vatic-pro-v-sol-tour",
+    "owner": true
+   },
+   {
+    "slug": "11six24-pegasus-jelly-bean-2",
+    "owner": true
+   },
+   {
+    "slug": "pickleball-apes-pulse",
+    "owner": true
+   },
+   {
+    "slug": "crbn2-trufoam-genesis",
+    "owner": true
+   }
+  ],
+  "spin/intermediate/arm-off": [
+   {
+    "slug": "11six24-ultre-power-2",
+    "owner": true
+   },
+   {
+    "slug": "six-zero-coral-pro-16mm",
+    "owner": true
+   },
+   {
+    "slug": "honolulu-j6cr",
+    "owner": true
+   },
+   {
+    "slug": "11six24-vapor-power-2",
+    "owner": true
+   },
+   {
+    "slug": "honolulu-j2cr",
+    "owner": true
+   },
+   {
+    "slug": "enhance-mpp-turbo",
+    "owner": true
+   },
+   {
+    "slug": "spartus-spitfire-elongated",
+    "owner": true
+   },
+   {
+    "slug": "six-zero-coral-16mm",
+    "owner": true
+   },
+   {
+    "slug": "11six24-ultre-jelly-bean-2",
+    "owner": true
+   },
+   {
+    "slug": "bread-butter-loco-standard",
     "owner": true
    }
   ],
@@ -885,11 +861,57 @@
     "owner": true
    },
    {
-    "slug": "vatic-pro-v-sol-tour",
+    "slug": "11six24-ultre-jelly-bean-2",
     "owner": true
    },
    {
     "slug": "joola-agassi-pro",
+    "owner": true
+   },
+   {
+    "slug": "11six24-pegasus-jelly-bean-2",
+    "owner": true
+   },
+   {
+    "slug": "vatic-pro-v-sol-tour",
+    "owner": true
+   },
+   {
+    "slug": "pickleball-apes-pulse",
+    "owner": true
+   },
+   {
+    "slug": "crbn2-trufoam-genesis",
+    "owner": true
+   }
+  ],
+  "spin/advanced/arm-off": [
+   {
+    "slug": "11six24-ultre-power-2",
+    "owner": true
+   },
+   {
+    "slug": "six-zero-coral-pro-16mm",
+    "owner": true
+   },
+   {
+    "slug": "honolulu-j6cr",
+    "owner": true
+   },
+   {
+    "slug": "11six24-vapor-power-2",
+    "owner": true
+   },
+   {
+    "slug": "honolulu-j2cr",
+    "owner": true
+   },
+   {
+    "slug": "enhance-mpp-turbo",
+    "owner": true
+   },
+   {
+    "slug": "spartus-spitfire-elongated",
     "owner": true
    },
    {
@@ -901,53 +923,7 @@
     "owner": true
    },
    {
-    "slug": "pickleball-apes-pulse",
-    "owner": true
-   },
-   {
-    "slug": "enhance-duo",
-    "owner": true
-   }
-  ],
-  "spin/advanced/arm-off": [
-   {
-    "slug": "11six24-ultre-power-2",
-    "owner": true
-   },
-   {
-    "slug": "enhance-mpp-turbo",
-    "owner": true
-   },
-   {
-    "slug": "honolulu-j2cr",
-    "owner": true
-   },
-   {
-    "slug": "honolulu-j6cr",
-    "owner": true
-   },
-   {
-    "slug": "six-zero-coral-pro-16mm",
-    "owner": true
-   },
-   {
-    "slug": "11six24-vapor-power-2",
-    "owner": true
-   },
-   {
-    "slug": "spartus-spitfire-elongated",
-    "owner": true
-   },
-   {
-    "slug": "11six24-hurache-x-power-2",
-    "owner": true
-   },
-   {
-    "slug": "bread-butter-loco-standard",
-    "owner": true
-   },
-   {
-    "slug": "vatic-pro-v-sol-tour",
+    "slug": "joola-perseus-pro-iv",
     "owner": true
    }
   ],
@@ -969,7 +945,7 @@
     "owner": true
    },
    {
-    "slug": "vatic-pro-v-sol-tour",
+    "slug": "11six24-ultre-jelly-bean-2",
     "owner": true
    },
    {
@@ -977,11 +953,11 @@
     "owner": true
    },
    {
-    "slug": "11six24-ultre-jelly-bean-2",
+    "slug": "11six24-pegasus-jelly-bean-2",
     "owner": true
    },
    {
-    "slug": "11six24-pegasus-jelly-bean-2",
+    "slug": "vatic-pro-v-sol-tour",
     "owner": true
    },
    {
@@ -989,7 +965,7 @@
     "owner": true
    },
    {
-    "slug": "enhance-duo",
+    "slug": "crbn2-trufoam-genesis",
     "owner": true
    }
   ]

@@ -23,8 +23,19 @@ test("pickleball: all 24 lists load, in the owner-approved order, every pick the
     assert.ok(l.every(e => e.owner), curatedKey(c));
     assert.equal(new Set(l.map(e => e.slug)).size, l.length, `${curatedKey(c)}: no repeats`);
   }
-  assert.deepEqual(curatedFor({ style: "spin", level: "beginner", arm: false }, "pickleball").slice(0, 2), ["honolulu-j2cr", "six-zero-coral-pro-16mm"]);
+  assert.deepEqual(curatedFor({ style: "spin", level: "beginner", arm: false }, "pickleball").slice(0, 2), ["six-zero-coral-pro-16mm", "honolulu-j6cr"]);
   assert.deepEqual(curatedFor({ style: "any", level: "beginner", arm: false }, "pickleball"), [], "no list for any style");
+});
+
+test("pickleball v2, the owner's calls (2026-11-19): no score-70 GX2 or arm-2 paddle on an arm list; short lists stay short", () => {
+  const ARM_OUT = ["gearbox-gx2-power-hybrid", "vatic-pro-prism-flash", "vatic-pro-v-sol-pro", "enhance-mpp-turbo"];
+  for (const c of PB.filter(c => c.arm)) {
+    const l = curatedFor(c, "pickleball");
+    for (const s of ARM_OUT) assert.ok(!l.includes(s), `${curatedKey(c)}: ${s}`);
+    assert.ok(l.length === 9 || l.length === 10, `${curatedKey(c)}: ${l.length}`);
+  }
+  assert.equal(curatedFor({ style: "spin", level: "advanced", arm: true }, "pickleball")[9], "crbn2-trufoam-genesis", "the GX2's slot: the next arm-dot-4+ engine fill");
+  assert.ok(curatedFor({ style: "power", level: "beginner", arm: false }, "pickleball").includes("gearbox-gx2-power-hybrid"), "the GX2 stays on non-arm lists");
 });
 
 test("pickleball: every curated slug is a paddle in the catalogue", () => {
