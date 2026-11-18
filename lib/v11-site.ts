@@ -5,6 +5,7 @@
 import { buildCards, type BuildCard } from "./build-cards";
 import { flightOf } from "./discgolf-profile";
 import { discTypeOf, stabilityOf, speedBandOf } from "./niche/discgolf-guide";
+import { tennisPtsHL } from "./fit-config";
 
 /** A build card: padel's four (shape, core, balance, face) and the other sites' own. `at` places a gauge's dot (0 … 1);
  *  `shape` names the outline; `nums` are disc golf's four flight numbers. */
@@ -109,6 +110,34 @@ function discBuilds(spec: Spec): V11Build[] {
   return out;
 }
 
+/** Tennis: head size, string pattern, weight with balance, and stiffness, from the catalog's specs (shape = head size,
+ *  core = pattern, surface = RA). No card says a racket is kind to the arm unless its Arm bar is 4+. */
+function racketBuilds(spec: Spec, armDots?: number): V11Build[] {
+  const out: V11Build[] = [], kind = (armDots ?? 0) >= 4;
+  const head = num(/sq/i.test(spec.shape ?? "") ? spec.shape : null);
+  if (head) out.push({ key: "shape", title: `${head} sq in head`, line: head >= 104 ? "Oversize: the biggest sweet spot and easy depth; less precise on full swings."
+    : head >= 100 ? "Midplus: a forgiving sweet spot with easy depth; the most common size."
+    : head >= 98 ? "A 98: more precision and feel; the sweet spot is a little smaller than a 100."
+    : "Small head: precise and solid for clean strikers; mishits are punished more." });
+  const pats = [...new Set((spec.core ?? "").replace(/\s/g, "").toLowerCase().match(/\d{2}x\d{2}/g) ?? [])];
+  if (pats.length > 1) out.push({ key: "core", title: `${pats.join(" or ")} pattern`, line: "Comes in two patterns: the open one gives more spin, the dense one more control." });
+  else if (pats.length === 1) { const p = pats[0], open = p === "16x18" || p === "16x17" || p === "14x18";
+    out.push({ key: "core", title: `${p} pattern`, line: p.startsWith("18x") ? "Dense pattern: a flatter, lower, more controlled ball; spin needs a fast swing."
+      : open ? "Very open pattern: the most spin and launch, the least control on flat drives."
+      : p === "16x20" ? "A touch denser than 16x19: a bit more control, still good spin."
+      : "Open 16x19: easy spin and launch; strings move and wear a little faster." }); }
+  const w = (spec.weight ?? "").match(/(\d{3})\s*g/), strung = /\bstrung\b/i.test(spec.weight ?? "") && !/unstrung/i.test(spec.weight ?? "");
+  if (w) { const g = +w[1] - (strung ? 15 : 0), hl = tennisPtsHL(spec.balance ?? "");
+    const bal = Number.isFinite(hl) ? (hl >= 6 ? " head-light, so it whips through" : hl <= 0 ? " with weight in the head for plow-through" : "") : "";
+    out.push({ key: "weight", title: `${w[1]} g${strung ? " strung" : ""}`, line: cap(g <= 285 ? `light${bal}: easy to swing and quick at net; less stable against heavy balls.`
+      : g >= 310 ? `heavy${bal}: solid against pace; it needs a full, fast swing.` : `mid weight${bal}: easy to swing with enough stability for most rallies.`) }); }
+  const ra = num(/RA/i.test(spec.surface ?? "") ? spec.surface : null);
+  if (ra) out.push({ key: "face", title: `${ra} RA`, line: ra >= 68 ? (kind ? "Stiff: crisp, direct and powerful." : "Stiff: crisp and powerful; harder on a sore arm.")
+    : ra <= 62 ? (kind ? "Flexible: more dwell and comfort, a little less free power." : "Flexible: more dwell, a little less free power.")
+    : "Medium stiffness: a balance of power and feel." });
+  return out.filter(c => c.line.length <= 105);
+}
+
 export const V11_SITES: Record<string, V11Site> = {
   padel: {
     bands: [["power", "Attack"], ["control", "Control"], ["forgiveness", "Sweet spot"]],
@@ -126,5 +155,11 @@ export const V11_SITES: Record<string, V11Site> = {
     giveUp: { arm: "needs more arm", distance: "less distance", accuracy: "harder to keep on line", glide: "less glide", wind: "pushed around more in wind",
       durability: "beats in faster" },
     builds: discBuilds, buildHead: s => `What the ${s}'s flight means for you`,
+  },
+  tennis: {
+    bands: [["power", "Power"], ["control", "Control"], ["spin", "Spin"]],
+    giveUp: { power: "less free power", control: "less control", spin: "less spin", arm: "harder on the arm", maneuverability: "slower to swing",
+      stability: "less stable against pace", forgiveness: "a smaller sweet spot" },
+    builds: racketBuilds, buildHead: s => `What the ${s}'s build means for you`,
   },
 };
