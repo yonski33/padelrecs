@@ -61,7 +61,7 @@
    "name": "Asetek Dual Mode Shifter",
    "shape": "Shifter / handbrake",
    "weight": null,
-   "core": "PC; Xbox with an Asetek Racing Xbox-compatible wheelbase and steering wheel",
+   "core": "PC",
    "surface": null,
    "balance": "H-pattern + sequential",
    "sources": [
@@ -272,11 +272,12 @@
    "name": "Asetek Load Cell Handbrake",
    "shape": "Shifter / handbrake",
    "weight": "200 kg load cell",
-   "core": null,
+   "core": "PC",
    "surface": null,
    "balance": "Handbrake",
    "sources": [
-    "https://www.asetek.com/simsports/product/load-cell-handbrake/"
+    "https://www.asetek.com/simsports/product/load-cell-handbrake/",
+    "https://www.asetek.com/simsports/us/product/load-cell-handbrake/"
    ]
   },
   {
@@ -1265,7 +1266,7 @@
    "name": "Logitech RS H-Shifter",
    "shape": "Shifter / handbrake",
    "weight": null,
-   "core": "PC via USB; PlayStation / Xbox with a compatible Logitech wheel",
+   "core": "PC via USB; PlayStation / Xbox through a compatible Logitech wheel (G29 / G920 / G923 need the G Racing Adapter)",
    "surface": null,
    "balance": "H-pattern",
    "sources": [
@@ -1459,11 +1460,12 @@
    "name": "MOZA HBP Handbrake",
    "shape": "Shifter / handbrake",
    "weight": null,
-   "core": null,
+   "core": "PC; Xbox through a MOZA base with the ESX wheel",
    "surface": null,
    "balance": "Handbrake",
    "sources": [
-    "https://mozaracing.com/products/hbp-handbrake"
+    "https://mozaracing.com/products/hbp-handbrake",
+    "https://support.mozaracing.com/en/support/solutions/articles/70000663979-xbox-faq"
    ]
   },
   {
@@ -1471,11 +1473,12 @@
    "name": "MOZA HGP Shifter",
    "shape": "Shifter / handbrake",
    "weight": null,
-   "core": null,
+   "core": "PC; Xbox through a MOZA base with the ESX wheel",
    "surface": null,
    "balance": null,
    "sources": [
-    "https://mozaracing.com/products/hgp-shifter"
+    "https://mozaracing.com/products/hgp-shifter",
+    "https://support.mozaracing.com/en/support/solutions/articles/70000663979-xbox-faq"
    ]
   },
   {
@@ -1583,11 +1586,12 @@
    "name": "MOZA R5",
    "shape": "Wheelbase",
    "weight": "5.5 Nm",
-   "core": null,
+   "core": "PC; Xbox with MOZA ESX Steering Wheel",
    "surface": "Sold as a bundle",
    "balance": "Direct drive",
    "sources": [
-    "https://mozaracing.com/products/r5-racing-bundle"
+    "https://mozaracing.com/products/r5-racing-bundle",
+    "https://support.mozaracing.com/en/support/solutions/articles/70000663979-xbox-faq"
    ]
   },
   {
@@ -1632,11 +1636,12 @@
    "name": "MOZA SGP Sequential Shifter",
    "shape": "Shifter / handbrake",
    "weight": null,
-   "core": null,
+   "core": "PC; Xbox through a MOZA base with the ESX wheel",
    "surface": null,
    "balance": "Sequential",
    "sources": [
-    "https://mozaracing.com/products/sgp-shifter"
+    "https://mozaracing.com/products/sgp-shifter",
+    "https://support.mozaracing.com/en/support/solutions/articles/70000663979-xbox-faq"
    ]
   },
   {
@@ -2447,7 +2452,8 @@
    "balance": "Load cell",
    "sources": [
     "https://simagic.com/products/simagic-p500-pedals",
-    "https://trakracer.com/products/simagic-p500-2-pedal-set"
+    "https://trakracer.com/products/simagic-p500-2-pedal-set",
+    "https://simagic.com/pages/details-p500"
    ]
   },
   {
@@ -3134,7 +3140,7 @@
    "name": "Thrustmaster TH8S",
    "shape": "Shifter / handbrake",
    "weight": null,
-   "core": "PC via USB; PS4 / PS5 / Xbox One / Xbox Series X|S with a compatible Thrustmaster wheel",
+   "core": "PC via USB; PS5 / Xbox One / Xbox Series X|S with a compatible Thrustmaster wheel",
    "surface": null,
    "balance": null,
    "sources": [
