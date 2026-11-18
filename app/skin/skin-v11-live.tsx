@@ -57,6 +57,8 @@ export function SkinV11Live({ input, peers, choice: first, summary, buy, self, h
     <a key={k} {...go(tick(k, on), `bp-sens${small ? " sm" : ""}`, on)}><i>{on ? "✓" : ""}</i>{label}{!small && <span> (optional)</span>}</a>)}</>;
   const start = readSkinChoice({}, types);
   const fromSaved = (s: Saved) => ({ ...start, skin: s.skin, goal: s.goal as SkinChoice["goal"], concerns: [...(s.sens ? ["sensitive"] : []), ...(s.acne ? ["acne"] : [])] });
+  // A poor match says why it suits only when a Why yes point meets these picks (never "keeps dry skin comfortable" to oily skin).
+  const why = kind === "no" && !v.yesL.some(x => x.forYou) ? null : v.why;
   const headline = !kind ? "" : kind === "good" ? (v.consider ? HEAD.note : HEAD.good) : HEAD[kind];
   const picksQ = (href: string) => `${href}${at(choice).replace(/^[^?#]*/, "").replace(/#.*$/, "")}`;
 
@@ -84,7 +86,7 @@ export function SkinV11Live({ input, peers, choice: first, summary, buy, self, h
           <div className="bp-ansh"><span className="bp-tag">✦ your match</span>
             {pct !== null ? <Pill pct={pct}/> : <span className="sv-pill">not enough reports</span>}</div>
           <div className="bp-q big">{headline}</div>
-          {v.why && <div className="bp-why"><span>✓ Why it suits you</span><p>{v.why}</p></div>}
+          {why && <div className="bp-why"><span>✓ Why it suits you</span><p>{why}</p></div>}
           {v.consider && <div className="bp-know"><span>◦ Worth knowing</span><p>{v.consider}{v.considerAlt && <> Try instead: <a href={v.considerAlt.href}>{v.considerAlt.name}</a>.</>}</p></div>}
           <input type="checkbox" id="bp-edit" className="bp-edit-t" aria-label="Edit your answers"/>
           <div className="bp-foot"><span>{matchedFor(choice)}</span>
@@ -120,7 +122,7 @@ export function SkinV11Live({ input, peers, choice: first, summary, buy, self, h
       <h2 id="sv-feels-t">How it feels</h2>
       <div className="sv-fgrid">
         <div className="sv-frow"><span className="sv-fh"><b>For your skin</b><small>{pct !== null ? `${pct}%` : v.answered ? "few reports" : "take the skin check"}</small></span>
-          <Drops n={forDrops}/><span className="sv-fn">{pct !== null ? (v.consider ?? v.why ?? matchedFor(choice)) : "Answer two questions above to fill this in."}</span></div>
+          <Drops n={forDrops}/><span className="sv-fn">{pct !== null ? (v.consider ?? why ?? matchedFor(choice)) : "Answer two questions above to fill this in."}</span></div>
         {feel.map(r => <div key={r.name} className="sv-frow"><span className="sv-fh"><b>{r.name.replace(/ \(.*\)$/, "")}</b>{r.v?.kind === "drops" && <small>{`${r.v.n}/5`}</small>}</span>
           <FeelViz v={r.v}/><span className="sv-fn">{r.note === "price band" ? priceNote(r.v) : r.note}</span></div>)}
       </div>
