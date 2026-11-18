@@ -34,6 +34,7 @@ import { modelFamily } from "../../../lib/compare-pairs";
 import { SUITS_OK } from "../../../lib/fit-verdict";
 import RacketReviews, { type ReviewCard } from "./racket-reviews";
 import { plainSummary } from "../../../lib/plain-summary";
+import { redditPick, subOf } from "../../../lib/reddit-cards";
 import { onePerChannel, videoOf } from "../../../lib/youtube-pick";
 import { cardContent } from "../../../lib/fit-card-data";
 import { pageContent, pageTier, cardFromPage, AXIS_CONTROL, AXIS_POWER, RESEARCH_LINE } from "../../../lib/racket-page";
@@ -301,19 +302,10 @@ export default async function RacketFit(props: {
       .map(({ e, text, verbatim }) => ({ at: e.sourceDate ?? "", card: { id: e.id, kind: "blog" as const, who: e.sourceName, verdict: e.sentiment ?? null, when: ago(e.sourceDate),
         url: e.sourceUrl, tags: e.tags ?? [], text, verbatim } satisfies ReviewCard }));
   };
-  const redditCards = () => {
-    // 60+ characters (owner 2026-11-18): a one-liner like "Been maining it for 6 months" says nothing; the next comment fills the slot.
-    // Whole comments only (owner 2026-11-18): a stored excerpt cut mid-sentence is skipped and the next pick fills the slot.
-    const ok = (t?: string | null) => !!t && t.length >= 60 && t.length <= 300 && /^[\x00-\x7F’‘“”–—…é]+$/.test(t) && isComplete(unmd(t));
-    const rows = ctx.data.external.filter(e => e.racketId === props.racketId && e.sourcePlatform === "Reddit" && !e.adminEditedAt
-      && (!e.sourceLanguage || e.sourceLanguage === "en") && ok(e.excerpt)).sort((a, b) => (b.sourceDate ?? "").localeCompare(a.sourceDate ?? ""));
-    // Variety first (the newest loved, mixed and nope comment where there is one), then the newest of the rest; at most 5.
-    const pick = (["positive", "mixed", "negative"] as const).flatMap(v => rows.filter(e => e.sentiment === v).slice(0, 1));
-    for (const e of rows) { if (pick.length >= 5) break; if (!pick.includes(e)) pick.push(e); }
-    const sub = (url: string, name: string) => url.match(/reddit\.com\/(r\/[A-Za-z0-9_]+)/)?.[1] ?? name;
-    return pick.slice(0, 5).map(e => ({ at: e.sourceDate ?? "", card: { id: e.id, kind: "reddit" as const, who: "Reddit user", source: sub(e.sourceUrl, e.sourceName),
-      verdict: e.sentiment ?? null, when: ago(e.sourceDate), url: e.sourceUrl, tags: e.tags ?? [], text: unmd(e.excerpt!), verbatim: true } satisfies ReviewCard }));
-  };
+  // Reddit (owner 2026-11-18): up to 5 cards, each our short summary of the comment (lib/reddit-cards.ts), never its words.
+  const redditCards = () => redditPick(ctx.data.external, props.racketId).map(({ row: e, text }) => ({ at: e.sourceDate ?? "", card: {
+    id: e.id, kind: "reddit" as const, who: "Reddit", source: subOf(e.sourceUrl, e.sourceName), verdict: e.sentiment ?? null, when: ago(e.sourceDate),
+    url: e.sourceUrl, tags: e.tags ?? [], text: PADEL ? padelWords(text) : text, verbatim: false } satisfies ReviewCard }));
   const dated: { at: string; card: ReviewCard }[] = [
     ...reviews.map(r => ({ at: r.createdAt, card: { id: r.id, kind: "player" as const, who: r.alias || `A ${props.site} player`, meta: givenMeta(r), played: V11 ? r.timeWithRacket ?? null : null, tags: r.tags, verdict: ratingVerdictOf(r.rating), when: ago(r.createdAt), text: unmd(r.reviewText), verbatim: false } })),
     // Owner 2026-11-15: the Reviews section lists our own reviews and the YouTube summaries only, no forum (Reddit) or blog reports.
@@ -325,7 +317,7 @@ export default async function RacketFit(props: {
       const verbatim = !e.summary && english && !!e.excerpt;
       const base = { id: e.id, verdict: e.sentiment ?? null, when: ago(e.sourceDate), url: e.sourceUrl, tags: e.tags ?? [] };
       const card: ReviewCard = e.sourcePlatform === "YouTube"
-        ? { ...base, kind: "youtube", who: e.sourceName, video: vid(e.sourceUrl), comment: /[?&]lc=/.test(e.sourceUrl), points: e.summary && !/[?&]lc=/.test(e.sourceUrl) ? (V11 ? sentences(text) : sentences(text).slice(0, 4)) : [text] }
+        ? { ...base, kind: "youtube", who: e.sourceName, date: e.sourceDate ?? null, video: vid(e.sourceUrl), comment: /[?&]lc=/.test(e.sourceUrl), points: e.summary && !/[?&]lc=/.test(e.sourceUrl) ? (V11 ? sentences(text) : sentences(text).slice(0, 4)) : [text] }
         : { ...base, kind: "player", who: "A player", initial: (e.sourceName.replace(/^r\//, "")[0] ?? "P").toUpperCase(), meta: V11 ? null : lv(webLevels.get(e.id)?.level), source: e.sourceName, text, verbatim };
       return { at: e.sourceDate ?? "", card };
     }).filter(x => x.card.kind === "youtube" ? !!x.card.points?.[0] : !!x.card.text),
@@ -333,7 +325,6 @@ export default async function RacketFit(props: {
     // "Other", Telegram and Facebook sources stay out, like forums), one card per blog, its newest
     // row that has our summary or a short English excerpt (quoted, verbatim). Forum reports still count in the score only.
     ...(V11 ? blogCards() : []),
-    // Reddit (owner 2026-11-18): up to 5 comments, the commenter's exact words only (English, short, never edited by us).
     ...(V11 ? redditCards() : []),
   ];
   const cards = dated.sort((a, b) => b.at.localeCompare(a.at)).map(x => x.card);
