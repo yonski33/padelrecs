@@ -477,3 +477,9 @@
   /* The bottom bar stays on phones and tablets only. */
   .rf:has(.v11-score) .rp-stick, .rf:has(.v11-score) .rp-stick.on { display: none; }
 }
+
+/* Hero (owner 2026-11-18): the fit card is as tall as its content, so "Generally best for" sits right under the questions
+   instead of at the bottom of a card stretched to the left column; both columns align to the top. */
+.rf:has(.v11-score) .rf-top { align-items: flex-start; }
+.rf:has(.v11-score) .rf-fit { align-self: flex-start; }
+.rf:has(.v11-score) .rf-fit .rf-best { margin-top: 14px !important; }
