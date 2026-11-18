@@ -173,6 +173,9 @@ await db.transaction(async tx => {
     // A voter who voted on both keeps the vote on the kept product.
     await x(sql`delete from ${S}.product_votes where racket_id = ${a.id} and voter in (select voter from ${S}.product_votes where racket_id = ${b.id})`);
     await x(sql`update ${S}.product_votes set racket_id = ${b.id} where racket_id = ${a.id}`);
+    // Rows the kept product already has (same source and attribute, e.g. the maker's spec rows) stay its own; the duplicates go.
+    await x(sql`delete from ${S}.evidence e where e.product_id = ${a.id} and exists (select 1 from ${S}.evidence k where k.product_id = ${b.id}
+      and k.source_kind = e.source_kind and k.source_ref = e.source_ref and k.attribute = e.attribute and k.extracted_by is not distinct from e.extracted_by)`);
     await x(sql`update ${S}.evidence set product_id = ${b.id} where product_id = ${a.id}`);
     for (const [k, v] of Object.entries(fill)) await x(sql`update ${S}.rackets set ${sql.identifier(k)} = ${v} where id = ${b.id}`);
     // The dropped product's hand-set How it plays / expert values move only where the kept one has none.
