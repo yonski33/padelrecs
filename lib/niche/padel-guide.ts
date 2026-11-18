@@ -68,5 +68,5 @@ export const padelGuide: GuideConfig = {
     lesson: "Buy for your game, not theirs.",
   },
   home: { section: "shape", title: "Browse by shape", link: "Feel, balance & weight explained → racket guide" },
-  cta: { title: "Skip the theory. Get matched.", text: "Tell us your level and style; we'll rank every racket for you.", button: "Find your racket →" },
+  cta: { title: "Skip the theory. Get matched.", text: "Pick your level and style to see every racket ranked for you.", button: "Find your racket →" },
 };

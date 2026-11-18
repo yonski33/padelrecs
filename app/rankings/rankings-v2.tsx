@@ -62,7 +62,7 @@ export default function RankingsHubV2({ data, lists }: { data: Catalog; lists: R
         </a>; })}</section>
 
       <section className="rk2-cta">
-        <div><div className="rk2-cta-h">{"Lists are for everyone. Your match isn't."}</div><div className="rk2-cta-p">{v2copy.plain ? `${v2copy.tellUs ?? "Pick how you play"} to see every ${w.one} ranked for you.` : `${v2copy.tellUs ?? "Tell us how you play"} and we'll rank every ${w.one} for you.`}</div></div>
+        <div><div className="rk2-cta-h">{"Lists are for everyone. Your match isn't."}</div><div className="rk2-cta-p">{`${v2copy.tellUs ?? "Pick how you play"} to see every ${w.one} ranked for you.`}</div></div>
         <Link href="/#match">{`Find your ${w.one} →`}</Link>
       </section>
     </div>

@@ -7,8 +7,8 @@ import Link from "next/link";
  *  name is sent as "visitor", as padel's v2 form does. The API needs an email, so it is required here; the mock's "prefer
  *  email?" box is left out because the site has no public inbox address. */
 const TOPICS = [
-  ["fix", "Something's wrong", "ingredients, photo or summary", "Tell us what's off and what it should be.", true],
-  ["missing", "Missing product", "we don't list it yet", "Brand and product name, plus a link if you have one.", true],
+  ["fix", "Something's wrong", "ingredients, photo or summary", "What's off, and what should it be?", true],
+  ["missing", "Missing product", "not listed yet", "Brand and product name, plus a link if you have one.", true],
   ["idea", "Idea or feedback", "make the site better", "What would make skinrecs more useful for you?", false],
   ["brand", "Brand or shop", "formulas, stock, corrections", "Who you are and what you need.", false],
   ["other", "Something else", "anything goes", "Go for it.", false],
@@ -47,7 +47,7 @@ export default function ContactBeauty() {
 
   if (sent !== null) return <section className="bt-done" role="status">
     <h1>Got it, thank you.</h1>
-    <p>{`We'll reply to ${sent} within a couple of days.`}</p>
+    <p>{`You'll hear back at ${sent} within a couple of days.`}</p>
     <div className="bf-row"><button type="button" className="bf-ghost" onClick={() => { setTopic(null); setProduct(""); setMsg(""); setSent(null); }}>send another</button>
       <Link className="bp-btn" href="/products">back to products</Link></div>
   </section>;

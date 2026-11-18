@@ -234,7 +234,7 @@ const CommunityBody = ({ c }: { c: Ctx }) => <>
 </>;
 
 const SpotBody = ({ c }: { c: Ctx }) => <div className="spot"><h2>Spot something wrong?</h2>
-  <p>{`Played the ${c.shortName} and think we got something off? Tell us. We'll fix the page and credit you by name.`}</p>
+  <p>{`Played the ${c.shortName} and think something's off? Send a correction: the page gets fixed and you're credited by name.`}</p>
   <div className="act"><a className="btn ink" href="/contact">suggest a fix</a><small>corrections so far: none yet. Be the first to catch us out.</small></div></div>;
 
 /** The page footer (owner 2026-11-15: specs moved to the hero chips). */

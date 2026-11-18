@@ -588,7 +588,7 @@ export default async function RacketFit(props: {
 
       <FitSticky buy={buy} name={props.shortName}/>
 
-      {V11 ? <footer className="rf-foot v11-foot" id="how-we-read"><p>{`Run by ${[v2copy.sport, niche.people.many].filter(Boolean).join(" ")}, not a shop. Built from ${niche.people.one} reviews, forums and YouTube. No brand pays to be here. Spotted a mistake? `}<a href="/contact">{v2copy.plain ? "Report it →" : "Tell us →"}</a></p></footer>
+      {V11 ? <footer className="rf-foot v11-foot" id="how-we-read"><p>{`Run by ${[v2copy.sport, niche.people.many].filter(Boolean).join(" ")}, not a shop. Built from ${niche.people.one} reviews, forums and YouTube. No brand pays to be here. Spotted a mistake? `}<a href="/contact">Report it →</a></p></footer>
       : <footer className="rf-foot" id="how-we-read">
         <div className="rf-line">{`built from YouTube reviews, reviews sent to us and ${v2copy.forum} reports · every source linked · `}
           <details><summary>how we read this</summary><span>{` We sort each report as positive, mixed or negative, count what players say, and give our honest take. Every claim needs 3+ players; quote marks only on their exact words. We don't test ${niche.words.many} and no brand pays for placement. `}{qt && !staleThin && <>Thin spot: <Rich text={qt.thinSpot}/></>}</span></details>

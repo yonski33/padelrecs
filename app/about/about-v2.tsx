@@ -48,7 +48,7 @@ export default function AboutV2() {
           <span className="pg2-small">{"Every review makes the next person's choice easier."}</span>
           <a className="pg2-btn dark" href="/add-review">+ add a review</a></div>
         <div className="pg2-card"><span className="pg2-t">Spotted something off?</span>
-          <span className="pg2-small">{`A wrong spec, a missing ${w.one}, a bad summary? Tell us and we'll fix it.`}</span>
+          <span className="pg2-small">{`A wrong spec, a missing ${w.one}, a bad summary? Send it in and it gets fixed.`}</span>
           <a className="pg2-mono" href="/contact">tell us →</a></div>
       </section>
     </div>

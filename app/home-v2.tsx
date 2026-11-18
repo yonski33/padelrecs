@@ -65,7 +65,9 @@ export default async function HomeV2({ choice, older = false }: { choice: QuickC
   const M = niche.v2home;
   // The same sections on a site that keeps its own look (niche.homeMore: padel, disc golf).
   const more = M ?? niche.homeMore;
-  const H = v2copy.hero, heroSub = H ? H.sub : M?.h1 ? M.sub : `${v2copy.tellUs ?? "Tell us how you play"}. We'll handle the gear homework.`;
+  // The heading names the sport and stands alone (owner 2026-11-18: no "we'll handle…" service line under it).
+  const H1 = niche.v2copy?.homeH1 ?? M?.h1;
+  const heroSub = niche.v2copy?.homeH1 ? null : M?.h1 ? M.sub : `${v2copy.tellUs ?? "Tell us how you play"}. We'll handle the gear homework.`;
   const SETUP = { ...niche.finder!, levelGate: niche.fit?.levelGate, engine: niche.fit?.engine };
   const BAD = niche.tags.filter(t => t.tone === "neg").map(t => t.label);
   const topTwo = (pick: "beginner" | "arm") => {
@@ -81,9 +83,9 @@ export default async function HomeV2({ choice, older = false }: { choice: QuickC
 
     <div className="hv2-wrap">
       <section className="hv2-hero">
-        {/* The "N reviews · N new this week" pill on the headline's line, to its right, on every site (owner 2026-11-18; hidden on
-            phones, home-v2.css); the subtitle under them. */}
-        <div><div className="hv2-hrow"><h1>{`${H?.h1[0] ?? M?.h1?.[0] ?? "Less guessing."} `}<span className="hl">{H?.h1[1] ?? M?.h1?.[1] ?? `Better ${v2copy.better ?? niche.words.many}.`}</span></h1>{live}</div>
+        {/* The "N reviews · N new this week" pill on the headline's line, to its right, on every site (owner 2026-11-18); the
+            subtitle, where a site still has one, under them. */}
+        <div><div className="hv2-hrow"><h1>{`${H1?.[0] ?? "Less guessing."} `}<span className="hl">{H1?.[1] ?? `Better ${v2copy.better ?? niche.words.many}.`}</span></h1>{live}</div>
           {heroSub && <div className="hv2-subrow"><p className="hv2-sub">{heroSub}</p></div>}</div>
       </section>
 

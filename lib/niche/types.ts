@@ -159,6 +159,8 @@ export type Niche = {
     /** How a product is used, as a verb: "plays" (default) / "works". */ use?: string;
     /** What the reviewers' test is called on About ("real court time"). */ tested?: string;
     /** The rankings page's call to the quick match ("Tell us how you play"). */ tellUs?: string;
+    /** The home H1 naming the sport (owner 2026-11-18): plain words, then the highlighted ones, e.g. ["Find your", "padel racket"].
+     *  Set, the home drops the "Tell us how you play…" subline under it. */ homeH1?: [string, string];
     /** The italic last words of About's second story paragraph ("game"). */ aboutLast?: string;
     /** The add-review page: the dot ratings' low / high words per rating column, and the "+ prompt" chips. */
     rate?: Record<string, [string, string]>; prompts?: string[];
@@ -169,8 +171,6 @@ export type Niche = {
     /** The home headline's last word ("Less guessing. Better rigs."); default the product word. */ better?: string;
     /** The v2 header's catalogue link ("gear"); default the product word. */ catalogNav?: string;
     /** "Better matches for your …" on product pages ("setup"); default "game". */ game?: string;
-    /** The home's H1 (plain words, then the highlighted ones) and its subline (null: none), in place of the shared "Less guessing.
-     *  Better …" and "Tell us how you play" (CoffeeRecs, owner 2026-11-18: "Find your coffee gear", no subline). */ hero?: { h1: [string, string]; sub: string | null };
     /** No "we / us" service voice in the shared page chrome (CoffeeRecs, owner 2026-11-18): "how it works", "how scoring works",
      *  "Two taps to check it", "report it" and so on. Unset: every other site keeps its words. */ plain?: boolean;
     /** The footer's line (default "we read forums, YouTube & your reviews, …"); and a "brands" link in the footer. */ footLine?: string; footBrands?: boolean;
