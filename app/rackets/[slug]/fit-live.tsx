@@ -217,7 +217,8 @@ export function FitAlts({ id, facts, cards, similar, brandLink, similarTitle }: 
 
 /** The sticky "your match" box beside the page (owner's final mock): the % and verdict word once picked, "Check your fit ↑"
  *  before, and Check price. On phones it is a bar fixed to the bottom of the screen (racket-fit.css). */
-export function FitSticky({ buy, name }: { buy: { url: string; label: string; rel: string } | null; name: string }) {
+export function FitSticky({ buy, name, rail }: { buy: { url: string; label: string; rel: string } | null; name: string;
+  /** v11c desktop (owner 2026-11-18): the card in the right rail beside the page, sticky until the reviews start (v11.css). */ rail?: boolean }) {
   const { p: { picked } } = use(), { result } = useContext(ResultCtx);
   const shown = picked && result && result.kind !== "thin" && result.pct !== null ? result : null;
   // Shown once the hero (and its fit box) has scrolled out of view (the final mock: a floating card on desktop, a bar on phones).
@@ -227,7 +228,7 @@ export function FitSticky({ buy, name }: { buy: { url: string; label: string; re
     const io = new IntersectionObserver(([e]) => setOn(!e.isIntersecting && e.boundingClientRect.top < 0));
     io.observe(hero); return () => io.disconnect();
   }, []);
-  return <div className={`rp-stick${on ? " on" : ""}`} aria-label={`Your match with the ${name}`}>
+  return <div className={rail ? "rp-rail" : `rp-stick${on ? " on" : ""}`} aria-label={`Your match with the ${name}`}>
     <div className="rp-sk">
       <span className="rp-k">⚡ your match</span>
       {shown ? <a href="#fit" className={`rp-pct ${shown.kind}`}><b>{`${shown.pct}%`}</b><span className="rp-vw">{shown.word}</span></a>
