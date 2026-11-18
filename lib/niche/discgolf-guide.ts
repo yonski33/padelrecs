@@ -40,9 +40,9 @@ export const discgolfGuide: GuideConfig = {
     ] },
     { id: "type", title: "Disc type", sub: "what each one is for", layout: "cards", liked: "midrange",
       spec: { key: "disc", label: "Disc type", column: "shape", classify: discTypeOf }, options: [
-      { value: "putter", label: "Putter", text: "Slow and straight, for putts and short approaches.", best: "every bag, every level" },
+      { value: "putter", label: "Putter", text: "Slow and straight, for putts and short approaches. Most bags hold more than they need.", best: "every bag, every level" },
       { value: "midrange", label: "Midrange", text: "Straight and predictable; the most forgiving disc to learn on.", best: "beginners, upshots" },
-      { value: "fairway", label: "Fairway driver", text: "Control off the tee; easier than a distance driver at most speeds.", best: "most players' drives" },
+      { value: "fairway", label: "Fairway driver", text: "Control off the tee, easier than a distance driver. Distance without needing a search party.", best: "most players' drives" },
       { value: "distance", label: "Distance driver", text: "Max distance, but only with the arm speed to match.", best: "325 ft arms and up" },
     ] },
     { id: "stability", title: "Stability", sub: "turn plus fade", layout: "scale", liked: "stable",
@@ -50,7 +50,7 @@ export const discgolfGuide: GuideConfig = {
       rule: "Slower arm? Go understable. Windy course or forehand? Go overstable.", options: [
       { value: "understable", label: "Understable", text: "Drifts right and turns over easily. Helps slower arms fly straight and far." },
       { value: "stable", label: "Stable", text: "Flies straight with a gentle finish. The safe pick for most shots." },
-      { value: "overstable", label: "Overstable", text: "Fights the wind and hooks left at the end. Reliable for big arms and forehands." },
+      { value: "overstable", label: "Overstable", text: "Fades hard and fights the wind. Suits forehands, headwinds and anyone who wants a sure finish." },
     ] },
     { id: "speed", title: "Speed for your arm", sub: "match the disc to your throw", layout: "numbers", liked: "slow",
       spec: { key: "spd", label: "Speed", column: "weight", classify: speedBandOf },

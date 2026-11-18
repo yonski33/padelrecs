@@ -1,4 +1,5 @@
 "use client";
+import { siteVoice } from "../../lib/site-voice";
 // The catalogue's filters and list (owner 2026-11-15: "/rackets … still slow on every tap"). The server renders the first view
 // for the address (app/rackets/catalog-v2.tsx), so every filter combination is still a real, shareable page; a tap re-runs the
 // same pure filter (lib/catalog-filter.ts) on the rows sent with the page and updates the address, with no round trip. Links
@@ -115,7 +116,7 @@ export function CatalogBrowser({ rows, cards, f: first, base, suitsOk, many, one
               {x.judged > 0 && <span className="ct2-bar6" aria-hidden="true"><i className="p" style={{ flex: c.pos }}/><i className="m" style={{ flex: c.mix }}/><i className="n" style={{ flex: c.neg }}/></span>}
               <small><span className="ct2-ps">{`${ownScore("player score")} · `}</span>{`${x.judged.toLocaleString("en-US")} ${x.judged === 1 ? "review" : "reviews"}`}</small></> : <small>{look?.score ?? "player score"}</small>}</span>}
         </div></li>; })}</ol>
-      {shown.length === 0 && <div className="ct2-empty"><b>Nothing matches all of that</b><a {...to(clearAll)}>clear filters</a></div>}
+      {shown.length === 0 && <div className="ct2-empty"><b>{siteVoice()?.empty.filters ?? "Nothing matches all of that"}</b><a {...to(clearAll)}>clear filters</a></div>}
       {!f.q && !f.year && v.olderN > 0 && <a {...to({ older: f.older === "1" ? undefined : "1" })} className="ct2-older">{f.older === "1" ? "hide older models ▴" : `show older models (${v.olderN}) ▾`}</a>}
       {shown.length > show && <a {...to({ show: String(show + CATALOG_PAGE) })} className="ct2-load">{`load ${Math.min(CATALOG_PAGE, shown.length - show)} more ↓`}</a>}
       {cmp.on && <CompareTray picks={cmp.picks} remove={cmp.remove} clear={cmp.clear} one={one}/>}

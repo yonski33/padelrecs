@@ -1,6 +1,7 @@
 import { HighlightToggle } from "../../highlight-toggle";
 import { HIGHLIGHTS_ENABLED } from "../../../lib/highlights";
 import { Fragment } from "react";
+import { siteVoice } from "../../../lib/site-voice";
 import Link from "next/link";
 import type { ReactNode } from "react";
 import { niche } from "../../../lib/niche";
@@ -103,6 +104,6 @@ export default function ReviewList({ title = "Reviews", subtitle, href, addHref,
       <div className="more-hidden"><div className="voices">{hidden.map((i, n) => card(i, shown.length + n))}</div>{moreLink}</div>
       <div className="load-more first"><label htmlFor="more-reviews" className="button ghost">Show more reviews</label></div>
     </> : moreLink}
-    {items.length === 0 && <p className="empty-feed">{`No reviews yet. This ${niche.words.one} is waiting for its first one.`} <a href={addHref}>Write one →</a></p>}
+    {items.length === 0 && <p className="empty-feed">{siteVoice()?.empty.reviews ?? `No reviews yet. This ${niche.words.one} is waiting for its first one.`} <a href={addHref}>Write one →</a></p>}
   </section>;
 }

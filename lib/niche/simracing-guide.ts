@@ -42,10 +42,10 @@ export const simracingGuide: GuideConfig = {
     ] },
     { id: "drive", title: "Drive type", sub: "how the motor turns the wheel", layout: "cards", liked: "direct",
       spec: { key: "drive", label: "Drive", column: "balance", classify: driveOf }, options: [
-      { value: "gear", label: "Gear", text: "Cheapest and loudest, with notchy force feedback. Fine for finding out if you like sim racing.", best: "a first try" },
+      { value: "gear", label: "Gear", text: "Cheapest and loudest, with notchy force feedback. A little chatty, but it gets you on track.", best: "a first try" },
       { value: "hybrid", label: "Hybrid", text: "Thrustmaster's belt plus gears: smoother than gear alone, still notchier than belt.", best: "entry console wheels" },
       { value: "belt", label: "Belt", text: "Smoother and quieter than gear. The classic budget pick, now under pressure from entry direct drive.", best: "tight budgets" },
-      { value: "direct", label: "Direct drive", text: "The motor sits on the wheel shaft: sharp detail, strong force, no cogging. The upgrade most racers make.", best: "most racers today" },
+      { value: "direct", label: "Direct drive", text: "The motor sits on the wheel shaft: sharp detail, strong force, no cogging. For chasing the next tenth.", best: "most racers today" },
     ] },
     { id: "torque", title: "Torque", sub: "how much force you need", layout: "scale", liked: "mid",
       spec: { key: "torque", label: "Torque", column: "weight", classify: torqueBandOf },
