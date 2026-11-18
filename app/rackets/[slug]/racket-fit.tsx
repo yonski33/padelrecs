@@ -213,9 +213,14 @@ export default async function RacketFit(props: {
   const similarIds = simPool.slice(0, 4);
   // Past the similar pool, well-reviewed rackets of the same shape, then any, so every card can bring its own gain.
   const meR = ctx.data.rackets.find(r => r.id === props.racketId)!, meShape = ctx.fineOf(meR.id)?.shape ?? null;
+  const lvOf = (id: string) => { const su = ctx.facts(id).suits; return su ? LEVELS.filter(l => su[l] >= SUITS_OK) : []; };
+  const myLv = lvOf(props.racketId), sharesLevel = (id: string) => !myLv.length || lvOf(id).some(l => myLv.includes(l));
   const widePool = [...simPool, ...ctx.data.listed.filter(x => modelFamily(x) !== modelFamily(meR) && ctx.facts(x.id).reports >= 10 && !simPool.includes(x.id)
     && !superseded(x.id) && goodEnough(x.id))
-    .sort((a, b) => current(b.id) - current(a.id) || Number(ctx.fineOf(b.id)?.shape === meShape) - Number(ctx.fineOf(a.id)?.shape === meShape) || band(b.id) - band(a.id) || spread(a.id, b.id)).slice(0, 30).map(x => x.id)];
+    // No cap (owner 2026-11-18: one lone card on pages where the first 30 had no honest pair of lines): the cards stop at the first
+    // that pass, so the rest is only read when needed. Same shape first, then a shared level, then the rest by score.
+    .sort((a, b) => current(b.id) - current(a.id) || Number(ctx.fineOf(b.id)?.shape === meShape) - Number(ctx.fineOf(a.id)?.shape === meShape)
+      || Number(sharesLevel(b.id)) - Number(sharesLevel(a.id)) || band(b.id) - band(a.id) || spread(a.id, b.id)).map(x => x.id)];
   const racketOf = (id: string) => ctx.data.rackets.find(r => r.id === id)!;
   const brand = (id: string) => ctx.data.brands.find(b => b.id === id)?.name;
   const photoOf = (r: ReturnType<typeof racketOf>) => photoHidden(r) ? null : shopPhoto(r) ?? amazonPhoto(r)?.image ?? null;
