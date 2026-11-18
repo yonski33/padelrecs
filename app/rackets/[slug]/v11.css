@@ -457,3 +457,9 @@
 .rf:has(.v11-score) .rp-main { width: 100%; }
 /* The bottom bar's compare link, for a product with no shop link (SimRacingRecs #469). */
 .rf .rp-stick .rp-cmp { margin-left: auto; font: 13px var(--v-mono, var(--mono)); color: inherit; text-decoration: underline; text-underline-offset: 3px; white-space: nowrap; }
+
+/* Hero (owner 2026-11-18): the fit card is as tall as its content, so "Generally best for" sits right under the questions
+   instead of at the bottom of a card stretched to the left column; both columns align to the top. */
+.rf:has(.v11-score) .rf-top { align-items: flex-start; }
+.rf:has(.v11-score) .rf-fit { align-self: flex-start; }
+.rf:has(.v11-score) .rf-fit .rf-best { margin-top: 14px !important; }
