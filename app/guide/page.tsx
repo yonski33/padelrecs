@@ -1,5 +1,6 @@
 import { withoutYear } from "../../lib/brand-name";
 import type { Metadata } from "next";
+import { shareImage } from "../share-meta";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import "./guide.css";
@@ -26,10 +27,12 @@ export const dynamic = "force-dynamic";
 export async function generateMetadata(): Promise<Metadata> {
   const g = niche.guide;
   // SkinRecs: its own guide (app/skin/guide-beauty.tsx, owner's design 2026-11-16).
-  if (!g && attrProfileFor(niche)) return { title: "Skincare, decoded", description: "Skin type, texture, actives, fragrance, layering, sunscreen and budget, in plain words, with the products reviewers rate for each.", alternates: { canonical: "/guide" } };
+  const { images, twitter } = shareImage("guide");
+  if (!g && attrProfileFor(niche)) { const title = "Skincare, decoded", description = "Skin type, texture, actives, fragrance, layering, sunscreen and budget, in plain words, with the products reviewers rate for each.";
+    return { title, description, alternates: { canonical: "/guide" }, openGraph: { title, description, url: "/guide", type: "article", images }, twitter }; }
   if (!g) return {};
   return { title: { absolute: g.title }, description: g.description, alternates: { canonical: "/guide" },
-    openGraph: { title: g.title, description: g.description, url: "/guide", type: "article" } };
+    openGraph: { title: g.title, description: g.description, url: "/guide", type: "article", images }, twitter };
 }
 
 export default async function Guide() {
