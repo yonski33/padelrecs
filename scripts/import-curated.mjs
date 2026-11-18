@@ -9,7 +9,7 @@ import { join } from "node:path";
 
 /** "control-beginner-noarm" → "control/beginner/arm-off"; null for anything else. */
 export function keyOf(combo) {
-  const m = /^(control|balance|power)-(beginner|intermediate|advanced)-(noarm|arm)$/.exec(combo ?? "");
+  const m = /^(control|balance|power|spin)-(beginner|intermediate|advanced)-(noarm|arm)$/.exec(combo ?? "");
   return m ? `${m[1]}/${m[2]}/arm-${m[3] === "arm" ? "on" : "off"}` : null;
 }
 /** One pack file as a curated list: the slugs in order, each with its reason as the note and its source. */
@@ -34,7 +34,9 @@ function main() {
   const [dir, site = "padel", ...rest] = process.argv.slice(2), write = rest.includes("--write") || site === "--write";
   const s = site === "--write" ? "padel" : site;
   if (!dir) { console.error("usage: node scripts/import-curated.mjs <folder> [site] [--write]"); process.exit(2); }
-  const path = new URL(`../db/curated/${s}.json`, import.meta.url), doc = JSON.parse(readFileSync(path, "utf8"));
+  const path = new URL(`../db/curated/${s}.json`, import.meta.url);
+  // A site's first import starts its file (pickleball 2026-11-19); later imports only touch the combinations in the folder.
+  let doc; try { doc = JSON.parse(readFileSync(path, "utf8")); } catch { doc = { _about: `${s} curated top 10 per pick. Key: style/level/arm-off|arm-on.`, lists: {} }; }
   // The pack's catalog (reviews per slug), for the newest-model rule.
   let catalog = [];
   try { catalog = JSON.parse(readFileSync(join(dir, `${s}-curated-pack.json`), "utf8")).catalog ?? []; } catch { console.log(`! no ${s}-curated-pack.json in the folder: slugs kept as written`); }
@@ -47,7 +49,7 @@ function main() {
   catch { files = readdirSync(dir).filter(f => /^curated-(?!final).+\.json$/.test(f)).sort().map(f => ({ name: f, file: JSON.parse(readFileSync(join(dir, f), "utf8")) })); }
   for (const { name: f, file } of files) {
     const key = keyOf(file.combo);
-    if (!key || !(key in doc.lists)) { console.log(`skip ${f}: unknown combo ${file.combo}`); continue; }
+    if (!key) { console.log(`skip ${f}: unknown combo ${file.combo}`); continue; }
     const list = listOf(file).map(e => { const n = e.owner ? e.slug : newestOf(e.slug, catalog); if (n !== e.slug) console.log(`  ${e.slug} → ${n} (newest with 10+ reviews)`); return { ...e, slug: n }; })
       .filter((e, i, all) => all.findIndex(o => o.slug === e.slug) === i), before = (doc.lists[key] ?? []).map(e => e.slug).join(",");
     if (list.length !== 10) console.log(`! ${key}: ${list.length} picks (10 expected)`);
