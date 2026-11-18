@@ -22,6 +22,8 @@ body:has(main.hv2) { background: #fbfaf6; }
   .hv2-sub { margin: 0; font-size: 18px; color: var(--soft) !important; text-wrap: pretty; }
   /* The subtitle and the live pill on one line (owner 2026-11-16), wrapping under it on narrow screens. */
   .hv2-subrow { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 14px; margin-top: 8px; }
+  /* The headline and the live pill on one line (owner 2026-11-18, every site); the pill wraps under it if it must. */
+  .hv2-hrow { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 24px; }
   .hv2-live { display: inline-flex; align-items: center; gap: 8px; margin: 0; font: 12px var(--mono); border: 1.5px solid var(--ink); border-radius: 999px; padding: 4px 12px; background: var(--paper); }
   .hv2-live i { width: 8px; height: 8px; border-radius: 50%; background: oklch(0.65 0.18 145); }
 
