@@ -514,6 +514,9 @@ export default async function RacketFit(props: {
       {/* After the hero, one centred 880px column (owner 2026-11-16: "copy this exactly", the final mock): the bottom line, Why yes /
           why not and How it plays share a group; Reviews and Specs follow. The match box floats once the hero scrolls away. */}
       <section className="rp-body">
+        {/* v11c desktop (owner 2026-11-18): everything above the reviews in the 720px column, the fit card sticky in the right
+            rail beside it; the rail ends where "What players say" starts, whose tag list takes the rail from there. */}
+        <div className={V11 ? "v11-up" : "v11-flat"}><div className="v11-upl">
         <div className="rp-main">
           {page && tier && (V11 ? <p className="rp-bottom"><span className="rp-bl">bottom line</span><b>{page.bottom}</b></p>
             : <BeforePicks><p className="rp-bottom"><span className="rp-bl">bottom line</span><b>{page.bottom}</b></p></BeforePicks>)}
@@ -531,6 +534,7 @@ export default async function RacketFit(props: {
         </div>
 
           {V11 && v11Cards.length > 0 && <V11Others id={props.racketId} slug={props.slug} facts={facts} better={v11Strip} cards={v11Cards} pool={v11Strip} {...edgeWords}/>}
+        </div>{V11 && <aside className="v11-rail"><FitSticky rail buy={buy} name={props.shortName}/></aside>}</div>
           <section id="reviews" className="rv">
             <RacketReviews racketId={props.racketId} name={props.shortName} cards={cards} nicknames={props.nicknames} total={total} v11c={V11 ? { fresh: freshN, thin: rated < 10, tone: Object.fromEntries(niche.tags.map(t => [t.label, t.tone === "pos" ? "pos" : t.tone === "neg" ? "neg" : "neutral"])) } : undefined}
               mood={{ ...mood, score: scoreState(rated) === "new" ? null : overallScore }}{...(QUICK ? { words: { levelLead: "I'm", levels: ["Beginner", "Intermediate", "Advanced"].map(v => ({ value: v, label: SITE_FIT.levelPeople ? SITE_FIT.levelLabels?.[v.toLowerCase() as "beginner"] ?? v.toLowerCase() : v.toLowerCase() })), score: `${SCORE_WORD[0].toUpperCase()}${SCORE_WORD.slice(1)}`, ask: SITE_FIT.words ? niche.copy.ui.triedIt : "Thrown it?", people: SITE_FIT.words ? niche.people.many : "players", peopleTab: SITE_FIT.words ? niche.people.many : "players" } } : {})}/>
