@@ -79,5 +79,11 @@ export function claimBlock(site: string, key: string, dir: 1 | -1, other: { spec
     const bo = balanceRank(other.spec), bm = balanceRank(me.spec);
     if (dir > 0 ? more(bo, bm, 0.5) : more(bm, bo, 0.5)) return dir > 0 ? "more head-heavy" : "less head-heavy";
   }
+  // SimRacingRecs: a wheelbase with clearly less torque (1 Nm+) is never "stronger", and one with more never "weaker".
+  if (site === "simracing" && key === "ffb_strength") {
+    const nm = (x: ClaimSpec) => { const m = /(\d+(?:\.\d+)?)\s*Nm\b/i.exec(x.weight ?? ""); return m ? +m[1] : null; };
+    const no = nm(other.spec), nmMe = nm(me.spec);
+    if (dir > 0 ? more(nmMe, no) : more(no, nmMe)) return dir > 0 ? "less torque" : "more torque";
+  }
   return null;
 }

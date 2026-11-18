@@ -54,3 +54,10 @@ describe("distinctEdges with the guard", () => {
     assert.deepEqual(e.map(x => x.id), ["b"]);
   });
 });
+
+it("sim racing: less torque is never 'stronger force feedback', more torque never 'weaker'", () => {
+  const ev = (dots: number) => ({ dots, plus: 5, minus: 0 });
+  assert.equal(claimBlock("simracing", "ffb_strength", 1, { spec: { weight: "5 Nm" }, tr: ev(5) }, { spec: { weight: "8 Nm" }, tr: ev(3) }), "less torque");
+  assert.equal(claimBlock("simracing", "ffb_strength", -1, { spec: { weight: "12 Nm" }, tr: ev(2) }, { spec: { weight: "8 Nm" }, tr: ev(4) }), "more torque");
+  assert.equal(claimBlock("simracing", "ffb_strength", 1, { spec: { weight: "12 Nm" }, tr: ev(5) }, { spec: { weight: "8 Nm" }, tr: ev(3) }), null);
+});
