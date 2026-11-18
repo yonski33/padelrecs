@@ -77,6 +77,8 @@ export const tennis: Niche = {
   },
   chartColors: ["var(--green)", "var(--lime)", "#e0d9c2", "#d6b4a3"],
   og: {
+    // The share card shows two photos: each tennis photo already shows the racket from two sides.
+    photos: 2,
     background: "#a6492a",
     accent: "#dfe84a",
     muted: "#e2b7a3",

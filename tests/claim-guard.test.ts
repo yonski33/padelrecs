@@ -55,6 +55,13 @@ describe("distinctEdges with the guard", () => {
   });
 });
 
+it("sim racing: less torque is never 'stronger force feedback', more torque never 'weaker'", () => {
+  const ev = (dots: number) => ({ dots, plus: 5, minus: 0 });
+  assert.equal(claimBlock("simracing", "ffb_strength", 1, { spec: { weight: "5 Nm" }, tr: ev(5) }, { spec: { weight: "8 Nm" }, tr: ev(3) }), "less torque");
+  assert.equal(claimBlock("simracing", "ffb_strength", -1, { spec: { weight: "12 Nm" }, tr: ev(2) }, { spec: { weight: "8 Nm" }, tr: ev(4) }), "more torque");
+  assert.equal(claimBlock("simracing", "ffb_strength", 1, { spec: { weight: "12 Nm" }, tr: ev(5) }, { spec: { weight: "8 Nm" }, tr: ev(3) }), null);
+});
+
 describe("disc golf flight numbers as evidence (owner 2026-11-18)", () => {
   const none = { dots: 3, plus: 0, minus: 0 };
   const wraith = { flight: [11, 5, -1, 3] }, tesla = { flight: [9, 5, -1, 2] }, aspect = { flight: [9, 5, 0, 2] };

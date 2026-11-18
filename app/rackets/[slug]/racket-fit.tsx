@@ -24,6 +24,7 @@ import { signals } from "../../../lib/signal";
 import { score } from "../../../db/data";
 import { signalCategory } from "../../signals";
 import { platformName } from "../../../lib/source-label";
+import { isComplete } from "../../../lib/complete-text";
 import { displayName } from "../../../lib/brand-name";
 import { productHref, niche, catalogPath, v2copy, hasYears } from "../../../lib/niche";
 import { shopPhoto, photoHidden } from "../../../lib/shop-photos";
@@ -72,7 +73,7 @@ const ASK_LINK: Record<string, string> = { discgolf: "thrown it?", simracing: "r
 const V11_SITE = V11_SITES[niche.id] ?? null, V11 = !!V11_SITE, PADEL = niche.id === "padel";
 const SCORE_CAP = `${SCORE_WORD[0].toUpperCase()}${SCORE_WORD.slice(1)}`;
 /** v11 "How it plays": three bands (trait key, label). */
-const V11_BANDS: [string, string][] = V11_SITE?.bands ?? [];
+const V11_BANDS_OF = (shape: string | null): [string, string][] => { const b = V11_SITE?.bands; return typeof b === "function" ? b(shape) : b ?? []; };
 /** v11 other-racket cards: what you give up, per trait where the other racket is behind (padel's words). */
 /** A strong bar's words when a Why not says the opposite (audit 2026-11-17). */
 const BAR_NUANCE: Record<string, string> = { power: "Power when you swing; little free power.", control: "Precise, though fast balls can fly.",
@@ -283,7 +284,7 @@ export default async function RacketFit(props: {
     const SOCIAL = /(^|\.)(t\.me|telegram\.org|facebook\.com|instagram\.com|x\.com|twitter\.com|reddit\.com|tiktok\.com|discord\.(gg|com))$/;
     const rows = ctx.data.external.filter(e => e.racketId === props.racketId && e.sourcePlatform === "Blog" && !SOCIAL.test(host(e.sourceUrl))).map(e => {
       const english = !e.sourceLanguage || e.sourceLanguage === "en";
-      const text = e.summary ? unmd(PADEL ? padelWords(plainSummary(e.summary)) : plainSummary(e.summary)) : english && shortEnglish(e.excerpt) ? unmd(e.excerpt!) : "";
+      const text = e.summary ? unmd(PADEL ? padelWords(plainSummary(e.summary)) : plainSummary(e.summary)) : english && shortEnglish(e.excerpt) && isComplete(unmd(e.excerpt!)) ? unmd(e.excerpt!) : "";
       return { e, text, verbatim: !e.summary };
     }).filter(x => x.text).sort((a, b) => (b.e.sourceDate ?? "").localeCompare(a.e.sourceDate ?? ""));
     const seen = new Set<string>();
@@ -293,7 +294,8 @@ export default async function RacketFit(props: {
   };
   const redditCards = () => {
     // 60+ characters (owner 2026-11-18): a one-liner like "Been maining it for 6 months" says nothing; the next comment fills the slot.
-    const ok = (t?: string | null) => !!t && t.length >= 60 && t.length <= 300 && /^[\x00-\x7F’‘“”–—…é]+$/.test(t);
+    // Whole comments only (owner 2026-11-18): a stored excerpt cut mid-sentence is skipped and the next pick fills the slot.
+    const ok = (t?: string | null) => !!t && t.length >= 60 && t.length <= 300 && /^[\x00-\x7F’‘“”–—…é]+$/.test(t) && isComplete(unmd(t));
     const rows = ctx.data.external.filter(e => e.racketId === props.racketId && e.sourcePlatform === "Reddit" && !e.adminEditedAt
       && (!e.sourceLanguage || e.sourceLanguage === "en") && ok(e.excerpt)).sort((a, b) => (b.sourceDate ?? "").localeCompare(a.sourceDate ?? ""));
     // Variety first (the newest loved, mixed and nope comment where there is one), then the newest of the rest; at most 5.
@@ -465,7 +467,7 @@ export default async function RacketFit(props: {
   }) : [];
   // "How it plays": three bands from the trait dots and their notes; the strongest is marked. A rule of thumb only from a tip
   // with 2+ players behind it.
-  const bandRows = V11_BANDS.map(([k, label]) => { const i = TRAITS.indexOf(k), row = traits[i]; const sc = tr.scores?.[k as Trait];
+  const bandRows = V11_BANDS_OF(props.shape).map(([k, label]) => { const i = TRAITS.indexOf(k), row = traits[i]; const sc = tr.scores?.[k as Trait];
     // A strong bar beside a Why not that says the opposite ("Easy power" over "little free power") reads the nuance instead.
     const nuance = (sc?.dots ?? 0) >= 4 && (page?.no ?? []).some(n => claims(`${n.title}. ${n.t}`).some(c => c.trait === k && c.dir < 0)) ? (PADEL ? BAR_NUANCE[k] : null) : null;
     return { k, label, dots: sc?.dots ?? 0, note: nuance ?? (row ? row[1].replace(/==/g, "") : null) }; }).filter(b => b.dots > 0);
@@ -484,9 +486,10 @@ export default async function RacketFit(props: {
   const tiles = V11 ? (await rankedLists()).lists.filter((l, i, a) => l.entries.length > 0 && a.findIndex(x => x.list.slug === l.list.slug) === i).slice(0, 6).map(l => ({
     href: listHref(l.list.slug), title: l.list.maxAgeYears === 0 && !l.list.trait ? `Best of ${listYear(l.list)}` : l.list.label.replace(/\{year\}/, String(listYear(l.list))),
     sub: `${l.entries.length} ${niche.words.many}`, pics: l.entries.slice(0, 3).map(e => { const x = ctx.data.rackets.find(y => y.id === e.product.id); return x ? photoOf(x) : null; }) })) : [];
-  const edgeWords = { me: compareMe.dots, keys: TRAITS, words: niche.words, scoreWord: SCORE_CAP,
+  // A site with its own words (SimRacingRecs) says "Other gear to consider" (its catalogue word), not "Other products".
+  const edgeWords = { me: compareMe.dots, keys: TRAITS, words: SITE_FIT.words ? { ...niche.words, many: v2copy.catalogNav ?? niche.words.many } : niche.words, scoreWord: SCORE_CAP,
     gainWord: TRAITS.map(k => TRAIT_DEF[k]?.diff ?? `more ${TRAIT_DEF[k]?.label.toLowerCase()}`), giveWord: TRAITS.map(k => GIVE_UP[k] ?? `less ${TRAIT_DEF[k]?.label.toLowerCase()}`) };
-  const v11Body = V11 && (bandRows.length > 0 || builds.length > 0) ? <V11Plays bands={bandRows} top={topDots}
+  const v11Body = V11 && (bandRows.length > 0 || builds.length > 0) ? <V11Plays bands={bandRows} top={topDots} {...(SITE_FIT.words ? { title: `How it ${SITE_FIT.words.howIt}` } : {})}
     chips={builds.map((c, i) => ({ key: `${c.key}-${i}`, title: c.title, line: c.line }))} tip={tipText}/> : null;
 
   return <><FitPicks first={{ choice, picked }} href={props.href} seed={picked ? rankSeed(payload.items, choice, facts, props.racketId) : null}><main className={`rf ${props.fontClass}`}>
@@ -530,14 +533,13 @@ export default async function RacketFit(props: {
       {/* After the hero, one centred 880px column (owner 2026-11-16: "copy this exactly", the final mock): the bottom line, Why yes /
           why not and How it plays share a group; Reviews and Specs follow. The match box floats once the hero scrolls away. */}
       <section className="rp-body">
-        {/* v11c desktop (owner 2026-11-18): everything above the reviews in the 720px column, the fit card sticky in the right
-            rail beside it; the rail ends where "What players say" starts, whose tag list takes the rail from there. */}
-        <div className={V11 ? "v11-up" : "v11-flat"}><div className="v11-upl">
+        {/* v11c: the bottom line runs the full content width (owner 2026-11-18). Every section above the reviews is the full, centred
+            content width again (owner 2026-11-18: the right-rail fit card is gone; desktop has the bottom bar, as phones). */}
+        {V11 && page && tier && <p className="rp-bottom"><span className="rp-bl">bottom line</span><b>{page.bottom}</b></p>}
         <div className="rp-main">
-          {page && tier && (V11 ? <p className="rp-bottom"><span className="rp-bl">bottom line</span><b>{page.bottom}</b></p>
-            : <BeforePicks><p className="rp-bottom"><span className="rp-bl">bottom line</span><b>{page.bottom}</b></p></BeforePicks>)}
+          {!V11 && page && tier && <BeforePicks><p className="rp-bottom"><span className="rp-bl">bottom line</span><b>{page.bottom}</b></p></BeforePicks>}
           {page && tier && <div id="yes-no">
-            <div className="rf-h"><h2>Why yes, why not</h2><span>{page.source === "research" ? RESEARCH_LINE.toLowerCase() : tier === "short" ? `based on ${total} reports` : "from player reports & YouTube"}</span></div>
+            <div className="rf-h"><h2>Why yes, why not</h2><span>{page.source === "research" ? RESEARCH_LINE.toLowerCase() : tier === "short" ? `based on ${total} reports` : `from ${SITE_FIT.words?.person ?? "player"} reports & YouTube`}</span></div>
             <FitYesNo yes={page.yes} no={page.no} tier={tier} research={page.source === "research"} fold={V11}/>
           </div>}
 
@@ -550,7 +552,6 @@ export default async function RacketFit(props: {
         </div>
 
           {V11 && v11Cards.length > 0 && <V11Others id={props.racketId} slug={props.slug} facts={facts} better={v11Strip} cards={v11Cards} pool={v11Strip} {...edgeWords}/>}
-        </div>{V11 && <aside className="v11-rail"><FitSticky rail buy={buy} name={props.shortName}/></aside>}</div>
           <section id="reviews" className="rv">
             <RacketReviews racketId={props.racketId} name={props.shortName} cards={cards} nicknames={props.nicknames} total={total} v11c={V11 ? { fresh: freshN, thin: rated < 10, tone: Object.fromEntries(niche.tags.map(t => [t.label, t.tone === "pos" ? "pos" : t.tone === "neg" ? "neg" : "neutral"])) } : undefined}
               mood={{ ...mood, score: scoreState(rated) === "new" ? null : overallScore }}{...(QUICK ? { words: { levelLead: "I'm", levels: ["Beginner", "Intermediate", "Advanced"].map(v => ({ value: v, label: SITE_FIT.levelPeople ? SITE_FIT.levelLabels?.[v.toLowerCase() as "beginner"] ?? v.toLowerCase() : v.toLowerCase() })), score: `${SCORE_WORD[0].toUpperCase()}${SCORE_WORD.slice(1)}`, ask: SITE_FIT.words ? niche.copy.ui.triedIt : "Thrown it?", people: SITE_FIT.words ? niche.people.many : "players", peopleTab: SITE_FIT.words ? niche.people.many : "players" } } : {})}/>
