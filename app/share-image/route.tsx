@@ -4,6 +4,7 @@ import { rankList, withNicheWindow, withModelYears } from "../../lib/top-lists";
 import { shopPhoto, photoHidden } from "../../lib/shop-photos";
 import { amazonPhoto } from "../../lib/amazon-photos";
 import sharp from "sharp";
+import { clearBackground } from "../../lib/photo-background";
 import { ogHomeCard, type OgPhoto } from "../og-card";
 
 // The home's and the guide's share image (Grok SEO audit, owner 2026-11-18): links pasted into Reddit, Facebook, iMessage or
@@ -21,8 +22,8 @@ export async function GET(request: Request) {
     const src = r && !photoHidden(r) ? shopPhoto(r) ?? amazonPhoto(r)?.image ?? null : null;
     return src ? [abs(src)] : [];
   }).slice(0, 8) : [];
-  // next/og reads PNG / JPEG only and needs each image's size: every photo becomes a small PNG with known dimensions. A photo
-  // that fails to load is skipped.
+  // next/og reads PNG / JPEG only and needs each image's size: every photo becomes a small cut-out PNG with known dimensions.
+  // A photo that fails to load is skipped.
   const photos = (await Promise.all(srcs.map(toPng))).filter((p): p is OgPhoto => !!p).slice(0, 3);
   const total = data.reviews.length + data.external.length;
   const title = guide ? `${guide.h1[0]} ${guide.h1[1]}` : niche.id === "skin" ? "Less guessing. Better skincare."
@@ -35,7 +36,10 @@ async function toPng(src: string): Promise<OgPhoto | null> {
   try {
     const res = await fetch(src, { signal: AbortSignal.timeout(5000) });
     if (!res.ok) return null;
-    const { data, info } = await sharp(Buffer.from(await res.arrayBuffer())).resize({ width: 560, height: 260, fit: "inside" }).png().toBuffer({ resolveWithObject: true });
+    // Cut out (the plain background made transparent from the edges in, lib/photo-background.ts) and trimmed to the product, so
+    // it sits straight on the card's page colour with no box.
+    const sized = await sharp(Buffer.from(await res.arrayBuffer())).resize({ width: 640, height: 640, fit: "inside" }).png().toBuffer();
+    const { data, info } = await sharp(await clearBackground(sized)).trim({ threshold: 10 }).png().toBuffer({ resolveWithObject: true });
     return { src: `data:image/png;base64,${data.toString("base64")}`, width: info.width, height: info.height };
   } catch { return null; }
 }
