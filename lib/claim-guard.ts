@@ -82,6 +82,14 @@ export function balanceRank(spec: ClaimSpec): number | null {
   return r.length ? r.reduce((a, x) => a + x, 0) / r.length : null;
 }
 
+/** Coffee: steam for milk drinks from the espresso machine's heater (the Type column): 0 none (lever, hand pump), 1 on demand
+ *  (thermoblock / thermocoil), 1.5 a shared single boiler, 2 heat exchanger, 3 dual boiler; null when unknown. Here, not in
+ *  lib/coffee-specs.ts, so the browser's copy of this rule doesn't load the spec file. */
+export function steamRank(type?: string | null): number | null {
+  const t = low(type);
+  return /dual boiler/.test(t) ? 3 : /heat exchanger/.test(t) ? 2 : /single boiler/.test(t) ? 1.5 : /thermo(block|coil|jet)/.test(t) ? 1 : /manual (lever|pump)|portable/.test(t) ? 0 : null;
+}
+
 const voiced = (t: TraitEvidence) => !!t && t.dots > 0 && (!!t.set || t.plus + t.minus >= MIN_TRAIT_VOICES);
 
 /** Why "other is more `key` than me" (dir 1) or "less `key`" (dir -1) can't be said, or null when it holds. */
@@ -123,6 +131,8 @@ export function specFact(site: string, key: string, o: ClaimSpec, m: ClaimSpec):
     if (key === "forgiveness") return fact(hs(o), hs(m), 3, 1, () => `${hs(o)} vs ${hs(m)} sq in head`);
     if (key === "arm") return fact(ra(o), ra(m), 3, -1, () => `${ra(o)} vs ${ra(m)} RA stiffness`);
   }
+  // CoffeeRecs: a dual boiler is never "weaker on steam" than a thermoblock, a lever never "stronger" than anything that steams.
+  if (site === "coffee" && key === "steam") return fact(steamRank(o.balance), steamRank(m.balance), 1, 1, () => `${low(o.balance)} vs ${low(m.balance)}`);
   if (site === "simracing" && key === "ffb_strength") {
     const nm = (x: ClaimSpec) => num(/(\d+(?:\.\d+)?)\s*Nm\b/i, x.weight);
     return fact(nm(o), nm(m), 1, 1, () => `${g(nm(o)!)} vs ${g(nm(m)!)} Nm`);

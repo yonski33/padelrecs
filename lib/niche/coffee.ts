@@ -13,6 +13,12 @@ const ogBean = (shell: string, crema: string) => `<svg xmlns="http://www.w3.org/
 
 export const coffee: Niche = {
   id: "coffee",
+  // The fit check and quick match (lib/coffee-fit.ts, PM / owner 2026-11-18, Grok's coffeerecs-match-profile.md). The engine's
+  // numbers are padel's, as on SimRacingRecs (no coffee tuning; ENGINE-ALGO: a site supplies its profile and its rules).
+  fit: { minReports: 6, fewReports: 15,
+    levelGate: { beginner: 45, intermediate: 40, advanced: 40 },
+    engine: { m: 10, k: 6, ks: 12, E: 8, z: 1.5, wq: 0.30, wf: 0.55, wp: 0.15, minReports: 6, ax: 0.75,
+      controlLabels: [], powerLabels: [], labelBounds: [0.3, 0.72, 0.35, 0.65], cuts: { good: 75, maybe: 55 }, armShare: 0.3, fineShare: 0.2 } },
   schema: "coffeerecs",
   site: {
     name: "CoffeeRecs",
@@ -136,6 +142,36 @@ export const coffee: Niche = {
     // Cup quality from any brew method; "great espresso" is for espresso only (2026-11-05: filter grinders carried it).
     { label: "great taste", tone: "pos" },
   ],
+  // The quiz at /finder (lib/finder.ts); the home's quick match reads the same pool.
+  finder: {
+    title: "Coffee Gear Finder Quiz",
+    heading: "Which coffee gear is right for you?",
+    description: "Pick an espresso machine, grinder, brewer, kettle or scale, answer a few quick questions and get the gear whose real home barista reviews best match how you make coffee.",
+    intro: "Pick what you need, answer a few quick questions and see what home baristas recommend.",
+    navLabel: "Find Your Coffee Gear",
+    invite: "Not sure which gear to choose?",
+    minReviews: 6,
+    rankWeight: 0.3,
+    questions: [
+      { id: "type", question: "What are you looking for?", options: [
+        { label: "Espresso machine", shapes: ["Espresso machine"] },
+        { label: "Grinder", shapes: ["Grinder"] },
+        { label: "Brewer", shapes: ["Brewer"] },
+        { label: "Kettle", shapes: ["Kettle"] },
+        { label: "Scale", shapes: ["Scale"] },
+      ] },
+      { id: "milk", question: "Do you make milk drinks?", onlyIf: { question: "type", labels: ["Espresso machine"] }, options: [
+        { label: "Yes, most days", want: ["great steam"], weight: 2 },
+        { label: "No, mostly espresso" },
+      ] },
+      { id: "priority", question: "What matters most?", options: [
+        { label: "Great coffee", want: ["great espresso", "great taste"], weight: 1.5 },
+        { label: "Easy to use", want: ["easy to use"], avoid: ["learning curve", "messy"], weight: 1.5 },
+        { label: "Reliability", want: ["well built", "consistent"], avoid: ["durability issues", "inconsistent"], weight: 1.5 },
+        { label: "Good value", want: ["great value"], avoid: ["overpriced"], weight: 1.5 },
+      ] },
+    ],
+  },
   // /rankings pages (lib/top-lists.ts). Each appears once enough products in it have reviews.
   topLists: [
     { slug: "best-espresso-machines", label: "Espresso machines", title: "Best Home Espresso Machines", minReviews: 5,

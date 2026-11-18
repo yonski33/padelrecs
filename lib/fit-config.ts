@@ -6,6 +6,7 @@
 import type { Niche } from "./niche/types";
 import { DISCGOLF_FIT } from "./discgolf-fit";
 import { SIMRACING_FIT } from "./simracing-fit";
+import { COFFEE_FIT } from "./coffee-fit";
 
 export type TraitDef = { key: string; label: string; plus: [string, number][]; minus: [string, number][]; noun: string;
   /** The quick-take row that writes this trait's line (padel's blocks), by row label, or "court.defence". */ qtRow?: string;
@@ -21,7 +22,8 @@ export type TraitDef = { key: string; label: string; plus: [string, number][]; m
 export type QuickFilter = { key: string; label: string; options: [string, string][]; kinds?: string[];
   /** Shown in the picker's main row, not under "fine-tune" (SimRacingRecs: the platform), and checked by the fit check: a product
    *  without the picked value is "Probably not" with `notOn` ("Not on PlayStation"). */ main?: boolean };
-export type Specs = { shape?: string | null; balance?: string | null; weight?: string | null; core?: string | null; surface?: string | null };
+export type Specs = { shape?: string | null; balance?: string | null; weight?: string | null; core?: string | null; surface?: string | null;
+  /** The product's slug, for a site whose spec facts live outside the catalogue columns (CoffeeRecs: db/specs/coffee.json). */ slug?: string | null };
 /** Counts for the line under a bar: tag mentions, people with the verb, and the bar's own counts (with words read from text). */
 export type LineKit = { tc: (tag: string) => number; ppl: (n: number, verb: string) => string; plus: number | null; minus: number | null };
 export type FitConfig = {
@@ -89,13 +91,20 @@ export type FitConfig = {
     /** Fine-tune hard filters (?<key>=<value>), and the facts each product has for them. */
     filters?: QuickFilter[]; /** The specs line's label per catalogue column, by product type (SimRacingRecs: "Torque", "Brake force"). */
     specLabels?: (shape: string | null) => Partial<Record<"weight" | "balance" | "core" | "surface", string>>;
-    factValues?: (r: { shape: string | null; balance: string | null; core: string | null; surface?: string | null; name: string }, owner: Record<string, string | number | null>) => Record<string, string[]> };
+    factValues?: (r: { shape: string | null; balance: string | null; core: string | null; surface?: string | null; name: string; slug?: string | null }, owner: Record<string, string | number | null>) => Record<string, string[]>;
+    /** Why a product lacks a main filter's pick, in the site's words (CoffeeRecs: "Not for espresso: built for filter, …");
+     *  null or unset: the platform wording ("Not on PlayStation: it works on …"). */
+    missWhy?: (r: { shape: string | null; balance: string | null; core: string | null; surface?: string | null; name: string; slug?: string | null }, key: string, value: string) => { short: string; reason: string } | null };
   /** A site whose evidence rows use its own attribute names (DiscGolfRecs' dg-*-v1): turns them into the rows the shared
    *  engine reads (app/match-context.ts), so lib/engine stays one for all sites. */
   evidenceAdapter?: (rows: import("./evidence").EvidenceRow[]) => import("./evidence").EvidenceRow[];
   /** Expert values the engine reads for a trait under another stored key (SimRacingRecs: its control / power slots are the
    *  expert's "first sim rig" and "upgrade" suits values). */
   expertAlias?: Record<string, string>;
+  /** A site with no evidence table yet (CoffeeRecs, PM 2026-11-18): its reports' quick tags are read as evidence rows, as the
+   *  tags backfill would store them (lib/evidence.ts tagRows), so the engine, levels and dots run on them. Ignored once the
+   *  site has stored evidence. */
+  tagEvidence?: boolean;
 };
 
 const clamp = (o: Record<string, number>) => { for (const k of Object.keys(o)) o[k] = Math.max(-1, Math.min(1, o[k])); return o; };
@@ -318,7 +327,7 @@ const TENNIS: FitConfig = {
   lab: { metrics: { swing_weight: { trait: "maneuverability", sign: -1 } }, weight: 0.5, specWeight: 0.5, alone: 0.7 },
 };
 
-const CONFIGS: Record<string, FitConfig> = { padel: PADEL, pickleball: PICKLEBALL, tennis: TENNIS, discgolf: DISCGOLF_FIT, simracing: SIMRACING_FIT };
+const CONFIGS: Record<string, FitConfig> = { padel: PADEL, pickleball: PICKLEBALL, tennis: TENNIS, discgolf: DISCGOLF_FIT, simracing: SIMRACING_FIT, coffee: COFFEE_FIT };
 /** The site's fit rules, or undefined for sites that keep the old pages. */
 export const fitConfigFor = (n: Pick<Niche, "id">): FitConfig | undefined => CONFIGS[n.id];
 /** The site's trait rows (padel's for a site without its own rules), for the admin area and the stored hand edits. */

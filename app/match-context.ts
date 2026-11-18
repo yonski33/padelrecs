@@ -16,7 +16,7 @@ import { traitOverrides, levelToSuits } from "../db/trait-override";
 import { traitScores, type TraitInput } from "../lib/trait-score";
 import { armFromReportText } from "../lib/youtube-trait-rules";
 import { evidenceRows } from "../db/evidence";
-import { evidenceBalance, labPercentiles, reportOf } from "../lib/evidence";
+import { evidenceBalance, labPercentiles, reportOf, tagRows, type EvidenceRow } from "../lib/evidence";
 import { balanceScores, type BalanceInput, type Trait as TraitKey } from "../lib/trait-score";
 import { levelSuits, levelDisagreement, type Suits, type SuitsInput } from "../lib/level-suits";
 import { levelTier, applyTier } from "../lib/level-tiers";
@@ -34,6 +34,7 @@ import { fitConfigFor } from "../lib/fit-config";
 import { discRules, type SiteRules } from "../lib/discgolf-hard";
 import { SUITS_OK } from "../lib/fit-verdict";
 import { paddleRules } from "../lib/pickleball-hard";
+import { coffeeRules } from "../lib/coffee-hard";
 
 /** What quick match (home) and the fit check (racket pages) read, built once per request: the finder's pool and tag counts
  *  over the models the home page shows, the Player scores, the quick-take hooks and level bands, and players' stated levels. */
@@ -44,7 +45,7 @@ const BEGINNER_LINES = (niche.fit?.beginnerLines ?? []).map(p => new RegExp(p, "
 const PRO_LINES = (niche.fit?.proLines ?? []).map(p => new RegExp(p, "i"));
 /** A site's own hard rules and level floors (DiscGolfRecs, lib/discgolf-hard.ts; PickleballRecs, lib/pickleball-hard.ts). */
 type SiteRuleFn = (d: { slug: string; weight: string | null }, noLevel?: boolean) => SiteRules;
-const SITE_RULES: Partial<Record<string, SiteRuleFn>> = { discgolf: discRules, pickleball: paddleRules };
+const SITE_RULES: Partial<Record<string, SiteRuleFn>> = { discgolf: discRules, pickleball: paddleRules, coffee: coffeeRules };
 const RULES: SiteRuleFn | undefined = SITE_RULES[niche.id];
 const LEVEL_VALUE: Record<Level, string> = { beginner: "Beginner", intermediate: "Intermediate", advanced: "Advanced" };
 // Built once per server instance and kept (db/keep.ts), not once per page: it takes seconds over a big catalog (owner
@@ -59,7 +60,15 @@ const keptContext = kept(async () => {
   // `noLevel`: the product has no level data, so a rule may read the page's own level (PickleballRecs, lib/pickleball-hard.ts).
   const rulesOf = (id: string, noLevel = false): SiteRules => { const key = `${id}|${noLevel}`; let r = rulesMemo.get(key); if (!r) { const x = data.rackets.find(y => y.id === id); r = RULES && x ? RULES({ slug: x.slug, weight: x.weight }, noLevel) : {}; rulesMemo.set(key, r); } return r; };
   // A site with its own evidence names (DiscGolfRecs) hands the engine the rows it reads; everyone else's pass through.
-  const evidence = cfg.evidenceAdapter ? cfg.evidenceAdapter(stored) : stored;
+  // A site with no evidence table yet (CoffeeRecs, fit-config tagEvidence) reads its reports' quick tags as rows, as the tags
+  // backfill would store them: a good tag doesn't count on a negative report, one row per tag and trait.
+  const goodTags = new Set(niche.tags.filter(t => t.tone === "pos").map(t => t.label));
+  const fromTags = (): EvidenceRow[] => [
+    ...data.reviews.map(r => ({ productId: r.racketId, ref: `p:${r.id}`, kind: "own_review" as const, author: r.alias ? `own:${r.alias.toLowerCase()}` : `p:${r.id}`, at: r.createdAt, v: ratingVerdict(r.rating), tags: r.tags })),
+    ...data.external.map(e => ({ productId: e.racketId, ref: `w:${e.id}`, kind: e.sourcePlatform === "YouTube" ? "youtube" as const : e.sourcePlatform === "Blog" ? "blog" as const : "player_report" as const,
+      author: e.sourcePlatform === "Reddit" || !e.sourceName ? `w:${e.id}` : `${e.sourcePlatform}:${e.sourceName.toLowerCase()}`, at: e.sourceDate || e.createdAt, v: e.sentiment, tags: e.tags })),
+  ].flatMap(x => tagRows({ ...x, tags: x.tags.filter(t => !(goodTags.has(t) && x.v === "negative")) }, cfg));
+  const evidence = !stored.length && cfg.tagEvidence ? fromTags() : cfg.evidenceAdapter ? cfg.evidenceAdapter(stored) : stored;
   // The owner's facts per product (owner evidence rows, the latest per attribute), for the hard filters' facts (quick.factValues).
   const ownerFacts = new Map<string, Record<string, string | number | null>>();
   if (cfg.quick?.factValues) for (const r of [...stored].filter(x => x.sourceKind === "owner").sort((a, b) => (a.saidAt ?? "").localeCompare(b.saidAt ?? "")))
@@ -116,7 +125,11 @@ const keptContext = kept(async () => {
       return !!x && !cfg.quick!.factValues!(x, ownerFacts.get(id) ?? {})[cfg.quick!.armFilter!.key]?.includes(cfg.quick!.armFilter!.value); })() : false;
     const hard = noArm ? { ...(RULES && rulesOf(id, !su).hard), arm: cfg.words!.hardArm } : RULES && rulesOf(id, !su).hard, warn = RULES && rulesOf(id, !su).warn, lean = RULES && rulesOf(id, !su).lean;
     const ffRow = cfg.quick?.factValues && cfg.quick.filters?.some(q => q.main) ? data.rackets.find(y => y.id === id) : undefined;
-    return { reports, tags, ...(ffRow ? { ff: cfg.quick!.factValues!(ffRow, ownerFacts.get(id) ?? {}) } : {}), ...(armDots ? { armDots } : {}), ...(styleDots ? { styleDots } : {}), ...(hard ? { hard } : {}), ...(warn ? { warn } : {}), ...(lean ? { lean } : {}), ...(fi ? { fine: fi } : {}), band: takes.get(id)?.band, levels: sourcesOf(id), ...(su ? { suits: su.suits, levelDisagree: su.disagree ?? undefined } : {}), places: { control: controlList ? inPool?.lists?.[controlList] : undefined, power: powerList ? inPool?.lists?.[powerList] : undefined } };
+    // The site's own reason per main-filter value the product lacks (CoffeeRecs: "Not for espresso: built for filter, …").
+    const ff = ffRow ? cfg.quick!.factValues!(ffRow, ownerFacts.get(id) ?? {}) : undefined;
+    const ffWhy = ffRow && ff && cfg.quick?.missWhy ? Object.fromEntries((cfg.quick.filters ?? []).filter(q => q.main).flatMap(q => q.options.filter(([v]) => !ff[q.key]?.includes(v))
+      .flatMap(([v]) => { const w = cfg.quick!.missWhy!(ffRow, q.key, v); return w ? [[`${q.key}:${v}`, w]] : []; }))) : undefined;
+    return { reports, tags, ...(ff ? { ff } : {}), ...(ffWhy && Object.keys(ffWhy).length ? { ffWhy } : {}), ...(armDots ? { armDots } : {}), ...(styleDots ? { styleDots } : {}), ...(hard ? { hard } : {}), ...(warn ? { warn } : {}), ...(lean ? { lean } : {}), ...(fi ? { fine: fi } : {}), band: takes.get(id)?.band, levels: sourcesOf(id), ...(su ? { suits: su.suits, levelDisagree: su.disagree ?? undefined } : {}), places: { control: controlList ? inPool?.lists?.[controlList] : undefined, power: powerList ? inPool?.lists?.[powerList] : undefined } };
   };
   // Trait scores (lib/trait-score.ts) for every listed racket: tags counted like the finder (a good tag doesn't count from a
   // negative report), "tagged" = reports with at least one counted tag.
@@ -139,7 +152,7 @@ const keptContext = kept(async () => {
   // YouTube reviewers' mentions (db/youtube-traits, one per channel) and the specs as a small prior (lib/trait-score.ts).
   const ytTraits = MATCH.youtubeTraits;
   for (const [id, p] of tagIn) { const r = data.rackets.find(x => x.id === id); if (!r) continue;
-    p.youtube = ytTraits[r.slug]; p.specs = { shape: r.shape, balance: r.balance, weight: r.weight, core: r.core, surface: r.surface }; }
+    p.youtube = ytTraits[r.slug]; p.specs = { shape: r.shape, balance: r.balance, weight: r.weight, core: r.core, surface: r.surface, ...(cfg.tagEvidence ? { slug: r.slug } : {}) }; }
   // Worked out from reports ("auto"), and with the owner's hand-set dots on top (admin area, db/trait-override.ts).
   const dotsSet = (id: string) => Object.fromEntries(Object.entries(overrides.get(id)?.traits ?? {}).filter(([, e]) => e?.dots).map(([t, e]) => [t, e!.dots!]));
   let traitAuto: ReturnType<typeof traitScores>, traitMap: ReturnType<typeof traitScores>;

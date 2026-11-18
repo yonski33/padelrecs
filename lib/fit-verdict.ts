@@ -17,6 +17,8 @@ export type FitFacts = {
   reports: number;
   /** The product's hard-filter facts (fit-config quick.factValues), for a main filter's check (SimRacingRecs: platform). */
   ff?: Record<string, string[]>;
+  /** The site's reason per main-filter value the product lacks, keyed "key:value" (fit-config quick.missWhy, CoffeeRecs). */
+  ffWhy?: Record<string, { short: string; reason: string }>;
   /** Tag mentions: good tags counted from positive and mixed reports only (like the finder), the rest from all. */
   tags: Record<string, number>;
   /** Quick-take level band (from player reports), 0 beginner … 2 advanced. */
@@ -232,7 +234,8 @@ export function fitVerdict(c: QuickChoice, f: FitFacts, cfg: FitConfig = SITE_FI
   // A main filter's pick the product lacks (SimRacingRecs: PlayStation picked, an Xbox / PC base): "no", with the reason.
   const mainMiss = cfg.quick?.filters?.find(q => q.main && c.ff?.[q.key] && f.ff && !f.ff[q.key]?.includes(c.ff[q.key]));
   const as = (cfg.quick?.armFilter && c.arm && f.hard?.arm) || mainMiss ? (asKind === "thin" ? asKind : "no") : asKind;
-  const missCheck: Check | null = mainMiss ? { level: "hard", short: `Not on ${mainMiss.options.find(([v]) => v === c.ff![mainMiss.key])?.[1] ?? c.ff![mainMiss.key]}`,
+  const why = mainMiss ? f.ffWhy?.[`${mainMiss.key}:${c.ff![mainMiss.key]}`] : undefined;
+  const missCheck: Check | null = why ? { level: "hard", short: why.short, reason: why.reason } : mainMiss ? { level: "hard", short: `Not on ${mainMiss.options.find(([v]) => v === c.ff![mainMiss.key])?.[1] ?? c.ff![mainMiss.key]}`,
     reason: `Not on ${mainMiss.options.find(([v]) => v === c.ff![mainMiss.key])?.[1] ?? c.ff![mainMiss.key]}: it works on ${mainMiss.options.filter(([v]) => f.ff![mainMiss.key]?.includes(v)).map(([, l]) => l).join(" and ") || "other platforms"}.` } : null;
   const checks = [...(missCheck ? [missCheck] : []), styleCheck(c, f, cfg), levelCheck(c, f, cfg), armCheck(c, f, cfg), fineCheck(c, f)];
   const reasons = (pick: Check["level"][]) => checks.filter(x => pick.includes(x.level) && x.reason).map(x => x.reason!);
