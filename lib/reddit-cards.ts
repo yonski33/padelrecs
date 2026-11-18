@@ -28,7 +28,10 @@ export function cardLine(summary?: string | null): string | null {
 
 /** A line that tells the commenter's story or who they are before what the product does ("After demoing several rackets, a
  *  player bought…", "A self-described noodle arm who…"). The picker shows these only when a product has no other line. */
-export const BACKSTORY = /^(a self-described|this (player|reviewer|user)|a (player|user|reviewer|commenter)|after |lost |switched |struggled |moved |started |went |coming from |came from |as a )/i;
+export const BACKSTORY = new RegExp([
+  /^(a self-described|this (player|reviewer|user)|a (player|user|reviewer|commenter)\b|after |lost |switched |struggled |moved |started |went |coming from |came from |as a )/.source,
+  // "A left-handed beginner, four months in, who…", "Dutch owner who…": who they are first.
+  /^(an? )?[^.;:]{0,80}?\b(who|whose)\b/.source].join("|"), "i");
 
 /** "r/discgolf" from the thread link, else the stored source name. */
 export const subOf = (url: string, name: string) => url.match(/reddit\.com\/(r\/[A-Za-z0-9_]+)/)?.[1] ?? name;
