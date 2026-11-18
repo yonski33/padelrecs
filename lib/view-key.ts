@@ -29,8 +29,9 @@ export const viewQuery = (q: Record<string, string>) => { const s = new URLSearc
 
 /** The queries each cached view holds (anything else renders per request). The catalogue's free-text ?q= never does. */
 export const CATALOG_VIEW = ["style", "level", "shape", "year", "arm", "weight", "feel", "sweet", "sort", "show", "more", "older"] as const;
-export const RANKING_VIEW = ["style", "level", "arm", "pct"] as const;
-export const RACKET_VIEW = ["style", "level", "arm", "shape", "weight", "feel", "sweet"] as const;
+export const RANKING_VIEW = ["style", "level", "arm", "pct", "platform"] as const;
+// "platform": SimRacingRecs' PC / PlayStation / Xbox pick (a main quick filter), carried onto rankings and product pages.
+export const RACKET_VIEW = ["style", "level", "arm", "shape", "weight", "feel", "sweet", "platform"] as const;
 
 /** SkinRecs (an attribute profile, lib/attr-profile.ts) holds its own picks and filters, never padel's (owner 2026-11-16: the
  *  padel views 500'd there, #374): the home's quick match and the product page's skin check (lib/skin-choice.ts), and the

@@ -32,7 +32,7 @@ const FINE_GROUPS = FINE_ROWS.map(k => k === "shape" ? ["Shape", "shape", FINE_S
   : k === "feel" ? ["Feel on impact", "feel", FEELS.map(v => [v, v] as const)] as const : ["Core thickness", "core", CORES.map(v => [v, v] as const)] as const);
 const FIT_WORD = { good: "Strong fit", maybe: "Worth a look", no: "Probably not" } as const;
 /** A type-picker site's words and picks (lib/fit-config.ts quick: DiscGolfRecs); unset on padel, whose row is unchanged. */
-const CFG = fitConfigFor(niche), QUICK = CFG?.quick;
+const CFG = fitConfigFor(niche), QUICK = CFG?.quick, MAIN = QUICK?.filters?.filter(f => f.main) ?? [];
 const SCORE_WORD = v2copy.score ?? "player score";
 /** The style picks under their site words ("understable" …) on a type-picker site. */
 const styleWord = (s: QuickChoice["style"]) => QUICK && s !== "any" ? (CFG!.styleLabels[s] ?? STYLE_WORD[s]).toLowerCase() : STYLE_WORD[s];
@@ -85,15 +85,19 @@ export function HomeMatch({ seed, listed, children }: { seed: HomeSeed; listed: 
       </>}
       <span className="hv2-qk">and I&apos;m</span>
       <span className="hv2-lv" role="group" aria-label="Your level">{LEVELS.map(l => <span key={l}>{pill(levelLabel(l), { ...choice, level: l }, choice.level === l)}</span>)}</span>
-      <a className="hv2-arm" href={`${hrefOf({ ...choice, arm: !choice.arm }, older)}#match`} onClick={go({ ...choice, arm: !choice.arm })} aria-current={choice.arm ? "true" : undefined}><i aria-hidden="true">{choice.arm ? "✓" : ""}</i>{QUICK?.arm ?? "sore elbow / wrist"}</a>
+      {/* A main filter (SimRacingRecs: "I race on" PlayStation / Xbox / PC) takes the arm tick's place; an old ?arm=1 link keeps its tick. */}
+      {MAIN.map(f => { const cur = choice.ff?.[f.key], with_ = (v: string | undefined) => { const ff = { ...choice.ff }; if (v) ff[f.key] = v; else delete ff[f.key]; return { ...choice, ff }; };
+        return <span key={f.key} className="hv2-main"><span className="hv2-qk">{f.label}</span><span className="hv2-lv" role="group" aria-label={f.label}>
+          {f.options.map(([v, l]) => <span key={v}>{pill(l, with_(cur === v ? undefined : v), cur === v)}</span>)}</span></span>; })}
+      {(!MAIN.length || choice.arm) && <a className="hv2-arm" href={`${hrefOf({ ...choice, arm: !choice.arm }, older)}#match`} onClick={go({ ...choice, arm: !choice.arm })} aria-current={choice.arm ? "true" : undefined}><i aria-hidden="true">{choice.arm ? "✓" : ""}</i>{QUICK?.arm ?? "sore elbow / wrist"}</a>}
       {/* Not sure yet? fine-tune (owner 2026-11-15): optional shape / weight / feel / sweet-spot picks, in the URL like the rest. */}
-      {(M ? !!choice.level : picked) && <details className={`hv2-fine${M ? " m" : ""}`} open={QUICK ? choice.style !== "any" || !!Object.keys(choice.ff ?? {}).length : !fineEmpty(choice.fine)}>
+      {(M ? !!choice.level : picked) && <details className={`hv2-fine${M ? " m" : ""}`} open={QUICK ? choice.style !== "any" || Object.keys(choice.ff ?? {}).some(k => !MAIN.some(f => f.key === k)) : !fineEmpty(choice.fine)}>
         <summary><span className="c">Not sure yet? <b>{(() => { const n = FINE_GROUPS.filter(([, k]) => choice.fine?.[k]).length; return M && n ? `fine-tune (${n}) ▾` : "fine-tune ▾"; })()}</b></span><span className="o">{M ? <>Not sure yet? <b>fewer filters ▴</b></> : "fewer filters ▴"}</span>
           {M && <em className="hv2-fhint">{(() => { const n = FINE_GROUPS.filter(([, k]) => choice.fine?.[k]).length; return n ? `match % includes ${n} extra filter${n > 1 ? "s" : ""}` : `${FINE_GROUPS.map(([l]) => l.split(" ")[0].toLowerCase()).join(", ").replace(/, ([^,]*)$/, " & $1")}, all optional`; })()}</em>}</summary>
         <div className="hv2-fine-rows">
           {/* Fine-tune hard filters (SimRacingRecs: drive type for wheelbases, budget, rim type for wheels), each shown only for
               the type it belongs to (or with no type picked). */}
-          {QUICK?.filters?.filter(f => !f.kinds || !choice.kind || f.kinds.includes(choice.kind)).map(f => {
+          {QUICK?.filters?.filter(f => !f.main && (!f.kinds || !choice.kind || f.kinds.includes(choice.kind))).map(f => {
             const cur = choice.ff?.[f.key], with_ = (v: string | undefined) => { const ff = { ...choice.ff }; if (v) ff[f.key] = v; else delete ff[f.key]; return { ...choice, ff }; };
             return <div key={f.key} className="hv2-fine-row"><span className="hv2-fk">{f.label}</span><span className="hv2-lv" role="group" aria-label={f.label}>
               {f.options.map(([v, l]) => <span key={v}>{pill(l, with_(cur === v ? undefined : v), cur === v)}</span>)}

@@ -12,8 +12,8 @@ import { VERDICTS, loadProfile, saveProfile, sendVote, nickname, type Verdict } 
 // characters also post a normal moderated review (POST /api/reviews, spam guard + moderation), with the level picked here.
 
 export type ReviewCard = {
-  id: string; kind: "player" | "youtube"; who: string; initial?: string; meta?: string | null; verdict?: Verdict | null; when?: string | null;
-  /** Player cards: the text and whether it's the writer's exact words (quote marks only then). */
+  id: string; kind: "player" | "youtube" | "blog" | "reddit"; who: string; initial?: string; meta?: string | null; verdict?: Verdict | null; when?: string | null;
+  /** Player and blog cards: the text and whether it's the writer's exact words (quote marks only then). */
   text?: string; verbatim?: boolean;
   /** YouTube cards: video id for the thumbnail, the summary's points, whether it's a comment under the video, and the video's
    *  length in minutes when known. */
@@ -29,7 +29,7 @@ const THANKS = { words: "Thanks for sharing! Your review will appear here once i
 const LEVELS = ["beginner", "intermediate", "advanced"] as const;
 const WORD: Record<Verdict, string> = { positive: "👍 loved it", mixed: "🤷 mixed", negative: "👎 not for me" };
 const PILL: Record<Verdict, string> = { positive: "👍 loved it", mixed: "🤷 mixed", negative: "👎 not for them" };
-const TABS = [["all", "all"], ["players", "players"], ["youtube", "youtube"]] as const;
+const TABS = [["all", "all"], ["players", "players"], ["youtube", "youtube"], ["blogs", "blogs"], ["reddit", "reddit"]] as const;
 
 const PLAIN: Record<Verdict, string> = { positive: "loved it", mixed: "mixed", negative: "not for me" };
 
@@ -39,7 +39,7 @@ export default function RacketReviews({ racketId, name, cards, nicknames = [], t
   /** Another site's words (SkinRecs): the profile chips ("I have" dry / oily…), the score's name, the composer's title, who the
    *  reviewers are. Padel's by default. */ words?: { levelLead: string; levels: { value: string; label: string }[]; score: string; ask: string; people: string; peopleTab: string } }) {
   const W = words ?? { levelLead: "I'm", levels: LEVELS.map(l => ({ value: l[0].toUpperCase() + l.slice(1), label: l as string })), score: "Player score", ask: "Played it?", people: "players", peopleTab: "players" };
-  const [tab, setTab] = useState<"all" | "players" | "youtube">("all"), [shown, setShown] = useState(PAGE);
+  const [tab, setTab] = useState<"all" | "players" | "youtube" | "blogs" | "reddit">("all"), [shown, setShown] = useState(PAGE);
   const formToken = useFormToken();
   // v11c filters (owner 2026-11-17, the approved mock): a verdict from the vote bar, a tag from "What players mention".
   const [vf, setVf] = useState<Verdict | null>(null), [tf, setTf] = useState<string | null>(null);
@@ -59,7 +59,7 @@ export default function RacketReviews({ racketId, name, cards, nicknames = [], t
     window.addEventListener("rv-verdict", pick);
     return () => window.removeEventListener("rv-verdict", pick);
   }, []);
-  const list = cards.filter(c => (tab === "all" || (tab === "youtube" ? c.kind === "youtube" : c.kind === "player"))
+  const list = cards.filter(c => (tab === "all" || c.kind === (tab === "players" ? "player" : tab === "blogs" ? "blog" : tab === "reddit" ? "reddit" : "youtube"))
     && (!vf || c.verdict === vf) && (!tf || (c.tags ?? []).includes(tf)));
   // "What players mention": each tag's count is the number of these cards that mention it, so a tap shows exactly that many
   // (with the verdict and tab filters off); fewer than 5 mentions, no tag.
@@ -67,6 +67,8 @@ export default function RacketReviews({ racketId, name, cards, nicknames = [], t
   const mentions = v11c ? [...cards.reduce((m, c) => { for (const t of new Set(c.tags ?? [])) m.set(t, (m.get(t) ?? 0) + 1); return m; }, new Map<string, number>())]
     .filter(([, n]) => n >= MIN_MENTIONS).sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0])) : [];
   const toneOf = (t: string) => v11c?.tone?.[t] ?? "neutral";
+  /** "blogs" tab only when this product has a blog card (owner 2026-11-18). */
+  const hasBlogs = cards.some(c => c.kind === "blog"), hasReddit = cards.some(c => c.kind === "reddit");
 
   async function post() {
     if (!verdict || busy) return;
@@ -100,7 +102,7 @@ export default function RacketReviews({ racketId, name, cards, nicknames = [], t
     return <div className={`rv12${top5.length ? " side" : ""}`}>
       <div className="rv12-main">
         <div className="rv12-head"><h2>{`What ${W.people} say`}</h2>{v11c.fresh > 0 && <span className="rv-new"><i aria-hidden="true"/>{`${v11c.fresh} new this week`}</span>}
-          <div className="rv12-tabs" role="group" aria-label="Show">{TABS.map(([k, label]) =>
+          <div className="rv12-tabs" role="group" aria-label="Show">{TABS.filter(([k]) => (k !== "blogs" || hasBlogs) && (k !== "reddit" || hasReddit)).map(([k, label]) =>
             <button key={k} type="button" aria-pressed={tab === k} onClick={() => { setTab(k); setShown(PAGE); }}>{k === "players" ? W.peopleTab : label}</button>)}</div></div>
         {mood && rated > 0 && <div className="rv12-score">
           {mood.score != null && <span className="rv12-badge" title={`${W.score}: not a % of happy ${W.people}. It blends how much ${W.people} like it with how many have weighed in.`}>
@@ -117,7 +119,12 @@ export default function RacketReviews({ racketId, name, cards, nicknames = [], t
           {verdict && <div className="rv-pwords">
             {/* A box that wraps and grows (owner 2026-11-18): 3 lines to start, up to about 8, then it scrolls; Enter is a new line. */}
             <textarea ref={grow} rows={3} value={text} onChange={e => { setText(e.target.value); setError(""); }} maxLength={2000} placeholder="a few words? (optional)" aria-label="A few words (optional)"/>
-            <button type="button" className="rv-post" disabled={busy} onClick={post}>{busy ? "posting…" : "Post"}</button></div>}
+            {/* "posting as" (owner 2026-11-18, as the quick review card): a nickname filled in for this device, ↻ for another,
+                or clear it and type your own name. */}
+            <div className="rv-psend"><span className="rv-pas">posting as</span>
+              <span className="rv-nick"><input value={nick} onChange={e => setNick(e.target.value)} maxLength={50} placeholder="your name (optional)" aria-label="Posting as (optional, change it if you like)"/>
+                <button type="button" onClick={newNick} title="Another nickname" aria-label="Another nickname">↻</button></span>
+              <button type="button" className="rv-post" disabled={busy} onClick={post}>{busy ? "posting…" : "Post"}</button></div></div>}
           {error && <p className="rv-err" role="alert">{error}</p>}
         </div>}
         {top5.length > 0 && <div className="rv12-row" aria-label={`What ${W.people} mention`}>{top5.map(([t, n]) => tagButton(t, n, true))}</div>}
@@ -142,8 +149,8 @@ export default function RacketReviews({ racketId, name, cards, nicknames = [], t
         {mood && mood.pos + mood.mix + mood.neg > 0 && <div className="rv-mood">
           {mood.score != null && <span className="rv-badge" title={`${W.score}: not a % of happy ${W.people}. It blends how much ${W.people} like it with how many have weighed in.`}><b className={scoreBox(mood.score) || "plain"}>{mood.score}</b>{W.score}</span>}
           <span className="rv-mbar"><span className="rf-sbar" role="img" aria-label={`${mood.pos} positive, ${mood.mix} mixed, ${mood.neg} negative`}><i className="p" style={{ flex: mood.pos }}/><i className="m" style={{ flex: mood.mix }}/><i className="n" style={{ flex: mood.neg }}/></span>
-          <small>{`👍 ${mood.pos} loved · 🤷 ${mood.mix} mixed · 👎 ${mood.neg} nope · ${mood.pos + mood.mix + mood.neg} rated`}</small></span></div>}{!mood && <p>{total !== undefined && total !== cards.length ? `${cards.length} of the ${total} reviews · from players on padelrecs and summarised YouTube reviews (forum reports count in the score, not shown here)` : `${cards.length} total · from players on padelrecs and summarised YouTube reviews`}</p>}</div>
-      <div className="rv-tabs" role="group" aria-label="Show">{TABS.map(([k, label]) =>
+          <small>{`👍 ${mood.pos} loved · 🤷 ${mood.mix} mixed · 👎 ${mood.neg} nope · ${mood.pos + mood.mix + mood.neg} rated`}</small></span></div>}{!mood && <p>{total !== undefined && total !== cards.length ? `${cards.length} of the ${total} reviews · from players on padelrecs, summarised YouTube reviews and blogs (forum reports count in the score only)` : `${cards.length} total · from players on padelrecs and summarised YouTube reviews`}</p>}</div>
+      <div className="rv-tabs" role="group" aria-label="Show">{TABS.filter(([k]) => (k !== "blogs" || hasBlogs) && (k !== "reddit" || hasReddit)).map(([k, label]) =>
         <button key={k} type="button" aria-pressed={tab === k} onClick={() => { setTab(k); setShown(PAGE); }}>{k === "players" ? W.peopleTab : label}</button>)}</div>
     </div>
     <div className="rv-list">
@@ -242,13 +249,26 @@ function YtLite({ c, pill }: { c: ReviewCard; pill: Record<Verdict, string> }) {
 function Rv12Card({ c, i }: { c: ReviewCard; i: number }) {
   const channel = c.who.replace(/^youtube\s+/i, "") || c.who;
   const end = (t: string) => /[.!?…"”)]$/.test(t.trim()) ? t.trim() : `${t.trim()}.`;
-  const text = c.kind === "player" ? (c.verbatim ? `“${c.text}”` : c.text ?? "") : (c.points ?? []).filter(Boolean).map(end).join(" ");
+  const text = c.kind !== "youtube" ? (c.verbatim ? `“${c.text}”` : c.text ?? "") : (c.points ?? []).filter(Boolean).map(end).join(" ");
   const pill = c.verdict && <span className={`rv12-pill ${c.verdict}`}>{VERDICT_PILL[c.verdict]}</span>;
   if (c.kind === "youtube" && !c.comment) return <article className="rv12-card">
     <div className="rv12-yt">{text && <p className="rv12-text">{text}</p>}{pill}</div>
     <div className="rv12-ymeta"><a className="rv12-thumb" href={c.url ?? undefined} target="_blank" rel="noopener nofollow" aria-label={`Watch on YouTube: ${channel}`}>
       {c.video && <img src={`https://i.ytimg.com/vi/${c.video}/mqdefault.jpg`} alt="" loading="lazy" onError={e => { e.currentTarget.style.visibility = "hidden"; }}/>}</a>
       <strong>{channel}</strong>{c.url && <a href={c.url} target="_blank" rel="noopener nofollow">watch ↗</a>}{c.when && <span className="rv12-when">{c.when}</span>}</div>
+  </article>;
+  // A blog review (owner 2026-11-18): like the video summary, text first (pill beside it), then "blog", the blog's name, read ↗, time.
+  if (c.kind === "blog") return <article className="rv12-card">
+    <div className="rv12-yt"><p className="rv12-text">{text}</p>{pill}</div>
+    <div className="rv12-ymeta"><span className="rv12-src">blog</span><strong>{c.who}</strong>{c.url && <a href={c.url} target="_blank" rel="noopener nofollow">read ↗</a>}{c.when && <span className="rv12-when">{c.when}</span>}</div>
+  </article>;
+  // A Reddit comment (owner 2026-11-18): no usernames; "Reddit user", the real subreddit, the quote, "see the thread ↗".
+  if (c.kind === "reddit") return <article className="rv12-card">
+    <div className="rv12-top"><span className={`rv12-av a${i % 4}`} aria-hidden="true">R</span>
+      <span className="rv12-who"><span className="rv12-line"><strong>Reddit user</strong>{pill}{c.when && <span className="rv12-when">{c.when}</span>}</span>
+        {c.source && <span className="rv12-sub">{`from ${c.source}`}</span>}</span></div>
+    <p className="rv12-text">{text}</p>
+    {c.url && <a className="rv12-link" href={c.url} target="_blank" rel="noopener nofollow">see the thread ↗</a>}
   </article>;
   const comment = c.kind === "youtube";
   return <article className="rv12-card">

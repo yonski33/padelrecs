@@ -246,7 +246,7 @@
 .rf .rv-mood.v11c .rv-mbar { flex: 1 1 220px; min-width: 0; display: flex; flex-direction: column; gap: 5px; }
 .rf .rv-mood.v11c .rf-sbar { width: 100%; height: 10px; }
 .rf .rv-mood.v11c small { font: 12.5px var(--v-mono); color: var(--v-mute2); }
-.rf .rv-played { scroll-margin-top: 80px; border: 2px dashed var(--v-ink); border-radius: 14px; background: var(--v-card); padding: 12px 14px; display: flex; flex-direction: column; gap: 10px; }
+.rf .rv-played { scroll-margin-top: 116px; border: 2px dashed var(--v-ink); border-radius: 14px; background: var(--v-card); padding: 12px 14px; display: flex; flex-direction: column; gap: 10px; }
 .rf .rv-prow { display: flex; align-items: center; gap: 8px 10px; flex-wrap: wrap; }
 .rf .rv-prow > b { font: 800 16px var(--v-display); }
 .rf .rv-prow button { all: unset; cursor: pointer; min-height: 32px; box-sizing: border-box; display: inline-flex; align-items: center; gap: 7px; white-space: nowrap; padding: 0 12px 0 9px;
@@ -389,6 +389,15 @@
 .rf .rv12-ymeta strong { color: #151515; font-size: 14.5px; } .rf .rv12-ymeta a:not(.rv12-thumb) { font: 12.5px var(--v-mono); color: #151515; }
 .rf .rv12-thumb { position: relative; flex: none; width: 64px; aspect-ratio: 16 / 9; border-radius: 5px; overflow: hidden; background: #e9e6dd; border: 1.5px solid #151515; display: block; }
 .rf .rv12-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+/* Blog review card (owner 2026-11-18): the video summary's layout, with a small "blog" label where the thumbnail is. */
+.rf .rv12-src { font: 11.5px var(--v-mono); color: #4a4740; border: 1.5px solid #c9c5ba; border-radius: 6px; padding: 0 6px; background: #fff; }
+/* Phones: up to five tabs (all · players · youtube · blogs · reddit) share the row instead of running off it, and a summary
+   card's pill goes above its text so the text keeps the card's full width. */
+@media (max-width: 560px) {
+  .rf .rv12-tabs { width: 100%; }
+  .rf .rv12-tabs button { flex: 1 1 auto; justify-content: center; padding: 0 7px; font-size: 13.5px; }
+  .rf .rv12-yt { flex-direction: column-reverse; gap: 8px; } .rf .rv12-yt .rv12-text { width: 100%; }
+}
 .rf .rv12-empty { border: 2px dashed #b9b5aa; border-radius: 12px; padding: 20px; display: flex; flex-direction: column; align-items: center; gap: 6px; text-align: center; } .rf .rv12-empty b { font: 800 16px var(--v-display); }
 .rf .rv12-more { min-height: 32px; align-self: flex-start; font-size: 14px; }
 /* Tags: a vertical list in the sidebar, chips in the row. */
@@ -428,6 +437,18 @@
 /* !important: the light design's site-wide input rule (.lt-site … :is(input, textarea), its green focus glow) is more specific. */
 .rf .rv-pwords textarea:focus, .rf .rv-pwords textarea:focus-visible { outline: none !important; box-shadow: none !important; border-color: #151515 !important; background: #fff !important; }
 .rf .rv-pwords .rv-post { align-self: flex-end; }
+
+/* "posting as" beside Post (owner 2026-11-18): the composer's nickname field, sized and bordered like the textarea. */
+.rf .rv-psend { display: flex; align-items: center; gap: 8px 10px; flex-wrap: wrap; }
+.rf .rv-pas { font: 12.5px var(--v-mono); color: #4a4740; }
+.rf .rv-psend .rv-nick { flex: 1 1 220px; max-width: 360px; min-width: 0; display: flex; gap: 6px; }
+.rf .rv-psend .rv-nick input { flex: 1; min-width: 0; min-height: 36px; box-sizing: border-box; border: 2px solid #3a3833 !important; border-radius: 10px !important; padding: 6px 10px;
+  font: 16px var(--qt-body, "Atkinson Hyperlegible"), system-ui, sans-serif; background: #fbfaf6 !important; box-shadow: none !important; outline: none !important; }
+.rf .rv-psend .rv-nick input:focus { border-color: #151515 !important; background: #fff !important; }
+.rf .rv-psend .rv-nick button { all: unset; cursor: pointer; flex: none; width: 36px; min-height: 36px; display: flex; align-items: center; justify-content: center; border: 2px solid #151515; border-radius: 10px; background: #fff; font-size: 16px; }
+.rf .rv-psend .rv-nick button:focus-visible { outline: 3px solid var(--v-lime); outline-offset: 2px; }
+.rf .rv-psend .rv-post { margin-left: auto; }
+@media (max-width: 520px) { .rf .rv-psend .rv-nick { flex-basis: 100%; max-width: none; } }
 
 /* The fit card in the right rail (owner 2026-11-18, as SimRacingRecs product pages): desktop only, sticky beside everything above
    the reviews, gone where they start (the rail ends there and the tag list takes over). Phones keep the bottom bar. The wrappers

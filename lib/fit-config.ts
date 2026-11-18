@@ -18,7 +18,9 @@ export type TraitDef = { key: string; label: string; plus: [string, number][]; m
   /** The product types (catalogue shapes) the trait is shown for (SimRacingRecs: FFB only on wheelbases); unset = all. */ appliesTo?: string[] };
 /** A hard filter a type-picker site offers under fine-tune (SimRacingRecs: drive type, budget, rim type): the product's
  *  values come from quick.factValues; `kinds` limits it to some types (shown and applied only there). */
-export type QuickFilter = { key: string; label: string; options: [string, string][]; kinds?: string[] };
+export type QuickFilter = { key: string; label: string; options: [string, string][]; kinds?: string[];
+  /** Shown in the picker's main row, not under "fine-tune" (SimRacingRecs: the platform), and checked by the fit check: a product
+   *  without the picked value is "Probably not" with `notOn` ("Not on PlayStation"). */ main?: boolean };
 export type Specs = { shape?: string | null; balance?: string | null; weight?: string | null; core?: string | null; surface?: string | null };
 /** Counts for the line under a bar: tag mentions, people with the verb, and the bar's own counts (with words read from text). */
 export type LineKit = { tc: (tag: string) => number; ppl: (n: number, verb: string) => string; plus: number | null; minus: number | null };
@@ -35,6 +37,9 @@ export type FitConfig = {
   levelLabels?: { beginner: string; intermediate: string; advanced: string };
   /** Who a level pick ranks for ("new racers"); default "<label> players" with levelLabels, else padel's words. */
   levelPeople?: { beginner: string; intermediate: string; advanced: string };
+  /** A product fact that caps the levels it can suit (SimRacingRecs: a wheelbase's torque, Grok audit 2026-11-17 #14–#16):
+   *  the levels it returns false for stay under the level bar whatever the reports say. null: no cap. */
+  levelCap?: (r: { slug: string; shape: string | null; weight: string | null }, owner: Record<string, string | number | null>) => Partial<Record<"beginner" | "intermediate" | "advanced", boolean>> | null;
   /** A site's own words where the shared pages say "player", "throw one first", "how it plays" (SimRacingRecs, Grok audit
    *  2026-11-17 #10 #11 #25 #27 #28). Unset: every page keeps its words. */
   words?: { person: string; game: string; tryFirst: string; howIt: string; catalogPromo: string; guidePromo: string; added: string;

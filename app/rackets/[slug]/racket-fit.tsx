@@ -66,6 +66,8 @@ const QUICK = SITE_FIT.quick ? SITE_FIT : null;
 const SCORE_WORD = v2copy.score ?? "player score";
 /** Product page v11 (owner 2026-11-17, design_handoff_product_page_v11): padel, pickleball and disc golf, each in its own words
  *  (lib/v11-site.ts); the other sites keep their page. PADEL: the padel-only wording passes (padelWords, its bar nuances). */
+/** "Still deciding?" link wording per site (owner 2026-11-18): each site's own verb, played it? by default. */
+const ASK_LINK: Record<string, string> = { discgolf: "thrown it?", simracing: "raced on it?" };
 const V11_SITE = V11_SITES[niche.id] ?? null, V11 = !!V11_SITE, PADEL = niche.id === "padel";
 const SCORE_CAP = `${SCORE_WORD[0].toUpperCase()}${SCORE_WORD.slice(1)}`;
 /** v11 "How it plays": three bands (trait key, label). */
@@ -272,6 +274,34 @@ export default async function RacketFit(props: {
   const ytProducts = new Map<string, number>(), ytSeen = new Set<string>();
   for (const e of ctx.data.external) { if (e.sourcePlatform !== "YouTube" || /[?&]lc=/.test(e.sourceUrl)) continue; const v = videoOf(e.sourceUrl);
     if (v && !ytSeen.has(`${v}|${e.racketId}`)) { ytSeen.add(`${v}|${e.racketId}`); ytProducts.set(v, (ytProducts.get(v) ?? 0) + 1); } }
+  const blogCards = () => {
+    const shortEnglish = (t?: string | null) => !!t && t.length >= 30 && t.length <= 320 && /^[\x00-\x7F’‘“”–—…é]+$/.test(t);
+    // A blog is a website: chat channels and social groups filed as blogs (Padelzoom on Telegram, Facebook groups) stay out like
+    // forums. One card per site (its host), so a blog stored under two names shows once.
+    const host = (u: string) => { try { return new URL(u).hostname.replace(/^www\./, "").toLowerCase(); } catch { return ""; } };
+    const SOCIAL = /(^|\.)(t\.me|telegram\.org|facebook\.com|instagram\.com|x\.com|twitter\.com|reddit\.com|tiktok\.com|discord\.(gg|com))$/;
+    const rows = ctx.data.external.filter(e => e.racketId === props.racketId && e.sourcePlatform === "Blog" && !SOCIAL.test(host(e.sourceUrl))).map(e => {
+      const english = !e.sourceLanguage || e.sourceLanguage === "en";
+      const text = e.summary ? unmd(PADEL ? padelWords(plainSummary(e.summary)) : plainSummary(e.summary)) : english && shortEnglish(e.excerpt) ? unmd(e.excerpt!) : "";
+      return { e, text, verbatim: !e.summary };
+    }).filter(x => x.text).sort((a, b) => (b.e.sourceDate ?? "").localeCompare(a.e.sourceDate ?? ""));
+    const seen = new Set<string>();
+    return rows.filter(({ e }) => { const k = host(e.sourceUrl) || e.sourceName.trim().toLowerCase(); if (seen.has(k)) return false; seen.add(k); return true; })
+      .map(({ e, text, verbatim }) => ({ at: e.sourceDate ?? "", card: { id: e.id, kind: "blog" as const, who: e.sourceName, verdict: e.sentiment ?? null, when: ago(e.sourceDate),
+        url: e.sourceUrl, tags: e.tags ?? [], text, verbatim } satisfies ReviewCard }));
+  };
+  const redditCards = () => {
+    // 60+ characters (owner 2026-11-18): a one-liner like "Been maining it for 6 months" says nothing; the next comment fills the slot.
+    const ok = (t?: string | null) => !!t && t.length >= 60 && t.length <= 300 && /^[\x00-\x7F’‘“”–—…é]+$/.test(t);
+    const rows = ctx.data.external.filter(e => e.racketId === props.racketId && e.sourcePlatform === "Reddit" && !e.adminEditedAt
+      && (!e.sourceLanguage || e.sourceLanguage === "en") && ok(e.excerpt)).sort((a, b) => (b.sourceDate ?? "").localeCompare(a.sourceDate ?? ""));
+    // Variety first (the newest loved, mixed and nope comment where there is one), then the newest of the rest; at most 5.
+    const pick = (["positive", "mixed", "negative"] as const).flatMap(v => rows.filter(e => e.sentiment === v).slice(0, 1));
+    for (const e of rows) { if (pick.length >= 5) break; if (!pick.includes(e)) pick.push(e); }
+    const sub = (url: string, name: string) => url.match(/reddit\.com\/(r\/[A-Za-z0-9_]+)/)?.[1] ?? name;
+    return pick.slice(0, 5).map(e => ({ at: e.sourceDate ?? "", card: { id: e.id, kind: "reddit" as const, who: "Reddit user", source: sub(e.sourceUrl, e.sourceName),
+      verdict: e.sentiment ?? null, when: ago(e.sourceDate), url: e.sourceUrl, tags: e.tags ?? [], text: unmd(e.excerpt!), verbatim: true } satisfies ReviewCard }));
+  };
   const dated: { at: string; card: ReviewCard }[] = [
     ...reviews.map(r => ({ at: r.createdAt, card: { id: r.id, kind: "player" as const, who: r.alias || `A ${props.site} player`, meta: givenMeta(r), played: V11 ? r.timeWithRacket ?? null : null, tags: r.tags, verdict: ratingVerdictOf(r.rating), when: ago(r.createdAt), text: unmd(r.reviewText), verbatim: false } })),
     // Owner 2026-11-15: the Reviews section lists our own reviews and the YouTube summaries only, no forum (Reddit) or blog reports.
@@ -287,6 +317,12 @@ export default async function RacketFit(props: {
         : { ...base, kind: "player", who: "A player", initial: (e.sourceName.replace(/^r\//, "")[0] ?? "P").toUpperCase(), meta: V11 ? null : lv(webLevels.get(e.id)?.level), source: e.sourceName, text, verbatim };
       return { at: e.sourceDate ?? "", card };
     }).filter(x => x.card.kind === "youtube" ? !!x.card.points?.[0] : !!x.card.text),
+    // Blogs (owner 2026-11-18, reversing part of the 11-15 rule): v11c lists blog reviews too (platform Blog, websites only;
+    // "Other", Telegram and Facebook sources stay out, like forums), one card per blog, its newest
+    // row that has our summary or a short English excerpt (quoted, verbatim). Forum reports still count in the score only.
+    ...(V11 ? blogCards() : []),
+    // Reddit (owner 2026-11-18): up to 5 comments, the commenter's exact words only (English, short, never edited by us).
+    ...(V11 ? redditCards() : []),
   ];
   const cards = dated.sort((a, b) => b.at.localeCompare(a.at)).map(x => x.card);
 
@@ -510,7 +546,7 @@ export default async function RacketFit(props: {
           {V11 && <V11Decide id={props.racketId} facts={facts} name={hasYears ? `${props.shortName} (${props.year})` : props.shortName} pic={props.photo}
             score={scoreState(rated) === "new" ? null : overallScore} line={page ? page.tagline : props.line ?? null} buy={buy}
             compare={{ href: `${catalogPath}?compare=1`, pick: { id: props.racketId, slug: props.slug, name: props.name, pic: props.photo } }}
-            one={niche.words.one} ask={`${QUICK ? "thrown" : "played"} it? add your verdict →`}/>}
+            one={niche.words.one} ask={`${ASK_LINK[niche.id] ?? "played it?"} add your review →`}/>}
           {V11 && tiles.length > 0 && <section className="v11-rt" aria-labelledby="v11-rt-t">
             <div className="v11-sh"><h2 id="v11-rt-t">Explore the rankings</h2><Link href="/rankings">all rankings →</Link></div>
             <div className="v11-rtgrid">{tiles.map(t => <Link key={t.href} href={t.href}><span className="t"><b>{t.title}<span aria-hidden="true"> →</span></b><em>{t.sub}</em></span>
