@@ -104,7 +104,10 @@ export function specFact(site: string, key: string, o: ClaimSpec, m: ClaimSpec):
   if (site === "padel" || site === "pickleball") {
     if (key === "speed") {
       const step = WEIGHT_STEP[site], wo = weightMid(site, o), wm = weightMid(site, m), u = site === "padel" ? "g" : "oz";
-      const w = fact(wo, wm, step, -1, () => `${wo! < wm! ? "lighter" : "heavier"}, ${g(wo!)} vs ${g(wm!)} ${u}`);
+      // The weights as stored ("355 vs 360–375 g"), not the midpoints the gap is worked out on.
+      const shown = (x: ClaimSpec) => { const r = site === "padel" ? [...low(x.weight).matchAll(/(\d{3})/g)].map(v => +v[1]).filter(v => v >= 300 && v <= 420)
+        : [...low(x.weight).matchAll(/(\d+(?:\.\d+)?)/g)].map(v => +v[1]).filter(v => v >= 6 && v <= 10); const lo = Math.min(...r), hi = Math.max(...r); return lo === hi ? g(lo) : `${g(lo)}–${g(hi)}`; };
+      const w = fact(wo, wm, step, -1, () => `${wo! < wm! ? "lighter" : "heavier"}, ${shown(o)} vs ${shown(m)} ${u}`);
       const b = site === "padel" ? fact(balanceRank(o), balanceRank(m), 0.5, -1, () => `${low(o.balance)} vs ${low(m.balance)} balance`)
         : fact(num(/(\d{2,3})/, o.balance), num(/(\d{2,3})/, m.balance), 4, -1, () => `swing weight ${num(/(\d{2,3})/, o.balance)} vs ${num(/(\d{2,3})/, m.balance)}`);
       return either(w, b);
