@@ -54,7 +54,6 @@ import { scoreTone as v11Tone } from "../../../lib/score-tone";
 import { V11_SITES } from "../../../lib/v11-site";
 import { distinctEdges } from "../../../lib/other-picks";
 import { claimBlock, factFor, sameFlightFact } from "../../../lib/claim-guard";
-import { CompareWith } from "./compare-with";
 import { refName } from "../../../lib/compare-names";
 import { suggestionFloor } from "../../../lib/suggestion-floor";
 import { contradicts, padelWords, claims } from "../../../lib/content-consistency";
@@ -527,8 +526,8 @@ export default async function RacketFit(props: {
                   {rated > 0 && <span className="v11-sbar" aria-hidden="true"><i className="p" style={{ flex: mood.pos }}/><i className="m" style={{ flex: mood.mix }}/><i className="n" style={{ flex: mood.neg }}/></span>}
                   <small>{ytRated > 0 ? `${rated} rated it` : `${rated} ${rated === 1 ? niche.people.one : niche.people.many} rated it`}</small></span></a>}
               {buy && <a className="v11-buy" href={buy.url} target="_blank" rel={buy.rel}>{buy.label} ↗</a>}
-              {/* Compare mode on the catalogue with this one already picked (UX audit 2026-11-17). */}
-              <CompareWith href={`${catalogPath}?compare=1`} pick={{ id: props.racketId, slug: props.slug, name: props.name, pic: props.photo }}/>
+              {/* No "compare with…" here (owner 2026-11-18): it sent people off the page they just landed on. Compare lives in the
+                  "Still deciding?" card and on the Other rackets cards. */}
             </div>}
           {V11 && buy && <p className="rf-aff v11-aff">* affiliate link, it keeps the site running and doesn&apos;t change our take</p>}
         </div>
