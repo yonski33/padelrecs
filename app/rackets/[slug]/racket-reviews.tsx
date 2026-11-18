@@ -62,8 +62,8 @@ export default function RacketReviews({ racketId, name, cards, nicknames = [], t
   const list = cards.filter(c => (tab === "all" || c.kind === (tab === "players" ? "player" : tab === "blogs" ? "blog" : tab === "reddit" ? "reddit" : "youtube"))
     && (!vf || c.verdict === vf) && (!tf || (c.tags ?? []).includes(tf)));
   // "What players mention": each tag's count is the number of these cards that mention it, so a tap shows exactly that many
-  // (with the verdict and tab filters off); fewer than 5 mentions, no tag.
-  const MIN_MENTIONS = 5;
+  // (with the verdict and tab filters off); fewer than 3 mentions, no tag (owner 2026-11-18: 5 left most pages without the box).
+  const MIN_MENTIONS = 3;
   const mentions = v11c ? [...cards.reduce((m, c) => { for (const t of new Set(c.tags ?? [])) m.set(t, (m.get(t) ?? 0) + 1); return m; }, new Map<string, number>())]
     .filter(([, n]) => n >= MIN_MENTIONS).sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0])) : [];
   const toneOf = (t: string) => v11c?.tone?.[t] ?? "neutral";

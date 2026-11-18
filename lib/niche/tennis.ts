@@ -14,6 +14,7 @@ export const tennis: Niche = {
   design: "v2",
   homeMore: tennisHome,
   v2copy: {
+    homeH1: ["Find your", "tennis racket"],
     sport: "tennis", emoji: "🎾", strip: "a free, ad-light side project · built by tennis players",
     madeBy: "made by people who own too many rackets 🎾", forum: "tennis forum", blog: "tennis blog",
     aboutStory: ["tennisrecs started at a club demo day. Every racket promised more power, more spin and more control at once, every review site sold the same picks, and nobody said which ones suit a game like ours.",

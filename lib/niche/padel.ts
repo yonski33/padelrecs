@@ -14,6 +14,7 @@ export const padel: Niche = {
   homeMore: padelHome,
   design: "v2",
   v2copy: {
+    homeH1: ["Find your", "padel racket"],
     sport: "padel", emoji: "🎾", strip: "a free, ad-light side project · built by padel players",
     madeBy: "made by people who own too many rackets 🎾", forum: "padel forum", blog: "padel blog",
     aboutStory: ["padelrecs started at a club bar. Three of us had bought rackets off hype, hated two of them, and couldn't find a straight answer anywhere. Just spec sheets, sponsored reviews and 20-minute videos.",
@@ -237,7 +238,7 @@ export const padel: Niche = {
   },
   seo: {
     homeTitle: "PadelRecs – Less guessing, better padel rackets",
-    homeDescription: "Tell us how you play and we rank every padel racket for you, from player reviews, YouTube and forums. No sponsored picks.",
+    homeDescription: "Pick how you play and see every padel racket ranked for you, from player reviews, YouTube and forums. No sponsored picks.",
     layoutDescription: "Real player experiences with padel rackets, plus opinions from YouTube, shops and forums with the source linked.",
     titleTemplate: "%s | PadelRecs",
     catalog: { title: "All Padel Rackets – Player Reviews and Ratings", description: "Every padel racket on PadelRecs with community ratings. Filter by brand, year and shape, then read what players say about each one." },

@@ -159,6 +159,8 @@ export type Niche = {
     /** How a product is used, as a verb: "plays" (default) / "works". */ use?: string;
     /** What the reviewers' test is called on About ("real court time"). */ tested?: string;
     /** The rankings page's call to the quick match ("Tell us how you play"). */ tellUs?: string;
+    /** The home H1 naming the sport (owner 2026-11-18): plain words, then the highlighted ones, e.g. ["Find your", "padel racket"].
+     *  Set, the home drops the "Tell us how you play…" subline under it. */ homeH1?: [string, string];
     /** The italic last words of About's second story paragraph ("game"). */ aboutLast?: string;
     /** The add-review page: the dot ratings' low / high words per rating column, and the "+ prompt" chips. */
     rate?: Record<string, [string, string]>; prompts?: string[];

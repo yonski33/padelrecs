@@ -22,13 +22,14 @@ export const skin: Niche = {
   // fact scores of lib/attr-profile.ts, and the skin pages in app/skin/.
   design: "v2",
   v2copy: {
+    homeH1: ["Find your", "skincare"],
     sport: "", emoji: "🧴", strip: "independent & ad-light · written by people with real skin",
     madeBy: "made by people with too many half-used bottles 🧴", forum: "skincare forum", blog: "beauty blog",
     aboutStory: ["skinrecs started with a bathroom shelf of half-used bottles. Every product promised the same things, every review site sold the same picks, and nobody said which ones work for skin like ours.",
       "So we built the thing we wanted: one place that brings user reviews, YouTube reviewers and beauty blogs together, reads what people with each skin type say, and tells you if a product fits"],
     example: "CeraVe Moisturizing Cream",
     // Its own logo (the peach drop, public/niches/skin/icon.svg), skincare verbs and About / add-review words (owner 2026-11-16).
-    logo: "icon", use: "works", tested: "weeks of real use", tellUs: "Tell us about your skin", aboutLast: "skin",
+    logo: "icon", use: "works", tested: "weeks of real use", tellUs: "Pick your skin", aboutLast: "skin",
     rate: { powerRating: ["did nothing", "worked great"], controlRating: ["unpleasant", "lovely"], comfortRating: ["irritated me", "no irritation"],
       maneuverabilityRating: ["off-putting", "pleasant or none"], forgivenessRating: ["overpriced", "worth every cent"] },
     prompts: ["what surprised you", "your skin type", "how long you used it", "who should skip it"],

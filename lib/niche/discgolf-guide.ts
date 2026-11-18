@@ -67,5 +67,5 @@ export const discgolfGuide: GuideConfig = {
   ],
   buys: { section: "type", kicker: "// what players actually bag" },
   home: { section: "stability", title: "Browse by stability", link: "Flight numbers, stability & plastic explained → disc guide" },
-  cta: { title: "Skip the theory. Get matched.", text: "Tell us your level and arm; we'll rank every disc for you.", button: "Find your disc →" },
+  cta: { title: "Skip the theory. Get matched.", text: "Pick your level and arm to see every disc ranked for you.", button: "Find your disc →" },
 };

@@ -24,6 +24,7 @@ export const pickleball: Niche = {
   // per-site words, its own logo and colours, and the paddle profile (lib/fit-config.ts PICKLEBALL) on the match engine.
   design: "v2",
   v2copy: {
+    homeH1: ["Find your", "pickleball paddle"],
     sport: "pickleball", emoji: "🏓", strip: "a free, ad-light side project · built by pickleball players",
     madeBy: "made by people who own too many paddles 🏓", forum: "pickleball forum", blog: "pickleball blog",
     aboutStory: ["pickleballrecs started on the sideline of a 3.5 open play. Every paddle claimed more power, more spin and more control at once, every review site sold the same picks, and nobody said which ones suit a game like ours.",

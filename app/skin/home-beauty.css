@@ -174,3 +174,6 @@
 
 /* check price inside the row's text (owner 2026-11-17), not its own column. */
 .bh-list .bh-buy { grid-area: auto; grid-column: auto; grid-row: auto; justify-self: auto; align-self: flex-start; }
+
+/* The headline and the live pill on one line (owner 2026-11-18, every site). */
+.bh-hrow { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 24px; }

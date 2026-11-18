@@ -38,7 +38,7 @@ export default function AboutBeauty() {
         <span>{"We count what real people report. That's useful for picking a moisturizer, not for diagnosing a rash. For eczema, rosacea, persistent acne or anything that worries you, see a dermatologist."}</span></section>
       <section className="ba-ctas">
         <div className="sage"><b>{"Used something? You're part of this."}</b><span>{"Every review makes the next person's choice easier."}</span><a className="bp-btn" href="/add-review">+ add a review</a></div>
-        <div><b>Spotted something off?</b><span>{"A wrong ingredient, a missing product, a bad summary? Tell us and we'll fix it."}</span><a className="ba-mono" href="/contact">get in touch →</a></div>
+        <div><b>Spotted something off?</b><span>{"A wrong ingredient, a missing product, a bad summary? Send it in and it gets fixed."}</span><a className="ba-mono" href="/contact">get in touch →</a></div>
       </section>
     </div>
     <V2Footer/>
