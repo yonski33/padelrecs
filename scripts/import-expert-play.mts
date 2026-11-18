@@ -23,7 +23,7 @@ const SHEETS: Record<string, { trait: string; score: string; note: string }[]> =
     { trait: "control", score: "control_1to5", note: "control_note" },
     { trait: "spin", score: "spin_1to5", note: "spin_note" },
   ],
-  // TennisRecs (hook, scores not in yet): the same shape as pickleball's sheet plus arm comfort.
+  // TennisRecs: Power, Control and Spin bars; arm comfort feeds the arm check and build chips.
   tennis: [
     { trait: "power", score: "power_1to5", note: "power_note" },
     { trait: "control", score: "control_1to5", note: "control_note" },
@@ -53,6 +53,10 @@ const nameKey = (s: string) => s.replace(/[¹²³⁴⁵⁰]/g, c => SUP[c]).repl
 const data = await catalog();
 const byKey = new Map<string, typeof data.rackets>();
 for (const r of data.rackets) { const k = `${nameKey(r.name)}|${r.year}`; byKey.set(k, [...(byKey.get(k) ?? []), r]); }
+// A sheet with no year column: the full name, years kept ("Head Speed Pro 2026" ≠ "Head Speed Pro 2024").
+const fullKey = (s: string) => nameKey(s.replace(/\b(20\d\d)\b/g, " y$1 "));
+const byName = new Map<string, typeof data.rackets>();
+for (const r of data.rackets) { const k = fullKey(r.name); byName.set(k, [...(byName.get(k) ?? []), r]); }
 
 type Row = { name: string; year: number; slug: string; shape: string; scores: Record<string, { dots: number; note: string }>; confidence: string; sources: string };
 const rows: Row[] = lines.map(l => ({ name: l[col("name")].trim(), year: Number(l[col("year")]), slug: l[col("slug")].trim(), shape: (l[col("shape")] ?? "").trim(), confidence: (l[col("confidence")] ?? "").trim(), sources: (l[col("sources")] ?? "").trim(),
@@ -60,7 +64,8 @@ const rows: Row[] = lines.map(l => ({ name: l[col("name")].trim(), year: Number(
 
 const unmatched: Row[] = [], ambiguous: string[] = [], claims = new Map<string, Row[]>();
 for (const r of rows) {
-  const hits = byKey.get(`${nameKey(r.name)}|${r.year}`) ?? [];
+  // A sheet with no year (TennisRecs: names carry the generation) matches on the name alone, and only when it is unique.
+  const hits = Number.isFinite(r.year) && r.year > 0 ? byKey.get(`${nameKey(r.name)}|${r.year}`) ?? [] : byName.get(fullKey(r.name)) ?? [];
   if (hits.length !== 1) { if (hits.length > 1) ambiguous.push(`${r.name} ${r.year}: ${hits.map(h => h.slug).join(", ")}`); else unmatched.push(r); continue; }
   claims.set(hits[0].id, [...(claims.get(hits[0].id) ?? []), r]);
 }
@@ -82,13 +87,26 @@ for (const [id, rs] of claims) {
     e.traits[s.trait] = { dots: v.dots, note: v.note, ...(kept ? { line: kept } : {}) }; }
   out.products[p.slug] = e;
 }
+// Same frame scored twice (owner via PM 2026-11-19): the copy takes the reference product's score and reason for that trait.
+const ALIGN: Record<string, [copy: string, trait: string, from: string, why: string][]> = {
+  tennis: [["wilson-blade-pro-98-16x19-v10", "power", "wilson-blade-pro-98-16x19-v9", "same frame as the V9 (identical specs)"]],
+};
+const aligned: string[] = [];
+for (const [copy, trait, from, why] of ALIGN[niche.id] ?? []) {
+  const src = out.products[from]?.traits[trait], dst = out.products[copy]?.traits[trait];
+  if (!src || !dst) { aligned.push(`- ${copy} ${trait}: not aligned (missing)`); continue; }
+  if (dst.dots !== src.dots) aligned.push(`- ${copy} ${trait}: ${dst.dots} → ${src.dots} (${why})`);
+  const kept = dst.note === src.note ? dst.line : src.line;
+  out.products[copy].traits[trait] = { dots: src.dots, note: src.note, ...(kept ? { line: kept } : {}) };
+}
+if (aligned.length) console.log(`Aligned:\n${aligned.join("\n")}`);
 out._about = `Expert How it plays scores (owner decision 2026-11-18): an expert's blind 1–5 per trait from lab and reviewer data, matched by name + year (scripts/import-expert-play.mts). dots = the shown bar; line = the bar's line in the site voice (≤105 chars), note = the expert's own reason. The engine keeps its own reading for matching (scripts/expert-play-gaps.mts).`;
 const noLine = Object.values(out.products).reduce((n, e) => n + Object.values(e.traits).filter(t => !t?.line).length, 0);
 const listedNot = data.listed.filter(p => !out.products[p.slug]).map(p => `${p.name} (${p.slug}, ${data.reviews.filter(x => x.racketId === p.id).length + data.external.filter(x => x.racketId === p.id).length} reports)`);
 console.log(`${niche.id}: ${rows.length} sheet rows → ${Object.keys(out.products).length} products. Unmatched ${unmatched.length}, ambiguous ${ambiguous.length}, repeated ${repeated.length}. Lines still to write: ${noLine}. Listed products without an expert score: ${listedNot.length}.`);
 const report = [`# Expert play scores: ${niche.id} match report (${new Date().toISOString().slice(0, 10)})`, "",
-  `${rows.length} sheet rows, ${Object.keys(out.products).length} products scored. Matched by name + year only.`, "",
-  `## Sheet rows with no product (${unmatched.length})`, ...unmatched.map(r => `- ${r.name} ${r.year} (sheet slug ${r.slug})`), "",
+  `${rows.length} sheet rows, ${Object.keys(out.products).length} products scored. Matched by name + year only.`, "", ...(aligned.length ? ["## Aligned (same frame)", ...aligned, ""] : []),
+  `## Sheet rows with no product (${unmatched.length})`, ...unmatched.map(r => `- ${r.name} ${r.year || "(no year)"} (sheet slug ${r.slug})`), "",
   `## Name + year fits more than one product (${ambiguous.length})`, ...ambiguous.map(x => `- ${x}`), "",
   `## One product, several sheet rows (${repeated.length})`, ...repeated.map(x => `- ${x}`), "",
   `## Listed products with no expert score (${listedNot.length}): bars stay the engine's`, ...listedNot.map(x => `- ${x}`), ""].join("\n");

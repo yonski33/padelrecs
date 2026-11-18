@@ -6,6 +6,7 @@ import padelYoutubeTraits from "./youtube-traits/padel.json";
 import pickleballKnownDots from "./known-dots/pickleball.json";
 import padelExpertPlay from "./expert-play/padel.json";
 import pickleballExpertPlay from "./expert-play/pickleball.json";
+import tennisExpertPlay from "./expert-play/tennis.json";
 import { readExpertPlay, type ExpertPlayFile } from "../lib/expert-play";
 
 // The match engine's hand-kept data per site (audit 2026-11-15: a per-niche map, so a sister site plugs in its own files
@@ -14,7 +15,7 @@ import { readExpertPlay, type ExpertPlayFile } from "../lib/expert-play";
 //   levelSources   maker and YouTube levels by product slug (db/level-sources/<niche>.json)
 //   youtubeTraits  YouTube reviewers' trait mentions by product slug (db/youtube-traits/<niche>.json)
 //   expertPlay     the expert's How it plays scores and bar lines by product slug (db/expert-play/<niche>.json, owner decision
-//                  2026-11-18): the bars a page shows. TennisRecs: run scripts/import-expert-play.mts and add its file here.
+//                  2026-11-18): the bars a page shows. A new site: run scripts/import-expert-play.mts and add its file here.
 export type MatchData = {
   knownDots: Record<string, Record<string, { dots?: number }>>;
   levelSources: Record<string, LevelSources>;
@@ -32,5 +33,6 @@ const MATCH_DATA: Record<string, MatchData> = {
   },
   // The pickleball expert's ratings (1–10 per trait, no dots): read by scripts/check-expert-ratings.mts, not applied here.
   pickleball: { knownDots: pickleballKnownDots as unknown as MatchData["knownDots"], levelSources: {}, youtubeTraits: {}, expertPlay: readExpertPlay(pickleballExpertPlay) },
+  tennis: { knownDots: {}, levelSources: {}, youtubeTraits: {}, expertPlay: readExpertPlay(tennisExpertPlay) },
 };
 export const matchData = (nicheId: string): MatchData => MATCH_DATA[nicheId] ?? EMPTY;
