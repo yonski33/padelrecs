@@ -16,7 +16,7 @@ export type FineTune = { shape?: Shape; weight?: Weight; feel?: Feel; sweet?: bo
 /** Each site's shape picks and weight bands (grams; specs in ounces are converted). */
 type FineSite = { shapes: readonly string[]; label: Record<string, string>; shapeOf: (s: string) => Shape | null; grams: [number, number]; light: number; heavy: number;
   /** The fine-tune's rows in order and the shapes it offers (default: shape, weight, feel and "bigger sweet spot"; every shape). */
-  rows?: readonly ("shape" | "weight" | "feel" | "core")[]; picks?: readonly string[]; sweet?: boolean; weightWord?: Partial<Record<Weight, string>>;
+  rows?: readonly ("shape" | "weight" | "feel" | "core")[]; /** The shape row's label (default "Shape"). */ shapeWord?: string; picks?: readonly string[]; sweet?: boolean; weightWord?: Partial<Record<Weight, string>>;
   /** The catalogue's shape filter, when it differs from the fine-tune's (padel lists teardrop apart). */ catalog?: { shapes: readonly string[]; of: (s: string) => string | null } };
 // Match audit 2026-11-16: Six Zero's "flared" mold (16.3" × 7.5–7.7") is a hybrid; Selkirk's "Invikta" is elongated; "traditional"
 // is standard; "standard/widebody" names one shape twice. A paddle sold in several shapes ("hybrid, widebody, or elongated") has none.
@@ -40,6 +40,12 @@ const FINE: Record<string, FineSite> = {
     rows: ["shape", "weight", "core"], picks: ["standard", "elongated"], sweet: false, weightWord: { medium: "mid" },
     // The catalogue lists widebody apart (owner's mock); everywhere else it counts as standard.
     catalog: { shapes: ["standard", "elongated", "hybrid", "widebody"], of: x => /,|\bor\b|\//.test(x) ? null : /wide/.test(x) ? "widebody" : FINE_PB_SHAPE(x) } },
+  // Tennis (owner 2026-11-18, v11c switch): the shape column holds the head size, so the "shape" pick is a head-size band.
+  // Weights are the catalogue's figures (some strung, about 15 g over unstrung): light ≤ 290 g, heavy ≥ 315 g. No feel row:
+  // tennis tags have "soft" and "crisp", not the "firm" the feel thirds are built from.
+  tennis: { shapes: ["mid", "midplus", "oversize"], label: { mid: "under 100 sq in", midplus: "100–103 sq in", oversize: "104 sq in +" },
+    shapeOf: s => { const n = Number(s.match(/(\d{2,3})\s*sq/)?.[1] ?? NaN); return !Number.isFinite(n) ? null : n >= 104 ? "oversize" : n >= 100 ? "midplus" : "mid"; },
+    grams: [250, 350], light: 290, heavy: 315, rows: ["shape", "weight"], shapeWord: "Head size" },
 };
 // By NICHE, not lib/niche: the niche configs import this module (through lib/guide.ts), so lib/niche isn't loaded yet.
 const SITE: FineSite = FINE[process.env.NICHE ?? "padel"] ?? FINE.padel;
@@ -47,6 +53,7 @@ export const SHAPES: readonly Shape[] = SITE.shapes;
 export const SHAPE_LABEL: Record<Shape, string> = SITE.label;
 /** The fine-tune's rows, shape picks, sweet-spot box and weight words on this site. */
 export const FINE_ROWS = SITE.rows ?? (["shape", "weight", "feel"] as const), FINE_SHAPES = SITE.picks ?? SITE.shapes, FINE_SWEET = SITE.sweet ?? true;
+export const FINE_SHAPE_WORD = SITE.shapeWord ?? "Shape";
 export const weightWord = (w: Weight) => SITE.weightWord?.[w] ?? w;
 /** The catalogue's shape filter: its options, and a product's option from its shape spec. */
 export const CATALOG_SHAPE_LIST: readonly string[] = SITE.catalog?.shapes ?? SITE.shapes;

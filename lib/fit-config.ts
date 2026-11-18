@@ -249,19 +249,21 @@ export function tennisPtsHL(s: string): number {
   return Number.isFinite(at) ? Math.round((342.9 - at) / 3.175) : NaN;
 }
 const TENNIS: FitConfig = {
+  // Quick match's fine-tune (head size, weight, feel, bigger sweet spot; lib/fine-tune.ts tennis), read from the address too.
+  fineTune: true,
   traits: [
-    { key: "power", label: "Power", plus: [["easy power", 1], ["great on serve", 0.5]], minus: [["underpowered", 1]], noun: "the power",
+    { key: "power", say: { hi: "Easy depth and pace; the ball jumps off the strings.", mid: "Moderate power; deep balls need a full swing.", lo: "Little free power; you supply the pace.", split: ["powerful", "short on power"] }, label: "Power", plus: [["easy power", 1], ["great on serve", 0.5]], minus: [["underpowered", 1]], noun: "the power", diff: "more power", ifYou: "want free depth and pace",
       ev: [["praise the power", "praises the power"], ["find it underpowered", "finds it underpowered"]] },
-    { key: "control", label: "Control", plus: [["good control", 1]], minus: [], noun: "the control",
+    { key: "control", say: { hi: "Precise; you can swing out and the ball stays in.", mid: "Decent control on full swings.", lo: "Launchy; big swings can fly long.", split: ["precise", "launchy"] }, label: "Control", plus: [["good control", 1]], minus: [], noun: "the control", diff: "more control", ifYou: "want to swing out and keep it in",
       ev: [["praise the control", "praises the control"], ["find it hard to control", "finds it hard to control"]] },
-    { key: "spin", label: "Spin", plus: [["great spin", 1]], minus: [], noun: "the spin",
+    { key: "spin", say: { hi: "Easy spin; the ball dips and kicks.", mid: "Average spin.", lo: "Flatter ball; spin takes a fast swing.", split: ["spinny", "flat"] }, label: "Spin", plus: [["great spin", 1]], minus: [], noun: "the spin", diff: "more spin", ifYou: "hit with heavy topspin",
       ev: [["praise the spin", "praises the spin"], ["want more spin", "wants more spin"]] },
-    { key: "arm", label: "Arm comfort", plus: [["arm-friendly", 1], ["soft", 0.5]], minus: [["harsh on the arm", 1]], noun: "how it treats the arm" },
-    { key: "maneuverability", label: "Maneuverability", plus: [["maneuverable", 1]], minus: [["hard to swing", 1]], noun: "how quick it swings",
+    { key: "arm", say: { hi: "Kind to the arm.", mid: "Average on the arm.", lo: "Firm; harsh on a sore arm.", split: ["comfortable", "harsh"] }, label: "Arm comfort", plus: [["arm-friendly", 1], ["soft", 0.5]], minus: [["harsh on the arm", 1]], noun: "how it treats the arm", diff: "easier on the arm", ifYou: "care about arm comfort" },
+    { key: "maneuverability", say: { hi: "Quick through the air and at the net.", mid: "Average swing speed.", lo: "Slow to swing; it can feel late on fast balls.", split: ["quick", "sluggish"] }, label: "Maneuverability", plus: [["maneuverable", 1]], minus: [["hard to swing", 1]], noun: "how quick it swings", diff: "quicker to swing", ifYou: "want a fast swing and quick hands at net",
       ev: [["call it quick to swing", "calls it quick to swing"], ["find it hard to swing", "finds it hard to swing"]] },
-    { key: "stability", label: "Stability", plus: [["stable", 1]], minus: [["unstable vs heavy balls", 1]], noun: "the stability",
+    { key: "stability", say: { hi: "Solid against pace; it doesn't get pushed around.", mid: "Stable enough for most rallies.", lo: "Can twist against heavy balls.", split: ["solid", "unstable"] }, label: "Stability", plus: [["stable", 1]], minus: [["unstable vs heavy balls", 1]], noun: "the stability", diff: "more stable", ifYou: "face big hitters and heavy balls",
       ev: [["call it stable", "calls it stable"], ["find it unstable vs heavy balls", "finds it unstable vs heavy balls"]] },
-    { key: "forgiveness", label: "Forgiveness", plus: [["forgiving", 1]], minus: [["small sweet spot", 1]], noun: "the sweet spot",
+    { key: "forgiveness", say: { hi: "Forgiving sweet spot; mishits still go deep.", mid: "An average sweet spot.", lo: "Small sweet spot; off-centre hits fall short.", split: ["forgiving", "demanding"] }, label: "Forgiveness", plus: [["forgiving", 1]], minus: [["small sweet spot", 1]], noun: "the sweet spot", diff: "more forgiving", ifYou: "want margin for error",
       ev: [["call it forgiving", "calls it forgiving"], ["find the sweet spot small", "finds the sweet spot small"]] },
   ],
   complaint: ["arm", "forgiveness"],
