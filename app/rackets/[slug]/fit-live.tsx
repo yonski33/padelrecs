@@ -228,7 +228,9 @@ export function FitSticky({ buy, name, rail }: { buy: { url: string; label: stri
     const io = new IntersectionObserver(([e]) => setOn(!e.isIntersecting && e.boundingClientRect.top < 0));
     io.observe(hero); return () => io.disconnect();
   }, []);
-  return <div className={rail ? "rp-rail" : `rp-stick${on ? " on" : ""}`} aria-label={`Your match with the ${name}`}>
+  // The rail card too only once the hero (its fit card and Check price) is out of view, and gone again back up there (owner
+  // 2026-11-18: no second fit card beside the first). Hidden, it keeps its place in the rail, so nothing shifts.
+  return <div className={rail ? `rp-rail${on ? " on" : ""}` : `rp-stick${on ? " on" : ""}`} aria-label={`Your match with the ${name}`} aria-hidden={rail && !on ? true : undefined}>
     <div className="rp-sk">
       <span className="rp-k">⚡ your match</span>
       {shown ? <a href="#fit" className={`rp-pct ${shown.kind}`}><b>{`${shown.pct}%`}</b><span className="rp-vw">{shown.word}</span></a>
