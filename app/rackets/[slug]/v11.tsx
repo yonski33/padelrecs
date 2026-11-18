@@ -10,6 +10,8 @@ import { fitStep, fittingRows, FIT_MIN } from "../../../lib/verdict-scale";
 import { distinctEdges } from "../../../lib/other-picks";
 import { sameFlightFact } from "../../../lib/claim-guard";
 import { scoreTone as tone, matchTone } from "../../../lib/score-tone";
+/** "Better matches for your game" in the site's word (CoffeeRecs: "setup"); default "game". */
+const GAME = niche.v2copy?.game ?? "game";
 
 /** A racket card's data from the server (app/rackets/[slug]/racket-fit.tsx). */
 export type V11Card = { id: string; name: string; href: string; pic: string | null; line: string | null; best: string | null;
@@ -43,8 +45,8 @@ export function V11Better({ id, facts, cards, words }: { id: string; facts: FitF
   const b = useBetter(id, facts, cards);
   if (!b) return null;
   const { a, rows } = b;
-  return <section className="v11-better" id="alternatives-top" aria-label="Better matches for your game">
-    <div className="v11-sh"><h2>Better matches for your game</h2><span>this one isn&apos;t your best pick</span></div>
+  return <section className="v11-better" id="alternatives-top" aria-label={`Better matches for your ${GAME}`}>
+    <div className="v11-sh"><h2>{`Better matches for your ${GAME}`}</h2><span>this one isn&apos;t your best pick</span></div>
     <div className="v11-brow">{rows.map(r => { const c = cards[r.id]; return <div key={r.id} className="v11-bcard">
       <span className="v11-bpic"><Pic pic={c.pic} name={c.name} w={64} h={96}/></span>
       <div className="v11-bbody">
@@ -70,7 +72,7 @@ export function V11Others({ id, slug, facts, better, cards, pool, me, keys, gain
   // Fewer cards, or none, rather than a card without both lines (owner 2026-11-18).
   if (!list.length) return null;
   return <section className="v11-sec" id="alternatives">
-    <div className="v11-sh v11-rule"><h2>{picked ? `Other ${words.many} for your game` : `Other ${words.many} to consider`}</h2><span>{picked ? "the best fits for your picks, by match" : `similar ${words.many}, same quick answer`}</span></div>
+    <div className="v11-sh v11-rule"><h2>{picked ? `Other ${words.many} for your ${GAME}` : `Other ${words.many} to consider`}</h2><span>{picked ? "the best fits for your picks, by match" : `similar ${words.many}, same quick answer`}</span></div>
     {/* One card only (no second with honest lines): full width, photo left, the two lines side by side (owner 2026-11-18). */}
     <div className={`v11-others ${list.length > 1 ? "two" : "one"}`}>{list.map(c => <article key={c.id} className="v11-ocard" id={`racket-${c.id}`}>
       <a className="v11-opic" href={`${c.href}${m.picksHref}`} tabIndex={-1} aria-hidden="true"><Pic pic={c.pic} name={c.name} w={64} h={96}/></a>
@@ -100,7 +102,7 @@ export function V11More({ id, slug, facts, better, pool, me, keys, gainWord, giv
   const list = withEdges(next, pool, me, keys, gainWord, giveWord).slice(0, 3);
   if (list.length < 2) return null;
   return <section className="v11-sec v11-more2" id="more-for-you">
-    <div className="v11-sh v11-rule"><h2>{`More ${words.many} for your game`}</h2><span>the next best fits for your picks, by match</span></div>
+    <div className="v11-sh v11-rule"><h2>{`More ${words.many} for your ${GAME}`}</h2><span>the next best fits for your picks, by match</span></div>
     <div className="v11-mlist">{list.map(c => <article key={c.id} className="v11-ocard">
       <div className="v11-oleft">
         <div className="v11-otop">

@@ -168,6 +168,7 @@ export type Niche = {
     /** The quick match's summary label on a type-picker site ("Your rig"); default "Your throw". */ yourPicks?: string;
     /** The home headline's last word ("Less guessing. Better rigs."); default the product word. */ better?: string;
     /** The v2 header's catalogue link ("gear"); default the product word. */ catalogNav?: string;
+    /** "Better matches for your …" on product pages ("setup"); default "game". */ game?: string;
     /** The footer's line (default "we read forums, YouTube & your reviews, …"); and a "brands" link in the footer. */ footLine?: string; footBrands?: boolean;
   };
   /** The v2 home in a site's own mock (PickleballRecs, owner 2026-11-16), on the shared components; unset = padel's home. */

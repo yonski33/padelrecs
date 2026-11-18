@@ -77,7 +77,7 @@ export const COFFEE_FIT: FitConfig = {
   axis: { control: { trait: "control", tags: [] }, power: { trait: "power", tags: [] } },
   styleLabels: { control: "Simple", balance: "Balanced", power: "Hands-on" },
   styles: [],
-  levelLabels: { beginner: "new", intermediate: "comfortable", advanced: "an enthusiast" },
+  levelLabels: { beginner: "new", intermediate: "comfortable", advanced: "enthusiast" },
   levelPeople: { beginner: "new home baristas", intermediate: "comfortable home baristas", advanced: "enthusiasts" },
   words: { person: "home barista", game: "setup", tryFirst: "try one first", howIt: "performs", catalogPromo: "Filter by type, level, budget and what you make.",
     guidePromo: "Boilers, burrs and goosenecks, explained in two minutes.", added: "added to the site this week",
@@ -120,6 +120,7 @@ export const COFFEE_FIT: FitConfig = {
     missWhy: coffeeMiss,
   },
   tagEvidence: true,
+  noLeanChip: true,
 };
 
 type Row = { shape: string | null; balance: string | null; core: string | null; surface?: string | null; name: string; slug?: string | null };

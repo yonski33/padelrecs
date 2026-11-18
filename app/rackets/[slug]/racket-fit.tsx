@@ -129,7 +129,7 @@ export default async function RacketFit(props: {
   const axis = engineAxis(payload.items, niche.fit?.engine).get(props.racketId);
   // Padel (owner audit 2026-11-17): the one style every page uses, from the bars it shows (lib/fit-verdict styleOf).
   const lean = PADEL ? styleOf(facts) : axis === undefined ? styleLean(facts).lean : axis < AXIS_CONTROL ? "control" : axis > AXIS_POWER ? "power" : "balance";
-  const leanWord = lean ? QUICK ? QUICK.styleLabels[lean].toLowerCase() : lean === "balance" ? "all-round" : lean : null;
+  const leanWord = lean && !SITE_FIT.noLeanChip ? QUICK ? QUICK.styleLabels[lean].toLowerCase() : lean === "balance" ? "all-round" : lean : null;
   // "beginner → intermediate control players, and sore arms." (owner 2026-11-15, mockup): the level band and lean as one phrase.
   // A site whose arm pick is a hard filter (SimRacingRecs: console) has no arm words in "best for".
   const armWords = SITE_FIT.quick?.armFilter ? "\u0000" : QUICK ? "slower arms" : "sore arms";

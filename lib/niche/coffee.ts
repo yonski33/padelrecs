@@ -27,7 +27,7 @@ export const coffee: Niche = {
     aboutStory: ["coffeerecs started after one too many purchases off a spec sheet. We'd spent real money on machines and grinders that home baristas had already warned about, and couldn't find a straight answer in one place.",
       "So we built the thing we wanted: one place that brings home barista reviews, YouTube reviewers and coffee forums together, counts it honestly, and tells you if a piece of gear fits"],
     example: "Breville Bambino Plus", use: "works", tested: "real mornings", score: "barista score", pillInline: true, tellUs: "Tell us how you make coffee",
-    aboutLast: "your setup", yourPicks: "Your setup", better: "coffee", venue: "counter", catalogNav: "gear",
+    aboutLast: "your setup", yourPicks: "Your setup", better: "coffee", venue: "counter", catalogNav: "gear", game: "setup",
     rate: { powerRating: ["flat", "superb"], comfortRating: ["fiddly", "effortless"], maneuverabilityRating: ["all over the place", "same every time"],
       controlRating: ["flimsy", "built like a tank"], forgivenessRating: ["overpriced", "a steal"] },
     prompts: ["what surprised you", "what you used before", "what you pair it with", "who should skip it"],

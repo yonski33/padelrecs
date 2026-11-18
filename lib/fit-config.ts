@@ -105,6 +105,7 @@ export type FitConfig = {
    *  tags backfill would store them (lib/evidence.ts tagRows), so the engine, levels and dots run on them. Ignored once the
    *  site has stored evidence. */
   tagEvidence?: boolean;
+  /** No style chip on the product page (CoffeeRecs: its hidden level slots aren't a style a product has). */ noLeanChip?: boolean;
 };
 
 const clamp = (o: Record<string, number>) => { for (const k of Object.keys(o)) o[k] = Math.max(-1, Math.min(1, o[k])); return o; };
