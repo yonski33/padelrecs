@@ -1,0 +1,159 @@
+/* SkinRecs v11c product page (owner 2026-11-18, grok/skin-v11c-mock-prompt.md): padel's v11c order in the beauty look of the
+   owner's skin mock: warm paper, espresso ink, rose accent, Instrument Serif headings, Figtree text, DM Mono labels.
+   Builds on skin-product.css (.bp tokens, hero and skin check). Score colours: green 85+, yellow 70–84, white below; match
+   pills by their word (Strong fit green, Worth a look yellow, Probably not white). */
+.sv { --sv-green: oklch(0.86 0.07 155); --sv-yellow: oklch(0.92 0.08 90); --sv-yes: oklch(0.965 0.03 155); --sv-no: oklch(0.96 0.035 45); }
+.sv .sv-wrap { gap: 44px; }
+.sv h2 { font-size: clamp(28px, 3.2vw, 34px); line-height: 1.1; }
+.sv .sv-sh { display: flex; justify-content: space-between; align-items: baseline; gap: 4px 16px; flex-wrap: wrap; margin-bottom: 14px; }
+.sv .sv-sh > span, .sv .sv-sh > a { font: 12.5px var(--mono); color: var(--mute); }
+.sv .sv-pill { display: inline-block; font: 500 12.5px var(--mono); border: 1.5px solid var(--ink); border-radius: 999px; padding: 2px 11px; background: var(--paper); white-space: nowrap; }
+.sv .sv-pill.g { background: var(--sv-green); } .sv .sv-pill.y { background: var(--sv-yellow); }
+.sv .sv-plink { position: relative; z-index: 1; align-self: flex-start; font: 13px var(--mono); color: var(--ink); text-decoration: underline; text-underline-offset: 3px; }
+.sv .sv-tile { display: flex; align-items: center; justify-content: center; width: 100%; height: 100%; min-height: 60px; border-radius: 14px; background: var(--tile);
+  font: 10.5px var(--mono); color: var(--mute); text-align: center; padding: 4px; box-sizing: border-box; }
+
+/* Hero: the score box (square, coloured by the score) and the skin check's extras. */
+.sv .sv-score { display: flex; align-items: center; gap: 10px 12px; flex-wrap: wrap; text-decoration: none; color: var(--ink); margin-top: 2px; }
+.sv .sv-sq { width: 54px; height: 54px; box-sizing: border-box; border: 2px solid var(--ink); border-radius: 16px; background: var(--paper); display: flex;
+  align-items: center; justify-content: center; font: 400 30px/1 var(--serif); }
+.sv .sv-sq.g { background: var(--sv-green); } .sv .sv-sq.y { background: var(--sv-yellow); }
+.sv .sv-sm { display: flex; flex-direction: column; } .sv .sv-sm b { font-size: 15px; } .sv .sv-sm small { font: 12.5px var(--mono); color: var(--mute); }
+.sv .sv-sbar { display: flex; width: 120px; height: 8px; gap: 2px; border-radius: 999px; overflow: hidden; }
+.sv .sv-sbar i { border-radius: 999px; } .sv .sv-sbar .p { background: oklch(0.74 0.07 155); } .sv .sv-sbar .m { background: oklch(0.85 0.04 70); } .sv .sv-sbar .n { background: oklch(0.76 0.09 25); }
+.sv .sv-new { font: 13px var(--mono); border: 1.5px dashed var(--dash); border-radius: 999px; padding: 3px 12px; color: var(--mute); }
+.sv .sv-askh { display: flex; justify-content: space-between; align-items: center; gap: 10px; flex-wrap: wrap; }
+.sv .sv-last { font: 13px var(--mono); color: var(--mute) !important; text-decoration: underline; text-underline-offset: 3px; }
+.sv .sv-ticks { display: flex; gap: 8px 18px; flex-wrap: wrap; }
+.sv .bp-foot { gap: 6px 12px; flex-wrap: wrap; }
+
+/* 2 Better matches (under 60%). */
+.sv .sv-better { border: 2px solid var(--ink); border-radius: 24px; background: var(--rose-wash); padding: 18px 20px; display: flex; flex-direction: column; gap: 4px; }
+.sv .sv-better h2 { font-size: 28px; }
+.sv .sv-brow { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
+.sv .sv-bcard { position: relative; display: grid; grid-template-columns: 64px minmax(0, 1fr); gap: 12px; border: 2px solid var(--ink); border-radius: 18px; background: var(--paper); padding: 12px; }
+.sv .sv-bpic { width: 64px; height: 84px; border-radius: 12px; background: var(--tile); overflow: hidden; display: flex; align-items: center; justify-content: center; }
+.sv .sv-bpic img, .sv .sv-opic img, .sv .sv-dpic img { width: 100%; height: 100%; object-fit: contain; mix-blend-mode: multiply; }
+.sv .sv-bbody { display: flex; flex-direction: column; gap: 6px; min-width: 0; }
+.sv .sv-stretch { color: var(--ink); text-decoration: none; } .sv .sv-stretch::after { content: ""; position: absolute; inset: 0; border-radius: 18px; }
+.sv .sv-stretch b { font-size: 16px; line-height: 1.25; } .sv .sv-bline { font-size: 14px; line-height: 1.4; color: var(--text); }
+.sv .sv-curious { align-self: flex-start; margin-top: 10px; font: 13px var(--mono); color: var(--mute) !important; text-underline-offset: 3px; }
+
+/* 3 The bottom line (before an answer). */
+.sv .sv-bottom { margin: 0; display: flex; gap: 10px 14px; align-items: baseline; flex-wrap: wrap; border-radius: 22px; background: var(--sand); padding: 16px 20px; }
+.sv .sv-bottom b { flex: 1 1 320px; font: 400 22px/1.35 var(--serif); text-wrap: pretty; }
+
+/* 4 Why yes / why not: two columns, 3 points each, tap to open. */
+.sv #yes-no { scroll-margin-top: 90px; }
+.sv .sv-yn { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; align-items: start; }
+.sv .sv-ycol { border: 2px solid var(--ink); border-radius: 24px; background: var(--paper); overflow: hidden; }
+.sv .sv-ych { margin: 0; display: flex; align-items: center; gap: 10px; padding: 12px 20px; border-bottom: 2px solid var(--ink); font: 400 24px var(--serif); background: var(--sv-yes); }
+.sv .sv-ycol.no .sv-ych { background: var(--sv-no); }
+.sv .sv-ych i { width: 26px; height: 26px; border-radius: 50%; border: 1.5px solid var(--ink); background: var(--paper); display: flex; align-items: center; justify-content: center;
+  font: 600 14px var(--sans); font-style: normal; }
+.sv .sv-yit { border-bottom: 1.5px dashed var(--line); } .sv .sv-yit:last-child { border-bottom: 0; }
+.sv .sv-yit.you { background: var(--rose-wash); }
+.sv .sv-yit summary { list-style: none; cursor: pointer; display: flex; align-items: center; gap: 8px; padding: 13px 20px; }
+.sv .sv-yit summary::-webkit-details-marker { display: none; }
+.sv .sv-yit summary b { font-size: 17px; line-height: 1.3; margin-right: auto; }
+.sv .sv-yit summary i::before { content: "+"; font: 15px var(--mono); color: var(--mute); } .sv .sv-yit[open] summary i::before { content: "−"; }
+.sv .sv-yit p { margin: 0; padding: 0 20px 12px; font-size: 16px; line-height: 1.5; color: var(--text); text-wrap: pretty; }
+.sv .sv-yit mark { background: var(--mark); color: var(--ink); padding: 0 3px; border-radius: 3px; box-decoration-break: clone; -webkit-box-decoration-break: clone; }
+.sv .sv-yit .sv-tip { margin-top: -4px; font-size: 15px; }
+.sv .sv-yn-few p { margin: 0; color: var(--text); }
+
+/* 5 How it feels: one slim box. */
+.sv .sv-feels { border: 2px solid var(--ink); border-radius: 24px; background: var(--paper); padding: 16px 22px 18px; display: flex; flex-direction: column; gap: 12px; }
+.sv .sv-feels h2 { font-size: 28px; }
+.sv .sv-fgrid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 14px 28px; }
+.sv .sv-frow { display: flex; flex-direction: column; gap: 6px; padding-bottom: 12px; border-bottom: 1.5px dashed var(--line); }
+.sv .sv-fh { display: flex; justify-content: space-between; align-items: baseline; gap: 10px; } .sv .sv-fh b { font-size: 16.5px; } .sv .sv-fh small { font: 12.5px var(--mono); color: var(--mute); }
+.sv .sv-fn { font-size: 15px; line-height: 1.45; color: var(--text); text-wrap: pretty; } .sv .sv-fnone { font: 12.5px var(--mono); color: var(--mute); }
+.sv .sv-drops { display: flex; gap: 9px; padding: 3px 0 1px 2px; }
+.sv .sv-drops i { width: 14px; height: 14px; border-radius: 50% 0 50% 50%; transform: rotate(-45deg); background: var(--line); }
+.sv .sv-drops i.on { background: oklch(0.76 0.065 25); }
+.sv .sv-axis { display: flex; flex-direction: column; gap: 4px; padding-top: 2px; }
+.sv .sv-track { position: relative; height: 12px; border: 1.5px solid var(--ink); border-radius: 999px; background: linear-gradient(90deg, var(--paper), oklch(0.86 0.06 20)); }
+.sv .sv-track i { position: absolute; top: 50%; width: 14px; height: 14px; margin: -7px 0 0 -7px; border-radius: 50%; background: var(--ink); }
+.sv .sv-ends { display: flex; justify-content: space-between; font: 12px var(--mono); color: var(--mute); }
+.sv .sv-price { display: flex; gap: 4px; font: 500 20px/1.1 var(--mono); color: #d9cdc2; } .sv .sv-price .on { color: var(--ink); }
+
+/* What's inside + Where it goes (kept from the skin mock). */
+.sv .sv-inside { display: flex; flex-direction: column; gap: 14px; }
+.sv .sv-igrid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 14px; }
+.sv .sv-icard { border: 2px solid var(--ink); border-radius: 22px; background: var(--paper); box-shadow: 4px 4px 0 var(--rose-sh); padding: 16px; display: flex; flex-direction: column; gap: 8px; }
+.sv .sv-icard > b { font-size: 18px; } .sv .sv-icard > span:last-child { font-size: 15.5px; line-height: 1.45; color: var(--text); text-wrap: pretty; }
+.sv .sv-ico { position: relative; display: block; width: 44px; height: 44px; box-sizing: border-box; }
+.sv .sv-ico i { display: none; }
+.sv .sv-ico.barrier { width: 84px; background: repeating-linear-gradient(90deg, oklch(0.86 0.06 20) 0 26px, transparent 26px 29px) 0 8px / 100% 12px no-repeat,
+  repeating-linear-gradient(90deg, oklch(0.86 0.06 20) 0 26px, transparent 26px 29px) -13px 24px / calc(100% + 13px) 12px no-repeat; }
+.sv .sv-ico.water, .sv .sv-ico.calm { border-radius: 50%; border: 2px solid var(--ink); background: radial-gradient(circle, oklch(0.84 0.09 20) 0 30%, oklch(0.95 0.03 20) 31% 60%, var(--paper) 61%); }
+.sv .sv-ico.water { background: radial-gradient(circle, oklch(0.82 0.06 230) 0 30%, oklch(0.95 0.03 230) 31% 60%, var(--paper) 61%); }
+.sv .sv-ico.nofrag { border-radius: 50%; border: 2px solid var(--ink); background: var(--paper); overflow: hidden; }
+.sv .sv-ico.nofrag::after { content: ""; position: absolute; left: 50%; top: 50%; width: 52px; height: 2px; margin: -1px 0 0 -26px; background: var(--ink); transform: rotate(-45deg); }
+.sv .sv-ico.active { border: 2px solid var(--ink); border-radius: 12px 12px 18px 18px; width: 30px; background: linear-gradient(to top, oklch(0.86 0.06 20) 0 55%, var(--paper) 55%); }
+.sv .sv-ico.sun { border-radius: 50%; background: oklch(0.9 0.12 90); border: 2px solid var(--ink); box-shadow: 0 0 0 5px var(--paper), 0 0 0 6.5px var(--ink); width: 30px; height: 30px; margin: 7px; }
+.sv .sv-ico.seal { border: 2px solid var(--ink); border-radius: 50% 50% 14px 14px; background: oklch(0.95 0.03 20); width: 36px; }
+.sv .sv-ico.oil { border: 2px solid var(--ink); border-radius: 50% 0 50% 50%; transform: rotate(-45deg) scale(0.8); background: oklch(0.92 0.08 90); }
+.sv .sv-route { display: flex; align-items: center; gap: 8px 10px; flex-wrap: wrap; border: 1.5px dashed var(--dash); border-radius: 18px; padding: 12px 16px; background: var(--sand); }
+.sv .sv-rk { font: 12.5px var(--mono); color: var(--mute); margin-right: 4px; }
+.sv .sv-rs { display: flex; align-items: center; gap: 8px 10px; } .sv .sv-rs i { color: var(--mute2); font-style: normal; }
+.sv .sv-rs > span { font-size: 15px; white-space: nowrap; border: 1.5px solid transparent; border-radius: 999px; padding: 1px 10px; }
+.sv .sv-rs > span.me { font-weight: 700; border-color: var(--ink); background: var(--rose); }
+.sv .sv-rn { flex: 1 1 220px; font-size: 14px; color: var(--mute); text-wrap: pretty; }
+
+/* 6 Other products: 2 cards. */
+.sv .sv-others { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; } .sv .sv-others.one { grid-template-columns: minmax(0, 1fr); max-width: 640px; }
+.sv .sv-ocard { position: relative; display: grid; grid-template-columns: 72px minmax(0, 1fr); gap: 8px 14px; align-items: start; border: 2px solid var(--ink); border-radius: 22px; background: var(--paper); padding: 14px; }
+.sv .sv-opic { width: 72px; height: 96px; border-radius: 14px; background: var(--tile); overflow: hidden; display: flex; align-items: center; justify-content: center; }
+.sv .sv-obody { display: flex; flex-direction: column; gap: 6px; min-width: 0; }
+.sv .sv-otop { display: flex; justify-content: space-between; align-items: flex-start; gap: 8px; flex-wrap: wrap; }
+.sv .sv-oname { font-weight: 700; font-size: 16.5px; line-height: 1.25; color: var(--ink); text-decoration: none; }
+.sv .sv-oscore { display: inline-flex; align-items: center; gap: 6px; font: 12px var(--mono); color: var(--mute); }
+.sv .sv-oscore b { min-width: 34px; height: 34px; padding: 0 4px; box-sizing: border-box; border: 1.5px solid var(--ink); border-radius: 10px; background: var(--paper); display: flex;
+  align-items: center; justify-content: center; font: 400 19px var(--serif); color: var(--ink); }
+.sv .sv-oscore b.g { background: var(--sv-green); } .sv .sv-oscore b.y { background: var(--sv-yellow); }
+.sv .sv-gain, .sv .sv-give { margin: 0; font-size: 14.5px; line-height: 1.4; border-radius: 10px; padding: 6px 10px; }
+.sv .sv-gain { background: var(--sv-yes); } .sv .sv-give { background: var(--sv-no); }
+
+/* 7 What people say: the shared section, narrow (owner: about 720 to 760px). */
+.sv .sv-rv { max-width: 1140px; }
+.sv .sv-rv .rv12-main { max-width: 740px; }
+.sv .sv-rv h2 { font: 400 clamp(30px, 3.4vw, 38px)/1.1 var(--serif); }
+
+/* 8 Still deciding? */
+.sv .sv-decide { display: flex; justify-content: space-between; align-items: center; gap: 14px 24px; flex-wrap: wrap; border: 2px solid var(--ink); border-radius: 24px;
+  background: var(--paper); box-shadow: 5px 5px 0 var(--rose-sh); padding: 14px 20px; }
+.sv .sv-dl { display: grid; grid-template-columns: 50px auto; grid-template-rows: auto auto auto; column-gap: 14px; align-items: center; min-width: 0; }
+.sv .sv-dpic { grid-row: span 3; width: 50px; height: 70px; border-radius: 10px; background: var(--tile); overflow: hidden; }
+.sv .sv-dk { font: 12.5px var(--mono); color: var(--mute); } .sv .sv-dn { font: 400 22px/1.15 var(--serif); }
+.sv .sv-dv { display: flex; align-items: center; gap: 8px 12px; flex-wrap: wrap; } .sv .sv-dline { font-size: 14.5px; color: var(--text); }
+.sv .sv-dlinks { display: flex; gap: 8px 18px; flex-wrap: wrap; } .sv .sv-dlinks a { font: 13.5px var(--mono); color: var(--ink); text-underline-offset: 3px; }
+
+/* 9 Explore the rankings: 6 tiles. */
+.sv .sv-rtgrid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
+.sv .sv-rtgrid > a { display: flex; justify-content: space-between; align-items: center; gap: 10px; border: 2px solid var(--ink); border-radius: 18px; background: var(--paper);
+  padding: 12px 14px; text-decoration: none; color: var(--ink); min-height: 72px; }
+.sv .sv-rtgrid > a:hover { background: var(--rose-wash); }
+.sv .sv-rtgrid .t { display: flex; flex-direction: column; gap: 2px; min-width: 0; } .sv .sv-rtgrid .t b { font-size: 16px; line-height: 1.25; }
+.sv .sv-rtgrid .t em { font: normal 12px var(--mono); color: var(--mute); }
+.sv .sv-rtpics { display: flex; flex: none; } .sv .sv-rtpics img { width: 34px; height: 46px; object-fit: contain; mix-blend-mode: multiply; margin-left: -8px; }
+
+/* 10 The footer line. */
+.sv .sv-foot { margin: 8px 0 0; text-align: center; font: 13px var(--mono); color: var(--mute); }
+
+/* Phones: one column, and a slim bottom bar with the match and Check price once the hero is out of view (desktop: none). */
+.sv .sv-bar { display: none; }
+@media (max-width: 760px) {
+  .sv .sv-wrap { gap: 32px; padding-left: 16px; padding-right: 16px; }
+  .sv .sv-brow { grid-template-columns: minmax(0, 1fr); }
+  .sv .sv-igrid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+  .sv .sv-icard { padding: 12px; border-radius: 18px; box-shadow: 3px 3px 0 var(--rose-sh); } .sv .sv-icard > b { font-size: 16px; }
+  .sv .sv-icard > span:last-child { font-size: 14px; }
+  .sv .sv-yn, .sv .sv-others { grid-template-columns: minmax(0, 1fr); }
+  .sv .sv-rtgrid { grid-template-columns: minmax(0, 1fr); }
+  .sv .sv-decide { flex-direction: column; align-items: flex-start; }
+  .sv .sv-bar { display: flex; position: fixed; left: 0; right: 0; bottom: 0; z-index: 20; justify-content: space-between; align-items: center; gap: 10px;
+    padding: 10px 16px calc(10px + env(safe-area-inset-bottom)); background: var(--paper); border-top: 2px solid var(--ink); }
+  .sv .sv-bar .bp-btn { margin-left: auto; }
+}
