@@ -3,11 +3,12 @@
 // when this racket is a weak match for the picks (under 60%); the other-racket cards carry their match % after a pick and
 // sort by it. Both read the same match engine as the home and the fit check (fit-live.tsx), so a pick changes them at once.
 import { useState } from "react";
-import { ownScore } from "../../../lib/niche";
+import { ownScore, niche } from "../../../lib/niche";
 import type { FitFacts } from "../../../lib/fit-verdict";
 import { useAnswer, useMatchOf, useAlts } from "./fit-live";
 import { fitStep, fittingRows, FIT_MIN } from "../../../lib/verdict-scale";
 import { distinctEdges } from "../../../lib/other-picks";
+import { sameFlightFact } from "../../../lib/claim-guard";
 import { scoreTone as tone, matchTone } from "../../../lib/score-tone";
 
 /** A racket card's data from the server (app/rackets/[slug]/racket-fit.tsx). */
@@ -20,7 +21,8 @@ const WEAK = FIT_MIN;
 export type V11Pool = Record<string, { name: string; href: string; pic: string | null; line: string | null; shop: { url: string; rel: string } | null;
   score: number | null; best: string | null; dots: number[]; /** As V11Card.ref. */ ref: string;
   /** The traits this racket may be called better (gain) or worse (give) at beside this one: lib/claim-guard.ts, on the server. */
-  ok: { gain: number[]; give: number[] } }>;
+  ok: { gain: number[]; give: number[]; /** Disc golf: flight-number gaps per trait (cand − this), and the numbers for the line. */
+    gap: Record<number, number>; note: Record<number, string> } }>;
 /** The photo, or a tile with the name when the catalog has none. */
 const Pic = ({ pic, name, w, h }: { pic: string | null; name: string; w: number; h: number }) => pic ? <img src={pic} alt={name} width={w} height={h} loading="lazy" decoding="async"/>
   : <span className="v11-tile">{name.split(" ").slice(0, 2).join(" ")}</span>;
@@ -123,10 +125,12 @@ type Row = { id: string; pct: number | null };
 function withEdges(rows: Row[], pool: V11Pool, me: number[], keys: string[], gainWord: string[], giveWord: string[]) {
   // The server's verdicts per trait (lib/claim-guard.ts); only rows with both a gain and a give-up are kept (owner 2026-11-18).
   const allow = (id: string, i: number, dir: 1 | -1) => (dir > 0 ? pool[id].ok.gain : pool[id].ok.give).includes(i);
-  const edges = new Map(distinctEdges(me, rows.map(r => ({ id: r.id, dots: pool[r.id].dots })), keys, 3, "arm", undefined, allow, true).map(e => [e.id, e]));
+  const edges = new Map(distinctEdges(me, rows.map(r => ({ id: r.id, dots: pool[r.id].dots })), keys, 3, "arm", undefined, allow, true, (id, i) => pool[id].ok.gap[i],
+    (g, v) => sameFlightFact(niche.id, keys[g], keys[v])).map(e => [e.id, e]));
   return rows.filter(r => edges.has(r.id)).map(r => { const c = pool[r.id], e = edges.get(r.id);
     return { id: r.id, name: c.name, href: c.href, pic: c.pic, line: c.line, best: c.best, score: c.score, shop: c.shop, pct: r.pct, ref: c.ref,
-      vs: e ? gainWord[e.gain] : null, gain: e ? `${cap(gainWord[e.gain])} than the ${c.ref}.` : null, give: e && e.give !== null ? `${cap(giveWord[e.give])} than the ${c.ref}.` : null }; });
+      vs: e ? gainWord[e.gain] : null, gain: e ? `${cap(gainWord[e.gain])} than the ${c.ref}${c.ok.note[e.gain] ?? ""}.` : null,
+      give: e && e.give !== null ? `${cap(giveWord[e.give])} than the ${c.ref}${c.ok.note[e.give] ?? ""}.` : null }; });
 }
 /** Before an answer the Player score; after it the match pill in the shared colours (Strong fit / Worth a look / Probably not). */
 const Score = ({ pct, score, word: w }: { pct: number | null; score: number | null; word: string }) => pct !== null
