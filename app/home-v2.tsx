@@ -83,10 +83,10 @@ export default async function HomeV2({ choice, older = false }: { choice: QuickC
 
     <div className="hv2-wrap">
       <section className="hv2-hero">
-        {/* One row on desktop on every site (owner 2026-11-16, as PickleballRecs): the headline with its marked half, then the
-            subtitle with the "N reviews · N new this week" pill on the same line. Both wrap on phones. */}
-        <div><h1>{`${H1?.[0] ?? "Less guessing."} `}<span className="hl">{H1?.[1] ?? `Better ${v2copy.better ?? niche.words.many}.`}</span></h1>
-          <div className="hv2-subrow">{heroSub && <p className="hv2-sub">{heroSub}</p>}{live}</div></div>
+        {/* The "N reviews · N new this week" pill on the headline's line, to its right, on every site (owner 2026-11-18); the
+            subtitle, where a site still has one, under them. */}
+        <div><div className="hv2-hrow"><h1>{`${H1?.[0] ?? "Less guessing."} `}<span className="hl">{H1?.[1] ?? `Better ${v2copy.better ?? niche.words.many}.`}</span></h1>{live}</div>
+          {heroSub && <div className="hv2-subrow"><p className="hv2-sub">{heroSub}</p></div>}</div>
       </section>
 
       {/* The picks and the list re-rank in the browser on a tap (app/home-match.tsx); this render is the address's own list. */}
