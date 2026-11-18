@@ -18,7 +18,7 @@ export function DeepStrip({ items }: { items: Item[] }) {
     place(); addEventListener("resize", place);
     const blocks = [...document.querySelectorAll<HTMLElement>(".rkd-b[data-rank]")];
     // The current block is the last one whose top has passed a line just under the strip.
-    const pick = () => { const line = (head?.getBoundingClientRect().bottom ?? 0) + (bar.current?.getBoundingClientRect().height ?? 0) + 40;
+    const pick = () => { const line = Math.max(0, head?.getBoundingClientRect().bottom ?? 0) + (bar.current?.getBoundingClientRect().height ?? 0) + 40;
       let cur = blocks[0]; for (const b of blocks) if (b.getBoundingClientRect().top <= line) cur = b; if (cur) setOn(Number(cur.dataset.rank)); };
     const io = new IntersectionObserver(pick, { threshold: [0, 0.25, 0.5, 0.75, 1] });
     blocks.forEach(b => io.observe(b)); addEventListener("scroll", pick, { passive: true }); pick();
