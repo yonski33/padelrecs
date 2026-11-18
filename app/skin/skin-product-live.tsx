@@ -50,7 +50,7 @@ export function SkinProductLive({ input, choice: first, summary, photo, hero, re
         {!v.answered ? <div className="bp-ask">
           <span className="bp-tag">✦ skin check</span>
           <div><div className="bp-q">Is this right for <em>your</em> skin?</div>
-            <div className="bp-sub">{`Two taps and we'll check it against ${reviewsWord(v.total)} from people with your skin.`}</div></div>
+            <div className="bp-sub">{`Two taps to check it against ${reviewsWord(v.total)} from people with your skin.`}</div></div>
           <div className="bp-steps">
             <div><span className="bp-sl">1. Your skin type</span><div className="bp-picks">{typesRow()}</div></div>
             <div><span className="bp-sl">2. What do you want it to do?</span><div className="bp-picks">{goalsRow()}</div></div>

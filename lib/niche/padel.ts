@@ -238,7 +238,7 @@ export const padel: Niche = {
   },
   seo: {
     homeTitle: "PadelRecs – Less guessing, better padel rackets",
-    homeDescription: "Tell us how you play and we rank every padel racket for you, from player reviews, YouTube and forums. No sponsored picks.",
+    homeDescription: "Pick how you play and see every padel racket ranked for you, from player reviews, YouTube and forums. No sponsored picks.",
     layoutDescription: "Real player experiences with padel rackets, plus opinions from YouTube, shops and forums with the source linked.",
     titleTemplate: "%s | PadelRecs",
     catalog: { title: "All Padel Rackets – Player Reviews and Ratings", description: "Every padel racket on PadelRecs with community ratings. Filter by brand, year and shape, then read what players say about each one." },
