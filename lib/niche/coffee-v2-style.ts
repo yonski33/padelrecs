@@ -13,6 +13,7 @@ html .hv2 .hv2-list>li.top{background:#fff8f1}
 html .hv2 .hv2-list>li:hover{background:#fdf3ea}
 html .hv2 .hv2-seg{flex-wrap:wrap;max-width:100%}
 html .ct2 .ct2-list>li.first{background:#fff8f1}
+html .rf .v11-tile{border:1.5px dashed var(--line);background:var(--tile);color:var(--mute);font-weight:600;font-size:11px}
 html .rf .rv-badge:has(b.hi){background:var(--score-g)}
 html .rf .rv-badge:has(b.mid){background:var(--score-y)}
 html .rf .rv-badge:has(b.plain),html .rf .rv-badge:has(b:not(.hi):not(.mid)){background:var(--score-w)}

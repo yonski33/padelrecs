@@ -79,6 +79,7 @@ export const COFFEE_FIT: FitConfig = {
   styles: [],
   levelLabels: { beginner: "new", intermediate: "comfortable", advanced: "enthusiast" },
   levelPeople: { beginner: "new home baristas", intermediate: "comfortable home baristas", advanced: "enthusiasts" },
+  levelOne: { beginner: "a new home barista", intermediate: "a comfortable home barista", advanced: "an enthusiast" },
   words: { person: "home barista", game: "setup", tryFirst: "try one first", howIt: "performs", catalogPromo: "Filter by type, level, budget and what you make.",
     guidePromo: "Boilers, burrs and goosenecks, explained in two minutes.", added: "added to the site this week",
     armShort: "milk drinks", hardArm: "No steam: it can't make milk drinks.", hardArmShort: "No steam" },
