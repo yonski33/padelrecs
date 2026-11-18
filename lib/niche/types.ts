@@ -134,6 +134,8 @@ export type Niche = {
   talkLabel?: string;
   /** Who writes reviews: "player" / "players" on sports sites, "user" / "users" on SkinRecs. */
   people: Words;
+  /** Who reviews on the product page, where it differs from `people` (DiscGolfRecs: "throwers"). Defaults to people. */
+  reviewers?: { one: string; many: string };
   /** Products have model years (rackets, paddles). When false, years are not asked, shown, filtered or put in names. */
   productYears?: boolean;
   /** Without real years: versions of one model line still share a row ("Jelly Bean" and "Jelly Bean 2", the higher name
@@ -291,8 +293,9 @@ export type Niche = {
     prompts: [string, string][];
     tips: string[];
     /** The one-tap card on product pages (app/quick-vote.tsx): its question, the "few words" hint, and the second half of
-     *  the generated nicknames (e.g. "Volley" in SteadyVolley482). Generic racket-sport wording when left out. */
-    quickVote?: { question: string; placeholder: string; nicknames: string[] };
+     *  the generated nicknames (e.g. "Volley" in SteadyVolley482), each niche in its own words. Generic racket-sport wording when left out. */
+    quickVote?: { question: string; placeholder: string; nicknames: string[];
+      /** The first halves ("Dewy" in DewyGlow482) where the generic ones read wrong (SkinRecs). */ nickFirst?: string[] };
   };
   seo: {
     homeTitle: string;

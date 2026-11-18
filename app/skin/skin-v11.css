@@ -51,7 +51,8 @@
 .sv .sv-ycol.no .sv-ych { background: var(--sv-no); }
 .sv .sv-ych i { width: 26px; height: 26px; border-radius: 50%; border: 1.5px solid var(--ink); background: var(--paper); display: flex; align-items: center; justify-content: center;
   font: 600 14px var(--sans); font-style: normal; }
-.sv .sv-yit { border-bottom: 1.5px dashed var(--line); } .sv .sv-yit:last-child { border-bottom: 0; }
+.sv .sv-yit { margin: 0; border-bottom: 1.5px dashed var(--line); } /* even rows: no global details margin */
+.sv .sv-ysrc { margin: 0 0 8px; text-align: right; font: 12.5px var(--mono); color: var(--mute); } .sv .sv-yit:last-child { border-bottom: 0; }
 .sv .sv-yit.you { background: var(--rose-wash); }
 .sv .sv-yit summary { list-style: none; cursor: pointer; display: flex; align-items: center; gap: 8px; padding: 13px 20px; }
 .sv .sv-yit summary::-webkit-details-marker { display: none; }

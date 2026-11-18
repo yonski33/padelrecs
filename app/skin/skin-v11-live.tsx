@@ -112,7 +112,8 @@ export function SkinV11Live({ input, peers, choice: first, summary, buy, self, h
     {v.few ? <section id="yes-no" className="sv-yn-few"><div className="sv-sh"><h2>Why yes, why not</h2></div>
       <p>Few reports so far, not enough to say who it suits. The reviews below are the evidence so far.</p></section>
     : (v.yesL.length > 0 || v.noL.length > 0) && <section id="yes-no">
-      <div className="sv-sh"><h2>Why yes, why not</h2><span>from forums, YouTube &amp; reviews</span></div>
+      {/* No heading (owner 2026-11-18): the boxes say Why yes / Why not; the source line sits small, right, above them. */}
+      <p className="sv-ysrc">from forums, YouTube &amp; reviews</p>
       <div className="sv-yn">{([["yes", "Why yes", "✓", v.yesL], ["no", "Why not", "!", v.noL]] as const).map(([k, label, icon, list]) => list.length > 0 &&
         <div key={k} className={`sv-ycol ${k}`}><h3 className="sv-ych"><i aria-hidden="true">{icon}</i>{label}</h3>
           {list.slice(0, 3).map(p => <Point key={`${p.key}-${p.forYou}`} p={p}/>)}</div>)}</div>
