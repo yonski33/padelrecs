@@ -9,8 +9,9 @@ import { bestFor, SUITS_OK, MIN_FIT_REPORTS } from "../../lib/fit-verdict";
 import { familyRowIds, modelFamily } from "../../lib/compare-pairs";
 import { topPicks, PICK_CATS, type PickList, type PickRacket } from "../../lib/thread/top-picks";
 import { traitSeed } from "../../lib/thread/trait-seed";
-import { traitVotes, traitOverrides } from "../../db/schema";
-import { count } from "drizzle-orm";
+import { traitVotes, traitOverrides, comments, productVotes } from "../../db/schema";
+import { and, count, desc, eq, gte, like } from "drizzle-orm";
+import { sideItems, addCounts, BUSY_DAYS, SIDE_SIZE, type SideItem } from "../../lib/thread/home-side";
 import { shopPhoto, photoHidden } from "../../lib/shop-photos";
 import { amazonPhoto } from "../../lib/amazon-photos";
 import { productHref } from "../../lib/niche";
@@ -100,6 +101,28 @@ export const threadLists = cache(async () => {
 /** Review summaries from around the web (Reddit, YouTube, blogs) and own reviews, newest first, for the home feed. */
 export type FeedItem = { id: string; racketId: string; kind: "player" | "youtube" | "blog" | "reddit"; who: string; text: string; date: string; verdict: "positive" | "mixed" | "negative" | null; url: string | null; title?: string | null };
 const ASCII = /^[\x00-\x7F’‘“”–…é]+$/;
+/** The home sidebar's "Latest from the comments", with "Busy this week" filling it to 3 (lib/thread/home-side.ts). Read
+ *  with the rest of the home (its 6-hour ISR), so the block is cached like the page. Empty without a database or on a read
+ *  error: the block then hides. */
+export const threadHomeSide = cache(async (): Promise<SideItem[]> => {
+  if (!hasDb()) return [];
+  const { ctx, rows } = await threadRows();
+  try {
+    const db = await database(), since = new Date(Date.now() - BUSY_DAYS * 86_400_000).toISOString();
+    const latest = await db.select({ id: comments.id, page: comments.page, alias: comments.alias, body: comments.body, at: comments.createdAt }).from(comments)
+      .where(and(eq(comments.status, "approved"), like(comments.page, "racket:%"))).orderBy(desc(comments.createdAt)).limit(20);
+    const busy = new Map<string, number>();
+    if (latest.filter(c => rows.has(c.page.slice("racket:".length))).length < SIDE_SIZE) {
+      // New this week: approved player reviews (already loaded), quick votes and "How does it play?" votes.
+      addCounts(busy, ctx.data.reviews.filter(r => r.createdAt >= since).map(r => ({ racketId: r.racketId, n: 1 })));
+      addCounts(busy, await db.select({ racketId: productVotes.racketId, n: count() }).from(productVotes).where(gte(productVotes.createdAt, since)).groupBy(productVotes.racketId));
+      addCounts(busy, await db.select({ racketId: traitVotes.racketId, n: count() }).from(traitVotes).where(gte(traitVotes.createdAt, since)).groupBy(traitVotes.racketId));
+    }
+    // Comments on any listed racket's page; the busy list only for current models (one row per model).
+    return sideItems(latest, busy, (id, kind) => kind === "comment" ? rows.has(id) : !!rows.get(id)?.current);
+  } catch (error) { console.error("[thread] home sidebar comments failed", error); return []; }
+});
+
 export const threadFeed = cache(async (): Promise<FeedItem[]> => {
   if (!hasDb()) return [];
   const { ctx } = await threadRows();
