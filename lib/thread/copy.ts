@@ -39,6 +39,8 @@
  */
 
 import { niche } from "../niche";
+import { PB_GUIDES, PB_GUIDE_LINK_LABELS, pickleballInfo } from "./copy-pickleball";
+const PICKLEBALL = niche.id === "pickleball";
 
 export type GuideStep = { title: string; body: string };
 export type GuideCopy = {
@@ -81,7 +83,7 @@ export const GUIDE_UI = {
 } as const;
 
 /** "More guides" link labels, from the `guides` arrays in each guide mock. */
-export const GUIDE_LINK_LABELS: Record<GuideCopy["key"], string> = {
+const PADEL_GUIDE_LINK_LABELS: Record<GuideCopy["key"], string> = {
   racket: "How to choose a padel racket",
   beginner: "Beginner padel tips",
   shape: "Round vs teardrop vs diamond",
@@ -242,7 +244,7 @@ const ELBOW_STEPS = steps([
 
 const COMPOSER_PLACEHOLDER = "Share a tip or ask a question";
 
-export const GUIDES: GuideCopy[] = [
+const PADEL_GUIDES: GuideCopy[] = [
   {
     key: "racket",
     crumb: "Rackets",
@@ -374,11 +376,11 @@ export type InfoCopy = {
 export const INFO_UI = {
   tldrLabel: "TL;DR",
   onThisPage: "On this page",
-  moreAbout: "More about PadelRecs",
-  moreLinks: ["About PadelRecs", "How the score works", "Affiliate disclosure", "Contact"],
+  moreAbout: `More about ${niche.site.name}`,
+  moreLinks: [`About ${niche.site.name}`, "How the score works", "Affiliate disclosure", "Contact"],
 } as const;
 
-export const INFO: InfoCopy[] = [
+const PADEL_INFO: InfoCopy[] = [
   {
     key: "about",
     title: "About PadelRecs",
@@ -567,3 +569,10 @@ export const INFO: InfoCopy[] = [
     },
   },
 ];
+
+/** The running site's guides, "More guides" labels and info pages (PickleballRecs: lib/thread/copy-pickleball.ts). */
+export const GUIDES: GuideCopy[] = PICKLEBALL ? PB_GUIDES : PADEL_GUIDES;
+export const GUIDE_LINK_LABELS: Record<GuideCopy["key"], string> = PICKLEBALL ? PB_GUIDE_LINK_LABELS : PADEL_GUIDE_LINK_LABELS;
+export const INFO: InfoCopy[] = PICKLEBALL ? pickleballInfo(PADEL_INFO) : PADEL_INFO;
+/** Padel's own copy, for tests. */
+export const PADEL_COPY = { GUIDES: PADEL_GUIDES, GUIDE_LINK_LABELS: PADEL_GUIDE_LINK_LABELS, INFO: PADEL_INFO };

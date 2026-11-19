@@ -164,3 +164,36 @@ test("brand intro: padel's words by default, the site's word when given", () => 
   assert.equal(brandIntro("Nox", 3, 12, null), "Nox: 3 current rackets, 12 player reviews.");
   assert.equal(brandIntro("Selkirk", 2, 1, { name: "Vanguard", score: 88 }, "paddle"), "Selkirk: 2 current paddles, 1 player review. Top player score: 88, the Vanguard.");
 });
+
+// PR 5: guides and info pages.
+import { GUIDES, GUIDE_LINK_LABELS, INFO, INFO_UI, PADEL_COPY } from "../lib/thread/copy";
+import { PB_GUIDES, PB_GUIDE_LINK_LABELS, pickleballInfo } from "../lib/thread/copy-pickleball";
+const COPY = JSON.parse(readFileSync(new URL("./fixtures/thread-padel-copy.json", import.meta.url), "utf8"));
+const strings = (v: unknown): string[] => typeof v === "string" ? [v] : Array.isArray(v) ? v.flatMap(strings) : v && typeof v === "object" ? Object.entries(v).flatMap(([k, x]) => k === "key" || k === "to" ? [] : strings(x)) : []; // ids are never shown
+
+test("padel: guide and info copy exactly as on main", () => {
+  assert.deepEqual(plain(GUIDES), COPY.GUIDES);
+  assert.deepEqual(plain(GUIDE_LINK_LABELS), COPY.GUIDE_LINK_LABELS);
+  assert.deepEqual(plain(INFO), COPY.INFO);
+  assert.deepEqual(plain(INFO_UI), COPY.INFO_UI);
+  assert.deepEqual(plain(PADEL_COPY.INFO), COPY.INFO);
+});
+
+test("pickleball copy follows the copy rules: no dashes, no we/us, no padel words, no prices", () => {
+  const pbInfo = pickleballInfo(PADEL_COPY.INFO);
+  const all = [...strings(PB_GUIDES), ...Object.values(PB_GUIDE_LINK_LABELS), ...strings(pbInfo)];
+  assert.ok(all.length > 150);
+  for (const t of all) {
+    assert.doesNotMatch(t, /[—–]/, t);
+    assert.doesNotMatch(t, /\b(we|us|our|we're|we've)\b/i, t);
+    assert.doesNotMatch(t, /padel|racket|(?<!all-)\bround\b|teardrop|diamond|glass|left side|right side|trampoline|\bEVA\b/i, t);
+    assert.doesNotMatch(t, /[$€£]\s?\d/, t);
+    assert.doesNotMatch(t, /\b(we|I) tested|lab[- ]tested|hands-on test/i, t);
+  }
+  // The Amazon statement keeps its legal wording with the site's name.
+  const amazon = (pbInfo.find(x => x.key === "affiliate")!.extra as { amazon: { body: string } }).amazon.body;
+  assert.match(amazon, /^PickleballRecs is a participant in the Amazon Services LLC Associates Program/);
+  assert.equal(pbInfo.find(x => x.key === "about")!.title, "About PickleballRecs");
+  assert.deepEqual(PB_GUIDES.map(g => g.key), ["racket", "beginner", "shape", "side", "elbow"]);
+  for (const g of PB_GUIDES) assert.deepEqual(g.onThisPage, g.steps.map(s => s.title), g.key);
+});

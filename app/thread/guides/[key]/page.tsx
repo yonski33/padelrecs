@@ -21,6 +21,10 @@ export const revalidate = 21600;
 export const dynamicParams = false;
 export function generateStaticParams() { return GUIDE_KEYS.map(key => ({ key })); }
 type P = { params: Promise<{ key: string }> };
+const PICKLEBALL = niche.id === "pickleball";
+const SHAPES = PICKLEBALL ? ["standard", "hybrid", "elongated"] : ["round", "teardrop", "diamond"];
+const BEST = `best-${niche.id}-${niche.words.many}`; // "best-padel-rackets", "best-pickleball-paddles"
+const GUIDE_NAME = `${niche.words.One} guide`;
 const guideOf = (key: string) => GUIDES.find(g => g.key === key);
 
 // The racket guide keeps the live /guide metadata (app/guide/page.tsx); the four new guides have their own, canonical to their address.
@@ -36,12 +40,19 @@ export async function generateMetadata({ params }: P): Promise<Metadata> {
 async function picksFor(key: GuideKey): Promise<{ title?: string; rows: ThreadRow[] }[]> {
   const [{ all, rows }, lists] = await Promise.all([threadRows(), threadRankings()]);
   const top = (slugPart: string, n: number) => (lists.find(l => l.slug.includes(slugPart))?.ids ?? []).slice(0, n).map(id => rows.get(id)!).filter(Boolean);
-  const bestOfShape = (shape: string, n: number) => all.filter(r => r.score != null && r.n >= 10 && r.shape?.toLowerCase() === shape).sort((a, b) => b.score! - a.score!).slice(0, n);
-  if (key === "racket") return [{ rows: ["round", "teardrop", "diamond"].flatMap(s => bestOfShape(s, 1)) }];
-  if (key === "shape") return [{ rows: ["round", "teardrop", "diamond"].flatMap(s => bestOfShape(s, 2)) }];
+  // PickleballRecs: a paddle stored with several shapes ("Hybrid, Widebody, or Elongated") counts for each, as in the
+  // catalogue, but shows once, current models only. Padel keeps its rule.
+  const isShape = (r: ThreadRow, shape: string) => PICKLEBALL ? !!r.shape && new RegExp(`\\b${shape}\\b`, "i").test(r.shape) : r.shape?.toLowerCase() === shape;
+  const seen = new Set<string>();
+  const bestOfShape = (shape: string, n: number) => all.filter(r => r.score != null && r.n >= 10 && isShape(r, shape) && (!PICKLEBALL || (r.current !== false && !seen.has(r.id))))
+    .sort((a, b) => b.score! - a.score!).slice(0, n).map(r => (seen.add(r.id), r));
+  if (key === "racket") return [{ rows: SHAPES.flatMap(s => bestOfShape(s, 1)) }];
+  if (key === "shape") return [{ rows: SHAPES.flatMap(s => bestOfShape(s, 2)) }];
   // The beginners' ranking may be hidden (under 10 qualify): the engine's beginner picks directly, as the home ranks them.
   if (key === "beginner") return [{ rows: !hasDb() ? [] : (await homePayload().then(p => rankHome(p.items, RANK_SETUP, NEGATIVE_TAGS, { style: "any", level: "beginner", arm: false }, false, 4).rows)).map(x => rows.get(x.id)).filter((x): x is ThreadRow => !!x) }];
-  if (key === "elbow") return [{ rows: top("for-sore-arms", 4) }];
+  if (key === "elbow") return [{ rows: top(PICKLEBALL ? "for-tennis-elbow" : "for-sore-arms", 4) }];
+  // PickleballRecs: no doubles or singles split until Game type votes exist (owner 2026-11-19), so the overall top.
+  if (PICKLEBALL) return [{ rows: top("best-pickleball-paddles", 4) }];
   return [{ title: "Right side", rows: top("best-control", 3) }, { title: "Left side", rows: top("best-power", 3) }];
 }
 
@@ -53,11 +64,11 @@ export default async function ThreadGuide({ params }: P) {
   const others = GUIDE_KEYS.filter(k => k !== g.key).map(k => ({ label: GUIDE_LINK_LABELS[k], href: GUIDE_PATHS[k] }));
   // "Full ranking" goes to a list that is on show (a Thread-only list can be hidden while it has under 10 rackets).
   const shown = new Set((await threadRankings()).map(l => l.slug));
-  const wanted = g.key === "beginner" ? "best-padel-rackets-for-beginners" : g.key === "elbow" ? "best-padel-rackets-for-sore-arms" : "best-padel-rackets";
-  const fullRanking = `/rankings/${shown.has(wanted) ? wanted : "best-padel-rackets"}`;
+  const wanted = g.key === "beginner" ? `${BEST}-for-beginners` : g.key === "elbow" ? `${BEST}-for-${PICKLEBALL ? "tennis-elbow" : "sore-arms"}` : BEST;
+  const fullRanking = `/rankings/${shown.has(wanted) ? wanted : BEST}`;
   const lime = Number((g.extra as { highlightFirstSteps?: number } | undefined)?.highlightFirstSteps ?? g.steps.length);
   const picksTitle = g.picksTitle.replace(/\bvote for\b/, "rate highest");
-  const ld = { "@context": "https://schema.org", "@graph": [crumbs([{ name: "Home", path: "/" }, ...(g.key === "racket" ? [] : [{ name: "Racket guide", path: GUIDE_PATHS.racket }]), { name: g.key === "racket" ? "Racket guide" : g.title, path: GUIDE_PATHS[g.key] }])] };
+  const ld = { "@context": "https://schema.org", "@graph": [crumbs([{ name: "Home", path: "/" }, ...(g.key === "racket" ? [] : [{ name: GUIDE_NAME, path: GUIDE_PATHS.racket }]), { name: g.key === "racket" ? GUIDE_NAME : g.title, path: GUIDE_PATHS[g.key] }])] };
   return <Shell active="guides">
     <JsonLd data={ld}/>
     <main className="th-main">
