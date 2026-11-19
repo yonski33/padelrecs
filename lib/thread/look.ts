@@ -5,26 +5,14 @@
 // PickleballRecs (plans/PICKLEBALL-THREAD-PLAN.md) runs the same pages, previewed with ?look=thread until its flag is on.
 import { niche, catalogPath } from "../niche";
 
-/** THE go-live flags, per site (owner 2026-11-19): true = Thread is the default look on the normal addresses and
- *  ?look=classic shows the current live pages; false = the live pages are the default and ?look=thread previews Thread.
- *  Roll a site back by setting it to false. */
-export const THREAD_DEFAULTS: Record<string, boolean> = { padel: true, pickleball: true };
-export const threadDefaultFor = (nicheId: string) => THREAD_DEFAULTS[nicheId] ?? false;
+import { threadDefaultFor, ELBOW_SLUG } from "./sites";
+export { THREAD_DEFAULTS, threadDefaultFor, threadSite, THREAD_MOVED, ELBOW_SLUG } from "./sites";
 /** The running site's flag. */
 export const THREAD_DEFAULT = threadDefaultFor(niche.id);
 /** The query value that opens the Thread look (still accepted when Thread is the default). */
 export const THREAD_LOOK = "thread";
 /** The query value that shows the current live (pre-Thread) pages while Thread is the default. */
 export const CLASSIC_LOOK = "classic";
-/** PadelRecs (the pilot) and PickleballRecs (owner 2026-11-19: next after padel). */
-export const threadSite = (nicheId: string) => nicheId === "padel" || nicheId === "pickleball";
-/** Thread addresses that moved (a 301 from the old one, next.config.ts redirects): the sore-arms ranking is named for tennis
- *  elbow (owner 2026-11-19). */
-/** The tennis elbow ranking's slug: the ranking, the elbow guide's picks and links, and the home's Top picks all read it. */
-export const ELBOW_SLUG = "best-padel-rackets-for-tennis-elbow";
-export const THREAD_MOVED: { from: string; to: string }[] = [
-  { from: "/rankings/best-padel-rackets-for-sore-arms", to: `/rankings/${ELBOW_SLUG}` },
-];
 /** The rankings a guide lists, by guide, picked from the shown lists by exact slug (a partial match broke when the elbow
  *  ranking moved, #524). "beginner" is picked by the caller (the engine's own beginner picks). Pure, for tests. */
 export function guideListPicks<R>(key: string, slugIds: (slug: string) => string[] | undefined, row: (id: string) => R | undefined): { title?: string; rows: R[] }[] | null {
