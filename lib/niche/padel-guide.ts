@@ -17,16 +17,16 @@ export const padelGuide: GuideConfig = {
   ],
   sections: [
     { id: "shape", title: "Shape", sub: "where the sweet spot sits", layout: "cards", filter: "shape", liked: "round", options: [
-      { value: "round", icon: "round", label: "Round", text: "The biggest sweet spot, so even your off days stay on the court.", best: "beginners, defenders" },
+      { value: "round", icon: "round", label: "Round", text: "Biggest sweet spot: control and forgiveness on every hit.", best: "beginners, defenders" },
       { value: "teardrop", icon: "teardrop", label: "Teardrop", text: "The all-rounder. A bit of power, a bit of control.", best: "most intermediates" },
       { value: "hybrid", icon: "hybrid", label: "Hybrid", text: "Between round and teardrop, with a forgiving feel.", best: "improvers stepping up" },
-      { value: "diamond", icon: "diamond", label: "Diamond", text: "Most power, smallest sweet spot. For advanced attackers (and the ones who've watched a lot of YouTube).", best: "advanced attackers" },
+      { value: "diamond", icon: "diamond", label: "Diamond", text: "Most power, smallest sweet spot. Rewards clean technique.", best: "advanced attackers" },
     ] },
     { id: "feel", title: "Feel", sub: "how soft the core is", layout: "scale", filter: "feel", liked: "soft",
       rule: "Sore arm or still learning? Go soft. Want precise volleys and you hit hard? Go hard.", options: [
       { value: "soft", label: "Soft", text: "Comfy and bouncy; easy power at slow speeds, kind to the arm." },
       { value: "medium", label: "Medium", text: "A bit of both; forgiving but still precise." },
-      { value: "firm", label: "Hard / dry", text: "Direct and precise, with little bounce. Swing gently and it just shrugs.", liked: "hard" },
+      { value: "firm", label: "Hard / dry", text: "Direct and precise; little bounce, you supply the power.", liked: "hard" },
     ] },
     { id: "balance", title: "Balance", sub: "where the weight sits", layout: "toggles", liked: "medium",
       spec: { key: "balance", label: "Balance", column: "balance", classify: balanceOf }, options: [

@@ -1,5 +1,5 @@
 // Each site's own voice (owner 2026-11-18): one friend talking, a dad-joke padel regular, a dry tennis coach, a garage nerd, a
-// laid-back disc golfer, a kind skincare friend, a home barista. Copy by Grok, edited by the owner and PM (AFTER-RESET.md item
+// laid-back disc golfer, a kind skincare friend, a home barista. Padel turned plain on 2026-11-19 (see its entry). Copy by Grok, edited by the owner and PM (AFTER-RESET.md item
 // 8; guides in grok/padel-voice/PADEL-VOICE.md and grok/site-voices/VOICES.md). Jokes live only here (and in the per-product
 // taglines, lib/voice-taglines.ts): never in verdicts, Why yes / Why not, scores, prices, buttons, or pain and skin-reaction
 // lines. Lines ≤105 characters, no em dashes, no "we/us" service phrasing, no testing claims (tests/site-voice.test.ts).
@@ -26,35 +26,35 @@ const FEW = "With only a few reviews, the score can swing, so read the reviews t
 const MONEY = "Some \"check price\" links may earn a small commission. It costs you nothing and never changes the order.";
 
 const VOICES: Record<string, SiteVoice> = {
+  // Padel (owner 2026-11-19): plain, specific and a little dry, to fit the hand-made community look ("The padel racket
+  // community"). No puns; the humour comes from players' comments. The other sites follow when they switch to that look.
   padel: {
     faq: [
-      { q: "Is anything sponsored?", a: "Nope. Brands can't buy their way in, not for a higher place, a nicer summary or a bad review "
-        + "quietly removed. Some \"check price\" links earn a small commission. They help pay for hosting, you pay the same price "
-        + "either way, and they never change the order." },
+      { q: "Is anything sponsored?", a: "No. Brands can't pay for a higher place, a nicer summary or a bad review removed. "
+        + "Some \"check price\" links earn a small commission. You pay the same price, and they never change the order." },
       { q: "How is the order picked?", a: ORDER("player") },
-      { q: "Where do the reviews come from?", a: "Three places: players who leave a verdict right here (each gets a quick check "
-        + "before it's published), YouTube reviewers whose conclusions get summarised and linked back, and padel forums where "
-        + "players report after months of use. Reviewers know the specs. Players know how it feels after month three." },
+      { q: "Where do the reviews come from?", a: "Three places: players who leave a verdict here (each gets a quick check before "
+        + "it's published), YouTube reviews, summarised and linked, and padel forums, where players report after months of use." },
       { q: "Why no exact prices?", a: PRICE },
       { q: "Can I trust a racket with few reviews?", a: `${FEW} A handful of glowing reviews might just be one happy club.` },
     ],
     empty: {
-      filters: "No racket ticks every box you picked. Loosen a filter or two and they'll come out of hiding.",
+      filters: "No racket ticks every box you picked. Loosen a filter or two.",
       search: "That search came back empty. Check the spelling, or try just the brand or model name.",
-      reviews: "No reviews yet. Own this racket? Yours could be the first verdict on the board.",
+      reviews: "No reviews yet. If you've played it, yours can be the first.",
     },
     thanks: [
-      "Thanks! Your verdict is in, and the next player picking a racket just got a better answer.",
-      "Review received. Once it's published, it counts toward this racket's player score.",
-      "Thanks for sharing. Somewhere, a beginner just dodged the wrong diamond.",
+      "Thanks. Your review goes live after a quick check.",
+      "Thanks. Once it's published, it counts toward this racket's player score.",
+      "Thanks for sharing. It helps the next player pick a racket.",
     ],
     cards: {
-      Round: "The biggest sweet spot, so even your off days stay on the court.",
-      Teardrop: "The all-rounder, with a bit of power and a bit of control.",
-      Hybrid: "It sits between round and teardrop, with a forgiving feel.",
-      Diamond: "Most power, smallest sweet spot. For advanced attackers (and the ones who've watched a lot of YouTube).",
-      Soft: "Comfy and kind to the arm, with easy power at slow speeds.",
-      Hard: "Precise volleys for clean, hard hitters. Swing gently and it just shrugs.",
+      Round: "Biggest sweet spot: control and forgiveness on every hit.",
+      Teardrop: "The all-rounder. A bit of power, a bit of control.",
+      Hybrid: "Between round and teardrop, with a forgiving feel.",
+      Diamond: "Most power, smallest sweet spot. Rewards clean technique.",
+      Soft: "Comfy and bouncy; easy power at slow speeds, kind to the arm.",
+      Hard: "Direct and precise; little bounce, you supply the power.",
     },
   },
   pickleball: {
