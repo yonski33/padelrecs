@@ -4,28 +4,46 @@
 import { useMemo, useState } from "react";
 import { Row, type ThreadRow } from "../ui";
 import { th } from "../../../lib/thread/look";
-import { PickChips } from "./pick-chips";
-import { usePicks, usePayload, complete, rankFor, pctsFor, rowFromCard, NO_PICKS } from "./picks";
+import { usePicks, usePayload, rankFor, pctsFor, rowFromCard, NO_PICKS, LEVEL_OPTS, STYLE_OPTS, type Picks, type Style } from "./picks";
+import { cap } from "../ui";
 
+// On the home a single pick is enough (owner 2026-11-19: "Any" is the default style), so a level alone re-ranks the list.
+const picked = (p: Picks) => !!(p.level || p.style || p.arm);
 function useMatch() {
   const [picks, set] = usePicks();
-  const on = complete(picks);
+  const on = picked(picks);
   const payload = usePayload(on);
   return { picks, set, on, payload };
 }
 
-/** "Find my match" (home hero, ranking sidebar "See how you match"). */
-export function MatchBox({ title = "Find my match", names }: { title?: string; names: Record<string, string> }) {
+const STYLE_WORD: Record<Style, string> = { control: "control", balance: "all-round", power: "power" };
+/** "38 rackets for intermediate control players with a sore arm" (counts under 5 hidden). */
+function resultLine(picks: Picks, n: number | null, all: number) {
+  if (!picked(picks)) return all >= 5 ? `Showing all ${all} rackets` : "";
+  const who = [picks.level, picks.style ? STYLE_WORD[picks.style] : null].filter(Boolean).join(" ");
+  const forWho = `for ${who ? `${who} players` : "players"}${picks.arm ? " with a sore arm" : ""}`;
+  return n == null ? `Finding rackets ${forWho}…` : n >= 5 ? `Showing ${n} rackets ${forWho}` : `Showing the best rackets ${forWho}`;
+}
+
+/** "Find my match" as one sentence (owner 2026-11-19, classic's energy in Thread style): the quick match tag, I'm [level pills]
+ *  and I want [Any | Control | Balance | Power] [ ] Sore arm, then a live result line. Matching runs here on the cached payload. */
+export function MatchBox({ title, names, listed = 0 }: { title?: string; names: Record<string, string>; listed?: number }) {
   const { picks, set, on, payload } = useMatch();
-  const top = useMemo(() => on && payload ? rankFor(payload, picks, 1)[0] : null, [on, payload, picks]);
-  const any = !!(picks.level || picks.style || picks.arm);
+  const ranked = useMemo(() => on && payload ? rankFor(payload, picks, 1000) : null, [on, payload, picks]);
+  const top = ranked?.[0] ?? null;
   const name = top ? names[top.id] ?? payload?.cards[top.id]?.name : null;
-  return <div className="th-match">
-    <span className="th-match-head"><span>{title}</span>{any && <button type="button" className="th-reset" onClick={() => set(NO_PICKS)}>Reset</button>}</span>
-    <PickChips picks={picks} set={set}/>
-    {(picks.level || picks.style) && <span className="th-say" aria-live="polite">{!on ? "Pick one more to get your match %."
-      : !payload ? "Working out your matches…"
-      : top && name && top.pct != null ? `Your top match is the ${name} at ${top.pct}%. The list is now sorted for you.` : "No clear match for these picks yet. Try another level or style."}</span>}
+  const line = resultLine(picks, ranked ? ranked.length : null, listed);
+  return <div className="th-match th-qm">
+    {title && <span className="th-match-head"><span>{title}</span></span>}
+    <div className="th-qm-line">
+      <span className="th-qm-tag">quick match</span>
+      <span className="lbl">I&apos;m</span>
+      <span className="th-qm-group" role="group" aria-label="Your level">{LEVEL_OPTS.map(v => <button key={v} type="button" className="th-pick sm" aria-pressed={picks.level === v} onClick={() => set({ level: picks.level === v ? null : v })}>{cap(v)}</button>)}</span>
+      <span className="lbl">and I want</span>
+      <span className="th-seg th-qm-seg" role="group" aria-label="What you want">{([null, ...STYLE_OPTS] as (Style | null)[]).map(v => <button key={v ?? "any"} type="button" aria-pressed={picks.style === v} onClick={() => set({ style: v })}>{v ? cap(v) : "Any"}</button>)}</span>
+      <button type="button" className="th-check" aria-pressed={picks.arm} onClick={() => set({ arm: !picks.arm })}><span aria-hidden="true">{picks.arm ? "✓" : ""}</span>Sore arm</button>
+    </div>
+    {line && <span className="th-qm-result"><span className="th-say" aria-live="polite">{line}{top && name && top.pct != null ? `. Top match: the ${name} at ${top.pct}%.` : line.endsWith("…") ? "" : "."}</span>{picked(picks) && <button type="button" className="th-reset" onClick={() => set(NO_PICKS)}>Reset</button>}</span>}
   </div>;
 }
 

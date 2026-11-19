@@ -473,3 +473,50 @@ body:has(.th) .th a.th-ac-item:hover, body:has(.th) .th a.th-ac-item[aria-select
 
 /* Reading width (owner 2026-11-19): body text inside cards stops at about 75 characters, so wider pages don't stretch lines. */
 .th-card p, .th-lead { max-width: 75ch; }
+
+/* Home additions (owner 2026-11-19, from classic): the live count pill, "Fresh off the court", "Add a review". */
+.th-h1-row { display: flex; align-items: center; gap: 8px 14px; flex-wrap: wrap; }
+.th-live { display: inline-flex; align-items: center; gap: 7px; padding: 3px 11px; border: 1.5px solid var(--box); border-radius: 999px; background: #fff; font-size: 13px; color: var(--ink2); white-space: nowrap; }
+.th-live i { width: 8px; height: 8px; border-radius: 50%; background: oklch(0.62 0.16 145); flex: none; }
+.th-fresh span.l { display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+.th-fresh .th-web-src b { font-size: 12.5px; color: var(--ink); }
+body:has(.th) .th a.th-add { flex: none; display: inline-flex; align-items: center; padding: 6px 14px; border: 2px solid var(--ink); border-radius: 8px; background: var(--ink); color: #fbfaf6;
+  font-weight: 700; font-size: 14px; text-decoration: none; white-space: nowrap; }
+body:has(.th) .th a.th-add:hover, body:has(.th) .th a.th-add:focus-visible { background: #3a3a3a; border-color: #3a3a3a; color: #fbfaf6; }
+body:has(.th) .th a.th-add-plus { display: none; width: 38px; height: 38px; align-items: center; justify-content: center; border: 2px solid var(--ink); border-radius: 8px; background: var(--ink); color: #fbfaf6;
+  font: 700 22px/1 var(--body-font); text-decoration: none; }
+body:has(.th) .th a.th-add-plus:hover { background: #3a3a3a; color: #fbfaf6; }
+@media (max-width: 639px) { body:has(.th) .th a.th-add { display: none; } body:has(.th) .th a.th-add-plus { display: inline-flex; } }
+
+/* "Find my match" as one sentence (home): the classic quick match tag in Thread type, level pills, a joined segmented control. */
+.th-qm { background: var(--lime-box); border: 1.5px solid var(--box); }
+.th-qm-line { display: flex; align-items: center; flex-wrap: wrap; gap: 8px; }
+.th-qm-line .lbl { font-weight: 700; font-size: 14.5px; color: var(--ink); }
+.th-qm-tag { display: inline-flex; align-items: center; padding: 0 7px; border: 1.5px solid var(--ink); border-radius: 6px; background: oklch(0.93 0.14 100); color: var(--ink);
+  font: 700 13px/1.6 var(--body-font); }
+.th-qm-group { display: inline-flex; gap: 5px; flex-wrap: wrap; }
+.th-qm-seg { display: inline-flex; max-width: 100%; overflow-x: auto; scrollbar-width: none; }
+.th-qm-seg button { flex: none; }
+.th-qm-line .th-check { margin-left: 2px; }
+.th-qm .th-reset { margin-left: auto; }
+.th-seg.th-qm-seg { gap: 0; border: 2px solid var(--ink); border-radius: 8px; overflow: hidden; background: #fff; font-size: 14px; }
+.th-seg.th-qm-seg button { padding: 5px 12px; border-radius: 0; border-right: 1.5px solid var(--ink); background: #fff; color: var(--ink); }
+.th-seg.th-qm-seg button:last-child { border-right: 0; }
+.th-seg.th-qm-seg button:not([aria-pressed="true"]):hover { background: var(--frame); }
+.th-seg.th-qm-seg button[aria-pressed="true"] { background: var(--ink); color: #fbfaf6; }
+.th-seg.th-qm-seg button:focus-visible { outline: 3px solid var(--lime); outline-offset: -3px; }
+/* One line at desktop widths: compact pills and segments inside the sentence. */
+.th-qm-line { gap: 6px; }
+.th-qm-line .th-pick.sm { min-height: 30px; padding: 0 9px; font-size: 13.5px; }
+.th-seg.th-qm-seg { font-size: 13.5px; }
+.th-seg.th-qm-seg button { padding: 4px 10px; }
+.th-qm-line .lbl { font-size: 14px; white-space: nowrap; }
+.th-qm-tag { font-size: 12px; padding: 0 6px; }
+.th-qm-group { gap: 4px; }
+.th-qm-line .th-pick.sm { padding: 0 7px; font-size: 13px; }
+.th-seg.th-qm-seg { font-size: 13px; }
+.th-seg.th-qm-seg button { padding: 4px 8px; }
+.th-qm-line .th-check { font-size: 13px; }
+.th-match.th-qm { padding: 10px 12px; }
+.th-qm-line { gap: 5px; }
+.th-qm-result { display: flex; align-items: baseline; gap: 10px; } .th-qm-result .th-say { flex: 1; } .th-qm-result .th-reset { flex: none; }
