@@ -64,7 +64,7 @@ export function stackScores(tools: ToolRef[], opinions: Opinion[], now = Date.no
   const raw = new Map(scored.map(t => { const x = w.get(t.id)!;
     const neg = (x.negative + PRIOR * avgNeg) / (x.judged + PRIOR), mix = (x.mixed + PRIOR * avgMix) / (x.judged + PRIOR);
     const cap = sentimentCap({ positive: x.positive, mixed: x.mixed, judged: x.judged });
-    return [t.id, Math.max(0, Math.min(TOP_SIGNAL, cap, Math.round(signalCeiling(neg, mix))))]; }));
+    return [t.id, Math.max(0, Math.round(Math.min(TOP_SIGNAL, cap, signalCeiling(neg, mix))))]; }));
   const out = new Map<string, Signal>();
   for (const t of scored) {
     const same = scored.filter(x => x.category === t.category).sort((a, b) => raw.get(b.id)! - raw.get(a.id)! || w.get(b.id)!.judged - w.get(a.id)!.judged);

@@ -112,6 +112,7 @@ test("unscaled scores: a category leader with mostly mixed opinions doesn't read
   assert.ok(cc >= 70 && cc <= 85, `Claude-Code-like mix scores ${cc}`);
   assert.ok(sr <= 85, `a 7-opinion leader scores ${sr}`);
   assert.ok(cc > cu, "order still follows the opinions");
+  for (const [, x] of s) assert.ok(Number.isInteger(x.signal), `whole numbers only (${x.signal})`);
   assert.equal(s.get("cc")!.rank, 1); assert.equal(s.get("cu")!.of, 2);
   // An all-positive tool with many opinions can still score high: the score isn't capped, only unstretched.
   assert.ok(stackScores([{ id: "a", category: "x" }], mk("a", 40, 0, 0), NOW).get("a")!.signal >= 95);
