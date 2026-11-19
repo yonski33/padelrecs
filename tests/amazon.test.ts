@@ -18,7 +18,9 @@ test("every Recs site with a Vercel project has Amazon links configured, and non
   for (const id of sites) assert.ok(niches[id]?.amazon?.searchIndex, `${id} has no amazon config`);
   for (const id of withoutAmazon) {
     assert.equal(niches[id].amazon, undefined, id);
-    assert.doesNotMatch(JSON.stringify(niches[id].copy.about), /amazon|commission/i, id);
+    // StackRecs states its bias rule ("a commission never changes a score", owner brief 2026-11-19) from day one; it still
+    // never mentions Amazon.
+    assert.doesNotMatch(JSON.stringify(niches[id].copy.about), id === "stackrecs" ? /amazon/i : /amazon|commission/i, id);
   }
   assert.equal(niches.skin.amazon?.searchIndex, "Beauty");
   assert.equal(niches.simracing.amazon?.searchIndex, "VideoGames");
