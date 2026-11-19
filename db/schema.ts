@@ -91,3 +91,23 @@ export const traitOverrides = catalogSchema.table("trait_overrides", {
 export const traitAdminLog = catalogSchema.table("trait_admin_log", {
  id: text("id").primaryKey(), racketId: text("racket_id").notNull(), trait: text("trait"), action: text("action").notNull(), detail: jsonb("detail").$type<Record<string, unknown>>(), createdAt: text("created_at").notNull()
 }, t => [index("trait_admin_log_racket_idx").on(t.racketId, t.createdAt), check("trait_admin_log_action", sql`${t.action} ~ '^[a-z_]{2,30}$'`)]).enableRLS();
+// Optional player accounts (drizzle/0028, PadelRecs Thread): a Supabase Auth user (email magic link) who reserved a name.
+// The email stays in Supabase Auth; only the name, level and side live here. name_key (lib/thread/account-name.ts) makes
+// "Padel Pete" and "padelpete" the same name. Blocked accounts keep their name reserved but can't post.
+export const accounts = catalogSchema.table("accounts", {
+ id: text("id").primaryKey(), name: text("name").notNull(), nameKey: text("name_key").notNull(), level: text("level"), side: text("side"),
+ status: text("status", { enum: ["active", "blocked"] }).notNull().default("active"), createdAt: text("created_at").notNull(), updatedAt: text("updated_at").notNull()
+}, t => [uniqueIndex("accounts_name_key_unique").on(t.nameKey), check("account_status", sql`${t.status} in ('active','blocked')`)]).enableRLS();
+/** Which reviews and comments belong to an account (their small "member" mark). Not a column on reviews/comments, so the
+ *  other sites' tables stay as they are. */
+export const accountPosts = catalogSchema.table("account_posts", {
+ kind: text("kind", { enum: ["review", "comment"] }).notNull(), postId: text("post_id").notNull(), accountId: text("account_id").notNull().references(() => accounts.id, { onDelete: "cascade" }), createdAt: text("created_at").notNull()
+}, t => [primaryKey({ name: "account_posts_pk", columns: [t.kind, t.postId] }), index("account_posts_account_idx").on(t.accountId)]).enableRLS();
+/** Devices (the "rv" cookie's keyed hash) an account signed in on, so their earlier guest posts are linked once. */
+export const accountDevices = catalogSchema.table("account_devices", {
+ accountId: text("account_id").notNull().references(() => accounts.id, { onDelete: "cascade" }), voter: text("voter").notNull(), linkedAt: text("linked_at").notNull()
+}, t => [primaryKey({ name: "account_devices_pk", columns: [t.accountId, t.voter] })]).enableRLS();
+/** The device a guest review came from (comments already keep theirs), so a later sign-in on that device can claim it. */
+export const reviewDevices = catalogSchema.table("review_devices", {
+ reviewId: text("review_id").primaryKey().references(() => reviews.id, { onDelete: "cascade" }), voter: text("voter").notNull()
+}, t => [index("review_devices_voter_idx").on(t.voter)]).enableRLS();

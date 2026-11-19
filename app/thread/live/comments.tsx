@@ -7,11 +7,13 @@ import { ownerCheck } from "../../admin-edit";
 import { commenterName, nameProblem, typedName, NAME_MAX } from "../../../lib/thread/display-name";
 import { savedName, saveName, grow } from "./name";
 import { ago } from "../ui";
+import { useAccount, signInHref, type Me } from "./use-account";
+import { MemberMark } from "./member-mark";
 
-type C = { id: string; parentId: string | null; alias: string; body: string; at: string; score: number; mine: number };
+type C = { id: string; parentId: string | null; alias: string; body: string; at: string; score: number; mine: number; member?: boolean };
 const HELD = "Thanks! Your comment will show once a person has checked it.";
 
-function Box({ nick, setNick, nicknames, placeholder, cta, onPost, onCancel, autoFocus = true }: { nick: string; setNick: (s: string) => void; nicknames: string[]; placeholder: string; cta: string;
+function Box({ me, nick, setNick, nicknames, placeholder, cta, onPost, onCancel, autoFocus = true }: { me: Me; nick: string; setNick: (s: string) => void; nicknames: string[]; placeholder: string; cta: string;
   onPost: (text: string) => Promise<boolean>; onCancel: () => void; autoFocus?: boolean }) {
   const [text, setText] = useState(""), [busy, setBusy] = useState(false), [nameErr, setNameErr] = useState("");
   // A name is required (owner 2026-11-19): checked here, the message right under this box (replies too), no modal.
@@ -23,8 +25,10 @@ function Box({ nick, setNick, nicknames, placeholder, cta, onPost, onCancel, aut
     <textarea className="th-ta th-ta-grow" rows={2} autoFocus={autoFocus} value={text} maxLength={2000} placeholder={placeholder} aria-label={placeholder}
       onChange={e => { setText(e.target.value); grow(e.currentTarget); }}/>
     <div className="th-compose-foot">
-      <span className="th-as"><input value={nick} onChange={e => { setNick(e.target.value); setNameErr(""); }} maxLength={NAME_MAX} placeholder="Name or nickname" aria-label="Name or nickname" aria-invalid={!!nameErr} required/></span>
+      {me ? <span className="th-as th-as-me">Posting as <b>{me.name}</b><MemberMark/></span>
+        : <span className="th-as"><input value={nick} onChange={e => { setNick(e.target.value); setNameErr(""); }} maxLength={NAME_MAX} placeholder="Name or nickname" aria-label="Name or nickname" aria-invalid={!!nameErr} required/></span>}
       <span className="th-grow"/>
+      {!me && <a className="th-signin" href={signInHref("#comments")}>Sign in to keep your name</a>}
       <button type="button" className="cancel" onClick={onCancel}>Cancel</button>
       <button type="button" className="th-post" disabled={busy || !!why} onClick={send}>{busy ? "Posting…" : cta}</button>
     </div>
@@ -55,6 +59,9 @@ export function Comments({ page, title = "Comments", prompt = "Join the conversa
   }
   // No generated names (owner 2026-11-19): the name box starts with the name this browser typed last time, else empty.
   useEffect(() => { setNick(savedName()); }, []);
+  // Optional accounts: a signed-in member posts under their reserved name.
+  const me = useAccount();
+  useEffect(() => { if (me) setNick(me.name); }, [me]);
   useEffect(() => {
     fetch(`/api/comments?page=${encodeURIComponent(page)}&token=1`, { cache: "no-store" }).then(r => r.ok ? r.json() : null)
       .then((b: { comments?: C[]; token?: string } | null) => { setList(b?.comments ?? []); token.current = b?.token ?? ""; }).catch(() => setList([]));
@@ -64,7 +71,7 @@ export function Comments({ page, title = "Comments", prompt = "Join the conversa
     setErr(""); setNote("");
     const problem = nameProblem(nick); if (problem) { setErr(problem); return false; }
     saveName(nick);
-    const temp: C = { id: `temp-${Date.now()}`, parentId, alias: nick.trim(), body, at: new Date().toISOString(), score: 1, mine: 1 };
+    const temp: C = { id: `temp-${Date.now()}`, parentId, alias: nick.trim(), body, at: new Date().toISOString(), score: 1, mine: 1, member: !!me };
     setList(l => [temp, ...(l ?? [])]); setOpen(false); setReply(null);
     try {
       const r = await fetch("/api/comments", { method: "POST", headers: { "Content-Type": "application/json" },
@@ -108,18 +115,18 @@ export function Comments({ page, title = "Comments", prompt = "Join the conversa
   return <section id="comments" className="th-card th-sec" style={{ paddingBottom: 8, scrollMarginTop: 70 }}>
     <div className="th-head-row"><h2 className="th-h2">{title}</h2>{tops.length > 1 && <div className="th-seg" role="group" aria-label="Sort comments"><span className="lbl">Sort</span>
       {([["new", "Newest"], ["top", "Top"]] as const).map(([k, l]) => <button key={k} type="button" aria-pressed={sort === k} onClick={() => setSort(k)}>{l}</button>)}</div>}</div>
-    {open ? <Box nick={nick} setNick={setNick} nicknames={nicknames} placeholder={placeholder} cta="Comment" onPost={t => post(t, null)} onCancel={() => setOpen(false)}/>
+    {open ? <Box me={me} nick={nick} setNick={setNick} nicknames={nicknames} placeholder={placeholder} cta="Comment" onPost={t => post(t, null)} onCancel={() => setOpen(false)}/>
       : <button type="button" className="th-open" onClick={() => { setOpen(true); setNote(""); }}>{prompt}</button>}
     {note && <p className="th-ok" role="status">{note}</p>}
     {err && <span className="th-err" role="alert">{err}</span>}
     <div style={{ display: "flex", flexDirection: "column" }}>
       {tops.map(c => <div key={c.id} className="th-cm">
-        <div className="th-cm-head"><strong>{commenterName(c.alias)}</strong><span>{`· ${ago(c.at)}`}</span><Rename c={c}/></div>
+        <div className="th-cm-head"><strong>{commenterName(c.alias)}</strong>{c.member && <MemberMark/>}<span>{`· ${ago(c.at)}`}</span><Rename c={c}/></div>
         {textOf(c)}
         <div className="th-cm-act"><Votes c={c}/><button type="button" className="reply" onClick={() => setReply(reply === c.id ? null : c.id)}>{reply === c.id ? "Cancel" : "Reply"}</button><Own c={c}/></div>
-        {reply === c.id && <div style={{ marginLeft: 14 }}><Box nick={nick} setNick={setNick} nicknames={nicknames} placeholder={`Reply to ${commenterName(c.alias)}`} cta="Reply" onPost={t => post(t, c.id)} onCancel={() => setReply(null)}/></div>}
+        {reply === c.id && <div style={{ marginLeft: 14 }}><Box me={me} nick={nick} setNick={setNick} nicknames={nicknames} placeholder={`Reply to ${commenterName(c.alias)}`} cta="Reply" onPost={t => post(t, c.id)} onCancel={() => setReply(null)}/></div>}
         {replies(c.id).length > 0 && <div className="th-replies">{replies(c.id).map(r => <div key={r.id} style={{ display: "flex", flexDirection: "column", gap: 2 }}>
-          <div className="th-cm-head"><strong style={{ fontSize: 14 }}>{commenterName(r.alias)}</strong><span>{`· ${ago(r.at)}`}</span><Rename c={r}/></div>
+          <div className="th-cm-head"><strong style={{ fontSize: 14 }}>{commenterName(r.alias)}</strong>{r.member && <MemberMark/>}<span>{`· ${ago(r.at)}`}</span><Rename c={r}/></div>
           {textOf(r)}
           <div className="th-cm-act"><Votes c={r}/><Own c={r}/></div>
         </div>)}</div>}

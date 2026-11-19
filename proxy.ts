@@ -14,8 +14,8 @@ import { threadPath, threadSite, THREAD_LOOK, THREAD_DEFAULT, CLASSIC_LOOK } fro
 // The catalogue's cached views also hold the niche's spec filters (its guide config: padel balance and face).
 const CATALOG_Q = [...CATALOG_VIEW, ...specGroups(niche.guide).map(g => g.key)];
 
-// Only these paths depend on who is signed in. The admin area lives at /funtimes, not /admin (which is an ordinary 404).
-const PRIVATE = /^\/(?:funtimes|auth|api\/funtimes)(?:\/|$)/;
+// Only these paths depend on who is signed in (/account: PadelRecs players' optional accounts). The admin area lives at /funtimes, not /admin (which is an ordinary 404).
+const PRIVATE = /^\/(?:funtimes|auth|account|api\/funtimes|api\/account)(?:\/|$)/;
 
 /** categoryPaths niches (lib/niche): old product addresses (/tools/<slug>, /rackets/<slug>), former slugs and products filed
  *  under another type answer with a 301 to /<type slug>/<slug>. A real 301, which next.config redirects can't give here
