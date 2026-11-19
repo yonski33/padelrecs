@@ -3,6 +3,7 @@
 // nickname you can edit or renew, low-key ▲ n ▼, Reply, timestamps, replies indented under a 2px line, newest first (or Top).
 // /api/comments (drizzle/0025): clean comments show at once, links and very short ones wait for a person, spam is dropped.
 import { useEffect, useRef, useState } from "react";
+import { ownerCheck } from "../../admin-edit";
 import { nickname } from "../../quick-vote";
 import { ago } from "../ui";
 
@@ -31,8 +32,7 @@ export function Comments({ page, title = "Comments", prompt = "Join the conversa
   // The owner's tools (Edit, Delete, Hide): asked for only when a sign-in cookie is present, and drawn here in the browser, so
   // the cached page is the same for everyone. Every action is checked on the server (app/api/funtimes/comments).
   const [admin, setAdmin] = useState(false), [editing, setEditing] = useState<{ id: string; text: string } | null>(null), draft = useRef("");
-  useEffect(() => { if (!/(^|;\s*)sb-[^=]*-auth-token/.test(document.cookie)) return;
-    fetch("/api/funtimes/whoami", { cache: "no-store" }).then(r => r.ok ? r.json() : null).then((b: { admin?: boolean } | null) => setAdmin(!!b?.admin)).catch(() => {}); }, []);
+  useEffect(() => { let live = true; ownerCheck().then(a => { if (live) setAdmin(a); }); return () => { live = false; }; }, []);
   async function own(c: C, action: "edit" | "delete" | "hide", text?: string) {
     if (action === "delete" && !window.confirm(list?.some(x => x.parentId === c.id) ? "Delete this comment? It has replies, so it will show as [removed]." : "Delete this comment and its votes?")) return;
     if (action === "hide" && !window.confirm("Hide this comment? It moves back to pending in the admin.")) return;
