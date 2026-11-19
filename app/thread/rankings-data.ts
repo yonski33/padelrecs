@@ -20,7 +20,8 @@ const BLURB: Record<string, string> = {
 };
 const PICKS: { key: string; slug: string; label: string; title: string; choice: QuickChoice }[] = [
   { key: "beginners", slug: "best-padel-rackets-for-beginners", label: "Best for beginners", title: "Best padel rackets for beginners", choice: { style: "any", level: "beginner", arm: false } },
-  { key: "sore-arms", slug: "best-padel-rackets-for-sore-arms", label: "Best for sore arms", title: "Best padel rackets for sore arms", choice: { style: "any", arm: true } },
+  // Named for tennis elbow (owner 2026-11-19); the old /rankings/best-padel-rackets-for-sore-arms 301s here (THREAD_MOVED).
+  { key: "sore-arms", slug: "best-padel-rackets-for-tennis-elbow", label: "Best for tennis elbow", title: "Best padel rackets for tennis elbow", choice: { style: "any", arm: true } },
 ];
 const SHAPES = [["round", "Round"], ["teardrop", "Teardrop"], ["diamond", "Diamond"]] as const;
 

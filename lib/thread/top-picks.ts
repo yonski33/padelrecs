@@ -15,7 +15,7 @@ export type PickCat = { key: string; title: string; trait: string; choice: strin
  *  on their own once enough players back them, or when one of the six falls short. Each has a quiet "See all ›" link. */
 export const PICK_CATS: PickCat[] = [
   { key: "sweet", title: "Biggest sweet spot", trait: "sweet_spot", choice: "big", href: "/rankings/best-padel-rackets" },
-  { key: "arm", title: "Most arm friendly", trait: "arm", choice: "very", href: "/rankings/best-padel-rackets-for-sore-arms" },
+  { key: "arm", title: "Most arm friendly", trait: "arm", choice: "very", href: "/rankings/best-padel-rackets-for-tennis-elbow" },
   { key: "control", title: "Most control", trait: "plays_like", choice: "control", href: "/rankings/best-control-padel-rackets" },
   { key: "power", title: "Most power", trait: "plays_like", choice: "power", href: "/rankings/best-power-padel-rackets" },
   { key: "net", title: "Best at the net", trait: "maneuver", choice: "very", href: "/rankings/best-control-padel-rackets" },
