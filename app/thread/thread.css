@@ -231,7 +231,7 @@ body:has(.th) .th .th-rv-link { color: var(--ink2); }
 .th-as { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; font-size: 13.5px; }
 .th-as > span { color: var(--ink2); }
 .th-as input { flex: 0 1 200px; min-width: 0; border: 1.5px solid var(--chip); border-radius: 999px; outline: 0; padding: 4px 12px; font: 700 14px var(--body-font); background: #fff; color: var(--ink); }
-.th-as button { all: unset; cursor: pointer; font-size: 13px; text-decoration: underline; text-underline-offset: 3px; }
+.th-as button:not(.th-pick) { all: unset; cursor: pointer; font-size: 13px; text-decoration: underline; text-underline-offset: 3px; }
 .th-ta { width: 100%; resize: vertical; border: 1.5px solid var(--chip); border-radius: 8px; outline: 0; padding: 8px 10px; font: 15.5px/1.5 var(--body-font); background: #fff; color: var(--ink); }
 .th-compose.white .th-ta { border: 0; padding: 4px; background: transparent; }
 .th-ta:focus, .th-as input:focus { border-color: var(--ink); }
@@ -599,3 +599,11 @@ body:has(.th) .th .th-pick-list li.first a:hover { color: var(--ink); text-decor
 .th-pick-list .rk { flex: none; width: 1.4em; color: var(--ink2); font-weight: 700; }
 .th-pick-list .nm { flex: 1; min-width: 0; overflow-wrap: anywhere; }
 .th-pick-list .ct { flex: none; color: #6a675f; font-size: 13px; font-weight: 400; }
+
+/* Level and Side next to the name (owner 2026-11-19): two compact one-tap groups, smaller on comments; the pills' hover is
+   the shared readable one (.th-pick, #501). */
+.th-ls { display: inline-flex; flex-wrap: wrap; align-items: center; gap: 6px 12px; }
+.th-ls-group { display: inline-flex; align-items: center; gap: 4px; }
+.th-ls-lbl { font-size: 12.5px; color: var(--ink2); margin-right: 2px; }
+.th-pick.xs { min-height: 26px; padding: 0 8px; border-width: 1.5px; font-size: 12px; font-weight: 600; }
+.th-ls.small { gap: 6px 14px; }

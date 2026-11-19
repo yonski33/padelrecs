@@ -32,3 +32,9 @@ test("quick edit: refused without an admin session, before anything is read", as
     if (previous.key) process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY = previous.key;
   }
 });
+
+test("quick edit: level and side take the form's own values, or empty to clear", () => {
+  assert.ok(quickEditInput.safeParse({ id: "r1", field: "playerLevel", value: "Intermediate" }).success);
+  assert.ok(quickEditInput.safeParse({ id: "r1", field: "playingSide", value: "" }).success);
+  assert.ok(!quickEditInput.safeParse({ id: "r1", field: "playingSide", value: "Middle" }).success);
+});
