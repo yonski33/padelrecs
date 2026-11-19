@@ -183,6 +183,11 @@
       "name": "dogrecs",
       "id": "prj_TonSLKJlthPSelh2UdTwNDcKScmO",
       "domain": "www.dogrecs.com"
+    },
+    "stackrecs": {
+      "name": "stackrecs",
+      "id": "prj_fbkosIK65lP3DErNuGLCtHHOIxPg",
+      "domain": "www.stackrecs.com"
     }
   },
   "supabaseProjectName": "PadelRecs",
