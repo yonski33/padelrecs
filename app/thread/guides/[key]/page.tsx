@@ -14,7 +14,7 @@ import { Row, SideBox, LinkList, NarrowLinks, type ThreadRow } from "../../ui";
 import { th } from "../../../../lib/thread/look";
 import { Comments } from "../../live/comments";
 import { generateMetadata as liveGuideMetadata } from "../../../guide/page";
-import { JsonLd, crumbs, liveOr } from "../../seo";
+import { JsonLd, crumbs, liveOr, withPageShare } from "../../seo";
 import { niche } from "../../../../lib/niche";
 
 export const revalidate = 21600;
@@ -27,9 +27,10 @@ const guideOf = (key: string) => GUIDES.find(g => g.key === key);
 export async function generateMetadata({ params }: P): Promise<Metadata> {
   const g = guideOf((await params).key);
   if (!g) return {};
-  if (g.key === "racket") return liveOr(liveGuideMetadata);
+  // Each guide's card is its title (app/thread/share, /share-image?page=guide:<key>).
+  if (g.key === "racket") return withPageShare(await liveOr(liveGuideMetadata), `guide:${g.key}`, g.title);
   const url = GUIDE_PATHS[g.key];
-  return { title: { absolute: `${g.seoTitle} | ${niche.site.name}` }, description: g.description, alternates: { canonical: url }, openGraph: { title: g.seoTitle, description: g.description, url, type: "article" } };
+  return withPageShare({ title: { absolute: `${g.seoTitle} | ${niche.site.name}` }, description: g.description, alternates: { canonical: url }, openGraph: { title: g.seoTitle, description: g.description, url, type: "article" } }, `guide:${g.key}`, g.title);
 }
 
 /** Which rackets each guide lists: one per shape, or a ranking's top, or each side's (control for the right, power for the left). */

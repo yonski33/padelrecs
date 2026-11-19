@@ -8,8 +8,8 @@ import { tone } from "../ui";
 export const revalidate = 21600;
 import type { Metadata } from "next";
 import { generateMetadata as liveMetadata } from "../../rankings/page";
-import { liveOr } from "../seo";
-export const generateMetadata = (): Promise<Metadata> => liveOr(liveMetadata);
+import { liveOr, withPageShare } from "../seo";
+export const generateMetadata = async (): Promise<Metadata> => withPageShare(await liveOr(liveMetadata), "rankings", "Padel racket rankings, ranked by real player reviews");
 
 export default async function ThreadHub() {
   const [lists, { rows }] = await Promise.all([threadRankings(), threadRows()]);

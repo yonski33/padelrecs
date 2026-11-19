@@ -19,6 +19,8 @@ import { niche } from "../../../../lib/niche";
 import { alsoLoved } from "../../../../db/product-votes";
 import { database } from "../../../../db/data";
 import { generateMetadata as liveMetadata } from "../../../rackets/[slug]/page";
+import { withShare } from "../../seo";
+import { racketShareAlt } from "../../share/data";
 import { JsonLd, crumbs } from "../../seo";
 import { catalogLabel, catalogPath, productHref } from "../../../../lib/niche";
 
@@ -31,7 +33,12 @@ export async function generateStaticParams() {
 
 type P = { params: Promise<{ slug: string }> };
 // The live racket page's title, description, canonical and share image (app/rackets/[slug]/page.tsx).
-export const generateMetadata = ({ params }: P): Promise<Metadata> => liveMetadata({ params, searchParams: Promise.resolve({}) });
+// …with the Thread racket card (app/thread/share) and an alt that names it, its score and how many opinions.
+export async function generateMetadata({ params }: P): Promise<Metadata> {
+  const live = await liveMetadata({ params, searchParams: Promise.resolve({}) }), { slug } = await params;
+  const img = (live.openGraph?.images as { url?: string }[] | undefined)?.[0]?.url ?? `/rackets/${slug}/share-image`;
+  return withShare(live, String(img), await racketShareAlt(slug));
+}
 
 const LEVEL_WORD = (ls: string[]) => ls.length ? (ls.length === 1 ? cap(ls[0]) : `${cap(ls[0])} to ${ls[ls.length - 1]}`) : null;
 const STYLE_WORD = { control: "Control", power: "Power", balance: "All-round" } as const;

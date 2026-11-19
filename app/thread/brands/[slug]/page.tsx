@@ -9,7 +9,7 @@ import { Catalog } from "../../live/catalog";
 import { brandIntro } from "../../../../lib/thread/brand-intro";
 import { generateMetadata as liveMetadata } from "../../../brands/[slug]/page";
 import { listJsonLd } from "../../../../lib/catalogue-seo";
-import { liveOr } from "../../seo";
+import { liveOr, withPageShare } from "../../seo";
 import { th } from "../../../../lib/thread/look";
 import { catalog } from "../../../../db/data";
 
@@ -18,7 +18,10 @@ export async function generateStaticParams() {
   if (!hasDb()) return [];
   return (await catalog()).listedBrands.map(b => ({ slug: b.slug }));
 }
-export const generateMetadata = ({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> => liveOr(() => liveMetadata({ params }));
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
+  const { slug } = await params, { ctx } = await threadRows(), name = ctx?.data.brands.find(b => b.slug === slug)?.name;
+  return withPageShare(await liveOr(() => liveMetadata({ params })), `brand:${slug}`, name ? `${name} padel rackets, rated by players` : "Padel rackets, rated by players");
+}
 
 export default async function ThreadBrand({ params }: { params: Promise<{ slug: string }> }) {
   const [{ slug }, { ctx, all }] = await Promise.all([params, threadRows()]);

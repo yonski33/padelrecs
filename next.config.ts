@@ -53,6 +53,9 @@ const config:NextConfig={
   // Product photos (public/photos) rarely change and keep their file name when they do: a week in browsers and the CDN,
   // then a day served stale while it refreshes (audit 2026-11-15, #10: they were max-age=0).
   const photos={source:"/photos/:path*",headers:[{key:"Cache-Control",value:"public, max-age=604800, stale-while-revalidate=86400"}]};
-  return [photos,...["/",products,`${products}/:slug*`,...(products==="/rackets"?[]:["/rackets/:slug*"]),"/brands","/brands/:slug*","/about","/contact","/reviews","/how-we-make-these",...(niche.amazon?["/affiliate-disclosure"]:[]),"/add-review","/rankings","/rankings/:slug*","/compare","/compare/:pair*","/api/racket-search","/api/rank-items","/sitemap.xml",...(niche.typePages??[]).flatMap(t=>niche.categoryPaths?[`/${t.slug}`,`/${t.slug}/:slug*`]:[`/${t.slug}`])].map(source=>({source,headers:cdn,missing}))];
+  return [photos,...["/",products,`${products}/:slug*`,...(products==="/rackets"?[]:["/rackets/:slug*"]),"/brands","/brands/:slug*","/about","/contact","/reviews","/how-we-make-these",...(niche.amazon?["/affiliate-disclosure"]:[]),"/add-review","/rankings","/rankings/:slug*","/compare","/compare/:pair*","/api/racket-search","/api/rank-items","/sitemap.xml",...(niche.typePages??[]).flatMap(t=>niche.categoryPaths?[`/${t.slug}`,`/${t.slug}/:slug*`]:[`/${t.slug}`])].map(source=>({source,headers:cdn,missing})),
+   // Share images (owner 2026-11-19): renewed with their pages' 6-hour ISR, a week stale while a new one renders. Listed
+   // last so they win over the minute above (Next: a later match of the same key overrides an earlier one).
+   ...["/share-image",`${products}/:slug/share-image`,"/rankings/:slug/share-image"].map(source=>({source,headers:[{key:"Vercel-CDN-Cache-Control",value:"max-age=21600, stale-while-revalidate=604800"}]}))];
  }};
 export default config;
