@@ -26,7 +26,7 @@ export type GuideKey = keyof typeof GUIDE_PATHS;
 export const GUIDE_KEYS = Object.keys(GUIDE_PATHS) as GuideKey[];
 export const guideKeyOf = (path: string): GuideKey | null => GUIDE_KEYS.find(k => GUIDE_PATHS[k] === path) ?? null;
 
-/** The Thread page an address shows with ?look=thread, or null when the Thread look has no page for it (brands, compare,
+/** The Thread page an address shows with ?look=thread, or null when the Thread look has no page for it (compare and
  *  add-review keep their live page). `catalog` is the niche's catalogue path ("/rackets" on padel). */
 export function threadPath(pathname: string, catalog = "/rackets"): string | null {
   const p = pathname.length > 1 ? pathname.replace(/\/+$/, "") : pathname;
@@ -42,6 +42,9 @@ export function threadPath(pathname: string, catalog = "/rackets"): string | nul
   if (p === "/how-we-make-these") return "/thread/score";
   if (p === "/affiliate-disclosure") return "/thread/affiliate";
   if (p === "/contact") return "/thread/contact";
+  if (p === "/brands") return "/thread/brands";
+  const brand = /^\/brands\/([a-z0-9-]+)$/.exec(p);
+  if (brand) return `/thread/brands/${brand[1]}`;
   return null;
 }
 

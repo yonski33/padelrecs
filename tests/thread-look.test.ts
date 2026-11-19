@@ -15,7 +15,9 @@ test("each previewed address maps to its Thread page; others keep their live pag
   assert.equal(threadPath(GUIDE_PATHS.elbow), "/thread/guides/elbow");
   assert.equal(threadPath("/how-we-make-these"), "/thread/score");
   assert.equal(threadPath("/affiliate-disclosure"), "/thread/affiliate");
-  for (const p of ["/brands", "/brands/nox", "/compare", "/add-review", "/rackets/a/b", "/thread", "/guides/unknown"]) assert.equal(threadPath(p), null, p);
+  assert.equal(threadPath("/brands"), "/thread/brands");
+  assert.equal(threadPath("/brands/nox"), "/thread/brands/nox");
+  for (const p of ["/brands/nox/x", "/compare", "/add-review", "/rackets/a/b", "/thread", "/guides/unknown"]) assert.equal(threadPath(p), null, p);
 });
 
 test("Thread links: plain addresses while Thread is the default; in preview mode they carry ?look=thread ahead of the hash", () => {
@@ -23,7 +25,8 @@ test("Thread links: plain addresses while Thread is the default; in preview mode
   assert.equal(th("/rackets/x"), "/rackets/x");
   assert.equal(th("/rackets/x", "/rackets", true), "/rackets/x?look=thread");
   assert.equal(th("/rackets/x?tag=soft#reviews", "/rackets", true), "/rackets/x?tag=soft&look=thread#reviews");
-  assert.equal(th("/brands/nox", "/rackets", true), "/brands/nox");
+  assert.equal(th("/brands/nox", "/rackets", true), "/brands/nox?look=thread");
+  assert.equal(th("/compare", "/rackets", true), "/compare");
   assert.equal(th("https://example.com/", "/rackets", true), "https://example.com/");
   assert.equal(th("//cdn.example.com/a", "/rackets", true), "//cdn.example.com/a");
 });
@@ -42,9 +45,12 @@ test("padel: the normal addresses are served by Thread; ?look=classic gets today
   assert.equal(await go("/rackets/adidas-metalbone-ctrl-2026"), "/thread/rackets/adidas-metalbone-ctrl-2026");
   assert.equal(await go("/rankings/best-padel-rackets"), "/thread/rankings/best-padel-rackets");
   assert.equal(await go("/guides/tennis-elbow"), "/thread/guides/elbow");
-  assert.equal(await go("/brands/nox"), "next");
+  assert.equal(await go("/brands/nox"), "/thread/brands/nox");
+  assert.equal(await go("/brands"), "/thread/brands");
+  assert.equal(await go("/compare"), "next");
   // The classic look: the live cached views, and plain pages without ?look (so they never show the older "classic" layout).
   assert.match(await go("/?look=classic"), /^\/quick\//);
   assert.match(await go("/rackets/adidas-metalbone-ctrl-2026?look=classic"), /^\/v\/racket\/adidas-metalbone-ctrl-2026\//);
   assert.equal(await go("/about?look=classic"), "/about");
+  assert.equal(await go("/brands/nox?look=classic"), "/brands/nox");
 });

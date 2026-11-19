@@ -22,6 +22,8 @@ const PAGE: [RegExp, string][] = [
   [/^\/thread\/rackets$/, "app/thread/rackets/page.tsx"],
   [/^\/thread\/rankings\/[^/]+$/, "app/thread/rankings/[slug]/page.tsx"],
   [/^\/thread\/rackets\/[^/]+$/, "app/thread/rackets/[slug]/page.tsx"],
+  [/^\/thread\/brands$/, "app/thread/brands/page.tsx"],
+  [/^\/thread\/brands\/[^/]+$/, "app/thread/brands/[slug]/page.tsx"],
 ];
 const DYNAMIC: [RegExp, string][] = [
   [/from\s+["']next\/headers["']/, "next/headers"],
