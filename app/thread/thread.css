@@ -523,3 +523,12 @@ body:has(.th) .th a.th-add-plus:hover { background: #3a3a3a; color: #fbfaf6; }
 .th-match.th-qm { padding: 10px 12px; }
 .th-qm-line { gap: 5px; }
 .th-qm-result { display: flex; align-items: baseline; gap: 10px; } .th-qm-result .th-say { flex: 1; } .th-qm-result .th-reset { flex: none; }
+
+/* "How does it play?" (owner mock 2026-11-19): two columns of the bigger rows, one on phones; the rest behind a full-width button. */
+.th-vgrid2 { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 10px; }
+@media (max-width: 639px) { .th-vgrid2 { grid-template-columns: minmax(0,1fr); } }
+.th-vgrid2 .th-vbox { gap: 6px; padding: 10px 12px; }
+.th-vgrid2 .th-vbox-head { font-size: 15px; }
+.th-vgrid2 .th-vopt > span { font-size: 14px; }
+.th-vgrid2 .th-vopt > b { font-size: 13px; }
+#play .th-more { margin-top: 2px; }
