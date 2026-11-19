@@ -4,6 +4,7 @@
 // plus a normal moderated review when there are words: POST /api/reviews, the same flow as the live page).
 import { useEffect, useMemo, useState, type ReactNode } from "react";
 import { PendingReviews, LiveReviewTools } from "./review-admin";
+import { Ago } from "./ago";
 import { PickChips } from "./pick-chips";
 import { usePicks, usePayload, complete, fitFor, adviceFor } from "./picks";
 import { th } from "../../../lib/thread/look";
@@ -175,7 +176,7 @@ function ReviewCard({ c, tools }: { c: RvCard; tools?: ReactNode }) {
       {c.kind !== "player" && !c.quote && <span>· summarised</span>}
       {c.meta && <span>{c.meta}</span>}
       {c.verdict && <span className={`th-vpill ${VERDICT[c.verdict][1]}`}>{VERDICT[c.verdict][0]}</span>}
-      {c.when && <span className="th-rv-when">{`· ${c.when}`}</span>}
+      {c.when && <span className="th-rv-when">{"· "}<Ago at={c.at || null} initial={c.when}/></span>}
     </div>
     <div className={`th-rv-grid${c.video ? " yt" : ""}`}>
       {c.video && <a className="th-yt" href={c.url!} target="_blank" rel="noopener nofollow" aria-label={`Watch ${c.who} on YouTube`} style={{ backgroundImage: `url(https://i.ytimg.com/vi/${c.video}/mqdefault.jpg)` }}/>}

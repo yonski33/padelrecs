@@ -10,6 +10,7 @@ import { TopPicks } from "./top-picks";
 import { homePayload, defaultHomeIds } from "../home-payload";
 import { threadRankings } from "./rankings-data";
 import { MatchBox, HomeList } from "./live/lists";
+import { Ago } from "./live/ago";
 import { Feed, type FeedCard } from "./live/feed";
 import { SideBox, LinkList, NarrowLinks, SOURCE, ago } from "./ui";
 import { th } from "../../lib/thread/look";
@@ -26,7 +27,7 @@ export default async function ThreadHome() {
   const top = payload ? homeTop(rows, defaultHomeIds(payload, DEFAULT_CHOICE)) : [];
   const reviewed = all.filter(r => r.score != null && r.current).sort((a, b) => b.n - a.n).slice(0, 10);
   const now = Date.now();
-  const card = (f: (typeof feed)[number]): FeedCard | null => { const r = rows.get(f.racketId); return r ? { id: f.id, kind: f.kind, who: f.who, text: f.text, when: ago(f.date, now), verdict: f.verdict, url: f.url, racket: { name: r.name, href: r.href, pic: r.pic } } : null; };
+  const card = (f: (typeof feed)[number]): FeedCard | null => { const r = rows.get(f.racketId); return r ? { id: f.id, kind: f.kind, who: f.who, text: f.text, when: ago(f.date, now), at: f.date, verdict: f.verdict, url: f.url, racket: { name: r.name, href: r.href, pic: r.pic } } : null; };
   const cards = feed.slice(0, 60).flatMap(f => card(f) ?? []);
   const web = feed.filter(f => f.kind !== "player" && rows.has(f.racketId)).slice(0, 3);
   const rankLinks = lists.slice(0, 8).map(l => ({ label: l.label, href: l.href }));
@@ -43,7 +44,7 @@ export default async function ThreadHome() {
           <span className="th-stitle">{said.length ? "Latest from the comments" : "Busy this week"}</span>
           {said.map(c => { const r = rows.get(c.racketId)!;
             return <a key={c.id} className="th-web th-fresh" href={th(`${r.href}#comments`)}>
-              <span className="th-web-src"><b>{commenterName(c.alias)}</b><span>{`· ${ago(c.at, now)}`}</span></span>
+              <span className="th-web-src"><b>{commenterName(c.alias)}</b><span>{"· "}<Ago at={c.at} initial={ago(c.at, now)}/></span></span>
               <b>{r.name}</b><span className="l two">{c.body}</span>
             </a>; })}
           {said.length > 0 && busy.length > 0 && <span className="th-side-sub">Busy this week</span>}
