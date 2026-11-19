@@ -9,6 +9,8 @@ export type ThreadRow = {
   line: string | null; best: string | null; n: number; pos: number; mix: number; neg: number;
   /** The live, volume-weighted Player score (lib/signal.ts), null until a racket has enough reviews. */ score: number | null;
   brand: string; year: number; levels: ("beginner" | "intermediate" | "advanced")[]; feel: "Soft" | "Medium" | "Hard" | null; arm: boolean;
+  /** The year that takes its model's row (lib/compare-pairs.ts familyRowIds, the classic catalog's and home's rule). Older
+   *  years (false) stay reachable by their page and the catalog's search or "Show older models". */ current?: boolean;
 };
 export const MIN_SHOWN = 5;
 export const VERDICT = { positive: ["Loved it", "pos"], mixed: ["Mixed", "mix"], negative: ["Not for me", "neg"] } as const;

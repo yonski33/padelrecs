@@ -78,7 +78,6 @@ body:has(.th) .th .th-crumbs a:first-child { font-weight: 700; }
 .th-pill { display: inline-block; font-size: 12px; font-weight: 700; border: 1.5px solid var(--ink); border-radius: 999px; padding: 0 8px; line-height: 1.5; white-space: nowrap; background: #fff; }
 .th-pill.lime { background: var(--lime); }
 .th-pill.pos { background: var(--p-pos); } .th-pill.mix { background: var(--p-mix); } .th-pill.neg { background: var(--p-neg); }
-.th-pill.q { background: var(--yt); font-size: 11.5px; padding: 0 7px; }
 .th-tag { font-size: 11.5px; font-weight: 700; border: 1.5px solid var(--ink); border-radius: 4px; padding: 0 6px; background: #fff; color: var(--ink); white-space: nowrap; }
 .th-tag.yt { background: var(--yt); } .th-tag.blog { background: var(--blog); } .th-tag.reddit { background: var(--reddit); }
 .th-pick { all: unset; cursor: pointer; white-space: nowrap; min-height: 34px; box-sizing: border-box; display: inline-flex; align-items: center; justify-content: center; padding: 0 12px; border: 2px solid var(--ink); border-radius: 999px; font-size: 14px; font-weight: 700; background: #fff; color: var(--ink); }
@@ -170,6 +169,11 @@ body:has(.th) .th .th-row-name a { font-weight: 700; font-size: 16.5px; line-hei
 .th-vopt { all: unset; cursor: pointer; box-sizing: border-box; position: relative; display: flex; align-items: center; justify-content: space-between; gap: 8px; min-height: 38px; padding: 0 9px; border: 1.5px solid var(--line); border-radius: 7px; overflow: hidden; background: #fff; text-decoration: none; }
 body:has(.th) .th a.th-vopt { text-decoration: none; }
 .th-vopt:hover { border-color: var(--ink); }
+/* Hover never fills dark. Pills and buttons get a light tint (only a picked pill is filled dark, with light text); the vote
+   and poll rows, whose empty part sits behind the % and count, only change their border so the numbers stay readable. */
+:where(.th-pick, .th-fopt, .th-more, .th-menu-btn, .th-btn:not(.dark):not(.lime)):not([aria-pressed="true"]):hover { background-color: var(--frame); }
+.th-vopt:hover, .th-popt:hover { background-color: #fff; }
+.th-popt:hover, .th-pick:hover, .th-fopt:hover { border-color: var(--ink); }
 .th-vopt.ro { cursor: default; } .th-vopt.ro:hover { border-color: var(--line); }
 .th-vopt.sm { min-height: 26px; border-radius: 8px; padding: 0 10px; }
 .th-vopt[aria-pressed="true"] { border: 2px solid var(--ink); }
@@ -180,7 +184,6 @@ body:has(.th) .th a.th-vopt { text-decoration: none; }
 .th-vopt > span img { flex: none; height: 30px; width: auto; mix-blend-mode: multiply; }
 .th-vopt .nm { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .th-vopt > b { position: relative; font-size: 12px; font-weight: 700; }
-.th-you { font-size: 10.5px; font-weight: 700; border: 1.5px solid var(--ink); border-radius: 999px; padding: 0 6px; background: var(--lime); }
 .th-dots { position: relative; display: inline-flex; gap: 3px; }
 .th-dots u { width: 9px; height: 9px; border-radius: 50%; border: 1.5px solid var(--ink); background: #fff; text-decoration: none; }
 .th-dots u.on { background: var(--s-pos); }
@@ -326,7 +329,7 @@ body:has(.th) .th a.th-web { text-decoration: none; }
 .th-poll-head span { font-size: 12.5px; color: var(--ink2); }
 .th-popt { all: unset; cursor: pointer; box-sizing: border-box; position: relative; display: flex; align-items: center; justify-content: space-between; gap: 10px; min-height: 40px; padding: 0 12px; border: 1.5px solid var(--box); border-radius: 9px; overflow: hidden; background: #fff; }
 .th-popt[aria-pressed="true"] { border: 2px solid var(--ink); }
-.th-popt.dim { opacity: .45; }
+.th-popt.dim { opacity: .65; }
 .th-popt > i { position: absolute; left: 0; top: 0; bottom: 0; transition: width .4s ease; }
 .th-popt.pos > i { background: var(--p-pos); } .th-popt.mix > i { background: var(--p-mix); } .th-popt.neg > i { background: var(--p-neg); }
 .th-popt > span { position: relative; display: flex; align-items: center; gap: 8px; font-weight: 700; font-size: 15px; }

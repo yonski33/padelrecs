@@ -1,7 +1,7 @@
 // Thread comments (drizzle/0025, PadelRecs): light Q&A on racket, ranking and guide pages, one level of replies, ▲▼ votes.
 // Auto-moderated with the review form's checks (lib/review-spam.ts): spam is rejected; a link or a very short comment waits as
 // pending (kept, not shown); the rest shows at once.
-import { and, count, desc, eq, gte, inArray, sql } from "drizzle-orm";
+import { and, count, desc, eq, gte, ilike, inArray, or, sql } from "drizzle-orm";
 import type { getDb } from "./index";
 import { comments, commentVotes } from "./schema";
 import { spamScore } from "../lib/review-spam";
@@ -9,7 +9,8 @@ import { spamScore } from "../lib/review-spam";
 type Database = ReturnType<typeof getDb>;
 export const COMMENTS_PER_HOUR = 20;
 export const PAGE_KEY = /^(racket|ranking|guide):[A-Za-z0-9_-]{1,100}$/;
-export type ThreadComment = { id: string; parentId: string | null; alias: string; body: string; question: boolean; at: string; score: number; mine: number };
+/** No tags (owner 2026-11-19): the is_question column stays in the table, unused (always false). */
+export type ThreadComment = { id: string; parentId: string | null; alias: string; body: string; at: string; score: number; mine: number };
 
 /** How a new comment is filed: rejected (spam), pending (held for a person: links, very short), or approved (shown). */
 export function commentStatus(body: string, alias: string) {
@@ -26,10 +27,12 @@ export async function listComments(db: Pick<Database, "select">, page: string, v
   const sum = new Map(sums.map(x => [x.id, Number(x.s)])), my = new Map(mine.map(x => [x.id, x.v]));
   // A reply shows only under a shown parent.
   const shown = new Set(rows.filter(r => !r.parentId).map(r => r.id));
-  return rows.filter(r => !r.parentId || shown.has(r.parentId)).map(r => ({ id: r.id, parentId: r.parentId, alias: r.alias, body: r.body, question: r.isQuestion, at: r.createdAt, score: sum.get(r.id) ?? 0, mine: my.get(r.id) ?? 0 }));
+  return rows.filter(r => !r.parentId || shown.has(r.parentId)).map(r => ({ id: r.id, parentId: r.parentId, alias: r.alias, body: r.body, at: r.createdAt, score: sum.get(r.id) ?? 0, mine: my.get(r.id) ?? 0 }));
 }
 
-export async function addComment(db: Database, c: { page: string; parentId: string | null; alias: string; body: string; question: boolean; voter: string; network: string }, now = new Date()) {
+/** Post a comment or reply. The author's own ▲ comes with it (owner 2026-11-19, like Reddit): it starts at 1, the author's
+ *  arrow shows as up, and tapping it takes the vote back like any other. */
+export async function addComment(db: Database, c: { page: string; parentId: string | null; alias: string; body: string; voter: string; network: string }, now = new Date()) {
   const [recent] = await db.select({ n: count() }).from(comments).where(and(eq(comments.network, c.network), gte(comments.createdAt, new Date(now.getTime() - 3_600_000).toISOString())));
   if (Number(recent.n) >= COMMENTS_PER_HOUR) return { status: "limited" as const };
   if (c.parentId) {
@@ -38,8 +41,9 @@ export async function addComment(db: Database, c: { page: string; parentId: stri
   }
   const status = commentStatus(c.body, c.alias), s = spamScore({ reviewText: c.body, alias: c.alias });
   const id = crypto.randomUUID(), at = now.toISOString();
-  await db.insert(comments).values({ id, page: c.page, parentId: c.parentId, alias: c.alias, body: c.body, isQuestion: c.question, status, spamScore: s.score, voter: c.voter, network: c.network, createdAt: at });
-  return { status, comment: { id, parentId: c.parentId, alias: c.alias, body: c.body, question: c.question, at, score: 0, mine: 0 } satisfies ThreadComment };
+  await db.insert(comments).values({ id, page: c.page, parentId: c.parentId, alias: c.alias, body: c.body, isQuestion: false, status, spamScore: s.score, voter: c.voter, network: c.network, createdAt: at });
+  await db.insert(commentVotes).values({ commentId: id, voter: c.voter, value: 1, updatedAt: at });
+  return { status, comment: { id, parentId: c.parentId, alias: c.alias, body: c.body, at, score: 1, mine: 1 } satisfies ThreadComment };
 }
 
 /** ▲ (1), ▼ (-1) or clear (0) this device's vote on a shown comment. */
@@ -53,10 +57,14 @@ export async function voteComment(db: Database, commentId: string, voter: string
 }
 
 export type AdminComment = { id: string; page: string; parentId: string | null; alias: string; body: string; status: "pending" | "approved" | "rejected"; spamScore: number; at: string };
-/** The admin's comment queue (app/funtimes?tab=comments): one status, newest first, with each status's total. */
-export async function adminComments(db: Pick<Database, "select">, status: AdminComment["status"], limit = 50) {
+/** The admin's comment list (app/funtimes?tab=comments): one status (or "all"), newest first, with each status's total.
+ *  `page` narrows it to one page ("racket:<id>"), `q` to comments whose text or name has those words. */
+export async function adminComments(db: Pick<Database, "select">, status: AdminComment["status"] | "all", limit = 50, find: { page?: string | null; q?: string | null } = {}) {
+  const words = (find.q ?? "").trim().split(/\s+/).filter(Boolean).slice(0, 6);
+  const where = and(status === "all" ? undefined : eq(comments.status, status), find.page ? eq(comments.page, find.page) : undefined,
+    ...words.map(w => or(ilike(comments.body, `%${w.replace(/[%_\\]/g, m => `\\${m}`)}%`), ilike(comments.alias, `%${w.replace(/[%_\\]/g, m => `\\${m}`)}%`))));
   const [rows, totals] = await Promise.all([
-    db.select().from(comments).where(eq(comments.status, status)).orderBy(desc(comments.createdAt)).limit(limit),
+    db.select().from(comments).where(where).orderBy(desc(comments.createdAt)).limit(limit),
     db.select({ status: comments.status, n: count() }).from(comments).groupBy(comments.status),
   ]);
   return { rows: rows.map(r => ({ id: r.id, page: r.page, parentId: r.parentId, alias: r.alias, body: r.body, status: r.status, spamScore: r.spamScore, at: r.createdAt })) as AdminComment[],
@@ -66,4 +74,23 @@ export async function adminComments(db: Pick<Database, "select">, status: AdminC
 export async function setCommentStatus(db: Database, id: string, status: AdminComment["status"]) {
   const done = await db.update(comments).set({ status }).where(eq(comments.id, id)).returning({ id: comments.id });
   return done.length > 0;
+}
+
+/** The text a deleted comment with replies keeps, so its replies stay readable under it. */
+export const REMOVED = "[removed]";
+/** Owner edit (admin Comments tab): new text, the same author, time, status and votes. No public "edited" mark. */
+export async function editComment(db: Database, id: string, body: string) {
+  const text = body.trim();
+  if (text.length < 2 || text.length > 2000) return "invalid" as const;
+  return (await db.update(comments).set({ body: text }).where(eq(comments.id, id)).returning({ id: comments.id })).length ? "ok" as const : "missing" as const;
+}
+/** Owner delete: a comment with replies becomes "[removed]" (name and text) so the replies stay; one with none goes, with its
+ *  votes (comment_votes cascade). */
+export async function deleteComment(db: Database, id: string) {
+  const [c] = await db.select({ id: comments.id }).from(comments).where(eq(comments.id, id));
+  if (!c) return "missing" as const;
+  const [kids] = await db.select({ n: count() }).from(comments).where(eq(comments.parentId, id));
+  if (Number(kids.n) > 0) { await db.update(comments).set({ body: REMOVED, alias: REMOVED }).where(eq(comments.id, id)); return "removed" as const; }
+  await db.delete(comments).where(eq(comments.id, id));
+  return "deleted" as const;
 }

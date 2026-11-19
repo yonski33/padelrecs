@@ -40,6 +40,10 @@ export function homeSeed(payload: HomePayload, choice: QuickChoice, older: boole
     signal: Object.fromEntries(rows.map(r => [r.id, byId.get(r.id)?.signal ?? null])), arm: Object.fromEntries(rows.map(r => [r.id, byId.get(r.id)?.arm ?? null])) };
 }
 
+/** The home's default list (no picks, current models only), as the classic home shows it: the Thread home leads with the
+ *  same ids in the same order (tests/thread-home-order.test.ts). */
+export const defaultHomeIds = (payload: HomePayload, choice: QuickChoice) => homeSeed(payload, choice, false).rows.map(r => r.id);
+
 export async function homePayload(): Promise<HomePayload> { return payloadOf(await matchContext()); }
 /** Built again only when the match context is a new copy (db/same-inputs.ts). */
 const payloadOf = sameInputs((ctx: Awaited<ReturnType<typeof matchContext>>): HomePayload => {

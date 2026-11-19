@@ -1,6 +1,7 @@
 // The Thread racket page's data, from what the live racket page already reads (app/rackets/[slug]/racket-fit.tsx builds the
 // same review cards): own reviews, one YouTube summary per channel, one blog per site, the Reddit summaries (lib/reddit-cards),
 // the page's own TL;DR words (lib/racket-page), the trait bars (expert How it plays first), similar rackets and the line.
+import { reviewerName, typedName } from "../../lib/thread/display-name";
 import { threadRows } from "./data";
 import { onePerChannel, videoOf } from "../../lib/youtube-pick";
 import { redditPick, subOf } from "../../lib/reddit-cards";
@@ -45,7 +46,9 @@ export async function racketData(slug: string) {
     if (v && !seen.has(`${v}|${e.racketId}`)) { seen.add(`${v}|${e.racketId}`); ytProducts.set(v, (ytProducts.get(v) ?? 0) + 1); } }
   const lv = (v?: string | null) => v ? v.toLowerCase() : null;
   const cards: RvCard[] = [
-    ...reviews.map(x => ({ id: `p-${x.id}`, kind: "player" as const, who: x.alias || "A PadelRecs player", meta: [lv(x.playerLevel), x.playingSide ? `${x.playingSide.toLowerCase()} side` : null].filter(Boolean).join(" · ") || null,
+    // Names (lib/thread/display-name.ts): a typed name, else one made from the level and side; those then aren't repeated.
+    ...reviews.map(x => ({ id: `p-${x.id}`, kind: "player" as const, who: reviewerName({ alias: x.alias, level: x.playerLevel, side: x.playingSide }),
+      meta: typedName(x.alias) ? [lv(x.playerLevel), x.playingSide ? `${x.playingSide.toLowerCase()} side` : null].filter(Boolean).join(" · ") || null : null,
       verdict: verdictOf(x.rating), at: x.createdAt, when: ago(x.createdAt, now), text: unmd(x.reviewText), quote: false, url: null, video: null, helpful: x.helpful })),
     ...onePerChannel(external.filter(e => e.sourcePlatform === "YouTube"), v => ytProducts.get(v) ?? 1).flatMap(e => {
       const english = !e.sourceLanguage || e.sourceLanguage === "en";
@@ -83,14 +86,15 @@ export async function racketData(slug: string) {
     return [{ key: k, label, dots: t.dots, line: ctx.expertLine(r.id, k), expert: !!t.expert, n: t.people ? t.people.players.plus + t.people.reviewers.plus : t.plus }]; });
   const style = styleOf(facts);
 
-  // Similar rackets (the live page's similarProducts), one per model, best liked first, and the brand's own line.
+  // Similar rackets (the live page's similarProducts), one per model, best liked first, and the brand's own line. Both keep
+  // only each model's current row (ThreadRow.current, the classic rule), so an older year never stands in for its model.
   const pool = ctx.data.listed.filter(x => score(ctx.data, x.id).judged >= 5);
   const sim = similarProducts(r, pool, tagProfiles([...ctx.data.reviews, ...ctx.data.external]), 12)
     .filter((x, i, a) => modelFamily(x) !== modelFamily(r) && a.findIndex(y => modelFamily(y) === modelFamily(x)) === i)
-    .map(x => rows.get(x.id)).filter((x): x is ThreadRow => !!x && x.score != null).sort((a, b) => b.score! - a.score!).slice(0, 2);
+    .map(x => rows.get(x.id)).filter((x): x is ThreadRow => !!x && x.score != null && !!x.current).sort((a, b) => b.score! - a.score!).slice(0, 2);
   const model = brand && r.name.toLowerCase().startsWith(`${brand.name.toLowerCase()} `) ? r.name.slice(brand.name.length + 1) : r.name;
   const word = model.split(" ")[0]?.toLowerCase() ?? "";
-  const line = ctx.data.listed.filter(x => x.id !== r.id && x.brandId === r.brandId && modelFamily(x) !== modelFamily(r)).map(x => rows.get(x.id)).filter((x): x is ThreadRow => !!x && x.score != null)
+  const line = ctx.data.listed.filter(x => x.id !== r.id && x.brandId === r.brandId && modelFamily(x) !== modelFamily(r)).map(x => rows.get(x.id)).filter((x): x is ThreadRow => !!x && x.score != null && !!x.current)
     .sort((a, b) => Number(b.name.toLowerCase().includes(` ${word} `)) - Number(a.name.toLowerCase().includes(` ${word} `)) || (b.score ?? -1) - (a.score ?? -1)).slice(0, 4);
   const tagTones = Object.fromEntries([...sum.tagCounts.keys()].map(t => [t, tagTone(t)]));
   const latest = [...reviews.map(x => x.createdAt), ...external.map(x => x.sourceDate || x.createdAt)].sort().pop() ?? null;

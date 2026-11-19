@@ -1,6 +1,6 @@
 "use client";
 // "How does it play?" (Metalbone CTRL Thread v7): one vote per group, a second tap clears it, change it any time. Options sort
-// by votes, the leader is lime and bold, yours gets a "You" tag. Counts show once a group has 5 votes (README global rule).
+// by votes, the leader is lime and bold, yours has a dark outline. Counts show once a group has 5 votes (README global rule).
 // Phones show 3 groups with Show more. Votes: /api/trait-votes (drizzle/0024).
 import { useEffect, useState } from "react";
 import { TRAIT_GROUPS, type TraitCounts } from "../../../lib/thread/traits";
@@ -27,7 +27,7 @@ export function TraitVotes({ id }: { id: string }) {
     } catch (e) { setCounts(was.counts); setMine(was.mine); setErr(e instanceof Error ? e.message : "Could not save your vote."); }
   }
   return <section id="play" className="th-card th-sec" style={{ scrollMarginTop: 70 }}>
-    <div className="th-head-row"><h2 className="th-h3">How does it play?</h2><span className="th-sub">Pick what fits. One vote per group, change it any time.</span></div>
+    <div className="th-head-row"><h2 className="th-h3">How does it play?</h2><span className="th-sub">Pick what fits. One vote per group. Tap again to remove.</span></div>
     <div className="th-vgrid">{TRAIT_GROUPS.map((g, gi) => {
       const n = (k: string) => counts[g.key]?.[k] ?? 0, total = g.options.reduce((s, [k]) => s + n(k), 0), shown = total >= MIN_SHOWN, max = Math.max(1, ...g.options.map(([k]) => n(k)));
       const opts = shown ? [...g.options].sort((a, b) => n(b[0]) - n(a[0])) : g.options;
@@ -36,7 +36,7 @@ export function TraitVotes({ id }: { id: string }) {
         {opts.map(([k, label]) => { const top = shown && n(k) === max && n(k) > 0;
           return <button key={k} type="button" className={`th-vopt sm${top ? " top" : ""}`} aria-pressed={mine[g.key] === k} onClick={() => vote(g.key, k)}>
             <i style={{ width: shown ? `${Math.round(n(k) / max * 85)}%` : 0 }}/>
-            <span>{label}{mine[g.key] === k && <span className="th-you">You</span>}</span>
+            <span>{label}</span>
             {shown && <b>{n(k)}</b>}
           </button>; })}
       </div>; })}</div>

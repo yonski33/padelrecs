@@ -5,7 +5,8 @@ import { Shell } from "./shell";
 import { homeMetadata } from "../home-metadata";
 import { liveOr } from "./seo";
 import { DEFAULT_CHOICE } from "../../lib/quick-match";
-import { threadRows, threadBoards, threadFeed } from "./data";
+import { threadRows, threadBoards, threadFeed, hasDb, homeTop } from "./data";
+import { homePayload, defaultHomeIds } from "../home-payload";
 import { threadRankings } from "./rankings-data";
 import { MatchBox, HomeList } from "./live/lists";
 import { Feed, type FeedCard } from "./live/feed";
@@ -18,10 +19,10 @@ export const revalidate = 21600;
 export const generateMetadata = (): Promise<Metadata> => liveOr(() => homeMetadata(DEFAULT_CHOICE, false));
 
 export default async function ThreadHome() {
-  const [{ all, rows }, boards, lists, feed] = await Promise.all([threadRows(), threadBoards(), threadRankings(), threadFeed()]);
-  const scored = all.filter(r => r.score != null);
-  const top = [...scored].sort((a, b) => b.score! - a.score! || b.n - a.n).slice(0, 10);
-  const reviewed = [...scored].sort((a, b) => b.n - a.n).slice(0, 10);
+  const [{ all, rows }, boards, lists, feed, payload] = await Promise.all([threadRows(), threadBoards(), threadRankings(), threadFeed(), hasDb() ? homePayload() : null]);
+  // The classic home's own order (curated picks first, one current row per model; app/home-payload.ts defaultHomeIds).
+  const top = payload ? homeTop(rows, defaultHomeIds(payload, DEFAULT_CHOICE)) : [];
+  const reviewed = all.filter(r => r.score != null && r.current).sort((a, b) => b.n - a.n).slice(0, 10);
   const now = Date.now();
   const card = (f: (typeof feed)[number]): FeedCard | null => { const r = rows.get(f.racketId); return r ? { id: f.id, kind: f.kind, who: f.who, text: f.text, when: ago(f.date, now), verdict: f.verdict, url: f.url, racket: { name: r.name, href: r.href, pic: r.pic } } : null; };
   const cards = feed.slice(0, 60).flatMap(f => card(f) ?? []);

@@ -2,13 +2,14 @@ import { randomUUID } from "node:crypto";
 import { cookies } from "next/headers";
 import { z } from "zod";
 import { database, catalog } from "../../../db/data";
-import { alsoLoved, castVote, myVotes, voteHash, voteStats } from "../../../db/product-votes";
+import { alsoLoved, castVote, myVotes, removeVote, voteHash, voteStats } from "../../../db/product-votes";
 import { niche, productHref } from "../../../lib/niche";
 import { displayName } from "../../../lib/brand-name";
 import { siteOrigin } from "../../../lib/site-url";
 
 // Quick ratings: POST casts or changes this device's 1–5 rating of one product; GET returns a product's totals, this device's
-// votes, or "players who loved these also loved". The device is a random cookie, stored only as a keyed hash.
+// votes, or "players who loved these also loved"; DELETE ?racket=<id> takes back this device's rating. The device is a random
+// cookie, stored only as a keyed hash.
 
 const COOKIE = "rv", YEAR = 60 * 60 * 24 * 365;
 const options = (o: readonly { value: string }[]) => o.map(x => x.value) as [string, ...string[]];
@@ -48,6 +49,19 @@ export async function POST(request: Request) {
     console.error("Product vote failed", error);
     return json({ error: "Could not save your vote." }, 500);
   }
+}
+
+export async function DELETE(request: Request) {
+  const origin = request.headers.get("origin");
+  if (origin && origin !== siteOrigin(request.url)) return json({ error: "Vote from the site, please." }, 403);
+  const racketId = new URL(request.url).searchParams.get("racket");
+  if (!racketId || racketId.length > 100) return json({ error: "Which product?" }, 400);
+  const voter = await device(false);
+  try {
+    const db = await database();
+    if (voter) await removeVote(db, racketId, voter);
+    return json({ stats: await voteStats(db, racketId) });
+  } catch (error) { console.error("Product vote removal failed", error); return json({ error: "Could not remove your vote." }, 500); }
 }
 
 export async function GET(request: Request) {

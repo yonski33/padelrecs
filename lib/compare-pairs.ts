@@ -112,6 +112,11 @@ export function olderInFamily<T extends Product>(product: T, candidates: T[]): T
 /** Which year of a family takes the row (owner 2026-11-15, "Yes, fall back"): the newest year with `enough` reports for a
  *  match %, else the newest. `newer` is the family's newest year when that isn't the one shown (it gets a "new: <year> version"
  *  link); once it has enough reports, it takes the row. */
+/** The ids of the years that take their model's row (rowOfFamily over the whole list): the catalog's default, the home's
+ *  and every Thread list. Older years keep their pages. */
+export function familyRowIds<T extends Product>(listed: T[], enough: (p: T) => boolean): Set<string> {
+  return new Set(listed.filter(r => rowOfFamily(r, listed, enough).shown.id === r.id).map(r => r.id));
+}
 export function rowOfFamily<T extends Product>(product: T, candidates: T[], enough: (p: T) => boolean): { shown: T; newer: T | null } {
   if (!hasYears) return { shown: product, newer: null };
   const key = modelFamily(product);

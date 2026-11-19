@@ -4,7 +4,7 @@
 import { score, type Catalog } from "../../db/data";
 import { styleLean, styleOf, ARM_BAR, MIN_FIT_REPORTS, SUITS_OK } from "../../lib/fit-verdict";
 import { gramsOf, weightOf } from "../../lib/fine-tune";
-import { rowOfFamily } from "../../lib/compare-pairs";
+import { familyRowIds } from "../../lib/compare-pairs";
 import { shapeWord, specValues } from "../../lib/guide";
 import { niche } from "../../lib/niche";
 import type { CatalogRow } from "../../lib/catalog-filter";
@@ -17,8 +17,7 @@ export function catalogRows(data: Catalog, ctx: Ctx, listed: Catalog["listed"] =
   // newest year that has them (the same rule as quick match). Older pages stay live.
   const reportsOf = new Map<string, number>();
   for (const x of [...data.reviews, ...data.external]) reportsOf.set(x.racketId, (reportsOf.get(x.racketId) ?? 0) + 1);
-  const rowOf = (r: Catalog["listed"][number]) => rowOfFamily(r, data.listed, x => (reportsOf.get(x.id) ?? 0) >= MIN_FIT_REPORTS);
-  const newest = new Set(data.listed.filter(r => rowOf(r).shown.id === r.id).map(r => r.id));
+  const newest = familyRowIds(data.listed, x => (reportsOf.get(x.id) ?? 0) >= MIN_FIT_REPORTS);
   // A type-picker site (DiscGolfRecs, lib/fit-config.ts quick) flags "slow-arm friendly" from its arm score, not padel's tag.
   const armScore = ctx.cfg.quick ? new Map(ctx.items.map(x => [x.id, x.arm])) : null;
   return listed.map(r => {
