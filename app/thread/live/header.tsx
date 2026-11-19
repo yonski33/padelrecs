@@ -1,19 +1,18 @@
 "use client";
 // The Thread header (README "Header"): logo, Rackets · Rankings · Guides with the current page in bold, and search. Brands is
 // off the menu (owner 2026-11-19); the brand pages stay live and are linked from racket pages and the catalog.
-// On phones a Menu button opens the same links full width. Search goes to the catalogue, which filters in the browser.
+// On phones a Menu button opens the same links full width, with the same search.
 import { useState } from "react";
 import { th, GUIDE_PATHS, THREAD_DEFAULT } from "../../../lib/thread/look";
+import { RacketSearch } from "../../racket-search";
 
 export type Section = "rackets" | "rankings" | "brands" | "guides" | null;
 const NAV: [Exclude<Section, null>, string, string][] = [["rackets", "Rackets", "/rackets"], ["rankings", "Rankings", "/rankings"], ["guides", "Guides", GUIDE_PATHS.racket]];
 
-function Search() {
-  return <form className="th-search" action="/rackets" role="search">
-    {!THREAD_DEFAULT && <input type="hidden" name="look" value="thread"/>}
-    <label className="vh" htmlFor="th-q">Search rackets</label>
-    <input id="th-q" name="q" placeholder="Search rackets" autoComplete="off"/>
-  </form>;
+// The site's own racket search (app/racket-search.tsx: the shared name index and fuzzy matching) in the Thread look: live
+// suggestions as you type, current models first, keyboard up/down/enter; Enter with no pick filters the catalogue.
+function Search({ id, shortcut = true }: { id: string; shortcut?: boolean }) {
+  return <RacketSearch thread id={id} shortcut={shortcut} placeholder="Search rackets" hidden={THREAD_DEFAULT ? {} : { look: "thread" }}/>;
 }
 
 export function ThreadHeader({ active }: { active: Section }) {
@@ -23,14 +22,14 @@ export function ThreadHeader({ active }: { active: Section }) {
       <a className="th-logo" href={th("/")}><span className="th-dot" aria-hidden="true"/>PadelRecs</a>
       <nav className="th-nav" aria-label="Main">{NAV.map(([k, label, href]) => <a key={k} href={th(href)} aria-current={active === k ? "page" : undefined}>{label}</a>)}</nav>
       <span className="th-grow"/>
-      <Search/>
+      <Search id="th-q"/>
       <button type="button" className="th-menu-btn" aria-expanded={open} aria-controls="th-menu" onClick={() => setOpen(o => !o)}>
         <span className="th-burger" aria-hidden="true"><i/><i/><i/></span>{open ? "Close" : "Menu"}
       </button>
     </div>
     {open && <div className="th-menu" id="th-menu">
       {NAV.map(([k, label, href]) => <a key={k} href={th(href)} aria-current={active === k ? "page" : undefined}>{label}</a>)}
-      <Search/>
+      <Search id="th-q-menu" shortcut={false}/>
     </div>}
   </header>;
 }

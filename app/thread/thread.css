@@ -454,3 +454,22 @@ body:has(.th) .th a.th-brand:hover { background: var(--frame); color: var(--ink)
 
 /* Reading width (owner 2026-11-19): body text inside cards stops at about 75 characters, so wider pages don't stretch lines. */
 .th-card p, .th-lead { max-width: 75ch; }
+
+/* Header search suggestions (app/racket-search.tsx, thread): a light dropdown; hover and the keyboard pick get a light tint,
+   never a dark fill (owner 2026-11-19). On phones the menu has the same search, its list inline under the box. */
+.th-ac { position: relative; }
+.th-ac-drop { position: absolute; top: calc(100% + 6px); right: 0; width: min(400px, 92vw); z-index: 30; background: #fff; border: 2px solid var(--ink); border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0,0,0,.1); padding: 6px; display: flex; flex-direction: column; gap: 2px; }
+.th-ac-drop ul { list-style: none; margin: 0; padding: 0; max-height: min(60vh, 420px); overflow: auto; }
+body:has(.th) .th a.th-ac-item, body:has(.th) .th .th-menu a.th-ac-item { display: flex; align-items: center; gap: 10px; padding: 6px 8px; border: 0; border-radius: 8px;
+  text-decoration: none; color: var(--ink); font: 700 14px/1.3 var(--body-font); }
+body:has(.th) .th a.th-ac-item:hover, body:has(.th) .th a.th-ac-item[aria-selected="true"] { background: var(--frame); color: var(--ink); }
+.th-ac-pic { flex: none; width: 36px; height: 36px; border-radius: 6px; background: var(--soft); display: flex; align-items: center; justify-content: center; overflow: hidden; }
+.th-ac-pic img { max-height: 34px; width: auto; mix-blend-mode: multiply; }
+.th-ac-name { flex: 1; min-width: 0; display: flex; flex-direction: column; }
+.th-ac-name small { font-weight: 400; font-size: 12px; color: var(--ink2); }
+.th-ac-name mark { background: var(--lime-chip); color: var(--ink); border-radius: 3px; padding: 0 1px; }
+.th-ac-h, .th-ac-foot { display: block; margin: 0; padding: 4px 8px; font-size: 12.5px; color: var(--ink2); }
+.th-menu .th-search { flex: none; width: 100%; flex-direction: column; }
+.th-menu .th-ac-drop { position: static; width: auto; margin-top: 6px; box-shadow: none; }
+@media (max-width: 639px) { .th-head .th-menu .th-search { display: flex; } }

@@ -26,7 +26,8 @@ export function Catalog({ rows, brands, title = "All padel rackets", lead = "Eve
   // models" brings the older years back. Their pages stay live either way.
   const pool = useMemo(() => older || words.length ? rows : rows.filter(r => r.current !== false), [rows, older, words.length]);
   const olderN = rows.length - rows.filter(r => r.current !== false).length;
-  const pass = (r: ThreadRow, skip?: Key) => words.every(w => r.name.toLowerCase().includes(w)) && GROUPS.every(([k]) => k === skip || !f[k]?.length || f[k]!.some(v => test(r, k, v)));
+  // A search word can be in the name or the page address ("st5": siux-electra-pro-st5-2026, listed as "Siux Electra Pro").
+  const pass = (r: ThreadRow, skip?: Key) => words.every(w => `${r.name} ${r.slug.replace(/-/g, " ")}`.toLowerCase().includes(w)) && GROUPS.every(([k]) => k === skip || !f[k]?.length || f[k]!.some(v => test(r, k, v)));
   const toggle = (k: Key, v: string) => { setN(STEP); setF(x => { const cur = x[k] ?? []; return { ...x, [k]: cur.includes(v) ? cur.filter(y => y !== v) : [...cur, v] }; }); };
   const any = words.length > 0 || Object.values(f).some(v => v?.length);
   const clear = () => { setF({}); setQ(""); setN(STEP); };
