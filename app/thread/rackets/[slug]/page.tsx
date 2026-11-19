@@ -111,7 +111,7 @@ export default async function ThreadRacket({ params }: P) {
         </section>}
       </div>
       <aside className="th-side">
-        <section className="th-card th-sbox"><div className="th-sbox-head">About this racket</div><div className="th-sbox-body pad">
+        <section className="th-card th-sbox"><div className="th-sbox-head">{`About this ${niche.words.one}`}</div><div className="th-sbox-body pad">
           <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
             {row?.score != null ? <span className={`th-badge ${tone(row.score)}`} style={{ fontSize: 28 }}>{row.score}</span> : <span className="th-badge new">New</span>}
             <span style={{ display: "flex", flexDirection: "column", gap: 3, fontSize: 12.5, color: "var(--body)" }}>

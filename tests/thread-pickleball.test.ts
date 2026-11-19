@@ -89,6 +89,8 @@ test("pickleball proxy: live pages by default, Thread pages with ?look=thread", 
     const out = {};
     out.styles = (await import("./lib/quick-match.ts")).STYLES.filter(x => x !== "any");
     out.footer = (await import("./lib/thread/copy.ts")).GUIDE_UI.footerTagline;
+    const { reviewerName } = await import("./lib/thread/display-name.ts");
+    out.names = [reviewerName({ level: "Intermediate", side: "Doubles" }), reviewerName({ side: "Both" }), reviewerName({ level: "Competitive" }), reviewerName({ alias: "Gali A", side: "Singles" })];
     for (const p of ["/", "/?look=thread", "/paddles?look=thread", "/paddles/joola-perseus-16mm?look=thread", "/guides/doubles-or-singles?look=thread", "/compare?look=thread", "/about?look=classic"]) {
       const r = await proxy(new NextRequest(new URL(p, "https://www.pickleballrecs.com")));
       const to = r.headers.get("x-middleware-rewrite");
@@ -100,6 +102,7 @@ test("pickleball proxy: live pages by default, Thread pages with ?look=thread", 
   const out = JSON.parse(raw.trim().split("\n").pop()!);
   assert.deepEqual(out.styles, ["control", "balance", "power", "spin"], "Spin is a 4th I want option (owner 2026-11-19)");
   assert.equal(out.footer, "a free, ad-light side project · built by pickleball players");
+  assert.deepEqual(out.names, ["Intermediate, mostly doubles", "Plays singles and doubles", "Competitive player", "Gali A"]);
   assert.doesNotMatch(out["/"], /^\/thread/, "the normal home stays live");
   assert.equal(out["/?look=thread"], "/thread");
   assert.equal(out["/paddles?look=thread"], "/thread/rackets");
@@ -107,4 +110,49 @@ test("pickleball proxy: live pages by default, Thread pages with ?look=thread", 
   assert.equal(out["/guides/doubles-or-singles?look=thread"], "/thread/guides/side");
   assert.doesNotMatch(out["/compare?look=thread"], /^\/thread/);
   assert.doesNotMatch(out["/about?look=classic"], /^\/thread/);
+});
+
+// PR 3: the paddle page. Prefill rules, the Spin advice and the pickleball bylines.
+import { buildPrefill, sourcePicks, specLeans, GAME } from "../lib/thread/trait-prefill";
+import { adviceLine, fitsOf } from "../lib/thread/fit-advice";
+import type { EvidenceRow } from "../lib/evidence";
+import pbFile from "../db/thread/pickleball-traits.json";
+const ev = (attribute: string, value: number, strength: 0.5 | 1 | 1.5 = 1, extra: Partial<EvidenceRow> = {}): EvidenceRow => ({ productId: "a", sourceKind: "player_report",
+  sourceRef: "w:1#reader", authorKey: null, attribute, value, valueText: null, strength, quote: null, saidAt: null, extractedBy: "reader-v1", ...extra });
+
+test("pickleball prefill: Spin and Pop from evidence, Game type from words, no padel groups, no specs", () => {
+  assert.equal(sourcePicks([ev("spin", 1)], "pickleball").spin, "lots");
+  assert.equal(sourcePicks([ev("spin", 1, 0.5)], "pickleball").spin, "some");
+  assert.equal(sourcePicks([ev("spin", -1)], "pickleball").spin, "little");
+  assert.equal(sourcePicks([ev("pop", 1)], "pickleball").pop, "high");
+  assert.equal(sourcePicks([ev("pop", -1)], "pickleball").pop, "low");
+  assert.equal(sourcePicks([ev("speed", 1)], "pickleball").maneuver, undefined);
+  assert.equal(sourcePicks([ev("speed", 1)]).maneuver, "very", "padel keeps Maneuverable");
+  assert.equal(sourcePicks([ev("spin", 1)]).spin, undefined, "padel has no Spin group");
+  const pick = (t: string) => GAME.find(([, re]) => re.test(t))?.[0] ?? null;
+  assert.equal(pick("Great for doubles at the kitchen."), "doubles");
+  assert.equal(pick("I mostly play singles with it."), "singles");
+  assert.equal(pick("Works for singles and doubles alike."), "both");
+  assert.deepEqual(specLeans({ shape: "Elongated", core: "16 mm", balance: "115" }, "pickleball"), {});
+  const out = buildPrefill([{ id: "a", slug: "a", name: "A", shape: "Hybrid", core: "16 mm", balance: null }], [ev("spin", 1)],
+    [{ productId: "a", key: "w:1", negative: false, text: "Soft feel, lots of bounce, great in doubles, on the left side." },
+      { productId: "a", key: "w:2", negative: true, text: "Bought it for singles, regret it." }], "2026-11-19", "pickleball");
+  assert.deepEqual(out.rackets.a.groups.game_type, { doubles: 1 }, "a negative review's format is left out");
+  assert.deepEqual(out.rackets.a.groups.feel, { soft: 1 });
+  assert.equal(out.rackets.a.groups.trampoline, undefined);
+  assert.equal(out.rackets.a.groups.side, undefined);
+  assert.deepEqual(out.rackets.a.spec, {});
+});
+
+test("pickleball prefill file: only pickleball groups and options", () => {
+  const groups = traitGroupsFor("pickleball");
+  for (const r of Object.values((pbFile as { rackets: Record<string, { groups: Record<string, Record<string, number>> }> }).rackets))
+    for (const [g, opts] of Object.entries(r.groups)) for (const k of Object.keys(opts)) assert.ok(validTraitVote(g, k, groups), `${g}.${k}`);
+});
+
+test("Is it right for me? with Spin: strong or short on spin from the Spin bar", () => {
+  const p = { level: "intermediate" as const, style: "spin" as const, arm: false };
+  assert.ok(fitsOf(p, { styleDots: { power: 3, control: 3, spin: 5 } }).includes("strong on spin"));
+  assert.match(adviceLine(p, { styleDots: { power: 3, control: 3, spin: 5 }, suits: { beginner: 40, intermediate: 80, advanced: 60 } }, 85), /strong on spin/i);
+  assert.match(adviceLine(p, { styleDots: { power: 3, control: 3, spin: 1 } }, 50), /short on spin/);
 });

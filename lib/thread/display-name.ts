@@ -4,6 +4,7 @@
 // lib/nickname.ts) is ignored here, at display time. Pure, for tests.
 import { NICK_A, DEFAULT_NICKNAMES } from "../nickname";
 import { niche } from "../niche";
+import { sideWord } from "../byline";
 
 /** The longest name the Thread forms accept. */
 export const NAME_MAX = 24, NAME_MIN = 2;
@@ -25,11 +26,16 @@ export function typedName(alias: string | null | undefined): string | null {
 }
 
 const SIDE: Record<string, string> = { left: "left side", right: "right side", both: "both sides" };
+/** A site whose "side" is a format with its own words (PickleballRecs: "mostly doubles", lib/byline.ts), else null. */
+const formatWord = (side: string) => { const own = (niche.profile.playingSide?.options ?? []).find(o => o.value.toLowerCase() === side.toLowerCase()) as { display?: string } | undefined;
+  return own?.display ? sideWord(side) : null; };
 /** A review's name: the typed name, else built from the level and side the reviewer gave, else "Anonymous". */
 export function reviewerName(r: { alias?: string | null; level?: string | null; side?: string | null }): string {
   const typed = typedName(r.alias);
   if (typed) return typed;
   const level = r.level?.trim() ? r.level.trim()[0].toUpperCase() + r.level.trim().slice(1).toLowerCase() : null;
+  const format = r.side?.trim() ? formatWord(r.side.trim()) : null;
+  if (format) return level ? `${level}, ${format}` : `Plays ${format}`; // "Intermediate, mostly doubles"
   const side = r.side?.trim() ? SIDE[r.side.trim().toLowerCase()] ?? null : null;
   if (level && side) return `${level}, ${side}`;
   if (level) return `${level} player`;

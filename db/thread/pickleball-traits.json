@@ -1,0 +1,5882 @@
+{
+ "built": "2026-11-19",
+ "rule": "One count per review, web report or YouTube channel per group; specs kept apart in `spec` and never counted.",
+ "rackets": {
+  "11six24-hurache-x-jelly-bean-2024": {
+   "slug": "11six24-hurache-x-jelly-bean",
+   "name": "11SIX24 Hurache-X Jelly Bean",
+   "sources": 4,
+   "groups": {
+    "plays_like": {
+     "control": 2,
+     "all_round": 1,
+     "power": 1
+    },
+    "spin": {
+     "lots": 2
+    },
+    "feel": {
+     "soft": 1
+    }
+   },
+   "spec": {}
+  },
+  "11six24-hurache-x-jelly-bean-2-2026": {
+   "slug": "11six24-hurache-x-jelly-bean-2",
+   "name": "11SIX24 Hurache-X Jelly Bean 2",
+   "sources": 0,
+   "groups": {},
+   "spec": {}
+  },
+  "11six24-hurache-x-power-2025": {
+   "slug": "11six24-hurache-x-power",
+   "name": "11SIX24 Hurache-X Power",
+   "sources": 33,
+   "groups": {
+    "plays_like": {
+     "power": 22,
+     "control": 3,
+     "all_round": 3
+    },
+    "spin": {
+     "lots": 12,
+     "some": 1,
+     "little": 1
+    },
+    "feel": {
+     "hard": 1
+    },
+    "sweet_spot": {
+     "big": 8,
+     "small": 3,
+     "medium": 2
+    },
+    "arm": {
+     "not_really": 3,
+     "very": 1
+    },
+    "level": {
+     "beginner": 1,
+     "intermediate": 2
+    },
+    "pop": {
+     "high": 1,
+     "low": 2,
+     "medium": 2
+    },
+    "durability": {
+     "holds_up": 1,
+     "wears_fast": 1
+    }
+   },
+   "spec": {}
+  },
+  "11six24-hurache-x-power-2-2026": {
+   "slug": "11six24-hurache-x-power-2",
+   "name": "11SIX24 Hurache-X Power 2",
+   "sources": 49,
+   "groups": {
+    "spin": {
+     "lots": 11,
+     "some": 2
+    },
+    "pop": {
+     "high": 7,
+     "medium": 2,
+     "low": 2
+    },
+    "feel": {
+     "soft": 1,
+     "hard": 1
+    },
+    "plays_like": {
+     "power": 14,
+     "all_round": 2,
+     "control": 6
+    },
+    "sweet_spot": {
+     "small": 11,
+     "medium": 1
+    },
+    "durability": {
+     "wears_fast": 11,
+     "holds_up": 7
+    },
+    "level": {
+     "advanced": 1
+    },
+    "game_type": {
+     "singles": 1
+    }
+   },
+   "spec": {}
+  },
+  "11six24-pegasus-jelly-bean-2025": {
+   "slug": "11six24-pegasus-jelly-bean",
+   "name": "11SIX24 Pegasus Jelly Bean",
+   "sources": 18,
+   "groups": {
+    "plays_like": {
+     "control": 14,
+     "all_round": 2
+    },
+    "sweet_spot": {
+     "big": 11
+    },
+    "spin": {
+     "lots": 3
+    },
+    "feel": {
+     "soft": 1
+    },
+    "pop": {
+     "high": 2,
+     "low": 1,
+     "medium": 2
+    },
+    "level": {
+     "beginner": 4
+    },
+    "durability": {
+     "holds_up": 1,
+     "wears_fast": 1
+    }
+   },
+   "spec": {}
+  },
+  "11six24-pegasus-jelly-bean-2-2026": {
+   "slug": "11six24-pegasus-jelly-bean-2",
+   "name": "11SIX24 Pegasus Jelly Bean 2",
+   "sources": 30,
+   "groups": {
+    "plays_like": {
+     "control": 23,
+     "all_round": 1
+    },
+    "sweet_spot": {
+     "big": 13,
+     "medium": 2
+    },
+    "spin": {
+     "lots": 14
+    },
+    "game_type": {
+     "doubles": 1
+    },
+    "level": {
+     "intermediate": 1,
+     "advanced": 1
+    },
+    "feel": {
+     "soft": 3
+    },
+    "pop": {
+     "low": 4
+    },
+    "arm": {
+     "somewhat": 2
+    },
+    "durability": {
+     "holds_up": 7
+    }
+   },
+   "spec": {}
+  },
+  "11six24-pegasus-power-2025": {
+   "slug": "11six24-pegasus-power",
+   "name": "11SIX24 Pegasus Power",
+   "sources": 32,
+   "groups": {
+    "plays_like": {
+     "power": 13,
+     "all_round": 2,
+     "control": 9
+    },
+    "sweet_spot": {
+     "big": 8,
+     "medium": 2
+    },
+    "spin": {
+     "lots": 4,
+     "little": 1,
+     "some": 2
+    },
+    "feel": {
+     "hard": 2
+    },
+    "game_type": {
+     "doubles": 1
+    },
+    "pop": {
+     "high": 4,
+     "medium": 3
+    },
+    "arm": {
+     "not_really": 1
+    },
+    "level": {
+     "advanced": 1
+    },
+    "durability": {
+     "wears_fast": 2
+    }
+   },
+   "spec": {}
+  },
+  "11six24-pegasus-power-2-2026": {
+   "slug": "11six24-pegasus-power-2",
+   "name": "11SIX24 Pegasus Power 2",
+   "sources": 42,
+   "groups": {
+    "sweet_spot": {
+     "big": 13,
+     "medium": 2,
+     "small": 2
+    },
+    "game_type": {
+     "singles": 1
+    },
+    "plays_like": {
+     "power": 12,
+     "control": 7
+    },
+    "spin": {
+     "lots": 14,
+     "some": 1
+    },
+    "pop": {
+     "high": 9,
+     "low": 2,
+     "medium": 2
+    },
+    "level": {
+     "intermediate": 1
+    },
+    "durability": {
+     "holds_up": 9,
+     "wears_fast": 2
+    },
+    "arm": {
+     "not_really": 1
+    },
+    "feel": {
+     "hard": 1
+    }
+   },
+   "spec": {}
+  },
+  "11six24-ultre-jelly-bean-2-2026": {
+   "slug": "11six24-ultre-jelly-bean-2",
+   "name": "11SIX24 Ultré Jelly Bean 2",
+   "sources": 42,
+   "groups": {
+    "plays_like": {
+     "control": 28,
+     "all_round": 7
+    },
+    "spin": {
+     "lots": 16
+    },
+    "feel": {
+     "soft": 3
+    },
+    "sweet_spot": {
+     "big": 5,
+     "medium": 2,
+     "small": 1
+    },
+    "level": {
+     "intermediate": 1,
+     "advanced": 1,
+     "beginner": 1
+    },
+    "durability": {
+     "holds_up": 3
+    },
+    "pop": {
+     "low": 8
+    },
+    "arm": {
+     "somewhat": 4
+    }
+   },
+   "spec": {}
+  },
+  "11six24-ultre-power-2-2026": {
+   "slug": "11six24-ultre-power-2",
+   "name": "11SIX24 Ultré Power 2",
+   "sources": 100,
+   "groups": {
+    "plays_like": {
+     "power": 44,
+     "all_round": 6,
+     "control": 13
+    },
+    "spin": {
+     "lots": 32,
+     "little": 3,
+     "some": 2
+    },
+    "feel": {
+     "hard": 6,
+     "soft": 3
+    },
+    "pop": {
+     "high": 25,
+     "low": 7,
+     "medium": 5
+    },
+    "sweet_spot": {
+     "big": 13,
+     "small": 6,
+     "medium": 10
+    },
+    "level": {
+     "intermediate": 1,
+     "advanced": 2
+    },
+    "durability": {
+     "holds_up": 17
+    },
+    "game_type": {
+     "singles": 2,
+     "doubles": 1
+    },
+    "arm": {
+     "not_really": 2
+    }
+   },
+   "spec": {}
+  },
+  "11six24-vapor-alpha-pro-power-2025": {
+   "slug": "11six24-vapor-alpha-pro-power",
+   "name": "11SIX24 Vapor Alpha Pro Power",
+   "sources": 27,
+   "groups": {
+    "plays_like": {
+     "all_round": 8,
+     "power": 7,
+     "control": 6
+    },
+    "sweet_spot": {
+     "big": 5,
+     "small": 2,
+     "medium": 2
+    },
+    "level": {
+     "intermediate": 1
+    },
+    "durability": {
+     "holds_up": 1,
+     "wears_fast": 2
+    },
+    "pop": {
+     "low": 2,
+     "medium": 2,
+     "high": 1
+    },
+    "spin": {
+     "lots": 1
+    },
+    "arm": {
+     "somewhat": 2
+    }
+   },
+   "spec": {}
+  },
+  "11six24-vapor-jelly-bean-2025": {
+   "slug": "11six24-vapor-jelly-bean",
+   "name": "11SIX24 Vapor Jelly Bean",
+   "sources": 9,
+   "groups": {
+    "plays_like": {
+     "control": 7,
+     "all_round": 2
+    },
+    "sweet_spot": {
+     "big": 5
+    },
+    "spin": {
+     "lots": 2,
+     "little": 1
+    },
+    "pop": {
+     "low": 1,
+     "medium": 1
+    },
+    "level": {
+     "intermediate": 1
+    },
+    "durability": {
+     "wears_fast": 1
+    }
+   },
+   "spec": {}
+  },
+  "11six24-vapor-jelly-bean-2-2026": {
+   "slug": "11six24-vapor-jelly-bean-2",
+   "name": "11SIX24 Vapor Jelly Bean 2",
+   "sources": 18,
+   "groups": {
+    "sweet_spot": {
+     "big": 2,
+     "small": 7,
+     "medium": 1
+    },
+    "spin": {
+     "lots": 11,
+     "some": 1
+    },
+    "feel": {
+     "soft": 3
+    },
+    "plays_like": {
+     "control": 11
+    },
+    "pop": {
+     "medium": 1,
+     "low": 5
+    },
+    "level": {
+     "advanced": 1
+    },
+    "arm": {
+     "somewhat": 2,
+     "not_really": 1
+    },
+    "durability": {
+     "holds_up": 2
+    }
+   },
+   "spec": {}
+  },
+  "11six24-vapor-power-2025": {
+   "slug": "11six24-vapor-power",
+   "name": "11SIX24 Vapor Power",
+   "sources": 69,
+   "groups": {
+    "plays_like": {
+     "control": 13,
+     "power": 20,
+     "all_round": 15
+    },
+    "sweet_spot": {
+     "big": 16,
+     "small": 1,
+     "medium": 3
+    },
+    "pop": {
+     "high": 7,
+     "low": 2,
+     "medium": 4
+    },
+    "spin": {
+     "lots": 9,
+     "little": 4,
+     "some": 1
+    },
+    "feel": {
+     "soft": 3,
+     "hard": 1
+    },
+    "level": {
+     "intermediate": 1,
+     "advanced": 2
+    },
+    "durability": {
+     "wears_fast": 6,
+     "holds_up": 4
+    },
+    "arm": {
+     "very": 2,
+     "not_really": 2
+    }
+   },
+   "spec": {}
+  },
+  "11six24-vapor-power-2-2026": {
+   "slug": "11six24-vapor-power-2",
+   "name": "11SIX24 Vapor Power 2",
+   "sources": 111,
+   "groups": {
+    "plays_like": {
+     "power": 27,
+     "control": 14,
+     "all_round": 10
+    },
+    "spin": {
+     "lots": 55,
+     "some": 4,
+     "little": 1
+    },
+    "pop": {
+     "high": 17,
+     "medium": 3,
+     "low": 7
+    },
+    "sweet_spot": {
+     "small": 10,
+     "big": 12,
+     "medium": 6
+    },
+    "feel": {
+     "hard": 2,
+     "soft": 1
+    },
+    "level": {
+     "intermediate": 2,
+     "advanced": 2
+    },
+    "durability": {
+     "holds_up": 28,
+     "wears_fast": 9
+    },
+    "game_type": {
+     "doubles": 1
+    }
+   },
+   "spec": {}
+  },
+  "aireo-cyclone-elongated-2026": {
+   "slug": "aireo-cyclone-elongated",
+   "name": "Aireo Cyclone Elongated",
+   "sources": 7,
+   "groups": {
+    "plays_like": {
+     "power": 6
+    },
+    "pop": {
+     "high": 4,
+     "medium": 1
+    },
+    "feel": {
+     "hard": 1
+    },
+    "spin": {
+     "lots": 1,
+     "some": 2
+    },
+    "durability": {
+     "holds_up": 1
+    },
+    "level": {
+     "advanced": 1
+    }
+   },
+   "spec": {}
+  },
+  "aireo-cyclone-hybrid-2026": {
+   "slug": "aireo-cyclone-hybrid",
+   "name": "Aireo Cyclone Hybrid",
+   "sources": 0,
+   "groups": {},
+   "spec": {}
+  },
+  "aireo-cyclone-x-hybrid-2026": {
+   "slug": "aireo-cyclone-x-hybrid",
+   "name": "Aireo Cyclone X Hybrid",
+   "sources": 0,
+   "groups": {},
+   "spec": {}
+  },
+  "aireo-falcon-pro-l16-2025": {
+   "slug": "aireo-falcon-pro-l16",
+   "name": "Aireo Falcon Pro-L16",
+   "sources": 0,
+   "groups": {},
+   "spec": {}
+  },
+  "aireo-falcon-pro-o16-2025": {
+   "slug": "aireo-falcon-pro-o16",
+   "name": "Aireo Falcon Pro-O16",
+   "sources": 0,
+   "groups": {},
+   "spec": {}
+  },
+  "bread-butter-filth-hybrid-2025": {
+   "slug": "bread-butter-filth-hybrid",
+   "name": "Bread & Butter Filth Hybrid",
+   "sources": 0,
+   "groups": {},
+   "spec": {}
+  },
+  "bread-butter-filth-standard-2025": {
+   "slug": "bread-butter-filth-standard",
+   "name": "Bread & Butter Filth Standard",
+   "sources": 0,
+   "groups": {},
+   "spec": {}
+  },
+  "bread-butter-loco-2-elongated-2026": {
+   "slug": "bread-butter-loco-2-elongated",
+   "name": "Bread & Butter Loco 2 Elongated",
+   "sources": 1,
+   "groups": {
+    "plays_like": {
+     "control": 1
+    },
+    "spin": {
+     "lots": 1
+    }
+   },
+   "spec": {}
+  },
+  "bread-butter-loco-2-hybrid-2026": {
+   "slug": "bread-butter-loco-2-hybrid",
+   "name": "Bread & Butter Loco 2 Hybrid",
+   "sources": 0,
+   "groups": {},
+   "spec": {}
+  },
+  "bread-butter-loco-elongated-2025": {
+   "slug": "bread-butter-loco-elongated",
+   "name": "Bread & Butter Loco Elongated",
+   "sources": 38,
+   "groups": {
+    "plays_like": {
+     "power": 17,
+     "all_round": 7,
+     "control": 1
+    },
+    "pop": {
+     "high": 7,
+     "low": 2
+    },
+    "feel": {
+     "hard": 1
+    },
+    "spin": {
+     "lots": 4,
+     "little": 2
+    },
+    "sweet_spot": {
+     "small": 9,
+     "big": 7
+    },
+    "durability": {
+     "wears_fast": 3
+    },
+    "level": {
+     "advanced": 2
+    },
+    "arm": {
+     "not_really": 2
+    },
+    "game_type": {
+     "singles": 1,
+     "both": 1
+    }
+   },
+   "spec": {}
+  },
+  "bread-butter-loco-hybrid-2025": {
+   "slug": "bread-butter-loco-hybrid",
+   "name": "Bread & Butter Loco Hybrid",
+   "sources": 66,
+   "groups": {
+    "plays_like": {
+     "all_round": 11,
+     "power": 28,
+     "control": 12
+    },
+    "spin": {
+     "lots": 17,
+     "little": 3
+    },
+    "sweet_spot": {
+     "big": 15,
+     "small": 2,
+     "medium": 1
+    },
+    "feel": {
+     "hard": 2
+    },
+    "pop": {
+     "high": 11,
+     "medium": 3
+    },
+    "durability": {
+     "wears_fast": 10,
+     "holds_up": 2
+    },
+    "level": {
+     "advanced": 2
+    },
+    "arm": {
+     "not_really": 4,
+     "very": 2,
+     "somewhat": 2
+    }
+   },
+   "spec": {}
+  },
+  "bread-butter-loco-standard-2025": {
+   "slug": "bread-butter-loco-standard",
+   "name": "Bread & Butter Loco Standard",
+   "sources": 31,
+   "groups": {
+    "plays_like": {
+     "all_round": 3,
+     "power": 13,
+     "control": 6
+    },
+    "sweet_spot": {
+     "big": 17,
+     "small": 1,
+     "medium": 3
+    },
+    "pop": {
+     "high": 8,
+     "medium": 2
+    },
+    "feel": {
+     "hard": 1,
+     "soft": 1
+    },
+    "spin": {
+     "lots": 4
+    },
+    "arm": {
+     "not_really": 1,
+     "very": 1
+    },
+    "level": {
+     "advanced": 1,
+     "intermediate": 1
+    },
+    "durability": {
+     "wears_fast": 1
+    }
+   },
+   "spec": {}
+  },
+  "bread-butter-psycho-2025": {
+   "slug": "bread-butter-psycho",
+   "name": "Bread & Butter Psycho",
+   "sources": 2,
+   "groups": {
+    "plays_like": {
+     "power": 2
+    },
+    "arm": {
+     "not_really": 1
+    },
+    "spin": {
+     "lots": 2
+    },
+    "pop": {
+     "medium": 1
+    }
+   },
+   "spec": {}
+  },
+  "crbn1-trufoam-barrage-2026": {
+   "slug": "crbn1-trufoam-barrage",
+   "name": "CRBN¹ TruFoam Barrage",
+   "sources": 4,
+   "groups": {
+    "plays_like": {
+     "all_round": 3
+    },
+    "durability": {
+     "wears_fast": 2
+    },
+    "sweet_spot": {
+     "small": 1
+    },
+    "pop": {
+     "high": 1
+    }
+   },
+   "spec": {}
+  },
+  "crbn1-trufoam-genesis-2025": {
+   "slug": "crbn1-trufoam-genesis",
+   "name": "CRBN¹ TruFoam Genesis",
+   "sources": 32,
+   "groups": {
+    "plays_like": {
+     "power": 12,
+     "all_round": 4,
+     "control": 2
+    },
+    "pop": {
+     "high": 4,
+     "low": 2
+    },
+    "feel": {
+     "soft": 3,
+     "hard": 1
+    },
+    "spin": {
+     "lots": 9
+    },
+    "sweet_spot": {
+     "small": 9,
+     "big": 2,
+     "medium": 1
+    },
+    "arm": {
+     "not_really": 1
+    },
+    "durability": {
+     "holds_up": 3,
+     "wears_fast": 2
+    }
+   },
+   "spec": {}
+  },
+  "crbn1-trufoam-waves-2025": {
+   "slug": "crbn1-trufoam-waves",
+   "name": "CRBN¹ TruFoam Waves",
+   "sources": 13,
+   "groups": {
+    "plays_like": {
+     "power": 8,
+     "control": 1
+    },
+    "sweet_spot": {
+     "small": 11,
+     "medium": 1
+    },
+    "spin": {
+     "lots": 4,
+     "some": 1
+    },
+    "level": {
+     "advanced": 1
+    },
+    "pop": {
+     "low": 2,
+     "medium": 1
+    }
+   },
+   "spec": {}
+  },
+  "crbn2-trufoam-barrage-2026": {
+   "slug": "crbn2-trufoam-barrage",
+   "name": "CRBN² TruFoam Barrage",
+   "sources": 0,
+   "groups": {},
+   "spec": {}
+  },
+  "crbn2-trufoam-genesis-2025": {
+   "slug": "crbn2-trufoam-genesis",
+   "name": "CRBN² TruFoam Genesis",
+   "sources": 45,
+   "groups": {
+    "sweet_spot": {
+     "small": 8,
+     "big": 12,
+     "medium": 3
+    },
+    "spin": {
+     "lots": 12,
+     "some": 1
+    },
+    "pop": {
+     "high": 2,
+     "medium": 4,
+     "low": 8
+    },
+    "plays_like": {
+     "control": 16,
+     "all_round": 3,
+     "power": 7
+    },
+    "level": {
+     "beginner": 1,
+     "advanced": 1
+    },
+    "durability": {
+     "holds_up": 2,
+     "wears_fast": 1
+    },
+    "game_type": {
+     "doubles": 1
+    },
+    "arm": {
+     "very": 1
+    }
+   },
+   "spec": {}
+  },
+  "crbn2-trufoam-waves-2025": {
+   "slug": "crbn2-trufoam-waves",
+   "name": "CRBN² TruFoam Waves",
+   "sources": 9,
+   "groups": {
+    "plays_like": {
+     "power": 6,
+     "control": 2
+    },
+    "sweet_spot": {
+     "small": 9
+    },
+    "spin": {
+     "lots": 2,
+     "some": 1
+    },
+    "pop": {
+     "low": 1
+    }
+   },
+   "spec": {}
+  },
+  "crbn3-trufoam-barrage-2026": {
+   "slug": "crbn3-trufoam-barrage",
+   "name": "CRBN³ TruFoam Barrage",
+   "sources": 1,
+   "groups": {
+    "plays_like": {
+     "power": 1
+    },
+    "sweet_spot": {
+     "small": 1
+    },
+    "spin": {
+     "little": 1
+    }
+   },
+   "spec": {}
+  },
+  "crbn3-trufoam-genesis-2025": {
+   "slug": "crbn3-trufoam-genesis",
+   "name": "CRBN³ TruFoam Genesis",
+   "sources": 27,
+   "groups": {
+    "plays_like": {
+     "power": 6,
+     "control": 10,
+     "all_round": 1
+    },
+    "feel": {
+     "soft": 1
+    },
+    "sweet_spot": {
+     "big": 5,
+     "small": 2,
+     "medium": 3
+    },
+    "spin": {
+     "lots": 12
+    },
+    "level": {
+     "advanced": 1
+    },
+    "pop": {
+     "low": 2,
+     "high": 4
+    },
+    "durability": {
+     "holds_up": 1,
+     "wears_fast": 1
+    }
+   },
+   "spec": {}
+  },
+  "crbn3-trufoam-waves-2025": {
+   "slug": "crbn3-trufoam-waves",
+   "name": "CRBN³ TruFoam Waves",
+   "sources": 0,
+   "groups": {},
+   "spec": {}
+  },
+  "crbn4-trufoam-barrage-2026": {
+   "slug": "crbn4-trufoam-barrage",
+   "name": "CRBN⁴ TruFoam Barrage",
+   "sources": 13,
+   "groups": {
+    "plays_like": {
+     "power": 2,
+     "all_round": 6
+    },
+    "spin": {
+     "lots": 4
+    },
+    "pop": {
+     "high": 4,
+     "medium": 1
+    },
+    "feel": {
+     "hard": 1
+    },
+    "sweet_spot": {
+     "small": 8
+    },
+    "level": {
+     "advanced": 1
+    },
+    "durability": {
+     "wears_fast": 3
+    }
+   },
+   "spec": {}
+  },
+  "crbn4-trufoam-genesis-2025": {
+   "slug": "crbn4-trufoam-genesis",
+   "name": "CRBN⁴ TruFoam Genesis",
+   "sources": 16,
+   "groups": {
+    "sweet_spot": {
+     "small": 5,
+     "big": 1,
+     "medium": 1
+    },
+    "spin": {
+     "lots": 1,
+     "little": 1,
+     "some": 1
+    },
+    "plays_like": {
+     "control": 7,
+     "all_round": 2,
+     "power": 2
+    },
+    "pop": {
+     "high": 1
+    },
+    "feel": {
+     "soft": 1
+    },
+    "durability": {
+     "wears_fast": 2
+    },
+    "arm": {
+     "somewhat": 1
+    }
+   },
+   "spec": {}
+  },
+  "crbn4-trufoam-waves-2025": {
+   "slug": "crbn4-trufoam-waves",
+   "name": "CRBN⁴ TruFoam Waves",
+   "sources": 16,
+   "groups": {
+    "sweet_spot": {
+     "small": 12
+    },
+    "plays_like": {
+     "power": 9,
+     "all_round": 1,
+     "control": 3
+    },
+    "spin": {
+     "lots": 5,
+     "some": 1
+    },
+    "pop": {
+     "low": 2,
+     "medium": 1
+    }
+   },
+   "spec": {}
+  },
+  "diadem-edge-18k-max-2025": {
+   "slug": "diadem-edge-18k-max",
+   "name": "Diadem Edge 18K MAX",
+   "sources": 1,
+   "groups": {
+    "plays_like": {
+     "control": 1
+    },
+    "sweet_spot": {
+     "medium": 1
+    },
+    "feel": {
+     "soft": 1
+    }
+   },
+   "spec": {}
+  },
+  "diadem-edge-18k-power-2025": {
+   "slug": "diadem-edge-18k-power",
+   "name": "Diadem Edge 18K Power Pro",
+   "sources": 0,
+   "groups": {},
+   "spec": {}
+  },
+  "diadem-edge-18k-sp-2024": {
+   "slug": "diadem-edge-18k-sp",
+   "name": "Diadem Edge 18K SP",
+   "sources": 0,
+   "groups": {},
+   "spec": {}
+  },
+  "diadem-edge-blucore-hybrid-2025": {
+   "slug": "diadem-edge-blucore-hybrid",
+   "name": "Diadem Edge BluCore Hybrid",
+   "sources": 3,
+   "groups": {
+    "plays_like": {
+     "control": 1,
+     "all_round": 1
+    },
+    "sweet_spot": {
+     "big": 2
+    },
+    "feel": {
+     "hard": 1
+    },
+    "arm": {
+     "very": 1
+    }
+   },
+   "spec": {}
+  },
+  "diadem-edge-blucore-pro-2025": {
+   "slug": "diadem-edge-blucore-pro",
+   "name": "Diadem Edge BluCore Pro",
+   "sources": 5,
+   "groups": {
+    "plays_like": {
+     "control": 1,
+     "power": 3
+    },
+    "sweet_spot": {
+     "big": 2
+    },
+    "spin": {
+     "lots": 3,
+     "some": 1
+    },
+    "feel": {
+     "soft": 1
+    },
+    "arm": {
+     "very": 1,
+     "not_really": 1,
+     "somewhat": 1
+    },
+    "pop": {
+     "high": 1
+    }
+   },
+   "spec": {}
+  },
+  "diadem-edge-flex-hybrid-2026": {
+   "slug": "diadem-edge-flex-hybrid",
+   "name": "Diadem Edge Flex Hybrid",
+   "sources": 0,
+   "groups": {},
+   "spec": {}
+  },
+  "diadem-edge-flex-pro-2026": {
+   "slug": "diadem-edge-flex-pro",
+   "name": "Diadem Edge Flex Pro",
+   "sources": 0,
+   "groups": {},
+   "spec": {}
+  },
+  "diadem-hush-2024": {
+   "slug": "diadem-hush",
+   "name": "Diadem Hush",
+   "sources": 14,
+   "groups": {
+    "plays_like": {
+     "control": 6,
+     "power": 6
+    },
+    "arm": {
+     "very": 1,
+     "somewhat": 1
+    },
+    "spin": {
+     "lots": 8
+    },
+    "pop": {
+     "high": 6,
+     "medium": 1,
+     "low": 1
+    },
+    "feel": {
+     "soft": 1
+    },
+    "level": {
+     "intermediate": 1
+    },
+    "sweet_spot": {
+     "small": 2
+    },
+    "durability": {
+     "wears_fast": 1
+    }
+   },
+   "spec": {}
+  },
+  "diadem-warrior-blucore-2025": {
+   "slug": "diadem-warrior-blucore",
+   "name": "Diadem Warrior BluCore",
+   "sources": 12,
+   "groups": {
+    "plays_like": {
+     "control": 9,
+     "all_round": 1
+    },
+    "spin": {
+     "little": 4,
+     "some": 1
+    },
+    "durability": {
+     "holds_up": 1
+    },
+    "level": {
+     "intermediate": 1
+    },
+    "arm": {
+     "very": 2,
+     "somewhat": 1
+    },
+    "feel": {
+     "soft": 2
+    },
+    "sweet_spot": {
+     "small": 3,
+     "medium": 1,
+     "big": 1
+    },
+    "pop": {
+     "low": 1
+    }
+   },
+   "spec": {}
+  },
+  "engage-alpha-pro-2025": {
+   "slug": "engage-alpha-pro",
+   "name": "Engage Alpha Pro",
+   "sources": 13,
+   "groups": {
+    "plays_like": {
+     "control": 4,
+     "power": 5,
+     "all_round": 3
+    },
+    "sweet_spot": {
+     "small": 3,
+     "big": 3
+    },
+    "spin": {
+     "lots": 3
+    },
+    "feel": {
+     "soft": 1
+    },
+    "pop": {
+     "high": 3,
+     "low": 1
+    }
+   },
+   "spec": {}
+  },
+  "engage-axiom-elongated-2026": {
+   "slug": "engage-axiom-elongated",
+   "name": "Engage Axiom Elongated",
+   "sources": 0,
+   "groups": {},
+   "spec": {}
+  },
+  "engage-axiom-widebody-2026": {
+   "slug": "engage-axiom-widebody",
+   "name": "Engage Axiom Widebody",
+   "sources": 0,
+   "groups": {},
+   "spec": {}
+  },
+  "engage-encore-16mm-2026": {
+   "slug": "engage-encore-16mm",
+   "name": "Engage Encore 16mm",
+   "sources": 0,
+   "groups": {},
+   "spec": {}
+  },
+  "engage-encore-pro-2026": {
+   "slug": "engage-encore-pro",
+   "name": "Engage Encore Pro",
+   "sources": 2,
+   "groups": {
+    "spin": {
+     "lots": 1
+    },
+    "durability": {
+     "wears_fast": 1
+    }
+   },
+   "spec": {}
+  },
+  "engage-pursuit-pro-ex-12-7-2025": {
+   "slug": "engage-pursuit-pro-ex-12-7",
+   "name": "Engage Pursuit Pro EX 12.7",
+   "sources": 0,
+   "groups": {},
+   "spec": {}
+  },
+  "engage-pursuit-pro-ex-15-2-2025": {
+   "slug": "engage-pursuit-pro-ex-15-2",
+   "name": "Engage Pursuit Pro EX 15.2",
+   "sources": 0,
+   "groups": {},
+   "spec": {}
+  },
+  "engage-pursuit-pro-mx-12-7-2026": {
+   "slug": "engage-pursuit-pro-mx-12-7",
+   "name": "Engage Pursuit Pro MX 12.7",
+   "sources": 0,
+   "groups": {},
+   "spec": {}
+  },
+  "engage-pursuit-pro-mx-15-2-2025": {
+   "slug": "engage-pursuit-pro-mx-15-2",
+   "name": "Engage Pursuit Pro MX 15.2",
+   "sources": 0,
+   "groups": {},
+   "spec": {}
+  },
+  "engage-pursuit-pro1-elongated-12-7-2025": {
+   "slug": "engage-pursuit-pro1-elongated-12-7",
+   "name": "Engage Pursuit Pro1 Elongated 12.7",
+   "sources": 0,
+   "groups": {},
+   "spec": {}
+  },
+  "engage-pursuit-pro1-elongated-15-2-2025": {
+   "slug": "engage-pursuit-pro1-elongated-15-2",
+   "name": "Engage Pursuit Pro1 Elongated 15.2",
+   "sources": 3,
+   "groups": {
+    "sweet_spot": {
+     "small": 2
+    },
+    "pop": {
+     "high": 2
+    },
+    "feel": {
+     "soft": 1
+    },
+    "plays_like": {
+     "power": 1
+    },
+    "arm": {
+     "somewhat": 1
+    },
+    "spin": {
+     "lots": 1
+    }
+   },
+   "spec": {}
+  },
+  "engage-pursuit-pro1-innovation-15-2-2025": {
+   "slug": "engage-pursuit-pro1-innovation-15-2",
+   "name": "Engage Pursuit Pro1 Innovation 15.2",
+   "sources": 2,
+   "groups": {
+    "sweet_spot": {
+     "small": 2
+    },
+    "feel": {
+     "soft": 1
+    },
+    "arm": {
+     "somewhat": 1
+    }
+   },
+   "spec": {}
+  },
+  "enhance-duo-2025": {
+   "slug": "enhance-duo",
+   "name": "Enhance DUO",
+   "sources": 29,
+   "groups": {
+    "plays_like": {
+     "all_round": 13,
+     "control": 11,
+     "power": 1
+    },
+    "spin": {
+     "lots": 10,
+     "some": 2
+    },
+    "sweet_spot": {
+     "big": 8,
+     "small": 4,
+     "medium": 2
+    },
+    "feel": {
+     "hard": 2
+    },
+    "pop": {
+     "high": 8,
+     "low": 2
+    },
+    "arm": {
+     "somewhat": 1
+    },
+    "level": {
+     "intermediate": 1
+    },
+    "game_type": {
+     "doubles": 1
+    }
+   },
+   "spec": {}
+  },
+  "enhance-epp-turbo-2026": {
+   "slug": "enhance-epp-turbo",
+   "name": "Enhance EPP Turbo",
+   "sources": 14,
+   "groups": {
+    "plays_like": {
+     "power": 7,
+     "all_round": 2,
+     "control": 1
+    },
+    "pop": {
+     "high": 8,
+     "medium": 2
+    },
+    "feel": {
+     "hard": 4,
+     "soft": 1
+    },
+    "sweet_spot": {
+     "big": 3,
+     "medium": 2
+    },
+    "level": {
+     "advanced": 1
+    },
+    "durability": {
+     "wears_fast": 1
+    }
+   },
+   "spec": {}
+  },
+  "enhance-mpp-turbo-2026": {
+   "slug": "enhance-mpp-turbo",
+   "name": "Enhance MPP Turbo",
+   "sources": 46,
+   "groups": {
+    "plays_like": {
+     "power": 22,
+     "control": 7,
+     "all_round": 1
+    },
+    "pop": {
+     "high": 8,
+     "low": 1,
+     "medium": 2
+    },
+    "feel": {
+     "hard": 3,
+     "soft": 1
+    },
+    "spin": {
+     "lots": 11,
+     "little": 1,
+     "some": 1
+    },
+    "sweet_spot": {
+     "big": 7,
+     "medium": 1,
+     "small": 1
+    },
+    "durability": {
+     "wears_fast": 13,
+     "holds_up": 1
+    },
+    "arm": {
+     "not_really": 3
+    },
+    "level": {
+     "advanced": 1
+    }
+   },
+   "spec": {}
+  },
+  "enhance-sweetspot-pro-2024": {
+   "slug": "enhance-sweetspot-pro",
+   "name": "Enhance SweetSpot Pro",
+   "sources": 6,
+   "groups": {
+    "sweet_spot": {
+     "big": 4
+    },
+    "spin": {
+     "lots": 5
+    },
+    "plays_like": {
+     "power": 1,
+     "control": 1
+    },
+    "durability": {
+     "holds_up": 1
+    }
+   },
+   "spec": {}
+  },
+  "enhance-sweetspot-team-2025": {
+   "slug": "enhance-sweetspot-team",
+   "name": "Enhance SweetSpot Team",
+   "sources": 1,
+   "groups": {
+    "plays_like": {
+     "control": 1
+    },
+    "pop": {
+     "low": 1
+    }
+   },
+   "spec": {}
+  },
+  "enhance-the-banger-2024": {
+   "slug": "enhance-the-banger",
+   "name": "Enhance The Banger",
+   "sources": 0,
+   "groups": {},
+   "spec": {}
+  },
+  "flik-axon-2026": {
+   "slug": "flik-axon",
+   "name": "FLiK Axon",
+   "sources": 0,
+   "groups": {},
+   "spec": {}
+  },
+  "flik-f1-smh-standard-2025": {
+   "slug": "flik-f1-smh-standard",
+   "name": "FLiK F1 SMH Standard",
+   "sources": 3,
+   "groups": {
+    "spin": {
+     "lots": 3
+    },
+    "pop": {
+     "high": 1,
+     "medium": 1
+    },
+    "plays_like": {
+     "power": 2
+    },
+    "level": {
+     "intermediate": 1,
+     "advanced": 1
+    }
+   },
+   "spec": {}
+  },
+  "flik-f3-2025": {
+   "slug": "flik-f3",
+   "name": "FLiK F3",
+   "sources": 0,
+   "groups": {},
+   "spec": {}
+  },
+  "flik-falcon-hybrid-smh-2025": {
+   "slug": "flik-falcon-hybrid-smh",
+   "name": "FLiK Falcon Hybrid SMH",
+   "sources": 0,
+   "groups": {},
+   "spec": {}
+  },
+  "flik-falcon-standard-smh-2025": {
+   "slug": "flik-falcon-standard-smh",
+   "name": "FLiK Falcon Standard SMH",
+   "sources": 0,
+   "groups": {},
+   "spec": {}
+  },
+  "franklin-c45-aurelius-2025": {
+   "slug": "franklin-c45-aurelius",
+   "name": "Franklin C45 Aurelius",
+   "sources": 11,
+   "groups": {
+    "plays_like": {
+     "control": 5,
+     "power": 2
+    },
+    "spin": {
+     "lots": 4
+    },
+    "sweet_spot": {
+     "small": 5
+    },
+    "arm": {
+     "not_really": 1,
+     "very": 1
+    },
+    "level": {
+     "advanced": 1
+    },
+    "pop": {
+     "low": 1
+    },
+    "durability": {
+     "wears_fast": 1
+    }
+   },
+   "spec": {}
+  },
+  "franklin-c45-dynasty-2025": {
+   "slug": "franklin-c45-dynasty",
+   "name": "Franklin C45 Dynasty",
+   "sources": 15,
+   "groups": {
+    "sweet_spot": {
+     "big": 5
+    },
+    "spin": {
+     "lots": 6,
+     "some": 1,
+     "little": 1
+    },
+    "pop": {
+     "high": 4,
+     "medium": 2
+    },
+    "plays_like": {
+     "control": 6,
+     "all_round": 1,
+     "power": 2
+    },
+    "durability": {
+     "wears_fast": 2,
+     "holds_up": 1
+    }
+   },
+   "spec": {}
+  },
+  "friday-aura-elongated-2026": {
+   "slug": "friday-aura-elongated",
+   "name": "Friday Aura Elongated",
+   "sources": 1,
+   "groups": {
+    "plays_like": {
+     "control": 1
+    },
+    "arm": {
+     "somewhat": 1
+    },
+    "level": {
+     "intermediate": 1
+    },
+    "feel": {
+     "soft": 1
+    }
+   },
+   "spec": {}
+  },
+  "friday-aura-hybrid-2026": {
+   "slug": "friday-aura-hybrid",
+   "name": "Friday Aura Hybrid",
+   "sources": 2,
+   "groups": {
+    "plays_like": {
+     "all_round": 1
+    },
+    "sweet_spot": {
+     "big": 1
+    },
+    "pop": {
+     "low": 1
+    }
+   },
+   "spec": {}
+  },
+  "friday-aura-pro-elongated-2026": {
+   "slug": "friday-aura-pro-elongated",
+   "name": "Friday Aura Pro Elongated",
+   "sources": 24,
+   "groups": {
+    "plays_like": {
+     "power": 14,
+     "control": 1,
+     "all_round": 5
+    },
+    "pop": {
+     "high": 7,
+     "low": 1
+    },
+    "sweet_spot": {
+     "big": 4,
+     "small": 6
+    },
+    "feel": {
+     "soft": 2,
+     "hard": 2
+    },
+    "spin": {
+     "lots": 7,
+     "some": 1
+    },
+    "durability": {
+     "wears_fast": 1,
+     "holds_up": 1
+    },
+    "level": {
+     "advanced": 3
+    },
+    "arm": {
+     "somewhat": 1
+    }
+   },
+   "spec": {}
+  },
+  "friday-aura-pro-hybrid-2026": {
+   "slug": "friday-aura-pro-hybrid",
+   "name": "Friday Aura Pro Hybrid",
+   "sources": 0,
+   "groups": {},
+   "spec": {}
+  },
+  "friday-aura-pro-widebody-2026": {
+   "slug": "friday-aura-pro-widebody",
+   "name": "Friday Aura Pro Widebody",
+   "sources": 7,
+   "groups": {
+    "plays_like": {
+     "power": 2,
+     "control": 1
+    },
+    "sweet_spot": {
+     "big": 3
+    },
+    "pop": {
+     "high": 1,
+     "medium": 1
+    },
+    "arm": {
+     "not_really": 2
+    }
+   },
+   "spec": {}
+  },
+  "friday-aura-widebody-2026": {
+   "slug": "friday-aura-widebody",
+   "name": "Friday Aura Widebody",
+   "sources": 5,
+   "groups": {
+    "plays_like": {
+     "control": 2,
+     "all_round": 1
+    },
+    "sweet_spot": {
+     "big": 3
+    },
+    "pop": {
+     "medium": 1
+    },
+    "arm": {
+     "very": 1
+    }
+   },
+   "spec": {}
+  },
+  "friday-fever-101-elongated-2026": {
+   "slug": "friday-fever-101-elongated",
+   "name": "Friday Fever 101 Elongated",
+   "sources": 4,
+   "groups": {
+    "durability": {
+     "wears_fast": 1
+    },
+    "plays_like": {
+     "control": 3
+    }
+   },
+   "spec": {}
+  },
+  "friday-fever-102-elongated-2026": {
+   "slug": "friday-fever-102-elongated",
+   "name": "Friday Fever 102 Elongated",
+   "sources": 2,
+   "groups": {
+    "plays_like": {
+     "all_round": 1,
+     "control": 1
+    },
+    "sweet_spot": {
+     "big": 1
+    }
+   },
+   "spec": {}
+  },
+  "friday-fever-102-widebody-2026": {
+   "slug": "friday-fever-102-widebody",
+   "name": "Friday Fever 102 Widebody",
+   "sources": 6,
+   "groups": {
+    "plays_like": {
+     "control": 3,
+     "power": 1
+    },
+    "sweet_spot": {
+     "big": 3
+    },
+    "spin": {
+     "lots": 2
+    },
+    "arm": {
+     "not_really": 1
+    },
+    "pop": {
+     "high": 2,
+     "low": 1
+    },
+    "durability": {
+     "wears_fast": 1
+    }
+   },
+   "spec": {}
+  },
+  "gearbox-gbx-power-elongated-2026": {
+   "slug": "gearbox-gbx-power-elongated",
+   "name": "Gearbox GBX Power Elongated",
+   "sources": 9,
+   "groups": {
+    "plays_like": {
+     "power": 4,
+     "control": 4,
+     "all_round": 1
+    },
+    "feel": {
+     "hard": 1
+    },
+    "sweet_spot": {
+     "big": 2,
+     "medium": 1,
+     "small": 1
+    },
+    "pop": {
+     "high": 1
+    },
+    "level": {
+     "advanced": 2
+    },
+    "spin": {
+     "some": 1
+    }
+   },
+   "spec": {}
+  },
+  "gearbox-gbx-power-hybrid-2026": {
+   "slug": "gearbox-gbx-power-hybrid",
+   "name": "Gearbox GBX Power Hybrid",
+   "sources": 0,
+   "groups": {},
+   "spec": {}
+  },
+  "gearbox-gx2-hyper-2025": {
+   "slug": "gearbox-gx2-hyper",
+   "name": "Gearbox GX2 Hyper",
+   "sources": 2,
+   "groups": {
+    "plays_like": {
+     "control": 2
+    },
+    "pop": {
+     "low": 1
+    }
+   },
+   "spec": {}
+  },
+  "gearbox-gx2-integra-xl-2025": {
+   "slug": "gearbox-gx2-integra-xl",
+   "name": "Gearbox GX2 Integra XL",
+   "sources": 9,
+   "groups": {
+    "plays_like": {
+     "all_round": 1,
+     "control": 1,
+     "power": 2
+    },
+    "spin": {
+     "lots": 3,
+     "some": 1
+    },
+    "sweet_spot": {
+     "small": 4,
+     "medium": 1
+    },
+    "arm": {
+     "somewhat": 1
+    },
+    "feel": {
+     "soft": 1
+    },
+    "durability": {
+     "wears_fast": 2
+    }
+   },
+   "spec": {}
+  },
+  "gearbox-gx2-power-hybrid-2025": {
+   "slug": "gearbox-gx2-power-hybrid",
+   "name": "Gearbox GX2 Power Hybrid",
+   "sources": 27,
+   "groups": {
+    "plays_like": {
+     "power": 14,
+     "all_round": 6,
+     "control": 2
+    },
+    "sweet_spot": {
+     "big": 9,
+     "small": 1,
+     "medium": 2
+    },
+    "pop": {
+     "high": 4,
+     "medium": 2
+    },
+    "spin": {
+     "lots": 8
+    },
+    "feel": {
+     "soft": 2
+    },
+    "level": {
+     "advanced": 2,
+     "intermediate": 1
+    },
+    "arm": {
+     "somewhat": 1
+    },
+    "durability": {
+     "holds_up": 1,
+     "wears_fast": 2
+    },
+    "game_type": {
+     "doubles": 1
+    }
+   },
+   "spec": {}
+  },
+  "gearbox-pro-ultimate-elongated-16mm-2024": {
+   "slug": "gearbox-pro-ultimate-elongated-16mm",
+   "name": "Gearbox Pro Ultimate Elongated 16mm",
+   "sources": 15,
+   "groups": {
+    "plays_like": {
+     "power": 2,
+     "control": 8,
+     "all_round": 2
+    },
+    "feel": {
+     "soft": 1
+    },
+    "spin": {
+     "some": 2
+    },
+    "sweet_spot": {
+     "medium": 2,
+     "small": 1
+    },
+    "pop": {
+     "low": 3,
+     "high": 1
+    },
+    "level": {
+     "advanced": 1
+    },
+    "durability": {
+     "holds_up": 2
+    }
+   },
+   "spec": {}
+  },
+  "gearbox-pro-ultimate-hyper-16mm-2024": {
+   "slug": "gearbox-pro-ultimate-hyper-16mm",
+   "name": "Gearbox Pro Ultimate Hyper 16mm",
+   "sources": 15,
+   "groups": {
+    "plays_like": {
+     "power": 6,
+     "all_round": 3,
+     "control": 2
+    },
+    "arm": {
+     "not_really": 2,
+     "very": 2,
+     "somewhat": 2
+    },
+    "spin": {
+     "lots": 2,
+     "little": 1
+    },
+    "feel": {
+     "soft": 3
+    },
+    "sweet_spot": {
+     "big": 4,
+     "medium": 2,
+     "small": 2
+    },
+    "pop": {
+     "high": 4
+    },
+    "durability": {
+     "holds_up": 2
+    }
+   },
+   "spec": {}
+  },
+  "gearbox-pro-ultimate-power-elongated-14mm-2024": {
+   "slug": "gearbox-pro-ultimate-power-elongated-14mm",
+   "name": "Gearbox Pro Ultimate Power Elongated 14mm",
+   "sources": 11,
+   "groups": {
+    "plays_like": {
+     "power": 6,
+     "control": 3
+    },
+    "sweet_spot": {
+     "small": 6,
+     "big": 2
+    },
+    "pop": {
+     "high": 4,
+     "medium": 1,
+     "low": 2
+    },
+    "feel": {
+     "soft": 1
+    },
+    "spin": {
+     "lots": 3
+    },
+    "level": {
+     "advanced": 1
+    },
+    "arm": {
+     "somewhat": 1
+    },
+    "durability": {
+     "wears_fast": 1
+    }
+   },
+   "spec": {}
+  },
+  "head-boom-pro-ex15-2026": {
+   "slug": "head-boom-pro-ex15",
+   "name": "Head Boom Pro EX15",
+   "sources": 0,
+   "groups": {},
+   "spec": {}
+  },
+  "head-gravity-pro-ex15-2026": {
+   "slug": "head-gravity-pro-ex15",
+   "name": "Head Gravity PRO EX15",
+   "sources": 0,
+   "groups": {},
+   "spec": {}
+  },
+  "head-radical-pro-ex15-2026": {
+   "slug": "head-radical-pro-ex15",
+   "name": "Head Radical PRO EX15",
+   "sources": 0,
+   "groups": {},
+   "spec": {}
+  },
+  "helios-blaze-2025": {
+   "slug": "helios-blaze",
+   "name": "Helios Blaze",
+   "sources": 0,
+   "groups": {},
+   "spec": {}
+  },
+  "helios-flare-2025": {
+   "slug": "helios-flare",
+   "name": "Helios Flare",
+   "sources": 0,
+   "groups": {},
+   "spec": {}
+  },
+  "helios-sol-2025": {
+   "slug": "helios-sol",
+   "name": "Helios Sol",
+   "sources": 0,
+   "groups": {},
+   "spec": {}
+  },
+  "helios-the-apollo-2024": {
+   "slug": "helios-the-apollo",
+   "name": "Helios The Apollo",
+   "sources": 1,
+   "groups": {
+    "plays_like": {
+     "control": 1
+    },
+    "spin": {
+     "lots": 1
+    },
+    "durability": {
+     "holds_up": 1
+    }
+   },
+   "spec": {}
+  },
+  "helios-the-astraeus-2025": {
+   "slug": "helios-the-astraeus",
+   "name": "Helios The Astraeus",
+   "sources": 0,
+   "groups": {},
+   "spec": {}
+  },
+  "helios-the-athos-2024": {
+   "slug": "helios-the-athos",
+   "name": "Helios The Athos",
+   "sources": 0,
+   "groups": {},
+   "spec": {}
+  },
+  "helios-the-hawaii-2025": {
+   "slug": "helios-the-hawaii",
+   "name": "Helios The Hawaii",
+   "sources": 0,
+   "groups": {},
+   "spec": {}
+  },
+  "helios-the-khione-2024": {
+   "slug": "helios-the-khione",
+   "name": "Helios The Khione",
+   "sources": 0,
+   "groups": {},
+   "spec": {}
+  },
+  "holbrook-arma-t-2025": {
+   "slug": "holbrook-arma-t",
+   "name": "Holbrook Arma T",
+   "sources": 1,
+   "groups": {
+    "plays_like": {
+     "control": 1
+    },
+    "feel": {
+     "medium": 1
+    }
+   },
+   "spec": {}
+  },
+  "holbrook-arma-x-2025": {
+   "slug": "holbrook-arma-x",
+   "name": "Holbrook Arma Metallic X",
+   "sources": 3,
+   "groups": {
+    "spin": {
+     "lots": 1,
+     "some": 1
+    },
+    "feel": {
+     "soft": 1
+    },
+    "sweet_spot": {
+     "small": 1
+    },
+    "arm": {
+     "somewhat": 1
+    },
+    "plays_like": {
+     "all_round": 1
+    }
+   },
+   "spec": {}
+  },
+  "holbrook-fuze-vantagrit-2026": {
+   "slug": "holbrook-fuze-vantagrit",
+   "name": "Holbrook Fuze VantaGrit",
+   "sources": 13,
+   "groups": {
+    "plays_like": {
+     "control": 7,
+     "power": 3
+    },
+    "sweet_spot": {
+     "big": 3,
+     "medium": 1,
+     "small": 1
+    },
+    "spin": {
+     "lots": 4,
+     "little": 1
+    },
+    "feel": {
+     "hard": 1
+    },
+    "pop": {
+     "high": 2
+    },
+    "durability": {
+     "wears_fast": 1
+    }
+   },
+   "spec": {}
+  },
+  "holbrook-mav-2026": {
+   "slug": "holbrook-mav",
+   "name": "Holbrook Mav",
+   "sources": 0,
+   "groups": {},
+   "spec": {}
+  },
+  "holbrook-pro-aero-s-2024": {
+   "slug": "holbrook-pro-aero-s",
+   "name": "Holbrook Pro Aero S",
+   "sources": 0,
+   "groups": {},
+   "spec": {}
+  },
+  "holbrook-pro-aero-t-2024": {
+   "slug": "holbrook-pro-aero-t",
+   "name": "Holbrook Pro Aero T",
+   "sources": 0,
+   "groups": {},
+   "spec": {}
+  },
+  "holbrook-pro-aero-x-2024": {
+   "slug": "holbrook-pro-aero-x",
+   "name": "Holbrook Pro Aero X",
+   "sources": 0,
+   "groups": {},
+   "spec": {}
+  },
+  "holbrook-zone-power-2026": {
+   "slug": "holbrook-zone-power",
+   "name": "Holbrook Zone Power",
+   "sources": 0,
+   "groups": {},
+   "spec": {}
+  },
+  "honolulu-j2cr-2026": {
+   "slug": "honolulu-j2cr",
+   "name": "Honolulu J2CR",
+   "sources": 88,
+   "groups": {
+    "spin": {
+     "lots": 28,
+     "little": 8,
+     "some": 2
+    },
+    "pop": {
+     "high": 16,
+     "medium": 3,
+     "low": 7
+    },
+    "feel": {
+     "hard": 2,
+     "soft": 1
+    },
+    "sweet_spot": {
+     "big": 18,
+     "small": 3
+    },
+    "plays_like": {
+     "power": 25,
+     "all_round": 4,
+     "control": 18
+    },
+    "level": {
+     "advanced": 3,
+     "intermediate": 1
+    },
+    "game_type": {
+     "singles": 2
+    },
+    "arm": {
+     "not_really": 2
+    },
+    "durability": {
+     "holds_up": 13,
+     "wears_fast": 13
+    }
+   },
+   "spec": {}
+  },
+  "honolulu-j3cr-2026": {
+   "slug": "honolulu-j3cr",
+   "name": "Honolulu J3CR",
+   "sources": 9,
+   "groups": {
+    "sweet_spot": {
+     "big": 5
+    },
+    "pop": {
+     "high": 5,
+     "medium": 1
+    },
+    "spin": {
+     "lots": 4
+    },
+    "feel": {
+     "hard": 1
+    },
+    "plays_like": {
+     "power": 5,
+     "all_round": 1
+    }
+   },
+   "spec": {}
+  },
+  "honolulu-j6cr-2026": {
+   "slug": "honolulu-j6cr",
+   "name": "Honolulu J6CR",
+   "sources": 88,
+   "groups": {
+    "plays_like": {
+     "power": 22,
+     "control": 18,
+     "all_round": 12
+    },
+    "pop": {
+     "high": 15,
+     "medium": 6,
+     "low": 1
+    },
+    "sweet_spot": {
+     "big": 13,
+     "medium": 3,
+     "small": 4
+    },
+    "feel": {
+     "hard": 2,
+     "soft": 1
+    },
+    "arm": {
+     "very": 2,
+     "not_really": 1
+    },
+    "spin": {
+     "lots": 22,
+     "some": 1,
+     "little": 4
+    },
+    "durability": {
+     "holds_up": 5,
+     "wears_fast": 12
+    },
+    "level": {
+     "advanced": 4
+    },
+    "game_type": {
+     "singles": 1
+    }
+   },
+   "spec": {}
+  },
+  "joola-agassi-edge-2025": {
+   "slug": "joola-agassi-edge",
+   "name": "Joola Agassi Edge",
+   "sources": 3,
+   "groups": {
+    "plays_like": {
+     "control": 2
+    },
+    "durability": {
+     "wears_fast": 1
+    }
+   },
+   "spec": {}
+  },
+  "joola-agassi-pro-2025": {
+   "slug": "joola-agassi-pro",
+   "name": "Joola Agassi Pro",
+   "sources": 35,
+   "groups": {
+    "sweet_spot": {
+     "small": 4,
+     "big": 5
+    },
+    "plays_like": {
+     "power": 9,
+     "all_round": 4,
+     "control": 4
+    },
+    "spin": {
+     "lots": 6,
+     "some": 2
+    },
+    "feel": {
+     "soft": 1
+    },
+    "pop": {
+     "high": 4,
+     "medium": 1,
+     "low": 2
+    },
+    "level": {
+     "advanced": 7
+    },
+    "durability": {
+     "holds_up": 3,
+     "wears_fast": 7
+    }
+   },
+   "spec": {}
+  },
+  "joola-agassi-pro-v-2026": {
+   "slug": "joola-agassi-pro-v",
+   "name": "Joola Agassi Pro V",
+   "sources": 3,
+   "groups": {
+    "level": {
+     "advanced": 1
+    },
+    "plays_like": {
+     "control": 2
+    },
+    "arm": {
+     "somewhat": 1
+    },
+    "spin": {
+     "lots": 2
+    },
+    "feel": {
+     "soft": 1
+    }
+   },
+   "spec": {}
+  },
+  "joola-graf-pro-2025": {
+   "slug": "joola-graf-pro",
+   "name": "Joola Graf Pro",
+   "sources": 3,
+   "groups": {
+    "plays_like": {
+     "all_round": 2,
+     "control": 1
+    },
+    "spin": {
+     "lots": 1
+    },
+    "pop": {
+     "low": 1
+    }
+   },
+   "spec": {}
+  },
+  "joola-hyperion-3s-dual-2025": {
+   "slug": "joola-hyperion-3s-dual",
+   "name": "Joola Hyperion 3S Dual",
+   "sources": 1,
+   "groups": {
+    "plays_like": {
+     "power": 1
+    }
+   },
+   "spec": {}
+  },
+  "joola-hyperion-cas-2024": {
+   "slug": "joola-hyperion-cas",
+   "name": "Joola Hyperion CAS",
+   "sources": 10,
+   "groups": {
+    "plays_like": {
+     "all_round": 2,
+     "control": 4,
+     "power": 4
+    },
+    "sweet_spot": {
+     "big": 1
+    },
+    "level": {
+     "intermediate": 1
+    },
+    "pop": {
+     "low": 1
+    },
+    "durability": {
+     "wears_fast": 1
+    },
+    "spin": {
+     "some": 1
+    },
+    "arm": {
+     "not_really": 2
+    }
+   },
+   "spec": {}
+  },
+  "joola-hyperion-double-vision-2025": {
+   "slug": "joola-hyperion-double-vision",
+   "name": "Joola Hyperion Double Vision",
+   "sources": 0,
+   "groups": {},
+   "spec": {}
+  },
+  "joola-hyperion-pro-iv-2025": {
+   "slug": "joola-hyperion-pro-iv",
+   "name": "Joola Hyperion Pro IV",
+   "sources": 32,
+   "groups": {
+    "plays_like": {
+     "power": 2,
+     "all_round": 9,
+     "control": 9
+    },
+    "spin": {
+     "lots": 7,
+     "little": 5,
+     "some": 1
+    },
+    "sweet_spot": {
+     "big": 7,
+     "small": 3
+    },
+    "game_type": {
+     "doubles": 1
+    },
+    "pop": {
+     "high": 3,
+     "medium": 3
+    },
+    "feel": {
+     "hard": 1
+    },
+    "durability": {
+     "wears_fast": 4,
+     "holds_up": 4
+    },
+    "arm": {
+     "very": 1
+    }
+   },
+   "spec": {}
+  },
+  "joola-hyperion-pro-v-2026": {
+   "slug": "joola-hyperion-pro-v",
+   "name": "Joola Hyperion Pro V",
+   "sources": 4,
+   "groups": {
+    "plays_like": {
+     "control": 3
+    },
+    "durability": {
+     "holds_up": 1
+    }
+   },
+   "spec": {}
+  },
+  "joola-hyperion-vision-2025": {
+   "slug": "joola-hyperion-vision",
+   "name": "Joola Hyperion Vision",
+   "sources": 0,
+   "groups": {},
+   "spec": {}
+  },
+  "joola-kosmos-pro-v-2026": {
+   "slug": "joola-kosmos-pro-v",
+   "name": "Joola Kosmos Pro V",
+   "sources": 19,
+   "groups": {
+    "sweet_spot": {
+     "big": 4
+    },
+    "pop": {
+     "high": 4,
+     "low": 2
+    },
+    "feel": {
+     "soft": 4
+    },
+    "plays_like": {
+     "control": 7,
+     "all_round": 6
+    },
+    "spin": {
+     "lots": 1,
+     "little": 2
+    },
+    "durability": {
+     "wears_fast": 1
+    },
+    "level": {
+     "intermediate": 1
+    },
+    "arm": {
+     "somewhat": 3,
+     "not_really": 1
+    }
+   },
+   "spec": {}
+  },
+  "joola-magnus-3s-2024": {
+   "slug": "joola-magnus-3s",
+   "name": "Joola Magnus 3S",
+   "sources": 1,
+   "groups": {
+    "plays_like": {
+     "power": 1
+    }
+   },
+   "spec": {}
+  },
+  "joola-magnus-3s-dual-2025": {
+   "slug": "joola-magnus-3s-dual",
+   "name": "Joola Magnus 3S Dual",
+   "sources": 0,
+   "groups": {},
+   "spec": {}
+  },
+  "joola-magnus-pro-iv-2025": {
+   "slug": "joola-magnus-pro-iv",
+   "name": "Joola Magnus Pro IV",
+   "sources": 11,
+   "groups": {
+    "plays_like": {
+     "power": 5,
+     "all_round": 4
+    },
+    "sweet_spot": {
+     "big": 3,
+     "medium": 3
+    },
+    "spin": {
+     "lots": 3
+    },
+    "game_type": {
+     "singles": 1
+    },
+    "durability": {
+     "wears_fast": 1
+    }
+   },
+   "spec": {}
+  },
+  "joola-perseus-3s-dual-2025": {
+   "slug": "joola-perseus-3s-dual",
+   "name": "Joola Perseus 3S Dual",
+   "sources": 5,
+   "groups": {
+    "plays_like": {
+     "power": 2,
+     "control": 1
+    },
+    "spin": {
+     "lots": 1,
+     "little": 1
+    },
+    "pop": {
+     "high": 1
+    },
+    "feel": {
+     "soft": 1
+    },
+    "level": {
+     "advanced": 1
+    },
+    "arm": {
+     "somewhat": 1
+    },
+    "durability": {
+     "wears_fast": 1
+    }
+   },
+   "spec": {}
+  },
+  "joola-perseus-cfs-2026": {
+   "slug": "joola-perseus-cfs",
+   "name": "Joola Perseus CFS",
+   "sources": 2,
+   "groups": {
+    "durability": {
+     "holds_up": 1,
+     "wears_fast": 1
+    }
+   },
+   "spec": {}
+  },
+  "joola-perseus-double-vision-2025": {
+   "slug": "joola-perseus-double-vision",
+   "name": "Joola Perseus Double Vision",
+   "sources": 0,
+   "groups": {},
+   "spec": {}
+  },
+  "joola-perseus-heat-vision-2025": {
+   "slug": "joola-perseus-heat-vision",
+   "name": "Joola Perseus Heat Vision",
+   "sources": 0,
+   "groups": {},
+   "spec": {}
+  },
+  "joola-perseus-power-fx-2026": {
+   "slug": "joola-perseus-power-fx",
+   "name": "Joola Perseus Power FX",
+   "sources": 12,
+   "groups": {
+    "pop": {
+     "high": 4,
+     "low": 1
+    },
+    "feel": {
+     "hard": 2
+    },
+    "sweet_spot": {
+     "small": 5,
+     "medium": 1
+    },
+    "plays_like": {
+     "power": 5,
+     "control": 2
+    },
+    "arm": {
+     "not_really": 1,
+     "somewhat": 1
+    },
+    "spin": {
+     "little": 1,
+     "some": 3
+    },
+    "level": {
+     "beginner": 1
+    }
+   },
+   "spec": {}
+  },
+  "joola-perseus-pro-iv-2025": {
+   "slug": "joola-perseus-pro-iv",
+   "name": "Joola Perseus Pro IV",
+   "sources": 65,
+   "groups": {
+    "plays_like": {
+     "power": 32,
+     "all_round": 11,
+     "control": 4
+    },
+    "pop": {
+     "high": 14,
+     "medium": 6,
+     "low": 1
+    },
+    "feel": {
+     "hard": 1,
+     "soft": 1
+    },
+    "spin": {
+     "lots": 9,
+     "little": 1
+    },
+    "arm": {
+     "not_really": 4,
+     "very": 1
+    },
+    "durability": {
+     "holds_up": 3,
+     "wears_fast": 14
+    },
+    "level": {
+     "advanced": 5,
+     "intermediate": 1
+    },
+    "game_type": {
+     "singles": 2
+    },
+    "sweet_spot": {
+     "big": 6,
+     "medium": 2,
+     "small": 2
+    }
+   },
+   "spec": {}
+  },
+  "joola-perseus-pro-v-2026": {
+   "slug": "joola-perseus-pro-v",
+   "name": "Joola Perseus Pro V",
+   "sources": 25,
+   "groups": {
+    "plays_like": {
+     "all_round": 4,
+     "control": 10,
+     "power": 4
+    },
+    "feel": {
+     "soft": 3
+    },
+    "spin": {
+     "lots": 3,
+     "some": 1
+    },
+    "sweet_spot": {
+     "big": 2,
+     "small": 1
+    },
+    "pop": {
+     "high": 2,
+     "low": 4,
+     "medium": 1
+    },
+    "durability": {
+     "wears_fast": 5,
+     "holds_up": 1
+    },
+    "level": {
+     "advanced": 2
+    },
+    "arm": {
+     "not_really": 1,
+     "somewhat": 1
+    }
+   },
+   "spec": {}
+  },
+  "joola-radius-pro-v-2026": {
+   "slug": "joola-radius-pro-v",
+   "name": "Joola Radius Pro V",
+   "sources": 0,
+   "groups": {},
+   "spec": {}
+  },
+  "joola-scorpeus-3s-2024": {
+   "slug": "joola-scorpeus-3s",
+   "name": "Joola Scorpeus 3S",
+   "sources": 13,
+   "groups": {
+    "plays_like": {
+     "control": 3,
+     "power": 3,
+     "all_round": 2
+    },
+    "sweet_spot": {
+     "big": 7
+    },
+    "feel": {
+     "soft": 1
+    },
+    "pop": {
+     "high": 5,
+     "medium": 1
+    },
+    "level": {
+     "advanced": 1
+    },
+    "durability": {
+     "wears_fast": 2
+    }
+   },
+   "spec": {}
+  },
+  "joola-scorpeus-3s-dual-2025": {
+   "slug": "joola-scorpeus-3s-dual",
+   "name": "Joola Scorpeus 3S Dual",
+   "sources": 0,
+   "groups": {},
+   "spec": {}
+  },
+  "joola-scorpeus-double-vision-2025": {
+   "slug": "joola-scorpeus-double-vision",
+   "name": "Joola Scorpeus Double Vision",
+   "sources": 0,
+   "groups": {},
+   "spec": {}
+  },
+  "joola-scorpeus-heat-vision-2025": {
+   "slug": "joola-scorpeus-heat-vision",
+   "name": "Joola Scorpeus Heat Vision",
+   "sources": 1,
+   "groups": {
+    "plays_like": {
+     "control": 1
+    },
+    "spin": {
+     "lots": 1
+    }
+   },
+   "spec": {}
+  },
+  "joola-scorpeus-pro-iv-2025": {
+   "slug": "joola-scorpeus-pro-iv",
+   "name": "Joola Scorpeus Pro IV",
+   "sources": 26,
+   "groups": {
+    "plays_like": {
+     "all_round": 7,
+     "control": 6,
+     "power": 6
+    },
+    "sweet_spot": {
+     "big": 12,
+     "small": 2,
+     "medium": 1
+    },
+    "spin": {
+     "lots": 5,
+     "little": 1
+    },
+    "pop": {
+     "high": 5,
+     "low": 2,
+     "medium": 1
+    },
+    "durability": {
+     "wears_fast": 2
+    },
+    "game_type": {
+     "doubles": 1
+    },
+    "arm": {
+     "not_really": 1
+    }
+   },
+   "spec": {}
+  },
+  "joola-scorpeus-pro-v-2026": {
+   "slug": "joola-scorpeus-pro-v",
+   "name": "Joola Scorpeus Pro V",
+   "sources": 10,
+   "groups": {
+    "plays_like": {
+     "control": 3,
+     "power": 3,
+     "all_round": 1
+    },
+    "sweet_spot": {
+     "big": 6,
+     "medium": 2,
+     "small": 1
+    },
+    "feel": {
+     "soft": 2
+    },
+    "pop": {
+     "high": 1,
+     "low": 1
+    },
+    "arm": {
+     "somewhat": 1,
+     "very": 1
+    },
+    "durability": {
+     "wears_fast": 1
+    },
+    "spin": {
+     "some": 1
+    }
+   },
+   "spec": {}
+  },
+  "luzz-cannon-2025": {
+   "slug": "luzz-cannon",
+   "name": "Luzz Pro Cannon",
+   "sources": 43,
+   "groups": {
+    "plays_like": {
+     "power": 28,
+     "control": 3,
+     "all_round": 5
+    },
+    "spin": {
+     "lots": 9,
+     "some": 3
+    },
+    "pop": {
+     "high": 17,
+     "low": 1
+    },
+    "sweet_spot": {
+     "small": 7,
+     "big": 1,
+     "medium": 1
+    },
+    "feel": {
+     "soft": 1
+    },
+    "arm": {
+     "not_really": 2
+    },
+    "durability": {
+     "holds_up": 2,
+     "wears_fast": 2
+    },
+    "level": {
+     "intermediate": 2,
+     "advanced": 2
+    },
+    "game_type": {
+     "singles": 1
+    }
+   },
+   "spec": {}
+  },
+  "luzz-cannon-ex-2026": {
+   "slug": "luzz-cannon-ex",
+   "name": "Luzz Cannon EX",
+   "sources": 0,
+   "groups": {},
+   "spec": {}
+  },
+  "luzz-cannon-xpp-m1-2026": {
+   "slug": "luzz-cannon-xpp-m1",
+   "name": "Luzz Cannon XPP M1",
+   "sources": 10,
+   "groups": {
+    "spin": {
+     "lots": 9
+    },
+    "pop": {
+     "high": 3
+    },
+    "feel": {
+     "soft": 1,
+     "hard": 1
+    },
+    "plays_like": {
+     "all_round": 3,
+     "control": 1,
+     "power": 3
+    },
+    "sweet_spot": {
+     "big": 1
+    },
+    "game_type": {
+     "singles": 1
+    },
+    "durability": {
+     "wears_fast": 1
+    }
+   },
+   "spec": {}
+  },
+  "luzz-cannon2-m1-2026": {
+   "slug": "luzz-cannon2-m1",
+   "name": "Luzz Cannon2 M1",
+   "sources": 3,
+   "groups": {
+    "pop": {
+     "low": 1
+    },
+    "durability": {
+     "wears_fast": 2
+    }
+   },
+   "spec": {}
+  },
+  "luzz-glider-2024-hybrid-2024": {
+   "slug": "luzz-glider-2024-hybrid",
+   "name": "Luzz Glider 2024 Hybrid",
+   "sources": 0,
+   "groups": {},
+   "spec": {}
+  },
+  "luzz-glider-2026-hybrid-2026": {
+   "slug": "luzz-glider-2026-hybrid",
+   "name": "Luzz Glider 2026 Hybrid",
+   "sources": 12,
+   "groups": {
+    "spin": {
+     "lots": 10,
+     "some": 2
+    },
+    "feel": {
+     "hard": 1,
+     "soft": 1
+    },
+    "plays_like": {
+     "power": 3,
+     "control": 4,
+     "all_round": 1
+    },
+    "pop": {
+     "high": 2,
+     "low": 1
+    },
+    "sweet_spot": {
+     "big": 1,
+     "small": 3,
+     "medium": 1
+    },
+    "durability": {
+     "wears_fast": 2
+    }
+   },
+   "spec": {}
+  },
+  "luzz-glider-m1-2026": {
+   "slug": "luzz-glider-m1",
+   "name": "Luzz Glider M1",
+   "sources": 0,
+   "groups": {},
+   "spec": {}
+  },
+  "luzz-inferno2-m1-2026": {
+   "slug": "luzz-inferno2-m1",
+   "name": "Luzz Inferno2 M1",
+   "sources": 0,
+   "groups": {},
+   "spec": {}
+  },
+  "luzz-inferno2-m2-2026": {
+   "slug": "luzz-inferno2-m2",
+   "name": "Luzz Inferno2 M2",
+   "sources": 1,
+   "groups": {
+    "durability": {
+     "wears_fast": 1
+    }
+   },
+   "spec": {}
+  },
+  "luzz-original-2024": {
+   "slug": "luzz-original",
+   "name": "Luzz Original",
+   "sources": 0,
+   "groups": {},
+   "spec": {}
+  },
+  "luzz-pro-2nd-archer-2025": {
+   "slug": "luzz-pro-2nd-archer",
+   "name": "Luzz Pro 2nd Archer",
+   "sources": 0,
+   "groups": {},
+   "spec": {}
+  },
+  "luzz-pro-4-inferno-2025": {
+   "slug": "luzz-pro-4-inferno",
+   "name": "Luzz Pro 4 Inferno",
+   "sources": 48,
+   "groups": {
+    "spin": {
+     "lots": 15,
+     "little": 1
+    },
+    "pop": {
+     "high": 10,
+     "medium": 1,
+     "low": 2
+    },
+    "plays_like": {
+     "power": 15,
+     "all_round": 7,
+     "control": 6
+    },
+    "sweet_spot": {
+     "big": 11,
+     "small": 2
+    },
+    "feel": {
+     "soft": 1
+    },
+    "level": {
+     "intermediate": 2,
+     "advanced": 1
+    },
+    "durability": {
+     "holds_up": 3,
+     "wears_fast": 11
+    },
+    "arm": {
+     "not_really": 1,
+     "somewhat": 1
+    }
+   },
+   "spec": {}
+  },
+  "luzz-pro-4-tornazo-2025": {
+   "slug": "luzz-pro-4-tornazo",
+   "name": "Luzz Pro 4 Tornazo",
+   "sources": 0,
+   "groups": {},
+   "spec": {}
+  },
+  "luzz-pro-bladz-2x-2026": {
+   "slug": "luzz-pro-bladz-2x",
+   "name": "Luzz Pro Bladz 2X",
+   "sources": 0,
+   "groups": {},
+   "spec": {}
+  },
+  "luzz-pro-zz-2024": {
+   "slug": "luzz-pro-zz",
+   "name": "Luzz Pro ZZ",
+   "sources": 0,
+   "groups": {},
+   "spec": {}
+  },
+  "luzz-probladz-2-2026": {
+   "slug": "luzz-probladz-2",
+   "name": "Luzz Pro Blade 2",
+   "sources": 0,
+   "groups": {},
+   "spec": {}
+  },
+  "luzz-ultra-original-2024": {
+   "slug": "luzz-ultra-original",
+   "name": "Luzz Ultra Original",
+   "sources": 0,
+   "groups": {},
+   "spec": {}
+  },
+  "neonic-flare-prime-x-2024": {
+   "slug": "neonic-flare-prime-x",
+   "name": "Neonic Flare Prime X",
+   "sources": 12,
+   "groups": {
+    "plays_like": {
+     "power": 6,
+     "control": 3
+    },
+    "pop": {
+     "high": 8,
+     "low": 2
+    },
+    "sweet_spot": {
+     "big": 3,
+     "small": 1,
+     "medium": 2
+    },
+    "spin": {
+     "lots": 2
+    },
+    "durability": {
+     "wears_fast": 1
+    }
+   },
+   "spec": {}
+  },
+  "neonic-flare-titanium-2024": {
+   "slug": "neonic-flare-titanium",
+   "name": "Neonic Flare Titanium",
+   "sources": 2,
+   "groups": {
+    "plays_like": {
+     "all_round": 1,
+     "control": 1
+    },
+    "sweet_spot": {
+     "medium": 1
+    }
+   },
+   "spec": {}
+  },
+  "neonic-swift-flx-2026": {
+   "slug": "neonic-swift-flx",
+   "name": "Neonic Swift FLX",
+   "sources": 0,
+   "groups": {},
+   "spec": {}
+  },
+  "paddletek-bantam-esq-c-2025": {
+   "slug": "paddletek-bantam-esq-c",
+   "name": "Paddletek Bantam ESQ-C",
+   "sources": 27,
+   "groups": {
+    "plays_like": {
+     "power": 18,
+     "all_round": 2,
+     "control": 1
+    },
+    "spin": {
+     "lots": 10
+    },
+    "pop": {
+     "high": 11,
+     "medium": 2,
+     "low": 1
+    },
+    "sweet_spot": {
+     "big": 4,
+     "small": 3,
+     "medium": 3
+    },
+    "feel": {
+     "soft": 2
+    },
+    "durability": {
+     "holds_up": 3
+    }
+   },
+   "spec": {}
+  },
+  "paddletek-bantam-exl-c-2026": {
+   "slug": "paddletek-bantam-exl-c",
+   "name": "Paddletek Bantam EXL-C",
+   "sources": 0,
+   "groups": {},
+   "spec": {}
+  },
+  "paddletek-bantam-gto-c-2025": {
+   "slug": "paddletek-bantam-gto-c",
+   "name": "Paddletek Bantam GTO-C",
+   "sources": 0,
+   "groups": {},
+   "spec": {}
+  },
+  "paddletek-bantam-tko-c-2025": {
+   "slug": "paddletek-bantam-tko-c",
+   "name": "Paddletek Bantam TKO-C",
+   "sources": 24,
+   "groups": {
+    "plays_like": {
+     "all_round": 7,
+     "power": 13,
+     "control": 1
+    },
+    "spin": {
+     "lots": 4,
+     "some": 1
+    },
+    "pop": {
+     "high": 7
+    },
+    "sweet_spot": {
+     "small": 11,
+     "big": 1,
+     "medium": 1
+    },
+    "durability": {
+     "holds_up": 2
+    },
+    "level": {
+     "intermediate": 1,
+     "advanced": 1
+    },
+    "feel": {
+     "soft": 1
+    }
+   },
+   "spec": {}
+  },
+  "paddletek-bantam-tko-cx-2025": {
+   "slug": "paddletek-bantam-tko-cx",
+   "name": "Paddletek Bantam TKO-CX",
+   "sources": 25,
+   "groups": {
+    "plays_like": {
+     "power": 12,
+     "all_round": 6
+    },
+    "spin": {
+     "lots": 4,
+     "some": 2
+    },
+    "pop": {
+     "high": 7,
+     "medium": 2
+    },
+    "durability": {
+     "wears_fast": 3
+    },
+    "sweet_spot": {
+     "small": 5,
+     "big": 1
+    },
+    "game_type": {
+     "singles": 1
+    }
+   },
+   "spec": {}
+  },
+  "paddletek-honeyfoam-esq-2026": {
+   "slug": "paddletek-honeyfoam-esq",
+   "name": "Paddletek Honeyfoam ESQ",
+   "sources": 1,
+   "groups": {
+    "plays_like": {
+     "control": 1
+    }
+   },
+   "spec": {}
+  },
+  "paddletek-honeyfoam-tko-x-2026": {
+   "slug": "paddletek-honeyfoam-tko-x",
+   "name": "Paddletek Honeyfoam TKO-X",
+   "sources": 0,
+   "groups": {},
+   "spec": {}
+  },
+  "paddletek-phoenix-firestorm-2026": {
+   "slug": "paddletek-phoenix-firestorm",
+   "name": "Paddletek Phoenix Firestorm",
+   "sources": 0,
+   "groups": {},
+   "spec": {}
+  },
+  "paddletek-phoenix-genesis-carbon-2026": {
+   "slug": "paddletek-phoenix-genesis-carbon",
+   "name": "Paddletek Phoenix Genesis Carbon",
+   "sources": 0,
+   "groups": {},
+   "spec": {}
+  },
+  "paddletek-phoenix-genesis-ii-2025": {
+   "slug": "paddletek-phoenix-genesis-ii",
+   "name": "Paddletek Phoenix Genesis II",
+   "sources": 0,
+   "groups": {},
+   "spec": {}
+  },
+  "paddletek-phoenix-sabre-carbon-2026": {
+   "slug": "paddletek-phoenix-sabre-carbon",
+   "name": "Paddletek Phoenix Sabre Carbon",
+   "sources": 0,
+   "groups": {},
+   "spec": {}
+  },
+  "paddletek-phoenix-talon-2026": {
+   "slug": "paddletek-phoenix-talon",
+   "name": "Paddletek Phoenix Talon",
+   "sources": 0,
+   "groups": {},
+   "spec": {}
+  },
+  "paddletek-tempest-tko-c-2024": {
+   "slug": "paddletek-tempest-tko-c",
+   "name": "Paddletek Tempest TKO-C",
+   "sources": 0,
+   "groups": {},
+   "spec": {}
+  },
+  "paddletek-tempest-wave-pro-c-2024": {
+   "slug": "paddletek-tempest-wave-pro-c",
+   "name": "Paddletek Tempest Wave Pro-C",
+   "sources": 0,
+   "groups": {},
+   "spec": {}
+  },
+  "paddletek-the-reserve-honeyfoam-2025": {
+   "slug": "paddletek-the-reserve-honeyfoam",
+   "name": "Paddletek The Reserve Honeyfoam",
+   "sources": 16,
+   "groups": {
+    "spin": {
+     "lots": 5,
+     "some": 1
+    },
+    "pop": {
+     "high": 3,
+     "medium": 1,
+     "low": 1
+    },
+    "feel": {
+     "soft": 3
+    },
+    "arm": {
+     "not_really": 2,
+     "somewhat": 2
+    },
+    "plays_like": {
+     "control": 6,
+     "power": 1
+    },
+    "sweet_spot": {
+     "small": 7,
+     "medium": 1,
+     "big": 1
+    },
+    "level": {
+     "advanced": 1
+    }
+   },
+   "spec": {}
+  },
+  "pakle-fuse-elongated-2026": {
+   "slug": "pakle-fuse-elongated",
+   "name": "Pakle Fuse Elongated",
+   "sources": 9,
+   "groups": {
+    "plays_like": {
+     "power": 3,
+     "control": 2,
+     "all_round": 2
+    },
+    "spin": {
+     "lots": 2,
+     "little": 1
+    },
+    "feel": {
+     "hard": 2
+    },
+    "sweet_spot": {
+     "big": 2
+    },
+    "durability": {
+     "wears_fast": 2
+    },
+    "pop": {
+     "high": 1
+    }
+   },
+   "spec": {}
+  },
+  "pakle-fuse-hybrid-w-2026": {
+   "slug": "pakle-fuse-hybrid-w",
+   "name": "Pakle Fuse Hybrid-W",
+   "sources": 15,
+   "groups": {
+    "plays_like": {
+     "all_round": 4,
+     "power": 4,
+     "control": 2
+    },
+    "feel": {
+     "soft": 2
+    },
+    "sweet_spot": {
+     "big": 2,
+     "medium": 2
+    },
+    "durability": {
+     "holds_up": 5,
+     "wears_fast": 1
+    },
+    "pop": {
+     "high": 1,
+     "low": 1
+    },
+    "spin": {
+     "lots": 1
+    }
+   },
+   "spec": {}
+  },
+  "pickle-poppers-pop-n-frost-elongated-2025": {
+   "slug": "pickle-poppers-pop-n-frost-elongated",
+   "name": "Pickle Poppers POP N Frost Elongated",
+   "sources": 0,
+   "groups": {},
+   "spec": {}
+  },
+  "pickle-poppers-pop-n-pink-petite-2025": {
+   "slug": "pickle-poppers-pop-n-pink-petite",
+   "name": "Pickle Poppers POP N Pink Petite",
+   "sources": 0,
+   "groups": {},
+   "spec": {}
+  },
+  "pickle-poppers-pop-n-rush-elongated-2026": {
+   "slug": "pickle-poppers-pop-n-rush-elongated",
+   "name": "Pickle Poppers POP N Rush Elongated",
+   "sources": 0,
+   "groups": {},
+   "spec": {}
+  },
+  "pickle-poppers-pop-n-tango-widebody-2025": {
+   "slug": "pickle-poppers-pop-n-tango-widebody",
+   "name": "Pickle Poppers POP N Tango Widebody",
+   "sources": 0,
+   "groups": {},
+   "spec": {}
+  },
+  "pickle-poppers-pop-n-treasure-elongated-2026": {
+   "slug": "pickle-poppers-pop-n-treasure-elongated",
+   "name": "Pickle Poppers POP N Treasure Elongated",
+   "sources": 0,
+   "groups": {},
+   "spec": {}
+  },
+  "pickle-poppers-pop-n-treasure-widebody-2026": {
+   "slug": "pickle-poppers-pop-n-treasure-widebody",
+   "name": "Pickle Poppers POP N Treasure Widebody",
+   "sources": 0,
+   "groups": {},
+   "spec": {}
+  },
+  "pickleball-apes-charm-2025": {
+   "slug": "pickleball-apes-charm",
+   "name": "Pickleball Apes Charm",
+   "sources": 1,
+   "groups": {
+    "plays_like": {
+     "control": 1
+    },
+    "sweet_spot": {
+     "big": 1
+    }
+   },
+   "spec": {}
+  },
+  "pickleball-apes-harmony-2025": {
+   "slug": "pickleball-apes-harmony",
+   "name": "Pickleball Apes Harmony",
+   "sources": 15,
+   "groups": {
+    "plays_like": {
+     "control": 11,
+     "all_round": 2
+    },
+    "arm": {
+     "not_really": 1,
+     "very": 2,
+     "somewhat": 1
+    },
+    "sweet_spot": {
+     "big": 5,
+     "medium": 1
+    },
+    "level": {
+     "advanced": 1
+    },
+    "pop": {
+     "low": 2,
+     "medium": 1
+    },
+    "feel": {
+     "soft": 2
+    }
+   },
+   "spec": {}
+  },
+  "pickleball-apes-pulse-2024": {
+   "slug": "pickleball-apes-pulse",
+   "name": "Pickleball Apes Pulse",
+   "sources": 52,
+   "groups": {
+    "plays_like": {
+     "control": 24,
+     "all_round": 10,
+     "power": 6
+    },
+    "spin": {
+     "lots": 13,
+     "little": 1
+    },
+    "sweet_spot": {
+     "big": 12,
+     "small": 4,
+     "medium": 2
+    },
+    "feel": {
+     "soft": 2
+    },
+    "level": {
+     "advanced": 1,
+     "beginner": 1,
+     "intermediate": 2
+    },
+    "durability": {
+     "wears_fast": 11,
+     "holds_up": 2
+    },
+    "arm": {
+     "very": 2,
+     "somewhat": 3
+    },
+    "pop": {
+     "low": 5,
+     "high": 4,
+     "medium": 2
+    }
+   },
+   "spec": {}
+  },
+  "pickleball-apes-zen-2026": {
+   "slug": "pickleball-apes-zen",
+   "name": "Pickleball Apes Zen",
+   "sources": 8,
+   "groups": {
+    "plays_like": {
+     "all_round": 1,
+     "power": 5,
+     "control": 2
+    },
+    "feel": {
+     "hard": 1
+    },
+    "pop": {
+     "low": 3
+    },
+    "sweet_spot": {
+     "medium": 2,
+     "small": 1
+    },
+    "durability": {
+     "wears_fast": 1
+    },
+    "spin": {
+     "little": 1
+    }
+   },
+   "spec": {}
+  },
+  "prokennex-black-ace-14-2025": {
+   "slug": "prokennex-black-ace-14",
+   "name": "ProKennex Black Ace 14",
+   "sources": 1,
+   "groups": {
+    "plays_like": {
+     "all_round": 1
+    },
+    "spin": {
+     "some": 1
+    }
+   },
+   "spec": {}
+  },
+  "prokennex-black-ace-16-2025": {
+   "slug": "prokennex-black-ace-16",
+   "name": "ProKennex Black Ace 16",
+   "sources": 4,
+   "groups": {
+    "plays_like": {
+     "control": 2,
+     "all_round": 1
+    },
+    "sweet_spot": {
+     "small": 1
+    },
+    "pop": {
+     "low": 1
+    },
+    "spin": {
+     "lots": 2
+    },
+    "arm": {
+     "very": 1
+    },
+    "durability": {
+     "wears_fast": 1
+    }
+   },
+   "spec": {}
+  },
+  "prokennex-black-ace-avenger-11-2026": {
+   "slug": "prokennex-black-ace-avenger-11",
+   "name": "ProKennex Black Ace Avenger 11",
+   "sources": 0,
+   "groups": {},
+   "spec": {}
+  },
+  "prokennex-black-ace-avenger-lg-11-2025": {
+   "slug": "prokennex-black-ace-avenger-lg-11",
+   "name": "ProKennex Black Ace Avenger LG 11",
+   "sources": 0,
+   "groups": {},
+   "spec": {}
+  },
+  "prokennex-black-ace-lg-2024": {
+   "slug": "prokennex-black-ace-lg",
+   "name": "ProKennex Black Ace LG",
+   "sources": 3,
+   "groups": {
+    "plays_like": {
+     "power": 3
+    },
+    "sweet_spot": {
+     "small": 3
+    },
+    "level": {
+     "advanced": 1
+    },
+    "arm": {
+     "very": 1
+    }
+   },
+   "spec": {}
+  },
+  "prokennex-black-ace-lg-14-2025": {
+   "slug": "prokennex-black-ace-lg-14",
+   "name": "ProKennex Black Ace LG 14",
+   "sources": 2,
+   "groups": {
+    "plays_like": {
+     "power": 1
+    },
+    "spin": {
+     "lots": 1
+    },
+    "game_type": {
+     "singles": 1
+    }
+   },
+   "spec": {}
+  },
+  "prokennex-black-ace-ovation-2024": {
+   "slug": "prokennex-black-ace-ovation",
+   "name": "ProKennex Black Ace Ovation",
+   "sources": 4,
+   "groups": {
+    "plays_like": {
+     "power": 2,
+     "control": 1
+    },
+    "spin": {
+     "lots": 1,
+     "little": 1
+    },
+    "durability": {
+     "wears_fast": 1
+    },
+    "sweet_spot": {
+     "small": 1
+    },
+    "pop": {
+     "high": 1
+    }
+   },
+   "spec": {}
+  },
+  "prokennex-black-ace-pro-2024": {
+   "slug": "prokennex-black-ace-pro",
+   "name": "ProKennex Black Ace Pro",
+   "sources": 14,
+   "groups": {
+    "plays_like": {
+     "power": 8,
+     "all_round": 1
+    },
+    "sweet_spot": {
+     "small": 2,
+     "big": 2
+    },
+    "pop": {
+     "high": 4
+    },
+    "arm": {
+     "very": 5,
+     "not_really": 1
+    },
+    "level": {
+     "advanced": 2
+    },
+    "spin": {
+     "little": 1,
+     "lots": 2
+    },
+    "durability": {
+     "wears_fast": 3
+    }
+   },
+   "spec": {}
+  },
+  "prokennex-black-ace-xf-2024": {
+   "slug": "prokennex-black-ace-xf",
+   "name": "ProKennex Black Ace XF",
+   "sources": 5,
+   "groups": {
+    "plays_like": {
+     "power": 2
+    },
+    "game_type": {
+     "singles": 1
+    },
+    "pop": {
+     "high": 1
+    },
+    "sweet_spot": {
+     "small": 2
+    },
+    "durability": {
+     "wears_fast": 1
+    }
+   },
+   "spec": {}
+  },
+  "prokennex-black-ace-xf-14-2025": {
+   "slug": "prokennex-black-ace-xf-14",
+   "name": "ProKennex Black Ace XF 14",
+   "sources": 0,
+   "groups": {},
+   "spec": {}
+  },
+  "prokennex-pro-flight-2024": {
+   "slug": "prokennex-pro-flight",
+   "name": "ProKennex Pro Flight",
+   "sources": 11,
+   "groups": {
+    "plays_like": {
+     "power": 6,
+     "control": 2
+    },
+    "spin": {
+     "lots": 2
+    },
+    "sweet_spot": {
+     "big": 2,
+     "small": 1
+    },
+    "pop": {
+     "high": 3
+    },
+    "arm": {
+     "very": 1
+    },
+    "durability": {
+     "wears_fast": 1
+    }
+   },
+   "spec": {}
+  },
+  "proton-project-coyote-2026": {
+   "slug": "proton-project-coyote",
+   "name": "Proton Project Coyote",
+   "sources": 0,
+   "groups": {},
+   "spec": {}
+  },
+  "proton-project-peacock-elongated-2025": {
+   "slug": "proton-project-peacock-elongated",
+   "name": "Proton Project Peacock Elongated",
+   "sources": 0,
+   "groups": {},
+   "spec": {}
+  },
+  "proton-project-peacock-wide-body-2025": {
+   "slug": "proton-project-peacock-wide-body",
+   "name": "Proton Project Peacock Wide Body",
+   "sources": 0,
+   "groups": {},
+   "spec": {}
+  },
+  "proton-series-four-project-roadrunner-2024": {
+   "slug": "proton-series-four-project-roadrunner",
+   "name": "Proton Series Four Project Roadrunner",
+   "sources": 17,
+   "groups": {
+    "plays_like": {
+     "control": 4,
+     "power": 5,
+     "all_round": 1
+    },
+    "pop": {
+     "high": 2,
+     "medium": 1,
+     "low": 2
+    },
+    "sweet_spot": {
+     "small": 3,
+     "big": 2
+    },
+    "spin": {
+     "lots": 8,
+     "some": 2,
+     "little": 1
+    },
+    "durability": {
+     "wears_fast": 4,
+     "holds_up": 1
+    },
+    "level": {
+     "advanced": 1
+    },
+    "feel": {
+     "hard": 1
+    }
+   },
+   "spec": {}
+  },
+  "ronbus-beta-ripple-r1-14-2025": {
+   "slug": "ronbus-beta-ripple-r1-14",
+   "name": "Ronbus Beta Ripple R1.14",
+   "sources": 10,
+   "groups": {
+    "plays_like": {
+     "all_round": 2,
+     "power": 7
+    },
+    "spin": {
+     "lots": 6
+    },
+    "durability": {
+     "wears_fast": 2
+    },
+    "level": {
+     "advanced": 2
+    },
+    "pop": {
+     "medium": 1,
+     "high": 1
+    },
+    "sweet_spot": {
+     "small": 1
+    }
+   },
+   "spec": {}
+  },
+  "ronbus-beta-ripple-r2-14-2025": {
+   "slug": "ronbus-beta-ripple-r2-14",
+   "name": "Ronbus Beta Ripple R2.14",
+   "sources": 6,
+   "groups": {
+    "plays_like": {
+     "all_round": 2,
+     "power": 3
+    },
+    "spin": {
+     "lots": 4
+    },
+    "sweet_spot": {
+     "big": 1
+    },
+    "pop": {
+     "high": 1
+    },
+    "durability": {
+     "wears_fast": 1
+    }
+   },
+   "spec": {}
+  },
+  "ronbus-quanta-pro-r2-16-2026": {
+   "slug": "ronbus-quanta-pro-r2-16",
+   "name": "Ronbus Quanta Pro R2.16",
+   "sources": 0,
+   "groups": {},
+   "spec": {}
+  },
+  "ronbus-quanta-pro-r3-16-2026": {
+   "slug": "ronbus-quanta-pro-r3-16",
+   "name": "Ronbus Quanta Pro R3.16",
+   "sources": 10,
+   "groups": {
+    "plays_like": {
+     "power": 4,
+     "control": 3
+    },
+    "spin": {
+     "lots": 6,
+     "some": 1
+    },
+    "feel": {
+     "hard": 2,
+     "soft": 1
+    },
+    "pop": {
+     "high": 3,
+     "low": 1,
+     "medium": 1
+    },
+    "sweet_spot": {
+     "big": 2,
+     "medium": 2
+    },
+    "durability": {
+     "holds_up": 1
+    }
+   },
+   "spec": {}
+  },
+  "ronbus-quanta-pro-r4-16-2026": {
+   "slug": "ronbus-quanta-pro-r4-16",
+   "name": "Ronbus Quanta Pro R4.16",
+   "sources": 0,
+   "groups": {},
+   "spec": {}
+  },
+  "ronbus-quanta-r1-16-2025": {
+   "slug": "ronbus-quanta-r1-16",
+   "name": "Ronbus Quanta R1.16",
+   "sources": 13,
+   "groups": {
+    "plays_like": {
+     "power": 4,
+     "control": 3
+    },
+    "sweet_spot": {
+     "small": 9,
+     "big": 1
+    },
+    "spin": {
+     "lots": 4
+    },
+    "pop": {
+     "high": 3,
+     "medium": 2
+    },
+    "level": {
+     "intermediate": 1
+    },
+    "durability": {
+     "wears_fast": 1
+    }
+   },
+   "spec": {}
+  },
+  "ronbus-quanta-r2-16-2025": {
+   "slug": "ronbus-quanta-r2-16",
+   "name": "Ronbus Quanta R2.16",
+   "sources": 15,
+   "groups": {
+    "plays_like": {
+     "power": 6,
+     "control": 1
+    },
+    "spin": {
+     "lots": 4
+    },
+    "pop": {
+     "high": 4,
+     "medium": 1
+    },
+    "sweet_spot": {
+     "big": 4,
+     "small": 3
+    },
+    "feel": {
+     "hard": 1
+    },
+    "arm": {
+     "not_really": 1
+    },
+    "durability": {
+     "wears_fast": 3
+    }
+   },
+   "spec": {}
+  },
+  "ronbus-quanta-r3-16-2025": {
+   "slug": "ronbus-quanta-r3-16",
+   "name": "Ronbus Quanta R3.16",
+   "sources": 37,
+   "groups": {
+    "plays_like": {
+     "power": 13,
+     "all_round": 7,
+     "control": 7
+    },
+    "pop": {
+     "high": 7,
+     "medium": 2,
+     "low": 1
+    },
+    "feel": {
+     "hard": 1
+    },
+    "spin": {
+     "little": 3,
+     "lots": 1
+    },
+    "sweet_spot": {
+     "big": 1,
+     "small": 7,
+     "medium": 2
+    },
+    "level": {
+     "advanced": 2
+    },
+    "game_type": {
+     "doubles": 1
+    },
+    "arm": {
+     "not_really": 1
+    },
+    "durability": {
+     "wears_fast": 5,
+     "holds_up": 1
+    }
+   },
+   "spec": {}
+  },
+  "ronbus-quanta-r4-16-2025": {
+   "slug": "ronbus-quanta-r4-16",
+   "name": "Ronbus Quanta R4.16",
+   "sources": 38,
+   "groups": {
+    "plays_like": {
+     "power": 9,
+     "all_round": 6,
+     "control": 9
+    },
+    "pop": {
+     "high": 8,
+     "low": 2,
+     "medium": 3
+    },
+    "feel": {
+     "hard": 2,
+     "soft": 1
+    },
+    "spin": {
+     "little": 3,
+     "some": 1,
+     "lots": 4
+    },
+    "sweet_spot": {
+     "big": 2,
+     "small": 4
+    },
+    "arm": {
+     "not_really": 2
+    },
+    "level": {
+     "advanced": 1,
+     "intermediate": 1
+    },
+    "durability": {
+     "wears_fast": 5
+    },
+    "game_type": {
+     "singles": 1
+    }
+   },
+   "spec": {}
+  },
+  "ronbus-refoam-r1-14-2025": {
+   "slug": "ronbus-refoam-r1-14",
+   "name": "Ronbus Refoam R1.14",
+   "sources": 0,
+   "groups": {},
+   "spec": {}
+  },
+  "ronbus-refoam-r4-14-2025": {
+   "slug": "ronbus-refoam-r4-14",
+   "name": "Ronbus Refoam R4.14",
+   "sources": 0,
+   "groups": {},
+   "spec": {}
+  },
+  "ronbus-refoam-r5-14-2025": {
+   "slug": "ronbus-refoam-r5-14",
+   "name": "Ronbus Refoam R5.14",
+   "sources": 0,
+   "groups": {},
+   "spec": {}
+  },
+  "ronbus-ripple-v2-r1-14-2025": {
+   "slug": "ronbus-ripple-v2-r1-14",
+   "name": "Ronbus Ripple V2 R1.14",
+   "sources": 11,
+   "groups": {
+    "plays_like": {
+     "power": 11
+    },
+    "pop": {
+     "high": 7
+    },
+    "spin": {
+     "lots": 1
+    },
+    "sweet_spot": {
+     "small": 5
+    },
+    "level": {
+     "advanced": 1
+    }
+   },
+   "spec": {}
+  },
+  "ronbus-ripple-v2-r2-14-2025": {
+   "slug": "ronbus-ripple-v2-r2-14",
+   "name": "Ronbus Ripple V2 R2.14",
+   "sources": 13,
+   "groups": {
+    "plays_like": {
+     "power": 9
+    },
+    "sweet_spot": {
+     "big": 8,
+     "medium": 2,
+     "small": 1
+    },
+    "pop": {
+     "high": 6,
+     "medium": 1
+    },
+    "spin": {
+     "lots": 1
+    }
+   },
+   "spec": {}
+  },
+  "ronbus-ripple-v2-r4-14-2025": {
+   "slug": "ronbus-ripple-v2-r4-14",
+   "name": "Ronbus Ripple V2 R4.14",
+   "sources": 30,
+   "groups": {
+    "plays_like": {
+     "power": 18,
+     "control": 5,
+     "all_round": 1
+    },
+    "sweet_spot": {
+     "small": 6,
+     "big": 3,
+     "medium": 1
+    },
+    "spin": {
+     "lots": 4,
+     "some": 1
+    },
+    "feel": {
+     "soft": 1,
+     "hard": 2
+    },
+    "pop": {
+     "high": 7,
+     "medium": 1
+    },
+    "level": {
+     "intermediate": 1,
+     "advanced": 1
+    },
+    "durability": {
+     "holds_up": 2
+    },
+    "game_type": {
+     "doubles": 1
+    }
+   },
+   "spec": {}
+  },
+  "ronbus-ripple-v2-r5-14-2025": {
+   "slug": "ronbus-ripple-v2-r5-14",
+   "name": "Ronbus Ripple V2 R5.14",
+   "sources": 5,
+   "groups": {
+    "plays_like": {
+     "power": 4
+    },
+    "pop": {
+     "high": 3,
+     "medium": 1
+    },
+    "spin": {
+     "lots": 3
+    }
+   },
+   "spec": {}
+  },
+  "ronbus-tenon-r1-16-2026": {
+   "slug": "ronbus-tenon-r1-16",
+   "name": "Ronbus Tenon R1.16",
+   "sources": 0,
+   "groups": {},
+   "spec": {}
+  },
+  "ronbus-tenon-r2-16-2026": {
+   "slug": "ronbus-tenon-r2-16",
+   "name": "Ronbus Tenon R2.16",
+   "sources": 7,
+   "groups": {
+    "plays_like": {
+     "power": 2,
+     "control": 3,
+     "all_round": 1
+    },
+    "feel": {
+     "soft": 3
+    },
+    "sweet_spot": {
+     "big": 4,
+     "small": 1
+    },
+    "pop": {
+     "high": 1,
+     "low": 2
+    },
+    "durability": {
+     "wears_fast": 1
+    }
+   },
+   "spec": {}
+  },
+  "ronbus-tenon-r3-16-2026": {
+   "slug": "ronbus-tenon-r3-16",
+   "name": "Ronbus Tenon R3.16",
+   "sources": 0,
+   "groups": {},
+   "spec": {}
+  },
+  "ronbus-tenon-r4-16-2026": {
+   "slug": "ronbus-tenon-r4-16",
+   "name": "Ronbus Tenon R4.16",
+   "sources": 0,
+   "groups": {},
+   "spec": {}
+  },
+  "rpm-friction-pro-elongated-14mm-2025": {
+   "slug": "rpm-friction-pro-elongated-14mm",
+   "name": "RPM Friction Pro Elongated 14mm",
+   "sources": 5,
+   "groups": {
+    "spin": {
+     "lots": 2
+    },
+    "pop": {
+     "high": 2,
+     "medium": 1
+    },
+    "plays_like": {
+     "all_round": 2,
+     "control": 1
+    },
+    "feel": {
+     "soft": 1
+    },
+    "sweet_spot": {
+     "small": 2
+    }
+   },
+   "spec": {}
+  },
+  "rpm-friction-pro-v2-elongated-2025": {
+   "slug": "rpm-friction-pro-v2-elongated",
+   "name": "RPM Friction Pro V2 Elongated",
+   "sources": 10,
+   "groups": {
+    "plays_like": {
+     "control": 4,
+     "all_round": 1,
+     "power": 2
+    },
+    "sweet_spot": {
+     "big": 1
+    },
+    "spin": {
+     "lots": 3
+    },
+    "pop": {
+     "high": 1,
+     "medium": 1,
+     "low": 1
+    },
+    "durability": {
+     "wears_fast": 2,
+     "holds_up": 1
+    },
+    "level": {
+     "advanced": 1
+    }
+   },
+   "spec": {}
+  },
+  "rpm-friction-pro-v2-hybrid-flat-top-2026": {
+   "slug": "rpm-friction-pro-v2-hybrid-flat-top",
+   "name": "RPM Friction Pro V2 Hybrid Flat Top",
+   "sources": 0,
+   "groups": {},
+   "spec": {}
+  },
+  "rpm-friction-pro-widebody-2025": {
+   "slug": "rpm-friction-pro-widebody",
+   "name": "RPM Friction Pro Widebody",
+   "sources": 13,
+   "groups": {
+    "plays_like": {
+     "control": 7,
+     "all_round": 6
+    },
+    "spin": {
+     "lots": 4,
+     "some": 1
+    },
+    "sweet_spot": {
+     "big": 3,
+     "medium": 2,
+     "small": 1
+    },
+    "feel": {
+     "soft": 2
+    },
+    "pop": {
+     "medium": 1,
+     "low": 2
+    }
+   },
+   "spec": {}
+  },
+  "rpm-jade-elongated-2026": {
+   "slug": "rpm-jade-elongated",
+   "name": "RPM Jade Elongated",
+   "sources": 37,
+   "groups": {
+    "plays_like": {
+     "control": 14,
+     "power": 15,
+     "all_round": 3
+    },
+    "spin": {
+     "lots": 24,
+     "some": 2,
+     "little": 1
+    },
+    "pop": {
+     "high": 6,
+     "medium": 1,
+     "low": 1
+    },
+    "sweet_spot": {
+     "big": 3,
+     "small": 3,
+     "medium": 2
+    },
+    "feel": {
+     "soft": 5,
+     "medium": 1
+    },
+    "level": {
+     "beginner": 1,
+     "advanced": 1
+    },
+    "durability": {
+     "holds_up": 5
+    }
+   },
+   "spec": {}
+  },
+  "rpm-jade-widebody-2026": {
+   "slug": "rpm-jade-widebody",
+   "name": "RPM Jade Widebody",
+   "sources": 1,
+   "groups": {
+    "plays_like": {
+     "control": 1
+    }
+   },
+   "spec": {}
+  },
+  "rpm-q2-elongated-2026": {
+   "slug": "rpm-q2-elongated",
+   "name": "RPM Q2 Elongated",
+   "sources": 19,
+   "groups": {
+    "plays_like": {
+     "power": 13,
+     "all_round": 2,
+     "control": 1
+    },
+    "spin": {
+     "lots": 6,
+     "some": 1
+    },
+    "pop": {
+     "high": 6,
+     "medium": 1
+    },
+    "feel": {
+     "soft": 1,
+     "hard": 2
+    },
+    "game_type": {
+     "singles": 1
+    },
+    "sweet_spot": {
+     "small": 3,
+     "big": 1
+    },
+    "durability": {
+     "wears_fast": 1,
+     "holds_up": 1
+    }
+   },
+   "spec": {}
+  },
+  "rpm-q2-hybrid-curve-top-2026": {
+   "slug": "rpm-q2-hybrid-curve-top",
+   "name": "RPM Q2 Hybrid Curve Top",
+   "sources": 0,
+   "groups": {},
+   "spec": {}
+  },
+  "rpm-q2-hybrid-flat-top-2026": {
+   "slug": "rpm-q2-hybrid-flat-top",
+   "name": "RPM Q2 Hybrid Flat Top",
+   "sources": 2,
+   "groups": {
+    "sweet_spot": {
+     "big": 1,
+     "medium": 1
+    },
+    "spin": {
+     "lots": 2
+    }
+   },
+   "spec": {}
+  },
+  "rpm-q2-widebody-2026": {
+   "slug": "rpm-q2-widebody",
+   "name": "RPM Q2 Widebody",
+   "sources": 10,
+   "groups": {
+    "plays_like": {
+     "power": 8
+    },
+    "pop": {
+     "high": 5
+    },
+    "spin": {
+     "lots": 3
+    },
+    "sweet_spot": {
+     "big": 3
+    },
+    "feel": {
+     "soft": 1
+    },
+    "durability": {
+     "wears_fast": 1
+    },
+    "level": {
+     "advanced": 1
+    }
+   },
+   "spec": {}
+  },
+  "selkirk-labs-project-007-2025": {
+   "slug": "selkirk-labs-project-007",
+   "name": "Selkirk LABS Project 007",
+   "sources": 14,
+   "groups": {
+    "spin": {
+     "lots": 7
+    },
+    "pop": {
+     "high": 3
+    },
+    "plays_like": {
+     "power": 8,
+     "all_round": 3,
+     "control": 1
+    },
+    "sweet_spot": {
+     "small": 4,
+     "medium": 1
+    },
+    "arm": {
+     "not_really": 1
+    },
+    "level": {
+     "advanced": 1
+    }
+   },
+   "spec": {}
+  },
+  "selkirk-labs-project-boomstik-elongated-2025": {
+   "slug": "selkirk-labs-project-boomstik-elongated",
+   "name": "Selkirk LABS Project Boomstik Elongated",
+   "sources": 28,
+   "groups": {
+    "plays_like": {
+     "power": 23,
+     "all_round": 2,
+     "control": 2
+    },
+    "sweet_spot": {
+     "big": 8,
+     "small": 4,
+     "medium": 2
+    },
+    "spin": {
+     "lots": 10
+    },
+    "pop": {
+     "high": 12,
+     "medium": 1
+    },
+    "feel": {
+     "hard": 2
+    },
+    "game_type": {
+     "singles": 1
+    },
+    "arm": {
+     "not_really": 3
+    },
+    "level": {
+     "advanced": 1
+    },
+    "durability": {
+     "wears_fast": 5,
+     "holds_up": 1
+    }
+   },
+   "spec": {}
+  },
+  "selkirk-labs-project-boomstik-widebody-2025": {
+   "slug": "selkirk-labs-project-boomstik-widebody",
+   "name": "Selkirk LABS Project Boomstik Widebody",
+   "sources": 23,
+   "groups": {
+    "plays_like": {
+     "power": 14,
+     "all_round": 2,
+     "control": 3
+    },
+    "sweet_spot": {
+     "big": 16,
+     "small": 1
+    },
+    "spin": {
+     "lots": 8,
+     "some": 1
+    },
+    "pop": {
+     "high": 11,
+     "medium": 1,
+     "low": 1
+    },
+    "durability": {
+     "holds_up": 2,
+     "wears_fast": 1
+    }
+   },
+   "spec": {}
+  },
+  "selkirk-luxx-control-air-epic-2026": {
+   "slug": "selkirk-luxx-control-air-epic",
+   "name": "Selkirk LUXX Control Air Epic",
+   "sources": 2,
+   "groups": {
+    "plays_like": {
+     "control": 2
+    },
+    "spin": {
+     "lots": 1
+    },
+    "durability": {
+     "holds_up": 1
+    },
+    "sweet_spot": {
+     "big": 1
+    },
+    "pop": {
+     "low": 1
+    }
+   },
+   "spec": {}
+  },
+  "selkirk-luxx-control-air-invikta-2026": {
+   "slug": "selkirk-luxx-control-air-invikta",
+   "name": "Selkirk LUXX Control Air Invikta",
+   "sources": 7,
+   "groups": {
+    "plays_like": {
+     "control": 3,
+     "power": 1
+    },
+    "pop": {
+     "low": 1
+    },
+    "durability": {
+     "wears_fast": 3
+    },
+    "spin": {
+     "little": 1
+    }
+   },
+   "spec": {}
+  },
+  "selkirk-omni-pro-2026": {
+   "slug": "selkirk-omni-pro",
+   "name": "Selkirk OMNI Pro",
+   "sources": 0,
+   "groups": {},
+   "spec": {}
+  },
+  "selkirk-slk-dauntless-2026": {
+   "slug": "selkirk-slk-dauntless",
+   "name": "Selkirk SLK Dauntless",
+   "sources": 0,
+   "groups": {},
+   "spec": {}
+  },
+  "selkirk-slk-era-power-2026": {
+   "slug": "selkirk-slk-era-power",
+   "name": "Selkirk SLK ERA Power",
+   "sources": 17,
+   "groups": {
+    "plays_like": {
+     "power": 8,
+     "control": 5,
+     "all_round": 2
+    },
+    "spin": {
+     "lots": 3,
+     "little": 2
+    },
+    "sweet_spot": {
+     "big": 8,
+     "small": 2,
+     "medium": 1
+    },
+    "pop": {
+     "high": 2,
+     "medium": 1,
+     "low": 1
+    },
+    "arm": {
+     "very": 1
+    }
+   },
+   "spec": {}
+  },
+  "selkirk-slk-geo-2026": {
+   "slug": "selkirk-slk-geo",
+   "name": "Selkirk SLK Geo",
+   "sources": 0,
+   "groups": {},
+   "spec": {}
+  },
+  "selkirk-slk-halo-power-max-2026": {
+   "slug": "selkirk-slk-halo-power-max",
+   "name": "Selkirk SLK HALO Power Max",
+   "sources": 1,
+   "groups": {
+    "arm": {
+     "not_really": 1
+    }
+   },
+   "spec": {}
+  },
+  "selkirk-slk-halo-power-xl-2026": {
+   "slug": "selkirk-slk-halo-power-xl",
+   "name": "Selkirk SLK HALO Power XL",
+   "sources": 1,
+   "groups": {
+    "plays_like": {
+     "all_round": 1
+    }
+   },
+   "spec": {}
+  },
+  "selkirk-slk-valkyrie-2026": {
+   "slug": "selkirk-slk-valkyrie",
+   "name": "Selkirk SLK Valkyrie",
+   "sources": 0,
+   "groups": {},
+   "spec": {}
+  },
+  "six-zero-black-diamond-power-2024": {
+   "slug": "six-zero-black-diamond-power",
+   "name": "Six Zero Black Diamond Power",
+   "sources": 16,
+   "groups": {
+    "plays_like": {
+     "power": 11,
+     "control": 1
+    },
+    "spin": {
+     "lots": 10
+    },
+    "feel": {
+     "hard": 2
+    },
+    "pop": {
+     "high": 7,
+     "medium": 1
+    },
+    "game_type": {
+     "doubles": 1,
+     "singles": 1
+    },
+    "sweet_spot": {
+     "big": 1,
+     "small": 2,
+     "medium": 2
+    },
+    "arm": {
+     "not_really": 2
+    },
+    "level": {
+     "advanced": 1
+    }
+   },
+   "spec": {}
+  },
+  "six-zero-black-opal-14mm-2025": {
+   "slug": "six-zero-black-opal-14mm",
+   "name": "Six Zero Black Opal 14mm",
+   "sources": 45,
+   "groups": {
+    "plays_like": {
+     "power": 25,
+     "all_round": 6,
+     "control": 1
+    },
+    "spin": {
+     "lots": 13,
+     "little": 1
+    },
+    "pop": {
+     "high": 4,
+     "medium": 2
+    },
+    "feel": {
+     "soft": 3
+    },
+    "sweet_spot": {
+     "small": 23,
+     "medium": 4,
+     "big": 1
+    },
+    "arm": {
+     "very": 2,
+     "not_really": 1
+    },
+    "level": {
+     "beginner": 1,
+     "advanced": 4,
+     "intermediate": 1
+    },
+    "durability": {
+     "wears_fast": 2,
+     "holds_up": 1
+    }
+   },
+   "spec": {}
+  },
+  "six-zero-black-opal-14mm-elongated-2026": {
+   "slug": "six-zero-black-opal-14mm-elongated",
+   "name": "Six Zero Black Opal 14mm Elongated",
+   "sources": 3,
+   "groups": {
+    "plays_like": {
+     "all_round": 1,
+     "control": 1
+    },
+    "sweet_spot": {
+     "big": 1
+    },
+    "durability": {
+     "holds_up": 1
+    }
+   },
+   "spec": {}
+  },
+  "six-zero-boulder-opal-14mm-2026": {
+   "slug": "six-zero-boulder-opal-14mm",
+   "name": "Six Zero Boulder Opal 14mm",
+   "sources": 9,
+   "groups": {
+    "plays_like": {
+     "power": 6,
+     "control": 1,
+     "all_round": 1
+    },
+    "sweet_spot": {
+     "small": 6,
+     "medium": 1
+    },
+    "feel": {
+     "soft": 2
+    },
+    "spin": {
+     "lots": 2,
+     "little": 1
+    },
+    "pop": {
+     "high": 2,
+     "low": 1
+    },
+    "durability": {
+     "wears_fast": 1
+    },
+    "arm": {
+     "somewhat": 1
+    }
+   },
+   "spec": {}
+  },
+  "six-zero-coral-16mm-2025": {
+   "slug": "six-zero-coral-16mm",
+   "name": "Six Zero Coral 16mm",
+   "sources": 107,
+   "groups": {
+    "plays_like": {
+     "control": 52,
+     "all_round": 14,
+     "power": 11
+    },
+    "sweet_spot": {
+     "big": 23,
+     "small": 9,
+     "medium": 2
+    },
+    "spin": {
+     "lots": 17,
+     "little": 3,
+     "some": 1
+    },
+    "pop": {
+     "high": 12,
+     "low": 9,
+     "medium": 2
+    },
+    "level": {
+     "intermediate": 5,
+     "advanced": 1,
+     "beginner": 1
+    },
+    "feel": {
+     "medium": 1,
+     "soft": 3
+    },
+    "durability": {
+     "wears_fast": 10,
+     "holds_up": 10
+    },
+    "arm": {
+     "very": 2,
+     "not_really": 2,
+     "somewhat": 1
+    },
+    "game_type": {
+     "doubles": 1
+    }
+   },
+   "spec": {}
+  },
+  "six-zero-coral-16mm-lightweight-2026": {
+   "slug": "six-zero-coral-16mm-lightweight",
+   "name": "Six Zero Coral 16mm Lightweight",
+   "sources": 3,
+   "groups": {
+    "pop": {
+     "high": 1,
+     "medium": 1
+    },
+    "sweet_spot": {
+     "small": 1
+    },
+    "plays_like": {
+     "control": 1
+    }
+   },
+   "spec": {}
+  },
+  "six-zero-coral-pro-16mm-2026": {
+   "slug": "six-zero-coral-pro-16mm",
+   "name": "Six Zero Coral Pro 16mm",
+   "sources": 142,
+   "groups": {
+    "sweet_spot": {
+     "small": 36,
+     "big": 10,
+     "medium": 4
+    },
+    "spin": {
+     "lots": 52,
+     "little": 3,
+     "some": 7
+    },
+    "plays_like": {
+     "control": 50,
+     "all_round": 14,
+     "power": 22
+    },
+    "pop": {
+     "high": 7,
+     "low": 9,
+     "medium": 2
+    },
+    "feel": {
+     "soft": 4,
+     "hard": 4
+    },
+    "level": {
+     "intermediate": 2,
+     "advanced": 3
+    },
+    "arm": {
+     "not_really": 1
+    },
+    "durability": {
+     "holds_up": 26,
+     "wears_fast": 4
+    },
+    "game_type": {
+     "doubles": 1
+    }
+   },
+   "spec": {}
+  },
+  "six-zero-double-black-diamond-control-2024": {
+   "slug": "six-zero-double-black-diamond-control",
+   "name": "Six Zero Double Black Diamond Control",
+   "sources": 92,
+   "groups": {
+    "plays_like": {
+     "all_round": 10,
+     "power": 20,
+     "control": 41
+    },
+    "spin": {
+     "lots": 15,
+     "some": 1,
+     "little": 2
+    },
+    "sweet_spot": {
+     "big": 9,
+     "medium": 3,
+     "small": 2
+    },
+    "pop": {
+     "high": 8,
+     "low": 3,
+     "medium": 5
+    },
+    "game_type": {
+     "singles": 2,
+     "doubles": 3
+    },
+    "feel": {
+     "hard": 1,
+     "soft": 2
+    },
+    "level": {
+     "intermediate": 2
+    },
+    "durability": {
+     "wears_fast": 9,
+     "holds_up": 4
+    },
+    "arm": {
+     "not_really": 1
+    }
+   },
+   "spec": {}
+  },
+  "six-zero-double-black-diamond-control-15mm-elongated-2024": {
+   "slug": "six-zero-double-black-diamond-control-15mm-elongated",
+   "name": "Six Zero Double Black Diamond Control 15mm Elongated",
+   "sources": 0,
+   "groups": {},
+   "spec": {}
+  },
+  "six-zero-infinity-edgeless-black-diamond-power-2024": {
+   "slug": "six-zero-infinity-edgeless-black-diamond-power",
+   "name": "Six Zero Infinity Edgeless Black Diamond Power",
+   "sources": 10,
+   "groups": {
+    "sweet_spot": {
+     "small": 5
+    },
+    "spin": {
+     "lots": 7
+    },
+    "plays_like": {
+     "control": 3,
+     "all_round": 1,
+     "power": 2
+    },
+    "pop": {
+     "high": 2,
+     "medium": 1
+    }
+   },
+   "spec": {}
+  },
+  "six-zero-infinity-edgeless-ruby-2024": {
+   "slug": "six-zero-infinity-edgeless-ruby",
+   "name": "Six Zero Infinity Edgeless Ruby",
+   "sources": 1,
+   "groups": {
+    "plays_like": {
+     "control": 1
+    }
+   },
+   "spec": {}
+  },
+  "six-zero-quartz-2024": {
+   "slug": "six-zero-quartz",
+   "name": "Six Zero Quartz",
+   "sources": 15,
+   "groups": {
+    "plays_like": {
+     "control": 12,
+     "all_round": 2
+    },
+    "sweet_spot": {
+     "small": 3
+    },
+    "spin": {
+     "lots": 5
+    },
+    "feel": {
+     "medium": 1
+    },
+    "level": {
+     "beginner": 4
+    },
+    "pop": {
+     "low": 2
+    }
+   },
+   "spec": {}
+  },
+  "six-zero-ruby-2024": {
+   "slug": "six-zero-ruby",
+   "name": "Six Zero Ruby",
+   "sources": 110,
+   "groups": {
+    "plays_like": {
+     "control": 36,
+     "all_round": 13,
+     "power": 9
+    },
+    "spin": {
+     "lots": 41,
+     "some": 3,
+     "little": 1
+    },
+    "pop": {
+     "high": 5,
+     "low": 18,
+     "medium": 7
+    },
+    "sweet_spot": {
+     "big": 8,
+     "small": 5,
+     "medium": 2
+    },
+    "feel": {
+     "soft": 4,
+     "hard": 2
+    },
+    "durability": {
+     "wears_fast": 23,
+     "holds_up": 1
+    },
+    "level": {
+     "intermediate": 6,
+     "advanced": 1,
+     "beginner": 2
+    },
+    "arm": {
+     "not_really": 7,
+     "somewhat": 1,
+     "very": 1
+    },
+    "game_type": {
+     "doubles": 1
+    }
+   },
+   "spec": {}
+  },
+  "six-zero-ruby-pro-14mm-2025": {
+   "slug": "six-zero-ruby-pro-14mm",
+   "name": "Six Zero Ruby Pro 14mm",
+   "sources": 29,
+   "groups": {
+    "plays_like": {
+     "control": 13,
+     "power": 4
+    },
+    "spin": {
+     "lots": 14,
+     "some": 1,
+     "little": 1
+    },
+    "sweet_spot": {
+     "small": 6,
+     "big": 1
+    },
+    "pop": {
+     "high": 5,
+     "low": 1
+    },
+    "arm": {
+     "not_really": 2,
+     "somewhat": 1
+    },
+    "feel": {
+     "hard": 1
+    },
+    "durability": {
+     "wears_fast": 1,
+     "holds_up": 2
+    },
+    "level": {
+     "advanced": 1
+    }
+   },
+   "spec": {}
+  },
+  "six-zero-sapphire-2024": {
+   "slug": "six-zero-sapphire",
+   "name": "Six Zero Sapphire",
+   "sources": 4,
+   "groups": {
+    "plays_like": {
+     "power": 2,
+     "all_round": 1
+    },
+    "pop": {
+     "high": 3
+    },
+    "feel": {
+     "hard": 1
+    },
+    "sweet_spot": {
+     "small": 2
+    },
+    "arm": {
+     "not_really": 1
+    },
+    "spin": {
+     "little": 1
+    }
+   },
+   "spec": {}
+  },
+  "spartus-apollo-2024": {
+   "slug": "spartus-apollo",
+   "name": "Spartus Apollo",
+   "sources": 48,
+   "groups": {
+    "spin": {
+     "lots": 19
+    },
+    "pop": {
+     "high": 9,
+     "medium": 5,
+     "low": 1
+    },
+    "plays_like": {
+     "control": 17,
+     "power": 10,
+     "all_round": 1
+    },
+    "feel": {
+     "soft": 1,
+     "hard": 1
+    },
+    "sweet_spot": {
+     "big": 17,
+     "small": 2
+    },
+    "level": {
+     "advanced": 2
+    },
+    "arm": {
+     "not_really": 1
+    },
+    "durability": {
+     "wears_fast": 4
+    },
+    "game_type": {
+     "singles": 1
+    }
+   },
+   "spec": {}
+  },
+  "spartus-odyssey-apex-2025": {
+   "slug": "spartus-odyssey-apex",
+   "name": "Spartus Odyssey APEX",
+   "sources": 2,
+   "groups": {
+    "pop": {
+     "low": 1
+    },
+    "plays_like": {
+     "control": 1
+    },
+    "sweet_spot": {
+     "big": 1
+    },
+    "spin": {
+     "lots": 1
+    }
+   },
+   "spec": {}
+  },
+  "spartus-olympus-2024": {
+   "slug": "spartus-olympus",
+   "name": "Spartus Olympus",
+   "sources": 44,
+   "groups": {
+    "plays_like": {
+     "power": 21,
+     "all_round": 7,
+     "control": 2
+    },
+    "spin": {
+     "lots": 4,
+     "little": 1
+    },
+    "pop": {
+     "high": 12
+    },
+    "feel": {
+     "soft": 1
+    },
+    "durability": {
+     "wears_fast": 13
+    },
+    "level": {
+     "advanced": 2,
+     "intermediate": 2
+    },
+    "sweet_spot": {
+     "big": 1,
+     "small": 5,
+     "medium": 1
+    }
+   },
+   "spec": {}
+  },
+  "spartus-oracle-apex-2025": {
+   "slug": "spartus-oracle-apex",
+   "name": "Spartus Oracle APEX",
+   "sources": 0,
+   "groups": {},
+   "spec": {}
+  },
+  "spartus-orion-apex-2025": {
+   "slug": "spartus-orion-apex",
+   "name": "Spartus Orion APEX",
+   "sources": 0,
+   "groups": {},
+   "spec": {}
+  },
+  "spartus-p1-elongated-2026": {
+   "slug": "spartus-p1-elongated",
+   "name": "Spartus P1 Elongated",
+   "sources": 3,
+   "groups": {
+    "plays_like": {
+     "power": 1
+    },
+    "spin": {
+     "lots": 2,
+     "little": 1
+    }
+   },
+   "spec": {}
+  },
+  "spartus-p1-hybrid-2025": {
+   "slug": "spartus-p1-hybrid",
+   "name": "Spartus P1 Hybrid",
+   "sources": 27,
+   "groups": {
+    "plays_like": {
+     "control": 10,
+     "power": 5,
+     "all_round": 4
+    },
+    "arm": {
+     "not_really": 2
+    },
+    "spin": {
+     "lots": 20,
+     "little": 1
+    },
+    "sweet_spot": {
+     "big": 7,
+     "small": 1
+    },
+    "feel": {
+     "hard": 1
+    },
+    "pop": {
+     "low": 4,
+     "high": 1
+    },
+    "durability": {
+     "holds_up": 5,
+     "wears_fast": 3
+    }
+   },
+   "spec": {}
+  },
+  "spartus-p1-standard-2026": {
+   "slug": "spartus-p1-standard",
+   "name": "Spartus P1 Standard",
+   "sources": 5,
+   "groups": {
+    "sweet_spot": {
+     "big": 4
+    },
+    "spin": {
+     "lots": 4
+    },
+    "pop": {
+     "high": 2
+    },
+    "feel": {
+     "hard": 1
+    },
+    "plays_like": {
+     "control": 2,
+     "power": 1
+    },
+    "durability": {
+     "wears_fast": 1
+    }
+   },
+   "spec": {}
+  },
+  "spartus-spitfire-elongated-2026": {
+   "slug": "spartus-spitfire-elongated",
+   "name": "Spartus Spitfire Elongated",
+   "sources": 40,
+   "groups": {
+    "plays_like": {
+     "power": 18,
+     "control": 6,
+     "all_round": 5
+    },
+    "spin": {
+     "lots": 26
+    },
+    "feel": {
+     "soft": 3
+    },
+    "sweet_spot": {
+     "big": 8,
+     "medium": 2
+    },
+    "level": {
+     "intermediate": 2,
+     "advanced": 1
+    },
+    "pop": {
+     "high": 3,
+     "low": 2
+    },
+    "arm": {
+     "very": 1,
+     "somewhat": 1
+    },
+    "durability": {
+     "wears_fast": 5,
+     "holds_up": 5
+    }
+   },
+   "spec": {}
+  },
+  "spartus-spitfire-widebody-2026": {
+   "slug": "spartus-spitfire-widebody",
+   "name": "Spartus Spitfire Widebody",
+   "sources": 16,
+   "groups": {
+    "plays_like": {
+     "control": 6,
+     "power": 3
+    },
+    "sweet_spot": {
+     "big": 6
+    },
+    "pop": {
+     "high": 6,
+     "low": 2,
+     "medium": 3
+    },
+    "spin": {
+     "lots": 6
+    },
+    "durability": {
+     "holds_up": 1
+    },
+    "level": {
+     "intermediate": 1
+    }
+   },
+   "spec": {}
+  },
+  "vatic-pro-prism-2023": {
+   "slug": "vatic-pro-prism-flash",
+   "name": "Vatic Pro Prism Flash",
+   "sources": 143,
+   "groups": {
+    "plays_like": {
+     "control": 77,
+     "all_round": 6,
+     "power": 13
+    },
+    "sweet_spot": {
+     "small": 6,
+     "big": 19,
+     "medium": 2
+    },
+    "spin": {
+     "lots": 23,
+     "little": 8,
+     "some": 1
+    },
+    "arm": {
+     "not_really": 7,
+     "very": 1,
+     "somewhat": 4
+    },
+    "feel": {
+     "soft": 7
+    },
+    "level": {
+     "advanced": 3,
+     "beginner": 9,
+     "intermediate": 5
+    },
+    "durability": {
+     "wears_fast": 15,
+     "holds_up": 10
+    },
+    "game_type": {
+     "doubles": 2,
+     "singles": 2
+    },
+    "pop": {
+     "low": 16,
+     "high": 6
+    }
+   },
+   "spec": {}
+  },
+  "vatic-pro-saga-2024": {
+   "slug": "vatic-pro-saga",
+   "name": "Vatic Pro Saga",
+   "sources": 54,
+   "groups": {
+    "plays_like": {
+     "all_round": 19,
+     "control": 13,
+     "power": 13
+    },
+    "spin": {
+     "lots": 4
+    },
+    "pop": {
+     "high": 7,
+     "low": 8
+    },
+    "sweet_spot": {
+     "big": 5,
+     "small": 4
+    },
+    "feel": {
+     "soft": 4
+    },
+    "arm": {
+     "not_really": 2,
+     "somewhat": 2
+    },
+    "level": {
+     "intermediate": 2
+    },
+    "durability": {
+     "holds_up": 1
+    },
+    "game_type": {
+     "singles": 1
+    }
+   },
+   "spec": {}
+  },
+  "vatic-pro-v-sol-pro-2025": {
+   "slug": "vatic-pro-v-sol-pro",
+   "name": "Vatic Pro V-Sol Pro",
+   "sources": 100,
+   "groups": {
+    "plays_like": {
+     "control": 26,
+     "all_round": 19,
+     "power": 22
+    },
+    "spin": {
+     "lots": 11,
+     "some": 2,
+     "little": 2
+    },
+    "pop": {
+     "high": 22,
+     "low": 6,
+     "medium": 2
+    },
+    "arm": {
+     "not_really": 6,
+     "somewhat": 1
+    },
+    "feel": {
+     "soft": 1,
+     "hard": 1
+    },
+    "sweet_spot": {
+     "big": 12,
+     "medium": 4,
+     "small": 8
+    },
+    "level": {
+     "beginner": 2,
+     "advanced": 2,
+     "intermediate": 3
+    },
+    "durability": {
+     "wears_fast": 13,
+     "holds_up": 1
+    }
+   },
+   "spec": {}
+  },
+  "vatic-pro-v-sol-tour-2026": {
+   "slug": "vatic-pro-v-sol-tour",
+   "name": "Vatic Pro V-Sol Tour",
+   "sources": 41,
+   "groups": {
+    "plays_like": {
+     "all_round": 8,
+     "power": 10,
+     "control": 9
+    },
+    "pop": {
+     "high": 7,
+     "medium": 1
+    },
+    "spin": {
+     "lots": 14,
+     "little": 3
+    },
+    "feel": {
+     "soft": 1,
+     "hard": 1
+    },
+    "sweet_spot": {
+     "big": 2
+    },
+    "level": {
+     "advanced": 1
+    },
+    "durability": {
+     "wears_fast": 12,
+     "holds_up": 4
+    },
+    "arm": {
+     "very": 1
+    }
+   },
+   "spec": {}
+  },
+  "volair-cmd-el-2026": {
+   "slug": "volair-cmd-el",
+   "name": "Volair CMD EL",
+   "sources": 1,
+   "groups": {
+    "sweet_spot": {
+     "small": 1
+    }
+   },
+   "spec": {}
+  },
+  "volair-cmd-hyb-2026": {
+   "slug": "volair-cmd-hyb",
+   "name": "Volair CMD HYB",
+   "sources": 19,
+   "groups": {
+    "sweet_spot": {
+     "small": 4,
+     "big": 3,
+     "medium": 1
+    },
+    "spin": {
+     "lots": 16
+    },
+    "feel": {
+     "soft": 4,
+     "hard": 1
+    },
+    "plays_like": {
+     "control": 12,
+     "power": 2,
+     "all_round": 1
+    },
+    "durability": {
+     "holds_up": 2
+    },
+    "pop": {
+     "low": 2
+    },
+    "arm": {
+     "somewhat": 1
+    }
+   },
+   "spec": {}
+  },
+  "volair-cmd-wb-2026": {
+   "slug": "volair-cmd-wb",
+   "name": "Volair CMD WB",
+   "sources": 0,
+   "groups": {},
+   "spec": {}
+  },
+  "volair-ctrl-1-forza-2024": {
+   "slug": "volair-ctrl-1-forza",
+   "name": "Volair CTRL 1 Forza",
+   "sources": 1,
+   "groups": {
+    "pop": {
+     "high": 1
+    },
+    "durability": {
+     "wears_fast": 1
+    }
+   },
+   "spec": {}
+  },
+  "volair-ctrl-2-forza-2024": {
+   "slug": "volair-ctrl-2-forza",
+   "name": "Volair CTRL 2 Forza",
+   "sources": 0,
+   "groups": {},
+   "spec": {}
+  },
+  "volair-pro-1-2024": {
+   "slug": "volair-pro-1",
+   "name": "Volair Pro 1",
+   "sources": 0,
+   "groups": {},
+   "spec": {}
+  },
+  "volair-pro-2-2024": {
+   "slug": "volair-pro-2",
+   "name": "Volair Pro 2",
+   "sources": 0,
+   "groups": {},
+   "spec": {}
+  },
+  "volair-shift-el-2025": {
+   "slug": "volair-shift-el",
+   "name": "Volair Shift EL",
+   "sources": 14,
+   "groups": {
+    "plays_like": {
+     "control": 3,
+     "power": 9,
+     "all_round": 1
+    },
+    "spin": {
+     "lots": 12
+    },
+    "sweet_spot": {
+     "small": 6,
+     "big": 2
+    },
+    "durability": {
+     "holds_up": 1
+    },
+    "pop": {
+     "low": 2
+    }
+   },
+   "spec": {}
+  },
+  "volair-shift-hyb-2025": {
+   "slug": "volair-shift-hyb",
+   "name": "Volair Shift HYB",
+   "sources": 0,
+   "groups": {},
+   "spec": {}
+  },
+  "volair-shift-wb-2025": {
+   "slug": "volair-shift-wb",
+   "name": "Volair Shift WB",
+   "sources": 13,
+   "groups": {
+    "spin": {
+     "lots": 12
+    },
+    "feel": {
+     "soft": 1
+    },
+    "plays_like": {
+     "control": 6,
+     "power": 2,
+     "all_round": 1
+    },
+    "sweet_spot": {
+     "big": 8,
+     "medium": 2
+    },
+    "durability": {
+     "holds_up": 1
+    },
+    "pop": {
+     "medium": 1,
+     "low": 1
+    }
+   },
+   "spec": {}
+  },
+  "volair-v-1f-xl-w-2025": {
+   "slug": "volair-v-1f-xl-w",
+   "name": "Volair V.1F XL-W",
+   "sources": 0,
+   "groups": {},
+   "spec": {}
+  }
+ }
+}

@@ -1,11 +1,13 @@
 // The "How does it play?" prefill for one racket (db/thread/padel-traits.json, built by scripts/thread-trait-prefill.mts
-// from what reviews already say). Padel only; null elsewhere or for a racket the file doesn't know.
+// from what reviews already say), and db/thread/pickleball-traits.json the same way. Null elsewhere or for a product the
+// file doesn't know.
 import prefill from "../../db/thread/padel-traits.json";
+import pickleball from "../../db/thread/pickleball-traits.json";
 import type { Prefill } from "./trait-prefill";
 
 export type TraitSeed = { sources: number; groups: Record<string, Record<string, number>>; spec: Record<string, string> };
-const FILE = prefill as Prefill;
+const FILES: Record<string, Prefill> = { padel: prefill as Prefill, pickleball: pickleball as Prefill };
 export function traitSeed(nicheId: string, racketId: string): TraitSeed | null {
-  const r = nicheId === "padel" ? FILE.rackets[racketId] : undefined;
+  const r = FILES[nicheId]?.rackets[racketId];
   return r ? { sources: r.sources, groups: r.groups, spec: r.spec } : null;
 }
