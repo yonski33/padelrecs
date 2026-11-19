@@ -5,12 +5,12 @@ import { Shell } from "./shell";
 import { homeMetadata } from "../home-metadata";
 import { liveOr } from "./seo";
 import { DEFAULT_CHOICE } from "../../lib/quick-match";
-import { threadRows, threadBoards, threadFeed, hasDb, homeTop } from "./data";
+import { threadRows, threadFeed, hasDb, homeTop, threadTopPicks } from "./data";
+import { TopPicks } from "./top-picks";
 import { homePayload, defaultHomeIds } from "../home-payload";
 import { threadRankings } from "./rankings-data";
 import { MatchBox, HomeList } from "./live/lists";
 import { Feed, type FeedCard } from "./live/feed";
-import { Boards } from "./boards";
 import { SideBox, LinkList, NarrowLinks, SOURCE, ago } from "./ui";
 import { th } from "../../lib/thread/look";
 import { newThisWeek, WEEK_SHORT } from "../../lib/new-this-week";
@@ -21,7 +21,7 @@ export const revalidate = 21600;
 export const generateMetadata = (): Promise<Metadata> => liveOr(() => homeMetadata(DEFAULT_CHOICE, false));
 
 export default async function ThreadHome() {
-  const [{ all, rows, ctx }, boards, lists, feed, payload] = await Promise.all([threadRows(), threadBoards(), threadRankings(), threadFeed(), hasDb() ? homePayload() : null]);
+  const [{ all, rows, ctx }, picks, lists, feed, payload] = await Promise.all([threadRows(), threadTopPicks(), threadRankings(), threadFeed(), hasDb() ? homePayload() : null]);
   // The classic home's own order (curated picks first, one current row per model; app/home-payload.ts defaultHomeIds).
   const top = payload ? homeTop(rows, defaultHomeIds(payload, DEFAULT_CHOICE)) : [];
   const reviewed = all.filter(r => r.score != null && r.current).sort((a, b) => b.n - a.n).slice(0, 10);
@@ -58,7 +58,7 @@ export default async function ThreadHome() {
         </section>
         <HomeList rows={top} reviewed={reviewed}/>
         {freshBox(" th-only-m")}
-        {boards.length > 0 && <Boards boards={boards}/>}
+        {picks.lists.length > 0 && <TopPicks lists={picks.lists} total={picks.total} hrefs={Object.fromEntries(all.map(r => [r.id, r.href]))}/>}
         {cards.length > 0 && <Feed cards={cards}/>}
         <NarrowLinks title="Rankings" links={rankLinks}/>
       </div>
