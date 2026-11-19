@@ -8,7 +8,7 @@ import { niche, catalogPath } from "../niche";
 /** THE go-live flags, per site (owner 2026-11-19): true = Thread is the default look on the normal addresses and
  *  ?look=classic shows the current live pages; false = the live pages are the default and ?look=thread previews Thread.
  *  Roll a site back by setting it to false. */
-export const THREAD_DEFAULTS: Record<string, boolean> = { padel: true, pickleball: false };
+export const THREAD_DEFAULTS: Record<string, boolean> = { padel: true, pickleball: true };
 export const threadDefaultFor = (nicheId: string) => THREAD_DEFAULTS[nicheId] ?? false;
 /** The running site's flag. */
 export const THREAD_DEFAULT = threadDefaultFor(niche.id);

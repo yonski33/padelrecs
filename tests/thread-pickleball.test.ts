@@ -40,9 +40,9 @@ test("padel: Find my match keeps Control, Balance and Power; the footer line is 
   assert.equal(GUIDE_UI.footerTagline, "a free, ad-light side project · built by padel players");
 });
 
-test("pickleball: Thread is a preview until its flag is on; its own guide addresses", () => {
+test("pickleball: Thread is the default look (go-live); its own guide addresses", () => {
   assert.equal(threadSite("pickleball"), true);
-  assert.equal(threadDefaultFor("pickleball"), false, "preview only until the owner switches it on");
+  assert.equal(threadDefaultFor("pickleball"), true, "go-live: Thread is pickleball's default look (set to false to roll back)");
   assert.equal(threadDefaultFor("tennis"), false);
   const g = guidePathsFor("pickleball");
   assert.deepEqual(Object.keys(g), GUIDE_KEYS);
@@ -81,7 +81,7 @@ test("pickleball: the nine vote groups (owner 2026-11-19: Spin in place of Maneu
   }
 });
 
-test("pickleball proxy: live pages by default, Thread pages with ?look=thread", () => {
+test("pickleball proxy: the normal addresses are served by Thread; ?look=classic gets today's live routing", () => {
   // The site is chosen at import time, so pickleball runs in its own process.
   const script = `
     const { NextRequest } = await import("next/server");
@@ -91,7 +91,8 @@ test("pickleball proxy: live pages by default, Thread pages with ?look=thread", 
     out.footer = (await import("./lib/thread/copy.ts")).GUIDE_UI.footerTagline;
     const { reviewerName } = await import("./lib/thread/display-name.ts");
     out.names = [reviewerName({ level: "Intermediate", side: "Doubles" }), reviewerName({ side: "Both" }), reviewerName({ level: "Competitive" }), reviewerName({ alias: "Gali A", side: "Singles" })];
-    for (const p of ["/", "/?look=thread", "/paddles?look=thread", "/paddles/joola-perseus-16mm?look=thread", "/guides/doubles-or-singles?look=thread", "/compare?look=thread", "/about?look=classic"]) {
+    for (const p of ["/", "/paddles", "/paddles/joola-perseus-16mm", "/guides/doubles-or-singles", "/rankings/best-spin-pickleball-paddles", "/brands/selkirk", "/compare",
+      "/?look=thread", "/?look=classic", "/paddles/joola-perseus-16mm?look=classic", "/about?look=classic"]) {
       const r = await proxy(new NextRequest(new URL(p, "https://www.pickleballrecs.com")));
       const to = r.headers.get("x-middleware-rewrite");
       out[p] = to ? new URL(to).pathname : r.headers.get("x-middleware-next") ? "next" : String(r.status);
@@ -103,12 +104,17 @@ test("pickleball proxy: live pages by default, Thread pages with ?look=thread", 
   assert.deepEqual(out.styles, ["control", "balance", "power", "spin"], "Spin is a 4th I want option (owner 2026-11-19)");
   assert.equal(out.footer, "a free, ad-light side project · built by pickleball players");
   assert.deepEqual(out.names, ["Intermediate, mostly doubles", "Plays singles and doubles", "Competitive player", "Gali A"]);
-  assert.doesNotMatch(out["/"], /^\/thread/, "the normal home stays live");
+  assert.equal(out["/"], "/thread");
+  assert.equal(out["/paddles"], "/thread/rackets");
+  assert.equal(out["/paddles/joola-perseus-16mm"], "/thread/rackets/joola-perseus-16mm");
+  assert.equal(out["/guides/doubles-or-singles"], "/thread/guides/side");
+  assert.equal(out["/rankings/best-spin-pickleball-paddles"], "/thread/rankings/best-spin-pickleball-paddles");
+  assert.equal(out["/brands/selkirk"], "/thread/brands/selkirk");
+  assert.doesNotMatch(out["/compare"], /^\/thread/, "compare keeps its live page");
   assert.equal(out["/?look=thread"], "/thread");
-  assert.equal(out["/paddles?look=thread"], "/thread/rackets");
-  assert.equal(out["/paddles/joola-perseus-16mm?look=thread"], "/thread/rackets/joola-perseus-16mm");
-  assert.equal(out["/guides/doubles-or-singles?look=thread"], "/thread/guides/side");
-  assert.doesNotMatch(out["/compare?look=thread"], /^\/thread/);
+  // The rollback look: the live routing (the cached quick-match home and product views), never a Thread page.
+  assert.match(out["/?look=classic"], /^\/quick\//);
+  assert.doesNotMatch(out["/paddles/joola-perseus-16mm?look=classic"], /^\/thread/);
   assert.doesNotMatch(out["/about?look=classic"], /^\/thread/);
 });
 
