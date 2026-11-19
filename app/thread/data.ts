@@ -19,6 +19,7 @@ import { database } from "../../db/data";
 import { boardCounts } from "../../db/thread-votes";
 import { VOTE_BOARDS } from "../../lib/thread/traits";
 import type { ThreadRow } from "./ui";
+import { reviewerName } from "../../lib/thread/display-name";
 
 type Ctx = Awaited<ReturnType<typeof matchContext>>;
 const FEEL = { soft: "Soft", medium: "Medium", firm: "Hard" } as const;
@@ -100,7 +101,7 @@ export const threadFeed = cache(async (): Promise<FeedItem[]> => {
   const { ctx } = await threadRows();
   const verdict = (rating: number) => rating >= 4 ? "positive" as const : rating === 3 ? "mixed" as const : "negative" as const;
   const own = ctx.data.reviews.filter(r => r.reviewText && r.reviewText.length >= 40 && ASCII.test(r.reviewText)).map(r => ({ id: `p-${r.id}`, racketId: r.racketId, kind: "player" as const,
-    who: r.alias || "A PadelRecs player", text: r.reviewText, date: r.createdAt, verdict: verdict(r.rating), url: null }));
+    who: reviewerName({ alias: r.alias, level: r.playerLevel, side: r.playingSide }), text: r.reviewText, date: r.createdAt, verdict: verdict(r.rating), url: null }));
   const web = ctx.data.external.filter(e => e.summary && ["YouTube", "Reddit", "Blog"].includes(platformName(e.sourcePlatform))).map(e => {
     const p = platformName(e.sourcePlatform);
     return { id: `w-${e.id}`, racketId: e.racketId, kind: (p === "YouTube" ? "youtube" : p === "Reddit" ? "reddit" : "blog") as FeedItem["kind"],

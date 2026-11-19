@@ -9,6 +9,7 @@
 import { useEffect, useState } from "react";
 import { ownerCheck } from "../../admin-edit";
 import { VERDICT, ago } from "../ui";
+import { reviewerName } from "../../../lib/thread/display-name";
 
 export function useOwner() {
   const [owner, setOwner] = useState(false);
@@ -47,7 +48,7 @@ export function PendingReviews({ racketId }: { racketId: string }) {
     {rows.length === 0 && <span className="th-note">Nothing waiting for this racket.</span>}
     {rows.map(p => { const v = VERDICT[verdictOf(p.rating)];
       return <div key={p.id} className="th-rv">
-        <div className="th-rv-who"><strong>{p.alias || "A PadelRecs player"}</strong><span>{`· ${ago(p.at)}`}</span>{p.level && <span>{`· ${p.level.toLowerCase()}`}</span>}
+        <div className="th-rv-who"><strong>{reviewerName({ alias: p.alias, level: p.level })}</strong><span>{`· ${ago(p.at)}`}</span>{p.level && <span>{`· ${p.level.toLowerCase()}`}</span>}
           <span className={`th-pill ${v[1]}`} style={{ fontSize: 12.5 }}>{v[0]}</span>{p.tags.map(t => <span key={t} className="th-tag">{t}</span>)}</div>
         {p.id in edit ? <textarea className="th-ta" rows={4} value={edit[p.id]} maxLength={4000} aria-label="Edit review" onChange={e => setEdit(x => ({ ...x, [p.id]: e.target.value }))}/> : <p className="th-rv-text">{p.text}</p>}
         <div className="th-admin-acts">
