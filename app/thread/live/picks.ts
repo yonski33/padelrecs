@@ -1,0 +1,74 @@
+"use client";
+// "Find my match" picks (level, style, sore arm), shared by the home, the catalogue, the rankings and the racket pages and kept
+// in this browser (README "State": one store for all of them). Ranking happens here with the live engine (lib/home-rank.ts),
+// on the cached ranking payload (/api/home-payload), so a tap never asks the page server (tests/instant-views.test.ts).
+import { useEffect, useState } from "react";
+import { rankHome, matchPcts, verdictFor } from "../../../lib/home-rank";
+import { niche } from "../../../lib/niche";
+import type { QuickChoice } from "../../../lib/quick-match";
+import type { HomePayload, HomeCard } from "../../home-payload";
+import type { ThreadRow } from "../ui";
+
+export type Level = "beginner" | "intermediate" | "advanced";
+export type Style = "control" | "balance" | "power";
+export type Picks = { level: Level | null; style: Style | null; arm: boolean };
+export const NO_PICKS: Picks = { level: null, style: null, arm: false };
+const KEY = "padelrecs-thread-picks";
+const EVENT = "thread-picks";
+
+const read = (): Picks => { try { const v = JSON.parse(localStorage.getItem(KEY) || "{}"); return { level: v.level ?? null, style: v.style ?? null, arm: !!v.arm }; } catch { return NO_PICKS; } };
+
+/** The visitor's picks, the same on every Thread page and tab. Starts empty so the server's HTML and the first render agree. */
+export function usePicks() {
+  const [picks, setPicks] = useState<Picks>(NO_PICKS);
+  useEffect(() => {
+    setPicks(read());
+    const on = () => setPicks(read());
+    addEventListener(EVENT, on); addEventListener("storage", on);
+    return () => { removeEventListener(EVENT, on); removeEventListener("storage", on); };
+  }, []);
+  const set = (next: Partial<Picks>) => {
+    const v = { ...read(), ...next };
+    try { localStorage.setItem(KEY, JSON.stringify(v)); } catch { /* private mode: the picks still apply on this page */ }
+    setPicks(v); dispatchEvent(new Event(EVENT));
+  };
+  return [picks, set] as const;
+}
+/** A match % needs a level and a style (the mock: "Pick one more to get your match %"). */
+export const complete = (p: Picks) => !!(p.level && p.style);
+export const choiceOf = (p: Picks): QuickChoice => ({ style: p.style ?? "any", ...(p.level ? { level: p.level } : {}), arm: p.arm });
+
+let payload: Promise<HomePayload> | null = null;
+/** The engine's items and cards, fetched once per page view, the first time the picks are complete. */
+export function usePayload(on: boolean) {
+  const [p, setP] = useState<HomePayload | null>(null);
+  useEffect(() => {
+    if (!on || p) return;
+    payload ??= fetch("/api/home-payload").then(r => r.json() as Promise<HomePayload>).catch(() => { payload = null; return { items: [], cards: {} }; });
+    let live = true; payload.then(x => { if (live) setP(x); });
+    return () => { live = false; };
+  }, [on, p]);
+  return p;
+}
+
+const SETUP = { ...niche.finder!, levelGate: niche.fit?.levelGate, engine: niche.fit?.engine };
+const BAD = niche.tags.filter(t => t.tone === "neg").map(t => t.label);
+/** The home's ranked list for these picks: the curated picks first, as on the live home (lib/home-rank.ts rankHome). */
+export const rankFor = (p: HomePayload, picks: Picks, size = 10) => rankHome(p.items, SETUP, BAD, choiceOf(picks), false, size).rows;
+/** Every racket's match % for these picks (catalogue, rankings). */
+export const pctsFor = (p: HomePayload, picks: Picks) => matchPcts(p.items, choiceOf(picks), SETUP.levelGate, SETUP.engine);
+/** One racket's fit check for these picks (racket page "Is it right for me?"). */
+export function fitFor(p: HomePayload, picks: Picks, id: string) {
+  const item = p.items.find(x => x.id === id);
+  if (!item) return null;
+  return { verdict: verdictFor(p.items, choiceOf(picks), item.facts, id, SETUP.levelGate, SETUP.engine), pct: pctsFor(p, picks).get(id) ?? null };
+}
+/** A row for a racket the server didn't send (it came up for the picks), from the payload's card. */
+export function rowFromCard(id: string, c: HomeCard, signal: number | null): ThreadRow {
+  return { id, slug: c.href.split("/").pop() ?? id, name: c.name, href: c.href, pic: c.pic, shape: c.shape, line: c.line, best: c.best ?? null, n: c.n, pos: c.pos, mix: c.mix, neg: c.neg,
+    score: signal, brand: "", year: 0, levels: [], feel: null, arm: false };
+}
+
+/** The pick chips (home "Find my match", rankings "See how you match", racket "Is it right for me?"). */
+export const LEVEL_OPTS: Level[] = ["beginner", "intermediate", "advanced"];
+export const STYLE_OPTS: Style[] = ["control", "balance", "power"];

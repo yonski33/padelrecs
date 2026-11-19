@@ -10,6 +10,7 @@ import { readChoice, choiceKey, readChoiceKey, homeHref, OTHER_HOME_PARAMS } fro
 import { viewKey, readViewKey, viewQuery, CATALOG_VIEW, RANKING_VIEW, RACKET_VIEW, SKIN_HOME_VIEW, SKIN_CATALOG_VIEW, SKIN_PRODUCT_VIEW, SKIN_RANKING_VIEW } from "./lib/view-key";
 import { catalogPath } from "./lib/niche";
 import { specGroups } from "./lib/guide";
+import { threadPath, threadSite, THREAD_LOOK } from "./lib/thread/look";
 // The catalogue's cached views also hold the niche's spec filters (its guide config: padel balance and face).
 const CATALOG_Q = [...CATALOG_VIEW, ...specGroups(niche.guide).map(g => g.key)];
 
@@ -63,7 +64,19 @@ export function skinView(request:NextRequest) {
  return null;
 }
 
+/** PadelRecs' Thread preview (lib/thread/look.ts): an address with ?look=thread is served by its Thread page (app/thread/…).
+ *  Without the query nothing changes, so the live pages and their cached copies stay exactly as they are. */
+export function threadView(request:NextRequest) {
+ if(!threadSite(niche.id)||request.nextUrl.searchParams.get("look")!==THREAD_LOOK)return null;
+ const to=threadPath(request.nextUrl.pathname,catalogPath);
+ if(!to)return null;
+ const url=request.nextUrl.clone();url.pathname=to;url.search="";
+ return NextResponse.rewrite(url);
+}
+
 export async function proxy(request:NextRequest) {
+ const thread=threadView(request);
+ if(thread)return thread;
  if(niche.categoryPaths){
   const moved=await productMove(request,niche,async()=>(await import("./lib/product-lookup")).productLookup());
   if(moved)return moved;
