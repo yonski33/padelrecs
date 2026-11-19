@@ -1,4 +1,4 @@
-import { pgSchema, text, integer, index, check, uniqueIndex } from "drizzle-orm/pg-core";
+import { pgSchema, text, integer, boolean, index, check, uniqueIndex } from "drizzle-orm/pg-core";
 import { sql } from "drizzle-orm";
 import { niche } from "../lib/niche";
 // One Postgres schema per niche ("padelrecs", …) in the shared Supabase project. Not exposed through Supabase's
@@ -61,3 +61,22 @@ export const productPhotos = catalogSchema.table("product_photos", {
 export const contactMessages = catalogSchema.table("contact_messages", {
  id: text("id").primaryKey(), name: text("name").notNull(), email: text("email").notNull(), subject: text("subject").notNull(), message: text("message").notNull(), status: text("status", { enum: ["pending", "sent", "failed", "spam"] }).notNull().default("pending"), error: text("error"), createdAt: text("created_at").notNull()
 }, t => [index("contact_messages_created_idx").on(t.createdAt), check("contact_message_status", sql`${t.status} in ('pending','sent','failed','spam')`)]).enableRLS();
+
+// Thread redesign (owner OK 2026-11-19, drizzle/0024–0026; applied to PadelRecs only). rackets.model_line (0026) is not
+// mapped here: the other sites' schemas don't have it yet, so it is read with SQL on padel only.
+/** "How does it play?" votes: one per trait group per device (voter, the product_votes hash), changeable. */
+export const traitVotes = catalogSchema.table("trait_votes", {
+ racketId: text("racket_id").notNull().references(() => rackets.id, { onDelete: "cascade" }), voter: text("voter").notNull(), network: text("network").notNull(),
+ trait: text("trait").notNull(), choice: text("choice").notNull(), createdAt: text("created_at").notNull(), updatedAt: text("updated_at").notNull()
+}, t => [uniqueIndex("trait_votes_unique").on(t.racketId, t.voter, t.trait), index("trait_votes_racket_idx").on(t.racketId, t.trait, t.choice), index("trait_votes_network_idx").on(t.network, t.updatedAt),
+ check("trait_vote_trait", sql`${t.trait} ~ '^[a-z_]{2,20}$'`), check("trait_vote_choice", sql`${t.choice} ~ '^[a-z_]{2,20}$'`)]).enableRLS();
+/** Comments on racket, ranking and guide pages ("racket:<id>", "ranking:<slug>", "guide:<key>"), one level of replies, moderated like reviews. */
+export const comments = catalogSchema.table("comments", {
+ id: text("id").primaryKey(), page: text("page").notNull(), parentId: text("parent_id"), alias: text("alias").notNull(), body: text("body").notNull(),
+ isQuestion: boolean("is_question").notNull().default(false), status: text("status", { enum: ["pending", "approved", "rejected"] }).notNull().default("pending"),
+ spamScore: integer("spam_score").notNull().default(0), voter: text("voter").notNull(), network: text("network").notNull(), createdAt: text("created_at").notNull()
+}, t => [index("comments_page_idx").on(t.page, t.status, t.createdAt), index("comments_queue_idx").on(t.status, t.createdAt), index("comments_network_idx").on(t.network, t.createdAt)]).enableRLS();
+/** ▲▼ on comments: one per device, +1 or -1. */
+export const commentVotes = catalogSchema.table("comment_votes", {
+ commentId: text("comment_id").notNull().references(() => comments.id, { onDelete: "cascade" }), voter: text("voter").notNull(), value: integer("value").notNull(), updatedAt: text("updated_at").notNull()
+}, t => [uniqueIndex("comment_votes_unique").on(t.commentId, t.voter), check("comment_vote_value", sql`${t.value} in (-1, 1)`)]).enableRLS();

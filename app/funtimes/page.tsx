@@ -20,6 +20,8 @@ import { niche, catalogPath, productHref, isV2 } from "../../lib/niche";
 import { fitConfigFor } from "../../lib/fit-config";
 import { productVariants } from "../../lib/variants";
 import { FinderForm, FinderResults, allSources } from "./finder";
+import { CommentsAdmin } from "./comments-admin";
+import { threadSite } from "../../lib/thread/look";
 import { reviewSites, searchInput, searchReviews } from "../../db/review-search";
 const w = niche.words;
 export const dynamic = "force-dynamic";
@@ -57,6 +59,11 @@ export default async function Admin({searchParams}:{searchParams:Promise<{eviden
  const status = q.status==="approved"||q.status==="rejected" ? q.status : "pending";
  const page = Math.max(1, Math.min(100000, parseInt(q.page||"1",10)||1));
  const db = await database();
+ if (q.tab === "comments" && threadSite(niche.id)) {
+  return <main><div className="page-title"><h1>Review admin</h1><p className="muted">Comments on the Thread pages (racket, ranking and guide pages).</p></div>
+  <AdminNav current="comments"/>
+  <CommentsAdmin status={q.status} result={q.result} rackets={new Map((await db.select({ id: rackets.id, slug: rackets.slug, name: rackets.name, shape: rackets.shape }).from(rackets)).map(r => [r.id, r]))}/></main>;
+ }
  if (find) {
   const result = await searchReviews(db, finderInput, sites);
   return <main><div className="page-title"><h1>Review admin</h1><p className="muted">Find and fix published web reviews on every site.</p></div>
@@ -119,7 +126,7 @@ export default async function Admin({searchParams}:{searchParams:Promise<{eviden
  </main>;
 }
 
-function AdminNav({current}:{current:"find"|"player"|"web"|"specs"|"expert"}) {
+function AdminNav({current}:{current:"find"|"player"|"web"|"specs"|"expert"|"comments"}) {
  const at=(tab:typeof current)=>current===tab?"page" as const:undefined;
- return <nav className="admin-nav" aria-label="Admin sections"><a href="/funtimes?tab=find" aria-current={at("find")}>Find &amp; fix</a><a href="/funtimes" aria-current={at("player")}>{`${niche.people.One} submissions`}</a><a href="/funtimes?tab=web" aria-current={at("web")}>Web reviews</a><a href="/funtimes?tab=specs" aria-current={at("specs")}>{`${w.Many} & specs`}</a>{isV2 && <a href="/funtimes?tab=expert" aria-current={at("expert")}>Expert values</a>}<form method="post" action="/auth/signout" style={{marginLeft:"auto"}}><button className="text-button">Sign out</button></form></nav>;
+ return <nav className="admin-nav" aria-label="Admin sections"><a href="/funtimes?tab=find" aria-current={at("find")}>Find &amp; fix</a><a href="/funtimes" aria-current={at("player")}>{`${niche.people.One} submissions`}</a><a href="/funtimes?tab=web" aria-current={at("web")}>Web reviews</a><a href="/funtimes?tab=specs" aria-current={at("specs")}>{`${w.Many} & specs`}</a>{isV2 && <a href="/funtimes?tab=expert" aria-current={at("expert")}>Expert values</a>}{threadSite(niche.id) && <a href="/funtimes?tab=comments" aria-current={at("comments")}>Comments</a>}<form method="post" action="/auth/signout" style={{marginLeft:"auto"}}><button className="text-button">Sign out</button></form></nav>;
 }

@@ -1,0 +1,41 @@
+"use client";
+// "Latest player reviews" on the home: own reviews and labelled Reddit, YouTube and blog summaries, newest first, with the
+// Loved it / Mixed / Not for me chips. Filtering and "More reviews" stay in the browser.
+import { useState } from "react";
+import { th } from "../../../lib/thread/look";
+import { VERDICT, SOURCE } from "../ui";
+
+export type FeedCard = { id: string; kind: "player" | "youtube" | "blog" | "reddit"; who: string; text: string; when: string; verdict: "positive" | "mixed" | "negative" | null;
+  url: string | null; racket: { name: string; href: string; pic: string | null } };
+
+export function SourceLabel({ kind, who, url }: { kind: FeedCard["kind"]; who: string; url: string | null }) {
+  if (kind === "player") return <strong>{who}</strong>;
+  const [label, cls] = SOURCE[kind];
+  return <><span className={`th-tag ${cls}`}>{label}</span>{url ? <a href={url} target="_blank" rel="noopener nofollow" style={{ fontWeight: 700 }}>{`${who} ↗`}</a> : <strong>{who}</strong>}<span>· summarised</span></>;
+}
+
+export function Feed({ cards, step = 4 }: { cards: FeedCard[]; step?: number }) {
+  const [v, setV] = useState<FeedCard["verdict"] | "all">("all"), [n, setN] = useState(step);
+  const list = cards.filter(c => v === "all" || c.verdict === v);
+  return <section className="th-card th-sec">
+    <div className="th-head-row" style={{ alignItems: "center" }}>
+      <h2 className="th-h2">Latest player reviews</h2>
+      <div className="th-chipsf" role="group" aria-label="Filter reviews">
+        {([["all", "All"], ["positive", "Loved it"], ["mixed", "Mixed"], ["negative", "Not for me"]] as const).map(([k, l]) =>
+          <button key={k} type="button" className="th-chipf" aria-pressed={v === k} onClick={() => { setV(k); setN(step); }}>{l}</button>)}
+      </div>
+    </div>
+    <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
+      {list.slice(0, n).map(c => <article key={c.id} className="th-rv">
+        <a className="th-rv-racket" href={th(c.racket.href)}>{c.racket.pic && <img src={c.racket.pic} alt="" loading="lazy"/>}<b>{c.racket.name}</b></a>
+        <div className="th-rv-top">
+          <div className="th-rv-who"><SourceLabel kind={c.kind} who={c.who} url={c.url}/>{c.verdict && <span className={`th-pill ${VERDICT[c.verdict][1]}`} style={{ fontSize: 12.5 }}>{VERDICT[c.verdict][0]}</span>}</div>
+          <span className="th-rv-when">{c.when}</span>
+        </div>
+        <p className="th-rv-text">{c.text}</p>
+      </article>)}
+      {list.length === 0 && <p className="th-empty">No reviews like that yet. <button type="button" onClick={() => setV("all")}>Show all</button></p>}
+    </div>
+    {list.length > n && <button type="button" className="th-btn th-center" onClick={() => setN(x => x + step * 2)}>More reviews</button>}
+  </section>;
+}

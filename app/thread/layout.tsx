@@ -1,0 +1,19 @@
+import type { ReactNode } from "react";
+import "./thread.css";
+
+// Indexable: Thread serves the live addresses (lib/thread/look.ts THREAD_DEFAULT); each page reuses the live page's metadata.
+
+/** The handoff's fonts (README "Typography"): Barlow Condensed for headings and badges, Atkinson Hyperlegible for text, and a
+ *  digits-only Barlow stacked first so numbers get a plain zero. React hoists the stylesheets into <head>. */
+const FONTS = [
+  "https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700&family=Atkinson+Hyperlegible:wght@400;700&display=swap",
+  "https://fonts.googleapis.com/css2?family=Barlow:wght@400;700&text=0123456789&display=swap",
+];
+
+export default function ThreadLayout({ children }: { children: ReactNode }) {
+  return <>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin=""/>
+    {FONTS.map(href => <link key={href} rel="stylesheet" href={href} precedence="default"/>)}
+    {children}
+  </>;
+}

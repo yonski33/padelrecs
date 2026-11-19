@@ -3,6 +3,7 @@ import { catalog } from "../db/data";
 import { catalogPath, niche, productHref } from "../lib/niche";
 import { amazonLinksOn } from "../lib/amazon-offer";
 import { comparePairs, pairHref } from "../lib/compare-pairs";
+import { threadSite, THREAD_DEFAULT, GUIDE_PATHS, GUIDE_KEYS } from "../lib/thread/look";
 import { rankList, listTotals, RANKINGS_PATH, rankingHref, withNicheWindow, withModelYears, MIN_LIST_ENTRIES } from "../lib/top-lists";
 
 // When the about / contact / how-we-make / affiliate pages last changed (their copy is in code): bump with an edit there.
@@ -35,6 +36,8 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     ...(niche.finder ? [{ url: `${base}/finder`, lastModified: latest(allNotes), changeFrequency: "weekly" as const, priority: 0.8 }] : []),
     ...(lists.length ? [{ url: `${base}${RANKINGS_PATH}`, lastModified: latest(lists.map(x => x.updated)), changeFrequency: "weekly" as const, priority: 0.8 }] : []),
     ...lists.map(x => ({ url: `${base}${rankingHref(x.list.slug)}`, lastModified: new Date(x.updated), changeFrequency: "weekly" as const, priority: 0.8 })),
+    // PadelRecs on the Thread look (lib/thread/look.ts): its four new guides and its rankings that only Thread has.
+    ...(await threadExtras(base, latest(allNotes))),
     ...(niche.typePages ?? []).map(t => ({
       url: `${base}/${t.slug}`,
       lastModified: latest(listed.filter(r => r.shape?.toLowerCase() === t.shape.toLowerCase()).flatMap(r => [r.createdAt, ...notesFor(r.id)])),
@@ -64,5 +67,15 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { url: `${base}/about`, lastModified: COPY_UPDATED, changeFrequency: "yearly", priority: 0.3 },
     { url: `${base}/contact`, lastModified: COPY_UPDATED, changeFrequency: "yearly", priority: 0.2 },
     ...(amazonLinksOn() ? [{ url: `${base}/affiliate-disclosure`, lastModified: COPY_UPDATED, changeFrequency: "yearly" as const, priority: 0.2 }] : []),
+  ];
+}
+
+async function threadExtras(base: string, updated: Date | undefined): Promise<MetadataRoute.Sitemap> {
+  if (!threadSite(niche.id) || !THREAD_DEFAULT) return [];
+  const { threadRankings } = await import("./thread/rankings-data");
+  const extra = (await threadRankings()).filter(l => !l.own);
+  return [
+    ...GUIDE_KEYS.filter(k => k !== "racket").map(k => ({ url: `${base}${GUIDE_PATHS[k]}`, lastModified: updated, changeFrequency: "monthly" as const, priority: 0.6 })),
+    ...extra.map(l => ({ url: `${base}${l.href}`, lastModified: updated, changeFrequency: "weekly" as const, priority: 0.7 })),
   ];
 }
