@@ -43,7 +43,8 @@ export async function claimAccount(db: Database, c: { id: string; name: string; 
   return done.length ? "ok" as const : "taken" as const;
 }
 
-/** Change the name, level or side. A new name shows on every post the account owns (their alias is rewritten). */
+/** Change the name, level or side. A new name shows on every post the account owns (their alias is rewritten), a new level
+ *  or side on its reviews. */
 export async function updateAccount(db: Database, id: string, change: { name?: string | null; level?: string | null; side?: string | null }, now = new Date()) {
   const a = await getAccount(db, id); if (!a) return "missing" as const;
   const set: Partial<Account> = { updatedAt: now.toISOString() };
@@ -58,6 +59,15 @@ export async function updateAccount(db: Database, id: string, change: { name?: s
   }
   try { await db.update(accounts).set(set).where(eq(accounts.id, id)); } catch { return "taken" as const; } // unique key race
   if (set.name) await renamePosts(db, id, set.name);
+  // A new level or side shows on the account's reviews too (their "advanced · left side" line). Clearing one leaves the
+  // reviews as they were: what the player said when they wrote it is still true of that review.
+  const profile: { playerLevel?: string; playingSide?: string } = {};
+  if (set.level && set.level !== a.level) profile.playerLevel = set.level;
+  if (set.side && set.side !== a.side) profile.playingSide = set.side;
+  if (Object.keys(profile).length) {
+    const rv = (await db.select({ id: accountPosts.postId }).from(accountPosts).where(and(eq(accountPosts.accountId, id), eq(accountPosts.kind, "review")))).map(r => r.id);
+    for (let i = 0; i < rv.length; i += 500) await db.update(reviews).set(profile).where(inArray(reviews.id, rv.slice(i, i + 500)));
+  }
   return "ok" as const;
 }
 async function renamePosts(db: Database, id: string, name: string) {

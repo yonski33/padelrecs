@@ -662,3 +662,15 @@ body:has(.th-pb) .th-pb a.th-add:hover, body:has(.th-pb) .th-pb a.th-add:focus-v
 /* Bricolage is wider than Barlow Condensed: keep a sidebar title and its link ("Fresh off the court · All reviews →") on one line. */
 .th-pb .th-side .th-head-row { flex-wrap: nowrap; gap: 8px; }
 .th-pb .th-side .th-head-row .th-link-b { white-space: nowrap; }
+/* Member zone: "Your posts" on /account and the header's Sign in / name link. */
+.th-own { list-style: none; margin: 4px 0 0; padding: 0; display: flex; flex-direction: column; }
+.th-own li { display: flex; flex-direction: column; gap: 6px; padding: 12px 0; border-top: 1.5px solid var(--line); }
+.th-own li:first-child { border-top: 0; padding-top: 4px; }
+.th-own-top { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 10px; font-size: 14.5px; }
+.th-own-meta { font-size: 13px; color: var(--ink2); }
+.th-own-text { margin: 0; font-size: 14.5px; color: var(--ink); overflow-wrap: anywhere; }
+.th-own-act { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 14px; }
+.th-acct { font-size: 14.5px; white-space: nowrap; max-width: 160px; overflow: hidden; text-overflow: ellipsis; color: var(--ink2); }
+body:has(.th) .th .th-acct { text-decoration: none; }
+body:has(.th) .th .th-acct:hover { color: var(--ink); text-decoration: underline; text-underline-offset: 3px; }
+@media (max-width: 639px) { .th-head .th-acct { display: none; } }

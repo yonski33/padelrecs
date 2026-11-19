@@ -6,6 +6,7 @@ import { savedName, saveName } from "./name";
 import { NAME_MAX } from "../../../lib/thread/display-name";
 import { accountNameProblem } from "../../../lib/thread/account-name";
 import { forgetAccount } from "./use-account";
+import { YourPosts } from "./your-posts";
 
 export type AccountView = { name: string; level: string | null; side: string | null; status: string } | null;
 type Initial = { signedIn: false } | { signedIn: true; email: string | null; account: AccountView };
@@ -121,14 +122,16 @@ function Profile({ email, account, next, levels, sides, linked = 0, onChange }: 
         <label>Name or nickname<input value={name} onChange={e => { setName(e.target.value); setError(""); setSaved(false); }} maxLength={NAME_MAX} disabled={blocked}/></label>
         <Picks label="Level" options={levels} value={level} set={v => { setLevel(v); setSaved(false); }}/>
         <Picks label="Side" options={sides} value={side} set={v => { setSide(v); setSaved(false); }}/>
+        <span className="th-note">A new name, level or side also shows on your earlier reviews and comments.</span>
         {error && <span className="th-err" role="alert">{error}</span>}
-        {saved && <span className="th-note" role="status">Saved. A new name shows on all your posts.</span>}
+        {saved && <span className="th-note" role="status">Saved. Your posts show the change too.</span>}
         <div style={{ display: "flex", gap: 12, alignItems: "center", flexWrap: "wrap" }}>
           <button type="submit" className="th-btn round lime" disabled={busy || blocked || !dirty}>{busy ? "Saving…" : "Save"}</button>
           {back(next)}
         </div>
       </form>
     </article>
+    <YourPosts/>
     <section className="th-card th-sec">
       <div style={{ display: "flex", gap: 12, alignItems: "center", flexWrap: "wrap" }}>
         <form method="post" action="/auth/signout" onSubmit={() => forgetAccount()}><button className="th-btn">Sign out</button></form>
