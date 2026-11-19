@@ -3,7 +3,7 @@
 import type { Metadata } from "next";
 import { Shell } from "../shell";
 import { threadRows } from "../data";
-import { Badge, Photo, plural, MIN_SHOWN, SideBox, LinkList } from "../ui";
+import { Badge, Photo, plural, SideBox, LinkList } from "../ui";
 import { threadRankings } from "../rankings-data";
 import { metadata as live } from "../../brands/page";
 import { JsonLd, crumbs } from "../seo";
@@ -30,7 +30,7 @@ export default async function ThreadBrands() {
         <li key={b.id}><a className="th-brand" href={th(`/brands/${b.slug}`)}>
           <Photo src={pic} className="th-brand-pic"/>
           <span className="th-brand-body"><strong>{b.name}</strong>
-            <span className="th-note">{[models >= MIN_SHOWN ? plural(models, "racket") : "", reviews >= MIN_SHOWN ? plural(reviews, "review") : ""].filter(Boolean).join(" · ")}</span>
+            <span className="th-note">{[models > 0 ? plural(models, "racket") : "", reviews > 0 ? plural(reviews, "review") : ""].filter(Boolean).join(" · ")}</span>
             {top && <span className="th-note">{`Top rated: ${top.name.replace(new RegExp(`^${b.name}\\s+`, "i"), "")}`}</span>}</span>
           {top?.score != null && <Badge n={top.score} size="sm"/>}
           <span className="th-link-b" aria-hidden="true">›</span>

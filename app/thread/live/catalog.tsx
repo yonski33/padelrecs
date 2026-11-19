@@ -39,7 +39,7 @@ export function Catalog({ rows, brands, title = "All padel rackets", lead = "Eve
   // A group shows only the options some racket here has (or that are picked), and no group label with nothing under it.
   const groups = <>{GROUPS.map(([k, label, vals]) => { const opts = vals.map(v => ({ v, c: pool.filter(r => pass(r, k) && test(r, k, v)).length, sel: !!f[k]?.includes(v) })).filter(o => o.c > 0 || o.sel);
     return opts.length > 0 && <div key={k} className="th-fgroup"><span>{label}</span>
-    <div className="th-fopts">{opts.map(({ v, c, sel }) => <button key={v} type="button" className="th-fopt" aria-pressed={sel} onClick={() => toggle(k, v)}>{v}{c >= 5 && <span>{c}</span>}</button>)}</div></div>; })}</>;
+    <div className="th-fopts">{opts.map(({ v, c, sel }) => <button key={v} type="button" className="th-fopt" aria-pressed={sel} onClick={() => toggle(k, v)}>{v}{c > 0 && <span>{c}</span>}</button>)}</div></div>; })}</>;
   return <main className="th-main">
     <aside className="th-filters"><section className="th-card th-fpanel">
       <span className="th-head-row" style={{ alignItems: "center" }}><span className="th-stitle">Filters</span>{any && <button type="button" className="th-clear" onClick={clear}>Clear all</button>}</span>

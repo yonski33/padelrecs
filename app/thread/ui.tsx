@@ -3,7 +3,7 @@
 import type { ReactNode } from "react";
 import { th } from "../../lib/thread/look";
 
-/** One list row's data (home, catalogue, rankings, guides). Counts under MIN_SHOWN are never shown (README "Global rules"). */
+/** One list row's data (home, catalogue, rankings, guides). Real counts show at any size (owner 2026-11-19); 0 stays blank. */
 export type ThreadRow = {
   id: string; slug: string; name: string; href: string; pic: string | null; shape: string | null;
   line: string | null; best: string | null; n: number; pos: number; mix: number; neg: number;
@@ -12,7 +12,11 @@ export type ThreadRow = {
   /** The year that takes its model's row (lib/compare-pairs.ts familyRowIds, the classic catalog's and home's rule). Older
    *  years (false) stay reachable by their page and the catalog's search or "Show older models". */ current?: boolean;
 };
-export const MIN_SHOWN = 5;
+/** Counts show at any size (owner 2026-11-19: the "under 5" rule is gone); 0 stays blank. Written claims ("N players say…")
+ *  keep their own 5-backer rule where they're made (app/thread/racket-data.ts, data.ts boards). */
+export const MIN_SHOWN = 1;
+/** The poll shows percentages from this many votes; below it, counts only ("Loved it · 3"). */
+export const POLL_PCT_AT = 10;
 export const VERDICT = { positive: ["Loved it", "pos"], mixed: ["Mixed", "mix"], negative: ["Not for me", "neg"] } as const;
 export const SOURCE = { youtube: ["YouTube", "yt"], blog: ["Blog", "blog"], reddit: ["Reddit", "reddit"] } as const;
 /** "2h ago", "5 days ago", "Nov 4" (the mocks' timestamps). */

@@ -54,16 +54,16 @@ test("review words: negations and comparisons", () => {
   assert.equal(first(SIDE, "great from either side"), "both");
 });
 
-test("an option shows at 5 mentions; reviews and votes add up; thin groups stay empty", () => {
+test("every option with a count shows it, 1 included; reviews and votes add up; a group with none can show its spec", () => {
   const opts = TRAIT_GROUPS.find(g => g.key === "plays_like")!.options;
   const v = groupView(opts, { control: 4, power: 2 }, { control: 1 }, undefined);
-  assert.deepEqual(v.opts.map(o => [o.key, o.n, o.shown, o.top]), [["control", 5, true, true], ["power", 2, false, false], ["all_round", 0, false, false]]);
+  assert.deepEqual(v.opts.map(o => [o.key, o.n, o.shown, o.top]), [["control", 5, true, true], ["power", 2, true, false], ["all_round", 0, false, false]]);
   assert.equal(groupNote(v), "6 reviews, 1 vote");
-  const thin = groupView(opts, { control: 3 }, {}, undefined);
-  assert.equal(thin.anyShown, false); assert.equal(groupNote(thin), ""); assert.ok(thin.opts.every(o => !o.top && !o.shown));
-  const spec = groupView(opts, { control: 3 }, {}, "power");
-  assert.equal(groupNote(spec), "From the specs"); assert.deepEqual(spec.opts.filter(o => o.spec).map(o => o.key), ["power"]);
-  assert.equal(groupView(opts, { control: 9 }, {}, "power").specOnly, false);
+  const one = groupView(opts, undefined, { power: 1 }, undefined);
+  assert.deepEqual(one.opts.filter(o => o.shown).map(o => [o.key, o.n, o.top]), [["power", 1, true]]); assert.equal(groupNote(one), "1 vote");
+  const none = groupView(opts, {}, {}, "power");
+  assert.equal(groupNote(none), "From the specs"); assert.deepEqual(none.opts.filter(o => o.spec).map(o => o.key), ["power"]);
+  assert.equal(groupView(opts, { control: 1 }, {}, "power").specOnly, false);
 });
 
 test("section line has no we/us and names the review count", () => {
