@@ -1,4 +1,4 @@
-import { pgSchema, text, integer, boolean, index, check, uniqueIndex } from "drizzle-orm/pg-core";
+import { pgSchema, text, integer, boolean, index, check, uniqueIndex, jsonb, primaryKey } from "drizzle-orm/pg-core";
 import { sql } from "drizzle-orm";
 import { niche } from "../lib/niche";
 // One Postgres schema per niche ("padelrecs", …) in the shared Supabase project. Not exposed through Supabase's
@@ -80,3 +80,14 @@ export const comments = catalogSchema.table("comments", {
 export const commentVotes = catalogSchema.table("comment_votes", {
  commentId: text("comment_id").notNull().references(() => comments.id, { onDelete: "cascade" }), voter: text("voter").notNull(), value: integer("value").notNull(), updatedAt: text("updated_at").notNull()
 }, t => [uniqueIndex("comment_votes_unique").on(t.commentId, t.voter), check("comment_vote_value", sql`${t.value} in (-1, 1)`)]).enableRLS();
+/** Owner fixes to "How does it play?" (drizzle/0027, admin Traits tab): per racket and group, review counts that replace the
+ *  prefill file's (null = use the file) and a freeze that stops new votes. trait "_all" freezes the whole racket. */
+export const traitOverrides = catalogSchema.table("trait_overrides", {
+ racketId: text("racket_id").notNull().references(() => rackets.id, { onDelete: "cascade" }), trait: text("trait").notNull(),
+ reviewCounts: jsonb("review_counts").$type<Record<string, number>>(), frozen: boolean("frozen").notNull().default(false), updatedAt: text("updated_at").notNull()
+}, t => [primaryKey({ name: "trait_overrides_pk", columns: [t.racketId, t.trait] }), check("trait_override_trait", sql`${t.trait} ~ '^[a-z_]{2,20}$'`)]).enableRLS();
+/** Every Traits-tab change: what was done, to which racket and group, and what it removed or replaced (detail). Kept when a
+ *  racket is removed, so the record stays. */
+export const traitAdminLog = catalogSchema.table("trait_admin_log", {
+ id: text("id").primaryKey(), racketId: text("racket_id").notNull(), trait: text("trait"), action: text("action").notNull(), detail: jsonb("detail").$type<Record<string, unknown>>(), createdAt: text("created_at").notNull()
+}, t => [index("trait_admin_log_racket_idx").on(t.racketId, t.createdAt), check("trait_admin_log_action", sql`${t.action} ~ '^[a-z_]{2,30}$'`)]).enableRLS();
