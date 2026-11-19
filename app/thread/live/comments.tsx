@@ -5,20 +5,20 @@
 import { useEffect, useRef, useState } from "react";
 import { ownerCheck } from "../../admin-edit";
 import { commenterName, nameProblem, typedName, NAME_MAX } from "../../../lib/thread/display-name";
-import { savedName, saveName } from "./name";
+import { savedName, saveName, grow } from "./name";
 import { ago } from "../ui";
 
 type C = { id: string; parentId: string | null; alias: string; body: string; at: string; score: number; mine: number };
 const HELD = "Thanks! Your comment will show once a person has checked it.";
-
-/** A comment box starts at 2 lines and grows with the text up to about 200px (owner 2026-11-19), then scrolls. */
-const grow = (el: HTMLTextAreaElement) => { el.style.height = "auto"; el.style.height = `${Math.min(el.scrollHeight + el.offsetHeight - el.clientHeight, 200)}px`; };
 
 function Box({ nick, setNick, nicknames, placeholder, cta, onPost, onCancel, autoFocus = true }: { nick: string; setNick: (s: string) => void; nicknames: string[]; placeholder: string; cta: string;
   onPost: (text: string) => Promise<boolean>; onCancel: () => void; autoFocus?: boolean }) {
   const [text, setText] = useState(""), [busy, setBusy] = useState(false), [nameErr, setNameErr] = useState("");
   // A name is required (owner 2026-11-19): checked here, the message right under this box (replies too), no modal.
   const send = async () => { const p = nameProblem(nick); if (p) { setNameErr(p); return; } setNameErr(""); setBusy(true); if (await onPost(text.trim())) setText(""); setBusy(false); };
+  // Why the button is off, said under it (owner 2026-11-19), instead of a grey button with no reason.
+  const short = text.trim().length < 2, noName = !!nameProblem(nick);
+  const why = short && noName ? "Write a comment and add a name to post" : short ? "Write something to post" : noName ? "Add a name to post" : "";
   return <div className="th-compose white">
     <textarea className="th-ta th-ta-grow" rows={2} autoFocus={autoFocus} value={text} maxLength={2000} placeholder={placeholder} aria-label={placeholder}
       onChange={e => { setText(e.target.value); grow(e.currentTarget); }}/>
@@ -26,9 +26,9 @@ function Box({ nick, setNick, nicknames, placeholder, cta, onPost, onCancel, aut
       <span className="th-as"><input value={nick} onChange={e => { setNick(e.target.value); setNameErr(""); }} maxLength={NAME_MAX} placeholder="Name or nickname" aria-label="Name or nickname" aria-invalid={!!nameErr} required/></span>
       <span className="th-grow"/>
       <button type="button" className="cancel" onClick={onCancel}>Cancel</button>
-      <button type="button" className="th-btn round dark" disabled={busy || text.trim().length < 2} onClick={send}>{busy ? "Posting…" : cta}</button>
+      <button type="button" className="th-post" disabled={busy || !!why} onClick={send}>{busy ? "Posting…" : cta}</button>
     </div>
-    {nameErr && <span className="th-err" role="alert">{nameErr}</span>}
+    {nameErr ? <span className="th-err" role="alert">{nameErr}</span> : why && <span className="th-why">{why}</span>}
   </div>;
 }
 

@@ -9,7 +9,7 @@ import { usePicks, usePayload, complete, fitFor } from "./picks";
 import { tone, VERDICT, SOURCE, MIN_SHOWN, POLL_PCT_AT } from "../ui";
 import { sendVote, loadProfile, VERDICTS, type Verdict } from "../../quick-vote";
 import { nameProblem, NAME_MAX } from "../../../lib/thread/display-name";
-import { savedName, saveName } from "./name";
+import { savedName, saveName, grow } from "./name";
 import { useFormToken } from "../../form-token-client";
 import type { RvCard } from "../racket-data";
 
@@ -68,6 +68,9 @@ export function Poll({ id, reviews }: { id: string; reviews: Counts }) {
 
 const TABS = [["all", "All"], ["player", "Players"], ["reddit", "Reddit"], ["youtube", "YouTube"], ["blog", "Blogs"]] as const;
 const PAGE = 8, MIN_WORDS = 20;
+/** Why Post is off (owner 2026-11-19): a verdict is always needed; a name only with written text (a verdict alone is a vote). */
+const postWhy = (verdict: Verdict | null, text: string, nick: string) => { const noName = !!text.trim() && !!nameProblem(nick);
+  return !verdict && noName ? "Pick a verdict and add a name to post" : !verdict ? "Pick a verdict to post" : noName ? "Add a name to post" : ""; };
 type Sort = "new" | "pos" | "crit" | "helpful";
 /** The mock's sorts (Newest · Most positive · Critical first), plus the existing Most helpful. */
 const SORTS: [Sort, string][] = [["new", "Newest"], ["pos", "Most positive"], ["crit", "Critical first"], ["helpful", "Most helpful"]];
@@ -121,16 +124,17 @@ export function Reviews({ id, cards, nicknames }: { id: string; cards: RvCard[];
       {!open && !done && <button type="button" className="th-btn round lime" onClick={() => setOpen(true)}>+ Add your review</button>}
     </div>
     {done && <p className="th-ok" role="status">{done === "words" ? "Thanks for sharing! Your review will appear here once it's approved." : "Thanks! Your vote has been added."}</p>}
-    {open && <div className="th-compose">
+    {open && <div className="th-compose soft">
       <div className="th-as"><input value={nick} onChange={e => { setNick(e.target.value); setError(""); }} maxLength={NAME_MAX} placeholder="Name or nickname" aria-label="Name or nickname" required/></div>
       <div className="th-picks"><span className="lbl" style={{ fontSize: 13.5, color: "var(--ink2)", minWidth: 0 }}>Played it?</span>
         {VERDICTS.map(v => <button key={v.key} type="button" className={`th-vpick ${VERDICT[v.key][1]}`} aria-pressed={verdict === v.key} onClick={() => { setVerdict(v.key); setError(""); }}><span className={`th-sdot ${VERDICT[v.key][1]}`}/>{VERDICT[v.key][0]}</button>)}
       </div>
-      <textarea className="th-ta" rows={3} autoFocus value={text} onChange={e => { setText(e.target.value); setError(""); }} maxLength={2000} placeholder="Write your review" aria-label="Your review"/>
+      <textarea className="th-ta th-ta-grow" rows={3} autoFocus value={text} onChange={e => { setText(e.target.value); setError(""); grow(e.currentTarget, 240); }} maxLength={2000} placeholder="Write your review" aria-label="Your review"/>
       {error && <span className="th-err">{error}</span>}
       <div className="th-compose-foot"><span className="th-grow"/><span>No account needed</span>
         <button type="button" className="cancel" onClick={() => { setOpen(false); setError(""); }}>Cancel</button>
-        <button type="button" className="th-btn round lime" disabled={!verdict || busy} onClick={post}>{busy ? "Posting…" : "Post"}</button></div>
+        <button type="button" className="th-post" disabled={!verdict || busy || (!!text.trim() && !!nameProblem(nick))} onClick={post}>{busy ? "Posting…" : "Post"}</button></div>
+      {!busy && postWhy(verdict, text, nick) && <span className="th-why" style={{ alignSelf: "flex-end" }}>{postWhy(verdict, text, nick)}</span>}
     </div>}
     <span className="th-note" style={{ marginTop: -4 }}>From players here. Plus Reddit, YouTube and blog reviews, summarised.</span>
     <PendingReviews racketId={id}/>
