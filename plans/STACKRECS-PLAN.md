@@ -1,16 +1,16 @@
-# Build + Grow pilot ("stackrecs"): plan for owner sign-off
+# StackRecs (Build + Grow pilot): plan for owner sign-off
 
 Status: plan only. No data, no migration, no Vercel change. Nothing is seeded until the owner signs off
 here. Sources: the owner's BUILD-GROW-PLAN.md and the two research notes of 2026-11-19 (coding tools,
 grow side).
 
-## 1. NICHE id and renaming
+## 1. Name and NICHE id
 
-- NICHE id: `stackrecs`. Postgres schema: `stackrecs`. Both are internal and never shown to visitors.
-- The public name lives in one place, `lib/niche/stackrecs.ts` `site` (name, domain, wordmark,
-  descriptor). Picking BuildGrowRecs, ShipRecs or another name later is a one-file change. The id and
-  schema can stay, as `software` did for SoftwareRecs.
-- No domain and no Vercel project until the owner says so (see section 9 for previews).
+- Chosen name (owner, 2026-11-19): **StackRecs**, domain stackrecs.com. The owner buys the domain.
+- NICHE id: `stackrecs`. Postgres schema: `stackrecs`.
+- The public name lives in one place, `lib/niche/stackrecs.ts` `site` (name "StackRecs", domain
+  "stackrecs.com", wordmark "stackrecs"), so a later rename stays a one-file change.
+- No Vercel domain, DNS or Vercel project until the owner says so (see section 9 for previews).
 
 ## 2. Catalog (38 tools)
 
@@ -159,7 +159,7 @@ Sources, as on padel: own reviews and votes, plus Reddit, YouTube and blog summa
 
 ## 10. Owner decisions on this PR
 
-1. NICHE id `stackrecs` and the 38-tool catalog (add Emergent and Google AI Studio or not).
+1. The 38-tool catalog (add Emergent and Google AI Studio or not).
 2. The two vote sets and their options.
 3. The quiz fields, including the Grow budget steps.
 4. The Reddit test run and Hacker News as a source.
