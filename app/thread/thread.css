@@ -439,3 +439,11 @@ body:has(.th) .th a.th-brand:hover { background: var(--frame); color: var(--ink)
 .th-brand-pic img { max-height: 48px; width: auto; mix-blend-mode: multiply; }
 .th-brand-body { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 1px; }
 .th-brand-body strong { font-size: 16.5px; }
+
+/* The owner's review tools (app/thread/live/review-admin.tsx): only in the signed-in owner's browser. */
+.th-admin-box { border: 2px dashed var(--ink); border-radius: 12px; padding: 10px 12px; display: flex; flex-direction: column; gap: 8px; background: var(--lime-box); }
+.th-admin-acts { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
+.th-admin-acts .th-ta { flex-basis: 100%; }
+.th-mini-btn { all: unset; cursor: pointer; font-size: 13px; font-weight: 700; color: var(--ink2); text-decoration: underline; text-underline-offset: 3px; }
+.th-mini-btn:hover { color: var(--ink); }
+.th-mini-btn:focus-visible { outline: 3px solid var(--lime); outline-offset: 2px; }
