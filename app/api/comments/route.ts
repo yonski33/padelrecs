@@ -13,7 +13,7 @@ import { device, network, json, foreign } from "../thread-device";
 const off = () => !threadSite(niche.id) || !process.env.DATABASE_URL;
 const burst = createLimiter({ limit: 6, windowMs: 10 * 60_000 }), votes = createLimiter({ limit: 120, windowMs: 60 * 60_000 });
 const post = z.object({ page: z.string().regex(PAGE_KEY), parentId: z.string().uuid().nullish(), alias: z.string().trim().min(1).max(50),
-  body: z.string().trim().min(2).max(2000), question: z.boolean().optional(), formToken: z.string().optional(), website: z.string().optional() });
+  body: z.string().trim().min(2).max(2000), formToken: z.string().optional(), website: z.string().optional() });
 const vote = z.object({ commentId: z.string().uuid(), value: z.union([z.literal(-1), z.literal(0), z.literal(1)]) });
 
 export async function GET(request: Request) {
@@ -37,7 +37,7 @@ export async function POST(request: Request) {
   if (!burst.hit(clientIp(request))) return json({ error: "That's a lot of comments in a few minutes. Try again soon." }, 429);
   try {
     const db = await database(), voter = (await device(true))!;
-    const r = await addComment(db, { page: v.page, parentId: v.parentId ?? null, alias: v.alias, body: v.body, question: !!v.question, voter, network: network(request) });
+    const r = await addComment(db, { page: v.page, parentId: v.parentId ?? null, alias: v.alias, body: v.body, voter, network: network(request) });
     if (r.status === "limited") return json({ error: "That's a lot of comments for one hour. Try again later." }, 429);
     if (r.status === "invalid") return json({ error: "That conversation can't take replies." }, 400);
     return json(r.status === "approved" ? { status: "approved", comment: r.comment } : { status: "pending" }, 201);

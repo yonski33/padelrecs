@@ -9,7 +9,8 @@ import { spamScore } from "../lib/review-spam";
 type Database = ReturnType<typeof getDb>;
 export const COMMENTS_PER_HOUR = 20;
 export const PAGE_KEY = /^(racket|ranking|guide):[A-Za-z0-9_-]{1,100}$/;
-export type ThreadComment = { id: string; parentId: string | null; alias: string; body: string; question: boolean; at: string; score: number; mine: number };
+/** No tags (owner 2026-11-19): the is_question column stays in the table, unused (always false). */
+export type ThreadComment = { id: string; parentId: string | null; alias: string; body: string; at: string; score: number; mine: number };
 
 /** How a new comment is filed: rejected (spam), pending (held for a person: links, very short), or approved (shown). */
 export function commentStatus(body: string, alias: string) {
@@ -26,10 +27,12 @@ export async function listComments(db: Pick<Database, "select">, page: string, v
   const sum = new Map(sums.map(x => [x.id, Number(x.s)])), my = new Map(mine.map(x => [x.id, x.v]));
   // A reply shows only under a shown parent.
   const shown = new Set(rows.filter(r => !r.parentId).map(r => r.id));
-  return rows.filter(r => !r.parentId || shown.has(r.parentId)).map(r => ({ id: r.id, parentId: r.parentId, alias: r.alias, body: r.body, question: r.isQuestion, at: r.createdAt, score: sum.get(r.id) ?? 0, mine: my.get(r.id) ?? 0 }));
+  return rows.filter(r => !r.parentId || shown.has(r.parentId)).map(r => ({ id: r.id, parentId: r.parentId, alias: r.alias, body: r.body, at: r.createdAt, score: sum.get(r.id) ?? 0, mine: my.get(r.id) ?? 0 }));
 }
 
-export async function addComment(db: Database, c: { page: string; parentId: string | null; alias: string; body: string; question: boolean; voter: string; network: string }, now = new Date()) {
+/** Post a comment or reply. The author's own ▲ comes with it (owner 2026-11-19, like Reddit): it starts at 1, the author's
+ *  arrow shows as up, and tapping it takes the vote back like any other. */
+export async function addComment(db: Database, c: { page: string; parentId: string | null; alias: string; body: string; voter: string; network: string }, now = new Date()) {
   const [recent] = await db.select({ n: count() }).from(comments).where(and(eq(comments.network, c.network), gte(comments.createdAt, new Date(now.getTime() - 3_600_000).toISOString())));
   if (Number(recent.n) >= COMMENTS_PER_HOUR) return { status: "limited" as const };
   if (c.parentId) {
@@ -38,8 +41,9 @@ export async function addComment(db: Database, c: { page: string; parentId: stri
   }
   const status = commentStatus(c.body, c.alias), s = spamScore({ reviewText: c.body, alias: c.alias });
   const id = crypto.randomUUID(), at = now.toISOString();
-  await db.insert(comments).values({ id, page: c.page, parentId: c.parentId, alias: c.alias, body: c.body, isQuestion: c.question, status, spamScore: s.score, voter: c.voter, network: c.network, createdAt: at });
-  return { status, comment: { id, parentId: c.parentId, alias: c.alias, body: c.body, question: c.question, at, score: 0, mine: 0 } satisfies ThreadComment };
+  await db.insert(comments).values({ id, page: c.page, parentId: c.parentId, alias: c.alias, body: c.body, isQuestion: false, status, spamScore: s.score, voter: c.voter, network: c.network, createdAt: at });
+  await db.insert(commentVotes).values({ commentId: id, voter: c.voter, value: 1, updatedAt: at });
+  return { status, comment: { id, parentId: c.parentId, alias: c.alias, body: c.body, at, score: 1, mine: 1 } satisfies ThreadComment };
 }
 
 /** ▲ (1), ▼ (-1) or clear (0) this device's vote on a shown comment. */
