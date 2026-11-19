@@ -8,11 +8,14 @@ import { TRAIT_GROUPS, type TraitCounts } from "../../../lib/thread/traits";
 import { groupView, groupNote, sectionNote } from "../../../lib/thread/trait-view";
 import type { TraitSeed } from "../../../lib/thread/trait-seed";
 
+/** The owner's fixes (admin Traits tab, db/trait-admin.ts): review counts that replace the file's, and frozen groups. */
+type Overrides = { counts: Record<string, Record<string, number>>; frozen: string[] };
+
 export function TraitVotes({ id, seed }: { id: string; seed: TraitSeed | null }) {
-  const [counts, setCounts] = useState<TraitCounts>({}), [mine, setMine] = useState<Record<string, string>>({}), [more, setMore] = useState(false), [err, setErr] = useState("");
+  const [counts, setCounts] = useState<TraitCounts>({}), [ov, setOv] = useState<Overrides>({ counts: {}, frozen: [] }), [mine, setMine] = useState<Record<string, string>>({}), [more, setMore] = useState(false), [err, setErr] = useState("");
   useEffect(() => {
     fetch(`/api/trait-votes?racket=${encodeURIComponent(id)}`, { cache: "no-store" }).then(r => r.ok ? r.json() : null)
-      .then((b: { counts?: TraitCounts; mine?: Record<string, string> } | null) => { if (b?.counts) { setCounts(b.counts); setMine(b.mine ?? {}); } }).catch(() => {});
+      .then((b: { counts?: TraitCounts; mine?: Record<string, string>; overrides?: Overrides } | null) => { if (b?.counts) { setCounts(b.counts); setMine(b.mine ?? {}); if (b.overrides) setOv(b.overrides); } }).catch(() => {});
   }, [id]);
   async function vote(trait: string, choice: string) {
     const next = mine[trait] === choice ? null : choice, was = { counts, mine };
@@ -23,19 +26,20 @@ export function TraitVotes({ id, seed }: { id: string; seed: TraitSeed | null })
     setCounts(c); setMine(m => { const x = { ...m }; if (next) x[trait] = next; else delete x[trait]; return x; }); setErr("");
     try {
       const r = await fetch("/api/trait-votes", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ racketId: id, trait, choice: next }) });
-      const b = await r.json() as { counts?: TraitCounts; mine?: Record<string, string>; error?: string };
+      const b = await r.json() as { counts?: TraitCounts; mine?: Record<string, string>; overrides?: Overrides; error?: string };
       if (!r.ok || !b.counts) throw new Error(b.error || "Could not save your vote.");
-      setCounts(b.counts); setMine(b.mine ?? {});
+      setCounts(b.counts); setMine(b.mine ?? {}); if (b.overrides) setOv(b.overrides);
     } catch (e) { setCounts(was.counts); setMine(was.mine); setErr(e instanceof Error ? e.message : "Could not save your vote."); }
   }
   const voteTotal = Object.values(counts).reduce((s, o) => s + Object.values(o).reduce((a, b) => a + b, 0), 0);
   return <section id="play" className="th-card th-sec" style={{ scrollMarginTop: 70 }}>
     <div className="th-head-row"><h2 className="th-h3">How does it play?</h2><span className="th-sub">{sectionNote(seed?.sources ?? 0, voteTotal)}</span></div>
     <div className="th-vgrid">{TRAIT_GROUPS.map((g, gi) => {
-      const v = groupView(g.options, seed?.groups[g.key], counts[g.key], seed?.spec[g.key]), max = Math.max(1, ...v.opts.filter(o => o.shown).map(o => o.n));
+      const closed = ov.frozen.includes("_all") || ov.frozen.includes(g.key);
+      const v = groupView(g.options, ov.counts[g.key] ?? seed?.groups[g.key], counts[g.key], seed?.spec[g.key]), max = Math.max(1, ...v.opts.filter(o => o.shown).map(o => o.n));
       return <div key={g.key} className={`th-vbox slim${gi >= 3 && !more ? " th-hide-m" : ""}`} role="group" aria-label={g.title}>
-        <span className="th-vbox-head">{g.title}<small>{groupNote(v)}</small></span>
-        {v.opts.map(o => <button key={o.key} type="button" className={`th-vopt sm${o.top || o.spec ? " top" : ""}`} aria-pressed={mine[g.key] === o.key} onClick={() => vote(g.key, o.key)}>
+        <span className="th-vbox-head">{g.title}<small>{[groupNote(v), closed ? "Voting closed" : ""].filter(Boolean).join(" · ")}</small></span>
+        {v.opts.map(o => <button key={o.key} type="button" className={`th-vopt sm${o.top || o.spec ? " top" : ""}`} aria-pressed={mine[g.key] === o.key} disabled={closed} onClick={() => vote(g.key, o.key)}>
             <i style={{ width: o.shown ? `${Math.round(o.n / max * 85)}%` : 0 }}/>
             <span>{o.label}</span>
             {o.shown && <b>{o.n}</b>}

@@ -173,6 +173,7 @@ body:has(.th) .th a.th-vopt { text-decoration: none; }
 /* Hover is a light tint; only the picked option is filled dark (with light text). */
 :where(.th-vopt:not(.ro), .th-popt, .th-pick, .th-fopt, .th-more, .th-menu-btn, .th-btn:not(.dark):not(.lime)):not([aria-pressed="true"]):hover { background-color: var(--frame); }
 .th-popt:hover, .th-pick:hover, .th-fopt:hover { border-color: var(--ink); }
+.th-vopt:disabled { cursor: default; opacity: .7; } .th-vopt:disabled:hover { border-color: var(--line); background-color: #fff; }
 .th-vopt.ro { cursor: default; } .th-vopt.ro:hover { border-color: var(--line); }
 .th-vopt.sm { min-height: 26px; border-radius: 8px; padding: 0 10px; }
 .th-vopt[aria-pressed="true"] { border: 2px solid var(--ink); }

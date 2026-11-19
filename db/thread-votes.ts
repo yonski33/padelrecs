@@ -3,6 +3,7 @@ import { and, count, eq, gte, sql } from "drizzle-orm";
 import type { getDb } from "./index";
 import { traitVotes, rackets, productVotes, reviews } from "./schema";
 import type { TraitCounts } from "../lib/thread/traits";
+import { traitOverridesFor, isFrozen } from "./trait-admin";
 
 type Database = ReturnType<typeof getDb>;
 export const TRAIT_VOTES_PER_HOUR = 200;
@@ -21,6 +22,7 @@ export async function myTraitVotes(db: Pick<Database, "select">, racketId: strin
 export async function castTraitVote(db: Database, racketId: string, trait: string, choice: string | null, voter: string, network: string, now = new Date()) {
   const [exists] = await db.select({ id: rackets.id }).from(rackets).where(eq(rackets.id, racketId));
   if (!exists) return "missing" as const;
+  if (isFrozen(await traitOverridesFor(db, racketId), trait)) return "frozen" as const;
   const [recent] = await db.select({ n: count() }).from(traitVotes).where(and(eq(traitVotes.network, network), gte(traitVotes.updatedAt, new Date(now.getTime() - 3_600_000).toISOString())));
   if (Number(recent.n) >= TRAIT_VOTES_PER_HOUR) return "limited" as const;
   if (choice === null) { await db.delete(traitVotes).where(and(eq(traitVotes.racketId, racketId), eq(traitVotes.voter, voter), eq(traitVotes.trait, trait))); return "ok" as const; }

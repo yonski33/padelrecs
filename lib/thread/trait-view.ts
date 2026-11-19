@@ -1,3 +1,4 @@
+import { TRAIT_GROUPS } from "./traits";
 // How one "How does it play?" group shows (owner 2026-11-19): review mentions (db/thread/padel-traits.json) and players'
 // votes add up per option; an option shows its bar and count only at MIN 5, so thin evidence leaves the group empty rather
 // than guessing. With nothing at 5, a spec that settles the group (a diamond shape → Power) marks its option instead,
@@ -28,4 +29,14 @@ export function sectionNote(sources: number, votes: number): string {
   if (sources > 0 && votes === 0) return `Based on ${sources} ${sources === 1 ? "review" : "reviews"} until players vote. Pick what fits, one vote per group.`;
   if (sources > 0) return `From ${sources} reviews and ${votes} player ${votes === 1 ? "vote" : "votes"}. Pick what fits, one vote per group.`;
   return "Pick what fits. One vote per group, change it any time.";
+}
+/** The counts typed into the form: one whole number 0–100000 per option ("c_<option>"), blanks as 0. */
+export function countsFrom(trait: string, form: Record<string, unknown>): Record<string, number> | null {
+  const g = TRAIT_GROUPS.find(x => x.key === trait)!, out: Record<string, number> = {};
+  for (const [k] of g.options) {
+    const raw = String(form[`c_${k}`] ?? "").trim(), n = raw === "" ? 0 : Number(raw);
+    if (!Number.isInteger(n) || n < 0 || n > 100000) return null;
+    if (n > 0) out[k] = n;
+  }
+  return out;
 }
