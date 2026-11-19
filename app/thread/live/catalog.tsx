@@ -1,7 +1,7 @@
 "use client";
 // The Thread catalogue (Rackets Thread): search, the filter column (Shape, Level, Feel, Brand, Arm friendly; counts of 5+),
 // active chips, Clear all, sort and Load more, all in the browser on the rows the server sent.
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useState, type ReactNode } from "react";
 import { Row, cap, type ThreadRow } from "../ui";
 import { usePicks, usePayload, complete, pctsFor } from "./picks";
 
@@ -9,7 +9,9 @@ type Key = "shape" | "level" | "feel" | "brand" | "arm";
 type Filters = Partial<Record<Key, string[]>>;
 const STEP = 20;
 
-export function Catalog({ rows, brands }: { rows: ThreadRow[]; brands: string[] }) {
+/** `title`, `lead` and `crumbs` change the hero (a brand page: app/thread/brands/[slug]); with no `brands` the Brand filter is left out. */
+export function Catalog({ rows, brands, title = "All padel rackets", lead = "Every racket players have reviewed. Filter by how it plays, then see what people say.", crumbs }:
+  { rows: ThreadRow[]; brands: string[]; title?: string; lead?: string; crumbs?: ReactNode }) {
   const [q, setQ] = useState(""), [f, setF] = useState<Filters>({}), [sort, setSort] = useState<"score" | "reviews" | "new" | "match">("score");
   const [open, setOpen] = useState(false), [panel, setPanel] = useState(false), [n, setN] = useState(STEP), [older, setOlder] = useState(false);
   const [picks] = usePicks(); const on = complete(picks), payload = usePayload(on);
@@ -17,7 +19,7 @@ export function Catalog({ rows, brands }: { rows: ThreadRow[]; brands: string[] 
   // The header search sends ?q=: read it once from the address (no useSearchParams: tests/instant-views.test.ts).
   useEffect(() => { const v = new URLSearchParams(location.search).get("q"); if (v) setQ(v); }, []);
   const shapes = useMemo(() => [...new Set(rows.map(r => r.shape).filter((x): x is string => !!x))].sort((a, b) => rows.filter(r => r.shape === b).length - rows.filter(r => r.shape === a).length).slice(0, 5), [rows]);
-  const GROUPS: [Key, string, string[]][] = [["shape", "Shape", shapes], ["level", "Level", ["Beginner", "Intermediate", "Advanced"]], ["feel", "Feel", ["Soft", "Medium", "Hard"]], ["brand", "Brand", brands], ["arm", "Comfort", ["Arm friendly"]]];
+  const GROUPS = ([["shape", "Shape", shapes], ["level", "Level", ["Beginner", "Intermediate", "Advanced"]], ["feel", "Feel", ["Soft", "Medium", "Hard"]], ["brand", "Brand", brands], ["arm", "Comfort", ["Arm friendly"]]] as [Key, string, string[]][]).filter(([, , v]) => v.length > 0);
   const test = (r: ThreadRow, k: Key, v: string) => k === "shape" ? r.shape === v : k === "level" ? r.levels.includes(v.toLowerCase() as ThreadRow["levels"][number]) : k === "feel" ? r.feel === v : k === "brand" ? r.brand === v : r.arm;
   const words = q.trim().toLowerCase().split(/\s+/).filter(Boolean);
   // One row per model by default, its current year (the classic catalog's rule, ThreadRow.current); a search or "Show older
@@ -34,9 +36,10 @@ export function Catalog({ rows, brands }: { rows: ThreadRow[]; brands: string[] 
   // eslint-disable-next-line react-hooks/exhaustive-deps
   [pool, f, q, by, pcts]);
   const SORTS = [["score", "By player score"], ["reviews", "Most reviewed"], ["new", "Newest models"], ...(pcts ? [["match", "By your match"]] : [])] as [typeof sort, string][];
-  const groups = <>{GROUPS.map(([k, label, vals]) => <div key={k} className="th-fgroup"><span>{label}</span>
-    <div className="th-fopts">{vals.map(v => { const c = pool.filter(r => pass(r, k) && test(r, k, v)).length, sel = !!f[k]?.includes(v);
-      return (c > 0 || sel) && <button key={v} type="button" className="th-fopt" aria-pressed={sel} onClick={() => toggle(k, v)}>{v}{c >= 5 && <span>{c}</span>}</button>; })}</div></div>)}</>;
+  // A group shows only the options some racket here has (or that are picked), and no group label with nothing under it.
+  const groups = <>{GROUPS.map(([k, label, vals]) => { const opts = vals.map(v => ({ v, c: pool.filter(r => pass(r, k) && test(r, k, v)).length, sel: !!f[k]?.includes(v) })).filter(o => o.c > 0 || o.sel);
+    return opts.length > 0 && <div key={k} className="th-fgroup"><span>{label}</span>
+    <div className="th-fopts">{opts.map(({ v, c, sel }) => <button key={v} type="button" className="th-fopt" aria-pressed={sel} onClick={() => toggle(k, v)}>{v}{c >= 5 && <span>{c}</span>}</button>)}</div></div>; })}</>;
   return <main className="th-main">
     <aside className="th-filters"><section className="th-card th-fpanel">
       <span className="th-head-row" style={{ alignItems: "center" }}><span className="th-stitle">Filters</span>{any && <button type="button" className="th-clear" onClick={clear}>Clear all</button>}</span>
@@ -44,8 +47,9 @@ export function Catalog({ rows, brands }: { rows: ThreadRow[]; brands: string[] 
     </section></aside>
     <div className="th-col">
       <section className="th-card th-hero">
-        <h1 className="th-h1">All padel rackets</h1>
-        <p className="th-lead">Every racket players have reviewed. Filter by how it plays, then see what people say.</p>
+        {crumbs}
+        <h1 className="th-h1">{title}</h1>
+        <p className="th-lead">{lead}</p>
         <label className="vh" htmlFor="th-cq">Search by name or brand</label>
         <input id="th-cq" className="th-input" style={{ fontSize: 15, padding: "8px 12px" }} value={q} onChange={e => { setQ(e.target.value); setN(STEP); }} placeholder="Search by name or brand"/>
         <button type="button" className="th-btn th-fbtn" style={{ alignSelf: "flex-start" }} aria-expanded={panel} onClick={() => setPanel(p => !p)}>

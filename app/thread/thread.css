@@ -431,6 +431,16 @@ body:has(.th) .th .th-rtabs a[aria-current="page"] { background: var(--ink); col
 .th-row-body, .th-rv, .th-col { overflow-wrap: break-word; min-width: 0; }
 @media (max-width: 639px) { .th-specs { grid-template-columns: minmax(0,1fr); } }
 
+/* Brands index (app/thread/brands): one row per brand, top racket's photo and score. */
+.th-brands { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; }
+.th-brands li + li { border-top: 1.5px solid var(--line); }
+body:has(.th) .th a.th-brand { display: flex; align-items: center; gap: 12px; padding: 10px 4px; text-decoration: none; color: var(--ink); }
+body:has(.th) .th a.th-brand:hover { background: var(--frame); color: var(--ink); }
+.th-brand-pic { flex: none; width: 52px; height: 52px; border-radius: 8px; overflow: hidden; background: var(--soft); display: flex; align-items: center; justify-content: center; }
+.th-brand-pic img { max-height: 48px; width: auto; mix-blend-mode: multiply; }
+.th-brand-body { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 1px; }
+.th-brand-body strong { font-size: 16.5px; }
+
 /* The owner's review tools (app/thread/live/review-admin.tsx): only in the signed-in owner's browser. */
 .th-admin-box { border: 2px dashed var(--ink); border-radius: 12px; padding: 10px 12px; display: flex; flex-direction: column; gap: 8px; background: var(--lime-box); }
 .th-admin-acts { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
