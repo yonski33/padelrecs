@@ -4,7 +4,9 @@ import { topPicks, type PickCat, type PickRacket } from "../lib/thread/top-picks
 
 // "Top picks by players" (owner 2026-11-19): share ranking, 10+ opinions, 5+ backers, one version per model, spread #1s.
 const cat = (key: string): PickCat => ({ key, title: key, trait: key, choice: "x", href: "/" });
-const r = (id: string, opinions: number, counts: Record<string, number>, family = id): PickRacket => ({ id, name: id.toUpperCase(), family, opinions, counts });
+// `opinions` is the group total for every list here; one test below gives each list its own.
+const r = (id: string, opinions: number, counts: Record<string, number>, family = id): PickRacket =>
+  ({ id, name: id.toUpperCase(), family, counts, totals: Object.fromEntries(Object.keys(counts).map(k => [k, opinions])) });
 
 test("ranks by share, needs 10 opinions and 5 backers, keeps the raw count", () => {
   const [l] = topPicks([r("big", 200, { a: 40 }), r("small", 20, { a: 10 }), r("tiny", 9, { a: 9 }), r("thin", 50, { a: 4 }), r("mid", 50, { a: 15 })], [cat("a")]);
@@ -40,4 +42,12 @@ test("the grid shows the first six lists that qualify, in order; a waiting list 
   const thin = (o: Record<string, number>) => ["a", "b", "c", "d"].map(id => r(id, 20, { ...full, intermediate: 0, defence: 0, ...o }));
   assert.deepEqual(topPicks(thin({})).map(l => l.cat.key).at(-1), "trampoline");
   assert.deepEqual(topPicks(thin({ trampoline: 0 })).map(l => l.cat.key).at(-1), "beginner");
+});
+
+test("share is the pick over its own group's total, and the 10+ minimum is on that total", () => {
+  const g = (id: string, n: number, total: number): PickRacket => ({ id, name: id, family: id, counts: { a: n }, totals: { a: total } });
+  // 39 of 41 beats 26 of 50 and 12 of 30; 6 of 9 is out (fewer than 10 in its group).
+  const [l] = topPicks([g("x", 26, 50), g("y", 39, 41), g("z", 6, 9), g("w", 12, 30)], [cat("a")]);
+  assert.deepEqual(l.rows.map(x => x.id), ["y", "x", "w"]);
+  for (const x of l.rows) assert.ok(x.share <= 1, `${x.id} ${x.share}`);
 });

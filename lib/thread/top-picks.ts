@@ -1,8 +1,10 @@
 // "Top picks by players" on the Thread home (owner mock 2026-11-19): six lists of three, the first six of PICK_CATS that qualify. Pure, so tests feed plain rows.
 //   - A pick's count is what players said and voted for that trait on the racket page ("How does it play?": the review
 //     prefill, or the owner's override, plus real votes).
-//   - Ranked by share: that count divided by the racket's opinions, so a well-reviewed racket doesn't win on volume alone. A
-//     racket needs 10+ opinions to qualify, and 5+ backers for the claim (the copy rule); the grey number is the raw count.
+//   - Ranked by share: that count divided by the racket's total for the same group, from the same sources (owner 2026-11-19:
+//     Plays like Power ÷ everything said and voted on Plays like), so shares stay at or under 100% and a well-reviewed racket
+//     doesn't win on volume alone. The group needs 10+ opinions, and the pick 5+ backers (the copy rule); the grey number is
+//     the raw count.
 //   - Current models only, one version per model.
 //   - No racket is #1 in more than 2 lists: it keeps its 2 strongest, and in the others the runner-up moves up.
 
@@ -29,7 +31,8 @@ export const PICK_CATS: PickCat[] = [
 export const SHOWN = 6;
 export const MIN_OPINIONS = 10, MIN_BACKERS = 5, PER_LIST = 3, MAX_FIRSTS = 2;
 
-export type PickRacket = { id: string; name: string; family: string; opinions: number; counts: Record<string, number> };
+/** `counts` and `totals` are per list key: the pick's backers, and everything said and voted on that list's group. */
+export type PickRacket = { id: string; name: string; family: string; counts: Record<string, number>; totals: Record<string, number> };
 export type PickRow = { id: string; name: string; n: number; share: number };
 export type PickList = { cat: PickCat; rows: PickRow[] };
 
@@ -37,8 +40,8 @@ export function topPicks(rackets: PickRacket[], cats: PickCat[] = PICK_CATS): Pi
   // Every qualified racket per list, best share first (ties: more backers), one version per model.
   const ranked = cats.map(cat => {
     const seen = new Set<string>();
-    const all = rackets.filter(r => r.opinions >= MIN_OPINIONS && (r.counts[cat.key] ?? 0) >= MIN_BACKERS)
-      .map(r => ({ id: r.id, name: r.name, family: r.family, n: r.counts[cat.key], share: r.counts[cat.key] / r.opinions }))
+    const all = rackets.filter(r => (r.totals[cat.key] ?? 0) >= MIN_OPINIONS && (r.counts[cat.key] ?? 0) >= MIN_BACKERS)
+      .map(r => ({ id: r.id, name: r.name, family: r.family, n: r.counts[cat.key], share: r.counts[cat.key] / Math.max(r.totals[cat.key], r.counts[cat.key]) }))
       .sort((a, b) => b.share - a.share || b.n - a.n || a.name.localeCompare(b.name))
       .filter(r => !seen.has(r.family) && !!seen.add(r.family));
     return { cat, all };

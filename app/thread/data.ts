@@ -119,12 +119,13 @@ export const threadFeed = cache(async (): Promise<FeedItem[]> => {
 export const threadTopPicks = cache(async (): Promise<{ lists: PickList[]; total: number }> => {
   if (!hasDb()) return { lists: [], total: 0 };
   const { ctx, rows } = await threadRows();
-  const votes = new Map<string, number>(), overrides = new Map<string, Record<string, number>>();
+  const votes = new Map<string, number>(), groupVotes = new Map<string, number>(), overrides = new Map<string, Record<string, number>>();
   let voteTotal = 0;
   try {
     const db = await database();
     for (const v of await db.select({ racketId: traitVotes.racketId, trait: traitVotes.trait, choice: traitVotes.choice, n: count() }).from(traitVotes).groupBy(traitVotes.racketId, traitVotes.trait, traitVotes.choice)) {
       votes.set(`${v.racketId}|${v.trait}|${v.choice}`, Number(v.n)); voteTotal += Number(v.n);
+      groupVotes.set(`${v.racketId}|${v.trait}`, (groupVotes.get(`${v.racketId}|${v.trait}`) ?? 0) + Number(v.n));
     }
     for (const o of await db.select({ racketId: traitOverrides.racketId, trait: traitOverrides.trait, counts: traitOverrides.reviewCounts }).from(traitOverrides))
       if (o.counts) overrides.set(`${o.racketId}|${o.trait}`, o.counts);
@@ -133,15 +134,21 @@ export const threadTopPicks = cache(async (): Promise<{ lists: PickList[]; total
   const rackets: PickRacket[] = [...rows.values()].filter(r => r.current).flatMap(r => {
     const seed = traitSeed("padel", r.id), raw = byId.get(r.id);
     if (!raw) return [];
-    const counts = Object.fromEntries(PICK_CATS.map(c => {
-      if (c.score) { // players behind the review trait score, as the old live board counted them
+    // Each list's backers and its group's total from the same sources (owner 2026-11-19): the review prefill (or the owner's
+    // override) plus votes, the backers for one option and the total over all of that group's options.
+    const both = PICK_CATS.map(c => {
+      if (c.score) { // players behind the review trait score, as the old live board counted them; the total adds those against
         const t = ctx.traits(r.id).scores?.[c.score as keyof NonNullable<ReturnType<typeof ctx.traits>["scores"]>];
-        return [c.key, t && t.basis === "players" ? (t.people ? t.people.players.plus + t.people.reviewers.plus : t.plus ?? 0) : 0];
+        if (!t || t.basis !== "players") return [c.key, 0, 0] as const;
+        const plus = t.people ? t.people.players.plus + t.people.reviewers.plus : t.plus ?? 0;
+        return [c.key, plus, plus + (t.people ? t.people.players.minus + t.people.reviewers.minus : t.minus ?? 0)] as const;
       }
-      const reviews = (overrides.get(`${r.id}|${c.trait}`) ?? seed?.groups[c.trait])?.[c.choice] ?? 0;
-      return [c.key, reviews + (votes.get(`${r.id}|${c.trait}|${c.choice}`) ?? 0)];
-    }));
-    return [{ id: r.id, name: r.name.replace(/\s+\(?20\d\d\)?$/, ""), family: modelFamily(raw), opinions: r.n, counts }];
+      const group = overrides.get(`${r.id}|${c.trait}`) ?? seed?.groups[c.trait] ?? {};
+      return [c.key, (group[c.choice] ?? 0) + (votes.get(`${r.id}|${c.trait}|${c.choice}`) ?? 0),
+        Object.values(group).reduce((a, b) => a + b, 0) + (groupVotes.get(`${r.id}|${c.trait}`) ?? 0)] as const;
+    });
+    return [{ id: r.id, name: r.name.replace(/\s+\(?20\d\d\)?$/, ""), family: modelFamily(raw),
+      counts: Object.fromEntries(both.map(([k, n]) => [k, n])), totals: Object.fromEntries(both.map(([k, , t]) => [k, t])) }];
   });
   return { lists: topPicks(rackets), total: ctx.data.reviews.length + ctx.data.external.length + voteTotal };
 });
