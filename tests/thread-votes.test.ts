@@ -120,3 +120,34 @@ test("poll: tapping your pick again takes the quick vote back (this device only)
     assert.equal((await voteStats(db, "r1")).positive, 1);
   } finally { await engine.close(); }
 });
+
+test("admin: edit keeps author, time and votes; delete removes a leaf with its votes, a comment with replies turns [removed]; search finds by racket and words", async () => {
+  const { engine, db } = await setup();
+  try {
+    const { editComment, deleteComment, REMOVED } = await import("../db/comments");
+    const page = "racket:r1", base = { page, voter: "dev-a", network: "net-1" };
+    const a = (await addComment(db, { ...base, parentId: null, alias: "Gali", body: "Torn between this and the Genius 18K?" })).comment!;
+    const r = (await addComment(db, { ...base, parentId: a.id, alias: "Marta", body: "Go CTRL, the sweet spot is huge." })).comment!;
+    const g = (await addComment(db, { ...base, page: "guide:elbow", parentId: null, alias: "Ana", body: "Soft cores helped my elbow a lot." })).comment!;
+    await voteComment(db, a.id, "dev-b", 1);
+    assert.equal(await editComment(db, a.id, "  Torn between this and the AT10 18K?  "), "ok");
+    assert.equal(await editComment(db, a.id, "x"), "invalid");
+    const edited = (await listComments(db, page, "dev-z")).find(c => c.id === a.id)!;
+    assert.equal(edited.body, "Torn between this and the AT10 18K?"); assert.equal(edited.alias, "Gali"); assert.equal(edited.at, a.at); assert.equal(edited.score, 2);
+    // Search: by page, by words (text or name), both.
+    assert.deepEqual((await adminComments(db, "all", 50, { page })).rows.map(c => c.id).sort(), [a.id, r.id].sort());
+    assert.deepEqual((await adminComments(db, "all", 50, { q: "elbow" })).rows.map(c => c.id), [g.id]);
+    assert.deepEqual((await adminComments(db, "all", 50, { q: "marta", page })).rows.map(c => c.id), [r.id]);
+    assert.equal((await adminComments(db, "all", 50, { q: "100%_" })).rows.length, 0);
+    // A comment with a reply keeps its place as [removed]; the reply stays.
+    assert.equal(await deleteComment(db, a.id), "removed");
+    const after = await listComments(db, page, "dev-z");
+    assert.equal(after.find(c => c.id === a.id)!.body, REMOVED); assert.ok(after.some(c => c.id === r.id));
+    // A leaf goes outright, with its votes.
+    assert.equal(await deleteComment(db, g.id), "deleted");
+    assert.equal((await adminComments(db, "all", 50, { page: "guide:elbow" })).rows.length, 0);
+    const left = await engine.query<{ n: number }>(`select count(*)::int n from padelrecs.comment_votes where comment_id = '${g.id}'`);
+    assert.equal(left.rows[0].n, 0);
+    assert.equal(await deleteComment(db, g.id), "missing");
+  } finally { await engine.close(); }
+});

@@ -1,21 +1,31 @@
-// Comment moderation (Thread, PadelRecs only): approve, reject or hold one comment from the admin's Comments tab. Same admin
-// and origin checks as the review queue (app/funtimes/auth.ts); plain form posts redirect back to the tab.
+// Comment moderation (Thread, PadelRecs only): approve, reject or hold, edit the text, or delete one comment from the admin's
+// Comments tab. Same admin and origin checks as the review queue (app/funtimes/auth.ts); plain form posts redirect back to
+// the tab with its filters. Public comments load uncached (/api/comments), so a change shows on the page at once.
 import { z } from "zod";
 import { database } from "../../../../db/data";
-import { setCommentStatus } from "../../../../db/comments";
+import { setCommentStatus, editComment, deleteComment } from "../../../../db/comments";
 import { adminWriteGuard, adminRedirect, readAdminForm } from "../../../funtimes/auth";
 import { threadSite } from "../../../../lib/thread/look";
 import { niche } from "../../../../lib/niche";
 
-const input = z.object({ id: z.string().uuid(), status: z.enum(["pending", "approved", "rejected"]), back: z.enum(["pending", "approved", "rejected"]).default("pending") });
+const back = { back: z.enum(["pending", "approved", "rejected", "all"]).default("pending"), q: z.string().max(200).default(""), racket: z.string().max(100).default("") };
+const input = z.discriminatedUnion("action", [
+  z.object({ action: z.literal("status"), id: z.string().uuid(), status: z.enum(["pending", "approved", "rejected"]), ...back }),
+  z.object({ action: z.literal("edit"), id: z.string().uuid(), body: z.string().max(4000), ...back }),
+  z.object({ action: z.literal("delete"), id: z.string().uuid(), confirm: z.literal("yes"), ...back }),
+]);
 export async function POST(request: Request) {
   if (!threadSite(niche.id)) return Response.json({ error: "Not here." }, { status: 404 });
   const forbidden = await adminWriteGuard(request); if (forbidden) return forbidden;
-  let parsed; try { parsed = input.safeParse(await readAdminForm(request)); } catch { parsed = null; }
-  if (!parsed?.success) return adminRedirect(request, "tab=comments&result=invalid");
-  const { id, status, back } = parsed.data;
+  let form: Record<string, unknown> = {}, parsed;
+  try { form = await readAdminForm(request); parsed = input.safeParse({ action: "status", ...form }); } catch { parsed = null; }
+  const to = (result: string) => { const p = new URLSearchParams({ tab: "comments", status: String(form.back ?? "pending") });
+    if (form.q) p.set("q", String(form.q)); if (form.racket) p.set("racket", String(form.racket)); p.set("result", result); return adminRedirect(request, p.toString()); };
+  if (!parsed?.success) return to(form.action === "delete" ? "confirm" : "invalid");
+  const d = parsed.data, db = await database();
   try {
-    const ok = await setCommentStatus(await database(), id, status);
-    return adminRedirect(request, `tab=comments&status=${back}&result=${ok ? status : "stale"}`);
-  } catch { return adminRedirect(request, `tab=comments&status=${back}&result=failed`); }
+    if (d.action === "status") return to(await setCommentStatus(db, d.id, d.status) ? d.status : "stale");
+    if (d.action === "edit") { const r = await editComment(db, d.id, d.body); return to(r === "ok" ? "edited" : r === "missing" ? "stale" : "invalid"); }
+    const r = await deleteComment(db, d.id); return to(r === "missing" ? "stale" : r);
+  } catch { return to("failed"); }
 }
