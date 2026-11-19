@@ -1,7 +1,7 @@
 // Thread comments (drizzle/0025, PadelRecs): light Q&A on racket, ranking and guide pages, one level of replies, ▲▼ votes.
 // Auto-moderated with the review form's checks (lib/review-spam.ts): spam is rejected; a link or a very short comment waits as
 // pending (kept, not shown); the rest shows at once.
-import { and, count, desc, eq, gte, inArray, sql } from "drizzle-orm";
+import { and, count, desc, eq, gte, ilike, inArray, or, sql } from "drizzle-orm";
 import type { getDb } from "./index";
 import { comments, commentVotes } from "./schema";
 import { spamScore } from "../lib/review-spam";
@@ -57,10 +57,14 @@ export async function voteComment(db: Database, commentId: string, voter: string
 }
 
 export type AdminComment = { id: string; page: string; parentId: string | null; alias: string; body: string; status: "pending" | "approved" | "rejected"; spamScore: number; at: string };
-/** The admin's comment queue (app/funtimes?tab=comments): one status, newest first, with each status's total. */
-export async function adminComments(db: Pick<Database, "select">, status: AdminComment["status"], limit = 50) {
+/** The admin's comment list (app/funtimes?tab=comments): one status (or "all"), newest first, with each status's total.
+ *  `page` narrows it to one page ("racket:<id>"), `q` to comments whose text or name has those words. */
+export async function adminComments(db: Pick<Database, "select">, status: AdminComment["status"] | "all", limit = 50, find: { page?: string | null; q?: string | null } = {}) {
+  const words = (find.q ?? "").trim().split(/\s+/).filter(Boolean).slice(0, 6);
+  const where = and(status === "all" ? undefined : eq(comments.status, status), find.page ? eq(comments.page, find.page) : undefined,
+    ...words.map(w => or(ilike(comments.body, `%${w.replace(/[%_\\]/g, m => `\\${m}`)}%`), ilike(comments.alias, `%${w.replace(/[%_\\]/g, m => `\\${m}`)}%`))));
   const [rows, totals] = await Promise.all([
-    db.select().from(comments).where(eq(comments.status, status)).orderBy(desc(comments.createdAt)).limit(limit),
+    db.select().from(comments).where(where).orderBy(desc(comments.createdAt)).limit(limit),
     db.select({ status: comments.status, n: count() }).from(comments).groupBy(comments.status),
   ]);
   return { rows: rows.map(r => ({ id: r.id, page: r.page, parentId: r.parentId, alias: r.alias, body: r.body, status: r.status, spamScore: r.spamScore, at: r.createdAt })) as AdminComment[],
@@ -70,4 +74,23 @@ export async function adminComments(db: Pick<Database, "select">, status: AdminC
 export async function setCommentStatus(db: Database, id: string, status: AdminComment["status"]) {
   const done = await db.update(comments).set({ status }).where(eq(comments.id, id)).returning({ id: comments.id });
   return done.length > 0;
+}
+
+/** The text a deleted comment with replies keeps, so its replies stay readable under it. */
+export const REMOVED = "[removed]";
+/** Owner edit (admin Comments tab): new text, the same author, time, status and votes. No public "edited" mark. */
+export async function editComment(db: Database, id: string, body: string) {
+  const text = body.trim();
+  if (text.length < 2 || text.length > 2000) return "invalid" as const;
+  return (await db.update(comments).set({ body: text }).where(eq(comments.id, id)).returning({ id: comments.id })).length ? "ok" as const : "missing" as const;
+}
+/** Owner delete: a comment with replies becomes "[removed]" (name and text) so the replies stay; one with none goes, with its
+ *  votes (comment_votes cascade). */
+export async function deleteComment(db: Database, id: string) {
+  const [c] = await db.select({ id: comments.id }).from(comments).where(eq(comments.id, id));
+  if (!c) return "missing" as const;
+  const [kids] = await db.select({ n: count() }).from(comments).where(eq(comments.parentId, id));
+  if (Number(kids.n) > 0) { await db.update(comments).set({ body: REMOVED, alias: REMOVED }).where(eq(comments.id, id)); return "removed" as const; }
+  await db.delete(comments).where(eq(comments.id, id));
+  return "deleted" as const;
 }
