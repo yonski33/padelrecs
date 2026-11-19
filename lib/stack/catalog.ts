@@ -7,6 +7,8 @@
 // Affiliate links: `programme` only says one exists (research note 2026-11-19). The link itself is the product's
 // affiliate_url in the database, empty until the owner adds it, and it never reaches the score (lib/stack/score.ts).
 
+import { PRICES } from "./prices";
+
 export type Side = "build" | "grow";
 export const SIDES: Side[] = ["build", "grow"];
 export const CATEGORIES = {
@@ -24,8 +26,12 @@ export type StackTool = {
   /** Earlier names, shown as "was …" and kept for search. */ was?: string[];
 };
 
+// The price facts come from lib/stack/prices.ts (read on the vendors' pages); the numbers passed here are only the fallback.
 const t = (slug: string, name: string, vendor: string, category: Category, website: string, free: boolean, fromUsd: number | null,
-  programme: string | null = null, was?: string[]): StackTool => ({ slug, name, vendor, category, website, free, fromUsd, checked: false, programme, ...(was ? { was } : {}) });
+  programme: string | null = null, was?: string[]): StackTool => {
+  const p = PRICES[slug];
+  return { slug, name, vendor, category, website, free: p?.free ?? free, fromUsd: p ? p.fromUsd : fromUsd, checked: p?.checked ?? false, programme, ...(was ? { was } : {}) };
+};
 
 export const STACK_TOOLS: StackTool[] = [
   // Build: coding agents (no affiliate programme found for any of them).
@@ -36,7 +42,7 @@ export const STACK_TOOLS: StackTool[] = [
   t("devin-desktop", "Devin Desktop", "Cognition", "Coding agent", "https://devin.ai", true, 15, null, ["Windsurf"]),
   t("google-antigravity", "Google Antigravity", "Google", "Coding agent", "https://antigravity.google", true, null),
   t("cline", "Cline", "Cline", "Coding agent", "https://cline.bot", true, null),
-  t("kilo-code", "Kilo Code", "Kilo Code", "Coding agent", "https://kilocode.ai", true, null),
+  t("kilo-code", "Kilo Code", "Kilo Code", "Coding agent", "https://kilo.ai", true, null),
   t("aider", "Aider", "Aider", "Coding agent", "https://aider.chat", true, null),
   t("opencode", "OpenCode", "OpenCode", "Coding agent", "https://opencode.ai", true, null),
   t("zed", "Zed", "Zed Industries", "Coding agent", "https://zed.dev", true, 10),
@@ -60,7 +66,7 @@ export const STACK_TOOLS: StackTool[] = [
   t("se-ranking", "SE Ranking", "SE Ranking", "SEO suite", "https://seranking.com", true, 65, "30% recurring"),
   t("moz-pro", "Moz Pro", "Moz", "SEO suite", "https://moz.com/products/pro", true, 49, "Terms conflict: verify in the dashboard"),
   // Grow: content and on-page.
-  t("surfer", "Surfer", "Surfer", "Content tool", "https://surferseo.com", false, 99, "PartnerStack: first payment share, one-off"),
+  t("surfer", "Surfer", "Surfer", "Content tool", "https://surfer.ai", false, 99, "PartnerStack: first payment share, one-off"),
   t("clearscope", "Clearscope", "Clearscope", "Content tool", "https://www.clearscope.io", false, null),
   t("frase", "Frase", "Frase", "Content tool", "https://www.frase.io", true, 45, "30% for 12 months"),
   t("neuronwriter", "NeuronWriter", "NeuronWriter", "Content tool", "https://neuronwriter.com", true, 23, "30% recurring"),

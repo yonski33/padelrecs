@@ -2,6 +2,7 @@ import { test } from "node:test";
 import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
 import { STACK_TOOLS, CATEGORIES, sideOf, tryLink, COMMISSION_NOTE } from "../lib/stack/catalog";
+import { PRICES } from "../lib/stack/prices";
 import { BUILD_GROUPS, GROW_GROUPS, STACK_BOARDS, validStackVote, SECTION_TITLE } from "../lib/stack/traits";
 import { ageWeight, weighOpinions, stackScores, majorOf, FULL_MONTHS, CUTOFF_MONTHS, type Opinion } from "../lib/stack/score";
 import { rankMatch, readPicks, picksHref, withinBudget, DEFAULT_PICKS, MIN_FIT, type MatchInput } from "../lib/stack/match";
@@ -20,6 +21,9 @@ test("catalog: 39 tools (Google AI Studio in, Emergent out), unique slugs, every
   assert.equal(STACK_TOOLS.filter(t => sideOf(t.category) === "build").length, 24);
   assert.equal(STACK_TOOLS.filter(t => sideOf(t.category) === "grow").length, 15);
   for (const t of STACK_TOOLS) { assert.ok(/^[a-z0-9-]+$/.test(t.slug), t.slug); assert.ok(t.website.startsWith("https://"), t.slug); }
+  // Every tool's price was read on its vendor's page (lib/stack/prices.ts); only plainly stated ones count as checked.
+  for (const t of STACK_TOOLS) { assert.ok(PRICES[t.slug]?.source.startsWith("https://"), `${t.slug} has a price source`); assert.equal(t.checked, PRICES[t.slug].checked); }
+  assert.equal(Object.keys(PRICES).length, STACK_TOOLS.length);
   const n = selectNiche("stackrecs");
   assert.equal(n.schema, "stackrecs"); assert.equal(n.site.name, "StackRecs"); assert.equal(n.productPath, "tools");
   assert.deepEqual(n.shapeFilter, [...CATEGORIES.build, ...CATEGORIES.grow]);
