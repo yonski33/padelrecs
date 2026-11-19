@@ -7,11 +7,13 @@
 // ranks on: how well it suits each level, the Attack and Control dots, the arm dots, feel, forgiveness, balance and shape.
 
 export type AdvLevel = "beginner" | "intermediate" | "advanced";
-export type AdvStyle = "control" | "balance" | "power";
+import { niche } from "../niche";
+/** "spin" on PickleballRecs (owner 2026-11-19: a 4th "I want" option), judged on the page's Spin bar. */
+export type AdvStyle = "control" | "balance" | "power" | "spin";
 export type AdvPicks = { level: AdvLevel; style: AdvStyle; arm: boolean };
 export type AdvFacts = {
   suits?: { beginner: number; intermediate: number; advanced: number } | null;
-  /** 1–5, as the page's Attack and Control bars. */ styleDots?: { power: number; control: number } | null;
+  /** 1–5, as the page's Attack and Control bars (and Spin on pickleball). */ styleDots?: { power: number; control: number; spin?: number } | null;
   /** 1–5 arm comfort. */ armDots?: number | null;
   feel?: "soft" | "medium" | "firm" | null; forgiveness?: number | null; headHeavy?: boolean | null;
   /** The trait scores 0–99 the engine ranks on (lib/trait-score.ts), null when thin. */ control?: number | null; power?: number | null; arm?: number | null;
@@ -24,8 +26,10 @@ export type Advice = { line: string; better: AdvCandidate[] };
 const SUITS = 70, MADE = 60, MISS = 50, LOW = 50, GAP = 25;
 const LEVELS: AdvLevel[] = ["beginner", "intermediate", "advanced"];
 const A = { beginner: "a beginner", intermediate: "an intermediate", advanced: "an advanced player" } as const;
-const STYLE_WORD = { control: "control", balance: "balance", power: "power" } as const;
-const STYLE_FIT = { control: "strong on control", balance: "well balanced", power: "strong on power" } as const;
+const STYLE_WORD = { control: "control", balance: "balance", power: "power", spin: "spin" } as const;
+const STYLE_FIT = { control: "strong on control", balance: "well balanced", power: "strong on power", spin: "strong on spin" } as const;
+/** The product word in the lines ("a lot of racket", "a lot of paddle"). */
+const ONE = niche.words.one, MANY = niche.words.many;
 
 type Point = { short: string; long: string };
 
@@ -40,6 +44,7 @@ export function fitsOf(p: AdvPicks, f: AdvFacts): string[] {
     if (p.style === "power" && w >= 70) out.push("strong on power");
     if (p.style === "balance" && Math.abs(w - c) < 15 && Math.min(w, c) >= 55) out.push("well balanced");
   }
+  if (p.style === "spin" && (d?.spin ?? 0) >= 4) out.push("strong on spin");
   if ((f.suits?.[p.level] ?? 0) >= SUITS) out.push(`suits ${A[p.level]}`);
   if (p.arm && f.feel === "soft" && (f.armDots ?? 0) >= 3 && !out.includes("easy on the arm")) out.push("soft on the arm");
   return out;
@@ -53,7 +58,7 @@ export function missesOf(p: AdvPicks, f: AdvFacts): Point[] {
     const up = made.length > 0 && made.every(l => LEVELS.indexOf(l) > i), down = made.length > 0 && made.every(l => LEVELS.indexOf(l) < i);
     const madeFor = made.length === 1 ? (made[0] === "advanced" ? "advanced players" : `${made[0]}s`)
       : made.length === 2 && made[0] === "intermediate" ? "intermediate and up" : made.length === 2 ? "beginners and intermediates" : "";
-    if (up) out.push({ short: `a lot of racket for ${A[p.level]}`, long: `Made for ${madeFor}, so it asks more than ${A[p.level]} wants.` });
+    if (up) out.push({ short: `a lot of ${ONE} for ${A[p.level]}`, long: `Made for ${madeFor}, so it asks more than ${A[p.level]} wants.` });
     else if (down) out.push({ short: `easy to outgrow for ${A[p.level]}`, long: `Made for ${madeFor}, so ${A[p.level]} may outgrow it.` });
     else out.push({ short: `not built for ${A[p.level]}`, long: `Not built with ${A[p.level]} in mind.` });
   } else if (p.level === "beginner" && f.headHeavy && (f.forgiveness ?? 100) < 60) {
@@ -76,6 +81,7 @@ export function missesOf(p: AdvPicks, f: AdvFacts): Point[] {
       out.push(lean > 0 ? { short: `a bit lively for ${p.level === "beginner" ? "a beginner" : "a balanced game"}`, long: "It leans to power more than the balance you asked for." }
         : { short: "a bit tame for a balanced game", long: "It leans to control more than the balance you asked for." });
   }
+  if (p.style === "spin" && d?.spin != null && d.spin <= 2) out.push({ short: "short on spin for a spin game", long: "Players find it short on spin, so a spin game asks more of it." });
   return out;
 }
 
@@ -85,7 +91,7 @@ const and = (xs: string[]) => xs.length < 2 ? xs.join("") : `${xs.slice(0, -1).j
 /** The advice line for a match %. */
 export function adviceLine(p: AdvPicks, f: AdvFacts, pct: number): string {
   const fits = fitsOf(p, f), misses = missesOf(p, f);
-  if (pct < 60) return misses[0]?.long ?? "Other rackets match your picks more closely.";
+  if (pct < 60) return misses[0]?.long ?? `Other ${MANY} match your picks more closely.`;
   if (pct < 80) {
     if (fits.length && misses.length) return `${cap(fits[0])}, but ${misses[0].short}.`;
     if (misses.length) return `${misses[0].long.replace(/\.$/, "")}, so demo it first.`;

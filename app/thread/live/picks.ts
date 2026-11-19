@@ -72,16 +72,14 @@ const noYear = (name: string) => name.replace(/\s+\(?20\d\d\)?$/, "");
  *  models only (each model's row, lib/compare-pairs.ts familyRowIds) with a card to link, never this model. */
 export function adviceFor(p: HomePayload, picks: Picks, id: string, pct: number | null): Advice | null {
   const item = p.items.find(x => x.id === id);
-  // The advice lines know control, balance and power; a spin pick gets the verdict and % without them for now.
-  if (!item || pct == null || !picks.level || !picks.style || picks.style === "spin") return null;
+  if (!item || pct == null || !picks.level || !picks.style) return null;
   const pcts = pctsFor(p, picks), card = p.cards[id];
   const cands: AdvCandidate[] = p.items.flatMap(x => {
     const c = p.cards[x.id], n = pcts.get(x.id);
     return x.row === x.id && x.row !== item.row && c && n != null ? [{ id: x.id, name: noYear(c.name), href: c.href, pct: n, brand: brandOf(c.name), shape: x.facts.fine?.shape ?? null }] : [];
   });
   const f = item.facts;
-  const style = picks.style;
-  return advise({ level: picks.level, style, arm: picks.arm },
+  return advise({ level: picks.level, style: picks.style, arm: picks.arm },
     { suits: f.suits, styleDots: f.styleDots, armDots: f.armDots, feel: f.fine?.feel ?? null, forgiveness: f.fine?.forgiveness ?? null, headHeavy: item.headHeavy,
       control: item.control, power: item.power, arm: item.arm },
     { pct, brand: card ? brandOf(card.name) : "", shape: f.fine?.shape ?? null }, cands);
