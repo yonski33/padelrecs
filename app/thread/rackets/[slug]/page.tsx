@@ -5,7 +5,7 @@ import { notFound } from "next/navigation";
 import { Shell } from "../../shell";
 import { racketData } from "../../racket-data";
 import { threadRows } from "../../data";
-import { Badge, SBar, Photo, cap, plural, tone, MIN_SHOWN, type ThreadRow } from "../../ui";
+import { Badge, SBar, Photo, cap, plural, tone, type ThreadRow } from "../../ui";
 import { FitCheck, Poll, Reviews } from "../../live/racket";
 import { TraitVotes } from "../../live/trait-votes";
 import { traitSeed } from "../../../../lib/thread/trait-seed";
@@ -75,7 +75,7 @@ export default async function ThreadRacket({ params }: P) {
       <div className="th-col">
         <div className="th-crumbs"><a href={th("/rackets")}>Rackets</a>{r.shape && <><span>/</span><span>{r.shape}</span></>}{brand && <><span>/</span><a href={`/brands/${brand.slug}`}>{brand.name}</a></>}</div>
         <article className="th-card th-post"><div className="th-post-in">
-          <div className="th-by"><span className="th-dot" aria-hidden="true"/><strong>PadelRecs</strong>{day && <><span>·</span><span>{`updated ${day}`}</span></>}{judged >= MIN_SHOWN && <><span>·</span><span>{`from ${judged} player opinions`}</span></>}</div>
+          <div className="th-by"><span className="th-dot" aria-hidden="true"/><strong>PadelRecs</strong>{day && <><span>·</span><span>{`updated ${day}`}</span></>}{judged > 0 && <><span>·</span><span>{`from ${plural(judged, "player opinion")}`}</span></>}</div>
           <h1 className="th-h1">{r.year && bare !== name ? `${bare} (${r.year})` : name}</h1>
           <div className="th-tags">
             {tags.map((t, i) => <span key={t} className={`th-pill${i === 0 && style ? " lime" : ""}`}>{t}</span>)}
@@ -112,15 +112,15 @@ export default async function ThreadRacket({ params }: P) {
           <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
             {row?.score != null ? <span className={`th-badge ${tone(row.score)}`} style={{ fontSize: 28 }}>{row.score}</span> : <span className="th-badge new">New</span>}
             <span style={{ display: "flex", flexDirection: "column", gap: 3, fontSize: 12.5, color: "var(--body)" }}>
-              <span>{row?.score != null ? (judged >= MIN_SHOWN ? `player score from ${judged}` : "player score") : "Not enough votes yet"}</span>
-              {judged >= MIN_SHOWN && <SBar lg pos={row!.pos} mix={row!.mix} neg={row!.neg}/>}
+              <span>{row?.score != null ? (judged > 0 ? `player score from ${judged}` : "player score") : judged > 0 ? `${plural(judged, "player opinion")} so far` : "No votes yet"}</span>
+              {judged > 0 && <SBar lg pos={row!.pos} mix={row!.mix} neg={row!.neg}/>}
             </span>
           </div>
           <div style={{ display: "flex", flexDirection: "column" }}>
             {playersSay.length > 0 && <><span className="th-cap">Players say</span>{playersSay.map(([k, v]) => <a key={k} className="th-kv" href="#play"><span>{k}</span><strong>{v}</strong></a>)}</>}
             {specs.length > 0 && <><span className="th-cap" style={{ paddingTop: 10 }}>Specs</span>{specs.map(([k, v]) => <span key={k} className="th-kv"><span>{k}</span><strong>{v}</strong></span>)}</>}
           </div>
-          {row && row.n >= MIN_SHOWN && <a className="th-link-b" href="#reviews">{`Read ${plural(cards.length, "review")}`}</a>}
+          {cards.length > 0 && <a className="th-link-b" href="#reviews">{`Read ${plural(cards.length, "review")}`}</a>}
           {buy}
         </div></section>
       </aside>

@@ -6,7 +6,7 @@ import { useEffect, useMemo, useState, type ReactNode } from "react";
 import { PendingReviews, LiveReviewTools } from "./review-admin";
 import { PickChips } from "./pick-chips";
 import { usePicks, usePayload, complete, fitFor } from "./picks";
-import { tone, VERDICT, SOURCE, MIN_SHOWN } from "../ui";
+import { tone, VERDICT, SOURCE, MIN_SHOWN, POLL_PCT_AT } from "../ui";
 import { sendVote, loadProfile, VERDICTS, type Verdict } from "../../quick-vote";
 import { nameProblem, NAME_MAX } from "../../../lib/thread/display-name";
 import { savedName, saveName } from "./name";
@@ -57,11 +57,11 @@ export function Poll({ id, reviews }: { id: string; reviews: Counts }) {
     <span className="th-poll-head"><b>Played it? Tap to add yours</b><span>{mine ? "Thanks, your vote counts. Tap another to change it, or tap again to remove." : "One tap, no account"}</span></span>
     {(["positive", "mixed", "negative"] as const).map(k => { const c = n(k), w = total ? Math.round(c / total * 100) : 0, cls = VERDICT[k][1];
       return <button key={k} type="button" className={`th-popt ${cls}${mine && mine !== k ? " dim" : ""}`} aria-pressed={mine === k} onClick={() => pick(k)}>
-        <i style={{ width: total >= MIN_SHOWN ? `${w}%` : 0 }}/>
+        <i style={{ width: total ? `${w}%` : 0 }}/>
         <span><span className={`th-sdot ${cls}`}/>{VERDICT[k][0]}</span>
-        <em>{total >= MIN_SHOWN ? <><strong>{`${w}%`}</strong>{c >= MIN_SHOWN && <span>{` · ${c}`}</span>}</> : null}</em>
+        <em>{total >= POLL_PCT_AT ? <><strong>{`${w}%`}</strong>{c > 0 && <span>{` · ${c}`}</span>}</> : c > 0 ? <strong>{c}</strong> : null}</em>
       </button>; })}
-    {total < MIN_SHOWN && <span className="th-note">Not enough votes yet. Be one of the first.</span>}
+    {total === 0 && <span className="th-note">No votes yet. Be the first.</span>}
     {err && <span className="th-err">{err}</span>}
   </div>;
 }
@@ -126,7 +126,7 @@ export function Reviews({ id, cards, nicknames }: { id: string; cards: RvCard[];
     <PendingReviews racketId={id}/>
     {cards.length > 0 && <>
       <div className="th-tabs" role="group" aria-label="Show reviews from">{TABS.filter(([k]) => k === "all" || counts[k] > 0).map(([k, l]) =>
-        <button key={k} type="button" aria-pressed={tab === k} onClick={() => { setTab(k); setShown(PAGE); }}>{l}{counts[k] >= MIN_SHOWN && <span>{counts[k]}</span>}</button>)}</div>
+        <button key={k} type="button" aria-pressed={tab === k} onClick={() => { setTab(k); setShown(PAGE); }}>{l}{counts[k] > 0 && <span>{counts[k]}</span>}</button>)}</div>
       <div className="th-seg" role="group" aria-label="Sort"><span className="lbl">Sort</span>
         {([["new", "Newest"], ["helpful", "Most helpful"]] as const).map(([k, l]) => <button key={k} type="button" aria-pressed={sort === k} onClick={() => setSort(k)}>{l}</button>)}</div>
     </>}

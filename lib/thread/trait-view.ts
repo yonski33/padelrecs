@@ -1,9 +1,9 @@
 import { TRAIT_GROUPS } from "./traits";
 // How one "How does it play?" group shows (owner 2026-11-19): review mentions (db/thread/padel-traits.json) and players'
-// votes add up per option; an option shows its bar and count only at MIN 5, so thin evidence leaves the group empty rather
-// than guessing. With nothing at 5, a spec that settles the group (a diamond shape → Power) marks its option instead,
-// labelled as the specs. Pure: the grid renders it and tests check it.
-export const MIN_MENTIONS = 5;
+// votes add up per option, and every option with any shows its real count and bar, 1 included (owner: no "under 5" rule
+// in the vote widgets; a tap visibly adds 1). A group with no counts at all can show the spec that settles it (a diamond
+// shape → Power), labelled as the specs. Pure: the grid renders it and tests check it.
+export const MIN_MENTIONS = 1;
 export type GroupView = {
   /** Per option: reviews + votes, and whether it shows (5+). */ opts: { key: string; label: string; n: number; shown: boolean; top: boolean; spec: boolean }[];
   reviews: number; votes: number; anyShown: boolean; specOnly: boolean;
