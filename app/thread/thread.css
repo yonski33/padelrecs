@@ -183,7 +183,6 @@ body:has(.th) .th a.th-vopt { text-decoration: none; }
 .th-vopt > span img { flex: none; height: 30px; width: auto; mix-blend-mode: multiply; }
 .th-vopt .nm { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .th-vopt > b { position: relative; font-size: 12px; font-weight: 700; }
-.th-you { font-size: 10.5px; font-weight: 700; border: 1.5px solid var(--ink); border-radius: 999px; padding: 0 6px; background: var(--lime); }
 .th-dots { position: relative; display: inline-flex; gap: 3px; }
 .th-dots u { width: 9px; height: 9px; border-radius: 50%; border: 1.5px solid var(--ink); background: #fff; text-decoration: none; }
 .th-dots u.on { background: var(--s-pos); }

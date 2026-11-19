@@ -51,7 +51,7 @@ export function Poll({ id, reviews }: { id: string; reviews: Counts }) {
     {(["positive", "mixed", "negative"] as const).map(k => { const c = n(k), w = total ? Math.round(c / total * 100) : 0, cls = VERDICT[k][1];
       return <button key={k} type="button" className={`th-popt ${cls}${mine && mine !== k ? " dim" : ""}`} aria-pressed={mine === k} onClick={() => pick(k)}>
         <i style={{ width: total >= MIN_SHOWN ? `${w}%` : 0 }}/>
-        <span><span className={`th-sdot ${cls}`}/>{VERDICT[k][0]}{mine === k && <span className="th-you">You</span>}</span>
+        <span><span className={`th-sdot ${cls}`}/>{VERDICT[k][0]}</span>
         <em>{total >= MIN_SHOWN ? <><strong>{`${w}%`}</strong>{c >= MIN_SHOWN && <span>{` · ${c}`}</span>}</> : null}</em>
       </button>; })}
     {total < MIN_SHOWN && <span className="th-note">Not enough votes yet. Be one of the first.</span>}
