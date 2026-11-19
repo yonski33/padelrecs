@@ -563,3 +563,14 @@ body:has(.th) .th .th-src a { color: var(--ink); text-decoration: none; }
 body:has(.th) .th .th-src a:hover { text-decoration: underline; color: var(--ink); }
 .th-rv-bar .th-seg { max-width: 100%; overflow-x: auto; scrollbar-width: none; flex-wrap: nowrap; } .th-rv-bar .th-seg button { flex: none; }
 .th-cm-act .arrow:not([aria-pressed="true"]) { color: #7d796e; } /* idle ▲▼ at 4:1 on white (was --idle, 2.5:1) */
+
+/* Comment and reply boxes (owner 2026-11-19): small and calm. The site-wide textarea rules (globals.css: 200px tall, a green
+   focus ring) don't apply here; a box starts at 2 lines (72px), grows to 200px, and focus is a darker 1.5px border. */
+.th .th-ta { min-height: 0; }
+.th-compose.white { border: 1px solid #e3e0d7; border-radius: 12px; padding: 8px 10px; gap: 6px; }
+.th-compose.white .th-ta.th-ta-grow { min-height: 72px; max-height: 200px; height: 72px; overflow-y: auto; resize: none; line-height: 1.5; font-size: 15.5px;
+  border: 1px solid #e3e0d7; border-radius: 8px; padding: 8px 10px; background: #fff; }
+.th-compose.white .th-ta.th-ta-grow:focus, .th-compose.white .th-ta.th-ta-grow:focus-visible { outline: none; box-shadow: none; border: 1.5px solid #151515; padding: 7.5px 9.5px; }
+.th-compose.white .th-compose-foot { flex-wrap: nowrap; }
+@media (max-width: 639px) { .th-compose.white .th-compose-foot { flex-wrap: wrap; } }
+.th-compose.white .th-as input:focus, .th-compose.white .th-as input:focus-visible { outline: none; box-shadow: none; border-color: #151515; }
