@@ -11,6 +11,7 @@ import { generateMetadata as liveMetadata } from "../../../brands/[slug]/page";
 import { listJsonLd } from "../../../../lib/catalogue-seo";
 import { liveOr } from "../../seo";
 import { th } from "../../../../lib/thread/look";
+import { niche, catalogPath } from "../../../../lib/niche";
 import { catalog } from "../../../../db/data";
 
 export const revalidate = 21600;
@@ -29,10 +30,10 @@ export default async function ThreadBrand({ params }: { params: Promise<{ slug: 
   const top = current.filter(r => r.score != null).sort((a, b) => b.score! - a.score! || b.n - a.n)[0];
   const short = (n: string) => n.replace(new RegExp(`^${brand.name}\\s+`, "i"), "");
   const lead = brandIntro(brand.name, current.length, rows.reduce((n, r) => n + r.n, 0), top ? { name: short(top.name), score: top.score! } : null);
-  const ld = listJsonLd([{ name: "Brands", path: "/brands" }, { name: brand.name, path: `/brands/${brand.slug}` }], ctx.data.listed.filter(r => r.brandId === brand.id).map(r => ({ name: all.find(x => x.id === r.id)?.name ?? r.name, href: all.find(x => x.id === r.id)?.href ?? `/rackets/${r.slug}` })));
+  const ld = listJsonLd([{ name: "Brands", path: "/brands" }, { name: brand.name, path: `/brands/${brand.slug}` }], ctx.data.listed.filter(r => r.brandId === brand.id).map(r => ({ name: all.find(x => x.id === r.id)?.name ?? r.name, href: all.find(x => x.id === r.id)?.href ?? `${catalogPath}/${r.slug}` })));
   return <Shell>
     <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: ld }}/>
-    <Catalog rows={rows} brands={[]} title={`${brand.name} padel rackets`} lead={lead}
+    <Catalog rows={rows} brands={[]} title={`${brand.name} ${niche.id} ${niche.words.many}`} lead={lead}
       crumbs={<div key="crumbs" className="th-crumbs"><a href={th("/brands")}>Brands</a><span>/</span><span>{brand.name}</span></div>}/>
   </Shell>;
 }

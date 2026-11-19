@@ -13,7 +13,7 @@ import { traitVotes, traitOverrides } from "../../db/schema";
 import { count } from "drizzle-orm";
 import { shopPhoto, photoHidden } from "../../lib/shop-photos";
 import { amazonPhoto } from "../../lib/amazon-photos";
-import { productHref } from "../../lib/niche";
+import { productHref, niche } from "../../lib/niche";
 import { score } from "../../db/data";
 import { LEVELS } from "../../lib/quick-match";
 import { platformName } from "../../lib/source-label";
@@ -59,7 +59,9 @@ function rowOf(ctx: Ctx, r: Ctx["data"]["listed"][number], brand: string, n: num
 /** "How players vote them" until trait votes exist (migration 0024, waiting for the owner): the top 3 per trait from what
  *  players mention in their reviews (lib/trait-score.ts, the same scores as the racket pages' bars), only rackets with a
  *  Player score, and only counts of 5 or more. */
-const BOARDS: [string, string][] = [["forgiveness", "Biggest sweet spot"], ["arm", "Most arm friendly"], ["control", "Most control"], ["power", "Most power"], ["speed", "Best at the net"], ["defence", "Best in defence"]];
+const BOARDS: [string, string][] = niche.id === "pickleball"
+  ? [["forgiveness", "Biggest sweet spot"], ["arm", "Most arm friendly"], ["control", "Most control"], ["power", "Most power"], ["speed", "Best at the kitchen"], ["spin", "Most spin"]]
+  : [["forgiveness", "Biggest sweet spot"], ["arm", "Most arm friendly"], ["control", "Most control"], ["power", "Most power"], ["speed", "Best at the net"], ["defence", "Best in defence"]];
 export type Board = { title: string; source: "votes" | "reviews"; rows: { id: string; name: string; href: string; pic: string | null; n: number }[] };
 export const threadBoards = cache(async (only?: Set<string>): Promise<Board[]> => {
   if (!hasDb()) return [];
@@ -132,7 +134,7 @@ export const threadTopPicks = cache(async (): Promise<{ lists: PickList[]; total
   } catch (error) { console.error("[thread] top picks votes failed", error); }
   const byId = new Map(ctx.data.listed.map(r => [r.id, r]));
   const rackets: PickRacket[] = [...rows.values()].filter(r => r.current).flatMap(r => {
-    const seed = traitSeed("padel", r.id), raw = byId.get(r.id);
+    const seed = traitSeed(niche.id, r.id), raw = byId.get(r.id);
     if (!raw) return [];
     // Each list's backers and its group's total from the same sources (owner 2026-11-19): the review prefill (or the owner's
     // override) plus votes, the backers for one option and the total over all of that group's options.
