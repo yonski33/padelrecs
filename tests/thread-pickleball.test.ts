@@ -5,6 +5,10 @@ import { readFileSync } from "node:fs";
 import { threadPath, th, guidePathsFor, threadDefaultFor, threadSite, GUIDE_KEYS, THREAD_DEFAULT, GUIDE_PATHS } from "../lib/thread/look";
 import { traitGroupsFor, voteBoardsFor, validTraitVote, TRAIT_GROUPS, VOTE_BOARDS } from "../lib/thread/traits";
 import { pickCatsFor, PICK_CATS } from "../lib/thread/top-picks";
+// app/thread/live/picks.ts STYLE_OPTS is the site's STYLES without "any" (a client file, so the source is checked here).
+import { STYLES } from "../lib/quick-match";
+const STYLE_OPTS = STYLES.filter(x => x !== "any");
+import { GUIDE_UI } from "../lib/thread/copy";
 
 // PickleballRecs on the Thread pages (plans/PICKLEBALL-THREAD-PLAN.md). The shared code became niche-aware, so padel's
 // values are checked against a snapshot taken from main before the change (tests/fixtures/thread-padel-snapshot.json).
@@ -29,6 +33,11 @@ test("padel: vote groups, vote boards and Top picks lists are exactly as before"
   assert.deepEqual(plain(voteBoardsFor("padel")), SNAP.VOTE_BOARDS);
   assert.deepEqual(plain(PICK_CATS), SNAP.PICK_CATS);
   assert.deepEqual(plain(pickCatsFor("padel")), SNAP.PICK_CATS);
+});
+
+test("padel: Find my match keeps Control, Balance and Power; the footer line is unchanged", () => {
+  assert.deepEqual(STYLE_OPTS, ["control", "balance", "power"]);
+  assert.equal(GUIDE_UI.footerTagline, "a free, ad-light side project · built by padel players");
 });
 
 test("pickleball: Thread is a preview until its flag is on; its own guide addresses", () => {
@@ -78,6 +87,8 @@ test("pickleball proxy: live pages by default, Thread pages with ?look=thread", 
     const { NextRequest } = await import("next/server");
     const { proxy } = await import("./proxy.ts");
     const out = {};
+    out.styles = (await import("./lib/quick-match.ts")).STYLES.filter(x => x !== "any");
+    out.footer = (await import("./lib/thread/copy.ts")).GUIDE_UI.footerTagline;
     for (const p of ["/", "/?look=thread", "/paddles?look=thread", "/paddles/joola-perseus-16mm?look=thread", "/guides/doubles-or-singles?look=thread", "/compare?look=thread", "/about?look=classic"]) {
       const r = await proxy(new NextRequest(new URL(p, "https://www.pickleballrecs.com")));
       const to = r.headers.get("x-middleware-rewrite");
@@ -87,6 +98,8 @@ test("pickleball proxy: live pages by default, Thread pages with ?look=thread", 
   const raw = execFileSync(process.execPath, ["--conditions=react-server", "--import", "tsx", "--input-type=module", "-e", script],
     { env: { ...process.env, NICHE: "pickleball" }, cwd: new URL("..", import.meta.url).pathname, encoding: "utf8" });
   const out = JSON.parse(raw.trim().split("\n").pop()!);
+  assert.deepEqual(out.styles, ["control", "balance", "power", "spin"], "Spin is a 4th I want option (owner 2026-11-19)");
+  assert.equal(out.footer, "a free, ad-light side project · built by pickleball players");
   assert.doesNotMatch(out["/"], /^\/thread/, "the normal home stays live");
   assert.equal(out["/?look=thread"], "/thread");
   assert.equal(out["/paddles?look=thread"], "/thread/rackets");

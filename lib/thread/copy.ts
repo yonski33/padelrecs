@@ -38,6 +38,8 @@
  * - TL;DR lead paragraphs are treated as body text; several are 110 to 140 chars.
  */
 
+import { niche } from "../niche";
+
 export type GuideStep = { title: string; body: string };
 export type GuideCopy = {
   key: "racket" | "beginner" | "shape" | "side" | "elbow";
@@ -74,7 +76,7 @@ export const GUIDE_UI = {
   reply: "Reply",
   onThisPage: "On this page",
   moreGuides: "More guides",
-  footerTagline: "a free, ad-light side project · built by padel players",
+  footerTagline: `a free, ad-light side project · built by ${niche.id} players`, // padel, pickleball
   footerLinks: ["About", "How the score works", "Affiliate disclosure", "Contact"],
 } as const;
 

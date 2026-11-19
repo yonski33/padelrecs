@@ -4,6 +4,7 @@
 // on the cached ranking payload (/api/home-payload), so a tap never asks the page server (tests/instant-views.test.ts).
 import { useEffect, useState } from "react";
 import { rankHome, matchPcts, verdictFor } from "../../../lib/home-rank";
+import { STYLES } from "../../../lib/quick-match";
 import { niche } from "../../../lib/niche";
 import type { QuickChoice } from "../../../lib/quick-match";
 import type { HomePayload, HomeCard } from "../../home-payload";
@@ -11,7 +12,8 @@ import type { ThreadRow } from "../ui";
 import { advise, type Advice, type AdvCandidate } from "../../../lib/thread/fit-advice";
 
 export type Level = "beginner" | "intermediate" | "advanced";
-export type Style = "control" | "balance" | "power";
+/** "spin" only where the site's engine has it (PickleballRecs, owner 2026-11-19). */
+export type Style = "control" | "balance" | "power" | "spin";
 export type Picks = { level: Level | null; style: Style | null; arm: boolean };
 export const NO_PICKS: Picks = { level: null, style: null, arm: false };
 const KEY = "padelrecs-thread-picks";
@@ -70,14 +72,16 @@ const noYear = (name: string) => name.replace(/\s+\(?20\d\d\)?$/, "");
  *  models only (each model's row, lib/compare-pairs.ts familyRowIds) with a card to link, never this model. */
 export function adviceFor(p: HomePayload, picks: Picks, id: string, pct: number | null): Advice | null {
   const item = p.items.find(x => x.id === id);
-  if (!item || pct == null || !picks.level || !picks.style) return null;
+  // The advice lines know control, balance and power; a spin pick gets the verdict and % without them for now.
+  if (!item || pct == null || !picks.level || !picks.style || picks.style === "spin") return null;
   const pcts = pctsFor(p, picks), card = p.cards[id];
   const cands: AdvCandidate[] = p.items.flatMap(x => {
     const c = p.cards[x.id], n = pcts.get(x.id);
     return x.row === x.id && x.row !== item.row && c && n != null ? [{ id: x.id, name: noYear(c.name), href: c.href, pct: n, brand: brandOf(c.name), shape: x.facts.fine?.shape ?? null }] : [];
   });
   const f = item.facts;
-  return advise({ level: picks.level, style: picks.style, arm: picks.arm },
+  const style = picks.style;
+  return advise({ level: picks.level, style, arm: picks.arm },
     { suits: f.suits, styleDots: f.styleDots, armDots: f.armDots, feel: f.fine?.feel ?? null, forgiveness: f.fine?.forgiveness ?? null, headHeavy: item.headHeavy,
       control: item.control, power: item.power, arm: item.arm },
     { pct, brand: card ? brandOf(card.name) : "", shape: f.fine?.shape ?? null }, cands);
@@ -90,4 +94,5 @@ export function rowFromCard(id: string, c: HomeCard, signal: number | null): Thr
 
 /** The pick chips (home "Find my match", rankings "See how you match", racket "Is it right for me?"). */
 export const LEVEL_OPTS: Level[] = ["beginner", "intermediate", "advanced"];
-export const STYLE_OPTS: Style[] = ["control", "balance", "power"];
+/** The site's own styles (lib/quick-match.ts STYLES): control, balance, power, plus spin on PickleballRecs. */
+export const STYLE_OPTS: Style[] = STYLES.filter((s): s is Style => s !== "any");
