@@ -156,3 +156,11 @@ test("Is it right for me? with Spin: strong or short on spin from the Spin bar",
   assert.match(adviceLine(p, { styleDots: { power: 3, control: 3, spin: 5 }, suits: { beginner: 40, intermediate: 80, advanced: 60 } }, 85), /strong on spin/i);
   assert.match(adviceLine(p, { styleDots: { power: 3, control: 3, spin: 1 } }, 50), /short on spin/);
 });
+
+// PR 4: catalogue, brands and rankings words.
+import { brandIntro } from "../lib/thread/brand-intro";
+test("brand intro: padel's words by default, the site's word when given", () => {
+  assert.equal(brandIntro("Nox", 0, 0, null), "Nox rackets that players have reviewed.");
+  assert.equal(brandIntro("Nox", 3, 12, null), "Nox: 3 current rackets, 12 player reviews.");
+  assert.equal(brandIntro("Selkirk", 2, 1, { name: "Vanguard", score: 88 }, "paddle"), "Selkirk: 2 current paddles, 1 player review. Top player score: 88, the Vanguard.");
+});
