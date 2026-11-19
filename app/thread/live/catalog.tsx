@@ -5,6 +5,7 @@ import { niche } from "../../../lib/niche";
 import { useEffect, useMemo, useState, type ReactNode } from "react";
 import { Row, cap, type ThreadRow } from "../ui";
 import { usePicks, usePayload, complete, pctsFor } from "./picks";
+import { W } from "../../../lib/thread/words";
 
 type Key = "shape" | "level" | "feel" | "brand" | "arm" | "skin" | "texture" | "sens";
 const SKIN = niche.id === "skin";
@@ -45,7 +46,7 @@ export function Catalog({ rows, brands, title = SKIN ? "All skincare products" :
     : by === "match" ? (pcts!.get(b.id) ?? -1) - (pcts!.get(a.id) ?? -1) : (b.score ?? -1) - (a.score ?? -1) || b.n - a.n),
   // eslint-disable-next-line react-hooks/exhaustive-deps
   [pool, f, q, by, pcts]);
-  const SORTS = [["score", "By player score"], ["reviews", "Most reviewed"], ["new", "Newest models"], ...(pcts ? [["match", "By your match"]] : [])] as [typeof sort, string][];
+  const SORTS = [["score", `By ${W.score}`], ["reviews", "Most reviewed"], ["new", SKIN ? "Newest" : "Newest models"], ...(pcts ? [["match", "By your match"]] : [])] as [typeof sort, string][];
   // A group shows only the options some racket here has (or that are picked), and no group label with nothing under it.
   const groups = <>{GROUPS.map(([k, label, vals]) => { const opts = vals.map(v => ({ v, c: pool.filter(r => pass(r, k) && test(r, k, v)).length, sel: !!f[k]?.includes(v) })).filter(o => o.c > 0 || o.sel);
     return opts.length > 0 && <div key={k} className="th-fgroup"><span>{label}</span>
