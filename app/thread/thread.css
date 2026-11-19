@@ -307,13 +307,15 @@ body:has(.th) .th a.th-web { text-decoration: none; }
 .th-bigphoto img { max-height: 260px; max-width: 100%; width: auto; mix-blend-mode: multiply; }
 .th-bigphoto .th-ph { width: 60px; height: 160px; }
 @media (max-width: 639px) { .th-bigphoto { min-height: 200px; } .th-bigphoto img { max-height: 200px; } }
-.th-tldr { border: 2px solid var(--ink); border-radius: 10px; padding: 10px 12px; background: var(--lime-box); }
+/* TL;DR and "Is it right for me?" per the owner's mock (racket-mock-2026-11-19b): no border, a light lime fill; the fit check
+   sits under a 1px divider, not in its own box. */
+.th-tldr { border: 0; border-radius: 10px; padding: 12px 14px; background: oklch(0.96 0.06 125); }
 .th-tldr-h { font-family: var(--bc); font-weight: 700; font-size: 18px; line-height: 1; margin-bottom: 6px; }
 .th-tldr ul { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 5px; font-size: 15px; line-height: 1.4; }
 .th-tldr li { display: flex; gap: 8px; }
 .th-tldr li .th-sdot { margin-top: 6px; }
 .th-tldr p { font-size: 15px; line-height: 1.45; margin-bottom: 6px; }
-.th-fit { border: 1.5px solid var(--box); border-radius: 10px; padding: 10px 12px; display: flex; flex-direction: column; gap: 7px; }
+.th-fit { border: 0; border-top: 1px solid #e3e0d7; border-radius: 0; padding: 12px 2px 2px; display: flex; flex-direction: column; gap: 7px; }
 .th-fit-title { font-weight: 700; font-size: 15.5px; }
 .th-fit .th-picks > .lbl { font-size: 13.5px; min-width: 48px; }
 .th-fit-out { padding-left: 12px; border-left: 2px solid var(--box); display: flex; flex-direction: column; gap: 3px; }
@@ -532,3 +534,7 @@ body:has(.th) .th a.th-add-plus:hover { background: #3a3a3a; color: #fbfaf6; }
 .th-vgrid2 .th-vopt > span { font-size: 14px; }
 .th-vgrid2 .th-vopt > b { font-size: 13px; }
 #play .th-more { margin-top: 2px; }
+/* The mock's fit-check controls: slimmer pills (1.5px border, 30px, 13px) and a 15px sore-arm box. */
+.th-fit .th-pick { min-height: 30px; padding: 0 10px; border-width: 1.5px; font-size: 13px; }
+.th-fit .th-check { font-size: 13px; gap: 6px; min-height: 30px; margin-left: 2px; }
+.th-fit .th-check > span { width: 15px; height: 15px; border-width: 1.5px; border-radius: 4px; font-size: 11px; }
