@@ -55,7 +55,12 @@ Doc only. No code, no DB write. Nothing merges.
 Pickleball adds owner tools the same way: approve, edit, delete, hide and rename on paddle pages (#504),
 and the admin Traits tab for pickleball.
 
-## 3. Questions for the owner (please answer in the session)
+## 3. Questions for the owner
+
+**Answered 2026-11-19: the owner took every suggestion below** ("Use your suggestions"):
+Q1 Spin replaces Maneuverable. Q2 Spin is a 4th "I want" option. Q3 Level words (4 levels) and "Plays"
+Doubles, Singles or Both, no DUPR numbers. Q4 live lists kept, new cards only at 10+ paddles. Q5 the five
+addresses, no doubles or singles split until votes exist. Q6 Feel filter included. Q7 accounts later.
 
 **Q1. "How does it play?" vote groups (9, in a 3 by 3 grid).** The mockup has these 9:
 
