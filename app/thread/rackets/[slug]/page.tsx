@@ -36,7 +36,8 @@ export const generateMetadata = ({ params }: P): Promise<Metadata> => liveMetada
 const LEVEL_WORD = (ls: string[]) => ls.length ? (ls.length === 1 ? cap(ls[0]) : `${cap(ls[0])} to ${ls[ls.length - 1]}`) : null;
 const STYLE_WORD = { control: "Control", power: "Power", balance: "All-round" } as const;
 /** The breadcrumb's play-style link (owner mock 2026-11-19b): its ranking; all-round has none, so the overall one. */
-const STYLE_HREF = { control: "/rankings/best-control-padel-rackets", power: "/rankings/best-power-padel-rackets", balance: "/rankings/best-padel-rackets" } as const;
+const LIST = `${niche.id}-${niche.words.many}`; // "padel-rackets", "pickleball-paddles": the site's ranking slugs
+const STYLE_HREF = { control: `/rankings/best-control-${LIST}`, power: `/rankings/best-power-${LIST}`, balance: `/rankings/best-${LIST}` } as const;
 const Mini = ({ x, small }: { x: ThreadRow; small?: boolean }) => <a className={`th-mini${small ? " sm" : ""}`} href={th(x.href)}>
   <span>{x.pic ? <img src={x.pic} alt="" loading="lazy"/> : <span className="th-ph"/>}</span>
   <span><strong>{x.name}</strong>{(x.line || x.best) && <small>{x.line ?? `Best for ${x.best}`}</small>}</span>
@@ -75,9 +76,9 @@ export default async function ThreadRacket({ params }: P) {
     <JsonLd data={ld}/>
     <main className="th-main">
       <div className="th-col">
-        <div className="th-crumbs"><a href={th("/rackets")}>Rackets</a>{style && <><span>/</span><a href={th(STYLE_HREF[style])}>{STYLE_WORD[style]}</a></>}{brand && <><span>/</span><a href={`/brands/${brand.slug}`}>{brand.name}</a></>}</div>
+        <div className="th-crumbs"><a href={th(catalogPath)}>{catalogLabel}</a>{style && <><span>/</span><a href={th(STYLE_HREF[style])}>{STYLE_WORD[style]}</a></>}{brand && <><span>/</span><a href={`/brands/${brand.slug}`}>{brand.name}</a></>}</div>
         <article className="th-card th-post"><div className="th-post-in">
-          <div className="th-by"><span className="th-dot" aria-hidden="true"/><strong>PadelRecs</strong>{day && <><span>·</span><span>{`updated ${day}`}</span></>}{(judged > 0 || cards.length > 0) && <><span>·</span><span>{[judged > 0 ? `${plural(judged, "player opinion")} analysed` : "", cards.length > 0 ? `${plural(cards.length, "review")} to read` : ""].filter(Boolean).join(" · ")}</span></>}</div>
+          <div className="th-by"><span className="th-dot" aria-hidden="true"/><strong>{niche.site.name}</strong>{day && <><span>·</span><span>{`updated ${day}`}</span></>}{(judged > 0 || cards.length > 0) && <><span>·</span><span>{[judged > 0 ? `${plural(judged, "player opinion")} analysed` : "", cards.length > 0 ? `${plural(cards.length, "review")} to read` : ""].filter(Boolean).join(" · ")}</span></>}</div>
           <h1 className="th-h1">{r.year && bare !== name ? `${bare} (${r.year})` : name}</h1>
           <div className="th-tags">
             {tags.map((t, i) => <span key={t} className={`th-pill${i === 0 && style ? " lime" : ""}`}>{t}</span>)}
@@ -98,14 +99,14 @@ export default async function ThreadRacket({ params }: P) {
 
         <TraitVotes id={r.id} seed={traitSeed(niche.id, r.id)}/>
         {/* "What reviews say" (trait dots) is off the page (owner 2026-11-19, not in the mockup); racketData still builds `traits`. */}
-        {sim.length > 0 && <section className="th-card th-sec th-sec-sim"><h2 className="th-h3">Similar rackets</h2><div className="th-sim">{sim.map(x => <Mini key={x.id} x={x}/>)}</div></section>}
+        {sim.length > 0 && <section className="th-card th-sec th-sec-sim"><h2 className="th-h3">{`Similar ${niche.words.many}`}</h2><div className="th-sim">{sim.map(x => <Mini key={x.id} x={x}/>)}</div></section>}
         {specsBox}
         {buy && <div className="th-card th-only-m" style={{ padding: "10px 16px" }}>{buy}</div>}
         <Reviews id={r.id} cards={cards} nicknames={niche.form.quickVote?.nicknames ?? []}/>
         <Comments page={`racket:${r.id}`} nicknames={niche.form.quickVote?.nicknames ?? []}/>
         {also.length >= 2 && <section className="th-card th-sec"><h2 className="th-h2">Players who loved this also loved</h2><div className="th-also">{also.map(x => <Mini key={x.id} x={x} small/>)}</div></section>}
         {line.length >= 2 && brand && <section className="th-card th-sec">
-          <div className="th-head-row"><h2 className="th-h2">{`More from ${brand.name}`}</h2><a className="th-link-b" href={`/brands/${brand.slug}`}>{`All ${brand.name} rackets →`}</a></div>
+          <div className="th-head-row"><h2 className="th-h2">{`More from ${brand.name}`}</h2><a className="th-link-b" href={`/brands/${brand.slug}`}>{`All ${brand.name} ${niche.words.many} →`}</a></div>
           <div className="th-also">{line.map(x => <Mini key={x.id} x={x} small/>)}</div>
         </section>}
       </div>

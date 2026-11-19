@@ -31,9 +31,9 @@ test("Thread links: plain addresses while Thread is the default; in preview mode
   assert.equal(th("//cdn.example.com/a", "/rackets", true), "//cdn.example.com/a");
 });
 
-test("only PadelRecs previews the Thread look", () => {
-  assert.equal(threadSite("padel"), true);
-  for (const id of ["tennis", "pickleball", "skin", "discgolf", "simracing"]) assert.equal(threadSite(id), false);
+test("PadelRecs and PickleballRecs run the Thread look; the other sites don't", () => {
+  for (const id of ["padel", "pickleball"]) assert.equal(threadSite(id), true, id);
+  for (const id of ["tennis", "skin", "discgolf", "simracing"]) assert.equal(threadSite(id), false, id);
 });
 
 test("padel: the normal addresses are served by Thread; ?look=classic gets today's live routing without the query", async () => {
