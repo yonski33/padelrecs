@@ -62,7 +62,7 @@ export default async function Admin({searchParams}:{searchParams:Promise<{eviden
  if (q.tab === "comments" && threadSite(niche.id)) {
   return <main><div className="page-title"><h1>Review admin</h1><p className="muted">Comments on the Thread pages (racket, ranking and guide pages).</p></div>
   <AdminNav current="comments"/>
-  <CommentsAdmin status={q.status} result={q.result} rackets={new Map((await db.select({ id: rackets.id, slug: rackets.slug, name: rackets.name, shape: rackets.shape }).from(rackets)).map(r => [r.id, r]))}/></main>;
+  <CommentsAdmin status={q.status} result={q.result} q={q.q} racket={q.racket} rackets={new Map((await db.select({ id: rackets.id, slug: rackets.slug, name: rackets.name, shape: rackets.shape }).from(rackets)).map(r => [r.id, r]))}/></main>;
  }
  if (find) {
   const result = await searchReviews(db, finderInput, sites);
