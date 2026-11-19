@@ -429,3 +429,11 @@ body:has(.th) .th .th-rtabs a[aria-current="page"] { background: var(--ink); col
 @media (max-width: 639px) { .th-only-m.th-specs { display: grid !important; } .th-only-m.th-card { flex-direction: column; } }
 .th-row-body, .th-rv, .th-col { overflow-wrap: break-word; min-width: 0; }
 @media (max-width: 639px) { .th-specs { grid-template-columns: minmax(0,1fr); } }
+
+/* The owner's review tools (app/thread/live/review-admin.tsx): only in the signed-in owner's browser. */
+.th-admin-box { border: 2px dashed var(--ink); border-radius: 12px; padding: 10px 12px; display: flex; flex-direction: column; gap: 8px; background: var(--lime-box); }
+.th-admin-acts { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
+.th-admin-acts .th-ta { flex-basis: 100%; }
+.th-mini-btn { all: unset; cursor: pointer; font-size: 13px; font-weight: 700; color: var(--ink2); text-decoration: underline; text-underline-offset: 3px; }
+.th-mini-btn:hover { color: var(--ink); }
+.th-mini-btn:focus-visible { outline: 3px solid var(--lime); outline-offset: 2px; }
