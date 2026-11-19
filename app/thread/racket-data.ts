@@ -83,14 +83,15 @@ export async function racketData(slug: string) {
     return [{ key: k, label, dots: t.dots, line: ctx.expertLine(r.id, k), expert: !!t.expert, n: t.people ? t.people.players.plus + t.people.reviewers.plus : t.plus }]; });
   const style = styleOf(facts);
 
-  // Similar rackets (the live page's similarProducts), one per model, best liked first, and the brand's own line.
+  // Similar rackets (the live page's similarProducts), one per model, best liked first, and the brand's own line. Both keep
+  // only each model's current row (ThreadRow.current, the classic rule), so an older year never stands in for its model.
   const pool = ctx.data.listed.filter(x => score(ctx.data, x.id).judged >= 5);
   const sim = similarProducts(r, pool, tagProfiles([...ctx.data.reviews, ...ctx.data.external]), 12)
     .filter((x, i, a) => modelFamily(x) !== modelFamily(r) && a.findIndex(y => modelFamily(y) === modelFamily(x)) === i)
-    .map(x => rows.get(x.id)).filter((x): x is ThreadRow => !!x && x.score != null).sort((a, b) => b.score! - a.score!).slice(0, 2);
+    .map(x => rows.get(x.id)).filter((x): x is ThreadRow => !!x && x.score != null && !!x.current).sort((a, b) => b.score! - a.score!).slice(0, 2);
   const model = brand && r.name.toLowerCase().startsWith(`${brand.name.toLowerCase()} `) ? r.name.slice(brand.name.length + 1) : r.name;
   const word = model.split(" ")[0]?.toLowerCase() ?? "";
-  const line = ctx.data.listed.filter(x => x.id !== r.id && x.brandId === r.brandId && modelFamily(x) !== modelFamily(r)).map(x => rows.get(x.id)).filter((x): x is ThreadRow => !!x && x.score != null)
+  const line = ctx.data.listed.filter(x => x.id !== r.id && x.brandId === r.brandId && modelFamily(x) !== modelFamily(r)).map(x => rows.get(x.id)).filter((x): x is ThreadRow => !!x && x.score != null && !!x.current)
     .sort((a, b) => Number(b.name.toLowerCase().includes(` ${word} `)) - Number(a.name.toLowerCase().includes(` ${word} `)) || (b.score ?? -1) - (a.score ?? -1)).slice(0, 4);
   const tagTones = Object.fromEntries([...sum.tagCounts.keys()].map(t => [t, tagTone(t)]));
   const latest = [...reviews.map(x => x.createdAt), ...external.map(x => x.sourceDate || x.createdAt)].sort().pop() ?? null;

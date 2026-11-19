@@ -51,7 +51,7 @@ export default async function ThreadRacket({ params }: P) {
   if (!d) notFound();
   const { r, row, brand, cards, lead, bullets, traits, style, sim, line, latest, judged } = d;
   const { rows } = await threadRows();
-  const also = (await lovedToo(r.id, rows)).filter(x => x.id !== r.id);
+  const also = (await lovedToo(r.id, rows)).filter(x => x.id !== r.id && x.current);
   const name = row?.name ?? r.name, bare = withoutYear(name);
   // The live racket page's buy link, the same logic (app/rackets/[slug]/page.tsx): the Amazon lookup, the saved listing when
   // the two disagree, else the product's own site. So "Check price" shows here exactly where it shows on the live page.
