@@ -122,7 +122,8 @@ export function Reviews({ id, cards, nicknames }: { id: string; cards: RvCard[];
       await sendVote(id, RATING[verdict], profile);
       if (words) {
         const token = await formToken();
-        const known = Object.fromEntries(Object.entries({ playerLevel: profile.level, playingSide: profile.side, playingStyle: profile.style }).filter(([, x]) => x));
+        // A member's saved level and side come first (the account page), then this device's quick-vote answers.
+        const known = Object.fromEntries(Object.entries({ playerLevel: me?.level || profile.level, playingSide: me?.side || profile.side, playingStyle: profile.style }).filter(([, x]) => x));
         const r = await fetch("/api/reviews", { method: "POST", headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ racketMode: "existing", racketId: id, rating: RATING[verdict], reviewText: words, tags: [], website: "", formToken: token, alias: nick.trim() || undefined, ...known }) });
         saveName(nick);

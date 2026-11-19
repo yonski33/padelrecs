@@ -15,7 +15,7 @@ import { summary } from "../../lib/product-summary";
 import { similarProducts, tagProfiles } from "../../lib/similar";
 import { modelFamily } from "../../lib/compare-pairs";
 import { score, database } from "../../db/data";
-import { memberSet } from "../../lib/thread/member-marks";
+import { memberMap } from "../../lib/thread/member-marks";
 import { shortLine } from "../../lib/short-lines";
 import { listLine } from "../../lib/list-lines";
 import { styleOf } from "../../lib/fit-verdict";
@@ -104,6 +104,13 @@ export async function racketData(slug: string) {
   const latest = [...reviews.map(x => x.createdAt), ...external.map(x => x.sourceDate || x.createdAt)].sort().pop() ?? null;
   // Member marks (optional accounts): none without a database (CI) or before the migration.
   const own = cards.filter(c => c.kind === "player").map(c => c.id.slice(2));
-  if (own.length && process.env.DATABASE_URL) { const m = await memberSet(await database(), "review", own); for (const c of cards) if (c.kind === "player" && m.has(c.id.slice(2))) c.member = true; }
+  // A member's level and side come from the account, read live (a change on /account shows here on the next refresh).
+  if (own.length && process.env.DATABASE_URL) {
+    const m = await memberMap(await database(), "review", own), byId = new Map(reviews.map(x => [x.id, x]));
+    for (const c of cards) { const p = c.kind === "player" ? m.get(c.id.slice(2)) : undefined; if (!p) continue;
+      const x = byId.get(c.id.slice(2)), level = p.level ?? x?.playerLevel ?? null, side = p.side ?? x?.playingSide ?? null;
+      c.member = true;
+      c.meta = [lv(level), side ? (niche.id === "padel" ? `${side.toLowerCase()} side` : sideWord(side)) : null].filter(Boolean).join(" · ") || null; }
+  }
   return { r, row, brand, cards, lead, bullets, traits, style, sim, line, tagTones, latest, facts, judged: (row?.pos ?? 0) + (row?.mix ?? 0) + (row?.neg ?? 0) };
 }

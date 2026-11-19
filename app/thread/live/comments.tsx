@@ -6,7 +6,7 @@ import { accountSite } from "../../../lib/thread/sites";
 import { niche } from "../../../lib/niche";
 import { useEffect, useRef, useState } from "react";
 import { ownerCheck } from "../../admin-edit";
-import { commenterName, nameProblem, typedName, NAME_MAX } from "../../../lib/thread/display-name";
+import { profileLine, commenterName, nameProblem, typedName, NAME_MAX } from "../../../lib/thread/display-name";
 import { savedName, saveName, grow } from "./name";
 import { ago } from "../ui";
 import { useAccount, signInHref, type Me } from "./use-account";
@@ -14,7 +14,7 @@ import { MemberMark } from "./member-mark";
 /** Optional accounts run on PadelRecs only for now (lib/thread/sites.ts accountSite). */
 const ACCOUNTS = accountSite(niche.id);
 
-type C = { id: string; parentId: string | null; alias: string; body: string; at: string; score: number; mine: number; member?: boolean };
+type C = { id: string; parentId: string | null; alias: string; body: string; at: string; score: number; mine: number; member?: boolean; level?: string | null; side?: string | null };
 const HELD = "Thanks! Your comment will show once a person has checked it.";
 
 function Box({ me, nick, setNick, nicknames, placeholder, cta, onPost, onCancel, autoFocus = true }: { me: Me; nick: string; setNick: (s: string) => void; nicknames: string[]; placeholder: string; cta: string;
@@ -75,7 +75,7 @@ export function Comments({ page, title = "Comments", prompt = "Join the conversa
     setErr(""); setNote("");
     const problem = nameProblem(nick); if (problem) { setErr(problem); return false; }
     saveName(nick);
-    const temp: C = { id: `temp-${Date.now()}`, parentId, alias: nick.trim(), body, at: new Date().toISOString(), score: 1, mine: 1, member: !!me };
+    const temp: C = { id: `temp-${Date.now()}`, parentId, alias: nick.trim(), body, at: new Date().toISOString(), score: 1, mine: 1, member: !!me, level: me?.level ?? null, side: me?.side ?? null };
     setList(l => [temp, ...(l ?? [])]); setOpen(false); setReply(null);
     try {
       const r = await fetch("/api/comments", { method: "POST", headers: { "Content-Type": "application/json" },
@@ -125,12 +125,12 @@ export function Comments({ page, title = "Comments", prompt = "Join the conversa
     {err && <span className="th-err" role="alert">{err}</span>}
     <div style={{ display: "flex", flexDirection: "column" }}>
       {tops.map(c => <div key={c.id} className="th-cm">
-        <div className="th-cm-head"><strong>{commenterName(c.alias)}</strong>{c.member && <MemberMark/>}<span>{`· ${ago(c.at)}`}</span><Rename c={c}/></div>
+        <div className="th-cm-head"><strong>{commenterName(c.alias)}</strong>{c.member && <MemberMark/>}{c.member && profileLine(c.level, c.side) && <span>{`· ${profileLine(c.level, c.side)}`}</span>}<span>{`· ${ago(c.at)}`}</span><Rename c={c}/></div>
         {textOf(c)}
         <div className="th-cm-act"><Votes c={c}/><button type="button" className="reply" onClick={() => setReply(reply === c.id ? null : c.id)}>{reply === c.id ? "Cancel" : "Reply"}</button><Own c={c}/></div>
         {reply === c.id && <div style={{ marginLeft: 14 }}><Box me={me} nick={nick} setNick={setNick} nicknames={nicknames} placeholder={`Reply to ${commenterName(c.alias)}`} cta="Reply" onPost={t => post(t, c.id)} onCancel={() => setReply(null)}/></div>}
         {replies(c.id).length > 0 && <div className="th-replies">{replies(c.id).map(r => <div key={r.id} style={{ display: "flex", flexDirection: "column", gap: 2 }}>
-          <div className="th-cm-head"><strong style={{ fontSize: 14 }}>{commenterName(r.alias)}</strong>{r.member && <MemberMark/>}<span>{`· ${ago(r.at)}`}</span><Rename c={r}/></div>
+          <div className="th-cm-head"><strong style={{ fontSize: 14 }}>{commenterName(r.alias)}</strong>{r.member && <MemberMark/>}{r.member && profileLine(r.level, r.side) && <span>{`· ${profileLine(r.level, r.side)}`}</span>}<span>{`· ${ago(r.at)}`}</span><Rename c={r}/></div>
           {textOf(r)}
           <div className="th-cm-act"><Votes c={r}/><Own c={r}/></div>
         </div>)}</div>}

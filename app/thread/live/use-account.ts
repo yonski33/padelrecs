@@ -3,7 +3,7 @@
 // page view, so guests make no extra request and the cached pages stay the same for everyone.
 import { useEffect, useState } from "react";
 
-export type Me = { name: string; status: string } | null;
+export type Me = { name: string; status: string; level?: string | null; side?: string | null } | null;
 let check: Promise<Me> | null = null;
 export function accountCheck(): Promise<Me> {
   if (typeof document === "undefined" || !/(^|;\s*)sb-[^=]+-auth-token/.test(document.cookie)) return Promise.resolve(null);

@@ -100,12 +100,16 @@ export async function linkPosts(db: Database, account: Pick<Account, "id" | "nam
 
 /** Which of these posts belong to an active account (the member mark). */
 export async function memberPosts(db: Reader, kind: PostKind, ids: string[]) {
-  if (!ids.length) return new Set<string>();
-  const out = new Set<string>();
+  return new Set((await memberProfiles(db, kind, ids)).keys());
+}
+export type MemberProfile = { level: string | null; side: string | null };
+/** The same, with the account's level and side, read live, so a change on /account shows on every post at once. */
+export async function memberProfiles(db: Reader, kind: PostKind, ids: string[]) {
+  const out = new Map<string, MemberProfile>();
   for (let i = 0; i < ids.length; i += 500) {
-    const rows = await db.select({ id: accountPosts.postId }).from(accountPosts).innerJoin(accounts, eq(accounts.id, accountPosts.accountId))
+    const rows = await db.select({ id: accountPosts.postId, level: accounts.level, side: accounts.side }).from(accountPosts).innerJoin(accounts, eq(accounts.id, accountPosts.accountId))
       .where(and(eq(accountPosts.kind, kind), inArray(accountPosts.postId, ids.slice(i, i + 500)), eq(accounts.status, "active")));
-    rows.forEach(r => out.add(r.id));
+    rows.forEach(r => out.set(r.id, { level: r.level, side: r.side }));
   }
   return out;
 }
