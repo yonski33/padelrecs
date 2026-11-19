@@ -7,8 +7,8 @@ import { listJsonLd, catalogCrumb } from "../../../lib/catalogue-seo";
 export const revalidate = 21600;
 import type { Metadata } from "next";
 import { generateMetadata as liveMetadata } from "../../rackets/page";
-import { liveOr } from "../seo";
-export const generateMetadata = (): Promise<Metadata> => liveOr(liveMetadata);
+import { liveOr, withPageShare } from "../seo";
+export const generateMetadata = async (): Promise<Metadata> => withPageShare(await liveOr(liveMetadata), "catalog", "Every padel racket, rated by players");
 
 export default async function ThreadCatalog() {
   const { all } = await threadRows();

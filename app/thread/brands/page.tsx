@@ -6,11 +6,11 @@ import { threadRows } from "../data";
 import { Badge, Photo, plural, SideBox, LinkList } from "../ui";
 import { threadRankings } from "../rankings-data";
 import { metadata as live } from "../../brands/page";
-import { JsonLd, crumbs } from "../seo";
+import { JsonLd, crumbs, withPageShare } from "../seo";
 import { th } from "../../../lib/thread/look";
 
 export const revalidate = 21600;
-export const metadata: Metadata = live;
+export const metadata: Metadata = withPageShare(live, "brands", "Padel racket brands, rated by players");
 
 export default async function ThreadBrands() {
   const [{ ctx, all }, lists] = await Promise.all([threadRows(), threadRankings()]);

@@ -13,7 +13,8 @@ import { Boards } from "../../boards";
 import { SideBox, LinkList, NarrowLinks, plural } from "../../ui";
 import { th } from "../../../../lib/thread/look";
 import { generateMetadata as liveMetadata } from "../../../rankings/[slug]/page";
-import { JsonLd, crumbs, base } from "../../seo";
+import { JsonLd, crumbs, base, withShare } from "../../seo";
+import { rankingShareAlt } from "../../share/data";
 
 export const revalidate = 21600;
 export async function generateStaticParams() { return (await threadRankings()).map(l => ({ slug: l.slug })); }
@@ -24,9 +25,11 @@ export async function generateMetadata({ params }: P): Promise<Metadata> {
   const { slug } = await params;
   const l = (await threadRankings()).find(x => x.slug === slug);
   if (!l) return { title: "Ranking not found", robots: { index: false } };
-  if (l.own) return liveMetadata({ params });
+  // Every ranking gets its Thread card: the list's title and its top 3 (app/rankings/[slug]/share-image).
+  const alt = await rankingShareAlt(slug), card = (m: Metadata) => withShare(m, `/rankings/${slug}/share-image`, alt);
+  if (l.own) return card(await liveMetadata({ params }));
   const title = `${l.title}, ranked by real player reviews`, description = `${l.blurb} The top ${l.ids.length} by player score, from reviews by people who played them.`;
-  return { title: { absolute: `${title} | ${niche.site.name}` }, description, alternates: { canonical: l.href }, openGraph: { title, description, url: l.href, type: "website" } };
+  return card({ title: { absolute: `${title} | ${niche.site.name}` }, description, alternates: { canonical: l.href }, openGraph: { title, description, url: l.href, type: "website" } });
 }
 
 const names = (xs: { name: string }[]) => xs.length > 1 ? `${xs.slice(0, -1).map(x => x.name).join(", ")} and ${xs[xs.length - 1].name}` : xs[0]?.name ?? "";

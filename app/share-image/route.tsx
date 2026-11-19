@@ -6,6 +6,8 @@ import { amazonPhoto } from "../../lib/amazon-photos";
 import sharp from "sharp";
 import { clearBackground } from "../../lib/photo-background";
 import { ogHomeCard, type OgPhoto } from "../og-card";
+import { threadSite } from "../../lib/thread/look";
+import { homeShare, pageShare } from "../thread/share/data";
 
 // The home's and the guide's share image (Grok SEO audit, owner 2026-11-18): links pasted into Reddit, Facebook, iMessage or
 // Slack show the site's name, its line and the top three products of its first ranking ("best overall") with photos.
@@ -13,6 +15,9 @@ import { ogHomeCard, type OgPhoto } from "../og-card";
 export const dynamic = "force-dynamic";
 
 export async function GET(request: Request) {
+  // Thread sites (owner 2026-11-19): the home card, or a plain titled card for ?page=<key> (app/thread/share).
+  if (threadSite(niche.id)) { const u = new URL(request.url), page = u.searchParams.get("page");
+    return page ? pageShare(page === "guide" ? "guide:racket" : page) : homeShare(u.origin); }
   const url = new URL(request.url), data = await catalog();
   const page = url.searchParams.get("page"), guide = page === "guide" ? niche.guide ?? (niche.id === "skin" ? { h1: ["Skincare,", "decoded"], crumb: "skincare guide" } : null) : null;
   const first = withModelYears(withNicheWindow(niche.topLists ?? [], niche.recentMonths))[0];
