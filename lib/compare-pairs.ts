@@ -15,6 +15,8 @@ export const MIN_PAIR_JUDGED = 10;
 export const PAIRS_PER_PRODUCT = 2;
 
 type Product = Catalog["rackets"][number];
+/** What the one-row-per-model rule reads. */
+type FamilyRow = Pick<Product, "id" | "name" | "brandId" | "year">;
 export type ComparePair = { key: string; a: Product; b: Product };
 
 /** The pair's address part: both slugs in alphabetical order, so "a vs b" and "b vs a" are one page. */
@@ -114,10 +116,10 @@ export function olderInFamily<T extends Product>(product: T, candidates: T[]): T
  *  link); once it has enough reports, it takes the row. */
 /** The ids of the years that take their model's row (rowOfFamily over the whole list): the catalog's default, the home's
  *  and every Thread list. Older years keep their pages. */
-export function familyRowIds<T extends Product>(listed: T[], enough: (p: T) => boolean): Set<string> {
+export function familyRowIds<T extends FamilyRow>(listed: T[], enough: (p: T) => boolean): Set<string> {
   return new Set(listed.filter(r => rowOfFamily(r, listed, enough).shown.id === r.id).map(r => r.id));
 }
-export function rowOfFamily<T extends Product>(product: T, candidates: T[], enough: (p: T) => boolean): { shown: T; newer: T | null } {
+export function rowOfFamily<T extends FamilyRow>(product: T, candidates: T[], enough: (p: T) => boolean): { shown: T; newer: T | null } {
   if (!hasYears) return { shown: product, newer: null };
   const key = modelFamily(product);
   const years = [product, ...candidates.filter(x => x.id !== product.id && modelFamily(x) === key)].sort((a, b) => b.year - a.year || b.name.localeCompare(a.name, "en", { numeric: true }));
