@@ -615,3 +615,50 @@ body:has(.th) .th .th-pick-list li.first a:hover { color: var(--ink); text-decor
 .th-as-me b { color: var(--ink); }
 .th-signin { font-size: 12.5px; color: var(--ink2); text-decoration: underline; text-decoration-color: var(--chip); text-underline-offset: 3px; white-space: nowrap; }
 .th-signin:hover { color: var(--ink); text-decoration-color: currentColor; }
+/* PickleballRecs' own look (owner 2026-11-19: design_handoff_pickleballrecs README "Design tokens"). Only the colours and
+   fonts change; every layout and behaviour rule above is shared with padel. Scoped to .th-pb (app/thread/shell.tsx adds it on
+   NICHE=pickleball), so padel's pages are untouched. Where the site already has a token (lib/niche/pickleball.ts theme, on
+   <html>), it is used, with the README value as the fallback. */
+body:has(.th-pb) { background: #f1f2ec; }
+.th.th-pb {
+  --ink: var(--site-ink, #17203a); --bg: #f1f2ec; --card: #fff; --soft: #fbfaf6; --frame: #eceee6;
+  --ink2: var(--site-soft, #4a5068); --body: var(--site-text, #2a3150); --muted: #5d6380;
+  --div: #e6e7ec; --line: #dfe1e8; --chip: #c5c9d4; --box: #d6d9cf;
+  --lime: var(--site-acc, oklch(0.92 0.17 105)); --lime-box: var(--site-top, oklch(0.975 0.05 105));
+  --lime-bar: oklch(0.94 0.12 105); --lime-chip: oklch(0.95 0.1 105);
+  --sc-g: oklch(0.8 0.16 145); --sc-y: oklch(0.93 0.14 100);
+  --s-pos: oklch(0.72 0.15 145); --s-mix: oklch(0.85 0.14 90); --s-neg: oklch(0.7 0.15 30);
+  --p-pos: oklch(0.93 0.08 145); --p-mix: oklch(0.95 0.08 95); --p-neg: oklch(0.93 0.05 35);
+  --hover: oklch(0.45 0.12 235); --up: oklch(0.5 0.14 145); --down: oklch(0.55 0.15 35); --idle: #a3a8b8;
+  --blog: oklch(0.95 0.1 105);
+  /* Bricolage Grotesque 800 for headings and badge numbers (app/layout.tsx --font-display); Atkinson Hyperlegible for text,
+     with the digits-only Barlow first so numbers get a plain zero (README "Digits"). */
+  --bc: var(--site-display, var(--font-display)), 'Bricolage Grotesque', 'Arial Narrow', sans-serif;
+  --body-font: 'Barlow', 'Atkinson Hyperlegible', system-ui, sans-serif;
+}
+body:has(.th-pb) .th-pb :is(h1, h2, h3), .th-pb :is(.th-logo, .th-rank, .th-row-name .mrank, .th-badge:not(.new), .th-sbox-head, .th-stitle, .th-tldr-h,
+  .th-hub-t b, .th-hub-row .r, .th-num, .th-sub-h), body:has(.th-pb) .th-pb .th-logo, body:has(.th-pb) .th-pb .th-menu a {
+  font-weight: 800; letter-spacing: -0.02em; }
+/* The literal padel colours above, in pickleball's. */
+.th-pb .th-ph, .th-pb .th-ph::after { background: #d6d9cf; }
+.th-pb .th-yt { background-color: var(--ink); }
+.th-pb .th-tldr { background: var(--lime-box); }
+.th-pb .th-fit, .th-pb .th-picks-row + .th-picks-row, .th-pb .th-pick-list + .th-pick-list { border-top-color: var(--line); }
+body:has(.th-pb) .th-pb a.th-hub:hover { border-color: var(--hover); }
+.th-pb .th-live i { background: var(--s-pos); }
+body:has(.th-pb) .th-pb a.th-add:hover, body:has(.th-pb) .th-pb a.th-add:focus-visible, body:has(.th-pb) .th-pb a.th-add-plus:hover,
+  .th-pb button.th-post:not(:disabled):hover { background: #2a3150; border-color: #2a3150; }
+.th-pb #comments.th-card, .th-pb .th-compose.white, .th-pb .th-compose.white .th-ta.th-ta-grow, .th-pb .th-compose.soft,
+  .th-pb .th-compose.soft .th-ta.th-ta-grow { border-color: var(--line); }
+.th-pb .th-rv-list .th-rv, .th-pb .th-rv-list .th-rv.big { border-top-color: var(--div); }
+.th-pb .th-rv-list .th-rv-when, .th-pb .th-why, .th-pb .th-pick-list .ct { color: var(--muted); }
+.th-pb :is(.th-compose.white, .th-compose.soft) :is(.th-ta.th-ta-grow:focus, .th-ta.th-ta-grow:focus-visible, .th-as input:focus, .th-as input:focus-visible) { border-color: var(--ink); }
+.th-pb button.th-post { background: var(--ink); }
+.th-pb button.th-post:disabled { background: #eceee6; color: #6b7190; }
+.th-pb .th-vpill.pos { background: var(--p-pos); } .th-pb .th-vpill.mix { background: var(--p-mix); } .th-pb .th-vpill.neg { background: var(--p-neg); }
+.th-pb .th-src.bl { background: var(--blog); }
+.th-pb .th-cm-act .arrow:not([aria-pressed="true"]) { color: #6f758c; }
+.th-pb .th-pick-list li + li { border-top-color: var(--div); }
+/* Bricolage is wider than Barlow Condensed: keep a sidebar title and its link ("Fresh off the court · All reviews →") on one line. */
+.th-pb .th-side .th-head-row { flex-wrap: nowrap; gap: 8px; }
+.th-pb .th-side .th-head-row .th-link-b { white-space: nowrap; }
