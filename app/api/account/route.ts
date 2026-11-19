@@ -10,11 +10,11 @@ import { NAME_MAX } from "../../../lib/thread/display-name";
 import { allowedAdmin } from "../../../lib/admin-access";
 import { createClient } from "../../../lib/supabase/server";
 import { createLimiter, clientIp } from "../../../lib/rate-limit";
-import { threadSite } from "../../../lib/thread/look";
+import { accountSite } from "../../../lib/thread/sites";
 import { niche } from "../../../lib/niche";
 import { device, json, foreign } from "../thread-device";
 
-const off = () => !threadSite(niche.id) || !process.env.DATABASE_URL;
+const off = () => !accountSite(niche.id) || !process.env.DATABASE_URL;
 const writes = createLimiter({ limit: 30, windowMs: 60 * 60_000 });
 const body = z.object({ action: z.enum(["claim", "update"]), name: z.string().trim().max(NAME_MAX).optional(), level: z.string().max(40).nullish(), side: z.string().max(40).nullish() });
 const view = (a: { name: string; level: string | null; side: string | null; status: string } | null) => a && { name: a.name, level: a.level, side: a.side, status: a.status };

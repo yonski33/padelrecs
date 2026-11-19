@@ -12,11 +12,11 @@
 /** `trait`/`choice` is a "How does it play?" option; `score` instead counts the players behind a review trait score
  *  (lib/trait-score.ts, the old "Best in defence" board's source), for lists without a vote group. */
 import { ELBOW_SLUG } from "./look";
-
+import { niche } from "../niche";
 export type PickCat = { key: string; title: string; trait: string; choice: string; href: string; score?: string };
 /** The lists in order (owner 2026-11-19): the first six that qualify show, so Best for beginners and Softest feel step in
  *  on their own once enough players back them, or when one of the six falls short. Each has a quiet "See all ›" link. */
-export const PICK_CATS: PickCat[] = [
+const PADEL_CATS: PickCat[] = [
   { key: "sweet", title: "Biggest sweet spot", trait: "sweet_spot", choice: "big", href: "/rankings/best-padel-rackets" },
   { key: "arm", title: "Most arm friendly", trait: "arm", choice: "very", href: `/rankings/${ELBOW_SLUG}` },
   { key: "control", title: "Most control", trait: "plays_like", choice: "control", href: "/rankings/best-control-padel-rackets" },
@@ -30,6 +30,22 @@ export const PICK_CATS: PickCat[] = [
   { key: "beginner", title: "Best for beginners", trait: "level", choice: "beginner", href: "/rackets?level=Beginner" },
   { key: "soft", title: "Softest feel", trait: "feel", choice: "soft", href: "/rackets?feel=Soft" },
 ];
+/** PickleballRecs' lists, same rules (plans/PICKLEBALL-THREAD-PLAN.md): Most spin takes padel's Best at the net (no
+ *  Maneuverable group here), then the waiting lists. */
+const PICKLEBALL_CATS: PickCat[] = [
+  { key: "sweet", title: "Biggest sweet spot", trait: "sweet_spot", choice: "big", href: "/rankings/best-pickleball-paddles" },
+  { key: "arm", title: "Most arm friendly", trait: "arm", choice: "very", href: "/rankings/best-pickleball-paddles-for-tennis-elbow" },
+  { key: "control", title: "Most control", trait: "plays_like", choice: "control", href: "/rankings/best-control-pickleball-paddles" },
+  { key: "power", title: "Most power", trait: "plays_like", choice: "power", href: "/rankings/best-power-pickleball-paddles" },
+  { key: "spin", title: "Most spin", trait: "spin", choice: "lots", href: "/rankings/best-spin-pickleball-paddles" },
+  { key: "intermediate", title: "Best for intermediate", trait: "level", choice: "intermediate", href: "/paddles?level=Intermediate" },
+  { key: "beginner", title: "Best for beginners", trait: "level", choice: "beginner", href: "/rankings/best-pickleball-paddles-for-beginners" },
+  { key: "soft", title: "Softest feel", trait: "feel", choice: "soft", href: "/paddles?feel=Soft" },
+  { key: "pop", title: "Most pop", trait: "pop", choice: "high", href: "/rankings/best-power-pickleball-paddles" },
+];
+export const pickCatsFor = (nicheId: string) => nicheId === "pickleball" ? PICKLEBALL_CATS : PADEL_CATS;
+/** The running site's lists. */
+export const PICK_CATS = pickCatsFor(niche.id);
 /** How many lists the grid shows (3 columns × 2 rows). */
 export const SHOWN = 6;
 export const MIN_OPINIONS = 10, MIN_BACKERS = 5, PER_LIST = 3, MAX_FIRSTS = 2;

@@ -1,0 +1,326 @@
+{
+ "THREAD_DEFAULT": true,
+ "GUIDE_PATHS": {
+  "racket": "/guide",
+  "beginner": "/guides/beginner-tips",
+  "shape": "/guides/racket-shapes",
+  "side": "/guides/court-side",
+  "elbow": "/guides/tennis-elbow"
+ },
+ "GUIDE_KEYS": [
+  "racket",
+  "beginner",
+  "shape",
+  "side",
+  "elbow"
+ ],
+ "threadPath": {
+  "/": "/thread",
+  "/rackets": "/thread/rackets",
+  "/rackets/adidas-metalbone-ctrl-2026": "/thread/rackets/adidas-metalbone-ctrl-2026",
+  "/rankings": "/thread/rankings",
+  "/rankings/best-padel-rackets": "/thread/rankings/best-padel-rackets",
+  "/guide": "/thread/guides/racket",
+  "/guides/beginner-tips": "/thread/guides/beginner",
+  "/guides/racket-shapes": "/thread/guides/shape",
+  "/guides/court-side": "/thread/guides/side",
+  "/guides/tennis-elbow": "/thread/guides/elbow",
+  "/about": "/thread/about",
+  "/how-we-make-these": "/thread/score",
+  "/affiliate-disclosure": "/thread/affiliate",
+  "/contact": "/thread/contact",
+  "/brands": "/thread/brands",
+  "/brands/nox": "/thread/brands/nox",
+  "/compare": null,
+  "/add-review": null,
+  "/guides/doubles-or-singles": null,
+  "/paddles": null
+ },
+ "th": {
+  "/rackets/x": "/rackets/x",
+  "/rackets/x?tag=soft#reviews": "/rackets/x?tag=soft#reviews",
+  "/brands/nox": "/brands/nox",
+  "/compare": "/compare",
+  "/guide": "/guide",
+  "/guides/court-side#c": "/guides/court-side#c",
+  "https://example.com/": "https://example.com/"
+ },
+ "thPreview": {
+  "/rackets/x": "/rackets/x?look=thread",
+  "/rackets/x?tag=soft#reviews": "/rackets/x?tag=soft&look=thread#reviews",
+  "/brands/nox": "/brands/nox?look=thread",
+  "/compare": "/compare",
+  "/guide": "/guide?look=thread",
+  "/guides/court-side#c": "/guides/court-side?look=thread#c",
+  "https://example.com/": "https://example.com/"
+ },
+ "TRAIT_GROUPS": [
+  {
+   "key": "plays_like",
+   "title": "Plays like",
+   "options": [
+    [
+     "control",
+     "Control"
+    ],
+    [
+     "all_round",
+     "All-round"
+    ],
+    [
+     "power",
+     "Power"
+    ]
+   ]
+  },
+  {
+   "key": "level",
+   "title": "Best for",
+   "options": [
+    [
+     "beginner",
+     "Beginner"
+    ],
+    [
+     "intermediate",
+     "Intermediate"
+    ],
+    [
+     "advanced",
+     "Advanced"
+    ]
+   ]
+  },
+  {
+   "key": "sweet_spot",
+   "title": "Sweet spot",
+   "options": [
+    [
+     "big",
+     "Big"
+    ],
+    [
+     "medium",
+     "Medium"
+    ],
+    [
+     "small",
+     "Small"
+    ]
+   ]
+  },
+  {
+   "key": "arm",
+   "title": "Arm friendly",
+   "options": [
+    [
+     "very",
+     "Very"
+    ],
+    [
+     "somewhat",
+     "Somewhat"
+    ],
+    [
+     "not_really",
+     "Not really"
+    ]
+   ]
+  },
+  {
+   "key": "feel",
+   "title": "Feel",
+   "options": [
+    [
+     "soft",
+     "Soft"
+    ],
+    [
+     "medium",
+     "Medium"
+    ],
+    [
+     "hard",
+     "Hard"
+    ]
+   ]
+  },
+  {
+   "key": "side",
+   "title": "Best on",
+   "options": [
+    [
+     "right",
+     "Right side"
+    ],
+    [
+     "left",
+     "Left side"
+    ],
+    [
+     "both",
+     "Both sides"
+    ]
+   ]
+  },
+  {
+   "key": "maneuver",
+   "title": "Maneuverable",
+   "options": [
+    [
+     "very",
+     "Very"
+    ],
+    [
+     "somewhat",
+     "Somewhat"
+    ],
+    [
+     "not_really",
+     "Not really"
+    ]
+   ]
+  },
+  {
+   "key": "trampoline",
+   "title": "Trampoline",
+   "options": [
+    [
+     "low",
+     "Low"
+    ],
+    [
+     "medium",
+     "Medium"
+    ],
+    [
+     "high",
+     "High"
+    ]
+   ]
+  },
+  {
+   "key": "durability",
+   "title": "Durability",
+   "options": [
+    [
+     "holds_up",
+     "Holds up well"
+    ],
+    [
+     "average",
+     "Average"
+    ],
+    [
+     "wears_fast",
+     "Wears fast"
+    ]
+   ]
+  }
+ ],
+ "VOTE_BOARDS": [
+  {
+   "title": "Biggest sweet spot",
+   "trait": "sweet_spot",
+   "choice": "big"
+  },
+  {
+   "title": "Most arm friendly",
+   "trait": "arm",
+   "choice": "very"
+  },
+  {
+   "title": "Best for beginners",
+   "trait": "level",
+   "choice": "beginner"
+  },
+  {
+   "title": "Most power",
+   "trait": "plays_like",
+   "choice": "power"
+  },
+  {
+   "title": "Most control",
+   "trait": "plays_like",
+   "choice": "control"
+  },
+  {
+   "title": "Softest feel",
+   "trait": "feel",
+   "choice": "soft"
+  }
+ ],
+ "PICK_CATS": [
+  {
+   "key": "sweet",
+   "title": "Biggest sweet spot",
+   "trait": "sweet_spot",
+   "choice": "big",
+   "href": "/rankings/best-padel-rackets"
+  },
+  {
+   "key": "arm",
+   "title": "Most arm friendly",
+   "trait": "arm",
+   "choice": "very",
+   "href": "/rankings/best-padel-rackets-for-tennis-elbow"
+  },
+  {
+   "key": "control",
+   "title": "Most control",
+   "trait": "plays_like",
+   "choice": "control",
+   "href": "/rankings/best-control-padel-rackets"
+  },
+  {
+   "key": "power",
+   "title": "Most power",
+   "trait": "plays_like",
+   "choice": "power",
+   "href": "/rankings/best-power-padel-rackets"
+  },
+  {
+   "key": "net",
+   "title": "Best at the net",
+   "trait": "maneuver",
+   "choice": "very",
+   "href": "/rankings/best-control-padel-rackets"
+  },
+  {
+   "key": "intermediate",
+   "title": "Best for intermediate",
+   "trait": "level",
+   "choice": "intermediate",
+   "href": "/rackets?level=Intermediate"
+  },
+  {
+   "key": "defence",
+   "title": "Best in defence",
+   "trait": "",
+   "choice": "",
+   "score": "defence",
+   "href": "/rankings/best-padel-rackets"
+  },
+  {
+   "key": "trampoline",
+   "title": "Low trampoline",
+   "trait": "trampoline",
+   "choice": "low",
+   "href": "/rankings/best-control-padel-rackets"
+  },
+  {
+   "key": "beginner",
+   "title": "Best for beginners",
+   "trait": "level",
+   "choice": "beginner",
+   "href": "/rackets?level=Beginner"
+  },
+  {
+   "key": "soft",
+   "title": "Softest feel",
+   "trait": "feel",
+   "choice": "soft",
+   "href": "/rackets?feel=Soft"
+  }
+ ]
+}

@@ -5,7 +5,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { Shell } from "../thread/shell";
 import { AccountPanel } from "../thread/live/account";
-import { threadSite } from "../../lib/thread/look";
+import { accountSite } from "../../lib/thread/sites";
 import { niche } from "../../lib/niche";
 import { database } from "../../db/data";
 import { currentPlayer, safeNext } from "../../lib/thread/account-session";
@@ -15,7 +15,7 @@ export const dynamic = "force-dynamic";
 export const metadata: Metadata = { title: "Your account", robots: { index: false, follow: false } };
 
 export default async function AccountPage({ searchParams }: { searchParams: Promise<Record<string, string | undefined>> }) {
-  if (!threadSite(niche.id)) notFound();
+  if (!accountSite(niche.id)) notFound();
   const q = await searchParams;
   let me: Awaited<ReturnType<typeof currentPlayer>> = null;
   try { if (process.env.DATABASE_URL) me = await currentPlayer(await database()); } catch (error) { console.error("Account page read failed", error); }

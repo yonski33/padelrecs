@@ -8,6 +8,8 @@ import { threadRankings } from "../rankings-data";
 import { metadata as live } from "../../brands/page";
 import { JsonLd, crumbs } from "../seo";
 import { th } from "../../../lib/thread/look";
+import { niche } from "../../../lib/niche";
+const cap = (s: string) => s[0].toUpperCase() + s.slice(1);
 
 export const revalidate = 21600;
 export const metadata: Metadata = live;
@@ -23,8 +25,8 @@ export default async function ThreadBrands() {
     <JsonLd data={{ "@context": "https://schema.org", "@graph": [crumbs([{ name: "Brands", path: "/brands" }])] }}/>
     <main className="th-main"><div className="th-col">
       <section className="th-card th-hero">
-        <h1 className="th-h1">Padel racket brands</h1>
-        <p className="th-lead">Every brand with rackets players have reviewed, most reviewed first.</p>
+        <h1 className="th-h1">{`${cap(niche.id)} ${niche.words.one} brands`}</h1>
+        <p className="th-lead">{`Every brand with ${niche.words.many} players have reviewed, most reviewed first.`}</p>
       </section>
       <section className="th-card th-list"><ul className="th-brands">{brands.map(({ b, models, reviews, top, pic }) =>
         <li key={b.id}><a className="th-brand" href={th(`/brands/${b.slug}`)}>

@@ -1,25 +1,18 @@
 // The "Thread" redesign (owner 2026-11-19, Claude Design handoff thread-redesign-v1): a quiet, community-first PadelRecs.
 // Padel only. proxy.ts serves each address from its Thread page (app/thread/…) by default (THREAD_DEFAULT); ?look=classic
 // keeps the previous pages reachable for a few weeks. The two looks have different URLs, so the CDN never mixes them.
-// Pure: proxy.ts and the pages share it.
+// Pure apart from the running site's id and catalogue path: proxy.ts and the pages share it.
+// PickleballRecs (plans/PICKLEBALL-THREAD-PLAN.md) runs the same pages, previewed with ?look=thread until its flag is on.
+import { niche, catalogPath } from "../niche";
 
-/** THE go-live flag (owner 2026-11-19): true = Thread is padel's default look on the normal addresses and ?look=classic
- *  shows the current live pages; false = the live pages are the default and ?look=thread previews Thread. Roll back by
- *  setting it to false. */
-export const THREAD_DEFAULT = true;
+import { threadDefaultFor, ELBOW_SLUG } from "./sites";
+export { THREAD_DEFAULTS, threadDefaultFor, threadSite, THREAD_MOVED, ELBOW_SLUG } from "./sites";
+/** The running site's flag. */
+export const THREAD_DEFAULT = threadDefaultFor(niche.id);
 /** The query value that opens the Thread look (still accepted when Thread is the default). */
 export const THREAD_LOOK = "thread";
 /** The query value that shows the current live (pre-Thread) pages while Thread is the default. */
 export const CLASSIC_LOOK = "classic";
-/** Only PadelRecs previews it (the pilot before Tennis, Pickleball, SimRacing, DiscGolf and Skin). */
-export const threadSite = (nicheId: string) => nicheId === "padel";
-/** Thread addresses that moved (a 301 from the old one, next.config.ts redirects): the sore-arms ranking is named for tennis
- *  elbow (owner 2026-11-19). */
-/** The tennis elbow ranking's slug: the ranking, the elbow guide's picks and links, and the home's Top picks all read it. */
-export const ELBOW_SLUG = "best-padel-rackets-for-tennis-elbow";
-export const THREAD_MOVED: { from: string; to: string }[] = [
-  { from: "/rankings/best-padel-rackets-for-sore-arms", to: `/rankings/${ELBOW_SLUG}` },
-];
 /** The rankings a guide lists, by guide, picked from the shown lists by exact slug (a partial match broke when the elbow
  *  ranking moved, #524). "beginner" is picked by the caller (the engine's own beginner picks). Pure, for tests. */
 export function guideListPicks<R>(key: string, slugIds: (slug: string) => string[] | undefined, row: (id: string) => R | undefined): { title?: string; rows: R[] }[] | null {
@@ -29,21 +22,32 @@ export function guideListPicks<R>(key: string, slugIds: (slug: string) => string
   return null;
 }
 
-/** The five guides: key → live-style address (the racket guide keeps /guide, the others are new under /guides). */
-export const GUIDE_PATHS = {
+/** The five guides: key → live-style address (the product guide keeps /guide, the others are new under /guides). The keys
+ *  are the same on every site ("racket" is the product guide, "side" padel's court side and pickleball's doubles or singles). */
+export type GuideKey = "racket" | "beginner" | "shape" | "side" | "elbow";
+const PADEL_GUIDES: Record<GuideKey, string> = {
   racket: "/guide",
   beginner: "/guides/beginner-tips",
   shape: "/guides/racket-shapes",
   side: "/guides/court-side",
   elbow: "/guides/tennis-elbow",
-} as const;
-export type GuideKey = keyof typeof GUIDE_PATHS;
-export const GUIDE_KEYS = Object.keys(GUIDE_PATHS) as GuideKey[];
-export const guideKeyOf = (path: string): GuideKey | null => GUIDE_KEYS.find(k => GUIDE_PATHS[k] === path) ?? null;
+};
+const PICKLEBALL_GUIDES: Record<GuideKey, string> = {
+  racket: "/guide",
+  beginner: "/guides/beginner-tips",
+  shape: "/guides/paddle-shapes",
+  side: "/guides/doubles-or-singles",
+  elbow: "/guides/tennis-elbow",
+};
+export const guidePathsFor = (nicheId: string): Record<GuideKey, string> => nicheId === "pickleball" ? PICKLEBALL_GUIDES : PADEL_GUIDES;
+/** The running site's guide addresses. */
+export const GUIDE_PATHS = guidePathsFor(niche.id);
+export const GUIDE_KEYS = Object.keys(PADEL_GUIDES) as GuideKey[];
+export const guideKeyOf = (path: string, nicheId = niche.id): GuideKey | null => GUIDE_KEYS.find(k => guidePathsFor(nicheId)[k] === path) ?? null;
 
 /** The Thread page an address shows with ?look=thread, or null when the Thread look has no page for it (compare and
- *  add-review keep their live page). `catalog` is the niche's catalogue path ("/rackets" on padel). */
-export function threadPath(pathname: string, catalog = "/rackets"): string | null {
+ *  add-review keep their live page). `catalog` is the niche's catalogue path ("/rackets" on padel, "/paddles" on pickleball). */
+export function threadPath(pathname: string, catalog = catalogPath, nicheId = niche.id): string | null {
   const p = pathname.length > 1 ? pathname.replace(/\/+$/, "") : pathname;
   if (p === "/") return "/thread";
   if (p === catalog) return "/thread/rackets";
@@ -51,7 +55,7 @@ export function threadPath(pathname: string, catalog = "/rackets"): string | nul
   if (p === "/rankings") return "/thread/rankings";
   const ranking = /^\/rankings\/([a-z0-9-]+)$/.exec(p);
   if (ranking) return `/thread/rankings/${ranking[1]}`;
-  const guide = guideKeyOf(p);
+  const guide = guideKeyOf(p, nicheId);
   if (guide) return `/thread/guides/${guide}`;
   if (p === "/about") return "/thread/about";
   if (p === "/how-we-make-these") return "/thread/score";
@@ -66,7 +70,7 @@ export function threadPath(pathname: string, catalog = "/rackets"): string | nul
 
 /** A Thread link. While Thread is the default it is the plain address; in preview mode it carries ?look=thread (kept ahead
  *  of any #hash) so the next page is a Thread page too. Unpreviewed addresses and outside links are left as they are. */
-export function th(href: string, catalog = "/rackets", preview = !THREAD_DEFAULT): string {
+export function th(href: string, catalog = catalogPath, preview = !THREAD_DEFAULT): string {
   if (!preview) return href;
   if (!href.startsWith("/") || href.startsWith("//")) return href;
   const [rest, hash = ""] = href.split("#", 2);
