@@ -151,3 +151,20 @@ test("admin: edit keeps author, time and votes; delete removes a leaf with its v
     assert.equal(await deleteComment(db, g.id), "missing");
   } finally { await engine.close(); }
 });
+
+test("owner rename: name alone, name and text, the same name rules as posting", async () => {
+  const { engine, db } = await setup();
+  try {
+    const { editComment } = await import("../db/comments");
+    const a = (await addComment(db, { page: "racket:r1", parentId: null, alias: "SteadyGlass787", body: "Is this worth it in 2026?", voter: "dev-a", network: "net-1" })).comment!;
+    assert.equal(await editComment(db, a.id, { alias: "Marta G." }), "ok");
+    let row = (await listComments(db, "racket:r1", null)).find(c => c.id === a.id)!;
+    assert.equal(row.alias, "Marta G."); assert.equal(row.body, "Is this worth it in 2026?");
+    assert.equal(await editComment(db, a.id, { alias: "x" }), "invalid");
+    assert.equal(await editComment(db, a.id, { alias: "www.spam.example" }), "invalid");
+    assert.equal(await editComment(db, a.id, { alias: "Gali", body: "Is it worth it?" }), "ok");
+    row = (await listComments(db, "racket:r1", null)).find(c => c.id === a.id)!;
+    assert.equal(row.alias, "Gali"); assert.equal(row.body, "Is it worth it?");
+    assert.equal(await editComment(db, a.id, {}), "invalid");
+  } finally { await engine.close(); }
+});

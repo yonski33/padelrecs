@@ -20,7 +20,7 @@ import { TRAIT_LABEL } from "../../lib/trait-score";
 import { tagTone } from "../../lib/tags";
 import { ago, type ThreadRow } from "./ui";
 
-export type RvCard = { id: string; kind: "player" | "youtube" | "blog" | "reddit"; who: string; meta: string | null; verdict: "positive" | "mixed" | "negative" | null;
+export type RvCard = { /** A player review's typed name ("" when none), for the owner's Rename. */ alias?: string; id: string; kind: "player" | "youtube" | "blog" | "reddit"; who: string; meta: string | null; verdict: "positive" | "mixed" | "negative" | null;
   when: string; at: string; text: string; quote: boolean; url: string | null; video: string | null; helpful: number };
 const unmd = (t: string) => t.replace(/\*\*([^*]+)\*\*/g, "$1").replace(/\*\*|__/g, "").replace(/==/g, "");
 const verdictOf = (n: number) => n >= 4 ? "positive" as const : n === 3 ? "mixed" as const : "negative" as const;
@@ -47,7 +47,7 @@ export async function racketData(slug: string) {
   const lv = (v?: string | null) => v ? v.toLowerCase() : null;
   const cards: RvCard[] = [
     // Names (lib/thread/display-name.ts): a typed name, else one made from the level and side; those then aren't repeated.
-    ...reviews.map(x => ({ id: `p-${x.id}`, kind: "player" as const, who: reviewerName({ alias: x.alias, level: x.playerLevel, side: x.playingSide }),
+    ...reviews.map(x => ({ id: `p-${x.id}`, kind: "player" as const, who: reviewerName({ alias: x.alias, level: x.playerLevel, side: x.playingSide }), alias: typedName(x.alias) ?? "",
       meta: typedName(x.alias) ? [lv(x.playerLevel), x.playingSide ? `${x.playingSide.toLowerCase()} side` : null].filter(Boolean).join(" · ") || null : null,
       verdict: verdictOf(x.rating), at: x.createdAt, when: ago(x.createdAt, now), text: unmd(x.reviewText), quote: false, url: null, video: null, helpful: x.helpful })),
     ...onePerChannel(external.filter(e => e.sourcePlatform === "YouTube"), v => ytProducts.get(v) ?? 1).flatMap(e => {

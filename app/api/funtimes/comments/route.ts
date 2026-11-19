@@ -12,7 +12,7 @@ import { niche } from "../../../../lib/niche";
 const back = { back: z.enum(["pending", "approved", "rejected", "all"]).default("pending"), q: z.string().max(200).default(""), racket: z.string().max(100).default("") };
 const input = z.discriminatedUnion("action", [
   z.object({ action: z.literal("status"), id: z.string().uuid(), status: z.enum(["pending", "approved", "rejected"]), ...back }),
-  z.object({ action: z.literal("edit"), id: z.string().uuid(), body: z.string().max(4000), ...back }),
+  z.object({ action: z.literal("edit"), id: z.string().uuid(), body: z.string().max(4000).optional(), alias: z.string().max(100).optional(), ...back }),
   z.object({ action: z.literal("delete"), id: z.string().uuid(), confirm: z.literal("yes"), ...back }),
 ]);
 export async function POST(request: Request) {
@@ -26,7 +26,7 @@ export async function POST(request: Request) {
   const d = parsed.data, db = await database();
   try {
     if (d.action === "status") return to(await setCommentStatus(db, d.id, d.status) ? d.status : "stale");
-    if (d.action === "edit") { const r = await editComment(db, d.id, d.body); return to(r === "ok" ? "edited" : r === "missing" ? "stale" : "invalid"); }
+    if (d.action === "edit") { const r = await editComment(db, d.id, { body: d.body || null, alias: d.alias || null }); return to(r === "ok" ? "edited" : r === "missing" ? "stale" : "invalid"); }
     const r = await deleteComment(db, d.id); return to(r === "missing" ? "stale" : r);
   } catch { return to("failed"); }
 }
