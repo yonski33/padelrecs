@@ -6,7 +6,7 @@ import { useEffect, useRef, useState } from "react";
 import { nickname } from "../../quick-vote";
 import { ago } from "../ui";
 
-type C = { id: string; parentId: string | null; alias: string; body: string; question: boolean; at: string; score: number; mine: number };
+type C = { id: string; parentId: string | null; alias: string; body: string; at: string; score: number; mine: number };
 const HELD = "Thanks! Your comment will show once a person has checked it.";
 
 function Box({ nick, setNick, nicknames, placeholder, cta, onPost, onCancel, autoFocus = true }: { nick: string; setNick: (s: string) => void; nicknames: string[]; placeholder: string; cta: string;
@@ -33,18 +33,23 @@ export function Comments({ page, title = "Comments", prompt = "Join the conversa
     fetch(`/api/comments?page=${encodeURIComponent(page)}&token=1`, { cache: "no-store" }).then(r => r.ok ? r.json() : null)
       .then((b: { comments?: C[]; token?: string } | null) => { setList(b?.comments ?? []); token.current = b?.token ?? ""; }).catch(() => setList([]));
   }, [page]);
+  // Shown at once with the author's own ▲ (score 1); the server's copy replaces it, or it goes if the comment is held.
   async function post(body: string, parentId: string | null) {
     setErr(""); setNote("");
+    const temp: C = { id: `temp-${Date.now()}`, parentId, alias: nick.trim() || "Player", body, at: new Date().toISOString(), score: 1, mine: 1 };
+    setList(l => [temp, ...(l ?? [])]); setOpen(false); setReply(null);
     try {
       const r = await fetch("/api/comments", { method: "POST", headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ page, parentId, alias: nick.trim() || "Player", body, question: !parentId && /\?\s*$/.test(body), formToken: token.current, website: "" }) });
+        body: JSON.stringify({ page, parentId, alias: temp.alias, body, formToken: token.current, website: "" }) });
       const b = await r.json() as { status?: string; comment?: C; error?: string };
       if (!r.ok) throw new Error(b.error || "Could not post that. Try again?");
-      if (b.comment) setList(l => [b.comment!, ...(l ?? [])]); else setNote(HELD);
-      setOpen(false); setReply(null); return true;
-    } catch (e) { setErr(e instanceof Error ? e.message : "Could not post that. Try again?"); return false; }
+      setList(l => b.comment ? (l ?? []).map(x => x.id === temp.id ? b.comment! : x) : (l ?? []).filter(x => x.id !== temp.id));
+      if (!b.comment) setNote(HELD);
+      return true;
+    } catch (e) { setList(l => (l ?? []).filter(x => x.id !== temp.id)); setErr(e instanceof Error ? e.message : "Could not post that. Try again?"); return false; }
   }
   async function vote(c: C, v: 1 | -1) {
+    if (c.id.startsWith("temp-")) return; // still posting
     const value = c.mine === v ? 0 : v, delta = value - c.mine;
     setList(l => l!.map(x => x.id === c.id ? { ...x, mine: value, score: x.score + delta } : x));
     const r = await fetch("/api/comments", { method: "PATCH", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ commentId: c.id, value }) }).catch(() => null);
@@ -65,7 +70,7 @@ export function Comments({ page, title = "Comments", prompt = "Join the conversa
     {err && <span className="th-err" role="alert">{err}</span>}
     <div style={{ display: "flex", flexDirection: "column" }}>
       {tops.map(c => <div key={c.id} className="th-cm">
-        <div className="th-cm-head"><strong>{c.alias}</strong>{c.question && <span className="th-pill q">Question</span>}<span>{`· ${ago(c.at)}`}</span></div>
+        <div className="th-cm-head"><strong>{c.alias}</strong><span>{`· ${ago(c.at)}`}</span></div>
         <p>{c.body}</p>
         <div className="th-cm-act"><Votes c={c}/><button type="button" className="reply" onClick={() => setReply(reply === c.id ? null : c.id)}>{reply === c.id ? "Cancel" : "Reply"}</button></div>
         {reply === c.id && <div style={{ marginLeft: 14 }}><Box nick={nick} setNick={setNick} nicknames={nicknames} placeholder={`Reply to ${c.alias}`} cta="Reply" onPost={t => post(t, c.id)} onCancel={() => setReply(null)}/></div>}
