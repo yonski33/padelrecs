@@ -140,11 +140,11 @@ export function Reviews({ id, cards, nicknames }: { id: string; cards: RvCard[];
       <div className="th-rv-bar">
         <div className="th-rv-chips" role="group" aria-label="Show verdict">{VF.map(([k, l]) => { const n = k ? inTab.filter(c => c.verdict === k).length : inTab.length;
           return <button key={l} type="button" className="th-chipf" aria-pressed={vf === k} onClick={() => { setVf(k); setShown(PAGE); }}>{l}{n > 0 && <span>{n}</span>}</button>; })}</div>
-        <div className="th-seg th-qm-seg" role="group" aria-label="Sort"><span className="vh">Sort</span>
+        <div className="th-seg" role="group" aria-label="Sort"><span className="lbl">Sort</span>
           {SORTS.map(([k, l]) => <button key={k} type="button" aria-pressed={sort === k} onClick={() => setSort(k)}>{l}</button>)}</div>
       </div>
     </>}
-    <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
+    <div className="th-rv-list">
       {list.slice(0, shown).map(c => <ReviewCard key={c.id} c={c} tools={c.kind === "player" ? <LiveReviewTools id={c.id.slice(2)} text={c.text} alias={c.alias ?? ""} onChange={x => setChanged(m => ({ ...m, [c.id]: { ...m[c.id], ...x } }))}/> : null}/>)}
       {cards.length === 0 && <p className="th-empty">No reviews yet. Played it? Be the first.</p>}
       {cards.length > 0 && list.length === 0 && <p className="th-empty">No reviews match. <button type="button" onClick={() => { setTab("all"); setVf(null); }}>Show all</button></p>}
@@ -153,18 +153,20 @@ export function Reviews({ id, cards, nicknames }: { id: string; cards: RvCard[];
   </section>;
 }
 
+// Soft source labels (owner mock 2026-11-19c): the subreddit, "YouTube summary", "Blog summary", each in the mock's colour.
+const SRC_PILL: Record<Exclude<RvCard["kind"], "player">, [string, string]> = { reddit: ["", "rd"], youtube: ["YouTube summary", "yt"], blog: ["Blog summary", "bl"] };
 function ReviewCard({ c, tools }: { c: RvCard; tools?: ReactNode }) {
-  const src = c.kind === "player" ? null : SOURCE[c.kind];
+  const src = c.kind === "player" ? null : SRC_PILL[c.kind];
+  const link = (body: ReactNode) => c.url ? <a href={c.url} target="_blank" rel="noopener nofollow">{body}</a> : body;
   return <article className="th-rv big">
-    <div className="th-rv-top">
-      <div className="th-rv-who">
-        {src && <span className={`th-tag ${src[1]}`}>{src[0]}</span>}
-        {c.kind === "player" ? <strong>{c.who}</strong> : c.url ? <a href={c.url} target="_blank" rel="noopener nofollow" style={{ fontWeight: 700, color: "var(--ink)" }}>{`${c.who} ↗`}</a> : <strong>{c.who}</strong>}
-        {c.kind !== "player" && !c.quote && <span>· summarised</span>}
-        {c.meta && <span>{`· ${c.meta}`}</span>}
-        {c.verdict && <span className={`th-pill ${VERDICT[c.verdict][1]}`} style={{ fontSize: 12.5 }}>{VERDICT[c.verdict][0]}</span>}
-      </div>
-      <span className="th-rv-when">{c.when}</span>
+    <div className="th-rv-who">
+      {c.kind === "player" ? <strong>{c.who}</strong>
+        : c.kind === "reddit" ? <span className="th-src rd">{link(`${c.who} ↗`)}</span>
+        : <><span className={`th-src ${src![1]}`}>{src![0]}</span>{link(<strong>{c.url ? `${c.who} ↗` : c.who}</strong>)}</>}
+      {c.kind !== "player" && !c.quote && <span>· summarised</span>}
+      {c.meta && <span>{c.meta}</span>}
+      {c.verdict && <span className={`th-vpill ${VERDICT[c.verdict][1]}`}>{VERDICT[c.verdict][0]}</span>}
+      {c.when && <span className="th-rv-when">{`· ${c.when}`}</span>}
     </div>
     <div className={`th-rv-grid${c.video ? " yt" : ""}`}>
       {c.video && <a className="th-yt" href={c.url!} target="_blank" rel="noopener nofollow" aria-label={`Watch ${c.who} on YouTube`} style={{ backgroundImage: `url(https://i.ytimg.com/vi/${c.video}/mqdefault.jpg)` }}/>}
