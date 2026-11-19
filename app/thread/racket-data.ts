@@ -12,7 +12,8 @@ import { pageContent, evidenceLine, marked } from "../../lib/racket-page";
 import { summary } from "../../lib/product-summary";
 import { similarProducts, tagProfiles } from "../../lib/similar";
 import { modelFamily } from "../../lib/compare-pairs";
-import { score } from "../../db/data";
+import { score, database } from "../../db/data";
+import { memberSet } from "../../lib/thread/member-marks";
 import { shortLine } from "../../lib/short-lines";
 import { listLine } from "../../lib/list-lines";
 import { styleOf } from "../../lib/fit-verdict";
@@ -21,7 +22,8 @@ import { tagTone } from "../../lib/tags";
 import { ago, type ThreadRow } from "./ui";
 
 export type RvCard = { /** A player review's typed name ("" when none), for the owner's Rename. */ alias?: string; id: string; kind: "player" | "youtube" | "blog" | "reddit"; who: string; meta: string | null; verdict: "positive" | "mixed" | "negative" | null;
-  when: string; at: string; text: string; quote: boolean; url: string | null; video: string | null; helpful: number };
+  when: string; at: string; text: string; quote: boolean; url: string | null; video: string | null; helpful: number;
+  /** A player review by a signed-in member (optional accounts, drizzle/0028): a small mark by the name. */ member?: true };
 const unmd = (t: string) => t.replace(/\*\*([^*]+)\*\*/g, "$1").replace(/\*\*|__/g, "").replace(/==/g, "");
 const verdictOf = (n: number) => n >= 4 ? "positive" as const : n === 3 ? "mixed" as const : "negative" as const;
 const vid = (url: string) => { try { const u = new URL(url); return u.searchParams.get("v") ?? (u.hostname === "youtu.be" ? u.pathname.slice(1) : null); } catch { return null; } };
@@ -98,5 +100,8 @@ export async function racketData(slug: string) {
     .sort((a, b) => Number(b.name.toLowerCase().includes(` ${word} `)) - Number(a.name.toLowerCase().includes(` ${word} `)) || (b.score ?? -1) - (a.score ?? -1)).slice(0, 4);
   const tagTones = Object.fromEntries([...sum.tagCounts.keys()].map(t => [t, tagTone(t)]));
   const latest = [...reviews.map(x => x.createdAt), ...external.map(x => x.sourceDate || x.createdAt)].sort().pop() ?? null;
+  // Member marks (optional accounts): none without a database (CI) or before the migration.
+  const own = cards.filter(c => c.kind === "player").map(c => c.id.slice(2));
+  if (own.length && process.env.DATABASE_URL) { const m = await memberSet(await database(), "review", own); for (const c of cards) if (c.kind === "player" && m.has(c.id.slice(2))) c.member = true; }
   return { r, row, brand, cards, lead, bullets, traits, style, sim, line, tagTones, latest, facts, judged: (row?.pos ?? 0) + (row?.mix ?? 0) + (row?.neg ?? 0) };
 }

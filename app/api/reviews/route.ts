@@ -12,6 +12,9 @@ import { issueFormToken, checkFormToken, tokenRejects, reviewEditToken, checkRev
 import { spamScore, normalizeEmail } from "../../../lib/review-spam";
 import { clientIp, createLimiter } from "../../../lib/rate-limit";
 import { makeNickname } from "../../../lib/nickname";
+import { threadSite } from "../../../lib/thread/look";
+import { postingAs, afterPost, RESERVED, BLOCKED, type Poster } from "../../../lib/thread/account-post";
+import { device } from "../thread-device";
 const rating=z.coerce.number().int().min(1).max(5);
 const optionalRating=z.preprocess(v=>v===""||v===null?undefined:v,rating.optional());
 const input=z.object({
@@ -69,6 +72,12 @@ export async function POST(request:Request){
  const spam=spamScore(parsed.data);if(spam.spam)return rejected(`content: ${spam.reasons.join(", ")}`,parsed.data);
  try {
   const db=await database(),value=parsed.data;
+  // PadelRecs optional accounts (lib/thread/account-post.ts): a signed-in member posts under their reserved name; a guest
+  // can't use one (told plainly, so a person can pick another name). Other sites: always a guest.
+  const poster:Poster=threadSite(niche.id)?await postingAs(db,value.alias):{kind:"guest"};
+  if(poster.kind==="reserved")return Response.json({error:RESERVED,reserved:true},{status:409,headers:noStore});
+  if(poster.kind==="blocked")return Response.json({error:BLOCKED},{status:403,headers:noStore});
+  if(poster.kind==="member")value.alias=poster.account.name;
   if(value.email){
    // Gmail ignores dots and +tags, so compare normalised inboxes rather than the typed address.
    const since=new Date(Date.now()-24*60*60_000).toISOString(),inbox=normalizeEmail(value.email);
@@ -80,6 +89,7 @@ export async function POST(request:Request){
    const [racket]=await db.select({id:rackets.id}).from(rackets).where(eq(rackets.id,value.racketId));
    if(!racket)return Response.json({error:`Choose a listed ${niche.words.one} or select New ${niche.words.one}.`},{status:400});
    await db.insert(reviews).values({...review,racketId:racket.id,variant:await reviewVariant(db,niche,racket.id,value.variant)});
+   if(threadSite(niche.id))await afterPost(db,"review",review.id,poster,await device(false));
   } else {
    await db.transaction(async tx=>{
     const racketId=await ensureRacket(tx,value,review.createdAt);

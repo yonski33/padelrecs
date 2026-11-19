@@ -5,7 +5,7 @@ import { th } from "../../lib/thread/look";
 import { GUIDE_UI } from "../../lib/thread/copy";
 import { amazonLinksOn } from "../../lib/amazon-offer";
 
-export const FOOTER_LINKS = [{ label: "About", href: "/about" }, { label: "How the score works", href: "/how-we-make-these" }, { label: "Affiliate disclosure", href: "/affiliate-disclosure" }, { label: "Contact", href: "/contact" }];
+export const FOOTER_LINKS = [{ label: "About", href: "/about" }, { label: "How the score works", href: "/how-we-make-these" }, { label: "Affiliate disclosure", href: "/affiliate-disclosure" }, { label: "Contact", href: "/contact" }, { label: "Privacy", href: "/privacy" }];
 
 export function Shell({ active = null, children }: { active?: Section; children: ReactNode }) {
   return <div className="th">

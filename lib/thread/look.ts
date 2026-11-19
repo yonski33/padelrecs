@@ -47,6 +47,7 @@ export function threadPath(pathname: string, catalog = "/rackets"): string | nul
   if (p === "/how-we-make-these") return "/thread/score";
   if (p === "/affiliate-disclosure") return "/thread/affiliate";
   if (p === "/contact") return "/thread/contact";
+  if (p === "/privacy") return "/thread/privacy";
   if (p === "/brands") return "/thread/brands";
   const brand = /^\/brands\/([a-z0-9-]+)$/.exec(p);
   if (brand) return `/thread/brands/${brand[1]}`;

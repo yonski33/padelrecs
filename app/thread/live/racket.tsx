@@ -12,6 +12,8 @@ import { sendVote, loadProfile, VERDICTS, type Verdict } from "../../quick-vote"
 import { nameProblem, NAME_MAX } from "../../../lib/thread/display-name";
 import { savedName, saveName, grow } from "./name";
 import { useFormToken } from "../../form-token-client";
+import { useAccount, signInHref } from "./use-account";
+import { MemberMark } from "./member-mark";
 import type { RvCard } from "../racket-data";
 
 const FIT_HEAD = { good: "Yes, a strong fit.", maybe: "Maybe. Demo it first.", no: "Probably not this one.", thin: "Not enough reports to say yet." } as const;
@@ -88,6 +90,9 @@ export function Reviews({ id, cards, nicknames }: { id: string; cards: RvCard[];
   const formToken = useFormToken();
   // No generated names (owner 2026-11-19): an optional name, the one this browser typed last time if any.
   useEffect(() => { setNick(savedName()); }, []);
+  // Optional accounts: a signed-in member posts under their reserved name (the server uses it whatever the box says).
+  const me = useAccount();
+  useEffect(() => { if (me) setNick(me.name); }, [me]);
   // The owner's on-page changes (review-admin.tsx): edited text and removed cards, until the page refreshes.
   const [changed, setChanged] = useState<Record<string, { text?: string; alias?: string; gone?: true }>>({});
   const live = useMemo(() => cards.filter(c => !changed[c.id]?.gone).map(c => { const x = changed[c.id]; return x ? { ...c, ...(x.text ? { text: x.text } : {}), ...(x.alias ? { who: x.alias, alias: x.alias, meta: null } : {}) } : c; }), [cards, changed]);
@@ -130,13 +135,14 @@ export function Reviews({ id, cards, nicknames }: { id: string; cards: RvCard[];
     </div>
     {done && <p className="th-ok" role="status">{done === "words" ? "Thanks for sharing! Your review will appear here once it's approved." : "Thanks! Your vote has been added."}</p>}
     {open && <div className="th-compose soft">
-      <div className="th-as"><input value={nick} onChange={e => { setNick(e.target.value); setError(""); }} maxLength={NAME_MAX} placeholder="Name or nickname" aria-label="Name or nickname" required/></div>
+      {me ? <div className="th-as th-as-me">Posting as <b>{me.name}</b><MemberMark/></div>
+        : <div className="th-as"><input value={nick} onChange={e => { setNick(e.target.value); setError(""); }} maxLength={NAME_MAX} placeholder="Name or nickname" aria-label="Name or nickname" required/></div>}
       <div className="th-picks"><span className="lbl" style={{ fontSize: 13.5, color: "var(--ink2)", minWidth: 0 }}>Played it?</span>
         {VERDICTS.map(v => <button key={v.key} type="button" className={`th-vpick ${VERDICT[v.key][1]}`} aria-pressed={verdict === v.key} onClick={() => { setVerdict(v.key); setError(""); }}><span className={`th-sdot ${VERDICT[v.key][1]}`}/>{VERDICT[v.key][0]}</button>)}
       </div>
       <textarea className="th-ta th-ta-grow" rows={3} autoFocus value={text} onChange={e => { setText(e.target.value); setError(""); grow(e.currentTarget, 240); }} maxLength={2000} placeholder="Write your review" aria-label="Your review"/>
       {error && <span className="th-err">{error}</span>}
-      <div className="th-compose-foot"><span className="th-grow"/><span>No account needed</span>
+      <div className="th-compose-foot"><span className="th-grow"/>{me ? null : <a className="th-signin" href={signInHref("#reviews")}>Sign in to keep your name</a>}
         <button type="button" className="cancel" onClick={() => { setOpen(false); setError(""); }}>Cancel</button>
         <button type="button" className="th-post" disabled={!verdict || busy || (!!text.trim() && !!nameProblem(nick))} onClick={post}>{busy ? "Posting…" : "Post"}</button></div>
       {!busy && postWhy(verdict, text, nick) && <span className="th-why" style={{ alignSelf: "flex-end" }}>{postWhy(verdict, text, nick)}</span>}
@@ -169,7 +175,7 @@ function ReviewCard({ c, tools }: { c: RvCard; tools?: ReactNode }) {
   const link = (body: ReactNode) => c.url ? <a href={c.url} target="_blank" rel="noopener nofollow">{body}</a> : body;
   return <article className="th-rv big">
     <div className="th-rv-who">
-      {c.kind === "player" ? <strong>{c.who}</strong>
+      {c.kind === "player" ? <><strong>{c.who}</strong>{c.member && <MemberMark/>}</>
         : c.kind === "reddit" ? <span className="th-src rd">{link(`${c.who} ↗`)}</span>
         : <><span className={`th-src ${src![1]}`}>{src![0]}</span>{link(<strong>{c.url ? `${c.who} ↗` : c.who}</strong>)}</>}
       {c.kind !== "player" && !c.quote && <span>· summarised</span>}
