@@ -2,7 +2,7 @@ import { test } from "node:test";
 import assert from "node:assert/strict";
 import { listComments, addComment } from "../db/comments";
 
-// Comment level and side (owner 2026-11-19, drizzle/0028): until the migration runs, comments list and post as before.
+// Comment level and side (owner 2026-11-19, drizzle/0029): until the migration runs, comments list and post as before.
 const missing = Object.assign(new Error('column "player_level" does not exist'), { code: "42703" });
 /** A stand-in db: every query chain resolves to `rows`, except one that names the new columns while they don't exist. */
 function fakeDb(hasColumns: boolean, rows: Record<string, unknown>[]) {

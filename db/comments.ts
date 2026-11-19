@@ -20,7 +20,7 @@ export function commentStatus(body: string, alias: string) {
   return s.spam ? "rejected" as const : s.score > 0 ? "pending" as const : "approved" as const;
 }
 
-// Level and side (drizzle/0028) are read and written only when the columns exist, so comments keep working in the gap between
+// Level and side (drizzle/0029) are read and written only when the columns exist, so comments keep working in the gap between
 // this code going live and the migration running: a missing column (Postgres 42703) falls back to the columns 0025 made.
 const BASE = { id: comments.id, page: comments.page, parentId: comments.parentId, alias: comments.alias, body: comments.body, isQuestion: comments.isQuestion,
   status: comments.status, spamScore: comments.spamScore, voter: comments.voter, network: comments.network, createdAt: comments.createdAt };

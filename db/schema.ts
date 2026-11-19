@@ -73,7 +73,7 @@ export const traitVotes = catalogSchema.table("trait_votes", {
 /** Comments on racket, ranking and guide pages ("racket:<id>", "ranking:<slug>", "guide:<key>"), one level of replies, moderated like reviews. */
 export const comments = catalogSchema.table("comments", {
  id: text("id").primaryKey(), page: text("page").notNull(), parentId: text("parent_id"), alias: text("alias").notNull(), body: text("body").notNull(),
- /** The commenter's level and side when they picked them (owner 2026-11-19, drizzle/0028): the review form's values. */ playerLevel: text("player_level"), playingSide: text("playing_side"),
+ /** The commenter's level and side when they picked them (owner 2026-11-19, drizzle/0029): the review form's values. */ playerLevel: text("player_level"), playingSide: text("playing_side"),
  isQuestion: boolean("is_question").notNull().default(false), status: text("status", { enum: ["pending", "approved", "rejected"] }).notNull().default("pending"),
  spamScore: integer("spam_score").notNull().default(0), voter: text("voter").notNull(), network: text("network").notNull(), createdAt: text("created_at").notNull()
 }, t => [index("comments_page_idx").on(t.page, t.status, t.createdAt), index("comments_queue_idx").on(t.status, t.createdAt), index("comments_network_idx").on(t.network, t.createdAt)]).enableRLS();
