@@ -15,6 +15,8 @@ import { makeNickname } from "../../../lib/nickname";
 import { threadSite } from "../../../lib/thread/look";
 import { postingAs, afterPost, RESERVED, BLOCKED, type Poster } from "../../../lib/thread/account-post";
 import { device } from "../thread-device";
+import { isTrusted } from "../../../db/trust";
+import { revalidatePath } from "next/cache";
 const rating=z.coerce.number().int().min(1).max(5);
 const optionalRating=z.preprocess(v=>v===""||v===null?undefined:v,rating.optional());
 const input=z.object({
@@ -27,11 +29,11 @@ const input=z.object({
 }).and(racketSelection);
 const noStore={"Cache-Control":"no-store"};
 type Valid=z.infer<typeof input>;
-const reviewRow=(value:Valid,status:"pending"|"rejected",variant:string|null=null)=>({id:crypto.randomUUID(),rating:value.rating,powerRating:value.powerRating,controlRating:value.controlRating,maneuverabilityRating:value.maneuverabilityRating,comfortRating:value.comfortRating,forgivenessRating:value.forgivenessRating,playerLevel:value.playerLevel,playingSide:value.playingSide,playingStyle:value.playingStyle,timeWithRacket:value.timeWithRacket,reviewText:value.reviewText,tags:value.tags,email:value.email||null,alias:value.alias||makeNickname(niche.form.quickVote?.nicknames),variant,status,createdAt:new Date().toISOString()});
+const reviewRow=(value:Valid,status:"pending"|"rejected"|"approved",variant:string|null=null)=>({id:crypto.randomUUID(),rating:value.rating,powerRating:value.powerRating,controlRating:value.controlRating,maneuverabilityRating:value.maneuverabilityRating,comfortRating:value.comfortRating,forgivenessRating:value.forgivenessRating,playerLevel:value.playerLevel,playingSide:value.playingSide,playingStyle:value.playingStyle,timeWithRacket:value.timeWithRacket,reviewText:value.reviewText,tags:value.tags,email:value.email||null,alias:value.alias||makeNickname(niche.form.quickVote?.nicknames),variant,status,createdAt:new Date().toISOString()});
 // Spam is answered exactly like a saved review, so a bot learns nothing from the response; only the server log says why.
 // Every accepted answer carries an id and edit token (the one-tap card adds details to it). Dropped and rejected posts get
 // one too, so the answer looks the same; their details just never land, since only pending reviews take them.
-const accepted=(id:string=crypto.randomUUID())=>Response.json({status:"pending",id,edit:reviewEditToken(id)},{status:201,headers:noStore});
+const accepted=(id:string=crypto.randomUUID(),status:"pending"|"approved"="pending")=>Response.json({status,id,edit:reviewEditToken(id)},{status:201,headers:noStore});
 function dropped(reason:string){console.warn(`Review dropped (${reason})`);return accepted();}
 // A flagged submission that is still a valid review of a listed product is kept as "rejected", so the owner sees it in the
 // admin area and can approve a false positive. New products are never created for it, and a failed save is only logged.
@@ -86,7 +88,10 @@ export async function POST(request:Request){
    const recent=await db.select({email:reviews.email}).from(reviews).where(and(isNotNull(reviews.email),gte(reviews.createdAt,since)));
    if(recent.filter(r=>r.email&&normalizeEmail(r.email)===inbox).length>=EMAIL_DAILY_LIMIT)return rejected("email-rate-limit",value);
   }
-  const review=reviewRow(value,"pending");
+  // Trusted members (db/trust.ts): once the owner has approved one of their posts, a review that passes the spam check with
+  // nothing flagged (no link, enough words, a readable name) goes live at once. Anything flagged waits as pending, as now.
+  const live=poster.kind==="member"&&value.racketMode==="existing"&&spam.score===0&&await isTrusted(db,poster.account).catch(()=>false);
+  const review=reviewRow(value,live?"approved":"pending");
   if(value.racketMode==="existing") {
    const [racket]=await db.select({id:rackets.id}).from(rackets).where(eq(rackets.id,value.racketId));
    if(!racket)return Response.json({error:`Choose a listed ${niche.words.one} or select New ${niche.words.one}.`},{status:400});
@@ -98,8 +103,10 @@ export async function POST(request:Request){
     await tx.insert(reviews).values({...review,racketId});
    });
   }
-  // New reviews reach the owner in the daily digest (lib/review-digest.ts), not one email each.
-  return accepted(review.id);
+  // New reviews reach the owner in the daily digest (lib/review-digest.ts), not one email each. A live one shows on the
+  // cached pages on their next view.
+  if(live){try{revalidatePath("/","layout");}catch{/* outside a request */}}
+  return accepted(review.id,live?"approved":"pending");
  }catch(error){console.error("Review save failed",error);return Response.json({error:"Could not save the review. Please try again."},{status:500});}
 }
 // The one-tap card's optional details, added one tap at a time to the review it just posted. Only the fields below, only

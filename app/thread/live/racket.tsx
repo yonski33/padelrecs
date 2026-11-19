@@ -98,7 +98,7 @@ export function Reviews({ id, cards, nicknames, words = PADEL_REVIEW_WORDS, chip
   const [version, setVersion] = useState<string | null>(null);
   const [tab, setTab] = useState<(typeof TABS)[number][0]>("all"), [sort, setSort] = useState<Sort>("new"), [vf, setVf] = useState<"positive" | "mixed" | "negative" | null>(null), [shown, setShown] = useState(PAGE);
   const [open, setOpen] = useState(false), [verdict, setVerdict] = useState<Verdict | null>(null), [text, setText] = useState(""), [nick, setNick] = useState("");
-  const [busy, setBusy] = useState(false), [error, setError] = useState(""), [done, setDone] = useState<"words" | "vote" | null>(null);
+  const [busy, setBusy] = useState(false), [error, setError] = useState(""), [done, setDone] = useState<"words" | "live" | "vote" | null>(null);
   const formToken = useFormToken();
   // No generated names (owner 2026-11-19): an optional name, the one this browser typed last time if any.
   useEffect(() => { setNick(savedName()); }, []);
@@ -125,7 +125,7 @@ export function Reviews({ id, cards, nicknames, words = PADEL_REVIEW_WORDS, chip
     if (words && words.length < MIN_WORDS) { setError(`A little more, please: ${MIN_WORDS} characters at least, or clear the box to post just your vote.`); return; }
     setBusy(true); setError("");
     try {
-      const profile = loadProfile();
+      const profile = loadProfile(); let live = false;
       await sendVote(id, RATING[verdict], profile);
       if (words) {
         const token = await formToken();
@@ -134,10 +134,11 @@ export function Reviews({ id, cards, nicknames, words = PADEL_REVIEW_WORDS, chip
         const r = await fetch("/api/reviews", { method: "POST", headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ racketMode: "existing", racketId: id, rating: RATING[verdict], reviewText: words, tags: [], website: "", formToken: token, alias: nick.trim() || undefined, ...known }) });
         saveName(nick);
-        const b = await r.json() as { error?: string };
+        const b = await r.json() as { error?: string; status?: string };
         if (!r.ok) throw new Error(b.error || "Your vote counted, but the review didn't post. Try again?");
+        live = b.status === "approved"; // a trusted member's review goes live at once
       }
-      setDone(words ? "words" : "vote"); setOpen(false);
+      setDone(words ? (live ? "live" : "words") : "vote"); setOpen(false);
     } catch (e) { setError(e instanceof Error ? e.message : "Could not post that. Try again?"); }
     finally { setBusy(false); }
   }
@@ -146,7 +147,7 @@ export function Reviews({ id, cards, nicknames, words = PADEL_REVIEW_WORDS, chip
       <h2 className="th-h2">{words.title}</h2>
       {!open && !done && <button type="button" className="th-btn round lime" onClick={() => setOpen(true)}>+ Add your review</button>}
     </div>
-    {done && <p className="th-ok" role="status">{done === "words" ? "Thanks for sharing! Your review will appear here once it's approved." : "Thanks! Your vote has been added."}</p>}
+    {done && <p className="th-ok" role="status">{done === "words" ? "Thanks for sharing! Your review will appear here once it's approved." : done === "live" ? "Thanks for sharing! Your review is live and shows here after a refresh." : "Thanks! Your vote has been added."}</p>}
     {open && <div className="th-compose soft">
       {me ? <div className="th-as th-as-me">Posting as <b>{me.name}</b><MemberMark/></div>
         : <div className="th-as"><input value={nick} onChange={e => { setNick(e.target.value); setError(""); }} maxLength={NAME_MAX} placeholder="Name or nickname" aria-label="Name or nickname" required/></div>}

@@ -199,6 +199,13 @@
       "breakpoints": true
     },
     {
+      "idx": 30,
+      "version": "7",
+      "when": 1794890100000,
+      "tag": "0030_account_trust",
+      "breakpoints": true
+    },
+    {
       "idx": 31,
       "version": "7",
       "when": 1794890300000,

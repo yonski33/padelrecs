@@ -96,8 +96,11 @@ export const traitAdminLog = catalogSchema.table("trait_admin_log", {
 // "Padel Pete" and "padelpete" the same name. Blocked accounts keep their name reserved but can't post.
 export const accounts = catalogSchema.table("accounts", {
  id: text("id").primaryKey(), name: text("name").notNull(), nameKey: text("name_key").notNull(), level: text("level"), side: text("side"),
- status: text("status", { enum: ["active", "blocked"] }).notNull().default("active"), createdAt: text("created_at").notNull(), updatedAt: text("updated_at").notNull()
-}, t => [uniqueIndex("accounts_name_key_unique").on(t.nameKey), check("account_status", sql`${t.status} in ('active','blocked')`)]).enableRLS();
+ status: text("status", { enum: ["active", "blocked"] }).notNull().default("active"), createdAt: text("created_at").notNull(), updatedAt: text("updated_at").notNull(),
+ // Trusted members (drizzle/0030): "earned" (the owner approved one of their posts), "on" / "off" (set by hand in the admin),
+ // null (not decided: trusted once one of their reviews is approved). lib/thread/trust.ts reads it.
+ trust: text("trust", { enum: ["earned", "on", "off"] })
+}, t => [uniqueIndex("accounts_name_key_unique").on(t.nameKey), check("account_status", sql`${t.status} in ('active','blocked')`), check("account_trust", sql`${t.trust} is null or ${t.trust} in ('earned','on','off')`)]).enableRLS();
 /** Member stories (drizzle/0031, PadelRecs Thread pilot, owner 2026-11-20): short posts by signed-in members ("10 things I
  *  learned in my first year"), with optional racket tags. They go through the review queue like comments; the owner's own
  *  go live at once. Comments under a story use the comments table with page "story:<slug>". */

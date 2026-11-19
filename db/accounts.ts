@@ -9,6 +9,7 @@ import { nameKey, accountNameProblem } from "../lib/thread/account-name";
 import { deleteComment } from "./comments";
 import { deleteRejectedReviews } from "./review-editing";
 import { profileValues } from "../lib/review-options";
+import { approvedReviews } from "./trust";
 
 type Database = ReturnType<typeof getDb>;
 type Reader = Pick<Database, "select">;
@@ -148,7 +149,7 @@ export async function deleteAuthUser(db: Pick<Database, "execute">, id: string) 
   catch (error) { console.error("Account sign-in delete failed (remove it in Supabase Auth)", id, error); return false; }
 }
 
-export type AdminAccount = Account & { email: string | null; reviews: number; comments: number };
+export type AdminAccount = Account & { email: string | null; reviews: number; comments: number; trusted: boolean };
 /** The admin's account list (/funtimes?tab=accounts), newest first; `q` matches the name. Emails come from Supabase Auth. */
 export async function adminAccounts(db: Database, q: string | null = null, limit = 100): Promise<{ rows: AdminAccount[]; total: number }> {
   const w = (q ?? "").trim(), esc = w.replace(/[%_\\]/g, m => `\\${m}`);
@@ -163,5 +164,7 @@ export async function adminAccounts(db: Database, q: string | null = null, limit
     emails = new Map((r.rows as { id: string; email: string | null }[]).map(x => [x.id, x.email ?? ""]));
   } catch { /* no auth schema (tests) or no access: emails stay hidden */ }
   const n = (id: string, k: PostKind) => Number(posts.find(p => p.id === id && p.kind === k)?.n ?? 0);
-  return { rows: rows.map(r => ({ ...r, email: emails.get(r.id) || null, reviews: n(r.id, "review"), comments: n(r.id, "comment") })), total: Number(t.n) };
+  const approved = await approvedReviews(db, ids);
+  const trusted = (r: Account) => r.status === "active" && r.trust !== "off" && (r.trust === "on" || r.trust === "earned" || approved.has(r.id));
+  return { rows: rows.map(r => ({ ...r, email: emails.get(r.id) || null, reviews: n(r.id, "review"), comments: n(r.id, "comment"), trusted: trusted(r) })), total: Number(t.n) };
 }

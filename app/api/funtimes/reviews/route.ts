@@ -1,3 +1,6 @@
+import { ownerSetStatus } from "../../../../db/trust";
+import { accountSite } from "../../../../lib/thread/sites";
+import { niche } from "../../../../lib/niche";
 import { z } from "zod";
 import { and, eq } from "drizzle-orm";
 import { database } from "../../../../db/data";
@@ -15,6 +18,8 @@ export async function POST(request:Request) {
  try {
   const db=await database();
   const updated=await db.update(reviews).set({status:value.status}).where(and(eq(reviews.id,value.id),eq(reviews.status,value.expectedStatus))).returning({id:reviews.id});
+  // Trusted members (db/trust.ts): approving a member's review earns trust; hiding a live one takes it away.
+  if(updated.length&&accountSite(niche.id))await ownerSetStatus(db,"review",value.id,value.expectedStatus,value.status).catch(e=>console.error("Trust update failed",e));
   if(json) return updated.length?adminJson(request,{result:value.status}):adminJson(request,{result:"stale",error:"This review changed since the page loaded. Reload to see its status."},409);
   return adminRedirect(request,`${query}&result=${updated.length?value.status:"stale"}`);
  }catch {return json?adminJson(request,{result:"failed",error:"Saving failed. Try again."},500):adminRedirect(request,`${query}&result=failed`);}
