@@ -7,6 +7,12 @@ import { NAME_MAX } from "../../../lib/thread/display-name";
 import { accountNameProblem } from "../../../lib/thread/account-name";
 import { forgetAccount } from "./use-account";
 import { YourPosts } from "./your-posts";
+import { niche } from "../../../lib/niche";
+
+/** The review form's own labels ("Level" and "Side" on padel, "Level" and "Mostly plays" on pickleball). */
+const LEVEL = niche.profile.playerLevel.label, SIDE = niche.profile.playingSide.label;
+/** The side in a sentence: "side" on padel, "play style" where the field is "Mostly plays". */
+const SIDE_WORD = SIDE === "Side" ? "side" : "play style";
 
 export type AccountView = { name: string; level: string | null; side: string | null; status: string } | null;
 type Initial = { signedIn: false } | { signedIn: true; email: string | null; account: AccountView };
@@ -86,8 +92,8 @@ function Claim({ email, next, levels, sides, onDone }: { email: string | null; n
       <p>Earlier posts from this device under the same name are added to your account.</p></div>
     <form className="th-form" onSubmit={claim} noValidate>
       <label>Name or nickname<input value={name} onChange={e => { setName(e.target.value); setError(""); }} maxLength={NAME_MAX} placeholder="Name or nickname" autoFocus/></label>
-      <Picks label="Level (optional)" options={levels} value={level} set={setLevel}/>
-      <Picks label="Side (optional)" options={sides} value={side} set={setSide}/>
+      <Picks label={`${LEVEL} (optional)`} options={levels} value={level} set={setLevel}/>
+      <Picks label={`${SIDE} (optional)`} options={sides} value={side} set={setSide}/>
       {error && <span className="th-err" role="alert">{error}</span>}
       <button type="submit" className="th-btn round lime" style={{ alignSelf: "flex-start" }} disabled={busy}>{busy ? "Saving…" : "Keep this name"}</button>
     </form>
@@ -120,9 +126,9 @@ function Profile({ email, account, next, levels, sides, linked = 0, onChange }: 
       {blocked && <p className="th-err" role="alert">This account is paused, so it can't post right now. If that looks wrong, write through <a href="/contact">the contact form</a>.</p>}
       <form className="th-form" onSubmit={save} noValidate>
         <label>Name or nickname<input value={name} onChange={e => { setName(e.target.value); setError(""); setSaved(false); }} maxLength={NAME_MAX} disabled={blocked}/></label>
-        <Picks label="Level" options={levels} value={level} set={v => { setLevel(v); setSaved(false); }}/>
-        <Picks label="Side" options={sides} value={side} set={v => { setSide(v); setSaved(false); }}/>
-        <span className="th-note">A new name, level or side also shows on your earlier reviews and comments.</span>
+        <Picks label={LEVEL} options={levels} value={level} set={v => { setLevel(v); setSaved(false); }}/>
+        <Picks label={SIDE} options={sides} value={side} set={v => { setSide(v); setSaved(false); }}/>
+        <span className="th-note">{`A new name, level or ${SIDE_WORD} also shows on your earlier reviews and comments.`}</span>
         {error && <span className="th-err" role="alert">{error}</span>}
         {saved && <span className="th-note" role="status">Saved. Your posts show the change too.</span>}
         <div style={{ display: "flex", gap: 12, alignItems: "center", flexWrap: "wrap" }}>

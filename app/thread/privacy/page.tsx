@@ -3,13 +3,14 @@
 import type { Metadata } from "next";
 import { Shell } from "../shell";
 import { th } from "../../../lib/thread/look";
+import { niche } from "../../../lib/niche";
 
-export const metadata: Metadata = { title: "Privacy", description: "What PadelRecs keeps when you post or sign in, and how to delete it.", alternates: { canonical: "/privacy" } };
+export const metadata: Metadata = { title: "Privacy", description: `What ${niche.site.name} keeps when you post or sign in, and how to delete it.`, alternates: { canonical: "/privacy" } };
 
 const SECTIONS: { title: string; body: string[] }[] = [
   { title: "Posting without an account", body: [
     "A review or comment keeps the name you typed, your words, and the level and side if you gave them.",
-    "A random device cookie, stored only as a keyed hash, lets one device have one vote per racket and links your earlier posts if you sign in later. A hash of your network and browser limits floods. Your IP address is never stored as it is.",
+    `A random device cookie, stored only as a keyed hash, lets one device have one vote per ${niche.words.one} and links your earlier posts if you sign in later. A hash of your network and browser limits floods. Your IP address is never stored as it is.`,
   ] },
   { title: "With an account", body: [
     "An account is optional. Signing in stores your email address with the sign-in service (Supabase Auth, hosted in Frankfurt, EU). It's used only to send sign-in links: never shown on the site, never sold, no newsletters.",
@@ -31,7 +32,7 @@ export default function ThreadPrivacy() {
     <main className="th-main">
       <div className="th-col">
         <article className="th-card th-hero"><h1 className="th-h1">Privacy</h1>
-          <div className="th-intro"><p>What PadelRecs keeps when you post or sign in, and how to remove it.</p></div></article>
+          <div className="th-intro"><p>{`What ${niche.site.name} keeps when you post or sign in, and how to remove it.`}</p></div></article>
         <section className="th-card th-steps">{SECTIONS.map((s, i) => <div key={s.title} className="th-step"><span className="th-num">{i + 1}</span>
           <div><h3>{s.title}</h3>{s.body.map(b => <p key={b}>{text(b)}</p>)}</div></div>)}</section>
       </div>
