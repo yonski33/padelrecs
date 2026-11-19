@@ -44,7 +44,7 @@ export default async function ThreadHome() {
           {fresh.map(f => { const r = rows.get(f.racketId)!;
             return <a key={f.id} className="th-web th-fresh" href={th(`${r.href}#reviews`)}>
               <span className="th-web-src"><b>{reviewerName({ alias: f.alias, level: f.playerLevel, side: f.playingSide })}</b><span>{`· ${ago(f.createdAt, now)}`}</span></span>
-              <b>{r.name}</b><span className="l">{`“${f.reviewText.trim()}”`}</span>
+              <b>{r.name}</b>{/* Plain text, no quote marks (owner 2026-11-19); a long one is cut to 3 lines with "…" by .th-fresh .l. */}<span className="l">{f.reviewText.trim()}</span>
             </a>; })}
         </section>;
   return <Shell>
