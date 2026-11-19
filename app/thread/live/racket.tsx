@@ -54,7 +54,7 @@ export function Poll({ id, reviews }: { id: string; reviews: Counts }) {
   const n = (k: Verdict) => reviews[k] + (votes?.[k] ?? 0);
   const total = n("positive") + n("mixed") + n("negative");
   return <div className="th-poll">
-    <span className="th-poll-head"><b>Played it? Tap to add yours</b><span>{mine ? "Thanks, your vote counts. Tap another to change it, or tap again to remove." : "One tap, no account"}</span></span>
+    <span className="th-poll-head"><b>Poll: would you buy it again?</b><span>{mine ? "Thanks, your vote counts. Tap another to change it, or tap again to remove." : "One tap, no account"}</span></span>
     {(["positive", "mixed", "negative"] as const).map(k => { const c = n(k), w = total ? Math.round(c / total * 100) : 0, cls = VERDICT[k][1];
       return <button key={k} type="button" className={`th-popt ${cls}${mine && mine !== k ? " dim" : ""}`} aria-pressed={mine === k} onClick={() => pick(k)}>
         <i style={{ width: total ? `${w}%` : 0 }}/>
@@ -68,9 +68,13 @@ export function Poll({ id, reviews }: { id: string; reviews: Counts }) {
 
 const TABS = [["all", "All"], ["player", "Players"], ["reddit", "Reddit"], ["youtube", "YouTube"], ["blog", "Blogs"]] as const;
 const PAGE = 8, MIN_WORDS = 20;
+type Sort = "new" | "pos" | "crit" | "helpful";
+/** The mock's sorts (Newest · Most positive · Critical first), plus the existing Most helpful. */
+const SORTS: [Sort, string][] = [["new", "Newest"], ["pos", "Most positive"], ["crit", "Critical first"], ["helpful", "Most helpful"]];
+const VF: ["positive" | "mixed" | "negative" | null, string][] = [[null, "All"], ["positive", "Loved it"], ["mixed", "Mixed"], ["negative", "Not for me"]];
 /** Player reviews: own reviews plus labelled Reddit, YouTube and blog summaries, source tabs, sort, composer, load more. */
 export function Reviews({ id, cards, nicknames }: { id: string; cards: RvCard[]; nicknames: string[] }) {
-  const [tab, setTab] = useState<(typeof TABS)[number][0]>("all"), [sort, setSort] = useState<"new" | "helpful">("new"), [shown, setShown] = useState(PAGE);
+  const [tab, setTab] = useState<(typeof TABS)[number][0]>("all"), [sort, setSort] = useState<Sort>("new"), [vf, setVf] = useState<"positive" | "mixed" | "negative" | null>(null), [shown, setShown] = useState(PAGE);
   const [open, setOpen] = useState(false), [verdict, setVerdict] = useState<Verdict | null>(null), [text, setText] = useState(""), [nick, setNick] = useState("");
   const [busy, setBusy] = useState(false), [error, setError] = useState(""), [done, setDone] = useState<"words" | "vote" | null>(null);
   const formToken = useFormToken();
@@ -80,8 +84,14 @@ export function Reviews({ id, cards, nicknames }: { id: string; cards: RvCard[];
   const [changed, setChanged] = useState<Record<string, { text?: string; alias?: string; gone?: true }>>({});
   const live = useMemo(() => cards.filter(c => !changed[c.id]?.gone).map(c => { const x = changed[c.id]; return x ? { ...c, ...(x.text ? { text: x.text } : {}), ...(x.alias ? { who: x.alias, alias: x.alias, meta: null } : {}) } : c; }), [cards, changed]);
   const counts = Object.fromEntries(TABS.map(([k]) => [k, k === "all" ? live.length : live.filter(c => c.kind === k).length]));
-  const list = useMemo(() => { const l = live.filter(c => tab === "all" || c.kind === tab);
-    return sort === "helpful" ? [...l].sort((a, b) => b.helpful - a.helpful || b.text.length - a.text.length) : l; }, [live, tab, sort]);
+  // Source tabs and verdict chips combine (owner mock 2026-11-19b); everything filters and sorts here in the browser.
+  const inTab = useMemo(() => live.filter(c => tab === "all" || c.kind === tab), [live, tab]);
+  const list = useMemo(() => {
+    const l = inTab.filter(c => !vf || c.verdict === vf), rank = (o: Record<string, number>) => (c: RvCard) => o[c.verdict ?? ""] ?? 3;
+    const by = sort === "pos" ? rank({ positive: 0, mixed: 1, negative: 2 }) : sort === "crit" ? rank({ negative: 0, mixed: 1, positive: 2 }) : null;
+    return [...l].sort((a, b) => sort === "helpful" ? b.helpful - a.helpful || b.text.length - a.text.length
+      : (by ? by(a) - by(b) : 0) || (b.at ?? "").localeCompare(a.at ?? ""));
+  }, [inTab, vf, sort]);
   async function post() {
     if (!verdict || busy) return;
     const words = text.trim();
@@ -127,12 +137,17 @@ export function Reviews({ id, cards, nicknames }: { id: string; cards: RvCard[];
     {cards.length > 0 && <>
       <div className="th-tabs" role="group" aria-label="Show reviews from">{TABS.filter(([k]) => k === "all" || counts[k] > 0).map(([k, l]) =>
         <button key={k} type="button" aria-pressed={tab === k} onClick={() => { setTab(k); setShown(PAGE); }}>{l}{counts[k] > 0 && <span>{counts[k]}</span>}</button>)}</div>
-      <div className="th-seg" role="group" aria-label="Sort"><span className="lbl">Sort</span>
-        {([["new", "Newest"], ["helpful", "Most helpful"]] as const).map(([k, l]) => <button key={k} type="button" aria-pressed={sort === k} onClick={() => setSort(k)}>{l}</button>)}</div>
+      <div className="th-rv-bar">
+        <div className="th-rv-chips" role="group" aria-label="Show verdict">{VF.map(([k, l]) => { const n = k ? inTab.filter(c => c.verdict === k).length : inTab.length;
+          return <button key={l} type="button" className="th-chipf" aria-pressed={vf === k} onClick={() => { setVf(k); setShown(PAGE); }}>{l}{n > 0 && <span>{n}</span>}</button>; })}</div>
+        <div className="th-seg th-qm-seg" role="group" aria-label="Sort"><span className="vh">Sort</span>
+          {SORTS.map(([k, l]) => <button key={k} type="button" aria-pressed={sort === k} onClick={() => setSort(k)}>{l}</button>)}</div>
+      </div>
     </>}
     <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
       {list.slice(0, shown).map(c => <ReviewCard key={c.id} c={c} tools={c.kind === "player" ? <LiveReviewTools id={c.id.slice(2)} text={c.text} alias={c.alias ?? ""} onChange={x => setChanged(m => ({ ...m, [c.id]: { ...m[c.id], ...x } }))}/> : null}/>)}
       {cards.length === 0 && <p className="th-empty">No reviews yet. Played it? Be the first.</p>}
+      {cards.length > 0 && list.length === 0 && <p className="th-empty">No reviews match. <button type="button" onClick={() => { setTab("all"); setVf(null); }}>Show all</button></p>}
     </div>
     {list.length > shown && <button type="button" className="th-btn th-center" style={{ margin: "4px 0 8px" }} onClick={() => setShown(s => s + 16)}>{`Load ${Math.min(16, list.length - shown)} more reviews`}</button>}
   </section>;

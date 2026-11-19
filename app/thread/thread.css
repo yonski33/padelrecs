@@ -538,3 +538,12 @@ body:has(.th) .th a.th-add-plus:hover { background: #3a3a3a; color: #fbfaf6; }
 .th-fit .th-pick { min-height: 30px; padding: 0 10px; border-width: 1.5px; font-size: 13px; }
 .th-fit .th-check { font-size: 13px; gap: 6px; min-height: 30px; margin-left: 2px; }
 .th-fit .th-check > span { width: 15px; height: 15px; border-width: 1.5px; border-radius: 4px; font-size: 11px; }
+
+/* Racket page per the owner's mock (2026-11-19b): review verdict chips and sort, the soft Comments card, section padding. */
+.th-rv-bar { display: flex; justify-content: space-between; align-items: center; gap: 8px 12px; flex-wrap: wrap; }
+.th-rv-chips { display: flex; gap: 6px; flex-wrap: wrap; }
+.th-rv-chips .th-chipf > span { color: var(--ink2); font-weight: 400; }
+.th-rv-bar .th-seg.th-qm-seg { max-width: 100%; overflow-x: auto; }
+#comments.th-card { border: 1px solid #e3e0d7; padding: 12px 16px 8px; }
+#play.th-sec, .th-sec.th-sec-sim { padding: 14px 16px; }
+#reviews.th-sec { padding: 12px 16px 6px; }
