@@ -24,6 +24,12 @@ export function groupNote(g: GroupView): string {
   const p = (n: number, w: string) => `${n} ${w}${n === 1 ? "" : "s"}`;
   return [g.reviews ? p(g.reviews, "review") : "", g.votes ? p(g.votes, "vote") : ""].filter(Boolean).join(", ");
 }
+/** The section's line on phones, short enough for one or two lines (owner 2026-11-19). */
+export function sectionNoteShort(sources: number, votes: number): string {
+  if (sources > 0 && votes > 0) return `From ${sources} reviews and ${votes} ${votes === 1 ? "vote" : "votes"}. Tap again to remove.`;
+  if (sources > 0) return `Based on ${sources} ${sources === 1 ? "review" : "reviews"}. Tap again to remove.`;
+  return "One vote per group. Tap again to remove.";
+}
 /** The section's line under the heading. */
 export function sectionNote(sources: number, votes: number): string {
   if (sources > 0 && votes === 0) return `Based on ${sources} ${sources === 1 ? "review" : "reviews"} until players vote. Pick what fits. Tap again to remove.`;

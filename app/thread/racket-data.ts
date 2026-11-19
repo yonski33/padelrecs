@@ -76,7 +76,7 @@ export async function racketData(slug: string) {
   const lead = pc?.tagline ?? shortLine(r) ?? listLine(r) ?? row?.line ?? null;
   const plainLine = (t: string) => marked(t).map(x => x.text).join("");
   const bullets: { tone: "pos" | "catch"; text: string }[] = pc
-    ? [...pc.yes.slice(0, 2).map(i => ({ tone: "pos" as const, text: [plainLine(i.t), evidenceLine(i)].filter(Boolean).join(". ") })), ...pc.no.slice(0, 1).map(i => ({ tone: "catch" as const, text: plainLine(i.t) }))]
+    ? [...pc.yes.slice(0, 2).map(i => ({ tone: "pos" as const, text: [plainLine(i.t).replace(/\.\s*$/, ""), evidenceLine(i)].filter(Boolean).join(". ") })), ...pc.no.slice(0, 1).map(i => ({ tone: "catch" as const, text: plainLine(i.t) }))]
     : [...sum.loved.filter(t => (sum.tagCounts.get(t) ?? 0) >= 5).slice(0, 2).map(t => ({ tone: "pos" as const, text: `${sum.tagCounts.get(t)} reviews say it is ${t}.` })),
       ...sum.complaints.filter(t => (sum.tagCounts.get(t) ?? 0) >= 5).slice(0, 1).map(t => ({ tone: "catch" as const, text: `${sum.tagCounts.get(t)} reviews mention ${t}.` }))];
 

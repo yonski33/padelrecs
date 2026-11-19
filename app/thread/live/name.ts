@@ -3,3 +3,6 @@
 const KEY = "th-name";
 export function savedName() { try { return localStorage.getItem(KEY) ?? ""; } catch { return ""; } }
 export function saveName(name: string) { try { const n = name.trim(); if (n) localStorage.setItem(KEY, n); else localStorage.removeItem(KEY); } catch { /* storage off */ } }
+
+/** A composer box grows with its text up to `max` px (owner 2026-11-19), then scrolls. */
+export function grow(el: HTMLTextAreaElement, max = 200) { el.style.height = "auto"; el.style.height = `${Math.min(el.scrollHeight + el.offsetHeight - el.clientHeight, max)}px`; }

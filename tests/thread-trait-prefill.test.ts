@@ -80,3 +80,10 @@ test("the committed file covers padel rackets and only known groups and options"
     for (const k of Object.keys(o)) assert.ok(def.options.some(([x]) => x === k), `${g}.${k}`);
   }
 });
+
+test("the phone section line is short; no group count line", async () => {
+  const { sectionNoteShort } = await import("../lib/thread/trait-view");
+  assert.equal(sectionNoteShort(71, 9), "From 71 reviews and 9 votes. Tap again to remove.");
+  assert.equal(sectionNoteShort(71, 1), "From 71 reviews and 1 vote. Tap again to remove.");
+  assert.equal(sectionNoteShort(3, 0), "Based on 3 reviews. Tap again to remove.");
+});

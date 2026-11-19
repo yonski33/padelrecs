@@ -18,20 +18,18 @@ export function Feed({ cards, step = 4 }: { cards: FeedCard[]; step?: number }) 
   const [v, setV] = useState<FeedCard["verdict"] | "all">("all"), [n, setN] = useState(step);
   const list = cards.filter(c => v === "all" || c.verdict === v);
   return <section className="th-card th-sec">
-    <div className="th-head-row" style={{ alignItems: "center" }}>
+    <div className="th-head-row" style={{ alignItems: "center", justifyContent: "space-between" }}>
       <h2 className="th-h2">Latest player reviews</h2>
       <div className="th-chipsf" role="group" aria-label="Filter reviews">
         {([["all", "All"], ["positive", "Loved it"], ["mixed", "Mixed"], ["negative", "Not for me"]] as const).map(([k, l]) =>
           <button key={k} type="button" className="th-chipf" aria-pressed={v === k} onClick={() => { setV(k); setN(step); }}>{l}</button>)}
       </div>
     </div>
-    <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
+    <div className="th-rv-list">
       {list.slice(0, n).map(c => <article key={c.id} className="th-rv">
         <a className="th-rv-racket" href={th(c.racket.href)}>{c.racket.pic && <img src={c.racket.pic} alt="" loading="lazy"/>}<b>{c.racket.name}</b></a>
-        <div className="th-rv-top">
-          <div className="th-rv-who"><SourceLabel kind={c.kind} who={c.who} url={c.url}/>{c.verdict && <span className={`th-pill ${VERDICT[c.verdict][1]}`} style={{ fontSize: 12.5 }}>{VERDICT[c.verdict][0]}</span>}</div>
-          <span className="th-rv-when">{c.when}</span>
-        </div>
+        <div className="th-rv-who"><SourceLabel kind={c.kind} who={c.who} url={c.url}/>{c.verdict && <span className={`th-pill ${VERDICT[c.verdict][1]}`} style={{ fontSize: 12.5 }}>{VERDICT[c.verdict][0]}</span>}
+          {c.when && <span className="th-rv-when">{`· ${c.when}`}</span>}</div>
         <p className="th-rv-text">{c.text}</p>
       </article>)}
       {list.length === 0 && <p className="th-empty">No reviews like that yet. <button type="button" onClick={() => setV("all")}>Show all</button></p>}
