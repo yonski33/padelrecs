@@ -2,10 +2,11 @@
 // "Latest player reviews" on the home: own reviews and labelled Reddit, YouTube and blog summaries, newest first, with the
 // Loved it / Mixed / Not for me chips. Filtering and "More reviews" stay in the browser.
 import { useState } from "react";
+import { Ago } from "./ago";
 import { th } from "../../../lib/thread/look";
 import { VERDICT, SOURCE } from "../ui";
 
-export type FeedCard = { id: string; kind: "player" | "youtube" | "blog" | "reddit"; who: string; text: string; when: string; verdict: "positive" | "mixed" | "negative" | null;
+export type FeedCard = { id: string; kind: "player" | "youtube" | "blog" | "reddit"; who: string; text: string; when: string; /** When it was posted, for the live age. */ at?: string | null; verdict: "positive" | "mixed" | "negative" | null;
   url: string | null; racket: { name: string; href: string; pic: string | null } };
 
 export function SourceLabel({ kind, who, url }: { kind: FeedCard["kind"]; who: string; url: string | null }) {
@@ -29,7 +30,7 @@ export function Feed({ cards, step = 4 }: { cards: FeedCard[]; step?: number }) 
       {list.slice(0, n).map(c => <article key={c.id} className="th-rv">
         <a className="th-rv-racket" href={th(c.racket.href)}>{c.racket.pic && <img src={c.racket.pic} alt="" loading="lazy"/>}<b>{c.racket.name}</b></a>
         <div className="th-rv-who"><SourceLabel kind={c.kind} who={c.who} url={c.url}/>{c.verdict && <span className={`th-pill ${VERDICT[c.verdict][1]}`} style={{ fontSize: 12.5 }}>{VERDICT[c.verdict][0]}</span>}
-          {c.when && <span className="th-rv-when">{`· ${c.when}`}</span>}</div>
+          {c.when && <span className="th-rv-when">{"· "}<Ago at={c.at ?? null} initial={c.when}/></span>}</div>
         <p className="th-rv-text">{c.text}</p>
       </article>)}
       {list.length === 0 && <p className="th-empty">No reviews like that yet. <button type="button" onClick={() => setV("all")}>Show all</button></p>}

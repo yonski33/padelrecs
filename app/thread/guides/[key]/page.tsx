@@ -9,7 +9,7 @@ import { homePayload } from "../../../home-payload";
 import { rankHome } from "../../../../lib/home-rank";
 import { RANK_SETUP, NEGATIVE_TAGS } from "../../../../lib/rank-seed";
 import { GUIDES, GUIDE_LINK_LABELS, GUIDE_UI } from "../../../../lib/thread/copy";
-import { GUIDE_KEYS, GUIDE_PATHS, type GuideKey } from "../../../../lib/thread/look";
+import { GUIDE_KEYS, GUIDE_PATHS, ELBOW_SLUG, guideListPicks, type GuideKey } from "../../../../lib/thread/look";
 import { Row, SideBox, LinkList, NarrowLinks, type ThreadRow } from "../../ui";
 import { th } from "../../../../lib/thread/look";
 import { Comments } from "../../live/comments";
@@ -35,14 +35,12 @@ export async function generateMetadata({ params }: P): Promise<Metadata> {
 /** Which rackets each guide lists: one per shape, or a ranking's top, or each side's (control for the right, power for the left). */
 async function picksFor(key: GuideKey): Promise<{ title?: string; rows: ThreadRow[] }[]> {
   const [{ all, rows }, lists] = await Promise.all([threadRows(), threadRankings()]);
-  const top = (slugPart: string, n: number) => (lists.find(l => l.slug.includes(slugPart))?.ids ?? []).slice(0, n).map(id => rows.get(id)!).filter(Boolean);
   const bestOfShape = (shape: string, n: number) => all.filter(r => r.score != null && r.n >= 10 && r.shape?.toLowerCase() === shape).sort((a, b) => b.score! - a.score!).slice(0, n);
   if (key === "racket") return [{ rows: ["round", "teardrop", "diamond"].flatMap(s => bestOfShape(s, 1)) }];
   if (key === "shape") return [{ rows: ["round", "teardrop", "diamond"].flatMap(s => bestOfShape(s, 2)) }];
   // The beginners' ranking may be hidden (under 10 qualify): the engine's beginner picks directly, as the home ranks them.
   if (key === "beginner") return [{ rows: !hasDb() ? [] : (await homePayload().then(p => rankHome(p.items, RANK_SETUP, NEGATIVE_TAGS, { style: "any", level: "beginner", arm: false }, false, 4).rows)).map(x => rows.get(x.id)).filter((x): x is ThreadRow => !!x) }];
-  if (key === "elbow") return [{ rows: top("for-sore-arms", 4) }];
-  return [{ title: "Right side", rows: top("best-control", 3) }, { title: "Left side", rows: top("best-power", 3) }];
+  return guideListPicks(key, slug => lists.find(l => l.slug === slug)?.ids, id => rows.get(id)) ?? [];
 }
 
 export default async function ThreadGuide({ params }: P) {
@@ -53,7 +51,7 @@ export default async function ThreadGuide({ params }: P) {
   const others = GUIDE_KEYS.filter(k => k !== g.key).map(k => ({ label: GUIDE_LINK_LABELS[k], href: GUIDE_PATHS[k] }));
   // "Full ranking" goes to a list that is on show (a Thread-only list can be hidden while it has under 10 rackets).
   const shown = new Set((await threadRankings()).map(l => l.slug));
-  const wanted = g.key === "beginner" ? "best-padel-rackets-for-beginners" : g.key === "elbow" ? "best-padel-rackets-for-tennis-elbow" : "best-padel-rackets";
+  const wanted = g.key === "beginner" ? "best-padel-rackets-for-beginners" : g.key === "elbow" ? ELBOW_SLUG : "best-padel-rackets";
   const fullRanking = `/rankings/${shown.has(wanted) ? wanted : "best-padel-rackets"}`;
   const lime = Number((g.extra as { highlightFirstSteps?: number } | undefined)?.highlightFirstSteps ?? g.steps.length);
   const picksTitle = g.picksTitle.replace(/\bvote for\b/, "rate highest");

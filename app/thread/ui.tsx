@@ -19,12 +19,13 @@ export const MIN_SHOWN = 1;
 export const POLL_PCT_AT = 10;
 export const VERDICT = { positive: ["Loved it", "pos"], mixed: ["Mixed", "mix"], negative: ["Not for me", "neg"] } as const;
 export const SOURCE = { youtube: ["YouTube", "yt"], blog: ["Blog", "blog"], reddit: ["Reddit", "reddit"] } as const;
-/** "2h ago", "5 days ago", "Nov 4" (the mocks' timestamps). */
+/** "12m ago", "2h ago", "5 days ago", "Nov 4" (the mocks' timestamps); under a minute, or a future time, "just now". On a
+ *  cached page, show it through live/ago.tsx Ago so it doesn't freeze at render time. */
 export function ago(iso: string | null | undefined, now = Date.now()) {
   if (!iso) return "";
   const t = Date.parse(iso); if (Number.isNaN(t)) return "";
-  const h = Math.floor((now - t) / 3_600_000);
-  if (h < 1) return "just now"; if (h < 24) return `${h}h ago`;
+  const min = Math.floor((now - t) / 60_000), h = Math.floor(min / 60);
+  if (min < 1) return "just now"; if (h < 1) return `${min}m ago`; if (h < 24) return `${h}h ago`;
   const d = Math.floor(h / 24); if (d === 1) return "1 day ago"; if (d < 7) return `${d} days ago`;
   return new Date(t).toLocaleDateString("en-US", { month: "short", day: "numeric", ...(new Date(t).getUTCFullYear() !== new Date(now).getUTCFullYear() ? { year: "numeric" } : {}), timeZone: "UTC" });
 }

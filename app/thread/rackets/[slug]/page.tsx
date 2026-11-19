@@ -113,8 +113,9 @@ export default async function ThreadRacket({ params }: P) {
         <section className="th-card th-sbox"><div className="th-sbox-head">About this racket</div><div className="th-sbox-body pad">
           <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
             {row?.score != null ? <span className={`th-badge ${tone(row.score)}`} style={{ fontSize: 28 }}>{row.score}</span> : <span className="th-badge new">New</span>}
+            {/* "player score" with the bar under it, no count (owner 2026-11-19). Without a score, the line says why it's "New". */}
             <span style={{ display: "flex", flexDirection: "column", gap: 3, fontSize: 12.5, color: "var(--body)" }}>
-              <span>{row?.score != null ? (judged > 0 ? `player score from ${judged}` : "player score") : judged > 0 ? `${plural(judged, "player opinion")} so far` : "No votes yet"}</span>
+              <span>{row?.score != null ? "player score" : judged > 0 ? `${plural(judged, "player opinion")} so far` : "No votes yet"}</span>
               {judged > 0 && <SBar lg pos={row!.pos} mix={row!.mix} neg={row!.neg}/>}
             </span>
           </div>

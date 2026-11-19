@@ -15,9 +15,19 @@ export const CLASSIC_LOOK = "classic";
 export const threadSite = (nicheId: string) => nicheId === "padel";
 /** Thread addresses that moved (a 301 from the old one, next.config.ts redirects): the sore-arms ranking is named for tennis
  *  elbow (owner 2026-11-19). */
+/** The tennis elbow ranking's slug: the ranking, the elbow guide's picks and links, and the home's Top picks all read it. */
+export const ELBOW_SLUG = "best-padel-rackets-for-tennis-elbow";
 export const THREAD_MOVED: { from: string; to: string }[] = [
-  { from: "/rankings/best-padel-rackets-for-sore-arms", to: "/rankings/best-padel-rackets-for-tennis-elbow" },
+  { from: "/rankings/best-padel-rackets-for-sore-arms", to: `/rankings/${ELBOW_SLUG}` },
 ];
+/** The rankings a guide lists, by guide, picked from the shown lists by exact slug (a partial match broke when the elbow
+ *  ranking moved, #524). "beginner" is picked by the caller (the engine's own beginner picks). Pure, for tests. */
+export function guideListPicks<R>(key: string, slugIds: (slug: string) => string[] | undefined, row: (id: string) => R | undefined): { title?: string; rows: R[] }[] | null {
+  const top = (slug: string, n: number) => (slugIds(slug) ?? []).slice(0, n).map(row).filter((x): x is R => !!x);
+  if (key === "elbow") return [{ rows: top(ELBOW_SLUG, 4) }];
+  if (key === "side") return [{ title: "Right side", rows: top("best-control-padel-rackets", 3) }, { title: "Left side", rows: top("best-power-padel-rackets", 3) }];
+  return null;
+}
 
 /** The five guides: key → live-style address (the racket guide keeps /guide, the others are new under /guides). */
 export const GUIDE_PATHS = {
