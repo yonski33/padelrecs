@@ -7,6 +7,8 @@ import { threadRows, threadBoards } from "../../data";
 import { threadRankings } from "../../rankings-data";
 import { RankingList, SideMatch } from "../../live/lists";
 import { Faq } from "../../live/faq";
+import { Comments } from "../../live/comments";
+import { niche } from "../../../../lib/niche";
 import { Boards } from "../../boards";
 import { SideBox, LinkList, NarrowLinks, plural } from "../../ui";
 import { th } from "../../../../lib/thread/look";
@@ -52,6 +54,7 @@ export default async function ThreadRanking({ params }: P) {
         <RankingList rows={list} title={l.label} meta={`${plural(list.length, "racket")} · ${plural(reviews, "review")}`}/>
         {boards.length > 0 && <Boards boards={boards}/>}
         <section className="th-card th-sec"><h2 className="th-h2">Questions players ask</h2><Faq items={faqs}/></section>
+        <Comments page={`ranking:${l.slug}`} prompt="Agree with this list? Join the conversation" nicknames={niche.form.quickVote?.nicknames ?? []}/>
         <div className="th-narrow" style={{ flexDirection: "column", gap: 12 }}><SideMatch names={nameMap}/></div>
         <NarrowLinks title="More rankings" links={more}/>
       </div>

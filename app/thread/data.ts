@@ -14,6 +14,9 @@ import { LEVELS } from "../../lib/quick-match";
 import { platformName } from "../../lib/source-label";
 import { listYear } from "../../lib/top-lists";
 import { plainSummary } from "../../lib/plain-summary";
+import { database } from "../../db/data";
+import { boardCounts } from "../../db/thread-votes";
+import { VOTE_BOARDS } from "../../lib/thread/traits";
 import type { ThreadRow } from "./ui";
 
 type Ctx = Awaited<ReturnType<typeof matchContext>>;
@@ -48,16 +51,26 @@ function rowOf(ctx: Ctx, r: Ctx["data"]["listed"][number], brand: string, n: num
  *  players mention in their reviews (lib/trait-score.ts, the same scores as the racket pages' bars), only rackets with a
  *  Player score, and only counts of 5 or more. */
 const BOARDS: [string, string][] = [["forgiveness", "Biggest sweet spot"], ["arm", "Most arm friendly"], ["control", "Most control"], ["power", "Most power"], ["speed", "Best at the net"], ["defence", "Best in defence"]];
-export type Board = { title: string; rows: { id: string; name: string; href: string; pic: string | null; n: number }[] };
+export type Board = { title: string; source: "votes" | "reviews"; rows: { id: string; name: string; href: string; pic: string | null; n: number }[] };
 export const threadBoards = cache(async (only?: Set<string>): Promise<Board[]> => {
+  if (!hasDb()) return [];
   const { ctx, rows } = await threadRows();
+  // From votes once 3 or more boards have 3 rackets with 5+ votes each (trait_votes, drizzle/0024); else from reviews.
+  try {
+    const db = await database();
+    const voted = (await Promise.all(VOTE_BOARDS.map(async b => ({ b, top: (await boardCounts(db, b.trait, b.choice))
+      .filter(x => x.n >= 5 && rows.has(x.racketId) && (!only || only.has(x.racketId))).slice(0, 3) }))))
+      .filter(x => x.top.length === 3).map(({ b, top }) => ({ title: b.title, source: "votes" as const,
+        rows: top.map(x => { const r = rows.get(x.racketId)!; return { id: r.id, name: shortName(r.name, r.brand), href: r.href, pic: r.pic, n: x.n }; }) }));
+    if (voted.length >= 3) return voted;
+  } catch (error) { console.error("[thread] vote boards failed", error); }
   return BOARDS.map(([key, title]) => {
     const scored = [...rows.values()].filter(r => r.score != null && (!only || only.has(r.id))).flatMap(r => {
       const t = ctx.traits(r.id).scores?.[key];
       const n = t?.people ? t.people.players.plus + t.people.reviewers.plus : t?.plus ?? 0;
       return t && t.basis === "players" && n >= 5 ? [{ r, s: t.score, n }] : [];
     }).sort((a, b) => b.n - a.n || b.s - a.s).slice(0, 3);
-    return { title, rows: scored.map(({ r, n }) => ({ id: r.id, name: shortName(r.name, r.brand), href: r.href, pic: r.pic, n })) };
+    return { title, source: "reviews" as const, rows: scored.map(({ r, n }) => ({ id: r.id, name: shortName(r.name, r.brand), href: r.href, pic: r.pic, n })) };
   }).filter(b => b.rows.length === 3);
 });
 const shortName = (name: string, brand: string) => (brand && name.startsWith(`${brand} `) ? name.slice(brand.length + 1) : name).replace(/\s+\(?20\d\d\)?$/, "");

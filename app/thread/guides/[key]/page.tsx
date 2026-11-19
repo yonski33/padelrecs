@@ -9,6 +9,8 @@ import { GUIDES, GUIDE_LINK_LABELS, GUIDE_UI } from "../../../../lib/thread/copy
 import { GUIDE_KEYS, GUIDE_PATHS, type GuideKey } from "../../../../lib/thread/look";
 import { Row, SideBox, LinkList, NarrowLinks, type ThreadRow } from "../../ui";
 import { th } from "../../../../lib/thread/look";
+import { Comments } from "../../live/comments";
+import { niche } from "../../../../lib/niche";
 
 export const revalidate = 21600;
 export const dynamicParams = false;
@@ -64,6 +66,7 @@ export default async function ThreadGuide({ params }: P) {
           <div className="th-head-row" style={{ marginBottom: 6 }}><h2 className="th-h2">{picksTitle}</h2><a className="th-link-b" href={th(fullRanking)}>{GUIDE_UI.fullRanking}</a></div>
           {picks.map((p, i) => p.rows.length > 0 && <div key={i}>{p.title && <h3 className="th-sub-h">{p.title}</h3>}{p.rows.map(r => <Row key={r.id} r={r}/>)}</div>)}
         </section>}
+        <Comments page={`guide:${g.key}`} title={g.commentsTitle} prompt={g.composerPrompt} placeholder={g.composerPlaceholder} nicknames={niche.form.quickVote?.nicknames ?? []}/>
         <NarrowLinks title={GUIDE_UI.moreGuides} links={others}/>
       </div>
       <aside className="th-side">
