@@ -4,7 +4,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { Shell } from "../../shell";
 import { racketData } from "../../racket-data";
-import { threadRows } from "../../data";
+import { threadRows, hasDb } from "../../data";
 import { Badge, SBar, Photo, cap, plural, tone, type ThreadRow } from "../../ui";
 import { FitCheck, Poll, Reviews } from "../../live/racket";
 import { TraitVotes } from "../../live/trait-votes";
@@ -25,7 +25,7 @@ import { catalogLabel, catalogPath, productHref } from "../../../../lib/niche";
 export const revalidate = 86400;
 // Every listed racket's page is built with the site, as the live racket pages are (app/v/racket); none without a database (CI).
 export async function generateStaticParams() {
-  if (!process.env.DATABASE_URL) return [];
+  if (!hasDb()) return [];
   return (await threadRows()).all.map(r => ({ slug: r.slug }));
 }
 
@@ -44,7 +44,7 @@ const Mini = ({ x, small }: { x: ThreadRow; small?: boolean }) => <a className={
 </a>;
 
 async function lovedToo(id: string, rows: Map<string, ThreadRow>) {
-  if (!process.env.DATABASE_URL) return [];
+  if (!hasDb()) return [];
   try { return (await alsoLoved(await database(), [id], [], "", 4)).flatMap(p => rows.get(p.racketId) ?? []); }
   catch (error) { console.error("[thread] also loved failed", error); return []; }
 }
