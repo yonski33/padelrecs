@@ -6,7 +6,9 @@ import { useEffect, useMemo, useState } from "react";
 import { PickChips } from "./pick-chips";
 import { usePicks, usePayload, complete, fitFor } from "./picks";
 import { tone, VERDICT, SOURCE, MIN_SHOWN } from "../ui";
-import { sendVote, loadProfile, nickname, VERDICTS, type Verdict } from "../../quick-vote";
+import { sendVote, loadProfile, VERDICTS, type Verdict } from "../../quick-vote";
+import { nameProblem, NAME_MAX } from "../../../lib/thread/display-name";
+import { savedName, saveName } from "./name";
 import { useFormToken } from "../../form-token-client";
 import type { RvCard } from "../racket-data";
 
@@ -71,13 +73,15 @@ export function Reviews({ id, cards, nicknames }: { id: string; cards: RvCard[];
   const [open, setOpen] = useState(false), [verdict, setVerdict] = useState<Verdict | null>(null), [text, setText] = useState(""), [nick, setNick] = useState("");
   const [busy, setBusy] = useState(false), [error, setError] = useState(""), [done, setDone] = useState<"words" | "vote" | null>(null);
   const formToken = useFormToken();
-  useEffect(() => { setNick(nickname(nicknames)); }, [nicknames]);
+  // No generated names (owner 2026-11-19): an optional name, the one this browser typed last time if any.
+  useEffect(() => { setNick(savedName()); }, []);
   const counts = Object.fromEntries(TABS.map(([k]) => [k, k === "all" ? cards.length : cards.filter(c => c.kind === k).length]));
   const list = useMemo(() => { const l = cards.filter(c => tab === "all" || c.kind === tab);
     return sort === "helpful" ? [...l].sort((a, b) => b.helpful - a.helpful || b.text.length - a.text.length) : l; }, [cards, tab, sort]);
   async function post() {
     if (!verdict || busy) return;
     const words = text.trim();
+    const problem = nameProblem(nick); if (problem) { setError(problem); return; }
     if (words && words.length < MIN_WORDS) { setError(`A little more, please: ${MIN_WORDS} characters at least, or clear the box to post just your verdict.`); return; }
     setBusy(true); setError("");
     try {
@@ -88,6 +92,7 @@ export function Reviews({ id, cards, nicknames }: { id: string; cards: RvCard[];
         const known = Object.fromEntries(Object.entries({ playerLevel: profile.level, playingSide: profile.side, playingStyle: profile.style }).filter(([, x]) => x));
         const r = await fetch("/api/reviews", { method: "POST", headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ racketMode: "existing", racketId: id, rating: RATING[verdict], reviewText: words, tags: [], website: "", formToken: token, alias: nick.trim() || undefined, ...known }) });
+        saveName(nick);
         const b = await r.json() as { error?: string };
         if (!r.ok) throw new Error(b.error || "Your vote counted, but the review didn't post. Try again?");
       }
@@ -102,8 +107,7 @@ export function Reviews({ id, cards, nicknames }: { id: string; cards: RvCard[];
     </div>
     {done && <p className="th-ok" role="status">{done === "words" ? "Thanks for sharing! Your review will appear here once it's approved." : "Thanks! Your vote has been added."}</p>}
     {open && <div className="th-compose">
-      <div className="th-as"><span>Posting as</span><input value={nick} onChange={e => setNick(e.target.value)} maxLength={50} aria-label="Your name"/>
-        <button type="button" onClick={() => { try { localStorage.removeItem("rv-nick"); } catch { /* storage off */ } setNick(nickname(nicknames)); }}>New name</button></div>
+      <div className="th-as"><input value={nick} onChange={e => setNick(e.target.value)} maxLength={NAME_MAX} placeholder="Name (optional)" aria-label="Name (optional)"/></div>
       <div className="th-picks"><span className="lbl" style={{ fontSize: 13.5, color: "var(--ink2)", minWidth: 0 }}>Played it?</span>
         {VERDICTS.map(v => <button key={v.key} type="button" className={`th-vpick ${VERDICT[v.key][1]}`} aria-pressed={verdict === v.key} onClick={() => { setVerdict(v.key); setError(""); }}><span className={`th-sdot ${VERDICT[v.key][1]}`}/>{VERDICT[v.key][0]}</button>)}
       </div>
