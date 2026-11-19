@@ -6,6 +6,8 @@ import { Row, type ThreadRow } from "../ui";
 import { th } from "../../../lib/thread/look";
 import { usePicks, usePayload, rankFor, pctsFor, rowFromCard, NO_PICKS, LEVEL_OPTS, STYLE_OPTS, type Picks, type Style } from "./picks";
 import { cap } from "../ui";
+import { niche } from "../../../lib/niche";
+const { one: ONE, many: MANY } = niche.words;
 
 // On the home a single pick is enough (owner 2026-11-19: "Any" is the default style), so a level alone re-ranks the list.
 const picked = (p: Picks) => !!(p.level || p.style || p.arm);
@@ -16,13 +18,13 @@ function useMatch() {
   return { picks, set, on, payload };
 }
 
-const STYLE_WORD: Record<Style, string> = { control: "control", balance: "all-round", power: "power" };
+const STYLE_WORD: Record<Style, string> = { control: "control", balance: "all-round", power: "power", spin: "spin" };
 /** "38 rackets for intermediate control players with a sore arm" (real counts at any size, owner 2026-11-19). */
 function resultLine(picks: Picks, n: number | null, all: number) {
-  if (!picked(picks)) return all > 0 ? `Showing all ${all} rackets` : "";
+  if (!picked(picks)) return all > 0 ? `Showing all ${all} ${MANY}` : "";
   const who = [picks.level, picks.style ? STYLE_WORD[picks.style] : null].filter(Boolean).join(" ");
   const forWho = `for ${who ? `${who} players` : "players"}${picks.arm ? " with a sore arm" : ""}`;
-  return n == null ? `Finding rackets ${forWho}…` : n > 0 ? `Showing ${n} ${n === 1 ? "racket" : "rackets"} ${forWho}` : `No rackets ${forWho} yet`;
+  return n == null ? `Finding ${MANY} ${forWho}…` : n > 0 ? `Showing ${n} ${n === 1 ? ONE : MANY} ${forWho}` : `No ${MANY} ${forWho} yet`;
 }
 
 /** "Find my match" as one sentence (owner 2026-11-19, classic's energy in Thread style): the quick match tag, I'm [level pills]

@@ -15,6 +15,7 @@ import { SideBox, LinkList, NarrowLinks, SOURCE, ago } from "./ui";
 import { th } from "../../lib/thread/look";
 import { newThisWeek, WEEK_SHORT } from "../../lib/new-this-week";
 import { reviewerName } from "../../lib/thread/display-name";
+import { niche } from "../../lib/niche";
 
 export const revalidate = 21600;
 // The live home's title, description, canonical and share card (app/home-metadata.ts).
@@ -51,9 +52,9 @@ export default async function ThreadHome() {
     <main className="th-main">
       <div className="th-col">
         <section className="th-card th-hero">
-          <div className="th-h1-row"><h1 className="th-h1">The padel racket community</h1>
+          <div className="th-h1-row"><h1 className="th-h1">{`The ${niche.id} ${niche.words.one} community`}</h1>
             {total > 0 && <span className="th-live"><i aria-hidden="true"/>{`${total.toLocaleString("en-US")} reviews${week > 0 ? ` · ${week.toLocaleString("en-US")} ${WEEK_SHORT}` : ""}`}</span>}</div>
-          <p className="th-lead">Real players talking rackets. Share your take, and see what everyone actually thinks.</p>
+          <p className="th-lead">{`Real players talking ${niche.words.many}. Share your take, and see what everyone actually thinks.`}</p>
           <MatchBox names={names} listed={listed}/>
         </section>
         <HomeList rows={top} reviewed={reviewed}/>
