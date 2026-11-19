@@ -8,6 +8,7 @@ import { threadRows } from "../../data";
 import { Badge, SBar, Photo, cap, plural, tone, MIN_SHOWN, type ThreadRow } from "../../ui";
 import { FitCheck, Poll, Reviews } from "../../live/racket";
 import { TraitVotes } from "../../live/trait-votes";
+import { traitSeed } from "../../../../lib/thread/trait-seed";
 import { Comments } from "../../live/comments";
 import { th } from "../../../../lib/thread/look";
 import { amazonButton } from "../../../../lib/amazon-offer";
@@ -93,7 +94,7 @@ export default async function ThreadRacket({ params }: P) {
           <Poll id={r.id} reviews={{ positive: row?.pos ?? 0, mixed: row?.mix ?? 0, negative: row?.neg ?? 0 }}/>
         </div></article>
 
-        <TraitVotes id={r.id}/>
+        <TraitVotes id={r.id} seed={traitSeed(niche.id, r.id)}/>
         {traits.length > 0 && <section className="th-card th-sec">
           <div className="th-head-row"><h2 className="th-h3">What reviews say</h2><span className="th-sub">From expert reviews and what players mention</span></div>
           <div className="th-vgrid">{traits.map(t => <div key={t.key} className="th-vbox slim">
