@@ -35,5 +35,9 @@ test("the grid shows the first six lists that qualify, in order; a waiting list 
   const many = ["a", "b", "c", "d"].map(id => r(id, 20, { ...full }));
   assert.deepEqual(topPicks(many).map(l => l.cat.key), ["sweet", "arm", "control", "power", "net", "intermediate"]);
   const noControl = ["a", "b", "c", "d"].map(id => r(id, 20, { ...full, control: 0 }));
-  assert.deepEqual(topPicks(noControl).map(l => l.cat.key), ["sweet", "arm", "power", "net", "intermediate", "beginner"]);
+  assert.deepEqual(topPicks(noControl).map(l => l.cat.key), ["sweet", "arm", "power", "net", "intermediate", "defence"]);
+  // Intermediate and defence short: low trampoline is next; with that short too, beginners.
+  const thin = (o: Record<string, number>) => ["a", "b", "c", "d"].map(id => r(id, 20, { ...full, intermediate: 0, defence: 0, ...o }));
+  assert.deepEqual(topPicks(thin({})).map(l => l.cat.key).at(-1), "trampoline");
+  assert.deepEqual(topPicks(thin({ trampoline: 0 })).map(l => l.cat.key).at(-1), "beginner");
 });

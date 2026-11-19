@@ -134,6 +134,10 @@ export const threadTopPicks = cache(async (): Promise<{ lists: PickList[]; total
     const seed = traitSeed("padel", r.id), raw = byId.get(r.id);
     if (!raw) return [];
     const counts = Object.fromEntries(PICK_CATS.map(c => {
+      if (c.score) { // players behind the review trait score, as the old live board counted them
+        const t = ctx.traits(r.id).scores?.[c.score as keyof NonNullable<ReturnType<typeof ctx.traits>["scores"]>];
+        return [c.key, t && t.basis === "players" ? (t.people ? t.people.players.plus + t.people.reviewers.plus : t.plus ?? 0) : 0];
+      }
       const reviews = (overrides.get(`${r.id}|${c.trait}`) ?? seed?.groups[c.trait])?.[c.choice] ?? 0;
       return [c.key, reviews + (votes.get(`${r.id}|${c.trait}|${c.choice}`) ?? 0)];
     }));

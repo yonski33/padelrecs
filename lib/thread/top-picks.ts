@@ -6,7 +6,9 @@
 //   - Current models only, one version per model.
 //   - No racket is #1 in more than 2 lists: it keeps its 2 strongest, and in the others the runner-up moves up.
 
-export type PickCat = { key: string; title: string; trait: string; choice: string; href: string };
+/** `trait`/`choice` is a "How does it play?" option; `score` instead counts the players behind a review trait score
+ *  (lib/trait-score.ts, the old "Best in defence" board's source), for lists without a vote group. */
+export type PickCat = { key: string; title: string; trait: string; choice: string; href: string; score?: string };
 /** The lists in order (owner 2026-11-19): the first six that qualify show, so Best for beginners and Softest feel step in
  *  on their own once enough players back them, or when one of the six falls short. Each has a quiet "See all ›" link. */
 export const PICK_CATS: PickCat[] = [
@@ -16,7 +18,10 @@ export const PICK_CATS: PickCat[] = [
   { key: "power", title: "Most power", trait: "plays_like", choice: "power", href: "/rankings/best-power-padel-rackets" },
   { key: "net", title: "Best at the net", trait: "maneuver", choice: "very", href: "/rankings/best-control-padel-rackets" },
   { key: "intermediate", title: "Best for intermediate", trait: "level", choice: "intermediate", href: "/rackets?level=Intermediate" },
-  // Waiting lists: they take a place as soon as they qualify and one of the six above doesn't.
+  // Waiting lists, in order (owner 2026-11-19): each takes a place as soon as it qualifies and one above doesn't. Most
+  // maneuverable is left out: it's the same data as Best at the net (Maneuverable Very).
+  { key: "defence", title: "Best in defence", trait: "", choice: "", score: "defence", href: "/rankings/best-padel-rackets" },
+  { key: "trampoline", title: "Low trampoline", trait: "trampoline", choice: "low", href: "/rankings/best-control-padel-rackets" },
   { key: "beginner", title: "Best for beginners", trait: "level", choice: "beginner", href: "/rackets?level=Beginner" },
   { key: "soft", title: "Softest feel", trait: "feel", choice: "soft", href: "/rackets?feel=Soft" },
 ];
