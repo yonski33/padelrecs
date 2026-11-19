@@ -49,9 +49,11 @@ test("comments: clean ones show at once, links and very short ones wait, spam is
   assert.match("racket:r1", PAGE_KEY); assert.match("guide:elbow", PAGE_KEY); assert.doesNotMatch("home:x", PAGE_KEY);
   const { engine, db } = await setup();
   try {
-    const page = "racket:r1", base = { page, voter: "dev-a", network: "net-1", question: false };
+    const page = "racket:r1", base = { page, voter: "dev-a", network: "net-1" };
     const a = await addComment(db, { ...base, parentId: null, alias: "Gali", body: "Torn between this and the Genius 18K for a sore elbow?" });
     assert.equal(a.status, "approved");
+    // The author's own ▲ comes with the post (owner 2026-11-19): it starts at 1 with the author's arrow up.
+    assert.equal(a.comment!.score, 1); assert.equal(a.comment!.mine, 1);
     const held = await addComment(db, { ...base, parentId: null, alias: "Gali", body: "My full review with photos is at www.example.com for anyone curious" });
     assert.equal(held.status, "pending");
     const reply = await addComment(db, { ...base, parentId: a.comment!.id, alias: "Marta", body: "Go CTRL, the sweet spot is huge." });
@@ -64,7 +66,12 @@ test("comments: clean ones show at once, links and very short ones wait, spam is
     const list = await listComments(db, page, "dev-c");
     assert.deepEqual(list.map(c => c.body).sort(), ["Go CTRL, the sweet spot is huge.", "Torn between this and the Genius 18K for a sore elbow?"]);
     const top = list.find(c => c.id === a.comment!.id)!;
-    assert.equal(top.score, 0); assert.equal(top.mine, -1);
+    assert.equal(top.score, 1); assert.equal(top.mine, -1); // author +1, dev-b +1, dev-c -1
+    const replyRow = list.find(c => c.id === reply.comment!.id)!;
+    assert.equal(replyRow.score, 1); assert.equal((await listComments(db, page, "dev-a")).find(c => c.id === reply.comment!.id)!.mine, 1);
+    // Tapping your own ▲ takes it back.
+    assert.equal(await voteComment(db, a.comment!.id, "dev-a", 0), true);
+    assert.equal((await listComments(db, page, "dev-a")).find(c => c.id === a.comment!.id)!.score, 0);
     assert.equal(await voteComment(db, held.status === "pending" ? "00000000-0000-4000-8000-000000000000" : "", "dev-b", 1), false);
   } finally { await engine.close(); }
 });
@@ -72,7 +79,7 @@ test("comments: clean ones show at once, links and very short ones wait, spam is
 test("comment moderation: a held comment shows once approved, hides once rejected; totals per status", async () => {
   const { engine, db } = await setup();
   try {
-    const page = "guide:elbow", base = { page, voter: "dev-a", network: "net-1", question: false, parentId: null };
+    const page = "guide:elbow", base = { page, voter: "dev-a", network: "net-1", parentId: null };
     const held = await addComment(db, { ...base, alias: "Iker", body: "Photos of my elbow brace setup at www.example.com if useful" });
     assert.equal(held.status, "pending");
     assert.deepEqual((await listComments(db, page, null)).length, 0);
