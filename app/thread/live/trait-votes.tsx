@@ -27,7 +27,7 @@ export function TraitVotes({ id }: { id: string }) {
     } catch (e) { setCounts(was.counts); setMine(was.mine); setErr(e instanceof Error ? e.message : "Could not save your vote."); }
   }
   return <section id="play" className="th-card th-sec" style={{ scrollMarginTop: 70 }}>
-    <div className="th-head-row"><h2 className="th-h3">How does it play?</h2><span className="th-sub">Pick what fits. One vote per group, change it any time.</span></div>
+    <div className="th-head-row"><h2 className="th-h3">How does it play?</h2><span className="th-sub">Pick what fits. One vote per group. Tap again to remove.</span></div>
     <div className="th-vgrid">{TRAIT_GROUPS.map((g, gi) => {
       const n = (k: string) => counts[g.key]?.[k] ?? 0, total = g.options.reduce((s, [k]) => s + n(k), 0), shown = total >= MIN_SHOWN, max = Math.max(1, ...g.options.map(([k]) => n(k)));
       const opts = shown ? [...g.options].sort((a, b) => n(b[0]) - n(a[0])) : g.options;

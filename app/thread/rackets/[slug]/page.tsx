@@ -94,13 +94,7 @@ export default async function ThreadRacket({ params }: P) {
         </div></article>
 
         <TraitVotes id={r.id}/>
-        {traits.length > 0 && <section className="th-card th-sec">
-          <div className="th-head-row"><h2 className="th-h3">What reviews say</h2><span className="th-sub">From expert reviews and what players mention</span></div>
-          <div className="th-vgrid">{traits.map(t => <div key={t.key} className="th-vbox slim">
-            <span className="th-vbox-head">{t.label}<span className="th-dots" aria-label={`${t.dots} out of 5`}>{[1, 2, 3, 4, 5].map(i => <u key={i} className={i <= t.dots ? "on" : ""}/>)}</span></span>
-            {t.line ? <span className="th-note" style={{ fontSize: 13 }}>{t.line}</span> : t.n >= MIN_SHOWN ? <span className="th-note" style={{ fontSize: 13 }}>{`${t.n} players mention it`}</span> : null}
-          </div>)}</div>
-        </section>}
+        {/* "What reviews say" (trait dots) is off the page (owner 2026-11-19, not in the mockup); racketData still builds `traits`. */}
         {sim.length > 0 && <section className="th-card th-sec"><h2 className="th-h3">Similar rackets</h2><div className="th-sim">{sim.map(x => <Mini key={x.id} x={x}/>)}</div></section>}
         {specsBox}
         {buy && <div className="th-card th-only-m" style={{ padding: "10px 16px" }}>{buy}</div>}

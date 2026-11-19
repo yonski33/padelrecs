@@ -39,15 +39,19 @@ export function Poll({ id, reviews }: { id: string; reviews: Counts }) {
   }).catch(() => {});
   // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => { load(); }, [id]);
+  // Tap your pick again to take the vote back (one tap: a double tap zooms on phones).
   const pick = async (v: Verdict) => {
-    setErr(""); const was = mine; setMine(v);
-    try { await sendVote(id, RATING[v], loadProfile()); await load(); }
-    catch { setMine(was); setErr("Could not save your vote. Try again?"); }
+    setErr(""); const was = mine, off = mine === v; setMine(off ? null : v);
+    try {
+      if (off) { const r = await fetch(`/api/racket-votes?racket=${encodeURIComponent(id)}`, { method: "DELETE" }); if (!r.ok) throw new Error(); }
+      else await sendVote(id, RATING[v], loadProfile());
+      await load();
+    } catch { setMine(was); setErr(off ? "Could not remove your vote. Try again?" : "Could not save your vote. Try again?"); }
   };
   const n = (k: Verdict) => reviews[k] + (votes?.[k] ?? 0);
   const total = n("positive") + n("mixed") + n("negative");
   return <div className="th-poll">
-    <span className="th-poll-head"><b>Played it? Tap to add yours</b><span>{mine ? "Thanks, your vote counts. Tap another to change it." : "One tap, no account"}</span></span>
+    <span className="th-poll-head"><b>Played it? Tap to add yours</b><span>{mine ? "Thanks, your vote counts. Tap another to change it, or tap again to remove." : "One tap, no account"}</span></span>
     {(["positive", "mixed", "negative"] as const).map(k => { const c = n(k), w = total ? Math.round(c / total * 100) : 0, cls = VERDICT[k][1];
       return <button key={k} type="button" className={`th-popt ${cls}${mine && mine !== k ? " dim" : ""}`} aria-pressed={mine === k} onClick={() => pick(k)}>
         <i style={{ width: total >= MIN_SHOWN ? `${w}%` : 0 }}/>
