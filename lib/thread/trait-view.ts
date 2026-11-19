@@ -37,8 +37,8 @@ export function sectionNote(sources: number, votes: number): string {
   return "Pick what fits. One vote per group. Tap again to remove.";
 }
 /** The counts typed into the form: one whole number 0–100000 per option ("c_<option>"), blanks as 0. */
-export function countsFrom(trait: string, form: Record<string, unknown>): Record<string, number> | null {
-  const g = TRAIT_GROUPS.find(x => x.key === trait)!, out: Record<string, number> = {};
+export function countsFrom(trait: string, form: Record<string, unknown>, groups = TRAIT_GROUPS): Record<string, number> | null {
+  const g = groups.find(x => x.key === trait)!, out: Record<string, number> = {};
   for (const [k] of g.options) {
     const raw = String(form[`c_${k}`] ?? "").trim(), n = raw === "" ? 0 : Number(raw);
     if (!Number.isInteger(n) || n < 0 || n > 100000) return null;

@@ -39,7 +39,7 @@ export function FitCheck({ id }: { id: string }) {
 type Counts = { positive: number; mixed: number; negative: number };
 const RATING: Record<Verdict, number> = { positive: 5, mixed: 3, negative: 1 };
 /** "Played it? Tap to add yours": the review verdicts plus the quick votes, one vote per device, changeable. */
-export function Poll({ id, reviews }: { id: string; reviews: Counts }) {
+export function Poll({ id, reviews, question = "Poll: would you buy it again?" }: { id: string; reviews: Counts; question?: string }) {
   const [votes, setVotes] = useState<Counts | null>(null), [mine, setMine] = useState<Verdict | null>(null), [err, setErr] = useState("");
   // Counts from /api/thread-poll: a reviewer who also quick-voted counts once (their review is in `reviews`).
   const load = () => fetch(`/api/thread-poll?racket=${encodeURIComponent(id)}`, { cache: "no-store" }).then(r => r.ok ? r.json() : null).then((b: { votes?: Counts; mine?: number | null } | null) => {
@@ -59,7 +59,7 @@ export function Poll({ id, reviews }: { id: string; reviews: Counts }) {
   const n = (k: Verdict) => reviews[k] + (votes?.[k] ?? 0);
   const total = n("positive") + n("mixed") + n("negative");
   return <div className="th-poll">
-    <span className="th-poll-head"><b>Poll: would you buy it again?</b><span>{mine ? "Thanks, your vote counts. Tap another to change it, or tap again to remove." : "One tap, no account"}</span></span>
+    <span className="th-poll-head"><b>{question}</b><span>{mine ? "Thanks, your vote counts. Tap another to change it, or tap again to remove." : "One tap, no account"}</span></span>
     {(["positive", "mixed", "negative"] as const).map(k => { const c = n(k), w = total ? Math.round(c / total * 100) : 0, cls = VERDICT[k][1];
       return <button key={k} type="button" className={`th-popt ${cls}${mine && mine !== k ? " dim" : ""}`} aria-pressed={mine === k} onClick={() => pick(k)}>
         <i style={{ width: total ? `${w}%` : 0 }}/>
@@ -71,7 +71,7 @@ export function Poll({ id, reviews }: { id: string; reviews: Counts }) {
   </div>;
 }
 
-const TABS = [["all", "All"], ["player", "Players"], ["reddit", "Reddit"], ["youtube", "YouTube"], ["blog", "Blogs"]] as const;
+const TABS = [["all", "All"], ["player", "Players"], ["reddit", "Reddit"], ["youtube", "YouTube"], ["blog", "Blogs"], ["forum", "Forums"]] as const;
 const PAGE = 8, MIN_WORDS = 20;
 /** Why Post is off (owner 2026-11-19): a verdict is always needed; a name only with written text (a verdict alone is a vote). */
 const postWhy = (verdict: Verdict | null, text: string, nick: string) => { const noName = !!text.trim() && !!nameProblem(nick);
@@ -81,7 +81,12 @@ type Sort = "new" | "pos" | "crit" | "helpful";
 const SORTS: [Sort, string][] = [["new", "Newest"], ["pos", "Most positive"], ["crit", "Critical first"], ["helpful", "Most helpful"]];
 const VF: ["positive" | "mixed" | "negative" | null, string][] = [[null, "All"], ["positive", "Loved it"], ["mixed", "Mixed"], ["negative", "Not for me"]];
 /** Player reviews: own reviews plus labelled Reddit, YouTube and blog summaries, source tabs, sort, composer, load more. */
-export function Reviews({ id, cards, nicknames }: { id: string; cards: RvCard[]; nicknames: string[] }) {
+/** The section's words: padel's by default; StackRecs passes its own (users, "Used it?"). */
+export type ReviewWords = { title: string; tried: string; people: string; note: string };
+const PADEL_REVIEW_WORDS: ReviewWords = { title: "Player reviews", tried: "Played it?", people: "Players", note: "From players here. Plus Reddit, YouTube and blog reviews, summarised." };
+export function Reviews({ id, cards, nicknames, words = PADEL_REVIEW_WORDS, chips }: { id: string; cards: RvCard[]; nicknames: string[]; words?: ReviewWords;
+  /** Version chips (StackRecs): picking one shows only the cards about that version (RvCard.version). */ chips?: string[] }) {
+  const [version, setVersion] = useState<string | null>(null);
   const [tab, setTab] = useState<(typeof TABS)[number][0]>("all"), [sort, setSort] = useState<Sort>("new"), [vf, setVf] = useState<"positive" | "mixed" | "negative" | null>(null), [shown, setShown] = useState(PAGE);
   const [open, setOpen] = useState(false), [verdict, setVerdict] = useState<Verdict | null>(null), [text, setText] = useState(""), [nick, setNick] = useState("");
   const [busy, setBusy] = useState(false), [error, setError] = useState(""), [done, setDone] = useState<"words" | "vote" | null>(null);
@@ -93,7 +98,7 @@ export function Reviews({ id, cards, nicknames }: { id: string; cards: RvCard[];
   const live = useMemo(() => cards.filter(c => !changed[c.id]?.gone).map(c => { const x = changed[c.id]; return x ? { ...c, ...(x.text ? { text: x.text } : {}), ...(x.alias ? { who: x.alias, alias: x.alias, meta: null } : {}) } : c; }), [cards, changed]);
   const counts = Object.fromEntries(TABS.map(([k]) => [k, k === "all" ? live.length : live.filter(c => c.kind === k).length]));
   // Source tabs and verdict chips combine (owner mock 2026-11-19b); everything filters and sorts here in the browser.
-  const inTab = useMemo(() => live.filter(c => tab === "all" || c.kind === tab), [live, tab]);
+  const inTab = useMemo(() => live.filter(c => (tab === "all" || c.kind === tab) && (!version || c.version === version)), [live, tab, version]);
   const list = useMemo(() => {
     const l = inTab.filter(c => !vf || c.verdict === vf), rank = (o: Record<string, number>) => (c: RvCard) => o[c.verdict ?? ""] ?? 3;
     const by = sort === "pos" ? rank({ positive: 0, mixed: 1, negative: 2 }) : sort === "crit" ? rank({ negative: 0, mixed: 1, positive: 2 }) : null;
@@ -125,13 +130,13 @@ export function Reviews({ id, cards, nicknames }: { id: string; cards: RvCard[];
   }
   return <section id="reviews" className="th-card th-sec" style={{ paddingBottom: 6, scrollMarginTop: 70 }}>
     <div className="th-head-row" style={{ alignItems: "center" }}>
-      <h2 className="th-h2">Player reviews</h2>
+      <h2 className="th-h2">{words.title}</h2>
       {!open && !done && <button type="button" className="th-btn round lime" onClick={() => setOpen(true)}>+ Add your review</button>}
     </div>
     {done && <p className="th-ok" role="status">{done === "words" ? "Thanks for sharing! Your review will appear here once it's approved." : "Thanks! Your vote has been added."}</p>}
     {open && <div className="th-compose soft">
       <div className="th-as"><input value={nick} onChange={e => { setNick(e.target.value); setError(""); }} maxLength={NAME_MAX} placeholder="Name or nickname" aria-label="Name or nickname" required/></div>
-      <div className="th-picks"><span className="lbl" style={{ fontSize: 13.5, color: "var(--ink2)", minWidth: 0 }}>Played it?</span>
+      <div className="th-picks"><span className="lbl" style={{ fontSize: 13.5, color: "var(--ink2)", minWidth: 0 }}>{words.tried}</span>
         {VERDICTS.map(v => <button key={v.key} type="button" className={`th-vpick ${VERDICT[v.key][1]}`} aria-pressed={verdict === v.key} onClick={() => { setVerdict(v.key); setError(""); }}><span className={`th-sdot ${VERDICT[v.key][1]}`}/>{VERDICT[v.key][0]}</button>)}
       </div>
       <textarea className="th-ta th-ta-grow" rows={3} autoFocus value={text} onChange={e => { setText(e.target.value); setError(""); grow(e.currentTarget, 240); }} maxLength={2000} placeholder="Write your review" aria-label="Your review"/>
@@ -141,11 +146,13 @@ export function Reviews({ id, cards, nicknames }: { id: string; cards: RvCard[];
         <button type="button" className="th-post" disabled={!verdict || busy || (!!text.trim() && !!nameProblem(nick))} onClick={post}>{busy ? "Posting…" : "Post"}</button></div>
       {!busy && postWhy(verdict, text, nick) && <span className="th-why" style={{ alignSelf: "flex-end" }}>{postWhy(verdict, text, nick)}</span>}
     </div>}
-    <span className="th-note" style={{ marginTop: -4 }}>From players here. Plus Reddit, YouTube and blog reviews, summarised.</span>
+    <span className="th-note" style={{ marginTop: -4 }}>{words.note}</span>
     <PendingReviews racketId={id}/>
     {cards.length > 0 && <>
       <div className="th-tabs" role="group" aria-label="Show reviews from">{TABS.filter(([k]) => k === "all" || counts[k] > 0).map(([k, l]) =>
-        <button key={k} type="button" aria-pressed={tab === k} onClick={() => { setTab(k); setShown(PAGE); }}>{l}{counts[k] > 0 && <span>{counts[k]}</span>}</button>)}</div>
+        <button key={k} type="button" aria-pressed={tab === k} onClick={() => { setTab(k); setShown(PAGE); }}>{k === "player" ? words.people : l}{counts[k] > 0 && <span>{counts[k]}</span>}</button>)}</div>
+      {chips && chips.length > 1 && <div className="th-rv-chips" role="group" aria-label="Show version">{[null, ...chips].map(v =>
+        <button key={v ?? "all"} type="button" className="th-chipf" aria-pressed={version === v} onClick={() => { setVersion(v); setShown(PAGE); }}>{v ?? "All versions"}</button>)}</div>}
       <div className="th-rv-bar">
         <div className="th-rv-chips" role="group" aria-label="Show verdict">{VF.map(([k, l]) => { const n = k ? inTab.filter(c => c.verdict === k).length : inTab.length;
           return <button key={l} type="button" className="th-chipf" aria-pressed={vf === k} onClick={() => { setVf(k); setShown(PAGE); }}>{l}{n > 0 && <span>{n}</span>}</button>; })}</div>
@@ -155,15 +162,15 @@ export function Reviews({ id, cards, nicknames }: { id: string; cards: RvCard[];
     </>}
     <div className="th-rv-list">
       {list.slice(0, shown).map(c => <ReviewCard key={c.id} c={c} tools={c.kind === "player" ? <LiveReviewTools id={c.id.slice(2)} text={c.text} alias={c.alias ?? ""} onChange={x => setChanged(m => ({ ...m, [c.id]: { ...m[c.id], ...x } }))}/> : null}/>)}
-      {cards.length === 0 && <p className="th-empty">No reviews yet. Played it? Be the first.</p>}
-      {cards.length > 0 && list.length === 0 && <p className="th-empty">No reviews match. <button type="button" onClick={() => { setTab("all"); setVf(null); }}>Show all</button></p>}
+      {cards.length === 0 && <p className="th-empty">{`No reviews yet. ${words.tried} Be the first.`}</p>}
+      {cards.length > 0 && list.length === 0 && <p className="th-empty">No reviews match. <button type="button" onClick={() => { setTab("all"); setVf(null); setVersion(null); }}>Show all</button></p>}
     </div>
     {list.length > shown && <button type="button" className="th-btn th-center" style={{ margin: "4px 0 8px" }} onClick={() => setShown(s => s + 16)}>{`Load ${Math.min(16, list.length - shown)} more reviews`}</button>}
   </section>;
 }
 
 // Soft source labels (owner mock 2026-11-19c): the subreddit, "YouTube summary", "Blog summary", each in the mock's colour.
-const SRC_PILL: Record<Exclude<RvCard["kind"], "player">, [string, string]> = { reddit: ["", "rd"], youtube: ["YouTube summary", "yt"], blog: ["Blog summary", "bl"] };
+const SRC_PILL: Record<Exclude<RvCard["kind"], "player">, [string, string]> = { reddit: ["", "rd"], youtube: ["YouTube summary", "yt"], blog: ["Blog summary", "bl"], forum: ["Forum summary", "bl"] };
 function ReviewCard({ c, tools }: { c: RvCard; tools?: ReactNode }) {
   const src = c.kind === "player" ? null : SRC_PILL[c.kind];
   const link = (body: ReactNode) => c.url ? <a href={c.url} target="_blank" rel="noopener nofollow">{body}</a> : body;
@@ -174,6 +181,7 @@ function ReviewCard({ c, tools }: { c: RvCard; tools?: ReactNode }) {
         : <><span className={`th-src ${src![1]}`}>{src![0]}</span>{link(<strong>{c.url ? `${c.who} ↗` : c.who}</strong>)}</>}
       {c.kind !== "player" && !c.quote && <span>· summarised</span>}
       {c.meta && <span>{c.meta}</span>}
+      {c.version && <span className="th-pill">{c.version}</span>}
       {c.verdict && <span className={`th-vpill ${VERDICT[c.verdict][1]}`}>{VERDICT[c.verdict][0]}</span>}
       {c.when && <span className="th-rv-when">{`· ${c.when}`}</span>}
     </div>

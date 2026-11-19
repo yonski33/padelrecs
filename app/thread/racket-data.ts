@@ -20,8 +20,9 @@ import { TRAIT_LABEL } from "../../lib/trait-score";
 import { tagTone } from "../../lib/tags";
 import { ago, type ThreadRow } from "./ui";
 
-export type RvCard = { /** A player review's typed name ("" when none), for the owner's Rename. */ alias?: string; id: string; kind: "player" | "youtube" | "blog" | "reddit"; who: string; meta: string | null; verdict: "positive" | "mixed" | "negative" | null;
-  when: string; at: string; text: string; quote: boolean; url: string | null; video: string | null; helpful: number };
+export type RvCard = { /** A player review's typed name ("" when none), for the owner's Rename. */ alias?: string; id: string; kind: "player" | "youtube" | "blog" | "reddit" | "forum"; who: string; meta: string | null; verdict: "positive" | "mixed" | "negative" | null;
+  when: string; at: string; text: string; quote: boolean; url: string | null; video: string | null; helpful: number;
+  /** The version the review is about (StackRecs, the review's variant), shown as a chip. */ version?: string | null };
 const unmd = (t: string) => t.replace(/\*\*([^*]+)\*\*/g, "$1").replace(/\*\*|__/g, "").replace(/==/g, "");
 const verdictOf = (n: number) => n >= 4 ? "positive" as const : n === 3 ? "mixed" as const : "negative" as const;
 const vid = (url: string) => { try { const u = new URL(url); return u.searchParams.get("v") ?? (u.hostname === "youtu.be" ? u.pathname.slice(1) : null); } catch { return null; } };

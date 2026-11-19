@@ -1,11 +1,11 @@
-// Thread "How does it play?" votes (PadelRecs only, drizzle/0024): GET ?racket=<id> returns the counts and this device's
+// Thread "How does it play?" votes (PadelRecs, and StackRecs' Build and Grow groups; drizzle/0024): GET ?racket=<id> returns the counts and this device's
 // votes, plus the owner's overrides (admin Traits tab: review counts, frozen groups); POST {racketId, trait, choice|null} casts,
 // changes or clears one (not in a frozen group). No moderation (one tap, like the quick vote).
 import { z } from "zod";
 import { database } from "../../../db/data";
 import { traitCounts, myTraitVotes, castTraitVote } from "../../../db/thread-votes";
 import { traitOverridesFor } from "../../../db/trait-admin";
-import { validTraitVote } from "../../../lib/thread/traits";
+import { validTraitVote, traitGroupsFor } from "../../../lib/thread/traits";
 import { threadSite } from "../../../lib/thread/look";
 import { niche } from "../../../lib/niche";
 import { device, network, json, foreign } from "../thread-device";
@@ -27,7 +27,7 @@ export async function POST(request: Request) {
   if (off()) return json({ error: "Not here." }, 404);
   if (foreign(request)) return json({ error: "Vote from the site, please." }, 403);
   let parsed; try { parsed = input.safeParse(await request.json()); } catch { return json({ error: "Invalid vote." }, 400); }
-  if (!parsed.success || !validTraitVote(parsed.data.trait, parsed.data.choice)) return json({ error: "Invalid vote." }, 400);
+  if (!parsed.success || !validTraitVote(parsed.data.trait, parsed.data.choice, traitGroupsFor(niche.id))) return json({ error: "Invalid vote." }, 400);
   const { racketId, trait, choice } = parsed.data;
   try {
     const db = await database(), voter = (await device(true))!;

@@ -8,8 +8,10 @@ import { traitVotes } from "../../db/schema";
 import { traitCounts } from "../../db/thread-votes";
 import { traitOverridesFor, recentTraitVotes, traitAdminHistory, overriddenRackets, ALL_GROUPS } from "../../db/trait-admin";
 import { traitSeed } from "../../lib/thread/trait-seed";
-import { TRAIT_GROUPS } from "../../lib/thread/traits";
+import { traitGroupsFor } from "../../lib/thread/traits";
 import { niche, productHref } from "../../lib/niche";
+
+const TRAIT_GROUPS = traitGroupsFor(niche.id);
 
 type Racket = { id: string; slug: string; name: string; shape: string | null };
 const MESSAGES: Record<string, string> = {

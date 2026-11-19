@@ -11,8 +11,22 @@ export const THREAD_DEFAULT = true;
 export const THREAD_LOOK = "thread";
 /** The query value that shows the current live (pre-Thread) pages while Thread is the default. */
 export const CLASSIC_LOOK = "classic";
-/** Only PadelRecs previews it (the pilot before Tennis, Pickleball, SimRacing, DiscGolf and Skin). */
-export const threadSite = (nicheId: string) => nicheId === "padel";
+/** PadelRecs, and StackRecs (Build + Grow pilot, owner 2026-11-19), which is built on the Thread pages from the start. */
+export const threadSite = (nicheId: string) => nicheId === "padel" || nicheId === "stackrecs";
+
+/** StackRecs' Thread pages (app/thread/stack/…): the home, the tool catalogue and pages, the rankings and the score page.
+ *  Other addresses (add a review, contact, compare) keep the shared live pages. */
+export function stackPath(pathname: string, catalog = "/tools"): string | null {
+  const p = pathname.length > 1 ? pathname.replace(/\/+$/, "") : pathname;
+  if (p === "/") return "/thread/stack";
+  if (p === catalog) return "/thread/stack/tools";
+  if (p.startsWith(`${catalog}/`) && /^[a-z0-9-]+$/.test(p.slice(catalog.length + 1))) return `/thread/stack/tools/${p.slice(catalog.length + 1)}`;
+  if (p === "/rankings") return "/thread/stack/rankings";
+  const ranking = /^\/rankings\/([a-z0-9-]+)$/.exec(p);
+  if (ranking) return `/thread/stack/rankings/${ranking[1]}`;
+  if (p === "/how-we-make-these" || p === "/about") return "/thread/stack/score";
+  return null;
+}
 
 /** The five guides: key → live-style address (the racket guide keeps /guide, the others are new under /guides). */
 export const GUIDE_PATHS = {
@@ -28,7 +42,8 @@ export const guideKeyOf = (path: string): GuideKey | null => GUIDE_KEYS.find(k =
 
 /** The Thread page an address shows with ?look=thread, or null when the Thread look has no page for it (compare and
  *  add-review keep their live page). `catalog` is the niche's catalogue path ("/rackets" on padel). */
-export function threadPath(pathname: string, catalog = "/rackets"): string | null {
+export function threadPath(pathname: string, catalog = "/rackets", nicheId = "padel"): string | null {
+  if (nicheId === "stackrecs") return stackPath(pathname, catalog);
   const p = pathname.length > 1 ? pathname.replace(/\/+$/, "") : pathname;
   if (p === "/") return "/thread";
   if (p === catalog) return "/thread/rackets";

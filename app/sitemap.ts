@@ -71,7 +71,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 }
 
 async function threadExtras(base: string, updated: Date | undefined): Promise<MetadataRoute.Sitemap> {
-  if (!threadSite(niche.id) || !THREAD_DEFAULT) return [];
+  if (niche.id !== "padel" || !threadSite(niche.id) || !THREAD_DEFAULT) return [];
   const { threadRankings } = await import("./thread/rankings-data");
   const extra = (await threadRankings()).filter(l => !l.own);
   return [

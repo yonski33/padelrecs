@@ -42,5 +42,7 @@ export type Art = {
   ProductIcon: (props: { shape?: string | null; brand?: string | null; className?: string }) => JSX.Element;
   LogoIcon: (props: { className?: string }) => JSX.Element;
 };
-export const arts: Record<string, Art> = { padel, pickleball, skin, tennis, running, golf, gaming, discgolf, simracing, cycling, audio, monitor, camera, ultralight, badminton, fragrance, coffee, climbing, nails, kitchen, snowboard, tabletennis, homegym, money, software, hosting, keyboard, travelgear, babygear, sleep, laptop, print, tv, tool, grill, dog };
+export const arts: Record<string, Art> = { padel, pickleball, skin, tennis, running, golf, gaming, discgolf, simracing, cycling, audio, monitor, camera, ultralight, badminton, fragrance, coffee, climbing, nails, kitchen, snowboard, tabletennis, homegym, money, software, hosting, keyboard, travelgear, babygear, sleep, laptop, print, tv, tool, grill, dog,
+  // StackRecs reuses SoftwareRecs' tile drawings (a coding agent gets the code brackets).
+  stackrecs: software };
 export const art = arts[niche.id];
