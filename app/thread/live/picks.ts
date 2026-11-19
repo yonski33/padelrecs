@@ -8,6 +8,7 @@ import { niche } from "../../../lib/niche";
 import type { QuickChoice } from "../../../lib/quick-match";
 import type { HomePayload, HomeCard } from "../../home-payload";
 import type { ThreadRow } from "../ui";
+import { advise, type Advice, type AdvCandidate } from "../../../lib/thread/fit-advice";
 
 export type Level = "beginner" | "intermediate" | "advanced";
 export type Style = "control" | "balance" | "power";
@@ -62,6 +63,24 @@ export function fitFor(p: HomePayload, picks: Picks, id: string) {
   const item = p.items.find(x => x.id === id);
   if (!item) return null;
   return { verdict: verdictFor(p.items, choiceOf(picks), item.facts, id, SETUP.levelGate, SETUP.engine), pct: pctsFor(p, picks).get(id) ?? null };
+}
+const brandOf = (name: string) => name.split(" ")[0] ?? "";
+const noYear = (name: string) => name.replace(/\s+\(?20\d\d\)?$/, "");
+/** The fit check's advice for these picks (lib/thread/fit-advice.ts): its line, and better fits from the same match, current
+ *  models only (each model's row, lib/compare-pairs.ts familyRowIds) with a card to link, never this model. */
+export function adviceFor(p: HomePayload, picks: Picks, id: string, pct: number | null): Advice | null {
+  const item = p.items.find(x => x.id === id);
+  if (!item || pct == null || !picks.level || !picks.style) return null;
+  const pcts = pctsFor(p, picks), card = p.cards[id];
+  const cands: AdvCandidate[] = p.items.flatMap(x => {
+    const c = p.cards[x.id], n = pcts.get(x.id);
+    return x.row === x.id && x.row !== item.row && c && n != null ? [{ id: x.id, name: noYear(c.name), href: c.href, pct: n, brand: brandOf(c.name), shape: x.facts.fine?.shape ?? null }] : [];
+  });
+  const f = item.facts;
+  return advise({ level: picks.level, style: picks.style, arm: picks.arm },
+    { suits: f.suits, styleDots: f.styleDots, armDots: f.armDots, feel: f.fine?.feel ?? null, forgiveness: f.fine?.forgiveness ?? null, headHeavy: item.headHeavy,
+      control: item.control, power: item.power, arm: item.arm },
+    { pct, brand: card ? brandOf(card.name) : "", shape: f.fine?.shape ?? null }, cands);
 }
 /** A row for a racket the server didn't send (it came up for the picks), from the payload's card. */
 export function rowFromCard(id: string, c: HomeCard, signal: number | null): ThreadRow {
