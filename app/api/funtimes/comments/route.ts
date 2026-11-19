@@ -1,10 +1,11 @@
 // Comment moderation (Thread, PadelRecs only): approve, reject or hold, edit the text, or delete one comment from the admin's
 // Comments tab. Same admin and origin checks as the review queue (app/funtimes/auth.ts); plain form posts redirect back to
-// the tab with its filters. Public comments load uncached (/api/comments), so a change shows on the page at once.
+// the tab with its filters; the racket page's own admin links (app/thread/live/comments.tsx) send the same form and ask for
+// JSON. Public comments load uncached (/api/comments), so a change shows on the page at once.
 import { z } from "zod";
 import { database } from "../../../../db/data";
 import { setCommentStatus, editComment, deleteComment } from "../../../../db/comments";
-import { adminWriteGuard, adminRedirect, readAdminForm } from "../../../funtimes/auth";
+import { adminWriteGuard, adminRedirect, readAdminForm, wantsJson, adminJson } from "../../../funtimes/auth";
 import { threadSite } from "../../../../lib/thread/look";
 import { niche } from "../../../../lib/niche";
 
@@ -19,7 +20,7 @@ export async function POST(request: Request) {
   const forbidden = await adminWriteGuard(request); if (forbidden) return forbidden;
   let form: Record<string, unknown> = {}, parsed;
   try { form = await readAdminForm(request); parsed = input.safeParse({ action: "status", ...form }); } catch { parsed = null; }
-  const to = (result: string) => { const p = new URLSearchParams({ tab: "comments", status: String(form.back ?? "pending") });
+  const to = (result: string) => { if (wantsJson(request)) return adminJson(request, { result }, ["invalid", "confirm", "stale", "failed"].includes(result) ? 400 : 200); const p = new URLSearchParams({ tab: "comments", status: String(form.back ?? "pending") });
     if (form.q) p.set("q", String(form.q)); if (form.racket) p.set("racket", String(form.racket)); p.set("result", result); return adminRedirect(request, p.toString()); };
   if (!parsed?.success) return to(form.action === "delete" ? "confirm" : "invalid");
   const d = parsed.data, db = await database();
