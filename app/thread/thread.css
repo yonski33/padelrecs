@@ -53,8 +53,11 @@ body:has(.th) .th .th-menu a:last-of-type { border-bottom: 0; }
 }
 
 /* Layout */
-.th-main { max-width: 1140px; margin: 0 auto; padding: 16px 16px 72px; display: flex; gap: 20px; align-items: flex-start; }
-.th-col { flex: 1 1 0; min-width: 0; max-width: 780px; display: flex; flex-direction: column; gap: 12px; }
+/* The classic look's page width (owner 2026-11-19): app/home-v2.css .hv2-wrap and the catalogue's .ct2-wrap are 1180px with 20px sides,
+   so 1140px of content; header and footer inners were already the same 1140px. Phones keep the 16px gutter. */
+.th-main { max-width: 1180px; margin: 0 auto; padding: 16px 20px 72px; display: flex; gap: 20px; align-items: flex-start; }
+@media (max-width: 639px) { .th-main { padding-left: 16px; padding-right: 16px; } }
+.th-col { flex: 1 1 0; min-width: 0; display: flex; flex-direction: column; gap: 12px; }
 .th-side { flex: 0 0 300px; position: sticky; top: 76px; display: flex; flex-direction: column; gap: 12px; }
 .th-narrow { display: none; }
 @media (max-width: 999px) { .th-side { display: none; } .th-narrow { display: flex; } }
@@ -448,6 +451,9 @@ body:has(.th) .th a.th-brand:hover { background: var(--frame); color: var(--ink)
 .th-mini-btn { all: unset; cursor: pointer; font-size: 13px; font-weight: 700; color: var(--ink2); text-decoration: underline; text-underline-offset: 3px; }
 .th-mini-btn:hover { color: var(--ink); }
 .th-mini-btn:focus-visible { outline: 3px solid var(--lime); outline-offset: 2px; }
+
+/* Reading width (owner 2026-11-19): body text inside cards stops at about 75 characters, so wider pages don't stretch lines. */
+.th-card p, .th-lead { max-width: 75ch; }
 
 /* Header search suggestions (app/racket-search.tsx, thread): a light dropdown; hover and the keyboard pick get a light tint,
    never a dark fill (owner 2026-11-19). On phones the menu has the same search, its list inline under the box. */

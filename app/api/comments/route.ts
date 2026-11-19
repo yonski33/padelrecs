@@ -13,7 +13,7 @@ import { device, network, json, foreign } from "../thread-device";
 
 const off = () => !threadSite(niche.id) || !process.env.DATABASE_URL;
 const burst = createLimiter({ limit: 6, windowMs: 10 * 60_000 }), votes = createLimiter({ limit: 120, windowMs: 60 * 60_000 });
-const post = z.object({ page: z.string().regex(PAGE_KEY), parentId: z.string().uuid().nullish(), alias: z.string().trim().max(NAME_MAX).refine(a => !nameProblem(a), "No links in the name, please.").default(""),
+const post = z.object({ page: z.string().regex(PAGE_KEY), parentId: z.string().uuid().nullish(), alias: z.string().trim().max(NAME_MAX).refine(a => !nameProblem(a), a => ({ message: nameProblem(a) ?? "Check the name." })),
   body: z.string().trim().min(2).max(2000), formToken: z.string().optional(), website: z.string().optional() });
 const vote = z.object({ commentId: z.string().uuid(), value: z.union([z.literal(-1), z.literal(0), z.literal(1)]) });
 
