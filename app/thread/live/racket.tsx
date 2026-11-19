@@ -2,7 +2,8 @@
 // The Thread racket page's live parts (Metalbone CTRL Thread v7): "Is it right for me?" on the live engine, the
 // Loved it / Mixed / Not for me poll (the quick vote, /api/racket-votes), and the reviews feed with its composer (a vote,
 // plus a normal moderated review when there are words: POST /api/reviews, the same flow as the live page).
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useState, type ReactNode } from "react";
+import { PendingReviews, LiveReviewTools } from "./review-admin";
 import { PickChips } from "./pick-chips";
 import { usePicks, usePayload, complete, fitFor } from "./picks";
 import { tone, VERDICT, SOURCE, MIN_SHOWN } from "../ui";
@@ -72,9 +73,12 @@ export function Reviews({ id, cards, nicknames }: { id: string; cards: RvCard[];
   const [busy, setBusy] = useState(false), [error, setError] = useState(""), [done, setDone] = useState<"words" | "vote" | null>(null);
   const formToken = useFormToken();
   useEffect(() => { setNick(nickname(nicknames)); }, [nicknames]);
-  const counts = Object.fromEntries(TABS.map(([k]) => [k, k === "all" ? cards.length : cards.filter(c => c.kind === k).length]));
-  const list = useMemo(() => { const l = cards.filter(c => tab === "all" || c.kind === tab);
-    return sort === "helpful" ? [...l].sort((a, b) => b.helpful - a.helpful || b.text.length - a.text.length) : l; }, [cards, tab, sort]);
+  // The owner's on-page changes (review-admin.tsx): edited text and removed cards, until the page refreshes.
+  const [changed, setChanged] = useState<Record<string, { text?: string; gone?: true }>>({});
+  const live = useMemo(() => cards.filter(c => !changed[c.id]?.gone).map(c => changed[c.id]?.text ? { ...c, text: changed[c.id].text! } : c), [cards, changed]);
+  const counts = Object.fromEntries(TABS.map(([k]) => [k, k === "all" ? live.length : live.filter(c => c.kind === k).length]));
+  const list = useMemo(() => { const l = live.filter(c => tab === "all" || c.kind === tab);
+    return sort === "helpful" ? [...l].sort((a, b) => b.helpful - a.helpful || b.text.length - a.text.length) : l; }, [live, tab, sort]);
   async function post() {
     if (!verdict || busy) return;
     const words = text.trim();
@@ -114,6 +118,7 @@ export function Reviews({ id, cards, nicknames }: { id: string; cards: RvCard[];
         <button type="button" className="th-btn round lime" disabled={!verdict || busy} onClick={post}>{busy ? "Posting…" : "Post"}</button></div>
     </div>}
     <span className="th-note" style={{ marginTop: -4 }}>From players here. Plus Reddit, YouTube and blog reviews, summarised.</span>
+    <PendingReviews racketId={id}/>
     {cards.length > 0 && <>
       <div className="th-tabs" role="group" aria-label="Show reviews from">{TABS.filter(([k]) => k === "all" || counts[k] > 0).map(([k, l]) =>
         <button key={k} type="button" aria-pressed={tab === k} onClick={() => { setTab(k); setShown(PAGE); }}>{l}{counts[k] >= MIN_SHOWN && <span>{counts[k]}</span>}</button>)}</div>
@@ -121,14 +126,14 @@ export function Reviews({ id, cards, nicknames }: { id: string; cards: RvCard[];
         {([["new", "Newest"], ["helpful", "Most helpful"]] as const).map(([k, l]) => <button key={k} type="button" aria-pressed={sort === k} onClick={() => setSort(k)}>{l}</button>)}</div>
     </>}
     <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
-      {list.slice(0, shown).map(c => <ReviewCard key={c.id} c={c}/>)}
+      {list.slice(0, shown).map(c => <ReviewCard key={c.id} c={c} tools={c.kind === "player" ? <LiveReviewTools id={c.id.slice(2)} text={c.text} onChange={x => setChanged(m => ({ ...m, [c.id]: { ...m[c.id], ...x } }))}/> : null}/>)}
       {cards.length === 0 && <p className="th-empty">No reviews yet. Played it? Be the first.</p>}
     </div>
     {list.length > shown && <button type="button" className="th-btn th-center" style={{ margin: "4px 0 8px" }} onClick={() => setShown(s => s + 16)}>{`Load ${Math.min(16, list.length - shown)} more reviews`}</button>}
   </section>;
 }
 
-function ReviewCard({ c }: { c: RvCard }) {
+function ReviewCard({ c, tools }: { c: RvCard; tools?: ReactNode }) {
   const src = c.kind === "player" ? null : SOURCE[c.kind];
   return <article className="th-rv big">
     <div className="th-rv-top">
@@ -146,5 +151,6 @@ function ReviewCard({ c }: { c: RvCard }) {
       <p className={`th-rv-text${c.quote ? " quote" : ""}`}>{c.quote ? `“${c.text}”` : c.text}</p>
     </div>
     {c.url && c.kind !== "reddit" && <a className="th-rv-link" href={c.url} target="_blank" rel="noopener nofollow">{c.kind === "youtube" ? "Watch on YouTube ↗" : "Read the full review ↗"}</a>}
+    {tools}
   </article>;
 }
