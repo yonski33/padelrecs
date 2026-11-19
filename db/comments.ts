@@ -5,6 +5,7 @@ import { and, count, desc, eq, gte, ilike, inArray, or, sql } from "drizzle-orm"
 import type { getDb } from "./index";
 import { comments, commentVotes } from "./schema";
 import { spamScore } from "../lib/review-spam";
+import { nameProblem } from "../lib/thread/display-name";
 
 type Database = ReturnType<typeof getDb>;
 export const COMMENTS_PER_HOUR = 20;
@@ -79,10 +80,15 @@ export async function setCommentStatus(db: Database, id: string, status: AdminCo
 /** The text a deleted comment with replies keeps, so its replies stay readable under it. */
 export const REMOVED = "[removed]";
 /** Owner edit (admin Comments tab): new text, the same author, time, status and votes. No public "edited" mark. */
-export async function editComment(db: Database, id: string, body: string) {
-  const text = body.trim();
-  if (text.length < 2 || text.length > 2000) return "invalid" as const;
-  return (await db.update(comments).set({ body: text }).where(eq(comments.id, id)).returning({ id: comments.id })).length ? "ok" as const : "missing" as const;
+/** Owner edit (admin Comments tab, the page's own Edit): new text, a new name (abuse cases, the same name rules as posting,
+ *  lib/thread/display-name.ts), or both. The time, status and votes stay. */
+export async function editComment(db: Database, id: string, change: string | { body?: string | null; alias?: string | null }) {
+  const c = typeof change === "string" ? { body: change } : change;
+  const set: { body?: string; alias?: string } = {};
+  if (c.body != null) { const text = c.body.trim(); if (text.length < 2 || text.length > 2000) return "invalid" as const; set.body = text; }
+  if (c.alias != null) { if (nameProblem(c.alias)) return "invalid" as const; set.alias = c.alias.trim(); }
+  if (!set.body && !set.alias) return "invalid" as const;
+  return (await db.update(comments).set(set).where(eq(comments.id, id)).returning({ id: comments.id })).length ? "ok" as const : "missing" as const;
 }
 /** Owner delete: a comment with replies becomes "[removed]" (name and text) so the replies stay; one with none goes, with its
  *  votes (comment_votes cascade). */

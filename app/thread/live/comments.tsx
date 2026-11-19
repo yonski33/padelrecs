@@ -4,7 +4,7 @@
 // /api/comments (drizzle/0025): clean comments show at once, links and very short ones wait for a person, spam is dropped.
 import { useEffect, useRef, useState } from "react";
 import { ownerCheck } from "../../admin-edit";
-import { commenterName, nameProblem, NAME_MAX } from "../../../lib/thread/display-name";
+import { commenterName, nameProblem, typedName, NAME_MAX } from "../../../lib/thread/display-name";
 import { savedName, saveName } from "./name";
 import { ago } from "../ui";
 
@@ -13,15 +13,18 @@ const HELD = "Thanks! Your comment will show once a person has checked it.";
 
 function Box({ nick, setNick, nicknames, placeholder, cta, onPost, onCancel, autoFocus = true }: { nick: string; setNick: (s: string) => void; nicknames: string[]; placeholder: string; cta: string;
   onPost: (text: string) => Promise<boolean>; onCancel: () => void; autoFocus?: boolean }) {
-  const [text, setText] = useState(""), [busy, setBusy] = useState(false);
+  const [text, setText] = useState(""), [busy, setBusy] = useState(false), [nameErr, setNameErr] = useState("");
+  // A name is required (owner 2026-11-19): checked here, the message right under this box (replies too), no modal.
+  const send = async () => { const p = nameProblem(nick); if (p) { setNameErr(p); return; } setNameErr(""); setBusy(true); if (await onPost(text.trim())) setText(""); setBusy(false); };
   return <div className="th-compose white">
     <textarea className="th-ta" rows={3} autoFocus={autoFocus} value={text} maxLength={2000} placeholder={placeholder} aria-label={placeholder} onChange={e => setText(e.target.value)}/>
     <div className="th-compose-foot">
-      <span className="th-as"><input value={nick} onChange={e => setNick(e.target.value)} maxLength={NAME_MAX} placeholder="Name (optional)" aria-label="Name (optional)"/></span>
+      <span className="th-as"><input value={nick} onChange={e => { setNick(e.target.value); setNameErr(""); }} maxLength={NAME_MAX} placeholder="Name or nickname" aria-label="Name or nickname" aria-invalid={!!nameErr} required/></span>
       <span className="th-grow"/>
       <button type="button" className="cancel" onClick={onCancel}>Cancel</button>
-      <button type="button" className="th-btn round dark" disabled={busy || text.trim().length < 2} onClick={async () => { setBusy(true); if (await onPost(text.trim())) setText(""); setBusy(false); }}>{busy ? "Posting…" : cta}</button>
+      <button type="button" className="th-btn round dark" disabled={busy || text.trim().length < 2} onClick={send}>{busy ? "Posting…" : cta}</button>
     </div>
+    {nameErr && <span className="th-err" role="alert">{nameErr}</span>}
   </div>;
 }
 
@@ -31,18 +34,20 @@ export function Comments({ page, title = "Comments", prompt = "Join the conversa
   const token = useRef("");
   // The owner's tools (Edit, Delete, Hide): asked for only when a sign-in cookie is present, and drawn here in the browser, so
   // the cached page is the same for everyone. Every action is checked on the server (app/api/funtimes/comments).
-  const [admin, setAdmin] = useState(false), [editing, setEditing] = useState<{ id: string; text: string } | null>(null), draft = useRef("");
+  const [admin, setAdmin] = useState(false), [editing, setEditing] = useState<{ id: string; text: string; nameOnly?: boolean } | null>(null), draft = useRef(""), draftName = useRef(""), [editErr, setEditErr] = useState("");
   useEffect(() => { let live = true; ownerCheck().then(a => { if (live) setAdmin(a); }); return () => { live = false; }; }, []);
-  async function own(c: C, action: "edit" | "delete" | "hide", text?: string) {
+  // The owner's rename (abuse cases) runs the same name rules as posting; text and name save together, or the name alone.
+  async function own(c: C, action: "edit" | "delete" | "hide", text?: string, name?: string) {
+    if (action === "edit" && name !== undefined) { const p = nameProblem(name); if (p) { setEditErr(p); return; } }
     if (action === "delete" && !window.confirm(list?.some(x => x.parentId === c.id) ? "Delete this comment? It has replies, so it will show as [removed]." : "Delete this comment and its votes?")) return;
     if (action === "hide" && !window.confirm("Hide this comment? It moves back to pending in the admin.")) return;
-    const form = new URLSearchParams({ id: c.id, ...(action === "edit" ? { action: "edit", body: text ?? "" } : action === "delete" ? { action: "delete", confirm: "yes" } : { action: "status", status: "pending" }) });
+    const form = new URLSearchParams({ id: c.id, ...(action === "edit" ? { action: "edit", ...(text !== undefined ? { body: text } : {}), ...(name !== undefined ? { alias: name } : {}) } : action === "delete" ? { action: "delete", confirm: "yes" } : { action: "status", status: "pending" }) });
     const r = await fetch("/api/funtimes/comments", { method: "POST", headers: { "Content-Type": "application/x-www-form-urlencoded", Accept: "application/json" }, body: form }).catch(() => null);
     const b = r ? await r.json().catch(() => ({})) as { result?: string } : {};
     if (!r?.ok) { setErr("That didn't save. Check you're still signed in, then try again."); return; }
-    setErr(""); setEditing(null);
+    setErr(""); setEditErr(""); setEditing(null);
     setList(l => (l ?? []).flatMap(x => x.id !== c.id ? (action === "hide" && x.parentId === c.id ? [] : [x])
-      : b.result === "edited" ? [{ ...x, body: (text ?? "").trim() }] : b.result === "removed" ? [{ ...x, body: "[removed]", alias: "[removed]" }] : []));
+      : b.result === "edited" ? [{ ...x, ...(text !== undefined ? { body: text.trim() } : {}), ...(name !== undefined ? { alias: name.trim() } : {}) }] : b.result === "removed" ? [{ ...x, body: "[removed]", alias: "[removed]" }] : []));
   }
   // No generated names (owner 2026-11-19): the name box starts with the name this browser typed last time, else empty.
   useEffect(() => { setNick(savedName()); }, []);
@@ -81,13 +86,21 @@ export function Comments({ page, title = "Comments", prompt = "Join the conversa
     <span className="n">{c.score}</span>
     <button type="button" className="arrow down" aria-label="Downvote" aria-pressed={c.mine === -1} onClick={() => vote(c, -1)}>▼</button></span>;
   const Own = ({ c }: { c: C }) => admin && !c.id.startsWith("temp-") ? <>
-    <button type="button" className="reply" onClick={() => { draft.current = c.body; setEditing(editing?.id === c.id ? null : { id: c.id, text: c.body }); }}>{editing?.id === c.id ? "Cancel edit" : "Edit"}</button>
+    <button type="button" className="reply" onClick={() => open_(c, false)}>{editing?.id === c.id && !editing.nameOnly ? "Cancel edit" : "Edit"}</button>
     <button type="button" className="reply" onClick={() => own(c, "delete")}>Delete</button>
     <button type="button" className="reply" onClick={() => own(c, "hide")}>Hide</button></> : null;
-  const Text = ({ c }: { c: C }) => editing?.id === c.id ? <div className="th-compose" style={{ margin: "4px 0" }}>
-    <textarea className="th-ta" rows={3} defaultValue={editing.text} maxLength={2000} aria-label="Edit comment" onChange={e => { draft.current = e.target.value; }}/>
+  const open_ = (c: C, nameOnly: boolean) => { draft.current = c.body; draftName.current = typedName(c.alias) ?? ""; setEditErr("");
+    setEditing(editing?.id === c.id && !!editing.nameOnly === nameOnly ? null : { id: c.id, text: c.body, nameOnly }); };
+  /** "Rename" next to the poster's name, for the owner only. */
+  const Rename = ({ c }: { c: C }) => admin && !c.id.startsWith("temp-") && c.alias !== "[removed]" ? <button type="button" className="th-mini-btn" style={{ fontSize: 12 }} onClick={() => open_(c, true)}>Rename</button> : null;
+  // Called as a function, not a component, so the edit box keeps its input (and focus) across re-renders.
+  const textOf = (c: C) => editing?.id === c.id ? <div className="th-compose" style={{ margin: "4px 0" }}>
+    <span className="th-as"><input defaultValue={draftName.current} maxLength={NAME_MAX} placeholder="Name or nickname" aria-label="Poster's name" autoFocus={editing.nameOnly} onChange={e => { draftName.current = e.target.value; setEditErr(""); }}/></span>
+    {!editing.nameOnly && <textarea className="th-ta" rows={3} defaultValue={editing.text} maxLength={2000} aria-label="Edit comment" onChange={e => { draft.current = e.target.value; }}/>}
+    {editErr && <span className="th-err" role="alert">{editErr}</span>}
     <div className="th-compose-foot"><button type="button" className="cancel" onClick={() => setEditing(null)}>Cancel</button>
-      <button type="button" className="th-btn dark" onClick={() => own(c, "edit", draft.current)}>Save</button></div></div> : <p>{c.body}</p>;
+      <button type="button" className="th-btn dark" onClick={() => own(c, "edit", editing.nameOnly ? undefined : draft.current, draftName.current)}>{editing.nameOnly ? "Save name" : "Save"}</button></div></div>
+    : <p>{c.body}</p>;
   return <section id="comments" className="th-card th-sec" style={{ paddingBottom: 8, scrollMarginTop: 70 }}>
     <div className="th-head-row"><h2 className="th-h2">{title}</h2>{tops.length > 1 && <div className="th-seg" role="group" aria-label="Sort comments"><span className="lbl">Sort</span>
       {([["new", "Newest"], ["top", "Top"]] as const).map(([k, l]) => <button key={k} type="button" aria-pressed={sort === k} onClick={() => setSort(k)}>{l}</button>)}</div>}</div>
@@ -97,13 +110,13 @@ export function Comments({ page, title = "Comments", prompt = "Join the conversa
     {err && <span className="th-err" role="alert">{err}</span>}
     <div style={{ display: "flex", flexDirection: "column" }}>
       {tops.map(c => <div key={c.id} className="th-cm">
-        <div className="th-cm-head"><strong>{commenterName(c.alias)}</strong><span>{`· ${ago(c.at)}`}</span></div>
-        <Text c={c}/>
+        <div className="th-cm-head"><strong>{commenterName(c.alias)}</strong><span>{`· ${ago(c.at)}`}</span><Rename c={c}/></div>
+        {textOf(c)}
         <div className="th-cm-act"><Votes c={c}/><button type="button" className="reply" onClick={() => setReply(reply === c.id ? null : c.id)}>{reply === c.id ? "Cancel" : "Reply"}</button><Own c={c}/></div>
         {reply === c.id && <div style={{ marginLeft: 14 }}><Box nick={nick} setNick={setNick} nicknames={nicknames} placeholder={`Reply to ${commenterName(c.alias)}`} cta="Reply" onPost={t => post(t, c.id)} onCancel={() => setReply(null)}/></div>}
         {replies(c.id).length > 0 && <div className="th-replies">{replies(c.id).map(r => <div key={r.id} style={{ display: "flex", flexDirection: "column", gap: 2 }}>
-          <div className="th-cm-head"><strong style={{ fontSize: 14 }}>{commenterName(r.alias)}</strong><span>{`· ${ago(r.at)}`}</span></div>
-          <Text c={r}/>
+          <div className="th-cm-head"><strong style={{ fontSize: 14 }}>{commenterName(r.alias)}</strong><span>{`· ${ago(r.at)}`}</span><Rename c={r}/></div>
+          {textOf(r)}
           <div className="th-cm-act"><Votes c={r}/><Own c={r}/></div>
         </div>)}</div>}
       </div>)}

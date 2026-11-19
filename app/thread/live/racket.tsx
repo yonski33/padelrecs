@@ -77,15 +77,16 @@ export function Reviews({ id, cards, nicknames }: { id: string; cards: RvCard[];
   // No generated names (owner 2026-11-19): an optional name, the one this browser typed last time if any.
   useEffect(() => { setNick(savedName()); }, []);
   // The owner's on-page changes (review-admin.tsx): edited text and removed cards, until the page refreshes.
-  const [changed, setChanged] = useState<Record<string, { text?: string; gone?: true }>>({});
-  const live = useMemo(() => cards.filter(c => !changed[c.id]?.gone).map(c => changed[c.id]?.text ? { ...c, text: changed[c.id].text! } : c), [cards, changed]);
+  const [changed, setChanged] = useState<Record<string, { text?: string; alias?: string; gone?: true }>>({});
+  const live = useMemo(() => cards.filter(c => !changed[c.id]?.gone).map(c => { const x = changed[c.id]; return x ? { ...c, ...(x.text ? { text: x.text } : {}), ...(x.alias ? { who: x.alias, alias: x.alias, meta: null } : {}) } : c; }), [cards, changed]);
   const counts = Object.fromEntries(TABS.map(([k]) => [k, k === "all" ? live.length : live.filter(c => c.kind === k).length]));
   const list = useMemo(() => { const l = live.filter(c => tab === "all" || c.kind === tab);
     return sort === "helpful" ? [...l].sort((a, b) => b.helpful - a.helpful || b.text.length - a.text.length) : l; }, [live, tab, sort]);
   async function post() {
     if (!verdict || busy) return;
     const words = text.trim();
-    const problem = nameProblem(nick); if (problem) { setError(problem); return; }
+    // A written review needs a name (owner 2026-11-19); a verdict alone is a one-tap vote and stays nameless.
+    const problem = words ? nameProblem(nick) : null; if (problem) { setError(problem); return; }
     if (words && words.length < MIN_WORDS) { setError(`A little more, please: ${MIN_WORDS} characters at least, or clear the box to post just your verdict.`); return; }
     setBusy(true); setError("");
     try {
@@ -111,7 +112,7 @@ export function Reviews({ id, cards, nicknames }: { id: string; cards: RvCard[];
     </div>
     {done && <p className="th-ok" role="status">{done === "words" ? "Thanks for sharing! Your review will appear here once it's approved." : "Thanks! Your vote has been added."}</p>}
     {open && <div className="th-compose">
-      <div className="th-as"><input value={nick} onChange={e => setNick(e.target.value)} maxLength={NAME_MAX} placeholder="Name (optional)" aria-label="Name (optional)"/></div>
+      <div className="th-as"><input value={nick} onChange={e => { setNick(e.target.value); setError(""); }} maxLength={NAME_MAX} placeholder="Name or nickname" aria-label="Name or nickname" required/></div>
       <div className="th-picks"><span className="lbl" style={{ fontSize: 13.5, color: "var(--ink2)", minWidth: 0 }}>Played it?</span>
         {VERDICTS.map(v => <button key={v.key} type="button" className={`th-vpick ${VERDICT[v.key][1]}`} aria-pressed={verdict === v.key} onClick={() => { setVerdict(v.key); setError(""); }}><span className={`th-sdot ${VERDICT[v.key][1]}`}/>{VERDICT[v.key][0]}</button>)}
       </div>
@@ -130,7 +131,7 @@ export function Reviews({ id, cards, nicknames }: { id: string; cards: RvCard[];
         {([["new", "Newest"], ["helpful", "Most helpful"]] as const).map(([k, l]) => <button key={k} type="button" aria-pressed={sort === k} onClick={() => setSort(k)}>{l}</button>)}</div>
     </>}
     <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
-      {list.slice(0, shown).map(c => <ReviewCard key={c.id} c={c} tools={c.kind === "player" ? <LiveReviewTools id={c.id.slice(2)} text={c.text} onChange={x => setChanged(m => ({ ...m, [c.id]: { ...m[c.id], ...x } }))}/> : null}/>)}
+      {list.slice(0, shown).map(c => <ReviewCard key={c.id} c={c} tools={c.kind === "player" ? <LiveReviewTools id={c.id.slice(2)} text={c.text} alias={c.alias ?? ""} onChange={x => setChanged(m => ({ ...m, [c.id]: { ...m[c.id], ...x } }))}/> : null}/>)}
       {cards.length === 0 && <p className="th-empty">No reviews yet. Played it? Be the first.</p>}
     </div>
     {list.length > shown && <button type="button" className="th-btn th-center" style={{ margin: "4px 0 8px" }} onClick={() => setShown(s => s + 16)}>{`Load ${Math.min(16, list.length - shown)} more reviews`}</button>}

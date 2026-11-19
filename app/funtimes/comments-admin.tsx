@@ -8,8 +8,8 @@ import { productHref } from "../../lib/niche";
 
 const STATUSES: AdminComment["status"][] = ["pending", "approved", "rejected"];
 const MESSAGES: Record<string, string> = { approved: "Comment approved: it now shows on its page.", rejected: "Comment rejected: it's hidden.", pending: "Comment moved back to pending.",
-  edited: "Comment updated. The new text shows on its page now.", deleted: "Comment deleted, with its votes.", removed: "Comment removed: it shows as [removed] so its replies stay.",
-  confirm: "Tick the box to confirm the delete.", stale: "That comment wasn't found. Reload to see the list.", invalid: "Could not read that request. A comment needs 2 to 2,000 characters.",
+  edited: "Comment updated. The new name and text show on its page now.", deleted: "Comment deleted, with its votes.", removed: "Comment removed: it shows as [removed] so its replies stay.",
+  confirm: "Tick the box to confirm the delete.", stale: "That comment wasn't found. Reload to see the list.", invalid: "Could not save that. A name needs 2 to 24 characters with no links, and a comment 2 to 2,000.",
   failed: "Saving failed. Try again." };
 type Racket = { id: string; slug: string; name: string; shape: string | null };
 
@@ -51,8 +51,9 @@ export async function CommentsAdmin({ status: asked, result, rackets, q = "", ra
             <button className={s === "approved" ? "button" : "button ghost"}>{s === "approved" ? "Approve" : s === "rejected" ? "Reject" : "Move to pending"}</button></form>)}
           <details><summary className="button ghost">Edit</summary>
             <form method="post" action="/api/funtimes/comments" style={{ display: "flex", flexDirection: "column", gap: 6, marginTop: 6, minWidth: 320 }}><Hidden v={{ action: "edit", id: c.id, ...keep }}/>
+              <label className="muted" style={{ display: "flex", flexDirection: "column", gap: 2 }}>Name<input name="alias" defaultValue={c.alias === "[removed]" ? "" : c.alias} minLength={2} maxLength={24} required aria-label="Commenter name"/></label>
               <textarea name="body" defaultValue={c.body} rows={4} minLength={2} maxLength={2000} required aria-label="Comment text"/>
-              <span className="muted">Same name, time and votes. No edited mark shows on the page.</span><button className="button">Save text</button></form></details>
+              <span className="muted">Same time and votes. Change the name for abuse cases. No edited mark shows on the page.</span><button className="button">Save</button></form></details>
           <details><summary className="button ghost">Delete</summary>
             <form method="post" action="/api/funtimes/comments" style={{ display: "flex", flexDirection: "column", gap: 6, marginTop: 6 }}><Hidden v={{ action: "delete", id: c.id, ...keep }}/>
               <label style={{ display: "flex", gap: 6, alignItems: "center" }}><input type="checkbox" name="confirm" value="yes" required/>{c.parentId ? "Yes, delete this reply" : "Yes, delete it (with replies it shows as [removed])"}</label>
