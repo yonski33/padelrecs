@@ -6,3 +6,5 @@ export function JsonLd({ data }: { data: object }) {
 }
 export const crumbs = (items: { name: string; path: string }[]) => ({ "@type": "BreadcrumbList",
   itemListElement: items.map((c, i) => ({ "@type": "ListItem", position: i + 1, name: c.name, item: `${base()}${c.path}` })) });
+/** The live page's metadata, or none in a build without a database (CI), as the Thread data reads do (app/thread/data.ts). */
+export const liveOr = async <T extends object>(read: () => Promise<T> | T): Promise<T | Record<string, never>> => process.env.DATABASE_URL ? read() : {};

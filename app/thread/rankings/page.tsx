@@ -6,7 +6,10 @@ import { th } from "../../../lib/thread/look";
 import { tone } from "../ui";
 
 export const revalidate = 21600;
-export { generateMetadata } from "../../rankings/page";
+import type { Metadata } from "next";
+import { generateMetadata as liveMetadata } from "../../rankings/page";
+import { liveOr } from "../seo";
+export const generateMetadata = (): Promise<Metadata> => liveOr(liveMetadata);
 
 export default async function ThreadHub() {
   const [lists, { rows }] = await Promise.all([threadRankings(), threadRows()]);

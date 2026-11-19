@@ -3,7 +3,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { Shell } from "../../shell";
-import { threadRows } from "../../data";
+import { threadRows, hasDb } from "../../data";
 import { threadRankings } from "../../rankings-data";
 import { homePayload } from "../../../home-payload";
 import { rankHome } from "../../../../lib/home-rank";
@@ -14,7 +14,7 @@ import { Row, SideBox, LinkList, NarrowLinks, type ThreadRow } from "../../ui";
 import { th } from "../../../../lib/thread/look";
 import { Comments } from "../../live/comments";
 import { generateMetadata as liveGuideMetadata } from "../../../guide/page";
-import { JsonLd, crumbs } from "../../seo";
+import { JsonLd, crumbs, liveOr } from "../../seo";
 import { niche } from "../../../../lib/niche";
 
 export const revalidate = 21600;
@@ -27,7 +27,7 @@ const guideOf = (key: string) => GUIDES.find(g => g.key === key);
 export async function generateMetadata({ params }: P): Promise<Metadata> {
   const g = guideOf((await params).key);
   if (!g) return {};
-  if (g.key === "racket") return liveGuideMetadata();
+  if (g.key === "racket") return liveOr(liveGuideMetadata);
   const url = GUIDE_PATHS[g.key];
   return { title: { absolute: `${g.seoTitle} | ${niche.site.name}` }, description: g.description, alternates: { canonical: url }, openGraph: { title: g.seoTitle, description: g.description, url, type: "article" } };
 }
@@ -40,7 +40,7 @@ async function picksFor(key: GuideKey): Promise<{ title?: string; rows: ThreadRo
   if (key === "racket") return [{ rows: ["round", "teardrop", "diamond"].flatMap(s => bestOfShape(s, 1)) }];
   if (key === "shape") return [{ rows: ["round", "teardrop", "diamond"].flatMap(s => bestOfShape(s, 2)) }];
   // The beginners' ranking may be hidden (under 10 qualify): the engine's beginner picks directly, as the home ranks them.
-  if (key === "beginner") return [{ rows: (await homePayload().then(p => rankHome(p.items, RANK_SETUP, NEGATIVE_TAGS, { style: "any", level: "beginner", arm: false }, false, 4).rows)).map(x => rows.get(x.id)).filter((x): x is ThreadRow => !!x) }];
+  if (key === "beginner") return [{ rows: !hasDb() ? [] : (await homePayload().then(p => rankHome(p.items, RANK_SETUP, NEGATIVE_TAGS, { style: "any", level: "beginner", arm: false }, false, 4).rows)).map(x => rows.get(x.id)).filter((x): x is ThreadRow => !!x) }];
   if (key === "elbow") return [{ rows: top("for-sore-arms", 4) }];
   return [{ title: "Right side", rows: top("best-control", 3) }, { title: "Left side", rows: top("best-power", 3) }];
 }

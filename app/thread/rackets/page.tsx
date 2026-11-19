@@ -5,7 +5,10 @@ import { Catalog } from "../live/catalog";
 import { listJsonLd, catalogCrumb } from "../../../lib/catalogue-seo";
 
 export const revalidate = 21600;
-export { generateMetadata } from "../../rackets/page";
+import type { Metadata } from "next";
+import { generateMetadata as liveMetadata } from "../../rackets/page";
+import { liveOr } from "../seo";
+export const generateMetadata = (): Promise<Metadata> => liveOr(liveMetadata);
 
 export default async function ThreadCatalog() {
   const { all } = await threadRows();

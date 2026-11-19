@@ -3,6 +3,7 @@
 import type { Metadata } from "next";
 import { Shell } from "./shell";
 import { homeMetadata } from "../home-metadata";
+import { liveOr } from "./seo";
 import { DEFAULT_CHOICE } from "../../lib/quick-match";
 import { threadRows, threadBoards, threadFeed } from "./data";
 import { threadRankings } from "./rankings-data";
@@ -14,7 +15,7 @@ import { th } from "../../lib/thread/look";
 
 export const revalidate = 21600;
 // The live home's title, description, canonical and share card (app/home-metadata.ts).
-export const generateMetadata = (): Promise<Metadata> => homeMetadata(DEFAULT_CHOICE, false);
+export const generateMetadata = (): Promise<Metadata> => liveOr(() => homeMetadata(DEFAULT_CHOICE, false));
 
 export default async function ThreadHome() {
   const [{ all, rows }, boards, lists, feed] = await Promise.all([threadRows(), threadBoards(), threadRankings(), threadFeed()]);
