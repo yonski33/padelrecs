@@ -13,6 +13,8 @@ const SECTIONS: [string, string[]][] = [
   ["Votes and reviews only", [
     "A score comes from opinions and nothing else: reviews written here, one-tap votes, and reviews from Reddit, YouTube, blogs and forums.",
     `A tool needs ${MIN_SIGNAL_REVIEWS} opinions before it gets a score. Until then it says New.`,
+    "The score is 100 less points for the share of mixed and negative opinions. A tool with few opinions is pulled toward the site's average until more come in.",
+    "Scores are not stretched to make the best of a category look top. A tool most people feel mixed about reads in the 70s, whatever its rank.",
     "Nobody sets a score by hand, and no list here is hand-picked. Rankings follow the score, or the votes on a ranking about votes.",
   ]],
   ["Commission-blind", [

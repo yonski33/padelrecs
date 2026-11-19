@@ -8,7 +8,7 @@
 // FLOOR; opinions older than CUTOFF_MONTHS leave the score (they stay readable). An opinion tagged two or more major
 // versions behind the tool's newest tag counts OLD_VERSION_WEIGHT on top. The weights set the shares of positive, mixed and
 // negative; the volume is the plain count of opinions inside the cutoff, so a quiet month doesn't wipe a tool's score.
-import { signals, type Signal } from "../signal";
+import { signalCeiling, sentimentCap, MIN_SIGNAL_REVIEWS, PRIOR, TOP_SIGNAL, type Signal } from "../signal";
 
 export const FULL_MONTHS = 3, HALF_LIFE_MONTHS = 3, FLOOR = 0.1, CUTOFF_MONTHS = 18, OLD_VERSION_WEIGHT = 0.5;
 const MONTH = 30.44 * 86_400_000;
@@ -49,10 +49,26 @@ export function weighOpinions(ops: Opinion[], now = Date.now()): Weighted {
   return { judged: n, positive: by.positive * k, mixed: by.mixed * k, negative: by.negative * k, weight: w, newest };
 }
 
-/** Every tool's score on the shared signal scale (lib/signal.ts), per category. No overrides: nobody sets a score by hand. */
+/** Every tool's score, UNSCALED (owner 2026-11-19): padel's signal stretches each category so its leader scores near the
+ *  top, which made a thin category leader read 96 with 55% mixed reviews. Here the score is the plain ceiling of the shared
+ *  formula (lib/signal.ts signalCeiling): 100 less points for the negative and mixed shares, those shares pulled toward the
+ *  site average by PRIOR imaginary opinions, capped by sentimentCap. No volume stretch, no category stretch, no overrides.
+ *  `rank` and `of` are the place among the category's scored tools. */
 export function stackScores(tools: ToolRef[], opinions: Opinion[], now = Date.now()): Map<string, Signal> {
   const per = new Map<string, Opinion[]>();
   for (const o of opinions) per.set(o.toolId, [...(per.get(o.toolId) ?? []), o]);
-  return signals(tools.map(t => { const x = weighOpinions(per.get(t.id) ?? [], now);
-    return { id: t.id, category: t.category, positive: x.positive, mixed: x.mixed, judged: x.judged }; }));
+  const w = new Map(tools.map(t => [t.id, weighOpinions(per.get(t.id) ?? [], now)]));
+  const scored = tools.filter(t => w.get(t.id)!.judged >= MIN_SIGNAL_REVIEWS);
+  const tot = scored.reduce((a, t) => { const x = w.get(t.id)!; return { n: a.n + x.judged, neg: a.neg + x.negative, mix: a.mix + x.mixed }; }, { n: 0, neg: 0, mix: 0 });
+  const avgNeg = tot.n ? tot.neg / tot.n : 0, avgMix = tot.n ? tot.mix / tot.n : 0;
+  const raw = new Map(scored.map(t => { const x = w.get(t.id)!;
+    const neg = (x.negative + PRIOR * avgNeg) / (x.judged + PRIOR), mix = (x.mixed + PRIOR * avgMix) / (x.judged + PRIOR);
+    const cap = sentimentCap({ positive: x.positive, mixed: x.mixed, judged: x.judged });
+    return [t.id, Math.max(0, Math.min(TOP_SIGNAL, cap, Math.round(signalCeiling(neg, mix))))]; }));
+  const out = new Map<string, Signal>();
+  for (const t of scored) {
+    const same = scored.filter(x => x.category === t.category).sort((a, b) => raw.get(b.id)! - raw.get(a.id)! || w.get(b.id)!.judged - w.get(a.id)!.judged);
+    out.set(t.id, { signal: raw.get(t.id)!, rank: same.findIndex(x => x.id === t.id) + 1, of: same.length, category: t.category });
+  }
+  return out;
 }

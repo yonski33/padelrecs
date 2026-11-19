@@ -101,6 +101,22 @@ test("bias rule: scores are commission-blind and nobody sets one by hand", () =>
   assert.match(COMMISSION_NOTE, /never changes the score/);
 });
 
+test("unscaled scores: a category leader with mostly mixed opinions doesn't read 96 (owner 2026-11-19)", () => {
+  const mk = (id: string, pos: number, mix: number, neg: number): Opinion[] => [
+    ...Array.from({ length: pos }, () => ({ toolId: id, verdict: "positive" as const, date: monthsAgo(1) })),
+    ...Array.from({ length: mix }, () => ({ toolId: id, verdict: "mixed" as const, date: monthsAgo(1) })),
+    ...Array.from({ length: neg }, () => ({ toolId: id, verdict: "negative" as const, date: monthsAgo(1) }))];
+  const tools = [{ id: "cc", category: "Coding agent" }, { id: "cu", category: "Coding agent" }, { id: "se", category: "SEO suite" }, { id: "sr", category: "SEO suite" }];
+  const s = stackScores(tools, [...mk("cc", 12, 17, 2), ...mk("cu", 10, 19, 22), ...mk("se", 4, 3, 12), ...mk("sr", 3, 4, 0)], NOW);
+  const cc = s.get("cc")!.signal, cu = s.get("cu")!.signal, sr = s.get("sr")!.signal;
+  assert.ok(cc >= 70 && cc <= 85, `Claude-Code-like mix scores ${cc}`);
+  assert.ok(sr <= 85, `a 7-opinion leader scores ${sr}`);
+  assert.ok(cc > cu, "order still follows the opinions");
+  assert.equal(s.get("cc")!.rank, 1); assert.equal(s.get("cu")!.of, 2);
+  // An all-positive tool with many opinions can still score high: the score isn't capped, only unstretched.
+  assert.ok(stackScores([{ id: "a", category: "x" }], mk("a", 40, 0, 0), NOW).get("a")!.signal >= 95);
+});
+
 test("Find my match: budget gate, Best for ranking, the caution rule and the address", () => {
   const rows: MatchInput[] = [
     { id: "1", slug: "lovable", side: "build", score: 80, bestFor: { non_coder: 9, hobby_dev: 1 } },
