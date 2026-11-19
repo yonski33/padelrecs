@@ -16,3 +16,6 @@ export const ELBOW_SLUG = "best-padel-rackets-for-tennis-elbow";
 export const THREAD_MOVED: { from: string; to: string }[] = [
   { from: "/rankings/best-padel-rackets-for-sore-arms", to: `/rankings/${ELBOW_SLUG}` },
 ];
+/** Optional accounts (#516, drizzle/0028): PadelRecs only. PickleballRecs has no accounts table yet (owner 2026-11-19,
+ *  plan Q7: accounts later), so its composers show no sign-in link and the account pages and APIs answer 404. */
+export const accountSite = (nicheId: string) => nicheId === "padel";

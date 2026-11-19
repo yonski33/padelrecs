@@ -3,7 +3,7 @@ import { z } from "zod";
 import { createClient } from "../../../../lib/supabase/server";
 import { createLimiter, clientIp } from "../../../../lib/rate-limit";
 import { afterSignIn } from "../../../../lib/thread/account-signin";
-import { threadSite } from "../../../../lib/thread/look";
+import { accountSite } from "../../../../lib/thread/sites";
 import { niche } from "../../../../lib/niche";
 import { json, foreign } from "../../thread-device";
 
@@ -11,7 +11,7 @@ const tries = createLimiter({ limit: 10, windowMs: 15 * 60_000 });
 const body = z.object({ email: z.string().trim().email().max(254), code: z.string().trim().regex(/^\d{6,10}$/) });
 
 export async function POST(request: Request) {
-  if (!threadSite(niche.id)) return json({ error: "Not here." }, 404);
+  if (!accountSite(niche.id)) return json({ error: "Not here." }, 404);
   if (foreign(request)) return json({ error: "Sign in from the site, please." }, 403);
   let parsed; try { parsed = body.safeParse(await request.json()); } catch { return json({ error: "Invalid request." }, 400); }
   if (!parsed.success) return json({ error: "Type the code from the email." }, 400);

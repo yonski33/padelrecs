@@ -2,6 +2,8 @@
 // Comments (README "Comments", Metalbone CTRL Thread v7): a collapsed one-line box that opens on tap, "Posting as" a generated
 // nickname you can edit or renew, low-key ▲ n ▼, Reply, timestamps, replies indented under a 2px line, newest first (or Top).
 // /api/comments (drizzle/0025): clean comments show at once, links and very short ones wait for a person, spam is dropped.
+import { accountSite } from "../../../lib/thread/sites";
+import { niche } from "../../../lib/niche";
 import { useEffect, useRef, useState } from "react";
 import { ownerCheck } from "../../admin-edit";
 import { commenterName, nameProblem, typedName, NAME_MAX } from "../../../lib/thread/display-name";
@@ -9,6 +11,8 @@ import { savedName, saveName, grow } from "./name";
 import { ago } from "../ui";
 import { useAccount, signInHref, type Me } from "./use-account";
 import { MemberMark } from "./member-mark";
+/** Optional accounts run on PadelRecs only for now (lib/thread/sites.ts accountSite). */
+const ACCOUNTS = accountSite(niche.id);
 
 type C = { id: string; parentId: string | null; alias: string; body: string; at: string; score: number; mine: number; member?: boolean };
 const HELD = "Thanks! Your comment will show once a person has checked it.";
@@ -28,7 +32,7 @@ function Box({ me, nick, setNick, nicknames, placeholder, cta, onPost, onCancel,
       {me ? <span className="th-as th-as-me">Posting as <b>{me.name}</b><MemberMark/></span>
         : <span className="th-as"><input value={nick} onChange={e => { setNick(e.target.value); setNameErr(""); }} maxLength={NAME_MAX} placeholder="Name or nickname" aria-label="Name or nickname" aria-invalid={!!nameErr} required/></span>}
       <span className="th-grow"/>
-      {!me && <a className="th-signin" href={signInHref("#comments")}>Sign in to keep your name</a>}
+      {!me && ACCOUNTS && <a className="th-signin" href={signInHref("#comments")}>Sign in to keep your name</a>}
       <button type="button" className="cancel" onClick={onCancel}>Cancel</button>
       <button type="button" className="th-post" disabled={busy || !!why} onClick={send}>{busy ? "Posting…" : cta}</button>
     </div>

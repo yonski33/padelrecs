@@ -6,7 +6,7 @@ import { siteOrigin } from "../../../../lib/site-url";
 import { safeNext } from "../../../../lib/thread/account-session";
 import { createLimiter, clientIp } from "../../../../lib/rate-limit";
 import { normalizeEmail } from "../../../../lib/review-spam";
-import { threadSite } from "../../../../lib/thread/look";
+import { accountSite } from "../../../../lib/thread/sites";
 import { niche } from "../../../../lib/niche";
 import { json, foreign } from "../../thread-device";
 
@@ -15,7 +15,7 @@ const perIp = createLimiter({ limit: 5, windowMs: 60 * 60_000 }), perInbox = cre
 const body = z.object({ email: z.string().trim().email().max(254), next: z.string().max(300).optional(), website: z.string().optional() });
 
 export async function POST(request: Request) {
-  if (!threadSite(niche.id)) return json({ error: "Not here." }, 404);
+  if (!accountSite(niche.id)) return json({ error: "Not here." }, 404);
   if (foreign(request)) return json({ error: "Sign in from the site, please." }, 403);
   let parsed; try { parsed = body.safeParse(await request.json()); } catch { return json({ error: "Invalid request." }, 400); }
   if (!parsed.success) return json({ error: "That email doesn't look right." }, 400);

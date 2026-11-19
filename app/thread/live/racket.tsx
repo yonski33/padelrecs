@@ -2,6 +2,8 @@
 // The Thread racket page's live parts (Metalbone CTRL Thread v7): "Is it right for me?" on the live engine, the
 // Loved it / Mixed / Not for me poll (the quick vote, /api/racket-votes), and the reviews feed with its composer (a vote,
 // plus a normal moderated review when there are words: POST /api/reviews, the same flow as the live page).
+import { accountSite } from "../../../lib/thread/sites";
+import { niche } from "../../../lib/niche";
 import { useEffect, useMemo, useState, type ReactNode } from "react";
 import { PendingReviews, LiveReviewTools } from "./review-admin";
 import { Ago } from "./ago";
@@ -16,6 +18,8 @@ import { useFormToken } from "../../form-token-client";
 import { useAccount, signInHref } from "./use-account";
 import { MemberMark } from "./member-mark";
 import type { RvCard } from "../racket-data";
+/** Optional accounts run on PadelRecs only for now (lib/thread/sites.ts accountSite). */
+const ACCOUNTS = accountSite(niche.id);
 
 const FIT_HEAD = { good: "Yes, a strong fit.", maybe: "Maybe. Demo it first.", no: "Probably not this one.", thin: "Not enough reports to say yet." } as const;
 
@@ -143,7 +147,7 @@ export function Reviews({ id, cards, nicknames }: { id: string; cards: RvCard[];
       </div>
       <textarea className="th-ta th-ta-grow" rows={3} autoFocus value={text} onChange={e => { setText(e.target.value); setError(""); grow(e.currentTarget, 240); }} maxLength={2000} placeholder="Write your review" aria-label="Your review"/>
       {error && <span className="th-err">{error}</span>}
-      <div className="th-compose-foot"><span className="th-grow"/>{me ? null : <a className="th-signin" href={signInHref("#reviews")}>Sign in to keep your name</a>}
+      <div className="th-compose-foot"><span className="th-grow"/>{me || !ACCOUNTS ? null : <a className="th-signin" href={signInHref("#reviews")}>Sign in to keep your name</a>}
         <button type="button" className="cancel" onClick={() => { setOpen(false); setError(""); }}>Cancel</button>
         <button type="button" className="th-post" disabled={!verdict || busy || (!!text.trim() && !!nameProblem(nick))} onClick={post}>{busy ? "Posting…" : "Post"}</button></div>
       {!busy && postWhy(verdict, text, nick) && <span className="th-why" style={{ alignSelf: "flex-end" }}>{postWhy(verdict, text, nick)}</span>}

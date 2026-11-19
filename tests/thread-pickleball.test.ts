@@ -203,3 +203,10 @@ test("pickleball copy follows the copy rules: no dashes, no we/us, no padel word
   assert.deepEqual(PB_GUIDES.map(g => g.key), ["racket", "beginner", "shape", "side", "elbow"]);
   for (const g of PB_GUIDES) assert.deepEqual(g.onThisPage, g.steps.map(s => s.title), g.key);
 });
+
+// Accounts (#516) stay padel-only until pickleball gets its accounts table (owner: accounts later).
+import { accountSite } from "../lib/thread/sites";
+test("optional accounts: PadelRecs only for now", () => {
+  assert.equal(accountSite("padel"), true);
+  assert.equal(accountSite("pickleball"), false);
+});
