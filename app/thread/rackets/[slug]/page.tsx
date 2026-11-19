@@ -113,13 +113,11 @@ export default async function ThreadRacket({ params }: P) {
         <section className="th-card th-sbox"><div className="th-sbox-head">About this racket</div><div className="th-sbox-body pad">
           <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
             {row?.score != null ? <span className={`th-badge ${tone(row.score)}`} style={{ fontSize: 28 }}>{row.score}</span> : <span className="th-badge new">New</span>}
-            {/* With a score, just the bar beside the box, centred and filling the row (owner 2026-11-19: no "player score
-                from N" line). Without one, the line still says why it shows "New". */}
-            {row?.score != null ? judged > 0 && <span style={{ flex: 1, display: "flex", alignItems: "center", minWidth: 0 }}><SBar lg pos={row!.pos} mix={row!.mix} neg={row!.neg}/></span>
-              : <span style={{ display: "flex", flexDirection: "column", gap: 3, fontSize: 12.5, color: "var(--body)" }}>
-                <span>{judged > 0 ? `${plural(judged, "player opinion")} so far` : "No votes yet"}</span>
-                {judged > 0 && <SBar lg pos={row!.pos} mix={row!.mix} neg={row!.neg}/>}
-              </span>}
+            {/* "player score" with the bar under it, no count (owner 2026-11-19). Without a score, the line says why it's "New". */}
+            <span style={{ display: "flex", flexDirection: "column", gap: 3, fontSize: 12.5, color: "var(--body)" }}>
+              <span>{row?.score != null ? "player score" : judged > 0 ? `${plural(judged, "player opinion")} so far` : "No votes yet"}</span>
+              {judged > 0 && <SBar lg pos={row!.pos} mix={row!.mix} neg={row!.neg}/>}
+            </span>
           </div>
           <div style={{ display: "flex", flexDirection: "column" }}>
             {playersSay.length > 0 && <><span className="th-cap">Players say</span>{playersSay.map(([k, v]) => <a key={k} className="th-kv" href="#play"><span>{k}</span><strong>{v}</strong></a>)}</>}
