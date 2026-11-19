@@ -6,6 +6,8 @@ import { useState } from "react";
 import { th, GUIDE_PATHS, THREAD_DEFAULT } from "../../../lib/thread/look";
 import { RacketSearch } from "../../racket-search";
 
+/** The site's review flow (app/add-review): the header's "Add a review" (owner 2026-11-19, as on classic). */
+const ADD = "/add-review";
 export type Section = "rackets" | "rankings" | "brands" | "guides" | null;
 const NAV: [Exclude<Section, null>, string, string][] = [["rackets", "Rackets", "/rackets"], ["rankings", "Rankings", "/rankings"], ["guides", "Guides", GUIDE_PATHS.racket]];
 
@@ -23,12 +25,15 @@ export function ThreadHeader({ active }: { active: Section }) {
       <nav className="th-nav" aria-label="Main">{NAV.map(([k, label, href]) => <a key={k} href={th(href)} aria-current={active === k ? "page" : undefined}>{label}</a>)}</nav>
       <span className="th-grow"/>
       <Search id="th-q"/>
+      <a className="th-add" href={ADD}>Add a review</a>
+      <a className="th-add-plus" href={ADD} aria-label="Add a review">+</a>
       <button type="button" className="th-menu-btn" aria-expanded={open} aria-controls="th-menu" onClick={() => setOpen(o => !o)}>
         <span className="th-burger" aria-hidden="true"><i/><i/><i/></span>{open ? "Close" : "Menu"}
       </button>
     </div>
     {open && <div className="th-menu" id="th-menu">
       {NAV.map(([k, label, href]) => <a key={k} href={th(href)} aria-current={active === k ? "page" : undefined}>{label}</a>)}
+      <a href={ADD}>Add a review</a>
       <Search id="th-q-menu" shortcut={false}/>
     </div>}
   </header>;
