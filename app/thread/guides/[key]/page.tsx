@@ -53,7 +53,7 @@ export default async function ThreadGuide({ params }: P) {
   const others = GUIDE_KEYS.filter(k => k !== g.key).map(k => ({ label: GUIDE_LINK_LABELS[k], href: GUIDE_PATHS[k] }));
   // "Full ranking" goes to a list that is on show (a Thread-only list can be hidden while it has under 10 rackets).
   const shown = new Set((await threadRankings()).map(l => l.slug));
-  const wanted = g.key === "beginner" ? "best-padel-rackets-for-beginners" : g.key === "elbow" ? "best-padel-rackets-for-sore-arms" : "best-padel-rackets";
+  const wanted = g.key === "beginner" ? "best-padel-rackets-for-beginners" : g.key === "elbow" ? "best-padel-rackets-for-tennis-elbow" : "best-padel-rackets";
   const fullRanking = `/rankings/${shown.has(wanted) ? wanted : "best-padel-rackets"}`;
   const lime = Number((g.extra as { highlightFirstSteps?: number } | undefined)?.highlightFirstSteps ?? g.steps.length);
   const picksTitle = g.picksTitle.replace(/\bvote for\b/, "rate highest");

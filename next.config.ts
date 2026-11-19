@@ -1,6 +1,7 @@
 import type { NextConfig } from "next";
 import { fileURLToPath } from "node:url";
 import { selectNiche } from "./lib/niche/all";
+import { threadSite, THREAD_MOVED } from "./lib/thread/look";
 const root=fileURLToPath(new URL(".",import.meta.url));
 // Which Recs site this deployment is (lib/niche); an unknown NICHE fails the build here.
 const niche=selectNiche(process.env.NICHE);
@@ -34,8 +35,10 @@ const config:NextConfig={
   // so they win over the generic /rackets and /types redirects.
   const moved=(niche.movedAway??[]).map(m=>({source:m.source,destination:m.destination,statusCode:301 as const,...(m.query?{has:[{type:"query" as const,key:m.query.key,value:m.query.value}]}:{})}));
   // "/product" (singular) 404'd on SkinRecs (owner 2026-11-16): the catalogue's singular, and a product under it, go to the catalogue.
+  // Thread pages that moved (lib/thread/look.ts THREAD_MOVED): a 301 to the new address, on Thread sites only.
+  const thread=threadSite(niche.id)?THREAD_MOVED.map(m=>({source:m.from,destination:m.to,statusCode:301 as const})):[];
   const singular=products.endsWith("s")&&products!=="/rackets"?[{source:products.slice(0,-1),destination:products,permanent:true},{source:`${products.slice(0,-1)}/:slug`,destination:`${products}/:slug`,permanent:true}]:[];
-  return products==="/rackets"?[...moved,...types,...rankings,...seasons]:[...moved,...types,...rankings,...seasons,...singular,{source:"/rackets",destination:products,permanent:true},
+  return products==="/rackets"?[...moved,...thread,...types,...rankings,...seasons]:[...moved,...thread,...types,...rankings,...seasons,...singular,{source:"/rackets",destination:products,permanent:true},
    // categoryPaths niches: the product's new address depends on its shape (a database value), so proxy.ts sends that 301.
    ...(niche.categoryPaths?[]:[{source:"/rackets/:slug",destination:`${products}/:slug`,permanent:true}])];
  },

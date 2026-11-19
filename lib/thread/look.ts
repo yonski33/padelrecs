@@ -13,6 +13,11 @@ export const THREAD_LOOK = "thread";
 export const CLASSIC_LOOK = "classic";
 /** Only PadelRecs previews it (the pilot before Tennis, Pickleball, SimRacing, DiscGolf and Skin). */
 export const threadSite = (nicheId: string) => nicheId === "padel";
+/** Thread addresses that moved (a 301 from the old one, next.config.ts redirects): the sore-arms ranking is named for tennis
+ *  elbow (owner 2026-11-19). */
+export const THREAD_MOVED: { from: string; to: string }[] = [
+  { from: "/rankings/best-padel-rackets-for-sore-arms", to: "/rankings/best-padel-rackets-for-tennis-elbow" },
+];
 
 /** The five guides: key → live-style address (the racket guide keeps /guide, the others are new under /guides). */
 export const GUIDE_PATHS = {
