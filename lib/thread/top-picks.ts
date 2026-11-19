@@ -1,12 +1,13 @@
 // "Top picks by players" on the Thread home (owner mock 2026-11-19): six lists of three, the first six of PICK_CATS that qualify. Pure, so tests feed plain rows.
 //   - A pick's count is what players said and voted for that trait on the racket page ("How does it play?": the review
 //     prefill, or the owner's override, plus real votes).
-//   - Ranked by share: that count divided by the racket's total for the same group, from the same sources (owner 2026-11-19:
-//     Plays like Power ÷ everything said and voted on Plays like), so shares stay at or under 100% and a well-reviewed racket
-//     doesn't win on volume alone. The group needs 10+ opinions, and the pick 5+ backers (the copy rule); the grey number is
-//     the raw count.
+//   - Ranked by that count, high to low (owner 2026-11-19: ML10 Pro Cup's 10 above Metalbone CTRL's 25 read wrong), so the
+//     grey number reads high to low. Ties go to the higher share: the count over the racket's total for the same group, from
+//     the same sources (Plays like Power ÷ everything said and voted on Plays like). The group needs 10+ opinions, and the
+//     pick 5+ backers (the copy rule).
 //   - Current models only, one version per model.
-//   - No racket is #1 in more than 2 lists: it keeps its 2 strongest, and in the others the runner-up moves up.
+//   - No racket is #1 in more than 2 lists: it keeps its 2 biggest counts and leaves the others, where the runner-up moves up.
+//     Leaving (not dropping to #2) keeps every list reading high to low; a list that would fall under 3 keeps it at #2.
 
 /** `trait`/`choice` is a "How does it play?" option; `score` instead counts the players behind a review trait score
  *  (lib/trait-score.ts, the old "Best in defence" board's source), for lists without a vote group. */
@@ -37,25 +38,28 @@ export type PickRow = { id: string; name: string; n: number; share: number };
 export type PickList = { cat: PickCat; rows: PickRow[] };
 
 export function topPicks(rackets: PickRacket[], cats: PickCat[] = PICK_CATS): PickList[] {
-  // Every qualified racket per list, best share first (ties: more backers), one version per model.
+  // Every qualified racket per list, most backers first (ties: the higher share), one version per model.
   const ranked = cats.map(cat => {
     const seen = new Set<string>();
     const all = rackets.filter(r => (r.totals[cat.key] ?? 0) >= MIN_OPINIONS && (r.counts[cat.key] ?? 0) >= MIN_BACKERS)
       .map(r => ({ id: r.id, name: r.name, family: r.family, n: r.counts[cat.key], share: r.counts[cat.key] / Math.max(r.totals[cat.key], r.counts[cat.key]) }))
-      .sort((a, b) => b.share - a.share || b.n - a.n || a.name.localeCompare(b.name))
+      .sort((a, b) => b.n - a.n || b.share - a.share || a.name.localeCompare(b.name))
       .filter(r => !seen.has(r.family) && !!seen.add(r.family));
     return { cat, all };
   }).filter(l => l.all.length >= PER_LIST).slice(0, SHOWN); // the first six that qualify; spreading only counts those
-  // Spread the #1 spots: a racket first in more than MAX_FIRSTS lists keeps its strongest ones (by share); elsewhere it
-  // swaps with the runner-up. Repeats until no racket holds too many firsts (each swap only moves a racket down).
+  // Spread the #1 spots: a racket first in more than MAX_FIRSTS lists keeps its biggest ones (by count) and leaves the
+  // others (or, where that would leave fewer than 3, swaps with the runner-up). Repeats until no racket holds too many.
   for (let guard = 0; guard < 20; guard++) {
     const firsts = new Map<string, number[]>();
     ranked.forEach((l, i) => { const top = l.all[0]; if (top) firsts.set(top.id, [...(firsts.get(top.id) ?? []), i]); });
     const over = [...firsts].find(([, idx]) => idx.length > MAX_FIRSTS);
     if (!over) break;
     const [, idx] = over;
-    const keep = new Set([...idx].sort((a, b) => ranked[b].all[0].share - ranked[a].all[0].share).slice(0, MAX_FIRSTS));
-    for (const i of idx) if (!keep.has(i) && ranked[i].all.length > 1) { const [a, b, ...rest] = ranked[i].all; ranked[i].all = [b, a, ...rest]; }
+    const keep = new Set([...idx].sort((a, b) => ranked[b].all[0].n - ranked[a].all[0].n || ranked[b].all[0].share - ranked[a].all[0].share).slice(0, MAX_FIRSTS));
+    for (const i of idx) if (!keep.has(i) && ranked[i].all.length > 1) {
+      const [a, b, ...rest] = ranked[i].all;
+      ranked[i].all = ranked[i].all.length > PER_LIST ? [b, ...rest] : [b, a, ...rest];
+    }
     if (idx.every(i => keep.has(i) || ranked[i].all.length < 2)) break;
   }
   return ranked.map(({ cat, all }) => ({ cat, rows: all.slice(0, PER_LIST).map(({ id, name, n, share }) => ({ id, name, n, share })) }));
