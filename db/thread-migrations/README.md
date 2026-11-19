@@ -12,3 +12,11 @@ mapped in db/schema.ts until every site's schema has it, so their racket reads a
 
 Next (not done): the trait-vote and comment endpoints and UI, and a dry-run script that fills model_line from
 lib/compare-pairs.ts modelFamily for the owner to review before its own write.
+
+## 0027 trait admin: applied to PadelRecs on 2026-11-19 (owner OK typed in the Thread session)
+
+`drizzle/0027_trait_admin.sql` adds `trait_overrides` (per racket and group: review counts replacing the prefill file's,
+and a freeze; trait `_all` = the whole racket) and `trait_admin_log` (every Traits-tab change, with what it removed or
+replaced). Additive only. Routine: dry run (in a rolled-back transaction: clean), backup of padelrecs.trait_votes (9 rows,
+`work/backups/trait-admin-2026-11-19/`), write with `scripts/migrate.ts` (NICHE=padel), verify: history ends at 0027,
+both tables exist in padelrecs only with RLS on and 0 rows, trait_votes (9) and rackets (233) unchanged.

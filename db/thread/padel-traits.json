@@ -1,0 +1,6978 @@
+{
+ "built": "2026-11-19",
+ "rule": "One count per review, web report or YouTube channel per group; specs kept apart in `spec` and never counted.",
+ "rackets": {
+  "adidas-adipower-carbon-ctrl-3-4-2025": {
+   "slug": "adidas-adipower-carbon-ctrl-3-4-2025",
+   "name": "Adidas Adipower Carbon CTRL 3.4 2025",
+   "sources": 1,
+   "groups": {
+    "maneuver": {
+     "very": 1
+    }
+   },
+   "spec": {
+    "plays_like": "control",
+    "feel": "soft",
+    "maneuver": "not_really"
+   }
+  },
+  "adidas-adipower-carbon-light-3-4-2025": {
+   "slug": "adidas-adipower-carbon-light-3-4-2025",
+   "name": "Adidas Adipower Carbon Light 3.4 2025",
+   "sources": 2,
+   "groups": {
+    "arm": {
+     "very": 1,
+     "not_really": 1
+    },
+    "maneuver": {
+     "somewhat": 1
+    }
+   },
+   "spec": {
+    "plays_like": "control",
+    "feel": "soft",
+    "maneuver": "somewhat"
+   }
+  },
+  "adidas-arrow-hit-2026": {
+   "slug": "adidas-arrow-hit-2026",
+   "name": "Adidas Arrow Hit 2026",
+   "sources": 9,
+   "groups": {
+    "plays_like": {
+     "power": 3,
+     "control": 2,
+     "all_round": 1
+    },
+    "arm": {
+     "very": 5,
+     "somewhat": 1
+    },
+    "maneuver": {
+     "not_really": 2
+    },
+    "feel": {
+     "soft": 2
+    },
+    "side": {
+     "left": 1
+    },
+    "trampoline": {
+     "high": 2
+    },
+    "sweet_spot": {
+     "big": 1,
+     "small": 1
+    },
+    "durability": {
+     "wears_fast": 2
+    }
+   },
+   "spec": {
+    "plays_like": "power",
+    "feel": "soft",
+    "maneuver": "somewhat"
+   }
+  },
+  "adidas-arrow-hit-carbon-2026": {
+   "slug": "adidas-arrow-hit-carbon-2026",
+   "name": "Adidas Arrow Hit Carbon 2026",
+   "sources": 3,
+   "groups": {
+    "plays_like": {
+     "power": 2
+    },
+    "arm": {
+     "very": 2
+    },
+    "maneuver": {
+     "not_really": 2
+    },
+    "feel": {
+     "soft": 1
+    },
+    "sweet_spot": {
+     "medium": 1
+    },
+    "trampoline": {
+     "low": 1
+    }
+   },
+   "spec": {
+    "plays_like": "power",
+    "feel": "soft",
+    "maneuver": "not_really"
+   }
+  },
+  "7a8bdb96-e676-4f7c-8a78-5f4170ff0f3e": {
+   "slug": "adidas-arrow-hit-carbon-ctrl-2026",
+   "name": "Adidas Arrow Hit Carbon CTRL 2026",
+   "sources": 9,
+   "groups": {
+    "plays_like": {
+     "control": 7,
+     "power": 1,
+     "all_round": 1
+    },
+    "sweet_spot": {
+     "big": 4
+    },
+    "arm": {
+     "very": 3
+    },
+    "feel": {
+     "soft": 2,
+     "hard": 1
+    },
+    "trampoline": {
+     "high": 1,
+     "low": 1
+    },
+    "maneuver": {
+     "not_really": 1
+    },
+    "level": {
+     "intermediate": 1
+    }
+   },
+   "spec": {
+    "plays_like": "control",
+    "feel": "soft",
+    "maneuver": "somewhat"
+   }
+  },
+  "adidas-arrow-hit-light-2026": {
+   "slug": "adidas-arrow-hit-light-2026",
+   "name": "Adidas Arrow Hit Light 2026",
+   "sources": 6,
+   "groups": {
+    "sweet_spot": {
+     "big": 4,
+     "small": 1
+    },
+    "plays_like": {
+     "control": 5
+    },
+    "maneuver": {
+     "very": 3
+    },
+    "arm": {
+     "very": 2
+    },
+    "feel": {
+     "soft": 1
+    }
+   },
+   "spec": {
+    "plays_like": "power",
+    "feel": "soft",
+    "maneuver": "not_really"
+   }
+  },
+  "adidas-arrow-hit-pro-edt-2026": {
+   "slug": "adidas-arrow-hit-pro-edt-2026",
+   "name": "Adidas Arrow Hit Pro Edition 2026",
+   "sources": 3,
+   "groups": {
+    "plays_like": {
+     "control": 2,
+     "power": 1
+    },
+    "maneuver": {
+     "very": 1,
+     "somewhat": 1
+    },
+    "arm": {
+     "very": 1
+    }
+   },
+   "spec": {
+    "plays_like": "power",
+    "feel": "soft",
+    "maneuver": "somewhat"
+   }
+  },
+  "adidas-cross-it-3-4-2025": {
+   "slug": "adidas-cross-it-3-4-2025",
+   "name": "Adidas Cross It 3.4 2025",
+   "sources": 6,
+   "groups": {
+    "plays_like": {
+     "power": 4
+    },
+    "maneuver": {
+     "not_really": 3,
+     "very": 1
+    },
+    "sweet_spot": {
+     "small": 2,
+     "big": 1
+    },
+    "arm": {
+     "not_really": 2
+    },
+    "trampoline": {
+     "medium": 1
+    }
+   },
+   "spec": {
+    "plays_like": "power",
+    "maneuver": "not_really"
+   }
+  },
+  "adidas-cross-it-carbon-2025": {
+   "slug": "adidas-cross-it-carbon-2025",
+   "name": "Adidas Cross It Carbon 2025",
+   "sources": 2,
+   "groups": {
+    "plays_like": {
+     "control": 2
+    },
+    "feel": {
+     "soft": 1
+    },
+    "sweet_spot": {
+     "small": 1
+    },
+    "maneuver": {
+     "somewhat": 1
+    }
+   },
+   "spec": {
+    "plays_like": "power",
+    "feel": "soft",
+    "maneuver": "not_really"
+   }
+  },
+  "adidas-cross-it-carbon-3-5-2026": {
+   "slug": "adidas-cross-it-carbon-3-5-2026",
+   "name": "Adidas Cross It Carbon 2026",
+   "sources": 4,
+   "groups": {
+    "plays_like": {
+     "power": 2,
+     "all_round": 2
+    },
+    "feel": {
+     "soft": 1
+    },
+    "maneuver": {
+     "not_really": 1
+    },
+    "trampoline": {
+     "high": 1
+    },
+    "sweet_spot": {
+     "big": 1
+    }
+   },
+   "spec": {
+    "plays_like": "power",
+    "feel": "soft",
+    "maneuver": "somewhat"
+   }
+  },
+  "adidas-cross-it-carbon-ctrl-3-5-2026": {
+   "slug": "adidas-cross-it-carbon-ctrl-3-5-2026",
+   "name": "Adidas Cross It Carbon CTRL 2026",
+   "sources": 0,
+   "groups": {},
+   "spec": {
+    "plays_like": "control",
+    "feel": "soft",
+    "maneuver": "somewhat"
+   }
+  },
+  "adidas-cross-it-ctrl-3-4-2025": {
+   "slug": "adidas-cross-it-ctrl-3-4-2025",
+   "name": "Adidas Cross It CTRL 3.4 2025",
+   "sources": 6,
+   "groups": {
+    "plays_like": {
+     "control": 4,
+     "power": 2
+    },
+    "maneuver": {
+     "very": 1,
+     "not_really": 1
+    },
+    "feel": {
+     "hard": 1,
+     "soft": 1
+    },
+    "trampoline": {
+     "high": 1
+    },
+    "arm": {
+     "not_really": 1
+    }
+   },
+   "spec": {
+    "plays_like": "control",
+    "maneuver": "somewhat"
+   }
+  },
+  "adidas-cross-it-ctrl-3-5-2026": {
+   "slug": "adidas-cross-it-ctrl-3-5-2026",
+   "name": "Adidas Cross It CTRL 2026",
+   "sources": 2,
+   "groups": {
+    "plays_like": {
+     "all_round": 1,
+     "control": 1
+    },
+    "sweet_spot": {
+     "medium": 1
+    },
+    "maneuver": {
+     "very": 1
+    },
+    "feel": {
+     "hard": 1
+    },
+    "trampoline": {
+     "high": 2
+    }
+   },
+   "spec": {
+    "plays_like": "control",
+    "maneuver": "somewhat"
+   }
+  },
+  "adidas-cross-it-light-3-4-2025": {
+   "slug": "adidas-cross-it-light-3-4-2025",
+   "name": "Adidas Cross It Light 3.4 2025",
+   "sources": 5,
+   "groups": {
+    "plays_like": {
+     "control": 3,
+     "power": 1
+    },
+    "maneuver": {
+     "very": 2,
+     "somewhat": 1
+    },
+    "level": {
+     "intermediate": 1
+    },
+    "side": {
+     "right": 1
+    },
+    "trampoline": {
+     "low": 1
+    },
+    "sweet_spot": {
+     "big": 1
+    }
+   },
+   "spec": {
+    "plays_like": "control",
+    "feel": "soft",
+    "maneuver": "somewhat"
+   }
+  },
+  "adidas-cross-it-light-3-5-2026": {
+   "slug": "adidas-cross-it-light-3-5-2026",
+   "name": "Adidas Cross It Light 2026",
+   "sources": 5,
+   "groups": {
+    "plays_like": {
+     "control": 2,
+     "power": 1
+    },
+    "sweet_spot": {
+     "big": 3
+    },
+    "maneuver": {
+     "very": 4
+    },
+    "arm": {
+     "not_really": 1
+    },
+    "level": {
+     "intermediate": 1
+    },
+    "trampoline": {
+     "high": 1
+    }
+   },
+   "spec": {
+    "plays_like": "control",
+    "feel": "soft",
+    "maneuver": "somewhat"
+   }
+  },
+  "adidas-cross-it-light-pro-edt-2026": {
+   "slug": "adidas-cross-it-light-pro-edt-2026",
+   "name": "Adidas Cross It Light Pro Edition 2026",
+   "sources": 3,
+   "groups": {
+    "plays_like": {
+     "control": 3
+    },
+    "arm": {
+     "very": 2
+    },
+    "maneuver": {
+     "very": 1
+    }
+   },
+   "spec": {
+    "plays_like": "control",
+    "feel": "soft",
+    "maneuver": "somewhat"
+   }
+  },
+  "demo-racket-2": {
+   "slug": "adidas-metalbone-3-4-2025",
+   "name": "Adidas Metalbone 3.4 2025",
+   "sources": 46,
+   "groups": {
+    "plays_like": {
+     "power": 25,
+     "all_round": 3,
+     "control": 2
+    },
+    "sweet_spot": {
+     "small": 15,
+     "big": 2
+    },
+    "maneuver": {
+     "not_really": 13,
+     "somewhat": 2,
+     "very": 1
+    },
+    "side": {
+     "left": 1,
+     "right": 1
+    },
+    "arm": {
+     "very": 3,
+     "not_really": 7,
+     "somewhat": 1
+    },
+    "feel": {
+     "hard": 1,
+     "soft": 3,
+     "medium": 1
+    },
+    "level": {
+     "intermediate": 1,
+     "advanced": 2
+    },
+    "trampoline": {
+     "high": 5
+    },
+    "durability": {
+     "holds_up": 5,
+     "wears_fast": 2
+    }
+   },
+   "spec": {
+    "plays_like": "power",
+    "feel": "soft",
+    "maneuver": "not_really"
+   }
+  },
+  "8621addf-4bb4-4dc1-8f40-31d61579fb5f": {
+   "slug": "adidas-metalbone-3-5-2026",
+   "name": "Adidas Metalbone 2026",
+   "sources": 46,
+   "groups": {
+    "plays_like": {
+     "power": 39,
+     "all_round": 2
+    },
+    "sweet_spot": {
+     "small": 14,
+     "big": 3,
+     "medium": 2
+    },
+    "maneuver": {
+     "not_really": 21,
+     "somewhat": 1
+    },
+    "trampoline": {
+     "high": 5
+    },
+    "arm": {
+     "not_really": 3,
+     "very": 5,
+     "somewhat": 2
+    },
+    "feel": {
+     "hard": 2,
+     "soft": 1
+    },
+    "side": {
+     "left": 1
+    },
+    "level": {
+     "intermediate": 2,
+     "advanced": 4
+    },
+    "durability": {
+     "wears_fast": 1
+    }
+   },
+   "spec": {
+    "plays_like": "power",
+    "feel": "soft",
+    "maneuver": "not_really"
+   }
+  },
+  "adidas-metalbone-carbon-3-4-2025": {
+   "slug": "adidas-metalbone-carbon-3-4-2025",
+   "name": "Adidas Metalbone Carbon 3.4 2025",
+   "sources": 21,
+   "groups": {
+    "plays_like": {
+     "control": 7,
+     "power": 5,
+     "all_round": 4
+    },
+    "sweet_spot": {
+     "small": 8,
+     "big": 3,
+     "medium": 1
+    },
+    "maneuver": {
+     "very": 7,
+     "not_really": 4
+    },
+    "feel": {
+     "hard": 2
+    },
+    "arm": {
+     "very": 3
+    },
+    "durability": {
+     "wears_fast": 1,
+     "holds_up": 1
+    },
+    "trampoline": {
+     "high": 1
+    }
+   },
+   "spec": {
+    "plays_like": "power",
+    "feel": "soft",
+    "maneuver": "not_really"
+   }
+  },
+  "adidas-metalbone-carbon-3-5-2026": {
+   "slug": "adidas-metalbone-carbon-3-5-2026",
+   "name": "Adidas Metalbone Carbon 2026",
+   "sources": 13,
+   "groups": {
+    "plays_like": {
+     "power": 3,
+     "control": 4,
+     "all_round": 4
+    },
+    "sweet_spot": {
+     "small": 6,
+     "big": 2
+    },
+    "arm": {
+     "very": 3,
+     "not_really": 1
+    },
+    "maneuver": {
+     "not_really": 2,
+     "very": 4,
+     "somewhat": 1
+    },
+    "level": {
+     "advanced": 1,
+     "intermediate": 1
+    },
+    "feel": {
+     "hard": 2
+    },
+    "trampoline": {
+     "low": 1
+    }
+   },
+   "spec": {
+    "plays_like": "power",
+    "feel": "soft",
+    "maneuver": "somewhat"
+   }
+  },
+  "adidas-metalbone-carbon-ctrl-3-4-2025": {
+   "slug": "adidas-metalbone-carbon-ctrl-3-4-2025",
+   "name": "Adidas Metalbone Carbon CTRL 3.4 2025",
+   "sources": 50,
+   "groups": {
+    "plays_like": {
+     "control": 32,
+     "all_round": 5,
+     "power": 4
+    },
+    "sweet_spot": {
+     "big": 11,
+     "small": 7,
+     "medium": 1
+    },
+    "feel": {
+     "soft": 2,
+     "hard": 5
+    },
+    "arm": {
+     "very": 5,
+     "not_really": 1
+    },
+    "maneuver": {
+     "very": 11,
+     "somewhat": 1,
+     "not_really": 1
+    },
+    "side": {
+     "right": 5,
+     "left": 1
+    },
+    "level": {
+     "intermediate": 3,
+     "beginner": 3,
+     "advanced": 1
+    },
+    "durability": {
+     "wears_fast": 1,
+     "holds_up": 1
+    },
+    "trampoline": {
+     "low": 1,
+     "high": 4
+    }
+   },
+   "spec": {
+    "plays_like": "control",
+    "feel": "soft",
+    "maneuver": "somewhat"
+   }
+  },
+  "adidas-metalbone-carbon-ctrl-3-5-2026": {
+   "slug": "adidas-metalbone-carbon-ctrl-3-5-2026",
+   "name": "Adidas Metalbone Carbon CTRL 2026",
+   "sources": 22,
+   "groups": {
+    "plays_like": {
+     "control": 13,
+     "all_round": 2,
+     "power": 3
+    },
+    "sweet_spot": {
+     "big": 4,
+     "small": 5
+    },
+    "arm": {
+     "very": 3,
+     "not_really": 2
+    },
+    "trampoline": {
+     "low": 4,
+     "medium": 1
+    },
+    "maneuver": {
+     "very": 2,
+     "somewhat": 1
+    },
+    "feel": {
+     "hard": 2,
+     "soft": 1
+    },
+    "level": {
+     "intermediate": 2
+    }
+   },
+   "spec": {
+    "plays_like": "control",
+    "feel": "soft",
+    "maneuver": "somewhat"
+   }
+  },
+  "030d9558-ea4b-49f9-a63b-d9ba6e52b50c": {
+   "slug": "adidas-metalbone-ctrl-2026",
+   "name": "Adidas Metalbone CTRL 2026",
+   "sources": 71,
+   "groups": {
+    "plays_like": {
+     "control": 16,
+     "all_round": 9,
+     "power": 34
+    },
+    "sweet_spot": {
+     "big": 24,
+     "small": 2
+    },
+    "feel": {
+     "soft": 2
+    },
+    "maneuver": {
+     "very": 9,
+     "not_really": 4,
+     "somewhat": 1
+    },
+    "level": {
+     "beginner": 1,
+     "intermediate": 6,
+     "advanced": 1
+    },
+    "trampoline": {
+     "high": 21,
+     "low": 1
+    },
+    "side": {
+     "left": 1,
+     "right": 6,
+     "both": 2
+    },
+    "arm": {
+     "somewhat": 1,
+     "very": 4,
+     "not_really": 1
+    },
+    "durability": {
+     "wears_fast": 2
+    }
+   },
+   "spec": {
+    "plays_like": "control",
+    "feel": "soft"
+   }
+  },
+  "0129d73f-d307-4314-bc6a-f1b3df7a331a": {
+   "slug": "adidas-metalbone-ctrl-3-4-2025",
+   "name": "Adidas Metalbone CTRL 3.4 2025",
+   "sources": 49,
+   "groups": {
+    "arm": {
+     "very": 7,
+     "not_really": 3
+    },
+    "trampoline": {
+     "high": 11
+    },
+    "sweet_spot": {
+     "big": 20,
+     "medium": 2,
+     "small": 1
+    },
+    "feel": {
+     "soft": 5
+    },
+    "plays_like": {
+     "all_round": 7,
+     "control": 12,
+     "power": 12
+    },
+    "side": {
+     "right": 1
+    },
+    "level": {
+     "intermediate": 2
+    },
+    "maneuver": {
+     "not_really": 4,
+     "very": 3
+    },
+    "durability": {
+     "wears_fast": 5
+    }
+   },
+   "spec": {
+    "plays_like": "control",
+    "feel": "soft",
+    "maneuver": "somewhat"
+   }
+  },
+  "adidas-metalbone-hrd-plus-3-4-2025": {
+   "slug": "adidas-metalbone-hrd-plus-3-4-2025",
+   "name": "Adidas Metalbone HRD+ 3.4 2025",
+   "sources": 55,
+   "groups": {
+    "sweet_spot": {
+     "small": 19,
+     "big": 5,
+     "medium": 4
+    },
+    "plays_like": {
+     "power": 29,
+     "all_round": 9,
+     "control": 4
+    },
+    "maneuver": {
+     "not_really": 18
+    },
+    "feel": {
+     "hard": 5,
+     "soft": 1
+    },
+    "level": {
+     "advanced": 3,
+     "intermediate": 1
+    },
+    "arm": {
+     "somewhat": 1,
+     "not_really": 5,
+     "very": 2
+    },
+    "durability": {
+     "holds_up": 2,
+     "wears_fast": 2
+    },
+    "trampoline": {
+     "high": 3
+    },
+    "side": {
+     "right": 1
+    }
+   },
+   "spec": {
+    "plays_like": "power",
+    "maneuver": "not_really"
+   }
+  },
+  "adidas-metalbone-hrd-plus-3-5-2026": {
+   "slug": "adidas-metalbone-hrd-plus-3-5-2026",
+   "name": "Adidas Metalbone HRD+ 2026",
+   "sources": 39,
+   "groups": {
+    "arm": {
+     "very": 3,
+     "not_really": 3
+    },
+    "plays_like": {
+     "power": 25,
+     "control": 5,
+     "all_round": 4
+    },
+    "sweet_spot": {
+     "small": 20,
+     "big": 5
+    },
+    "maneuver": {
+     "not_really": 12,
+     "very": 1
+    },
+    "feel": {
+     "hard": 4
+    },
+    "side": {
+     "left": 2
+    },
+    "level": {
+     "advanced": 2
+    },
+    "trampoline": {
+     "high": 2
+    }
+   },
+   "spec": {
+    "plays_like": "power",
+    "maneuver": "not_really"
+   }
+  },
+  "adidas-metalbone-pro-edt-2025": {
+   "slug": "adidas-metalbone-pro-edt-2025",
+   "name": "Adidas Metalbone Pro Edition 2025",
+   "sources": 8,
+   "groups": {
+    "plays_like": {
+     "power": 6,
+     "all_round": 1
+    },
+    "sweet_spot": {
+     "small": 4,
+     "big": 2
+    },
+    "feel": {
+     "hard": 2,
+     "soft": 1
+    },
+    "maneuver": {
+     "not_really": 3
+    },
+    "arm": {
+     "not_really": 1
+    }
+   },
+   "spec": {
+    "plays_like": "power",
+    "feel": "soft",
+    "maneuver": "not_really"
+   }
+  },
+  "adidas-metalbone-pro-edt-2026": {
+   "slug": "adidas-metalbone-pro-edt-2026",
+   "name": "Adidas Metalbone Pro Edition 2026",
+   "sources": 2,
+   "groups": {
+    "plays_like": {
+     "power": 2
+    },
+    "maneuver": {
+     "not_really": 1
+    },
+    "sweet_spot": {
+     "big": 1
+    }
+   },
+   "spec": {
+    "plays_like": "power",
+    "feel": "soft",
+    "maneuver": "not_really"
+   }
+  },
+  "adidas-metalbone-superlight-2026": {
+   "slug": "adidas-metalbone-superlight-2026",
+   "name": "Adidas Metalbone Superlight 2026",
+   "sources": 0,
+   "groups": {},
+   "spec": {
+    "plays_like": "power",
+    "feel": "soft",
+    "maneuver": "not_really"
+   }
+  },
+  "adidas-metalbone-team-3-5-2026": {
+   "slug": "adidas-metalbone-team-3-5-2026",
+   "name": "Adidas Metalbone Team 2026",
+   "sources": 3,
+   "groups": {
+    "plays_like": {
+     "power": 1
+    },
+    "sweet_spot": {
+     "big": 3
+    },
+    "maneuver": {
+     "not_really": 2
+    },
+    "feel": {
+     "soft": 1
+    }
+   },
+   "spec": {
+    "plays_like": "power",
+    "feel": "soft",
+    "maneuver": "not_really"
+   }
+  },
+  "adidas-metalbone-team-light-3-5-2026": {
+   "slug": "adidas-metalbone-team-light-3-5-2026",
+   "name": "Adidas Metalbone Team Light 2026",
+   "sources": 0,
+   "groups": {},
+   "spec": {
+    "plays_like": "control",
+    "feel": "soft",
+    "maneuver": "somewhat"
+   }
+  },
+  "adidas-metalbone-zz-carbon-2026": {
+   "slug": "adidas-metalbone-zz-carbon-2026",
+   "name": "Adidas Metalbone ZZ Carbon 2026",
+   "sources": 0,
+   "groups": {},
+   "spec": {
+    "plays_like": "control",
+    "feel": "soft",
+    "maneuver": "somewhat"
+   }
+  },
+  "babolat-air-origin-2025": {
+   "slug": "babolat-air-origin-2025",
+   "name": "Babolat Air Origin 2025",
+   "sources": 2,
+   "groups": {
+    "sweet_spot": {
+     "big": 2
+    },
+    "arm": {
+     "very": 2
+    },
+    "feel": {
+     "soft": 1
+    },
+    "plays_like": {
+     "power": 1
+    },
+    "maneuver": {
+     "very": 1
+    },
+    "level": {
+     "beginner": 1
+    }
+   },
+   "spec": {
+    "plays_like": "all_round",
+    "maneuver": "somewhat"
+   }
+  },
+  "babolat-air-veron-2025": {
+   "slug": "babolat-air-veron-2025",
+   "name": "Babolat Air Veron 2.5 2025",
+   "sources": 7,
+   "groups": {
+    "plays_like": {
+     "power": 5,
+     "control": 1
+    },
+    "sweet_spot": {
+     "medium": 1,
+     "big": 2
+    },
+    "maneuver": {
+     "very": 5
+    },
+    "arm": {
+     "very": 1
+    },
+    "side": {
+     "right": 2
+    },
+    "level": {
+     "intermediate": 1
+    }
+   },
+   "spec": {
+    "plays_like": "all_round",
+    "maneuver": "somewhat"
+   }
+  },
+  "babolat-air-veron-2026": {
+   "slug": "babolat-air-veron-2026",
+   "name": "Babolat Air Veron 2026",
+   "sources": 6,
+   "groups": {
+    "plays_like": {
+     "power": 3,
+     "all_round": 2
+    },
+    "maneuver": {
+     "very": 3
+    },
+    "sweet_spot": {
+     "big": 1
+    },
+    "level": {
+     "intermediate": 1
+    },
+    "arm": {
+     "very": 1
+    }
+   },
+   "spec": {
+    "maneuver": "somewhat"
+   }
+  },
+  "babolat-air-vertuo-2026": {
+   "slug": "babolat-air-vertuo-2026",
+   "name": "Babolat Air Vertuo 2026",
+   "sources": 7,
+   "groups": {
+    "sweet_spot": {
+     "big": 4,
+     "small": 1
+    },
+    "maneuver": {
+     "very": 5
+    },
+    "plays_like": {
+     "control": 5
+    },
+    "arm": {
+     "very": 4
+    },
+    "level": {
+     "beginner": 2
+    }
+   },
+   "spec": {
+    "plays_like": "all_round",
+    "maneuver": "somewhat"
+   }
+  },
+  "983e9439-bf59-4d94-8f4a-4a25a2131367": {
+   "slug": "babolat-air-viper-2025",
+   "name": "Babolat Air Viper 2025",
+   "sources": 33,
+   "groups": {
+    "arm": {
+     "not_really": 6,
+     "very": 1
+    },
+    "feel": {
+     "hard": 5
+    },
+    "plays_like": {
+     "power": 12,
+     "control": 4
+    },
+    "sweet_spot": {
+     "medium": 3,
+     "big": 4,
+     "small": 13
+    },
+    "maneuver": {
+     "very": 10,
+     "somewhat": 3,
+     "not_really": 1
+    },
+    "level": {
+     "intermediate": 1,
+     "advanced": 1
+    },
+    "durability": {
+     "wears_fast": 3,
+     "holds_up": 1
+    },
+    "side": {
+     "right": 1
+    }
+   },
+   "spec": {
+    "plays_like": "all_round",
+    "maneuver": "somewhat"
+   }
+  },
+  "aabd86ed-62c5-41c1-b4f1-53690ab76b87": {
+   "slug": "babolat-air-viper-2026",
+   "name": "Babolat Air Viper 2026",
+   "sources": 52,
+   "groups": {
+    "sweet_spot": {
+     "small": 16,
+     "big": 7,
+     "medium": 5
+    },
+    "maneuver": {
+     "very": 31,
+     "not_really": 3,
+     "somewhat": 3
+    },
+    "level": {
+     "advanced": 6,
+     "intermediate": 1,
+     "beginner": 1
+    },
+    "feel": {
+     "soft": 1,
+     "hard": 5
+    },
+    "plays_like": {
+     "power": 17,
+     "control": 12,
+     "all_round": 2
+    },
+    "arm": {
+     "not_really": 3
+    },
+    "trampoline": {
+     "high": 1,
+     "low": 1
+    },
+    "side": {
+     "right": 1
+    }
+   },
+   "spec": {
+    "plays_like": "all_round",
+    "maneuver": "somewhat"
+   }
+  },
+  "babolat-counter-origin-2025": {
+   "slug": "babolat-counter-origin-2025",
+   "name": "Babolat Counter Origin 2025",
+   "sources": 4,
+   "groups": {
+    "plays_like": {
+     "control": 1,
+     "power": 2
+    },
+    "sweet_spot": {
+     "big": 3
+    },
+    "arm": {
+     "not_really": 1,
+     "very": 1
+    },
+    "feel": {
+     "soft": 1
+    },
+    "level": {
+     "beginner": 3
+    },
+    "trampoline": {
+     "low": 1
+    }
+   },
+   "spec": {
+    "plays_like": "control",
+    "maneuver": "very"
+   }
+  },
+  "babolat-counter-veron-2026": {
+   "slug": "babolat-counter-veron-2026",
+   "name": "Babolat Counter Veron 2026",
+   "sources": 4,
+   "groups": {
+    "plays_like": {
+     "control": 2,
+     "power": 2
+    },
+    "sweet_spot": {
+     "big": 3,
+     "small": 1
+    },
+    "maneuver": {
+     "not_really": 1
+    },
+    "feel": {
+     "medium": 1
+    },
+    "trampoline": {
+     "medium": 1
+    },
+    "level": {
+     "intermediate": 1
+    }
+   },
+   "spec": {
+    "plays_like": "control",
+    "maneuver": "not_really"
+   }
+  },
+  "babolat-counter-vertuo-2026": {
+   "slug": "babolat-counter-vertuo-2026",
+   "name": "Babolat Counter Vertuo 2026",
+   "sources": 7,
+   "groups": {
+    "plays_like": {
+     "control": 2,
+     "power": 1
+    },
+    "sweet_spot": {
+     "big": 5
+    },
+    "arm": {
+     "very": 2
+    },
+    "feel": {
+     "soft": 1
+    },
+    "maneuver": {
+     "not_really": 2,
+     "very": 1
+    },
+    "durability": {
+     "wears_fast": 1
+    }
+   },
+   "spec": {
+    "plays_like": "control",
+    "maneuver": "somewhat"
+   }
+  },
+  "14f03cce-aeb2-4ce1-bc7c-300d376fe12a": {
+   "slug": "babolat-counter-viper-2025",
+   "name": "Babolat Counter Viper 2025",
+   "sources": 52,
+   "groups": {
+    "arm": {
+     "not_really": 15,
+     "very": 2
+    },
+    "plays_like": {
+     "all_round": 7,
+     "control": 17,
+     "power": 8
+    },
+    "maneuver": {
+     "not_really": 15,
+     "very": 5
+    },
+    "trampoline": {
+     "low": 2,
+     "high": 1
+    },
+    "sweet_spot": {
+     "big": 11,
+     "small": 3
+    },
+    "feel": {
+     "hard": 7,
+     "medium": 1
+    },
+    "level": {
+     "advanced": 3,
+     "intermediate": 1
+    },
+    "side": {
+     "right": 5,
+     "left": 1
+    },
+    "durability": {
+     "holds_up": 1,
+     "wears_fast": 3
+    }
+   },
+   "spec": {
+    "plays_like": "control",
+    "maneuver": "somewhat"
+   }
+  },
+  "babolat-counter-viper-2026": {
+   "slug": "babolat-counter-viper-2026",
+   "name": "Babolat Counter Viper 2026",
+   "sources": 31,
+   "groups": {
+    "sweet_spot": {
+     "small": 11,
+     "big": 6,
+     "medium": 3
+    },
+    "plays_like": {
+     "control": 18,
+     "all_round": 6
+    },
+    "feel": {
+     "hard": 2
+    },
+    "side": {
+     "left": 1,
+     "right": 2,
+     "both": 1
+    },
+    "arm": {
+     "very": 2,
+     "not_really": 7,
+     "somewhat": 1
+    },
+    "maneuver": {
+     "very": 3,
+     "not_really": 2
+    },
+    "level": {
+     "intermediate": 2,
+     "advanced": 5
+    }
+   },
+   "spec": {
+    "plays_like": "control",
+    "maneuver": "not_really"
+   }
+  },
+  "babolat-technical-origin-2026": {
+   "slug": "babolat-technical-origin-2026",
+   "name": "Babolat Technical Origin+ 2026",
+   "sources": 2,
+   "groups": {
+    "plays_like": {
+     "power": 1,
+     "all_round": 1
+    },
+    "sweet_spot": {
+     "big": 2
+    },
+    "level": {
+     "beginner": 1
+    }
+   },
+   "spec": {
+    "plays_like": "power",
+    "maneuver": "not_really"
+   }
+  },
+  "babolat-technical-veron-2025": {
+   "slug": "babolat-technical-veron-2025",
+   "name": "Babolat Technical Veron 2025",
+   "sources": 5,
+   "groups": {
+    "plays_like": {
+     "power": 4
+    },
+    "sweet_spot": {
+     "small": 2,
+     "big": 2
+    },
+    "maneuver": {
+     "somewhat": 1,
+     "not_really": 1
+    },
+    "arm": {
+     "very": 1
+    }
+   },
+   "spec": {
+    "plays_like": "power",
+    "maneuver": "not_really"
+   }
+  },
+  "babolat-technical-vertuo-2025": {
+   "slug": "babolat-technical-vertuo-2025",
+   "name": "Babolat Technical Vertuo 2025",
+   "sources": 1,
+   "groups": {
+    "plays_like": {
+     "power": 1
+    },
+    "sweet_spot": {
+     "small": 1
+    }
+   },
+   "spec": {
+    "plays_like": "power",
+    "feel": "soft",
+    "maneuver": "not_really"
+   }
+  },
+  "demo-racket-4": {
+   "slug": "babolat-technical-viper-2025",
+   "name": "Babolat Technical Viper 2025",
+   "sources": 44,
+   "groups": {
+    "arm": {
+     "not_really": 9,
+     "very": 1
+    },
+    "plays_like": {
+     "power": 19,
+     "control": 10,
+     "all_round": 1
+    },
+    "sweet_spot": {
+     "small": 27,
+     "big": 1,
+     "medium": 2
+    },
+    "side": {
+     "left": 2
+    },
+    "maneuver": {
+     "not_really": 9,
+     "very": 2
+    },
+    "feel": {
+     "hard": 7,
+     "soft": 1
+    },
+    "trampoline": {
+     "high": 1,
+     "low": 1
+    },
+    "level": {
+     "advanced": 2
+    },
+    "durability": {
+     "wears_fast": 2
+    }
+   },
+   "spec": {
+    "plays_like": "power",
+    "maneuver": "not_really"
+   }
+  },
+  "babolat-veron-juan-lebron-3-0-2026": {
+   "slug": "babolat-veron-juan-lebron-3-0-2026",
+   "name": "Babolat Veron Juan Lebrón 3.0 2026",
+   "sources": 19,
+   "groups": {
+    "plays_like": {
+     "control": 5,
+     "power": 10,
+     "all_round": 2
+    },
+    "sweet_spot": {
+     "big": 12,
+     "medium": 1,
+     "small": 1
+    },
+    "arm": {
+     "not_really": 3,
+     "very": 6,
+     "somewhat": 1
+    },
+    "maneuver": {
+     "very": 3,
+     "not_really": 3
+    },
+    "trampoline": {
+     "high": 1
+    },
+    "feel": {
+     "hard": 1,
+     "soft": 2
+    },
+    "durability": {
+     "wears_fast": 1
+    }
+   },
+   "spec": {
+    "plays_like": "power",
+    "maneuver": "not_really"
+   }
+  },
+  "babolat-veron-juan-lebron-3-1-2027": {
+   "slug": "babolat-veron-juan-lebron-3-1-2027",
+   "name": "Babolat Veron Juan Lebrón 3.1 2027",
+   "sources": 6,
+   "groups": {
+    "plays_like": {
+     "power": 2,
+     "control": 3,
+     "all_round": 1
+    },
+    "sweet_spot": {
+     "big": 3
+    },
+    "arm": {
+     "not_really": 1,
+     "very": 3
+    },
+    "maneuver": {
+     "not_really": 1,
+     "somewhat": 1
+    },
+    "feel": {
+     "hard": 1
+    },
+    "level": {
+     "intermediate": 1
+    }
+   },
+   "spec": {
+    "plays_like": "power",
+    "maneuver": "not_really"
+   }
+  },
+  "babolat-viper-juan-lebron-3-0-2026": {
+   "slug": "babolat-viper-juan-lebron-3-0-2026",
+   "name": "Babolat Viper Juan Lebrón 3.0 2026",
+   "sources": 37,
+   "groups": {
+    "sweet_spot": {
+     "small": 21
+    },
+    "plays_like": {
+     "power": 20,
+     "control": 3,
+     "all_round": 11
+    },
+    "feel": {
+     "soft": 1,
+     "hard": 10
+    },
+    "maneuver": {
+     "not_really": 9,
+     "very": 1,
+     "somewhat": 1
+    },
+    "side": {
+     "left": 1,
+     "right": 2
+    },
+    "durability": {
+     "wears_fast": 1,
+     "holds_up": 1
+    },
+    "arm": {
+     "not_really": 3
+    },
+    "level": {
+     "intermediate": 1,
+     "advanced": 1
+    },
+    "trampoline": {
+     "low": 1
+    }
+   },
+   "spec": {
+    "plays_like": "power",
+    "feel": "hard",
+    "maneuver": "not_really"
+   }
+  },
+  "babolat-viper-juan-lebron-3-1-2027": {
+   "slug": "babolat-viper-juan-lebron-3-1-2027",
+   "name": "Babolat Viper Juan Lebrón 3.1 2027",
+   "sources": 8,
+   "groups": {
+    "plays_like": {
+     "power": 3,
+     "all_round": 2,
+     "control": 3
+    },
+    "sweet_spot": {
+     "small": 6
+    },
+    "trampoline": {
+     "low": 1
+    },
+    "maneuver": {
+     "not_really": 2
+    }
+   },
+   "spec": {
+    "plays_like": "power",
+    "feel": "hard",
+    "maneuver": "not_really"
+   }
+  },
+  "7b149e3d-258c-4098-a1cc-90216649e535": {
+   "slug": "babolat-viper-soft-juan-lebron-3-0-2026",
+   "name": "Babolat Viper Soft Juan Lebrón 3.0 2026",
+   "sources": 50,
+   "groups": {
+    "plays_like": {
+     "power": 25,
+     "control": 9,
+     "all_round": 1
+    },
+    "sweet_spot": {
+     "small": 10,
+     "big": 18,
+     "medium": 3
+    },
+    "feel": {
+     "soft": 6,
+     "hard": 7
+    },
+    "maneuver": {
+     "not_really": 9,
+     "very": 4,
+     "somewhat": 5
+    },
+    "trampoline": {
+     "low": 1,
+     "high": 1
+    },
+    "level": {
+     "advanced": 2
+    },
+    "arm": {
+     "somewhat": 4,
+     "not_really": 6
+    },
+    "durability": {
+     "wears_fast": 4
+    }
+   },
+   "spec": {
+    "plays_like": "power",
+    "feel": "soft",
+    "maneuver": "not_really"
+   }
+  },
+  "babolat-viper-soft-juan-lebron-3-1-2027": {
+   "slug": "babolat-viper-soft-juan-lebron-3-1-2027",
+   "name": "Babolat Viper Soft Juan Lebrón 3.1 2027",
+   "sources": 11,
+   "groups": {
+    "plays_like": {
+     "control": 5,
+     "all_round": 1,
+     "power": 3
+    },
+    "sweet_spot": {
+     "small": 4,
+     "big": 2,
+     "medium": 1
+    },
+    "maneuver": {
+     "not_really": 2,
+     "very": 1
+    },
+    "feel": {
+     "soft": 2
+    },
+    "arm": {
+     "not_really": 1
+    },
+    "durability": {
+     "wears_fast": 1
+    }
+   },
+   "spec": {
+    "plays_like": "power",
+    "feel": "hard",
+    "maneuver": "not_really"
+   }
+  },
+  "bullpadel-hack-04-2025": {
+   "slug": "bullpadel-hack-04-2025",
+   "name": "Bullpadel Hack 04 2025",
+   "sources": 34,
+   "groups": {
+    "plays_like": {
+     "all_round": 2,
+     "power": 14,
+     "control": 10
+    },
+    "sweet_spot": {
+     "small": 13
+    },
+    "maneuver": {
+     "not_really": 9,
+     "very": 3,
+     "somewhat": 2
+    },
+    "arm": {
+     "not_really": 2,
+     "somewhat": 1,
+     "very": 2
+    },
+    "feel": {
+     "hard": 3
+    },
+    "trampoline": {
+     "low": 1,
+     "high": 1
+    },
+    "durability": {
+     "wears_fast": 1
+    }
+   },
+   "spec": {
+    "plays_like": "power",
+    "maneuver": "not_really"
+   }
+  },
+  "bullpadel-hack-04-2026": {
+   "slug": "bullpadel-hack-04-2026",
+   "name": "Bullpadel Hack 04 2026",
+   "sources": 15,
+   "groups": {
+    "plays_like": {
+     "all_round": 5,
+     "control": 7,
+     "power": 2
+    },
+    "sweet_spot": {
+     "small": 8,
+     "big": 1
+    },
+    "arm": {
+     "not_really": 1,
+     "very": 2
+    },
+    "feel": {
+     "hard": 2,
+     "soft": 1
+    },
+    "maneuver": {
+     "very": 3,
+     "not_really": 1,
+     "somewhat": 1
+    },
+    "trampoline": {
+     "high": 1
+    },
+    "durability": {
+     "holds_up": 1
+    }
+   },
+   "spec": {
+    "plays_like": "power",
+    "maneuver": "not_really"
+   }
+  },
+  "bullpadel-hack-04-comfort-2026": {
+   "slug": "bullpadel-hack-04-comfort-2026",
+   "name": "Bullpadel Hack 04 Comfort 2026",
+   "sources": 2,
+   "groups": {
+    "plays_like": {
+     "control": 2
+    },
+    "sweet_spot": {
+     "big": 2
+    },
+    "feel": {
+     "soft": 1
+    },
+    "maneuver": {
+     "very": 1
+    },
+    "level": {
+     "intermediate": 1
+    }
+   },
+   "spec": {
+    "plays_like": "power",
+    "maneuver": "not_really"
+   }
+  },
+  "275ba3d1-810b-4cb5-9c98-c2294c1da06b": {
+   "slug": "bullpadel-hack-04-hybrid-2025",
+   "name": "Bullpadel Hack 04 Hybrid 2025",
+   "sources": 29,
+   "groups": {
+    "plays_like": {
+     "control": 19,
+     "all_round": 5,
+     "power": 1
+    },
+    "sweet_spot": {
+     "big": 6
+    },
+    "feel": {
+     "hard": 5,
+     "soft": 1
+    },
+    "arm": {
+     "very": 2,
+     "not_really": 1
+    },
+    "maneuver": {
+     "very": 5,
+     "somewhat": 2
+    },
+    "level": {
+     "advanced": 1,
+     "intermediate": 1
+    },
+    "trampoline": {
+     "low": 3,
+     "high": 1
+    },
+    "durability": {
+     "wears_fast": 1
+    },
+    "side": {
+     "right": 1,
+     "left": 1
+    }
+   },
+   "spec": {}
+  },
+  "3ea8fb56-56b4-46f5-a67b-a22fec843f1b": {
+   "slug": "bullpadel-hack-04-hybrid-2026",
+   "name": "Bullpadel Hack 04 Hybrid 2026",
+   "sources": 17,
+   "groups": {
+    "sweet_spot": {
+     "big": 5,
+     "small": 1
+    },
+    "plays_like": {
+     "control": 6,
+     "all_round": 3,
+     "power": 4
+    },
+    "maneuver": {
+     "very": 5,
+     "somewhat": 1,
+     "not_really": 2
+    },
+    "level": {
+     "advanced": 1
+    },
+    "arm": {
+     "not_really": 1
+    }
+   },
+   "spec": {
+    "maneuver": "somewhat"
+   }
+  },
+  "bullpadel-hack-05-2027": {
+   "slug": "bullpadel-hack-05-2027",
+   "name": "Bullpadel Hack 05 2027",
+   "sources": 13,
+   "groups": {
+    "plays_like": {
+     "control": 6,
+     "all_round": 1,
+     "power": 3
+    },
+    "sweet_spot": {
+     "small": 8,
+     "big": 1
+    },
+    "feel": {
+     "hard": 3
+    },
+    "maneuver": {
+     "very": 4,
+     "not_really": 2,
+     "somewhat": 1
+    },
+    "side": {
+     "left": 1
+    },
+    "arm": {
+     "not_really": 1,
+     "somewhat": 1,
+     "very": 1
+    }
+   },
+   "spec": {
+    "plays_like": "power",
+    "maneuver": "not_really"
+   }
+  },
+  "bullpadel-hack-05-comfort-2027": {
+   "slug": "bullpadel-hack-05-comfort-2027",
+   "name": "Bullpadel Hack 05 Comfort 2027",
+   "sources": 0,
+   "groups": {},
+   "spec": {
+    "plays_like": "power",
+    "maneuver": "not_really"
+   }
+  },
+  "bullpadel-hack-05-hybrid-2027": {
+   "slug": "bullpadel-hack-05-hybrid-2027",
+   "name": "Bullpadel Hack 05 Hybrid 2027",
+   "sources": 10,
+   "groups": {
+    "plays_like": {
+     "control": 4,
+     "all_round": 3,
+     "power": 3
+    },
+    "feel": {
+     "hard": 2,
+     "soft": 1
+    },
+    "arm": {
+     "very": 2
+    },
+    "maneuver": {
+     "very": 1
+    },
+    "sweet_spot": {
+     "small": 1,
+     "big": 1
+    },
+    "trampoline": {
+     "high": 1
+    }
+   },
+   "spec": {
+    "maneuver": "somewhat"
+   }
+  },
+  "bullpadel-hack-advance-2026": {
+   "slug": "bullpadel-hack-advance-2026",
+   "name": "Bullpadel Hack Advance 2026",
+   "sources": 1,
+   "groups": {
+    "durability": {
+     "wears_fast": 1
+    }
+   },
+   "spec": {
+    "plays_like": "control",
+    "maneuver": "somewhat"
+   }
+  },
+  "bullpadel-icon-2026": {
+   "slug": "bullpadel-icon-2026",
+   "name": "Bullpadel Icon 2026",
+   "sources": 4,
+   "groups": {
+    "plays_like": {
+     "power": 3
+    },
+    "sweet_spot": {
+     "small": 2
+    },
+    "feel": {
+     "hard": 1
+    },
+    "maneuver": {
+     "not_really": 2
+    }
+   },
+   "spec": {
+    "plays_like": "power",
+    "maneuver": "somewhat"
+   }
+  },
+  "bullpadel-icon-2027": {
+   "slug": "bullpadel-icon-2027",
+   "name": "Bullpadel Icon 2027",
+   "sources": 0,
+   "groups": {},
+   "spec": {
+    "plays_like": "power",
+    "maneuver": "not_really"
+   }
+  },
+  "65bca43f-c7b2-4e84-a4e1-135595eaed1b": {
+   "slug": "bullpadel-neuron-02-2026",
+   "name": "Bullpadel Neuron 02 2026",
+   "sources": 46,
+   "groups": {
+    "plays_like": {
+     "control": 32,
+     "power": 2,
+     "all_round": 4
+    },
+    "maneuver": {
+     "very": 18,
+     "somewhat": 1
+    },
+    "side": {
+     "right": 3
+    },
+    "arm": {
+     "very": 3,
+     "somewhat": 3
+    },
+    "feel": {
+     "hard": 4,
+     "soft": 1,
+     "medium": 1
+    },
+    "trampoline": {
+     "high": 2,
+     "low": 1
+    },
+    "sweet_spot": {
+     "big": 6,
+     "small": 6
+    },
+    "level": {
+     "intermediate": 3,
+     "advanced": 1
+    },
+    "durability": {
+     "wears_fast": 1
+    }
+   },
+   "spec": {
+    "maneuver": "somewhat"
+   }
+  },
+  "bullpadel-neuron-02-2027": {
+   "slug": "bullpadel-neuron-02-2027",
+   "name": "Bullpadel Neuron 02 2027",
+   "sources": 11,
+   "groups": {
+    "arm": {
+     "very": 4
+    },
+    "maneuver": {
+     "very": 6,
+     "somewhat": 1
+    },
+    "side": {
+     "right": 2
+    },
+    "plays_like": {
+     "control": 8,
+     "all_round": 1,
+     "power": 1
+    },
+    "feel": {
+     "hard": 2,
+     "medium": 1
+    },
+    "sweet_spot": {
+     "small": 2,
+     "big": 1
+    }
+   },
+   "spec": {
+    "maneuver": "somewhat"
+   }
+  },
+  "bullpadel-neuron-02-comfort-2027": {
+   "slug": "bullpadel-neuron-02-comfort-2027",
+   "name": "Bullpadel Neuron 02 Edge Comfort 2027",
+   "sources": 6,
+   "groups": {
+    "plays_like": {
+     "power": 4,
+     "control": 1
+    },
+    "arm": {
+     "very": 6
+    },
+    "maneuver": {
+     "very": 2
+    },
+    "feel": {
+     "hard": 1,
+     "soft": 2
+    },
+    "sweet_spot": {
+     "big": 2
+    },
+    "trampoline": {
+     "high": 1
+    }
+   },
+   "spec": {
+    "maneuver": "not_really"
+   }
+  },
+  "bullpadel-neuron-02-edge-2026": {
+   "slug": "bullpadel-neuron-02-edge-2026",
+   "name": "Bullpadel Neuron 02 Edge 2026",
+   "sources": 56,
+   "groups": {
+    "plays_like": {
+     "control": 16,
+     "all_round": 22,
+     "power": 10
+    },
+    "sweet_spot": {
+     "small": 27,
+     "big": 1
+    },
+    "maneuver": {
+     "very": 8,
+     "not_really": 10,
+     "somewhat": 3
+    },
+    "feel": {
+     "hard": 4,
+     "soft": 1
+    },
+    "arm": {
+     "not_really": 9,
+     "very": 1
+    },
+    "side": {
+     "right": 1,
+     "both": 1,
+     "left": 1
+    },
+    "level": {
+     "advanced": 7
+    },
+    "durability": {
+     "holds_up": 1,
+     "wears_fast": 1
+    }
+   },
+   "spec": {
+    "plays_like": "power",
+    "maneuver": "somewhat"
+   }
+  },
+  "108eeffa-8157-4c70-a0ba-0632673e3008": {
+   "slug": "bullpadel-neuron-02-edge-2027",
+   "name": "Bullpadel Neuron 02 Edge 2027",
+   "sources": 19,
+   "groups": {
+    "plays_like": {
+     "all_round": 7,
+     "power": 5,
+     "control": 7
+    },
+    "arm": {
+     "very": 3,
+     "not_really": 2
+    },
+    "maneuver": {
+     "very": 4,
+     "not_really": 2,
+     "somewhat": 2
+    },
+    "sweet_spot": {
+     "small": 6,
+     "big": 2
+    },
+    "feel": {
+     "hard": 1
+    },
+    "trampoline": {
+     "low": 2
+    },
+    "level": {
+     "advanced": 1
+    },
+    "side": {
+     "right": 1
+    }
+   },
+   "spec": {
+    "plays_like": "power",
+    "feel": "hard",
+    "maneuver": "not_really"
+   }
+  },
+  "bullpadel-neuron-2024": {
+   "slug": "bullpadel-neuron-2024",
+   "name": "Bullpadel Neuron 2024",
+   "sources": 31,
+   "groups": {
+    "plays_like": {
+     "control": 24,
+     "all_round": 2,
+     "power": 3
+    },
+    "maneuver": {
+     "very": 7,
+     "somewhat": 2
+    },
+    "sweet_spot": {
+     "big": 5,
+     "small": 3,
+     "medium": 1
+    },
+    "arm": {
+     "not_really": 2,
+     "very": 1
+    },
+    "durability": {
+     "wears_fast": 3
+    },
+    "feel": {
+     "hard": 1
+    },
+    "trampoline": {
+     "high": 1
+    }
+   },
+   "spec": {
+    "maneuver": "somewhat"
+   }
+  },
+  "bullpadel-neuron-2025": {
+   "slug": "bullpadel-neuron-2025",
+   "name": "Bullpadel Neuron 2025",
+   "sources": 29,
+   "groups": {
+    "plays_like": {
+     "control": 20,
+     "power": 4,
+     "all_round": 1
+    },
+    "sweet_spot": {
+     "big": 7,
+     "small": 3
+    },
+    "feel": {
+     "hard": 3,
+     "soft": 1,
+     "medium": 1
+    },
+    "maneuver": {
+     "very": 10,
+     "somewhat": 3,
+     "not_really": 1
+    },
+    "arm": {
+     "not_really": 1,
+     "very": 4
+    },
+    "side": {
+     "right": 2,
+     "left": 2
+    },
+    "level": {
+     "intermediate": 2
+    }
+   },
+   "spec": {
+    "maneuver": "very"
+   }
+  },
+  "bullpadel-pearl-2026": {
+   "slug": "bullpadel-pearl-2026",
+   "name": "Bullpadel Pearl 2026",
+   "sources": 4,
+   "groups": {
+    "sweet_spot": {
+     "big": 2
+    },
+    "maneuver": {
+     "very": 4
+    },
+    "plays_like": {
+     "power": 2,
+     "control": 1
+    },
+    "feel": {
+     "hard": 1
+    },
+    "trampoline": {
+     "high": 1
+    }
+   },
+   "spec": {
+    "plays_like": "power",
+    "maneuver": "not_really"
+   }
+  },
+  "bullpadel-pearl-2027": {
+   "slug": "bullpadel-pearl-2027",
+   "name": "Bullpadel Pearl 2027",
+   "sources": 2,
+   "groups": {
+    "plays_like": {
+     "power": 2
+    },
+    "maneuver": {
+     "very": 2
+    },
+    "sweet_spot": {
+     "medium": 1
+    }
+   },
+   "spec": {
+    "plays_like": "power",
+    "maneuver": "not_really"
+   }
+  },
+  "bullpadel-vertex-04-2024": {
+   "slug": "bullpadel-vertex-04-2024",
+   "name": "Bullpadel Vertex 04 2024",
+   "sources": 24,
+   "groups": {
+    "plays_like": {
+     "control": 10,
+     "power": 5,
+     "all_round": 4
+    },
+    "sweet_spot": {
+     "small": 10,
+     "big": 5,
+     "medium": 1
+    },
+    "feel": {
+     "hard": 2,
+     "medium": 1
+    },
+    "arm": {
+     "very": 2
+    },
+    "maneuver": {
+     "somewhat": 4,
+     "very": 2
+    },
+    "level": {
+     "advanced": 2
+    },
+    "durability": {
+     "wears_fast": 1
+    },
+    "trampoline": {
+     "high": 1
+    }
+   },
+   "spec": {
+    "plays_like": "power",
+    "maneuver": "not_really"
+   }
+  },
+  "demo-racket-1": {
+   "slug": "bullpadel-vertex-04-2025",
+   "name": "Bullpadel Vertex 04 2025",
+   "sources": 33,
+   "groups": {
+    "sweet_spot": {
+     "small": 11,
+     "big": 3,
+     "medium": 1
+    },
+    "feel": {
+     "hard": 1,
+     "medium": 1
+    },
+    "plays_like": {
+     "power": 14,
+     "control": 13,
+     "all_round": 3
+    },
+    "maneuver": {
+     "not_really": 6,
+     "very": 6,
+     "somewhat": 1
+    },
+    "arm": {
+     "not_really": 3,
+     "somewhat": 1,
+     "very": 2
+    },
+    "level": {
+     "intermediate": 1
+    },
+    "durability": {
+     "wears_fast": 1
+    }
+   },
+   "spec": {
+    "plays_like": "power",
+    "maneuver": "not_really"
+   }
+  },
+  "d37e50e3-63a9-4457-9ea2-2ed4a519a7a3": {
+   "slug": "bullpadel-vertex-04-hybrid-2025",
+   "name": "Bullpadel Vertex 04 Hybrid 2025",
+   "sources": 36,
+   "groups": {
+    "plays_like": {
+     "all_round": 4,
+     "control": 20,
+     "power": 5
+    },
+    "feel": {
+     "hard": 3
+    },
+    "side": {
+     "both": 1,
+     "right": 1
+    },
+    "sweet_spot": {
+     "small": 11,
+     "medium": 2,
+     "big": 6
+    },
+    "maneuver": {
+     "very": 3,
+     "not_really": 1,
+     "somewhat": 1
+    },
+    "arm": {
+     "somewhat": 1,
+     "not_really": 2,
+     "very": 2
+    },
+    "level": {
+     "intermediate": 1,
+     "advanced": 1
+    },
+    "durability": {
+     "holds_up": 1,
+     "wears_fast": 1
+    },
+    "trampoline": {
+     "low": 2,
+     "high": 2
+    }
+   },
+   "spec": {
+    "maneuver": "very"
+   }
+  },
+  "c257bff2-c2c4-4467-a06d-fcb7c90a5ea5": {
+   "slug": "bullpadel-vertex-05-2026",
+   "name": "Bullpadel Vertex 05 2026",
+   "sources": 65,
+   "groups": {
+    "plays_like": {
+     "power": 19,
+     "all_round": 13,
+     "control": 23
+    },
+    "sweet_spot": {
+     "small": 11,
+     "big": 17,
+     "medium": 3
+    },
+    "arm": {
+     "not_really": 6,
+     "very": 3,
+     "somewhat": 1
+    },
+    "maneuver": {
+     "not_really": 9,
+     "very": 9,
+     "somewhat": 7
+    },
+    "feel": {
+     "medium": 3,
+     "soft": 2,
+     "hard": 10
+    },
+    "durability": {
+     "holds_up": 1,
+     "wears_fast": 3
+    },
+    "level": {
+     "intermediate": 3,
+     "advanced": 2
+    },
+    "trampoline": {
+     "low": 1
+    }
+   },
+   "spec": {
+    "plays_like": "power"
+   }
+  },
+  "bullpadel-vertex-05-2027": {
+   "slug": "bullpadel-vertex-05-2027",
+   "name": "Bullpadel Vertex 05 2027",
+   "sources": 11,
+   "groups": {
+    "plays_like": {
+     "control": 6,
+     "power": 3,
+     "all_round": 1
+    },
+    "arm": {
+     "very": 7,
+     "not_really": 1
+    },
+    "maneuver": {
+     "very": 3
+    },
+    "feel": {
+     "hard": 2,
+     "medium": 1
+    },
+    "sweet_spot": {
+     "small": 4,
+     "big": 2
+    }
+   },
+   "spec": {
+    "plays_like": "power"
+   }
+  },
+  "bullpadel-vertex-05-comfort-2026": {
+   "slug": "bullpadel-vertex-05-comfort-2026",
+   "name": "Bullpadel Vertex 05 Comfort 2026",
+   "sources": 6,
+   "groups": {
+    "sweet_spot": {
+     "big": 2,
+     "small": 1
+    },
+    "arm": {
+     "very": 3
+    },
+    "plays_like": {
+     "power": 3,
+     "control": 1
+    },
+    "maneuver": {
+     "very": 1,
+     "not_really": 1
+    },
+    "level": {
+     "beginner": 1
+    }
+   },
+   "spec": {
+    "plays_like": "power",
+    "maneuver": "somewhat"
+   }
+  },
+  "eb287dda-d1e4-45c7-84fc-2765aaf1e8b1": {
+   "slug": "bullpadel-vertex-05-geo-2026",
+   "name": "Bullpadel Vertex 05 Geo 2026",
+   "sources": 64,
+   "groups": {
+    "sweet_spot": {
+     "big": 15,
+     "small": 17,
+     "medium": 6
+    },
+    "plays_like": {
+     "power": 21,
+     "control": 16,
+     "all_round": 15
+    },
+    "arm": {
+     "not_really": 4,
+     "somewhat": 3,
+     "very": 2
+    },
+    "maneuver": {
+     "not_really": 14,
+     "very": 12,
+     "somewhat": 6
+    },
+    "feel": {
+     "medium": 1,
+     "soft": 2,
+     "hard": 7
+    },
+    "trampoline": {
+     "high": 1
+    },
+    "level": {
+     "intermediate": 3
+    },
+    "side": {
+     "left": 1,
+     "right": 1
+    },
+    "durability": {
+     "wears_fast": 2
+    }
+   },
+   "spec": {
+    "plays_like": "power",
+    "maneuver": "not_really"
+   }
+  },
+  "bullpadel-vertex-05-geo-2027": {
+   "slug": "bullpadel-vertex-05-geo-2027",
+   "name": "Bullpadel Vertex 05 Geo 2027",
+   "sources": 18,
+   "groups": {
+    "plays_like": {
+     "power": 11,
+     "all_round": 5,
+     "control": 2
+    },
+    "sweet_spot": {
+     "big": 7,
+     "small": 3,
+     "medium": 2
+    },
+    "feel": {
+     "hard": 2
+    },
+    "maneuver": {
+     "not_really": 4,
+     "very": 3,
+     "somewhat": 1
+    },
+    "arm": {
+     "very": 2
+    },
+    "level": {
+     "advanced": 1,
+     "intermediate": 1
+    }
+   },
+   "spec": {
+    "plays_like": "power",
+    "maneuver": "not_really"
+   }
+  },
+  "891b3d31-47de-45ad-81a8-a6115a957b90": {
+   "slug": "bullpadel-vertex-05-hybrid-2026",
+   "name": "Bullpadel Vertex 05 Hybrid 2026",
+   "sources": 50,
+   "groups": {
+    "plays_like": {
+     "control": 21,
+     "all_round": 5,
+     "power": 12
+    },
+    "sweet_spot": {
+     "big": 19,
+     "small": 1
+    },
+    "arm": {
+     "very": 7,
+     "not_really": 6
+    },
+    "side": {
+     "right": 4,
+     "left": 1,
+     "both": 1
+    },
+    "maneuver": {
+     "very": 11,
+     "not_really": 9,
+     "somewhat": 2
+    },
+    "feel": {
+     "hard": 9,
+     "soft": 1,
+     "medium": 1
+    },
+    "trampoline": {
+     "high": 2,
+     "low": 6,
+     "medium": 1
+    },
+    "level": {
+     "intermediate": 5,
+     "advanced": 1
+    },
+    "durability": {
+     "holds_up": 1
+    }
+   },
+   "spec": {
+    "maneuver": "somewhat"
+   }
+  },
+  "bullpadel-vertex-05-hybrid-2027": {
+   "slug": "bullpadel-vertex-05-hybrid-2027",
+   "name": "Bullpadel Vertex 05 Hybrid 2027",
+   "sources": 6,
+   "groups": {
+    "plays_like": {
+     "control": 6
+    },
+    "maneuver": {
+     "very": 2,
+     "somewhat": 1
+    },
+    "feel": {
+     "hard": 1,
+     "medium": 1
+    },
+    "sweet_spot": {
+     "big": 4
+    },
+    "arm": {
+     "very": 2
+    }
+   },
+   "spec": {
+    "maneuver": "somewhat"
+   }
+  },
+  "23c78841-74b8-4eea-a969-c2758fdb5505": {
+   "slug": "bullpadel-vertex-05-women-2026",
+   "name": "Bullpadel Vertex 05 W 2026",
+   "sources": 26,
+   "groups": {
+    "sweet_spot": {
+     "big": 2,
+     "small": 2
+    },
+    "arm": {
+     "very": 3,
+     "not_really": 3,
+     "somewhat": 1
+    },
+    "plays_like": {
+     "control": 12,
+     "all_round": 2,
+     "power": 6
+    },
+    "feel": {
+     "soft": 4,
+     "hard": 1
+    },
+    "maneuver": {
+     "very": 5,
+     "somewhat": 4
+    },
+    "level": {
+     "intermediate": 1
+    },
+    "trampoline": {
+     "high": 1
+    },
+    "durability": {
+     "wears_fast": 1
+    }
+   },
+   "spec": {
+    "plays_like": "power",
+    "maneuver": "somewhat"
+   }
+  },
+  "bullpadel-vertex-05-women-2027": {
+   "slug": "bullpadel-vertex-05-women-2027",
+   "name": "Bullpadel Vertex 05 W 2027",
+   "sources": 10,
+   "groups": {
+    "plays_like": {
+     "control": 6,
+     "all_round": 1,
+     "power": 2
+    },
+    "maneuver": {
+     "very": 5,
+     "somewhat": 1
+    },
+    "sweet_spot": {
+     "big": 4,
+     "small": 1
+    },
+    "feel": {
+     "soft": 1
+    },
+    "arm": {
+     "very": 1,
+     "somewhat": 1
+    },
+    "durability": {
+     "wears_fast": 1
+    }
+   },
+   "spec": {
+    "plays_like": "power",
+    "maneuver": "somewhat"
+   }
+  },
+  "bullpadel-vertex-advance-2026": {
+   "slug": "bullpadel-vertex-advance-2026",
+   "name": "Bullpadel Vertex Advance 2026",
+   "sources": 0,
+   "groups": {},
+   "spec": {
+    "plays_like": "power",
+    "maneuver": "not_really"
+   }
+  },
+  "bullpadel-wonder-2026": {
+   "slug": "bullpadel-wonder-2026",
+   "name": "Bullpadel Wonder 2026",
+   "sources": 5,
+   "groups": {
+    "plays_like": {
+     "control": 4
+    },
+    "arm": {
+     "very": 1
+    },
+    "maneuver": {
+     "very": 3
+    }
+   },
+   "spec": {
+    "maneuver": "somewhat"
+   }
+  },
+  "bullpadel-wonder-2027": {
+   "slug": "bullpadel-wonder-2027",
+   "name": "Bullpadel Wonder 2027",
+   "sources": 2,
+   "groups": {
+    "plays_like": {
+     "control": 2
+    },
+    "sweet_spot": {
+     "big": 2
+    },
+    "feel": {
+     "medium": 1
+    },
+    "maneuver": {
+     "very": 1
+    }
+   },
+   "spec": {
+    "maneuver": "somewhat"
+   }
+  },
+  "bullpadel-xplo-02-2027": {
+   "slug": "bullpadel-xplo-02-2027",
+   "name": "Bullpadel Xplo 02 2027",
+   "sources": 17,
+   "groups": {
+    "plays_like": {
+     "power": 12,
+     "all_round": 3,
+     "control": 2
+    },
+    "sweet_spot": {
+     "small": 12,
+     "medium": 1
+    },
+    "maneuver": {
+     "not_really": 6,
+     "somewhat": 2,
+     "very": 1
+    },
+    "feel": {
+     "hard": 3,
+     "soft": 1
+    },
+    "trampoline": {
+     "medium": 1
+    },
+    "arm": {
+     "not_really": 2,
+     "very": 2
+    }
+   },
+   "spec": {
+    "maneuver": "not_really"
+   }
+  },
+  "bullpadel-xplo-02-comfort-2027": {
+   "slug": "bullpadel-xplo-02-comfort-2027",
+   "name": "Bullpadel Xplo 02 Comfort 2027",
+   "sources": 8,
+   "groups": {
+    "plays_like": {
+     "control": 5,
+     "power": 1
+    },
+    "sweet_spot": {
+     "big": 8
+    },
+    "arm": {
+     "very": 5,
+     "somewhat": 1
+    },
+    "feel": {
+     "medium": 1,
+     "soft": 2
+    },
+    "trampoline": {
+     "high": 2
+    },
+    "maneuver": {
+     "very": 2
+    }
+   },
+   "spec": {
+    "maneuver": "not_really"
+   }
+  },
+  "bullpadel-xplo-2025": {
+   "slug": "bullpadel-xplo-2025",
+   "name": "Bullpadel Xplo 2025",
+   "sources": 13,
+   "groups": {
+    "plays_like": {
+     "all_round": 2,
+     "control": 4,
+     "power": 4
+    },
+    "arm": {
+     "not_really": 1,
+     "very": 1
+    },
+    "sweet_spot": {
+     "small": 5,
+     "medium": 1
+    },
+    "maneuver": {
+     "very": 2,
+     "not_really": 1,
+     "somewhat": 1
+    },
+    "feel": {
+     "hard": 2
+    }
+   },
+   "spec": {
+    "plays_like": "power",
+    "maneuver": "not_really"
+   }
+  },
+  "f9e8b971-47c9-4fd8-b97f-3a9045ac5ef6": {
+   "slug": "bullpadel-xplo-2026",
+   "name": "Bullpadel Xplo 2026",
+   "sources": 25,
+   "groups": {
+    "plays_like": {
+     "control": 5,
+     "power": 11,
+     "all_round": 3
+    },
+    "sweet_spot": {
+     "small": 9,
+     "big": 4,
+     "medium": 1
+    },
+    "maneuver": {
+     "not_really": 4,
+     "very": 3
+    },
+    "feel": {
+     "hard": 1
+    },
+    "side": {
+     "left": 2
+    },
+    "arm": {
+     "very": 1
+    },
+    "level": {
+     "beginner": 1,
+     "advanced": 1
+    }
+   },
+   "spec": {
+    "plays_like": "power",
+    "maneuver": "not_really"
+   }
+  },
+  "bullpadel-xplo-comfort-2025": {
+   "slug": "bullpadel-xplo-comfort-2025",
+   "name": "Bullpadel Xplo CMF 2025",
+   "sources": 13,
+   "groups": {
+    "plays_like": {
+     "control": 8,
+     "all_round": 1,
+     "power": 2
+    },
+    "sweet_spot": {
+     "small": 3,
+     "big": 5
+    },
+    "maneuver": {
+     "very": 4,
+     "somewhat": 1,
+     "not_really": 2
+    },
+    "feel": {
+     "medium": 1,
+     "soft": 1
+    },
+    "arm": {
+     "very": 3
+    },
+    "level": {
+     "intermediate": 3
+    },
+    "side": {
+     "right": 1
+    }
+   },
+   "spec": {
+    "plays_like": "power",
+    "maneuver": "somewhat"
+   }
+  },
+  "bullpadel-xplo-comfort-2026": {
+   "slug": "bullpadel-xplo-comfort-2026",
+   "name": "Bullpadel Xplo CMF 2026",
+   "sources": 13,
+   "groups": {
+    "plays_like": {
+     "all_round": 1,
+     "power": 5,
+     "control": 3
+    },
+    "feel": {
+     "medium": 1,
+     "soft": 2,
+     "hard": 1
+    },
+    "sweet_spot": {
+     "small": 3,
+     "big": 5
+    },
+    "maneuver": {
+     "not_really": 3
+    },
+    "arm": {
+     "very": 4,
+     "somewhat": 1
+    },
+    "trampoline": {
+     "high": 1
+    }
+   },
+   "spec": {
+    "plays_like": "power",
+    "maneuver": "not_really"
+   }
+  },
+  "992c8d41-36f4-4449-9ffa-f1ed01df6b81": {
+   "slug": "head-coello-motion-2025",
+   "name": "Head Coello Motion 2025",
+   "sources": 41,
+   "groups": {
+    "plays_like": {
+     "power": 22,
+     "control": 4,
+     "all_round": 4
+    },
+    "sweet_spot": {
+     "small": 14,
+     "big": 4,
+     "medium": 3
+    },
+    "maneuver": {
+     "not_really": 11,
+     "very": 9,
+     "somewhat": 5
+    },
+    "feel": {
+     "hard": 2
+    },
+    "side": {
+     "left": 1,
+     "both": 1
+    },
+    "arm": {
+     "very": 5,
+     "somewhat": 3,
+     "not_really": 3
+    },
+    "level": {
+     "intermediate": 1,
+     "advanced": 2
+    },
+    "durability": {
+     "holds_up": 1,
+     "wears_fast": 1
+    }
+   },
+   "spec": {
+    "plays_like": "power",
+    "maneuver": "not_really"
+   }
+  },
+  "head-coello-motion-2026": {
+   "slug": "head-coello-motion-2026",
+   "name": "Head Coello Motion 2026",
+   "sources": 40,
+   "groups": {
+    "plays_like": {
+     "power": 15,
+     "all_round": 8,
+     "control": 7
+    },
+    "sweet_spot": {
+     "small": 6,
+     "big": 8
+    },
+    "maneuver": {
+     "not_really": 10,
+     "very": 7,
+     "somewhat": 4
+    },
+    "arm": {
+     "very": 6,
+     "not_really": 4
+    },
+    "feel": {
+     "hard": 3,
+     "soft": 1,
+     "medium": 1
+    },
+    "trampoline": {
+     "high": 1,
+     "low": 1
+    },
+    "level": {
+     "advanced": 2,
+     "intermediate": 1
+    },
+    "side": {
+     "right": 1,
+     "left": 1
+    }
+   },
+   "spec": {
+    "plays_like": "power",
+    "maneuver": "not_really"
+   }
+  },
+  "head-coello-pro-2025": {
+   "slug": "head-coello-pro-2025",
+   "name": "Head Coello Pro 2025",
+   "sources": 17,
+   "groups": {
+    "plays_like": {
+     "all_round": 2,
+     "power": 14
+    },
+    "maneuver": {
+     "not_really": 12
+    },
+    "arm": {
+     "not_really": 4
+    },
+    "sweet_spot": {
+     "small": 5,
+     "big": 1
+    },
+    "side": {
+     "left": 2
+    },
+    "feel": {
+     "hard": 1
+    },
+    "durability": {
+     "holds_up": 1
+    }
+   },
+   "spec": {
+    "plays_like": "power",
+    "maneuver": "not_really"
+   }
+  },
+  "head-coello-pro-2026": {
+   "slug": "head-coello-pro-2026",
+   "name": "Head Coello Pro 2026",
+   "sources": 34,
+   "groups": {
+    "plays_like": {
+     "power": 20,
+     "all_round": 5,
+     "control": 4
+    },
+    "sweet_spot": {
+     "small": 7,
+     "big": 5,
+     "medium": 2
+    },
+    "maneuver": {
+     "not_really": 15,
+     "somewhat": 2,
+     "very": 1
+    },
+    "level": {
+     "intermediate": 1
+    },
+    "side": {
+     "left": 1
+    },
+    "arm": {
+     "not_really": 2
+    },
+    "feel": {
+     "hard": 1,
+     "soft": 1
+    }
+   },
+   "spec": {
+    "plays_like": "power",
+    "maneuver": "not_really"
+   }
+  },
+  "head-coello-team-2025": {
+   "slug": "head-coello-team-2025",
+   "name": "Head Coello Team 2025",
+   "sources": 6,
+   "groups": {
+    "plays_like": {
+     "power": 3,
+     "control": 2
+    },
+    "sweet_spot": {
+     "big": 3
+    },
+    "arm": {
+     "very": 2,
+     "somewhat": 1
+    },
+    "maneuver": {
+     "not_really": 1,
+     "very": 1,
+     "somewhat": 1
+    },
+    "level": {
+     "intermediate": 1
+    },
+    "trampoline": {
+     "high": 1
+    },
+    "feel": {
+     "hard": 1
+    }
+   },
+   "spec": {
+    "plays_like": "power",
+    "maneuver": "not_really"
+   }
+  },
+  "head-coello-team-2026": {
+   "slug": "head-coello-team-2026",
+   "name": "Head Coello Team 2026",
+   "sources": 14,
+   "groups": {
+    "plays_like": {
+     "power": 5,
+     "control": 5,
+     "all_round": 1
+    },
+    "sweet_spot": {
+     "big": 8,
+     "small": 1,
+     "medium": 1
+    },
+    "arm": {
+     "very": 6
+    },
+    "trampoline": {
+     "high": 1
+    },
+    "maneuver": {
+     "very": 2,
+     "not_really": 1,
+     "somewhat": 2
+    },
+    "feel": {
+     "medium": 1,
+     "soft": 1
+    },
+    "level": {
+     "intermediate": 4,
+     "beginner": 1
+    }
+   },
+   "spec": {
+    "plays_like": "power",
+    "maneuver": "not_really"
+   }
+  },
+  "head-evo-extreme-2026": {
+   "slug": "head-evo-extreme-2025",
+   "name": "Head Evo Extreme 2025",
+   "sources": 0,
+   "groups": {},
+   "spec": {
+    "plays_like": "all_round",
+    "feel": "soft",
+    "maneuver": "not_really"
+   }
+  },
+  "head-evo-speed-2025": {
+   "slug": "head-evo-speed-2025",
+   "name": "Head Evo Speed 2025",
+   "sources": 0,
+   "groups": {},
+   "spec": {
+    "plays_like": "all_round",
+    "feel": "soft",
+    "maneuver": "not_really"
+   }
+  },
+  "head-extreme-motion-2026": {
+   "slug": "head-extreme-motion-2026",
+   "name": "Head Extreme Motion 2026",
+   "sources": 51,
+   "groups": {
+    "plays_like": {
+     "power": 16,
+     "all_round": 12,
+     "control": 15
+    },
+    "sweet_spot": {
+     "small": 11,
+     "medium": 2,
+     "big": 8
+    },
+    "maneuver": {
+     "very": 24,
+     "not_really": 6,
+     "somewhat": 1
+    },
+    "arm": {
+     "not_really": 5,
+     "somewhat": 1,
+     "very": 6
+    },
+    "feel": {
+     "hard": 5,
+     "soft": 1
+    },
+    "level": {
+     "advanced": 2,
+     "beginner": 1,
+     "intermediate": 2
+    },
+    "trampoline": {
+     "high": 1,
+     "low": 5
+    },
+    "side": {
+     "right": 1,
+     "left": 3
+    },
+    "durability": {
+     "wears_fast": 1
+    }
+   },
+   "spec": {
+    "plays_like": "power",
+    "maneuver": "not_really"
+   }
+  },
+  "head-extreme-one-2025": {
+   "slug": "head-extreme-one-2025",
+   "name": "Head Extreme One 2025",
+   "sources": 13,
+   "groups": {
+    "plays_like": {
+     "control": 8,
+     "power": 1
+    },
+    "arm": {
+     "very": 4
+    },
+    "maneuver": {
+     "very": 6,
+     "somewhat": 2
+    },
+    "side": {
+     "right": 1
+    },
+    "sweet_spot": {
+     "big": 6,
+     "small": 1
+    },
+    "feel": {
+     "hard": 1
+    }
+   },
+   "spec": {
+    "plays_like": "power",
+    "maneuver": "not_really"
+   }
+  },
+  "head-extreme-pro-2025": {
+   "slug": "head-extreme-pro-2025",
+   "name": "Head Extreme Pro 2025",
+   "sources": 15,
+   "groups": {
+    "plays_like": {
+     "power": 10,
+     "control": 2,
+     "all_round": 3
+    },
+    "maneuver": {
+     "not_really": 10,
+     "somewhat": 1
+    },
+    "sweet_spot": {
+     "small": 2,
+     "big": 1
+    },
+    "feel": {
+     "hard": 3
+    },
+    "side": {
+     "left": 1
+    }
+   },
+   "spec": {
+    "plays_like": "power",
+    "maneuver": "not_really"
+   }
+  },
+  "head-extreme-pro-2026": {
+   "slug": "head-extreme-pro-2026",
+   "name": "Head Extreme Pro 2026",
+   "sources": 13,
+   "groups": {
+    "plays_like": {
+     "power": 8,
+     "all_round": 1,
+     "control": 3
+    },
+    "sweet_spot": {
+     "small": 5,
+     "medium": 1,
+     "big": 2
+    },
+    "maneuver": {
+     "not_really": 6
+    },
+    "arm": {
+     "not_really": 1
+    },
+    "level": {
+     "advanced": 1
+    }
+   },
+   "spec": {
+    "plays_like": "power",
+    "maneuver": "not_really"
+   }
+  },
+  "47c67ac8-91bf-4720-a667-778e935e70a6": {
+   "slug": "head-gravity-motion-2024",
+   "name": "Head Gravity Motion 2024",
+   "sources": 12,
+   "groups": {
+    "arm": {
+     "very": 7,
+     "not_really": 2
+    },
+    "plays_like": {
+     "control": 5,
+     "power": 1
+    },
+    "sweet_spot": {
+     "big": 4,
+     "medium": 1
+    },
+    "feel": {
+     "soft": 2
+    },
+    "side": {
+     "left": 1,
+     "right": 2
+    },
+    "maneuver": {
+     "very": 4
+    },
+    "trampoline": {
+     "high": 1
+    }
+   },
+   "spec": {
+    "plays_like": "control",
+    "maneuver": "somewhat"
+   }
+  },
+  "head-one-ultralight-2024": {
+   "slug": "head-one-ultralight-2024",
+   "name": "Head One Ultralight 2024",
+   "sources": 1,
+   "groups": {
+    "feel": {
+     "soft": 1
+    }
+   },
+   "spec": {
+    "plays_like": "control",
+    "maneuver": "very"
+   }
+  },
+  "head-radical-motion-2026": {
+   "slug": "head-radical-motion-2026",
+   "name": "Head Radical Motion 2026",
+   "sources": 17,
+   "groups": {
+    "plays_like": {
+     "control": 13,
+     "all_round": 1,
+     "power": 1
+    },
+    "sweet_spot": {
+     "big": 4,
+     "medium": 1
+    },
+    "arm": {
+     "very": 3,
+     "not_really": 2
+    },
+    "maneuver": {
+     "very": 6,
+     "somewhat": 1
+    },
+    "feel": {
+     "hard": 1,
+     "medium": 1
+    },
+    "trampoline": {
+     "low": 1
+    },
+    "durability": {
+     "holds_up": 1
+    },
+    "level": {
+     "beginner": 1
+    }
+   },
+   "spec": {
+    "plays_like": "all_round",
+    "maneuver": "somewhat"
+   }
+  },
+  "head-radical-pro-2026": {
+   "slug": "head-radical-pro-2026",
+   "name": "Head Radical Pro 2026",
+   "sources": 21,
+   "groups": {
+    "plays_like": {
+     "control": 10,
+     "power": 4,
+     "all_round": 4
+    },
+    "sweet_spot": {
+     "small": 4,
+     "big": 1
+    },
+    "feel": {
+     "hard": 1,
+     "medium": 1
+    },
+    "maneuver": {
+     "very": 2,
+     "not_really": 5,
+     "somewhat": 1
+    },
+    "arm": {
+     "somewhat": 2,
+     "very": 1
+    },
+    "side": {
+     "right": 1,
+     "left": 1
+    },
+    "level": {
+     "intermediate": 1
+    },
+    "trampoline": {
+     "high": 1
+    }
+   },
+   "spec": {
+    "plays_like": "all_round",
+    "maneuver": "very"
+   }
+  },
+  "head-radical-team-2026": {
+   "slug": "head-radical-team-2026",
+   "name": "Head Radical Team 2026",
+   "sources": 7,
+   "groups": {
+    "plays_like": {
+     "control": 6
+    },
+    "sweet_spot": {
+     "big": 4,
+     "small": 1
+    },
+    "arm": {
+     "very": 3,
+     "somewhat": 1
+    },
+    "feel": {
+     "soft": 1
+    },
+    "level": {
+     "beginner": 1,
+     "intermediate": 1
+    }
+   },
+   "spec": {
+    "plays_like": "all_round",
+    "maneuver": "very"
+   }
+  },
+  "head-radical-team-light-2026": {
+   "slug": "head-radical-team-light-2026",
+   "name": "Head Radical Team Light 2026",
+   "sources": 4,
+   "groups": {
+    "plays_like": {
+     "power": 2,
+     "control": 2
+    },
+    "sweet_spot": {
+     "big": 3
+    },
+    "arm": {
+     "very": 3,
+     "not_really": 1
+    },
+    "maneuver": {
+     "not_really": 2,
+     "very": 1
+    },
+    "feel": {
+     "hard": 1,
+     "soft": 1
+    },
+    "trampoline": {
+     "high": 1
+    },
+    "level": {
+     "beginner": 1
+    }
+   },
+   "spec": {
+    "plays_like": "control",
+    "maneuver": "very"
+   }
+  },
+  "head-speed-motion-2025": {
+   "slug": "head-speed-motion-2025",
+   "name": "Head Speed Motion 2025",
+   "sources": 19,
+   "groups": {
+    "arm": {
+     "not_really": 3,
+     "very": 2,
+     "somewhat": 1
+    },
+    "maneuver": {
+     "very": 9,
+     "not_really": 1
+    },
+    "feel": {
+     "hard": 3,
+     "medium": 1
+    },
+    "plays_like": {
+     "power": 4,
+     "control": 9,
+     "all_round": 3
+    },
+    "sweet_spot": {
+     "big": 5,
+     "small": 1,
+     "medium": 2
+    },
+    "durability": {
+     "wears_fast": 1
+    },
+    "side": {
+     "both": 1
+    }
+   },
+   "spec": {
+    "plays_like": "all_round",
+    "maneuver": "not_really"
+   }
+  },
+  "head-speed-one-2025": {
+   "slug": "head-speed-one-2025",
+   "name": "Head Speed One 2025",
+   "sources": 8,
+   "groups": {
+    "plays_like": {
+     "control": 6,
+     "power": 1
+    },
+    "arm": {
+     "very": 4,
+     "not_really": 1
+    },
+    "side": {
+     "right": 1
+    },
+    "sweet_spot": {
+     "big": 4
+    },
+    "feel": {
+     "soft": 1,
+     "hard": 1
+    },
+    "maneuver": {
+     "very": 4,
+     "not_really": 1
+    },
+    "durability": {
+     "holds_up": 1
+    },
+    "level": {
+     "beginner": 1
+    }
+   },
+   "spec": {
+    "plays_like": "all_round",
+    "maneuver": "not_really"
+   }
+  },
+  "demo-racket-3": {
+   "slug": "head-speed-pro-2025",
+   "name": "Head Speed Pro 2025",
+   "sources": 13,
+   "groups": {
+    "plays_like": {
+     "power": 4,
+     "all_round": 2,
+     "control": 4
+    },
+    "maneuver": {
+     "not_really": 6,
+     "very": 1
+    },
+    "arm": {
+     "very": 3,
+     "somewhat": 1,
+     "not_really": 1
+    },
+    "level": {
+     "advanced": 1
+    },
+    "sweet_spot": {
+     "small": 1,
+     "big": 3
+    },
+    "durability": {
+     "wears_fast": 1
+    }
+   },
+   "spec": {
+    "plays_like": "all_round",
+    "maneuver": "not_really"
+   }
+  },
+  "head-speed-team-2025": {
+   "slug": "head-speed-team-2025",
+   "name": "Head Speed Team 2025",
+   "sources": 5,
+   "groups": {
+    "plays_like": {
+     "control": 1,
+     "power": 3
+    },
+    "sweet_spot": {
+     "big": 4
+    },
+    "maneuver": {
+     "very": 2,
+     "not_really": 1
+    },
+    "trampoline": {
+     "high": 1
+    }
+   },
+   "spec": {
+    "plays_like": "all_round",
+    "maneuver": "somewhat"
+   }
+  },
+  "kuikma-control-pro-2026": {
+   "slug": "kuikma-control-pro-2025",
+   "name": "Kuikma Control Pro 2025",
+   "sources": 3,
+   "groups": {
+    "plays_like": {
+     "control": 2
+    },
+    "arm": {
+     "not_really": 1,
+     "very": 1
+    },
+    "maneuver": {
+     "very": 1,
+     "not_really": 1
+    },
+    "sweet_spot": {
+     "big": 2
+    },
+    "side": {
+     "right": 1
+    }
+   },
+   "spec": {
+    "plays_like": "control",
+    "maneuver": "somewhat"
+   }
+  },
+  "9656ac35-c189-44ef-ba12-7063957e02e7": {
+   "slug": "kuikma-hybrid-carbon-2026",
+   "name": "Kuikma Hybrid Carbon 2026",
+   "sources": 12,
+   "groups": {
+    "plays_like": {
+     "control": 5,
+     "all_round": 3
+    },
+    "feel": {
+     "hard": 3
+    },
+    "sweet_spot": {
+     "big": 3,
+     "small": 1
+    },
+    "arm": {
+     "not_really": 2,
+     "very": 1
+    },
+    "maneuver": {
+     "not_really": 3,
+     "somewhat": 1
+    },
+    "durability": {
+     "wears_fast": 1
+    }
+   },
+   "spec": {
+    "plays_like": "all_round",
+    "maneuver": "somewhat"
+   }
+  },
+  "f5bf9270-fb07-4cc4-b6fa-8e6bf3043593": {
+   "slug": "kuikma-hybrid-pro-2026",
+   "name": "Kuikma Hybrid Pro 2026",
+   "sources": 23,
+   "groups": {
+    "plays_like": {
+     "all_round": 8,
+     "power": 3,
+     "control": 6
+    },
+    "feel": {
+     "hard": 4
+    },
+    "maneuver": {
+     "somewhat": 1,
+     "very": 2,
+     "not_really": 2
+    },
+    "level": {
+     "intermediate": 3
+    },
+    "sweet_spot": {
+     "big": 1,
+     "small": 4,
+     "medium": 2
+    },
+    "arm": {
+     "very": 2,
+     "not_really": 2,
+     "somewhat": 1
+    },
+    "durability": {
+     "holds_up": 1
+    },
+    "trampoline": {
+     "high": 1,
+     "low": 1
+    }
+   },
+   "spec": {
+    "plays_like": "all_round",
+    "maneuver": "somewhat"
+   }
+  },
+  "kuikma-power-pro-2026": {
+   "slug": "kuikma-power-pro-2025",
+   "name": "Kuikma Power Pro 2025",
+   "sources": 0,
+   "groups": {},
+   "spec": {
+    "plays_like": "power",
+    "maneuver": "very"
+   }
+  },
+  "b4baca6c-3699-4220-b21e-90df6067e8ac": {
+   "slug": "nox-at10-18k-2025",
+   "name": "Nox AT10 Genius 18K 2025",
+   "sources": 83,
+   "groups": {
+    "plays_like": {
+     "control": 30,
+     "all_round": 5,
+     "power": 30
+    },
+    "sweet_spot": {
+     "big": 15,
+     "small": 5,
+     "medium": 3
+    },
+    "arm": {
+     "very": 6,
+     "not_really": 3,
+     "somewhat": 2
+    },
+    "maneuver": {
+     "very": 17,
+     "somewhat": 2,
+     "not_really": 2
+    },
+    "level": {
+     "beginner": 3,
+     "intermediate": 8,
+     "advanced": 2
+    },
+    "trampoline": {
+     "high": 18,
+     "low": 1,
+     "medium": 1
+    },
+    "durability": {
+     "wears_fast": 12
+    },
+    "side": {
+     "right": 5,
+     "left": 3
+    },
+    "feel": {
+     "hard": 1,
+     "soft": 2,
+     "medium": 1
+    }
+   },
+   "spec": {
+    "plays_like": "all_round",
+    "maneuver": "somewhat"
+   }
+  },
+  "demo-racket-0": {
+   "slug": "nox-at10-genius-12k-2025",
+   "name": "Nox AT10 Genius 12K 2025",
+   "sources": 65,
+   "groups": {
+    "plays_like": {
+     "control": 29,
+     "all_round": 13,
+     "power": 12
+    },
+    "sweet_spot": {
+     "big": 10,
+     "small": 7,
+     "medium": 2
+    },
+    "maneuver": {
+     "very": 15,
+     "somewhat": 7,
+     "not_really": 2
+    },
+    "feel": {
+     "hard": 3,
+     "soft": 1
+    },
+    "arm": {
+     "very": 7,
+     "not_really": 4
+    },
+    "level": {
+     "beginner": 2,
+     "advanced": 1,
+     "intermediate": 2
+    },
+    "durability": {
+     "wears_fast": 2
+    },
+    "trampoline": {
+     "high": 2,
+     "low": 1
+    },
+    "side": {
+     "right": 2
+    }
+   },
+   "spec": {
+    "plays_like": "all_round",
+    "maneuver": "somewhat"
+   }
+  },
+  "c1c8687c-4465-43b9-85f8-9924a6a679bc": {
+   "slug": "nox-at10-genius-12k-alum-xtrem-2026",
+   "name": "Nox AT10 Genius 12K Alum XTREM 2026",
+   "sources": 82,
+   "groups": {
+    "plays_like": {
+     "control": 30,
+     "all_round": 10,
+     "power": 17
+    },
+    "sweet_spot": {
+     "big": 17,
+     "small": 13,
+     "medium": 1
+    },
+    "arm": {
+     "very": 6,
+     "not_really": 6
+    },
+    "maneuver": {
+     "somewhat": 5,
+     "very": 19,
+     "not_really": 2
+    },
+    "level": {
+     "advanced": 3,
+     "beginner": 1
+    },
+    "side": {
+     "left": 3
+    },
+    "feel": {
+     "hard": 7,
+     "medium": 2,
+     "soft": 1
+    },
+    "trampoline": {
+     "low": 1,
+     "high": 2
+    },
+    "durability": {
+     "wears_fast": 5,
+     "holds_up": 1
+    }
+   },
+   "spec": {
+    "plays_like": "all_round",
+    "maneuver": "somewhat"
+   }
+  },
+  "nox-at10-genius-12k-alum-xtrem-2027": {
+   "slug": "nox-at10-genius-12k-alum-xtrem-2027",
+   "name": "Nox AT10 Genius 12K Alum XTREM 2027",
+   "sources": 6,
+   "groups": {
+    "plays_like": {
+     "all_round": 1,
+     "power": 3,
+     "control": 2
+    },
+    "maneuver": {
+     "very": 4,
+     "somewhat": 1
+    },
+    "feel": {
+     "hard": 2
+    },
+    "sweet_spot": {
+     "small": 1
+    },
+    "arm": {
+     "somewhat": 1,
+     "very": 1
+    }
+   },
+   "spec": {
+    "plays_like": "all_round",
+    "maneuver": "somewhat"
+   }
+  },
+  "4dfa6ed5-48ea-4309-952d-fcdeb6c0077f": {
+   "slug": "nox-at10-genius-12k-alum-xtrem-lite-2026",
+   "name": "Nox AT10 Genius 12K Alum XTREM Lite 2026",
+   "sources": 26,
+   "groups": {
+    "sweet_spot": {
+     "big": 6,
+     "small": 1
+    },
+    "arm": {
+     "very": 6,
+     "not_really": 1,
+     "somewhat": 1
+    },
+    "feel": {
+     "hard": 1,
+     "soft": 5
+    },
+    "maneuver": {
+     "very": 15
+    },
+    "plays_like": {
+     "control": 8,
+     "all_round": 2,
+     "power": 2
+    },
+    "level": {
+     "advanced": 1,
+     "intermediate": 1
+    },
+    "side": {
+     "right": 2,
+     "left": 1
+    }
+   },
+   "spec": {
+    "plays_like": "all_round",
+    "maneuver": "somewhat"
+   }
+  },
+  "nox-at10-genius-12k-alum-xtrem-lite-2027": {
+   "slug": "nox-at10-genius-12k-alum-xtrem-lite-2027",
+   "name": "Nox AT10 Genius 12K Alum XTREM Lite 2027",
+   "sources": 2,
+   "groups": {
+    "plays_like": {
+     "control": 2
+    },
+    "arm": {
+     "very": 2
+    },
+    "maneuver": {
+     "very": 1
+    }
+   },
+   "spec": {
+    "plays_like": "all_round",
+    "maneuver": "somewhat"
+   }
+  },
+  "nox-at10-genius-18k-2026": {
+   "slug": "nox-at10-genius-18k-2026",
+   "name": "Nox AT10 Genius 18K 2026",
+   "sources": 85,
+   "groups": {
+    "plays_like": {
+     "control": 42,
+     "all_round": 5,
+     "power": 11
+    },
+    "maneuver": {
+     "very": 21,
+     "somewhat": 6,
+     "not_really": 2
+    },
+    "sweet_spot": {
+     "big": 26,
+     "small": 9,
+     "medium": 5
+    },
+    "arm": {
+     "very": 12,
+     "not_really": 5,
+     "somewhat": 3
+    },
+    "feel": {
+     "soft": 9,
+     "medium": 2,
+     "hard": 7
+    },
+    "side": {
+     "right": 2,
+     "both": 1
+    },
+    "trampoline": {
+     "low": 2,
+     "high": 3
+    },
+    "level": {
+     "intermediate": 4,
+     "advanced": 2
+    },
+    "durability": {
+     "holds_up": 1
+    }
+   },
+   "spec": {
+    "plays_like": "all_round",
+    "maneuver": "somewhat"
+   }
+  },
+  "nox-at10-genius-18k-alum-2027": {
+   "slug": "nox-at10-genius-18k-alum-2027",
+   "name": "Nox AT10 Genius 18K Alum 2027",
+   "sources": 8,
+   "groups": {
+    "plays_like": {
+     "control": 7
+    },
+    "sweet_spot": {
+     "big": 1
+    },
+    "maneuver": {
+     "very": 4,
+     "somewhat": 1
+    },
+    "feel": {
+     "hard": 2
+    },
+    "arm": {
+     "very": 2,
+     "not_really": 1
+    },
+    "durability": {
+     "wears_fast": 1
+    },
+    "trampoline": {
+     "low": 1
+    }
+   },
+   "spec": {
+    "plays_like": "all_round",
+    "maneuver": "somewhat"
+   }
+  },
+  "nox-at10-genius-attack-12k-alum-xtrem-2026": {
+   "slug": "nox-at10-genius-attack-12k-alum-xtrem-2026",
+   "name": "Nox AT10 Genius Attack 12K Alum XTREM 2026",
+   "sources": 9,
+   "groups": {
+    "plays_like": {
+     "all_round": 2,
+     "power": 6,
+     "control": 1
+    },
+    "maneuver": {
+     "not_really": 5,
+     "very": 1,
+     "somewhat": 1
+    },
+    "feel": {
+     "hard": 2
+    },
+    "sweet_spot": {
+     "small": 3
+    },
+    "side": {
+     "right": 1
+    },
+    "level": {
+     "advanced": 1
+    }
+   },
+   "spec": {
+    "plays_like": "power",
+    "maneuver": "not_really"
+   }
+  },
+  "nox-at10-genius-attack-12k-alum-xtrem-2027": {
+   "slug": "nox-at10-genius-attack-12k-alum-xtrem-2027",
+   "name": "Nox AT10 Genius Attack 12K Alum XTREM 2027",
+   "sources": 2,
+   "groups": {
+    "plays_like": {
+     "power": 2
+    },
+    "maneuver": {
+     "not_really": 1
+    },
+    "feel": {
+     "hard": 1
+    },
+    "arm": {
+     "not_really": 1
+    }
+   },
+   "spec": {
+    "plays_like": "power",
+    "maneuver": "not_really"
+   }
+  },
+  "nox-at10-genius-attack-18k-2025": {
+   "slug": "nox-at10-genius-attack-18k-2025",
+   "name": "Nox AT10 Genius Attack 18K 2025",
+   "sources": 9,
+   "groups": {
+    "plays_like": {
+     "power": 1,
+     "control": 3,
+     "all_round": 2
+    },
+    "maneuver": {
+     "not_really": 1,
+     "very": 2
+    },
+    "feel": {
+     "soft": 1
+    },
+    "arm": {
+     "very": 1
+    },
+    "durability": {
+     "wears_fast": 2
+    },
+    "sweet_spot": {
+     "big": 1,
+     "small": 1
+    },
+    "level": {
+     "advanced": 1
+    },
+    "side": {
+     "left": 1
+    }
+   },
+   "spec": {
+    "plays_like": "power",
+    "maneuver": "not_really"
+   }
+  },
+  "nox-at10-genius-attack-18k-2026": {
+   "slug": "nox-at10-genius-attack-18k-2026",
+   "name": "Nox AT10 Genius Attack 18K 2026",
+   "sources": 10,
+   "groups": {
+    "plays_like": {
+     "control": 2,
+     "all_round": 1,
+     "power": 5
+    },
+    "maneuver": {
+     "very": 2,
+     "not_really": 6
+    },
+    "feel": {
+     "hard": 2,
+     "medium": 1
+    },
+    "sweet_spot": {
+     "big": 4,
+     "small": 2
+    },
+    "arm": {
+     "very": 2
+    },
+    "level": {
+     "beginner": 1
+    }
+   },
+   "spec": {
+    "plays_like": "power",
+    "maneuver": "not_really"
+   }
+  },
+  "nox-at10-genius-attack-18k-alum-2027": {
+   "slug": "nox-at10-genius-attack-18k-alum-2027",
+   "name": "Nox AT10 Genius Attack 18K Alum 2027",
+   "sources": 2,
+   "groups": {
+    "plays_like": {
+     "power": 2
+    },
+    "maneuver": {
+     "not_really": 1,
+     "somewhat": 1
+    },
+    "arm": {
+     "somewhat": 1
+    }
+   },
+   "spec": {
+    "plays_like": "power",
+    "maneuver": "not_really"
+   }
+  },
+  "nox-at10-pro-cup-hard-2026": {
+   "slug": "nox-at10-pro-cup-hard-2026",
+   "name": "Nox AT10 Pro Cup Hard 2026",
+   "sources": 5,
+   "groups": {
+    "plays_like": {
+     "control": 2,
+     "all_round": 1,
+     "power": 1
+    },
+    "sweet_spot": {
+     "big": 2,
+     "small": 1
+    },
+    "maneuver": {
+     "not_really": 1
+    },
+    "trampoline": {
+     "high": 1
+    }
+   },
+   "spec": {
+    "plays_like": "all_round",
+    "feel": "hard",
+    "maneuver": "somewhat"
+   }
+  },
+  "nox-at10-pro-cup-hard-2027": {
+   "slug": "nox-at10-pro-cup-hard-2027",
+   "name": "Nox AT10 Pro Cup Hard 2027",
+   "sources": 0,
+   "groups": {},
+   "spec": {
+    "plays_like": "all_round",
+    "feel": "hard",
+    "maneuver": "somewhat"
+   }
+  },
+  "nox-at10-pro-cup-soft-2026": {
+   "slug": "nox-at10-pro-cup-soft-2026",
+   "name": "Nox AT10 Pro Cup Soft 2026",
+   "sources": 6,
+   "groups": {
+    "plays_like": {
+     "control": 5
+    },
+    "sweet_spot": {
+     "big": 3
+    },
+    "feel": {
+     "soft": 1
+    },
+    "maneuver": {
+     "very": 2
+    }
+   },
+   "spec": {
+    "plays_like": "all_round",
+    "feel": "soft",
+    "maneuver": "somewhat"
+   }
+  },
+  "nox-at10-pro-cup-soft-2027": {
+   "slug": "nox-at10-pro-cup-soft-2027",
+   "name": "Nox AT10 Pro Cup Soft 2027",
+   "sources": 0,
+   "groups": {},
+   "spec": {
+    "plays_like": "all_round",
+    "feel": "soft",
+    "maneuver": "somewhat"
+   }
+  },
+  "nox-ea10-ventus-attack-12k-xtrem-2026": {
+   "slug": "nox-ea10-ventus-attack-12k-xtrem-2026",
+   "name": "Nox EA10 Ventus Attack 12K XTREM 2026",
+   "sources": 10,
+   "groups": {
+    "plays_like": {
+     "power": 5,
+     "all_round": 1,
+     "control": 4
+    },
+    "sweet_spot": {
+     "small": 4
+    },
+    "feel": {
+     "hard": 3
+    },
+    "maneuver": {
+     "very": 3,
+     "not_really": 1
+    },
+    "arm": {
+     "not_really": 2
+    },
+    "trampoline": {
+     "low": 1,
+     "high": 1
+    }
+   },
+   "spec": {
+    "plays_like": "power",
+    "maneuver": "not_really"
+   }
+  },
+  "33705cb0-08fd-48de-bcaf-29d62bbe350f": {
+   "slug": "nox-ea10-ventus-hybrid-12k-2026",
+   "name": "Nox EA10 Ventus Hybrid 12K 2026",
+   "sources": 36,
+   "groups": {
+    "plays_like": {
+     "control": 23,
+     "all_round": 6,
+     "power": 2
+    },
+    "sweet_spot": {
+     "big": 4,
+     "small": 8,
+     "medium": 1
+    },
+    "feel": {
+     "hard": 7
+    },
+    "maneuver": {
+     "very": 12,
+     "somewhat": 2
+    },
+    "arm": {
+     "very": 1,
+     "somewhat": 1
+    },
+    "trampoline": {
+     "low": 4
+    }
+   },
+   "spec": {
+    "plays_like": "all_round",
+    "maneuver": "somewhat"
+   }
+  },
+  "nox-ea10-ventus-hybrid-12k-xtrem-2027": {
+   "slug": "nox-ea10-ventus-hybrid-12k-xtrem-2027",
+   "name": "Nox EA10 Ventus Hybrid 12K XTREM 2027",
+   "sources": 0,
+   "groups": {},
+   "spec": {
+    "plays_like": "all_round",
+    "maneuver": "somewhat"
+   }
+  },
+  "nox-equation-hard-advanced-2026": {
+   "slug": "nox-equation-hard-advanced-2026",
+   "name": "Nox Equation Hard Advanced 2026",
+   "sources": 0,
+   "groups": {},
+   "spec": {
+    "plays_like": "control",
+    "feel": "hard",
+    "maneuver": "somewhat"
+   }
+  },
+  "nox-equation-hard-advanced-2027": {
+   "slug": "nox-equation-hard-advanced-2027",
+   "name": "Nox Equation Hard Advanced 2027",
+   "sources": 0,
+   "groups": {},
+   "spec": {
+    "plays_like": "control",
+    "feel": "hard",
+    "maneuver": "somewhat"
+   }
+  },
+  "nox-equation-soft-advanced-2026": {
+   "slug": "nox-equation-soft-advanced-2026",
+   "name": "Nox Equation Soft Advanced 2026",
+   "sources": 1,
+   "groups": {
+    "durability": {
+     "wears_fast": 1
+    }
+   },
+   "spec": {
+    "plays_like": "control",
+    "feel": "soft",
+    "maneuver": "somewhat"
+   }
+  },
+  "nox-equation-soft-advanced-2027": {
+   "slug": "nox-equation-soft-advanced-2027",
+   "name": "Nox Equation Soft Advanced 2027",
+   "sources": 0,
+   "groups": {},
+   "spec": {
+    "plays_like": "control",
+    "feel": "soft",
+    "maneuver": "somewhat"
+   }
+  },
+  "demo-racket-8": {
+   "slug": "nox-ml10-pro-cup-2025",
+   "name": "Nox ML10 Pro Cup 2025",
+   "sources": 21,
+   "groups": {
+    "plays_like": {
+     "control": 13,
+     "power": 2
+    },
+    "sweet_spot": {
+     "big": 10
+    },
+    "arm": {
+     "very": 3,
+     "not_really": 2,
+     "somewhat": 1
+    },
+    "feel": {
+     "soft": 2,
+     "hard": 1
+    },
+    "level": {
+     "intermediate": 1,
+     "beginner": 2
+    },
+    "trampoline": {
+     "high": 2
+    },
+    "maneuver": {
+     "not_really": 1,
+     "very": 2,
+     "somewhat": 1
+    },
+    "side": {
+     "right": 1
+    },
+    "durability": {
+     "wears_fast": 1
+    }
+   },
+   "spec": {
+    "plays_like": "control",
+    "maneuver": "very"
+   }
+  },
+  "nox-ml10-pro-cup-coorp-2025": {
+   "slug": "nox-ml10-pro-cup-coorp-2025",
+   "name": "Nox ML10 Pro Cup Coorp 2025",
+   "sources": 2,
+   "groups": {
+    "plays_like": {
+     "control": 2
+    },
+    "sweet_spot": {
+     "big": 2
+    },
+    "arm": {
+     "very": 1
+    },
+    "feel": {
+     "hard": 1
+    },
+    "durability": {
+     "holds_up": 1
+    }
+   },
+   "spec": {
+    "plays_like": "control",
+    "maneuver": "somewhat"
+   }
+  },
+  "nox-ml10-pro-cup-silver-2025": {
+   "slug": "nox-ml10-pro-cup-silver-2025",
+   "name": "Nox ML10 Pro Cup Silver 2025",
+   "sources": 1,
+   "groups": {
+    "plays_like": {
+     "control": 1
+    },
+    "sweet_spot": {
+     "big": 1
+    },
+    "arm": {
+     "somewhat": 1
+    },
+    "side": {
+     "right": 1
+    }
+   },
+   "spec": {
+    "plays_like": "control",
+    "maneuver": "very"
+   }
+  },
+  "nox-ml10-pro-cup-silver-2027": {
+   "slug": "nox-ml10-pro-cup-silver-2027",
+   "name": "Nox ML10 Pro Cup Silver 2027",
+   "sources": 0,
+   "groups": {},
+   "spec": {
+    "plays_like": "control",
+    "maneuver": "very"
+   }
+  },
+  "nox-ml10-ventus-control-3k-2026": {
+   "slug": "nox-ml10-ventus-control-3k-2026",
+   "name": "Nox ML10 Ventus Control 3K 2026",
+   "sources": 10,
+   "groups": {
+    "arm": {
+     "very": 4
+    },
+    "feel": {
+     "hard": 1,
+     "medium": 1
+    },
+    "plays_like": {
+     "control": 6,
+     "power": 1
+    },
+    "maneuver": {
+     "very": 4
+    },
+    "sweet_spot": {
+     "big": 4,
+     "small": 3
+    },
+    "trampoline": {
+     "low": 2
+    },
+    "level": {
+     "intermediate": 1
+    },
+    "side": {
+     "right": 1
+    }
+   },
+   "spec": {
+    "plays_like": "control",
+    "maneuver": "somewhat"
+   }
+  },
+  "nox-ml10-ventus-control-3k-2027": {
+   "slug": "nox-ml10-ventus-control-3k-2027",
+   "name": "Nox ML10 Ventus Control 3K 2027",
+   "sources": 0,
+   "groups": {},
+   "spec": {
+    "plays_like": "control",
+    "maneuver": "somewhat"
+   }
+  },
+  "nox-ventus-hybrid-12k-lite-2026": {
+   "slug": "nox-ventus-hybrid-12k-lite-2026",
+   "name": "Nox Ventus Hybrid 12K Lite 2026",
+   "sources": 2,
+   "groups": {
+    "plays_like": {
+     "control": 2
+    },
+    "arm": {
+     "very": 2
+    },
+    "feel": {
+     "medium": 1
+    },
+    "maneuver": {
+     "very": 1
+    }
+   },
+   "spec": {
+    "plays_like": "all_round",
+    "maneuver": "somewhat"
+   }
+  },
+  "nox-vk10-ventus-control-12k-2026": {
+   "slug": "nox-vk10-ventus-control-12k-2026",
+   "name": "Nox VK10 Ventus Control 12K 2026",
+   "sources": 4,
+   "groups": {
+    "plays_like": {
+     "control": 3,
+     "all_round": 1
+    },
+    "feel": {
+     "hard": 1
+    },
+    "sweet_spot": {
+     "big": 2
+    },
+    "maneuver": {
+     "not_really": 1
+    }
+   },
+   "spec": {
+    "plays_like": "control",
+    "maneuver": "somewhat"
+   }
+  },
+  "nox-vk10-ventus-control-12k-2027": {
+   "slug": "nox-vk10-ventus-control-12k-2027",
+   "name": "Nox VK10 Ventus Control 12K 2027",
+   "sources": 0,
+   "groups": {},
+   "spec": {
+    "plays_like": "control",
+    "maneuver": "somewhat"
+   }
+  },
+  "b556284d-8242-406a-b3cc-d237bf0242ea": {
+   "slug": "oxdog-hyper-pro-2-0-2026",
+   "name": "Oxdog Hyper Pro 2.0 2026",
+   "sources": 41,
+   "groups": {
+    "plays_like": {
+     "control": 19,
+     "power": 5,
+     "all_round": 5
+    },
+    "sweet_spot": {
+     "small": 6,
+     "big": 5,
+     "medium": 2
+    },
+    "side": {
+     "left": 3,
+     "right": 1
+    },
+    "maneuver": {
+     "very": 9,
+     "not_really": 7,
+     "somewhat": 2
+    },
+    "level": {
+     "advanced": 3,
+     "intermediate": 4
+    },
+    "arm": {
+     "very": 8,
+     "not_really": 1
+    },
+    "feel": {
+     "hard": 5,
+     "soft": 1,
+     "medium": 1
+    },
+    "trampoline": {
+     "low": 5,
+     "high": 1
+    },
+    "durability": {
+     "wears_fast": 1
+    }
+   },
+   "spec": {
+    "plays_like": "all_round",
+    "maneuver": "not_really"
+   }
+  },
+  "oxdog-hyper-pro-plus-2-0-2025": {
+   "slug": "oxdog-hyper-pro-plus-2-0-2025",
+   "name": "Oxdog Hyper Pro+ 2.0 2025",
+   "sources": 7,
+   "groups": {
+    "plays_like": {
+     "control": 4,
+     "power": 1
+    },
+    "sweet_spot": {
+     "small": 3,
+     "big": 3
+    },
+    "feel": {
+     "hard": 1
+    },
+    "arm": {
+     "not_really": 1
+    },
+    "maneuver": {
+     "very": 1
+    }
+   },
+   "spec": {
+    "plays_like": "all_round",
+    "maneuver": "not_really"
+   }
+  },
+  "oxdog-hyper-pro-plus-2-0-2026": {
+   "slug": "oxdog-hyper-pro-plus-2-0-2026",
+   "name": "Oxdog Hyper Pro+ 2.0 2026",
+   "sources": 7,
+   "groups": {
+    "plays_like": {
+     "control": 4,
+     "power": 1
+    },
+    "arm": {
+     "not_really": 1
+    },
+    "maneuver": {
+     "very": 4,
+     "not_really": 1
+    },
+    "feel": {
+     "hard": 1
+    },
+    "sweet_spot": {
+     "small": 3
+    }
+   },
+   "spec": {
+    "plays_like": "all_round",
+    "maneuver": "not_really"
+   }
+  },
+  "oxdog-hyper-tour-2-0-2025": {
+   "slug": "oxdog-hyper-tour-2-0-2025",
+   "name": "Oxdog Hyper Tour 2.0 2025",
+   "sources": 4,
+   "groups": {
+    "plays_like": {
+     "control": 1
+    },
+    "side": {
+     "right": 1
+    },
+    "level": {
+     "intermediate": 1
+    },
+    "arm": {
+     "very": 2
+    },
+    "maneuver": {
+     "very": 1
+    }
+   },
+   "spec": {
+    "plays_like": "all_round",
+    "maneuver": "somewhat"
+   }
+  },
+  "oxdog-hyper-tour-x-2-0-2026": {
+   "slug": "oxdog-hyper-tour-x-2-0-2026",
+   "name": "Oxdog Hyper Tour X 2.0 2026",
+   "sources": 6,
+   "groups": {
+    "plays_like": {
+     "all_round": 1,
+     "control": 2,
+     "power": 1
+    },
+    "maneuver": {
+     "very": 3,
+     "somewhat": 1
+    },
+    "sweet_spot": {
+     "big": 4
+    }
+   },
+   "spec": {
+    "plays_like": "all_round",
+    "maneuver": "somewhat"
+   }
+  },
+  "oxdog-pure-court-2026": {
+   "slug": "oxdog-pure-court-2026",
+   "name": "Oxdog Pure Court 2026",
+   "sources": 2,
+   "groups": {
+    "sweet_spot": {
+     "big": 1
+    },
+    "arm": {
+     "very": 1,
+     "somewhat": 1
+    },
+    "plays_like": {
+     "power": 1
+    },
+    "level": {
+     "beginner": 1
+    }
+   },
+   "spec": {
+    "maneuver": "somewhat"
+   }
+  },
+  "oxdog-pure-pro-plus-2025": {
+   "slug": "oxdog-pure-pro-plus-2025",
+   "name": "Oxdog Pure Pro+ 2025",
+   "sources": 15,
+   "groups": {
+    "plays_like": {
+     "control": 10,
+     "power": 5
+    },
+    "feel": {
+     "hard": 4
+    },
+    "arm": {
+     "not_really": 2,
+     "very": 5,
+     "somewhat": 1
+    },
+    "maneuver": {
+     "very": 1,
+     "somewhat": 1,
+     "not_really": 2
+    },
+    "sweet_spot": {
+     "big": 4,
+     "medium": 2,
+     "small": 2
+    },
+    "trampoline": {
+     "low": 1
+    }
+   },
+   "spec": {
+    "maneuver": "not_really"
+   }
+  },
+  "oxdog-pure-pro-plus-2026": {
+   "slug": "oxdog-pure-pro-plus-2026",
+   "name": "Oxdog Pure Pro+ 2026",
+   "sources": 3,
+   "groups": {
+    "plays_like": {
+     "power": 3
+    },
+    "sweet_spot": {
+     "small": 1,
+     "big": 1
+    },
+    "maneuver": {
+     "not_really": 1
+    },
+    "trampoline": {
+     "low": 1
+    }
+   },
+   "spec": {
+    "maneuver": "not_really"
+   }
+  },
+  "oxdog-pure-tour-x-2026": {
+   "slug": "oxdog-pure-tour-x-2026",
+   "name": "Oxdog Pure Tour X 2026",
+   "sources": 10,
+   "groups": {
+    "plays_like": {
+     "control": 6,
+     "all_round": 1
+    },
+    "maneuver": {
+     "not_really": 3,
+     "very": 2
+    },
+    "arm": {
+     "very": 5,
+     "somewhat": 1
+    },
+    "feel": {
+     "medium": 1
+    },
+    "trampoline": {
+     "high": 2,
+     "low": 3
+    },
+    "sweet_spot": {
+     "big": 1
+    },
+    "side": {
+     "left": 1
+    }
+   },
+   "spec": {
+    "maneuver": "somewhat"
+   }
+  },
+  "oxdog-ultimate-nxt-gen-2026": {
+   "slug": "oxdog-ultimate-nxt-gen-2026",
+   "name": "Oxdog Ultimate NXT-GEN 2026",
+   "sources": 4,
+   "groups": {
+    "sweet_spot": {
+     "big": 1
+    },
+    "arm": {
+     "very": 1
+    },
+    "maneuver": {
+     "very": 3
+    },
+    "feel": {
+     "soft": 1
+    },
+    "plays_like": {
+     "control": 1
+    }
+   },
+   "spec": {
+    "plays_like": "power",
+    "feel": "soft",
+    "maneuver": "somewhat"
+   }
+  },
+  "demo-racket-5": {
+   "slug": "oxdog-ultimate-pro-2025",
+   "name": "Oxdog Ultimate Pro 2025",
+   "sources": 5,
+   "groups": {
+    "plays_like": {
+     "power": 3,
+     "all_round": 1
+    },
+    "sweet_spot": {
+     "big": 1,
+     "medium": 1
+    },
+    "arm": {
+     "very": 2,
+     "not_really": 1
+    },
+    "feel": {
+     "hard": 1
+    },
+    "maneuver": {
+     "very": 1
+    },
+    "side": {
+     "left": 1
+    }
+   },
+   "spec": {
+    "plays_like": "power",
+    "maneuver": "not_really"
+   }
+  },
+  "oxdog-ultimate-pro-2026": {
+   "slug": "oxdog-ultimate-pro-2026",
+   "name": "Oxdog Ultimate Pro 2026",
+   "sources": 7,
+   "groups": {
+    "sweet_spot": {
+     "small": 2,
+     "medium": 1
+    },
+    "maneuver": {
+     "very": 4
+    },
+    "plays_like": {
+     "all_round": 2,
+     "control": 2,
+     "power": 1
+    }
+   },
+   "spec": {
+    "plays_like": "power",
+    "maneuver": "somewhat"
+   }
+  },
+  "oxdog-ultimate-pro-light-2026": {
+   "slug": "oxdog-ultimate-pro-light-2026",
+   "name": "Oxdog Ultimate Pro Light 2026",
+   "sources": 34,
+   "groups": {
+    "plays_like": {
+     "control": 13,
+     "power": 5,
+     "all_round": 2
+    },
+    "maneuver": {
+     "very": 21,
+     "somewhat": 1
+    },
+    "sweet_spot": {
+     "small": 19,
+     "big": 1
+    },
+    "arm": {
+     "very": 5,
+     "not_really": 1
+    },
+    "feel": {
+     "hard": 1
+    },
+    "durability": {
+     "holds_up": 1
+    },
+    "trampoline": {
+     "low": 1
+    }
+   },
+   "spec": {
+    "plays_like": "power",
+    "maneuver": "not_really"
+   }
+  },
+  "oxdog-ultimate-pro-plus-2025": {
+   "slug": "oxdog-ultimate-pro-plus-2025",
+   "name": "Oxdog Ultimate Pro+ 2025",
+   "sources": 22,
+   "groups": {
+    "plays_like": {
+     "power": 7,
+     "all_round": 3,
+     "control": 6
+    },
+    "sweet_spot": {
+     "small": 4,
+     "medium": 1,
+     "big": 3
+    },
+    "feel": {
+     "hard": 6
+    },
+    "maneuver": {
+     "not_really": 7,
+     "very": 1
+    },
+    "level": {
+     "intermediate": 1,
+     "advanced": 1
+    },
+    "arm": {
+     "somewhat": 1,
+     "not_really": 1
+    },
+    "side": {
+     "left": 1
+    }
+   },
+   "spec": {
+    "plays_like": "power",
+    "maneuver": "not_really"
+   }
+  },
+  "oxdog-ultimate-pro-plus-2026": {
+   "slug": "oxdog-ultimate-pro-plus-2026",
+   "name": "Oxdog Ultimate Pro+ 2026",
+   "sources": 7,
+   "groups": {
+    "plays_like": {
+     "power": 6
+    },
+    "sweet_spot": {
+     "small": 4
+    },
+    "feel": {
+     "hard": 3
+    },
+    "level": {
+     "advanced": 1
+    },
+    "durability": {
+     "wears_fast": 1
+    }
+   },
+   "spec": {
+    "plays_like": "power",
+    "maneuver": "not_really"
+   }
+  },
+  "oxdog-ultimate-pro-smash-2025": {
+   "slug": "oxdog-ultimate-pro-smash-2025",
+   "name": "Oxdog Ultimate Pro Smash 2025",
+   "sources": 9,
+   "groups": {
+    "plays_like": {
+     "control": 2,
+     "power": 3,
+     "all_round": 1
+    },
+    "feel": {
+     "hard": 2
+    },
+    "maneuver": {
+     "very": 7
+    },
+    "sweet_spot": {
+     "small": 3
+    },
+    "arm": {
+     "not_really": 1
+    },
+    "level": {
+     "advanced": 1
+    }
+   },
+   "spec": {
+    "plays_like": "power",
+    "maneuver": "not_really"
+   }
+  },
+  "oxdog-ultimate-pro-smash-2026": {
+   "slug": "oxdog-ultimate-pro-smash-2026",
+   "name": "Oxdog Ultimate Pro Smash 2026",
+   "sources": 0,
+   "groups": {},
+   "spec": {
+    "plays_like": "power",
+    "maneuver": "not_really"
+   }
+  },
+  "oxdog-ultimate-tour-2025": {
+   "slug": "oxdog-ultimate-tour-2025",
+   "name": "Oxdog Ultimate Tour 2025",
+   "sources": 5,
+   "groups": {
+    "plays_like": {
+     "power": 2,
+     "control": 2
+    },
+    "sweet_spot": {
+     "big": 2,
+     "small": 1
+    },
+    "feel": {
+     "hard": 1,
+     "medium": 1
+    },
+    "arm": {
+     "very": 2,
+     "not_really": 1
+    },
+    "maneuver": {
+     "very": 2,
+     "not_really": 2
+    },
+    "durability": {
+     "wears_fast": 1
+    }
+   },
+   "spec": {
+    "plays_like": "power",
+    "maneuver": "somewhat"
+   }
+  },
+  "553bc8d0-46e3-43e1-8f7c-6e33ad5c69ee": {
+   "slug": "oxdog-ultimate-tour-x-2026",
+   "name": "Oxdog Ultimate Tour X 2026",
+   "sources": 46,
+   "groups": {
+    "plays_like": {
+     "power": 10,
+     "control": 16,
+     "all_round": 8
+    },
+    "arm": {
+     "very": 4,
+     "not_really": 2
+    },
+    "maneuver": {
+     "very": 15,
+     "somewhat": 7,
+     "not_really": 4
+    },
+    "sweet_spot": {
+     "big": 15,
+     "small": 5
+    },
+    "feel": {
+     "medium": 2,
+     "hard": 6
+    },
+    "level": {
+     "intermediate": 2,
+     "advanced": 1,
+     "beginner": 1
+    },
+    "trampoline": {
+     "high": 3,
+     "low": 3,
+     "medium": 1
+    },
+    "durability": {
+     "wears_fast": 2
+    }
+   },
+   "spec": {
+    "plays_like": "power",
+    "maneuver": "somewhat"
+   }
+  },
+  "siux-astra-control-2026": {
+   "slug": "siux-astra-control-2026",
+   "name": "Siux Astra Control 2026",
+   "sources": 0,
+   "groups": {},
+   "spec": {
+    "plays_like": "control",
+    "feel": "soft",
+    "maneuver": "very"
+   }
+  },
+  "siux-astra-hybrid-2026": {
+   "slug": "siux-astra-hybrid-2026",
+   "name": "Siux Astra Hybrid 2026",
+   "sources": 3,
+   "groups": {
+    "plays_like": {
+     "power": 3
+    },
+    "sweet_spot": {
+     "big": 1
+    },
+    "maneuver": {
+     "very": 1
+    },
+    "durability": {
+     "holds_up": 1
+    },
+    "level": {
+     "advanced": 1
+    }
+   },
+   "spec": {
+    "plays_like": "all_round",
+    "feel": "soft",
+    "maneuver": "somewhat"
+   }
+  },
+  "siux-beat-control-3-2026": {
+   "slug": "siux-beat-control-3-2026",
+   "name": "Siux Beat Play Control 3 2026",
+   "sources": 0,
+   "groups": {},
+   "spec": {
+    "plays_like": "control",
+    "maneuver": "very"
+   }
+  },
+  "siux-beat-hybrid-3-2026": {
+   "slug": "siux-beat-hybrid-3-2026",
+   "name": "Siux Beat Play Hybrid 3 2026",
+   "sources": 0,
+   "groups": {},
+   "spec": {
+    "plays_like": "all_round",
+    "feel": "soft",
+    "maneuver": "somewhat"
+   }
+  },
+  "siux-diablo-elite-6-2026": {
+   "slug": "siux-diablo-elite-6-2026",
+   "name": "Siux Diablo Elite 6 2026",
+   "sources": 0,
+   "groups": {},
+   "spec": {
+    "plays_like": "all_round",
+    "maneuver": "somewhat"
+   }
+  },
+  "df3bd737-eb70-4d65-9bfc-5b581e72c847": {
+   "slug": "siux-diablo-pro-2026",
+   "name": "Siux Diablo Pro 2026",
+   "sources": 41,
+   "groups": {
+    "plays_like": {
+     "control": 18,
+     "power": 9,
+     "all_round": 6
+    },
+    "feel": {
+     "soft": 2,
+     "hard": 4
+    },
+    "sweet_spot": {
+     "small": 6,
+     "big": 5,
+     "medium": 1
+    },
+    "arm": {
+     "very": 2,
+     "not_really": 2,
+     "somewhat": 2
+    },
+    "maneuver": {
+     "very": 14,
+     "not_really": 2,
+     "somewhat": 1
+    },
+    "level": {
+     "intermediate": 2,
+     "advanced": 1
+    },
+    "durability": {
+     "wears_fast": 2
+    },
+    "trampoline": {
+     "high": 2,
+     "low": 4
+    },
+    "side": {
+     "right": 2
+    }
+   },
+   "spec": {
+    "plays_like": "all_round",
+    "maneuver": "somewhat"
+   }
+  },
+  "siux-diablo-pro-4-2025": {
+   "slug": "siux-diablo-pro-4-2025",
+   "name": "Siux Diablo Pro 4 2025",
+   "sources": 41,
+   "groups": {
+    "plays_like": {
+     "control": 14,
+     "power": 6,
+     "all_round": 6
+    },
+    "sweet_spot": {
+     "small": 5,
+     "big": 18
+    },
+    "feel": {
+     "hard": 2,
+     "soft": 2,
+     "medium": 1
+    },
+    "maneuver": {
+     "not_really": 3,
+     "very": 8,
+     "somewhat": 2
+    },
+    "arm": {
+     "very": 3,
+     "somewhat": 2,
+     "not_really": 1
+    },
+    "level": {
+     "intermediate": 2,
+     "beginner": 2,
+     "advanced": 3
+    },
+    "side": {
+     "right": 2
+    },
+    "durability": {
+     "wears_fast": 3
+    },
+    "trampoline": {
+     "high": 2,
+     "medium": 1
+    }
+   },
+   "spec": {
+    "plays_like": "all_round",
+    "maneuver": "somewhat"
+   }
+  },
+  "siux-electra-elite-6-2026": {
+   "slug": "siux-electra-elite-6-2026",
+   "name": "Siux Electra Elite 6 2026",
+   "sources": 6,
+   "groups": {
+    "plays_like": {
+     "power": 3,
+     "control": 2
+    },
+    "sweet_spot": {
+     "big": 6
+    },
+    "feel": {
+     "soft": 1,
+     "medium": 1
+    },
+    "trampoline": {
+     "high": 1
+    },
+    "arm": {
+     "very": 2
+    }
+   },
+   "spec": {
+    "plays_like": "all_round",
+    "maneuver": "somewhat"
+   }
+  },
+  "1cfb94a7-9b4b-4775-8ad9-f6bdebd106f7": {
+   "slug": "siux-electra-pro-st4-2025",
+   "name": "Siux Electra Pro ST4 2025",
+   "sources": 129,
+   "groups": {
+    "plays_like": {
+     "power": 47,
+     "all_round": 21,
+     "control": 18
+    },
+    "trampoline": {
+     "high": 24,
+     "low": 10,
+     "medium": 6
+    },
+    "sweet_spot": {
+     "big": 19,
+     "small": 15,
+     "medium": 3
+    },
+    "arm": {
+     "not_really": 11,
+     "very": 4,
+     "somewhat": 3
+    },
+    "maneuver": {
+     "not_really": 13,
+     "very": 15,
+     "somewhat": 4
+    },
+    "feel": {
+     "hard": 12,
+     "medium": 2
+    },
+    "level": {
+     "beginner": 3,
+     "intermediate": 2,
+     "advanced": 1
+    },
+    "durability": {
+     "wears_fast": 6,
+     "holds_up": 3
+    },
+    "side": {
+     "left": 4,
+     "right": 1
+    }
+   },
+   "spec": {
+    "feel": "hard"
+   }
+  },
+  "siux-electra-pro-st5-2026": {
+   "slug": "siux-electra-pro-st5-2026",
+   "name": "Siux Electra Pro 2026",
+   "sources": 59,
+   "groups": {
+    "sweet_spot": {
+     "small": 20,
+     "big": 8
+    },
+    "trampoline": {
+     "high": 5,
+     "low": 2,
+     "medium": 1
+    },
+    "plays_like": {
+     "control": 20,
+     "power": 18,
+     "all_round": 8
+    },
+    "feel": {
+     "hard": 5
+    },
+    "side": {
+     "left": 2,
+     "right": 3
+    },
+    "maneuver": {
+     "very": 16,
+     "somewhat": 2,
+     "not_really": 5
+    },
+    "level": {
+     "advanced": 4,
+     "intermediate": 1
+    },
+    "arm": {
+     "somewhat": 1,
+     "not_really": 2
+    },
+    "durability": {
+     "wears_fast": 1
+    }
+   },
+   "spec": {
+    "plays_like": "all_round",
+    "feel": "hard",
+    "maneuver": "somewhat"
+   }
+  },
+  "siux-fenix-elite-6-2026": {
+   "slug": "siux-fenix-elite-6-2026",
+   "name": "Siux Fenix Elite 6 2026",
+   "sources": 5,
+   "groups": {
+    "plays_like": {
+     "power": 4
+    },
+    "maneuver": {
+     "not_really": 4
+    },
+    "arm": {
+     "not_really": 1,
+     "very": 1
+    }
+   },
+   "spec": {
+    "plays_like": "power",
+    "feel": "hard",
+    "maneuver": "not_really"
+   }
+  },
+  "siux-fenix-pro-5-2025": {
+   "slug": "siux-fenix-pro-5-2025",
+   "name": "Siux Fenix Pro 5 2025",
+   "sources": 47,
+   "groups": {
+    "plays_like": {
+     "power": 20,
+     "all_round": 12,
+     "control": 3
+    },
+    "sweet_spot": {
+     "small": 11,
+     "big": 3,
+     "medium": 3
+    },
+    "maneuver": {
+     "not_really": 11,
+     "very": 5
+    },
+    "feel": {
+     "hard": 6
+    },
+    "arm": {
+     "very": 2,
+     "not_really": 1,
+     "somewhat": 1
+    },
+    "level": {
+     "advanced": 5
+    },
+    "durability": {
+     "holds_up": 2,
+     "wears_fast": 4
+    },
+    "side": {
+     "left": 3
+    },
+    "trampoline": {
+     "low": 1,
+     "high": 2
+    }
+   },
+   "spec": {
+    "plays_like": "power",
+    "feel": "hard",
+    "maneuver": "not_really"
+   }
+  },
+  "1123dc91-c9ec-4797-a1ac-48b563cc850f": {
+   "slug": "siux-fenix-pro-6-2026",
+   "name": "Siux Fenix Pro 2026",
+   "sources": 47,
+   "groups": {
+    "plays_like": {
+     "power": 27,
+     "all_round": 6,
+     "control": 1
+    },
+    "sweet_spot": {
+     "small": 12,
+     "big": 5
+    },
+    "maneuver": {
+     "not_really": 14,
+     "very": 8,
+     "somewhat": 1
+    },
+    "feel": {
+     "hard": 1,
+     "soft": 4
+    },
+    "level": {
+     "intermediate": 1
+    },
+    "arm": {
+     "very": 3,
+     "not_really": 7,
+     "somewhat": 1
+    },
+    "durability": {
+     "wears_fast": 3
+    },
+    "side": {
+     "right": 2,
+     "left": 1
+    },
+    "trampoline": {
+     "low": 1,
+     "medium": 1,
+     "high": 1
+    }
+   },
+   "spec": {
+    "plays_like": "power",
+    "feel": "hard",
+    "maneuver": "not_really"
+   }
+  },
+  "siux-obsidian-elite-2027": {
+   "slug": "siux-obsidian-elite-2027",
+   "name": "Siux Obsidian Elite 2027",
+   "sources": 2,
+   "groups": {
+    "plays_like": {
+     "control": 1,
+     "power": 1
+    },
+    "feel": {
+     "medium": 1
+    },
+    "maneuver": {
+     "very": 1
+    }
+   },
+   "spec": {
+    "plays_like": "all_round",
+    "feel": "soft",
+    "maneuver": "very"
+   }
+  },
+  "siux-obsidian-pro-2027": {
+   "slug": "siux-obsidian-pro-2027",
+   "name": "Siux Obsidian Pro 2027",
+   "sources": 2,
+   "groups": {
+    "plays_like": {
+     "control": 2
+    },
+    "durability": {
+     "holds_up": 1
+    }
+   },
+   "spec": {
+    "plays_like": "all_round",
+    "feel": "soft",
+    "maneuver": "very"
+   }
+  },
+  "siux-pegasus-elite-4-2026": {
+   "slug": "siux-pegasus-elite-4-2026",
+   "name": "Siux Pegasus Elite 4 2026",
+   "sources": 3,
+   "groups": {
+    "plays_like": {
+     "power": 2
+    },
+    "sweet_spot": {
+     "small": 2
+    },
+    "maneuver": {
+     "not_really": 1,
+     "very": 1
+    },
+    "durability": {
+     "holds_up": 1
+    }
+   },
+   "spec": {
+    "feel": "hard",
+    "maneuver": "somewhat"
+   }
+  },
+  "siux-pegasus-pro-2026": {
+   "slug": "siux-pegasus-pro-2026",
+   "name": "Siux Pegasus Pro 2026",
+   "sources": 37,
+   "groups": {
+    "plays_like": {
+     "all_round": 6,
+     "control": 7,
+     "power": 10
+    },
+    "maneuver": {
+     "very": 12,
+     "somewhat": 4
+    },
+    "trampoline": {
+     "high": 2
+    },
+    "feel": {
+     "hard": 3,
+     "soft": 1
+    },
+    "sweet_spot": {
+     "medium": 1,
+     "big": 3,
+     "small": 1
+    },
+    "durability": {
+     "wears_fast": 12
+    },
+    "arm": {
+     "very": 3
+    },
+    "level": {
+     "beginner": 1
+    },
+    "side": {
+     "right": 1
+    }
+   },
+   "spec": {
+    "plays_like": "all_round",
+    "feel": "hard",
+    "maneuver": "somewhat"
+   }
+  },
+  "siux-trilogy-elite-6-2026": {
+   "slug": "siux-trilogy-elite-6-2026",
+   "name": "Siux Trilogy Elite 6 2026",
+   "sources": 0,
+   "groups": {},
+   "spec": {
+    "plays_like": "control",
+    "maneuver": "very"
+   }
+  },
+  "siux-trilogy-pro-2026": {
+   "slug": "siux-trilogy-pro-2026",
+   "name": "Siux Trilogy 6 Pro 2026",
+   "sources": 0,
+   "groups": {},
+   "spec": {
+    "plays_like": "control",
+    "maneuver": "very"
+   }
+  },
+  "siux-trilogy-pro-5-2025": {
+   "slug": "siux-trilogy-pro-5-2025",
+   "name": "Siux Trilogy Pro 5 2025",
+   "sources": 2,
+   "groups": {
+    "plays_like": {
+     "power": 2
+    },
+    "maneuver": {
+     "very": 1
+    },
+    "durability": {
+     "holds_up": 1
+    }
+   },
+   "spec": {
+    "plays_like": "control",
+    "maneuver": "somewhat"
+   }
+  },
+  "siux-valkiria-pro-2026": {
+   "slug": "siux-valkiria-pro-2026",
+   "name": "Siux Valkiria Pro 2026",
+   "sources": 8,
+   "groups": {
+    "sweet_spot": {
+     "big": 6
+    },
+    "arm": {
+     "very": 1,
+     "somewhat": 1
+    },
+    "feel": {
+     "soft": 1
+    },
+    "plays_like": {
+     "power": 4,
+     "control": 1
+    },
+    "maneuver": {
+     "very": 5
+    },
+    "level": {
+     "beginner": 1
+    }
+   },
+   "spec": {
+    "plays_like": "all_round",
+    "maneuver": "somewhat"
+   }
+  },
+  "starvie-arkos-2026": {
+   "slug": "starvie-arkos-2026",
+   "name": "StarVie Arkos 2026",
+   "sources": 0,
+   "groups": {},
+   "spec": {
+    "plays_like": "control",
+    "feel": "soft",
+    "maneuver": "very"
+   }
+  },
+  "starvie-astrum-plus-2026": {
+   "slug": "starvie-astrum-plus-2026",
+   "name": "StarVie Astrum+ 2026",
+   "sources": 9,
+   "groups": {
+    "sweet_spot": {
+     "small": 4,
+     "big": 1
+    },
+    "feel": {
+     "hard": 1
+    },
+    "plays_like": {
+     "control": 3,
+     "power": 5
+    },
+    "maneuver": {
+     "not_really": 3,
+     "very": 1
+    },
+    "side": {
+     "right": 1
+    }
+   },
+   "spec": {
+    "plays_like": "all_round",
+    "maneuver": "somewhat"
+   }
+  },
+  "starvie-astrum-plus-2027": {
+   "slug": "starvie-astrum-plus-2027",
+   "name": "StarVie Astrum+ 2027",
+   "sources": 0,
+   "groups": {},
+   "spec": {
+    "plays_like": "all_round",
+    "maneuver": "somewhat"
+   }
+  },
+  "starvie-black-titan-2026": {
+   "slug": "starvie-black-titan-2026",
+   "name": "StarVie Black Titan 2026",
+   "sources": 6,
+   "groups": {
+    "plays_like": {
+     "control": 2,
+     "power": 2,
+     "all_round": 1
+    },
+    "sweet_spot": {
+     "small": 4,
+     "medium": 1
+    },
+    "feel": {
+     "hard": 1
+    },
+    "maneuver": {
+     "not_really": 1
+    },
+    "arm": {
+     "not_really": 1
+    },
+    "level": {
+     "advanced": 1
+    }
+   },
+   "spec": {
+    "maneuver": "not_really"
+   }
+  },
+  "starvie-black-titan-2027": {
+   "slug": "starvie-black-titan-2027",
+   "name": "StarVie Black Titan 2027",
+   "sources": 0,
+   "groups": {},
+   "spec": {
+    "maneuver": "not_really"
+   }
+  },
+  "starvie-drax-plus-2026": {
+   "slug": "starvie-drax-plus-2026",
+   "name": "StarVie Drax+ 2026",
+   "sources": 16,
+   "groups": {
+    "plays_like": {
+     "control": 7,
+     "power": 5
+    },
+    "maneuver": {
+     "very": 4
+    },
+    "sweet_spot": {
+     "big": 5
+    },
+    "level": {
+     "intermediate": 1
+    },
+    "arm": {
+     "somewhat": 2
+    },
+    "feel": {
+     "hard": 3
+    },
+    "side": {
+     "both": 1
+    }
+   },
+   "spec": {
+    "plays_like": "all_round",
+    "maneuver": "somewhat"
+   }
+  },
+  "starvie-drax-plus-2027": {
+   "slug": "starvie-drax-plus-2027",
+   "name": "StarVie Drax+ 2027",
+   "sources": 0,
+   "groups": {},
+   "spec": {
+    "plays_like": "all_round",
+    "maneuver": "somewhat"
+   }
+  },
+  "starvie-eternal-2027": {
+   "slug": "starvie-eternal-2027",
+   "name": "StarVie Eternal 2027",
+   "sources": 4,
+   "groups": {
+    "plays_like": {
+     "power": 2,
+     "control": 1
+    },
+    "sweet_spot": {
+     "small": 1,
+     "medium": 1
+    },
+    "arm": {
+     "very": 1,
+     "somewhat": 1
+    },
+    "maneuver": {
+     "very": 2
+    }
+   },
+   "spec": {
+    "maneuver": "somewhat"
+   }
+  },
+  "starvie-kenta-plus-2026": {
+   "slug": "starvie-kenta-plus-2026",
+   "name": "StarVie Kenta+ 2026",
+   "sources": 3,
+   "groups": {
+    "plays_like": {
+     "control": 1,
+     "power": 1
+    },
+    "feel": {
+     "soft": 1
+    },
+    "trampoline": {
+     "high": 1,
+     "low": 1
+    },
+    "sweet_spot": {
+     "big": 1
+    }
+   },
+   "spec": {
+    "plays_like": "control",
+    "feel": "soft",
+    "maneuver": "somewhat"
+   }
+  },
+  "demo-racket-7": {
+   "slug": "starvie-metheora-2025",
+   "name": "StarVie Metheora 2025",
+   "sources": 6,
+   "groups": {
+    "plays_like": {
+     "all_round": 1,
+     "control": 2,
+     "power": 1
+    },
+    "feel": {
+     "hard": 1
+    },
+    "sweet_spot": {
+     "small": 3
+    },
+    "maneuver": {
+     "not_really": 1
+    }
+   },
+   "spec": {
+    "plays_like": "control",
+    "maneuver": "somewhat"
+   }
+  },
+  "starvie-metheora-plus-2027": {
+   "slug": "starvie-metheora-plus-2027",
+   "name": "StarVie Metheora+ 2027",
+   "sources": 1,
+   "groups": {
+    "sweet_spot": {
+     "small": 1
+    },
+    "arm": {
+     "very": 1
+    },
+    "maneuver": {
+     "very": 1
+    },
+    "feel": {
+     "medium": 1
+    }
+   },
+   "spec": {
+    "maneuver": "somewhat"
+   }
+  },
+  "starvie-phantom-2027": {
+   "slug": "starvie-phantom-2027",
+   "name": "StarVie Phantom 2027",
+   "sources": 0,
+   "groups": {},
+   "spec": {
+    "plays_like": "control",
+    "feel": "soft",
+    "maneuver": "very"
+   }
+  },
+  "starvie-polaris-2026": {
+   "slug": "starvie-polaris-2026",
+   "name": "StarVie Polaris 2026",
+   "sources": 0,
+   "groups": {},
+   "spec": {
+    "plays_like": "all_round",
+    "feel": "soft",
+    "maneuver": "somewhat"
+   }
+  },
+  "starvie-raptor-plus-2026": {
+   "slug": "starvie-raptor-plus-2026",
+   "name": "StarVie Raptor+ 2026",
+   "sources": 10,
+   "groups": {
+    "sweet_spot": {
+     "big": 5,
+     "small": 1
+    },
+    "plays_like": {
+     "control": 5,
+     "power": 4
+    },
+    "arm": {
+     "not_really": 1
+    },
+    "feel": {
+     "hard": 1,
+     "soft": 1
+    },
+    "maneuver": {
+     "very": 1,
+     "not_really": 1
+    },
+    "level": {
+     "intermediate": 1
+    },
+    "trampoline": {
+     "high": 1
+    },
+    "side": {
+     "right": 1,
+     "left": 1
+    }
+   },
+   "spec": {
+    "plays_like": "all_round",
+    "maneuver": "somewhat"
+   }
+  },
+  "starvie-raptor-plus-2027": {
+   "slug": "starvie-raptor-plus-2027",
+   "name": "StarVie Raptor+ 2027",
+   "sources": 2,
+   "groups": {
+    "plays_like": {
+     "power": 2
+    },
+    "arm": {
+     "very": 2
+    },
+    "sweet_spot": {
+     "small": 1
+    }
+   },
+   "spec": {
+    "plays_like": "all_round",
+    "maneuver": "somewhat"
+   }
+  },
+  "starvie-triton-balance-plus-2027": {
+   "slug": "starvie-triton-balance-plus-2027",
+   "name": "StarVie Triton Balance+ 2027",
+   "sources": 5,
+   "groups": {
+    "plays_like": {
+     "power": 3,
+     "control": 1
+    },
+    "sweet_spot": {
+     "big": 2,
+     "medium": 2
+    },
+    "maneuver": {
+     "not_really": 2,
+     "very": 2
+    },
+    "feel": {
+     "hard": 1
+    },
+    "level": {
+     "intermediate": 1
+    }
+   },
+   "spec": {
+    "plays_like": "power",
+    "maneuver": "somewhat"
+   }
+  },
+  "starvie-triton-plus-balance-2026": {
+   "slug": "starvie-triton-plus-balance-2026",
+   "name": "StarVie Triton+ Balance 2026",
+   "sources": 24,
+   "groups": {
+    "plays_like": {
+     "power": 10,
+     "control": 6,
+     "all_round": 2
+    },
+    "arm": {
+     "not_really": 1,
+     "very": 1,
+     "somewhat": 1
+    },
+    "sweet_spot": {
+     "big": 3,
+     "small": 3
+    },
+    "feel": {
+     "hard": 3,
+     "soft": 2
+    },
+    "maneuver": {
+     "not_really": 3,
+     "very": 4,
+     "somewhat": 1
+    },
+    "side": {
+     "left": 1,
+     "right": 1
+    },
+    "level": {
+     "advanced": 1
+    }
+   },
+   "spec": {
+    "plays_like": "power",
+    "maneuver": "somewhat"
+   }
+  },
+  "starvie-triton-plus-power-2026": {
+   "slug": "starvie-triton-plus-power-2026",
+   "name": "StarVie Triton+ Power 2026",
+   "sources": 10,
+   "groups": {
+    "plays_like": {
+     "power": 5,
+     "control": 3,
+     "all_round": 1
+    },
+    "sweet_spot": {
+     "small": 3,
+     "big": 2
+    },
+    "arm": {
+     "very": 5
+    },
+    "trampoline": {
+     "high": 2
+    },
+    "maneuver": {
+     "very": 1,
+     "somewhat": 1
+    },
+    "side": {
+     "both": 1
+    },
+    "durability": {
+     "holds_up": 1
+    }
+   },
+   "spec": {
+    "plays_like": "power",
+    "maneuver": "not_really"
+   }
+  },
+  "starvie-triton-power-plus-2027": {
+   "slug": "starvie-triton-power-plus-2027",
+   "name": "StarVie Triton Power+ 2027",
+   "sources": 8,
+   "groups": {
+    "plays_like": {
+     "power": 6,
+     "control": 2
+    },
+    "sweet_spot": {
+     "small": 4
+    },
+    "feel": {
+     "hard": 1
+    },
+    "arm": {
+     "not_really": 1,
+     "very": 2
+    },
+    "maneuver": {
+     "very": 1
+    },
+    "level": {
+     "advanced": 1
+    }
+   },
+   "spec": {
+    "plays_like": "power",
+    "maneuver": "not_really"
+   }
+  },
+  "stiga-axe-4-cybershape-2026": {
+   "slug": "stiga-axe-4-cybershape-2026",
+   "name": "Stiga Axe 4 Cybershape 2026",
+   "sources": 4,
+   "groups": {
+    "sweet_spot": {
+     "big": 3
+    },
+    "plays_like": {
+     "power": 2,
+     "control": 1
+    },
+    "arm": {
+     "not_really": 2
+    }
+   },
+   "spec": {
+    "maneuver": "somewhat"
+   }
+  },
+  "stiga-axe-4-hybrid-2026": {
+   "slug": "stiga-axe-4-hybrid-2026",
+   "name": "Stiga Axe 4 Hybrid 2026",
+   "sources": 2,
+   "groups": {
+    "plays_like": {
+     "power": 2
+    },
+    "sweet_spot": {
+     "small": 2
+    }
+   },
+   "spec": {
+    "maneuver": "somewhat"
+   }
+  },
+  "stiga-cybershape-18k-2-2026": {
+   "slug": "stiga-cybershape-18k-2-2026",
+   "name": "Stiga Cybershape 18K 2 2026",
+   "sources": 0,
+   "groups": {},
+   "spec": {
+    "maneuver": "very"
+   }
+  },
+  "stiga-cybershape-18k-hard-2-2026": {
+   "slug": "stiga-cybershape-18k-hard-2-2026",
+   "name": "Stiga Cybershape 18K Hard 2 2026",
+   "sources": 2,
+   "groups": {
+    "sweet_spot": {
+     "big": 2
+    },
+    "maneuver": {
+     "very": 2
+    }
+   },
+   "spec": {
+    "maneuver": "somewhat"
+   }
+  },
+  "stiga-cybershape-18k-lw-2-2026": {
+   "slug": "stiga-cybershape-18k-lw-2-2026",
+   "name": "Stiga Cybershape 18K LW 2 2026",
+   "sources": 0,
+   "groups": {},
+   "spec": {
+    "maneuver": "somewhat"
+   }
+  },
+  "stiga-cybershape-18k-x-hard-2026": {
+   "slug": "stiga-cybershape-18k-x-hard-2026",
+   "name": "Stiga Cybershape 18K X Hard 2026",
+   "sources": 3,
+   "groups": {
+    "sweet_spot": {
+     "big": 2,
+     "small": 1
+    },
+    "maneuver": {
+     "very": 2
+    },
+    "feel": {
+     "soft": 1
+    }
+   },
+   "spec": {
+    "maneuver": "somewhat"
+   }
+  },
+  "f6bb4efb-33fb-429c-8469-48dde95ac1ec": {
+   "slug": "stiga-cybershape-2-3k-2026",
+   "name": "Stiga Cybershape 2 3K 2026",
+   "sources": 2,
+   "groups": {
+    "sweet_spot": {
+     "big": 2
+    },
+    "arm": {
+     "very": 2
+    },
+    "level": {
+     "beginner": 1
+    }
+   },
+   "spec": {}
+  },
+  "wilson-bela-ls-v3-2025": {
+   "slug": "wilson-bela-ls-v3-2025",
+   "name": "Wilson Bela LS V3 2025",
+   "sources": 10,
+   "groups": {
+    "plays_like": {
+     "power": 3,
+     "control": 3
+    },
+    "sweet_spot": {
+     "big": 4,
+     "medium": 1
+    },
+    "arm": {
+     "very": 4
+    },
+    "feel": {
+     "soft": 1
+    },
+    "maneuver": {
+     "very": 1,
+     "somewhat": 2
+    },
+    "durability": {
+     "wears_fast": 2
+    }
+   },
+   "spec": {
+    "plays_like": "all_round",
+    "feel": "soft",
+    "maneuver": "somewhat"
+   }
+  },
+  "f58e7a58-789d-4584-adf9-67c2dfc692a6": {
+   "slug": "wilson-bela-lt-v2-5-2024",
+   "name": "Wilson Bela LT V2.5 2024",
+   "sources": 24,
+   "groups": {
+    "arm": {
+     "very": 6,
+     "not_really": 4
+    },
+    "maneuver": {
+     "very": 14,
+     "somewhat": 1
+    },
+    "plays_like": {
+     "control": 8,
+     "power": 8,
+     "all_round": 1
+    },
+    "level": {
+     "intermediate": 2
+    },
+    "sweet_spot": {
+     "big": 2,
+     "small": 2
+    },
+    "feel": {
+     "hard": 1
+    },
+    "side": {
+     "both": 1
+    }
+   },
+   "spec": {
+    "plays_like": "all_round",
+    "feel": "soft",
+    "maneuver": "somewhat"
+   }
+  },
+  "wilson-bela-pro-v3-2025": {
+   "slug": "wilson-bela-pro-v3-2025",
+   "name": "Wilson Bela Pro V3 2025",
+   "sources": 28,
+   "groups": {
+    "sweet_spot": {
+     "big": 9,
+     "small": 6,
+     "medium": 1
+    },
+    "plays_like": {
+     "power": 9,
+     "control": 9,
+     "all_round": 3
+    },
+    "feel": {
+     "hard": 2
+    },
+    "arm": {
+     "not_really": 7
+    },
+    "maneuver": {
+     "not_really": 6,
+     "very": 2,
+     "somewhat": 2
+    }
+   },
+   "spec": {
+    "plays_like": "all_round",
+    "feel": "hard",
+    "maneuver": "somewhat"
+   }
+  },
+  "65562ae4-14e1-41c7-bdae-b4826cdea60a": {
+   "slug": "wilson-bela-v3-2025",
+   "name": "Wilson Bela V3 2025",
+   "sources": 12,
+   "groups": {
+    "plays_like": {
+     "control": 2,
+     "power": 4,
+     "all_round": 2
+    },
+    "feel": {
+     "soft": 1,
+     "hard": 1
+    },
+    "maneuver": {
+     "very": 2
+    },
+    "sweet_spot": {
+     "small": 3
+    },
+    "arm": {
+     "not_really": 1
+    },
+    "level": {
+     "intermediate": 2
+    },
+    "side": {
+     "right": 1
+    },
+    "durability": {
+     "holds_up": 2
+    }
+   },
+   "spec": {
+    "plays_like": "all_round",
+    "maneuver": "somewhat"
+   }
+  },
+  "wilson-blade-pro-v3-2025": {
+   "slug": "wilson-blade-pro-v3-2024",
+   "name": "Wilson Blade Pro V3 2024",
+   "sources": 25,
+   "groups": {
+    "plays_like": {
+     "control": 6,
+     "all_round": 7,
+     "power": 8
+    },
+    "sweet_spot": {
+     "small": 10,
+     "big": 1
+    },
+    "feel": {
+     "hard": 5,
+     "soft": 1
+    },
+    "maneuver": {
+     "not_really": 6,
+     "very": 2,
+     "somewhat": 1
+    },
+    "arm": {
+     "not_really": 1
+    },
+    "level": {
+     "advanced": 1
+    }
+   },
+   "spec": {
+    "plays_like": "all_round",
+    "feel": "hard"
+   }
+  },
+  "wilson-blade-v3-2025": {
+   "slug": "wilson-blade-v3-2024",
+   "name": "Wilson Blade V3 2024",
+   "sources": 8,
+   "groups": {
+    "plays_like": {
+     "control": 2,
+     "power": 5
+    },
+    "maneuver": {
+     "not_really": 2
+    },
+    "sweet_spot": {
+     "small": 3,
+     "big": 1
+    },
+    "feel": {
+     "hard": 2
+    },
+    "arm": {
+     "not_really": 1
+    },
+    "durability": {
+     "holds_up": 1
+    },
+    "level": {
+     "advanced": 1,
+     "intermediate": 1
+    }
+   },
+   "spec": {
+    "plays_like": "all_round",
+    "maneuver": "not_really"
+   }
+  },
+  "wilson-blade-v4-2026": {
+   "slug": "wilson-blade-v4-2026",
+   "name": "Wilson Blade V4 2026",
+   "sources": 8,
+   "groups": {
+    "sweet_spot": {
+     "small": 3
+    },
+    "maneuver": {
+     "very": 3
+    },
+    "feel": {
+     "hard": 4
+    },
+    "plays_like": {
+     "control": 5
+    },
+    "side": {
+     "right": 1
+    },
+    "arm": {
+     "somewhat": 1
+    }
+   },
+   "spec": {
+    "plays_like": "all_round",
+    "maneuver": "not_really"
+   }
+  },
+  "wilson-defy-pro-v1-2025": {
+   "slug": "wilson-defy-pro-v1-2025",
+   "name": "Wilson Defy Pro V1 2025",
+   "sources": 31,
+   "groups": {
+    "plays_like": {
+     "power": 14,
+     "control": 11,
+     "all_round": 4
+    },
+    "maneuver": {
+     "not_really": 7,
+     "very": 2,
+     "somewhat": 1
+    },
+    "level": {
+     "advanced": 1
+    },
+    "sweet_spot": {
+     "small": 9,
+     "big": 2,
+     "medium": 1
+    },
+    "feel": {
+     "hard": 3
+    },
+    "arm": {
+     "somewhat": 1,
+     "not_really": 1
+    },
+    "trampoline": {
+     "high": 1
+    }
+   },
+   "spec": {
+    "plays_like": "power",
+    "maneuver": "somewhat"
+   }
+  },
+  "wilson-defy-v1-2025": {
+   "slug": "wilson-defy-v1-2025",
+   "name": "Wilson Defy V1 2025",
+   "sources": 24,
+   "groups": {
+    "plays_like": {
+     "control": 13,
+     "power": 5,
+     "all_round": 4
+    },
+    "feel": {
+     "hard": 4
+    },
+    "sweet_spot": {
+     "small": 6,
+     "big": 2
+    },
+    "arm": {
+     "very": 1,
+     "somewhat": 1
+    },
+    "durability": {
+     "wears_fast": 1
+    },
+    "maneuver": {
+     "not_really": 2,
+     "very": 1
+    }
+   },
+   "spec": {
+    "plays_like": "power",
+    "maneuver": "somewhat"
+   }
+  },
+  "wilson-endure-pro-v1-2026": {
+   "slug": "wilson-endure-pro-v1-2026",
+   "name": "Wilson Endure Pro V1 2026",
+   "sources": 42,
+   "groups": {
+    "plays_like": {
+     "control": 26,
+     "all_round": 4,
+     "power": 6
+    },
+    "maneuver": {
+     "very": 4,
+     "somewhat": 3,
+     "not_really": 5
+    },
+    "sweet_spot": {
+     "small": 10,
+     "big": 4
+    },
+    "arm": {
+     "not_really": 1,
+     "very": 1,
+     "somewhat": 1
+    },
+    "feel": {
+     "hard": 8
+    },
+    "side": {
+     "right": 1
+    },
+    "level": {
+     "advanced": 1
+    },
+    "trampoline": {
+     "high": 1
+    }
+   },
+   "spec": {
+    "plays_like": "control",
+    "maneuver": "very"
+   }
+  },
+  "wilson-endure-v1-2026": {
+   "slug": "wilson-endure-v1-2026",
+   "name": "Wilson Endure V1 2026",
+   "sources": 29,
+   "groups": {
+    "arm": {
+     "not_really": 3,
+     "very": 2,
+     "somewhat": 1
+    },
+    "feel": {
+     "medium": 2,
+     "soft": 2,
+     "hard": 2
+    },
+    "plays_like": {
+     "control": 13,
+     "power": 5,
+     "all_round": 2
+    },
+    "sweet_spot": {
+     "big": 6,
+     "medium": 1,
+     "small": 1
+    },
+    "maneuver": {
+     "very": 9,
+     "somewhat": 1
+    },
+    "level": {
+     "intermediate": 2
+    },
+    "side": {
+     "right": 1
+    }
+   },
+   "spec": {
+    "plays_like": "control",
+    "maneuver": "very"
+   }
+  },
+  "wilson-optix-v1-2025": {
+   "slug": "wilson-optix-v1-2025",
+   "name": "Wilson Optix V1 2025",
+   "sources": 0,
+   "groups": {},
+   "spec": {
+    "plays_like": "control",
+    "maneuver": "very"
+   }
+  },
+  "wilson-optix-v2-lite-2026": {
+   "slug": "wilson-optix-v2-lite-2026",
+   "name": "Wilson Optix V2 Lite 2026",
+   "sources": 1,
+   "groups": {
+    "durability": {
+     "wears_fast": 1
+    }
+   },
+   "spec": {
+    "plays_like": "control",
+    "maneuver": "very"
+   }
+  },
+  "wilson-optix-v2-power-2026": {
+   "slug": "wilson-optix-v2-power-2026",
+   "name": "Wilson Optix V2 Power 2026",
+   "sources": 2,
+   "groups": {
+    "plays_like": {
+     "power": 2
+    },
+    "sweet_spot": {
+     "big": 2
+    },
+    "feel": {
+     "soft": 1
+    }
+   },
+   "spec": {
+    "plays_like": "all_round",
+    "maneuver": "not_really"
+   }
+  }
+ }
+}
