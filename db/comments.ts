@@ -51,3 +51,19 @@ export async function voteComment(db: Database, commentId: string, voter: string
     .onConflictDoUpdate({ target: [commentVotes.commentId, commentVotes.voter], set: { value, updatedAt: now.toISOString() } });
   return true;
 }
+
+export type AdminComment = { id: string; page: string; parentId: string | null; alias: string; body: string; status: "pending" | "approved" | "rejected"; spamScore: number; at: string };
+/** The admin's comment queue (app/funtimes?tab=comments): one status, newest first, with each status's total. */
+export async function adminComments(db: Pick<Database, "select">, status: AdminComment["status"], limit = 50) {
+  const [rows, totals] = await Promise.all([
+    db.select().from(comments).where(eq(comments.status, status)).orderBy(desc(comments.createdAt)).limit(limit),
+    db.select({ status: comments.status, n: count() }).from(comments).groupBy(comments.status),
+  ]);
+  return { rows: rows.map(r => ({ id: r.id, page: r.page, parentId: r.parentId, alias: r.alias, body: r.body, status: r.status, spamScore: r.spamScore, at: r.createdAt })) as AdminComment[],
+    totals: Object.fromEntries(totals.map(t => [t.status, Number(t.n)])) as Partial<Record<AdminComment["status"], number>> };
+}
+/** Approve, reject or hold one comment. A reply waits with its parent: it shows only once the parent is approved. */
+export async function setCommentStatus(db: Database, id: string, status: AdminComment["status"]) {
+  const done = await db.update(comments).set({ status }).where(eq(comments.id, id)).returning({ id: comments.id });
+  return done.length > 0;
+}

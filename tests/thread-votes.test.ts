@@ -5,7 +5,7 @@ import { drizzle } from "drizzle-orm/pglite";
 import { migrationSql } from "../db/migrations";
 import { brands, rackets } from "../db/schema";
 import { castTraitVote, traitCounts, myTraitVotes, boardCounts } from "../db/thread-votes";
-import { addComment, listComments, voteComment, commentStatus, PAGE_KEY } from "../db/comments";
+import { addComment, listComments, voteComment, commentStatus, PAGE_KEY, adminComments, setCommentStatus } from "../db/comments";
 import { validTraitVote, TRAIT_GROUPS } from "../lib/thread/traits";
 import type { getDb } from "../db/index";
 
@@ -65,5 +65,24 @@ test("comments: clean ones show at once, links and very short ones wait, spam is
     const top = list.find(c => c.id === a.comment!.id)!;
     assert.equal(top.score, 0); assert.equal(top.mine, -1);
     assert.equal(await voteComment(db, held.status === "pending" ? "00000000-0000-4000-8000-000000000000" : "", "dev-b", 1), false);
+  } finally { await engine.close(); }
+});
+
+test("comment moderation: a held comment shows once approved, hides once rejected; totals per status", async () => {
+  const { engine, db } = await setup();
+  try {
+    const page = "guide:elbow", base = { page, voter: "dev-a", network: "net-1", question: false, parentId: null };
+    const held = await addComment(db, { ...base, alias: "Iker", body: "Photos of my elbow brace setup at www.example.com if useful" });
+    assert.equal(held.status, "pending");
+    assert.deepEqual((await listComments(db, page, null)).length, 0);
+    const queue = await adminComments(db, "pending");
+    assert.equal(queue.rows.length, 1); assert.equal(queue.totals.pending, 1);
+    const id = queue.rows[0].id;
+    assert.equal(await setCommentStatus(db, id, "approved"), true);
+    assert.equal((await listComments(db, page, null)).length, 1);
+    assert.equal(await setCommentStatus(db, id, "rejected"), true);
+    assert.equal((await listComments(db, page, null)).length, 0);
+    assert.equal((await adminComments(db, "rejected")).totals.rejected, 1);
+    assert.equal(await setCommentStatus(db, "00000000-0000-4000-8000-000000000000", "approved"), false);
   } finally { await engine.close(); }
 });
