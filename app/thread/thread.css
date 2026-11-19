@@ -587,3 +587,4 @@ button.th-post:not(:disabled):hover { background: #3a3a3a; color: #fbfaf6; }
 button.th-post:focus-visible { outline: 3px solid var(--lime); outline-offset: 2px; }
 button.th-post:disabled { cursor: default; background: #f0eee8; color: #8a867c; opacity: 1; }
 .th-why { font-size: 12.5px; color: #6a675f; }
+.th-only-m-inline { display: none; } @media (max-width: 639px) { .th-only-d { display: none; } .th-only-m-inline { display: inline; } }

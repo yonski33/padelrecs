@@ -5,7 +5,7 @@
 // Four groups first (2 columns, 1 on phones), the other five behind "See all player ratings". Votes: /api/trait-votes (drizzle/0024).
 import { useEffect, useState } from "react";
 import { TRAIT_GROUPS, type TraitCounts } from "../../../lib/thread/traits";
-import { groupView, groupNote, sectionNote } from "../../../lib/thread/trait-view";
+import { groupView, sectionNote, sectionNoteShort } from "../../../lib/thread/trait-view";
 import type { TraitSeed } from "../../../lib/thread/trait-seed";
 
 /** The owner's fixes (admin Traits tab, db/trait-admin.ts): review counts that replace the file's, and frozen groups. */
@@ -42,12 +42,12 @@ export function TraitVotes({ id, seed }: { id: string; seed: TraitSeed | null })
   }
   const voteTotal = Object.values(counts).reduce((s, o) => s + Object.values(o).reduce((a, b) => a + b, 0), 0);
   return <section id="play" className="th-card th-sec" style={{ scrollMarginTop: 70 }}>
-    <div className="th-head-row"><h2 className="th-h3">How does it play?</h2><span className="th-sub">{sectionNote(seed?.sources ?? 0, voteTotal)}</span></div>
+    <div className="th-head-row"><h2 className="th-h3">How does it play?</h2><span className="th-sub"><span className="th-only-d">{sectionNote(seed?.sources ?? 0, voteTotal)}</span><span className="th-only-m-inline">{sectionNoteShort(seed?.sources ?? 0, voteTotal)}</span></span></div>
     <div className="th-vgrid2">{[...FIRST, ...(more ? REST : [])].map(g => {
       const closed = ov.frozen.includes("_all") || ov.frozen.includes(g.key);
       const v = groupView(g.options, ov.counts[g.key] ?? seed?.groups[g.key], counts[g.key], seed?.spec[g.key]), max = Math.max(1, ...v.opts.filter(o => o.shown).map(o => o.n));
       return <div key={g.key} className="th-vbox" role="group" aria-label={g.title}>
-        <span className="th-vbox-head">{g.title}<small>{[groupNote(v), closed ? "Voting closed" : ""].filter(Boolean).join(" · ")}</small></span>
+        <span className="th-vbox-head">{g.title}<small>{[v.specOnly ? "From the specs" : "", closed ? "Voting closed" : ""].filter(Boolean).join(" · ")}</small></span>
         {v.opts.map(o => <button key={o.key} type="button" className={`th-vopt${o.top || o.spec ? " top" : ""}`} aria-pressed={mine[g.key] === o.key} disabled={closed} onClick={() => vote(g.key, o.key)}>
             <i style={{ width: o.shown ? `${Math.round(o.n / max * 85)}%` : 0 }}/>
             <span>{o.label}</span>
