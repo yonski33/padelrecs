@@ -4,7 +4,8 @@
 // /api/comments (drizzle/0025): clean comments show at once, links and very short ones wait for a person, spam is dropped.
 import { useEffect, useRef, useState } from "react";
 import { ownerCheck } from "../../admin-edit";
-import { nickname } from "../../quick-vote";
+import { commenterName, nameProblem, NAME_MAX } from "../../../lib/thread/display-name";
+import { savedName, saveName } from "./name";
 import { ago } from "../ui";
 
 type C = { id: string; parentId: string | null; alias: string; body: string; at: string; score: number; mine: number };
@@ -16,8 +17,7 @@ function Box({ nick, setNick, nicknames, placeholder, cta, onPost, onCancel, aut
   return <div className="th-compose white">
     <textarea className="th-ta" rows={3} autoFocus={autoFocus} value={text} maxLength={2000} placeholder={placeholder} aria-label={placeholder} onChange={e => setText(e.target.value)}/>
     <div className="th-compose-foot">
-      <span className="th-as"><span>as</span><input value={nick} onChange={e => setNick(e.target.value)} maxLength={50} aria-label="Posting as"/>
-        <button type="button" onClick={() => { try { localStorage.removeItem("rv-nick"); } catch { /* storage off */ } setNick(nickname(nicknames)); }}>New name</button></span>
+      <span className="th-as"><input value={nick} onChange={e => setNick(e.target.value)} maxLength={NAME_MAX} placeholder="Name (optional)" aria-label="Name (optional)"/></span>
       <span className="th-grow"/>
       <button type="button" className="cancel" onClick={onCancel}>Cancel</button>
       <button type="button" className="th-btn round dark" disabled={busy || text.trim().length < 2} onClick={async () => { setBusy(true); if (await onPost(text.trim())) setText(""); setBusy(false); }}>{busy ? "Posting…" : cta}</button>
@@ -44,7 +44,8 @@ export function Comments({ page, title = "Comments", prompt = "Join the conversa
     setList(l => (l ?? []).flatMap(x => x.id !== c.id ? (action === "hide" && x.parentId === c.id ? [] : [x])
       : b.result === "edited" ? [{ ...x, body: (text ?? "").trim() }] : b.result === "removed" ? [{ ...x, body: "[removed]", alias: "[removed]" }] : []));
   }
-  useEffect(() => { setNick(nickname(nicknames)); }, [nicknames]);
+  // No generated names (owner 2026-11-19): the name box starts with the name this browser typed last time, else empty.
+  useEffect(() => { setNick(savedName()); }, []);
   useEffect(() => {
     fetch(`/api/comments?page=${encodeURIComponent(page)}&token=1`, { cache: "no-store" }).then(r => r.ok ? r.json() : null)
       .then((b: { comments?: C[]; token?: string } | null) => { setList(b?.comments ?? []); token.current = b?.token ?? ""; }).catch(() => setList([]));
@@ -52,7 +53,9 @@ export function Comments({ page, title = "Comments", prompt = "Join the conversa
   // Shown at once with the author's own ▲ (score 1); the server's copy replaces it, or it goes if the comment is held.
   async function post(body: string, parentId: string | null) {
     setErr(""); setNote("");
-    const temp: C = { id: `temp-${Date.now()}`, parentId, alias: nick.trim() || "Player", body, at: new Date().toISOString(), score: 1, mine: 1 };
+    const problem = nameProblem(nick); if (problem) { setErr(problem); return false; }
+    saveName(nick);
+    const temp: C = { id: `temp-${Date.now()}`, parentId, alias: nick.trim(), body, at: new Date().toISOString(), score: 1, mine: 1 };
     setList(l => [temp, ...(l ?? [])]); setOpen(false); setReply(null);
     try {
       const r = await fetch("/api/comments", { method: "POST", headers: { "Content-Type": "application/json" },
@@ -94,12 +97,12 @@ export function Comments({ page, title = "Comments", prompt = "Join the conversa
     {err && <span className="th-err" role="alert">{err}</span>}
     <div style={{ display: "flex", flexDirection: "column" }}>
       {tops.map(c => <div key={c.id} className="th-cm">
-        <div className="th-cm-head"><strong>{c.alias}</strong><span>{`· ${ago(c.at)}`}</span></div>
+        <div className="th-cm-head"><strong>{commenterName(c.alias)}</strong><span>{`· ${ago(c.at)}`}</span></div>
         <Text c={c}/>
         <div className="th-cm-act"><Votes c={c}/><button type="button" className="reply" onClick={() => setReply(reply === c.id ? null : c.id)}>{reply === c.id ? "Cancel" : "Reply"}</button><Own c={c}/></div>
-        {reply === c.id && <div style={{ marginLeft: 14 }}><Box nick={nick} setNick={setNick} nicknames={nicknames} placeholder={`Reply to ${c.alias}`} cta="Reply" onPost={t => post(t, c.id)} onCancel={() => setReply(null)}/></div>}
+        {reply === c.id && <div style={{ marginLeft: 14 }}><Box nick={nick} setNick={setNick} nicknames={nicknames} placeholder={`Reply to ${commenterName(c.alias)}`} cta="Reply" onPost={t => post(t, c.id)} onCancel={() => setReply(null)}/></div>}
         {replies(c.id).length > 0 && <div className="th-replies">{replies(c.id).map(r => <div key={r.id} style={{ display: "flex", flexDirection: "column", gap: 2 }}>
-          <div className="th-cm-head"><strong style={{ fontSize: 14 }}>{r.alias}</strong><span>{`· ${ago(r.at)}`}</span></div>
+          <div className="th-cm-head"><strong style={{ fontSize: 14 }}>{commenterName(r.alias)}</strong><span>{`· ${ago(r.at)}`}</span></div>
           <Text c={r}/>
           <div className="th-cm-act"><Votes c={r}/><Own c={r}/></div>
         </div>)}</div>}

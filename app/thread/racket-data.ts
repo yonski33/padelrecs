@@ -1,6 +1,7 @@
 // The Thread racket page's data, from what the live racket page already reads (app/rackets/[slug]/racket-fit.tsx builds the
 // same review cards): own reviews, one YouTube summary per channel, one blog per site, the Reddit summaries (lib/reddit-cards),
 // the page's own TL;DR words (lib/racket-page), the trait bars (expert How it plays first), similar rackets and the line.
+import { reviewerName, typedName } from "../../lib/thread/display-name";
 import { threadRows } from "./data";
 import { onePerChannel, videoOf } from "../../lib/youtube-pick";
 import { redditPick, subOf } from "../../lib/reddit-cards";
@@ -45,7 +46,9 @@ export async function racketData(slug: string) {
     if (v && !seen.has(`${v}|${e.racketId}`)) { seen.add(`${v}|${e.racketId}`); ytProducts.set(v, (ytProducts.get(v) ?? 0) + 1); } }
   const lv = (v?: string | null) => v ? v.toLowerCase() : null;
   const cards: RvCard[] = [
-    ...reviews.map(x => ({ id: `p-${x.id}`, kind: "player" as const, who: x.alias || "A PadelRecs player", meta: [lv(x.playerLevel), x.playingSide ? `${x.playingSide.toLowerCase()} side` : null].filter(Boolean).join(" · ") || null,
+    // Names (lib/thread/display-name.ts): a typed name, else one made from the level and side; those then aren't repeated.
+    ...reviews.map(x => ({ id: `p-${x.id}`, kind: "player" as const, who: reviewerName({ alias: x.alias, level: x.playerLevel, side: x.playingSide }),
+      meta: typedName(x.alias) ? [lv(x.playerLevel), x.playingSide ? `${x.playingSide.toLowerCase()} side` : null].filter(Boolean).join(" · ") || null : null,
       verdict: verdictOf(x.rating), at: x.createdAt, when: ago(x.createdAt, now), text: unmd(x.reviewText), quote: false, url: null, video: null, helpful: x.helpful })),
     ...onePerChannel(external.filter(e => e.sourcePlatform === "YouTube"), v => ytProducts.get(v) ?? 1).flatMap(e => {
       const english = !e.sourceLanguage || e.sourceLanguage === "en";
