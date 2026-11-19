@@ -2,7 +2,7 @@
 // for the hub's other cards, Thread-only lists from the same engine: the home's quick match for beginners and for sore arms
 // (as the live "for a kind of player" lists do, lib/home-rank.ts rankHome) and the best-scored rackets of each shape.
 import { cache } from "react";
-import { threadLists, threadRows } from "./data";
+import { threadLists, threadRows, hasDb } from "./data";
 import { homePayload } from "../home-payload";
 import { rankHome } from "../../lib/home-rank";
 import { RANK_SETUP, NEGATIVE_TAGS } from "../../lib/rank-seed";
@@ -25,6 +25,7 @@ const PICKS: { key: string; slug: string; label: string; title: string; choice: 
 const SHAPES = [["round", "Round"], ["teardrop", "Teardrop"], ["diamond", "Diamond"]] as const;
 
 export const threadRankings = cache(async (): Promise<ThreadRanking[]> => {
+  if (!hasDb()) return [];
   const [lists, { all }, payload] = await Promise.all([threadLists(), threadRows(), homePayload()]);
   const own = lists.map(l => ({ slug: l.slug, href: l.href, label: l.label, title: l.title, blurb: BLURB[l.slug] ?? l.description ?? "", own: true, ids: l.ids.slice(0, SIZE),
     group: /power|control/.test(l.slug) ? "By how you play" : "Most popular" }));

@@ -30,6 +30,7 @@ const shortEnglish = (t?: string | null) => !!t && t.length >= 30 && t.length <=
 
 export async function racketData(slug: string) {
   const { ctx, rows } = await threadRows();
+  if (!ctx) return null;
   const r = ctx.data.rackets.find(x => x.slug === slug);
   if (!r) return null;
   const row = rows.get(r.id) ?? null;

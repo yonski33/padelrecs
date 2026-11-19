@@ -19,7 +19,12 @@ import type { ThreadRow } from "./ui";
 type Ctx = Awaited<ReturnType<typeof matchContext>>;
 const FEEL = { soft: "Soft", medium: "Medium", firm: "Hard" } as const;
 
-export const threadRows = cache(async () => {
+/** A build without a database (CI) renders the Thread pages empty, as the live pages skip their reads there; Vercel builds and
+ *  serves them with data. */
+export const hasDb = () => !!process.env.DATABASE_URL;
+type Rows = { ctx: Ctx; rows: Map<string, ThreadRow>; all: ThreadRow[]; bySlug: Map<string, ThreadRow> };
+export const threadRows = cache(async (): Promise<Rows> => {
+  if (!hasDb()) return { ctx: null as unknown as Ctx, rows: new Map(), all: [], bySlug: new Map() };
   const ctx = await matchContext();
   const { data, sigs, takes } = ctx;
   const brand = new Map(data.brands.map(b => [b.id, b.name]));
@@ -59,6 +64,7 @@ const shortName = (name: string, brand: string) => (brand && name.startsWith(`${
 
 /** The ranking lists for the header menu, the hub and the sidebars: slug, label, title, top entries (curated first). */
 export const threadLists = cache(async () => {
+  if (!hasDb()) return [];
   const [{ lists }, { rows }] = await Promise.all([rankedLists(), threadRows()]);
   const seen = new Set<string>();
   return lists.filter(l => !seen.has(l.list.slug) && seen.add(l.list.slug)).map(l => ({
@@ -73,6 +79,7 @@ export const threadLists = cache(async () => {
 export type FeedItem = { id: string; racketId: string; kind: "player" | "youtube" | "blog" | "reddit"; who: string; text: string; date: string; verdict: "positive" | "mixed" | "negative" | null; url: string | null; title?: string | null };
 const ASCII = /^[\x00-\x7F’‘“”–…é]+$/;
 export const threadFeed = cache(async (): Promise<FeedItem[]> => {
+  if (!hasDb()) return [];
   const { ctx } = await threadRows();
   const verdict = (rating: number) => rating >= 4 ? "positive" as const : rating === 3 ? "mixed" as const : "negative" as const;
   const own = ctx.data.reviews.filter(r => r.reviewText && r.reviewText.length >= 40 && ASCII.test(r.reviewText)).map(r => ({ id: `p-${r.id}`, racketId: r.racketId, kind: "player" as const,
