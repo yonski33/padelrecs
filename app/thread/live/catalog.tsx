@@ -17,7 +17,10 @@ export function Catalog({ rows, brands, title = "All padel rackets", lead = "Eve
   const [picks] = usePicks(); const on = complete(picks), payload = usePayload(on);
   const pcts = useMemo(() => on && payload ? pctsFor(payload, picks) : null, [on, payload, picks]);
   // The header search sends ?q=: read it once from the address (no useSearchParams: tests/instant-views.test.ts).
-  useEffect(() => { const v = new URLSearchParams(location.search).get("q"); if (v) setQ(v); }, []);
+  // ?q= from the header search, and ?level= / ?feel= / ?shape= from the home's "See all ›" links (owner 2026-11-19).
+  useEffect(() => { const u = new URLSearchParams(location.search), v = u.get("q"); if (v) setQ(v);
+    const pre: Filters = {}; for (const k of ["level", "feel", "shape"] as const) { const x = u.get(k); if (x) pre[k] = [x]; }
+    if (Object.keys(pre).length) setF(pre); }, []);
   const shapes = useMemo(() => [...new Set(rows.map(r => r.shape).filter((x): x is string => !!x))].sort((a, b) => rows.filter(r => r.shape === b).length - rows.filter(r => r.shape === a).length).slice(0, 5), [rows]);
   const GROUPS = ([["shape", "Shape", shapes], ["level", "Level", ["Beginner", "Intermediate", "Advanced"]], ["feel", "Feel", ["Soft", "Medium", "Hard"]], ["brand", "Brand", brands], ["arm", "Comfort", ["Arm friendly"]]] as [Key, string, string[]][]).filter(([, , v]) => v.length > 0);
   const test = (r: ThreadRow, k: Key, v: string) => k === "shape" ? r.shape === v : k === "level" ? r.levels.includes(v.toLowerCase() as ThreadRow["levels"][number]) : k === "feel" ? r.feel === v : k === "brand" ? r.brand === v : r.arm;

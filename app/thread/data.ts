@@ -6,7 +6,11 @@ import { rankedLists } from "../rankings/lists";
 import { displayName } from "../../lib/brand-name";
 import { rowLine } from "../../lib/row-line";
 import { bestFor, SUITS_OK, MIN_FIT_REPORTS } from "../../lib/fit-verdict";
-import { familyRowIds } from "../../lib/compare-pairs";
+import { familyRowIds, modelFamily } from "../../lib/compare-pairs";
+import { topPicks, PICK_CATS, type PickList, type PickRacket } from "../../lib/thread/top-picks";
+import { traitSeed } from "../../lib/thread/trait-seed";
+import { traitVotes, traitOverrides } from "../../db/schema";
+import { count } from "drizzle-orm";
 import { shopPhoto, photoHidden } from "../../lib/shop-photos";
 import { amazonPhoto } from "../../lib/amazon-photos";
 import { productHref } from "../../lib/niche";
@@ -108,4 +112,32 @@ export const threadFeed = cache(async (): Promise<FeedItem[]> => {
       who: p === "Reddit" ? (e.sourceUrl.match(/reddit\.com\/(r\/[A-Za-z0-9_]+)/)?.[1] ?? e.sourceName) : e.sourceName, text: plainSummary(e.summary!), date: e.sourceDate || e.createdAt, verdict: e.sentiment ?? null, url: e.sourceUrl };
   }).filter(x => x.text && ASCII.test(x.text));
   return [...own, ...web].sort((a, b) => b.date.localeCompare(a.date));
+});
+
+/** "Top picks by players" (home, owner mock 2026-11-19): six lists of three, from the same per-racket counts as the racket
+ *  pages' "How does it play?" (review prefill or the owner's override, plus real votes). Ranking rules: lib/thread/top-picks.ts. */
+export const threadTopPicks = cache(async (): Promise<{ lists: PickList[]; total: number }> => {
+  if (!hasDb()) return { lists: [], total: 0 };
+  const { ctx, rows } = await threadRows();
+  const votes = new Map<string, number>(), overrides = new Map<string, Record<string, number>>();
+  let voteTotal = 0;
+  try {
+    const db = await database();
+    for (const v of await db.select({ racketId: traitVotes.racketId, trait: traitVotes.trait, choice: traitVotes.choice, n: count() }).from(traitVotes).groupBy(traitVotes.racketId, traitVotes.trait, traitVotes.choice)) {
+      votes.set(`${v.racketId}|${v.trait}|${v.choice}`, Number(v.n)); voteTotal += Number(v.n);
+    }
+    for (const o of await db.select({ racketId: traitOverrides.racketId, trait: traitOverrides.trait, counts: traitOverrides.reviewCounts }).from(traitOverrides))
+      if (o.counts) overrides.set(`${o.racketId}|${o.trait}`, o.counts);
+  } catch (error) { console.error("[thread] top picks votes failed", error); }
+  const byId = new Map(ctx.data.listed.map(r => [r.id, r]));
+  const rackets: PickRacket[] = [...rows.values()].filter(r => r.current).flatMap(r => {
+    const seed = traitSeed("padel", r.id), raw = byId.get(r.id);
+    if (!raw) return [];
+    const counts = Object.fromEntries(PICK_CATS.map(c => {
+      const reviews = (overrides.get(`${r.id}|${c.trait}`) ?? seed?.groups[c.trait])?.[c.choice] ?? 0;
+      return [c.key, reviews + (votes.get(`${r.id}|${c.trait}|${c.choice}`) ?? 0)];
+    }));
+    return [{ id: r.id, name: r.name.replace(/\s+\(?20\d\d\)?$/, ""), family: modelFamily(raw), opinions: r.n, counts }];
+  });
+  return { lists: topPicks(rackets), total: ctx.data.reviews.length + ctx.data.external.length + voteTotal };
 });
