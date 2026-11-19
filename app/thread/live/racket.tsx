@@ -5,7 +5,8 @@
 import { useEffect, useMemo, useState, type ReactNode } from "react";
 import { PendingReviews, LiveReviewTools } from "./review-admin";
 import { PickChips } from "./pick-chips";
-import { usePicks, usePayload, complete, fitFor } from "./picks";
+import { usePicks, usePayload, complete, fitFor, adviceFor } from "./picks";
+import { th } from "../../../lib/thread/look";
 import { tone, VERDICT, SOURCE, MIN_SHOWN, POLL_PCT_AT } from "../ui";
 import { sendVote, loadProfile, VERDICTS, type Verdict } from "../../quick-vote";
 import { nameProblem, NAME_MAX } from "../../../lib/thread/display-name";
@@ -19,13 +20,17 @@ export function FitCheck({ id }: { id: string }) {
   const [picks, set] = usePicks();
   const on = complete(picks), payload = usePayload(on);
   const fit = useMemo(() => on && payload ? fitFor(payload, picks, id) : null, [on, payload, picks, id]);
+  const adv = useMemo(() => fit && payload && fit.verdict.kind !== "thin" ? adviceFor(payload, picks, id, fit.pct) : null, [fit, payload, picks, id]);
   return <div className="th-fit">
     <span className="th-fit-title">Is it right for me?</span>
     <PickChips picks={picks} set={set} small/>
     {(picks.level || picks.style) && <div className="th-fit-out" aria-live="polite">
       {!on ? <p>Pick a level and a style to see your match.</p> : !fit ? <p>Working out your match…</p> : <>
         <span><b>{FIT_HEAD[fit.verdict.kind]}</b>{fit.pct != null && <><span className={`th-badge xs ${tone(fit.pct)}`}>{`${fit.pct}%`}</span><small>your match</small></>}</span>
-        {fit.verdict.reasons.length > 0 && <p>{fit.verdict.reasons.slice(0, 2).join(" ")}</p>}
+        {adv ? <>
+          <p>{adv.line}</p>
+          {adv.better.length > 0 && <p className="th-fit-better">{"Better for you: "}{adv.better.map((b, i) => <span key={b.id}>{i > 0 && " or "}<a href={th(b.href)}>{b.name}</a>{` (${b.pct}%)`}</span>)}.</p>}
+        </> : fit.verdict.reasons.length > 0 && <p>{fit.verdict.reasons.slice(0, 2).join(" ")}</p>}
       </>}
     </div>}
   </div>;
