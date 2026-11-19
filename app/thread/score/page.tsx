@@ -1,6 +1,5 @@
-import type { Metadata } from "next";
-import { InfoPage, infoCopy } from "../info";
+import { InfoPage } from "../info";
 
-const c = infoCopy("score");
-export const metadata: Metadata = { title: { absolute: `${c.seoTitle} | PadelRecs` }, description: c.description };
+// The live page's metadata (title, description, canonical).
+export { metadata } from "../../how-we-make-these/page";
 export default function ThreadScore() { return <InfoPage k="score"/>; }

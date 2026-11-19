@@ -1,6 +1,6 @@
 import { assertAuthTarget } from "./lib/deployment-target";
 import { createServerClient } from "@supabase/ssr";
-import { NextResponse, type NextRequest } from "next/server";
+import { NextResponse, NextRequest } from "next/server";
 import { niche } from "./lib/niche";
 import type { Niche } from "./lib/niche/types";
 import { productRedirect, productSlugIn } from "./lib/product-redirect";
@@ -10,7 +10,7 @@ import { readChoice, choiceKey, readChoiceKey, homeHref, OTHER_HOME_PARAMS } fro
 import { viewKey, readViewKey, viewQuery, CATALOG_VIEW, RANKING_VIEW, RACKET_VIEW, SKIN_HOME_VIEW, SKIN_CATALOG_VIEW, SKIN_PRODUCT_VIEW, SKIN_RANKING_VIEW } from "./lib/view-key";
 import { catalogPath } from "./lib/niche";
 import { specGroups } from "./lib/guide";
-import { threadPath, threadSite, THREAD_LOOK } from "./lib/thread/look";
+import { threadPath, threadSite, THREAD_LOOK, THREAD_DEFAULT, CLASSIC_LOOK } from "./lib/thread/look";
 // The catalogue's cached views also hold the niche's spec filters (its guide config: padel balance and face).
 const CATALOG_Q = [...CATALOG_VIEW, ...specGroups(niche.guide).map(g => g.key)];
 
@@ -64,10 +64,12 @@ export function skinView(request:NextRequest) {
  return null;
 }
 
-/** PadelRecs' Thread preview (lib/thread/look.ts): an address with ?look=thread is served by its Thread page (app/thread/…).
- *  Without the query nothing changes, so the live pages and their cached copies stay exactly as they are. */
+/** PadelRecs' Thread look (lib/thread/look.ts): by default (THREAD_DEFAULT) every address with a Thread page is served by it
+ *  (app/thread/…); ?look=thread does the same in preview mode. ?look=classic is handled in proxy() below. */
 export function threadView(request:NextRequest) {
- if(!threadSite(niche.id)||request.nextUrl.searchParams.get("look")!==THREAD_LOOK)return null;
+ if(!threadSite(niche.id))return null;
+ const look=request.nextUrl.searchParams.get("look");
+ if(look===CLASSIC_LOOK||(!THREAD_DEFAULT&&look!==THREAD_LOOK))return null;
  const to=threadPath(request.nextUrl.pathname,catalogPath);
  if(!to)return null;
  const url=request.nextUrl.clone();url.pathname=to;url.search="";
@@ -77,6 +79,17 @@ export function threadView(request:NextRequest) {
 export async function proxy(request:NextRequest) {
  const thread=threadView(request);
  if(thread)return thread;
+ // Rollback look while Thread is the default: ?look=classic runs the live routing on the address without the query, so it
+ // gets exactly today's pages and their cached views (not the older "classic" look the pages themselves know).
+ if(THREAD_DEFAULT&&threadSite(niche.id)&&request.nextUrl.searchParams.get("look")===CLASSIC_LOOK){
+  const url=request.nextUrl.clone();url.searchParams.delete("look");
+  const res=await liveProxy(new NextRequest(url,request));
+  return res.headers.get("x-middleware-next")==="1"&&!PRIVATE.test(url.pathname)?NextResponse.rewrite(url):res;
+ }
+ return liveProxy(request);
+}
+
+async function liveProxy(request:NextRequest) {
  if(niche.categoryPaths){
   const moved=await productMove(request,niche,async()=>(await import("./lib/product-lookup")).productLookup());
   if(moved)return moved;

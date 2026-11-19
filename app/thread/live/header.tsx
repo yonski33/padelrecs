@@ -2,14 +2,14 @@
 // The Thread header (README "Header"): logo, Rackets · Rankings · Brands · Guides with the current page in bold, and search.
 // On phones a Menu button opens the same links full width. Search goes to the catalogue, which filters in the browser.
 import { useState } from "react";
-import { th, GUIDE_PATHS } from "../../../lib/thread/look";
+import { th, GUIDE_PATHS, THREAD_DEFAULT } from "../../../lib/thread/look";
 
 export type Section = "rackets" | "rankings" | "brands" | "guides" | null;
 const NAV: [Exclude<Section, null>, string, string][] = [["rackets", "Rackets", "/rackets"], ["rankings", "Rankings", "/rankings"], ["brands", "Brands", "/brands"], ["guides", "Guides", GUIDE_PATHS.racket]];
 
 function Search() {
   return <form className="th-search" action="/rackets" role="search">
-    <input type="hidden" name="look" value="thread"/>
+    {!THREAD_DEFAULT && <input type="hidden" name="look" value="thread"/>}
     <label className="vh" htmlFor="th-q">Search rackets</label>
     <input id="th-q" name="q" placeholder="Search rackets" autoComplete="off"/>
   </form>;

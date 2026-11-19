@@ -1,7 +1,9 @@
 // Thread home (Home Thread v4): the community card with Find my match, the top rackets, how players rate them by trait, the
-// latest player reviews and web summaries, and the rankings. proxy.ts serves it for /?look=thread.
+// latest player reviews and web summaries, and the rankings. proxy.ts serves it for "/" (lib/thread/look.ts).
 import type { Metadata } from "next";
 import { Shell } from "./shell";
+import { homeMetadata } from "../home-metadata";
+import { DEFAULT_CHOICE } from "../../lib/quick-match";
 import { threadRows, threadBoards, threadFeed } from "./data";
 import { threadRankings } from "./rankings-data";
 import { MatchBox, HomeList } from "./live/lists";
@@ -11,7 +13,8 @@ import { SideBox, LinkList, NarrowLinks, SOURCE, ago } from "./ui";
 import { th } from "../../lib/thread/look";
 
 export const revalidate = 21600;
-export const metadata: Metadata = { title: { absolute: "PadelRecs | What padel players really think of their rackets" } };
+// The live home's title, description, canonical and share card (app/home-metadata.ts).
+export const generateMetadata = (): Promise<Metadata> => homeMetadata(DEFAULT_CHOICE, false);
 
 export default async function ThreadHome() {
   const [{ all, rows }, boards, lists, feed] = await Promise.all([threadRows(), threadBoards(), threadRankings(), threadFeed()]);

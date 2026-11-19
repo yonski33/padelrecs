@@ -17,6 +17,11 @@ const PAGE: [RegExp, string][] = [
   [/^\/v\/rackets\/[^/]+$/, "app/v/rackets/[key]/page.tsx"],
   [/^\/v\/rankings\/[^/]+\/[^/]+$/, "app/v/rankings/[slug]/[key]/page.tsx"],
   [/^\/v\/racket\/[^/]+\/[^/]+$/, "app/v/racket/[slug]/[key]/page.tsx"],
+  // PadelRecs' Thread look (lib/thread/look.ts THREAD_DEFAULT): the same addresses, served from the Thread pages.
+  [/^\/thread$/, "app/thread/page.tsx"],
+  [/^\/thread\/rackets$/, "app/thread/rackets/page.tsx"],
+  [/^\/thread\/rankings\/[^/]+$/, "app/thread/rankings/[slug]/page.tsx"],
+  [/^\/thread\/rackets\/[^/]+$/, "app/thread/rackets/[slug]/page.tsx"],
 ];
 const DYNAMIC: [RegExp, string][] = [
   [/from\s+["']next\/headers["']/, "next/headers"],
@@ -64,7 +69,8 @@ for (const id of V2) {
       assert.ok(page, `${id} ${name}: rewritten to ${to}, which is not one of the cached view pages`);
       const src = readFileSync(join(ROOT, page), "utf8");
       assert.match(src, /export\s+const\s+revalidate\s*=\s*[1-9]\d*/, `${page}: needs export const revalidate`);
-      assert.match(src, /export\s+(?:async\s+)?function\s+generateStaticParams|export\s+const\s+generateStaticParams/, `${page}: needs generateStaticParams`);
+      // A page without a [param] is built whole with the site; one with a param lists its pages.
+      if (page.includes("[")) assert.match(src, /export\s+(?:async\s+)?function\s+generateStaticParams|export\s+const\s+generateStaticParams/, `${page}: needs generateStaticParams`);
     }
   });
 }

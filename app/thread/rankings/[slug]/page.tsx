@@ -12,15 +12,21 @@ import { niche } from "../../../../lib/niche";
 import { Boards } from "../../boards";
 import { SideBox, LinkList, NarrowLinks, plural } from "../../ui";
 import { th } from "../../../../lib/thread/look";
+import { generateMetadata as liveMetadata } from "../../../rankings/[slug]/page";
+import { JsonLd, crumbs, base } from "../../seo";
 
 export const revalidate = 21600;
-export function generateStaticParams() { return []; }
+export async function generateStaticParams() { return (await threadRankings()).map(l => ({ slug: l.slug })); }
 type P = { params: Promise<{ slug: string }> };
 
+// The site's own lists keep the live page's metadata (app/rankings/[slug]/page.tsx); a Thread-only list has its own.
 export async function generateMetadata({ params }: P): Promise<Metadata> {
   const { slug } = await params;
   const l = (await threadRankings()).find(x => x.slug === slug);
-  return l ? { title: { absolute: `${l.title} | PadelRecs` }, description: l.blurb } : { title: "Ranking not found" };
+  if (!l) return { title: "Ranking not found", robots: { index: false } };
+  if (l.own) return liveMetadata({ params });
+  const title = `${l.title}, ranked by real player reviews`, description = `${l.blurb} The top ${l.ids.length} by player score, from reviews by people who played them.`;
+  return { title: { absolute: `${title} | ${niche.site.name}` }, description, alternates: { canonical: l.href }, openGraph: { title, description, url: l.href, type: "website" } };
 }
 
 const names = (xs: { name: string }[]) => xs.length > 1 ? `${xs.slice(0, -1).map(x => x.name).join(", ")} and ${xs[xs.length - 1].name}` : xs[0]?.name ?? "";
@@ -42,7 +48,15 @@ export default async function ThreadRanking({ params }: P) {
   ];
   const more = lists.filter(x => x.slug !== l.slug).map(x => ({ label: x.label, href: x.href }));
   const nameMap = Object.fromEntries(list.map(r => [r.id, r.name]));
+  // The live ranking page's structured data, built from what this page shows: its FAQ, the list and the breadcrumbs.
+  const ld = { "@context": "https://schema.org", "@graph": [
+    { "@type": "FAQPage", mainEntity: faqs.map(f => ({ "@type": "Question", name: f.q, acceptedAnswer: { "@type": "Answer", text: f.a } })) },
+    { "@type": "ItemList", name: l.title, url: `${base()}${l.href}`, numberOfItems: list.length, itemListOrder: "https://schema.org/ItemListOrderDescending",
+      itemListElement: list.map((r, i) => ({ "@type": "ListItem", position: i + 1, name: r.name, url: `${base()}${r.href}` })) },
+    crumbs([{ name: "Rankings", path: "/rankings" }, { name: l.label, path: l.href }]),
+  ] };
   return <Shell active="rankings">
+    <JsonLd data={ld}/>
     <main className="th-main">
       <div className="th-col">
         <div className="th-crumbs"><a href={th("/rankings")}>Rankings</a><span>/</span><span>{l.label}</span></div>

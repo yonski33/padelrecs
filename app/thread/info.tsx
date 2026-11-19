@@ -5,9 +5,11 @@ import { Shell } from "./shell";
 import { INFO, INFO_UI, type InfoCopy } from "../../lib/thread/copy";
 import { SideBox, LinkList, NarrowLinks } from "./ui";
 import { th } from "../../lib/thread/look";
+import { amazonLinksOn } from "../../lib/amazon-offer";
 
 const HREF: Record<InfoCopy["key"], string> = { about: "/about", score: "/how-we-make-these", affiliate: "/affiliate-disclosure", contact: "/contact" };
 const MORE = INFO.map((x, i) => ({ label: INFO_UI.moreLinks[i] ?? x.title, href: HREF[x.key] }));
+const more = () => MORE.filter(l => l.href !== "/affiliate-disclosure" || amazonLinksOn());
 /** "{contactLink}" in the copy becomes a link to the contact form (no address is shown). */
 const withLink = (t: string): ReactNode => t.includes("{contactLink}")
   ? <>{t.split("{contactLink}")[0].replace(/Email $/, "Write through ")}<a href={th("/contact")}>the contact form</a>{t.split("{contactLink}")[1]}</> : t;
@@ -35,9 +37,9 @@ export function InfoPage({ k, children }: { k: InfoCopy["key"]; children?: React
         </section>}
         {extra.sayHi && <section className="th-card th-sec"><h2 className="th-h3">{extra.sayHi.title}</h2><p className="th-lead">{withLink(extra.sayHi.body)}</p></section>}
         {children}
-        <NarrowLinks title={INFO_UI.moreAbout} links={MORE} current={HREF[k]}/>
+        <NarrowLinks title={INFO_UI.moreAbout} links={more()} current={HREF[k]}/>
       </div>
-      <aside className="th-side"><SideBox title={INFO_UI.moreAbout}><LinkList links={MORE} current={HREF[k]}/></SideBox></aside>
+      <aside className="th-side"><SideBox title={INFO_UI.moreAbout}><LinkList links={more()} current={HREF[k]}/></SideBox></aside>
     </main>
   </Shell>;
 }

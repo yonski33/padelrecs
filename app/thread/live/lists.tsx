@@ -3,6 +3,7 @@
 // ranking page's list (its order stays, the badges turn into match %). The server sends the first view; the rest is here.
 import { useMemo, useState } from "react";
 import { Row, type ThreadRow } from "../ui";
+import { th } from "../../../lib/thread/look";
 import { PickChips } from "./pick-chips";
 import { usePicks, usePayload, complete, rankFor, pctsFor, rowFromCard, NO_PICKS } from "./picks";
 
@@ -56,7 +57,7 @@ export function HomeList({ rows, reviewed, size = 10 }: { rows: ThreadRow[]; rev
       </span>
     </div>
     {shown.map(({ r, pct }, i) => <Row key={r.id} r={r} rank={i + 1} {...(pct !== undefined ? { badge: pct, badgeLabel: "your match", pct: true } : {})}/>)}
-    <a className="th-link-b" href="/rankings?look=thread" style={{ margin: "4px 0 10px" }}>All rankings</a>
+    <a className="th-link-b" href={th("/rankings")} style={{ margin: "4px 0 10px" }}>All rankings</a>
   </section>;
 }
 

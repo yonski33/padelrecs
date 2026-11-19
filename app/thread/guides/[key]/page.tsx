@@ -1,15 +1,20 @@
 // Thread guides (Racket, Beginner tips, Shape, Side, Elbow): title, TL;DR, numbered steps, the racket picks from the live
-// rankings, and the sidebar with On this page and More guides. proxy.ts serves /guide and /guides/<x> with ?look=thread.
+// rankings, and the sidebar with On this page and More guides. proxy.ts serves /guide and /guides/<x>.
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { Shell } from "../../shell";
 import { threadRows } from "../../data";
 import { threadRankings } from "../../rankings-data";
+import { homePayload } from "../../../home-payload";
+import { rankHome } from "../../../../lib/home-rank";
+import { RANK_SETUP, NEGATIVE_TAGS } from "../../../../lib/rank-seed";
 import { GUIDES, GUIDE_LINK_LABELS, GUIDE_UI } from "../../../../lib/thread/copy";
 import { GUIDE_KEYS, GUIDE_PATHS, type GuideKey } from "../../../../lib/thread/look";
 import { Row, SideBox, LinkList, NarrowLinks, type ThreadRow } from "../../ui";
 import { th } from "../../../../lib/thread/look";
 import { Comments } from "../../live/comments";
+import { generateMetadata as liveGuideMetadata } from "../../../guide/page";
+import { JsonLd, crumbs } from "../../seo";
 import { niche } from "../../../../lib/niche";
 
 export const revalidate = 21600;
@@ -18,9 +23,13 @@ export function generateStaticParams() { return GUIDE_KEYS.map(key => ({ key }))
 type P = { params: Promise<{ key: string }> };
 const guideOf = (key: string) => GUIDES.find(g => g.key === key);
 
+// The racket guide keeps the live /guide metadata (app/guide/page.tsx); the four new guides have their own, canonical to their address.
 export async function generateMetadata({ params }: P): Promise<Metadata> {
   const g = guideOf((await params).key);
-  return g ? { title: { absolute: `${g.seoTitle} | PadelRecs` }, description: g.description } : {};
+  if (!g) return {};
+  if (g.key === "racket") return liveGuideMetadata();
+  const url = GUIDE_PATHS[g.key];
+  return { title: { absolute: `${g.seoTitle} | ${niche.site.name}` }, description: g.description, alternates: { canonical: url }, openGraph: { title: g.seoTitle, description: g.description, url, type: "article" } };
 }
 
 /** Which rackets each guide lists: one per shape, or a ranking's top, or each side's (control for the right, power for the left). */
@@ -30,7 +39,8 @@ async function picksFor(key: GuideKey): Promise<{ title?: string; rows: ThreadRo
   const bestOfShape = (shape: string, n: number) => all.filter(r => r.score != null && r.n >= 10 && r.shape?.toLowerCase() === shape).sort((a, b) => b.score! - a.score!).slice(0, n);
   if (key === "racket") return [{ rows: ["round", "teardrop", "diamond"].flatMap(s => bestOfShape(s, 1)) }];
   if (key === "shape") return [{ rows: ["round", "teardrop", "diamond"].flatMap(s => bestOfShape(s, 2)) }];
-  if (key === "beginner") return [{ rows: top("for-beginners", 4) }];
+  // The beginners' ranking may be hidden (under 10 qualify): the engine's beginner picks directly, as the home ranks them.
+  if (key === "beginner") return [{ rows: (await homePayload().then(p => rankHome(p.items, RANK_SETUP, NEGATIVE_TAGS, { style: "any", level: "beginner", arm: false }, false, 4).rows)).map(x => rows.get(x.id)).filter((x): x is ThreadRow => !!x) }];
   if (key === "elbow") return [{ rows: top("for-sore-arms", 4) }];
   return [{ title: "Right side", rows: top("best-control", 3) }, { title: "Left side", rows: top("best-power", 3) }];
 }
@@ -41,10 +51,15 @@ export default async function ThreadGuide({ params }: P) {
   if (!g) notFound();
   const picks = await picksFor(g.key);
   const others = GUIDE_KEYS.filter(k => k !== g.key).map(k => ({ label: GUIDE_LINK_LABELS[k], href: GUIDE_PATHS[k] }));
-  const fullRanking = g.key === "beginner" ? "/rankings/best-padel-rackets-for-beginners" : g.key === "elbow" ? "/rankings/best-padel-rackets-for-sore-arms" : "/rankings/best-padel-rackets";
+  // "Full ranking" goes to a list that is on show (a Thread-only list can be hidden while it has under 10 rackets).
+  const shown = new Set((await threadRankings()).map(l => l.slug));
+  const wanted = g.key === "beginner" ? "best-padel-rackets-for-beginners" : g.key === "elbow" ? "best-padel-rackets-for-sore-arms" : "best-padel-rackets";
+  const fullRanking = `/rankings/${shown.has(wanted) ? wanted : "best-padel-rackets"}`;
   const lime = Number((g.extra as { highlightFirstSteps?: number } | undefined)?.highlightFirstSteps ?? g.steps.length);
   const picksTitle = g.picksTitle.replace(/\bvote for\b/, "rate highest");
+  const ld = { "@context": "https://schema.org", "@graph": [crumbs([{ name: "Home", path: "/" }, ...(g.key === "racket" ? [] : [{ name: "Racket guide", path: GUIDE_PATHS.racket }]), { name: g.key === "racket" ? "Racket guide" : g.title, path: GUIDE_PATHS[g.key] }])] };
   return <Shell active="guides">
+    <JsonLd data={ld}/>
     <main className="th-main">
       <div className="th-col">
         <div className="th-crumbs"><a href={th(GUIDE_PATHS.racket)}>{GUIDE_UI.crumbRoot}</a><span>/</span><span>{g.crumb}</span></div>

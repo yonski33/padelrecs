@@ -1,5 +1,4 @@
 // Thread rankings hub (Rankings Hub Thread): every ranking as a card with its top 3 and "See ranking ›".
-import type { Metadata } from "next";
 import { Shell } from "../shell";
 import { threadRows } from "../data";
 import { threadRankings, GROUPS } from "../rankings-data";
@@ -7,7 +6,7 @@ import { th } from "../../../lib/thread/look";
 import { tone } from "../ui";
 
 export const revalidate = 21600;
-export const metadata: Metadata = { title: { absolute: "Padel racket rankings | PadelRecs" } };
+export { generateMetadata } from "../../rankings/page";
 
 export default async function ThreadHub() {
   const [lists, { rows }] = await Promise.all([threadRankings(), threadRows()]);

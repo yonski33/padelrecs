@@ -1,9 +1,7 @@
-import type { Metadata } from "next";
 import type { ReactNode } from "react";
 import "./thread.css";
 
-// The Thread preview (lib/thread/look.ts): reached only through ?look=thread, so it stays out of search until the owner flips it.
-export const metadata: Metadata = { robots: { index: false, follow: false } };
+// Indexable: Thread serves the live addresses (lib/thread/look.ts THREAD_DEFAULT); each page reuses the live page's metadata.
 
 /** The handoff's fonts (README "Typography"): Barlow Condensed for headings and badges, Atkinson Hyperlegible for text, and a
  *  digits-only Barlow stacked first so numbers get a plain zero. React hoists the stylesheets into <head>. */

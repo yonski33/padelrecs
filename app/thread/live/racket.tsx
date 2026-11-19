@@ -33,14 +33,15 @@ const RATING: Record<Verdict, number> = { positive: 5, mixed: 3, negative: 1 };
 /** "Played it? Tap to add yours": the review verdicts plus the quick votes, one vote per device, changeable. */
 export function Poll({ id, reviews }: { id: string; reviews: Counts }) {
   const [votes, setVotes] = useState<Counts | null>(null), [mine, setMine] = useState<Verdict | null>(null), [err, setErr] = useState("");
-  useEffect(() => {
-    fetch(`/api/racket-votes?racket=${encodeURIComponent(id)}`, { cache: "no-store" }).then(r => r.ok ? r.json() : null).then((b: { stats?: Counts; mine?: number | null } | null) => {
-      if (!b?.stats) return; setVotes(b.stats); if (b.mine) setMine(b.mine >= 4 ? "positive" : b.mine === 3 ? "mixed" : "negative");
-    }).catch(() => {});
-  }, [id]);
+  // Counts from /api/thread-poll: a reviewer who also quick-voted counts once (their review is in `reviews`).
+  const load = () => fetch(`/api/thread-poll?racket=${encodeURIComponent(id)}`, { cache: "no-store" }).then(r => r.ok ? r.json() : null).then((b: { votes?: Counts; mine?: number | null } | null) => {
+    if (!b?.votes) return; setVotes(b.votes); setMine(b.mine ? (b.mine >= 4 ? "positive" : b.mine === 3 ? "mixed" : "negative") : null);
+  }).catch(() => {});
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  useEffect(() => { load(); }, [id]);
   const pick = async (v: Verdict) => {
     setErr(""); const was = mine; setMine(v);
-    try { const s = await sendVote(id, RATING[v], loadProfile()); if (s) setVotes(s); }
+    try { await sendVote(id, RATING[v], loadProfile()); await load(); }
     catch { setMine(was); setErr("Could not save your vote. Try again?"); }
   };
   const n = (k: Verdict) => reviews[k] + (votes?.[k] ?? 0);

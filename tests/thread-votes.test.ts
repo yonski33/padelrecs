@@ -4,7 +4,8 @@ import { PGlite } from "@electric-sql/pglite";
 import { drizzle } from "drizzle-orm/pglite";
 import { migrationSql } from "../db/migrations";
 import { brands, rackets } from "../db/schema";
-import { castTraitVote, traitCounts, myTraitVotes, boardCounts } from "../db/thread-votes";
+import { castTraitVote, traitCounts, myTraitVotes, boardCounts, pollVotes } from "../db/thread-votes";
+import { reviews, productVotes } from "../db/schema";
 import { addComment, listComments, voteComment, commentStatus, PAGE_KEY, adminComments, setCommentStatus } from "../db/comments";
 import { validTraitVote, TRAIT_GROUPS } from "../lib/thread/traits";
 import type { getDb } from "../db/index";
@@ -84,5 +85,19 @@ test("comment moderation: a held comment shows once approved, hides once rejecte
     assert.equal((await listComments(db, page, null)).length, 0);
     assert.equal((await adminComments(db, "rejected")).totals.rejected, 1);
     assert.equal(await setCommentStatus(db, "00000000-0000-4000-8000-000000000000", "approved"), false);
+  } finally { await engine.close(); }
+});
+
+test("poll: a quick vote paired with the same person's approved review counts once (the review), other votes count", async () => {
+  const { engine, db } = await setup();
+  try {
+    const vote = (voter: string, rating: number, at: string) => ({ racketId: "r1", voter, network: "n", rating, createdAt: at, updatedAt: at });
+    await db.insert(reviews).values({ id: "rv1", racketId: "r1", rating: 5, reviewText: "Huge sweet spot and easy on the arm, love it.", status: "approved", createdAt: "2026-11-10T10:00:30.000Z" } as never);
+    await db.insert(productVotes).values([
+      vote("composer", 5, "2026-11-10T10:00:00.000Z"),   // saved with rv1: counted once, as the review
+      vote("other", 5, "2026-11-12T09:00:00.000Z"),      // a separate person
+      vote("mixed", 3, "2026-11-10T10:01:00.000Z"),      // a different verdict: not the same opinion
+    ] as never);
+    assert.deepEqual(await pollVotes(db, "r1"), { positive: 1, mixed: 1, negative: 0 });
   } finally { await engine.close(); }
 });

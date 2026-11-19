@@ -1,10 +1,16 @@
-// The "Thread" redesign (owner 2026-11-19, Claude Design handoff thread-redesign-v1): a quiet, community-first PadelRecs, in
-// preview behind ?look=thread until the owner flips it. Padel only. The live pages stay as they are: proxy.ts rewrites an
-// address with ?look=thread to its Thread page (app/thread/…), and every Thread link carries ?look=thread, so the CDN keys
-// the two looks apart by their own URLs and a live address never gets a Thread page. Pure: proxy.ts and the pages share it.
+// The "Thread" redesign (owner 2026-11-19, Claude Design handoff thread-redesign-v1): a quiet, community-first PadelRecs.
+// Padel only. proxy.ts serves each address from its Thread page (app/thread/…) by default (THREAD_DEFAULT); ?look=classic
+// keeps the previous pages reachable for a few weeks. The two looks have different URLs, so the CDN never mixes them.
+// Pure: proxy.ts and the pages share it.
 
-/** The query value that opens the Thread look. */
+/** THE go-live flag (owner 2026-11-19): true = Thread is padel's default look on the normal addresses and ?look=classic
+ *  shows the current live pages; false = the live pages are the default and ?look=thread previews Thread. Roll back by
+ *  setting it to false. */
+export const THREAD_DEFAULT = true;
+/** The query value that opens the Thread look (still accepted when Thread is the default). */
 export const THREAD_LOOK = "thread";
+/** The query value that shows the current live (pre-Thread) pages while Thread is the default. */
+export const CLASSIC_LOOK = "classic";
 /** Only PadelRecs previews it (the pilot before Tennis, Pickleball, SimRacing, DiscGolf and Skin). */
 export const threadSite = (nicheId: string) => nicheId === "padel";
 
@@ -39,9 +45,10 @@ export function threadPath(pathname: string, catalog = "/rackets"): string | nul
   return null;
 }
 
-/** A Thread link: the live address with ?look=thread (kept ahead of any #hash), so the next page is a Thread page too.
- *  Addresses the Thread look has no page for, and outside links, are left as they are. */
-export function th(href: string, catalog = "/rackets"): string {
+/** A Thread link. While Thread is the default it is the plain address; in preview mode it carries ?look=thread (kept ahead
+ *  of any #hash) so the next page is a Thread page too. Unpreviewed addresses and outside links are left as they are. */
+export function th(href: string, catalog = "/rackets", preview = !THREAD_DEFAULT): string {
+  if (!preview) return href;
   if (!href.startsWith("/") || href.startsWith("//")) return href;
   const [rest, hash = ""] = href.split("#", 2);
   const [path, query = ""] = rest.split("?", 2);

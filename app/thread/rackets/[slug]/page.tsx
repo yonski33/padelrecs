@@ -1,4 +1,4 @@
-// Thread racket page (Metalbone CTRL Thread v7). proxy.ts serves it for /rackets/<slug>?look=thread. One quiet buy link with
+// Thread racket page (Metalbone CTRL Thread v7). proxy.ts serves it for /rackets/<slug>. One quiet buy link with
 // a commission note (owner 2026-11-19), the live Player score, the poll, how it plays, similar rackets, the reviews and the line.
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
@@ -10,20 +10,27 @@ import { FitCheck, Poll, Reviews } from "../../live/racket";
 import { TraitVotes } from "../../live/trait-votes";
 import { Comments } from "../../live/comments";
 import { th } from "../../../../lib/thread/look";
-import { listShopLink } from "../../../../lib/amazon-offer";
+import { amazonButton } from "../../../../lib/amazon-offer";
+import { amazonPhoto } from "../../../../lib/amazon-photos";
+import { websiteButton } from "../../../../lib/product-links";
 import { withoutYear } from "../../../../lib/brand-name";
 import { niche } from "../../../../lib/niche";
 import { alsoLoved } from "../../../../db/product-votes";
 import { database } from "../../../../db/data";
+import { generateMetadata as liveMetadata } from "../../../rackets/[slug]/page";
+import { JsonLd, crumbs } from "../../seo";
+import { catalogLabel, catalogPath, productHref } from "../../../../lib/niche";
 
 export const revalidate = 86400;
-export function generateStaticParams() { return []; }
+// Every listed racket's page is built with the site, as the live racket pages are (app/v/racket); none without a database (CI).
+export async function generateStaticParams() {
+  if (!process.env.DATABASE_URL) return [];
+  return (await threadRows()).all.map(r => ({ slug: r.slug }));
+}
 
 type P = { params: Promise<{ slug: string }> };
-export async function generateMetadata({ params }: P): Promise<Metadata> {
-  const d = await racketData((await params).slug);
-  return d?.row ? { title: { absolute: `${d.row.name} review | PadelRecs` }, description: d.lead ?? undefined } : { title: "Racket not found" };
-}
+// The live racket page's title, description, canonical and share image (app/rackets/[slug]/page.tsx).
+export const generateMetadata = ({ params }: P): Promise<Metadata> => liveMetadata({ params, searchParams: Promise.resolve({}) });
 
 const LEVEL_WORD = (ls: string[]) => ls.length ? (ls.length === 1 ? cap(ls[0]) : `${cap(ls[0])} to ${ls[ls.length - 1]}`) : null;
 const STYLE_WORD = { control: "Control", power: "Power", balance: "All-round" } as const;
@@ -46,7 +53,12 @@ export default async function ThreadRacket({ params }: P) {
   const { rows } = await threadRows();
   const also = (await lovedToo(r.id, rows)).filter(x => x.id !== r.id);
   const name = row?.name ?? r.name, bare = withoutYear(name);
-  const shop = listShopLink(r);
+  // The live racket page's buy link, the same logic (app/rackets/[slug]/page.tsx): the Amazon lookup, the saved listing when
+  // the two disagree, else the product's own site. So "Check price" shows here exactly where it shows on the live page.
+  const live = await amazonButton({ name: r.name, brand: brand?.name }), saved = amazonPhoto(r);
+  const amazon = live && saved && live.asin !== (r as { amazonAsin?: string | null }).amazonAsin ? { url: saved.url } : live;
+  const site = websiteButton(r);
+  const shop = amazon ? { url: amazon.url, rel: "sponsored nofollow noopener" } : site ? { url: site.url, rel: site.affiliate ? "sponsored nofollow noopener" : "noopener" } : null;
   const specs = ([["Year", String(r.year)], ...niche.specs.map(s => [s.label, r[s.column]])] as [string, string | null][]).filter((x): x is [string, string] => !!x[1]);
   const tags = [style ? STYLE_WORD[style] : null, r.shape, row?.feel ? `${row.feel} feel` : null, LEVEL_WORD(row?.levels ?? [])].filter((x): x is string => !!x);
   const playersSay = [style && ["Plays like", STYLE_WORD[style]], row?.levels.length && ["Best for", LEVEL_WORD(row.levels)!], row?.arm && ["Arm friendly", "Yes, say players"],
@@ -54,7 +66,10 @@ export default async function ThreadRacket({ params }: P) {
   const day = latest ? new Date(latest).toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric", timeZone: "UTC" }) : null;
   const buy = shop && <div className="th-buy"><a href={shop.url} target="_blank" rel={shop.rel}>Check price ↗</a><small>We may earn a commission</small></div>;
   const specsBox = specs.length > 0 && <section className="th-card th-specs th-only-m">{specs.map(([k, v]) => <span key={k} className="th-kv"><span>{k}</span><strong>{v}</strong></span>)}</section>;
+  // The live page's structured data: its breadcrumbs (the catalogue, the brand, the racket).
+  const ld = { "@context": "https://schema.org", "@graph": [crumbs([{ name: catalogLabel, path: catalogPath }, ...(brand ? [{ name: brand.name, path: `/brands/${brand.slug}` }] : []), { name: r.name, path: productHref(r) }])] };
   return <Shell active="rackets">
+    <JsonLd data={ld}/>
     <main className="th-main">
       <div className="th-col">
         <div className="th-crumbs"><a href={th("/rackets")}>Rackets</a>{r.shape && <><span>/</span><span>{r.shape}</span></>}{brand && <><span>/</span><a href={`/brands/${brand.slug}`}>{brand.name}</a></>}</div>

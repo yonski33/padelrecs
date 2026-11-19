@@ -1,6 +1,7 @@
-import type { Metadata } from "next";
-import { InfoPage, infoCopy } from "../info";
+import { notFound } from "next/navigation";
+import { InfoPage } from "../info";
+import { amazonLinksOn } from "../../../lib/amazon-offer";
 
-const c = infoCopy("affiliate");
-export const metadata: Metadata = { title: { absolute: `${c.seoTitle} | PadelRecs` }, description: c.description };
-export default function ThreadAffiliate() { return <InfoPage k="affiliate"/>; }
+// The live page's metadata (title, description, canonical); like the live page, none without affiliate links.
+export { generateMetadata } from "../../affiliate-disclosure/page";
+export default function ThreadAffiliate() { if (!amazonLinksOn()) notFound(); return <InfoPage k="affiliate"/>; }
