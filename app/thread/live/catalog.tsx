@@ -11,7 +11,7 @@ const STEP = 20;
 
 export function Catalog({ rows, brands }: { rows: ThreadRow[]; brands: string[] }) {
   const [q, setQ] = useState(""), [f, setF] = useState<Filters>({}), [sort, setSort] = useState<"score" | "reviews" | "new" | "match">("score");
-  const [open, setOpen] = useState(false), [panel, setPanel] = useState(false), [n, setN] = useState(STEP);
+  const [open, setOpen] = useState(false), [panel, setPanel] = useState(false), [n, setN] = useState(STEP), [older, setOlder] = useState(false);
   const [picks] = usePicks(); const on = complete(picks), payload = usePayload(on);
   const pcts = useMemo(() => on && payload ? pctsFor(payload, picks) : null, [on, payload, picks]);
   // The header search sends ?q=: read it once from the address (no useSearchParams: tests/instant-views.test.ts).
@@ -20,18 +20,22 @@ export function Catalog({ rows, brands }: { rows: ThreadRow[]; brands: string[] 
   const GROUPS: [Key, string, string[]][] = [["shape", "Shape", shapes], ["level", "Level", ["Beginner", "Intermediate", "Advanced"]], ["feel", "Feel", ["Soft", "Medium", "Hard"]], ["brand", "Brand", brands], ["arm", "Comfort", ["Arm friendly"]]];
   const test = (r: ThreadRow, k: Key, v: string) => k === "shape" ? r.shape === v : k === "level" ? r.levels.includes(v.toLowerCase() as ThreadRow["levels"][number]) : k === "feel" ? r.feel === v : k === "brand" ? r.brand === v : r.arm;
   const words = q.trim().toLowerCase().split(/\s+/).filter(Boolean);
+  // One row per model by default, its current year (the classic catalog's rule, ThreadRow.current); a search or "Show older
+  // models" brings the older years back. Their pages stay live either way.
+  const pool = useMemo(() => older || words.length ? rows : rows.filter(r => r.current !== false), [rows, older, words.length]);
+  const olderN = rows.length - rows.filter(r => r.current !== false).length;
   const pass = (r: ThreadRow, skip?: Key) => words.every(w => r.name.toLowerCase().includes(w)) && GROUPS.every(([k]) => k === skip || !f[k]?.length || f[k]!.some(v => test(r, k, v)));
   const toggle = (k: Key, v: string) => { setN(STEP); setF(x => { const cur = x[k] ?? []; return { ...x, [k]: cur.includes(v) ? cur.filter(y => y !== v) : [...cur, v] }; }); };
   const any = words.length > 0 || Object.values(f).some(v => v?.length);
   const clear = () => { setF({}); setQ(""); setN(STEP); };
   const by = sort === "match" && !pcts ? "score" : sort;
-  const list = useMemo(() => rows.filter(r => pass(r)).sort((a, b) => by === "reviews" ? b.n - a.n : by === "new" ? b.year - a.year || (b.score ?? -1) - (a.score ?? -1)
+  const list = useMemo(() => pool.filter(r => pass(r)).sort((a, b) => by === "reviews" ? b.n - a.n : by === "new" ? b.year - a.year || (b.score ?? -1) - (a.score ?? -1)
     : by === "match" ? (pcts!.get(b.id) ?? -1) - (pcts!.get(a.id) ?? -1) : (b.score ?? -1) - (a.score ?? -1) || b.n - a.n),
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  [rows, f, q, by, pcts]);
+  [pool, f, q, by, pcts]);
   const SORTS = [["score", "By player score"], ["reviews", "Most reviewed"], ["new", "Newest models"], ...(pcts ? [["match", "By your match"]] : [])] as [typeof sort, string][];
   const groups = <>{GROUPS.map(([k, label, vals]) => <div key={k} className="th-fgroup"><span>{label}</span>
-    <div className="th-fopts">{vals.map(v => { const c = rows.filter(r => pass(r, k) && test(r, k, v)).length, sel = !!f[k]?.includes(v);
+    <div className="th-fopts">{vals.map(v => { const c = pool.filter(r => pass(r, k) && test(r, k, v)).length, sel = !!f[k]?.includes(v);
       return (c > 0 || sel) && <button key={v} type="button" className="th-fopt" aria-pressed={sel} onClick={() => toggle(k, v)}>{v}{c >= 5 && <span>{c}</span>}</button>; })}</div></div>)}</>;
   return <main className="th-main">
     <aside className="th-filters"><section className="th-card th-fpanel">
@@ -61,6 +65,7 @@ export function Catalog({ rows, brands }: { rows: ThreadRow[]; brands: string[] 
         {list.slice(0, n).map(r => <Row key={r.id} r={r} {...(pcts ? { badge: pcts.get(r.id) ?? null, badgeLabel: "your match", pct: true } : {})}/>)}
         {list.length === 0 && <p className="th-empty">No rackets match these filters. <button type="button" onClick={clear}>Clear all</button></p>}
         {list.length > n && <button type="button" className="th-btn th-center" style={{ margin: "6px 0 10px" }} onClick={() => setN(x => x + STEP * 2)}>Load more</button>}
+        {!words.length && olderN > 0 && <button type="button" className="th-btn th-center" style={{ margin: "0 0 10px" }} aria-pressed={older} onClick={() => { setOlder(o => !o); setN(STEP); }}>{older ? "Hide older models" : `Show older models (${olderN})`}</button>}
       </section>
     </div>
   </main>;

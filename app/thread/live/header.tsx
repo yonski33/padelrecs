@@ -1,11 +1,12 @@
 "use client";
-// The Thread header (README "Header"): logo, Rackets · Rankings · Brands · Guides with the current page in bold, and search.
+// The Thread header (README "Header"): logo, Rackets · Rankings · Guides with the current page in bold, and search. Brands is
+// off the menu (owner 2026-11-19); the brand pages stay live and are linked from racket pages and the catalog.
 // On phones a Menu button opens the same links full width. Search goes to the catalogue, which filters in the browser.
 import { useState } from "react";
 import { th, GUIDE_PATHS, THREAD_DEFAULT } from "../../../lib/thread/look";
 
 export type Section = "rackets" | "rankings" | "brands" | "guides" | null;
-const NAV: [Exclude<Section, null>, string, string][] = [["rackets", "Rackets", "/rackets"], ["rankings", "Rankings", "/rankings"], ["brands", "Brands", "/brands"], ["guides", "Guides", GUIDE_PATHS.racket]];
+const NAV: [Exclude<Section, null>, string, string][] = [["rackets", "Rackets", "/rackets"], ["rankings", "Rankings", "/rankings"], ["guides", "Guides", GUIDE_PATHS.racket]];
 
 function Search() {
   return <form className="th-search" action="/rackets" role="search">

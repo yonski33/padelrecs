@@ -5,7 +5,8 @@ import { matchContext } from "../match-context";
 import { rankedLists } from "../rankings/lists";
 import { displayName } from "../../lib/brand-name";
 import { rowLine } from "../../lib/row-line";
-import { bestFor, SUITS_OK } from "../../lib/fit-verdict";
+import { bestFor, SUITS_OK, MIN_FIT_REPORTS } from "../../lib/fit-verdict";
+import { familyRowIds } from "../../lib/compare-pairs";
 import { shopPhoto, photoHidden } from "../../lib/shop-photos";
 import { amazonPhoto } from "../../lib/amazon-photos";
 import { productHref } from "../../lib/niche";
@@ -25,6 +26,8 @@ const FEEL = { soft: "Soft", medium: "Medium", firm: "Hard" } as const;
 /** A build without a database (CI) renders the Thread pages empty, as the live pages skip their reads there; Vercel builds and
  *  serves them with data. */
 export const hasDb = () => !!process.env.DATABASE_URL;
+/** The Thread home's top rows: the classic home's default order (app/home-payload.ts defaultHomeIds), as Thread rows. */
+export const homeTop = (rows: Map<string, ThreadRow>, ids: string[], size = 10) => ids.flatMap(id => rows.get(id) ?? []).slice(0, size);
 type Rows = { ctx: Ctx; rows: Map<string, ThreadRow>; all: ThreadRow[]; bySlug: Map<string, ThreadRow> };
 export const threadRows = cache(async (): Promise<Rows> => {
   if (!hasDb()) return { ctx: null as unknown as Ctx, rows: new Map(), all: [], bySlug: new Map() };
@@ -34,7 +37,8 @@ export const threadRows = cache(async (): Promise<Rows> => {
   const reports = new Map<string, number>();
   for (const x of [...data.reviews, ...data.external]) reports.set(x.racketId, (reports.get(x.racketId) ?? 0) + 1);
   const rows = new Map<string, ThreadRow>();
-  for (const r of data.listed) rows.set(r.id, rowOf(ctx, r, brand.get(r.brandId) ?? "", reports.get(r.id) ?? 0, takes.get(r.id)?.hook));
+  const current = familyRowIds(data.listed, x => (reports.get(x.id) ?? 0) >= MIN_FIT_REPORTS);
+  for (const r of data.listed) rows.set(r.id, { ...rowOf(ctx, r, brand.get(r.brandId) ?? "", reports.get(r.id) ?? 0, takes.get(r.id)?.hook), current: current.has(r.id) });
   return { ctx, rows, all: [...rows.values()], bySlug: new Map([...rows.values()].map(x => [x.slug, x])) };
 });
 
@@ -59,13 +63,13 @@ export const threadBoards = cache(async (only?: Set<string>): Promise<Board[]> =
   try {
     const db = await database();
     const voted = (await Promise.all(VOTE_BOARDS.map(async b => ({ b, top: (await boardCounts(db, b.trait, b.choice))
-      .filter(x => x.n >= 5 && rows.has(x.racketId) && (!only || only.has(x.racketId))).slice(0, 3) }))))
+      .filter(x => x.n >= 5 && rows.get(x.racketId)?.current && (!only || only.has(x.racketId))).slice(0, 3) }))))
       .filter(x => x.top.length === 3).map(({ b, top }) => ({ title: b.title, source: "votes" as const,
         rows: top.map(x => { const r = rows.get(x.racketId)!; return { id: r.id, name: shortName(r.name, r.brand), href: r.href, pic: r.pic, n: x.n }; }) }));
     if (voted.length >= 3) return voted;
   } catch (error) { console.error("[thread] vote boards failed", error); }
   return BOARDS.map(([key, title]) => {
-    const scored = [...rows.values()].filter(r => r.score != null && (!only || only.has(r.id))).flatMap(r => {
+    const scored = [...rows.values()].filter(r => r.score != null && r.current && (!only || only.has(r.id))).flatMap(r => {
       const t = ctx.traits(r.id).scores?.[key];
       const n = t?.people ? t.people.players.plus + t.people.reviewers.plus : t?.plus ?? 0;
       return t && t.basis === "players" && n >= 5 ? [{ r, s: t.score, n }] : [];
