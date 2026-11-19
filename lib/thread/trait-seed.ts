@@ -3,10 +3,11 @@
 // file doesn't know.
 import prefill from "../../db/thread/padel-traits.json";
 import pickleball from "../../db/thread/pickleball-traits.json";
+import skin from "../../db/thread/skin-traits.json";
 import type { Prefill } from "./trait-prefill";
 
 export type TraitSeed = { sources: number; groups: Record<string, Record<string, number>>; spec: Record<string, string> };
-const FILES: Record<string, Prefill> = { padel: prefill as Prefill, pickleball: pickleball as Prefill };
+const FILES: Record<string, Prefill> = { padel: prefill as Prefill, pickleball: pickleball as Prefill, skin: skin as Prefill };
 export function traitSeed(nicheId: string, racketId: string): TraitSeed | null {
   const r = FILES[nicheId]?.rackets[racketId];
   return r ? { sources: r.sources, groups: r.groups, spec: r.spec } : null;

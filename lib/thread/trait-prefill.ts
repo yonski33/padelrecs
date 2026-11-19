@@ -99,3 +99,18 @@ export function buildPrefill(cat: Cat[], evidence: EvidenceRow[], texts: Prefill
   }
   return out;
 }
+
+/** SkinRecs' prefill (owner 2026-11-20), from the counts its own engine already holds (app/skin/context.ts attribute scores),
+ *  never invented: Skin type from the people of each type who liked it (suits_*), Irritation from gentle reports (None) and
+ *  irritation complaints (A little: a complaint says it happened, not how strongly), Texture and Finish from the reports leaning each way on those axes. The other groups
+ *  (Under makeup, Results in, Scent, Value, Best used) start empty until people vote. */
+export type SkinScore = { score: number; n: number; plus?: number; minus?: number } | null | undefined;
+export function skinGroups(scores: Record<string, SkinScore>): { sources: number; groups: Record<string, PrefillGroup> } {
+  const groups: Record<string, PrefillGroup> = {}, put = (g: string, k: string, n: number | undefined) => { if (n && n > 0) (groups[g] ??= {})[k] = n; };
+  for (const [k, key] of [["dry", "suits_dry"], ["combination", "suits_combination"], ["oily", "suits_oily"]] as const) put("skin_type", k, scores[key]?.plus);
+  put("irritation", "none", scores.gentle?.plus); put("irritation", "a_little", scores.gentle?.minus); // a complaint says it happened, not how strongly
+  const axis = (g: string, s: SkinScore, [lo, mid, hi]: [string, string, string]) => { if (s && s.n > 0) put(g, s.score >= 62 ? hi : s.score <= 38 ? lo : mid, s.n); };
+  axis("texture", scores.texture, ["light", "medium", "rich"]); axis("finish", scores.finish, ["matte", "natural", "dewy"]);
+  const sources = Math.max(0, ...Object.values(groups).map(g => Object.values(g).reduce((a, b) => a + b, 0)));
+  return { sources, groups };
+}

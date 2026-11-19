@@ -3,7 +3,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { Shell } from "../../shell";
-import { threadRows, hasDb } from "../../data";
+import { threadRows, hasDb, skinOf } from "../../data";
 import { threadRankings } from "../../rankings-data";
 import { homePayload } from "../../../home-payload";
 import { rankHome } from "../../../../lib/home-rank";
@@ -22,8 +22,9 @@ export const dynamicParams = false;
 export function generateStaticParams() { return GUIDE_KEYS.map(key => ({ key })); }
 type P = { params: Promise<{ key: string }> };
 const PICKLEBALL = niche.id === "pickleball";
+const SKIN = niche.id === "skin";
 const SHAPES = PICKLEBALL ? ["standard", "hybrid", "elongated"] : ["round", "teardrop", "diamond"];
-const BEST = `best-${niche.id}-${niche.words.many}`; // "best-padel-rackets", "best-pickleball-paddles"
+const BEST = SKIN ? "best-face-moisturizers" : `best-${niche.id}-${niche.words.many}`; // "best-padel-rackets", "best-pickleball-paddles"
 const GUIDE_NAME = `${niche.words.One} guide`;
 const guideOf = (key: string) => GUIDES.find(g => g.key === key);
 
@@ -38,6 +39,7 @@ export async function generateMetadata({ params }: P): Promise<Metadata> {
 
 /** Which rackets each guide lists: one per shape, or a ranking's top, or each side's (control for the right, power for the left). */
 async function picksFor(key: GuideKey): Promise<{ title?: string; rows: ThreadRow[] }[]> {
+  if (niche.id === "skin") return skinPicksFor(key);
   const [{ all, rows }, lists] = await Promise.all([threadRows(), threadRankings()]);
   // PickleballRecs: a paddle stored with several shapes ("Hybrid, Widebody, or Elongated") counts for each, as in the
   // catalogue, but shows once, current models only. Padel keeps its rule.
@@ -66,7 +68,8 @@ export default async function ThreadGuide({ params }: P) {
   const others = GUIDE_KEYS.filter(k => k !== g.key).map(k => ({ label: GUIDE_LINK_LABELS[k], href: GUIDE_PATHS[k] }));
   // "Full ranking" goes to a list that is on show (a Thread-only list can be hidden while it has under 10 rackets).
   const shown = new Set((await threadRankings()).map(l => l.slug));
-  const wanted = g.key === "beginner" ? `${BEST}-for-beginners` : g.key === "elbow" ? (PICKLEBALL ? `${BEST}-for-tennis-elbow` : ELBOW_SLUG) : BEST;
+  const wanted = SKIN ? (g.key === "beginner" || g.key === "elbow" ? "best-skincare-for-sensitive-skin" : BEST)
+    : g.key === "beginner" ? `${BEST}-for-beginners` : g.key === "elbow" ? (PICKLEBALL ? `${BEST}-for-tennis-elbow` : ELBOW_SLUG) : BEST;
   const fullRanking = `/rankings/${shown.has(wanted) ? wanted : BEST}`;
   const lime = Number((g.extra as { highlightFirstSteps?: number } | undefined)?.highlightFirstSteps ?? g.steps.length);
   const picksTitle = g.picksTitle.replace(/\bvote for\b/, "rate highest");
@@ -105,4 +108,25 @@ export default async function ThreadGuide({ params }: P) {
       </aside>
     </main>
   </Shell>;
+}
+
+/** SkinRecs' guide picks: the best-scored current product of each type the guide is about, or a list's top (the sensitive
+ *  skin ranking), or the skin engine's own match for a texture (app/skin/rank.ts rankSkin). */
+async function skinPicksFor(key: GuideKey): Promise<{ title?: string; rows: ThreadRow[] }[]> {
+  const [{ all, ctx }, lists] = await Promise.all([threadRows(), threadRankings()]);
+  const ok = (r: ThreadRow) => r.score != null && r.current !== false && r.n >= 10;
+  const bestOf = (shape: string, n = 1) => all.filter(r => ok(r) && r.shape === shape).sort((a, b) => b.score! - a.score! || b.n - a.n).slice(0, n);
+  const list = (slug: string, n: number) => (lists.find(l => l.slug === slug)?.ids ?? []).slice(0, n).flatMap(id => all.find(r => r.id === id) ?? []);
+  // Morning (protection) and night (repair), the routine guide's two lists.
+  if (key === "side") return [{ title: "Morning", rows: bestOf("Sunscreen", 2) }, { title: "Night", rows: bestOf("Treatment", 2) }];
+  if (key === "beginner" || key === "elbow") return [{ rows: list("best-skincare-for-sensitive-skin", 4) }];
+  // The skin engine's own moisturizer picks (app/skin/rank.ts rankSkin): per skin type (choosing), or per texture.
+  const sk = skinOf(ctx);
+  if (!sk) return [];
+  const [{ rankSkin }, { readSkinChoice }] = await Promise.all([import("../../../skin/rank"), import("../../../../lib/skin-choice")]);
+  const byId = new Map(all.map(r => [r.id, r]));
+  const pick = (q: Record<string, string>, n: number) => rankSkin(sk, readSkinChoice({ ...q, type: "moisturizers" }, niche.typePages ?? [])).filter(x => x.pct !== null)
+    .flatMap(x => { const r = byId.get(x.r.id); return r && ok(r) ? [r] : []; }).slice(0, n);
+  if (key === "racket") return [{ title: "Dry skin", rows: pick({ skin: "dry" }, 1) }, { title: "Oily skin", rows: pick({ skin: "oily" }, 1) }, { title: "Combination skin", rows: pick({ skin: "combination" }, 1) }];
+  return [{ title: "Light", rows: pick({ tex: "light" }, 2) }, { title: "Rich", rows: pick({ tex: "rich" }, 2) }];
 }

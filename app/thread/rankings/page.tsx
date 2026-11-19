@@ -10,6 +10,7 @@ export const revalidate = 21600;
 import type { Metadata } from "next";
 import { generateMetadata as liveMetadata } from "../../rankings/page";
 import { liveOr } from "../seo";
+import { W } from "../../../lib/thread/words";
 export const generateMetadata = (): Promise<Metadata> => liveOr(liveMetadata);
 
 export default async function ThreadHub() {
@@ -17,8 +18,8 @@ export default async function ThreadHub() {
   return <Shell active="rankings">
     <main className="th-main"><div className="th-col" style={{ maxWidth: "none" }}>
       <section className="th-card th-hero">
-        <h1 className="th-h1">{`${niche.id[0].toUpperCase()}${niche.id.slice(1)} ${niche.words.one} rankings`}</h1>
-        <p className="th-lead">{`Every ranking is sorted by player score, from reviews by people who played the ${niche.words.many}. Scores update as new reviews come in.`}</p>
+        <h1 className="th-h1">{niche.id === "skin" ? "Skincare rankings" : `${niche.id[0].toUpperCase()}${niche.id.slice(1)} ${niche.words.one} rankings`}</h1>
+        <p className="th-lead">{`Every ranking is sorted by ${W.score}, from reviews by people who ${W.played} the ${niche.words.many}. Scores update as new reviews come in.`}</p>
       </section>
       {GROUPS.map(g => { const cards = lists.filter(l => l.group === g); return cards.length > 0 && <section key={g} style={{ display: "flex", flexDirection: "column", gap: 10 }}>
         <h2 className="th-h2 th-group-h">{g}</h2>

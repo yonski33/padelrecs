@@ -8,12 +8,13 @@ import { useEffect, useState } from "react";
 import { TRAIT_GROUPS, type TraitCounts, type TraitGroup } from "../../../lib/thread/traits";
 import { groupView, sectionNote, sectionNoteShort } from "../../../lib/thread/trait-view";
 import type { TraitSeed } from "../../../lib/thread/trait-seed";
+import { W } from "../../../lib/thread/words";
 
 /** The owner's fixes (admin Traits tab, db/trait-admin.ts): review counts that replace the file's, and frozen groups. */
 type Overrides = { counts: Record<string, Record<string, number>>; frozen: string[] };
 
 /** `groups` and `title`: StackRecs passes its tool's side ("How does it build?"); padel keeps its nine and its heading. */
-export function TraitVotes({ id, seed, groups = TRAIT_GROUPS, title = "How does it play?" }: { id: string; seed: TraitSeed | null; groups?: TraitGroup[]; title?: string }) {
+export function TraitVotes({ id, seed, groups = TRAIT_GROUPS, title = W.traitsTitle }: { id: string; seed: TraitSeed | null; groups?: TraitGroup[]; title?: string }) {
   const [counts, setCounts] = useState<TraitCounts>({}), [ov, setOv] = useState<Overrides>({ counts: {}, frozen: [] }), [mine, setMine] = useState<Record<string, string>>({}), [err, setErr] = useState("");
   useEffect(() => {
     fetch(`/api/trait-votes?racket=${encodeURIComponent(id)}`, { cache: "no-store" }).then(r => r.ok ? r.json() : null)

@@ -1,4 +1,5 @@
 import { TRAIT_GROUPS } from "./traits";
+import { W } from "./words";
 // How one "How does it play?" group shows (owner 2026-11-19): review mentions (db/thread/padel-traits.json) and players'
 // votes add up per option, and every option with any shows its real count and bar, 1 included (owner: no "under 5" rule
 // in the vote widgets; a tap visibly adds 1). A group with no counts at all can show the spec that settles it (a diamond
@@ -32,7 +33,7 @@ export function sectionNoteShort(sources: number, votes: number): string {
 }
 /** The section's line under the heading. */
 export function sectionNote(sources: number, votes: number): string {
-  if (sources > 0 && votes === 0) return `Based on ${sources} ${sources === 1 ? "review" : "reviews"} until players vote. Pick what fits. Tap again to remove.`;
+  if (sources > 0 && votes === 0) return `Based on ${sources} ${sources === 1 ? "review" : "reviews"} until ${W.people} vote. Pick what fits. Tap again to remove.`;
   if (sources > 0) return `From ${sources} reviews and ${votes} player ${votes === 1 ? "vote" : "votes"}. Pick what fits. Tap again to remove.`;
   return "Pick what fits. One vote per group. Tap again to remove.";
 }

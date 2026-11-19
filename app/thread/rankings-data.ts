@@ -2,7 +2,7 @@
 // for the hub's other cards, Thread-only lists from the same engine: the home's quick match for beginners and for sore arms
 // (as the live "for a kind of player" lists do, lib/home-rank.ts rankHome) and the best-scored rackets of each shape.
 import { cache } from "react";
-import { threadLists, threadRows, hasDb } from "./data";
+import { threadLists, threadRows, hasDb, skinOf } from "./data";
 import { ELBOW_SLUG } from "../../lib/thread/look";
 import { homePayload } from "../home-payload";
 import { rankHome } from "../../lib/home-rank";
@@ -14,9 +14,15 @@ export type ThreadRanking = { slug: string; href: string; label: string; title: 
 const YEAR = () => new Date().getUTCFullYear();
 const SIZE = 10, MIN_REVIEWS = 10;
 
-const PICKLEBALL = niche.id === "pickleball";
+const PICKLEBALL = niche.id === "pickleball", SKIN = niche.id === "skin";
 /** The hub's blurbs (Rankings Hub Thread copy), by list. */
-const BLURB: Record<string, string> = PICKLEBALL ? {
+const BLURB: Record<string, string> = SKIN ? {
+  // SkinRecs' Rankings Hub mock, on its live lists.
+  "best-face-moisturizers": "Daily creams people repurchase.", "best-face-cleansers": "Gentle, non-stripping washes.",
+  "best-face-sunscreens": "Daily SPF people actually wear.", "best-skincare-treatments": "Retinoids, acids and spot treatments people stick with.",
+  "best-balms-ointments": "Rich repair for dry, cracked skin.", "best-skincare-for-sensitive-skin": "Fragrance free and rarely stings.",
+  dry: "Rich creams that repair a dry barrier.", oily: "Light, non-greasy picks for oily skin.", acne: "Clearer skin without the burn.",
+} : PICKLEBALL ? {
   // PickleballRecs' Rankings Hub mock; the spin and tennis elbow lists are live lists the mock didn't have.
   "best-pickleball-paddles": "The highest player scores right now.", "best-power-pickleball-paddles": "For drives that land deep.",
   "best-control-pickleball-paddles": "Steady from the baseline, precise at the kitchen.", "best-spin-pickleball-paddles": "Grip on serves, rolls and drops.",
@@ -28,26 +34,43 @@ const BLURB: Record<string, string> = PICKLEBALL ? {
   "sore-arms": "Soft, light and kind to your elbow.", round: "The most forgiving shape.", teardrop: "The all-rounder shape.", diamond: "Power first, for clean technique.",
 };
 // PickleballRecs has live lists for beginners and tennis elbow already, so no Thread-only copies there.
-const PICKS: { key: string; slug: string; label: string; title: string; choice: QuickChoice }[] = PICKLEBALL ? [] : [
+const PICKS: { key: string; slug: string; label: string; title: string; choice: QuickChoice }[] = PICKLEBALL || SKIN ? [] : [
   { key: "beginners", slug: "best-padel-rackets-for-beginners", label: "Best for beginners", title: "Best padel rackets for beginners", choice: { style: "any", level: "beginner", arm: false } },
   // Named for tennis elbow (owner 2026-11-19); the old /rankings/best-padel-rackets-for-sore-arms 301s here (THREAD_MOVED).
   { key: "sore-arms", slug: ELBOW_SLUG, label: "Best for tennis elbow", title: "Best padel rackets for tennis elbow", choice: { style: "any", arm: true } },
 ];
-const SHAPES: readonly (readonly [string, string])[] = PICKLEBALL ? [["standard", "Standard"], ["elongated", "Elongated"], ["hybrid", "Hybrid"]] as const
+const SHAPES: readonly (readonly [string, string])[] = SKIN ? [] : PICKLEBALL ? [["standard", "Standard"], ["elongated", "Elongated"], ["hybrid", "Hybrid"]] as const
   : [["round", "Round"], ["teardrop", "Teardrop"], ["diamond", "Diamond"]] as const;
 const LIST = `${niche.id}-${niche.words.many}`; // "padel-rackets", "pickleball-paddles"
 
 export const threadRankings = cache(async (): Promise<ThreadRanking[]> => {
   if (!hasDb()) return [];
-  const [lists, { all }, payload] = await Promise.all([threadLists(), threadRows(), homePayload()]);
+  // The racket engine's payload only where Thread-only pick lists use it (padel); skin ranks with its own engine below.
+  const [lists, { all, ctx }, payload] = await Promise.all([threadLists(), threadRows(), PICKS.length ? homePayload() : null]);
   const own = lists.map(l => ({ slug: l.slug, href: l.href, label: l.label, title: l.title, blurb: BLURB[l.slug] ?? l.description ?? "", own: true, ids: l.ids.slice(0, SIZE),
-    group: /power|control|spin/.test(l.slug) ? "By how you play" : "Most popular" }));
+    group: SKIN ? (/sensitive/.test(l.slug) ? "Most popular" : "By product type") : /power|control|spin/.test(l.slug) ? "By how you play" : "Most popular" }));
   const picks = PICKS.map(p => ({ slug: p.slug, href: `/rankings/${p.slug}`, label: p.label, title: `${p.title} ${YEAR()}`, blurb: BLURB[p.key], own: false, group: "Most popular",
-    ids: rankHome(payload.items, RANK_SETUP, NEGATIVE_TAGS, p.choice, false, SIZE).rows.map(r => r.id) }));
+    ids: rankHome(payload!.items, RANK_SETUP, NEGATIVE_TAGS, p.choice, false, SIZE).rows.map(r => r.id) }));
   const shapes = SHAPES.map(([k]) => ({ slug: `best-${k}-${LIST}`, href: `/rankings/best-${k}-${LIST}`, label: `Best ${k} ${niche.words.many}`, title: `Best ${k} ${niche.id} ${niche.words.many} ${YEAR()}`,
     blurb: BLURB[k], own: false, group: "By shape",
     ids: all.filter(r => r.score != null && r.current && r.n >= MIN_REVIEWS && (PICKLEBALL ? !!r.shape && new RegExp(`\\b${k}\\b`, "i").test(r.shape) : r.shape?.toLowerCase() === k)).sort((a, b) => b.score! - a.score! || b.n - a.n).slice(0, SIZE).map(r => r.id) }));
   // The site's own lists keep their live rule (5+); a Thread-only list is a new page, so it needs a full 10 (owner 2026-11-19).
-  return [...own, ...picks, ...shapes].filter(l => l.ids.length >= (l.own ? 5 : 10));
+  const skin = SKIN ? await skinLists(ctx, new Set(all.filter(r => r.current).map(r => r.id))) : [];
+  return [...own, ...picks, ...shapes, ...skin].filter(l => l.ids.length >= (l.own ? 5 : 10));
 });
-export const GROUPS = ["Most popular", "By how you play", "By shape"];
+export const GROUPS = SKIN ? ["Most popular", "By skin", "By product type"] : ["Most popular", "By how you play", "By shape"];
+
+/** SkinRecs' Thread-only lists by skin (its Rankings Hub mock): the skin engine's own match for that pick (app/skin/rank.ts
+ *  rankSkin, as the live home ranks it), current products with a match only, a full 10 needed. */
+async function skinLists(ctx: unknown, current: Set<string>): Promise<ThreadRanking[]> {
+  const sk = skinOf(ctx as Parameters<typeof skinOf>[0]);
+  if (!sk) return [];
+  const [{ rankSkin }, { readSkinChoice }] = await Promise.all([import("../skin/rank"), import("../../lib/skin-choice")]);
+  const types = niche.typePages ?? [];
+  const picks = [["dry", "Best for dry skin", { skin: "dry" }], ["oily", "Best for oily skin", { skin: "oily" }], ["acne", "Best for acne", { acne: "1" }]] as const;
+  return picks.map(([key, label, q]) => {
+    const slug = `best-skincare-for-${key === "acne" ? "acne" : `${key}-skin`}`;
+    const ids = rankSkin(sk, readSkinChoice(q, types)).filter(x => x.pct !== null && current.has(x.r.id)).slice(0, SIZE).map(x => x.r.id);
+    return { slug, href: `/rankings/${slug}`, label, title: `${label} ${YEAR()}`, blurb: BLURB[key], own: false, group: key === "acne" ? "Most popular" : "By skin", ids };
+  });
+}

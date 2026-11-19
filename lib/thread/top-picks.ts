@@ -43,7 +43,19 @@ const PICKLEBALL_CATS: PickCat[] = [
   { key: "soft", title: "Softest feel", trait: "feel", choice: "soft", href: "/paddles?feel=Soft" },
   { key: "pop", title: "Most pop", trait: "pop", choice: "high", href: "/rankings/best-power-pickleball-paddles" },
 ];
-export const pickCatsFor = (nicheId: string) => nicheId === "pickleball" ? PICKLEBALL_CATS : PADEL_CATS;
+/** SkinRecs' lists (its "How people vote them" mock), linking to its live rankings and type pages. */
+const SKIN_CATS: PickCat[] = [
+  { key: "gentle", title: "Gentlest", trait: "irritation", choice: "none", href: "/rankings/best-skincare-for-sensitive-skin" },
+  { key: "dry", title: "Best for dry skin", trait: "skin_type", choice: "dry", href: "/rankings/best-skincare-for-dry-skin" },
+  { key: "oily", title: "Best for oily skin", trait: "skin_type", choice: "oily", href: "/rankings/best-skincare-for-oily-skin" },
+  { key: "rich", title: "Richest texture", trait: "texture", choice: "rich", href: "/moisturizers" },
+  { key: "light", title: "Lightest texture", trait: "texture", choice: "light", href: "/moisturizers" },
+  { key: "dewy", title: "Most dewy finish", trait: "finish", choice: "dewy", href: "/moisturizers" },
+  { key: "matte", title: "Most matte finish", trait: "finish", choice: "matte", href: "/sunscreens" },
+  { key: "makeup", title: "Best under makeup", trait: "makeup", choice: "fine", href: "/sunscreens" },
+  { key: "value", title: "Best value", trait: "value", choice: "worth_it", href: "/rankings/best-face-moisturizers" },
+];
+export const pickCatsFor = (nicheId: string) => nicheId === "pickleball" ? PICKLEBALL_CATS : nicheId === "skin" ? SKIN_CATS : PADEL_CATS;
 /** The running site's lists. */
 export const PICK_CATS = pickCatsFor(niche.id);
 /** How many lists the grid shows (3 columns × 2 rows). */

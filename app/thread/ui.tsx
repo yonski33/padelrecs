@@ -2,6 +2,7 @@
 // browser widgets (app/thread/live/*) render the same markup.
 import type { ReactNode } from "react";
 import { th } from "../../lib/thread/look";
+import { W } from "../../lib/thread/words";
 
 /** One list row's data (home, catalogue, rankings, guides). Real counts show at any size (owner 2026-11-19); 0 stays blank. */
 export type ThreadRow = {
@@ -11,6 +12,8 @@ export type ThreadRow = {
   brand: string; year: number; levels: ("beginner" | "intermediate" | "advanced")[]; feel: "Soft" | "Medium" | "Hard" | null; arm: boolean;
   /** The year that takes its model's row (lib/compare-pairs.ts familyRowIds, the classic catalog's and home's rule). Older
    *  years (false) stay reachable by their page and the catalog's search or "Show older models". */ current?: boolean;
+  /** SkinRecs' catalogue filters (its mock): skin types it works for, its texture, gentle on sensitive skin. Other sites: absent. */
+  facets?: { skin: string[]; texture: string | null; sensitive: boolean };
 };
 /** Counts show at any size (owner 2026-11-19: the "under 5" rule is gone); 0 stays blank. Written claims ("N players say…")
  *  keep their own 5-backer rule where they're made (app/thread/racket-data.ts, data.ts boards). */
@@ -34,7 +37,7 @@ export const tone = (n: number | null | undefined) => n == null ? "" : n >= 85 ?
 export const cap = (s: string) => s ? s[0].toUpperCase() + s.slice(1) : s;
 export const plural = (n: number, one: string, many = `${one}s`) => `${n.toLocaleString("en-US")} ${n === 1 ? one : many}`;
 
-export function Badge({ n, label = "player score", size, pct }: { n: number | null; label?: string; size?: "sm" | "xs"; pct?: boolean }) {
+export function Badge({ n, label = W.score, size, pct }: { n: number | null; label?: string; size?: "sm" | "xs"; pct?: boolean }) {
   if (n == null) return <span className="th-badge-col"><span className={`th-badge new${size ? ` ${size}` : ""}`}>New</span><span className="th-badge-lbl">not enough votes yet</span></span>;
   return <span className="th-badge-col"><span className={`th-badge ${tone(n)}${size ? ` ${size}` : ""}`}>{pct ? `${n}%` : n}</span><span className="th-badge-lbl">{label}</span></span>;
 }
@@ -48,7 +51,7 @@ export function Photo({ src, className = "th-photo", href }: { src: string | nul
 
 /** The list row: photo · name + shape pill · one-line verdict · "Best for …" · reviews + sentiment bar · "See reviews ›" · badge.
  *  `badge` is the match % when the visitor picked, else the Player score. */
-export function Row({ r, rank, badge, badgeLabel = "player score", pct }: { r: ThreadRow; rank?: number; badge?: number | null; badgeLabel?: string; pct?: boolean }) {
+export function Row({ r, rank, badge, badgeLabel = W.score, pct }: { r: ThreadRow; rank?: number; badge?: number | null; badgeLabel?: string; pct?: boolean }) {
   const b = badge === undefined ? r.score : badge, href = th(r.href);
   const judged = r.pos + r.mix + r.neg;
   return <div className={`th-row${rank ? "" : " norank"}`}>

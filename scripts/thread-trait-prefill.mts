@@ -12,7 +12,21 @@ import { evidenceRows } from "../db/evidence";
 import { buildPrefill } from "../lib/thread/trait-prefill";
 import { niche } from "../lib/niche";
 
-if (niche.id !== "padel" && niche.id !== "pickleball") throw new Error("Run with NICHE=padel or NICHE=pickleball");
+if (niche.id !== "padel" && niche.id !== "pickleball" && niche.id !== "skin") throw new Error("Run with NICHE=padel, pickleball or skin");
+if (niche.id === "skin") {
+  // SkinRecs: from its own engine's attribute scores (lib/thread/trait-prefill.ts skinGroups). Read-only.
+  const { skinContext } = await import("../app/skin/context");
+  const { skinGroups } = await import("../lib/thread/trait-prefill");
+  const ctx = await skinContext(), out: Record<string, unknown> = {};
+  for (const r of [...ctx.data.listed].sort((a, b) => a.slug.localeCompare(b.slug))) {
+    const g = skinGroups(ctx.attrs.get(r.id)?.scores ?? {});
+    out[r.id] = { slug: r.slug, name: r.name, sources: g.sources, groups: g.groups, spec: {} };
+  }
+  mkdirSync("db/thread", { recursive: true });
+  writeFileSync("db/thread/skin-traits.json", JSON.stringify({ built: new Date().toISOString().slice(0, 10), rule: "Counts from SkinRecs' attribute scores: suits_* plus, gentle plus/minus, texture and finish axis reports.", rackets: out }, null, 1) + "\n");
+  console.log(`skin: ${Object.keys(out).length} products, ${Object.values(out).filter(x => Object.keys((x as { groups: object }).groups).length).length} with a prefill`);
+  process.exit(0);
+}
 const db = await getDb();
 const [cat, own, ext, ev] = await Promise.all([
   db.select({ id: rackets.id, slug: rackets.slug, name: rackets.name, shape: rackets.shape, core: rackets.core, balance: rackets.balance }).from(rackets),
