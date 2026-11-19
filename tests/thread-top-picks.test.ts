@@ -28,3 +28,12 @@ test("no racket is #1 in more than 2 lists: it keeps its 2 strongest, the runner
 test("a list needs three picks to show", () => {
   assert.equal(topPicks([r("a", 20, { a: 9 }), r("b", 20, { a: 9 })], [cat("a")]).length, 0);
 });
+
+test("the grid shows the first six lists that qualify, in order; a waiting list steps in when one falls short", async () => {
+  const { PICK_CATS } = await import("../lib/thread/top-picks");
+  const full = Object.fromEntries(PICK_CATS.map(c => [c.key, 9]));
+  const many = ["a", "b", "c", "d"].map(id => r(id, 20, { ...full }));
+  assert.deepEqual(topPicks(many).map(l => l.cat.key), ["sweet", "arm", "control", "power", "net", "intermediate"]);
+  const noControl = ["a", "b", "c", "d"].map(id => r(id, 20, { ...full, control: 0 }));
+  assert.deepEqual(topPicks(noControl).map(l => l.cat.key), ["sweet", "arm", "power", "net", "intermediate", "beginner"]);
+});
