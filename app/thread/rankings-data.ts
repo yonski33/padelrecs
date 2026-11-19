@@ -44,7 +44,7 @@ export const threadRankings = cache(async (): Promise<ThreadRanking[]> => {
     ids: rankHome(payload.items, RANK_SETUP, NEGATIVE_TAGS, p.choice, false, SIZE).rows.map(r => r.id) }));
   const shapes = SHAPES.map(([k]) => ({ slug: `best-${k}-${LIST}`, href: `/rankings/best-${k}-${LIST}`, label: `Best ${k} ${niche.words.many}`, title: `Best ${k} ${niche.id} ${niche.words.many} ${YEAR()}`,
     blurb: BLURB[k], own: false, group: "By shape",
-    ids: all.filter(r => r.score != null && r.current && r.n >= MIN_REVIEWS && r.shape?.toLowerCase() === k).sort((a, b) => b.score! - a.score! || b.n - a.n).slice(0, SIZE).map(r => r.id) }));
+    ids: all.filter(r => r.score != null && r.current && r.n >= MIN_REVIEWS && (PICKLEBALL ? !!r.shape && new RegExp(`\\b${k}\\b`, "i").test(r.shape) : r.shape?.toLowerCase() === k)).sort((a, b) => b.score! - a.score! || b.n - a.n).slice(0, SIZE).map(r => r.id) }));
   // The site's own lists keep their live rule (5+); a Thread-only list is a new page, so it needs a full 10 (owner 2026-11-19).
   return [...own, ...picks, ...shapes].filter(l => l.ids.length >= (l.own ? 5 : 10));
 });
