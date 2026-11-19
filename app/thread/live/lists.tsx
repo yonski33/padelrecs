@@ -17,12 +17,12 @@ function useMatch() {
 }
 
 const STYLE_WORD: Record<Style, string> = { control: "control", balance: "all-round", power: "power" };
-/** "38 rackets for intermediate control players with a sore arm" (counts under 5 hidden). */
+/** "38 rackets for intermediate control players with a sore arm" (real counts at any size, owner 2026-11-19). */
 function resultLine(picks: Picks, n: number | null, all: number) {
-  if (!picked(picks)) return all >= 5 ? `Showing all ${all} rackets` : "";
+  if (!picked(picks)) return all > 0 ? `Showing all ${all} rackets` : "";
   const who = [picks.level, picks.style ? STYLE_WORD[picks.style] : null].filter(Boolean).join(" ");
   const forWho = `for ${who ? `${who} players` : "players"}${picks.arm ? " with a sore arm" : ""}`;
-  return n == null ? `Finding rackets ${forWho}…` : n >= 5 ? `Showing ${n} rackets ${forWho}` : `Showing the best rackets ${forWho}`;
+  return n == null ? `Finding rackets ${forWho}…` : n > 0 ? `Showing ${n} ${n === 1 ? "racket" : "rackets"} ${forWho}` : `No rackets ${forWho} yet`;
 }
 
 /** "Find my match" as one sentence (owner 2026-11-19, classic's energy in Thread style): the quick match tag, I'm [level pills]

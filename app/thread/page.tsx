@@ -52,7 +52,7 @@ export default async function ThreadHome() {
       <div className="th-col">
         <section className="th-card th-hero">
           <div className="th-h1-row"><h1 className="th-h1">The padel racket community</h1>
-            {total >= 5 && <span className="th-live"><i aria-hidden="true"/>{`${total.toLocaleString("en-US")} reviews${week >= 5 ? ` · ${week.toLocaleString("en-US")} ${WEEK_SHORT}` : ""}`}</span>}</div>
+            {total > 0 && <span className="th-live"><i aria-hidden="true"/>{`${total.toLocaleString("en-US")} reviews${week > 0 ? ` · ${week.toLocaleString("en-US")} ${WEEK_SHORT}` : ""}`}</span>}</div>
           <p className="th-lead">Real players talking rackets. Share your take, and see what everyone actually thinks.</p>
           <MatchBox names={names} listed={listed}/>
         </section>
