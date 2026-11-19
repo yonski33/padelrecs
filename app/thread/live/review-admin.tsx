@@ -4,12 +4,14 @@
 // admin review routes, each checking the admin session on the server and refreshing the pages:
 //   approve / reject / hide: /api/funtimes/reviews (status, with the status it expects to change);
 //   edit the text:           /api/funtimes/review-quick (field "text");
+//   name, level and side:    /api/funtimes/review-quick (fields "alias", "playerLevel", "playingSide");
 //   delete:                  reject, then /api/funtimes/delete-rejected (the admin queue's own two steps).
 // Scores and counts follow from the normal pipeline. Web summaries (Reddit, YouTube, blogs) have no tools here.
 import { useEffect, useState } from "react";
 import { ownerCheck } from "../../admin-edit";
 import { VERDICT, ago } from "../ui";
-import { reviewerName, nameProblem, typedName, NAME_MAX } from "../../../lib/thread/display-name";
+import { reviewerName, nameProblem, postProblem, typedName, NAME_MAX } from "../../../lib/thread/display-name";
+import { LevelSide, type LevelSideValue } from "./level-side";
 
 export function useOwner() {
   const [owner, setOwner] = useState(false);
@@ -25,6 +27,16 @@ const status = (id: string, to: string, from: string) => send("/api/funtimes/rev
 const editText = (id: string, text: string) => send("/api/funtimes/review-quick", { id, field: "text", value: text });
 /** The owner's rename (abuse cases): the same name rules as posting, then the queue's own quick edit (field "alias"). */
 const editName = async (id: string, name: string) => { const p = nameProblem(name); if (p) throw new Error(p); await send("/api/funtimes/review-quick", { id, field: "alias", value: name.trim() }); };
+/** Who posted it, as the owner's Edit changes it: the typed name ("" for none), level and side ("" for none). */
+export type Who = { alias: string } & LevelSideValue;
+export type ReviewChange = { text?: string; who?: Who; gone?: true };
+/** Name, level and side save together, under the posting rule: a name, or a level or side (owner 2026-11-19). */
+async function editWho(id: string, was: Who, now: Who) {
+  const p = postProblem(now.alias, now.level, now.side); if (p) throw new Error(p);
+  if (now.alias.trim() !== was.alias) await send("/api/funtimes/review-quick", { id, field: "alias", value: now.alias.trim() });
+  if (now.level !== was.level) await send("/api/funtimes/review-quick", { id, field: "playerLevel", value: now.level });
+  if (now.side !== was.side) await send("/api/funtimes/review-quick", { id, field: "playingSide", value: now.side });
+}
 const verdictOf = (rating: number) => rating >= 4 ? "positive" : rating === 3 ? "mixed" : "negative";
 
 type Pending = { id: string; alias: string | null; rating: number; text: string; tags: string[]; level: string | null; at: string };
@@ -66,22 +78,23 @@ export function PendingReviews({ racketId }: { racketId: string }) {
 }
 
 /** Edit, Delete and Hide on a live player review card. `id` is the review's own id. */
-export function LiveReviewTools({ id, text, alias, onChange }: { id: string; text: string; alias: string; onChange: (next: { text?: string; alias?: string; gone?: true }) => void }) {
+export function LiveReviewTools({ id, text, who, onChange }: { id: string; text: string; who: Who; onChange: (next: ReviewChange) => void }) {
   const owner = useOwner();
-  const [draft, setDraft] = useState<string | null>(null), [name, setName] = useState<string | null>(null), [err, setErr] = useState("");
+  const [draft, setDraft] = useState<string | null>(null), [name, setName] = useState<Who | null>(null), [err, setErr] = useState("");
   if (!owner || id.startsWith("demo-")) return null;
-  const run = async (f: () => Promise<void>, after: Parameters<typeof onChange>[0]) => { try { await f(); setErr(""); setDraft(null); setName(null); onChange(after); } catch (e) { setErr(e instanceof Error ? e.message : "That didn't save."); } };
-  const save = () => run(async () => { if (name !== null && name.trim() !== alias) await editName(id, name); if (draft !== null && draft.trim() !== text.trim()) await editText(id, draft); },
-    { ...(name !== null ? { alias: name.trim() } : {}), ...(draft !== null ? { text: draft.trim() } : {}) });
+  const run = async (f: () => Promise<void>, after: ReviewChange) => { try { await f(); setErr(""); setDraft(null); setName(null); onChange(after); } catch (e) { setErr(e instanceof Error ? e.message : "That didn't save."); } };
+  const save = () => run(async () => { if (name !== null) await editWho(id, who, name); if (draft !== null && draft.trim() !== text.trim()) await editText(id, draft); },
+    { ...(name !== null ? { who: { ...name, alias: name.alias.trim() } } : {}), ...(draft !== null ? { text: draft.trim() } : {}) });
   return <div className="th-admin-acts" aria-label="Owner tools">
     {draft !== null || name !== null ? <>
-      {name !== null && <span className="th-as" style={{ flexBasis: "100%" }}><input value={name} maxLength={NAME_MAX} placeholder="Name or nickname" aria-label="Reviewer's name" autoFocus={draft === null} onChange={e => { setName(e.target.value); setErr(""); }}/></span>}
+      {name !== null && <span className="th-as" style={{ flexBasis: "100%" }}><input value={name.alias} maxLength={NAME_MAX} placeholder="Name or nickname" aria-label="Reviewer's name" autoFocus={draft === null} onChange={e => { setName({ ...name, alias: e.target.value }); setErr(""); }}/>
+        <LevelSide value={name} set={v => { setName({ ...name, ...v }); setErr(""); }}/></span>}
       {draft !== null && <textarea className="th-ta" rows={4} value={draft} maxLength={4000} aria-label="Edit review" onChange={e => setDraft(e.target.value)}/>}
-      <button type="button" className="th-btn dark" onClick={save}>{draft === null ? "Save name" : "Save"}</button>
+      <button type="button" className="th-btn dark" onClick={save}>Save</button>
       <button type="button" className="th-btn" onClick={() => { setDraft(null); setName(null); setErr(""); }}>Cancel</button></>
     : <>
-      <button type="button" className="th-mini-btn" onClick={() => { setName(alias); setDraft(text); }}>Edit</button>
-      <button type="button" className="th-mini-btn" onClick={() => setName(alias)}>Rename</button>
+      <button type="button" className="th-mini-btn" onClick={() => { setName(who); setDraft(text); }}>Edit</button>
+      <button type="button" className="th-mini-btn" onClick={() => setName(who)}>Rename</button>
       <button type="button" className="th-mini-btn" onClick={() => window.confirm("Hide this review? It goes back to pending and leaves the score until approved again.")
         && run(() => status(id, "pending", "approved"), { gone: true })}>Hide</button>
       <button type="button" className="th-mini-btn" onClick={() => window.confirm("Delete this review for good? It can't be undone.")

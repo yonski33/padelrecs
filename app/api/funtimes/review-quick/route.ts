@@ -17,7 +17,8 @@ export async function POST(request: Request) {
     const db = await database();
     const [row] = await db.select({ createdAt: reviews.createdAt }).from(reviews).where(eq(reviews.id, v.id)).limit(1);
     if (!row) return adminJson(request, { error: "That review no longer exists." }, 404);
-    const set = v.field === "alias" ? { alias: v.value || null } : v.field === "date" ? { createdAt: withDate(row.createdAt, v.value) } : { reviewText: v.value };
+    const set = v.field === "alias" ? { alias: v.value || null } : v.field === "date" ? { createdAt: withDate(row.createdAt, v.value) }
+      : v.field === "playerLevel" ? { playerLevel: v.value || null } : v.field === "playingSide" ? { playingSide: v.value || null } : { reviewText: v.value };
     await db.update(reviews).set(set).where(eq(reviews.id, v.id));
     return adminJson(request, { result: "saved", value: v.field === "date" ? withDate(row.createdAt, v.value) : v.value });
   } catch { return adminJson(request, { error: "Saving failed. Try again." }, 500); }

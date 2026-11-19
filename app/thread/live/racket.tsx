@@ -3,13 +3,14 @@
 // Loved it / Mixed / Not for me poll (the quick vote, /api/racket-votes), and the reviews feed with its composer (a vote,
 // plus a normal moderated review when there are words: POST /api/reviews, the same flow as the live page).
 import { useEffect, useMemo, useState, type ReactNode } from "react";
-import { PendingReviews, LiveReviewTools } from "./review-admin";
+import { PendingReviews, LiveReviewTools, type ReviewChange } from "./review-admin";
 import { PickChips } from "./pick-chips";
 import { usePicks, usePayload, complete, fitFor, adviceFor } from "./picks";
 import { th } from "../../../lib/thread/look";
 import { tone, VERDICT, SOURCE, MIN_SHOWN, POLL_PCT_AT } from "../ui";
 import { sendVote, loadProfile, VERDICTS, type Verdict } from "../../quick-vote";
-import { nameProblem, NAME_MAX } from "../../../lib/thread/display-name";
+import { postProblem, byline, POST_HINT, NAME_MAX } from "../../../lib/thread/display-name";
+import { LevelSide, savedLevelSide, saveLevelSide, NO_LEVEL_SIDE, type LevelSideValue } from "./level-side";
 import { savedName, saveName, grow } from "./name";
 import { useFormToken } from "../../form-token-client";
 import type { RvCard } from "../racket-data";
@@ -74,8 +75,9 @@ export function Poll({ id, reviews }: { id: string; reviews: Counts }) {
 const TABS = [["all", "All"], ["player", "Players"], ["reddit", "Reddit"], ["youtube", "YouTube"], ["blog", "Blogs"]] as const;
 const PAGE = 8, MIN_WORDS = 20;
 /** Why Post is off (owner 2026-11-19): a verdict is always needed; a name only with written text (a verdict alone is a vote). */
-const postWhy = (verdict: Verdict | null, text: string, nick: string) => { const noName = !!text.trim() && !!nameProblem(nick);
-  return !verdict && noName ? "Pick a verdict and add a name to post" : !verdict ? "Pick a verdict to post" : noName ? "Add a name to post" : ""; };
+// A written review needs a name or a level or side (owner 2026-11-19); a verdict alone is a one-tap vote and stays nameless.
+const postWhy = (verdict: Verdict | null, text: string, nick: string, ls: LevelSideValue) => { const noName = !!text.trim() && !!postProblem(nick, ls.level, ls.side);
+  return !verdict && noName ? "Pick a verdict, then add a name or your level to post" : !verdict ? "Pick a verdict to post" : noName ? POST_HINT : ""; };
 type Sort = "new" | "pos" | "crit" | "helpful";
 /** The mock's sorts (Newest · Most positive · Critical first), plus the existing Most helpful. */
 const SORTS: [Sort, string][] = [["new", "Newest"], ["pos", "Most positive"], ["crit", "Critical first"], ["helpful", "Most helpful"]];
@@ -83,14 +85,16 @@ const VF: ["positive" | "mixed" | "negative" | null, string][] = [[null, "All"],
 /** Player reviews: own reviews plus labelled Reddit, YouTube and blog summaries, source tabs, sort, composer, load more. */
 export function Reviews({ id, cards, nicknames }: { id: string; cards: RvCard[]; nicknames: string[] }) {
   const [tab, setTab] = useState<(typeof TABS)[number][0]>("all"), [sort, setSort] = useState<Sort>("new"), [vf, setVf] = useState<"positive" | "mixed" | "negative" | null>(null), [shown, setShown] = useState(PAGE);
-  const [open, setOpen] = useState(false), [verdict, setVerdict] = useState<Verdict | null>(null), [text, setText] = useState(""), [nick, setNick] = useState("");
+  const [open, setOpen] = useState(false), [verdict, setVerdict] = useState<Verdict | null>(null), [text, setText] = useState(""), [nick, setNick] = useState(""), [ls, setLs] = useState<LevelSideValue>(NO_LEVEL_SIDE);
   const [busy, setBusy] = useState(false), [error, setError] = useState(""), [done, setDone] = useState<"words" | "vote" | null>(null);
   const formToken = useFormToken();
   // No generated names (owner 2026-11-19): an optional name, the one this browser typed last time if any.
-  useEffect(() => { setNick(savedName()); }, []);
+  useEffect(() => { setNick(savedName()); setLs(savedLevelSide()); }, []);
   // The owner's on-page changes (review-admin.tsx): edited text and removed cards, until the page refreshes.
-  const [changed, setChanged] = useState<Record<string, { text?: string; alias?: string; gone?: true }>>({});
-  const live = useMemo(() => cards.filter(c => !changed[c.id]?.gone).map(c => { const x = changed[c.id]; return x ? { ...c, ...(x.text ? { text: x.text } : {}), ...(x.alias ? { who: x.alias, alias: x.alias, meta: null } : {}) } : c; }), [cards, changed]);
+  const [changed, setChanged] = useState<Record<string, ReviewChange>>({});
+  const live = useMemo(() => cards.filter(c => !changed[c.id]?.gone).map(c => { const x = changed[c.id]; if (!x) return c;
+    const who = x.who ? { alias: x.who.alias, level: x.who.level, side: x.who.side, ...byline(x.who.alias, x.who.level, x.who.side) } : {};
+    return { ...c, ...(x.text ? { text: x.text } : {}), ...who }; }), [cards, changed]);
   const counts = Object.fromEntries(TABS.map(([k]) => [k, k === "all" ? live.length : live.filter(c => c.kind === k).length]));
   // Source tabs and verdict chips combine (owner mock 2026-11-19b); everything filters and sorts here in the browser.
   const inTab = useMemo(() => live.filter(c => tab === "all" || c.kind === tab), [live, tab]);
@@ -103,12 +107,13 @@ export function Reviews({ id, cards, nicknames }: { id: string; cards: RvCard[];
   async function post() {
     if (!verdict || busy) return;
     const words = text.trim();
-    // A written review needs a name (owner 2026-11-19); a verdict alone is a one-tap vote and stays nameless.
-    const problem = words ? nameProblem(nick) : null; if (problem) { setError(problem); return; }
+    const problem = words ? postProblem(nick, ls.level, ls.side) : null; if (problem) { setError(problem); return; }
     if (words && words.length < MIN_WORDS) { setError(`A little more, please: ${MIN_WORDS} characters at least, or clear the box to post just your verdict.`); return; }
     setBusy(true); setError("");
     try {
-      const profile = loadProfile();
+      // The Level and Side picked here win over the device's older answers; the style answer stays.
+      const profile = { ...loadProfile(), level: ls.level || undefined, side: ls.side || undefined };
+      saveLevelSide(ls);
       await sendVote(id, RATING[verdict], profile);
       if (words) {
         const token = await formToken();
@@ -130,7 +135,8 @@ export function Reviews({ id, cards, nicknames }: { id: string; cards: RvCard[];
     </div>
     {done && <p className="th-ok" role="status">{done === "words" ? "Thanks for sharing! Your review will appear here once it's approved." : "Thanks! Your vote has been added."}</p>}
     {open && <div className="th-compose soft">
-      <div className="th-as"><input value={nick} onChange={e => { setNick(e.target.value); setError(""); }} maxLength={NAME_MAX} placeholder="Name or nickname" aria-label="Name or nickname" required/></div>
+      <div className="th-as"><input value={nick} onChange={e => { setNick(e.target.value); setError(""); }} maxLength={NAME_MAX} placeholder="Name or nickname" aria-label="Name or nickname"/>
+        <LevelSide value={ls} set={v => { setLs(v); setError(""); }}/></div>
       <div className="th-picks"><span className="lbl" style={{ fontSize: 13.5, color: "var(--ink2)", minWidth: 0 }}>Played it?</span>
         {VERDICTS.map(v => <button key={v.key} type="button" className={`th-vpick ${VERDICT[v.key][1]}`} aria-pressed={verdict === v.key} onClick={() => { setVerdict(v.key); setError(""); }}><span className={`th-sdot ${VERDICT[v.key][1]}`}/>{VERDICT[v.key][0]}</button>)}
       </div>
@@ -138,8 +144,8 @@ export function Reviews({ id, cards, nicknames }: { id: string; cards: RvCard[];
       {error && <span className="th-err">{error}</span>}
       <div className="th-compose-foot"><span className="th-grow"/><span>No account needed</span>
         <button type="button" className="cancel" onClick={() => { setOpen(false); setError(""); }}>Cancel</button>
-        <button type="button" className="th-post" disabled={!verdict || busy || (!!text.trim() && !!nameProblem(nick))} onClick={post}>{busy ? "Posting…" : "Post"}</button></div>
-      {!busy && postWhy(verdict, text, nick) && <span className="th-why" style={{ alignSelf: "flex-end" }}>{postWhy(verdict, text, nick)}</span>}
+        <button type="button" className="th-post" disabled={!verdict || busy || (!!text.trim() && !!postProblem(nick, ls.level, ls.side))} onClick={post}>{busy ? "Posting…" : "Post"}</button></div>
+      {!busy && postWhy(verdict, text, nick, ls) && <span className="th-why" style={{ alignSelf: "flex-end" }}>{postWhy(verdict, text, nick, ls)}</span>}
     </div>}
     <span className="th-note" style={{ marginTop: -4 }}>From players here. Plus Reddit, YouTube and blog reviews, summarised.</span>
     <PendingReviews racketId={id}/>
@@ -154,7 +160,7 @@ export function Reviews({ id, cards, nicknames }: { id: string; cards: RvCard[];
       </div>
     </>}
     <div className="th-rv-list">
-      {list.slice(0, shown).map(c => <ReviewCard key={c.id} c={c} tools={c.kind === "player" ? <LiveReviewTools id={c.id.slice(2)} text={c.text} alias={c.alias ?? ""} onChange={x => setChanged(m => ({ ...m, [c.id]: { ...m[c.id], ...x } }))}/> : null}/>)}
+      {list.slice(0, shown).map(c => <ReviewCard key={c.id} c={c} tools={c.kind === "player" ? <LiveReviewTools id={c.id.slice(2)} text={c.text} who={{ alias: c.alias ?? "", level: c.level ?? "", side: c.side ?? "" }} onChange={x => setChanged(m => ({ ...m, [c.id]: { ...m[c.id], ...x } }))}/> : null}/>)}
       {cards.length === 0 && <p className="th-empty">No reviews yet. Played it? Be the first.</p>}
       {cards.length > 0 && list.length === 0 && <p className="th-empty">No reviews match. <button type="button" onClick={() => { setTab("all"); setVf(null); }}>Show all</button></p>}
     </div>
@@ -173,7 +179,7 @@ function ReviewCard({ c, tools }: { c: RvCard; tools?: ReactNode }) {
         : c.kind === "reddit" ? <span className="th-src rd">{link(`${c.who} ↗`)}</span>
         : <><span className={`th-src ${src![1]}`}>{src![0]}</span>{link(<strong>{c.url ? `${c.who} ↗` : c.who}</strong>)}</>}
       {c.kind !== "player" && !c.quote && <span>· summarised</span>}
-      {c.meta && <span>{c.meta}</span>}
+      {c.meta && <span>{`· ${c.meta}`}</span>}
       {c.verdict && <span className={`th-vpill ${VERDICT[c.verdict][1]}`}>{VERDICT[c.verdict][0]}</span>}
       {c.when && <span className="th-rv-when">{`· ${c.when}`}</span>}
     </div>

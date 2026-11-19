@@ -26,3 +26,21 @@ test("typed names: required, 2 to 24 characters, no links", () => {
   assert.equal(typedName("Player"), null);
   assert.ok(nameProblem("x".repeat(25))); assert.ok(nameProblem("www.spam.example")); assert.ok(nameProblem("https://x.io"));
 });
+
+// Level and Side next to the name (owner 2026-11-19).
+test("a byline: the name plus level and side, or level and side alone", async () => {
+  const { byline, profileLine, commenterName: cn } = await import("../lib/thread/display-name");
+  assert.deepEqual(byline("Gali A", "Intermediate", "Left"), { who: "Gali A", meta: "Intermediate, left side" });
+  assert.deepEqual(byline("Gali A", null, null), { who: "Gali A", meta: null });
+  assert.deepEqual(byline("", "Intermediate", "Left"), { who: "Intermediate, left side", meta: null });
+  assert.deepEqual(byline("SteadyGlass787", null, null), { who: "Player", meta: null });
+  assert.deepEqual(byline("[removed]", "Advanced", "Right"), { who: "[removed]", meta: null });
+  assert.equal(profileLine(null, "Both"), "Both sides"); assert.equal(profileLine("Beginner", null), "Beginner"); assert.equal(profileLine(null, null), null);
+  assert.equal(cn("", "Advanced", "Right"), "Advanced, right side");
+});
+test("posting needs a name, or a level or side", async () => {
+  const { postProblem, POST_HINT } = await import("../lib/thread/display-name");
+  assert.equal(postProblem("", null, null), `${POST_HINT}.`); assert.equal(POST_HINT, "Add a name or pick your level to post");
+  assert.equal(postProblem("", "Beginner", null), null); assert.equal(postProblem("  ", null, "Left"), null);
+  assert.equal(postProblem("Gali", null, null), null); assert.ok(postProblem("G", "Beginner", null), "a typed name keeps its rules");
+});

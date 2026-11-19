@@ -1,7 +1,7 @@
 // The Thread racket page's data, from what the live racket page already reads (app/rackets/[slug]/racket-fit.tsx builds the
 // same review cards): own reviews, one YouTube summary per channel, one blog per site, the Reddit summaries (lib/reddit-cards),
 // the page's own TL;DR words (lib/racket-page), the trait bars (expert How it plays first), similar rackets and the line.
-import { reviewerName, typedName } from "../../lib/thread/display-name";
+import { byline, typedName } from "../../lib/thread/display-name";
 import { threadRows } from "./data";
 import { onePerChannel, videoOf } from "../../lib/youtube-pick";
 import { redditPick, subOf } from "../../lib/reddit-cards";
@@ -20,7 +20,8 @@ import { TRAIT_LABEL } from "../../lib/trait-score";
 import { tagTone } from "../../lib/tags";
 import { ago, type ThreadRow } from "./ui";
 
-export type RvCard = { /** A player review's typed name ("" when none), for the owner's Rename. */ alias?: string; id: string; kind: "player" | "youtube" | "blog" | "reddit"; who: string; meta: string | null; verdict: "positive" | "mixed" | "negative" | null;
+export type RvCard = { /** A player review's typed name ("" when none), and its level and side as stored, for the owner's Edit. */
+  alias?: string; level?: string; side?: string; id: string; kind: "player" | "youtube" | "blog" | "reddit"; who: string; meta: string | null; verdict: "positive" | "mixed" | "negative" | null;
   when: string; at: string; text: string; quote: boolean; url: string | null; video: string | null; helpful: number };
 const unmd = (t: string) => t.replace(/\*\*([^*]+)\*\*/g, "$1").replace(/\*\*|__/g, "").replace(/==/g, "");
 const verdictOf = (n: number) => n >= 4 ? "positive" as const : n === 3 ? "mixed" as const : "negative" as const;
@@ -44,11 +45,10 @@ export async function racketData(slug: string) {
   const ytProducts = new Map<string, number>(), seen = new Set<string>();
   for (const e of ctx.data.external) { if (e.sourcePlatform !== "YouTube" || /[?&]lc=/.test(e.sourceUrl)) continue; const v = videoOf(e.sourceUrl);
     if (v && !seen.has(`${v}|${e.racketId}`)) { seen.add(`${v}|${e.racketId}`); ytProducts.set(v, (ytProducts.get(v) ?? 0) + 1); } }
-  const lv = (v?: string | null) => v ? v.toLowerCase() : null;
   const cards: RvCard[] = [
-    // Names (lib/thread/display-name.ts): a typed name, else one made from the level and side; those then aren't repeated.
-    ...reviews.map(x => ({ id: `p-${x.id}`, kind: "player" as const, who: reviewerName({ alias: x.alias, level: x.playerLevel, side: x.playingSide }), alias: typedName(x.alias) ?? "",
-      meta: typedName(x.alias) ? [lv(x.playerLevel), x.playingSide ? `${x.playingSide.toLowerCase()} side` : null].filter(Boolean).join(" · ") || null : null,
+    // Names (lib/thread/display-name.ts byline): "Gali A · Intermediate, left side", or "Intermediate, left side" alone.
+    ...reviews.map(x => ({ id: `p-${x.id}`, kind: "player" as const, ...byline(x.alias, x.playerLevel, x.playingSide), alias: typedName(x.alias) ?? "",
+      level: x.playerLevel ?? "", side: x.playingSide ?? "",
       verdict: verdictOf(x.rating), at: x.createdAt, when: ago(x.createdAt, now), text: unmd(x.reviewText), quote: false, url: null, video: null, helpful: x.helpful })),
     ...onePerChannel(external.filter(e => e.sourcePlatform === "YouTube"), v => ytProducts.get(v) ?? 1).flatMap(e => {
       const english = !e.sourceLanguage || e.sourceLanguage === "en";

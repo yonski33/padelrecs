@@ -36,8 +36,29 @@ export function reviewerName(r: { alias?: string | null; level?: string | null; 
   if (side) return side === "both sides" ? "Plays both sides" : `${side[0].toUpperCase()}${side.slice(1).replace(" side", "-side")} player`;
   return NO_NAME;
 }
-/** A comment's name: the typed name, else "Player" (comments ask no level). "[removed]" stays as it is. */
-export const commenterName = (alias: string | null | undefined) => (alias ?? "").trim() === "[removed]" ? "[removed]" : typedName(alias) ?? NO_NAME;
+/** A comment's name: the same rule as a review's (typed name, else the level and side given, else "Player"). "[removed]" stays. */
+export const commenterName = (alias: string | null | undefined, level?: string | null, side?: string | null) =>
+  (alias ?? "").trim() === "[removed]" ? "[removed]" : reviewerName({ alias, level, side });
+
+/** The one-tap choices next to the name (owner 2026-11-19), stored as the review form's own values (lib/niche/padel.ts). */
+export const LEVEL_PICKS = ["Beginner", "Intermediate", "Advanced"] as const, SIDE_PICKS = ["Left", "Right", "Both"] as const;
+/** "Intermediate, left side", "Intermediate", "Left side", "Both sides"; null with neither. */
+export function profileLine(level?: string | null, side?: string | null): string | null {
+  const l = level?.trim() ? level.trim()[0].toUpperCase() + level.trim().slice(1).toLowerCase() : null;
+  const sd = side?.trim() ? SIDE[side.trim().toLowerCase()] ?? null : null;
+  return l && sd ? `${l}, ${sd}` : l ?? (sd ? sd[0].toUpperCase() + sd.slice(1) : null);
+}
+/** A poster's byline: the name, plus "Intermediate, left side" after it when they gave both a name and a level or side
+ *  ("Gali A · Intermediate, left side"); without a name the level and side are the name. */
+export function byline(alias: string | null | undefined, level?: string | null, side?: string | null): { who: string; meta: string | null } {
+  if ((alias ?? "").trim() === "[removed]") return { who: "[removed]", meta: null };
+  const typed = typedName(alias), extra = profileLine(level, side);
+  return typed ? { who: typed, meta: extra } : { who: reviewerName({ alias, level, side }), meta: null };
+}
+/** Posting needs a name or a level or side (owner 2026-11-19). A typed name keeps the name rules. */
+export const POST_HINT = "Add a name or pick your level to post";
+export const postProblem = (name: string, level?: string | null, side?: string | null) =>
+  name.trim() ? nameProblem(name) : level || side ? null : `${POST_HINT}.`;
 /** What's wrong with a typed name, or null: required, 2 to NAME_MAX characters, no links (owner 2026-11-19). */
 export const nameProblem = (name: string) => { const n = name.trim();
   return !n ? "Add a name to post." : n.length < NAME_MIN ? `A name needs at least ${NAME_MIN} characters.` : n.length > NAME_MAX ? `Keep the name to ${NAME_MAX} characters.`
