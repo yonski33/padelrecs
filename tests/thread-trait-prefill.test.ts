@@ -67,7 +67,7 @@ test("an option shows at 5 mentions; reviews and votes add up; thin groups stay 
 });
 
 test("section line has no we/us and names the review count", () => {
-  assert.equal(sectionNote(12, 0), "Based on 12 reviews until players vote. Pick what fits, one vote per group.");
+  assert.equal(sectionNote(12, 0), "Based on 12 reviews until players vote. Pick what fits. Tap again to remove.");
   assert.match(sectionNote(12, 3), /12 reviews and 3 player votes/);
   for (const s of [sectionNote(1, 0), sectionNote(12, 3), sectionNote(0, 0)]) assert.doesNotMatch(s, /\b(we|us|our)\b|—/i);
 });

@@ -26,9 +26,9 @@ export function groupNote(g: GroupView): string {
 }
 /** The section's line under the heading. */
 export function sectionNote(sources: number, votes: number): string {
-  if (sources > 0 && votes === 0) return `Based on ${sources} ${sources === 1 ? "review" : "reviews"} until players vote. Pick what fits, one vote per group.`;
-  if (sources > 0) return `From ${sources} reviews and ${votes} player ${votes === 1 ? "vote" : "votes"}. Pick what fits, one vote per group.`;
-  return "Pick what fits. One vote per group, change it any time.";
+  if (sources > 0 && votes === 0) return `Based on ${sources} ${sources === 1 ? "review" : "reviews"} until players vote. Pick what fits. Tap again to remove.`;
+  if (sources > 0) return `From ${sources} reviews and ${votes} player ${votes === 1 ? "vote" : "votes"}. Pick what fits. Tap again to remove.`;
+  return "Pick what fits. One vote per group. Tap again to remove.";
 }
 /** The counts typed into the form: one whole number 0–100000 per option ("c_<option>"), blanks as 0. */
 export function countsFrom(trait: string, form: Record<string, unknown>): Record<string, number> | null {

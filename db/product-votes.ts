@@ -49,6 +49,11 @@ export async function castVote(db: Database, racketId: string, rating: number, p
   return { status: "ok" as const, stats: await voteStats(db, racketId, level) };
 }
 
+/** Take back this device's rating of one product (Thread poll: tap your pick again). Returns whether one was removed. */
+export async function removeVote(db: Database, racketId: string, voter: string) {
+  return (await db.delete(productVotes).where(and(eq(productVotes.racketId, racketId), eq(productVotes.voter, voter))).returning()).length > 0;
+}
+
 /** This device's ratings, product id → 1–5. */
 export async function myVotes(db: Pick<Database, "select">, voter: string) {
   const rows = await db.select({ racketId: productVotes.racketId, rating: productVotes.rating }).from(productVotes).where(eq(productVotes.voter, voter));

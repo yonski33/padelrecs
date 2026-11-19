@@ -101,3 +101,15 @@ test("poll: a quick vote paired with the same person's approved review counts on
     assert.deepEqual(await pollVotes(db, "r1"), { positive: 1, mixed: 1, negative: 0 });
   } finally { await engine.close(); }
 });
+
+test("poll: tapping your pick again takes the quick vote back (this device only)", async () => {
+  const { engine, db } = await setup();
+  try {
+    const { castVote, removeVote, voteStats } = await import("../db/product-votes");
+    await castVote(db, "r1", 5, {}, "dev-a", "net-1"); await castVote(db, "r1", 5, {}, "dev-b", "net-1");
+    assert.equal((await voteStats(db, "r1")).positive, 2);
+    assert.equal(await removeVote(db, "r1", "dev-a"), true);
+    assert.equal(await removeVote(db, "r1", "dev-a"), false);
+    assert.equal((await voteStats(db, "r1")).positive, 1);
+  } finally { await engine.close(); }
+});
