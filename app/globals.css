@@ -71,7 +71,8 @@ h3 { font-size: 16px; line-height: 1.4; margin: 0; font-weight: 650; }
   cursor: pointer; white-space: nowrap; text-align: center;
   transition: background .15s, border-color .15s, transform .15s;
 }
-.button:hover, button:hover { background: var(--green-ink); border-color: var(--green-ink); color: #fff; }
+/* Thread pages (app/thread, .th) style their own hovers; :where keeps this rule's specificity for every other page. */
+.button:hover, button:hover:not(:where(.th *)) { background: var(--green-ink); border-color: var(--green-ink); color: #fff; }
 .button:active, button:active { transform: translateY(1px); }
 button:disabled { opacity: .6; cursor: progress; }
 .button svg, button svg { width: 14px; height: 14px; }

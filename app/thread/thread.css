@@ -170,6 +170,9 @@ body:has(.th) .th .th-row-name a { font-weight: 700; font-size: 16.5px; line-hei
 .th-vopt { all: unset; cursor: pointer; box-sizing: border-box; position: relative; display: flex; align-items: center; justify-content: space-between; gap: 8px; min-height: 38px; padding: 0 9px; border: 1.5px solid var(--line); border-radius: 7px; overflow: hidden; background: #fff; text-decoration: none; }
 body:has(.th) .th a.th-vopt { text-decoration: none; }
 .th-vopt:hover { border-color: var(--ink); }
+/* Hover is a light tint; only the picked option is filled dark (with light text). */
+:where(.th-vopt:not(.ro), .th-popt, .th-pick, .th-fopt, .th-more, .th-menu-btn, .th-btn:not(.dark):not(.lime)):not([aria-pressed="true"]):hover { background-color: var(--frame); }
+.th-popt:hover, .th-pick:hover, .th-fopt:hover { border-color: var(--ink); }
 .th-vopt.ro { cursor: default; } .th-vopt.ro:hover { border-color: var(--line); }
 .th-vopt.sm { min-height: 26px; border-radius: 8px; padding: 0 10px; }
 .th-vopt[aria-pressed="true"] { border: 2px solid var(--ink); }
