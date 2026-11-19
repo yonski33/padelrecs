@@ -19,3 +19,13 @@ test("search tolerates case, accents, extra spaces and punctuation", () => {
   assert.equal(matchingRackets(rackets,"nox 12k 2024").length,0);
   assert.equal(matchingRackets(rackets," ").length,4);
 });
+
+test("a word only the page address has still finds the racket; Thread lists current models first", async () => {
+  const { currentFirst } = await import("../lib/racket-search");
+  const list = [{ name: "Siux Electra Pro 2026", slug: "siux-electra-pro-st5-2026", current: true }, { name: "Siux Electra Pro ST4 2025", slug: "siux-electra-pro-st4-2025", current: false },
+    { name: "Nox AT10 Genius 18K 2026", slug: "nox-at10-genius-18k-2026", current: true }];
+  assert.deepEqual(matchingRackets(list, "st5").map(r => r.slug), ["siux-electra-pro-st5-2026"]);
+  assert.deepEqual(matchingRackets(list, "electra st5").map(r => r.slug), ["siux-electra-pro-st5-2026"]);
+  assert.deepEqual(currentFirst(matchingRackets(list, "siux electra")).map(r => r.current), [true, false]);
+  assert.deepEqual(matchingRackets([{ name: "Nox AT10 Genius 18K 2026" }], "at10 18k").length, 1);
+});
