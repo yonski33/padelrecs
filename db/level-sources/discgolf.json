@@ -1,0 +1,10 @@
+{
+ "_about": "DiscGolfRecs level sources besides throwers' reports (lib/fit-verdict.ts LevelSources). owner: the owner's call where the brand states no level (counted in the band, never quoted as the brand's words). Levels: 0 beginner, 1 intermediate, 2 advanced.",
+ "latitude-64-ballista": {
+  "owner": {
+   "from": 2,
+   "to": 2,
+   "why": "Speed 14 / 5 / -1 / 3: needs a 325 ft+ arm; Latitude 64 states no level. Owner OK 2026-11-20 (DiscGolfRecs audit)."
+  }
+ }
+}

@@ -11,7 +11,9 @@ import { fineMismatches, type FineFacts } from "./fine-tune";
 export type Band = { from: number; to: number };
 /** Where a racket's level comes from (owner 2026-11-15, RACKET-FIT-PAGE.md "Racket level band: sources"): the brand's own
  *  product page, YouTube reviewers who state a level (2+ channels agreeing), and the players' reports (the quick-take band). */
-export type LevelSources = { maker?: Band & { words: string; url: string }; youtube?: Band & { channels: number; of: number }; players?: Band };
+export type LevelSources = { maker?: Band & { words: string; url: string }; youtube?: Band & { channels: number; of: number }; players?: Band;
+  /** The owner's own call where neither the brand nor reviewers state a level (DiscGolfRecs Ballista, owner OK 2026-11-20).
+   *  It counts toward the band but is never quoted as "the brand says". */ owner?: Band & { why: string } };
 export type FitFacts = {
   /** Every stored report on the racket. */
   reports: number;
