@@ -8,6 +8,7 @@
 // Scores and counts follow from the normal pipeline. Web summaries (Reddit, YouTube, blogs) have no tools here.
 import { useEffect, useState } from "react";
 import { ownerCheck } from "../../admin-edit";
+import { niche } from "../../../lib/niche";
 import { VERDICT, ago } from "../ui";
 import { reviewerName, nameProblem, typedName, NAME_MAX } from "../../../lib/thread/display-name";
 
@@ -47,7 +48,7 @@ export function PendingReviews({ racketId }: { racketId: string }) {
   return <div className="th-admin-box" role="region" aria-label="Pending reviews (owner only)">
     <div className="th-head-row"><b>{`Pending reviews (${rows.length})`}</b><span className="th-sub">Only you see this</span></div>
     {note && <span className="th-ok" role="status">{note}</span>}{err && <span className="th-err" role="alert">{err}</span>}
-    {rows.length === 0 && <span className="th-note">Nothing waiting for this racket.</span>}
+    {rows.length === 0 && <span className="th-note">{`Nothing waiting for this ${niche.words.one}.`}</span>}
     {rows.map(p => { const v = VERDICT[verdictOf(p.rating)];
       return <div key={p.id} className="th-rv">
         <div className="th-rv-who"><strong>{reviewerName({ alias: p.alias, level: p.level })}</strong><span>{`· ${ago(p.at)}`}</span>{p.level && <span>{`· ${p.level.toLowerCase()}`}</span>}

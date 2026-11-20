@@ -29,6 +29,7 @@ import { Flight } from "../../ui";
 import { flightOf } from "../../../../lib/discgolf-profile";
 import { stabilityOfFlight } from "../../../../lib/niche/discgolf-guide";
 import { SITE_FIT } from "../../../../lib/fit-config";
+import { levelRange } from "../../../../lib/fit-verdict";
 
 export const revalidate = 86400;
 // Every listed racket's page is built with the site, as the live racket pages are (app/v/racket); none without a database (CI).
@@ -42,7 +43,8 @@ type P = { params: Promise<{ slug: string }> };
 export const generateMetadata = ({ params }: P): Promise<Metadata> => liveMetadata({ params, searchParams: Promise.resolve({}) });
 
 const SKIN = niche.id === "skin", DG = niche.id === "discgolf";
-const LEVEL_WORD = (ls: string[]) => ls.length ? (ls.length === 1 ? cap(ls[0]) : `${cap(ls[0])} to ${ls[ls.length - 1]}`) : null;
+// The level words: the same formatter as the catalogue card (lib/fit-verdict.ts levelRange), capitalised.
+const LEVEL_WORD = (ls: string[]) => { const w = levelRange(ls); return w ? cap(w) : null; };
 const STYLE_WORD = { control: "Control", power: "Power", balance: "All-round" } as const;
 /** The breadcrumb's play-style link (owner mock 2026-11-19b): its ranking; all-round has none, so the overall one. */
 const LIST = `${niche.id}-${niche.words.many}`; // "padel-rackets", "pickleball-paddles": the site's ranking slugs

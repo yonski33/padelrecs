@@ -79,7 +79,26 @@ export function threadView(request:NextRequest) {
  return NextResponse.rewrite(url);
 }
 
+/** The Thread product page's own path (/thread/rackets/<slug>) answered 200 with a copy of the page on every Thread site
+ *  (DiscGolfRecs audit 2026-11-20); it is only meant as proxy.ts's rewrite target. A direct visit now gets a 301 to the
+ *  public address (/discs/<slug>, /rackets/<slug>, a type-path site's /<type>/<slug>), and /thread/rackets to the catalogue.
+ *  Rewrites never pass through here again, and Next's own revalidation requests are left alone. */
+export async function threadRedirect(request:NextRequest, lookup:()=>Promise<Map<string,{slug:string;shape:string|null}>>) {
+ if(!threadSite(niche.id)||request.headers.has("x-prerender-revalidate"))return null;
+ const m=/^\/thread\/rackets(?:\/([a-z0-9-]+))?\/?$/.exec(request.nextUrl.pathname);
+ if(!m)return null;
+ let to=m[1]?`${catalogPath}/${m[1]}`:catalogPath;
+ if(m[1]&&niche.categoryPaths){
+  try{const products=await lookup();to=productRedirect(niche,`/rackets/${m[1]}`,slug=>products.get(slug))??to;}
+  catch(error){console.error("Thread redirect lookup failed",error);}
+ }
+ const url=request.nextUrl.clone();url.pathname=to;url.search="";
+ return NextResponse.redirect(url,301);
+}
+
 export async function proxy(request:NextRequest) {
+ const moved=await threadRedirect(request,async()=>(await import("./lib/product-lookup")).productLookup());
+ if(moved)return moved;
  const thread=threadView(request);
  if(thread)return thread;
  // Rollback look while Thread is the default: ?look=classic runs the live routing on the address without the query, so it

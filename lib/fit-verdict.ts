@@ -252,14 +252,22 @@ export function fitVerdict(c: QuickChoice, f: FitFacts, cfg: FitConfig = SITE_FI
 }
 
 /** "Generally best for" chips when there are no picks: the band, the lean, arm comfort, only what the data supports. */
-export function bestFor(f: FitFacts, cfg: FitConfig = SITE_FIT): string[] {
-  const out: string[] = [];
-  // The level from the same scores the fit check uses (owner audit 2026-11-17: the page and the fit check never disagree);
-  // the sources' band only where there are no scores.
-  // A hard reason for beginners (DiscGolfRecs: speed 11+, fade 3+, "not a first disc") keeps "beginner" out of the line too.
+/** The level band "Best for" says (indexes into LEVELS), or null. From the same scores the fit check uses (owner audit
+ *  2026-11-17: the page and the fit check never disagree); the sources' band only where there are no scores. A hard reason
+ *  for beginners (DiscGolfRecs: speed 11+, fade 3+, "not a first disc") keeps "beginner" out of it too. */
+export function levelBand(f: FitFacts): { from: number; to: number } | null {
   const ok = f.suits ? LEVELS.map((l, i) => f.suits![l as keyof typeof f.suits] as number >= SUITS_OK && !(i === 0 && f.hard?.beginner) ? i : -1).filter(i => i >= 0) : [];
   let band = ok.length ? { from: ok[0], to: ok[ok.length - 1] } : combinedBand(f);
   if (band && band.from === 0 && f.hard?.beginner) band = { from: 1, to: Math.max(band.to, 1) };
+  return band ?? null;
+}
+/** A level list in words, the one formatter for a page's level tag and "Best for" and its catalogue card (DiscGolfRecs
+ *  audit 2026-11-20: the card said "intermediate" where the page said "Beginner to intermediate"): "beginner",
+ *  "beginner to intermediate". Lower case; the caller capitalises where it starts a line. */
+export const levelRange = (levels: readonly string[]) => levels.length ? (levels.length === 1 ? levels[0] : `${levels[0]} to ${levels[levels.length - 1]}`) : null;
+export function bestFor(f: FitFacts, cfg: FitConfig = SITE_FIT): string[] {
+  const out: string[] = [];
+  const band = levelBand(f);
   // A site with its own level words for people (SimRacingRecs: new / serious / all-in) says them.
   const lw = (i: number) => (cfg.levelPeople && cfg.levelLabels?.[LEVELS[i] as keyof typeof cfg.levelLabels]) || LEVELS[i];
   if (band) out.push(band.from === band.to ? lw(band.from) : `${lw(band.from)} → ${lw(band.to)}`);

@@ -51,7 +51,8 @@ export function SiteHeader({ ranked, guide = false }: { ranked: string[]; /** Th
   const inTypePath = niche.categoryPaths ? niche.typePages?.find(t => pathname.startsWith(`/${t.slug}/`)) : undefined;
   // On a product page the review form opens with that product chosen (app/add-review matches the path to a product).
   // A cached view's own path (/v/racket/<slug>/<key>, proxy.ts) reads as the product's public address (site audit 2026-11-17 #12).
-  const shown = pathname.replace(/^\/v\/racket\/([a-z0-9-]+)\/[^/]*$/, `${catalogPath}/$1`);
+  // So does a Thread page's own path (/thread/rackets/<slug>, served for /discs/<slug> by proxy.ts; DiscGolfRecs audit 2026-11-20).
+  const shown = pathname.replace(/^\/v\/racket\/([a-z0-9-]+)\/[^/]*$/, `${catalogPath}/$1`).replace(/^\/thread\/(?:stack\/tools|rackets)\/([a-z0-9-]+)$/, `${catalogPath}/$1`);
   const addHref = shown === "/" ? "/add-review" : `/add-review?from=${encodeURIComponent(shown)}`;
   // Phones (Grok audit 2026-11-18): the links and search sit behind a "menu" button; it opens them as a list under the bar.
   const [menu, setMenu] = useState(false);

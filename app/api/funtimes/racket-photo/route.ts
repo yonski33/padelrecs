@@ -1,9 +1,9 @@
 import { eq } from "drizzle-orm";
 import { database } from "../../../../db/data";
-import { productPhotos, rackets } from "../../../../db/schema";
+import { brands, productPhotos, rackets } from "../../../../db/schema";
 import { preparePhoto } from "../../../../lib/photo-background";
 import { NO_PHOTO, UPLOAD_PATH } from "../../../../lib/shop-photos";
-import { adminWriteGuard, adminRedirect } from "../../../funtimes/auth";
+import { adminWriteGuard, adminRedirect, refreshProductPages } from "../../../funtimes/auth";
 
 const MAX_BYTES = 4 * 1024 * 1024; // Vercel refuses request bodies above about 4.5 MB
 
@@ -15,12 +15,14 @@ export async function POST(request: Request) {
  if (!form || !id) return adminRedirect(request, "tab=specs&result=spec-invalid");
  try {
   const db = await database(), now = new Date().toISOString();
-  const [found] = await db.select({ id: rackets.id }).from(rackets).where(eq(rackets.id, id));
+  const [found] = await db.select({ id: rackets.id, slug: rackets.slug, shape: rackets.shape, brandSlug: brands.slug }).from(rackets).leftJoin(brands, eq(brands.id, rackets.brandId)).where(eq(rackets.id, id));
   if (!found) return back("spec-missing");
+  // The photo shows on the product page, the catalogue and the lists: those pages refresh now (DiscGolfRecs audit 2026-11-20).
+  const saved = (result: string) => { refreshProductPages([found]); return back(result); };
   if (action === "remove" || action === "default") {
    await db.delete(productPhotos).where(eq(productPhotos.racketId, id));
    await db.update(rackets).set({ imageUrl: action === "remove" ? NO_PHOTO : null }).where(eq(rackets.id, id));
-   return back("photo-saved");
+   return saved("photo-saved");
   }
   if (!(file instanceof File) || !file.size || file.size > MAX_BYTES) return back("photo-invalid");
   const webp = await preparePhoto(Buffer.from(await file.arrayBuffer())).catch(() => null);
@@ -28,6 +30,6 @@ export async function POST(request: Request) {
   const data = webp.toString("base64");
   await db.insert(productPhotos).values({ racketId: id, data, updatedAt: now }).onConflictDoUpdate({ target: productPhotos.racketId, set: { data, updatedAt: now } });
   await db.update(rackets).set({ imageUrl: `${UPLOAD_PATH}${encodeURIComponent(id)}?v=${Date.parse(now)}` }).where(eq(rackets.id, id));
-  return back("photo-saved");
+  return saved("photo-saved");
  } catch { return back("failed"); }
 }

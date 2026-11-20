@@ -38,6 +38,11 @@ export const GAME: [string, RegExp][] = [
   ["singles", /\bsingles\b/i],
   ["doubles", /\bdoubles\b/i],
 ];
+/** DiscGolfRecs' middle stability option (audit 2026-11-20: only 6 of 511 discs had any "Stable" in the prefill). The reader
+ *  pass records stability only as a lean (+1 overstable, -1 understable), so a report that a disc flies straight never
+ *  reached "Stable". These words do, for a source with no lean of its own. Plain "very stable" is left out: throwers often
+ *  mean overstable by it. */
+export const STRAIGHT = new RegExp(String.raw`(?<!\b(?:no|not|never|isn'?t|aren'?t|wasn'?t|weren'?t|doesn'?t|don'?t|didn'?t|won'?t|hardly|rarely|to get(?: any| a)?|make it|get it|getting it)\s(?:\w+\s)?)(?:\b(?:flies|flew|flying|fly|goes|went|holds|tracks)\s(?:dead\s|very\s|really\s|so\s|pretty\s|super\s|nice and\s)?straight\b|\bdead[- ](?:straight|neutral)\b|\bstraight (?:flier|flyer|flight|flying|line|shooter)s?\b|\bneutral (?:flight|flier|flyer|stability|disc|mid|driver|putter)\b|\b(?:perfectly|truly|totally|nicely|dead) stable\b|\bneither (?:over|under)[- ]?stable\b)`, "i");
 const firstMatch = (rules: [string, RegExp][], text: string) => rules.find(([, re]) => re.test(text))?.[0] ?? null;
 
 /** Specs that settle a group (owner: "specs only where they settle it"); null where they don't. */
@@ -115,8 +120,10 @@ export function buildPrefill(cat: Cat[], evidence: EvidenceRow[], texts: Prefill
   // A text's source is the evidence rows' source for the same report (so a review counts once in `sources`).
   const authorOf = new Map(evidence.filter(r => r.authorKey).map(r => [`${r.productId}|${reportOf(r.sourceRef)}`, r.authorKey!]));
   for (const t of texts) {
-    if (nicheId === "discgolf") break; // padel's feel, side and trampoline words mean nothing for a disc
     const src = authorOf.get(`${t.productId}|${t.key}`) ?? t.key;
+    // A disc: only the straight-flight words (STRAIGHT), and only where this source's evidence gave no stability lean (put
+    // keeps the first pick). Padel's feel, side and trampoline words mean nothing for a disc.
+    if (nicheId === "discgolf") { if (STRAIGHT.test(t.text)) put(t.productId, src, "stability", "stable"); continue; }
     const feel = firstMatch(FEEL, t.text);
     if (feel) put(t.productId, src, "feel", feel);
     if (nicheId === "pickleball") { const game = t.negative ? null : firstMatch(GAME, t.text); if (game) put(t.productId, src, "game_type", game); continue; }

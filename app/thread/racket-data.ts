@@ -24,6 +24,7 @@ import { SITE_FIT } from "../../lib/fit-config";
 import { W } from "../../lib/thread/words";
 import { tagTone } from "../../lib/tags";
 import { ago, type ThreadRow } from "./ui";
+import { flightOf } from "../../lib/discgolf-profile";
 
 export type RvCard = { /** A player review's typed name ("" when none), for the owner's Rename. */ alias?: string; id: string; kind: "player" | "youtube" | "blog" | "reddit" | "forum"; who: string; meta: string | null; verdict: "positive" | "mixed" | "negative" | null;
   when: string; at: string; text: string; quote: boolean; url: string | null; video: string | null; helpful: number;
@@ -108,6 +109,16 @@ export async function racketData(slug: string) {
   const sim = similarProducts(r, pool, tagProfiles([...ctx.data.reviews, ...ctx.data.external]), 12)
     .filter((x, i, a) => modelFamily(x) !== modelFamily(r) && a.findIndex(y => modelFamily(y) === modelFamily(x)) === i)
     .map(x => rows.get(x.id)).filter((x): x is ThreadRow => !!x && x.score != null && !!x.current).sort((a, b) => b.score! - a.score!).slice(0, 2);
+  // DiscGolfRecs (audit 2026-11-20: 3 discs with few reviews had no Similar discs): a disc whose reviews give no match is
+  // filled with the same type's nearest flight numbers (speed, glide, turn, fade), one per model, scored and current.
+  const fl = DG ? flightOf(r.weight) : null;
+  if (fl && sim.length < 2) {
+    const gap = (w: string | null) => { const f = flightOf(w); return f ? Math.abs(f.speed - fl.speed) + Math.abs(f.glide - fl.glide) + Math.abs(f.turn - fl.turn) + Math.abs(f.fade - fl.fade) : null; };
+    const fam = new Map(ctx.data.listed.map(x => [x.id, modelFamily(x)])), taken = new Set(sim.map(x => fam.get(x.id)));
+    const near = ctx.data.listed.filter(x => x.id !== r.id && x.shape === r.shape && modelFamily(x) !== modelFamily(r)).flatMap(x => { const d = gap(x.weight), t = rows.get(x.id);
+      return d !== null && t && t.score != null && t.current ? [{ t, d }] : []; }).sort((a, b) => a.d - b.d || b.t.score! - a.t.score!).map(x => x.t);
+    for (const t of near) { if (sim.length >= 2) break; if (!taken.has(fam.get(t.id))) { sim.push(t); taken.add(fam.get(t.id)); } }
+  }
   const model = brand && r.name.toLowerCase().startsWith(`${brand.name.toLowerCase()} `) ? r.name.slice(brand.name.length + 1) : r.name;
   const word = model.split(" ")[0]?.toLowerCase() ?? "";
   const line = ctx.data.listed.filter(x => x.id !== r.id && x.brandId === r.brandId && modelFamily(x) !== modelFamily(r)).map(x => rows.get(x.id)).filter((x): x is ThreadRow => !!x && x.score != null && !!x.current)
