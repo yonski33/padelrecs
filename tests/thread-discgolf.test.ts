@@ -96,3 +96,17 @@ test("discgolf process: words, picks and routing on NICHE=discgolf", () => {
   assert.doesNotMatch(out["/?look=classic"], /^\/thread/);
   assert.doesNotMatch(out["/compare"], /^\/thread/);
 });
+
+test("disc golf accounts: on, Level and Throw as the profile, staff-like name kept", () => {
+  const script = `const { accountSite } = await import("./lib/thread/sites.ts"); const { accountNameProblem } = await import("./lib/thread/account-name.ts");
+    const { profileLine } = await import("./lib/thread/display-name.ts"); const { niche } = await import("./lib/niche/index.ts");
+    console.log(JSON.stringify({ on: accountSite("discgolf"), staff: accountNameProblem("DiscGolfRecs"), labels: [niche.profile.playerLevel.label, niche.profile.playingSide.label],
+      lines: [profileLine("Intermediate", "RHBH"), profileLine(null, "LHFH"), profileLine("Advanced", null)] }));`;
+  const raw = execFileSync(process.execPath, ["--conditions=react-server", "--import", "tsx", "--input-type=module", "-e", script],
+    { env: { ...process.env, NICHE: "discgolf" }, cwd: new URL("..", import.meta.url).pathname, encoding: "utf8" });
+  const out = JSON.parse(raw.trim().split("\n").pop()!);
+  assert.equal(out.on, true);
+  assert.equal(out.staff, "That name is kept for the site. Pick another.");
+  assert.deepEqual(out.labels, ["Level", "Throw"]);
+  assert.deepEqual(out.lines, ["Intermediate, throws RHBH", "Throws LHFH", "Advanced player"]);
+});

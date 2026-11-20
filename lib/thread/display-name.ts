@@ -38,7 +38,7 @@ export function reviewerName(r: { alias?: string | null; level?: string | null; 
   const level = levelOwn?.display ? levelOwn.display[0].toUpperCase() + levelOwn.display.slice(1)
     : r.level?.trim() ? r.level.trim()[0].toUpperCase() + r.level.trim().slice(1).toLowerCase() : null;
   const format = r.side?.trim() ? formatWord(r.side.trim()) : null;
-  if (format) return level ? `${level}, ${format}` : niche.id === "skin" ? `${format[0].toUpperCase()}${format.slice(1)}` : `Plays ${format}`; // "Intermediate, mostly doubles"
+  if (format) return level ? `${level}, ${format}` : niche.id === "skin" || niche.id === "discgolf" ? `${format[0].toUpperCase()}${format.slice(1)}` : `Plays ${format}`; // "Intermediate, mostly doubles"
   const side = r.side?.trim() ? SIDE[r.side.trim().toLowerCase()] ?? null : null;
   if (level && side) return `${level}, ${side}`;
   if (level) return levelOwn?.display ? level : `${level} player`;

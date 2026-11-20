@@ -206,9 +206,10 @@ test("pickleball copy follows the copy rules: no dashes, no we/us, no padel word
 
 // Accounts (#516) stay padel-only until pickleball gets its accounts table (owner: accounts later).
 import { accountSite } from "../lib/thread/sites";
-test("optional accounts: PadelRecs, PickleballRecs and SkinRecs", () => {
+test("optional accounts: PadelRecs, PickleballRecs, SkinRecs and DiscGolfRecs", () => {
   assert.equal(accountSite("padel"), true);
   assert.equal(accountSite("pickleball"), true);
   assert.equal(accountSite("skin"), true);
+  assert.equal(accountSite("discgolf"), true);
   assert.equal(accountSite("tennis"), false);
 });

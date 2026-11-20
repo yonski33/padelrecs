@@ -19,9 +19,10 @@ export const THREAD_MOVED: { from: string; to: string }[] = [
   { from: "/rankings/best-padel-rackets-for-sore-arms", to: `/rankings/${ELBOW_SLUG}` },
 ];
 /** Optional accounts (#516, drizzle/0028): PadelRecs, PickleballRecs and SkinRecs (owner 2026-11-20: the same as padel;
- *  on skin the level and side fields are the review form's Skin type and Main concern). A site here
+ *  on skin the level and side fields are the review form's Skin type and Main concern; DiscGolfRecs
+ *  (owner 2026-11-20): Level and Throw, RHBH and the like). A site here
  *  needs 0028 (and 0030, trusted members) applied to its schema first. Elsewhere the account pages and APIs answer 404. */
-export const ACCOUNT_SITES = ["padel", "pickleball", "skin"];
+export const ACCOUNT_SITES = ["padel", "pickleball", "skin", "discgolf"];
 /** Member stories (owner 2026-11-20): a PadelRecs pilot. */
 export const storiesSite = (nicheId: string) => nicheId === "padel";
 export const accountSite = (nicheId: string) => ACCOUNT_SITES.includes(nicheId);
