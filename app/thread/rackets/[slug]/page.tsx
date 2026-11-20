@@ -32,6 +32,10 @@ import { SITE_FIT } from "../../../../lib/fit-config";
 import { levelRange } from "../../../../lib/fit-verdict";
 import specNotes from "../../../../db/shop/spec-notes.json";
 import { RacketV7b } from "../../racket-v7b";
+import { writtenTldr } from "../../../../lib/thread/written-tldr";
+import { pageContent, marked } from "../../../../lib/racket-page";
+import { summary } from "../../../../lib/product-summary";
+import { tagSays } from "../../../../lib/tags";
 
 export const revalidate = 86400;
 // Every listed racket's page is built with the site, as the live racket pages are (app/v/racket); none without a database (CI).
@@ -128,11 +132,20 @@ export default async function ThreadRacket({ params }: P) {
   if (niche.id === "padel") {
     const v7Specs = ([["Weight", r.weight], ["Shape", r.shape], ["Balance", r.balance], ["Feel", row?.feel ?? null], ["Face", r.surface], ["Released", r.year ? String(r.year) : null],
       ...(((specNotes as unknown as Record<string, Record<string, [string, string][]>>)[niche.id] ?? {})[r.slug] ?? [])] as [string, string | null][]).filter((x): x is [string, string] => !!x[1]);
+    // TL;DR with no counts (owner 2026-11-21): the written one as is; else the page's own lines without "N players mention
+    // it", else the most-mentioned tags as "Players often say…". Claims still need 5+ reviews behind them (as before).
+    const plain = (t: string) => marked(t).map(x => x.text).join("").trim();
+    const pc = writtenTldr(r.reviewSummary) ? null : pageContent(r.slug), sum = pc || writtenTldr(r.reviewSummary) || !ctx ? null : summary(ctx.data, r.id);
+    const says = (t: string) => `Players often ${tagSays(t)}.`;
+    const v7Bullets = writtenTldr(r.reviewSummary) ? bullets : pc
+      ? [...pc.yes.slice(0, 2).map(i => ({ tone: "pos" as const, text: plain(i.t) })), ...pc.no.slice(0, 1).map(i => ({ tone: "catch" as const, text: plain(i.t) }))]
+      : sum ? [...sum.loved.filter(t => (sum.tagCounts.get(t) ?? 0) >= 5).slice(0, 2).map(t => ({ tone: "pos" as const, text: says(t) })),
+        ...sum.complaints.filter(t => (sum.tagCounts.get(t) ?? 0) >= 5).slice(0, 1).map(t => ({ tone: "catch" as const, text: says(t) }))] : bullets;
     const model = brand && bare.toLowerCase().startsWith(`${brand.name.toLowerCase()} `) ? bare.slice(brand.name.length + 1) : bare;
     return <Shell active="rackets">
       <JsonLd data={ld}/>
       <RacketV7b id={r.id} title={r.year && bare !== name ? `${bare} (${r.year})` : name} model={model} crumbs={crumbsEl} tags={tags} lime={!!style} row={row} judged={judged}
-        lead={lead} bullets={bullets} specs={v7Specs} shop={shop} cards={cards} sim={sim.map(x => <Mini key={x.id} x={x}/>)} also={also.map(x => <Mini key={x.id} x={x} small/>)}
+        lead={lead} bullets={v7Bullets} specs={v7Specs} shop={shop} cards={cards} sim={sim.map(x => <Mini key={x.id} x={x}/>)} also={also.map(x => <Mini key={x.id} x={x} small/>)}
         line={lineEl} stories={tales}/>
     </Shell>;
   }
