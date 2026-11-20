@@ -65,9 +65,9 @@ export default async function Admin({searchParams}:{searchParams:Promise<{eviden
  const page = Math.max(1, Math.min(100000, parseInt(q.page||"1",10)||1));
  const db = await database();
  if (q.tab === "traits" && threadSite(niche.id)) {
-  return <main><div className="page-title"><h1>Review admin</h1><p className="muted">“How does it play?” on the racket pages: fix the counts, remove abused votes, freeze voting.</p></div>
+  return <main><div className="page-title"><h1>Review admin</h1><p className="muted">“How does it play?” and the overall tally: fix the counts, remove abused votes, freeze voting.</p></div>
   <AdminNav current="traits"/>
-  <TraitsAdmin racket={q.racket} q={q.q} result={q.result} rackets={(await db.select({ id: rackets.id, slug: rackets.slug, name: rackets.name, shape: rackets.shape }).from(rackets)).sort((a, b) => a.name.localeCompare(b.name))}/></main>;
+  <TraitsAdmin racket={q.racket} result={q.result} rackets={(await db.select({ id: rackets.id, slug: rackets.slug, name: rackets.name, shape: rackets.shape }).from(rackets)).sort((a, b) => a.name.localeCompare(b.name))}/></main>;
  }
  if (q.tab === "accounts" && accountSite(niche.id)) {
   return <main><div className="page-title"><h1>Review admin</h1><p className="muted">Player accounts: reserved names on the Thread pages.</p></div>

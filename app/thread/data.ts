@@ -9,6 +9,7 @@ import { bestFor, levelBand, levelRange, SUITS_OK, MIN_FIT_REPORTS } from "../..
 import { familyRowIds, modelFamily } from "../../lib/compare-pairs";
 import { topPicks, PICK_CATS, type PickList, type PickRacket } from "../../lib/thread/top-picks";
 import { traitSeed } from "../../lib/thread/trait-seed";
+import { SENTIMENT_KEY, tallyWith } from "../../lib/thread/trait-view";
 import { traitVotes, traitOverrides, comments, productVotes } from "../../db/schema";
 import { and, count, desc, eq, gte, like } from "drizzle-orm";
 import { sideItems, addCounts, BUSY_DAYS, SIDE_SIZE, type SideItem } from "../../lib/thread/home-side";
@@ -41,7 +42,21 @@ export const homeTop = (rows: Map<string, ThreadRow>, ids: string[], size = 10) 
 type Rows = { ctx: Ctx; rows: Map<string, ThreadRow>; all: ThreadRow[]; bySlug: Map<string, ThreadRow> };
 export const threadRows = cache(async (): Promise<Rows> => {
   if (!hasDb()) return { ctx: null as unknown as Ctx, rows: new Map(), all: [], bySlug: new Map() };
-  if (niche.id === "skin") return skinRows();
+  const [base, tallies] = await Promise.all([niche.id === "skin" ? skinRows() : countedRows(), sentimentOverrides()]);
+  if (!tallies.size) return base;
+  const rows = new Map([...base.rows].map(([id, r]) => [id, { ...r, ...tallyWith(r, tallies.get(id)) }]));
+  return { ...base, rows, all: [...rows.values()], bySlug: new Map([...rows.values()].map(x => [x.slug, x])) };
+});
+/** The owner's typed overall tallies (Traits tab, trait_overrides under SENTIMENT_KEY), by product. Empty on any error, so
+ *  the pages keep the counted tally. */
+async function sentimentOverrides(): Promise<Map<string, Record<string, number>>> {
+  try {
+    const db = await database();
+    const rows = await db.select({ id: traitOverrides.racketId, counts: traitOverrides.reviewCounts }).from(traitOverrides).where(eq(traitOverrides.trait, SENTIMENT_KEY));
+    return new Map(rows.flatMap(r => r.counts ? [[r.id, r.counts] as const] : []));
+  } catch (error) { console.error("[thread] sentiment overrides failed", error); return new Map(); }
+}
+async function countedRows(): Promise<Rows> {
   const ctx = await matchContext();
   const { data, sigs, takes } = ctx;
   const brand = new Map(data.brands.map(b => [b.id, b.name]));
@@ -51,7 +66,7 @@ export const threadRows = cache(async (): Promise<Rows> => {
   const current = familyRowIds(data.listed, x => (reports.get(x.id) ?? 0) >= MIN_FIT_REPORTS);
   for (const r of data.listed) rows.set(r.id, { ...rowOf(ctx, r, brand.get(r.brandId) ?? "", reports.get(r.id) ?? 0, takes.get(r.id)?.hook), current: current.has(r.id) });
   return { ctx, rows, all: [...rows.values()], bySlug: new Map([...rows.values()].map(x => [x.slug, x])) };
-});
+}
 
 /** DiscGolfRecs keeps a disc's flight numbers in the weight column ("5 / 4 / -1 / 1"); other sites have none. */
 const flightRow = (w: string | null | undefined): Pick<ThreadRow, "flight"> => {
