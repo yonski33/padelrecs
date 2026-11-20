@@ -2,7 +2,7 @@
 // while the table isn't there yet (the migration waits for the owner), so the pages and the nav simply don't show stories.
 import { cache } from "react";
 import { database } from "../../db/data";
-import { liveStories, storyBySlug, storiesForRacket, liveStoryCount, type Story } from "../../db/stories";
+import { liveStories, storyBySlug, storiesForRacket, liveStoryCount, movedStory, type Story } from "../../db/stories";
 import { storiesSite } from "../../lib/thread/sites";
 import { niche } from "../../lib/niche";
 
@@ -16,3 +16,5 @@ export const threadStory = cache((slug: string) => safe<Story | null>("read", nu
 export const racketStories = cache((racketId: string) => safe<Story[]>("racket", [], async () => storiesForRacket(await database(), racketId)));
 /** How many stories are live: the header link and the home block show from 1. */
 export const liveStoryTotal = cache(() => safe<number>("count", 0, async () => liveStoryCount(await database())));
+/** A story's current address when this is one it had before (clean slugs: the old address 301s), else null. */
+export const threadMovedStory = cache((slug: string) => safe<string | null>("moved", null, async () => movedStory(await database(), slug)));

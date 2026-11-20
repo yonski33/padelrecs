@@ -5,7 +5,7 @@ import { and, count, desc, eq, gte, isNotNull, sql } from "drizzle-orm";
 import type { getDb } from "./index";
 import { stories, accounts, comments } from "./schema";
 import { spamScore } from "../lib/review-spam";
-import { storyProblem, storySlug } from "../lib/thread/stories";
+import { storyProblem, storySlug, freeSlug } from "../lib/thread/stories";
 
 type Database = ReturnType<typeof getDb>;
 type Reader = Pick<Database, "select">;
@@ -21,6 +21,31 @@ const pick = { id: stories.id, slug: stories.slug, title: stories.title, body: s
 type Row = { id: string; slug: string; title: string; body: string; rackets: string[]; status: StoryStatus; at: string; updatedAt: string; editedAt: string | null; name: string; level: string | null; side: string | null };
 const story = (r: Row): Story => ({ id: r.id, slug: r.slug, title: r.title, body: r.body, rackets: r.rackets ?? [], status: r.status, at: r.at, updatedAt: r.updatedAt,
   editedAt: r.editedAt ?? null, author: { name: r.name, level: r.level, side: r.side } });
+
+/** Every address in use or used before that starts like this one, so a new story takes the first free one (-2, -3…). */
+async function freeStorySlug(db: Reader, base: string) {
+  const rows = await db.select({ slug: stories.slug, old: stories.oldSlugs }).from(stories)
+    .where(sql`${stories.slug} like ${`${base}%`} or ${stories.oldSlugs}::text like ${`%"${base}%`}`);
+  return freeSlug(base, new Set(rows.flatMap(r => [r.slug, ...(r.old ?? [])])));
+}
+/** The story's current address when this one is a previous one (it 301s there), else null. */
+export async function movedStory(db: Reader, slug: string) {
+  const [r] = await db.select({ slug: stories.slug }).from(stories).where(sql`${stories.oldSlugs} @> ${JSON.stringify([slug])}::jsonb`);
+  return r?.slug ?? null;
+}
+/** Give a story a new address (clean slugs): the old one is kept in old_slugs (it 301s), and its comments move with it
+ *  (their page key is "story:<slug>"). One transaction. */
+export async function moveStory(db: Database, id: string, to: string, now = new Date()) {
+  return db.transaction(async tx => {
+    const [s] = await tx.select({ slug: stories.slug, old: stories.oldSlugs }).from(stories).where(eq(stories.id, id));
+    if (!s || s.slug === to) return null;
+    const [clash] = await tx.select({ id: stories.id }).from(stories).where(sql`${stories.slug} = ${to} or ${stories.oldSlugs} @> ${JSON.stringify([to])}::jsonb`);
+    if (clash && clash.id !== id) return "taken" as const;
+    await tx.update(stories).set({ slug: to, oldSlugs: [...new Set([...(s.old ?? []), s.slug])].filter(x => x !== to), updatedAt: now.toISOString() }).where(eq(stories.id, id));
+    const moved = await tx.update(comments).set({ page: `story:${to}` }).where(eq(comments.page, `story:${s.slug}`)).returning({ id: comments.id });
+    return { from: s.slug, to, comments: moved.length };
+  });
+}
 
 /** Live stories, newest first. */
 export async function liveStories(db: Reader, limit = 50): Promise<Story[]> {
@@ -54,7 +79,7 @@ export async function addStory(db: Database, s: { accountId: string; title: stri
   if (Number(recent.n) >= STORIES_PER_DAY) return { status: "limited" as const };
   const spam = spamScore({ reviewText: `${title}\n${body}` });
   const status: StoryStatus = spam.spam ? "rejected" : s.live && spam.score === 0 ? "approved" : "pending";
-  const id = crypto.randomUUID(), slug = storySlug(title, id), at = now.toISOString();
+  const id = crypto.randomUUID(), at = now.toISOString(), slug = await freeStorySlug(db, storySlug(title));
   await db.insert(stories).values({ id, slug, accountId: s.accountId, title, body, rackets, status, spamScore: spam.score, network: s.network, createdAt: at, updatedAt: at });
   return { status, id, slug };
 }

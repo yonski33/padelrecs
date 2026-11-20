@@ -1,6 +1,6 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { storyProblem, storySlug, storyDescription, paragraphs, hasShopLink, STORY_BODY } from "../lib/thread/stories";
+import { storyProblem, storySlug, freeSlug, storyDescription, paragraphs, hasShopLink, STORY_BODY } from "../lib/thread/stories";
 import { threadPath } from "../lib/thread/look";
 import { storiesSite } from "../lib/thread/sites";
 import { PAGE_KEY } from "../db/comments";
@@ -18,8 +18,11 @@ test("story rules: title and body lengths, no shop or affiliate links, five rack
 });
 
 test("story addresses, paragraphs and description", () => {
-  assert.equal(storySlug("10 Things I Learned in my First Year of Padel!", "3f2a9c1e-0000-4000-8000-000000000000"), "10-things-i-learned-in-my-first-year-of-padel-3f2a9c");
-  assert.match(storySlug("¡Pádel!", "abcdef12-x"), /^padel-abcdef$/);
+  assert.equal(storySlug("10 Things I Learned in my First Year of Padel!"), "10-things-i-learned-in-my-first-year-of-padel");
+  assert.equal(storySlug("¡Pádel!"), "padel");
+  assert.equal(storySlug("!!!"), "story");
+  assert.equal(freeSlug("my-story", new Set()), "my-story");
+  assert.equal(freeSlug("my-story", new Set(["my-story", "my-story-2"])), "my-story-3");
   assert.deepEqual(paragraphs("One.\nStill one.\n\nTwo.\r\n\r\n\r\nThree."), ["One.\nStill one.", "Two.", "Three."]);
   assert.ok(storyDescription(long).length <= 156);
   assert.ok(PAGE_KEY.test("story:10-things-i-learned-3f2a9c"));

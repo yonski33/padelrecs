@@ -1,9 +1,9 @@
 // One member story (PadelRecs pilot, owner 2026-11-20): the title, its author with the member mark, the text in paragraphs, the
 // rackets it tags, and the usual comments (page "story:<slug>", Reply on replies).
 import type { Metadata } from "next";
-import { notFound } from "next/navigation";
+import { notFound, permanentRedirect } from "next/navigation";
 import { Shell } from "../../shell";
-import { threadStory } from "../../stories-data";
+import { threadStory, threadMovedStory } from "../../stories-data";
 import { threadRows } from "../../data";
 import { Row, type ThreadRow } from "../../ui";
 import { Comments } from "../../live/comments";
@@ -29,8 +29,13 @@ export async function generateMetadata({ params }: P): Promise<Metadata> {
 }
 
 export default async function ThreadStoryPage({ params }: P) {
-  const s = await threadStory((await params).slug);
-  if (!s) notFound();
+  const { slug } = await params, s = await threadStory(slug);
+  if (!s) {
+    // A previous address (clean slugs, owner 2026-11-20): a permanent redirect to the story's current one.
+    const to = await threadMovedStory(slug);
+    if (to) permanentRedirect(`/stories/${to}`);
+    notFound();
+  }
   const { rows } = await threadRows();
   const tagged = s.rackets.map(id => rows.get(id)).filter((x): x is ThreadRow => !!x);
   const who = profileLine(s.author.level, s.author.side);
