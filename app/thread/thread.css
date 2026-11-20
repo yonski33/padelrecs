@@ -889,3 +889,30 @@ body:has(.th) .th a.th-story-t:hover { color: var(--hover); text-decoration: und
 .th-story-body p { margin: 0; overflow-wrap: anywhere; white-space: pre-line; }
 .th-story-form { display: flex; flex-direction: column; gap: 12px; }
 .th-story-form .th-fgroup { display: flex; flex-direction: column; gap: 6px; font-size: 14px; color: var(--ink2); }
+
+/* The story editor (owner 2026-11-20): one framed box, a toolbar row (it scrolls sideways on phones) and a roomy textarea,
+   with Write / Preview on the right. Thread tokens only. */
+.th-story-form .th-fgroup > span { font-weight: 700; color: var(--ink); }
+.th-story-form input.th-story-title { font: 700 19px/1.3 var(--bc); padding: 10px 16px; border-radius: 12px; }
+.th-ed { border: 2px solid var(--ink); border-radius: 12px; background: #fff; overflow: hidden; }
+.th-ed:focus-within { box-shadow: 0 0 0 3px var(--lime-box); }
+.th-ed-bar { display: flex; align-items: center; gap: 8px; padding: 6px 8px; border-bottom: 1.5px solid var(--line); background: var(--soft); }
+.th-ed-tools { display: flex; gap: 4px; flex: 1 1 auto; min-width: 0; overflow-x: auto; scrollbar-width: none; -webkit-overflow-scrolling: touch; }
+.th-ed-tools::-webkit-scrollbar { display: none; }
+.th-ed-btn { all: unset; cursor: pointer; flex: none; box-sizing: border-box; min-width: 34px; height: 32px; padding: 0 10px; border-radius: 8px; display: inline-flex;
+  align-items: center; justify-content: center; font-size: 14px; color: var(--ink); border: 1.5px solid transparent; white-space: nowrap; }
+.th-ed-btn:hover:not(:disabled), .th-ed-btn:focus-visible { border-color: var(--chip); background: #fff; }
+.th-ed-btn:disabled { opacity: .4; cursor: default; }
+.th-ed-btn.b { font-weight: 800; } .th-ed-btn.i { font-style: italic; font-family: Georgia, serif; } .th-ed-btn.h { font: 800 15px var(--body-font); }
+.th-ed-view { flex: none; }
+.th-ed-ta { display: block; width: 100%; box-sizing: border-box; min-height: 340px; resize: vertical; border: 0; outline: 0; padding: 14px 16px;
+  font: 16px/1.65 var(--body-font); color: var(--ink); background: #fff; }
+.th-ed-preview { min-height: 340px; padding: 14px 18px 18px; display: flex; flex-direction: column; gap: 10px; }
+.th-ed-title { margin: 0; }
+@media (max-width: 639px) { .th-ed-ta, .th-ed-preview { min-height: 260px; } .th-ed-bar { padding: 6px; } }
+.th-story-form .th-post { min-height: 42px; padding: 0 22px; font-size: 15.5px; }
+/* The story text's formatting: subheadings, lists and quotes (lib/thread/story-markdown.ts). */
+.th-story-body .th-story-h { margin: 10px 0 0; font: 700 21px/1.25 var(--bc); color: var(--ink); }
+.th-story-body ul, .th-story-body ol { margin: 0; padding-left: 1.4em; display: flex; flex-direction: column; gap: 6px; }
+.th-story-body blockquote { margin: 0; padding: 4px 0 4px 14px; border-left: 3px solid var(--lime); color: var(--ink2); font-style: italic; white-space: pre-line; }
+.th-story-body strong { color: var(--ink); }

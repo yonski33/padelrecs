@@ -10,7 +10,8 @@ import { Comments } from "../../live/comments";
 import { MemberMark } from "../../live/member-mark";
 import { JsonLd, crumbs, base } from "../../seo";
 import { th } from "../../../../lib/thread/look";
-import { paragraphs, storyDescription } from "../../../../lib/thread/stories";
+import { storyDescription } from "../../../../lib/thread/stories";
+import { StoryBody } from "../../story-body";
 import { profileLine } from "../../../../lib/thread/display-name";
 import { niche } from "../../../../lib/niche";
 
@@ -44,7 +45,7 @@ export default async function ThreadStoryPage({ params }: P) {
       <article className="th-card th-post"><div className="th-post-in">
         <h1 className="th-h1">{s.title}</h1>
         <div className="th-by"><strong>{s.author.name}</strong><MemberMark/>{who && <><span>·</span><span>{who}</span></>}<span>·</span><span>{day(s.at)}</span></div>
-        <div className="th-story-body">{paragraphs(s.body).map((p, i) => <p key={i}>{p}</p>)}</div>
+        <StoryBody body={s.body}/>
       </div></article>
       {tagged.length > 0 && <section className="th-card th-list"><h2 className="th-h2" style={{ margin: "4px 0 6px" }}>Rackets in this story</h2>
         {tagged.map(r => <Row key={r.id} r={r}/>)}</section>}
