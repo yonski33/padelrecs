@@ -77,7 +77,9 @@ export async function POST(request:Request){
   const poster:Poster=threadSite(niche.id)?await postingAs(db,value.alias):{kind:"guest"};
   if(poster.kind==="reserved")return Response.json({error:RESERVED,reserved:true},{status:409,headers:noStore});
   if(poster.kind==="blocked")return Response.json({error:BLOCKED},{status:403,headers:noStore});
-  if(poster.kind==="member")value.alias=poster.account.name;
+  // A member's saved level and side (already the form's own values, db/accounts.ts cleanLevel) fill in what the form didn't
+  // send; the review card shows the account's live ones.
+  if(poster.kind==="member"){value.alias=poster.account.name;value.playerLevel||=poster.account.level??undefined;value.playingSide||=poster.account.side??undefined;}
   if(value.email){
    // Gmail ignores dots and +tags, so compare normalised inboxes rather than the typed address.
    const since=new Date(Date.now()-24*60*60_000).toISOString(),inbox=normalizeEmail(value.email);

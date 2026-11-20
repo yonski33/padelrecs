@@ -5,7 +5,7 @@ import "server-only";
 import type { getDb } from "../../db/index";
 import { nameOwner, recordPost, recordReviewDevice, type Account, type PostKind } from "../../db/accounts";
 import { missingTable } from "./member-marks";
-export { memberSet } from "./member-marks";
+export { memberSet, memberMap } from "./member-marks";
 import { currentPlayer } from "./account-session";
 
 type Database = ReturnType<typeof getDb>;

@@ -10,7 +10,7 @@ import { createLimiter, clientIp } from "../../../lib/rate-limit";
 import { threadSite } from "../../../lib/thread/look";
 import { niche } from "../../../lib/niche";
 import { device, network, json, foreign } from "../thread-device";
-import { postingAs, afterPost, memberSet, RESERVED, BLOCKED } from "../../../lib/thread/account-post";
+import { postingAs, afterPost, memberMap, RESERVED, BLOCKED } from "../../../lib/thread/account-post";
 
 const off = () => !threadSite(niche.id) || !process.env.DATABASE_URL;
 const burst = createLimiter({ limit: 6, windowMs: 10 * 60_000 }), votes = createLimiter({ limit: 120, windowMs: 60 * 60_000 });
@@ -24,9 +24,9 @@ export async function GET(request: Request) {
   if (!PAGE_KEY.test(page)) return json({ error: "Which page?" }, 400);
   try {
     const db = await database(), list = await listComments(db, page, await device(false));
-    // The member mark (optional accounts): a comment by a signed-in member.
-    const members = await memberSet(db, "comment", list.map(c => c.id));
-    return json({ comments: list.map(c => members.has(c.id) ? { ...c, member: true } : c), ...(q.get("token") ? { token: issueFormToken() } : {}) });
+    // The member mark (optional accounts): a comment by a signed-in member, with the account's level and side read live.
+    const members = await memberMap(db, "comment", list.map(c => c.id));
+    return json({ comments: list.map(c => { const m = members.get(c.id); return m ? { ...c, member: true, level: m.level, side: m.side } : c; }), ...(q.get("token") ? { token: issueFormToken() } : {}) });
   } catch (error) { console.error("Comments read failed", error); return json({ error: "Could not load comments." }, 500); }
 }
 
@@ -50,7 +50,7 @@ export async function POST(request: Request) {
     if (r.status !== "limited" && r.status !== "invalid") await afterPost(db, "comment", r.comment.id, poster, voter);
     if (r.status === "limited") return json({ error: "That's a lot of comments for one hour. Try again later." }, 429);
     if (r.status === "invalid") return json({ error: "That conversation can't take replies." }, 400);
-    return json(r.status === "approved" ? { status: "approved", comment: poster.kind === "member" ? { ...r.comment, member: true } : r.comment } : { status: "pending" }, 201);
+    return json(r.status === "approved" ? { status: "approved", comment: poster.kind === "member" ? { ...r.comment, member: true, level: poster.account.level, side: poster.account.side } : r.comment } : { status: "pending" }, 201);
   } catch (error) { console.error("Comment save failed", error); return json({ error: "Could not post that. Try again?" }, 500); }
 }
 

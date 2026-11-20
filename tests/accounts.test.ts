@@ -4,9 +4,10 @@ import { PGlite } from "@electric-sql/pglite";
 import { drizzle } from "drizzle-orm/pglite";
 import { migrationSql } from "../db/migrations";
 import { brands, rackets, reviews, productVotes, comments } from "../db/schema";
-import { claimAccount, updateAccount, nameOwner, linkDevice, linkPosts, memberPosts, recordPost, recordReviewDevice, setAccountStatus, deleteAccount, adminAccounts, getAccount } from "../db/accounts";
+import { memberProfiles, claimAccount, updateAccount, nameOwner, linkDevice, linkPosts, memberPosts, recordPost, recordReviewDevice, setAccountStatus, deleteAccount, adminAccounts, getAccount } from "../db/accounts";
 import { addComment } from "../db/comments";
 import { nameKey, accountNameProblem } from "../lib/thread/account-name";
+import { profileLine } from "../lib/thread/display-name";
 import type { getDb } from "../db/index";
 
 // Optional player accounts (drizzle/0028) on a throwaway database: never against the live one.
@@ -95,5 +96,21 @@ test("delete: frees the name; posts stay without the mark, or go with removePost
     await deleteAccount(db, "u2", { removePosts: true, keepAuthUser: true });
     assert.equal((await db.select().from(reviews)).length, 0);
     assert.equal((await deleteAccount(db, "nobody")).result, "missing");
+  } finally { await engine.close(); }
+});
+
+test("member posts carry the account's level and side, read live", async () => {
+  assert.equal(profileLine("Intermediate", "Right"), "Intermediate, right side");
+  assert.equal(profileLine(null, "Left"), "Left-side player");
+  assert.equal(profileLine(null, null), null);
+  const { engine, db } = await setup();
+  try {
+    await claimAccount(db, { id: "u1", name: "Alex padel", level: "Intermediate", side: "Right" });
+    const c = await addComment(db, { page: "racket:r1", parentId: null, alias: "Alex padel", body: "Great on the right side so far.", voter: "d", network: "n" });
+    const cid = c.status === "limited" || c.status === "invalid" ? "" : c.comment.id;
+    await recordPost(db, "comment", cid, "u1");
+    assert.deepEqual([...(await memberProfiles(db, "comment", [cid, "other"])).entries()], [[cid, { level: "Intermediate", side: "Right" }]]);
+    await updateAccount(db, "u1", { side: "Left" });
+    assert.equal((await memberProfiles(db, "comment", [cid])).get(cid)?.side, "Left");
   } finally { await engine.close(); }
 });

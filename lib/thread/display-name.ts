@@ -48,3 +48,7 @@ export const commenterName = (alias: string | null | undefined) => (alias ?? "")
 export const nameProblem = (name: string) => { const n = name.trim();
   return !n ? "Add a name to post." : n.length < NAME_MIN ? `A name needs at least ${NAME_MIN} characters.` : n.length > NAME_MAX ? `Keep the name to ${NAME_MAX} characters.`
     : /https?:|www\.|\.[a-z]{2,}\//i.test(n) ? "No links in the name, please." : null; };
+/** A member's level and side as one line ("Intermediate, left side", "Left-side player"), or null when neither is set. */
+export function profileLine(level: string | null | undefined, side: string | null | undefined): string | null {
+  return level?.trim() || side?.trim() ? reviewerName({ alias: null, level, side }) : null;
+}
