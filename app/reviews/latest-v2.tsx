@@ -109,7 +109,7 @@ export default async function LatestReviewsV2({ search }: { search: Search }) {
           <Link key={k} href={href({ src: k === "all" ? undefined : k, show: undefined })} aria-current={src === k ? "true" : undefined}>{label}</Link>)}</nav>
         {skinSite && <div className="lr2-vs"><span>skin</span>{SKINS.map(k =>
           <Link key={k} href={href({ skin: sk === k ? undefined : k, show: undefined })} aria-current={sk === k ? "true" : undefined}>{k}</Link>)}</div>}
-        <div className="lr2-vs"><span>verdict</span>{(["positive", "mixed", "negative"] as const).map(k =>
+        <div className="lr2-vs"><span>opinion</span>{(["positive", "mixed", "negative"] as const).map(k =>
           <Link key={k} href={href({ v: v === k ? undefined : k, show: undefined })} aria-current={v === k ? "true" : undefined}>{PILL[k]}</Link>)}</div>
       </div>
       <div className="lr2-grid">
@@ -140,7 +140,7 @@ export default async function LatestReviewsV2({ search }: { search: Search }) {
           {items.length > show && <Link className="lr2-more" href={href({ show: String(show + PAGE) })} scroll={false}>load older reviews ↓</Link>}
         </section>
         <aside className="lr2-side">
-          <div className="lr2-own"><p className="t">{skinSite ? "Used something? Share how your skin took it." : `Own a ${niche.words.one}? Add your verdict.`}</p><p>Two minutes, no account. It shows up here and moves the rankings.</p><a href="/add-review">+ add a review</a></div>
+          <div className="lr2-own"><p className="t">{skinSite ? "Used something? Share how your skin took it." : `Own a ${niche.words.one}? Add your review.`}</p><p>Two minutes, no account. It shows up here and moves the rankings.</p><a href="/add-review">+ add a review</a></div>
           {hot.length > 0 && <div><h3>Most reviewed this week</h3>
             <ol className="lr2-hot">{hot.map(([id, n], i) => <li key={id}><a href={productHref(byId.get(id)!)}><span>{i + 1}</span><b>{nameOf(id)}</b><small>{`+${n}`}</small></a></li>)}</ol></div>}
           <div className="lr2-note"><p className="lr2-k">{skinSite ? "about the youtube bits" : "// about the youtube bits"}</p>We watch the review, pull out what the reviewer actually concluded, and link the video. Creators get the views.</div>

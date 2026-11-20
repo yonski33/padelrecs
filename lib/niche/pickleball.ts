@@ -35,7 +35,7 @@ export const pickleball: Niche = {
     rate: { powerRating: ["no put-away", "cannon"], controlRating: ["all over the place", "on a string"], comfortRating: ["no bite", "grabs the ball"],
       forgivenessRating: ["tiny sweet spot", "huge sweet spot"], maneuverabilityRating: ["slow in hand battles", "lightning hands"] },
     prompts: ["what surprised you", "what you came from", "how the grit held up", "who should skip it"],
-    footLine: "we read YouTube, forums & your reviews, count the verdicts, write one honest line. no sponsored picks.", footBrands: true,
+    footLine: "we read YouTube, forums & your reviews, count the reviews, write one honest line. no sponsored picks.", footBrands: true,
   },
   // The home in the owner's PickleballRecs mock (2026-11-16), on the shared v2 components.
   v2home: {

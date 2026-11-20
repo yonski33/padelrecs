@@ -32,7 +32,7 @@
   "/brands": "/thread/brands",
   "/brands/nox": "/thread/brands/nox",
   "/compare": null,
-  "/add-review": null,
+  "/add-review": "/thread/add-review",
   "/guides/doubles-or-singles": null,
   "/paddles": null
  },

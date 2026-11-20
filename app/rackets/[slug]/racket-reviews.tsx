@@ -88,7 +88,7 @@ export default function RacketReviews({ racketId, name, cards, nicknames = [], t
   async function post() {
     if (!verdict || busy) return;
     const words = text.trim(), v = VERDICTS.find(x => x.key === verdict)!;
-    if (words && words.length < MIN_WORDS) { setError(`A little more, please: ${MIN_WORDS} characters at least, or clear the box to post just your verdict.`); return; }
+    if (words && words.length < MIN_WORDS) { setError(`A little more, please: ${MIN_WORDS} characters at least, or clear the box to post just your vote.`); return; }
     setBusy(true); setError("");
     try {
       const profile = { ...loadProfile(), ...(level ? { level } : {}) };
@@ -100,7 +100,7 @@ export default function RacketReviews({ racketId, name, cards, nicknames = [], t
         const r = await fetch("/api/reviews", { method: "POST", headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ racketMode: "existing", racketId, rating: v.rating, reviewText: words, tags: [], website: "", formToken: token, alias: nick.trim() || undefined, ...known }) });
         const b = await r.json() as { error?: string };
-        if (!r.ok) throw new Error(b.error || "Your verdict counted, but the words didn't post. Try again?");
+        if (!r.ok) throw new Error(b.error || "Your vote counted, but the words didn't post. Try again?");
       }
       setPosted(words ? "words" : "vote");
     } catch (e) { setError(e instanceof Error ? e.message : "Could not post that. Try again?"); }
@@ -122,7 +122,7 @@ export default function RacketReviews({ racketId, name, cards, nicknames = [], t
         {mood && rated > 0 && <div className="rv12-score">
           {mood.score != null && <span className="rv12-badge" title={`${W.score}: not a % of happy ${W.people}. It blends how much ${W.people} like it with how many have weighed in.`}>
             <b className={scoreBox(mood.score) || "plain"}>{mood.score}</b><span>{W.score}</span></span>}
-          <span className="rv12-bar"><span className="rv12-vbar" role="group" aria-label="Show reviews by verdict">{([["positive", mood.pos, "p"], ["mixed", mood.mix, "m"], ["negative", mood.neg, "n"]] as const).map(([k, n, cls]) =>
+          <span className="rv12-bar"><span className="rv12-vbar" role="group" aria-label="Show reviews by opinion">{([["positive", mood.pos, "p"], ["mixed", mood.mix, "m"], ["negative", mood.neg, "n"]] as const).map(([k, n, cls]) =>
             n > 0 && <button key={k} type="button" className={cls} style={{ flex: n }} aria-pressed={vf === k} title={`show ${VERDICT_PILL[k]} reviews`}
               onClick={() => { setVf(vf === k ? null : k); setShown(PAGE); }}><span className="sr-only">{`${n} ${VERDICT_PILL[k]}`}</span></button>)}</span>
             <small>{hideUnder ? countLine(mood, rated, hideUnder, v11c.thin) : v11c.thin ? `${rated} rated so far` : `${mood.pos} loved · ${mood.mix} mixed · ${mood.neg} nope · ${rated} rated · tap a colour to filter`}</small></span></div>}
@@ -173,7 +173,7 @@ export default function RacketReviews({ racketId, name, cards, nicknames = [], t
         <span>{posted === "words" ? thanksLine : THANKS[posted]}</span></div>
       : <div className={`rv-compose${verdict ? "" : " one"}`}>
         <div className="rv-ct"><b>{W.ask}</b><span>one tap, no account</span></div>
-        <div className="rv-verdicts" role="group" aria-label={`Your verdict on the ${name}`}>{VERDICTS.map(x =>
+        <div className="rv-verdicts" role="group" aria-label={`Your take on the ${name}`}>{VERDICTS.map(x =>
           <button key={x.key} type="button" className={x.key} aria-pressed={verdict === x.key} onClick={() => { setVerdict(x.key); setError(""); }}>{WORD[x.key]}</button>)}</div>
         {verdict && <><div className="rv-levels" role="group" aria-label="About you (optional)"><span>{W.levelLead}</span>{W.levels.map(l =>
           <button key={l.value} type="button" aria-pressed={level === l.value} onClick={() => setLevel(level === l.value ? null : l.value)}>{l.label}</button>)}</div>
@@ -182,7 +182,7 @@ export default function RacketReviews({ racketId, name, cards, nicknames = [], t
         <div className="rv-send">
           <span className="rv-nick"><input value={nick} onChange={e => setNick(e.target.value)} maxLength={50} placeholder="name or nickname (optional)" aria-label="Your nickname (optional, change it if you like)"/>
             <button type="button" onClick={newNick} title="Another nickname" aria-label="Another nickname">↻</button></span>
-          <button type="button" className="rv-post" disabled={!verdict || busy} onClick={post}>{busy ? "posting…" : verdict ? "Post review →" : "pick a verdict"}</button>
+          <button type="button" className="rv-post" disabled={!verdict || busy} onClick={post}>{busy ? "posting…" : verdict ? "Post review →" : "pick your take"}</button>
         </div>
         </>}
         {error && <p className="rv-err" role="alert">{error}</p>}

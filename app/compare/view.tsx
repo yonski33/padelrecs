@@ -184,7 +184,7 @@ export async function CompareView({ data, products, light = false }: { data: Dat
         <span>{nameOf(data, r)} <i>vs</i> {nameOf(data, x)}</span>
       </a></li>)}</ul>
     </section>}
-    <p className="cmp-foot">{`Counts use reviews with a clear verdict from the recent window, like each ${w.one}’s page. Tags are counted over the same reviews. `}<a href={catalogPath}>{`All ${w.many}`}</a></p>
+    <p className="cmp-foot">{`Counts use reviews with a clear opinion from the recent window, like each ${w.one}’s page. Tags are counted over the same reviews. `}<a href={catalogPath}>{`All ${w.many}`}</a></p>
   </main>{v2 && <V2Footer/>}</>;
 }
 

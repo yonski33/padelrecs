@@ -34,7 +34,7 @@ export default function QuickTakeComposer({ racketId, name, tags, nicknames, has
   async function post() {
     if (!verdict || busy) return;
     const words = text.trim(), v = VERDICTS.find(x => x.key === verdict)!;
-    if (words && words.length < MIN_WORDS) { setError(`A little more, please: ${MIN_WORDS} characters at least, or clear the box to post just your verdict.`); return; }
+    if (words && words.length < MIN_WORDS) { setError(`A little more, please: ${MIN_WORDS} characters at least, or clear the box to post just your vote.`); return; }
     setBusy(true); setError("");
     try {
       const stats = await sendVote(racketId, v.rating, loadProfile());
@@ -46,7 +46,7 @@ export default function QuickTakeComposer({ racketId, name, tags, nicknames, has
         const r = await fetch("/api/reviews", { method: "POST", headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ racketMode: "existing", racketId, rating: v.rating, reviewText: words, tags: [], website: "", formToken: token, alias: nick || undefined, ...known }) });
         const b = await r.json() as { id?: string; edit?: string; error?: string };
-        if (!r.ok) throw new Error(b.error || "Your verdict counted, but the words didn't post. Try again?");
+        if (!r.ok) throw new Error(b.error || "Your vote counted, but the words didn't post. Try again?");
         if (picked.length && b.id && b.edit) fetch("/api/reviews", { method: "PATCH", keepalive: true, headers: { "Content-Type": "application/json" }, body: JSON.stringify({ id: b.id, edit: b.edit, tags: picked }) }).catch(() => {});
         note += " Your words go live after a quick check.";
       } else if (picked.length) note += " Tags go with a few words, so they weren't saved this time.";
@@ -59,9 +59,9 @@ export default function QuickTakeComposer({ racketId, name, tags, nicknames, has
   return <>
     <div className="cbox">
       <div className="cbox-who">Posting as <b>{nick || "…"}</b><button type="button" onClick={renick}>↻ new name</button></div>
-      <div className="vbtns" role="group" aria-label={`Your verdict on the ${name}`}>
+      <div className="vbtns" role="group" aria-label={`Your take on the ${name}`}>
         {VERDICTS.map(v => <button key={v.key} type="button" aria-pressed={verdict === v.key} style={{ "--c": COLOR[v.key] } as React.CSSProperties}
-          aria-controls={regionId} onClick={() => { setVerdict(v.key); setOpen(true); setError(""); setMsg("Your verdict counts as soon as you post. Words and tags are optional."); }}>{v.word}</button>)}
+          aria-controls={regionId} onClick={() => { setVerdict(v.key); setOpen(true); setError(""); setMsg("Your vote counts as soon as you post. Words and tags are optional."); }}>{v.word}</button>)}
       </div>
       {/* One textarea that grows, so focus never jumps when the composer opens. */}
       <textarea className={open ? "open" : undefined} rows={open ? 3 : 1} maxLength={2000} value={text} aria-label="Your review" aria-controls={regionId}
@@ -73,7 +73,7 @@ export default function QuickTakeComposer({ racketId, name, tags, nicknames, has
             return <button key={t} type="button" aria-pressed={on} disabled={!on && picked.length >= MAX_TAGS} onClick={() => toggle(t)}>{t}</button>; })}
             {!allTags && tags.length > TOP_TAGS && <button type="button" className="more-tags" aria-expanded={false} onClick={() => { focusNewTag.current = true; setAllTags(true); }}>+ more tags</button>}</div>
           <div className="cbox-foot">
-            <span role="status" className={error ? "err" : undefined}>{error || msg || "Pick a verdict to post. No account needed."}</span>
+            <span role="status" className={error ? "err" : undefined}>{error || msg || "Pick your take to post. No account needed."}</span>
             <button type="button" className="cpost" disabled={!verdict || busy} onClick={post}>{busy ? "Posting…" : "Post"}</button>
           </div>
         </div>
@@ -100,7 +100,7 @@ export function QuickVoteLine({ racketId, name, label = "Played it?", wordsHref 
       setNote(stats.total > 1 ? `Counted, with ${(stats.total - 1).toLocaleString("en-US")} others.` : "Counted. You're the first.");
     } catch (e) { setNote(e instanceof Error ? e.message : "Could not save that."); } finally { setBusy(false); }
   }
-  return <div className="qvl" role="group" aria-label={`Played the ${name}? Your verdict`}>
+  return <div className="qvl" role="group" aria-label={`Played the ${name}? Your take`}>
     {label && <span>{label}</span>}
     <div className="vbtns">{VERDICTS.map(v => <button key={v.key} type="button" aria-pressed={mine === v.key} disabled={busy}
       style={{ "--c": COLOR[v.key] } as React.CSSProperties} onClick={() => tap(v)}>{words?.[v.key] ?? v.word}{mine === v.key && words ? " ✓" : ""}</button>)}</div>

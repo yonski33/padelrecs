@@ -89,7 +89,7 @@ export default function ReviewList({ title = "Reviews", subtitle, href, addHref,
     {tag && <p className="tag-filter">Showing <b>{matching.length}</b> {matching.length === 1 ? "review" : "reviews"} mentioning <span className="tag">{tag}</span>{variant && ` in ${variant}`} <Link href={reviewsHref(href, { sort, variant })} scroll={false}>Show all</Link></p>}
     {/* One quiet row (owner, 2026-11-12): verdict tabs on products with 20+ reviews, the sort as a small menu on the right. */}
     {showTabs && showSort && <div className="review-controls">
-      <nav className="verdict-filter" aria-label="Filter by verdict">
+      <nav className="verdict-filter" aria-label="Filter by opinion">
         <Link href={reviewsHref(href, { sort, tag, variant })} scroll={false} aria-current={!verdict ? "page" : undefined}>All <span className="c">{inScope.length}</span></Link>
         {VERDICT_FILTERS.filter(v => verdictCount(v)).map(v => <Link key={v} href={reviewsHref(href, { sort, tag, variant, verdict: v })} scroll={false} aria-current={verdict === v ? "page" : undefined}>{v[0].toUpperCase() + v.slice(1)} <span className="c">{verdictCount(v)}</span></Link>)}
       </nav>

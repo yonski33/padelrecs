@@ -1,5 +1,5 @@
 "use client";
-// The compare page (owner 2026-11-17, Claude Design mock "Compare v3"): quick match, "our verdict for you", small cards, why yes /
+// The compare page (owner 2026-11-17, Claude Design mock "Compare v3"): quick match, "the short answer for you", small cards, why yes /
 // why not, where they differ, specs side by side. The products' facts come from the server (app/compare/compare-v2.tsx); the
 // match % and the verdict are worked out here on every pick change (lib/home-rank matchPcts, lib/compare-verdict), so picks
 // stay instant and the address keeps the products only.
@@ -46,11 +46,11 @@ export function CompareVerdict({ products, traits, items, specLabels, scoreWord,
       <span className="cx-seg">{STYLES.filter(s => s !== "any").map(s => <button key={s} type="button" aria-pressed={c.style === s} onClick={() => style(s)}>{STYLE_WORD[s] ?? s}</button>)}</span>
       <span className="cx-seg">{(LEVELS as readonly Level[]).map(l => <button key={l} type="button" aria-pressed={c.level === l} onClick={() => setC(x => ({ ...x, level: x.level === l ? undefined : l }))}>{levelLabel(l)}</button>)}</span>
       <button type="button" className="cx-arm" aria-pressed={c.arm} onClick={() => setC(x => ({ ...x, arm: !x.arm }))}><i aria-hidden="true">{c.arm ? "✓" : ""}</i>{ARM_SHORT}</button>
-      <span className="cx-hint">{v.picked ? "verdict updated for you" : "pick a level for a straight answer"}</span>
+      <span className="cx-hint">{v.picked ? "updated for you" : "pick a level for a straight answer"}</span>
     </section>}
 
     <section className="cx-verdict" aria-live="polite">
-      <span className="cx-kicker">{v.picked ? "our verdict for you" : items ? "our verdict, before your picks" : "our verdict"}</span>
+      <span className="cx-kicker">{v.picked ? "the short answer for you" : items ? "the short answer, before your picks" : "the short answer"}</span>
       {L(v.head, true)}
       {v.rest.map((l, i) => <div key={i}>{L(l)}</div>)}
     </section>
@@ -63,7 +63,7 @@ export function CompareVerdict({ products, traits, items, specLabels, scoreWord,
           <a className="cx-name" href={p.href} title={p.name}>{p.short}</a>
           {p.shop && <a className="cx-buy" href={p.shop.url} target="_blank" rel={p.shop.rel}>check price ↗</a>}
         </div>
-        {!v.picked && !COMPARE_SHOWS_SCORE ? <span className="cx-num" title="Reviews with a verdict"><b>{p.judged.toLocaleString("en-US")}</b><small>{p.judged === 1 ? "review" : "reviews"}</small></span>
+        {!v.picked && !COMPARE_SHOWS_SCORE ? <span className="cx-num" title="Reviews with a clear opinion"><b>{p.judged.toLocaleString("en-US")}</b><small>{p.judged === 1 ? "review" : "reviews"}</small></span>
           : !v.picked && scoreState(p.judged) === "new" ? <span className="cx-num"><NewPill n={p.judged}/></span> : <span className="cx-num" title={v.picked ? NOTE : undefined}><b className={(v.picked ? matchBox(num) : scoreBox(num)) || undefined}>{num === null ? "–" : v.picked ? `${num}%` : num}</b><small>{v.picked ? "match" : scoreWord}</small></span>}
         {removeHref[p.id] && <a className="cx-x" href={removeHref[p.id]} aria-label={`Remove ${p.name}`}>✕</a>}
       </article>; })}</section>

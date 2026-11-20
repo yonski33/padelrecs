@@ -68,7 +68,7 @@ export default async function HomeBeauty({ choice }: { choice: SkinChoice }) {
       link: sensList ? { href: listHref(sensList.list.slug), t: "See the sensitive-skin list →" } : { href: skinHref({ ...choice, concerns: ["sensitive"] }), t: "Rank for sensitive skin →" } }] : []),
     { q: "Light or rich texture?", a: "Lighter textures tend to suit oily and combination skin, richer ones dry skin. Each product page shows how reviewers describe its texture, and you can fine-tune the list above by texture.", link: { href: "#textures", t: "Textures →" } },
     { q: "What does the match % mean?", a: MATCH_NOTE, link: { href: "/how-we-make-these#match", t: "How we score →" } },
-    { q: "Where do the reviews come from?", a: `Reviews left here, ${channels ? `${channels} YouTube channels, ` : ""}skincare blogs and forums. We count the verdicts by skin type and write one honest line per product.`, link: { href: "/how-we-make-these", t: "How we make these →" } },
+    { q: "Where do the reviews come from?", a: `Reviews left here, ${channels ? `${channels} YouTube channels, ` : ""}skincare blogs and forums. We count the reviews by skin type and write one honest line per product.`, link: { href: "/how-we-make-these", t: "How we make these →" } },
     { q: "Is anything sponsored?", a: "No. Some “check price” links earn us a small commission, but they never change the order or the score.", link: { href: "/affiliate-disclosure", t: "Affiliate note →" } },
   ];
 
@@ -115,7 +115,7 @@ export default async function HomeBeauty({ choice }: { choice: SkinChoice }) {
 
       <section className="bh-how">
         <span className="bp-tag sm">how we score</span>
-        {[`${total.toLocaleString("en-US")} reviews${channels ? ` + ${channels} YouTube channels` : ""} + forums`, "we count every verdict, by skin type", "one honest line"].map((t, i) =>
+        {[`${total.toLocaleString("en-US")} reviews${channels ? ` + ${channels} YouTube channels` : ""} + forums`, "we count every review, by skin type", "one honest line"].map((t, i) =>
           <span key={t} className="bh-step"><i>{i + 1}</i>{t}</span>)}
         <b>No sponsored picks.</b>
         <a href="/how-we-make-these">how it works →</a>

@@ -83,7 +83,7 @@ const TABS = [["all", "All"], ["player", "Players"], ["reddit", "Reddit"], ["you
 const PAGE = 8, MIN_WORDS = 20;
 /** Why Post is off (owner 2026-11-19): a verdict is always needed; a name only with written text (a verdict alone is a vote). */
 const postWhy = (verdict: Verdict | null, text: string, nick: string) => { const noName = !!text.trim() && !!nameProblem(nick);
-  return !verdict && noName ? "Pick a verdict and add a name to post" : !verdict ? "Pick a verdict to post" : noName ? "Add a name to post" : ""; };
+  return !verdict && noName ? "Pick your take and add a name to post" : !verdict ? "Pick your take to post" : noName ? "Add a name to post" : ""; };
 type Sort = "new" | "pos" | "crit" | "helpful";
 /** The mock's sorts (Newest · Most positive · Critical first), plus the existing Most helpful. */
 const SORTS: [Sort, string][] = [["new", "Newest"], ["pos", "Most positive"], ["crit", "Critical first"], ["helpful", "Most helpful"]];
@@ -122,7 +122,7 @@ export function Reviews({ id, cards, nicknames, words = PADEL_REVIEW_WORDS, chip
     const words = text.trim();
     // A written review needs a name (owner 2026-11-19); a verdict alone is a one-tap vote and stays nameless.
     const problem = words ? nameProblem(nick) : null; if (problem) { setError(problem); return; }
-    if (words && words.length < MIN_WORDS) { setError(`A little more, please: ${MIN_WORDS} characters at least, or clear the box to post just your verdict.`); return; }
+    if (words && words.length < MIN_WORDS) { setError(`A little more, please: ${MIN_WORDS} characters at least, or clear the box to post just your vote.`); return; }
     setBusy(true); setError("");
     try {
       const profile = loadProfile();
@@ -168,7 +168,7 @@ export function Reviews({ id, cards, nicknames, words = PADEL_REVIEW_WORDS, chip
       {chips && chips.length > 1 && <div className="th-rv-chips" role="group" aria-label="Show version">{[null, ...chips].map(v =>
         <button key={v ?? "all"} type="button" className="th-chipf" aria-pressed={version === v} onClick={() => { setVersion(v); setShown(PAGE); }}>{v ?? "All versions"}</button>)}</div>}
       <div className="th-rv-bar">
-        <div className="th-rv-chips" role="group" aria-label="Show verdict">{VF.map(([k, l]) => { const n = k ? inTab.filter(c => c.verdict === k).length : inTab.length;
+        <div className="th-rv-chips" role="group" aria-label="Show reviews by opinion">{VF.map(([k, l]) => { const n = k ? inTab.filter(c => c.verdict === k).length : inTab.length;
           return <button key={l} type="button" className="th-chipf" aria-pressed={vf === k} onClick={() => { setVf(k); setShown(PAGE); }}>{l}{n > 0 && <span>{n}</span>}</button>; })}</div>
         <div className="th-seg" role="group" aria-label="Sort"><span className="lbl">Sort</span>
           {SORTS.map(([k, l]) => <button key={k} type="button" aria-pressed={sort === k} onClick={() => setSort(k)}>{l}</button>)}</div>

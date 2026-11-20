@@ -102,7 +102,7 @@ export default async function RankingV2({ data, lists, found, amazon, affiliate,
     { k: "fresh", kicker: "fresh", title: fresh > 0 ? `${fresh.toLocaleString("en-US")} ${WEEK_SHORT}` : "The latest reviews", href: "/reviews",
       line: `What ${niche.people.many} just said${skin ? "." : `, straight from the ${v2copy.venue ?? "court"}.`}`, cta: "latest reviews →" },
     { k: "turn", kicker: "your turn", title: skin ? "Used one of these?" : WORDS ? niche.copy.ui.triedOneOfThese : "Played one of these?", href: "/add-review",
-      line: "Your verdict moves the list. One tap, no account.", cta: "+ add a review" },
+      line: "Your review moves the list. One tap, no account.", cta: "+ add a review" },
   ];
 
   return <main className={`rl2 rk3 ${qtFontVars}`}>

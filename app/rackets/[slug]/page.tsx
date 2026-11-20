@@ -231,7 +231,7 @@ export default async function RacketPage({params, searchParams}: {params: Promis
   const list = (ts: readonly string[]) => ts.length > 1 ? `${ts.slice(0, -1).join(", ")} and ${ts[ts.length - 1]}` : ts[0];
   const faq: { q: string; a: string }[] = [];
   if (r.reviewSummary) faq.push({ q: `What do ${niche.people.many} say about ${name}?`, a: r.reviewSummary });
-  if (judged >= 5) faq.push({ q: `Is ${name} worth it?`, a: [`Of the ${judged.toLocaleString("en-US")} reviews with a clear verdict, ${share("positive")}% are positive, ${share("mixed")}% mixed and ${share("negative")}% negative.`,
+  if (judged >= 5) faq.push({ q: `Is ${name} worth it?`, a: [`Of the ${judged.toLocaleString("en-US")} reviews with a clear opinion, ${share("positive")}% are positive, ${share("mixed")}% mixed and ${share("negative")}% negative.`,
     sum.loved[0] ? `The praise mentioned most is ${sum.loved[0]}.` : "", sum.complaints[0] ? `The most common complaint is ${sum.complaints[0]}.` : ""].filter(Boolean).join(" ") });
   if (sum.loved.length) { const ex = example(sum.loved[0], "positive"); faq.push({ q: `What do people like about ${name}?`, a: `The praise reviewers mention most: ${list(sum.loved.slice(0, 3).map(mention))}.${ex ? ` For example: ${ex}` : ""}` }); }
   if (sum.complaints.length) { const ex = example(sum.complaints[0], "negative"); faq.push({ q: `What are the most common complaints about ${name}?`, a: `The complaints reviewers mention most: ${list(sum.complaints.slice(0, 3).map(mention))}.${ex ? ` For example: ${ex}` : ""}` }); }
@@ -605,7 +605,7 @@ export default async function RacketPage({params, searchParams}: {params: Promis
         </div> : <p className="p-first">{`Be the first to review it. ${niche.copy.ui.triedIt}`}</p>}
         {pos !== null && <SentimentBand positive={s.positive} mixed={s.mixed} negative={s.negative}/>}
         {/* What the split is a share of, so it reads the same as the review tabs below (owner, 2026-11-12). */}
-        {pos !== null && <p className="sband-base">{`Of ${s.judged.toLocaleString("en-US")} ${s.judged === 1 ? "review" : "reviews"} with a clear verdict`}</p>}
+        {pos !== null && <p className="sband-base">{`Of ${s.judged.toLocaleString("en-US")} ${s.judged === 1 ? "review" : "reviews"} with a clear opinion`}</p>}
         {pos !== null && <ul className="p-legend m-only" aria-hidden="true">{([["positive", "Positive", s.positive], ["mixed", "Mixed", s.mixed], ["negative", "Negative", s.negative]] as const).map(([k, w, n], i) =>
           <li key={k} className={`s-${k}`}><span>{w}</span><b>{`${shares([s.positive, s.mixed, s.negative])[i]}%`}</b></li>)}</ul>}
       </div>
