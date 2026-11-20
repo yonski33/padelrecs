@@ -13,6 +13,8 @@ import { plainSummary } from "../../../lib/plain-summary";
 import { STACK_TOOLS, sideOf, toolBySlug, type Side, type StackTool } from "../../../lib/stack/catalog";
 import { GROUPS } from "../../../lib/stack/traits";
 import { monogram } from "../../../lib/stack/monogram";
+// The tool's uploaded logo (admin, /product-photo/<slug>) where there is one; the monogram tile stays the fallback.
+import { shopPhoto } from "../../../lib/shop-photos";
 import { stackScores, weighOpinions, ageMonths, CUTOFF_MONTHS, type Opinion, type Verdict } from "../../../lib/stack/score";
 import type { MatchInput } from "../../../lib/stack/match";
 import { ago, type ThreadRow } from "../ui";
@@ -74,7 +76,7 @@ function rowOf(r: Tool, vendor: string, ops: Opinion[], score: number | null, no
   const top = Object.entries(bestFor).filter(([, c]) => c > 0).sort((a, b) => b[1] - a[1])[0];
   const label = top ? GROUPS[side].find(g => g.key === "best_for")!.options.find(([k]) => k === top[0])![1] : null;
   const reviews = data.reviews.filter(x => x.racketId === r.id).length + data.external.filter(x => x.racketId === r.id).length;
-  return { id: r.id, slug: r.slug, name: r.name, href: productHref(r), pic: monogram(r.name, side), shape: r.shape, line: r.reviewSummary?.split(/(?<=\.)\s/)[0] ?? null,
+  return { id: r.id, slug: r.slug, name: r.name, href: productHref(r), pic: shopPhoto(r) ?? monogram(r.name, side), shape: r.shape, line: r.reviewSummary?.split(/(?<=\.)\s/)[0] ?? null,
     best: label ? label.toLowerCase() : null, n: reviews, pos: n("positive"), mix: n("mixed"), neg: n("negative"), score, brand: vendor, year: r.year,
     levels: [], feel: null, arm: false, current: true, side, facts, bestFor, newest: w.newest };
 }

@@ -63,7 +63,7 @@ export default async function StackTool({ params }: P) {
         <div className="th-crumbs"><a href={th("/tools")}>Tools</a><span>/</span><a href={th(`/tools?side=${row.side}`)}>{SIDE_WORD[row.side]}</a>
           {ranking && <><span>/</span><a href={th(`/rankings/${ranking.slug}`)}>{row.shape}</a></>}</div>
         <article className="th-card th-post"><div className="th-post-in">
-          <div className="th-by"><span className="th-dot" aria-hidden="true"/><strong>{niche.site.name}</strong>{updated && <><span>·</span><span>{`last updated ${updated}`}</span></>}
+          <div className="th-by"><img className="th-logo-icon" src={`/niches/${niche.id}/icon.svg`} alt="" width={22} height={22}/><strong>{niche.site.name}</strong>{updated && <><span>·</span><span>{`last updated ${updated}`}</span></>}
             {judged > 0 && <><span>·</span><span>{`${plural(judged, "opinion")} counted`}</span></>}</div>
           <h1 className="th-h1">{row.name}</h1>
           <div className="th-tags">
