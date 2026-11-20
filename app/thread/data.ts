@@ -175,11 +175,9 @@ export const threadFeed = cache(async (): Promise<FeedItem[]> => {
   return [...own, ...web].sort((a, b) => b.date.localeCompare(a.date));
 });
 
-/** "Top picks by players" (home, owner mock 2026-11-19): six lists of three, from the same per-racket counts as the racket
- *  pages' "How does it play?" (review prefill or the owner's override, plus real votes). Ranking rules: lib/thread/top-picks.ts. */
-export const threadTopPicks = cache(async (): Promise<{ lists: PickList[]; total: number }> => {
-  if (!hasDb()) return { lists: [], total: 0 };
-  const { ctx, rows } = await threadRows();
+/** Live "How does it play?" counts: votes per option and per group, and the owner's typed group overrides, by
+ *  "racketId|trait(|choice)". Empty on any error, so the pages keep the review prefill. */
+export const traitCounts = cache(async () => {
   const votes = new Map<string, number>(), groupVotes = new Map<string, number>(), overrides = new Map<string, Record<string, number>>();
   let voteTotal = 0;
   try {
@@ -191,6 +189,21 @@ export const threadTopPicks = cache(async (): Promise<{ lists: PickList[]; total
     for (const o of await db.select({ racketId: traitOverrides.racketId, trait: traitOverrides.trait, counts: traitOverrides.reviewCounts }).from(traitOverrides))
       if (o.counts) overrides.set(`${o.racketId}|${o.trait}`, o.counts);
   } catch (error) { console.error("[thread] top picks votes failed", error); }
+  return { votes, groupVotes, overrides, voteTotal };
+});
+/** One racket's group as the racket page shows it: the owner's override or the review prefill, plus votes per option. */
+export function traitGroup(t: Awaited<ReturnType<typeof traitCounts>>, id: string, trait: string): Record<string, number> {
+  const base = t.overrides.get(`${id}|${trait}`) ?? traitSeed(niche.id, id)?.groups[trait] ?? {}, out = { ...base };
+  for (const [k, n] of t.votes) { const [r, tr, c] = k.split("|"); if (r === id && tr === trait) out[c] = (out[c] ?? 0) + n; }
+  return out;
+}
+
+/** "Top picks by players" (home, owner mock 2026-11-19): six lists of three, from the same per-racket counts as the racket
+ *  pages' "How does it play?" (review prefill or the owner's override, plus real votes). Ranking rules: lib/thread/top-picks.ts. */
+export const threadTopPicks = cache(async (): Promise<{ lists: PickList[]; total: number }> => {
+  if (!hasDb()) return { lists: [], total: 0 };
+  const { ctx, rows } = await threadRows();
+  const { votes, groupVotes, overrides, voteTotal } = await traitCounts();
   const byId = new Map(ctx.data.listed.map(r => [r.id, r]));
   const rackets: PickRacket[] = [...rows.values()].filter(r => r.current).flatMap(r => {
     const seed = traitSeed(niche.id, r.id), raw = byId.get(r.id);
