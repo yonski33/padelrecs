@@ -84,3 +84,17 @@ test("skin process: words, bylines and routing on NICHE=skin", () => {
   assert.doesNotMatch(out["/?look=classic"], /^\/thread/);
   assert.doesNotMatch(out["/compare"], /^\/thread/);
 });
+
+test("skin accounts: on, skin type and main concern as the profile, staff-like name kept", () => {
+  const script = `const { accountSite } = await import("./lib/thread/sites.ts"); const { accountNameProblem } = await import("./lib/thread/account-name.ts");
+    const { profileLine } = await import("./lib/thread/display-name.ts"); const { niche } = await import("./lib/niche/index.ts");
+    console.log(JSON.stringify({ on: accountSite("skin"), staff: accountNameProblem("SkinRecs"), labels: [niche.profile.playerLevel.label, niche.profile.playingSide.label],
+      lines: [profileLine("Dry", "Acne"), profileLine(null, "Redness"), profileLine("Oily", null)] }));`;
+  const raw = execFileSync(process.execPath, ["--conditions=react-server", "--import", "tsx", "--input-type=module", "-e", script],
+    { env: { ...process.env, NICHE: "skin" }, cwd: new URL("..", import.meta.url).pathname, encoding: "utf8" });
+  const out = JSON.parse(raw.trim().split("\n").pop()!);
+  assert.equal(out.on, true);
+  assert.equal(out.staff, "That name is kept for the site. Pick another.");
+  assert.deepEqual(out.labels, ["Skin type", "Main concern"]);
+  assert.deepEqual(out.lines, ["Dry skin, for acne", "For redness", "Oily skin"]);
+});
