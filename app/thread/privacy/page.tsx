@@ -5,16 +5,18 @@ import { Shell } from "../shell";
 import { th } from "../../../lib/thread/look";
 import { niche } from "../../../lib/niche";
 
+/** The two profile fields in words: SkinRecs asks skin type and main concern, the racket sites level and side. */
+const PROFILE = niche.id === "skin" ? "skin type and main concern" : "level and side";
 export const metadata: Metadata = { title: "Privacy", description: `What ${niche.site.name} keeps when you post or sign in, and how to delete it.`, alternates: { canonical: "/privacy" } };
 
 const SECTIONS: { title: string; body: string[] }[] = [
   { title: "Posting without an account", body: [
-    "A review or comment keeps the name you typed, your words, and the level and side if you gave them.",
+    `A review or comment keeps the name you typed, your words, and the ${PROFILE} if you gave them.`,
     `A random device cookie, stored only as a keyed hash, lets one device have one vote per ${niche.words.one} and links your earlier posts if you sign in later. A hash of your network and browser limits floods. Your IP address is never stored as it is.`,
   ] },
   { title: "With an account", body: [
     "An account is optional. Signing in stores your email address with the sign-in service (Supabase Auth, hosted in Frankfurt, EU). It's used only to send sign-in links: never shown on the site, never sold, no newsletters.",
-    "The site keeps your reserved name, your level and side if you set them, and which reviews and comments are yours. A sign-in cookie keeps you signed in on that browser until you sign out.",
+    `The site keeps your reserved name, your ${PROFILE} if you set them, and which reviews and comments are yours. A sign-in cookie keeps you signed in on that browser until you sign out.`,
   ] },
   { title: "Deleting your account", body: [
     "On your account page, Delete account removes your email and sign-in straight away and frees your name. Your posts stay under the name, without the member mark, unless you choose to delete them too.",

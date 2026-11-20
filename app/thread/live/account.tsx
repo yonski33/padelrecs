@@ -11,8 +11,8 @@ import { niche } from "../../../lib/niche";
 
 /** The review form's own labels ("Level" and "Side" on padel, "Level" and "Mostly plays" on pickleball). */
 const LEVEL = niche.profile.playerLevel.label, SIDE = niche.profile.playingSide.label;
-/** The side in a sentence: "side" on padel, "play style" where the field is "Mostly plays". */
-const SIDE_WORD = SIDE === "Side" ? "side" : "play style";
+/** The fields in a sentence: "level or side" on padel, "level or play style" on pickleball, "skin type or main concern" on skin. */
+const LEVEL_WORD = LEVEL.toLowerCase(), SIDE_WORD = SIDE === "Mostly plays" ? "play style" : SIDE.toLowerCase();
 
 export type AccountView = { name: string; level: string | null; side: string | null; status: string } | null;
 type Initial = { signedIn: false } | { signedIn: true; email: string | null; account: AccountView };
@@ -128,7 +128,7 @@ function Profile({ email, account, next, levels, sides, linked = 0, onChange }: 
         <label>Name or nickname<input value={name} onChange={e => { setName(e.target.value); setError(""); setSaved(false); }} maxLength={NAME_MAX} disabled={blocked}/></label>
         <Picks label={LEVEL} options={levels} value={level} set={v => { setLevel(v); setSaved(false); }}/>
         <Picks label={SIDE} options={sides} value={side} set={v => { setSide(v); setSaved(false); }}/>
-        <span className="th-note">{`A new name, level or ${SIDE_WORD} also shows on your earlier reviews and comments.`}</span>
+        <span className="th-note">{`A new name, ${LEVEL_WORD} or ${SIDE_WORD} also shows on your earlier reviews and comments.`}</span>
         {error && <span className="th-err" role="alert">{error}</span>}
         {saved && <span className="th-note" role="status">Saved. Your posts show the change too.</span>}
         <div style={{ display: "flex", gap: 12, alignItems: "center", flexWrap: "wrap" }}>
