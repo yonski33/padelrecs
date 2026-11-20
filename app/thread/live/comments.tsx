@@ -16,12 +16,12 @@ import { mentionOf, withoutMention } from "../../../lib/thread/mention";
 /** Optional accounts run on PadelRecs only for now (lib/thread/sites.ts accountSite). */
 const ACCOUNTS = accountSite(niche.id);
 
-type C = { id: string; parentId: string | null; alias: string; body: string; at: string; score: number; mine: number; member?: boolean; level?: string | null; side?: string | null };
+export type C = { id: string; parentId: string | null; alias: string; body: string; at: string; score: number; mine: number; member?: boolean; level?: string | null; side?: string | null };
 const HELD = "Thanks! Your comment will show once a person has checked it.";
 
 
-function Box({ me, nick, setNick, nicknames, placeholder, cta, onPost, onCancel, autoFocus = true, mention }: { me: Me; nick: string; setNick: (s: string) => void; nicknames: string[]; placeholder: string; cta: string;
-  onPost: (text: string) => Promise<boolean>; onCancel: () => void; autoFocus?: boolean; /** Prefilled "@Name " (a reply to a reply). */ mention?: string }) {
+export function Box({ me, nick, setNick, nicknames, placeholder, cta, onPost, onCancel, autoFocus = true, mention, back = "#comments" }: { me: Me; nick: string; setNick: (s: string) => void; nicknames: string[]; placeholder: string; cta: string;
+  onPost: (text: string) => Promise<boolean>; onCancel: () => void; autoFocus?: boolean; /** Prefilled "@Name " (a reply to a reply). */ mention?: string; /** Where sign-in brings you back. */ back?: string }) {
   const [text, setText] = useState(mention ?? ""), [busy, setBusy] = useState(false), [nameErr, setNameErr] = useState("");
   // A name is required (owner 2026-11-19): checked here, the message right under this box (replies too), no modal.
   const send = async () => { const p = nameProblem(nick); if (p) { setNameErr(p); return; } setNameErr(""); setBusy(true); if (await onPost(text.trim())) setText(""); setBusy(false); };
@@ -36,7 +36,7 @@ function Box({ me, nick, setNick, nicknames, placeholder, cta, onPost, onCancel,
       {me ? <span className="th-as th-as-me">Posting as <b>{me.name}</b><MemberMark/></span>
         : <span className="th-as"><input value={nick} onChange={e => { setNick(e.target.value); setNameErr(""); }} maxLength={NAME_MAX} placeholder="Name or nickname" aria-label="Name or nickname" aria-invalid={!!nameErr} required/></span>}
       <span className="th-grow"/>
-      {!me && ACCOUNTS && <a className="th-signin" href={signInHref("#comments")}>Sign in to keep your name</a>}
+      {!me && ACCOUNTS && <a className="th-signin" href={signInHref(back)}>Sign in to keep your name</a>}
       <button type="button" className="cancel" onClick={onCancel}>Cancel</button>
       <button type="button" className="th-post" disabled={busy || !!why} onClick={send}>{busy ? "Posting…" : cta}</button>
     </div>
@@ -44,7 +44,9 @@ function Box({ me, nick, setNick, nicknames, placeholder, cta, onPost, onCancel,
   </div>;
 }
 
-export function Comments({ page, title = "Comments", prompt = "Join the conversation", placeholder = "Join the conversation", nicknames = [] }: { page: string; title?: string; prompt?: string; placeholder?: string; nicknames?: string[] }) {
+/** The comment thread's state and actions (load, post, vote, the owner's edit / delete / hide), shared by Comments here and
+ *  PadelRecs' Discussion (discussion.tsx). */
+export function useComments(page: string) {
   const [list, setList] = useState<C[] | null>(null), [open, setOpen] = useState(false), [reply, setReply] = useState<string | null>(null);
   const [sort, setSort] = useState<"new" | "top">("new"), [nick, setNick] = useState(""), [note, setNote] = useState(""), [err, setErr] = useState("");
   const token = useRef("");
@@ -100,6 +102,13 @@ export function Comments({ page, title = "Comments", prompt = "Join the conversa
   }
   const tops = (list ?? []).filter(c => !c.parentId).sort((a, b) => sort === "top" ? b.score - a.score || b.at.localeCompare(a.at) : b.at.localeCompare(a.at));
   const replies = (id: string) => (list ?? []).filter(c => c.parentId === id).sort((a, b) => a.at.localeCompare(b.at));
+  const open_ = (c: C, nameOnly: boolean) => { draft.current = c.body; draftName.current = typedName(c.alias) ?? ""; setEditErr("");
+    setEditing(editing?.id === c.id && !!editing.nameOnly === nameOnly ? null : { id: c.id, text: c.body, nameOnly }); };
+  return { list, setList, open, setOpen, reply, setReply, sort, setSort, nick, setNick, note, setNote, err, setErr, admin, editing, setEditing, draft, draftName, editErr, setEditErr, own, me, post, vote, tops, replies, open_ };
+}
+
+export function Comments({ page, title = "Comments", prompt = "Join the conversation", placeholder = "Join the conversation", nicknames = [] }: { page: string; title?: string; prompt?: string; placeholder?: string; nicknames?: string[] }) {
+  const { list, open, setOpen, reply, setReply, sort, setSort, nick, setNick, note, setNote, err, admin, editing, setEditing, draft, draftName, editErr, setEditErr, own, me, post, vote, tops, replies, open_ } = useComments(page);
   const Votes = ({ c }: { c: C }) => <span>
     <button type="button" className="arrow up" aria-label="Upvote" aria-pressed={c.mine === 1} onClick={() => vote(c, 1)}>▲</button>
     <span className="n">{c.score}</span>
@@ -108,8 +117,6 @@ export function Comments({ page, title = "Comments", prompt = "Join the conversa
     <button type="button" className="reply" onClick={() => open_(c, false)}>{editing?.id === c.id && !editing.nameOnly ? "Cancel edit" : "Edit"}</button>
     <button type="button" className="reply" onClick={() => own(c, "delete")}>Delete</button>
     <button type="button" className="reply" onClick={() => own(c, "hide")}>Hide</button></> : null;
-  const open_ = (c: C, nameOnly: boolean) => { draft.current = c.body; draftName.current = typedName(c.alias) ?? ""; setEditErr("");
-    setEditing(editing?.id === c.id && !!editing.nameOnly === nameOnly ? null : { id: c.id, text: c.body, nameOnly }); };
   /** "Rename" next to the poster's name, for the owner only. */
   const Rename = ({ c }: { c: C }) => admin && !c.id.startsWith("temp-") && c.alias !== "[removed]" ? <button type="button" className="th-mini-btn" style={{ fontSize: 12 }} onClick={() => open_(c, true)}>Rename</button> : null;
   // Called as a function, not a component, so the edit box keeps its input (and focus) across re-renders.

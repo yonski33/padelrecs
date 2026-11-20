@@ -9,6 +9,11 @@ export function ContactForm({ topics, labels }: { topics: Topic[]; labels: { top
   const token = useRef(""), [topic, setTopic] = useState(0), [busy, setBusy] = useState(false), [error, setError] = useState(""), [done, setDone] = useState(false);
   const load = () => fetch("/api/contact", { cache: "no-store" }).then(r => r.ok ? r.json() : null).then((b: { token?: string } | null) => { if (b?.token) token.current = b.token; }).catch(() => {});
   useEffect(() => { load(); }, []);
+  // "Report" on a review or comment (racket-v7b.tsx) opens this form with the post's link, from this site only.
+  const [prefill, setPrefill] = useState("");
+  useEffect(() => { const r = new URLSearchParams(location.search).get("report");
+    // eslint-disable-next-line react-hooks/set-state-in-effect
+    try { if (r && new URL(r).origin === location.origin) setPrefill(`Reporting this post: ${r}\n\nWhat's wrong with it: `); } catch {} }, []);
   async function submit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault(); setError("");
     const v = Object.fromEntries(new FormData(e.currentTarget)) as Record<string, string>;
@@ -32,7 +37,7 @@ export function ContactForm({ topics, labels }: { topics: Topic[]; labels: { top
       {topics.map((t, i) => <button key={t.label} type="button" className="th-pick sm" aria-pressed={topic === i} onClick={() => setTopic(i)}>{t.label}</button>)}</div></div>
     <label>Your name<input name="name" autoComplete="name" maxLength={100}/></label>
     <label>{labels.email}<input name="email" type="email" autoComplete="email" placeholder={labels.emailPh} maxLength={254}/></label>
-    <label>{labels.message}<textarea name="message" rows={5} placeholder={topics[topic].placeholder} maxLength={5000}/></label>
+    <label>{labels.message}<textarea key={prefill} defaultValue={prefill} name="message" rows={5} placeholder={topics[topic].placeholder} maxLength={5000}/></label>
     <input name="website" tabIndex={-1} autoComplete="off" aria-hidden="true" style={{ position: "absolute", left: -9999 }}/>
     {error && <span className="th-err" role="alert">{error}</span>}
     <button type="submit" className="th-btn round lime" style={{ alignSelf: "flex-start" }} disabled={busy}>{busy ? "Sending…" : labels.send}</button>
