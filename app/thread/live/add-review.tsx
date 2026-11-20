@@ -13,6 +13,7 @@ import { nameProblem, NAME_MAX } from "../../../lib/thread/display-name";
 import { accountSite } from "../../../lib/thread/sites";
 import { th } from "../../../lib/thread/look";
 import { VERDICT } from "../ui";
+import { W } from "../../../lib/thread/words";
 import { useAccount, signInHref } from "./use-account";
 import { MemberMark } from "./member-mark";
 import type { AddV2Props } from "../../add-review/v2-props";
@@ -27,7 +28,8 @@ type Opt = { label: string; value: string };
 const optOf = (opts: Opt[], v?: string | null) => v ? opts.find(o => o.value.toLowerCase() === v.toLowerCase())?.value ?? null : null;
 
 export function ThreadAddReview({ rackets, initial, levels, sides, times, traits = TRAITS, prompts = PROMPTS, labels }: AddV2Props) {
-  const L = labels ?? { level: "my level", side: "I play", how: "How does it play?", who: "similar players" };
+  // "similar players" / "similar people": the site's Thread word for people (lib/thread/words.ts; SkinRecs never says "users").
+  const L = { ...(labels ?? { level: "my level", side: "I play", how: "How does it play?" }), who: `similar ${W.people}` };
   const [racketId, setRacketId] = useState<string | null>(initial ?? null), [q, setQ] = useState("");
   const [verdict, setVerdict] = useState<Verdict | null>(null);
   const [level, setLevel] = useState<string | null>(null), [side, setSide] = useState<string | null>(null), [time, setTime] = useState<string | null>(null);
