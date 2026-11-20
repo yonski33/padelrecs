@@ -1,5 +1,4 @@
 import { TRAIT_GROUPS, type TraitGroup } from "./traits";
-import { W } from "./words";
 // How one "How does it play?" group shows (owner 2026-11-19): review mentions (db/thread/padel-traits.json) and players'
 // votes add up per option, and every option with any shows its real count and bar, 1 included (owner: no "under 5" rule
 // in the vote widgets; a tap visibly adds 1). A group with no counts at all can show the spec that settles it (a diamond
@@ -25,28 +24,9 @@ export function groupNote(g: GroupView): string {
   const p = (n: number, w: string) => `${n} ${w}${n === 1 ? "" : "s"}`;
   return [g.reviews ? p(g.reviews, "review") : "", g.votes ? p(g.votes, "vote") : ""].filter(Boolean).join(", ");
 }
-/** SkinRecs (audit 2026-11-20): the reviews behind the bars as a share of the byline's opinions, "15 of the 44 opinions",
- *  so the page tells one count story. Null without a base, or when the base is smaller (then the plain count stays). */
-function ofBase(sources: number, of?: number): string | null {
-  return of && sources > 0 && sources <= of ? `${sources} of the ${of} ${W.opinions}` : null;
-}
-/** The section's line on phones, short enough for one or two lines (owner 2026-11-19). */
-export function sectionNoteShort(sources: number, votes: number, of?: number): string {
-  const base = ofBase(sources, of);
-  if (base) return `${votes > 0 ? "From" : "Based on"} ${base}${votes > 0 ? ` and ${votes} ${votes === 1 ? "vote" : "votes"}` : ""}. Tap again to remove.`;
-  if (sources > 0 && votes > 0) return `From ${sources} reviews and ${votes} ${votes === 1 ? "vote" : "votes"}. Tap again to remove.`;
-  if (sources > 0) return `Based on ${sources} ${sources === 1 ? "review" : "reviews"}. Tap again to remove.`;
-  return "One vote per group. Tap again to remove.";
-}
-/** The section's line under the heading. */
-export function sectionNote(sources: number, votes: number, of?: number): string {
-  const base = ofBase(sources, of);
-  if (base && votes === 0) return `Based on ${base} until ${W.people} vote. Pick what fits. Tap again to remove.`;
-  if (base) return `From ${base} and ${votes} ${votes === 1 ? "vote" : "votes"}. Pick what fits. Tap again to remove.`;
-  if (sources > 0 && votes === 0) return `Based on ${sources} ${sources === 1 ? "review" : "reviews"} until ${W.people} vote. Pick what fits. Tap again to remove.`;
-  if (sources > 0) return `From ${sources} reviews and ${votes} player ${votes === 1 ? "vote" : "votes"}. Pick what fits. Tap again to remove.`;
-  return "Pick what fits. One vote per group. Tap again to remove.";
-}
+/** The line above the vote grid on every Thread site, phone and desktop, voted or not (owner 2026-11-20: was "From 82
+ *  reviews and 24 player votes. Pick what fits. Tap again to remove." and its variants). */
+export const SECTION_NOTE = "Tap to vote";
 /** The counts typed into the form: one whole number 0–100000 per option ("c_<option>"), blanks as 0. */
 export function countsFrom(trait: string, form: Record<string, unknown>, groups = TRAIT_GROUPS, prefix = "c_"): Record<string, number> | null {
   const g = groups.find(x => x.key === trait)!, out: Record<string, number> = {};
