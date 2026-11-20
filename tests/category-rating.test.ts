@@ -74,3 +74,23 @@ test("shape words count inside a longer shape", () => {
   assert.ok(cautiousShare(pp, { group: g, shape: "Hybrid elongated" }, 0.5)! > cautiousShare(pp, { group: g, shape: "Hybrid" }, 0.5)!);
   assert.ok(cautiousShare(pp, { group: g, shape: "Standard" }, 0.5)! < cautiousShare(pp, { group: g, shape: "Hybrid" }, 0.5)!);
 });
+
+test("skin: 17 per-type lists, rated per skin need; hubs and product-type lists keep the user score", async () => {
+  const { skinSplits, SKIN_NEEDS } = await import("../lib/skin-lists");
+  const xs = skinSplits();
+  assert.equal(xs.length, 17);
+  assert.equal(new Set(xs.map(x => x.slug)).size, 17);
+  assert.ok(xs.some(x => x.slug === "best-sunscreens-for-sensitive-skin" && x.title === "Best sunscreens for sensitive skin"));
+  assert.ok(xs.some(x => x.slug === "best-acne-treatments" && x.label === "Acne treatments"));
+  assert.equal(ratingCategory("best-moisturizers-for-dry-skin", "skin")?.label, "Dry skin rating");
+  assert.equal(ratingCategory("best-cleansers-for-acne", "skin")?.attr, "suits_acne");
+  for (const slug of [...SKIN_NEEDS.map(n => n.hub), "best-face-moisturizers", "best-face-sunscreens"]) assert.equal(ratingCategory(slug, "skin"), null, slug);
+  assert.equal(ratingCategory("best-moisturizers-for-dry-skin", "padel"), null);
+  for (const x of xs) assert.ok(x.title.length <= 105 && !/—/.test(x.title), x.title);
+});
+
+test("skin ratings read the attribute's plus and minus reports", () => {
+  const c = ratingCategory("best-moisturizers-for-sensitive-skin", "skin")!;
+  const r = categoryRatings(c, [{ group: { plus: 2, minus: 6 } }, { group: { plus: 30, minus: 1 } }], 0.6);
+  assert.deepEqual(r, [95, 94]);
+});

@@ -6,6 +6,8 @@ import { Shell } from "../../shell";
 import { threadRows, threadBoards, skinOf } from "../../data";
 import { threadRankings, ratingsFor } from "../../rankings-data";
 import { ratingCategory, ratingHow } from "../../../../lib/category-rating";
+import { SKIN_NEEDS } from "../../../../lib/skin-lists";
+import { HubCards, hubRatings } from "../../hub-cards";
 import { RankingList, SideMatch } from "../../live/lists";
 import { SkinMatchBox } from "../../live/skin-match";
 import { quickMatchFor } from "../../../../lib/thread/sites";
@@ -25,7 +27,7 @@ const PADEL = niche.id === "padel";
 const short = (label: string) => label.replace(/^Best (for )?/, "").replace(/^./, c => c.toUpperCase());
 
 const { one: ONE, many: MANY } = niche.words;
-const PICKLEBALL = niche.id === "pickleball", DG = niche.id === "discgolf";
+const PICKLEBALL = niche.id === "pickleball", DG = niche.id === "discgolf", SKIN = niche.id === "skin";
 /** The sidebar's "See how you match": the site's own quick match, the one its home shows, or no card (lib/thread/sites.ts). */
 const QM = quickMatchFor(niche.id);
 /** Sites whose product pages use the v7b Discussion (PadelRecs, #565) use it here too, so the two never disagree; the rest
@@ -33,7 +35,8 @@ const QM = quickMatchFor(niche.id);
 const V7B_DISCUSSION = niche.id === "padel";
 /** The arm and shape FAQ lines, the site's own (PickleballRecs: its Rankings and Elbow Guide mocks). */
 const ARM_TIP = PICKLEBALL ? "A soft core, a lighter paddle and a relaxed grip help most." : "A soft core, a lower balance and a lighter racket help most.";
-const SHAPE_FAQ = DG
+// SkinRecs has no shape question (it showed padel's until 2026-11-21).
+const SHAPE_FAQ = SKIN ? null : DG
   ? { q: "Understable or overstable?", a: "Understable turns over and helps a slower arm fly straight and far. Overstable fights the wind and hooks left at the end. Not sure? Stable." }
   : PICKLEBALL
   ? { q: "Standard, hybrid or elongated?", a: "Standard is the most forgiving and quickest at the kitchen. Hybrid is the all-rounder. Elongated adds reach and drive power, with a smaller sweet spot." }
@@ -48,7 +51,10 @@ export async function generateMetadata({ params }: P): Promise<Metadata> {
   const l = (await threadRankings()).find(x => x.slug === slug);
   if (!l) return { title: "Ranking not found", robots: { index: false } };
   if (l.own) return liveMetadata({ params });
-  const title = `${l.title}, ranked by real ${W.reviews}`, description = `${l.blurb} The top ${l.ids.length} by ${W.score}, from reviews by people who ${W.played} them.`;
+  const title = `${l.title}, ranked by real ${W.reviews}`;
+  const description = l.kids ? `${l.blurb} The top picks by product type, from reviews by people who ${W.played} them.`
+    : ratingCategory(l.slug, niche.id) ? `${l.blurb} The top ${l.ids.length}, from reviews by people who ${W.played} them.`
+    : `${l.blurb} The top ${l.ids.length} by ${W.score}, from reviews by people who ${W.played} them.`;
   return { title: { absolute: `${title} | ${niche.site.name}` }, description, alternates: { canonical: l.href }, openGraph: { title, description, url: l.href, type: "website" } };
 }
 
@@ -59,6 +65,7 @@ export default async function ThreadRanking({ params }: P) {
   const [lists, { rows, all, ctx }] = await Promise.all([threadRankings(), threadRows()]);
   const l = lists.find(x => x.slug === slug);
   if (!l) notFound();
+  if (l.kids) return <NeedHub l={l} lists={lists}/>;
   const list = l.ids.map(id => rows.get(id)!).filter(Boolean);
   // Padel category lists (owner 2026-11-21): a curated rating as the big number, the Player score small on each row. Never in
   // the structured data below, which carries no rating at all.
@@ -70,10 +77,12 @@ export default async function ThreadRanking({ params }: P) {
     ...(beginner.length ? [{ q: `Which ${ONE} here is best for a beginner?`, a: `${names(beginner)} ${beginner.length > 1 ? "are" : "is"} the ones ${W.people} rate as fine for beginners on this list. Pick your level above to see your match.` }] : []),
     ...(arm.length ? [DG ? { q: "What if I have a slow arm?", a: `Throwers with slower arms speak best of ${names(arm)}. Lighter, understable discs with a speed of 7 or less help most.` }
       : { q: "What if I have tennis elbow?", a: `Players with sore arms speak best of ${names(arm)}. ${ARM_TIP}` }] : []),
-    SHAPE_FAQ,
+    ...(SHAPE_FAQ ? [SHAPE_FAQ] : []),
     { q: "How often does this ranking change?", a: `Scores update as new reviews come in, so ${MANY} can move up or down any day. A ${ONE} joins once it has enough reviews to score fairly.` },
   ];
-  const more = lists.filter(x => x.slug !== l.slug).map(x => ({ label: x.label, href: x.href }));
+  const more = moreFor(l, lists);
+  // SkinRecs: a per-type list sits under its need's hub in the breadcrumbs.
+  const hub = lists.find(x => x.kids?.includes(l.slug));
   const nameMap = Object.fromEntries(list.map(r => [r.id, r.name]));
   // SkinRecs: its home's quick match (skin type · goal · sensitive), on the same ranking inputs as the home (app/thread/page.tsx).
   const sk = QM === "skin" ? skinOf(ctx) : null;
@@ -86,22 +95,22 @@ export default async function ThreadRanking({ params }: P) {
     { "@type": "FAQPage", mainEntity: faqs.map(f => ({ "@type": "Question", name: f.q, acceptedAnswer: { "@type": "Answer", text: f.a } })) },
     { "@type": "ItemList", name: l.title, url: `${base()}${l.href}`, numberOfItems: list.length, itemListOrder: "https://schema.org/ItemListOrderDescending",
       itemListElement: list.map((r, i) => ({ "@type": "ListItem", position: i + 1, name: r.name, url: `${base()}${r.href}` })) },
-    crumbs([{ name: "Rankings", path: "/rankings" }, { name: l.label, path: l.href }]),
+    crumbs([{ name: "Rankings", path: "/rankings" }, ...(hub ? [{ name: hub.label, path: hub.href }] : []), { name: l.label, path: l.href }]),
   ] };
   return <Shell active="rankings">
     <JsonLd data={ld}/>
     <main className={PADEL ? "th-main th-hp" : "th-main"}>
       <div className="th-col">
-        <div className="th-crumbs"><a href={th("/rankings")}>Rankings</a><span>/</span><span>{l.label}</span></div>
+        <div className="th-crumbs"><a href={th("/rankings")}>Rankings</a><span>/</span>{hub && <><a href={th(hub.href)}>{hub.label}</a><span>/</span></>}<span>{l.label}</span></div>
         <section className="th-card th-hero">
           <h1 className="th-h1">{l.title}</h1>
-          {(cat || !PADEL) && <p className="th-lead">{cat ? ratingHow(niche.site.name) : `Ranked by ${W.score}, from reviews by people who ${W.played} them. Updates as new reviews come in.`}</p>}
+          {(cat || !PADEL) && <p className="th-lead">{cat ? ratingHow(niche.site.name, W.people) : `Ranked by ${W.score}, from reviews by people who ${W.played} them. Updates as new reviews come in.`}</p>}
           {PADEL ? <details className="th-rk-dd">
             {/* A plain links menu (no script), so the cached page works as is. */}
             <summary><span className="lbl">Ranking</span>{short(l.label)}<small aria-hidden="true">▼</small></summary>
             <nav className="th-rk-menu" aria-label="Rankings">{lists.map(x => <a key={x.slug} href={th(x.href)} aria-current={x.slug === l.slug ? "page" : undefined}>{short(x.label)}<span aria-hidden="true">{x.slug === l.slug ? "✓" : ""}</span></a>)}</nav>
           </details>
-          : <nav className="th-rtabs" aria-label="Rankings">{lists.slice(0, 7).map(x => <a key={x.slug} href={th(x.href)} aria-current={x.slug === l.slug ? "page" : undefined}>{short(x.label)}</a>)}</nav>}
+          : <Tabs lists={lists} current={hub?.slug ?? l.slug}/>}
         </section>
         <RankingList rows={list} title={l.label} meta={`${plural(list.length, ONE)} · ${plural(reviews, "review")}`}
           {...(cat && rated ? { ratings: { by: rated, label: cat.label } } : {})}{...(QM !== "engine" ? { match: false } : {})}/>
@@ -115,6 +124,50 @@ export default async function ThreadRanking({ params }: P) {
       </div>
       <aside className="th-side">
         {side}
+        <SideBox title="More rankings"><LinkList links={more}/></SideBox>
+      </aside>
+    </main>
+  </Shell>;
+}
+
+/** The ranking pills: the first seven lists; SkinRecs: its four skin needs, then product types. */
+function Tabs({ lists, current }: { lists: Awaited<ReturnType<typeof threadRankings>>; current: string }) {
+  const tabs = SKIN ? [...lists.filter(x => x.kids), ...lists.filter(x => x.group === "By product type")].slice(0, 7) : lists.slice(0, 7);
+  return <nav className="th-rtabs" aria-label="Rankings">{tabs.map(x => <a key={x.slug} href={th(x.href)} aria-current={x.slug === current ? "page" : undefined}>
+    {x.label.replace(/^Best (for )?/, "").replace(/^For /, "").replace(/^./, c => c.toUpperCase())}</a>)}</nav>;
+}
+/** "More rankings": every other list; SkinRecs: the same need's lists, the other needs and the product types (not all 30). */
+function moreFor(l: { slug: string; group: string }, lists: Awaited<ReturnType<typeof threadRankings>>) {
+  const xs = SKIN ? lists.filter(x => x.group === l.group || x.kids || x.group === "By product type") : lists;
+  return xs.filter(x => x.slug !== l.slug).map(x => ({ label: x.label, href: x.href }));
+}
+
+/** A SkinRecs skin need's hub (owner 2026-11-21): the old mixed list's address, now its per-type lists as cards. */
+async function NeedHub({ l, lists }: { l: Awaited<ReturnType<typeof threadRankings>>[number]; lists: Awaited<ReturnType<typeof threadRankings>> }) {
+  const { rows } = await threadRows();
+  const kids = l.kids!.flatMap(k => lists.filter(x => x.slug === k));
+  const ratings = await hubRatings(kids);
+  const need = SKIN_NEEDS.find(n => n.hub === l.slug);
+  const more = moreFor(l, lists).filter(x => !kids.some(k => k.href === x.href));
+  const ld = { "@context": "https://schema.org", "@graph": [
+    { "@type": "ItemList", name: l.title, url: `${base()}${l.href}`, numberOfItems: kids.length,
+      itemListElement: kids.map((k, i) => ({ "@type": "ListItem", position: i + 1, name: k.title, url: `${base()}${k.href}` })) },
+    crumbs([{ name: "Rankings", path: "/rankings" }, { name: l.label, path: l.href }]),
+  ] };
+  return <Shell active="rankings">
+    <JsonLd data={ld}/>
+    <main className="th-main">
+      <div className="th-col">
+        <div className="th-crumbs"><a href={th("/rankings")}>Rankings</a><span>/</span><span>{l.label}</span></div>
+        <section className="th-card th-hero">
+          <h1 className="th-h1">{l.title}</h1>
+          <p className="th-lead">{`One ranking per product type${need ? ` for ${need.words}` : ""}. Pick one to see its top 10.`}</p>
+          <Tabs lists={lists} current={l.slug}/>
+        </section>
+        <HubCards cards={kids} rows={rows} ratings={ratings}/>
+        <NarrowLinks title="More rankings" links={more}/>
+      </div>
+      <aside className="th-side">
         <SideBox title="More rankings"><LinkList links={more}/></SideBox>
       </aside>
     </main>
