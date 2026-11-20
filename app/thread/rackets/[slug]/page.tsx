@@ -100,7 +100,7 @@ export default async function ThreadRacket({ params }: P) {
     : SKIN ? ([row?.best && ["Best for", cap(row.best)], skinTex && ["Texture", skinTex], skinFin && ["Finish", skinFin]].filter((x): x is [string, string] => !!x)) : [style && ["Plays like", STYLE_WORD[style]], row?.levels.length && ["Best for", LEVEL_WORD(row.levels)!], row?.arm && ["Arm friendly", "Yes, say players"],
     traits.slice().sort((a, b) => b.dots - a.dots)[0] && ["Strongest at", traits.slice().sort((a, b) => b.dots - a.dots)[0].label]].filter((x): x is [string, string] => !!x);
   const day = latest ? new Date(latest).toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric", timeZone: "UTC" }) : null;
-  const buy = shop && <div className="th-buy"><a href={shop.url} target="_blank" rel={shop.rel}>Check price ↗</a><small>{SKIN || DG ? "Commission link. It never changes the score." : "We may earn a commission"}</small></div>;
+  const buy = shop && <div className="th-buy"><a href={shop.url} target="_blank" rel={shop.rel}>Check price ↗</a>{/* One note on every site (owner 2026-11-20: no "we"). */}<small>Commission link. It never changes the score.</small></div>;
   const specsBox = specs.length > 0 && <section className="th-card th-specs th-only-m">{specs.map(([k, v]) => <span key={k} className="th-kv"><span>{k}</span><strong>{v}</strong></span>)}</section>;
   // The live page's structured data: its breadcrumbs (the catalogue, the brand, the racket).
   const ld = { "@context": "https://schema.org", "@graph": [crumbs([{ name: catalogLabel, path: catalogPath }, ...(brand ? [{ name: brand.name, path: `/brands/${brand.slug}` }] : []), { name: r.name, path: productHref(r) }])] };
