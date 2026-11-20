@@ -11,6 +11,7 @@ import { SkinMatchBox } from "../../live/skin-match";
 import { quickMatchFor } from "../../../../lib/thread/sites";
 import { Faq } from "../../live/faq";
 import { Comments } from "../../live/comments";
+import { Discussion } from "../../live/discussion";
 import { niche } from "../../../../lib/niche";
 import { Boards } from "../../boards";
 import { SideBox, LinkList, NarrowLinks, plural } from "../../ui";
@@ -23,6 +24,9 @@ const { one: ONE, many: MANY } = niche.words;
 const PICKLEBALL = niche.id === "pickleball", DG = niche.id === "discgolf";
 /** The sidebar's "See how you match": the site's own quick match, the one its home shows, or no card (lib/thread/sites.ts). */
 const QM = quickMatchFor(niche.id);
+/** Sites whose product pages use the v7b Discussion (PadelRecs, #565) use it here too, so the two never disagree; the rest
+ *  keep Comments. Same thread (`ranking:<slug>`), posting, votes and owner tools either way. */
+const V7B_DISCUSSION = niche.id === "padel";
 /** The arm and shape FAQ lines, the site's own (PickleballRecs: its Rankings and Elbow Guide mocks). */
 const ARM_TIP = PICKLEBALL ? "A soft core, a lighter paddle and a relaxed grip help most." : "A soft core, a lower balance and a lighter racket help most.";
 const SHAPE_FAQ = DG
@@ -94,7 +98,9 @@ export default async function ThreadRanking({ params }: P) {
           {...(cat && rated ? { ratings: { by: rated, label: cat.label } } : {})}{...(QM !== "engine" ? { match: false } : {})}/>
         {boards.length > 0 && <Boards boards={boards}/>}
         <section className="th-card th-sec"><h2 className="th-h2">{`Questions ${W.people} ask`}</h2><Faq items={faqs}/></section>
-        <Comments page={`ranking:${l.slug}`} prompt="Agree with this list? Join the conversation" nicknames={niche.form.quickVote?.nicknames ?? []}/>
+        {V7B_DISCUSSION ? <Discussion page={`ranking:${l.slug}`} model={l.label} words={{ sub: `Questions about this list? Ask ${W.people} who've used these ${MANY}.`,
+          placeholder: "What do you want to know about this list?" }}/>
+          : <Comments page={`ranking:${l.slug}`} prompt="Agree with this list? Join the conversation" nicknames={niche.form.quickVote?.nicknames ?? []}/>}
         {side && <div className="th-narrow" style={{ flexDirection: "column", gap: 12 }}>{side}</div>}
         <NarrowLinks title="More rankings" links={more}/>
       </div>
