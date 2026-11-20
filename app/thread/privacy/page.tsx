@@ -5,8 +5,9 @@ import { Shell } from "../shell";
 import { th } from "../../../lib/thread/look";
 import { niche } from "../../../lib/niche";
 
-/** The two profile fields in words: SkinRecs asks skin type and main concern, the racket sites level and side. */
-const PROFILE = niche.id === "skin" ? "skin type and main concern" : "level and side";
+/** The two profile fields in words: SkinRecs asks skin type and main concern, DiscGolfRecs level and throw,
+ *  the racket sites level and side. */
+const PROFILE = niche.id === "skin" ? "skin type and main concern" : niche.id === "discgolf" ? "level and throw" : "level and side";
 export const metadata: Metadata = { title: "Privacy", description: `What ${niche.site.name} keeps when you post or sign in, and how to delete it.`, alternates: { canonical: "/privacy" } };
 
 const SECTIONS: { title: string; body: string[] }[] = [
