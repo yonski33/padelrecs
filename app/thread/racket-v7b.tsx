@@ -29,8 +29,8 @@ const BUY_NOTE = "Affiliate link - price stays the same";
 export function RacketV7b(p: V7bProps) {
   const { row, judged } = p, score = row?.score ?? null;
   const badge = (size?: string) => score != null ? <span className={`th-badge ${tone(score)}${size ? ` ${size}` : ""}`}>{score}</span> : <span className="th-badge new">New</span>;
-  // Owner 2026-11-21: no "player score from N" line by a score; a "New" badge still says why.
-  const scoreLine = score != null ? null : judged > 0 ? `${plural(judged, W.opinions.replace(/s$/, ""), W.opinions)} so far` : "No votes yet";
+  // Owner 2026-11-21: just "Player score" by the badge, no count; a "New" badge still says why.
+  const scoreLine = score != null ? W.Score : judged > 0 ? `${plural(judged, W.opinions.replace(/s$/, ""), W.opinions)} so far` : "No votes yet";
   const facts = <>
     <div className="th7-score">{badge()}<span>{scoreLine && <span>{scoreLine}</span>}{judged > 0 && <SBar lg pos={row!.pos} mix={row!.mix} neg={row!.neg}/>}</span></div>
     {row?.best && <span className="th7-best"><strong>Best for</strong>{` ${row.best}.`}</span>}
