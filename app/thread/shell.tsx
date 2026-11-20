@@ -10,7 +10,7 @@ export const FOOTER_LINKS = [{ label: "About", href: "/about" }, { label: "How t
 
 export function Shell({ active = null, children }: { active?: Section; children: ReactNode }) {
   // PickleballRecs has its own colours and fonts (owner 2026-11-19: the handoff README tokens), scoped by th-pb in thread.css.
-  return <div className={niche.id === "pickleball" ? "th th-pb" : niche.id === "skin" ? "th th-skin" : "th"}>
+  return <div className={niche.id === "pickleball" ? "th th-pb" : niche.id === "skin" ? "th th-skin" : niche.id === "stackrecs" ? "th th-stack" : "th"}>
     <ThreadHeader active={active}/>
     {children}
     <footer className="th-foot"><div className="th-foot-in">

@@ -722,3 +722,51 @@ body:has(.th-skin) .th-skin a.th-add:hover, body:has(.th-skin) .th-skin a.th-add
 /* Bricolage is wider than Barlow Condensed: keep a sidebar title and its link ("Fresh off the court · All reviews →") on one line. */
 .th-skin .th-side .th-head-row { flex-wrap: nowrap; gap: 8px; }
 .th-skin .th-side .th-head-row .th-link-b { white-space: nowrap; }
+
+/* StackRecs' own look (owner 2026-11-20, via the PM: the Thread pages take the brand the admin header already shows). Colours
+   from lib/niche/stackrecs.ts theme (indigo #3730a3, mint #34d399, cool greys), Poppins as on the light site (--font-light,
+   app/light-font.ts). Same shape as PickleballRecs' and SkinRecs' blocks above; score badge colours unchanged. Scoped to
+   .th-stack (app/thread/shell.tsx adds it on NICHE=stackrecs), so the other sites' pages are untouched. */
+body:has(.th-stack) { background: #f7f7fb; }
+.th.th-stack {
+  --ink: #111827; --bg: #f7f7fb; --card: #fff; --soft: #fff; --frame: #f1f1f8;
+  --ink2: #374151; --body: #1f2937; --muted: #6b7280;
+  --div: #ebebf2; --line: #e2e2ec; --chip: #c9cbe0; --box: #d9d9e6;
+  --lime: #34d399; --lime-box: #eef0fb; --lime-bar: #c7c9f0; --lime-chip: #d3d6f3;
+  --sc-g: oklch(0.8 0.16 145); --sc-y: oklch(0.93 0.14 100);
+  --s-pos: oklch(0.72 0.15 145); --s-mix: oklch(0.85 0.14 90); --s-neg: oklch(0.7 0.15 30);
+  --p-pos: oklch(0.93 0.08 145); --p-mix: oklch(0.95 0.08 95); --p-neg: oklch(0.93 0.05 35);
+  --hover: #3730a3; --up: oklch(0.5 0.14 145); --down: oklch(0.55 0.15 35); --idle: #9ca3af;
+  --yt: oklch(0.94 0.04 250); --blog: #e7faf2;
+  --bc: var(--font-light), 'Poppins', system-ui, sans-serif;
+  --body-font: var(--font-light), 'Poppins', system-ui, sans-serif;
+}
+body:has(.th-stack) .th-stack :is(h1, h2, h3), .th-stack :is(.th-logo, .th-rank, .th-row-name .mrank, .th-badge:not(.new), .th-sbox-head, .th-stitle, .th-tldr-h,
+  .th-hub-t b, .th-hub-row .r, .th-num, .th-sub-h), body:has(.th-stack) .th-stack .th-logo, body:has(.th-stack) .th-stack .th-menu a {
+  font-weight: 700; letter-spacing: -0.02em; }
+/* The header logo: the site's >_ tile (public/niches/stackrecs/icon.svg), as the admin header shows it. */
+.th-logo-icon { flex: none; width: 24px; height: 24px; display: block; }
+/* Tool logos sit whole inside their tile (uploaded logos are not photos to crop). */
+.th-stack img[src^="/product-photo/"] { object-fit: contain; background: #fff; }
+/* The literal padel colours, in StackRecs'. */
+.th-stack .th-ph, .th-stack .th-ph::after { background: #e2e2ec; }
+.th-stack .th-yt { background-color: var(--ink); }
+.th-stack .th-tldr { background: var(--lime-box); }
+.th-stack .th-fit, .th-stack .th-picks-row + .th-picks-row, .th-stack .th-pick-list + .th-pick-list { border-top-color: var(--line); }
+body:has(.th-stack) .th-stack a.th-hub:hover { border-color: var(--hover); }
+.th-stack .th-live i { background: var(--s-pos); }
+body:has(.th-stack) .th-stack a.th-add, .th-stack button.th-post { background: #3730a3; border-color: #3730a3; color: #fff; }
+body:has(.th-stack) .th-stack a.th-add:hover, body:has(.th-stack) .th-stack a.th-add:focus-visible, body:has(.th-stack) .th-stack a.th-add-plus:hover,
+  .th-stack button.th-post:not(:disabled):hover { background: #1e1b4b; border-color: #1e1b4b; color: #fff; }
+.th-stack #comments.th-card, .th-stack .th-compose.white, .th-stack .th-compose.white .th-ta.th-ta-grow, .th-stack .th-compose.soft,
+  .th-stack .th-compose.soft .th-ta.th-ta-grow { border-color: var(--line); }
+.th-stack .th-rv-list .th-rv, .th-stack .th-rv-list .th-rv.big { border-top-color: var(--div); }
+.th-stack .th-rv-list .th-rv-when, .th-stack .th-why, .th-stack .th-pick-list .ct { color: var(--muted); }
+.th-stack :is(.th-compose.white, .th-compose.soft) :is(.th-ta.th-ta-grow:focus, .th-ta.th-ta-grow:focus-visible, .th-as input:focus, .th-as input:focus-visible) { border-color: #3730a3; }
+.th-stack button.th-post:disabled { background: #f1f1f8; border-color: #e2e2ec; color: #6b7280; }
+.th-stack .th-vpill.pos { background: var(--p-pos); } .th-stack .th-vpill.mix { background: var(--p-mix); } .th-stack .th-vpill.neg { background: var(--p-neg); }
+.th-stack .th-src.bl { background: var(--blog); }
+.th-stack .th-cm-act .arrow:not([aria-pressed="true"]) { color: #6b7280; }
+.th-stack .th-pick-list li + li { border-top-color: var(--div); }
+.th-stack .th-side .th-head-row { flex-wrap: nowrap; gap: 8px; }
+.th-stack .th-side .th-head-row .th-link-b { white-space: nowrap; }
