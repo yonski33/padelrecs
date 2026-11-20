@@ -38,12 +38,27 @@ export function sectionNote(sources: number, votes: number): string {
   return "Pick what fits. One vote per group. Tap again to remove.";
 }
 /** The counts typed into the form: one whole number 0–100000 per option ("c_<option>"), blanks as 0. */
-export function countsFrom(trait: string, form: Record<string, unknown>, groups = TRAIT_GROUPS): Record<string, number> | null {
+export function countsFrom(trait: string, form: Record<string, unknown>, groups = TRAIT_GROUPS, prefix = "c_"): Record<string, number> | null {
   const g = groups.find(x => x.key === trait)!, out: Record<string, number> = {};
   for (const [k] of g.options) {
-    const raw = String(form[`c_${k}`] ?? "").trim(), n = raw === "" ? 0 : Number(raw);
+    const raw = String(form[`${prefix}${k}`] ?? "").trim(), n = raw === "" ? 0 : Number(raw);
     if (!Number.isInteger(n) || n < 0 || n > 100000) return null;
     if (n > 0) out[k] = n;
+  }
+  return out;
+}
+
+/** The admin's one form for every group (Save all, or one group's Save via `only`): fields are c_<group>__<option>, with the
+ *  value shown when the page loaded in o_<group>__<option>. Returns the groups to save (`only`, or every group whose numbers
+ *  changed), or null when a number is not a whole number from 0 to 100,000. Pure, for tests. */
+export function changedCounts(form: Record<string, unknown>, groups = TRAIT_GROUPS): { trait: string; counts: Record<string, number> }[] | null {
+  const only = typeof form.only === "string" && form.only ? form.only : null, out: { trait: string; counts: Record<string, number> }[] = [];
+  for (const g of groups) {
+    if (only && g.key !== only) continue;
+    const now = countsFrom(g.key, form, groups, `c_${g.key}__`); if (!now) return null;
+    const was = countsFrom(g.key, form, groups, `o_${g.key}__`) ?? {};
+    const same = g.options.every(([k]) => (now[k] ?? 0) === (was[k] ?? 0));
+    if (only || !same) out.push({ trait: g.key, counts: now });
   }
   return out;
 }
