@@ -5,12 +5,13 @@ import { z } from "zod";
 import { database } from "../../../../db/data";
 import { setReviewCounts, setFrozen, removeTraitVote, removeVoter, resetTraitGroup, ALL_GROUPS } from "../../../../db/trait-admin";
 import { adminWriteGuard, adminRedirect, readAdminForm } from "../../../funtimes/auth";
-import { TRAIT_GROUPS } from "../../../../lib/thread/traits";
+import { traitGroupsFor } from "../../../../lib/thread/traits";
 import { countsFrom } from "../../../../lib/thread/trait-view";
 import { threadSite } from "../../../../lib/thread/look";
 import { niche } from "../../../../lib/niche";
 
-const group = z.string().refine(t => TRAIT_GROUPS.some(g => g.key === t), "Unknown group");
+const GROUPS = traitGroupsFor(niche.id);
+const group = z.string().refine(t => GROUPS.some(g => g.key === t), "Unknown group");
 const racket = z.string().min(1).max(100), voter = z.string().min(8).max(200);
 const input = z.discriminatedUnion("action", [
   z.object({ action: z.literal("set_counts"), racket, trait: group }).passthrough(),
@@ -30,7 +31,7 @@ export async function POST(request: Request) {
   if (!parsed?.success || !form) return back("invalid", typeof form?.racket === "string" ? form.racket : undefined);
   const d = parsed.data, db = await database();
   try {
-    if (d.action === "set_counts") { const c = countsFrom(d.trait, form); if (!c) return back("invalid", d.racket); await setReviewCounts(db, d.racket, d.trait, c); }
+    if (d.action === "set_counts") { const c = countsFrom(d.trait, form, GROUPS); if (!c) return back("invalid", d.racket); await setReviewCounts(db, d.racket, d.trait, c); }
     else if (d.action === "clear_counts") await setReviewCounts(db, d.racket, d.trait, null);
     else if (d.action === "freeze" || d.action === "unfreeze") await setFrozen(db, d.racket, d.trait, d.action === "freeze");
     else if (d.action === "remove_vote") await removeTraitVote(db, d.racket, d.voter, d.trait);

@@ -1,6 +1,7 @@
 // "How does it play?" vote groups (Metalbone CTRL Thread v7): one vote per group per device, changeable, a second tap clears.
 // Pure: the API (app/api/trait-votes) checks votes against it and the page renders it. Keys are stored (db trait_votes).
 import { niche } from "../niche";
+import { BUILD_GROUPS, GROW_GROUPS } from "../stack/traits";
 export type TraitGroup = { key: string; title: string; options: [string, string][] };
 export const PADEL_TRAIT_GROUPS: TraitGroup[] = [
   { key: "plays_like", title: "Plays like", options: [["control", "Control"], ["all_round", "All-round"], ["power", "Power"]] },
@@ -26,8 +27,22 @@ export const PICKLEBALL_TRAIT_GROUPS: TraitGroup[] = [
   { key: "pop", title: "Pop", options: [["low", "Low"], ["medium", "Medium"], ["high", "High"]] },
   { key: "durability", title: "Durability", options: [["holds_up", "Holds up well"], ["average", "Average"], ["wears_fast", "Wears fast"]] },
 ];
+/** StackRecs' Build and Grow sets together, as its API and admin accept them (one "Best for" key with both sides' options;
+ *  a tool page shows only its own side, lib/stack/traits.ts). */
+const STACK_TRAIT_GROUPS: TraitGroup[] = (() => {
+  const out = new Map<string, TraitGroup>();
+  for (const g of [...BUILD_GROUPS, ...GROW_GROUPS]) {
+    const had = out.get(g.key);
+    out.set(g.key, had ? { ...had, options: [...had.options, ...g.options.filter(([k]) => !had.options.some(([h]) => h === k))] } : g);
+  }
+  return [...out.values()];
+})();
 /** The vote groups a site's pages, API and admin use. */
-export const traitGroupsFor = (nicheId: string): TraitGroup[] => nicheId === "pickleball" ? PICKLEBALL_TRAIT_GROUPS : PADEL_TRAIT_GROUPS;
+export function traitGroupsFor(nicheId: string): TraitGroup[] {
+  if (nicheId === "pickleball") return PICKLEBALL_TRAIT_GROUPS;
+  if (nicheId === "stackrecs") return STACK_TRAIT_GROUPS;
+  return PADEL_TRAIT_GROUPS;
+}
 /** The running site's groups. */
 export const TRAIT_GROUPS = traitGroupsFor(niche.id);
 export const validTraitVote = (trait: string, choice: string | null, groups: TraitGroup[] = TRAIT_GROUPS) => {

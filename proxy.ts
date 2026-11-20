@@ -70,7 +70,7 @@ export function threadView(request:NextRequest) {
  if(!threadSite(niche.id))return null;
  const look=request.nextUrl.searchParams.get("look");
  if(look===CLASSIC_LOOK||(!THREAD_DEFAULT&&look!==THREAD_LOOK))return null;
- const to=threadPath(request.nextUrl.pathname,catalogPath);
+ const to=threadPath(request.nextUrl.pathname,catalogPath,niche.id);
  if(!to)return null;
  const url=request.nextUrl.clone();url.pathname=to;url.search="";
  return NextResponse.rewrite(url);

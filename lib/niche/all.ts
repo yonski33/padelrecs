@@ -24,6 +24,7 @@ import { tabletennis } from "./tabletennis";
 import { homegym } from "./homegym";
 import { money } from "./money";
 import { software } from "./software";
+import { stackrecs } from "./stackrecs";
 import { hosting } from "./hosting";
 import { keyboard } from "./keyboard";
 import { travelgear } from "./travelgear";
@@ -39,7 +40,7 @@ import { dog } from "./dog";
 // Every site's config, for next.config.ts, scripts, tests and cross-site server code. Pages and components read only the
 // running site's config through lib/niche (index.ts), so the browser never downloads the other 36 (audit 2026-11-15, #3).
 /** Every niche this codebase can serve, keyed by the NICHE environment variable. */
-export const niches: Record<string, Niche> = { padel, pickleball, skin, tennis, running, golf, gaming, discgolf, simracing, cycling, audio, monitor, camera, ultralight, badminton, fragrance, coffee, climbing, nails, kitchen, snowboard, tabletennis, homegym, money, software, hosting, keyboard, travelgear, babygear, sleep, laptop, print, tv, tool, grill, dog };
+export const niches: Record<string, Niche> = { padel, pickleball, skin, tennis, running, golf, gaming, discgolf, simracing, cycling, audio, monitor, camera, ultralight, badminton, fragrance, coffee, climbing, nails, kitchen, snowboard, tabletennis, homegym, money, software, hosting, keyboard, travelgear, babygear, sleep, laptop, print, tv, tool, grill, dog, stackrecs };
 export const DEFAULT_NICHE = "padel";
 
 /** The config for a NICHE value. Unset means padel; an unknown value is a deployment mistake, so it throws. */

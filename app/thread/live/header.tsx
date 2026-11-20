@@ -10,7 +10,10 @@ import { niche, catalogPath } from "../../../lib/niche";
 /** The site's review flow (app/add-review): the header's "Add a review" (owner 2026-11-19, as on classic). */
 const ADD = "/add-review";
 export type Section = "rackets" | "rankings" | "brands" | "guides" | null;
-const NAV: [Exclude<Section, null>, string, string][] = [["rackets", niche.words.Many, catalogPath], ["rankings", "Rankings", "/rankings"], ["guides", "Guides", GUIDE_PATHS.racket]];
+const PADEL_NAV: [Exclude<Section, null>, string, string][] = [["rackets", niche.words.Many, catalogPath], ["rankings", "Rankings", "/rankings"], ["guides", "Guides", GUIDE_PATHS.racket]];
+/** StackRecs (no guides yet): Tools and Rankings. "rackets" stays the catalogue's section key. */
+const STACK_NAV: [Exclude<Section, null>, string, string][] = [["rackets", "Tools", catalogPath], ["rankings", "Rankings", "/rankings"]];
+const NAV = niche.id === "stackrecs" ? STACK_NAV : PADEL_NAV;
 
 // The site's own racket search (app/racket-search.tsx: the shared name index and fuzzy matching) in the Thread look: live
 // suggestions as you type, current models first, keyboard up/down/enter; Enter with no pick filters the catalogue.

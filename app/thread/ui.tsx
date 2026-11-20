@@ -18,7 +18,7 @@ export const MIN_SHOWN = 1;
 /** The poll shows percentages from this many votes; below it, counts only ("Loved it · 3"). */
 export const POLL_PCT_AT = 10;
 export const VERDICT = { positive: ["Loved it", "pos"], mixed: ["Mixed", "mix"], negative: ["Not for me", "neg"] } as const;
-export const SOURCE = { youtube: ["YouTube", "yt"], blog: ["Blog", "blog"], reddit: ["Reddit", "reddit"] } as const;
+export const SOURCE = { youtube: ["YouTube", "yt"], blog: ["Blog", "blog"], reddit: ["Reddit", "reddit"], forum: ["Forum", "blog"] } as const;
 /** "12m ago", "2h ago", "5 days ago", "Nov 4" (the mocks' timestamps); under a minute, or a future time, "just now". On a
  *  cached page, show it through live/ago.tsx Ago so it doesn't freeze at render time. */
 export function ago(iso: string | null | undefined, now = Date.now()) {

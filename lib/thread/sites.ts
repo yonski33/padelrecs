@@ -5,10 +5,11 @@
 /** THE go-live flags, per site (owner 2026-11-19): true = Thread is the default look on the normal addresses and
  *  ?look=classic shows the current live pages; false = the live pages are the default and ?look=thread previews Thread.
  *  Roll a site back by setting it to false. */
-export const THREAD_DEFAULTS: Record<string, boolean> = { padel: true, pickleball: true };
+export const THREAD_DEFAULTS: Record<string, boolean> = { padel: true, pickleball: true, stackrecs: true };
 export const threadDefaultFor = (nicheId: string) => THREAD_DEFAULTS[nicheId] ?? false;
-/** PadelRecs (the pilot) and PickleballRecs (owner 2026-11-19: next after padel). */
-export const threadSite = (nicheId: string) => nicheId === "padel" || nicheId === "pickleball";
+/** PadelRecs (the pilot), PickleballRecs (owner 2026-11-19: next after padel) and StackRecs (Build + Grow pilot, owner
+ *  2026-11-19), which is built on the Thread pages from the start. */
+export const threadSite = (nicheId: string) => nicheId === "padel" || nicheId === "pickleball" || nicheId === "stackrecs";
 /** Thread addresses that moved (a 301 from the old one, next.config.ts redirects): the sore-arms ranking is named for tennis
  *  elbow (owner 2026-11-19). */
 /** The tennis elbow ranking's slug: the ranking, the elbow guide's picks and links, and the home's Top picks all read it. */

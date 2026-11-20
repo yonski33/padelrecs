@@ -13,6 +13,21 @@ export const THREAD_DEFAULT = threadDefaultFor(niche.id);
 export const THREAD_LOOK = "thread";
 /** The query value that shows the current live (pre-Thread) pages while Thread is the default. */
 export const CLASSIC_LOOK = "classic";
+
+/** StackRecs' Thread pages (app/thread/stack/…): the home, the tool catalogue and pages, the rankings and the score page.
+ *  Other addresses (add a review, contact, compare) keep the shared live pages. */
+export function stackPath(pathname: string, catalog = "/tools"): string | null {
+  const p = pathname.length > 1 ? pathname.replace(/\/+$/, "") : pathname;
+  if (p === "/") return "/thread/stack";
+  if (p === catalog) return "/thread/stack/tools";
+  if (p.startsWith(`${catalog}/`) && /^[a-z0-9-]+$/.test(p.slice(catalog.length + 1))) return `/thread/stack/tools/${p.slice(catalog.length + 1)}`;
+  if (p === "/rankings") return "/thread/stack/rankings";
+  const ranking = /^\/rankings\/([a-z0-9-]+)$/.exec(p);
+  if (ranking) return `/thread/stack/rankings/${ranking[1]}`;
+  if (p === "/how-we-make-these" || p === "/about") return "/thread/stack/score";
+  return null;
+}
+
 /** The rankings a guide lists, by guide, picked from the shown lists by exact slug (a partial match broke when the elbow
  *  ranking moved, #524). "beginner" is picked by the caller (the engine's own beginner picks). Pure, for tests. */
 export function guideListPicks<R>(key: string, slugIds: (slug: string) => string[] | undefined, row: (id: string) => R | undefined): { title?: string; rows: R[] }[] | null {
@@ -48,6 +63,7 @@ export const guideKeyOf = (path: string, nicheId = niche.id): GuideKey | null =>
 /** The Thread page an address shows with ?look=thread, or null when the Thread look has no page for it (compare and
  *  add-review keep their live page). `catalog` is the niche's catalogue path ("/rackets" on padel, "/paddles" on pickleball). */
 export function threadPath(pathname: string, catalog = catalogPath, nicheId = niche.id): string | null {
+  if (nicheId === "stackrecs") return stackPath(pathname, catalog);
   const p = pathname.length > 1 ? pathname.replace(/\/+$/, "") : pathname;
   if (p === "/") return "/thread";
   if (p === catalog) return "/thread/rackets";

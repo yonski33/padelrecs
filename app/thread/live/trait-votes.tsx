@@ -5,14 +5,15 @@
 // All nine groups in a 3 by 3 grid, no collapse (owner 2026-11-19: back to the earlier layout; 1 column on phones), in
 // TRAIT_GROUPS order. Votes: /api/trait-votes (drizzle/0024).
 import { useEffect, useState } from "react";
-import { TRAIT_GROUPS, type TraitCounts } from "../../../lib/thread/traits";
+import { TRAIT_GROUPS, type TraitCounts, type TraitGroup } from "../../../lib/thread/traits";
 import { groupView, sectionNote, sectionNoteShort } from "../../../lib/thread/trait-view";
 import type { TraitSeed } from "../../../lib/thread/trait-seed";
 
 /** The owner's fixes (admin Traits tab, db/trait-admin.ts): review counts that replace the file's, and frozen groups. */
 type Overrides = { counts: Record<string, Record<string, number>>; frozen: string[] };
 
-export function TraitVotes({ id, seed }: { id: string; seed: TraitSeed | null }) {
+/** `groups` and `title`: StackRecs passes its tool's side ("How does it build?"); padel keeps its nine and its heading. */
+export function TraitVotes({ id, seed, groups = TRAIT_GROUPS, title = "How does it play?" }: { id: string; seed: TraitSeed | null; groups?: TraitGroup[]; title?: string }) {
   const [counts, setCounts] = useState<TraitCounts>({}), [ov, setOv] = useState<Overrides>({ counts: {}, frozen: [] }), [mine, setMine] = useState<Record<string, string>>({}), [err, setErr] = useState("");
   useEffect(() => {
     fetch(`/api/trait-votes?racket=${encodeURIComponent(id)}`, { cache: "no-store" }).then(r => r.ok ? r.json() : null)
@@ -34,8 +35,8 @@ export function TraitVotes({ id, seed }: { id: string; seed: TraitSeed | null })
   }
   const voteTotal = Object.values(counts).reduce((s, o) => s + Object.values(o).reduce((a, b) => a + b, 0), 0);
   return <section id="play" className="th-card th-sec" style={{ scrollMarginTop: 70 }}>
-    <div className="th-head-row"><h2 className="th-h3">How does it play?</h2><span className="th-sub"><span className="th-only-d">{sectionNote(seed?.sources ?? 0, voteTotal)}</span><span className="th-only-m-inline">{sectionNoteShort(seed?.sources ?? 0, voteTotal)}</span></span></div>
-    <div className="th-vgrid">{TRAIT_GROUPS.map(g => {
+    <div className="th-head-row"><h2 className="th-h3">{title}</h2><span className="th-sub"><span className="th-only-d">{sectionNote(seed?.sources ?? 0, voteTotal)}</span><span className="th-only-m-inline">{sectionNoteShort(seed?.sources ?? 0, voteTotal)}</span></span></div>
+    <div className="th-vgrid">{groups.map(g => {
       const closed = ov.frozen.includes("_all") || ov.frozen.includes(g.key);
       const v = groupView(g.options, ov.counts[g.key] ?? seed?.groups[g.key], counts[g.key], seed?.spec[g.key]), max = Math.max(1, ...v.opts.filter(o => o.shown).map(o => o.n));
       return <div key={g.key} className="th-vbox slim" role="group" aria-label={g.title}>

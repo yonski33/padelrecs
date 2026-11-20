@@ -6,7 +6,7 @@ import { Ago } from "./ago";
 import { th } from "../../../lib/thread/look";
 import { VERDICT, SOURCE } from "../ui";
 
-export type FeedCard = { id: string; kind: "player" | "youtube" | "blog" | "reddit"; who: string; text: string; when: string; /** When it was posted, for the live age. */ at?: string | null; verdict: "positive" | "mixed" | "negative" | null;
+export type FeedCard = { id: string; kind: "player" | "youtube" | "blog" | "reddit" | "forum"; who: string; text: string; when: string; /** When it was posted, for the live age and sorting. */ at?: string | null; verdict: "positive" | "mixed" | "negative" | null;
   url: string | null; racket: { name: string; href: string; pic: string | null } };
 
 export function SourceLabel({ kind, who, url }: { kind: FeedCard["kind"]; who: string; url: string | null }) {
@@ -15,12 +15,12 @@ export function SourceLabel({ kind, who, url }: { kind: FeedCard["kind"]; who: s
   return <><span className={`th-tag ${cls}`}>{label}</span>{url ? <a href={url} target="_blank" rel="noopener nofollow" style={{ fontWeight: 700 }}>{`${who} ↗`}</a> : <strong>{who}</strong>}<span>· summarised</span></>;
 }
 
-export function Feed({ cards, step = 4 }: { cards: FeedCard[]; step?: number }) {
+export function Feed({ cards, step = 4, title = "Latest player reviews" }: { cards: FeedCard[]; step?: number; title?: string }) {
   const [v, setV] = useState<FeedCard["verdict"] | "all">("all"), [n, setN] = useState(step);
   const list = cards.filter(c => v === "all" || c.verdict === v);
   return <section className="th-card th-sec">
     <div className="th-head-row" style={{ alignItems: "center", justifyContent: "space-between" }}>
-      <h2 className="th-h2">Latest player reviews</h2>
+      <h2 className="th-h2">{title}</h2>
       <div className="th-chipsf" role="group" aria-label="Filter reviews">
         {([["all", "All"], ["positive", "Loved it"], ["mixed", "Mixed"], ["negative", "Not for me"]] as const).map(([k, l]) =>
           <button key={k} type="button" className="th-chipf" aria-pressed={v === k} onClick={() => { setV(k); setN(step); }}>{l}</button>)}

@@ -30,8 +30,9 @@ type Ctx = Awaited<ReturnType<typeof matchContext>>;
 const FEEL = { soft: "Soft", medium: "Medium", firm: "Hard" } as const;
 
 /** A build without a database (CI) renders the Thread pages empty, as the live pages skip their reads there; Vercel builds and
- *  serves them with data. */
-export const hasDb = () => !!process.env.DATABASE_URL;
+ *  serves them with data. These are padel's pages (padel's match engine): on any other site's build (StackRecs has its own,
+ *  app/thread/stack) they read nothing and build empty, and proxy.ts never serves them there. */
+export const hasDb = () => !!process.env.DATABASE_URL && niche.id === "padel";
 /** The Thread home's top rows: the classic home's default order (app/home-payload.ts defaultHomeIds), as Thread rows. */
 export const homeTop = (rows: Map<string, ThreadRow>, ids: string[], size = 10) => ids.flatMap(id => rows.get(id) ?? []).slice(0, size);
 type Rows = { ctx: Ctx; rows: Map<string, ThreadRow>; all: ThreadRow[]; bySlug: Map<string, ThreadRow> };
