@@ -135,7 +135,7 @@ export default async function ThreadRacket({ params }: P) {
             <div style={{ display: "flex", flexDirection: "column", gap: 10, minWidth: 0 }}>
               {(lead || bullets.length > 0) && <div className="th-tldr"><div className="th-tldr-h">TL;DR</div>
                 {lead && <p>{lead}</p>}
-                {bullets.length > 0 && <ul>{bullets.map(b => <li key={b.text}><span className={`th-sdot ${b.tone === "pos" ? "pos" : "catch"}`}/><span>{b.text}</span></li>)}</ul>}
+                {bullets.length > 0 && <ul>{bullets.map(b => <li key={b.text}><span className={`th-sdot ${b.tone}`}/><span>{b.text}</span></li>)}</ul>}
               </div>}
               {SKIN ? <SkinFitCheck id={r.id} wire={skinWire} links={skinLinks}/> : <FitCheck id={r.id}/>}
             </div>
