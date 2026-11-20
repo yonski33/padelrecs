@@ -81,15 +81,24 @@ const AUDIO_GUIDES: Record<GuideKey, string> = {
   side: "/guides/earbuds-or-over-ear",
   elbow: "/guides/noise-cancelling",
 };
+/** SimRacingRecs (its handoff mock): choosing a first setup, beginner tips, drive types, load cell pedals and desk or rig, in
+ *  the same slots ("shape" = drive types, "side" = pedals, "elbow" = desk or rig). */
+const SIMRACING_GUIDES: Record<GuideKey, string> = {
+  racket: "/guide",
+  beginner: "/guides/beginner-tips",
+  shape: "/guides/direct-drive-belt-or-gear",
+  side: "/guides/load-cell-pedals",
+  elbow: "/guides/desk-or-rig",
+};
 export const guidePathsFor = (nicheId: string): Record<GuideKey, string> => nicheId === "pickleball" ? PICKLEBALL_GUIDES : nicheId === "skin" ? SKIN_GUIDES
-  : nicheId === "discgolf" ? DISCGOLF_GUIDES : nicheId === "audio" ? AUDIO_GUIDES : PADEL_GUIDES;
+  : nicheId === "discgolf" ? DISCGOLF_GUIDES : nicheId === "audio" ? AUDIO_GUIDES : nicheId === "simracing" ? SIMRACING_GUIDES : PADEL_GUIDES;
 /** The running site's guide addresses. */
 export const GUIDE_PATHS = guidePathsFor(niche.id);
 export const GUIDE_KEYS = Object.keys(PADEL_GUIDES) as GuideKey[];
 export const guideKeyOf = (path: string, nicheId = niche.id): GuideKey | null => GUIDE_KEYS.find(k => guidePathsFor(nicheId)[k] === path) ?? null;
 
 /** The sites whose add-review page is the design-v2 form, which has a Thread page (StackRecs keeps its own full form). */
-export const ADD_REVIEW_SITES = new Set(["padel", "pickleball", "skin", "discgolf"]);
+export const ADD_REVIEW_SITES = new Set(["padel", "pickleball", "skin", "discgolf", "simracing"]);
 /** The Thread page an address shows with ?look=thread, or null when the Thread look has no page for it (compare and
  *  add-review keep their live page). `catalog` is the niche's catalogue path ("/rackets" on padel, "/paddles" on pickleball). */
 export function threadPath(pathname: string, catalog = catalogPath, nicheId = niche.id): string | null {
@@ -127,9 +136,9 @@ export function threadPath(pathname: string, catalog = catalogPath, nicheId = ni
   if (brand) return `/thread/brands/${brand[1]}`;
   // DiscGolfRecs: each type page (/putters) is a catalogue of its own; its discs stay under /discs.
   if (nicheId === "discgolf" && nicheId === niche.id && (niche.typePages ?? []).some(t => t.slug === p.slice(1))) return `/thread/types${p}`;
-  // SkinRecs and AudioRecs: products live under their type page (/moisturizers/<slug>, /headphones/<slug>), and each type
-  // page is a catalogue of its own.
-  if ((nicheId === "skin" || nicheId === "audio") && nicheId === niche.id && niche.categoryPaths) {
+  // SkinRecs, AudioRecs and SimRacingRecs: products live under their type page (/moisturizers/<slug>, /headphones/<slug>,
+  // /wheelbases/<slug>), and each type page is a catalogue of its own.
+  if ((nicheId === "skin" || nicheId === "audio" || nicheId === "simracing") && nicheId === niche.id && niche.categoryPaths) {
     const [, type, slug, extra] = p.split("/");
     if (type && !extra && (niche.typePages ?? []).some(t => t.slug === type) && (!slug || /^[a-z0-9-]+$/.test(slug))) return slug ? `/thread/rackets/${slug}` : `/thread/types/${type}`;
   }

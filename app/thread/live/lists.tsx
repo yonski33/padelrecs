@@ -4,14 +4,14 @@
 import { useMemo, useState } from "react";
 import { Row, topMatch, type ThreadRow } from "../ui";
 import { th } from "../../../lib/thread/look";
-import { usePicks, usePayload, rankFor, pctsFor, rowFromCard, NO_PICKS, LEVEL_OPTS, STYLE_OPTS, TYPES, styleLabel, ARM_LABEL, type Picks, type Style } from "./picks";
+import { usePicks, usePayload, rankFor, pctsFor, rowFromCard, NO_PICKS, LEVEL_OPTS, STYLE_OPTS, TYPES, BUDGETS, styleLabel, ARM_LABEL, ARM_LINE, type Picks, type Style } from "./picks";
 import { cap } from "../ui";
 import { niche } from "../../../lib/niche";
 import { W } from "../../../lib/thread/words";
 const { one: ONE, many: MANY } = niche.words;
 
 // On the home a single pick is enough (owner 2026-11-19: "Any" is the default style), so a level alone re-ranks the list.
-const picked = (p: Picks) => !!(p.level || p.style || p.arm);
+const picked = (p: Picks) => !!(p.level || p.style || p.arm || p.budget);
 /** The home also re-ranks for a type chip alone (DiscGolfRecs). */
 const pickedHome = (p: Picks) => picked(p) || !!p.kind;
 function useMatch(home = false) {
@@ -34,8 +34,9 @@ function resultLine(picks: Picks, n: number | null, all: number) {
 /** DiscGolfRecs: "Showing 38 understable midranges for intermediate throwers with a slower arm", with the type chip's words. */
 function discLine(picks: Picks, n: number | null, all: number) {
   const many = TYPES.find(t => t.key === picks.kind)?.many ?? MANY, one = many.replace(/s$/, "");
-  const what = [picks.style ? styleLabel(picks.style).toLowerCase() : null, many].filter(Boolean).join(" ");
-  const forWho = `${picks.level ? ` for ${picks.level} ${W.people}` : ""}${picks.arm ? " with a slower arm" : ""}`;
+  const budget = BUDGETS.find(([k]) => k === picks.budget)?.[1].toLowerCase() ?? null;
+  const what = [picks.style ? styleLabel(picks.style).toLowerCase() : budget, many].filter(Boolean).join(" ");
+  const forWho = `${picks.level ? ` for ${picks.level} ${W.people}` : ""}${picks.arm ? ARM_LINE : ""}`;
   if (!pickedHome(picks)) return all > 0 ? `Showing all ${all} ${MANY}` : "";
   return n == null ? `Finding ${what}${forWho}…` : n > 0 ? `Showing ${n} ${n === 1 ? what.replace(many, one) : what}${forWho}` : `No ${what}${forWho} yet`;
 }
@@ -59,7 +60,9 @@ export function MatchBox({ title, names, listed = 0, home = false, compact = fal
       <span className="lbl">I&apos;m</span>
       <span className="th-qm-group" role="group" aria-label="Your level">{LEVEL_OPTS.map(v => <button key={v} type="button" className="th-pick sm" aria-pressed={picks.level === v} onClick={() => set({ level: picks.level === v ? null : v })}>{cap(v)}</button>)}</span>
       <span className="lbl">and I want</span>
-      {compact ? <span className="th-qm-want">{seg}{check("Arm comfort")}</span> : <>{seg}{check(ARM_LABEL)}</>}
+      {BUDGETS.length ? <>{<span className="th-seg th-qm-seg" role="group" aria-label="Your budget">{([[null, "Any"], ...BUDGETS] as [string | null, string][]).map(([k, l]) =>
+        <button key={k ?? "any"} type="button" aria-pressed={(picks.budget ?? null) === k} onClick={() => set({ budget: k })}>{l}</button>)}</span>}{check(ARM_LABEL)}</>
+      : compact ? <span className="th-qm-want">{seg}{check("Arm comfort")}</span> : <>{seg}{check(ARM_LABEL)}</>}
     </div>
     {compact ? (top && name && top.pct != null || (home ? pickedHome(picks) : picked(picks))) && <span className="th-qm-result">
       {top && name && top.pct != null && <span className="th-say" aria-live="polite">{`Top match: the ${name} at ${top.pct}%.`}</span>}

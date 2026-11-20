@@ -36,7 +36,7 @@ const FEEL = { soft: "Soft", medium: "Medium", firm: "Hard" } as const;
  *  engine, skinRows below). StackRecs has its own pages (app/thread/stack): there they read nothing and build empty, and
  *  proxy.ts never serves them. */
 export const hasDb = () => !!process.env.DATABASE_URL && (niche.id === "padel" || niche.id === "pickleball" || niche.id === "skin"
-  || niche.id === "discgolf" || niche.id === "audio");
+  || niche.id === "discgolf" || niche.id === "audio" || niche.id === "simracing");
 /** The Thread home's top rows: the classic home's default order (app/home-payload.ts defaultHomeIds), as Thread rows. */
 export const homeTop = (rows: Map<string, ThreadRow>, ids: string[], size = 10) => ids.flatMap(id => rows.get(id) ?? []).slice(0, size);
 type Rows = { ctx: Ctx; rows: Map<string, ThreadRow>; all: ThreadRow[]; bySlug: Map<string, ThreadRow> };
@@ -95,6 +95,8 @@ function rowOf(ctx: Ctx, r: Ctx["data"]["listed"][number], brand: string, n: num
  *  players mention in their reviews (lib/trait-score.ts, the same scores as the racket pages' bars), only rackets with a
  *  Player score, and only counts of 5 or more. */
 const BOARDS: [string, string][] = niche.id === "audio" ? [] // AudioRecs has no review trait scores: its boards come from votes only
+  : niche.id === "simracing"
+  ? [["ffb_detail", "Most detailed feedback"], ["ffb_strength", "Most torque"], ["brake_feel", "Best brake feel"], ["rigidity", "Least flex"], ["quiet", "Quietest"], ["setup", "Easiest to set up"]]
   : niche.id === "discgolf"
   ? [["accuracy", "Straightest flight"], ["arm", "Best for slow arms"], ["distance", "Most distance"], ["wind", "Best in the wind"], ["grip", "Most grip"], ["glide", "Most glide"]]
   : niche.id === "pickleball"

@@ -16,6 +16,8 @@ const SITE_FONTS: Record<string, string[]> = { discgolf: ["https://fonts.googlea
   padel: ["https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Barlow+Condensed:wght@800;900&display=swap"],
   /** AudioRecs (design_handoff_audiorecs README): Archivo Narrow for headings. */
   audio: ["https://fonts.googleapis.com/css2?family=Archivo+Narrow:wght@600;700&display=swap"] };
+/** SimRacingRecs uses the PadelRecs v3 look (owner 2026-11-21), so the same fonts. */
+SITE_FONTS.simracing = SITE_FONTS.padel;
 
 export default function ThreadLayout({ children }: { children: ReactNode }) {
   return <>

@@ -27,7 +27,7 @@ import { v3Site } from "../../lib/thread/sites";
 import { JustIn } from "./just-in";
 
 export const revalidate = 21600;
-const SKIN = niche.id === "skin", DG = niche.id === "discgolf";
+const SKIN = niche.id === "skin", DG = niche.id === "discgolf", SR = niche.id === "simracing";
 /** PadelRecs home on phones (owner 2026-11-21): no intro line, no "Showing N rackets" line, a tighter hero (th-hp). */
 const PADEL = niche.id === "padel";
 /** The v3 home (padel's, lib/thread/sites.ts v3Site): PadelRecs and the sites rolled onto it (AudioRecs). */
@@ -108,7 +108,7 @@ export default async function ThreadHome() {
     <main className={PADEL ? "th-main th-hp" : "th-main"}>
       <div className="th-col">
         <section className="th-card th-hero">
-          <div className="th-h1-row"><h1 className="th-h1">{SKIN ? "The skincare community" : DG ? "The disc golf community" : `The ${niche.id} ${niche.words.one} community`}</h1>
+          <div className="th-h1-row"><h1 className="th-h1">{SKIN ? "The skincare community" : DG ? "The disc golf community" : SR ? "The sim racing community" : `The ${niche.id} ${niche.words.one} community`}</h1>
             {total > 0 && <span className="th-live"><i aria-hidden="true"/>{`${total.toLocaleString("en-US")} reviews${week > 0 ? ` · ${week.toLocaleString("en-US")} ${WEEK_SHORT}` : ""}`}</span>}</div>
           {!PADEL && <p className="th-lead">{SKIN ? "Real people talking about skincare. Share what worked, and see what everyone actually thinks."
             : DG ? "Real throwers talking discs. Ask, share your take, and see what everyone actually thinks." : `Real ${W.people} talking ${niche.words.many}. Share your take, and see what everyone actually thinks.`}</p>}
