@@ -3,6 +3,7 @@
 import { cache } from "react";
 import { database } from "../../db/data";
 import { liveStories, storyBySlug, storiesForRacket, liveStoryCount, movedStory, type Story } from "../../db/stories";
+import { storyFeatures, storyExtras, likedThisMonth, authorStats, type StoryFeatures, type StoryExtra } from "../../db/story-extras";
 import { storiesSite } from "../../lib/thread/sites";
 import { niche } from "../../lib/niche";
 
@@ -18,3 +19,17 @@ export const racketStories = cache((racketId: string) => safe<Story[]>("racket",
 export const liveStoryTotal = cache(() => safe<number>("count", 0, async () => liveStoryCount(await database())));
 /** A story's current address when this is one it had before (clean slugs: the old address 301s), else null. */
 export const threadMovedStory = cache((slug: string) => safe<string | null>("moved", null, async () => movedStory(await database(), slug)));
+
+// The redesign's extras (owner design 2026-11-21): topic and ▲ likes once drizzle/0033 is in, comment counts always.
+const OFF: StoryFeatures = { topics: false, likes: false };
+export const threadStoryFeatures = cache(() => safe<StoryFeatures>("features", OFF, async () => storyFeatures(await database())));
+export async function threadStoryExtras(list: Story[]) {
+  const f = await threadStoryFeatures();
+  return safe<Map<string, StoryExtra>>("extras", new Map(), async () => storyExtras(await database(), list, f));
+}
+export const threadLikedThisMonth = cache(async () => (await threadStoryFeatures()).likes
+  ? safe<{ id: string; likes: number }[]>("liked", [], async () => likedThisMonth(await database())) : []);
+export const threadAuthorStats = cache(async (storyId: string) => {
+  const f = await threadStoryFeatures();
+  return safe("author", { stories: 0, likes: 0 }, async () => authorStats(await database(), storyId, f));
+});

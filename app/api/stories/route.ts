@@ -3,11 +3,12 @@
 import { z } from "zod";
 import { revalidatePath } from "next/cache";
 import { database, catalog } from "../../../db/data";
-import { addStory, editStory, deleteStory, storyForEditor, myStories } from "../../../db/stories";
+import { addStory, editStory, deleteStory, storyForEditor, myStories, setStoryStatus } from "../../../db/stories";
+import { setStoryTopic, storyFeatures, storyTopic } from "../../../db/story-extras";
 import { currentPlayer } from "../../../lib/thread/account-session";
 import { allowedAdmin } from "../../../lib/admin-access";
 import { storiesSite } from "../../../lib/thread/sites";
-import { STORY_BODY, STORY_TITLE, STORY_RACKETS_MAX } from "../../../lib/thread/stories";
+import { STORY_BODY, STORY_TITLE, STORY_RACKETS_MAX, STORY_TOPICS, type StoryTopic } from "../../../lib/thread/stories";
 import { issueFormToken, checkFormToken, tokenRejects } from "../../../lib/form-token";
 import { createLimiter, clientIp } from "../../../lib/rate-limit";
 import { niche } from "../../../lib/niche";
@@ -16,9 +17,18 @@ import { network, json, foreign } from "../thread-device";
 const off = () => !storiesSite(niche.id) || !process.env.DATABASE_URL;
 const burst = createLimiter({ limit: 6, windowMs: 60 * 60_000 });
 const body = z.object({ title: z.string().trim().min(1).max(STORY_TITLE.max + 20), body: z.string().trim().min(1).max(STORY_BODY.max + 200),
-  rackets: z.array(z.string().max(100)).max(STORY_RACKETS_MAX).default([]), formToken: z.string().optional(), website: z.string().optional() });
+  rackets: z.array(z.string().max(100)).max(STORY_RACKETS_MAX).default([]), formToken: z.string().optional(), website: z.string().optional(),
+  /** The story's topic (drizzle/0033); ignored until that migration is in. null clears it. */
+  topic: z.enum(STORY_TOPICS.map(t => t[0]) as [StoryTopic, ...StoryTopic[]]).nullable().optional() });
 
-const edit = z.object({ id: z.string().uuid(), title: body.shape.title, body: body.shape.body, rackets: body.shape.rackets, formToken: z.string().optional() });
+const edit = z.object({ id: z.string().uuid(), title: body.shape.title, body: body.shape.body, rackets: body.shape.rackets, topic: body.shape.topic, formToken: z.string().optional() });
+/** An admin hides a live story from its page's ⋯ menu (owner design 2026-11-21): it goes to the Stories tab's Rejected list. */
+const hide = z.object({ id: z.string().uuid(), hide: z.literal(true) });
+/** The topic is plain metadata, saved at once (not part of a waiting edit); skipped before drizzle/0033. */
+async function saveTopic(db: Awaited<ReturnType<typeof database>>, id: string, topic: StoryTopic | null | undefined) {
+  if (topic === undefined) return;
+  try { if ((await storyFeatures(db)).topics) await setStoryTopic(db, id, topic); } catch (error) { console.error("Story topic failed", error); }
+}
 
 /** The signed-in member, and whether they may change this story: its author, or an admin (owner 2026-11-20). */
 async function editor(db: Awaited<ReturnType<typeof database>>) {
@@ -40,11 +50,11 @@ export async function GET(request: Request) {
     if (q.get("mine")) return json({ stories: who?.me.account ? (await myStories(db, who.me.account.id)).map(s => ({ id: s.id, slug: s.slug, title: s.title, status: s.status, at: s.at, editedAt: s.editedAt, editWaiting: s.editWaiting })) : [] });
     const s = slug ? await storyForEditor(db, slug) : null;
     const may = !!s && !!who && (who.admin || who.me.account?.id === s.accountId);
-    if (q.get("can")) return json({ canEdit: may });
+    if (q.get("can")) return json({ canEdit: may, admin: !!who?.admin });
     if (!s || !may) return json({ error: "Only its author can edit this story." }, 403);
-    const p = s.pendingEdit;
-    return json({ story: { id: s.id, slug: s.slug, title: p?.title ?? s.title, body: p?.body ?? s.body, rackets: p?.rackets ?? s.rackets, status: s.status, editWaiting: !!p },
-      token: issueFormToken() });
+    const p = s.pendingEdit, f = await storyFeatures(db).catch(() => ({ topics: false }));
+    return json({ story: { id: s.id, slug: s.slug, title: p?.title ?? s.title, body: p?.body ?? s.body, rackets: p?.rackets ?? s.rackets, status: s.status, editWaiting: !!p,
+      topic: f.topics ? await storyTopic(db, s.id) : null }, token: issueFormToken() });
   } catch (error) { console.error("Story read failed", error); return json({ error: "Could not load that story." }, 500); }
 }
 
@@ -53,7 +63,17 @@ export async function PATCH(request: Request) {
   if (off()) return json({ error: "Not here." }, 404);
   if (foreign(request)) return json({ error: "Edit from the story page, please." }, 403);
   if (!burst.hit(clientIp(request))) return json({ error: "Too many changes. Try again later." }, 429);
-  let parsed; try { parsed = edit.safeParse(await request.json()); } catch { return json({ error: "Invalid request." }, 400); }
+  let raw: unknown; try { raw = await request.json(); } catch { return json({ error: "Invalid request." }, 400); }
+  const hiding = hide.safeParse(raw);
+  if (hiding.success) {
+    try {
+      const db = await database(), who = await editor(db);
+      if (!who?.admin) return json({ error: "Only the owner can hide stories." }, 403);
+      if (!(await setStoryStatus(db, hiding.data.id, "rejected"))) return json({ error: "That story is gone." }, 404);
+      refresh(); return json({ status: "hidden" });
+    } catch (error) { console.error("Story hide failed", error); return json({ error: "Could not hide that. Try again?" }, 500); }
+  }
+  const parsed = edit.safeParse(raw);
   if (!parsed.success) return json({ error: "Check the title and the story." }, 400);
   const v = parsed.data;
   try {
@@ -67,6 +87,7 @@ export async function PATCH(request: Request) {
     const r = await editStory(db, { id: v.id, title: v.title, body: v.body, rackets, live: who.admin });
     if (r.status === "invalid") return json({ error: r.problem }, 400);
     if (r.status === "missing") return json({ error: "That story is gone." }, 404);
+    await saveTopic(db, v.id, v.topic);
     if (r.status === "live") refresh();
     return json({ status: r.status, slug: r.slug });
   } catch (error) { console.error("Story edit failed", error); return json({ error: "Could not save that. Try again?" }, 500); }
@@ -110,6 +131,7 @@ export async function POST(request: Request) {
     const r = await addStory(db, { accountId: me.account.id, title: v.title, body: v.body, rackets, network: network(request), live });
     if (r.status === "invalid") return json({ error: r.problem }, 400);
     if (r.status === "limited") return json({ error: "That's a lot of stories for one day. Try again tomorrow." }, 429);
+    if (r.status !== "rejected") await saveTopic(db, r.id, v.topic);
     if (r.status === "approved") { try { revalidatePath("/", "layout"); } catch { /* outside a request */ } }
     return json({ status: r.status === "approved" ? "live" : r.status === "rejected" ? "rejected" : "pending", ...(r.status === "approved" ? { slug: r.slug } : {}) });
   } catch (error) { console.error("Story post failed", error); return json({ error: "Could not post that. Try again?" }, 500); }

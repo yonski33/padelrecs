@@ -5,7 +5,7 @@
 // wait for a check. The rules are the API's own (lib/thread/stories.ts).
 import { useEffect, useRef, useState } from "react";
 import { matchingRackets } from "../../../lib/racket-search";
-import { storyProblem, STORY_BODY, STORY_TITLE, STORY_RACKETS_MAX } from "../../../lib/thread/stories";
+import { storyProblem, STORY_BODY, STORY_TITLE, STORY_RACKETS_MAX, STORY_TOPICS, type StoryTopic } from "../../../lib/thread/stories";
 import { th } from "../../../lib/thread/look";
 import { useAccountState, signInHref } from "./use-account";
 import { MemberMark } from "./member-mark";
@@ -27,10 +27,11 @@ const TOOLS: [Tool, string, string, string?][] = [["b", "B", "Bold (Ctrl or ⌘ 
   ["ul", "List", "Bullet list", "•  List"], ["ol", "1. List", "Numbered list", "1.  List"], ["q", "Quote", "Quote", "❝ Quote"]];
 
 type Racket = { id: string; name: string };
-/** `edit`: the slug of a story to edit (its author or an admin; owner 2026-11-20). Prefilled from /api/stories?edit=. */
-export function StoryComposer({ rackets, edit }: { rackets: Racket[]; edit?: string }) {
+/** `edit`: the slug of a story to edit (its author or an admin; owner 2026-11-20). Prefilled from /api/stories?edit=.
+ *  `topics`: drizzle/0033 is in, so the story can take a topic (owner design 2026-11-21). */
+export function StoryComposer({ rackets, edit, topics = false }: { rackets: Racket[]; edit?: string; topics?: boolean }) {
   const me = useAccountState();
-  const [title, setTitle] = useState(""), [body, setBody] = useState(""), [tags, setTags] = useState<string[]>([]), [q, setQ] = useState("");
+  const [title, setTitle] = useState(""), [body, setBody] = useState(""), [tags, setTags] = useState<string[]>([]), [q, setQ] = useState(""), [topic, setTopic] = useState<StoryTopic | null>(null);
   const [busy, setBusy] = useState(false), [error, setError] = useState(""), [done, setDone] = useState<{ status: string; slug?: string } | null>(null);
   const [view, setView] = useState<"write" | "preview">("write"), area = useRef<HTMLTextAreaElement>(null);
   const token = useRef("");
@@ -38,9 +39,9 @@ export function StoryComposer({ rackets, edit }: { rackets: Racket[]; edit?: str
   useEffect(() => {
     if (!edit) { fetch("/api/stories?token=1", { cache: "no-store" }).then(r => r.ok ? r.json() : null).then((b: { token?: string } | null) => { token.current = b?.token ?? ""; }).catch(() => {}); return; }
     fetch(`/api/stories?edit=${encodeURIComponent(edit)}`, { cache: "no-store" }).then(async r => {
-      const b = await r.json() as { story?: { id: string; slug: string; title: string; body: string; rackets: string[]; status: string; editWaiting: boolean }; token?: string; error?: string };
+      const b = await r.json() as { story?: { id: string; slug: string; title: string; body: string; rackets: string[]; status: string; editWaiting: boolean; topic?: StoryTopic | null }; token?: string; error?: string };
       if (!r.ok || !b.story) throw new Error(b.error || "Could not load that story.");
-      setStory(b.story); setTitle(b.story.title); setBody(b.story.body); setTags(b.story.rackets); token.current = b.token ?? "";
+      setStory(b.story); setTitle(b.story.title); setBody(b.story.body); setTags(b.story.rackets); setTopic(b.story.topic ?? null); token.current = b.token ?? "";
     }).catch(e => setLoadErr(e instanceof Error ? e.message : "Could not load that story."));
   }, [edit]);
   if (me === "checking") return null;
@@ -84,8 +85,8 @@ export function StoryComposer({ rackets, edit }: { rackets: Racket[]; edit?: str
     if (problem || busy) return;
     setBusy(true); setError("");
     try {
-      const r = story ? await fetch("/api/stories", { method: "PATCH", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ id: story.id, title, body, rackets: tags }) })
-        : await fetch("/api/stories", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ title, body, rackets: tags, formToken: token.current, website: "" }) });
+      const r = story ? await fetch("/api/stories", { method: "PATCH", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ id: story.id, title, body, rackets: tags, ...(topics ? { topic } : {}) }) })
+        : await fetch("/api/stories", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ title, body, rackets: tags, ...(topics ? { topic } : {}), formToken: token.current, website: "" }) });
       const b = await r.json() as { status?: string; slug?: string; error?: string };
       if (!r.ok) throw new Error(b.error || "Could not post that. Try again?");
       setDone({ status: b.status ?? "pending", slug: b.slug }); window.scrollTo({ top: 0 });
@@ -110,6 +111,9 @@ export function StoryComposer({ rackets, edit }: { rackets: Racket[]; edit?: str
           : <div className="th-ed-preview">{body.trim() ? <><h2 className="th-h1 th-ed-title">{title.trim() || "Your title"}</h2><StoryBody body={body}/></> : <p className="th-note">Nothing to preview yet.</p>}</div>}
       </div>
       <small className="th-sub">{`${text.toLocaleString("en-US")} characters · ${STORY_BODY.min} at least (formatting marks don't count)`}</small></div>
+    {topics && <div className="th-fgroup"><span id="story-topic">Topic (optional)</span>
+      <div className="th-qm-cats" role="group" aria-labelledby="story-topic">{STORY_TOPICS.map(([k, label]) => <button key={k} type="button" className="th-pick sm" aria-pressed={topic === k}
+        onClick={() => setTopic(t => t === k ? null : k)}>{label}</button>)}</div></div>}
     <div className="th-fgroup"><span>{`Rackets it mentions (optional, up to ${STORY_RACKETS_MAX})`}</span>
       {tags.length > 0 && <div className="th-qm-cats">{tags.map(id => <button key={id} type="button" className="th-pick sm" aria-pressed="true" onClick={() => setTags(t => t.filter(x => x !== id))}
         aria-label={`Remove ${byId.get(id)?.name ?? id}`}>{`${byId.get(id)?.name ?? id} ×`}</button>)}</div>}

@@ -11,7 +11,10 @@ import { MemberMark } from "./member-mark";
 import { MoreMenu, reportPost } from "./racket-v7b";
 import { avatarOf } from "../../../lib/thread/avatar";
 
-export function Discussion({ page, model }: { page: string; model: string }) {
+/** The words a page can change (the story page, owner design 2026-11-21: "Comments", "Add a comment…"); the racket page
+ *  keeps the defaults. `author`: the story author's member name, whose comments get a small lime Author tag. */
+export type DiscussionWords = { heading?: string; sub?: string; ask?: string; askIcon?: string; placeholder?: string; empty?: string; author?: string };
+export function Discussion({ page, model, words = {} }: { page: string; model: string; words?: DiscussionWords }) {
   const t = useComments(page);
   const { list, open, setOpen, reply, setReply, sort, setSort, nick, setNick, note, setNote, err, admin, editing, setEditing, draft, draftName, editErr, setEditErr, own, me, post, vote, tops, replies, open_ } = t;
   const Av = ({ c, sm }: { c: C; sm?: boolean }) => { const a = avatarOf(commenterName(c.alias)); return <span className={`th7-av${sm ? " sm" : ""}`} style={{ background: a.bg }} aria-hidden="true">{a.init}</span>; };
@@ -26,14 +29,16 @@ export function Discussion({ page, model }: { page: string; model: string }) {
     owner={admin && !c.id.startsWith("temp-") ? [{ label: "Edit", run: () => open_(c, false) }, ...(c.alias !== "[removed]" ? [{ label: "Rename", run: () => open_(c, true) }] : []),
       { label: "Hide", run: () => own(c, "hide") }, { label: "Delete", danger: true, run: () => own(c, "delete") }] : []}/>;
   const up = (c: C) => <button type="button" className="th7-up" aria-label="Upvote" aria-pressed={c.mine === 1} onClick={() => vote(c, 1)}><span aria-hidden="true">▲</span>{c.score}</button>;
-  const head = (c: C) => <div className="th7-cm-head"><strong>{commenterName(c.alias)}</strong>{c.member && <MemberMark/>}<span>{ago(c.at)}</span></div>;
+  // Member names are reserved (accounts), so a member comment under the author's name is the author's.
+  const isAuthor = (c: C) => !!words.author && !!c.member && commenterName(c.alias) === words.author;
+  const head = (c: C) => <div className="th7-cm-head"><strong>{commenterName(c.alias)}</strong>{c.member && <MemberMark/>}{isAuthor(c) && <span className="th7-op">Author</span>}<span>{ago(c.at)}</span></div>;
   const box = (placeholder: string, cta: string, onPost: (x: string) => Promise<boolean>, onCancel: () => void, mention?: string) =>
     <Box me={me} nick={nick} setNick={setNick} nicknames={[]} placeholder={placeholder} cta={cta} onPost={onPost} onCancel={onCancel} mention={mention} back="#discussion"/>;
   return <section id="discussion" className="th-card th7-card th7-disc">
     {/* Older links (home feed, sign-in) point at #comments. */}<span id="comments" className="th7-anchor" aria-hidden="true"/>
-    <div className="th7-disc-head"><h2 className="th-h2">Discussion</h2><span className="th-sub">{`Questions about the ${model}? Ask ${W.people} who've used it.`}</span></div>
-    {open ? box(`What do you want to know about the ${model}?`, "Post", x => post(x, null), () => setOpen(false))
-      : <button type="button" className="th7-ask" onClick={() => { setOpen(true); setNote(""); }}><span aria-hidden="true">?</span>Ask a question or share a tip…</button>}
+    <div className="th7-disc-head"><h2 className="th-h2">{words.heading ?? "Discussion"}</h2><span className="th-sub">{words.sub ?? `Questions about the ${model}? Ask ${W.people} who've used it.`}</span></div>
+    {open ? box(words.placeholder ?? `What do you want to know about the ${model}?`, "Post", x => post(x, null), () => setOpen(false))
+      : <button type="button" className="th7-ask" onClick={() => { setOpen(true); setNote(""); }}><span aria-hidden="true">{words.askIcon ?? "?"}</span>{words.ask ?? "Ask a question or share a tip…"}</button>}
     {note && <p className="th-ok" role="status">{note}</p>}
     {err && <span className="th-err" role="alert">{err}</span>}
     {tops.length > 1 && <div className="th-seg" role="group" aria-label="Sort comments"><span className="lbl">Sort</span>
@@ -53,7 +58,7 @@ export function Discussion({ page, model }: { page: string; model: string }) {
             </div></div>)}</div>}
         </div>
       </div>)}
-      {list && tops.length === 0 && !open && <p className="th-note" style={{ padding: "6px 0" }}>No questions yet. Ask the first one.</p>}
+      {list && tops.length === 0 && !open && <p className="th-note" style={{ padding: "6px 0" }}>{words.empty ?? "No questions yet. Ask the first one."}</p>}
     </div>
   </section>;
 }

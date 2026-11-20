@@ -116,6 +116,12 @@ export const stories = catalogSchema.table("stories", {
  oldSlugs: jsonb("old_slugs").$type<string[]>().notNull().default([])
 }, t => [uniqueIndex("stories_slug_unique").on(t.slug), index("stories_list_idx").on(t.status, t.createdAt), index("stories_account_idx").on(t.accountId),
  check("story_status", sql`${t.status} in ('pending','approved','rejected')`)]).enableRLS();
+/** ▲ on a member story (drizzle/0033, owner design 2026-11-21): one per signed-in account. The story's topic is a plain
+ *  column from the same migration, read and written in db/stories.ts with SQL so the code works before it is run. */
+export const storyLikes = catalogSchema.table("story_likes", {
+ storyId: text("story_id").notNull().references(() => stories.id, { onDelete: "cascade" }), accountId: text("account_id").notNull().references(() => accounts.id, { onDelete: "cascade" }),
+ createdAt: text("created_at").notNull()
+}, t => [primaryKey({ name: "story_likes_pk", columns: [t.storyId, t.accountId] }), index("story_likes_account_idx").on(t.accountId)]).enableRLS();
 /** Which reviews and comments belong to an account (their small "member" mark). Not a column on reviews/comments, so the
  *  other sites' tables stay as they are. */
 export const accountPosts = catalogSchema.table("account_posts", {
