@@ -6,6 +6,8 @@ import { homeMetadata } from "../home-metadata";
 import { liveOr } from "./seo";
 import { DEFAULT_CHOICE } from "../../lib/quick-match";
 import { threadRows, threadFeed, hasDb, homeTop, threadTopPicks, threadHomeSide, skinOf } from "./data";
+import { threadStories } from "./stories-data";
+import { MemberMark } from "./live/member-mark";
 import { TopPicks } from "./top-picks";
 import { homePayload, defaultHomeIds } from "../home-payload";
 import { threadRankings } from "./rankings-data";
@@ -26,7 +28,7 @@ const SKIN = niche.id === "skin", DG = niche.id === "discgolf";
 export const generateMetadata = (): Promise<Metadata> => liveOr(() => homeMetadata(DEFAULT_CHOICE, false));
 
 export default async function ThreadHome() {
-  const [{ all, rows, ctx }, picks, lists, feed, payload, side] = await Promise.all([threadRows(), threadTopPicks(), threadRankings(), threadFeed(), hasDb() && !SKIN ? homePayload() : null, threadHomeSide()]);
+  const [{ all, rows, ctx }, picks, lists, feed, payload, side, tales] = await Promise.all([threadRows(), threadTopPicks(), threadRankings(), threadFeed(), hasDb() && !SKIN ? homePayload() : null, threadHomeSide(), threadStories(3)]);
   // The classic home's own order (curated picks first, one current row per model; app/home-payload.ts defaultHomeIds).
   const top = payload ? homeTop(rows, defaultHomeIds(payload, DEFAULT_CHOICE)) : [];
   // SkinRecs ranks with its own engine in the browser (app/thread/live/skin-match.tsx): the current products and their
@@ -79,6 +81,9 @@ export default async function ThreadHome() {
       <aside className="th-side">
         {sideBox()}
         <SideBox title="Rankings"><LinkList links={rankLinks}/></SideBox>
+        {/* Member stories (PadelRecs pilot): the latest 3, once one is live. */}
+        {tales.length > 0 && <SideBox title="Stories"><ul className="th-stories sm">{tales.map(t => <li key={t.id}><a className="th-story-t" href={th(`/stories/${t.slug}`)}>{t.title}</a>
+          <span className="th-story-by"><strong>{t.author.name}</strong><MemberMark/></span></li>)}</ul><a className="th-link-b" href={th("/stories")}>All stories</a></SideBox>}
         {web.length > 0 && <section className="th-card th-sec" style={{ padding: "12px 14px", gap: 8 }}>
           <span className="th-stitle">New from around the web</span>
           {web.map(w => { const r = rows.get(w.racketId)!, [label, cls] = SOURCE[w.kind as keyof typeof SOURCE];

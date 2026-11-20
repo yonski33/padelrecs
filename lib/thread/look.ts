@@ -5,7 +5,7 @@
 // PickleballRecs (plans/PICKLEBALL-THREAD-PLAN.md) runs the same pages, previewed with ?look=thread until its flag is on.
 import { niche, catalogPath } from "../niche";
 
-import { threadDefaultFor, ELBOW_SLUG } from "./sites";
+import { threadDefaultFor, ELBOW_SLUG, storiesSite } from "./sites";
 export { THREAD_DEFAULTS, threadDefaultFor, threadSite, THREAD_MOVED, ELBOW_SLUG } from "./sites";
 /** The running site's flag. */
 export const THREAD_DEFAULT = threadDefaultFor(niche.id);
@@ -101,6 +101,12 @@ export function threadPath(pathname: string, catalog = catalogPath, nicheId = ni
   // The design-v2 form in the Thread look (owner 2026-11-20); proxy.ts keeps its query and leaves ?classic=1 on the live form.
   if (p === "/add-review" && ADD_REVIEW_SITES.has(nicheId)) return "/thread/add-review";
   if (p === "/privacy") return "/thread/privacy";
+  // Member stories (PadelRecs pilot, owner 2026-11-20): the list, the composer and one page per story, Thread only.
+  if (storiesSite(nicheId)) {
+    if (p === "/stories") return "/thread/stories";
+    const story = /^\/stories\/([a-z0-9-]{1,80})$/.exec(p);
+    if (story) return `/thread/stories/${story[1]}`;
+  }
   if (p === "/brands") return "/thread/brands";
   const brand = /^\/brands\/([a-z0-9-]+)$/.exec(p);
   if (brand) return `/thread/brands/${brand[1]}`;

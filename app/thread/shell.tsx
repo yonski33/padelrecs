@@ -5,14 +5,17 @@ import { th } from "../../lib/thread/look";
 import { GUIDE_UI } from "../../lib/thread/copy";
 import { amazonLinksOn } from "../../lib/amazon-offer";
 import { niche } from "../../lib/niche";
+import { liveStoryTotal } from "./stories-data";
 
 export const FOOTER_LINKS = [{ label: "About", href: "/about" }, { label: "How the score works", href: "/how-we-make-these" }, { label: "Affiliate disclosure", href: "/affiliate-disclosure" }, { label: "Contact", href: "/contact" }, { label: "Privacy", href: "/privacy" }];
 
-export function Shell({ active = null, children }: { active?: Section; children: ReactNode }) {
+export async function Shell({ active = null, children }: { active?: Section; children: ReactNode }) {
+  // Member stories (PadelRecs pilot): the header link shows once one story is live (0 elsewhere, or before the migration).
+  const stories = (await liveStoryTotal()) > 0;
   // PickleballRecs has its own colours and fonts (owner 2026-11-19: the handoff README tokens), scoped by th-pb in thread.css.
   return <div className={niche.id === "pickleball" ? "th th-pb" : niche.id === "skin" ? "th th-skin" : niche.id === "stackrecs" ? "th th-stack"
     : niche.id === "discgolf" ? "th th-dg" : "th"}>
-    <ThreadHeader active={active}/>
+    <ThreadHeader active={active} {...(stories ? { stories } : {})}/>
     {children}
     <footer className="th-foot"><div className="th-foot-in">
       <span>{niche.id === "stackrecs" ? `${niche.site.name} · Scores come only from votes and reviews.` : `${niche.site.name} · ${GUIDE_UI.footerTagline}`}</span>

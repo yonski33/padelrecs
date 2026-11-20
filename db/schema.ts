@@ -98,6 +98,16 @@ export const accounts = catalogSchema.table("accounts", {
  id: text("id").primaryKey(), name: text("name").notNull(), nameKey: text("name_key").notNull(), level: text("level"), side: text("side"),
  status: text("status", { enum: ["active", "blocked"] }).notNull().default("active"), createdAt: text("created_at").notNull(), updatedAt: text("updated_at").notNull()
 }, t => [uniqueIndex("accounts_name_key_unique").on(t.nameKey), check("account_status", sql`${t.status} in ('active','blocked')`)]).enableRLS();
+/** Member stories (drizzle/0031, PadelRecs Thread pilot, owner 2026-11-20): short posts by signed-in members ("10 things I
+ *  learned in my first year"), with optional racket tags. They go through the review queue like comments; the owner's own
+ *  go live at once. Comments under a story use the comments table with page "story:<slug>". */
+export const stories = catalogSchema.table("stories", {
+ id: text("id").primaryKey(), slug: text("slug").notNull(), accountId: text("account_id").notNull().references(() => accounts.id, { onDelete: "cascade" }),
+ title: text("title").notNull(), body: text("body").notNull(), rackets: jsonb("rackets").$type<string[]>().notNull().default([]),
+ status: text("status", { enum: ["pending", "approved", "rejected"] }).notNull().default("pending"), spamScore: integer("spam_score").notNull().default(0),
+ network: text("network").notNull(), createdAt: text("created_at").notNull(), updatedAt: text("updated_at").notNull()
+}, t => [uniqueIndex("stories_slug_unique").on(t.slug), index("stories_list_idx").on(t.status, t.createdAt), index("stories_account_idx").on(t.accountId),
+ check("story_status", sql`${t.status} in ('pending','approved','rejected')`)]).enableRLS();
 /** Which reviews and comments belong to an account (their small "member" mark). Not a column on reviews/comments, so the
  *  other sites' tables stay as they are. */
 export const accountPosts = catalogSchema.table("account_posts", {

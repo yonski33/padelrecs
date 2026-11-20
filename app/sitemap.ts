@@ -2,6 +2,7 @@ import type { MetadataRoute } from "next";
 import { catalog } from "../db/data";
 import { catalogPath, niche, productHref } from "../lib/niche";
 import { amazonLinksOn } from "../lib/amazon-offer";
+import { threadStories } from "./thread/stories-data";
 import { comparePairs, pairHref } from "../lib/compare-pairs";
 import { threadSite, THREAD_DEFAULT, GUIDE_PATHS, GUIDE_KEYS } from "../lib/thread/look";
 import { rankList, listTotals, RANKINGS_PATH, rankingHref, withNicheWindow, withModelYears, MIN_LIST_ENTRIES } from "../lib/top-lists";
@@ -38,6 +39,8 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     ...lists.map(x => ({ url: `${base}${rankingHref(x.list.slug)}`, lastModified: new Date(x.updated), changeFrequency: "weekly" as const, priority: 0.8 })),
     // PadelRecs on the Thread look (lib/thread/look.ts): its four new guides and its rankings that only Thread has.
     ...(await threadExtras(base, latest(allNotes))),
+    // Member stories (PadelRecs pilot): the list and each live story, once one is live.
+    ...(await storyEntries(base)),
     ...(niche.typePages ?? []).map(t => ({
       url: `${base}/${t.slug}`,
       lastModified: latest(listed.filter(r => r.shape?.toLowerCase() === t.shape.toLowerCase()).flatMap(r => [r.createdAt, ...notesFor(r.id)])),
@@ -78,4 +81,12 @@ async function threadExtras(base: string, updated: Date | undefined): Promise<Me
     ...GUIDE_KEYS.filter(k => k !== "racket").map(k => ({ url: `${base}${GUIDE_PATHS[k]}`, lastModified: updated, changeFrequency: "monthly" as const, priority: 0.6 })),
     ...extra.map(l => ({ url: `${base}${l.href}`, lastModified: updated, changeFrequency: "weekly" as const, priority: 0.7 })),
   ];
+}
+
+async function storyEntries(base: string): Promise<MetadataRoute.Sitemap> {
+  const list = await threadStories(1000);
+  if (!list.length) return [];
+  const newest = new Date(list.map(s => s.updatedAt).reduce((a, b) => a > b ? a : b));
+  return [{ url: `${base}/stories`, lastModified: newest, changeFrequency: "daily", priority: 0.6 },
+    ...list.map(s => ({ url: `${base}/stories/${s.slug}`, lastModified: new Date(s.updatedAt), changeFrequency: "monthly" as const, priority: 0.6 }))];
 }

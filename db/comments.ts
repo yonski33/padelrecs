@@ -9,7 +9,7 @@ import { nameProblem } from "../lib/thread/display-name";
 
 type Database = ReturnType<typeof getDb>;
 export const COMMENTS_PER_HOUR = 20;
-export const PAGE_KEY = /^(racket|ranking|guide):[A-Za-z0-9_-]{1,100}$/;
+export const PAGE_KEY = /^(racket|ranking|guide|story):[A-Za-z0-9_-]{1,100}$/;
 /** No tags (owner 2026-11-19): the is_question column stays in the table, unused (always false). */
 export type ThreadComment = { id: string; parentId: string | null; alias: string; body: string; at: string; score: number; mine: number };
 

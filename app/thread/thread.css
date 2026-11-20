@@ -873,3 +873,19 @@ body:has(.th-dg) .th-dg a.th-add:hover, body:has(.th-dg) .th-dg a.th-add:focus-v
 .th-ar-again { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; margin-top: 10px; }
 @media (max-width: 639px) { .th-ar-trait { grid-template-columns: 96px auto; } .th-ar-trait > span { grid-column: 1 / -1; }
   .th-ar-row { padding: 4px 0; } .th-ar-row > span { flex-basis: 100%; } }
+
+/* Member stories (PadelRecs pilot, owner 2026-11-20): the list, one story's text, and the small lists on racket pages and the home. */
+.th-stories { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; }
+.th-stories li { display: flex; flex-direction: column; gap: 4px; padding: 12px 0; border-top: 1.5px solid var(--div); }
+.th-stories li:first-child { border-top: 0; padding-top: 2px; }
+.th-stories li p { margin: 0; font-size: 14.5px; color: var(--body); }
+.th-stories.sm li { padding: 8px 0; gap: 2px; }
+body:has(.th) .th a.th-story-t { font: 700 18px/1.25 var(--bc); color: var(--ink); text-decoration: none; }
+body:has(.th) .th a.th-story-t:hover { color: var(--hover); text-decoration: underline; text-underline-offset: 3px; }
+.th-stories.sm a.th-story-t { font-size: 15px; }
+.th-story-by { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; font-size: 13px; color: var(--ink2); }
+.th-story-by strong { color: var(--ink); }
+.th-story-body { display: flex; flex-direction: column; gap: 12px; font-size: 16.5px; line-height: 1.6; color: var(--body); max-width: 68ch; }
+.th-story-body p { margin: 0; overflow-wrap: anywhere; white-space: pre-line; }
+.th-story-form { display: flex; flex-direction: column; gap: 12px; }
+.th-story-form .th-fgroup { display: flex; flex-direction: column; gap: 6px; font-size: 14px; color: var(--ink2); }
