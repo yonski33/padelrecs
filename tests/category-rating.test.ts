@@ -1,6 +1,6 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { categoryRatings, cautiousShare, priorShare, ratingCategory, RATING_HOW } from "../lib/category-rating";
+import { categoryRatings, cautiousShare, priorShare, ratingCategory, ratingHow } from "../lib/category-rating";
 
 const power = ratingCategory("best-power-padel-rackets", "padel")!;
 // The curated power 10's "Plays like" counts from the Power score test (power, all-round, control), with made-up bars.
@@ -14,11 +14,13 @@ test("labels: padel category lists only; filter lists and other sites keep the p
   for (const slug of ["best-padel-rackets", "best-padel-rackets-2026", "best-diamond-padel-rackets", "best-teardrop-padel-rackets"])
     assert.equal(ratingCategory(slug, "padel"), null, slug);
   assert.equal(ratingCategory("best-power-padel-rackets", "pickleball"), null);
-  assert.equal(ratingCategory("best-power-pickleball-paddles", "pickleball"), null);
+  assert.equal(ratingCategory("best-power-pickleball-paddles", "padel"), null);
+  assert.equal(ratingCategory("best-power-pickleball-paddles", "skin"), null);
+  assert.equal(ratingCategory("best-disc-golf-discs", "discgolf"), null);
 });
 
 test("copy: short, no score or measuring words", () => {
-  for (const t of [RATING_HOW, power.label]) {
+  for (const t of [ratingHow("PadelRecs"), ratingHow("PickleballRecs"), power.label]) {
     assert.ok(t.length <= 105, t);
     assert.doesNotMatch(t, /score|measur|test|verdict|—|\bwe\b|\bus\b/i, t);
   }
@@ -54,4 +56,21 @@ test("no evidence: mid-step, still ordered", () => {
 test("few opinions are held lower than many at the same share", () => {
   const few = cautiousShare(power, { group: { power: 3, control: 0 } }, 0.48)!, many = cautiousShare(power, { group: { power: 30, control: 0 } }, 0.48)!;
   assert.ok(many > few);
+});
+
+test("pickleball: its own labels; overall and shape lists keep the player score", () => {
+  const pb = (slug: string) => ratingCategory(slug, "pickleball")?.label ?? null;
+  assert.equal(pb("best-power-pickleball-paddles"), "Power rating");
+  assert.equal(pb("best-control-pickleball-paddles"), "Control rating");
+  assert.equal(pb("best-spin-pickleball-paddles"), "Spin rating");
+  assert.equal(pb("best-pickleball-paddles-for-tennis-elbow"), "Arm comfort rating");
+  assert.equal(pb("best-pickleball-paddles-for-beginners"), "Beginner rating");
+  for (const slug of ["best-pickleball-paddles", "best-standard-pickleball-paddles", "best-elongated-pickleball-paddles", "best-hybrid-pickleball-paddles"])
+    assert.equal(pb(slug), null, slug);
+});
+
+test("shape words count inside a longer shape", () => {
+  const pp = ratingCategory("best-power-pickleball-paddles", "pickleball")!, g = { power: 5, control: 5 };
+  assert.ok(cautiousShare(pp, { group: g, shape: "Hybrid elongated" }, 0.5)! > cautiousShare(pp, { group: g, shape: "Hybrid" }, 0.5)!);
+  assert.ok(cautiousShare(pp, { group: g, shape: "Standard" }, 0.5)! < cautiousShare(pp, { group: g, shape: "Hybrid" }, 0.5)!);
 });

@@ -1,25 +1,25 @@
-// Curated category ratings on PadelRecs ranking pages (owner 2026-11-21). A list in the owner's curated order (or the engine's
+// Curated category ratings on PadelRecs (owner 2026-11-21) and PickleballRecs (owner 2026-11-21) ranking pages. A list in the owner's curated order (or the engine's
 // order on a kind-of-player list) showed the overall Player score as its big number, so a 70 sat above an 88. These lists now
-// show a category rating instead: "Power rating", "Control rating" and so on, labelled as a PadelRecs pick.
+// show a category rating instead: "Power rating", "Control rating" and so on, labelled as the site's own pick.
 //   - It follows list position on a fixed scale: #1 in 95-97, each place about 1-3 lower, never rising down the list.
 //   - Within a place's step, players' own words nudge it: a racket more players call powerful (the "How does it play?" group,
 //     the Power score test's variant A, research/padel-power-score-test-2026-11-21.md) and with a higher engine bar sits at
 //     the top of its step.
 //   - Fixed: no randomness, so the same data gives the same number on every build.
 //   - Never in structured data: the real Player score stays the only rating in JSON-LD.
-// Pure, so tests feed plain inputs. Padel only; other sites and the filter-style lists (Best overall, Best of a year, a shape)
-// keep the Player score.
+// Pure, so tests feed plain inputs. Padel and pickleball only; other sites and the filter-style lists (Best overall, Best of a
+// year, a shape) keep the Player score.
 import { ELBOW_SLUG } from "./thread/sites";
 
 export type RatingCategory = {
   /** The big number's label ("Power rating"). */ label: string;
   /** The "How does it play?" group the evidence comes from, and each option's weight (1 = for, 0 = against). */
   trait: string; weights: Record<string, number>;
-  /** The engine bar the evidence also reads (1-5): Attack, Control or Arm. */ dots: "power" | "control" | "arm" | null;
+  /** The engine bar the evidence also reads (1-5): Attack, Control or Arm. */ dots: "power" | "control" | "spin" | "arm" | null;
   /** The racket's shape nudges the prior a little (variant A: diamond +0.15, round -0.15 for power). */ shape?: Record<string, number>;
 };
-/** The ranking page's one line on how ratings work (≤ 105 characters). */
-export const RATING_HOW = "Ratings follow the PadelRecs pick order, set from what players report.";
+/** The ranking page's one line on how ratings work (≤ 105 characters), with the site's name ("PadelRecs"). */
+export const ratingHow = (site: string) => `Ratings follow the ${site} pick order, set from what players report.`;
 
 const PADEL: Record<string, RatingCategory> = {
   "best-power-padel-rackets": { label: "Power rating", trait: "plays_like", weights: { power: 1, all_round: 0.5, control: 0 }, dots: "power",
@@ -30,8 +30,21 @@ const PADEL: Record<string, RatingCategory> = {
   "best-padel-rackets-for-beginners": { label: "Beginner rating", trait: "level", weights: { beginner: 1, intermediate: 0.5, advanced: 0 }, dots: null,
     shape: { round: 0.1, diamond: -0.1 } },
 };
+/** PickleballRecs (owner 2026-11-21, "the same"): its curated power, control and spin lists and its live tennis elbow and
+ *  beginner lists. Elongated paddles lean power, standard ones control and forgiveness. */
+const PICKLEBALL: Record<string, RatingCategory> = {
+  "best-power-pickleball-paddles": { label: "Power rating", trait: "plays_like", weights: { power: 1, all_round: 0.5, control: 0 }, dots: "power",
+    shape: { elongated: 0.15, standard: -0.15 } },
+  "best-control-pickleball-paddles": { label: "Control rating", trait: "plays_like", weights: { control: 1, all_round: 0.5, power: 0 }, dots: "control",
+    shape: { standard: 0.15, elongated: -0.15 } },
+  "best-spin-pickleball-paddles": { label: "Spin rating", trait: "spin", weights: { lots: 1, some: 0.5, little: 0 }, dots: "spin" },
+  "best-pickleball-paddles-for-tennis-elbow": { label: "Arm comfort rating", trait: "arm", weights: { very: 1, somewhat: 0.5, not_really: 0 }, dots: "arm" },
+  "best-pickleball-paddles-for-beginners": { label: "Beginner rating", trait: "level", weights: { beginner: 1, intermediate: 0.5, advanced: 0 }, dots: null,
+    shape: { standard: 0.1, elongated: -0.1 } },
+};
+const SITES: Record<string, Record<string, RatingCategory>> = { padel: PADEL, pickleball: PICKLEBALL };
 /** The list's rating category, or null when it keeps the Player score (other sites, filter-style lists). */
-export const ratingCategory = (slug: string, nicheId: string): RatingCategory | null => nicheId === "padel" ? PADEL[slug] ?? null : null;
+export const ratingCategory = (slug: string, nicheId: string): RatingCategory | null => SITES[nicheId]?.[slug] ?? null;
 
 export type RatingInput = {
   /** The group's counts (review prefill or owner override, plus votes), by option. */ group: Record<string, number> | null | undefined;
@@ -44,7 +57,9 @@ export function cautiousShare(cat: RatingCategory, x: RatingInput, prior: number
   const g = x.group ?? {}, n = Object.values(g).reduce((a, b) => a + b, 0);
   if (!n) return null;
   const e = Object.entries(g).reduce((s, [k, v]) => s + v * (cat.weights[k] ?? 0), 0);
-  const p = Math.min(0.95, Math.max(0.05, prior + (cat.shape?.[x.shape?.toLowerCase() ?? ""] ?? 0)));
+  // A shape word anywhere in the shape ("Elongated", "Hybrid elongated") counts; padel's are one word.
+  const sh = x.shape?.toLowerCase() ?? "", lean = Object.entries(cat.shape ?? {}).find(([k]) => new RegExp(`\\b${k}\\b`).test(sh))?.[1] ?? 0;
+  const p = Math.min(0.95, Math.max(0.05, prior + lean));
   const v = (e + SMOOTH * p) / (n + SMOOTH);
   return v - CAUTION * Math.sqrt(v * (1 - v) / (n + 1));
 }

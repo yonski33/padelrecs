@@ -5,7 +5,7 @@ import { notFound } from "next/navigation";
 import { Shell } from "../../shell";
 import { threadRows, threadBoards } from "../../data";
 import { threadRankings, ratingsFor } from "../../rankings-data";
-import { ratingCategory, RATING_HOW } from "../../../../lib/category-rating";
+import { ratingCategory, ratingHow } from "../../../../lib/category-rating";
 import { RankingList, SideMatch } from "../../live/lists";
 import { Faq } from "../../live/faq";
 import { Comments } from "../../live/comments";
@@ -77,7 +77,7 @@ export default async function ThreadRanking({ params }: P) {
         <div className="th-crumbs"><a href={th("/rankings")}>Rankings</a><span>/</span><span>{l.label}</span></div>
         <section className="th-card th-hero">
           <h1 className="th-h1">{l.title}</h1>
-          <p className="th-lead">{cat ? RATING_HOW : `Ranked by ${W.score}, from reviews by people who ${W.played} them. Updates as new reviews come in.`}</p>
+          <p className="th-lead">{cat ? ratingHow(niche.site.name) : `Ranked by ${W.score}, from reviews by people who ${W.played} them. Updates as new reviews come in.`}</p>
           <nav className="th-rtabs" aria-label="Rankings">{lists.slice(0, 7).map(x => <a key={x.slug} href={th(x.href)} aria-current={x.slug === l.slug ? "page" : undefined}>{x.label.replace(/^Best (for )?/, "").replace(/^./, c => c.toUpperCase())}</a>)}</nav>
         </section>
         <RankingList rows={list} title={l.label} meta={`${plural(list.length, ONE)} · ${plural(reviews, "review")}`}
