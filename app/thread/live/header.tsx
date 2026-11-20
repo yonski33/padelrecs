@@ -2,10 +2,23 @@
 // The Thread header (README "Header"): logo, Rackets · Rankings · Guides with the current page in bold, and search. Brands is
 // off the menu (owner 2026-11-19); the brand pages stay live and are linked from racket pages and the catalog.
 // On phones a Menu button opens the same links full width, with the same search.
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { th, GUIDE_PATHS, THREAD_DEFAULT } from "../../../lib/thread/look";
 import { RacketSearch } from "../../racket-search";
 import { niche, catalogPath } from "../../../lib/niche";
+import { accountSite } from "../../../lib/thread/sites";
+import { useAccountState, signInHref } from "./use-account";
+
+/** The member zone's way in (PadelRecs accounts): "Sign in" for guests, the member's name when signed in, to /account. Read in
+ *  the browser (use-account.ts), so every cached page stays the same for everyone. Hidden until the check ends. */
+const ACCOUNTS = accountSite(niche.id);
+function AccountLink({ className }: { className?: string }) {
+  const me = useAccountState();
+  const [href, setHref] = useState("/account");
+  useEffect(() => { if (me === null) setHref(signInHref()); }, [me]);
+  if (me === "checking") return <span className={className} style={{ visibility: "hidden" }} aria-hidden="true">Sign in</span>;
+  return me ? <a className={className} href="/account" title="Your account">{me.name}</a> : <a className={className} href={href}>Sign in</a>;
+}
 
 /** The site's review flow (app/add-review): the header's "Add a review" (owner 2026-11-19, as on classic). */
 const ADD = "/add-review";
@@ -29,6 +42,7 @@ export function ThreadHeader({ active }: { active: Section }) {
       <nav className="th-nav" aria-label="Main">{NAV.map(([k, label, href]) => <a key={k} href={th(href)} aria-current={active === k ? "page" : undefined}>{label}</a>)}</nav>
       <span className="th-grow"/>
       <Search id="th-q"/>
+      {ACCOUNTS && <AccountLink className="th-acct"/>}
       <a className="th-add" href={ADD}>Add a review</a>
       <a className="th-add-plus" href={ADD} aria-label="Add a review">+</a>
       <button type="button" className="th-menu-btn" aria-expanded={open} aria-controls="th-menu" onClick={() => setOpen(o => !o)}>
@@ -38,6 +52,7 @@ export function ThreadHeader({ active }: { active: Section }) {
     {open && <div className="th-menu" id="th-menu">
       {NAV.map(([k, label, href]) => <a key={k} href={th(href)} aria-current={active === k ? "page" : undefined}>{label}</a>)}
       <a href={ADD}>Add a review</a>
+      {ACCOUNTS && <AccountLink/>}
       <Search id="th-q-menu" shortcut={false}/>
     </div>}
   </header>;

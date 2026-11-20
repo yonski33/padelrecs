@@ -6,6 +6,7 @@ import { migrationSql } from "../db/migrations";
 import { brands, rackets, reviews, productVotes, comments } from "../db/schema";
 import { memberProfiles, claimAccount, updateAccount, nameOwner, linkDevice, linkPosts, memberPosts, recordPost, recordReviewDevice, setAccountStatus, deleteAccount, adminAccounts, getAccount } from "../db/accounts";
 import { addComment } from "../db/comments";
+import { ownPosts, editOwnPost, deleteOwnPost, EDIT_WINDOW_MS } from "../db/account-posts";
 import { nameKey, accountNameProblem } from "../lib/thread/account-name";
 import { profileLine } from "../lib/thread/display-name";
 import type { getDb } from "../db/index";
@@ -112,5 +113,48 @@ test("member posts carry the account's level and side, read live", async () => {
     assert.deepEqual([...(await memberProfiles(db, "comment", [cid, "other"])).entries()], [[cid, { level: "Intermediate", side: "Right" }]]);
     await updateAccount(db, "u1", { side: "Left" });
     assert.equal((await memberProfiles(db, "comment", [cid])).get(cid)?.side, "Left");
+  } finally { await engine.close(); }
+});
+
+test("your posts: newest first, edit text for 24 hours (re-moderated), delete any time, only your own", async () => {
+  const { engine, db } = await setup();
+  try {
+    await claimAccount(db, { id: "u1", name: "Gali" }); await claimAccount(db, { id: "u2", name: "Marta" });
+    const now = Date.parse("2026-11-20T12:00:00Z");
+    await db.insert(reviews).values([review("fresh", "Gali", "2026-11-20T10:00:00Z"), review("old", "Gali", "2026-11-18T10:00:00Z")] as never);
+    await recordPost(db, "review", "fresh", "u1"); await recordPost(db, "review", "old", "u1");
+    const c = await addComment(db, { page: "racket:r1", parentId: null, alias: "Gali", body: "Is it good for the left side?", voter: "d", network: "n" }, new Date("2026-11-20T11:00:00Z"));
+    const cid = c.status === "limited" || c.status === "invalid" ? "" : c.comment.id;
+    await recordPost(db, "comment", cid, "u1");
+    const list = await ownPosts(db, "u1", now);
+    assert.deepEqual(list.map(p => p.id), [cid, "fresh", "old"]);
+    assert.equal(list[1].racket?.name, "Metalbone CTRL"); assert.equal(list[1].status, "live"); assert.equal(list[0].racket?.name, "Metalbone CTRL");
+    assert.deepEqual(list.map(p => p.editable), [true, true, false]);
+    // A review edit goes back to the queue; a comment edit with a link waits for a person; old posts are locked.
+    assert.deepEqual(await editOwnPost(db, "u1", "review", "fresh", "Changed my mind: a bit stiff for my elbow after two weeks.", now), { result: "ok", status: "pending" });
+    assert.equal((await db.select().from(reviews)).find(r => r.id === "fresh")?.reviewText.startsWith("Changed"), true);
+    assert.deepEqual(await editOwnPost(db, "u1", "comment", cid, "See https://example.com for the specs", now), { result: "ok", status: "pending" });
+    assert.equal((await editOwnPost(db, "u1", "review", "old", "Still a great racket after a month of play.", now)).result, "locked");
+    assert.equal((await editOwnPost(db, "u1", "review", "fresh", "short", now)).result, "invalid");
+    assert.equal((await editOwnPost(db, "u2", "review", "fresh", "Not my review but trying to edit it anyway.", now)).result, "missing");
+    assert.equal(await deleteOwnPost(db, "u2", "review", "old"), "missing");
+    assert.equal(await deleteOwnPost(db, "u1", "review", "old"), "deleted");
+    assert.equal(await deleteOwnPost(db, "u1", "comment", cid), "deleted");
+    assert.deepEqual((await ownPosts(db, "u1", now + EDIT_WINDOW_MS)).map(p => [p.id, p.editable]), [["fresh", false]]);
+  } finally { await engine.close(); }
+});
+
+test("a new level or side shows on the account's reviews; clearing one leaves them", async () => {
+  const { engine, db } = await setup();
+  try {
+    await claimAccount(db, { id: "u1", name: "Gali", level: "Beginner", side: "Right" });
+    await db.insert(reviews).values({ ...review("rv1", "Gali", "2026-11-19T10:00:00Z"), playerLevel: "Beginner", playingSide: "Right" } as never);
+    await recordPost(db, "review", "rv1", "u1");
+    assert.equal(await updateAccount(db, "u1", { level: "Intermediate", side: "left" }), "ok");
+    let r = (await db.select().from(reviews))[0];
+    assert.equal(r.playerLevel, "Intermediate"); assert.equal(r.playingSide, "Left");
+    assert.equal(await updateAccount(db, "u1", { level: null }), "ok");
+    r = (await db.select().from(reviews))[0];
+    assert.equal(r.playerLevel, "Intermediate", "clearing the account's level leaves the review");
   } finally { await engine.close(); }
 });
