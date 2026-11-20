@@ -72,7 +72,10 @@ export function threadView(request:NextRequest) {
  if(look===CLASSIC_LOOK||(!THREAD_DEFAULT&&look!==THREAD_LOOK))return null;
  const to=threadPath(request.nextUrl.pathname,catalogPath,niche.id);
  if(!to)return null;
- const url=request.nextUrl.clone();url.pathname=to;url.search="";
+ // Add a review reads ?racket= / ?from=; ?classic=1 (a product that isn't listed) stays on the live full form.
+ const add=to==="/thread/add-review";
+ if(add&&request.nextUrl.searchParams.get("classic"))return null;
+ const url=request.nextUrl.clone();url.pathname=to;if(!add)url.search="";
  return NextResponse.rewrite(url);
 }
 

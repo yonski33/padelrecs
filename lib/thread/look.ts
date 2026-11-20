@@ -79,6 +79,8 @@ export const GUIDE_PATHS = guidePathsFor(niche.id);
 export const GUIDE_KEYS = Object.keys(PADEL_GUIDES) as GuideKey[];
 export const guideKeyOf = (path: string, nicheId = niche.id): GuideKey | null => GUIDE_KEYS.find(k => guidePathsFor(nicheId)[k] === path) ?? null;
 
+/** The sites whose add-review page is the design-v2 form, which has a Thread page (StackRecs keeps its own full form). */
+export const ADD_REVIEW_SITES = new Set(["padel", "pickleball", "skin", "discgolf"]);
 /** The Thread page an address shows with ?look=thread, or null when the Thread look has no page for it (compare and
  *  add-review keep their live page). `catalog` is the niche's catalogue path ("/rackets" on padel, "/paddles" on pickleball). */
 export function threadPath(pathname: string, catalog = catalogPath, nicheId = niche.id): string | null {
@@ -96,6 +98,8 @@ export function threadPath(pathname: string, catalog = catalogPath, nicheId = ni
   if (p === "/how-we-make-these") return "/thread/score";
   if (p === "/affiliate-disclosure") return "/thread/affiliate";
   if (p === "/contact") return "/thread/contact";
+  // The design-v2 form in the Thread look (owner 2026-11-20); proxy.ts keeps its query and leaves ?classic=1 on the live form.
+  if (p === "/add-review" && ADD_REVIEW_SITES.has(nicheId)) return "/thread/add-review";
   if (p === "/privacy") return "/thread/privacy";
   if (p === "/brands") return "/thread/brands";
   const brand = /^\/brands\/([a-z0-9-]+)$/.exec(p);

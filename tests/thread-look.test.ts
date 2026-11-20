@@ -17,7 +17,10 @@ test("each previewed address maps to its Thread page; others keep their live pag
   assert.equal(threadPath("/affiliate-disclosure"), "/thread/affiliate");
   assert.equal(threadPath("/brands"), "/thread/brands");
   assert.equal(threadPath("/brands/nox"), "/thread/brands/nox");
-  for (const p of ["/brands/nox/x", "/compare", "/add-review", "/rackets/a/b", "/thread", "/guides/unknown"]) assert.equal(threadPath(p), null, p);
+  for (const p of ["/brands/nox/x", "/compare", "/rackets/a/b", "/thread", "/guides/unknown"]) assert.equal(threadPath(p), null, p);
+  // Add a review has a Thread page on the design-v2 sites (owner 2026-11-20); StackRecs keeps its own full form.
+  assert.equal(threadPath("/add-review"), "/thread/add-review");
+  assert.equal(threadPath("/add-review", "/tools", "stackrecs"), null);
 });
 
 test("Thread links: plain addresses while Thread is the default; in preview mode they carry ?look=thread ahead of the hash", () => {
@@ -53,4 +56,15 @@ test("padel: the normal addresses are served by Thread; ?look=classic gets today
   assert.match(await go("/rackets/adidas-metalbone-ctrl-2026?look=classic"), /^\/v\/racket\/adidas-metalbone-ctrl-2026\//);
   assert.equal(await go("/about?look=classic"), "/about");
   assert.equal(await go("/brands/nox?look=classic"), "/brands/nox");
+});
+
+test("add-review: the Thread page keeps the query; ?classic=1 and ?look=classic keep the live form", async () => {
+  process.env.NICHE ??= "padel";
+  const { proxy } = await import("../proxy");
+  const go = async (path: string) => { const r = await proxy(new NextRequest(new URL(path, "https://www.padelrecs.com")));
+    const to = r.headers.get("x-middleware-rewrite"); return to ? new URL(to).pathname + new URL(to).search : "live"; };
+  assert.equal(await go("/add-review?racket=abc"), "/thread/add-review?racket=abc");
+  assert.equal(await go("/add-review?from=%2Frackets%2Fx"), "/thread/add-review?from=%2Frackets%2Fx");
+  assert.doesNotMatch(await go("/add-review?classic=1"), /^\/thread/);
+  assert.doesNotMatch(await go("/add-review?look=classic"), /^\/thread/);
 });
