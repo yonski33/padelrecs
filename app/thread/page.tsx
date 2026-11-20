@@ -64,7 +64,7 @@ export default async function ThreadHome() {
     <main className="th-main">
       <div className="th-col">
         <section className="th-card th-hero">
-          <div className="th-h1-row"><h1 className="th-h1">{SKIN ? "The skincare community" : DG ? "The disc community" : `The ${niche.id} ${niche.words.one} community`}</h1>
+          <div className="th-h1-row"><h1 className="th-h1">{SKIN ? "The skincare community" : DG ? "The disc golf community" : `The ${niche.id} ${niche.words.one} community`}</h1>
             {total > 0 && <span className="th-live"><i aria-hidden="true"/>{`${total.toLocaleString("en-US")} reviews${week > 0 ? ` · ${week.toLocaleString("en-US")} ${WEEK_SHORT}` : ""}`}</span>}</div>
           <p className="th-lead">{SKIN ? "Real people talking about skincare. Share what worked, and see what everyone actually thinks."
             : DG ? "Real throwers talking discs. Ask, share your take, and see what everyone actually thinks." : `Real ${W.people} talking ${niche.words.many}. Share your take, and see what everyone actually thinks.`}</p>
