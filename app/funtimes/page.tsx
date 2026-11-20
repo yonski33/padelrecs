@@ -24,6 +24,7 @@ import { CommentsAdmin } from "./comments-admin";
 import { TraitsAdmin } from "./traits-admin";
 import { AccountsAdmin } from "./accounts-admin";
 import { threadSite } from "../../lib/thread/look";
+import { accountSite } from "../../lib/thread/sites";
 import { reviewSites, searchInput, searchReviews } from "../../db/review-search";
 const w = niche.words;
 export const dynamic = "force-dynamic";
@@ -66,7 +67,7 @@ export default async function Admin({searchParams}:{searchParams:Promise<{eviden
   <AdminNav current="traits"/>
   <TraitsAdmin racket={q.racket} q={q.q} result={q.result} rackets={(await db.select({ id: rackets.id, slug: rackets.slug, name: rackets.name, shape: rackets.shape }).from(rackets)).sort((a, b) => a.name.localeCompare(b.name))}/></main>;
  }
- if (q.tab === "accounts" && threadSite(niche.id)) {
+ if (q.tab === "accounts" && accountSite(niche.id)) {
   return <main><div className="page-title"><h1>Review admin</h1><p className="muted">Player accounts: reserved names on the Thread pages.</p></div>
   <AdminNav current="accounts"/>
   <AccountsAdmin result={q.result} q={q.q}/></main>;
@@ -140,5 +141,5 @@ export default async function Admin({searchParams}:{searchParams:Promise<{eviden
 
 function AdminNav({current}:{current:"find"|"player"|"web"|"specs"|"expert"|"comments"|"traits"|"accounts"}) {
  const at=(tab:typeof current)=>current===tab?"page" as const:undefined;
- return <nav className="admin-nav" aria-label="Admin sections"><a href="/funtimes?tab=find" aria-current={at("find")}>Find &amp; fix</a><a href="/funtimes" aria-current={at("player")}>{`${niche.people.One} submissions`}</a><a href="/funtimes?tab=web" aria-current={at("web")}>Web reviews</a><a href="/funtimes?tab=specs" aria-current={at("specs")}>{`${w.Many} & specs`}</a>{isV2 && <a href="/funtimes?tab=expert" aria-current={at("expert")}>Expert values</a>}{threadSite(niche.id) && <a href="/funtimes?tab=comments" aria-current={at("comments")}>Comments</a>}{threadSite(niche.id) && <a href="/funtimes?tab=traits" aria-current={at("traits")}>Traits</a>}{threadSite(niche.id) && <a href="/funtimes?tab=accounts" aria-current={at("accounts")}>Accounts</a>}<form method="post" action="/auth/signout" style={{marginLeft:"auto"}}><button className="text-button">Sign out</button></form></nav>;
+ return <nav className="admin-nav" aria-label="Admin sections"><a href="/funtimes?tab=find" aria-current={at("find")}>Find &amp; fix</a><a href="/funtimes" aria-current={at("player")}>{`${niche.people.One} submissions`}</a><a href="/funtimes?tab=web" aria-current={at("web")}>Web reviews</a><a href="/funtimes?tab=specs" aria-current={at("specs")}>{`${w.Many} & specs`}</a>{isV2 && <a href="/funtimes?tab=expert" aria-current={at("expert")}>Expert values</a>}{threadSite(niche.id) && <a href="/funtimes?tab=comments" aria-current={at("comments")}>Comments</a>}{threadSite(niche.id) && <a href="/funtimes?tab=traits" aria-current={at("traits")}>Traits</a>}{accountSite(niche.id) && <a href="/funtimes?tab=accounts" aria-current={at("accounts")}>Accounts</a>}<form method="post" action="/auth/signout" style={{marginLeft:"auto"}}><button className="text-button">Sign out</button></form></nav>;
 }

@@ -56,6 +56,6 @@ const config:NextConfig={
   // Product photos (public/photos) rarely change and keep their file name when they do: a week in browsers and the CDN,
   // then a day served stale while it refreshes (audit 2026-11-15, #10: they were max-age=0).
   const photos={source:"/photos/:path*",headers:[{key:"Cache-Control",value:"public, max-age=604800, stale-while-revalidate=86400"}]};
-  return [photos,...["/",products,`${products}/:slug*`,...(products==="/rackets"?[]:["/rackets/:slug*"]),"/brands","/brands/:slug*","/about","/contact",...(niche.id==="padel"?["/privacy"]:[]),"/reviews","/how-we-make-these",...(niche.amazon?["/affiliate-disclosure"]:[]),"/add-review","/rankings","/rankings/:slug*","/compare","/compare/:pair*","/api/racket-search","/api/rank-items","/sitemap.xml",...(niche.typePages??[]).flatMap(t=>niche.categoryPaths?[`/${t.slug}`,`/${t.slug}/:slug*`]:[`/${t.slug}`])].map(source=>({source,headers:cdn,missing}))];
+  return [photos,...["/",products,`${products}/:slug*`,...(products==="/rackets"?[]:["/rackets/:slug*"]),"/brands","/brands/:slug*","/about","/contact",...(["padel","pickleball"].includes(niche.id)?["/privacy"]:[]),"/reviews","/how-we-make-these",...(niche.amazon?["/affiliate-disclosure"]:[]),"/add-review","/rankings","/rankings/:slug*","/compare","/compare/:pair*","/api/racket-search","/api/rank-items","/sitemap.xml",...(niche.typePages??[]).flatMap(t=>niche.categoryPaths?[`/${t.slug}`,`/${t.slug}/:slug*`]:[`/${t.slug}`])].map(source=>({source,headers:cdn,missing}))];
  }};
 export default config;

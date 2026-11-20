@@ -18,6 +18,7 @@ export const ELBOW_SLUG = "best-padel-rackets-for-tennis-elbow";
 export const THREAD_MOVED: { from: string; to: string }[] = [
   { from: "/rankings/best-padel-rackets-for-sore-arms", to: `/rankings/${ELBOW_SLUG}` },
 ];
-/** Optional accounts (#516, drizzle/0028): PadelRecs only. PickleballRecs has no accounts table yet (owner 2026-11-19,
- *  plan Q7: accounts later), so its composers show no sign-in link and the account pages and APIs answer 404. */
-export const accountSite = (nicheId: string) => nicheId === "padel";
+/** Optional accounts (#516, drizzle/0028): PadelRecs, and PickleballRecs (owner 2026-11-20: the same as padel). A site here
+ *  needs 0028 (and 0030, trusted members) applied to its schema first. Elsewhere the account pages and APIs answer 404. */
+export const ACCOUNT_SITES = ["padel", "pickleball"];
+export const accountSite = (nicheId: string) => ACCOUNT_SITES.includes(nicheId);
