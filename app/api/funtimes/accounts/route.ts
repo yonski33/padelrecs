@@ -4,6 +4,7 @@ import { z } from "zod";
 import { database } from "../../../../db/data";
 import { updateAccount, setAccountStatus, deleteAccount } from "../../../../db/accounts";
 import { adminWriteGuard, adminRedirect, readAdminForm } from "../../../funtimes/auth";
+import { setTrust } from "../../../../db/trust";
 import { allowedAdmin } from "../../../../lib/admin-access";
 import { threadSite } from "../../../../lib/thread/look";
 import { niche } from "../../../../lib/niche";
@@ -13,6 +14,8 @@ const input = z.discriminatedUnion("action", [
   z.object({ action: z.literal("rename"), id, name: z.string().max(100), q }),
   z.object({ action: z.literal("block"), id, q }),
   z.object({ action: z.literal("unblock"), id, q }),
+  z.object({ action: z.literal("trust"), id, q }),
+  z.object({ action: z.literal("untrust"), id, q }),
   z.object({ action: z.literal("delete"), id, confirm: z.literal("yes"), posts: z.string().optional(), q }),
 ]);
 export async function POST(request: Request) {
@@ -25,6 +28,7 @@ export async function POST(request: Request) {
   const d = parsed.data, db = await database();
   try {
     if (d.action === "rename") { const r = await updateAccount(db, d.id, { name: d.name }); return to(r === "ok" ? "renamed" : r === "missing" ? "stale" : r); }
+    if (d.action === "trust" || d.action === "untrust") return to(await setTrust(db, d.id, d.action === "trust" ? "on" : "off") ? `${d.action}ed` : "stale");
     if (d.action === "block" || d.action === "unblock") return to(await setAccountStatus(db, d.id, d.action === "block" ? "blocked" : "active") ? `${d.action}ed` : "stale");
     if (allowedAdmin(d.id, process.env.ADMIN_USER_IDS)) return to("admin");
     const r = await deleteAccount(db, d.id, { removePosts: d.posts === "remove" });

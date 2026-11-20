@@ -5,6 +5,8 @@
 import { z } from "zod";
 import { database } from "../../../../db/data";
 import { setCommentStatus, editComment, deleteComment } from "../../../../db/comments";
+import { ownerSetStatus, ownerDeleted, postStatus } from "../../../../db/trust";
+import { accountSite } from "../../../../lib/thread/sites";
 import { adminWriteGuard, adminRedirect, readAdminForm, wantsJson, adminJson } from "../../../funtimes/auth";
 import { threadSite } from "../../../../lib/thread/look";
 import { niche } from "../../../../lib/niche";
@@ -25,8 +27,12 @@ export async function POST(request: Request) {
   if (!parsed?.success) return to(form.action === "delete" ? "confirm" : "invalid");
   const d = parsed.data, db = await database();
   try {
-    if (d.action === "status") return to(await setCommentStatus(db, d.id, d.status) ? d.status : "stale");
+    // Trusted members (db/trust.ts): approving a member's comment earns trust; hiding a live one or deleting one takes it away.
+    const members = accountSite(niche.id);
+    if (d.action === "status") { const before = members ? await postStatus(db, "comment", d.id) : null; if (!(await setCommentStatus(db, d.id, d.status))) return to("stale");
+      if (members) await ownerSetStatus(db, "comment", d.id, before, d.status).catch(e => console.error("Trust update failed", e)); return to(d.status); }
     if (d.action === "edit") { const r = await editComment(db, d.id, { body: d.body || null, alias: d.alias || null }); return to(r === "ok" ? "edited" : r === "missing" ? "stale" : "invalid"); }
+    if (members) await ownerDeleted(db, "comment", d.id).catch(e => console.error("Trust update failed", e));
     const r = await deleteComment(db, d.id); return to(r === "missing" ? "stale" : r);
   } catch { return to("failed"); }
 }
