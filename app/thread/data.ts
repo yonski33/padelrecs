@@ -5,7 +5,7 @@ import { matchContext } from "../match-context";
 import { rankedLists } from "../rankings/lists";
 import { displayName } from "../../lib/brand-name";
 import { rowLine } from "../../lib/row-line";
-import { bestFor, SUITS_OK, MIN_FIT_REPORTS } from "../../lib/fit-verdict";
+import { bestFor, levelBand, levelRange, SUITS_OK, MIN_FIT_REPORTS } from "../../lib/fit-verdict";
 import { familyRowIds, modelFamily } from "../../lib/compare-pairs";
 import { topPicks, PICK_CATS, type PickList, type PickRacket } from "../../lib/thread/top-picks";
 import { traitSeed } from "../../lib/thread/trait-seed";
@@ -60,8 +60,16 @@ const flightRow = (w: string | null | undefined): Pick<ThreadRow, "flight"> => {
   return f ? { flight: [f.speed, f.glide, f.turn, f.fade] } : {};
 };
 function rowOf(ctx: Ctx, r: Ctx["data"]["listed"][number], brand: string, n: number, hook?: string | null): ThreadRow {
-  const f = ctx.facts(r.id), c = score(ctx.data, r.id), best = bestFor(f);
-  const levels = f.suits ? LEVELS.filter(l => f.suits![l] >= SUITS_OK) : [];
+  const f = ctx.facts(r.id), c = score(ctx.data, r.id);
+  let best = bestFor(f);
+  let levels = f.suits ? LEVELS.filter(l => f.suits![l] >= SUITS_OK) : [];
+  // DiscGolfRecs (audit 2026-11-20): the card's "Best for", the page's level tag and "Best for", and the level filter all
+  // read one band (levelBand, which keeps a hard "not for beginners" disc out of beginner) in one formatter (levelRange).
+  if (niche.id === "discgolf") {
+    const band = levelBand(f);
+    levels = band ? LEVELS.slice(band.from, band.to + 1) : [];
+    if (band) best = [levelRange(levels)!, ...best.slice(1)];
+  }
   const feel = f.fine?.feel ? FEEL[f.fine.feel as keyof typeof FEEL] ?? null : null;
   return { id: r.id, slug: r.slug, name: displayName(r.name, brand), href: productHref(r), pic: photoHidden(r) ? null : shopPhoto(r) ?? amazonPhoto(r)?.image ?? null,
     shape: r.shape, line: rowLine(r, hook), best: best.join(", ") || null, n, pos: c.positive, mix: c.mixed, neg: c.negative,

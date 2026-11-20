@@ -5,11 +5,12 @@
   "axiom-aspect": {
    "slug": "axiom-aspect",
    "name": "Axiom Aspect",
-   "sources": 6,
+   "sources": 7,
    "groups": {
     "stability": {
      "overstable": 3,
-     "understable": 1
+     "understable": 1,
+     "stable": 1
     },
     "wind": {
      "holds": 2
@@ -34,11 +35,12 @@
   "axiom-balance": {
    "slug": "axiom-balance",
    "name": "Axiom Balance",
-   "sources": 29,
+   "sources": 30,
    "groups": {
     "stability": {
      "understable": 1,
-     "overstable": 14
+     "overstable": 14,
+     "stable": 4
     },
     "throw": {
      "forehand": 3
@@ -66,11 +68,12 @@
   "axiom-bokeh": {
    "slug": "axiom-bokeh",
    "name": "Axiom Bokeh",
-   "sources": 27,
+   "sources": 30,
    "groups": {
     "stability": {
      "understable": 4,
-     "overstable": 9
+     "overstable": 9,
+     "stable": 6
     },
     "glide": {
      "lots": 12
@@ -106,12 +109,12 @@
   "axiom-crave": {
    "slug": "axiom-crave",
    "name": "Axiom Crave",
-   "sources": 173,
+   "sources": 191,
    "groups": {
     "stability": {
      "understable": 55,
      "overstable": 45,
-     "stable": 1
+     "stable": 29
     },
     "durability": {
      "beats_fast": 16,
@@ -160,7 +163,8 @@
     },
     "stability": {
      "understable": 3,
-     "overstable": 6
+     "overstable": 6,
+     "stable": 2
     },
     "glide": {
      "lots": 5,
@@ -193,7 +197,8 @@
     },
     "stability": {
      "overstable": 8,
-     "understable": 4
+     "understable": 4,
+     "stable": 1
     },
     "wind": {
      "holds": 5
@@ -215,11 +220,12 @@
   "axiom-envy": {
    "slug": "axiom-envy",
    "name": "Axiom Envy",
-   "sources": 70,
+   "sources": 77,
    "groups": {
     "stability": {
      "overstable": 32,
-     "understable": 8
+     "understable": 8,
+     "stable": 11
     },
     "arm_speed": {
      "any": 1,
@@ -257,7 +263,8 @@
    "sources": 10,
    "groups": {
     "stability": {
-     "understable": 6
+     "understable": 6,
+     "stable": 1
     },
     "arm_speed": {
      "any": 2,
@@ -317,10 +324,11 @@
   "axiom-hex": {
    "slug": "axiom-hex",
    "name": "Axiom Hex",
-   "sources": 97,
+   "sources": 113,
    "groups": {
     "stability": {
      "overstable": 20,
+     "stable": 32,
      "understable": 20
     },
     "glide": {
@@ -360,11 +368,12 @@
   "axiom-insanity": {
    "slug": "axiom-insanity",
    "name": "Axiom Insanity",
-   "sources": 62,
+   "sources": 68,
    "groups": {
     "stability": {
      "understable": 30,
-     "overstable": 14
+     "overstable": 14,
+     "stable": 6
     },
     "glide": {
      "lots": 8
@@ -469,7 +478,8 @@
    "sources": 43,
    "groups": {
     "stability": {
-     "understable": 38
+     "understable": 38,
+     "stable": 2
     },
     "level": {
      "beginner": 9
@@ -511,7 +521,8 @@
     },
     "stability": {
      "understable": 3,
-     "overstable": 1
+     "overstable": 1,
+     "stable": 1
     },
     "level": {
      "beginner": 5
@@ -533,10 +544,11 @@
   "axiom-pixel": {
    "slug": "axiom-pixel",
    "name": "Axiom Pixel",
-   "sources": 26,
+   "sources": 28,
    "groups": {
     "stability": {
      "understable": 4,
+     "stable": 4,
      "overstable": 1
     },
     "glide": {
@@ -564,11 +576,12 @@
   "axiom-proxy": {
    "slug": "axiom-proxy",
    "name": "Axiom Proxy",
-   "sources": 43,
+   "sources": 53,
    "groups": {
     "stability": {
      "overstable": 6,
-     "understable": 16
+     "understable": 16,
+     "stable": 15
     },
     "arm_speed": {
      "medium": 1
@@ -607,7 +620,8 @@
    "groups": {
     "stability": {
      "understable": 2,
-     "overstable": 59
+     "overstable": 59,
+     "stable": 1
     },
     "glide": {
      "lots": 2,
@@ -651,6 +665,7 @@
     },
     "stability": {
      "understable": 29,
+     "stable": 1,
      "overstable": 3
     },
     "level": {
@@ -683,11 +698,12 @@
   "axiom-tantrum": {
    "slug": "axiom-tantrum",
    "name": "Axiom Tantrum",
-   "sources": 5,
+   "sources": 6,
    "groups": {
     "stability": {
      "overstable": 1,
-     "understable": 1
+     "understable": 1,
+     "stable": 1
     },
     "arm_speed": {
      "fast": 1
@@ -712,11 +728,12 @@
   "axiom-tempo": {
    "slug": "axiom-tempo",
    "name": "Axiom Tempo",
-   "sources": 42,
+   "sources": 44,
    "groups": {
     "stability": {
      "understable": 2,
-     "overstable": 16
+     "overstable": 16,
+     "stable": 6
     },
     "glide": {
      "lots": 9
@@ -795,7 +812,7 @@
   "axiom-time-lapse": {
    "slug": "axiom-time-lapse",
    "name": "Axiom Time-Lapse",
-   "sources": 37,
+   "sources": 38,
    "groups": {
     "arm_speed": {
      "any": 2,
@@ -804,7 +821,8 @@
     },
     "stability": {
      "understable": 9,
-     "overstable": 23
+     "overstable": 23,
+     "stable": 1
     },
     "glide": {
      "lots": 10,
@@ -833,11 +851,12 @@
   "axiom-trance": {
    "slug": "axiom-trance",
    "name": "Axiom Trance",
-   "sources": 15,
+   "sources": 16,
    "groups": {
     "stability": {
      "understable": 4,
-     "overstable": 8
+     "overstable": 8,
+     "stable": 2
     },
     "glide": {
      "lots": 6
@@ -868,11 +887,12 @@
   "axiom-vanish": {
    "slug": "axiom-vanish",
    "name": "Axiom Vanish",
-   "sources": 19,
+   "sources": 20,
    "groups": {
     "stability": {
      "understable": 9,
-     "overstable": 6
+     "overstable": 6,
+     "stable": 1
     },
     "grip": {
      "great": 1
@@ -910,7 +930,8 @@
    "groups": {
     "stability": {
      "understable": 27,
-     "overstable": 3
+     "overstable": 3,
+     "stable": 1
     },
     "arm_speed": {
      "any": 5,
@@ -985,6 +1006,7 @@
      "beats_fast": 1
     },
     "stability": {
+     "stable": 2,
      "overstable": 3,
      "understable": 4
     },
@@ -1047,11 +1069,12 @@
   "discmania-dd": {
    "slug": "discmania-dd",
    "name": "Discmania DD",
-   "sources": 15,
+   "sources": 16,
    "groups": {
     "stability": {
      "overstable": 2,
-     "understable": 11
+     "understable": 11,
+     "stable": 1
     },
     "wind": {
      "holds": 1,
@@ -1082,11 +1105,12 @@
   "discmania-dd1": {
    "slug": "discmania-dd1",
    "name": "Discmania DD1",
-   "sources": 24,
+   "sources": 25,
    "groups": {
     "stability": {
      "understable": 15,
-     "overstable": 2
+     "overstable": 2,
+     "stable": 2
     },
     "glide": {
      "lots": 17
@@ -1121,7 +1145,7 @@
   "discmania-dd3": {
    "slug": "discmania-dd3",
    "name": "Discmania DD3",
-   "sources": 63,
+   "sources": 65,
    "groups": {
     "wind": {
      "turns": 1,
@@ -1135,7 +1159,8 @@
     },
     "stability": {
      "overstable": 27,
-     "understable": 13
+     "understable": 13,
+     "stable": 4
     },
     "throw": {
      "forehand": 9
@@ -1239,11 +1264,12 @@
   "discmania-essence": {
    "slug": "discmania-essence",
    "name": "Discmania Essence",
-   "sources": 50,
+   "sources": 51,
    "groups": {
     "stability": {
      "understable": 22,
-     "overstable": 7
+     "overstable": 7,
+     "stable": 1
     },
     "glide": {
      "lots": 20
@@ -1281,11 +1307,12 @@
   "discmania-fd": {
    "slug": "discmania-fd",
    "name": "Discmania FD",
-   "sources": 44,
+   "sources": 51,
    "groups": {
     "stability": {
      "understable": 7,
-     "overstable": 13
+     "overstable": 13,
+     "stable": 11
     },
     "glide": {
      "lots": 14,
@@ -1360,11 +1387,12 @@
     "wind": {
      "holds": 7
     },
+    "stability": {
+     "stable": 2,
+     "overstable": 9
+    },
     "grip": {
      "great": 5
-    },
-    "stability": {
-     "overstable": 9
     },
     "glide": {
      "lots": 2
@@ -1475,6 +1503,7 @@
      "forehand": 2
     },
     "stability": {
+     "stable": 2,
      "overstable": 4,
      "understable": 1
     },
@@ -1492,7 +1521,7 @@
   "discmania-instinct": {
    "slug": "discmania-instinct",
    "name": "Discmania Instinct",
-   "sources": 16,
+   "sources": 18,
    "groups": {
     "wind": {
      "holds": 4
@@ -1502,7 +1531,8 @@
     },
     "stability": {
      "overstable": 9,
-     "understable": 4
+     "understable": 4,
+     "stable": 2
     },
     "grip": {
      "great": 3
@@ -1527,13 +1557,14 @@
   "discmania-link": {
    "slug": "discmania-link",
    "name": "Discmania Link",
-   "sources": 22,
+   "sources": 23,
    "groups": {
     "grip": {
      "great": 15
     },
     "stability": {
-     "overstable": 5
+     "overstable": 5,
+     "stable": 6
     },
     "glide": {
      "little": 6,
@@ -1550,7 +1581,7 @@
   "discmania-logic": {
    "slug": "discmania-logic",
    "name": "Discmania Logic",
-   "sources": 14,
+   "sources": 15,
    "groups": {
     "throw": {
      "forehand": 2
@@ -1561,7 +1592,8 @@
     },
     "stability": {
      "understable": 1,
-     "overstable": 3
+     "overstable": 3,
+     "stable": 2
     },
     "grip": {
      "great": 6
@@ -1580,10 +1612,11 @@
   "discmania-maestro": {
    "slug": "discmania-maestro",
    "name": "Discmania Maestro",
-   "sources": 4,
+   "sources": 5,
    "groups": {
     "stability": {
-     "overstable": 2
+     "overstable": 2,
+     "stable": 1
     },
     "glide": {
      "lots": 3
@@ -1602,7 +1635,7 @@
   "discmania-magician": {
    "slug": "discmania-magician",
    "name": "Discmania Magician",
-   "sources": 12,
+   "sources": 14,
    "groups": {
     "level": {
      "beginner": 4
@@ -1611,6 +1644,7 @@
      "any": 1
     },
     "stability": {
+     "stable": 4,
      "overstable": 4,
      "understable": 1
     },
@@ -1635,11 +1669,12 @@
   "discmania-majesty": {
    "slug": "discmania-majesty",
    "name": "Discmania Majesty",
-   "sources": 10,
+   "sources": 11,
    "groups": {
     "stability": {
      "overstable": 6,
-     "understable": 3
+     "understable": 3,
+     "stable": 1
     },
     "throw": {
      "forehand": 2
@@ -1664,11 +1699,12 @@
   "discmania-md1": {
    "slug": "discmania-md1",
    "name": "Discmania MD1",
-   "sources": 27,
+   "sources": 30,
    "groups": {
     "stability": {
      "understable": 8,
-     "overstable": 8
+     "overstable": 8,
+     "stable": 7
     },
     "glide": {
      "lots": 15
@@ -1693,10 +1729,11 @@
   "discmania-md3": {
    "slug": "discmania-md3",
    "name": "Discmania MD3",
-   "sources": 35,
+   "sources": 38,
    "groups": {
     "stability": {
      "overstable": 11,
+     "stable": 6,
      "understable": 6
     },
     "arm_speed": {
@@ -1733,12 +1770,13 @@
   "discmania-md4": {
    "slug": "discmania-md4",
    "name": "Discmania MD4",
-   "sources": 18,
+   "sources": 19,
    "groups": {
     "durability": {
      "beats_fast": 2
     },
     "stability": {
+     "stable": 4,
      "understable": 1,
      "overstable": 12
     },
@@ -1792,11 +1830,12 @@
   "discmania-mentor": {
    "slug": "discmania-mentor",
    "name": "Discmania Mentor",
-   "sources": 15,
+   "sources": 16,
    "groups": {
     "stability": {
      "understable": 4,
-     "overstable": 7
+     "overstable": 7,
+     "stable": 1
     },
     "durability": {
      "beats_fast": 1,
@@ -1892,10 +1931,11 @@
   "discmania-notion": {
    "slug": "discmania-notion",
    "name": "Discmania Notion",
-   "sources": 12,
+   "sources": 14,
    "groups": {
     "stability": {
      "understable": 1,
+     "stable": 5,
      "overstable": 1
     },
     "glide": {
@@ -1926,7 +1966,8 @@
    "groups": {
     "stability": {
      "understable": 21,
-     "overstable": 1
+     "overstable": 1,
+     "stable": 4
     },
     "glide": {
      "lots": 14
@@ -1972,6 +2013,7 @@
      "little": 1
     },
     "stability": {
+     "stable": 2,
      "understable": 3,
      "overstable": 1
     }
@@ -1986,10 +2028,11 @@
   "discmania-p1x": {
    "slug": "discmania-p1x",
    "name": "Discmania P1x",
-   "sources": 10,
+   "sources": 11,
    "groups": {
     "stability": {
-     "understable": 4
+     "understable": 4,
+     "stable": 3
     },
     "glide": {
      "lots": 3
@@ -2014,7 +2057,7 @@
   "discmania-p2": {
    "slug": "discmania-p2",
    "name": "Discmania P2",
-   "sources": 46,
+   "sources": 49,
    "groups": {
     "grip": {
      "great": 16,
@@ -2028,7 +2071,8 @@
      "beginner": 2
     },
     "stability": {
-     "overstable": 19
+     "overstable": 19,
+     "stable": 9
     },
     "wind": {
      "holds": 17
@@ -2053,7 +2097,7 @@
   "discmania-p2x": {
    "slug": "discmania-p2x",
    "name": "Discmania P2x",
-   "sources": 8,
+   "sources": 10,
    "groups": {
     "glide": {
      "little": 4
@@ -2062,7 +2106,8 @@
      "holds_up": 1
     },
     "stability": {
-     "overstable": 6
+     "overstable": 6,
+     "stable": 2
     },
     "grip": {
      "great": 1
@@ -2078,14 +2123,15 @@
   "discmania-p3x": {
    "slug": "discmania-p3x",
    "name": "Discmania P3x",
-   "sources": 19,
+   "sources": 20,
    "groups": {
     "grip": {
      "great": 4
     },
     "stability": {
      "overstable": 9,
-     "understable": 1
+     "understable": 1,
+     "stable": 3
     },
     "glide": {
      "little": 2
@@ -2140,10 +2186,11 @@
   "discmania-pd": {
    "slug": "discmania-pd",
    "name": "Discmania PD",
-   "sources": 38,
+   "sources": 39,
    "groups": {
     "stability": {
      "overstable": 21,
+     "stable": 4,
      "understable": 2
     },
     "durability": {
@@ -2179,7 +2226,7 @@
   "discmania-pd2": {
    "slug": "discmania-pd2",
    "name": "Discmania PD2",
-   "sources": 20,
+   "sources": 21,
    "groups": {
     "durability": {
      "holds_up": 1
@@ -2193,7 +2240,8 @@
     },
     "stability": {
      "overstable": 12,
-     "understable": 2
+     "understable": 2,
+     "stable": 1
     },
     "glide": {
      "lots": 2,
@@ -2269,7 +2317,7 @@
   "discmania-premier-md3": {
    "slug": "discmania-premier-md3",
    "name": "Discmania Premier MD3",
-   "sources": 2,
+   "sources": 3,
    "groups": {
     "wind": {
      "flips": 1
@@ -2279,6 +2327,9 @@
     },
     "durability": {
      "holds_up": 1
+    },
+    "stability": {
+     "stable": 1
     }
    },
    "spec": {
@@ -2291,7 +2342,7 @@
   "discmania-rainmaker": {
    "slug": "discmania-rainmaker",
    "name": "Discmania Rainmaker",
-   "sources": 14,
+   "sources": 15,
    "groups": {
     "glide": {
      "lots": 2
@@ -2302,6 +2353,7 @@
     },
     "stability": {
      "understable": 2,
+     "stable": 5,
      "overstable": 1
     }
    },
@@ -2340,7 +2392,7 @@
   "discmania-sensei": {
    "slug": "discmania-sensei",
    "name": "Discmania Sensei",
-   "sources": 17,
+   "sources": 21,
    "groups": {
     "glide": {
      "lots": 2
@@ -2353,7 +2405,8 @@
     },
     "stability": {
      "overstable": 4,
-     "understable": 2
+     "understable": 2,
+     "stable": 6
     },
     "level": {
      "beginner": 5
@@ -2422,7 +2475,7 @@
   "discmania-spore": {
    "slug": "discmania-spore",
    "name": "Discmania Spore",
-   "sources": 12,
+   "sources": 13,
    "groups": {
     "wind": {
      "turns": 1
@@ -2437,7 +2490,8 @@
      "beginner": 5
     },
     "stability": {
-     "overstable": 3
+     "overstable": 3,
+     "stable": 2
     },
     "grip": {
      "great": 2
@@ -2453,7 +2507,7 @@
   "discmania-tactic": {
    "slug": "discmania-tactic",
    "name": "Discmania Tactic",
-   "sources": 19,
+   "sources": 20,
    "groups": {
     "glide": {
      "lots": 1,
@@ -2463,6 +2517,7 @@
      "beats_fast": 2
     },
     "stability": {
+     "stable": 2,
      "overstable": 14,
      "understable": 1
     },
@@ -2489,11 +2544,12 @@
   "discmania-td": {
    "slug": "discmania-td",
    "name": "Discmania TD",
-   "sources": 10,
+   "sources": 11,
    "groups": {
     "stability": {
      "overstable": 7,
-     "understable": 2
+     "understable": 2,
+     "stable": 1
     },
     "wind": {
      "holds": 2
@@ -2518,10 +2574,11 @@
   "discmania-vanguard": {
    "slug": "discmania-vanguard",
    "name": "Discmania Vanguard",
-   "sources": 10,
+   "sources": 12,
    "groups": {
     "stability": {
      "understable": 3,
+     "stable": 4,
      "overstable": 1
     },
     "wind": {
@@ -2547,11 +2604,12 @@
   "discraft-anax": {
    "slug": "discraft-anax",
    "name": "Discraft Anax",
-   "sources": 34,
+   "sources": 35,
    "groups": {
     "stability": {
      "overstable": 19,
-     "understable": 6
+     "understable": 6,
+     "stable": 4
     },
     "durability": {
      "holds_up": 1,
@@ -2586,7 +2644,7 @@
   "discraft-apx": {
    "slug": "discraft-apx",
    "name": "Discraft APX",
-   "sources": 6,
+   "sources": 7,
    "groups": {
     "grip": {
      "great": 3
@@ -2596,7 +2654,8 @@
     },
     "stability": {
      "overstable": 1,
-     "understable": 1
+     "understable": 1,
+     "stable": 1
     },
     "level": {
      "beginner": 1
@@ -2679,7 +2738,7 @@
   "discraft-athena": {
    "slug": "discraft-athena",
    "name": "Discraft Athena",
-   "sources": 27,
+   "sources": 28,
    "groups": {
     "grip": {
      "slippery": 1,
@@ -2691,11 +2750,12 @@
     "wind": {
      "holds": 4
     },
+    "stability": {
+     "stable": 4,
+     "overstable": 9
+    },
     "throw": {
      "forehand": 5
-    },
-    "stability": {
-     "overstable": 9
     },
     "glide": {
      "lots": 4
@@ -2746,7 +2806,7 @@
   "discraft-banger-gt": {
    "slug": "discraft-banger-gt",
    "name": "Discraft Banger GT",
-   "sources": 11,
+   "sources": 13,
    "groups": {
     "durability": {
      "holds_up": 1
@@ -2756,7 +2816,8 @@
      "little": 2
     },
     "stability": {
-     "overstable": 1
+     "overstable": 1,
+     "stable": 2
     },
     "grip": {
      "great": 8
@@ -2775,14 +2836,15 @@
   "discraft-buzzz": {
    "slug": "discraft-buzzz",
    "name": "Discraft Buzzz",
-   "sources": 61,
+   "sources": 77,
    "groups": {
     "level": {
      "beginner": 16
     },
     "stability": {
      "understable": 21,
-     "overstable": 10
+     "overstable": 10,
+     "stable": 17
     },
     "arm_speed": {
      "any": 2,
@@ -2849,11 +2911,12 @@
   "discraft-buzzz-ss": {
    "slug": "discraft-buzzz-ss",
    "name": "Discraft Buzzz SS",
-   "sources": 34,
+   "sources": 37,
    "groups": {
     "stability": {
      "understable": 25,
-     "overstable": 3
+     "overstable": 3,
+     "stable": 4
     },
     "durability": {
      "beats_fast": 1
@@ -2920,6 +2983,7 @@
    "groups": {
     "stability": {
      "overstable": 6,
+     "stable": 2,
      "understable": 2
     },
     "grip": {
@@ -2949,7 +3013,8 @@
    "groups": {
     "stability": {
      "overstable": 3,
-     "understable": 2
+     "understable": 2,
+     "stable": 1
     },
     "glide": {
      "little": 2
@@ -2990,13 +3055,14 @@
   "discraft-cicada": {
    "slug": "discraft-cicada",
    "name": "Discraft Cicada",
-   "sources": 28,
+   "sources": 31,
    "groups": {
     "wind": {
      "holds": 1
     },
     "stability": {
-     "understable": 16
+     "understable": 16,
+     "stable": 5
     },
     "glide": {
      "lots": 10
@@ -3025,11 +3091,12 @@
   "discraft-cigarra": {
    "slug": "discraft-cigarra",
    "name": "Discraft Cigarra",
-   "sources": 19,
+   "sources": 20,
    "groups": {
     "stability": {
      "overstable": 9,
-     "understable": 5
+     "understable": 5,
+     "stable": 1
     },
     "glide": {
      "lots": 9
@@ -3057,16 +3124,17 @@
   "discraft-comet": {
    "slug": "discraft-comet",
    "name": "Discraft Comet",
-   "sources": 13,
+   "sources": 14,
    "groups": {
     "glide": {
      "lots": 5
     },
+    "stability": {
+     "stable": 2,
+     "understable": 4
+    },
     "level": {
      "beginner": 4
-    },
-    "stability": {
-     "understable": 4
     },
     "durability": {
      "beats_fast": 1
@@ -3114,14 +3182,15 @@
   "discraft-cyclone": {
    "slug": "discraft-cyclone",
    "name": "Discraft Cyclone",
-   "sources": 7,
+   "sources": 10,
    "groups": {
     "arm_speed": {
      "medium": 1
     },
     "stability": {
      "overstable": 1,
-     "understable": 3
+     "understable": 3,
+     "stable": 3
     },
     "level": {
      "beginner": 1
@@ -3203,10 +3272,11 @@
   "discraft-fierce": {
    "slug": "discraft-fierce",
    "name": "Discraft Fierce",
-   "sources": 22,
+   "sources": 24,
    "groups": {
     "stability": {
      "understable": 17,
+     "stable": 4,
      "overstable": 1
     },
     "wind": {
@@ -3267,7 +3337,8 @@
      "beginner": 2
     },
     "stability": {
-     "understable": 4
+     "understable": 4,
+     "stable": 2
     },
     "glide": {
      "little": 2,
@@ -3297,7 +3368,8 @@
     },
     "stability": {
      "understable": 2,
-     "overstable": 23
+     "overstable": 23,
+     "stable": 1
     },
     "arm_speed": {
      "fast": 3
@@ -3425,7 +3497,8 @@
    "sources": 10,
    "groups": {
     "stability": {
-     "overstable": 9
+     "overstable": 9,
+     "stable": 1
     },
     "wind": {
      "holds": 4
@@ -3450,10 +3523,11 @@
   "discraft-heat": {
    "slug": "discraft-heat",
    "name": "Discraft Heat",
-   "sources": 44,
+   "sources": 46,
    "groups": {
     "stability": {
      "understable": 33,
+     "stable": 3,
      "overstable": 2
     },
     "level": {
@@ -3504,7 +3578,7 @@
   "discraft-luna": {
    "slug": "discraft-luna",
    "name": "Discraft Luna",
-   "sources": 40,
+   "sources": 44,
    "groups": {
     "grip": {
      "great": 8
@@ -3514,7 +3588,8 @@
     },
     "stability": {
      "overstable": 7,
-     "understable": 16
+     "understable": 16,
+     "stable": 5
     },
     "glide": {
      "lots": 14
@@ -3541,10 +3616,13 @@
   "discraft-magnet": {
    "slug": "discraft-magnet",
    "name": "Discraft Magnet",
-   "sources": 6,
+   "sources": 7,
    "groups": {
     "level": {
      "beginner": 2
+    },
+    "stability": {
+     "stable": 3
     },
     "grip": {
      "great": 1
@@ -3566,12 +3644,13 @@
   "discraft-malita": {
    "slug": "discraft-malita",
    "name": "Discraft Malita",
-   "sources": 27,
+   "sources": 28,
    "groups": {
     "glide": {
      "lots": 7
     },
     "stability": {
+     "stable": 3,
      "overstable": 4,
      "understable": 15
     },
@@ -3626,11 +3705,12 @@
   "discraft-meteor": {
    "slug": "discraft-meteor",
    "name": "Discraft Meteor",
-   "sources": 29,
+   "sources": 30,
    "groups": {
     "stability": {
      "understable": 22,
-     "overstable": 2
+     "overstable": 2,
+     "stable": 1
     },
     "durability": {
      "beats_fast": 1,
@@ -3667,7 +3747,7 @@
   "discraft-nuke": {
    "slug": "discraft-nuke",
    "name": "Discraft Nuke",
-   "sources": 32,
+   "sources": 33,
    "groups": {
     "arm_speed": {
      "fast": 6
@@ -3680,7 +3760,8 @@
     },
     "stability": {
      "understable": 8,
-     "overstable": 8
+     "overstable": 8,
+     "stable": 1
     },
     "wind": {
      "holds": 8
@@ -3734,7 +3815,7 @@
   "discraft-nuke-ss": {
    "slug": "discraft-nuke-ss",
    "name": "Discraft Nuke SS",
-   "sources": 20,
+   "sources": 21,
    "groups": {
     "arm_speed": {
      "fast": 3,
@@ -3745,7 +3826,8 @@
      "backhand": 1
     },
     "stability": {
-     "understable": 14
+     "understable": 14,
+     "stable": 1
     },
     "grip": {
      "slippery": 1
@@ -3773,11 +3855,12 @@
   "discraft-passion": {
    "slug": "discraft-passion",
    "name": "Discraft Passion",
-   "sources": 25,
+   "sources": 27,
    "groups": {
     "stability": {
      "understable": 7,
-     "overstable": 5
+     "overstable": 5,
+     "stable": 7
     },
     "durability": {
      "beats_fast": 1
@@ -3902,13 +3985,14 @@
   "discraft-roach": {
    "slug": "discraft-roach",
    "name": "Discraft Roach",
-   "sources": 12,
+   "sources": 13,
    "groups": {
     "grip": {
      "great": 4
     },
     "stability": {
      "understable": 2,
+     "stable": 6,
      "overstable": 2
     },
     "glide": {
@@ -3961,7 +4045,8 @@
    "groups": {
     "stability": {
      "overstable": 17,
-     "understable": 13
+     "understable": 13,
+     "stable": 1
     },
     "glide": {
      "lots": 14
@@ -4000,14 +4085,15 @@
   "discraft-sled": {
    "slug": "discraft-sled",
    "name": "Discraft Sled",
-   "sources": 14,
+   "sources": 15,
    "groups": {
     "glide": {
      "lots": 8,
      "little": 1
     },
     "stability": {
-     "understable": 6
+     "understable": 6,
+     "stable": 3
     },
     "wind": {
      "holds": 1,
@@ -4063,11 +4149,12 @@
   "discraft-stalker": {
    "slug": "discraft-stalker",
    "name": "Discraft Stalker",
-   "sources": 4,
+   "sources": 7,
    "groups": {
     "stability": {
      "understable": 1,
-     "overstable": 1
+     "overstable": 1,
+     "stable": 3
     },
     "grip": {
      "slippery": 1
@@ -4089,7 +4176,8 @@
    "sources": 8,
    "groups": {
     "stability": {
-     "understable": 6
+     "understable": 6,
+     "stable": 1
     },
     "grip": {
      "great": 2
@@ -4166,7 +4254,7 @@
   "discraft-thrasher": {
    "slug": "discraft-thrasher",
    "name": "Discraft Thrasher",
-   "sources": 26,
+   "sources": 27,
    "groups": {
     "wind": {
      "turns": 4,
@@ -4174,6 +4262,7 @@
     },
     "stability": {
      "understable": 18,
+     "stable": 2,
      "overstable": 1
     },
     "arm_speed": {
@@ -4201,10 +4290,11 @@
   "discraft-undertaker": {
    "slug": "discraft-undertaker",
    "name": "Discraft Undertaker",
-   "sources": 28,
+   "sources": 33,
    "groups": {
     "stability": {
      "overstable": 10,
+     "stable": 9,
      "understable": 4
     },
     "durability": {
@@ -4278,10 +4368,11 @@
   "discraft-wasp": {
    "slug": "discraft-wasp",
    "name": "Discraft Wasp",
-   "sources": 19,
+   "sources": 22,
    "groups": {
     "stability": {
      "understable": 3,
+     "stable": 6,
      "overstable": 8
     },
     "durability": {
@@ -4311,11 +4402,12 @@
   "discraft-xl": {
    "slug": "discraft-xl",
    "name": "Discraft XL",
-   "sources": 4,
+   "sources": 5,
    "groups": {
     "stability": {
      "understable": 1,
-     "overstable": 2
+     "overstable": 2,
+     "stable": 1
     },
     "arm_speed": {
      "fast": 1
@@ -4372,7 +4464,7 @@
   "discraft-zeus": {
    "slug": "discraft-zeus",
    "name": "Discraft Zeus",
-   "sources": 19,
+   "sources": 20,
    "groups": {
     "arm_speed": {
      "fast": 3
@@ -4385,7 +4477,8 @@
     },
     "stability": {
      "understable": 3,
-     "overstable": 3
+     "overstable": 3,
+     "stable": 1
     },
     "glide": {
      "lots": 5
@@ -4407,7 +4500,7 @@
   "discraft-zone": {
    "slug": "discraft-zone",
    "name": "Discraft Zone",
-   "sources": 92,
+   "sources": 93,
    "groups": {
     "throw": {
      "forehand": 46
@@ -4422,6 +4515,7 @@
     },
     "stability": {
      "overstable": 35,
+     "stable": 7,
      "understable": 1
     },
     "wind": {
@@ -4478,10 +4572,11 @@
   "discraft-zone-ss": {
    "slug": "discraft-zone-ss",
    "name": "Discraft Zone SS",
-   "sources": 26,
+   "sources": 27,
    "groups": {
     "stability": {
-     "understable": 17
+     "understable": 17,
+     "stable": 4
     },
     "throw": {
      "forehand": 6
@@ -4531,6 +4626,7 @@
      "any": 1
     },
     "stability": {
+     "stable": 1,
      "overstable": 2,
      "understable": 8
     },
@@ -4637,10 +4733,11 @@
   "dynamic-discs-contender": {
    "slug": "dynamic-discs-contender",
    "name": "Dynamic Discs Contender",
-   "sources": 4,
+   "sources": 7,
    "groups": {
     "stability": {
-     "overstable": 2
+     "overstable": 2,
+     "stable": 4
     },
     "glide": {
      "lots": 2
@@ -4666,7 +4763,8 @@
    "groups": {
     "stability": {
      "overstable": 1,
-     "understable": 4
+     "understable": 4,
+     "stable": 1
     },
     "level": {
      "beginner": 2
@@ -4746,10 +4844,11 @@
   "dynamic-discs-deputy": {
    "slug": "dynamic-discs-deputy",
    "name": "Dynamic Discs Deputy",
-   "sources": 21,
+   "sources": 22,
    "groups": {
     "stability": {
-     "understable": 17
+     "understable": 17,
+     "stable": 1
     },
     "glide": {
      "little": 1,
@@ -4782,6 +4881,7 @@
    "groups": {
     "stability": {
      "overstable": 3,
+     "stable": 3,
      "understable": 3
     },
     "glide": {
@@ -4807,7 +4907,7 @@
   "dynamic-discs-emac-truth": {
    "slug": "dynamic-discs-emac-truth",
    "name": "Dynamic Discs EMac Truth",
-   "sources": 22,
+   "sources": 23,
    "groups": {
     "glide": {
      "lots": 4
@@ -4816,13 +4916,14 @@
      "great": 3,
      "slippery": 1
     },
+    "stability": {
+     "stable": 4,
+     "understable": 2,
+     "overstable": 9
+    },
     "durability": {
      "beats_fast": 2,
      "holds_up": 2
-    },
-    "stability": {
-     "understable": 2,
-     "overstable": 9
     },
     "arm_speed": {
      "any": 1,
@@ -4880,11 +4981,12 @@
   "dynamic-discs-escape": {
    "slug": "dynamic-discs-escape",
    "name": "Dynamic Discs Escape",
-   "sources": 36,
+   "sources": 37,
    "groups": {
     "stability": {
      "understable": 11,
-     "overstable": 6
+     "overstable": 6,
+     "stable": 2
     },
     "glide": {
      "lots": 16
@@ -4925,7 +5027,8 @@
    "groups": {
     "stability": {
      "understable": 2,
-     "overstable": 8
+     "overstable": 8,
+     "stable": 2
     },
     "grip": {
      "great": 3
@@ -4961,7 +5064,8 @@
    "groups": {
     "stability": {
      "overstable": 2,
-     "understable": 4
+     "understable": 4,
+     "stable": 3
     },
     "glide": {
      "lots": 3
@@ -5053,7 +5157,8 @@
    "groups": {
     "stability": {
      "overstable": 8,
-     "understable": 2
+     "understable": 2,
+     "stable": 2
     },
     "wind": {
      "holds": 10,
@@ -5135,11 +5240,12 @@
   "dynamic-discs-judge": {
    "slug": "dynamic-discs-judge",
    "name": "Dynamic Discs Judge",
-   "sources": 37,
+   "sources": 40,
    "groups": {
     "stability": {
      "overstable": 9,
-     "understable": 3
+     "understable": 3,
+     "stable": 5
     },
     "glide": {
      "lots": 10,
@@ -5192,7 +5298,8 @@
    "sources": 41,
    "groups": {
     "stability": {
-     "overstable": 31
+     "overstable": 31,
+     "stable": 1
     },
     "wind": {
      "holds": 14
@@ -5224,7 +5331,8 @@
    "groups": {
     "stability": {
      "overstable": 3,
-     "understable": 1
+     "understable": 1,
+     "stable": 3
     },
     "glide": {
      "little": 1,
@@ -5247,14 +5355,15 @@
   "dynamic-discs-maverick": {
    "slug": "dynamic-discs-maverick",
    "name": "Dynamic Discs Maverick",
-   "sources": 20,
+   "sources": 22,
    "groups": {
     "level": {
      "beginner": 8
     },
     "stability": {
      "understable": 12,
-     "overstable": 3
+     "overstable": 3,
+     "stable": 2
     },
     "throw": {
      "forehand": 2
@@ -5314,7 +5423,8 @@
     },
     "stability": {
      "understable": 5,
-     "overstable": 7
+     "overstable": 7,
+     "stable": 2
     },
     "durability": {
      "beats_fast": 5
@@ -5431,13 +5541,14 @@
   "dynamic-discs-suspect": {
    "slug": "dynamic-discs-suspect",
    "name": "Dynamic Discs Suspect",
-   "sources": 14,
+   "sources": 17,
    "groups": {
     "wind": {
      "holds": 2
     },
     "stability": {
      "overstable": 4,
+     "stable": 5,
      "understable": 1
     },
     "throw": {
@@ -5473,11 +5584,12 @@
   "dynamic-discs-trespass": {
    "slug": "dynamic-discs-trespass",
    "name": "Dynamic Discs Trespass",
-   "sources": 29,
+   "sources": 30,
    "groups": {
     "stability": {
      "understable": 19,
-     "overstable": 3
+     "overstable": 3,
+     "stable": 1
     },
     "glide": {
      "lots": 2
@@ -5508,11 +5620,12 @@
   "dynamic-discs-truth": {
    "slug": "dynamic-discs-truth",
    "name": "Dynamic Discs Truth",
-   "sources": 14,
+   "sources": 18,
    "groups": {
     "stability": {
      "understable": 7,
-     "overstable": 1
+     "overstable": 1,
+     "stable": 4
     },
     "wind": {
      "holds": 2
@@ -5544,7 +5657,7 @@
   "dynamic-discs-vandal": {
    "slug": "dynamic-discs-vandal",
    "name": "Dynamic Discs Vandal",
-   "sources": 19,
+   "sources": 20,
    "groups": {
     "arm_speed": {
      "any": 2,
@@ -5555,7 +5668,8 @@
     },
     "stability": {
      "understable": 11,
-     "overstable": 3
+     "overstable": 3,
+     "stable": 2
     },
     "durability": {
      "beats_fast": 2
@@ -5580,10 +5694,11 @@
   "dynamic-discs-verdict": {
    "slug": "dynamic-discs-verdict",
    "name": "Dynamic Discs Verdict",
-   "sources": 30,
+   "sources": 31,
    "groups": {
     "stability": {
      "overstable": 18,
+     "stable": 3,
      "understable": 1
     },
     "wind": {
@@ -5621,14 +5736,15 @@
   "dynamic-discs-warden": {
    "slug": "dynamic-discs-warden",
    "name": "Dynamic Discs Warden",
-   "sources": 23,
+   "sources": 30,
    "groups": {
     "glide": {
      "lots": 10
     },
     "stability": {
      "understable": 8,
-     "overstable": 2
+     "overstable": 2,
+     "stable": 9
     },
     "wind": {
      "holds": 2,
@@ -5685,7 +5801,7 @@
   "gateway-wizard": {
    "slug": "gateway-wizard",
    "name": "Gateway Wizard",
-   "sources": 22,
+   "sources": 23,
    "groups": {
     "grip": {
      "great": 13
@@ -5701,7 +5817,8 @@
     },
     "stability": {
      "understable": 1,
-     "overstable": 6
+     "overstable": 6,
+     "stable": 1
     },
     "wind": {
      "holds": 1
@@ -5721,7 +5838,7 @@
   "innova-alien": {
    "slug": "innova-alien",
    "name": "Innova Alien",
-   "sources": 16,
+   "sources": 17,
    "groups": {
     "wind": {
      "holds": 3
@@ -5735,7 +5852,8 @@
      "backhand": 2
     },
     "stability": {
-     "overstable": 5
+     "overstable": 5,
+     "stable": 4
     },
     "level": {
      "beginner": 3
@@ -5757,7 +5875,7 @@
   "innova-animal": {
    "slug": "innova-animal",
    "name": "Innova Animal",
-   "sources": 10,
+   "sources": 13,
    "groups": {
     "glide": {
      "lots": 1,
@@ -5767,7 +5885,8 @@
      "holds": 1
     },
     "stability": {
-     "understable": 3
+     "understable": 3,
+     "stable": 3
     },
     "grip": {
      "slippery": 1
@@ -5817,12 +5936,13 @@
   "innova-arachnid": {
    "slug": "innova-arachnid",
    "name": "Innova Arachnid",
-   "sources": 16,
+   "sources": 17,
    "groups": {
     "glide": {
      "lots": 8
     },
     "stability": {
+     "stable": 5,
      "understable": 5,
      "overstable": 5
     },
@@ -5885,11 +6005,12 @@
   "innova-atlas": {
    "slug": "innova-atlas",
    "name": "Innova Atlas",
-   "sources": 14,
+   "sources": 19,
    "groups": {
     "stability": {
      "understable": 6,
-     "overstable": 1
+     "overstable": 1,
+     "stable": 8
     },
     "durability": {
      "beats_fast": 2
@@ -5914,10 +6035,11 @@
   "innova-avatar": {
    "slug": "innova-avatar",
    "name": "Innova Avatar",
-   "sources": 1,
+   "sources": 2,
    "groups": {
     "stability": {
-     "overstable": 1
+     "overstable": 1,
+     "stable": 1
     }
    },
    "spec": {
@@ -5930,7 +6052,7 @@
   "innova-aviar": {
    "slug": "innova-aviar",
    "name": "Innova Aviar",
-   "sources": 37,
+   "sources": 43,
    "groups": {
     "wind": {
      "turns": 3,
@@ -5938,7 +6060,8 @@
     },
     "stability": {
      "understable": 8,
-     "overstable": 2
+     "overstable": 2,
+     "stable": 7
     },
     "glide": {
      "lots": 8
@@ -5965,11 +6088,12 @@
   "innova-aviar3": {
    "slug": "innova-aviar3",
    "name": "Innova Aviar3",
-   "sources": 24,
+   "sources": 29,
    "groups": {
     "stability": {
      "overstable": 14,
-     "understable": 2
+     "understable": 2,
+     "stable": 7
     },
     "durability": {
      "beats_fast": 4
@@ -5997,11 +6121,12 @@
   "innova-aviarx3": {
    "slug": "innova-aviarx3",
    "name": "Innova AviarX3",
-   "sources": 32,
+   "sources": 33,
    "groups": {
     "stability": {
      "overstable": 22,
-     "understable": 1
+     "understable": 1,
+     "stable": 1
     },
     "glide": {
      "little": 4,
@@ -6034,13 +6159,14 @@
   "innova-beast": {
    "slug": "innova-beast",
    "name": "Innova Beast",
-   "sources": 43,
+   "sources": 46,
    "groups": {
     "arm_speed": {
      "medium": 3,
      "fast": 2
     },
     "stability": {
+     "stable": 5,
      "understable": 16,
      "overstable": 9
     },
@@ -6115,7 +6241,8 @@
     },
     "stability": {
      "understable": 6,
-     "overstable": 15
+     "overstable": 15,
+     "stable": 1
     },
     "glide": {
      "lots": 5,
@@ -6145,6 +6272,7 @@
     },
     "stability": {
      "overstable": 1,
+     "stable": 1,
      "understable": 1
     },
     "glide": {
@@ -6167,11 +6295,12 @@
   "innova-caiman": {
    "slug": "innova-caiman",
    "name": "Innova Caiman",
-   "sources": 29,
+   "sources": 30,
    "groups": {
     "stability": {
      "overstable": 22,
-     "understable": 2
+     "understable": 2,
+     "stable": 1
     },
     "wind": {
      "holds": 8
@@ -6208,7 +6337,8 @@
    "groups": {
     "stability": {
      "understable": 5,
-     "overstable": 2
+     "overstable": 2,
+     "stable": 1
     },
     "glide": {
      "lots": 2
@@ -6234,11 +6364,12 @@
   "innova-cheetah": {
    "slug": "innova-cheetah",
    "name": "Innova Cheetah",
-   "sources": 12,
+   "sources": 14,
    "groups": {
     "stability": {
      "understable": 5,
-     "overstable": 1
+     "overstable": 1,
+     "stable": 4
     },
     "wind": {
      "flips": 1
@@ -6270,11 +6401,14 @@
   "innova-classic-aviar": {
    "slug": "innova-classic-aviar",
    "name": "Innova Classic Aviar",
-   "sources": 2,
+   "sources": 4,
    "groups": {
     "grip": {
      "slippery": 1,
      "great": 1
+    },
+    "stability": {
+     "stable": 2
     }
    },
    "spec": {
@@ -6287,11 +6421,12 @@
   "innova-cobra": {
    "slug": "innova-cobra",
    "name": "Innova Cobra",
-   "sources": 10,
+   "sources": 11,
    "groups": {
     "stability": {
      "understable": 6,
-     "overstable": 1
+     "overstable": 1,
+     "stable": 1
     },
     "throw": {
      "forehand": 1
@@ -6352,13 +6487,14 @@
   "innova-colt": {
    "slug": "innova-colt",
    "name": "Innova Colt",
-   "sources": 18,
+   "sources": 19,
    "groups": {
     "glide": {
      "lots": 9
     },
     "stability": {
-     "understable": 7
+     "understable": 7,
+     "stable": 4
     },
     "durability": {
      "beats_fast": 3,
@@ -6388,6 +6524,7 @@
    "groups": {
     "stability": {
      "understable": 13,
+     "stable": 2,
      "overstable": 6
     },
     "glide": {
@@ -6423,10 +6560,11 @@
   "innova-cro": {
    "slug": "innova-cro",
    "name": "Innova Cro",
-   "sources": 3,
+   "sources": 4,
    "groups": {
     "stability": {
-     "understable": 2
+     "understable": 2,
+     "stable": 1
     },
     "durability": {
      "beats_fast": 2
@@ -6490,13 +6628,14 @@
     "glide": {
      "lots": 6
     },
+    "stability": {
+     "stable": 1,
+     "overstable": 2,
+     "understable": 5
+    },
     "wind": {
      "holds": 2,
      "turns": 1
-    },
-    "stability": {
-     "overstable": 2,
-     "understable": 5
     },
     "durability": {
      "beats_fast": 2
@@ -6525,11 +6664,12 @@
   "innova-destroyer": {
    "slug": "innova-destroyer",
    "name": "Innova Destroyer",
-   "sources": 108,
+   "sources": 110,
    "groups": {
     "stability": {
      "overstable": 56,
-     "understable": 18
+     "understable": 18,
+     "stable": 2
     },
     "arm_speed": {
      "fast": 8,
@@ -6613,7 +6753,8 @@
     },
     "stability": {
      "understable": 9,
-     "overstable": 26
+     "overstable": 26,
+     "stable": 2
     },
     "glide": {
      "lots": 5
@@ -6644,11 +6785,12 @@
   "innova-firebird": {
    "slug": "innova-firebird",
    "name": "Innova Firebird",
-   "sources": 80,
+   "sources": 81,
    "groups": {
     "stability": {
      "overstable": 49,
-     "understable": 5
+     "understable": 5,
+     "stable": 2
     },
     "throw": {
      "forehand": 32
@@ -6693,6 +6835,7 @@
     },
     "stability": {
      "overstable": 1,
+     "stable": 1,
      "understable": 1
     },
     "glide": {
@@ -6710,11 +6853,12 @@
   "innova-firestorm": {
    "slug": "innova-firestorm",
    "name": "Innova Firestorm",
-   "sources": 10,
+   "sources": 11,
    "groups": {
     "stability": {
      "understable": 5,
-     "overstable": 3
+     "overstable": 3,
+     "stable": 1
     },
     "glide": {
      "lots": 1
@@ -6808,11 +6952,12 @@
   "innova-gazelle": {
    "slug": "innova-gazelle",
    "name": "Innova Gazelle",
-   "sources": 5,
+   "sources": 6,
    "groups": {
     "stability": {
      "understable": 2,
-     "overstable": 1
+     "overstable": 1,
+     "stable": 1
     },
     "durability": {
      "beats_fast": 2,
@@ -6832,7 +6977,7 @@
   "innova-gorgon": {
    "slug": "innova-gorgon",
    "name": "Innova Gorgon",
-   "sources": 38,
+   "sources": 39,
    "groups": {
     "wind": {
      "holds": 5
@@ -6842,7 +6987,8 @@
     },
     "stability": {
      "understable": 23,
-     "overstable": 5
+     "overstable": 5,
+     "stable": 1
     },
     "glide": {
      "lots": 15,
@@ -6898,7 +7044,7 @@
   "innova-hawkeye": {
    "slug": "innova-hawkeye",
    "name": "Innova Hawkeye",
-   "sources": 24,
+   "sources": 27,
    "groups": {
     "durability": {
      "beats_fast": 3
@@ -6908,7 +7054,8 @@
     },
     "stability": {
      "overstable": 6,
-     "understable": 10
+     "understable": 10,
+     "stable": 7
     },
     "grip": {
      "great": 3
@@ -6961,10 +7108,11 @@
   "innova-invader": {
    "slug": "innova-invader",
    "name": "Innova Invader",
-   "sources": 33,
+   "sources": 35,
    "groups": {
     "stability": {
      "understable": 8,
+     "stable": 8,
      "overstable": 3
     },
     "wind": {
@@ -7028,10 +7176,11 @@
   "innova-jay": {
    "slug": "innova-jay",
    "name": "Innova Jay",
-   "sources": 21,
+   "sources": 23,
    "groups": {
     "stability": {
      "overstable": 6,
+     "stable": 4,
      "understable": 3
     },
     "glide": {
@@ -7083,6 +7232,7 @@
      "holds_up": 2
     },
     "stability": {
+     "stable": 1,
      "understable": 1
     }
    },
@@ -7130,7 +7280,7 @@
   "innova-kc-aviar": {
    "slug": "innova-kc-aviar",
    "name": "Innova KC Aviar",
-   "sources": 11,
+   "sources": 12,
    "groups": {
     "grip": {
      "slippery": 5,
@@ -7140,7 +7290,8 @@
      "holds_up": 2
     },
     "stability": {
-     "overstable": 3
+     "overstable": 3,
+     "stable": 2
     },
     "glide": {
      "lots": 2
@@ -7171,11 +7322,12 @@
   "innova-leopard": {
    "slug": "innova-leopard",
    "name": "Innova Leopard",
-   "sources": 67,
+   "sources": 68,
    "groups": {
     "stability": {
      "understable": 31,
-     "overstable": 11
+     "overstable": 11,
+     "stable": 3
     },
     "durability": {
      "beats_fast": 4
@@ -7210,7 +7362,7 @@
   "innova-leopard3": {
    "slug": "innova-leopard3",
    "name": "Innova Leopard3",
-   "sources": 54,
+   "sources": 57,
    "groups": {
     "arm_speed": {
      "medium": 2,
@@ -7219,7 +7371,8 @@
     },
     "stability": {
      "overstable": 9,
-     "understable": 23
+     "understable": 23,
+     "stable": 7
     },
     "level": {
      "intermediate": 1,
@@ -7253,11 +7406,12 @@
   "innova-lion": {
    "slug": "innova-lion",
    "name": "Innova Lion",
-   "sources": 10,
+   "sources": 13,
    "groups": {
     "stability": {
      "overstable": 6,
-     "understable": 1
+     "understable": 1,
+     "stable": 3
     },
     "glide": {
      "lots": 3
@@ -7307,7 +7461,7 @@
   "innova-mako3": {
    "slug": "innova-mako3",
    "name": "Innova Mako3",
-   "sources": 97,
+   "sources": 120,
    "groups": {
     "level": {
      "beginner": 32
@@ -7318,6 +7472,7 @@
     },
     "stability": {
      "understable": 39,
+     "stable": 35,
      "overstable": 7
     },
     "wind": {
@@ -7349,11 +7504,12 @@
   "innova-mamba": {
    "slug": "innova-mamba",
    "name": "Innova Mamba",
-   "sources": 79,
+   "sources": 81,
    "groups": {
     "stability": {
      "overstable": 10,
-     "understable": 47
+     "understable": 47,
+     "stable": 2
     },
     "durability": {
      "holds_up": 2,
@@ -7391,11 +7547,12 @@
   "innova-manta": {
    "slug": "innova-manta",
    "name": "Innova Manta",
-   "sources": 7,
+   "sources": 8,
    "groups": {
     "stability": {
      "overstable": 1,
-     "understable": 2
+     "understable": 2,
+     "stable": 1
     },
     "durability": {
      "beats_fast": 1
@@ -7460,6 +7617,7 @@
      "beginner": 3
     },
     "stability": {
+     "stable": 1,
      "understable": 8
     },
     "grip": {
@@ -7482,11 +7640,12 @@
   "innova-mystere": {
    "slug": "innova-mystere",
    "name": "Innova Mystere",
-   "sources": 16,
+   "sources": 17,
    "groups": {
     "stability": {
      "understable": 9,
-     "overstable": 3
+     "overstable": 3,
+     "stable": 1
     },
     "glide": {
      "lots": 7
@@ -7521,11 +7680,15 @@
   "innova-nova": {
    "slug": "innova-nova",
    "name": "Innova Nova",
-   "sources": 17,
+   "sources": 23,
    "groups": {
     "durability": {
      "holds_up": 1,
      "beats_fast": 1
+    },
+    "stability": {
+     "stable": 12,
+     "understable": 5
     },
     "wind": {
      "holds": 3
@@ -7535,9 +7698,6 @@
     },
     "level": {
      "beginner": 7
-    },
-    "stability": {
-     "understable": 5
     },
     "arm_speed": {
      "any": 1
@@ -7560,6 +7720,7 @@
    "groups": {
     "stability": {
      "overstable": 10,
+     "stable": 2,
      "understable": 3
     },
     "throw": {
@@ -7631,6 +7792,11 @@
     "wind": {
      "holds": 9
     },
+    "stability": {
+     "stable": 4,
+     "overstable": 23,
+     "understable": 5
+    },
     "glide": {
      "little": 6,
      "lots": 1
@@ -7638,10 +7804,6 @@
     "grip": {
      "great": 15,
      "slippery": 2
-    },
-    "stability": {
-     "overstable": 23,
-     "understable": 5
     },
     "throw": {
      "forehand": 17,
@@ -7661,11 +7823,12 @@
   "innova-polecat": {
    "slug": "innova-polecat",
    "name": "Innova Polecat",
-   "sources": 25,
+   "sources": 26,
    "groups": {
     "stability": {
      "overstable": 5,
-     "understable": 2
+     "understable": 2,
+     "stable": 6
     },
     "glide": {
      "lots": 19
@@ -7697,11 +7860,12 @@
   "innova-racer": {
    "slug": "innova-racer",
    "name": "Innova Racer",
-   "sources": 17,
+   "sources": 18,
    "groups": {
     "stability": {
      "understable": 11,
-     "overstable": 1
+     "overstable": 1,
+     "stable": 1
     },
     "glide": {
      "lots": 13
@@ -7733,13 +7897,14 @@
   "innova-rat": {
    "slug": "innova-rat",
    "name": "Innova Rat",
-   "sources": 31,
+   "sources": 34,
    "groups": {
     "durability": {
      "beats_fast": 1,
      "holds_up": 1
     },
     "stability": {
+     "stable": 5,
      "overstable": 4,
      "understable": 6
     },
@@ -7771,7 +7936,7 @@
   "innova-rhyno": {
    "slug": "innova-rhyno",
    "name": "Innova Rhyno",
-   "sources": 42,
+   "sources": 43,
    "groups": {
     "wind": {
      "holds": 13
@@ -7781,7 +7946,8 @@
     },
     "stability": {
      "overstable": 11,
-     "understable": 4
+     "understable": 4,
+     "stable": 4
     },
     "durability": {
      "beats_fast": 9,
@@ -7808,11 +7974,12 @@
   "innova-roadrunner": {
    "slug": "innova-roadrunner",
    "name": "Innova Roadrunner",
-   "sources": 50,
+   "sources": 51,
    "groups": {
     "stability": {
      "understable": 25,
-     "overstable": 12
+     "overstable": 12,
+     "stable": 1
     },
     "level": {
      "advanced": 1,
@@ -7852,7 +8019,7 @@
   "innova-roc": {
    "slug": "innova-roc",
    "name": "Innova Roc",
-   "sources": 39,
+   "sources": 49,
    "groups": {
     "durability": {
      "beats_fast": 14,
@@ -7860,7 +8027,8 @@
     },
     "stability": {
      "overstable": 10,
-     "understable": 8
+     "understable": 8,
+     "stable": 14
     },
     "glide": {
      "lots": 5
@@ -7892,11 +8060,12 @@
   "innova-roc3": {
    "slug": "innova-roc3",
    "name": "Innova Roc3",
-   "sources": 44,
+   "sources": 48,
    "groups": {
     "stability": {
      "overstable": 20,
-     "understable": 8
+     "understable": 8,
+     "stable": 5
     },
     "durability": {
      "beats_fast": 6,
@@ -7937,7 +8106,8 @@
    "sources": 11,
    "groups": {
     "stability": {
-     "overstable": 9
+     "overstable": 9,
+     "stable": 1
     },
     "wind": {
      "holds": 5
@@ -7991,11 +8161,12 @@
   "innova-savant": {
    "slug": "innova-savant",
    "name": "Innova Savant",
-   "sources": 14,
+   "sources": 16,
    "groups": {
     "stability": {
      "understable": 2,
-     "overstable": 11
+     "overstable": 11,
+     "stable": 2
     },
     "glide": {
      "lots": 1,
@@ -8021,14 +8192,15 @@
   "innova-shark": {
    "slug": "innova-shark",
    "name": "Innova Shark",
-   "sources": 19,
+   "sources": 21,
    "groups": {
     "level": {
      "beginner": 10
     },
     "stability": {
      "understable": 5,
-     "overstable": 2
+     "overstable": 2,
+     "stable": 4
     },
     "glide": {
      "lots": 1
@@ -8057,10 +8229,11 @@
   "innova-shryke": {
    "slug": "innova-shryke",
    "name": "Innova Shryke",
-   "sources": 50,
+   "sources": 51,
    "groups": {
     "stability": {
      "overstable": 8,
+     "stable": 4,
      "understable": 12
     },
     "glide": {
@@ -8100,7 +8273,7 @@
   "innova-sidewinder": {
    "slug": "innova-sidewinder",
    "name": "Innova Sidewinder",
-   "sources": 64,
+   "sources": 65,
    "groups": {
     "arm_speed": {
      "medium": 3,
@@ -8112,7 +8285,8 @@
     },
     "stability": {
      "understable": 32,
-     "overstable": 13
+     "overstable": 13,
+     "stable": 1
     },
     "durability": {
      "beats_fast": 5,
@@ -8147,6 +8321,7 @@
      "beginner": 12
     },
     "stability": {
+     "stable": 3,
      "understable": 2
     },
     "glide": {
@@ -8169,7 +8344,8 @@
    "sources": 19,
    "groups": {
     "stability": {
-     "understable": 6
+     "understable": 6,
+     "stable": 3
     },
     "glide": {
      "lots": 13,
@@ -8225,11 +8401,12 @@
   "innova-sync": {
    "slug": "innova-sync",
    "name": "Innova Sync",
-   "sources": 7,
+   "sources": 10,
    "groups": {
     "stability": {
      "overstable": 5,
-     "understable": 1
+     "understable": 1,
+     "stable": 3
     },
     "grip": {
      "great": 1
@@ -8257,7 +8434,7 @@
   "innova-teebird": {
    "slug": "innova-teebird",
    "name": "Innova TeeBird",
-   "sources": 66,
+   "sources": 72,
    "groups": {
     "durability": {
      "holds_up": 3,
@@ -8265,7 +8442,8 @@
     },
     "stability": {
      "overstable": 25,
-     "understable": 13
+     "understable": 13,
+     "stable": 13
     },
     "level": {
      "beginner": 3
@@ -8300,7 +8478,7 @@
   "innova-teebird3": {
    "slug": "innova-teebird3",
    "name": "Innova TeeBird3",
-   "sources": 80,
+   "sources": 90,
    "groups": {
     "durability": {
      "beats_fast": 8,
@@ -8308,7 +8486,8 @@
     },
     "stability": {
      "overstable": 37,
-     "understable": 10
+     "understable": 10,
+     "stable": 12
     },
     "wind": {
      "holds": 12,
@@ -8339,7 +8518,7 @@
   "innova-tern": {
    "slug": "innova-tern",
    "name": "Innova Tern",
-   "sources": 39,
+   "sources": 40,
    "groups": {
     "arm_speed": {
      "fast": 4,
@@ -8348,7 +8527,8 @@
     },
     "stability": {
      "understable": 15,
-     "overstable": 4
+     "overstable": 4,
+     "stable": 1
     },
     "glide": {
      "lots": 9
@@ -8377,11 +8557,12 @@
   "innova-thunderbird": {
    "slug": "innova-thunderbird",
    "name": "Innova Thunderbird",
-   "sources": 62,
+   "sources": 67,
    "groups": {
     "stability": {
      "overstable": 32,
-     "understable": 6
+     "understable": 6,
+     "stable": 7
     },
     "throw": {
      "forehand": 14
@@ -8417,11 +8598,12 @@
   "innova-tl": {
    "slug": "innova-tl",
    "name": "Innova TL",
-   "sources": 15,
+   "sources": 17,
    "groups": {
     "stability": {
      "overstable": 6,
-     "understable": 2
+     "understable": 2,
+     "stable": 3
     },
     "wind": {
      "holds": 2
@@ -8452,7 +8634,7 @@
   "innova-tl3": {
    "slug": "innova-tl3",
    "name": "Innova TL3",
-   "sources": 33,
+   "sources": 45,
    "groups": {
     "arm_speed": {
      "fast": 2,
@@ -8460,7 +8642,8 @@
     },
     "stability": {
      "understable": 8,
-     "overstable": 11
+     "overstable": 11,
+     "stable": 13
     },
     "glide": {
      "little": 1,
@@ -8493,11 +8676,12 @@
   "innova-toro": {
    "slug": "innova-toro",
    "name": "Innova Toro",
-   "sources": 53,
+   "sources": 54,
    "groups": {
     "stability": {
      "overstable": 30,
-     "understable": 1
+     "understable": 1,
+     "stable": 1
     },
     "glide": {
      "little": 13
@@ -8531,7 +8715,7 @@
   "innova-valkyrie": {
    "slug": "innova-valkyrie",
    "name": "Innova Valkyrie",
-   "sources": 72,
+   "sources": 73,
    "groups": {
     "level": {
      "beginner": 17,
@@ -8543,7 +8727,8 @@
     },
     "stability": {
      "understable": 30,
-     "overstable": 9
+     "overstable": 9,
+     "stable": 1
     },
     "grip": {
      "great": 2
@@ -8594,11 +8779,12 @@
   "innova-viking": {
    "slug": "innova-viking",
    "name": "Innova Viking",
-   "sources": 10,
+   "sources": 12,
    "groups": {
     "stability": {
      "understable": 4,
-     "overstable": 2
+     "overstable": 2,
+     "stable": 3
     },
     "throw": {
      "forehand": 3
@@ -8676,14 +8862,15 @@
   "innova-whale": {
    "slug": "innova-whale",
    "name": "Innova Whale",
-   "sources": 8,
+   "sources": 9,
    "groups": {
     "grip": {
      "slippery": 1,
      "great": 2
     },
     "stability": {
-     "overstable": 4
+     "overstable": 4,
+     "stable": 3
     },
     "throw": {
      "forehand": 2
@@ -8705,11 +8892,12 @@
   "innova-wolf": {
    "slug": "innova-wolf",
    "name": "Innova Wolf",
-   "sources": 23,
+   "sources": 25,
    "groups": {
     "stability": {
      "understable": 9,
-     "overstable": 2
+     "overstable": 2,
+     "stable": 3
     },
     "level": {
      "beginner": 8
@@ -8738,10 +8926,11 @@
   "innova-wombat3": {
    "slug": "innova-wombat3",
    "name": "Innova Wombat3",
-   "sources": 27,
+   "sources": 28,
    "groups": {
     "stability": {
-     "understable": 16
+     "understable": 16,
+     "stable": 7
     },
     "glide": {
      "lots": 10
@@ -8776,7 +8965,7 @@
   "innova-wraith": {
    "slug": "innova-wraith",
    "name": "Innova Wraith",
-   "sources": 190,
+   "sources": 197,
    "groups": {
     "glide": {
      "lots": 11,
@@ -8784,6 +8973,7 @@
     },
     "stability": {
      "understable": 61,
+     "stable": 11,
      "overstable": 47
     },
     "durability": {
@@ -8822,11 +9012,12 @@
   "innova-xcaliber": {
    "slug": "innova-xcaliber",
    "name": "Innova XCaliber",
-   "sources": 20,
+   "sources": 21,
    "groups": {
     "stability": {
      "overstable": 12,
-     "understable": 2
+     "understable": 2,
+     "stable": 1
     },
     "throw": {
      "forehand": 8
@@ -8854,19 +9045,20 @@
   "innova-xero": {
    "slug": "innova-xero",
    "name": "Innova Xero",
-   "sources": 6,
+   "sources": 7,
    "groups": {
     "level": {
      "beginner": 1
+    },
+    "stability": {
+     "stable": 3,
+     "understable": 1
     },
     "grip": {
      "great": 2
     },
     "glide": {
      "lots": 2
-    },
-    "stability": {
-     "understable": 1
     }
    },
    "spec": {
@@ -8879,13 +9071,17 @@
   "innova-yeti-aviar": {
    "slug": "innova-yeti-aviar",
    "name": "Innova Yeti Aviar",
-   "sources": 18,
+   "sources": 19,
    "groups": {
     "grip": {
      "great": 14
     },
     "durability": {
      "beats_fast": 3
+    },
+    "stability": {
+     "stable": 3,
+     "understable": 1
     },
     "glide": {
      "little": 3,
@@ -8894,9 +9090,6 @@
     "wind": {
      "holds": 1,
      "turns": 1
-    },
-    "stability": {
-     "understable": 1
     }
    },
    "spec": {
@@ -8938,7 +9131,7 @@
   "kastaplast-berg": {
    "slug": "kastaplast-berg",
    "name": "Kastaplast Berg",
-   "sources": 98,
+   "sources": 110,
    "groups": {
     "grip": {
      "slippery": 1,
@@ -8958,6 +9151,7 @@
      "any": 1
     },
     "stability": {
+     "stable": 16,
      "understable": 7,
      "overstable": 14
     },
@@ -9014,7 +9208,7 @@
   "kastaplast-falk": {
    "slug": "kastaplast-falk",
    "name": "Kastaplast Falk",
-   "sources": 42,
+   "sources": 43,
    "groups": {
     "level": {
      "beginner": 6,
@@ -9025,7 +9219,8 @@
     },
     "stability": {
      "understable": 22,
-     "overstable": 6
+     "overstable": 6,
+     "stable": 1
     },
     "arm_speed": {
      "medium": 2,
@@ -9069,11 +9264,12 @@
   "kastaplast-gote": {
    "slug": "kastaplast-gote",
    "name": "Kastaplast Göte",
-   "sources": 12,
+   "sources": 14,
    "groups": {
     "stability": {
      "overstable": 4,
-     "understable": 3
+     "understable": 3,
+     "stable": 4
     },
     "glide": {
      "lots": 5
@@ -9134,7 +9330,7 @@
   "kastaplast-idog": {
    "slug": "kastaplast-idog",
    "name": "Kastaplast Idog",
-   "sources": 20,
+   "sources": 21,
    "groups": {
     "glide": {
      "lots": 11
@@ -9144,7 +9340,8 @@
     },
     "stability": {
      "overstable": 4,
-     "understable": 8
+     "understable": 8,
+     "stable": 4
     },
     "level": {
      "beginner": 2
@@ -9232,11 +9429,12 @@
   "kastaplast-kaxe": {
    "slug": "kastaplast-kaxe",
    "name": "Kastaplast Kaxe",
-   "sources": 42,
+   "sources": 45,
    "groups": {
     "stability": {
      "understable": 10,
-     "overstable": 20
+     "overstable": 20,
+     "stable": 4
     },
     "wind": {
      "holds": 4,
@@ -9266,11 +9464,12 @@
   "kastaplast-krut": {
    "slug": "kastaplast-krut",
    "name": "Kastaplast Krut",
-   "sources": 10,
+   "sources": 11,
    "groups": {
     "stability": {
      "overstable": 5,
-     "understable": 3
+     "understable": 3,
+     "stable": 1
     },
     "wind": {
      "holds": 7
@@ -9293,6 +9492,7 @@
    "groups": {
     "stability": {
      "understable": 11,
+     "stable": 1,
      "overstable": 7
     },
     "glide": {
@@ -9324,7 +9524,8 @@
    "sources": 10,
    "groups": {
     "stability": {
-     "overstable": 4
+     "overstable": 4,
+     "stable": 1
     },
     "glide": {
      "lots": 3
@@ -9410,7 +9611,7 @@
   "kastaplast-reko": {
    "slug": "kastaplast-reko",
    "name": "Kastaplast Reko",
-   "sources": 36,
+   "sources": 40,
    "groups": {
     "grip": {
      "great": 25,
@@ -9421,7 +9622,8 @@
     },
     "stability": {
      "overstable": 2,
-     "understable": 5
+     "understable": 5,
+     "stable": 7
     },
     "durability": {
      "holds_up": 4,
@@ -9444,11 +9646,12 @@
   "kastaplast-reko-x": {
    "slug": "kastaplast-reko-x",
    "name": "Kastaplast Reko X",
-   "sources": 13,
+   "sources": 14,
    "groups": {
     "stability": {
      "overstable": 6,
-     "understable": 1
+     "understable": 1,
+     "stable": 2
     },
     "grip": {
      "great": 6
@@ -9576,7 +9779,8 @@
    "sources": 50,
    "groups": {
     "stability": {
-     "understable": 47
+     "understable": 47,
+     "stable": 1
     },
     "glide": {
      "lots": 14
@@ -9613,6 +9817,7 @@
    "groups": {
     "stability": {
      "overstable": 4,
+     "stable": 3,
      "understable": 2
     },
     "grip": {
@@ -9734,7 +9939,8 @@
     },
     "stability": {
      "understable": 16,
-     "overstable": 1
+     "overstable": 1,
+     "stable": 1
     },
     "glide": {
      "lots": 4
@@ -9765,7 +9971,8 @@
    "groups": {
     "stability": {
      "overstable": 20,
-     "understable": 8
+     "understable": 8,
+     "stable": 1
     },
     "grip": {
      "great": 2
@@ -9796,10 +10003,11 @@
   "latitude-64-beetle": {
    "slug": "latitude-64-beetle",
    "name": "Latitude 64 Beetle",
-   "sources": 9,
+   "sources": 10,
    "groups": {
     "stability": {
-     "understable": 3
+     "understable": 3,
+     "stable": 2
     },
     "glide": {
      "lots": 8
@@ -9890,11 +10098,12 @@
   "latitude-64-claymore": {
    "slug": "latitude-64-claymore",
    "name": "Latitude 64 Claymore",
-   "sources": 31,
+   "sources": 39,
    "groups": {
     "stability": {
      "overstable": 4,
-     "understable": 12
+     "understable": 12,
+     "stable": 15
     },
     "glide": {
      "little": 1,
@@ -9934,7 +10143,8 @@
    "groups": {
     "stability": {
      "overstable": 2,
-     "understable": 3
+     "understable": 3,
+     "stable": 2
     },
     "glide": {
      "lots": 5
@@ -9972,7 +10182,8 @@
    "groups": {
     "stability": {
      "understable": 2,
-     "overstable": 2
+     "overstable": 2,
+     "stable": 1
     },
     "durability": {
      "beats_fast": 1
@@ -9994,7 +10205,7 @@
   "latitude-64-culverin": {
    "slug": "latitude-64-culverin",
    "name": "Latitude 64 Culverin",
-   "sources": 7,
+   "sources": 9,
    "groups": {
     "glide": {
      "lots": 2
@@ -10003,7 +10214,8 @@
      "medium": 1
     },
     "stability": {
-     "overstable": 3
+     "overstable": 3,
+     "stable": 2
     },
     "throw": {
      "forehand": 3
@@ -10025,14 +10237,15 @@
   "latitude-64-dagger": {
    "slug": "latitude-64-dagger",
    "name": "Latitude 64 Dagger",
-   "sources": 11,
+   "sources": 12,
    "groups": {
     "glide": {
      "little": 1,
      "lots": 8
     },
     "stability": {
-     "overstable": 1
+     "overstable": 1,
+     "stable": 3
     },
     "wind": {
      "holds": 1
@@ -10064,6 +10277,7 @@
     },
     "stability": {
      "understable": 26,
+     "stable": 1,
      "overstable": 1
     },
     "glide": {
@@ -10083,10 +10297,11 @@
   "latitude-64-explorer": {
    "slug": "latitude-64-explorer",
    "name": "Latitude 64 Explorer",
-   "sources": 32,
+   "sources": 38,
    "groups": {
     "stability": {
      "understable": 5,
+     "stable": 10,
      "overstable": 11
     },
     "glide": {
@@ -10130,12 +10345,13 @@
      "holds_up": 2,
      "beats_fast": 1
     },
-    "wind": {
-     "holds": 1
-    },
     "stability": {
+     "stable": 3,
      "understable": 1,
      "overstable": 1
+    },
+    "wind": {
+     "holds": 1
     },
     "throw": {
      "backhand": 1
@@ -10185,7 +10401,8 @@
    "sources": 3,
    "groups": {
     "stability": {
-     "understable": 1
+     "understable": 1,
+     "stable": 1
     },
     "grip": {
      "great": 1
@@ -10239,12 +10456,12 @@
   "latitude-64-fuse": {
    "slug": "latitude-64-fuse",
    "name": "Latitude 64 Fuse",
-   "sources": 64,
+   "sources": 70,
    "groups": {
     "stability": {
      "understable": 37,
-     "overstable": 4,
-     "stable": 1
+     "stable": 12,
+     "overstable": 4
     },
     "level": {
      "beginner": 14
@@ -10381,11 +10598,12 @@
   "latitude-64-havoc": {
    "slug": "latitude-64-havoc",
    "name": "Latitude 64 Havoc",
-   "sources": 15,
+   "sources": 16,
    "groups": {
     "stability": {
      "understable": 9,
-     "overstable": 2
+     "overstable": 2,
+     "stable": 1
     },
     "glide": {
      "lots": 4
@@ -10417,6 +10635,7 @@
    "groups": {
     "stability": {
      "overstable": 8,
+     "stable": 1,
      "understable": 1
     },
     "wind": {
@@ -10446,7 +10665,8 @@
     },
     "stability": {
      "understable": 1,
-     "overstable": 2
+     "overstable": 2,
+     "stable": 2
     },
     "glide": {
      "lots": 5
@@ -10502,12 +10722,13 @@
     "glide": {
      "lots": 12
     },
+    "stability": {
+     "stable": 3,
+     "understable": 8
+    },
     "wind": {
      "turns": 1,
      "flips": 1
-    },
-    "stability": {
-     "understable": 8
     },
     "grip": {
      "great": 4
@@ -10578,6 +10799,9 @@
     },
     "grip": {
      "great": 5
+    },
+    "stability": {
+     "stable": 2
     }
    },
    "spec": {
@@ -10645,7 +10869,8 @@
    "sources": 16,
    "groups": {
     "stability": {
-     "overstable": 4
+     "overstable": 4,
+     "stable": 5
     },
     "grip": {
      "great": 10
@@ -10676,6 +10901,7 @@
      "any": 2
     },
     "stability": {
+     "stable": 2,
      "understable": 6
     },
     "glide": {
@@ -10723,13 +10949,14 @@
   "latitude-64-pure": {
    "slug": "latitude-64-pure",
    "name": "Latitude 64 Pure",
-   "sources": 49,
+   "sources": 57,
    "groups": {
     "glide": {
      "lots": 7,
      "little": 1
     },
     "stability": {
+     "stable": 13,
      "understable": 14,
      "overstable": 7
     },
@@ -10806,7 +11033,8 @@
    "groups": {
     "stability": {
      "understable": 1,
-     "overstable": 17
+     "overstable": 17,
+     "stable": 2
     },
     "durability": {
      "beats_fast": 3
@@ -10837,11 +11065,12 @@
   "latitude-64-river": {
    "slug": "latitude-64-river",
    "name": "Latitude 64 River",
-   "sources": 99,
+   "sources": 102,
    "groups": {
     "stability": {
      "understable": 33,
-     "overstable": 7
+     "overstable": 7,
+     "stable": 10
     },
     "glide": {
      "lots": 45
@@ -10907,11 +11136,12 @@
   "latitude-64-saint": {
    "slug": "latitude-64-saint",
    "name": "Latitude 64 Saint",
-   "sources": 36,
+   "sources": 39,
    "groups": {
     "stability": {
      "understable": 18,
-     "overstable": 7
+     "overstable": 7,
+     "stable": 3
     },
     "glide": {
      "lots": 14
@@ -10944,11 +11174,12 @@
   "latitude-64-saint-pro": {
    "slug": "latitude-64-saint-pro",
    "name": "Latitude 64 Saint Pro",
-   "sources": 43,
+   "sources": 44,
    "groups": {
     "stability": {
      "overstable": 10,
-     "understable": 20
+     "understable": 20,
+     "stable": 1
     },
     "glide": {
      "lots": 12,
@@ -10988,7 +11219,8 @@
    "groups": {
     "stability": {
      "understable": 3,
-     "overstable": 9
+     "overstable": 9,
+     "stable": 2
     },
     "glide": {
      "lots": 6
@@ -11126,7 +11358,7 @@
   "latitude-64-striker": {
    "slug": "latitude-64-striker",
    "name": "Latitude 64 Striker",
-   "sources": 11,
+   "sources": 12,
    "groups": {
     "glide": {
      "little": 1,
@@ -11134,6 +11366,7 @@
     },
     "stability": {
      "understable": 4,
+     "stable": 2,
      "overstable": 1
     },
     "arm_speed": {
@@ -11196,7 +11429,8 @@
    "sources": 9,
    "groups": {
     "stability": {
-     "overstable": 2
+     "overstable": 2,
+     "stable": 2
     },
     "glide": {
      "lots": 7
@@ -11252,10 +11486,11 @@
   "latitude-64-trust": {
    "slug": "latitude-64-trust",
    "name": "Latitude 64 Trust",
-   "sources": 9,
+   "sources": 10,
    "groups": {
     "stability": {
      "overstable": 2,
+     "stable": 2,
      "understable": 1
     },
     "wind": {
@@ -11306,7 +11541,7 @@
   "mvp-anode": {
    "slug": "mvp-anode",
    "name": "MVP Anode",
-   "sources": 20,
+   "sources": 25,
    "groups": {
     "glide": {
      "little": 1,
@@ -11322,6 +11557,7 @@
     },
     "stability": {
      "overstable": 3,
+     "stable": 6,
      "understable": 3
     },
     "durability": {
@@ -11338,7 +11574,7 @@
   "mvp-atom": {
    "slug": "mvp-atom",
    "name": "MVP Atom",
-   "sources": 37,
+   "sources": 43,
    "groups": {
     "glide": {
      "lots": 8,
@@ -11351,15 +11587,16 @@
      "flips": 2,
      "holds": 2
     },
+    "stability": {
+     "stable": 14,
+     "overstable": 4,
+     "understable": 6
+    },
     "grip": {
      "great": 12
     },
     "throw": {
      "forehand": 3
-    },
-    "stability": {
-     "overstable": 4,
-     "understable": 6
     },
     "durability": {
      "beats_fast": 4,
@@ -11379,7 +11616,7 @@
   "mvp-catalyst": {
    "slug": "mvp-catalyst",
    "name": "MVP Catalyst",
-   "sources": 11,
+   "sources": 12,
    "groups": {
     "arm_speed": {
      "fast": 1,
@@ -11389,7 +11626,8 @@
      "lots": 5
     },
     "stability": {
-     "understable": 6
+     "understable": 6,
+     "stable": 1
     },
     "throw": {
      "forehand": 2
@@ -11414,10 +11652,11 @@
   "mvp-control": {
    "slug": "mvp-control",
    "name": "MVP Control",
-   "sources": 29,
+   "sources": 31,
    "groups": {
     "stability": {
      "overstable": 17,
+     "stable": 4,
      "understable": 1
     },
     "wind": {
@@ -11492,10 +11731,11 @@
   "mvp-detour": {
    "slug": "mvp-detour",
    "name": "MVP Detour",
-   "sources": 66,
+   "sources": 71,
    "groups": {
     "stability": {
      "understable": 50,
+     "stable": 6,
      "overstable": 3
     },
     "throw": {
@@ -11541,7 +11781,8 @@
     },
     "stability": {
      "understable": 10,
-     "overstable": 7
+     "overstable": 7,
+     "stable": 1
     },
     "wind": {
      "holds": 10
@@ -11625,7 +11866,7 @@
   "mvp-glitch": {
    "slug": "mvp-glitch",
    "name": "MVP Glitch",
-   "sources": 36,
+   "sources": 38,
    "groups": {
     "glide": {
      "lots": 22
@@ -11641,12 +11882,13 @@
     "level": {
      "beginner": 8
     },
-    "grip": {
-     "great": 2
-    },
     "stability": {
+     "stable": 5,
      "overstable": 1,
      "understable": 8
+    },
+    "grip": {
+     "great": 2
     },
     "throw": {
      "forehand": 1
@@ -11662,11 +11904,12 @@
   "mvp-impulse": {
    "slug": "mvp-impulse",
    "name": "MVP Impulse",
-   "sources": 11,
+   "sources": 12,
    "groups": {
     "stability": {
      "overstable": 1,
-     "understable": 6
+     "understable": 6,
+     "stable": 1
     },
     "durability": {
      "holds_up": 1
@@ -11691,12 +11934,13 @@
   "mvp-inertia": {
    "slug": "mvp-inertia",
    "name": "MVP Inertia",
-   "sources": 28,
+   "sources": 29,
    "groups": {
     "glide": {
      "lots": 7
     },
     "stability": {
+     "stable": 5,
      "understable": 12,
      "overstable": 5
     },
@@ -11728,14 +11972,15 @@
   "mvp-ion": {
    "slug": "mvp-ion",
    "name": "MVP Ion",
-   "sources": 18,
+   "sources": 19,
    "groups": {
     "wind": {
      "holds": 4
     },
     "stability": {
      "overstable": 4,
-     "understable": 3
+     "understable": 3,
+     "stable": 1
     },
     "grip": {
      "slippery": 3,
@@ -11758,7 +12003,7 @@
   "mvp-matrix": {
    "slug": "mvp-matrix",
    "name": "MVP Matrix",
-   "sources": 31,
+   "sources": 37,
    "groups": {
     "glide": {
      "little": 2,
@@ -11768,6 +12013,7 @@
      "forehand": 12
     },
     "stability": {
+     "stable": 9,
      "overstable": 14,
      "understable": 2
     },
@@ -11841,10 +12087,11 @@
   "mvp-nomad": {
    "slug": "mvp-nomad",
    "name": "MVP Nomad",
-   "sources": 24,
+   "sources": 26,
    "groups": {
     "stability": {
      "understable": 2,
+     "stable": 5,
      "overstable": 2
     },
     "durability": {
@@ -11910,19 +12157,20 @@
   "mvp-ohm": {
    "slug": "mvp-ohm",
    "name": "MVP Ohm",
-   "sources": 16,
+   "sources": 17,
    "groups": {
     "arm_speed": {
      "medium": 1
+    },
+    "stability": {
+     "stable": 6,
+     "overstable": 5
     },
     "glide": {
      "lots": 12
     },
     "grip": {
      "great": 2
-    },
-    "stability": {
-     "overstable": 5
     },
     "wind": {
      "holds": 1
@@ -12020,10 +12268,11 @@
   "mvp-photon": {
    "slug": "mvp-photon",
    "name": "MVP Photon",
-   "sources": 59,
+   "sources": 60,
    "groups": {
     "stability": {
      "overstable": 37,
+     "stable": 2,
      "understable": 2
     },
     "wind": {
@@ -12061,7 +12310,7 @@
   "mvp-reactor": {
    "slug": "mvp-reactor",
    "name": "MVP Reactor",
-   "sources": 62,
+   "sources": 72,
    "groups": {
     "glide": {
      "lots": 10
@@ -12071,7 +12320,8 @@
     },
     "stability": {
      "overstable": 29,
-     "understable": 7
+     "understable": 7,
+     "stable": 15
     },
     "throw": {
      "forehand": 21
@@ -12135,11 +12385,12 @@
   "mvp-relay": {
    "slug": "mvp-relay",
    "name": "MVP Relay",
-   "sources": 47,
+   "sources": 49,
    "groups": {
     "stability": {
      "understable": 19,
-     "overstable": 13
+     "overstable": 13,
+     "stable": 2
     },
     "glide": {
      "little": 1,
@@ -12171,12 +12422,12 @@
   "mvp-resistor": {
    "slug": "mvp-resistor",
    "name": "MVP Resistor",
-   "sources": 84,
+   "sources": 85,
    "groups": {
     "stability": {
      "overstable": 66,
      "understable": 2,
-     "stable": 1
+     "stable": 2
     },
     "throw": {
      "forehand": 27
@@ -12209,11 +12460,12 @@
   "mvp-servo": {
    "slug": "mvp-servo",
    "name": "MVP Servo",
-   "sources": 34,
+   "sources": 40,
    "groups": {
     "stability": {
      "understable": 16,
-     "overstable": 7
+     "overstable": 7,
+     "stable": 9
     },
     "arm_speed": {
      "medium": 2,
@@ -12280,10 +12532,11 @@
   "mvp-spin": {
    "slug": "mvp-spin",
    "name": "MVP Spin",
-   "sources": 28,
+   "sources": 29,
    "groups": {
     "stability": {
-     "understable": 23
+     "understable": 23,
+     "stable": 1
     },
     "level": {
      "beginner": 12
@@ -12416,11 +12669,12 @@
   "mvp-tesla": {
    "slug": "mvp-tesla",
    "name": "MVP Tesla",
-   "sources": 77,
+   "sources": 84,
    "groups": {
     "stability": {
      "overstable": 48,
-     "understable": 4
+     "understable": 4,
+     "stable": 9
     },
     "wind": {
      "holds": 9
@@ -12453,7 +12707,7 @@
   "mvp-trail": {
    "slug": "mvp-trail",
    "name": "MVP Trail",
-   "sources": 78,
+   "sources": 87,
    "groups": {
     "arm_speed": {
      "any": 3,
@@ -12468,7 +12722,8 @@
     },
     "stability": {
      "overstable": 12,
-     "understable": 40
+     "understable": 40,
+     "stable": 10
     },
     "durability": {
      "beats_fast": 6
@@ -12537,10 +12792,11 @@
   "mvp-volt": {
    "slug": "mvp-volt",
    "name": "MVP Volt",
-   "sources": 65,
+   "sources": 69,
    "groups": {
     "stability": {
      "overstable": 36,
+     "stable": 6,
      "understable": 3
     },
     "throw": {
@@ -12578,7 +12834,7 @@
   "mvp-watt": {
    "slug": "mvp-watt",
    "name": "MVP Watt",
-   "sources": 33,
+   "sources": 41,
    "groups": {
     "grip": {
      "great": 4,
@@ -12586,6 +12842,7 @@
     },
     "stability": {
      "understable": 5,
+     "stable": 13,
      "overstable": 5
     },
     "glide": {
@@ -12616,12 +12873,12 @@
   "mvp-wave": {
    "slug": "mvp-wave",
    "name": "MVP Wave",
-   "sources": 80,
+   "sources": 83,
    "groups": {
     "stability": {
      "understable": 42,
      "overstable": 10,
-     "stable": 1
+     "stable": 6
     },
     "glide": {
      "lots": 8,
@@ -12664,7 +12921,8 @@
    "groups": {
     "stability": {
      "overstable": 10,
-     "understable": 5
+     "understable": 5,
+     "stable": 1
     },
     "glide": {
      "lots": 8
@@ -12717,10 +12975,11 @@
   "prodigy-a2": {
    "slug": "prodigy-a2",
    "name": "Prodigy A2",
-   "sources": 55,
+   "sources": 56,
    "groups": {
     "stability": {
-     "overstable": 44
+     "overstable": 44,
+     "stable": 1
     },
     "durability": {
      "beats_fast": 5,
@@ -12782,11 +13041,12 @@
   "prodigy-a4": {
    "slug": "prodigy-a4",
    "name": "Prodigy A4",
-   "sources": 13,
+   "sources": 14,
    "groups": {
     "stability": {
      "overstable": 3,
-     "understable": 4
+     "understable": 4,
+     "stable": 1
     },
     "wind": {
      "holds": 1,
@@ -12816,6 +13076,7 @@
    "groups": {
     "stability": {
      "understable": 2,
+     "stable": 4,
      "overstable": 7
     },
     "throw": {
@@ -12851,12 +13112,13 @@
     "glide": {
      "lots": 9
     },
-    "grip": {
-     "great": 2
-    },
     "stability": {
+     "stable": 5,
      "overstable": 4,
      "understable": 2
+    },
+    "grip": {
+     "great": 2
     },
     "level": {
      "intermediate": 1
@@ -12939,11 +13201,12 @@
   "prodigy-d1": {
    "slug": "prodigy-d1",
    "name": "Prodigy D1",
-   "sources": 14,
+   "sources": 15,
    "groups": {
     "stability": {
      "overstable": 8,
-     "understable": 5
+     "understable": 5,
+     "stable": 1
     },
     "durability": {
      "beats_fast": 1
@@ -12979,7 +13242,8 @@
     },
     "stability": {
      "understable": 3,
-     "overstable": 8
+     "overstable": 8,
+     "stable": 1
     },
     "wind": {
      "holds": 6
@@ -13023,7 +13287,7 @@
   "prodigy-d3": {
    "slug": "prodigy-d3",
    "name": "Prodigy D3",
-   "sources": 15,
+   "sources": 17,
    "groups": {
     "arm_speed": {
      "fast": 2,
@@ -13031,7 +13295,8 @@
     },
     "stability": {
      "understable": 8,
-     "overstable": 1
+     "overstable": 1,
+     "stable": 2
     },
     "glide": {
      "lots": 6
@@ -13183,11 +13448,12 @@
   "prodigy-f1": {
    "slug": "prodigy-f1",
    "name": "Prodigy F1",
-   "sources": 18,
+   "sources": 19,
    "groups": {
     "stability": {
      "understable": 6,
-     "overstable": 8
+     "overstable": 8,
+     "stable": 2
     },
     "wind": {
      "holds": 5,
@@ -13210,10 +13476,11 @@
   "prodigy-f2": {
    "slug": "prodigy-f2",
    "name": "Prodigy F2",
-   "sources": 13,
+   "sources": 14,
    "groups": {
     "stability": {
      "understable": 5,
+     "stable": 2,
      "overstable": 3
     },
     "wind": {
@@ -13240,11 +13507,12 @@
   "prodigy-f3": {
    "slug": "prodigy-f3",
    "name": "Prodigy F3",
-   "sources": 11,
+   "sources": 14,
    "groups": {
     "stability": {
      "overstable": 3,
-     "understable": 7
+     "understable": 7,
+     "stable": 3
     },
     "wind": {
      "holds": 2
@@ -13269,11 +13537,12 @@
   "prodigy-f5": {
    "slug": "prodigy-f5",
    "name": "Prodigy F5",
-   "sources": 13,
+   "sources": 14,
    "groups": {
     "stability": {
      "understable": 8,
-     "overstable": 2
+     "overstable": 2,
+     "stable": 2
     },
     "throw": {
      "backhand": 1,
@@ -13394,6 +13663,7 @@
      "beats_fast": 2
     },
     "stability": {
+     "stable": 1,
      "understable": 1,
      "overstable": 13
     },
@@ -13415,11 +13685,12 @@
   "prodigy-fx-3": {
    "slug": "prodigy-fx-3",
    "name": "Prodigy FX-3",
-   "sources": 4,
+   "sources": 5,
    "groups": {
     "stability": {
      "understable": 2,
-     "overstable": 1
+     "overstable": 1,
+     "stable": 1
     },
     "throw": {
      "forehand": 2
@@ -13506,7 +13777,8 @@
    "groups": {
     "stability": {
      "overstable": 1,
-     "understable": 3
+     "understable": 3,
+     "stable": 1
     },
     "arm_speed": {
      "fast": 1
@@ -13528,11 +13800,12 @@
   "prodigy-h3-v2": {
    "slug": "prodigy-h3-v2",
    "name": "Prodigy H3 V2",
-   "sources": 13,
+   "sources": 14,
    "groups": {
     "stability": {
      "understable": 6,
-     "overstable": 3
+     "overstable": 3,
+     "stable": 1
     },
     "glide": {
      "lots": 5
@@ -13649,10 +13922,11 @@
   "prodigy-m-model-s": {
    "slug": "prodigy-m-model-s",
    "name": "Prodigy M Model S",
-   "sources": 2,
+   "sources": 4,
    "groups": {
     "stability": {
-     "understable": 2
+     "understable": 2,
+     "stable": 2
     }
    },
    "spec": {
@@ -13665,8 +13939,12 @@
   "prodigy-m-model-us": {
    "slug": "prodigy-m-model-us",
    "name": "Prodigy M Model US",
-   "sources": 0,
-   "groups": {},
+   "sources": 1,
+   "groups": {
+    "stability": {
+     "stable": 1
+    }
+   },
    "spec": {
     "stability": "stable",
     "glide": "lots",
@@ -13677,11 +13955,12 @@
   "prodigy-m1": {
    "slug": "prodigy-m1",
    "name": "Prodigy M1",
-   "sources": 14,
+   "sources": 16,
    "groups": {
     "stability": {
      "understable": 3,
-     "overstable": 10
+     "overstable": 10,
+     "stable": 3
     },
     "wind": {
      "flips": 1,
@@ -13710,10 +13989,11 @@
   "prodigy-m2": {
    "slug": "prodigy-m2",
    "name": "Prodigy M2",
-   "sources": 6,
+   "sources": 8,
    "groups": {
     "stability": {
-     "overstable": 5
+     "overstable": 5,
+     "stable": 2
     },
     "durability": {
      "beats_fast": 2
@@ -13735,11 +14015,12 @@
   "prodigy-m3": {
    "slug": "prodigy-m3",
    "name": "Prodigy M3",
-   "sources": 8,
+   "sources": 10,
    "groups": {
     "stability": {
      "overstable": 1,
-     "understable": 2
+     "understable": 2,
+     "stable": 3
     },
     "wind": {
      "holds": 1
@@ -13761,11 +14042,12 @@
   "prodigy-m4": {
    "slug": "prodigy-m4",
    "name": "Prodigy M4",
-   "sources": 30,
+   "sources": 32,
    "groups": {
     "stability": {
      "understable": 20,
-     "overstable": 3
+     "overstable": 3,
+     "stable": 4
     },
     "grip": {
      "great": 6
@@ -13800,7 +14082,8 @@
    "sources": 11,
    "groups": {
     "stability": {
-     "understable": 10
+     "understable": 10,
+     "stable": 1
     },
     "level": {
      "beginner": 7
@@ -13876,11 +14159,12 @@
   "prodigy-mx-3": {
    "slug": "prodigy-mx-3",
    "name": "Prodigy MX-3",
-   "sources": 8,
+   "sources": 10,
    "groups": {
     "stability": {
      "understable": 2,
-     "overstable": 3
+     "overstable": 3,
+     "stable": 3
     },
     "glide": {
      "lots": 3
@@ -13906,10 +14190,11 @@
   "prodigy-p-model-s": {
    "slug": "prodigy-p-model-s",
    "name": "Prodigy P Model S",
-   "sources": 15,
+   "sources": 17,
    "groups": {
     "stability": {
-     "overstable": 5
+     "overstable": 5,
+     "stable": 2
     },
     "glide": {
      "lots": 7,
@@ -13958,11 +14243,12 @@
   "prodigy-pa-1": {
    "slug": "prodigy-pa-1",
    "name": "Prodigy PA-1",
-   "sources": 15,
+   "sources": 17,
    "groups": {
     "stability": {
      "overstable": 8,
-     "understable": 2
+     "understable": 2,
+     "stable": 2
     },
     "wind": {
      "holds": 3
@@ -14013,7 +14299,7 @@
   "prodigy-pa-3": {
    "slug": "prodigy-pa-3",
    "name": "Prodigy PA-3",
-   "sources": 23,
+   "sources": 29,
    "groups": {
     "glide": {
      "lots": 3,
@@ -14021,7 +14307,8 @@
     },
     "stability": {
      "overstable": 7,
-     "understable": 3
+     "understable": 3,
+     "stable": 6
     },
     "grip": {
      "great": 6,
@@ -14048,10 +14335,11 @@
   "prodigy-pa-4": {
    "slug": "prodigy-pa-4",
    "name": "Prodigy PA-4",
-   "sources": 11,
+   "sources": 12,
    "groups": {
     "stability": {
-     "understable": 7
+     "understable": 7,
+     "stable": 1
     },
     "glide": {
      "lots": 2,
@@ -14136,6 +14424,7 @@
     },
     "stability": {
      "overstable": 7,
+     "stable": 1,
      "understable": 1
     },
     "wind": {
@@ -14258,11 +14547,12 @@
   "streamline-ascend": {
    "slug": "streamline-ascend",
    "name": "Streamline Ascend",
-   "sources": 22,
+   "sources": 23,
    "groups": {
     "stability": {
      "understable": 19,
-     "overstable": 2
+     "overstable": 2,
+     "stable": 1
     },
     "durability": {
      "holds_up": 1,
@@ -14292,10 +14582,11 @@
   "streamline-autopilot": {
    "slug": "streamline-autopilot",
    "name": "Streamline Autopilot",
-   "sources": 4,
+   "sources": 5,
    "groups": {
     "stability": {
-     "overstable": 3
+     "overstable": 3,
+     "stable": 1
     },
     "glide": {
      "little": 2
@@ -14345,11 +14636,12 @@
   "streamline-drift": {
    "slug": "streamline-drift",
    "name": "Streamline Drift",
-   "sources": 19,
+   "sources": 20,
    "groups": {
     "stability": {
      "overstable": 7,
-     "understable": 9
+     "understable": 9,
+     "stable": 1
     },
     "grip": {
      "great": 2
@@ -14380,12 +14672,13 @@
   "streamline-echo": {
    "slug": "streamline-echo",
    "name": "Streamline Echo",
-   "sources": 22,
+   "sources": 23,
    "groups": {
     "glide": {
      "lots": 10
     },
     "stability": {
+     "stable": 4,
      "understable": 8,
      "overstable": 3
     },
@@ -14512,14 +14805,15 @@
   "streamline-lift": {
    "slug": "streamline-lift",
    "name": "Streamline Lift",
-   "sources": 33,
+   "sources": 34,
    "groups": {
     "level": {
      "beginner": 4
     },
     "stability": {
      "overstable": 11,
-     "understable": 13
+     "understable": 13,
+     "stable": 2
     },
     "durability": {
      "beats_fast": 1,
@@ -14552,7 +14846,7 @@
   "streamline-parachute": {
    "slug": "streamline-parachute",
    "name": "Streamline Parachute",
-   "sources": 8,
+   "sources": 10,
    "groups": {
     "glide": {
      "lots": 8
@@ -14562,7 +14856,8 @@
     },
     "stability": {
      "overstable": 2,
-     "understable": 1
+     "understable": 1,
+     "stable": 3
     },
     "grip": {
      "great": 2
@@ -14584,10 +14879,11 @@
   "streamline-pilot": {
    "slug": "streamline-pilot",
    "name": "Streamline Pilot",
-   "sources": 67,
+   "sources": 70,
    "groups": {
     "stability": {
      "understable": 8,
+     "stable": 11,
      "overstable": 13
     },
     "durability": {
@@ -14628,7 +14924,7 @@
   "streamline-range": {
    "slug": "streamline-range",
    "name": "Streamline Range",
-   "sources": 50,
+   "sources": 53,
    "groups": {
     "glide": {
      "little": 9,
@@ -14636,7 +14932,8 @@
     },
     "stability": {
      "understable": 19,
-     "overstable": 3
+     "overstable": 3,
+     "stable": 5
     },
     "throw": {
      "forehand": 13
@@ -14763,7 +15060,7 @@
   "streamline-trace": {
    "slug": "streamline-trace",
    "name": "Streamline Trace",
-   "sources": 41,
+   "sources": 45,
    "groups": {
     "wind": {
      "turns": 1,
@@ -14772,7 +15069,8 @@
     },
     "stability": {
      "understable": 12,
-     "overstable": 4
+     "overstable": 4,
+     "stable": 5
     },
     "throw": {
      "forehand": 13,
@@ -14893,12 +15191,13 @@
   "thought-space-athletics-construct": {
    "slug": "thought-space-athletics-construct",
    "name": "Thought Space Athletics Construct",
-   "sources": 21,
+   "sources": 22,
    "groups": {
     "glide": {
      "lots": 10
     },
     "stability": {
+     "stable": 4,
      "understable": 10,
      "overstable": 3
     },
@@ -14940,11 +15239,12 @@
   "thought-space-athletics-mana": {
    "slug": "thought-space-athletics-mana",
    "name": "Thought Space Athletics Mana",
-   "sources": 16,
+   "sources": 17,
    "groups": {
     "stability": {
      "understable": 12,
-     "overstable": 2
+     "overstable": 2,
+     "stable": 1
     },
     "glide": {
      "lots": 5
@@ -15012,10 +15312,11 @@
   "thought-space-athletics-pathfinder": {
    "slug": "thought-space-athletics-pathfinder",
    "name": "Thought Space Athletics Pathfinder",
-   "sources": 4,
+   "sources": 6,
    "groups": {
     "stability": {
-     "overstable": 1
+     "overstable": 1,
+     "stable": 3
     },
     "glide": {
      "lots": 2
@@ -15063,10 +15364,11 @@
   "thought-space-athletics-praxis": {
    "slug": "thought-space-athletics-praxis",
    "name": "Thought Space Athletics Praxis",
-   "sources": 19,
+   "sources": 21,
    "groups": {
     "stability": {
      "overstable": 4,
+     "stable": 7,
      "understable": 1
     },
     "wind": {
@@ -15123,7 +15425,7 @@
     }
    },
    "spec": {
-    "stability": "stable",
+    "stability": "overstable",
     "glide": "lots",
     "fade": "hard",
     "arm_speed": "fast"
@@ -15163,10 +15465,11 @@
   "trash-panda-inner-core": {
    "slug": "trash-panda-inner-core",
    "name": "Trash Panda Inner Core",
-   "sources": 11,
+   "sources": 13,
    "groups": {
     "stability": {
-     "understable": 3
+     "understable": 3,
+     "stable": 3
     },
     "glide": {
      "lots": 5
@@ -15285,11 +15588,12 @@
   "westside-bard": {
    "slug": "westside-bard",
    "name": "Westside Bard",
-   "sources": 17,
+   "sources": 18,
    "groups": {
     "stability": {
      "understable": 2,
-     "overstable": 14
+     "overstable": 14,
+     "stable": 1
     },
     "wind": {
      "holds": 9
@@ -15311,11 +15615,12 @@
   "westside-bear": {
    "slug": "westside-bear",
    "name": "Westside Bear",
-   "sources": 20,
+   "sources": 22,
    "groups": {
     "stability": {
      "understable": 2,
-     "overstable": 10
+     "overstable": 10,
+     "stable": 4
     },
     "glide": {
      "lots": 5
@@ -15343,14 +15648,15 @@
   "westside-boatman": {
    "slug": "westside-boatman",
    "name": "Westside Boatman",
-   "sources": 11,
+   "sources": 12,
    "groups": {
     "wind": {
      "holds": 3
     },
     "stability": {
      "understable": 5,
-     "overstable": 1
+     "overstable": 1,
+     "stable": 2
     },
     "glide": {
      "lots": 1
@@ -15404,7 +15710,8 @@
      "beginner": 1
     },
     "stability": {
-     "overstable": 3
+     "overstable": 3,
+     "stable": 1
     },
     "wind": {
      "holds": 3
@@ -15423,14 +15730,15 @@
   "westside-destiny": {
    "slug": "westside-destiny",
    "name": "Westside Destiny",
-   "sources": 14,
+   "sources": 15,
    "groups": {
     "arm_speed": {
      "fast": 5,
      "any": 2
     },
     "stability": {
-     "understable": 5
+     "understable": 5,
+     "stable": 1
     },
     "glide": {
      "lots": 5
@@ -15490,10 +15798,11 @@
   "westside-gatekeeper": {
    "slug": "westside-gatekeeper",
    "name": "Westside Gatekeeper",
-   "sources": 10,
+   "sources": 16,
    "groups": {
     "stability": {
      "understable": 1,
+     "stable": 8,
      "overstable": 3
     },
     "throw": {
@@ -15565,12 +15874,12 @@
   "westside-harp": {
    "slug": "westside-harp",
    "name": "Westside Harp",
-   "sources": 167,
+   "sources": 173,
    "groups": {
     "stability": {
      "overstable": 70,
-     "understable": 18,
-     "stable": 1
+     "stable": 11,
+     "understable": 18
     },
     "grip": {
      "great": 21,
@@ -15636,10 +15945,11 @@
   "westside-king": {
    "slug": "westside-king",
    "name": "Westside King",
-   "sources": 26,
+   "sources": 28,
    "groups": {
     "stability": {
-     "understable": 23
+     "understable": 23,
+     "stable": 2
     },
     "arm_speed": {
      "fast": 1,
@@ -15666,7 +15976,7 @@
   "westside-longbowman": {
    "slug": "westside-longbowman",
    "name": "Westside Longbowman",
-   "sources": 8,
+   "sources": 9,
    "groups": {
     "glide": {
      "lots": 1
@@ -15675,7 +15985,8 @@
      "forehand": 2
     },
     "stability": {
-     "overstable": 5
+     "overstable": 5,
+     "stable": 1
     },
     "wind": {
      "holds": 6
@@ -15691,11 +16002,12 @@
   "westside-maiden": {
    "slug": "westside-maiden",
    "name": "Westside Maiden",
-   "sources": 19,
+   "sources": 21,
    "groups": {
     "stability": {
      "understable": 2,
-     "overstable": 5
+     "overstable": 5,
+     "stable": 5
     },
     "wind": {
      "flips": 1,
@@ -15729,11 +16041,12 @@
   "westside-northman": {
    "slug": "westside-northman",
    "name": "Westside Northman",
-   "sources": 13,
+   "sources": 15,
    "groups": {
     "stability": {
      "understable": 10,
-     "overstable": 1
+     "overstable": 1,
+     "stable": 2
     },
     "durability": {
      "beats_fast": 2
@@ -15769,6 +16082,7 @@
    "groups": {
     "stability": {
      "overstable": 8,
+     "stable": 1,
      "understable": 1
     },
     "throw": {
@@ -15939,13 +16253,14 @@
   "westside-sling": {
    "slug": "westside-sling",
    "name": "Westside Sling",
-   "sources": 5,
+   "sources": 6,
    "groups": {
     "glide": {
      "lots": 2,
      "little": 1
     },
     "stability": {
+     "stable": 3,
      "understable": 2,
      "overstable": 1
     },
@@ -15963,10 +16278,11 @@
   "westside-sorcerer": {
    "slug": "westside-sorcerer",
    "name": "Westside Sorcerer",
-   "sources": 11,
+   "sources": 12,
    "groups": {
     "stability": {
-     "understable": 7
+     "understable": 7,
+     "stable": 2
     },
     "glide": {
      "lots": 7
@@ -15998,14 +16314,15 @@
   "westside-stag": {
    "slug": "westside-stag",
    "name": "Westside Stag",
-   "sources": 30,
+   "sources": 34,
    "groups": {
     "glide": {
      "lots": 10
     },
     "stability": {
      "understable": 16,
-     "overstable": 3
+     "overstable": 3,
+     "stable": 5
     },
     "level": {
      "beginner": 4,
@@ -16103,11 +16420,12 @@
   "westside-sword": {
    "slug": "westside-sword",
    "name": "Westside Sword",
-   "sources": 27,
+   "sources": 32,
    "groups": {
     "stability": {
      "overstable": 2,
-     "understable": 17
+     "understable": 17,
+     "stable": 5
     },
     "arm_speed": {
      "fast": 4,
@@ -16178,7 +16496,8 @@
     },
     "stability": {
      "overstable": 4,
-     "understable": 42
+     "understable": 42,
+     "stable": 1
     },
     "throw": {
      "forehand": 1,
@@ -16215,7 +16534,8 @@
     },
     "stability": {
      "understable": 40,
-     "overstable": 1
+     "overstable": 1,
+     "stable": 1
     },
     "wind": {
      "holds": 1
@@ -16245,10 +16565,11 @@
   "westside-vellamo": {
    "slug": "westside-vellamo",
    "name": "Westside Vellamo",
-   "sources": 5,
+   "sources": 7,
    "groups": {
     "stability": {
      "understable": 1,
+     "stable": 3,
      "overstable": 1
     },
     "glide": {
@@ -16299,7 +16620,7 @@
   "westside-warship": {
    "slug": "westside-warship",
    "name": "Westside Warship",
-   "sources": 34,
+   "sources": 38,
    "groups": {
     "glide": {
      "lots": 24
@@ -16309,15 +16630,16 @@
      "turns": 1,
      "holds": 1
     },
+    "stability": {
+     "stable": 11,
+     "overstable": 2,
+     "understable": 4
+    },
     "arm_speed": {
      "medium": 1
     },
     "level": {
      "beginner": 3
-    },
-    "stability": {
-     "overstable": 2,
-     "understable": 4
     },
     "grip": {
      "great": 1

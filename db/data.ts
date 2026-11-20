@@ -6,6 +6,7 @@ import { voteCounts } from "./votes";
 import { isRecent, webDate, MIN_RECENT } from "../lib/recent";
 import { tagTone } from "../lib/tags";
 import { kept, forgetKept } from "./keep";
+import { editStamp, bumpEditStamp } from "./edit-stamp";
 export async function database() { return getDb(); }
 
 type RacketRef = { id: string; brandId: string; createdAt: string };
@@ -26,10 +27,10 @@ export function publicCatalogItems<R extends RacketRef, B extends BrandRef>(allB
 }
 
 // Kept in this server instance's memory between requests (db/keep.ts). Scripts pass their own connection and always read fresh.
-const kept_ = kept(() => loadCatalog());
+const kept_ = kept(() => loadCatalog(), Date.now, editStamp);
 /** Drops this instance's kept copies (the catalog and everything built from it), so the next page reads fresh (after an
- *  admin publish or edit: app/funtimes/auth.ts). */
-export function forgetCatalog() { forgetKept(); }
+ *  admin publish or edit: app/funtimes/auth.ts), and marks the edit for every other instance (db/edit-stamp.ts). */
+export function forgetCatalog() { forgetKept(); bumpEditStamp(); }
 // Cached per request too: the layout reads it for the header's rankings menu, and so does the page.
 export const catalog = cache(async function catalog(connection?:ReturnType<typeof getDb>) {
  return connection ? loadCatalog(connection) : kept_.get();

@@ -2,6 +2,7 @@ import { cache } from "react";
 import { pageBar, PAGE_BAR_TRAITS } from "../lib/page-bars";
 import { pageContent } from "../lib/racket-page";
 import { kept } from "../db/keep";
+import { editStamp } from "../db/edit-stamp";
 import { catalog } from "../db/data";
 import { productSignals } from "./signals";
 import { baseLists } from "./rankings/lists";
@@ -330,4 +331,4 @@ const keptContext = kept(async () => {
     /** The expert's bar line for a trait (db/expert-play), when the bar shows the expert's dots. */
   const expertLine = (id: string, k: string) => (traitMap?.get(id) as Record<string, TraitScore | undefined> | undefined)?.[k]?.expert ? EXPERT_PLAY[slugOf.get(id) ?? ""]?.traits[k]?.line ?? null : null;
   return { cfg, data, sigs, takes, finder, bad, pool: pool as FinderProduct[], items, levelGate: GATE, level, signal, facts, factsFor, traits, matchPct, fineOf: (id: string) => fineOf.get(id), suitsAuto, evidence, scoreInputs, engineDots: (id: string) => engineDots.get(id) ?? null, expertLine };
-});
+}, Date.now, editStamp);

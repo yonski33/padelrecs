@@ -10,7 +10,10 @@ import { traitDefsFor } from "../../../../lib/fit-config";
 const TRAITS = traitDefsFor(niche).map(t => t.key);
 import { readTraitOverride, editTraitOverride, MAX_TRAIT_TEXT } from "../../../../db/trait-override";
 import { getCurrentUser } from "../../../../lib/supabase/auth";
-import { adminWriteGuard, adminRedirect, readAdminForm } from "../../../funtimes/auth";
+import { adminWriteGuard, adminRedirect, readAdminForm, refreshProductPages } from "../../../funtimes/auth";
+type Db=Awaited<ReturnType<typeof database>>;
+/** The product's page address parts (slug, type, brand), read before and after a save so both old and new pages refresh. */
+const pageRef=async(db:Db,id:string)=>(await db.select({slug:rackets.slug,shape:rackets.shape,brandSlug:brands.slug}).from(rackets).leftJoin(brands,eq(brands.id,rackets.brandId)).where(eq(rackets.id,id)))[0]??null;
 const optionalText=(max:number)=>z.string().trim().max(max).transform(value=>value||null);
 const input=z.object({
  id:z.string().min(1).max(100),name:z.string().trim().min(1).max(260),brandId:z.string().min(1).max(100),year:z.coerce.number().int().min(1980).max(2100),
@@ -34,6 +37,7 @@ export async function POST(request:Request) {
   const [brand]=await db.select({id:brands.id}).from(brands).where(eq(brands.id,values.brandId));
   if(!brand)return adminRedirect(request,`tab=specs${selected}&result=spec-invalid`);
   // Update editable catalog fields and, if asked, the URL slug (the old one keeps redirecting). IDs, images, dates and reviews remain intact.
+  const before=await pageRef(db,id).catch(()=>null);
   let rejected="";
   const result=await db.transaction(async tx=>{
    const changed=await tx.update(rackets).set(values).where(eq(rackets.id,id)).returning({id:rackets.id});
@@ -57,6 +61,7 @@ export async function POST(request:Request) {
     if(next.log.length!==cur.log.length)await db.execute(sql`update ${table} set trait_override = ${JSON.stringify(next)}::jsonb where id = ${id}`);
    }catch{if(wanted)return adminRedirect(request,`tab=specs${selected}&result=failed`);}
   }
+  if(result==="spec-saved"||result==="spec-slug-changed"){const after=await pageRef(db,id).catch(()=>null);refreshProductPages([before,after].filter((x):x is NonNullable<typeof x>=>!!x));}
   return adminRedirect(request,`tab=specs${selected}&result=${result}`);
  }catch{return adminRedirect(request,`tab=specs${selected}&result=failed`);}
 }

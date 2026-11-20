@@ -7,12 +7,14 @@ export const FRESH_MS = 2 * 60_000, STALE_MS = 30 * 60_000;
 
 const all = new Set<() => void>();
 
-/** A loader whose result this instance keeps (see above). A failed load is not kept; a failed refresh keeps the old copy. */
-export function kept<T>(load: () => Promise<T>, now: () => number = Date.now): { get: () => Promise<T>; forget: () => void } {
-  let memo: { at: number; value: Promise<T>; refreshing?: boolean } | null = null;
+/** A loader whose result this instance keeps (see above). A failed load is not kept; a failed refresh keeps the old copy.
+ *  `stamp` (db/edit-stamp.ts): the time of the last edit, shared by every instance; a copy older than it is reloaded before
+ *  it is served, so an admin save on one instance reaches the pages that others rebuild. */
+export function kept<T>(load: () => Promise<T>, now: () => number = Date.now, stamp?: () => Promise<number>): { get: () => Promise<T>; forget: () => void } {
+  let memo: { at: number; value: Promise<T>; refreshing?: boolean } | null = null, seen = 0;
   const forget = () => { memo = null; };
   all.add(forget);
-  const get = (): Promise<T> => {
+  const read = (): Promise<T> => {
     const t = now();
     if (memo && (t - memo.at < FRESH_MS || (memo.refreshing && t - memo.at < STALE_MS))) return memo.value;
     if (memo && t - memo.at < STALE_MS) {
@@ -26,6 +28,11 @@ export function kept<T>(load: () => Promise<T>, now: () => number = Date.now): {
     value.catch(() => { if (memo === entry) memo = null; });
     return value;
   };
+  // A newer stamp drops a copy loaded before it, once per stamp (so clock skew between instances can't reload every time).
+  const get = (): Promise<T> => !stamp ? read() : stamp().catch(() => 0).then(v => {
+    if (v > seen) { if (memo && memo.at < v) memo = null; seen = v; }
+    return read();
+  });
   return { get, forget };
 }
 
