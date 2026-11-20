@@ -87,3 +87,14 @@ test("the phone section line is short; no group count line", async () => {
   assert.equal(sectionNoteShort(71, 1), "From 71 reviews and 1 vote. Tap again to remove.");
   assert.equal(sectionNoteShort(3, 0), "Based on 3 reviews. Tap again to remove.");
 });
+
+test("trait note: SkinRecs counts the bars' reviews as a share of the page's opinions (audit 2026-11-20)", async () => {
+  const { sectionNote, sectionNoteShort } = await import("../lib/thread/trait-view");
+  const { W } = await import("../lib/thread/words");
+  assert.match(sectionNote(15, 0, 44), new RegExp(`^Based on 15 of the 44 ${W.opinions} until `));
+  assert.match(sectionNote(15, 2, 44), new RegExp(`^From 15 of the 44 ${W.opinions} and 2 votes\\.`));
+  assert.match(sectionNoteShort(15, 1, 44), new RegExp(`^From 15 of the 44 ${W.opinions} and 1 vote\\.`));
+  // No base, or a base smaller than the reviews: the plain count stays.
+  assert.equal(sectionNote(12, 0, 5), sectionNote(12, 0));
+  assert.equal(sectionNoteShort(3, 0), "Based on 3 reviews. Tap again to remove.");
+});

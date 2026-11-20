@@ -25,14 +25,24 @@ export function groupNote(g: GroupView): string {
   const p = (n: number, w: string) => `${n} ${w}${n === 1 ? "" : "s"}`;
   return [g.reviews ? p(g.reviews, "review") : "", g.votes ? p(g.votes, "vote") : ""].filter(Boolean).join(", ");
 }
+/** SkinRecs (audit 2026-11-20): the reviews behind the bars as a share of the byline's opinions, "15 of the 44 opinions",
+ *  so the page tells one count story. Null without a base, or when the base is smaller (then the plain count stays). */
+function ofBase(sources: number, of?: number): string | null {
+  return of && sources > 0 && sources <= of ? `${sources} of the ${of} ${W.opinions}` : null;
+}
 /** The section's line on phones, short enough for one or two lines (owner 2026-11-19). */
-export function sectionNoteShort(sources: number, votes: number): string {
+export function sectionNoteShort(sources: number, votes: number, of?: number): string {
+  const base = ofBase(sources, of);
+  if (base) return `${votes > 0 ? "From" : "Based on"} ${base}${votes > 0 ? ` and ${votes} ${votes === 1 ? "vote" : "votes"}` : ""}. Tap again to remove.`;
   if (sources > 0 && votes > 0) return `From ${sources} reviews and ${votes} ${votes === 1 ? "vote" : "votes"}. Tap again to remove.`;
   if (sources > 0) return `Based on ${sources} ${sources === 1 ? "review" : "reviews"}. Tap again to remove.`;
   return "One vote per group. Tap again to remove.";
 }
 /** The section's line under the heading. */
-export function sectionNote(sources: number, votes: number): string {
+export function sectionNote(sources: number, votes: number, of?: number): string {
+  const base = ofBase(sources, of);
+  if (base && votes === 0) return `Based on ${base} until ${W.people} vote. Pick what fits. Tap again to remove.`;
+  if (base) return `From ${base} and ${votes} ${votes === 1 ? "vote" : "votes"}. Pick what fits. Tap again to remove.`;
   if (sources > 0 && votes === 0) return `Based on ${sources} ${sources === 1 ? "review" : "reviews"} until ${W.people} vote. Pick what fits. Tap again to remove.`;
   if (sources > 0) return `From ${sources} reviews and ${votes} player ${votes === 1 ? "vote" : "votes"}. Pick what fits. Tap again to remove.`;
   return "Pick what fits. One vote per group. Tap again to remove.";

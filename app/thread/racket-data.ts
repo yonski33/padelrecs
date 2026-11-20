@@ -30,7 +30,7 @@ export type RvCard = { /** A player review's typed name ("" when none), for the 
   when: string; at: string; text: string; quote: boolean; url: string | null; video: string | null; helpful: number;
   /** A player review by a signed-in member (optional accounts, drizzle/0028): a small mark by the name. */ member?: true;
   /** The version the review is about (StackRecs, the review's variant), shown as a chip. */ version?: string | null };
-const DG = niche.id === "discgolf";
+const DG = niche.id === "discgolf", SKIN = niche.id === "skin";
 /** DiscGolfRecs' trait names (lib/discgolf-fit.ts, the shown ones: Easy to throw, Distance, Accuracy, Glide, Wind), not padel's. */
 const DG_TRAIT_LABEL: Record<string, string> = DG ? Object.fromEntries(SITE_FIT.traits.filter(t => !t.hidden).map(t => [t.key, t.label])) : {};
 const unmd = (t: string) => t.replace(/\*\*([^*]+)\*\*/g, "$1").replace(/\*\*|__/g, "").replace(/==/g, "");
@@ -96,6 +96,20 @@ export async function racketData(slug: string) {
     ? [...pc.yes.slice(0, 2).map(i => ({ tone: "pos" as const, text: [plainLine(i.t).replace(/\.\s*$/, ""), evidenceLine(i, DG ? W.people : undefined)].filter(Boolean).join(". ") })), ...pc.no.slice(0, 1).map(i => ({ tone: "catch" as const, text: plainLine(i.t) }))]
     : [...sum.loved.filter(t => (sum.tagCounts.get(t) ?? 0) >= 5).slice(0, 2).map(t => ({ tone: "pos" as const, text: `${sum.tagCounts.get(t)} reviews say it is ${t}.` })),
       ...sum.complaints.filter(t => (sum.tagCounts.get(t) ?? 0) >= 5).slice(0, 1).map(t => ({ tone: "catch" as const, text: `${sum.tagCounts.get(t)} reviews mention ${t}.` }))];
+  // SkinRecs (audit 2026-11-20): one count story. The byline counts every opinion with a clear verdict ("88 opinions
+  // analysed"), so the TL;DR counts tags in those same opinions, all of them, and says "of 88 opinions". With no written
+  // line and no tag 5 opinions share, the lead is the poll split, so a scored page always has a TL;DR.
+  const judged = (row?.pos ?? 0) + (row?.mix ?? 0) + (row?.neg ?? 0);
+  if (SKIN && !pc) {
+    const n = new Map<string, number>();
+    for (const x of [...reviews, ...external.filter(e => e.sentiment)]) for (const t of new Set(x.tags)) n.set(t, (n.get(t) ?? 0) + 1);
+    const top = (tone: "pos" | "neg") => [...n].filter(([t, c]) => c >= 5 && c <= judged && tagTone(t) === tone).sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0]));
+    bullets.splice(0, bullets.length,
+      ...top("pos").slice(0, 2).map(([t, c]) => ({ tone: "pos" as const, text: `${c} of ${judged} ${W.opinions} say it is ${t}.` })),
+      ...top("neg").slice(0, 1).map(([t, c]) => ({ tone: "catch" as const, text: `${c} of ${judged} ${W.opinions} mention ${t}.` })));
+  }
+  const pollLead = SKIN && !lead && judged >= 5 && row?.score != null
+    ? `Of ${judged} ${W.opinions}, ${row.pos} loved it, ${row.neg} say not for me and ${row.mix} are mixed.` : null;
 
   // How it plays: the trait bars the live page shows (an expert's How it plays score wins), with the expert's line.
   const facts = ctx.facts(r.id), traitScores = ctx.traits(r.id).scores;
@@ -135,5 +149,5 @@ export async function racketData(slug: string) {
       c.member = true;
       c.meta = [lv(level), side ? (niche.id === "padel" ? `${side.toLowerCase()} side` : sideWord(side)) : null].filter(Boolean).join(" · ") || null; }
   }
-  return { r, row, brand, cards, lead, bullets, traits, style, sim, line, tagTones, latest, facts, judged: (row?.pos ?? 0) + (row?.mix ?? 0) + (row?.neg ?? 0) };
+  return { r, row, brand, cards, lead: lead ?? pollLead, bullets, traits, style, sim, line, tagTones, latest, facts, judged };
 }
