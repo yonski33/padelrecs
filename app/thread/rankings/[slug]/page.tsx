@@ -164,7 +164,7 @@ async function NeedHub({ l, lists }: { l: Awaited<ReturnType<typeof threadRankin
           <p className="th-lead">{`One ranking per product type${need ? ` for ${need.words}` : ""}. Pick one to see its top 10.`}</p>
           <Tabs lists={lists} current={l.slug}/>
         </section>
-        <HubCards cards={kids} rows={rows} ratings={ratings}/>
+        <HubCards cards={kids} rows={rows} ratings={ratings} two/>
         <NarrowLinks title="More rankings" links={more}/>
       </div>
       <aside className="th-side">

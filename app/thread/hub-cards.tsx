@@ -13,8 +13,8 @@ export async function hubRatings(lists: ThreadRanking[]): Promise<Record<string,
   return Object.fromEntries(await Promise.all(rated.map(async ([l, c]) => [l.slug, await ratingsFor(c, l.ids)] as const)));
 }
 
-export function HubCards({ cards, rows, ratings }: { cards: ThreadRanking[]; rows: Map<string, ThreadRow>; ratings: Record<string, Record<string, number>> }) {
-  return <div className="th-hub-grid">{cards.map(l => <a key={l.slug} className="th-hub" href={th(l.href)}>
+export function HubCards({ cards, rows, ratings, two }: { cards: ThreadRanking[]; rows: Map<string, ThreadRow>; ratings: Record<string, Record<string, number>>; two?: boolean }) {
+  return <div className={`th-hub-grid${two ? " two" : ""}`}>{cards.map(l => <a key={l.slug} className="th-hub" href={th(l.href)}>
     <span className="th-hub-t"><b>{l.short ?? l.label}</b><small>{l.blurb}</small></span>
     <span className="th-hub-rows">{l.ids.slice(0, 3).map((id, i) => { const r = rows.get(id); if (!r) return null;
       const n = ratings[l.slug]?.[id] ?? r.score;
