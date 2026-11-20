@@ -15,6 +15,7 @@ import { sideItems, addCounts, BUSY_DAYS, SIDE_SIZE, type SideItem } from "../..
 import { shopPhoto, photoHidden } from "../../lib/shop-photos";
 import { amazonPhoto } from "../../lib/amazon-photos";
 import { productHref, niche } from "../../lib/niche";
+import { flightOf } from "../../lib/discgolf-profile";
 import { score } from "../../db/data";
 import { LEVELS } from "../../lib/quick-match";
 import { platformName } from "../../lib/source-label";
@@ -30,10 +31,11 @@ type Ctx = Awaited<ReturnType<typeof matchContext>>;
 const FEEL = { soft: "Soft", medium: "Medium", firm: "Hard" } as const;
 
 /** A build without a database (CI) renders the Thread pages empty, as the live pages skip their reads there; Vercel builds and
- *  serves them with data. These pages serve padel and pickleball (both on the shared match engine) and SkinRecs (its own
+ *  serves them with data. These pages serve padel, pickleball and disc golf (the shared match engine) and SkinRecs (its own
  *  engine, skinRows below). StackRecs has its own pages (app/thread/stack): there they read nothing and build empty, and
  *  proxy.ts never serves them. */
-export const hasDb = () => !!process.env.DATABASE_URL && (niche.id === "padel" || niche.id === "pickleball" || niche.id === "skin");
+export const hasDb = () => !!process.env.DATABASE_URL && (niche.id === "padel" || niche.id === "pickleball" || niche.id === "skin"
+  || niche.id === "discgolf");
 /** The Thread home's top rows: the classic home's default order (app/home-payload.ts defaultHomeIds), as Thread rows. */
 export const homeTop = (rows: Map<string, ThreadRow>, ids: string[], size = 10) => ids.flatMap(id => rows.get(id) ?? []).slice(0, size);
 type Rows = { ctx: Ctx; rows: Map<string, ThreadRow>; all: ThreadRow[]; bySlug: Map<string, ThreadRow> };
@@ -51,13 +53,19 @@ export const threadRows = cache(async (): Promise<Rows> => {
   return { ctx, rows, all: [...rows.values()], bySlug: new Map([...rows.values()].map(x => [x.slug, x])) };
 });
 
+/** DiscGolfRecs keeps a disc's flight numbers in the weight column ("5 / 4 / -1 / 1"); other sites have none. */
+const flightRow = (w: string | null | undefined): Pick<ThreadRow, "flight"> => {
+  if (niche.id !== "discgolf") return {};
+  const f = flightOf(w);
+  return f ? { flight: [f.speed, f.glide, f.turn, f.fade] } : {};
+};
 function rowOf(ctx: Ctx, r: Ctx["data"]["listed"][number], brand: string, n: number, hook?: string | null): ThreadRow {
   const f = ctx.facts(r.id), c = score(ctx.data, r.id), best = bestFor(f);
   const levels = f.suits ? LEVELS.filter(l => f.suits![l] >= SUITS_OK) : [];
   const feel = f.fine?.feel ? FEEL[f.fine.feel as keyof typeof FEEL] ?? null : null;
   return { id: r.id, slug: r.slug, name: displayName(r.name, brand), href: productHref(r), pic: photoHidden(r) ? null : shopPhoto(r) ?? amazonPhoto(r)?.image ?? null,
     shape: r.shape, line: rowLine(r, hook), best: best.join(", ") || null, n, pos: c.positive, mix: c.mixed, neg: c.negative,
-    score: ctx.sigs.get(r.id)?.signal ?? null, brand, year: r.year, levels, feel, arm: best.some(b => /sore arms/.test(b)) };
+    score: ctx.sigs.get(r.id)?.signal ?? null, brand, year: r.year, levels, feel, arm: best.some(b => /sore arms/.test(b)), ...flightRow(r.weight) };
 }
 
 /** "How players vote them" until trait votes exist (migration 0024, waiting for the owner): the top 3 per trait from what

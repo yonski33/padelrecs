@@ -63,7 +63,17 @@ const SKIN_GUIDES: Record<GuideKey, string> = {
   side: "/guides/morning-or-night",
   elbow: "/guides/sensitive-skin",
 };
-export const guidePathsFor = (nicheId: string): Record<GuideKey, string> => nicheId === "pickleball" ? PICKLEBALL_GUIDES : nicheId === "skin" ? SKIN_GUIDES : PADEL_GUIDES;
+/** DiscGolfRecs (its handoff mock): choosing a disc, beginner tips, disc types, throwing and a sore arm, in the same slots
+ *  ("shape" = disc types, "side" = backhand or forehand, "elbow" = a sore arm). */
+const DISCGOLF_GUIDES: Record<GuideKey, string> = {
+  racket: "/guide",
+  beginner: "/guides/beginner-tips",
+  shape: "/guides/disc-types",
+  side: "/guides/backhand-or-forehand",
+  elbow: "/guides/sore-arm",
+};
+export const guidePathsFor = (nicheId: string): Record<GuideKey, string> => nicheId === "pickleball" ? PICKLEBALL_GUIDES : nicheId === "skin" ? SKIN_GUIDES
+  : nicheId === "discgolf" ? DISCGOLF_GUIDES : PADEL_GUIDES;
 /** The running site's guide addresses. */
 export const GUIDE_PATHS = guidePathsFor(niche.id);
 export const GUIDE_KEYS = Object.keys(PADEL_GUIDES) as GuideKey[];
@@ -90,6 +100,8 @@ export function threadPath(pathname: string, catalog = catalogPath, nicheId = ni
   if (p === "/brands") return "/thread/brands";
   const brand = /^\/brands\/([a-z0-9-]+)$/.exec(p);
   if (brand) return `/thread/brands/${brand[1]}`;
+  // DiscGolfRecs: each type page (/putters) is a catalogue of its own; its discs stay under /discs.
+  if (nicheId === "discgolf" && nicheId === niche.id && (niche.typePages ?? []).some(t => t.slug === p.slice(1))) return `/thread/types${p}`;
   // SkinRecs: products live under their type page (/moisturizers/<slug>), and each type page is a catalogue of its own.
   if (nicheId === "skin" && nicheId === niche.id && niche.categoryPaths) {
     const [, type, slug, extra] = p.split("/");

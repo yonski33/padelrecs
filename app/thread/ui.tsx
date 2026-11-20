@@ -14,6 +14,8 @@ export type ThreadRow = {
    *  years (false) stay reachable by their page and the catalog's search or "Show older models". */ current?: boolean;
   /** SkinRecs' catalogue filters (its mock): skin types it works for, its texture, gentle on sensitive skin. Other sites: absent. */
   facets?: { skin: string[]; texture: string | null; sensitive: boolean };
+  /** DiscGolfRecs: the maker's flight numbers (speed, glide, turn, fade), shown as pills. Other sites: absent. */
+  flight?: [number, number, number, number];
 };
 /** Counts show at any size (owner 2026-11-19: the "under 5" rule is gone); 0 stays blank. Written claims ("N players say…")
  *  keep their own 5-backer rule where they're made (app/thread/racket-data.ts, data.ts boards). */
@@ -58,7 +60,7 @@ export function Row({ r, rank, badge, badgeLabel = W.score, pct }: { r: ThreadRo
     {rank ? <span className="th-rank">{rank}</span> : null}
     <Photo src={r.pic} href={r.href}/>
     <div className="th-row-body">
-      <span className="th-row-name">{rank ? <span className="mrank">{rank}.</span> : null}<a href={href}>{r.name}</a>{r.shape && <span className="th-pill">{cap(r.shape)}</span>}</span>
+      <span className="th-row-name">{rank ? <span className="mrank">{rank}.</span> : null}<a href={href}>{r.name}</a>{r.shape && <span className="th-pill">{cap(r.shape)}</span>}{r.flight && <Flight f={r.flight}/>}</span>
       {r.line && <span className="th-verdict">{r.line}</span>}
       {r.best && <span className="th-best">{`Best for ${r.best}`}</span>}
       <span className="th-meta">{r.n >= MIN_SHOWN && <span>{plural(r.n, "review")}</span>}{judged >= MIN_SHOWN && <SBar pos={r.pos} mix={r.mix} neg={r.neg}/>}<a className="go" href={href}>See reviews ›</a></span>
@@ -69,6 +71,12 @@ export function Row({ r, rank, badge, badgeLabel = W.score, pct }: { r: ThreadRo
       <a href={href}>See reviews ›</a>
     </div>
   </div>;
+}
+
+/** Flight numbers as four pills (DiscGolfRecs): "speed 5, glide 4, turn -1, fade 1". */
+export function Flight({ f }: { f: [number, number, number, number] }) {
+  return <span className="th-flight" title="Speed, glide, turn, fade" aria-label={`Flight: speed ${f[0]}, glide ${f[1]}, turn ${f[2]}, fade ${f[3]}`}>
+    {f.map((x, i) => <span key={i} aria-hidden="true">{x}</span>)}</span>;
 }
 
 export function SideBox({ title, children }: { title: string; children: ReactNode }) {
