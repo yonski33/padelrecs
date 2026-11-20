@@ -22,7 +22,7 @@ import { W } from "../../../lib/thread/words";
 /** Optional accounts run on PadelRecs only for now (lib/thread/sites.ts accountSite). */
 const ACCOUNTS = accountSite(niche.id);
 
-const FIT_HEAD = { good: "Yes, a strong fit.", maybe: "Maybe. Demo it first.", no: "Probably not this one.", thin: "Not enough reports to say yet." } as const;
+export const FIT_HEAD = { good: "Yes, a strong fit.", maybe: "Maybe. Demo it first.", no: "Probably not this one.", thin: "Not enough reports to say yet." } as const;
 
 export function FitCheck({ id }: { id: string }) {
   const [picks, set] = usePicks();
@@ -45,7 +45,7 @@ export function FitCheck({ id }: { id: string }) {
 }
 
 type Counts = { positive: number; mixed: number; negative: number };
-const RATING: Record<Verdict, number> = { positive: 5, mixed: 3, negative: 1 };
+export const RATING: Record<Verdict, number> = { positive: 5, mixed: 3, negative: 1 };
 /** "Played it? Tap to add yours": the review verdicts plus the quick votes, one vote per device, changeable. */
 export function Poll({ id, reviews, question = "Poll: would you buy it again?" }: { id: string; reviews: Counts; question?: string }) {
   const [votes, setVotes] = useState<Counts | null>(null), [mine, setMine] = useState<Verdict | null>(null), [err, setErr] = useState("");
@@ -82,21 +82,15 @@ export function Poll({ id, reviews, question = "Poll: would you buy it again?" }
 const TABS = [["all", "All"], ["player", "Players"], ["reddit", "Reddit"], ["youtube", "YouTube"], ["blog", "Blogs"], ["forum", "Forums"]] as const;
 const PAGE = 8, MIN_WORDS = 20;
 /** Why Post is off (owner 2026-11-19): a verdict is always needed; a name only with written text (a verdict alone is a vote). */
-const postWhy = (verdict: Verdict | null, text: string, nick: string) => { const noName = !!text.trim() && !!nameProblem(nick);
+export const postWhy = (verdict: Verdict | null, text: string, nick: string) => { const noName = !!text.trim() && !!nameProblem(nick);
   return !verdict && noName ? "Pick your take and add a name to post" : !verdict ? "Pick your take to post" : noName ? "Add a name to post" : ""; };
 type Sort = "new" | "pos" | "crit" | "helpful";
 /** The mock's sorts (Newest · Most positive · Critical first), plus the existing Most helpful. */
 const SORTS: [Sort, string][] = [["new", "Newest"], ["pos", "Most positive"], ["crit", "Critical first"], ["helpful", "Most helpful"]];
 const VF: ["positive" | "mixed" | "negative" | null, string][] = [[null, "All"], ["positive", "Loved it"], ["mixed", "Mixed"], ["negative", "Not for me"]];
-/** Player reviews: own reviews plus labelled Reddit, YouTube and blog summaries, source tabs, sort, composer, load more. */
-/** The section's words: padel's by default; StackRecs passes its own (users, "Used it?"). */
-export type ReviewWords = { title: string; tried: string; people: string; note: string };
-const PADEL_REVIEW_WORDS: ReviewWords = { title: W.Reviews, tried: W.triedIt, people: W.People,
-  note: `From ${W.people} here. Plus Reddit, YouTube and blog reviews, summarised.` };
-export function Reviews({ id, cards, nicknames, words = PADEL_REVIEW_WORDS, chips }: { id: string; cards: RvCard[]; nicknames: string[]; words?: ReviewWords;
-  /** Version chips (StackRecs): picking one shows only the cards about that version (RvCard.version). */ chips?: string[] }) {
-  const [version, setVersion] = useState<string | null>(null);
-  const [tab, setTab] = useState<(typeof TABS)[number][0]>("all"), [sort, setSort] = useState<Sort>("new"), [vf, setVf] = useState<"positive" | "mixed" | "negative" | null>(null), [shown, setShown] = useState(PAGE);
+/** The review composer's state and Post (one-tap vote, plus a moderated review when there are words), shared by the reviews
+ *  sections (Reviews here, ReviewsV7b on PadelRecs). */
+export function useReviewPost(id: string) {
   const [open, setOpen] = useState(false), [verdict, setVerdict] = useState<Verdict | null>(null), [text, setText] = useState(""), [nick, setNick] = useState("");
   const [busy, setBusy] = useState(false), [error, setError] = useState(""), [done, setDone] = useState<"words" | "live" | "vote" | null>(null);
   const formToken = useFormToken();
@@ -105,18 +99,6 @@ export function Reviews({ id, cards, nicknames, words = PADEL_REVIEW_WORDS, chip
   // Optional accounts: a signed-in member posts under their reserved name (the server uses it whatever the box says).
   const me = useAccount();
   useEffect(() => { if (me) setNick(me.name); }, [me]);
-  // The owner's on-page changes (review-admin.tsx): edited text and removed cards, until the page refreshes.
-  const [changed, setChanged] = useState<Record<string, { text?: string; alias?: string; gone?: true }>>({});
-  const live = useMemo(() => cards.filter(c => !changed[c.id]?.gone).map(c => { const x = changed[c.id]; return x ? { ...c, ...(x.text ? { text: x.text } : {}), ...(x.alias ? { who: x.alias, alias: x.alias, meta: null } : {}) } : c; }), [cards, changed]);
-  const counts = Object.fromEntries(TABS.map(([k]) => [k, k === "all" ? live.length : live.filter(c => c.kind === k).length]));
-  // Source tabs and verdict chips combine (owner mock 2026-11-19b); everything filters and sorts here in the browser.
-  const inTab = useMemo(() => live.filter(c => (tab === "all" || c.kind === tab) && (!version || c.version === version)), [live, tab, version]);
-  const list = useMemo(() => {
-    const l = inTab.filter(c => !vf || c.verdict === vf), rank = (o: Record<string, number>) => (c: RvCard) => o[c.verdict ?? ""] ?? 3;
-    const by = sort === "pos" ? rank({ positive: 0, mixed: 1, negative: 2 }) : sort === "crit" ? rank({ negative: 0, mixed: 1, positive: 2 }) : null;
-    return [...l].sort((a, b) => sort === "helpful" ? b.helpful - a.helpful || b.text.length - a.text.length
-      : (by ? by(a) - by(b) : 0) || (b.at ?? "").localeCompare(a.at ?? ""));
-  }, [inTab, vf, sort]);
   async function post() {
     if (!verdict || busy) return;
     const words = text.trim();
@@ -142,6 +124,30 @@ export function Reviews({ id, cards, nicknames, words = PADEL_REVIEW_WORDS, chip
     } catch (e) { setError(e instanceof Error ? e.message : "Could not post that. Try again?"); }
     finally { setBusy(false); }
   }
+  return { open, setOpen, verdict, setVerdict, text, setText, nick, setNick, busy, error, setError, done, me, post };
+}
+/** Player reviews: own reviews plus labelled Reddit, YouTube and blog summaries, source tabs, sort, composer, load more. */
+/** The section's words: padel's by default; StackRecs passes its own (users, "Used it?"). */
+export type ReviewWords = { title: string; tried: string; people: string; note: string };
+const PADEL_REVIEW_WORDS: ReviewWords = { title: W.Reviews, tried: W.triedIt, people: W.People,
+  note: `From ${W.people} here. Plus Reddit, YouTube and blog reviews, summarised.` };
+export function Reviews({ id, cards, nicknames, words = PADEL_REVIEW_WORDS, chips }: { id: string; cards: RvCard[]; nicknames: string[]; words?: ReviewWords;
+  /** Version chips (StackRecs): picking one shows only the cards about that version (RvCard.version). */ chips?: string[] }) {
+  const [version, setVersion] = useState<string | null>(null);
+  const [tab, setTab] = useState<(typeof TABS)[number][0]>("all"), [sort, setSort] = useState<Sort>("new"), [vf, setVf] = useState<"positive" | "mixed" | "negative" | null>(null), [shown, setShown] = useState(PAGE);
+  const { open, setOpen, verdict, setVerdict, text, setText, nick, setNick, busy, error, setError, done, me, post } = useReviewPost(id);
+  // The owner's on-page changes (review-admin.tsx): edited text and removed cards, until the page refreshes.
+  const [changed, setChanged] = useState<Record<string, { text?: string; alias?: string; gone?: true }>>({});
+  const live = useMemo(() => cards.filter(c => !changed[c.id]?.gone).map(c => { const x = changed[c.id]; return x ? { ...c, ...(x.text ? { text: x.text } : {}), ...(x.alias ? { who: x.alias, alias: x.alias, meta: null } : {}) } : c; }), [cards, changed]);
+  const counts = Object.fromEntries(TABS.map(([k]) => [k, k === "all" ? live.length : live.filter(c => c.kind === k).length]));
+  // Source tabs and verdict chips combine (owner mock 2026-11-19b); everything filters and sorts here in the browser.
+  const inTab = useMemo(() => live.filter(c => (tab === "all" || c.kind === tab) && (!version || c.version === version)), [live, tab, version]);
+  const list = useMemo(() => {
+    const l = inTab.filter(c => !vf || c.verdict === vf), rank = (o: Record<string, number>) => (c: RvCard) => o[c.verdict ?? ""] ?? 3;
+    const by = sort === "pos" ? rank({ positive: 0, mixed: 1, negative: 2 }) : sort === "crit" ? rank({ negative: 0, mixed: 1, positive: 2 }) : null;
+    return [...l].sort((a, b) => sort === "helpful" ? b.helpful - a.helpful || b.text.length - a.text.length
+      : (by ? by(a) - by(b) : 0) || (b.at ?? "").localeCompare(a.at ?? ""));
+  }, [inTab, vf, sort]);
   return <section id="reviews" className="th-card th-sec" style={{ paddingBottom: 6, scrollMarginTop: 70 }}>
     <div className="th-head-row" style={{ alignItems: "center" }}>
       <h2 className="th-h2">{words.title}</h2>

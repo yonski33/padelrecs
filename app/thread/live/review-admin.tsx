@@ -17,15 +17,15 @@ export function useOwner() {
   useEffect(() => { let live = true; ownerCheck().then(a => { if (live) setOwner(a); }); return () => { live = false; }; }, []);
   return owner;
 }
-async function send(path: string, form: Record<string, string>) {
+export async function send(path: string, form: Record<string, string>) {
   const r = await fetch(path, { method: "POST", headers: { "Content-Type": "application/x-www-form-urlencoded", Accept: "application/json" }, body: new URLSearchParams(form) }).catch(() => null);
   const b = r ? await r.json().catch(() => ({})) as { error?: string } : { error: "No connection." };
   if (!r?.ok) throw new Error(b.error || "That didn't save. Check you're still signed in.");
 }
-const status = (id: string, to: string, from: string) => send("/api/funtimes/reviews", { id, status: to, expectedStatus: from, returnStatus: from });
-const editText = (id: string, text: string) => send("/api/funtimes/review-quick", { id, field: "text", value: text });
+export const status = (id: string, to: string, from: string) => send("/api/funtimes/reviews", { id, status: to, expectedStatus: from, returnStatus: from });
+export const editText = (id: string, text: string) => send("/api/funtimes/review-quick", { id, field: "text", value: text });
 /** The owner's rename (abuse cases): the same name rules as posting, then the queue's own quick edit (field "alias"). */
-const editName = async (id: string, name: string) => { const p = nameProblem(name); if (p) throw new Error(p); await send("/api/funtimes/review-quick", { id, field: "alias", value: name.trim() }); };
+export const editName = async (id: string, name: string) => { const p = nameProblem(name); if (p) throw new Error(p); await send("/api/funtimes/review-quick", { id, field: "alias", value: name.trim() }); };
 const verdictOf = (rating: number) => rating >= 4 ? "positive" : rating === 3 ? "mixed" : "negative";
 
 type Pending = { id: string; alias: string | null; rating: number; text: string; tags: string[]; level: string | null; at: string };

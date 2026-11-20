@@ -31,6 +31,7 @@ import { stabilityOfFlight } from "../../../../lib/niche/discgolf-guide";
 import { SITE_FIT } from "../../../../lib/fit-config";
 import { levelRange } from "../../../../lib/fit-verdict";
 import specNotes from "../../../../db/shop/spec-notes.json";
+import { RacketV7b } from "../../racket-v7b";
 
 export const revalidate = 86400;
 // Every listed racket's page is built with the site, as the live racket pages are (app/v/racket); none without a database (CI).
@@ -117,11 +118,29 @@ export default async function ThreadRacket({ params }: P) {
   const specsBox = specs.length > 0 && <section className="th-card th-specs th-only-m">{specs.map(([k, v]) => <span key={k} className="th-kv"><span>{k}</span><strong>{v}</strong></span>)}</section>;
   // The live page's structured data: its breadcrumbs (the catalogue, the brand, the racket).
   const ld = { "@context": "https://schema.org", "@graph": [crumbs([{ name: catalogLabel, path: catalogPath }, ...(brand ? [{ name: brand.name, path: `/brands/${brand.slug}` }] : []), { name: r.name, path: productHref(r) }])] };
+  const crumbsEl = <div className="th-crumbs"><a href={th(catalogPath)}>{catalogLabel}</a>{SKIN || DG ? skinType && <><span>/</span><a href={th(`/${skinType.slug}`)}>{skinType.label}</a></> : style && <><span>/</span><a href={th(STYLE_HREF[style])}>{STYLE_WORD[style]}</a></>}{brand && <><span>/</span><a href={`/brands/${brand.slug}`}>{brand.name}</a></>}</div>;
+  const lineEl = line.length >= 2 && brand ? <section className="th-card th-sec">
+          <div className="th-head-row"><h2 className="th-h2">{`More from ${brand.name}`}</h2><a className="th-link-b" href={`/brands/${brand.slug}`}>{`All ${brand.name} ${niche.words.many} →`}</a></div>
+          <div className="th-also">{line.map(x => <Mini key={x.id} x={x} small/>)}</div>
+        </section> : null;
+  // PadelRecs: the v7b page (app/thread/racket-v7b.tsx). Six specs, each once (Weight, Shape, Balance, Feel, Face, Released),
+  // then any sourced extra facts; no "updated" date anywhere (owner 2026-11-20: a community page).
+  if (niche.id === "padel") {
+    const v7Specs = ([["Weight", r.weight], ["Shape", r.shape], ["Balance", r.balance], ["Feel", row?.feel ?? null], ["Face", r.surface], ["Released", r.year ? String(r.year) : null],
+      ...(((specNotes as unknown as Record<string, Record<string, [string, string][]>>)[niche.id] ?? {})[r.slug] ?? [])] as [string, string | null][]).filter((x): x is [string, string] => !!x[1]);
+    const model = brand && bare.toLowerCase().startsWith(`${brand.name.toLowerCase()} `) ? bare.slice(brand.name.length + 1) : bare;
+    return <Shell active="rackets">
+      <JsonLd data={ld}/>
+      <RacketV7b id={r.id} title={r.year && bare !== name ? `${bare} (${r.year})` : name} model={model} crumbs={crumbsEl} tags={tags} lime={!!style} row={row} judged={judged}
+        lead={lead} bullets={bullets} specs={v7Specs} shop={shop} cards={cards} sim={sim.map(x => <Mini key={x.id} x={x}/>)} also={also.map(x => <Mini key={x.id} x={x} small/>)}
+        line={lineEl} stories={tales}/>
+    </Shell>;
+  }
   return <Shell active="rackets">
     <JsonLd data={ld}/>
     <main className="th-main">
       <div className="th-col">
-        <div className="th-crumbs"><a href={th(catalogPath)}>{catalogLabel}</a>{SKIN || DG ? skinType && <><span>/</span><a href={th(`/${skinType.slug}`)}>{skinType.label}</a></> : style && <><span>/</span><a href={th(STYLE_HREF[style])}>{STYLE_WORD[style]}</a></>}{brand && <><span>/</span><a href={`/brands/${brand.slug}`}>{brand.name}</a></>}</div>
+        {crumbsEl}
         <article className="th-card th-post"><div className="th-post-in">
           <div className="th-by"><span className="th-dot" aria-hidden="true"/><strong>{niche.site.name}</strong>{day && <><span>·</span><span>{`updated ${day}`}</span></>}{(judged > 0 || cards.length > 0) && <><span>·</span><span>{[judged > 0 ? `${plural(judged, W.opinions.replace(/s$/, ""), W.opinions)} analysed` : "", cards.length > 0 ? `${plural(cards.length, "review")} to read` : ""].filter(Boolean).join(" · ")}</span></>}</div>
           <h1 className="th-h1">{r.year && bare !== name ? `${bare} (${r.year})` : name}</h1>
@@ -135,7 +154,7 @@ export default async function ThreadRacket({ params }: P) {
             <div style={{ display: "flex", flexDirection: "column", gap: 10, minWidth: 0 }}>
               {(lead || bullets.length > 0) && <div className="th-tldr"><div className="th-tldr-h">TL;DR</div>
                 {lead && <p>{lead}</p>}
-                {bullets.length > 0 && <ul>{bullets.map(b => <li key={b.text}><span className={`th-sdot ${b.tone === "pos" ? "pos" : "catch"}`}/><span>{b.text}</span></li>)}</ul>}
+                {bullets.length > 0 && <ul>{bullets.map(b => <li key={b.text}><span className={`th-sdot ${b.tone}`}/><span>{b.text}</span></li>)}</ul>}
               </div>}
               {SKIN ? <SkinFitCheck id={r.id} wire={skinWire} links={skinLinks}/> : <FitCheck id={r.id}/>}
             </div>
@@ -154,10 +173,7 @@ export default async function ThreadRacket({ params }: P) {
             <span className="th-story-by"><strong>{s.author.name}</strong><MemberMark/></span></li>)}</ul></section>}
         <Comments page={`racket:${r.id}`} nicknames={niche.form.quickVote?.nicknames ?? []}/>
         {also.length >= 2 && <section className="th-card th-sec"><h2 className="th-h2">{`${W.lovers} who loved this also loved`}</h2><div className="th-also">{also.map(x => <Mini key={x.id} x={x} small/>)}</div></section>}
-        {line.length >= 2 && brand && <section className="th-card th-sec">
-          <div className="th-head-row"><h2 className="th-h2">{`More from ${brand.name}`}</h2><a className="th-link-b" href={`/brands/${brand.slug}`}>{`All ${brand.name} ${niche.words.many} →`}</a></div>
-          <div className="th-also">{line.map(x => <Mini key={x.id} x={x} small/>)}</div>
-        </section>}
+        {lineEl}
       </div>
       <aside className="th-side">
         <section className="th-card th-sbox"><div className="th-sbox-head">{`About this ${niche.words.one}`}</div><div className="th-sbox-body pad">

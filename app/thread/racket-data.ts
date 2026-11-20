@@ -25,6 +25,7 @@ import { W } from "../../lib/thread/words";
 import { tagTone, tagSays } from "../../lib/tags";
 import { ago, type ThreadRow } from "./ui";
 import { flightOf } from "../../lib/discgolf-profile";
+import { writtenTldr } from "../../lib/thread/written-tldr";
 
 export type RvCard = { /** A player review's typed name ("" when none), for the owner's Rename. */ alias?: string; id: string; kind: "player" | "youtube" | "blog" | "reddit" | "forum"; who: string; meta: string | null; verdict: "positive" | "mixed" | "negative" | null;
   when: string; at: string; text: string; quote: boolean; url: string | null; video: string | null; helpful: number;
@@ -90,9 +91,11 @@ export async function racketData(slug: string) {
 
   // TL;DR: the page's own checked words where it has them (lib/racket-page.ts), else the most-mentioned praise and catch.
   const pc = pageContent(r.slug), sum = summary(ctx.data, r.id);
-  const lead = pc?.tagline ?? shortLine(r) ?? listLine(r) ?? row?.line ?? null;
+  // A summary written as TL;DR lines (lib/thread/written-tldr.ts) wins over both.
+  const written = writtenTldr(r.reviewSummary);
+  const lead = written?.lead ?? pc?.tagline ?? shortLine(r) ?? listLine(r) ?? row?.line ?? null;
   const plainLine = (t: string) => marked(t).map(x => x.text).join("");
-  const bullets: { tone: "pos" | "catch"; text: string }[] = pc
+  const bullets: { tone: "pos" | "mix" | "neg" | "catch"; text: string }[] = written ? [...written.bullets] : pc
     ? [...pc.yes.slice(0, 2).map(i => ({ tone: "pos" as const, text: [plainLine(i.t).replace(/\.\s*$/, ""), evidenceLine(i, DG ? W.people : undefined)].filter(Boolean).join(". ") })), ...pc.no.slice(0, 1).map(i => ({ tone: "catch" as const, text: plainLine(i.t) }))]
     : [...sum.loved.filter(t => (sum.tagCounts.get(t) ?? 0) >= 5).slice(0, 2).map(t => ({ tone: "pos" as const, text: `${sum.tagCounts.get(t)} reviews ${tagSays(t)}.` })),
       ...sum.complaints.filter(t => (sum.tagCounts.get(t) ?? 0) >= 5).slice(0, 1).map(t => ({ tone: "catch" as const, text: `${sum.tagCounts.get(t)} reviews ${tagSays(t)}.` }))];
@@ -100,7 +103,7 @@ export async function racketData(slug: string) {
   // analysed"), so the TL;DR counts tags in those same opinions, all of them, and says "of 88 opinions". With no written
   // line and no tag 5 opinions share, the lead is the poll split, so a scored page always has a TL;DR.
   const judged = (row?.pos ?? 0) + (row?.mix ?? 0) + (row?.neg ?? 0);
-  if (SKIN && !pc) {
+  if (SKIN && !pc && !written) {
     const n = new Map<string, number>();
     for (const x of [...reviews, ...external.filter(e => e.sentiment)]) for (const t of new Set(x.tags)) n.set(t, (n.get(t) ?? 0) + 1);
     const top = (tone: "pos" | "neg") => [...n].filter(([t, c]) => c >= 5 && c <= judged && tagTone(t) === tone).sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0]));
