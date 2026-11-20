@@ -24,10 +24,15 @@ export function storyProblem(s: { title: string; body: string; rackets?: string[
 }
 /** The paragraphs of a story body (blank lines between them; single line breaks stay inside a paragraph). */
 export const paragraphs = (body: string) => body.replace(/\r\n?/g, "\n").split(/\n\s*\n/).map(p => p.trim()).filter(Boolean);
-/** The post's address: the title in plain words, then a short id so two stories with one title never share it. */
-export function storySlug(title: string, id: string) {
-  const base = title.normalize("NFKD").replace(/[̀-ͯ]/g, "").toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "").slice(0, 60).replace(/-+$/, "");
-  return `${base || "story"}-${id.replace(/-/g, "").slice(0, 6)}`;
+/** The post's address (owner 2026-11-20, clean slugs): the title in plain words, nothing else. */
+export function storySlug(title: string) {
+  const base = title.normalize("NFKD").replace(/[\u0300-\u036f]/g, "").toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "").slice(0, 70).replace(/-+$/, "");
+  return base || "story";
+}
+/** The first free address: the slug, else slug-2, slug-3… (`taken` holds every slug in use, current and previous). */
+export function freeSlug(base: string, taken: Set<string>) {
+  if (!taken.has(base)) return base;
+  for (let n = 2; ; n++) if (!taken.has(`${base}-${n}`)) return `${base}-${n}`;
 }
 /** The post's description for search and shares: its first paragraph, cut at a word near 155 characters. */
 export function storyDescription(body: string) {

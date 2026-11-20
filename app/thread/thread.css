@@ -916,3 +916,8 @@ body:has(.th) .th a.th-story-t:hover { color: var(--hover); text-decoration: und
 .th-story-body ul, .th-story-body ol { margin: 0; padding-left: 1.4em; display: flex; flex-direction: column; gap: 6px; }
 .th-story-body blockquote { margin: 0; padding: 4px 0 4px 14px; border-left: 3px solid var(--lime); color: var(--ink2); font-style: italic; white-space: pre-line; }
 .th-story-body strong { color: var(--ink); }
+/* Story editing (owner 2026-11-20): the author's Edit and Delete on the byline, Delete in the editor. */
+.th-story-tools { display: inline-flex; align-items: center; gap: 10px; margin-left: 6px; }
+body:has(.th) .th .th-story-tools a, .th-story-tools button { all: unset; cursor: pointer; font-size: 13px; color: var(--ink2); text-decoration: underline; text-underline-offset: 3px; }
+.th-story-tools a:hover, .th-story-tools button:hover { color: var(--ink); }
+.th-story-form .th-story-del { color: var(--down); }

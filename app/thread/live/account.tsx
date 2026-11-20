@@ -1,12 +1,16 @@
 "use client";
 // The /account page's panel (optional PadelRecs accounts): email link sign-in (plus the email's 6-digit code for another
 // device), reserving a name, level and side, sign out, delete. All writes go to /api/account*. Copy: plain, no "we".
+import { YourStories } from "./your-stories";
+import { storiesSite } from "../../../lib/thread/sites";
 import { useEffect, useState } from "react";
 import { savedName, saveName } from "./name";
 import { NAME_MAX } from "../../../lib/thread/display-name";
 import { accountNameProblem } from "../../../lib/thread/account-name";
 import { forgetAccount } from "./use-account";
 import { YourPosts } from "./your-posts";
+/** Member stories are a PadelRecs pilot. */
+const STORIES = storiesSite(niche.id);
 import { niche } from "../../../lib/niche";
 
 /** The review form's own labels ("Level" and "Side" on padel, "Level" and "Mostly plays" on pickleball). */
@@ -138,6 +142,7 @@ function Profile({ email, account, next, levels, sides, linked = 0, onChange }: 
       </form>
     </article>
     <YourPosts/>
+    {STORIES && <YourStories/>}
     <section className="th-card th-sec">
       <div style={{ display: "flex", gap: 12, alignItems: "center", flexWrap: "wrap" }}>
         <form method="post" action="/auth/signout" onSubmit={() => forgetAccount()}><button className="th-btn">Sign out</button></form>

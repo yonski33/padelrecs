@@ -4,9 +4,9 @@ import { database } from "../../db/data";
 import { adminStories, type StoryStatus } from "../../db/stories";
 import { storyDescription } from "../../lib/thread/stories";
 
-const TABS: [StoryStatus | "all", string][] = [["pending", "Waiting"], ["approved", "Live"], ["rejected", "Rejected"], ["all", "All"]];
+const TABS: [StoryStatus | "all" | "edits", string][] = [["pending", "Waiting"], ["edits", "Edits waiting"], ["approved", "Live"], ["rejected", "Rejected"], ["all", "All"]];
 export async function StoriesAdmin({ status, result }: { status?: string; result?: string }) {
-  const s = (TABS.find(([k]) => k === status)?.[0] ?? "pending") as StoryStatus | "all";
+  const s = (TABS.find(([k]) => k === status)?.[0] ?? "pending") as StoryStatus | "all" | "edits";
   let list: Awaited<ReturnType<typeof adminStories>> = [], err = "";
   try { list = await adminStories(await database(), s); } catch { err = "The stories table isn't there yet (migration 0031 waits for the owner's OK)."; }
   const form = (id: string, fields: Record<string, string>, label: string) => <form method="post" action="/api/funtimes/stories" style={{ display: "inline" }}>
@@ -20,6 +20,9 @@ export async function StoriesAdmin({ status, result }: { status?: string; result
       <p className="muted">{`${x.author.name} · ${x.at.slice(0, 10)} · ${x.status}${x.spamScore ? ` · spam score ${x.spamScore}` : ""} · ${x.body.length} characters · ${x.rackets.length} rackets`}</p>
       <p>{storyDescription(x.body)}</p>
       <details><summary>Read it all</summary><p style={{ whiteSpace: "pre-wrap" }}>{x.body}</p></details>
+      {x.pendingEdit && <div className="admin-card" style={{ borderStyle: "dashed" }}><p className="muted">{`Edit waiting (${x.pendingEdit.at.slice(0, 10)}): the live text stays until you approve it.`}</p>
+        <h4>{x.pendingEdit.title}</h4><details><summary>Read the edit</summary><p style={{ whiteSpace: "pre-wrap" }}>{x.pendingEdit.body}</p></details>
+        <p>{form(x.id, { action: "edit", decide: "approve" }, "Approve edit")} {form(x.id, { action: "edit", decide: "reject" }, "Turn down edit")}</p></div>}
       <p>{x.status !== "approved" && form(x.id, { action: "status", status: "approved" }, "Approve")} {x.status !== "pending" && form(x.id, { action: "status", status: "pending" }, "Hold")}{" "}
         {x.status !== "rejected" && form(x.id, { action: "status", status: "rejected" }, "Reject")} {form(x.id, { action: "delete", confirm: "yes" }, "Delete")}</p>
     </article>)}
