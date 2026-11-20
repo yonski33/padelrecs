@@ -30,9 +30,10 @@ type Ctx = Awaited<ReturnType<typeof matchContext>>;
 const FEEL = { soft: "Soft", medium: "Medium", firm: "Hard" } as const;
 
 /** A build without a database (CI) renders the Thread pages empty, as the live pages skip their reads there; Vercel builds and
- *  serves them with data. These pages serve padel and pickleball (both on the shared match engine). StackRecs has its own
- *  pages (app/thread/stack): there they read nothing and build empty, and proxy.ts never serves them. */
-export const hasDb = () => !!process.env.DATABASE_URL && (niche.id === "padel" || niche.id === "pickleball");
+ *  serves them with data. These pages serve padel and pickleball (both on the shared match engine) and SkinRecs (its own
+ *  engine, skinRows below). StackRecs has its own pages (app/thread/stack): there they read nothing and build empty, and
+ *  proxy.ts never serves them. */
+export const hasDb = () => !!process.env.DATABASE_URL && (niche.id === "padel" || niche.id === "pickleball" || niche.id === "skin");
 /** The Thread home's top rows: the classic home's default order (app/home-payload.ts defaultHomeIds), as Thread rows. */
 export const homeTop = (rows: Map<string, ThreadRow>, ids: string[], size = 10) => ids.flatMap(id => rows.get(id) ?? []).slice(0, size);
 type Rows = { ctx: Ctx; rows: Map<string, ThreadRow>; all: ThreadRow[]; bySlug: Map<string, ThreadRow> };
