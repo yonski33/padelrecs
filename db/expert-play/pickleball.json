@@ -1046,8 +1046,8 @@
    "traits": {
     "power": {
      "dots": 2,
-     "note": "16mm Rev-Control core, light SW; reviewers found drive power underwhelming",
-     "line": "Light build and a control core mean drive power is underwhelming."
+     "note": "13mm Rev-Power core per Selkirk, light SW; reviewers found drive power underwhelming",
+     "line": "A light build means drive power is underwhelming."
     },
     "control": {
      "dots": 4,

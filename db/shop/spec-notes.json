@@ -1,0 +1,8 @@
+{
+  "_note": "Extra rows for a product's Specs box, by site then product slug: short, sourced facts the catalog columns don't hold. Plain words, no prices.",
+  "pickleball": {
+    "prokennex-black-ace-pro": [["Tournament", "Not USA Pickleball approved for tournaments since July 2025 (ProKennex)"]],
+    "prokennex-black-ace-xf": [["Tournament", "Not USA Pickleball approved for tournaments since July 2025 (ProKennex)"]],
+    "prokennex-black-ace-ovation": [["Tournament", "Not USA Pickleball approved for tournaments since July 2025 (ProKennex)"]]
+  }
+}
