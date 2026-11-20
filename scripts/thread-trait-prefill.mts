@@ -12,7 +12,9 @@ import { evidenceRows } from "../db/evidence";
 import { buildPrefill } from "../lib/thread/trait-prefill";
 import { niche } from "../lib/niche";
 
-if (niche.id !== "padel" && niche.id !== "pickleball" && niche.id !== "skin") throw new Error("Run with NICHE=padel, pickleball or skin");
+//   NICHE=discgolf … the same (stated level and durability from the evidence; stability, glide, fade and arm speed from the flight
+//   numbers, kept apart as specs; lib/thread/trait-prefill.ts discSpecs)
+if (!["padel", "pickleball", "skin", "discgolf"].includes(niche.id)) throw new Error("Run with NICHE=padel, pickleball, skin or discgolf");
 if (niche.id === "skin") {
   // SkinRecs: from its own engine's attribute scores (lib/thread/trait-prefill.ts skinGroups). Read-only.
   const { skinContext } = await import("../app/skin/context");
@@ -29,7 +31,7 @@ if (niche.id === "skin") {
 }
 const db = await getDb();
 const [cat, own, ext, ev] = await Promise.all([
-  db.select({ id: rackets.id, slug: rackets.slug, name: rackets.name, shape: rackets.shape, core: rackets.core, balance: rackets.balance }).from(rackets),
+  db.select({ id: rackets.id, slug: rackets.slug, name: rackets.name, shape: rackets.shape, core: rackets.core, balance: rackets.balance, weight: rackets.weight }).from(rackets),
   db.select({ id: reviews.id, racketId: reviews.racketId, rating: reviews.rating, text: reviews.reviewText }).from(reviews).where(eq(reviews.status, "approved")),
   db.select({ id: externalReviews.id, racketId: externalReviews.racketId, sentiment: externalReviews.sentiment,
     summary: externalReviews.summary, excerpt: externalReviews.excerpt, translation: externalReviews.excerptTranslation }).from(externalReviews),

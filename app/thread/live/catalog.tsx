@@ -7,15 +7,20 @@ import { Row, cap, type ThreadRow } from "../ui";
 import { usePicks, usePayload, complete, pctsFor } from "./picks";
 import { W } from "../../../lib/thread/words";
 
-type Key = "shape" | "level" | "feel" | "brand" | "arm" | "skin" | "texture" | "sens";
-const SKIN = niche.id === "skin";
+type Key = "shape" | "level" | "feel" | "brand" | "arm" | "skin" | "texture" | "sens" | "stab";
+const SKIN = niche.id === "skin", DG = niche.id === "discgolf";
+/** DiscGolfRecs: a disc's stability from its flight numbers, for the filter (lib/niche/discgolf-guide.ts stabilityOfFlight's
+ *  rule, inlined so other sites' catalogue code stays as it is). */
+const stabOf = (r: ThreadRow) => { if (!r.flight) return null; const [, , turn, fade] = r.flight;
+  return turn + fade >= 3 ? "Overstable" : turn <= -2 || turn + fade <= -1 ? "Understable" : "Stable"; };
 type Filters = Partial<Record<Key, string[]>>;
 const STEP = 20;
 const OWN_SHAPES = niche.id === "pickleball" ? niche.shapeFilter ?? null : null;
 const hasShape = (shape: string | null, v: string) => !!shape && new RegExp(`\\b${v}\\b`, "i").test(shape);
 
 /** `title`, `lead` and `crumbs` change the hero (a brand page: app/thread/brands/[slug]); with no `brands` the Brand filter is left out. */
-export function Catalog({ rows, brands, title = SKIN ? "All skincare products" : `All ${niche.id} ${niche.words.many}`, lead = SKIN ? "Every product people have reviewed and voted on. Filter by skin type, then see what people say." : `Every ${niche.words.one} players have reviewed. Filter by how it plays, then see what people say.`, crumbs }:
+export function Catalog({ rows, brands, title = SKIN ? "All skincare products" : DG ? "All discs" : `All ${niche.id} ${niche.words.many}`, lead = SKIN ? "Every product people have reviewed and voted on. Filter by skin type, then see what people say."
+  : DG ? "Every disc throwers have reviewed and voted on. Filter by how it flies, then see what people say." : `Every ${niche.words.one} players have reviewed. Filter by how it plays, then see what people say.`, crumbs }:
   { rows: ThreadRow[]; brands: string[]; title?: string; lead?: string; crumbs?: ReactNode }) {
   const [q, setQ] = useState(""), [f, setF] = useState<Filters>({}), [sort, setSort] = useState<"score" | "reviews" | "new" | "match">("score");
   const [open, setOpen] = useState(false), [panel, setPanel] = useState(false), [n, setN] = useState(STEP), [older, setOlder] = useState(false);
@@ -29,8 +34,9 @@ export function Catalog({ rows, brands, title = SKIN ? "All skincare products" :
   // PickleballRecs: the site's own shapes (Standard, Elongated, Hybrid; its catalogue mock), matching a paddle that lists
   // the shape among several ("Hybrid, Widebody, or Elongated"). Padel: the 5 most common shape values.
   const shapes = useMemo(() => OWN_SHAPES ?? [...new Set(rows.map(r => r.shape).filter((x): x is string => !!x))].sort((a, b) => rows.filter(r => r.shape === b).length - rows.filter(r => r.shape === a).length).slice(0, 5), [rows]);
-  const GROUPS = (SKIN ? [["shape", "Type", shapes], ["skin", "Skin type", ["Dry", "Oily", "Combination", "Normal"]], ["texture", "Texture", ["Rich", "Medium", "Light"]], ["brand", "Brand", brands], ["sens", "Sensitive skin", ["Gentle on sensitive skin"]]] as [Key, string, string[]][] : [["shape", "Shape", shapes], ["level", "Level", ["Beginner", "Intermediate", "Advanced"]], ["feel", "Feel", ["Soft", "Medium", "Hard"]], ["brand", "Brand", brands], ["arm", "Comfort", ["Arm friendly"]]] as [Key, string, string[]][]).filter(([, , v]) => v.length > 0);
-  const test = (r: ThreadRow, k: Key, v: string) => k === "shape" ? (OWN_SHAPES ? hasShape(r.shape, v) : r.shape === v) : k === "level" ? r.levels.includes(v.toLowerCase() as ThreadRow["levels"][number]) : k === "feel" ? r.feel === v : k === "brand" ? r.brand === v : k === "skin" ? !!r.facets?.skin.includes(v) : k === "texture" ? r.facets?.texture === v : k === "sens" ? !!r.facets?.sensitive : r.arm;
+  const GROUPS = (DG ? [["shape", "Type", niche.shapeFilter ?? shapes], ["level", "Level", ["Beginner", "Intermediate", "Advanced"]], ["stab", "Stability", ["Understable", "Stable", "Overstable"]],
+    ["brand", "Brand", brands], ["arm", "Arm speed", ["Slow-arm friendly"]]] as [Key, string, string[]][] : SKIN ? [["shape", "Type", shapes], ["skin", "Skin type", ["Dry", "Oily", "Combination", "Normal"]], ["texture", "Texture", ["Rich", "Medium", "Light"]], ["brand", "Brand", brands], ["sens", "Sensitive skin", ["Gentle on sensitive skin"]]] as [Key, string, string[]][] : [["shape", "Shape", shapes], ["level", "Level", ["Beginner", "Intermediate", "Advanced"]], ["feel", "Feel", ["Soft", "Medium", "Hard"]], ["brand", "Brand", brands], ["arm", "Comfort", ["Arm friendly"]]] as [Key, string, string[]][]).filter(([, , v]) => v.length > 0);
+  const test = (r: ThreadRow, k: Key, v: string) => k === "stab" ? stabOf(r) === v : k === "shape" ? (OWN_SHAPES ? hasShape(r.shape, v) : r.shape === v) : k === "level" ? r.levels.includes(v.toLowerCase() as ThreadRow["levels"][number]) : k === "feel" ? r.feel === v : k === "brand" ? r.brand === v : k === "skin" ? !!r.facets?.skin.includes(v) : k === "texture" ? r.facets?.texture === v : k === "sens" ? !!r.facets?.sensitive : r.arm;
   const words = q.trim().toLowerCase().split(/\s+/).filter(Boolean);
   // One row per model by default, its current year (the classic catalog's rule, ThreadRow.current); a search or "Show older
   // models" brings the older years back. Their pages stay live either way.
@@ -46,7 +52,7 @@ export function Catalog({ rows, brands, title = SKIN ? "All skincare products" :
     : by === "match" ? (pcts!.get(b.id) ?? -1) - (pcts!.get(a.id) ?? -1) : (b.score ?? -1) - (a.score ?? -1) || b.n - a.n),
   // eslint-disable-next-line react-hooks/exhaustive-deps
   [pool, f, q, by, pcts]);
-  const SORTS = [["score", `By ${W.score}`], ["reviews", "Most reviewed"], ["new", SKIN ? "Newest" : "Newest models"], ...(pcts ? [["match", "By your match"]] : [])] as [typeof sort, string][];
+  const SORTS = [["score", `By ${W.score}`], ["reviews", "Most reviewed"], ["new", SKIN || DG ? "Newest" : "Newest models"], ...(pcts ? [["match", "By your match"]] : [])] as [typeof sort, string][];
   // A group shows only the options some racket here has (or that are picked), and no group label with nothing under it.
   const groups = <>{GROUPS.map(([k, label, vals]) => { const opts = vals.map(v => ({ v, c: pool.filter(r => pass(r, k) && test(r, k, v)).length, sel: !!f[k]?.includes(v) })).filter(o => o.c > 0 || o.sel);
     return opts.length > 0 && <div key={k} className="th-fgroup"><span>{label}</span>

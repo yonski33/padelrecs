@@ -55,7 +55,21 @@ const SKIN_CATS: PickCat[] = [
   { key: "makeup", title: "Best under makeup", trait: "makeup", choice: "fine", href: "/sunscreens" },
   { key: "value", title: "Best value", trait: "value", choice: "worth_it", href: "/rankings/best-face-moisturizers" },
 ];
-export const pickCatsFor = (nicheId: string) => nicheId === "pickleball" ? PICKLEBALL_CATS : nicheId === "skin" ? SKIN_CATS : PADEL_CATS;
+/** DiscGolfRecs' lists (its "How throwers vote them" mock), linking to its live rankings and the Thread-only ones. Most
+ *  distance has no vote group, so it counts the throwers behind the review trait score, as padel's Best in defence. */
+const DISCGOLF_CATS: PickCat[] = [
+  { key: "straight", title: "Straightest flight", trait: "stability", choice: "stable", href: "/rankings/best-disc-golf-midrange-discs" },
+  { key: "slow", title: "Best for slow arms", trait: "arm_speed", choice: "any", href: "/rankings/best-disc-golf-discs-for-slow-arms" },
+  { key: "beginner", title: "Best for beginners", trait: "level", choice: "beginner", href: "/rankings/best-disc-golf-discs-for-beginners" },
+  { key: "distance", title: "Most distance", trait: "", choice: "", score: "distance", href: "/rankings/best-disc-golf-distance-drivers" },
+  { key: "wind", title: "Best in the wind", trait: "wind", choice: "holds", href: "/rankings/best-disc-golf-fairway-drivers" },
+  { key: "grip", title: "Most grip", trait: "grip", choice: "great", href: "/rankings/best-disc-golf-putters" },
+  { key: "glide", title: "Most glide", trait: "glide", choice: "lots", href: "/rankings/best-disc-golf-fairway-drivers" },
+  { key: "forehand", title: "Best for forehands", trait: "throw", choice: "forehand", href: "/rankings/best-disc-golf-discs" },
+  { key: "durable", title: "Most durable", trait: "durability", choice: "holds_up", href: "/rankings/best-disc-golf-discs" },
+];
+export const pickCatsFor = (nicheId: string) => nicheId === "pickleball" ? PICKLEBALL_CATS : nicheId === "skin" ? SKIN_CATS
+  : nicheId === "discgolf" ? DISCGOLF_CATS : PADEL_CATS;
 /** The running site's lists. */
 export const PICK_CATS = pickCatsFor(niche.id);
 /** How many lists the grid shows (3 columns × 2 rows). */

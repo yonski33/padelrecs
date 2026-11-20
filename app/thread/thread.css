@@ -777,3 +777,54 @@ body:has(.th-stack) .th-stack a.th-add:hover, body:has(.th-stack) .th-stack a.th
 .th-stack .th-qm-tag { background: var(--lime); }
 .th-stack .th-by .th-logo-icon { width: 22px; height: 22px; }
 body:has(.th-stack) .th-stack a.th-add-plus { background: #3730a3; border-color: #3730a3; color: #fff; }
+/* DiscGolfRecs' own look (owner 2026-11-20: design_handoff_discgolfrecs README "Design tokens": pine ink, warm paper, a disc
+   orange accent, Familjen Grotesk headings, Atkinson Hyperlegible text, Barlow digits). Same rules as PickleballRecs' block
+   above, with disc golf's tokens; scoped to .th-dg (app/thread/shell.tsx). */
+body:has(.th-dg) { background: #f1f0e8; }
+.th.th-dg {
+  --ink: #16251d; --bg: #f1f0e8; --card: #fff; --soft: #fbfaf6; --frame: #eef1ea;
+  --ink2: #4b5a50; --body: #26352c; --muted: #5f6d63;
+  --div: #e5e8e2; --line: #dce1da; --chip: #cdd3cc; --box: #cdd3cc;
+  --lime: oklch(0.86 0.1 60); --lime-box: oklch(0.96 0.03 150); --lime-bar: oklch(0.9 0.1 60); --lime-chip: oklch(0.9 0.1 60);
+  --sc-g: oklch(0.8 0.16 145); --sc-y: oklch(0.93 0.14 100);
+  --s-pos: oklch(0.72 0.15 145); --s-mix: oklch(0.85 0.14 90); --s-neg: oklch(0.7 0.15 30);
+  --p-pos: oklch(0.93 0.08 145); --p-mix: oklch(0.95 0.08 95); --p-neg: oklch(0.93 0.05 35);
+  --hover: oklch(0.45 0.09 160); --up: oklch(0.5 0.14 145); --down: oklch(0.55 0.15 35); --idle: #9aa59d;
+  --yt: oklch(0.94 0.04 250); --blog: oklch(0.94 0.06 125);
+  --bc: 'Familjen Grotesk', 'Arial Narrow', sans-serif;
+  --body-font: 'Barlow', 'Atkinson Hyperlegible', system-ui, sans-serif;
+}
+body:has(.th-dg) .th-dg :is(h1, h2, h3), .th-dg :is(.th-logo, .th-rank, .th-row-name .mrank, .th-badge:not(.new), .th-sbox-head, .th-stitle, .th-tldr-h,
+  .th-hub-t b, .th-hub-row .r, .th-num, .th-sub-h), body:has(.th-dg) .th-dg .th-logo, body:has(.th-dg) .th-dg .th-menu a {
+  font-weight: 700; letter-spacing: -0.02em; }
+/* The literal padel colours above, in disc golf's. */
+.th-dg .th-ph, .th-dg .th-ph::after { background: #dce1da; }
+.th-dg .th-yt { background-color: var(--ink); }
+.th-dg .th-tldr { background: var(--lime-box); }
+.th-dg .th-fit, .th-dg .th-picks-row + .th-picks-row, .th-dg .th-pick-list + .th-pick-list { border-top-color: var(--line); }
+body:has(.th-dg) .th-dg a.th-hub:hover { border-color: var(--hover); }
+.th-dg .th-live i { background: var(--s-pos); }
+body:has(.th-dg) .th-dg a.th-add:hover, body:has(.th-dg) .th-dg a.th-add:focus-visible, body:has(.th-dg) .th-dg a.th-add-plus:hover,
+  .th-dg button.th-post:not(:disabled):hover { background: #26352c; border-color: #26352c; }
+.th-dg #comments.th-card, .th-dg .th-compose.white, .th-dg .th-compose.white .th-ta.th-ta-grow, .th-dg .th-compose.soft,
+  .th-dg .th-compose.soft .th-ta.th-ta-grow { border-color: var(--line); }
+.th-dg .th-rv-list .th-rv, .th-dg .th-rv-list .th-rv.big { border-top-color: var(--div); }
+.th-dg .th-rv-list .th-rv-when, .th-dg .th-why, .th-dg .th-pick-list .ct { color: var(--muted); }
+.th-dg :is(.th-compose.white, .th-compose.soft) :is(.th-ta.th-ta-grow:focus, .th-ta.th-ta-grow:focus-visible, .th-as input:focus, .th-as input:focus-visible) { border-color: var(--ink); }
+.th-dg button.th-post { background: var(--ink); }
+.th-dg button.th-post:disabled { background: #eef1ea; color: #5f6d63; }
+.th-dg .th-vpill.pos { background: var(--p-pos); } .th-dg .th-vpill.mix { background: var(--p-mix); } .th-dg .th-vpill.neg { background: var(--p-neg); }
+.th-dg .th-src.bl { background: var(--blog); }
+.th-dg .th-cm-act .arrow:not([aria-pressed="true"]) { color: #5f6d63; }
+.th-dg .th-pick-list li + li { border-top-color: var(--div); }
+/* Bricolage is wider than Barlow Condensed: keep a sidebar title and its link ("Fresh off the court · All reviews →") on one line. */
+.th-dg .th-side .th-head-row { flex-wrap: nowrap; gap: 8px; }
+.th-dg .th-side .th-head-row .th-link-b { white-space: nowrap; }
+/* Flight numbers (speed / glide / turn / fade) as pills on disc rows and the disc page (README "Global rules"). */
+.th-flight { display: inline-flex; gap: 4px; align-items: center; }
+.th-flight span { display: inline-flex; align-items: center; justify-content: center; min-width: 26px; height: 22px; padding: 0 6px;
+  box-sizing: border-box; border-radius: 999px; border: 1.5px solid var(--line); background: var(--soft); font-size: 12.5px; font-weight: 700; color: var(--ink); }
+/* A disc, not a racket, where a photo is missing (README: "Disc photos are placeholder disc shapes"). */
+.th-dg .th-ph { width: 58%; height: auto; aspect-ratio: 1; border-radius: 50%; background: #dce1da; box-shadow: inset 0 0 0 5px #cdd3cc; }
+.th-dg .th-ph::after { display: none; }
+.th-dg .th-bigphoto .th-ph { width: 150px; height: 150px; }

@@ -20,6 +20,8 @@ import { shortLine } from "../../lib/short-lines";
 import { listLine } from "../../lib/list-lines";
 import { styleOf } from "../../lib/fit-verdict";
 import { TRAIT_LABEL } from "../../lib/trait-score";
+import { SITE_FIT } from "../../lib/fit-config";
+import { W } from "../../lib/thread/words";
 import { tagTone } from "../../lib/tags";
 import { ago, type ThreadRow } from "./ui";
 
@@ -27,6 +29,9 @@ export type RvCard = { /** A player review's typed name ("" when none), for the 
   when: string; at: string; text: string; quote: boolean; url: string | null; video: string | null; helpful: number;
   /** A player review by a signed-in member (optional accounts, drizzle/0028): a small mark by the name. */ member?: true;
   /** The version the review is about (StackRecs, the review's variant), shown as a chip. */ version?: string | null };
+const DG = niche.id === "discgolf";
+/** DiscGolfRecs' trait names (lib/discgolf-fit.ts, the shown ones: Easy to throw, Distance, Accuracy, Glide, Wind), not padel's. */
+const DG_TRAIT_LABEL: Record<string, string> = DG ? Object.fromEntries(SITE_FIT.traits.filter(t => !t.hidden).map(t => [t.key, t.label])) : {};
 const unmd = (t: string) => t.replace(/\*\*([^*]+)\*\*/g, "$1").replace(/\*\*|__/g, "").replace(/==/g, "");
 const verdictOf = (n: number) => n >= 4 ? "positive" as const : n === 3 ? "mixed" as const : "negative" as const;
 const vid = (url: string) => { try { const u = new URL(url); return u.searchParams.get("v") ?? (u.hostname === "youtu.be" ? u.pathname.slice(1) : null); } catch { return null; } };
@@ -50,7 +55,7 @@ export async function racketData(slug: string) {
   for (const e of ctx.data.external) { if (e.sourcePlatform !== "YouTube" || /[?&]lc=/.test(e.sourceUrl)) continue; const v = videoOf(e.sourceUrl);
     if (v && !seen.has(`${v}|${e.racketId}`)) { seen.add(`${v}|${e.racketId}`); ytProducts.set(v, (ytProducts.get(v) ?? 0) + 1); } }
   const lv = (v?: string | null) => v ? v.toLowerCase() : null;
-  const cards: RvCard[] = [
+  const base: RvCard[] = [
     // Names (lib/thread/display-name.ts): a typed name, else one made from the level and side; those then aren't repeated.
     ...reviews.map(x => ({ id: `p-${x.id}`, kind: "player" as const, who: reviewerName({ alias: x.alias, level: x.playerLevel, side: x.playingSide }), alias: typedName(x.alias) ?? "",
       meta: typedName(x.alias) ? [lv(x.playerLevel), x.playingSide ? (niche.id === "padel" ? `${x.playingSide.toLowerCase()} side` : sideWord(x.playingSide)) : null].filter(Boolean).join(" · ") || null : null,
@@ -75,19 +80,25 @@ export async function racketData(slug: string) {
     ...redditPick(ctx.data.external, r.id).map(({ row: e, text }) => ({ id: `w-${e.id}`, kind: "reddit" as const, who: subOf(e.sourceUrl, e.sourceName), meta: null, verdict: e.sentiment ?? null,
       at: e.sourceDate ?? "", when: ago(e.sourceDate, now), text: padelWords(text), quote: false, url: e.sourceUrl, video: null, helpful: (e as { helpful?: number }).helpful ?? 0 })),
   ].sort((a, b) => b.at.localeCompare(a.at));
+  // DiscGolfRecs: each review's plastic (review_variant, PR #256) as its version chip; other sites carry none.
+  const plastic = niche.id === "discgolf" ? new Map<string, string>([
+    ...reviews.flatMap(x => x.variant ? [[`p-${x.id}`, x.variant] as [string, string]] : []),
+    ...ctx.data.external.flatMap(e => (e as { variant?: string | null }).variant ? [[`w-${e.id}`, (e as { variant?: string | null }).variant!] as [string, string]] : []),
+  ]) : null;
+  const cards: RvCard[] = plastic ? base.map(c => plastic.has(c.id) ? { ...c, version: plastic.get(c.id)! } : c) : base;
 
   // TL;DR: the page's own checked words where it has them (lib/racket-page.ts), else the most-mentioned praise and catch.
   const pc = pageContent(r.slug), sum = summary(ctx.data, r.id);
   const lead = pc?.tagline ?? shortLine(r) ?? listLine(r) ?? row?.line ?? null;
   const plainLine = (t: string) => marked(t).map(x => x.text).join("");
   const bullets: { tone: "pos" | "catch"; text: string }[] = pc
-    ? [...pc.yes.slice(0, 2).map(i => ({ tone: "pos" as const, text: [plainLine(i.t).replace(/\.\s*$/, ""), evidenceLine(i)].filter(Boolean).join(". ") })), ...pc.no.slice(0, 1).map(i => ({ tone: "catch" as const, text: plainLine(i.t) }))]
+    ? [...pc.yes.slice(0, 2).map(i => ({ tone: "pos" as const, text: [plainLine(i.t).replace(/\.\s*$/, ""), evidenceLine(i, DG ? W.people : undefined)].filter(Boolean).join(". ") })), ...pc.no.slice(0, 1).map(i => ({ tone: "catch" as const, text: plainLine(i.t) }))]
     : [...sum.loved.filter(t => (sum.tagCounts.get(t) ?? 0) >= 5).slice(0, 2).map(t => ({ tone: "pos" as const, text: `${sum.tagCounts.get(t)} reviews say it is ${t}.` })),
       ...sum.complaints.filter(t => (sum.tagCounts.get(t) ?? 0) >= 5).slice(0, 1).map(t => ({ tone: "catch" as const, text: `${sum.tagCounts.get(t)} reviews mention ${t}.` }))];
 
   // How it plays: the trait bars the live page shows (an expert's How it plays score wins), with the expert's line.
   const facts = ctx.facts(r.id), traitScores = ctx.traits(r.id).scores;
-  const traits = Object.entries(TRAIT_LABEL).flatMap(([k, label]) => { const t = traitScores?.[k]; if (!t || t.basis === "none") return [];
+  const traits = Object.entries(DG ? DG_TRAIT_LABEL : TRAIT_LABEL).flatMap(([k, label]) => { const t = traitScores?.[k]; if (!t || t.basis === "none") return [];
     return [{ key: k, label, dots: t.dots, line: ctx.expertLine(r.id, k), expert: !!t.expert, n: t.people ? t.people.players.plus + t.people.reviewers.plus : t.plus }]; });
   const style = styleOf(facts);
 

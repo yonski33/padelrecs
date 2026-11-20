@@ -49,8 +49,21 @@ const STACK_TRAIT_GROUPS: TraitGroup[] = (() => {
   }
   return [...out.values()];
 })();
+/** DiscGolfRecs' nine (its disc mock, "How does it fly?"). Its own schema. */
+export const DISCGOLF_TRAIT_GROUPS: TraitGroup[] = [
+  { key: "level", title: "Best for", options: [["beginner", "Beginner"], ["intermediate", "Intermediate"], ["advanced", "Advanced"]] },
+  { key: "stability", title: "Stability", options: [["understable", "Understable"], ["stable", "Stable"], ["overstable", "Overstable"]] },
+  { key: "glide", title: "Glide", options: [["lots", "A lot"], ["medium", "Medium"], ["little", "Little"]] },
+  { key: "grip", title: "Grip", options: [["great", "Great"], ["ok", "OK"], ["slippery", "Slippery"]] },
+  { key: "wind", title: "In the wind", options: [["holds", "Holds"], ["turns", "Turns a bit"], ["flips", "Flips"]] },
+  { key: "arm_speed", title: "Arm speed", options: [["any", "Any"], ["medium", "Medium"], ["fast", "Fast"]] },
+  { key: "fade", title: "Fade", options: [["gentle", "Gentle"], ["medium", "Medium"], ["hard", "Hard"]] },
+  { key: "durability", title: "Durability", options: [["holds_up", "Holds up well"], ["average", "Average"], ["beats_fast", "Beats in fast"]] },
+  { key: "throw", title: "Best throw", options: [["backhand", "Backhand"], ["both", "Both"], ["forehand", "Forehand"]] },
+];
 /** The vote groups a site's pages, API and admin use. */
 export function traitGroupsFor(nicheId: string): TraitGroup[] {
+  if (nicheId === "discgolf") return DISCGOLF_TRAIT_GROUPS;
   if (nicheId === "pickleball") return PICKLEBALL_TRAIT_GROUPS;
   if (nicheId === "stackrecs") return STACK_TRAIT_GROUPS;
   if (nicheId === "skin") return SKIN_TRAIT_GROUPS;
@@ -81,5 +94,12 @@ const SKIN_BOARDS: VoteBoard[] = [
   { title: "Best for oily skin", trait: "skin_type", choice: "oily" }, { title: "Best under makeup", trait: "makeup", choice: "fine" },
   { title: "Fastest results", trait: "results", choice: "days" }, { title: "Best value", trait: "value", choice: "worth_it" },
 ];
-export const voteBoardsFor = (nicheId: string) => nicheId === "pickleball" ? PICKLEBALL_BOARDS : nicheId === "skin" ? SKIN_BOARDS : PADEL_BOARDS;
+/** DiscGolfRecs' (its home mock, "How throwers vote them"). */
+const DISCGOLF_BOARDS: VoteBoard[] = [
+  { title: "Straightest flight", trait: "stability", choice: "stable" }, { title: "Best for slow arms", trait: "arm_speed", choice: "any" },
+  { title: "Best for beginners", trait: "level", choice: "beginner" }, { title: "Most glide", trait: "glide", choice: "lots" },
+  { title: "Best in the wind", trait: "wind", choice: "holds" }, { title: "Most grip", trait: "grip", choice: "great" },
+];
+export const voteBoardsFor = (nicheId: string) => nicheId === "pickleball" ? PICKLEBALL_BOARDS : nicheId === "skin" ? SKIN_BOARDS
+  : nicheId === "discgolf" ? DISCGOLF_BOARDS : PADEL_BOARDS;
 export const VOTE_BOARDS = voteBoardsFor(niche.id);

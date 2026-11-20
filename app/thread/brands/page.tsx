@@ -26,7 +26,7 @@ export default async function ThreadBrands() {
     <JsonLd data={{ "@context": "https://schema.org", "@graph": [crumbs([{ name: "Brands", path: "/brands" }])] }}/>
     <main className="th-main"><div className="th-col">
       <section className="th-card th-hero">
-        <h1 className="th-h1">{niche.id === "skin" ? "Skincare brands" : `${cap(niche.id)} ${niche.words.one} brands`}</h1>
+        <h1 className="th-h1">{niche.id === "skin" ? "Skincare brands" : niche.id === "discgolf" ? "Disc golf brands" : `${cap(niche.id)} ${niche.words.one} brands`}</h1>
         <p className="th-lead">{`Every brand with ${niche.words.many} ${W.people} have reviewed, most reviewed first.`}</p>
       </section>
       <section className="th-card th-list"><ul className="th-brands">{brands.map(({ b, models, reviews, top, pic }) =>

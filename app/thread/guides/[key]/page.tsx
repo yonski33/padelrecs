@@ -15,6 +15,7 @@ import { th } from "../../../../lib/thread/look";
 import { Comments } from "../../live/comments";
 import { generateMetadata as liveGuideMetadata } from "../../../guide/page";
 import { JsonLd, crumbs, liveOr } from "../../seo";
+import type { QuickChoice } from "../../../../lib/quick-match";
 import { niche } from "../../../../lib/niche";
 
 export const revalidate = 21600;
@@ -22,9 +23,9 @@ export const dynamicParams = false;
 export function generateStaticParams() { return GUIDE_KEYS.map(key => ({ key })); }
 type P = { params: Promise<{ key: string }> };
 const PICKLEBALL = niche.id === "pickleball";
-const SKIN = niche.id === "skin";
+const SKIN = niche.id === "skin", DG = niche.id === "discgolf";
 const SHAPES = PICKLEBALL ? ["standard", "hybrid", "elongated"] : ["round", "teardrop", "diamond"];
-const BEST = SKIN ? "best-face-moisturizers" : `best-${niche.id}-${niche.words.many}`; // "best-padel-rackets", "best-pickleball-paddles"
+const BEST = SKIN ? "best-face-moisturizers" : DG ? "best-disc-golf-discs" : `best-${niche.id}-${niche.words.many}`; // "best-padel-rackets", "best-pickleball-paddles"
 const GUIDE_NAME = `${niche.words.One} guide`;
 const guideOf = (key: string) => GUIDES.find(g => g.key === key);
 
@@ -44,6 +45,17 @@ async function picksFor(key: GuideKey): Promise<{ title?: string; rows: ThreadRo
   // PickleballRecs: a paddle stored with several shapes ("Hybrid, Widebody, or Elongated") counts for each, as in the
   // catalogue, but shows once, current models only. Padel keeps its rule.
   const isShape = (r: ThreadRow, shape: string) => PICKLEBALL ? !!r.shape && new RegExp(`\\b${shape}\\b`, "i").test(r.shape) : r.shape?.toLowerCase() === shape;
+  if (DG) {
+    // DiscGolfRecs: each disc type's live ranking by exact slug (the choose and types guides), and the home's quick match for
+    // the throws and a slower arm, as the Thread-only rankings rank them (app/thread/rankings-data.ts).
+    const top = (slug: string, n: number) => (lists.find(l => l.slug === slug)?.ids ?? []).slice(0, n).map(id => rows.get(id)).filter((x): x is ThreadRow => !!x);
+    const types = ["best-disc-golf-putters", "best-disc-golf-midrange-discs", "best-disc-golf-fairway-drivers", "best-disc-golf-distance-drivers"];
+    if (key === "racket" || key === "shape") return [{ rows: types.flatMap(s => top(s, 1)) }];
+    const match = async (c: QuickChoice, n: number) => !hasDb() ? [] : (await homePayload().then(p => rankHome(p.items, RANK_SETUP, NEGATIVE_TAGS, c, false, n).rows))
+      .map(x => rows.get(x.id)).filter((x): x is ThreadRow => !!x);
+    if (key === "side") return [{ title: "Backhand", rows: top(BEST, 2) }, { title: "Forehand", rows: await match({ style: "power", arm: false }, 2) }];
+    if (key === "elbow") return [{ rows: top("best-disc-golf-discs-for-slow-arms", 4) }];
+  }
   const seen = new Set<string>();
   const bestOfShape = (shape: string, n: number) => all.filter(r => r.score != null && r.n >= 10 && isShape(r, shape) && (!PICKLEBALL || (r.current !== false && !seen.has(r.id))))
     .sort((a, b) => b.score! - a.score!).slice(0, n).map(r => (seen.add(r.id), r));
@@ -69,6 +81,7 @@ export default async function ThreadGuide({ params }: P) {
   // "Full ranking" goes to a list that is on show (a Thread-only list can be hidden while it has under 10 rackets).
   const shown = new Set((await threadRankings()).map(l => l.slug));
   const wanted = SKIN ? (g.key === "beginner" || g.key === "elbow" ? "best-skincare-for-sensitive-skin" : BEST)
+    : DG ? (g.key === "beginner" ? `${BEST}-for-beginners` : g.key === "elbow" ? `${BEST}-for-slow-arms` : BEST)
     : g.key === "beginner" ? `${BEST}-for-beginners` : g.key === "elbow" ? (PICKLEBALL ? `${BEST}-for-tennis-elbow` : ELBOW_SLUG) : BEST;
   const fullRanking = `/rankings/${shown.has(wanted) ? wanted : BEST}`;
   const lime = Number((g.extra as { highlightFirstSteps?: number } | undefined)?.highlightFirstSteps ?? g.steps.length);
