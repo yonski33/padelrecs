@@ -1,6 +1,7 @@
 "use client";
 // Comments (README "Comments", Metalbone CTRL Thread v7): a collapsed one-line box that opens on tap, "Posting as" a generated
-// nickname you can edit or renew, low-key ▲ n ▼, Reply, timestamps, replies indented under a 2px line, newest first (or Top).
+// nickname you can edit or renew, low-key ▲ n ▼, Reply (on replies too: it posts under the same top-level comment, with
+// "@Name"), timestamps, replies indented under a 2px line, newest first (or Top).
 // /api/comments (drizzle/0025): clean comments show at once, links and very short ones wait for a person, spam is dropped.
 import { accountSite } from "../../../lib/thread/sites";
 import { niche } from "../../../lib/niche";
@@ -11,22 +12,25 @@ import { savedName, saveName, grow } from "./name";
 import { ago } from "../ui";
 import { useAccount, signInHref, type Me } from "./use-account";
 import { MemberMark } from "./member-mark";
+import { mentionOf, withoutMention } from "../../../lib/thread/mention";
 /** Optional accounts run on PadelRecs only for now (lib/thread/sites.ts accountSite). */
 const ACCOUNTS = accountSite(niche.id);
 
 type C = { id: string; parentId: string | null; alias: string; body: string; at: string; score: number; mine: number; member?: boolean; level?: string | null; side?: string | null };
 const HELD = "Thanks! Your comment will show once a person has checked it.";
 
-function Box({ me, nick, setNick, nicknames, placeholder, cta, onPost, onCancel, autoFocus = true }: { me: Me; nick: string; setNick: (s: string) => void; nicknames: string[]; placeholder: string; cta: string;
-  onPost: (text: string) => Promise<boolean>; onCancel: () => void; autoFocus?: boolean }) {
-  const [text, setText] = useState(""), [busy, setBusy] = useState(false), [nameErr, setNameErr] = useState("");
+
+function Box({ me, nick, setNick, nicknames, placeholder, cta, onPost, onCancel, autoFocus = true, mention }: { me: Me; nick: string; setNick: (s: string) => void; nicknames: string[]; placeholder: string; cta: string;
+  onPost: (text: string) => Promise<boolean>; onCancel: () => void; autoFocus?: boolean; /** Prefilled "@Name " (a reply to a reply). */ mention?: string }) {
+  const [text, setText] = useState(mention ?? ""), [busy, setBusy] = useState(false), [nameErr, setNameErr] = useState("");
   // A name is required (owner 2026-11-19): checked here, the message right under this box (replies too), no modal.
   const send = async () => { const p = nameProblem(nick); if (p) { setNameErr(p); return; } setNameErr(""); setBusy(true); if (await onPost(text.trim())) setText(""); setBusy(false); };
   // Why the button is off, said under it (owner 2026-11-19), instead of a grey button with no reason.
-  const short = text.trim().length < 2, noName = !!nameProblem(nick);
+  const short = withoutMention(text, mention).trim().length < 2, noName = !!nameProblem(nick);
   const why = short && noName ? "Write a comment and add a name to post" : short ? "Write something to post" : noName ? "Add a name to post" : "";
   return <div className="th-compose white">
-    <textarea className="th-ta th-ta-grow" rows={2} autoFocus={autoFocus} value={text} maxLength={2000} placeholder={placeholder} aria-label={placeholder}
+    <textarea className="th-ta th-ta-grow" rows={2} autoFocus={autoFocus} value={text}
+      onFocus={e => { if (mention) { const n = e.currentTarget.value.length; e.currentTarget.setSelectionRange(n, n); } }} maxLength={2000} placeholder={placeholder} aria-label={placeholder}
       onChange={e => { setText(e.target.value); grow(e.currentTarget); }}/>
     <div className="th-compose-foot">
       {me ? <span className="th-as th-as-me">Posting as <b>{me.name}</b><MemberMark/></span>
@@ -132,7 +136,10 @@ export function Comments({ page, title = "Comments", prompt = "Join the conversa
         {replies(c.id).length > 0 && <div className="th-replies">{replies(c.id).map(r => <div key={r.id} style={{ display: "flex", flexDirection: "column", gap: 2 }}>
           <div className="th-cm-head"><strong style={{ fontSize: 14 }}>{commenterName(r.alias)}</strong>{r.member && <MemberMark/>}{r.member && profileLine(r.level, r.side) && <span>{`· ${profileLine(r.level, r.side)}`}</span>}<span>{`· ${ago(r.at)}`}</span><Rename c={r}/></div>
           {textOf(r)}
-          <div className="th-cm-act"><Votes c={r}/><Own c={r}/></div>
+          {/* Reply to a reply (owner 2026-11-20): one indent level, as before; it posts under the top-level comment, with "@Name". */}
+          <div className="th-cm-act"><Votes c={r}/><button type="button" className="reply" onClick={() => setReply(reply === r.id ? null : r.id)}>{reply === r.id ? "Cancel" : "Reply"}</button><Own c={r}/></div>
+          {reply === r.id && <Box me={me} nick={nick} setNick={setNick} nicknames={nicknames} placeholder={`Reply to ${commenterName(r.alias)}`} cta="Reply"
+            mention={mentionOf(commenterName(r.alias))} onPost={t => post(t, c.id)} onCancel={() => setReply(null)}/>}
         </div>)}</div>}
       </div>)}
       {list && tops.length === 0 && !open && <p className="th-note" style={{ padding: "6px 0" }}>No comments yet. Start the conversation.</p>}
