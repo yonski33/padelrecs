@@ -70,7 +70,7 @@ const DISCGOLF_GUIDES: Record<GuideKey, string> = {
   beginner: "/guides/beginner-tips",
   shape: "/guides/disc-types",
   side: "/guides/backhand-or-forehand",
-  elbow: "/guides/sore-arm",
+  elbow: "/guides/slow-arm-speed",
 };
 export const guidePathsFor = (nicheId: string): Record<GuideKey, string> => nicheId === "pickleball" ? PICKLEBALL_GUIDES : nicheId === "skin" ? SKIN_GUIDES
   : nicheId === "discgolf" ? DISCGOLF_GUIDES : PADEL_GUIDES;

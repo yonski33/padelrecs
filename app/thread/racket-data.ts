@@ -50,7 +50,7 @@ export async function racketData(slug: string) {
   for (const e of ctx.data.external) { if (e.sourcePlatform !== "YouTube" || /[?&]lc=/.test(e.sourceUrl)) continue; const v = videoOf(e.sourceUrl);
     if (v && !seen.has(`${v}|${e.racketId}`)) { seen.add(`${v}|${e.racketId}`); ytProducts.set(v, (ytProducts.get(v) ?? 0) + 1); } }
   const lv = (v?: string | null) => v ? v.toLowerCase() : null;
-  const cards: RvCard[] = [
+  const base: RvCard[] = [
     // Names (lib/thread/display-name.ts): a typed name, else one made from the level and side; those then aren't repeated.
     ...reviews.map(x => ({ id: `p-${x.id}`, kind: "player" as const, who: reviewerName({ alias: x.alias, level: x.playerLevel, side: x.playingSide }), alias: typedName(x.alias) ?? "",
       meta: typedName(x.alias) ? [lv(x.playerLevel), x.playingSide ? (niche.id === "padel" ? `${x.playingSide.toLowerCase()} side` : sideWord(x.playingSide)) : null].filter(Boolean).join(" · ") || null : null,
@@ -75,6 +75,12 @@ export async function racketData(slug: string) {
     ...redditPick(ctx.data.external, r.id).map(({ row: e, text }) => ({ id: `w-${e.id}`, kind: "reddit" as const, who: subOf(e.sourceUrl, e.sourceName), meta: null, verdict: e.sentiment ?? null,
       at: e.sourceDate ?? "", when: ago(e.sourceDate, now), text: padelWords(text), quote: false, url: e.sourceUrl, video: null, helpful: (e as { helpful?: number }).helpful ?? 0 })),
   ].sort((a, b) => b.at.localeCompare(a.at));
+  // DiscGolfRecs: each review's plastic (review_variant, PR #256) as its version chip; other sites carry none.
+  const plastic = niche.id === "discgolf" ? new Map<string, string>([
+    ...reviews.flatMap(x => x.variant ? [[`p-${x.id}`, x.variant] as [string, string]] : []),
+    ...ctx.data.external.flatMap(e => (e as { variant?: string | null }).variant ? [[`w-${e.id}`, (e as { variant?: string | null }).variant!] as [string, string]] : []),
+  ]) : null;
+  const cards: RvCard[] = plastic ? base.map(c => plastic.has(c.id) ? { ...c, version: plastic.get(c.id)! } : c) : base;
 
   // TL;DR: the page's own checked words where it has them (lib/racket-page.ts), else the most-mentioned praise and catch.
   const pc = pageContent(r.slug), sum = summary(ctx.data, r.id);
