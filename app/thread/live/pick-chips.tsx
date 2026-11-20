@@ -2,7 +2,7 @@
 import { cap } from "../ui";
 import { LEVEL_OPTS, STYLE_OPTS, styleLabel, ARM_LABEL, type Picks } from "./picks";
 
-/** I'm [Beginner | Intermediate | Advanced] · I want [Control | Balance | Power] · [ ] Sore arm. A second tap clears a pick. */
+/** I'm [Beginner | Intermediate | Advanced] · I want [Control | Balance | Power] · [ ] Arm comfort. A second tap clears a pick. */
 export function PickChips({ picks, set, small }: { picks: Picks; set: (p: Partial<Picks>) => void; small?: boolean }) {
   const cls = `th-pick${small ? " sm" : ""}`;
   return <>

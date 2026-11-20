@@ -25,7 +25,7 @@ import { forgetSavedPicks } from "../../../lib/saved-picks";
 /** A type-picker site (lib/fit-config.ts quick: DiscGolfRecs): its stability words, arm pick and compare words. Unset: padel's. */
 const CFG = fitConfigFor(niche), QUICK = CFG?.quick ? CFG : null;
 const styleWord = (s: QuickChoice["style"]) => QUICK && s !== "any" ? (QUICK.styleLabels[s] ?? STYLE_WORD[s]).toLowerCase() : STYLE_WORD[s];
-const ARM_WORD = QUICK?.quick?.arm ?? "sore arm", USE_WORD = QUICK?.quick?.useWord ?? (QUICK ? "flies" : "plays");
+const ARM_WORD = QUICK?.quick?.arm ?? "arm comfort", USE_WORD = QUICK?.quick?.useWord ?? (QUICK ? "flies" : "plays");
 const BAD = NEGATIVE_TAGS, SETUP = RANK_SETUP;
 const PICK_KEYS = ["style", "level", "arm"];
 

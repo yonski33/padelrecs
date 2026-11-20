@@ -83,7 +83,7 @@ export function compareVerdict(ps: VProduct[], traits: VTrait[], picks: Record<s
   function otherLine(p: VProduct): VLine {
     const pk = picks![p.id];
     if (pk.hard === "level") return { pre: "Skip the ", name: p.short, post: ` for now: built for ${pk.levelWord ?? "other"} ${ARM_SHORT === "console" ? "racers" : "players"}.` };
-    if (pk.hard === "arm") return { pre: "Skip the ", name: p.short, post: ` for now: ${ARM_SHORT === "sore arm" ? "hard on a sore arm" : ARM_SHORT === "console" ? "it's PC only" : "it needs more arm speed"}.` };
+    if (pk.hard === "arm") return { pre: "Skip the ", name: p.short, post: ` for now: ${ARM_SHORT === "arm comfort" ? "hard on the arm" : ARM_SHORT === "console" ? "it's PC only" : "it needs more arm speed"}.` };
     const k = strength(p), why = k !== undefined ? traits[k].ifYou : null;
     if ((pk.pct ?? 0) >= 70 && why) {
       const liveWith = p.catchShort ? ` and can live with ${p.catchShort}` : "";

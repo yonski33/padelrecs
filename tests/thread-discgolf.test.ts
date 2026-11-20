@@ -73,7 +73,7 @@ test("discgolf process: words, picks and routing on NICHE=discgolf", () => {
     // The pick labels and type chips the client reads (app/thread/live/picks.ts styleLabel, ARM_LABEL, TYPES) come from here.
     const { SITE_FIT } = await import("./lib/fit-config.ts");
     const L = SITE_FIT.styleLabels;
-    const out = { w: [W.people, W.score, W.reviews, W.traitsTitle, W.played], picks: [L.control, L.balance, L.power, SITE_FIT.quick ? "Slower arm" : "Sore arm"],
+    const out = { w: [W.people, W.score, W.reviews, W.traitsTitle, W.played], picks: [L.control, L.balance, L.power, SITE_FIT.quick ? "Slower arm" : "Arm comfort"],
       types: (SITE_FIT.quick?.types ?? []).map(t => t.key) };
     for (const p of ["/", "/discs", "/discs/discraft-buzzz", "/putters", "/rankings/best-disc-golf-putters", "/guides/slow-arm-speed", "/?look=classic", "/compare"]) {
       const r = await proxy(new NextRequest(new URL(p, "https://www.discgolfrecs.com")));
