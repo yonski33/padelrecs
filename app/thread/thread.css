@@ -775,3 +775,4 @@ body:has(.th-stack) .th-stack a.th-add:hover, body:has(.th-stack) .th-stack a.th
   body:has(.th-stack) .th-stack .th-rtabs a[aria-current="page"] { background: #3730a3; border-color: #3730a3; color: #fff; }
 .th-stack .th-sbox-head { background: #3730a3; color: #fff; }
 .th-stack .th-qm-tag { background: var(--lime); }
+.th-stack .th-by .th-logo-icon { width: 22px; height: 22px; }
