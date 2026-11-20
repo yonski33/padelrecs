@@ -6,7 +6,7 @@ import { migrationSql } from "../db/migrations";
 import { brands, rackets } from "../db/schema";
 import { castTraitVote, traitCounts } from "../db/thread-votes";
 import { traitOverridesFor, setReviewCounts, setFrozen, removeTraitVote, removeVoter, resetTraitGroup, recentTraitVotes, traitAdminHistory, overriddenRackets, ALL_GROUPS } from "../db/trait-admin";
-import { countsFrom, changedCounts } from "../lib/thread/trait-view";
+import { countsFrom, changedCounts, SENTIMENT_GROUP, SENTIMENT_KEY, tallyWith } from "../lib/thread/trait-view";
 import type { getDb } from "../db/index";
 
 // The admin Traits tab (drizzle/0027) on a throwaway database: never against the live one.
@@ -89,4 +89,33 @@ test("Save all: only the groups whose numbers changed are saved; one group's Sav
   assert.deepEqual(changedCounts({ ...form, only: "pop" }, groups), [{ trait: "pop", counts: { low: 2 } }]);
   assert.deepEqual(changedCounts({ ...form, c_feel__hard: "0" }, groups), []);
   assert.equal(changedCounts({ ...form, c_pop__low: "-3" }, groups), null);
+});
+
+test("the overall tally saves with Save all next to the trait groups, only when its numbers changed", () => {
+  const groups = [{ key: "feel", title: "Feel", options: [["soft", "Soft"], ["hard", "Hard"]] as [string, string][] }, SENTIMENT_GROUP];
+  const form = { c_feel__soft: "4", o_feel__soft: "4", c_feel__hard: "1", o_feel__hard: "0",
+    c__sentiment__positive: "12", o__sentiment__positive: "10", c__sentiment__mixed: "2", o__sentiment__mixed: "2", c__sentiment__negative: "0", o__sentiment__negative: "1" };
+  assert.deepEqual(changedCounts(form, groups), [{ trait: "feel", counts: { soft: 4, hard: 1 } }, { trait: SENTIMENT_KEY, counts: { positive: 12, mixed: 2 } }]);
+  const same = { ...form, c__sentiment__positive: "10", c__sentiment__negative: "1" };
+  assert.deepEqual(changedCounts(same, groups), [{ trait: "feel", counts: { soft: 4, hard: 1 } }]);
+  assert.deepEqual(changedCounts({ ...same, only: SENTIMENT_KEY }, groups), [{ trait: SENTIMENT_KEY, counts: { positive: 10, mixed: 2, negative: 1 } }]);
+  assert.equal(changedCounts({ ...form, c__sentiment__mixed: "1.5" }, groups), null);
+});
+
+test("the page's tally: the override when saved (a missing option is 0), else the counted one", () => {
+  const counted = { pos: 8, mix: 3, neg: 1 };
+  assert.deepEqual(tallyWith(counted, undefined), counted);
+  assert.deepEqual(tallyWith(counted, { positive: 12, mixed: 2 }), { pos: 12, mix: 2, neg: 0 });
+  assert.deepEqual(tallyWith(counted, {}), { pos: 0, mix: 0, neg: 0 });
+});
+
+test("the tally override fits the trait_overrides table (no migration) and is logged like the groups", async () => {
+  const { engine, db } = await setup();
+  try {
+    await setReviewCounts(db, "r1", SENTIMENT_KEY, { positive: 12, mixed: 2 });
+    assert.deepEqual((await traitOverridesFor(db, "r1")).counts, { [SENTIMENT_KEY]: { positive: 12, mixed: 2 } });
+    await setReviewCounts(db, "r1", SENTIMENT_KEY, null);
+    assert.deepEqual((await traitOverridesFor(db, "r1")).counts, {});
+    assert.deepEqual((await traitAdminHistory(db, "r1")).map(x => x.trait), [SENTIMENT_KEY, SENTIMENT_KEY]);
+  } finally { await engine.close(); }
 });

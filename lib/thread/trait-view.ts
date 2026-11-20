@@ -1,4 +1,4 @@
-import { TRAIT_GROUPS } from "./traits";
+import { TRAIT_GROUPS, type TraitGroup } from "./traits";
 import { W } from "./words";
 // How one "How does it play?" group shows (owner 2026-11-19): review mentions (db/thread/padel-traits.json) and players'
 // votes add up per option, and every option with any shows its real count and bar, 1 included (owner: no "under 5" rule
@@ -71,4 +71,16 @@ export function changedCounts(form: Record<string, unknown>, groups = TRAIT_GROU
     if (only || !same) out.push({ trait: g.key, counts: now });
   }
   return out;
+}
+
+/** A product's overall tally (Loved it / Mixed / Not for me), editable in the Traits tab (owner 2026-11-20). The override
+ *  is a trait_overrides row under this key (no migration: same table and checks as the trait groups); without one, the
+ *  tally is counted from the reviews (db/data.ts score). It edits the shown tally only; the score badge stays counted. */
+export const SENTIMENT_KEY = "_sentiment";
+export const SENTIMENT_GROUP: TraitGroup = { key: SENTIMENT_KEY, title: "Overall opinions",
+  options: [["positive", "Loved it"], ["mixed", "Mixed"], ["negative", "Not for me"]] };
+export type Tally = { pos: number; mix: number; neg: number };
+/** The tally a page shows: the owner's override when saved (a missing option is 0), else the counted one. */
+export function tallyWith(counted: Tally, override: Record<string, number> | null | undefined): Tally {
+  return override ? { pos: override.positive ?? 0, mix: override.mixed ?? 0, neg: override.negative ?? 0 } : counted;
 }

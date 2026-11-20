@@ -1,5 +1,6 @@
 import type { rackets } from "../../db/schema";
 import SlugField from "./slug-field";
+import ProductPicker from "./product-picker";
 import { amazonPhoto } from "../../lib/amazon-photos";
 import { photoHidden, shopPhoto } from "../../lib/shop-photos";
 import { niche, catalogPath, productHref, hasYears } from "../../lib/niche";
@@ -18,11 +19,7 @@ export default function RacketSpecs({models,brands,racketId,oldSlugs=[],traits}:
  const photo=selected?(shopPhoto(selected)||amazonPhoto(selected)?.image):null;
  return <div className="narrow">
   <h2 className="admin-heading">{`Edit ${w.one} details`}</h2>
-  <form action="/funtimes" method="get" className="spec-selector">
-   <input type="hidden" name="tab" value="specs"/>
-   <label className="field">{`Select a ${w.one}`}<select name="racket" required defaultValue={selected?.id||""}><option value="" disabled>{`Choose a ${w.one}…`}</option>{models.map(r=><option key={r.id} value={r.id}>{r.name}</option>)}</select></label>
-   <button type="submit">{`Open ${w.one}`}</button>
-  </form>
+  <ProductPicker tab="specs" models={models} selectedId={selected?.id}/>
   {racketId && !selected && <p role="alert" className="form-error">{`${w.One} not found. Choose a ${w.one} from the list.`}</p>}
   {selected && <form action="/api/funtimes/racket-photo" method="post" encType="multipart/form-data" className="review-form admin-photo" key={`photo-${selected.id}`}>
    <input type="hidden" name="id" value={selected.id}/>
