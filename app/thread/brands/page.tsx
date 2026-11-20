@@ -50,7 +50,7 @@ export default async function ThreadBrands() {
         <li key={b.id}><a className="th-brand" href={th(`/brands/${b.slug}`)}>
           <Photo src={pic} className="th-brand-pic"/>
           <span className="th-brand-body"><strong>{b.name}</strong>
-            <span className="th-note">{[models > 0 ? plural(models, "racket") : "", reviews > 0 ? plural(reviews, "review") : ""].filter(Boolean).join(" · ")}</span>
+            <span className="th-note">{[models > 0 ? plural(models, niche.id === "simracing" ? niche.words.one : "racket") : "", reviews > 0 ? plural(reviews, "review") : ""].filter(Boolean).join(" · ")}</span>
             {top && <span className="th-note">{`Top rated: ${top.name.replace(new RegExp(`^${b.name}\\s+`, "i"), "")}`}</span>}</span>
           {top?.score != null && <Badge n={top.score} size="sm"/>}
           <span className="th-link-b" aria-hidden="true">›</span>
