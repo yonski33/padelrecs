@@ -33,12 +33,15 @@ const formatWord = (side: string) => { const own = (niche.profile.playingSide?.o
 export function reviewerName(r: { alias?: string | null; level?: string | null; side?: string | null }): string {
   const typed = typedName(r.alias);
   if (typed) return typed;
-  const level = r.level?.trim() ? r.level.trim()[0].toUpperCase() + r.level.trim().slice(1).toLowerCase() : null;
+  // SkinRecs: the skin type in its own words ("Dry skin", lib/niche/skin.ts profile); other sites: the level as given.
+  const levelOwn = niche.id === "skin" && r.level?.trim() ? (niche.profile.playerLevel?.options ?? []).find(o => o.value.toLowerCase() === r.level!.trim().toLowerCase()) as { display?: string } | undefined : undefined;
+  const level = levelOwn?.display ? levelOwn.display[0].toUpperCase() + levelOwn.display.slice(1)
+    : r.level?.trim() ? r.level.trim()[0].toUpperCase() + r.level.trim().slice(1).toLowerCase() : null;
   const format = r.side?.trim() ? formatWord(r.side.trim()) : null;
   if (format) return level ? `${level}, ${format}` : `Plays ${format}`; // "Intermediate, mostly doubles"
   const side = r.side?.trim() ? SIDE[r.side.trim().toLowerCase()] ?? null : null;
   if (level && side) return `${level}, ${side}`;
-  if (level) return `${level} player`;
+  if (level) return levelOwn?.display ? level : `${level} player`;
   if (side) return side === "both sides" ? "Plays both sides" : `${side[0].toUpperCase()}${side.slice(1).replace(" side", "-side")} player`;
   return NO_NAME;
 }

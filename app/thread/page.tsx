@@ -5,11 +5,12 @@ import { Shell } from "./shell";
 import { homeMetadata } from "../home-metadata";
 import { liveOr } from "./seo";
 import { DEFAULT_CHOICE } from "../../lib/quick-match";
-import { threadRows, threadFeed, hasDb, homeTop, threadTopPicks, threadHomeSide } from "./data";
+import { threadRows, threadFeed, hasDb, homeTop, threadTopPicks, threadHomeSide, skinOf } from "./data";
 import { TopPicks } from "./top-picks";
 import { homePayload, defaultHomeIds } from "../home-payload";
 import { threadRankings } from "./rankings-data";
 import { MatchBox, HomeList } from "./live/lists";
+import { SkinMatchBox, SkinHomeList } from "./live/skin-match";
 import { Ago } from "./live/ago";
 import { Feed, type FeedCard } from "./live/feed";
 import { SideBox, LinkList, NarrowLinks, SOURCE, ago } from "./ui";
@@ -17,15 +18,22 @@ import { th } from "../../lib/thread/look";
 import { newThisWeek, WEEK_SHORT } from "../../lib/new-this-week";
 import { commenterName } from "../../lib/thread/display-name";
 import { niche } from "../../lib/niche";
+import { W } from "../../lib/thread/words";
 
 export const revalidate = 21600;
+const SKIN = niche.id === "skin";
 // The live home's title, description, canonical and share card (app/home-metadata.ts).
 export const generateMetadata = (): Promise<Metadata> => liveOr(() => homeMetadata(DEFAULT_CHOICE, false));
 
 export default async function ThreadHome() {
-  const [{ all, rows, ctx }, picks, lists, feed, payload, side] = await Promise.all([threadRows(), threadTopPicks(), threadRankings(), threadFeed(), hasDb() ? homePayload() : null, threadHomeSide()]);
+  const [{ all, rows, ctx }, picks, lists, feed, payload, side] = await Promise.all([threadRows(), threadTopPicks(), threadRankings(), threadFeed(), hasDb() && !SKIN ? homePayload() : null, threadHomeSide()]);
   // The classic home's own order (curated picks first, one current row per model; app/home-payload.ts defaultHomeIds).
   const top = payload ? homeTop(rows, defaultHomeIds(payload, DEFAULT_CHOICE)) : [];
+  // SkinRecs ranks with its own engine in the browser (app/thread/live/skin-match.tsx): the current products and their
+  // ranking inputs (app/skin/payload.ts wireOf) travel with the page.
+  const sk = SKIN ? skinOf(ctx) : null;
+  const skinRows = sk ? all.filter(r => r.current !== false && r.n > 0) : [];
+  const skinWire = sk ? (await import("../skin/payload")).wireOf(sk, sk.data.listed.filter(r => skinRows.some(x => x.id === r.id))) : [];
   const reviewed = all.filter(r => r.score != null && r.current).sort((a, b) => b.n - a.n).slice(0, 10);
   const now = Date.now();
   const card = (f: (typeof feed)[number]): FeedCard | null => { const r = rows.get(f.racketId); return r ? { id: f.id, kind: f.kind, who: f.who, text: f.text, when: ago(f.date, now), at: f.date, verdict: f.verdict, url: f.url, racket: { name: r.name, href: r.href, pic: r.pic } } : null; };
@@ -56,12 +64,12 @@ export default async function ThreadHome() {
     <main className="th-main">
       <div className="th-col">
         <section className="th-card th-hero">
-          <div className="th-h1-row"><h1 className="th-h1">{`The ${niche.id} ${niche.words.one} community`}</h1>
+          <div className="th-h1-row"><h1 className="th-h1">{SKIN ? "The skincare community" : `The ${niche.id} ${niche.words.one} community`}</h1>
             {total > 0 && <span className="th-live"><i aria-hidden="true"/>{`${total.toLocaleString("en-US")} reviews${week > 0 ? ` · ${week.toLocaleString("en-US")} ${WEEK_SHORT}` : ""}`}</span>}</div>
-          <p className="th-lead">{`Real players talking ${niche.words.many}. Share your take, and see what everyone actually thinks.`}</p>
-          <MatchBox names={names} listed={listed}/>
+          <p className="th-lead">{SKIN ? "Real people talking about skincare. Share what worked, and see what everyone actually thinks." : `Real ${W.people} talking ${niche.words.many}. Share your take, and see what everyone actually thinks.`}</p>
+          {SKIN ? <SkinMatchBox wire={skinWire} names={names}/> : <MatchBox names={names} listed={listed}/>}
         </section>
-        <HomeList rows={top} reviewed={reviewed}/>
+        {SKIN ? <SkinHomeList wire={skinWire} rows={skinRows}/> : <HomeList rows={top} reviewed={reviewed}/>}
         {sideBox(" th-only-m")}
         {picks.lists.length > 0 && <TopPicks lists={picks.lists} total={picks.total} hrefs={Object.fromEntries(all.map(r => [r.id, r.href]))}/>}
         {cards.length > 0 && <Feed cards={cards}/>}

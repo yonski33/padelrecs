@@ -1,0 +1,4637 @@
+{
+ "built": "2026-11-19",
+ "rule": "Counts from SkinRecs' attribute scores: suits_* plus, gentle plus/minus, texture and finish axis reports.",
+ "rackets": {
+  "anua-3-ceramide-panthenol-moisture-barrier-cream": {
+   "slug": "anua-3-ceramide-panthenol-moisture-barrier-cream",
+   "name": "Anua 3 Ceramide Panthenol Moisture Barrier Cream",
+   "sources": 6,
+   "groups": {
+    "irritation": {
+     "none": 4,
+     "a_little": 2
+    }
+   },
+   "spec": {}
+  },
+  "anua-8-hyaluronic-acid-moisturizing-gentle-gel-cleanser": {
+   "slug": "anua-8-hyaluronic-acid-moisturizing-gentle-gel-cleanser",
+   "name": "Anua 8 Hyaluronic Acid Moisturizing Gentle Gel Cleanser",
+   "sources": 0,
+   "groups": {},
+   "spec": {}
+  },
+  "anua-azelaic-acid-10-hyaluron-redness-soothing-serum": {
+   "slug": "anua-azelaic-acid-10-hyaluron-redness-soothing-serum",
+   "name": "Anua Azelaic Acid 10 Hyaluron Redness Soothing Serum",
+   "sources": 33,
+   "groups": {
+    "skin_type": {
+     "dry": 3
+    },
+    "irritation": {
+     "none": 27,
+     "a_little": 6
+    },
+    "texture": {
+     "light": 13
+    }
+   },
+   "spec": {}
+  },
+  "anua-heartleaf-70-intense-calming-cream": {
+   "slug": "anua-heartleaf-70-intense-calming-cream",
+   "name": "Anua Heartleaf 70% Intense Calming Cream",
+   "sources": 3,
+   "groups": {
+    "irritation": {
+     "none": 2
+    },
+    "texture": {
+     "rich": 3
+    }
+   },
+   "spec": {}
+  },
+  "anua-heartleaf-77-clear-pad": {
+   "slug": "anua-heartleaf-77-clear-pad",
+   "name": "Anua Heartleaf 77 Clear Pad",
+   "sources": 0,
+   "groups": {},
+   "spec": {}
+  },
+  "anua-heartleaf-77-soothing-toner": {
+   "slug": "anua-heartleaf-77-soothing-toner",
+   "name": "Anua Heartleaf 77 Soothing Toner",
+   "sources": 21,
+   "groups": {
+    "skin_type": {
+     "dry": 1,
+     "combination": 1,
+     "oily": 1
+    },
+    "irritation": {
+     "none": 9,
+     "a_little": 12
+    },
+    "texture": {
+     "light": 3
+    }
+   },
+   "spec": {}
+  },
+  "anua-heartleaf-pore-control-cleansing-oil": {
+   "slug": "anua-heartleaf-pore-control-cleansing-oil",
+   "name": "Anua Heartleaf Pore Control Cleansing Oil",
+   "sources": 2,
+   "groups": {
+    "irritation": {
+     "a_little": 2
+    }
+   },
+   "spec": {}
+  },
+  "anua-heartleaf-quercetinol-pore-deep-cleansing-foam": {
+   "slug": "anua-heartleaf-quercetinol-pore-deep-cleansing-foam",
+   "name": "Anua Heartleaf Quercetinol Pore Deep Cleansing Foam",
+   "sources": 3,
+   "groups": {
+    "irritation": {
+     "none": 2,
+     "a_little": 1
+    }
+   },
+   "spec": {}
+  },
+  "anua-nano-retinol-0-3-niacin-renewing-serum": {
+   "slug": "anua-nano-retinol-0-3-niacin-renewing-serum",
+   "name": "Anua Nano Retinol 0.3% + Niacin Renewing Serum",
+   "sources": 1,
+   "groups": {
+    "irritation": {
+     "none": 1
+    }
+   },
+   "spec": {}
+  },
+  "anua-niacinamide-10-txa-4-serum": {
+   "slug": "anua-niacinamide-10-txa-4-serum",
+   "name": "Anua Niacinamide 10% + TXA 4% Serum",
+   "sources": 8,
+   "groups": {
+    "irritation": {
+     "none": 4,
+     "a_little": 4
+    },
+    "texture": {
+     "medium": 3
+    }
+   },
+   "spec": {}
+  },
+  "anua-peach-70-niacinamide-serum": {
+   "slug": "anua-peach-70-niacinamide-serum",
+   "name": "Anua Peach 70% Niacinamide Serum",
+   "sources": 3,
+   "groups": {
+    "irritation": {
+     "a_little": 3
+    }
+   },
+   "spec": {}
+  },
+  "anua-retinol-0-1-caffeine-revitalizing-eye-cream": {
+   "slug": "anua-retinol-0-1-caffeine-revitalizing-eye-cream",
+   "name": "Anua Retinol 0.1 Caffeine Revitalizing Eye Cream",
+   "sources": 0,
+   "groups": {},
+   "spec": {}
+  },
+  "anua-rice-70-glow-milky-toner": {
+   "slug": "anua-rice-70-glow-milky-toner",
+   "name": "Anua Rice 70 Glow Milky Toner",
+   "sources": 3,
+   "groups": {
+    "irritation": {
+     "none": 3
+    },
+    "texture": {
+     "medium": 3
+    }
+   },
+   "spec": {}
+  },
+  "aveeno-calm-restore-nourishing-oat-cleanser": {
+   "slug": "aveeno-calm-restore-nourishing-oat-cleanser",
+   "name": "Aveeno Calm + Restore Nourishing Oat Cleanser",
+   "sources": 65,
+   "groups": {
+    "skin_type": {
+     "dry": 4,
+     "combination": 3
+    },
+    "irritation": {
+     "none": 49,
+     "a_little": 16
+    }
+   },
+   "spec": {}
+  },
+  "aveeno-calm-restore-oat-gel-moisturizer": {
+   "slug": "aveeno-calm-restore-oat-gel-moisturizer",
+   "name": "Aveeno Calm + Restore Oat Gel Moisturizer",
+   "sources": 35,
+   "groups": {
+    "skin_type": {
+     "dry": 1,
+     "combination": 2,
+     "oily": 5
+    },
+    "irritation": {
+     "none": 24,
+     "a_little": 11
+    },
+    "texture": {
+     "light": 28
+    }
+   },
+   "spec": {}
+  },
+  "aveeno-calm-restore-triple-oat-serum": {
+   "slug": "aveeno-calm-restore-triple-oat-serum",
+   "name": "Aveeno Calm + Restore Triple Oat Serum",
+   "sources": 9,
+   "groups": {
+    "irritation": {
+     "none": 6,
+     "a_little": 3
+    }
+   },
+   "spec": {}
+  },
+  "aveeno-positively-radiant-daily-moisturizer-spf-30": {
+   "slug": "aveeno-positively-radiant-daily-moisturizer-spf-30",
+   "name": "Aveeno Positively Radiant Daily Moisturizer SPF 30",
+   "sources": 4,
+   "groups": {
+    "irritation": {
+     "a_little": 4
+    },
+    "texture": {
+     "rich": 4
+    }
+   },
+   "spec": {}
+  },
+  "avene-cicalfate-restorative-protective-cream": {
+   "slug": "avene-cicalfate-restorative-protective-cream",
+   "name": "Avène Cicalfate+ Restorative Protective Cream",
+   "sources": 51,
+   "groups": {
+    "skin_type": {
+     "dry": 5,
+     "oily": 2
+    },
+    "irritation": {
+     "none": 44,
+     "a_little": 7
+    },
+    "texture": {
+     "rich": 29
+    },
+    "finish": {
+     "dewy": 5
+    }
+   },
+   "spec": {}
+  },
+  "avene-retrinal-0-1-intensive-cream": {
+   "slug": "avene-retrinal-0-1-intensive-cream",
+   "name": "Avène RetrinAL 0.1 Intensive Cream",
+   "sources": 9,
+   "groups": {
+    "irritation": {
+     "none": 6,
+     "a_little": 3
+    }
+   },
+   "spec": {}
+  },
+  "avene-thermal-spring-water": {
+   "slug": "avene-thermal-spring-water",
+   "name": "Avène Thermal Spring Water",
+   "sources": 24,
+   "groups": {
+    "irritation": {
+     "none": 23,
+     "a_little": 1
+    }
+   },
+   "spec": {}
+  },
+  "avene-tolerance-control-soothing-skin-recovery-cream": {
+   "slug": "avene-tolerance-control-soothing-skin-recovery-cream",
+   "name": "Avène Tolerance Control Soothing Skin Recovery Cream",
+   "sources": 19,
+   "groups": {
+    "skin_type": {
+     "dry": 1
+    },
+    "irritation": {
+     "none": 15,
+     "a_little": 4
+    },
+    "texture": {
+     "rich": 7
+    }
+   },
+   "spec": {}
+  },
+  "avene-tolerance-extremely-gentle-cleanser": {
+   "slug": "avene-tolerance-extremely-gentle-cleanser",
+   "name": "Avène Tolerance Extremely Gentle Cleanser",
+   "sources": 26,
+   "groups": {
+    "skin_type": {
+     "dry": 4
+    },
+    "irritation": {
+     "none": 24,
+     "a_little": 2
+    }
+   },
+   "spec": {}
+  },
+  "axis-y-complete-no-stress-physical-sunscreen": {
+   "slug": "axis-y-complete-no-stress-physical-sunscreen",
+   "name": "AXIS-Y Complete No-Stress Physical Sunscreen",
+   "sources": 9,
+   "groups": {
+    "skin_type": {
+     "combination": 1
+    },
+    "irritation": {
+     "none": 3,
+     "a_little": 6
+    },
+    "texture": {
+     "rich": 6
+    },
+    "finish": {
+     "natural": 5
+    }
+   },
+   "spec": {}
+  },
+  "axis-y-dark-spot-correcting-glow-serum": {
+   "slug": "axis-y-dark-spot-correcting-glow-serum",
+   "name": "AXIS-Y Dark Spot Correcting Glow Serum",
+   "sources": 21,
+   "groups": {
+    "skin_type": {
+     "dry": 2,
+     "combination": 3,
+     "oily": 3
+    },
+    "irritation": {
+     "none": 14,
+     "a_little": 7
+    },
+    "texture": {
+     "light": 21
+    },
+    "finish": {
+     "dewy": 8
+    }
+   },
+   "spec": {}
+  },
+  "axis-y-pha-resurfacing-glow-peel": {
+   "slug": "axis-y-pha-resurfacing-glow-peel",
+   "name": "AXIS-Y PHA Resurfacing Glow Peel",
+   "sources": 0,
+   "groups": {},
+   "spec": {}
+  },
+  "axis-y-quinoa-one-step-balanced-gel-cleanser": {
+   "slug": "axis-y-quinoa-one-step-balanced-gel-cleanser",
+   "name": "AXIS-Y Quinoa One Step Balanced Gel Cleanser",
+   "sources": 5,
+   "groups": {
+    "skin_type": {
+     "oily": 2
+    },
+    "irritation": {
+     "none": 5
+    }
+   },
+   "spec": {}
+  },
+  "axis-y-spot-the-difference-blemish-treatment": {
+   "slug": "axis-y-spot-the-difference-blemish-treatment",
+   "name": "AXIS-Y Spot The Difference Blemish Treatment",
+   "sources": 3,
+   "groups": {
+    "irritation": {
+     "none": 3
+    }
+   },
+   "spec": {}
+  },
+  "axis-y-vegan-collagen-eye-serum": {
+   "slug": "axis-y-vegan-collagen-eye-serum",
+   "name": "AXIS-Y Vegan Collagen Eye Serum",
+   "sources": 0,
+   "groups": {},
+   "spec": {}
+  },
+  "beauty-of-joseon-apricot-blossom-peeling-gel": {
+   "slug": "beauty-of-joseon-apricot-blossom-peeling-gel",
+   "name": "Beauty of Joseon Apricot Blossom Peeling Gel",
+   "sources": 9,
+   "groups": {
+    "irritation": {
+     "none": 8,
+     "a_little": 1
+    }
+   },
+   "spec": {}
+  },
+  "beauty-of-joseon-calming-barrier-serum-green-tea-ha-panthenol": {
+   "slug": "beauty-of-joseon-calming-barrier-serum-green-tea-ha-panthenol",
+   "name": "Beauty of Joseon Calming Barrier Serum: Green Tea-HA + Panthenol",
+   "sources": 10,
+   "groups": {
+    "irritation": {
+     "none": 10
+    },
+    "texture": {
+     "light": 6
+    }
+   },
+   "spec": {}
+  },
+  "beauty-of-joseon-day-dew-sunscreen": {
+   "slug": "beauty-of-joseon-day-dew-sunscreen",
+   "name": "Beauty of Joseon Day Dew Sunscreen",
+   "sources": 5,
+   "groups": {
+    "irritation": {
+     "a_little": 5
+    },
+    "texture": {
+     "medium": 3
+    }
+   },
+   "spec": {}
+  },
+  "beauty-of-joseon-dynasty-cream": {
+   "slug": "beauty-of-joseon-dynasty-cream",
+   "name": "Beauty of Joseon Dynasty Cream",
+   "sources": 32,
+   "groups": {
+    "skin_type": {
+     "dry": 7,
+     "combination": 1,
+     "oily": 2
+    },
+    "irritation": {
+     "none": 7,
+     "a_little": 9
+    },
+    "texture": {
+     "medium": 32
+    },
+    "finish": {
+     "dewy": 11
+    }
+   },
+   "spec": {}
+  },
+  "beauty-of-joseon-ginseng-cleansing-oil": {
+   "slug": "beauty-of-joseon-ginseng-cleansing-oil",
+   "name": "Beauty of Joseon Ginseng Cleansing Oil",
+   "sources": 9,
+   "groups": {
+    "irritation": {
+     "none": 8,
+     "a_little": 1
+    }
+   },
+   "spec": {}
+  },
+  "beauty-of-joseon-ginseng-essence-water": {
+   "slug": "beauty-of-joseon-ginseng-essence-water",
+   "name": "Beauty of Joseon Ginseng Essence Water",
+   "sources": 14,
+   "groups": {
+    "irritation": {
+     "none": 9,
+     "a_little": 5
+    },
+    "texture": {
+     "light": 11
+    }
+   },
+   "spec": {}
+  },
+  "beauty-of-joseon-glow-deep-serum-rice-alpha-arbutin": {
+   "slug": "beauty-of-joseon-glow-deep-serum-rice-alpha-arbutin",
+   "name": "Beauty of Joseon Glow Deep Serum: Rice + Alpha-Arbutin",
+   "sources": 12,
+   "groups": {
+    "skin_type": {
+     "oily": 3
+    },
+    "irritation": {
+     "none": 6
+    },
+    "texture": {
+     "light": 12
+    },
+    "finish": {
+     "dewy": 6
+    }
+   },
+   "spec": {}
+  },
+  "beauty-of-joseon-glow-replenishing-rice-milk": {
+   "slug": "beauty-of-joseon-glow-replenishing-rice-milk",
+   "name": "Beauty of Joseon Glow Replenishing Rice Milk",
+   "sources": 4,
+   "groups": {
+    "texture": {
+     "light": 4
+    }
+   },
+   "spec": {}
+  },
+  "beauty-of-joseon-glow-serum-propolis-niacinamide": {
+   "slug": "beauty-of-joseon-glow-serum-propolis-niacinamide",
+   "name": "Beauty of Joseon Glow Serum: Propolis + Niacinamide",
+   "sources": 21,
+   "groups": {
+    "skin_type": {
+     "dry": 4
+    },
+    "irritation": {
+     "none": 16,
+     "a_little": 3
+    },
+    "texture": {
+     "light": 15
+    },
+    "finish": {
+     "dewy": 21
+    }
+   },
+   "spec": {}
+  },
+  "beauty-of-joseon-green-plum-refreshing-cleanser": {
+   "slug": "beauty-of-joseon-green-plum-refreshing-cleanser",
+   "name": "Beauty of Joseon Green Plum Refreshing Cleanser",
+   "sources": 33,
+   "groups": {
+    "skin_type": {
+     "dry": 2,
+     "combination": 4,
+     "oily": 2
+    },
+    "irritation": {
+     "none": 27,
+     "a_little": 6
+    }
+   },
+   "spec": {}
+  },
+  "beauty-of-joseon-green-plum-refreshing-toner-aha-bha": {
+   "slug": "beauty-of-joseon-green-plum-refreshing-toner-aha-bha",
+   "name": "Beauty of Joseon Green Plum Refreshing Toner: AHA + BHA",
+   "sources": 11,
+   "groups": {
+    "skin_type": {
+     "oily": 3
+    },
+    "irritation": {
+     "none": 7,
+     "a_little": 4
+    }
+   },
+   "spec": {}
+  },
+  "beauty-of-joseon-ground-rice-and-honey-glow-mask": {
+   "slug": "beauty-of-joseon-ground-rice-and-honey-glow-mask",
+   "name": "Beauty of Joseon Ground Rice and Honey Glow Mask",
+   "sources": 4,
+   "groups": {
+    "irritation": {
+     "none": 2,
+     "a_little": 2
+    }
+   },
+   "spec": {}
+  },
+  "beauty-of-joseon-light-on-serum-centella-vita-c": {
+   "slug": "beauty-of-joseon-light-on-serum-centella-vita-c",
+   "name": "Beauty of Joseon Light On Serum: Centella + Vita C",
+   "sources": 11,
+   "groups": {
+    "irritation": {
+     "none": 4,
+     "a_little": 7
+    },
+    "texture": {
+     "light": 4
+    }
+   },
+   "spec": {}
+  },
+  "beauty-of-joseon-matte-sun-stick-mugwort-camelia-spf-50": {
+   "slug": "beauty-of-joseon-matte-sun-stick-mugwort-camelia-spf-50",
+   "name": "Beauty of Joseon Matte Sun Stick: Mugwort + Camelia SPF 50+",
+   "sources": 18,
+   "groups": {
+    "skin_type": {
+     "oily": 1
+    },
+    "irritation": {
+     "none": 3,
+     "a_little": 2
+    },
+    "texture": {
+     "medium": 8
+    },
+    "finish": {
+     "matte": 18
+    }
+   },
+   "spec": {}
+  },
+  "beauty-of-joseon-radiance-cleansing-balm": {
+   "slug": "beauty-of-joseon-radiance-cleansing-balm",
+   "name": "Beauty of Joseon Radiance Cleansing Balm",
+   "sources": 14,
+   "groups": {
+    "skin_type": {
+     "combination": 3
+    },
+    "irritation": {
+     "none": 10,
+     "a_little": 4
+    }
+   },
+   "spec": {}
+  },
+  "beauty-of-joseon-red-bean-refreshing-pore-mask": {
+   "slug": "beauty-of-joseon-red-bean-refreshing-pore-mask",
+   "name": "Beauty of Joseon Red Bean Refreshing Pore Mask",
+   "sources": 21,
+   "groups": {
+    "skin_type": {
+     "dry": 4
+    },
+    "irritation": {
+     "none": 18,
+     "a_little": 3
+    }
+   },
+   "spec": {}
+  },
+  "beauty-of-joseon-red-bean-water-gel": {
+   "slug": "beauty-of-joseon-red-bean-water-gel",
+   "name": "Beauty of Joseon Red Bean Water Gel",
+   "sources": 15,
+   "groups": {
+    "skin_type": {
+     "combination": 4,
+     "oily": 3
+    },
+    "irritation": {
+     "a_little": 1
+    },
+    "texture": {
+     "light": 15
+    }
+   },
+   "spec": {}
+  },
+  "beauty-of-joseon-relief-sun-aqua-fresh-rice-b5-spf-50": {
+   "slug": "beauty-of-joseon-relief-sun-aqua-fresh-rice-b5-spf-50",
+   "name": "Beauty of Joseon Relief Sun Aqua-Fresh: Rice + B5 SPF 50+",
+   "sources": 46,
+   "groups": {
+    "skin_type": {
+     "dry": 4,
+     "combination": 18,
+     "oily": 17
+    },
+    "irritation": {
+     "none": 7,
+     "a_little": 8
+    },
+    "texture": {
+     "light": 46
+    },
+    "finish": {
+     "matte": 29
+    }
+   },
+   "spec": {}
+  },
+  "beauty-of-joseon-relief-sun-rice-probiotics-spf-50": {
+   "slug": "beauty-of-joseon-relief-sun-rice-probiotics-spf-50",
+   "name": "Beauty of Joseon Relief Sun: Rice + Probiotics SPF 50+",
+   "sources": 59,
+   "groups": {
+    "skin_type": {
+     "dry": 5,
+     "combination": 9,
+     "oily": 6
+    },
+    "irritation": {
+     "none": 30,
+     "a_little": 21
+    },
+    "texture": {
+     "light": 59
+    },
+    "finish": {
+     "dewy": 27
+    }
+   },
+   "spec": {}
+  },
+  "beauty-of-joseon-revive-eye-serum-ginseng-retinal": {
+   "slug": "beauty-of-joseon-revive-eye-serum-ginseng-retinal",
+   "name": "Beauty of Joseon Revive Eye Serum: Ginseng + Retinal",
+   "sources": 42,
+   "groups": {
+    "irritation": {
+     "none": 25,
+     "a_little": 17
+    },
+    "texture": {
+     "light": 10
+    }
+   },
+   "spec": {}
+  },
+  "bioderma-hydrabio-serum": {
+   "slug": "bioderma-hydrabio-serum",
+   "name": "Bioderma Hydrabio Serum",
+   "sources": 5,
+   "groups": {
+    "irritation": {
+     "none": 1,
+     "a_little": 1
+    },
+    "texture": {
+     "medium": 5
+    }
+   },
+   "spec": {}
+  },
+  "bioderma-hydrabio-toner": {
+   "slug": "bioderma-hydrabio-toner",
+   "name": "Bioderma Hydrabio Toner",
+   "sources": 0,
+   "groups": {},
+   "spec": {}
+  },
+  "bioderma-sebium-h2o-micellar-water": {
+   "slug": "bioderma-sebium-h2o-micellar-water",
+   "name": "Bioderma Sébium H2O Micellar Water",
+   "sources": 3,
+   "groups": {
+    "irritation": {
+     "none": 2,
+     "a_little": 1
+    }
+   },
+   "spec": {}
+  },
+  "bioderma-sensibio-h2o-micellar-water": {
+   "slug": "bioderma-sensibio-h2o-micellar-water",
+   "name": "Bioderma Sensibio H2O Micellar Water",
+   "sources": 53,
+   "groups": {
+    "skin_type": {
+     "dry": 2,
+     "combination": 2,
+     "oily": 2
+    },
+    "irritation": {
+     "none": 40,
+     "a_little": 13
+    }
+   },
+   "spec": {}
+  },
+  "byoma-creamy-jelly-cleanser": {
+   "slug": "byoma-creamy-jelly-cleanser",
+   "name": "Byoma Creamy Jelly Cleanser",
+   "sources": 11,
+   "groups": {
+    "irritation": {
+     "none": 8,
+     "a_little": 3
+    }
+   },
+   "spec": {}
+  },
+  "byoma-milky-toner": {
+   "slug": "byoma-milky-toner",
+   "name": "Byoma Milky Toner",
+   "sources": 21,
+   "groups": {
+    "skin_type": {
+     "dry": 2
+    },
+    "irritation": {
+     "none": 13,
+     "a_little": 8
+    },
+    "texture": {
+     "light": 9
+    }
+   },
+   "spec": {}
+  },
+  "byoma-moisturizing-gel-cream": {
+   "slug": "byoma-moisturizing-gel-cream",
+   "name": "Byoma Moisturizing Gel Cream",
+   "sources": 8,
+   "groups": {
+    "skin_type": {
+     "dry": 1,
+     "combination": 4
+    },
+    "irritation": {
+     "none": 3,
+     "a_little": 3
+    },
+    "texture": {
+     "light": 8
+    }
+   },
+   "spec": {}
+  },
+  "cerave-acne-control-gel": {
+   "slug": "cerave-acne-control-gel",
+   "name": "CeraVe Acne Control Gel",
+   "sources": 0,
+   "groups": {},
+   "spec": {}
+  },
+  "cerave-acne-foaming-cream-cleanser": {
+   "slug": "cerave-acne-foaming-cream-cleanser",
+   "name": "CeraVe Acne Foaming Cream Cleanser",
+   "sources": 12,
+   "groups": {
+    "irritation": {
+     "none": 9,
+     "a_little": 3
+    }
+   },
+   "spec": {}
+  },
+  "cerave-am-facial-moisturizing-lotion-with-sunscreen": {
+   "slug": "cerave-am-facial-moisturizing-lotion-with-sunscreen",
+   "name": "CeraVe AM Facial Moisturizing Lotion with Sunscreen",
+   "sources": 23,
+   "groups": {
+    "skin_type": {
+     "dry": 3,
+     "combination": 3,
+     "oily": 4
+    },
+    "irritation": {
+     "none": 3,
+     "a_little": 18
+    },
+    "texture": {
+     "rich": 23
+    },
+    "finish": {
+     "dewy": 8
+    }
+   },
+   "spec": {}
+  },
+  "cerave-daily-moisturizing-lotion": {
+   "slug": "cerave-daily-moisturizing-lotion",
+   "name": "CeraVe Daily Moisturizing Lotion",
+   "sources": 30,
+   "groups": {
+    "skin_type": {
+     "dry": 3,
+     "combination": 2
+    },
+    "irritation": {
+     "none": 3,
+     "a_little": 27
+    },
+    "texture": {
+     "light": 27
+    },
+    "finish": {
+     "natural": 7
+    }
+   },
+   "spec": {}
+  },
+  "cerave-eye-repair-cream": {
+   "slug": "cerave-eye-repair-cream",
+   "name": "CeraVe Eye Repair Cream",
+   "sources": 29,
+   "groups": {
+    "skin_type": {
+     "dry": 4
+    },
+    "irritation": {
+     "none": 12,
+     "a_little": 17
+    },
+    "texture": {
+     "light": 16
+    }
+   },
+   "spec": {}
+  },
+  "cerave-foaming-facial-cleanser": {
+   "slug": "cerave-foaming-facial-cleanser",
+   "name": "CeraVe Foaming Facial Cleanser",
+   "sources": 50,
+   "groups": {
+    "skin_type": {
+     "dry": 3,
+     "combination": 7,
+     "oily": 7
+    },
+    "irritation": {
+     "none": 30,
+     "a_little": 20
+    }
+   },
+   "spec": {}
+  },
+  "cerave-healing-ointment": {
+   "slug": "cerave-healing-ointment",
+   "name": "CeraVe Healing Ointment",
+   "sources": 46,
+   "groups": {
+    "skin_type": {
+     "dry": 7,
+     "combination": 2
+    },
+    "irritation": {
+     "none": 24,
+     "a_little": 12
+    },
+    "texture": {
+     "rich": 46
+    }
+   },
+   "spec": {}
+  },
+  "cerave-hydrating-cream-to-foam-cleanser": {
+   "slug": "cerave-hydrating-cream-to-foam-cleanser",
+   "name": "CeraVe Hydrating Cream-to-Foam Cleanser",
+   "sources": 49,
+   "groups": {
+    "skin_type": {
+     "dry": 4,
+     "combination": 6,
+     "oily": 5
+    },
+    "irritation": {
+     "none": 27,
+     "a_little": 22
+    }
+   },
+   "spec": {}
+  },
+  "cerave-hydrating-facial-cleanser": {
+   "slug": "cerave-hydrating-facial-cleanser",
+   "name": "CeraVe Hydrating Facial Cleanser",
+   "sources": 110,
+   "groups": {
+    "skin_type": {
+     "dry": 19,
+     "combination": 3,
+     "oily": 4
+    },
+    "irritation": {
+     "none": 80,
+     "a_little": 30
+    }
+   },
+   "spec": {}
+  },
+  "cerave-hydrating-hyaluronic-acid-serum": {
+   "slug": "cerave-hydrating-hyaluronic-acid-serum",
+   "name": "CeraVe Hydrating Hyaluronic Acid Serum",
+   "sources": 5,
+   "groups": {
+    "skin_type": {
+     "dry": 1
+    },
+    "irritation": {
+     "none": 1,
+     "a_little": 4
+    }
+   },
+   "spec": {}
+  },
+  "cerave-moisturizing-cream": {
+   "slug": "cerave-moisturizing-cream",
+   "name": "CeraVe Moisturizing Cream",
+   "sources": 60,
+   "groups": {
+    "skin_type": {
+     "dry": 16,
+     "combination": 2,
+     "oily": 2
+    },
+    "irritation": {
+     "none": 16,
+     "a_little": 25
+    },
+    "texture": {
+     "rich": 60
+    },
+    "finish": {
+     "matte": 11
+    }
+   },
+   "spec": {}
+  },
+  "cerave-pm-facial-moisturizing-lotion": {
+   "slug": "cerave-pm-facial-moisturizing-lotion",
+   "name": "CeraVe PM Facial Moisturizing Lotion",
+   "sources": 60,
+   "groups": {
+    "skin_type": {
+     "dry": 13,
+     "combination": 7,
+     "oily": 11
+    },
+    "irritation": {
+     "none": 31,
+     "a_little": 29
+    },
+    "texture": {
+     "light": 53
+    },
+    "finish": {
+     "natural": 7
+    }
+   },
+   "spec": {}
+  },
+  "cerave-renewing-sa-cleanser": {
+   "slug": "cerave-renewing-sa-cleanser",
+   "name": "CeraVe Renewing SA Cleanser",
+   "sources": 56,
+   "groups": {
+    "skin_type": {
+     "dry": 2,
+     "combination": 7,
+     "oily": 7
+    },
+    "irritation": {
+     "none": 25,
+     "a_little": 31
+    }
+   },
+   "spec": {}
+  },
+  "cerave-resurfacing-retinol-serum": {
+   "slug": "cerave-resurfacing-retinol-serum",
+   "name": "CeraVe Resurfacing Retinol Serum",
+   "sources": 48,
+   "groups": {
+    "skin_type": {
+     "dry": 3
+    },
+    "irritation": {
+     "none": 40,
+     "a_little": 8
+    },
+    "texture": {
+     "light": 6
+    }
+   },
+   "spec": {}
+  },
+  "cerave-skin-renewing-night-cream": {
+   "slug": "cerave-skin-renewing-night-cream",
+   "name": "CeraVe Skin Renewing Night Cream",
+   "sources": 26,
+   "groups": {
+    "skin_type": {
+     "dry": 4,
+     "combination": 4,
+     "oily": 2
+    },
+    "irritation": {
+     "none": 11,
+     "a_little": 6
+    },
+    "texture": {
+     "rich": 26
+    }
+   },
+   "spec": {}
+  },
+  "cerave-skin-renewing-vitamin-c-serum": {
+   "slug": "cerave-skin-renewing-vitamin-c-serum",
+   "name": "CeraVe Skin Renewing Vitamin C Serum",
+   "sources": 12,
+   "groups": {
+    "irritation": {
+     "none": 8,
+     "a_little": 4
+    },
+    "texture": {
+     "light": 4
+    }
+   },
+   "spec": {}
+  },
+  "cerave-ultra-light-moisturizing-lotion-spf-30": {
+   "slug": "cerave-ultra-light-moisturizing-lotion-spf-30",
+   "name": "CeraVe Ultra-Light Moisturizing Lotion SPF 30",
+   "sources": 33,
+   "groups": {
+    "skin_type": {
+     "combination": 5,
+     "oily": 3
+    },
+    "irritation": {
+     "none": 5,
+     "a_little": 2
+    },
+    "texture": {
+     "light": 33
+    },
+    "finish": {
+     "matte": 15
+    }
+   },
+   "spec": {}
+  },
+  "cetaphil-daily-facial-cleanser": {
+   "slug": "cetaphil-daily-facial-cleanser",
+   "name": "Cetaphil Daily Facial Cleanser",
+   "sources": 9,
+   "groups": {
+    "skin_type": {
+     "oily": 2
+    },
+    "irritation": {
+     "none": 7,
+     "a_little": 2
+    }
+   },
+   "spec": {}
+  },
+  "cetaphil-deep-hydration-refreshing-eye-serum": {
+   "slug": "cetaphil-deep-hydration-refreshing-eye-serum",
+   "name": "Cetaphil Deep Hydration Refreshing Eye Serum",
+   "sources": 0,
+   "groups": {},
+   "spec": {}
+  },
+  "cetaphil-gentle-skin-cleanser": {
+   "slug": "cetaphil-gentle-skin-cleanser",
+   "name": "Cetaphil Gentle Skin Cleanser",
+   "sources": 115,
+   "groups": {
+    "skin_type": {
+     "dry": 10,
+     "combination": 3,
+     "oily": 2
+    },
+    "irritation": {
+     "none": 61,
+     "a_little": 54
+    }
+   },
+   "spec": {}
+  },
+  "cetaphil-healthy-renew-night-cream": {
+   "slug": "cetaphil-healthy-renew-night-cream",
+   "name": "Cetaphil Healthy Renew Night Cream",
+   "sources": 1,
+   "groups": {
+    "irritation": {
+     "a_little": 1
+    }
+   },
+   "spec": {}
+  },
+  "cetaphil-hydrating-eye-gel-cream": {
+   "slug": "cetaphil-hydrating-eye-gel-cream",
+   "name": "Cetaphil Hydrating Eye Gel-Cream",
+   "sources": 3,
+   "groups": {
+    "irritation": {
+     "none": 2,
+     "a_little": 1
+    }
+   },
+   "spec": {}
+  },
+  "cetaphil-moisturizing-cream": {
+   "slug": "cetaphil-moisturizing-cream",
+   "name": "Cetaphil Moisturizing Cream",
+   "sources": 10,
+   "groups": {
+    "skin_type": {
+     "dry": 7,
+     "oily": 2
+    },
+    "irritation": {
+     "none": 6,
+     "a_little": 4
+    },
+    "texture": {
+     "rich": 8
+    }
+   },
+   "spec": {}
+  },
+  "cosrx-acne-pimple-master-patch": {
+   "slug": "cosrx-acne-pimple-master-patch",
+   "name": "COSRX Acne Pimple Master Patch",
+   "sources": 2,
+   "groups": {
+    "irritation": {
+     "none": 2
+    }
+   },
+   "spec": {}
+  },
+  "cosrx-advanced-snail-92-all-in-one-cream": {
+   "slug": "cosrx-advanced-snail-92-all-in-one-cream",
+   "name": "COSRX Advanced Snail 92 All in One Cream",
+   "sources": 37,
+   "groups": {
+    "skin_type": {
+     "dry": 10,
+     "combination": 4,
+     "oily": 10
+    },
+    "irritation": {
+     "none": 26,
+     "a_little": 11
+    },
+    "texture": {
+     "light": 34
+    },
+    "finish": {
+     "dewy": 12
+    }
+   },
+   "spec": {}
+  },
+  "cosrx-advanced-snail-96-mucin-power-essence": {
+   "slug": "cosrx-advanced-snail-96-mucin-power-essence",
+   "name": "COSRX Advanced Snail 96 Mucin Power Essence",
+   "sources": 59,
+   "groups": {
+    "skin_type": {
+     "dry": 14,
+     "combination": 9,
+     "oily": 7
+    },
+    "irritation": {
+     "none": 39,
+     "a_little": 20
+    },
+    "texture": {
+     "light": 25
+    },
+    "finish": {
+     "dewy": 11
+    }
+   },
+   "spec": {}
+  },
+  "cosrx-advanced-snail-peptide-eye-cream": {
+   "slug": "cosrx-advanced-snail-peptide-eye-cream",
+   "name": "COSRX Advanced Snail Peptide Eye Cream",
+   "sources": 5,
+   "groups": {
+    "irritation": {
+     "none": 4,
+     "a_little": 1
+    },
+    "texture": {
+     "light": 4
+    }
+   },
+   "spec": {}
+  },
+  "cosrx-aha-7-whitehead-power-liquid": {
+   "slug": "cosrx-aha-7-whitehead-power-liquid",
+   "name": "COSRX AHA 7 Whitehead Power Liquid",
+   "sources": 19,
+   "groups": {
+    "irritation": {
+     "none": 5,
+     "a_little": 14
+    }
+   },
+   "spec": {}
+  },
+  "cosrx-aha-bha-clarifying-treatment-toner": {
+   "slug": "cosrx-aha-bha-clarifying-treatment-toner",
+   "name": "COSRX AHA/BHA Clarifying Treatment Toner",
+   "sources": 13,
+   "groups": {
+    "irritation": {
+     "none": 6,
+     "a_little": 7
+    }
+   },
+   "spec": {}
+  },
+  "cosrx-aloe-soothing-sun-cream-spf-50": {
+   "slug": "cosrx-aloe-soothing-sun-cream-spf-50",
+   "name": "COSRX Aloe Soothing Sun Cream SPF 50",
+   "sources": 25,
+   "groups": {
+    "skin_type": {
+     "dry": 4
+    },
+    "irritation": {
+     "none": 13,
+     "a_little": 10
+    },
+    "texture": {
+     "medium": 25
+    },
+    "finish": {
+     "dewy": 11
+    }
+   },
+   "spec": {}
+  },
+  "cosrx-balancium-comfort-ceramide-cream": {
+   "slug": "cosrx-balancium-comfort-ceramide-cream",
+   "name": "COSRX Balancium Comfort Ceramide Cream",
+   "sources": 20,
+   "groups": {
+    "skin_type": {
+     "dry": 5
+    },
+    "irritation": {
+     "none": 8,
+     "a_little": 12
+    },
+    "texture": {
+     "rich": 13
+    }
+   },
+   "spec": {}
+  },
+  "cosrx-bha-blackhead-power-liquid": {
+   "slug": "cosrx-bha-blackhead-power-liquid",
+   "name": "COSRX BHA Blackhead Power Liquid",
+   "sources": 28,
+   "groups": {
+    "skin_type": {
+     "oily": 1
+    },
+    "irritation": {
+     "none": 22,
+     "a_little": 6
+    }
+   },
+   "spec": {}
+  },
+  "cosrx-full-fit-propolis-honey-overnight-mask": {
+   "slug": "cosrx-full-fit-propolis-honey-overnight-mask",
+   "name": "COSRX Full Fit Propolis Honey Overnight Mask",
+   "sources": 5,
+   "groups": {
+    "irritation": {
+     "none": 4,
+     "a_little": 1
+    }
+   },
+   "spec": {}
+  },
+  "cosrx-full-fit-propolis-synergy-toner": {
+   "slug": "cosrx-full-fit-propolis-synergy-toner",
+   "name": "COSRX Full Fit Propolis Synergy Toner",
+   "sources": 21,
+   "groups": {
+    "skin_type": {
+     "dry": 10,
+     "combination": 4
+    },
+    "irritation": {
+     "none": 14,
+     "a_little": 4
+    },
+    "texture": {
+     "light": 21
+    }
+   },
+   "spec": {}
+  },
+  "cosrx-low-ph-good-morning-gel-cleanser": {
+   "slug": "cosrx-low-ph-good-morning-gel-cleanser",
+   "name": "COSRX Low pH Good Morning Gel Cleanser",
+   "sources": 44,
+   "groups": {
+    "skin_type": {
+     "dry": 1,
+     "combination": 3,
+     "oily": 3
+    },
+    "irritation": {
+     "none": 26,
+     "a_little": 18
+    }
+   },
+   "spec": {}
+  },
+  "cosrx-one-step-original-clear-pad": {
+   "slug": "cosrx-one-step-original-clear-pad",
+   "name": "COSRX One Step Original Clear Pad",
+   "sources": 14,
+   "groups": {
+    "irritation": {
+     "none": 10,
+     "a_little": 4
+    }
+   },
+   "spec": {}
+  },
+  "cosrx-salicylic-acid-daily-gentle-cleanser": {
+   "slug": "cosrx-salicylic-acid-daily-gentle-cleanser",
+   "name": "COSRX Salicylic Acid Daily Gentle Cleanser",
+   "sources": 24,
+   "groups": {
+    "skin_type": {
+     "combination": 5,
+     "oily": 7
+    },
+    "irritation": {
+     "none": 13,
+     "a_little": 11
+    }
+   },
+   "spec": {}
+  },
+  "cosrx-the-6-peptide-skin-booster-serum": {
+   "slug": "cosrx-the-6-peptide-skin-booster-serum",
+   "name": "COSRX The 6 Peptide Skin Booster Serum",
+   "sources": 17,
+   "groups": {
+    "skin_type": {
+     "oily": 3
+    },
+    "irritation": {
+     "none": 3,
+     "a_little": 1
+    },
+    "texture": {
+     "light": 17
+    }
+   },
+   "spec": {}
+  },
+  "cosrx-the-ceramide-skin-barrier-moisturizer": {
+   "slug": "cosrx-the-ceramide-skin-barrier-moisturizer",
+   "name": "COSRX The Ceramide Skin Barrier Moisturizer",
+   "sources": 6,
+   "groups": {
+    "irritation": {
+     "none": 6
+    },
+    "texture": {
+     "rich": 3
+    }
+   },
+   "spec": {}
+  },
+  "cosrx-the-niacinamide-15-serum": {
+   "slug": "cosrx-the-niacinamide-15-serum",
+   "name": "COSRX The Niacinamide 15 Serum",
+   "sources": 1,
+   "groups": {
+    "irritation": {
+     "none": 1
+    }
+   },
+   "spec": {}
+  },
+  "cosrx-the-retinol-0-1-cream": {
+   "slug": "cosrx-the-retinol-0-1-cream",
+   "name": "COSRX The Retinol 0.1 Cream",
+   "sources": 10,
+   "groups": {
+    "skin_type": {
+     "dry": 3
+    },
+    "irritation": {
+     "none": 7,
+     "a_little": 3
+    }
+   },
+   "spec": {}
+  },
+  "cosrx-the-retinol-0-5-oil": {
+   "slug": "cosrx-the-retinol-0-5-oil",
+   "name": "COSRX The Retinol 0.5 Oil",
+   "sources": 7,
+   "groups": {
+    "skin_type": {
+     "dry": 3
+    },
+    "irritation": {
+     "none": 6,
+     "a_little": 1
+    }
+   },
+   "spec": {}
+  },
+  "cosrx-the-vitamin-c-23-serum": {
+   "slug": "cosrx-the-vitamin-c-23-serum",
+   "name": "COSRX The Vitamin C 23 Serum",
+   "sources": 8,
+   "groups": {
+    "irritation": {
+     "a_little": 8
+    }
+   },
+   "spec": {}
+  },
+  "cosrx-ultimate-nourishing-rice-overnight-spa-mask": {
+   "slug": "cosrx-ultimate-nourishing-rice-overnight-spa-mask",
+   "name": "COSRX Ultimate Nourishing Rice Overnight Spa Mask",
+   "sources": 18,
+   "groups": {
+    "skin_type": {
+     "dry": 12,
+     "combination": 2,
+     "oily": 3
+    },
+    "irritation": {
+     "none": 13,
+     "a_little": 5
+    }
+   },
+   "spec": {}
+  },
+  "cosrx-ultra-light-invisible-sunscreen-spf-50": {
+   "slug": "cosrx-ultra-light-invisible-sunscreen-spf-50",
+   "name": "COSRX Ultra-Light Invisible Sunscreen SPF 50",
+   "sources": 5,
+   "groups": {
+    "irritation": {
+     "none": 1,
+     "a_little": 3
+    },
+    "texture": {
+     "light": 5
+    }
+   },
+   "spec": {}
+  },
+  "dr-jart-cicapair-tiger-grass-cream": {
+   "slug": "dr-jart-cicapair-tiger-grass-cream",
+   "name": "Dr. Jart+ Cicapair Tiger Grass Cream",
+   "sources": 9,
+   "groups": {
+    "skin_type": {
+     "dry": 3
+    },
+    "irritation": {
+     "none": 9
+    }
+   },
+   "spec": {}
+  },
+  "drunk-elephant-a-passioni-retinol-cream": {
+   "slug": "drunk-elephant-a-passioni-retinol-cream",
+   "name": "Drunk Elephant A-Passioni Retinol Cream",
+   "sources": 19,
+   "groups": {
+    "irritation": {
+     "none": 5,
+     "a_little": 14
+    }
+   },
+   "spec": {}
+  },
+  "drunk-elephant-b-hydra-intensive-hydration-serum": {
+   "slug": "drunk-elephant-b-hydra-intensive-hydration-serum",
+   "name": "Drunk Elephant B-Hydra Intensive Hydration Serum",
+   "sources": 5,
+   "groups": {
+    "skin_type": {
+     "dry": 3,
+     "oily": 1
+    },
+    "irritation": {
+     "none": 2,
+     "a_little": 3
+    },
+    "texture": {
+     "light": 3
+    }
+   },
+   "spec": {}
+  },
+  "drunk-elephant-beste-no-9-jelly-cleanser": {
+   "slug": "drunk-elephant-beste-no-9-jelly-cleanser",
+   "name": "Drunk Elephant Beste No.9 Jelly Cleanser",
+   "sources": 15,
+   "groups": {
+    "skin_type": {
+     "combination": 3
+    },
+    "irritation": {
+     "none": 10,
+     "a_little": 5
+    }
+   },
+   "spec": {}
+  },
+  "drunk-elephant-c-firma-fresh-day-serum": {
+   "slug": "drunk-elephant-c-firma-fresh-day-serum",
+   "name": "Drunk Elephant C-Firma Fresh Day Serum",
+   "sources": 7,
+   "groups": {
+    "irritation": {
+     "none": 1,
+     "a_little": 6
+    }
+   },
+   "spec": {}
+  },
+  "drunk-elephant-lala-retro-whipped-cream": {
+   "slug": "drunk-elephant-lala-retro-whipped-cream",
+   "name": "Drunk Elephant Lala Retro Whipped Cream",
+   "sources": 29,
+   "groups": {
+    "skin_type": {
+     "dry": 4,
+     "combination": 1
+    },
+    "irritation": {
+     "none": 6,
+     "a_little": 4
+    },
+    "texture": {
+     "rich": 29
+    },
+    "finish": {
+     "natural": 3
+    }
+   },
+   "spec": {}
+  },
+  "drunk-elephant-t-l-c-framboos-glycolic-night-serum": {
+   "slug": "drunk-elephant-t-l-c-framboos-glycolic-night-serum",
+   "name": "Drunk Elephant T.L.C. Framboos Glycolic Night Serum",
+   "sources": 18,
+   "groups": {
+    "skin_type": {
+     "dry": 3
+    },
+    "irritation": {
+     "none": 10,
+     "a_little": 8
+    }
+   },
+   "spec": {}
+  },
+  "eltamd-am-restore-moisturizer": {
+   "slug": "eltamd-am-restore-moisturizer",
+   "name": "EltaMD AM Restore Moisturizer",
+   "sources": 0,
+   "groups": {},
+   "spec": {}
+  },
+  "eltamd-skin-recovery-amino-acid-foaming-cleanser": {
+   "slug": "eltamd-skin-recovery-amino-acid-foaming-cleanser",
+   "name": "EltaMD Skin Recovery Amino Acid Foaming Cleanser",
+   "sources": 2,
+   "groups": {
+    "irritation": {
+     "none": 2
+    }
+   },
+   "spec": {}
+  },
+  "eltamd-skin-recovery-essence-toner": {
+   "slug": "eltamd-skin-recovery-essence-toner",
+   "name": "EltaMD Skin Recovery Essence Toner",
+   "sources": 0,
+   "groups": {},
+   "spec": {}
+  },
+  "eltamd-skin-recovery-light-moisturizer": {
+   "slug": "eltamd-skin-recovery-light-moisturizer",
+   "name": "EltaMD Skin Recovery Light Moisturizer",
+   "sources": 2,
+   "groups": {
+    "irritation": {
+     "a_little": 2
+    }
+   },
+   "spec": {}
+  },
+  "eltamd-skin-recovery-night-mask": {
+   "slug": "eltamd-skin-recovery-night-mask",
+   "name": "EltaMD Skin Recovery Night Mask",
+   "sources": 0,
+   "groups": {},
+   "spec": {}
+  },
+  "eltamd-uv-aox-elements-broad-spectrum-spf-50": {
+   "slug": "eltamd-uv-aox-elements-broad-spectrum-spf-50",
+   "name": "EltaMD UV AOX Elements Broad-Spectrum SPF 50",
+   "sources": 0,
+   "groups": {},
+   "spec": {}
+  },
+  "eltamd-uv-clear-broad-spectrum-spf-46": {
+   "slug": "eltamd-uv-clear-broad-spectrum-spf-46",
+   "name": "EltaMD UV Clear Broad-Spectrum SPF 46",
+   "sources": 44,
+   "groups": {
+    "skin_type": {
+     "dry": 3,
+     "combination": 3,
+     "oily": 2
+    },
+    "irritation": {
+     "none": 22,
+     "a_little": 22
+    },
+    "texture": {
+     "light": 23
+    },
+    "finish": {
+     "natural": 16
+    }
+   },
+   "spec": {}
+  },
+  "eltamd-uv-daily-broad-spectrum-spf-40": {
+   "slug": "eltamd-uv-daily-broad-spectrum-spf-40",
+   "name": "EltaMD UV Daily Broad-Spectrum SPF 40",
+   "sources": 4,
+   "groups": {
+    "irritation": {
+     "none": 2
+    },
+    "texture": {
+     "medium": 3
+    },
+    "finish": {
+     "dewy": 4
+    }
+   },
+   "spec": {}
+  },
+  "eltamd-uv-physical-broad-spectrum-spf-41": {
+   "slug": "eltamd-uv-physical-broad-spectrum-spf-41",
+   "name": "EltaMD UV Physical Broad-Spectrum SPF 41",
+   "sources": 14,
+   "groups": {
+    "skin_type": {
+     "oily": 1
+    },
+    "irritation": {
+     "none": 7,
+     "a_little": 1
+    },
+    "texture": {
+     "light": 14
+    },
+    "finish": {
+     "matte": 9
+    }
+   },
+   "spec": {}
+  },
+  "eltamd-uv-restore-broad-spectrum-spf-40": {
+   "slug": "eltamd-uv-restore-broad-spectrum-spf-40",
+   "name": "EltaMD UV Restore Broad-Spectrum SPF 40",
+   "sources": 1,
+   "groups": {
+    "irritation": {
+     "none": 1
+    }
+   },
+   "spec": {}
+  },
+  "eucerin-clear-skin-spf-50-face-sunscreen": {
+   "slug": "eucerin-clear-skin-spf-50-face-sunscreen",
+   "name": "Eucerin Clear Skin SPF 50 Face Sunscreen",
+   "sources": 5,
+   "groups": {
+    "irritation": {
+     "a_little": 2
+    },
+    "texture": {
+     "rich": 5
+    }
+   },
+   "spec": {}
+  },
+  "eucerin-immersive-hydration-moisture-boost-serum": {
+   "slug": "eucerin-immersive-hydration-moisture-boost-serum",
+   "name": "Eucerin Immersive Hydration Moisture Boost Serum",
+   "sources": 0,
+   "groups": {},
+   "spec": {}
+  },
+  "first-aid-beauty-facial-radiance-pads": {
+   "slug": "first-aid-beauty-facial-radiance-pads",
+   "name": "First Aid Beauty Facial Radiance Pads",
+   "sources": 13,
+   "groups": {
+    "irritation": {
+     "none": 9,
+     "a_little": 4
+    }
+   },
+   "spec": {}
+  },
+  "first-aid-beauty-hydrating-toner-with-squalane-oats": {
+   "slug": "first-aid-beauty-hydrating-toner-with-squalane-oats",
+   "name": "First Aid Beauty Hydrating Toner with Squalane + Oats",
+   "sources": 2,
+   "groups": {
+    "irritation": {
+     "none": 2
+    }
+   },
+   "spec": {}
+  },
+  "first-aid-beauty-pure-skin-face-cleanser": {
+   "slug": "first-aid-beauty-pure-skin-face-cleanser",
+   "name": "First Aid Beauty Pure Skin Face Cleanser",
+   "sources": 34,
+   "groups": {
+    "skin_type": {
+     "dry": 4,
+     "combination": 4
+    },
+    "irritation": {
+     "none": 29,
+     "a_little": 5
+    }
+   },
+   "spec": {}
+  },
+  "first-aid-beauty-ultra-repair-cream": {
+   "slug": "first-aid-beauty-ultra-repair-cream",
+   "name": "First Aid Beauty Ultra Repair Cream",
+   "sources": 60,
+   "groups": {
+    "skin_type": {
+     "dry": 18,
+     "combination": 4,
+     "oily": 3
+    },
+    "irritation": {
+     "none": 29,
+     "a_little": 31
+    },
+    "texture": {
+     "medium": 38
+    },
+    "finish": {
+     "natural": 4
+    }
+   },
+   "spec": {}
+  },
+  "glow-recipe-avocado-ceramide-moisture-barrier-cleanser": {
+   "slug": "glow-recipe-avocado-ceramide-moisture-barrier-cleanser",
+   "name": "Glow Recipe Avocado Ceramide Moisture Barrier Cleanser",
+   "sources": 9,
+   "groups": {
+    "skin_type": {
+     "dry": 2
+    },
+    "irritation": {
+     "none": 8,
+     "a_little": 1
+    }
+   },
+   "spec": {}
+  },
+  "glow-recipe-blackberry-retinol-blemish-serum": {
+   "slug": "glow-recipe-blackberry-retinol-blemish-serum",
+   "name": "Glow Recipe Blackberry Retinol Blemish Serum",
+   "sources": 3,
+   "groups": {
+    "irritation": {
+     "none": 3
+    }
+   },
+   "spec": {}
+  },
+  "glow-recipe-guava-vitamin-c-bright-eye-gel-cream": {
+   "slug": "glow-recipe-guava-vitamin-c-bright-eye-gel-cream",
+   "name": "Glow Recipe Guava Vitamin C Bright-Eye Gel Cream",
+   "sources": 4,
+   "groups": {
+    "irritation": {
+     "a_little": 2
+    },
+    "texture": {
+     "light": 4
+    }
+   },
+   "spec": {}
+  },
+  "glow-recipe-plum-plump-hyaluronic-cream": {
+   "slug": "glow-recipe-plum-plump-hyaluronic-cream",
+   "name": "Glow Recipe Plum Plump Hyaluronic Cream",
+   "sources": 7,
+   "groups": {
+    "skin_type": {
+     "dry": 3,
+     "combination": 4
+    },
+    "irritation": {
+     "none": 2
+    },
+    "texture": {
+     "light": 7
+    }
+   },
+   "spec": {}
+  },
+  "glow-recipe-strawberry-smooth-bha-aha-salicylic-serum": {
+   "slug": "glow-recipe-strawberry-smooth-bha-aha-salicylic-serum",
+   "name": "Glow Recipe Strawberry Smooth BHA+AHA Salicylic Serum",
+   "sources": 5,
+   "groups": {
+    "irritation": {
+     "none": 2,
+     "a_little": 3
+    }
+   },
+   "spec": {}
+  },
+  "glow-recipe-watermelon-glow-aha-night-treatment": {
+   "slug": "glow-recipe-watermelon-glow-aha-night-treatment",
+   "name": "Glow Recipe Watermelon Glow AHA Night Treatment",
+   "sources": 9,
+   "groups": {
+    "irritation": {
+     "none": 3,
+     "a_little": 6
+    }
+   },
+   "spec": {}
+  },
+  "glow-recipe-watermelon-glow-jelly-sheet-mask": {
+   "slug": "glow-recipe-watermelon-glow-jelly-sheet-mask",
+   "name": "Glow Recipe Watermelon Glow Jelly Sheet Mask",
+   "sources": 0,
+   "groups": {},
+   "spec": {}
+  },
+  "glow-recipe-watermelon-glow-niacinamide-dew-balm-spf-45": {
+   "slug": "glow-recipe-watermelon-glow-niacinamide-dew-balm-spf-45",
+   "name": "Glow Recipe Watermelon Glow Niacinamide Dew Balm SPF 45",
+   "sources": 6,
+   "groups": {
+    "irritation": {
+     "a_little": 1
+    },
+    "texture": {
+     "rich": 4
+    },
+    "finish": {
+     "dewy": 6
+    }
+   },
+   "spec": {}
+  },
+  "glow-recipe-watermelon-glow-niacinamide-dew-drops": {
+   "slug": "glow-recipe-watermelon-glow-niacinamide-dew-drops",
+   "name": "Glow Recipe Watermelon Glow Niacinamide Dew Drops",
+   "sources": 28,
+   "groups": {
+    "skin_type": {
+     "dry": 4,
+     "combination": 2,
+     "oily": 3
+    },
+    "irritation": {
+     "none": 7,
+     "a_little": 8
+    },
+    "texture": {
+     "medium": 14
+    },
+    "finish": {
+     "dewy": 28
+    }
+   },
+   "spec": {}
+  },
+  "glow-recipe-watermelon-glow-pha-bha-pore-tight-toner": {
+   "slug": "glow-recipe-watermelon-glow-pha-bha-pore-tight-toner",
+   "name": "Glow Recipe Watermelon Glow PHA+BHA Pore-Tight Toner",
+   "sources": 21,
+   "groups": {
+    "skin_type": {
+     "combination": 2,
+     "oily": 3
+    },
+    "irritation": {
+     "none": 11,
+     "a_little": 10
+    },
+    "texture": {
+     "light": 8
+    }
+   },
+   "spec": {}
+  },
+  "glow-recipe-watermelon-glow-ultra-fine-mist": {
+   "slug": "glow-recipe-watermelon-glow-ultra-fine-mist",
+   "name": "Glow Recipe Watermelon Glow Ultra-Fine Mist",
+   "sources": 4,
+   "groups": {
+    "irritation": {
+     "a_little": 4
+    }
+   },
+   "spec": {}
+  },
+  "hada-labo-tokyo-age-correcting-eye-cream": {
+   "slug": "hada-labo-tokyo-age-correcting-eye-cream",
+   "name": "Hada Labo Tokyo Age Correcting Eye Cream",
+   "sources": 0,
+   "groups": {},
+   "spec": {}
+  },
+  "hada-labo-tokyo-gentle-hydrating-facial-cleanser": {
+   "slug": "hada-labo-tokyo-gentle-hydrating-facial-cleanser",
+   "name": "Hada Labo Tokyo Gentle Hydrating Facial Cleanser",
+   "sources": 8,
+   "groups": {
+    "skin_type": {
+     "dry": 3
+    },
+    "irritation": {
+     "none": 6,
+     "a_little": 2
+    }
+   },
+   "spec": {}
+  },
+  "hada-labo-tokyo-lotion-no-1-super-hydrator": {
+   "slug": "hada-labo-tokyo-lotion-no-1-super-hydrator",
+   "name": "Hada Labo Tokyo Lotion No. 1 Super Hydrator",
+   "sources": 1,
+   "groups": {
+    "irritation": {
+     "none": 1
+    }
+   },
+   "spec": {}
+  },
+  "hada-labo-tokyo-skin-plumping-gel-cream": {
+   "slug": "hada-labo-tokyo-skin-plumping-gel-cream",
+   "name": "Hada Labo Tokyo Skin Plumping Gel Cream",
+   "sources": 5,
+   "groups": {
+    "skin_type": {
+     "dry": 3
+    },
+    "irritation": {
+     "none": 4,
+     "a_little": 1
+    },
+    "texture": {
+     "light": 4
+    }
+   },
+   "spec": {}
+  },
+  "haruharu-wonder-black-rice-hyaluronic-toner": {
+   "slug": "haruharu-wonder-black-rice-hyaluronic-toner",
+   "name": "Haruharu Wonder Black Rice Hyaluronic Toner",
+   "sources": 18,
+   "groups": {
+    "skin_type": {
+     "combination": 4,
+     "oily": 4
+    },
+    "irritation": {
+     "none": 13,
+     "a_little": 5
+    },
+    "texture": {
+     "light": 12
+    }
+   },
+   "spec": {}
+  },
+  "haruharu-wonder-black-rice-moisture-airyfit-daily-sunscreen": {
+   "slug": "haruharu-wonder-black-rice-moisture-airyfit-daily-sunscreen",
+   "name": "Haruharu Wonder Black Rice Moisture Airyfit Daily Sunscreen",
+   "sources": 22,
+   "groups": {
+    "skin_type": {
+     "combination": 2,
+     "oily": 5
+    },
+    "irritation": {
+     "none": 5,
+     "a_little": 8
+    },
+    "texture": {
+     "light": 22
+    },
+    "finish": {
+     "matte": 16
+    }
+   },
+   "spec": {}
+  },
+  "kiehls-ultra-facial-cream": {
+   "slug": "kiehls-ultra-facial-cream",
+   "name": "Kiehl's Ultra Facial Cream",
+   "sources": 29,
+   "groups": {
+    "skin_type": {
+     "dry": 10,
+     "combination": 5
+    },
+    "irritation": {
+     "none": 7,
+     "a_little": 7
+    },
+    "texture": {
+     "medium": 29
+    },
+    "finish": {
+     "dewy": 9
+    }
+   },
+   "spec": {}
+  },
+  "kravebeauty-beet-the-sun-spf-40": {
+   "slug": "kravebeauty-beet-the-sun-spf-40",
+   "name": "KraveBeauty Beet the Sun SPF 40",
+   "sources": 9,
+   "groups": {
+    "skin_type": {
+     "dry": 3
+    },
+    "irritation": {
+     "a_little": 2
+    },
+    "texture": {
+     "light": 9
+    },
+    "finish": {
+     "dewy": 8
+    }
+   },
+   "spec": {}
+  },
+  "kravebeauty-great-barrier-relief": {
+   "slug": "kravebeauty-great-barrier-relief",
+   "name": "KraveBeauty Great Barrier Relief",
+   "sources": 24,
+   "groups": {
+    "skin_type": {
+     "dry": 3,
+     "combination": 1,
+     "oily": 3
+    },
+    "irritation": {
+     "none": 16,
+     "a_little": 8
+    },
+    "texture": {
+     "medium": 13
+    },
+    "finish": {
+     "dewy": 3
+    }
+   },
+   "spec": {}
+  },
+  "kravebeauty-kale-lalu-yaha": {
+   "slug": "kravebeauty-kale-lalu-yaha",
+   "name": "KraveBeauty Kale-lalu-yAHA",
+   "sources": 9,
+   "groups": {
+    "irritation": {
+     "none": 5,
+     "a_little": 4
+    }
+   },
+   "spec": {}
+  },
+  "kravebeauty-matcha-hemp-hydrating-cleanser": {
+   "slug": "kravebeauty-matcha-hemp-hydrating-cleanser",
+   "name": "KraveBeauty Matcha Hemp Hydrating Cleanser",
+   "sources": 24,
+   "groups": {
+    "skin_type": {
+     "dry": 3,
+     "combination": 5,
+     "oily": 3
+    },
+    "irritation": {
+     "none": 18,
+     "a_little": 6
+    }
+   },
+   "spec": {}
+  },
+  "kravebeauty-oat-so-simple-water-cream": {
+   "slug": "kravebeauty-oat-so-simple-water-cream",
+   "name": "KraveBeauty Oat So Simple Water Cream",
+   "sources": 8,
+   "groups": {
+    "irritation": {
+     "none": 3,
+     "a_little": 1
+    },
+    "texture": {
+     "light": 8
+    }
+   },
+   "spec": {}
+  },
+  "la-roche-posay-anthelios-melt-in-milk-sunscreen-spf-60": {
+   "slug": "la-roche-posay-anthelios-melt-in-milk-sunscreen-spf-60",
+   "name": "La Roche-Posay Anthelios Melt-In Milk Sunscreen SPF 60",
+   "sources": 15,
+   "groups": {
+    "skin_type": {
+     "dry": 2,
+     "combination": 2
+    },
+    "irritation": {
+     "none": 4,
+     "a_little": 9
+    },
+    "texture": {
+     "rich": 15
+    },
+    "finish": {
+     "dewy": 9
+    }
+   },
+   "spec": {}
+  },
+  "la-roche-posay-cicaplast-balm-b5": {
+   "slug": "la-roche-posay-cicaplast-balm-b5",
+   "name": "La Roche-Posay Cicaplast Balm B5+",
+   "sources": 66,
+   "groups": {
+    "skin_type": {
+     "dry": 13,
+     "combination": 2,
+     "oily": 6
+    },
+    "irritation": {
+     "none": 47,
+     "a_little": 19
+    },
+    "texture": {
+     "rich": 43
+    }
+   },
+   "spec": {}
+  },
+  "la-roche-posay-effaclar-gel-cleanser-for-oily-skin": {
+   "slug": "la-roche-posay-effaclar-gel-cleanser-for-oily-skin",
+   "name": "La Roche-Posay Effaclar Gel Cleanser for Oily Skin",
+   "sources": 10,
+   "groups": {
+    "skin_type": {
+     "combination": 2,
+     "oily": 4
+    },
+    "irritation": {
+     "none": 4,
+     "a_little": 6
+    }
+   },
+   "spec": {}
+  },
+  "la-roche-posay-effaclar-medicated-gel-cleanser": {
+   "slug": "la-roche-posay-effaclar-medicated-gel-cleanser",
+   "name": "La Roche-Posay Effaclar Medicated Gel Cleanser",
+   "sources": 2,
+   "groups": {
+    "irritation": {
+     "none": 2
+    }
+   },
+   "spec": {}
+  },
+  "la-roche-posay-hyalu-b5-pure-hyaluronic-acid-serum": {
+   "slug": "la-roche-posay-hyalu-b5-pure-hyaluronic-acid-serum",
+   "name": "La Roche-Posay Hyalu B5 Pure Hyaluronic Acid Serum",
+   "sources": 8,
+   "groups": {
+    "irritation": {
+     "none": 1,
+     "a_little": 7
+    },
+    "texture": {
+     "rich": 5
+    },
+    "finish": {
+     "dewy": 5
+    }
+   },
+   "spec": {}
+  },
+  "la-roche-posay-retinol-b3-pure-retinol-serum": {
+   "slug": "la-roche-posay-retinol-b3-pure-retinol-serum",
+   "name": "La Roche-Posay Retinol B3 Pure Retinol Serum",
+   "sources": 9,
+   "groups": {
+    "irritation": {
+     "none": 4,
+     "a_little": 5
+    }
+   },
+   "spec": {}
+  },
+  "la-roche-posay-toleriane-double-repair-face-moisturizer": {
+   "slug": "la-roche-posay-toleriane-double-repair-face-moisturizer",
+   "name": "La Roche-Posay Toleriane Double Repair Face Moisturizer",
+   "sources": 30,
+   "groups": {
+    "skin_type": {
+     "dry": 4,
+     "combination": 2,
+     "oily": 4
+    },
+    "irritation": {
+     "none": 12,
+     "a_little": 18
+    },
+    "texture": {
+     "light": 20
+    },
+    "finish": {
+     "natural": 4
+    }
+   },
+   "spec": {}
+  },
+  "la-roche-posay-toleriane-double-repair-facial-moisturizer-with-spf-30": {
+   "slug": "la-roche-posay-toleriane-double-repair-facial-moisturizer-with-spf-30",
+   "name": "La Roche-Posay Toleriane Double Repair Facial Moisturizer with SPF 30",
+   "sources": 3,
+   "groups": {
+    "irritation": {
+     "a_little": 1
+    },
+    "texture": {
+     "rich": 3
+    }
+   },
+   "spec": {}
+  },
+  "la-roche-posay-toleriane-double-repair-matte-face-moisturizer-spf-30": {
+   "slug": "la-roche-posay-toleriane-double-repair-matte-face-moisturizer-spf-30",
+   "name": "La Roche-Posay Toleriane Double Repair Matte Face Moisturizer SPF 30",
+   "sources": 6,
+   "groups": {
+    "skin_type": {
+     "oily": 2
+    },
+    "irritation": {
+     "none": 2,
+     "a_little": 1
+    },
+    "texture": {
+     "light": 6
+    }
+   },
+   "spec": {}
+  },
+  "la-roche-posay-toleriane-hydrating-gentle-facial-cleanser": {
+   "slug": "la-roche-posay-toleriane-hydrating-gentle-facial-cleanser",
+   "name": "La Roche-Posay Toleriane Hydrating Gentle Facial Cleanser",
+   "sources": 236,
+   "groups": {
+    "skin_type": {
+     "dry": 11,
+     "combination": 8,
+     "oily": 7
+    },
+    "irritation": {
+     "none": 141,
+     "a_little": 95
+    }
+   },
+   "spec": {}
+  },
+  "la-roche-posay-toleriane-purifying-foaming-facial-wash": {
+   "slug": "la-roche-posay-toleriane-purifying-foaming-facial-wash",
+   "name": "La Roche-Posay Toleriane Purifying Foaming Facial Wash",
+   "sources": 12,
+   "groups": {
+    "skin_type": {
+     "combination": 1,
+     "oily": 5
+    },
+    "irritation": {
+     "none": 9,
+     "a_little": 3
+    }
+   },
+   "spec": {}
+  },
+  "laneige-cream-skin-toner-moisturizer": {
+   "slug": "laneige-cream-skin-toner-moisturizer",
+   "name": "Laneige Cream Skin Toner & Moisturizer",
+   "sources": 13,
+   "groups": {
+    "skin_type": {
+     "dry": 9,
+     "oily": 3
+    },
+    "irritation": {
+     "none": 10,
+     "a_little": 2
+    },
+    "texture": {
+     "medium": 13
+    }
+   },
+   "spec": {}
+  },
+  "laneige-water-bank-blue-hyaluronic-cream-moisturizer": {
+   "slug": "laneige-water-bank-blue-hyaluronic-cream-moisturizer",
+   "name": "Laneige Water Bank Blue Hyaluronic Cream Moisturizer",
+   "sources": 2,
+   "groups": {
+    "skin_type": {
+     "dry": 2
+    },
+    "irritation": {
+     "a_little": 1
+    }
+   },
+   "spec": {}
+  },
+  "laneige-water-sleeping-mask": {
+   "slug": "laneige-water-sleeping-mask",
+   "name": "Laneige Water Sleeping Mask",
+   "sources": 11,
+   "groups": {
+    "skin_type": {
+     "dry": 2,
+     "combination": 3,
+     "oily": 2
+    },
+    "irritation": {
+     "none": 7,
+     "a_little": 4
+    }
+   },
+   "spec": {}
+  },
+  "mario-badescu-drying-lotion": {
+   "slug": "mario-badescu-drying-lotion",
+   "name": "Mario Badescu Drying Lotion",
+   "sources": 4,
+   "groups": {
+    "irritation": {
+     "none": 1,
+     "a_little": 3
+    }
+   },
+   "spec": {}
+  },
+  "mario-badescu-enzyme-cleansing-gel": {
+   "slug": "mario-badescu-enzyme-cleansing-gel",
+   "name": "Mario Badescu Enzyme Cleansing Gel",
+   "sources": 13,
+   "groups": {
+    "irritation": {
+     "none": 11,
+     "a_little": 2
+    }
+   },
+   "spec": {}
+  },
+  "mario-badescu-facial-spray-with-aloe-herbs-and-rosewater": {
+   "slug": "mario-badescu-facial-spray-with-aloe-herbs-and-rosewater",
+   "name": "Mario Badescu Facial Spray with Aloe, Herbs and Rosewater",
+   "sources": 5,
+   "groups": {
+    "irritation": {
+     "none": 1,
+     "a_little": 4
+    }
+   },
+   "spec": {}
+  },
+  "mario-badescu-glycolic-acid-toner": {
+   "slug": "mario-badescu-glycolic-acid-toner",
+   "name": "Mario Badescu Glycolic Acid Toner",
+   "sources": 11,
+   "groups": {
+    "irritation": {
+     "none": 1,
+     "a_little": 10
+    }
+   },
+   "spec": {}
+  },
+  "mario-badescu-seaweed-night-cream": {
+   "slug": "mario-badescu-seaweed-night-cream",
+   "name": "Mario Badescu Seaweed Night Cream",
+   "sources": 5,
+   "groups": {
+    "irritation": {
+     "none": 2,
+     "a_little": 2
+    },
+    "texture": {
+     "rich": 5
+    }
+   },
+   "spec": {}
+  },
+  "mario-badescu-super-collagen-mask": {
+   "slug": "mario-badescu-super-collagen-mask",
+   "name": "Mario Badescu Super Collagen Mask",
+   "sources": 1,
+   "groups": {
+    "irritation": {
+     "a_little": 1
+    }
+   },
+   "spec": {}
+  },
+  "medicube-pdrn-pink-peptide-serum": {
+   "slug": "medicube-pdrn-pink-peptide-serum",
+   "name": "Medicube PDRN Pink Peptide Serum",
+   "sources": 9,
+   "groups": {
+    "irritation": {
+     "none": 6,
+     "a_little": 3
+    }
+   },
+   "spec": {}
+  },
+  "missha-all-around-safe-block-essence-sun-spf-45": {
+   "slug": "missha-all-around-safe-block-essence-sun-spf-45",
+   "name": "Missha All Around Safe Block Essence Sun SPF 45",
+   "sources": 11,
+   "groups": {
+    "skin_type": {
+     "dry": 4,
+     "combination": 2,
+     "oily": 2
+    },
+    "irritation": {
+     "none": 4,
+     "a_little": 7
+    },
+    "texture": {
+     "light": 11
+    },
+    "finish": {
+     "dewy": 9
+    }
+   },
+   "spec": {}
+  },
+  "missha-artemisia-calming-essence": {
+   "slug": "missha-artemisia-calming-essence",
+   "name": "Missha Artemisia Calming Essence",
+   "sources": 6,
+   "groups": {
+    "irritation": {
+     "none": 6
+    }
+   },
+   "spec": {}
+  },
+  "missha-super-aqua-ultra-hyalron-cream": {
+   "slug": "missha-super-aqua-ultra-hyalron-cream",
+   "name": "Missha Super Aqua Ultra Hyalron Cream",
+   "sources": 0,
+   "groups": {},
+   "spec": {}
+  },
+  "missha-time-revolution-night-repair-ampoule-5x": {
+   "slug": "missha-time-revolution-night-repair-ampoule-5x",
+   "name": "Missha Time Revolution Night Repair Ampoule 5X",
+   "sources": 4,
+   "groups": {
+    "skin_type": {
+     "dry": 2
+    },
+    "irritation": {
+     "none": 3,
+     "a_little": 1
+    },
+    "texture": {
+     "medium": 3
+    }
+   },
+   "spec": {}
+  },
+  "missha-time-revolution-the-first-essence-5x": {
+   "slug": "missha-time-revolution-the-first-essence-5x",
+   "name": "Missha Time Revolution The First Essence 5X",
+   "sources": 3,
+   "groups": {
+    "skin_type": {
+     "dry": 2
+    },
+    "irritation": {
+     "none": 2,
+     "a_little": 1
+    }
+   },
+   "spec": {}
+  },
+  "mixsoon-bean-cream": {
+   "slug": "mixsoon-bean-cream",
+   "name": "mixsoon Bean Cream",
+   "sources": 9,
+   "groups": {
+    "skin_type": {
+     "dry": 3,
+     "combination": 2
+    },
+    "irritation": {
+     "none": 6,
+     "a_little": 2
+    },
+    "texture": {
+     "rich": 9
+    },
+    "finish": {
+     "dewy": 3
+    }
+   },
+   "spec": {}
+  },
+  "mixsoon-bean-essence": {
+   "slug": "mixsoon-bean-essence",
+   "name": "mixsoon Bean Essence",
+   "sources": 11,
+   "groups": {
+    "irritation": {
+     "none": 7,
+     "a_little": 4
+    }
+   },
+   "spec": {}
+  },
+  "mixsoon-bifida-toner": {
+   "slug": "mixsoon-bifida-toner",
+   "name": "mixsoon Bifida Toner",
+   "sources": 2,
+   "groups": {
+    "irritation": {
+     "none": 1,
+     "a_little": 1
+    }
+   },
+   "spec": {}
+  },
+  "naturium-azelaic-acid-emulsion-10": {
+   "slug": "naturium-azelaic-acid-emulsion-10",
+   "name": "Naturium Azelaic Acid Emulsion 10%",
+   "sources": 4,
+   "groups": {
+    "irritation": {
+     "none": 2,
+     "a_little": 2
+    }
+   },
+   "spec": {}
+  },
+  "naturium-bha-liquid-exfoliant-2": {
+   "slug": "naturium-bha-liquid-exfoliant-2",
+   "name": "Naturium BHA Liquid Exfoliant 2%",
+   "sources": 2,
+   "groups": {
+    "irritation": {
+     "none": 1,
+     "a_little": 1
+    }
+   },
+   "spec": {}
+  },
+  "naturium-dew-glow-moisturizer-spf-50": {
+   "slug": "naturium-dew-glow-moisturizer-spf-50",
+   "name": "Naturium Dew-Glow Moisturizer SPF 50",
+   "sources": 6,
+   "groups": {
+    "irritation": {
+     "none": 1
+    },
+    "texture": {
+     "light": 6
+    },
+    "finish": {
+     "dewy": 6
+    }
+   },
+   "spec": {}
+  },
+  "naturium-glycolic-acid-resurfacing-gel-10": {
+   "slug": "naturium-glycolic-acid-resurfacing-gel-10",
+   "name": "Naturium Glycolic Acid Resurfacing Gel 10%",
+   "sources": 0,
+   "groups": {},
+   "spec": {}
+  },
+  "naturium-mandelic-topical-acid-12": {
+   "slug": "naturium-mandelic-topical-acid-12",
+   "name": "Naturium Mandelic Topical Acid 12%",
+   "sources": 0,
+   "groups": {},
+   "spec": {}
+  },
+  "naturium-multi-peptide-eye-cream": {
+   "slug": "naturium-multi-peptide-eye-cream",
+   "name": "Naturium Multi-Peptide Eye Cream",
+   "sources": 1,
+   "groups": {
+    "irritation": {
+     "none": 1
+    }
+   },
+   "spec": {}
+  },
+  "naturium-multi-peptide-moisturizer": {
+   "slug": "naturium-multi-peptide-moisturizer",
+   "name": "Naturium Multi-Peptide Moisturizer",
+   "sources": 4,
+   "groups": {
+    "skin_type": {
+     "combination": 2
+    },
+    "texture": {
+     "light": 4
+    }
+   },
+   "spec": {}
+  },
+  "naturium-niacinamide-serum-12-plus-zinc-2": {
+   "slug": "naturium-niacinamide-serum-12-plus-zinc-2",
+   "name": "Naturium Niacinamide Serum 12% Plus Zinc 2%",
+   "sources": 2,
+   "groups": {
+    "irritation": {
+     "none": 2
+    }
+   },
+   "spec": {}
+  },
+  "naturium-plant-ceramide-rich-moisture-cream": {
+   "slug": "naturium-plant-ceramide-rich-moisture-cream",
+   "name": "Naturium Plant Ceramide Rich Moisture Cream",
+   "sources": 4,
+   "groups": {
+    "texture": {
+     "rich": 4
+    }
+   },
+   "spec": {}
+  },
+  "naturium-purple-ginseng-cleansing-balm": {
+   "slug": "naturium-purple-ginseng-cleansing-balm",
+   "name": "Naturium Purple Ginseng Cleansing Balm",
+   "sources": 2,
+   "groups": {
+    "irritation": {
+     "none": 1,
+     "a_little": 1
+    }
+   },
+   "spec": {}
+  },
+  "naturium-retinaldehyde-cream-serum": {
+   "slug": "naturium-retinaldehyde-cream-serum",
+   "name": "Naturium Retinaldehyde Cream Serum",
+   "sources": 8,
+   "groups": {
+    "irritation": {
+     "none": 6,
+     "a_little": 2
+    }
+   },
+   "spec": {}
+  },
+  "naturium-retinol-complex-serum": {
+   "slug": "naturium-retinol-complex-serum",
+   "name": "Naturium Retinol Complex Serum",
+   "sources": 3,
+   "groups": {
+    "irritation": {
+     "none": 3
+    }
+   },
+   "spec": {}
+  },
+  "naturium-tranexamic-topical-acid-5": {
+   "slug": "naturium-tranexamic-topical-acid-5",
+   "name": "Naturium Tranexamic Topical Acid 5%",
+   "sources": 0,
+   "groups": {},
+   "spec": {}
+  },
+  "naturium-vitamin-c-super-serum-plus": {
+   "slug": "naturium-vitamin-c-super-serum-plus",
+   "name": "Naturium Vitamin C Super Serum Plus",
+   "sources": 6,
+   "groups": {
+    "irritation": {
+     "none": 5,
+     "a_little": 1
+    },
+    "finish": {
+     "dewy": 3
+    }
+   },
+   "spec": {}
+  },
+  "neutrogena-clear-face-oil-free-sunscreen-spf-50": {
+   "slug": "neutrogena-clear-face-oil-free-sunscreen-spf-50",
+   "name": "Neutrogena Clear Face Oil-Free Sunscreen SPF 50",
+   "sources": 6,
+   "groups": {
+    "irritation": {
+     "a_little": 6
+    },
+    "texture": {
+     "rich": 6
+    },
+    "finish": {
+     "natural": 4
+    }
+   },
+   "spec": {}
+  },
+  "neutrogena-hydro-boost-eye-gel-cream": {
+   "slug": "neutrogena-hydro-boost-eye-gel-cream",
+   "name": "Neutrogena Hydro Boost Eye Gel-Cream",
+   "sources": 2,
+   "groups": {
+    "irritation": {
+     "none": 1,
+     "a_little": 1
+    }
+   },
+   "spec": {}
+  },
+  "neutrogena-hydro-boost-gel-cream-extra-dry": {
+   "slug": "neutrogena-hydro-boost-gel-cream-extra-dry",
+   "name": "Neutrogena Hydro Boost Gel-Cream Extra-Dry",
+   "sources": 22,
+   "groups": {
+    "skin_type": {
+     "dry": 7,
+     "combination": 3
+    },
+    "irritation": {
+     "none": 14,
+     "a_little": 8
+    },
+    "texture": {
+     "light": 20
+    },
+    "finish": {
+     "natural": 3
+    }
+   },
+   "spec": {}
+  },
+  "neutrogena-hydro-boost-hyaluronic-acid-water-gel": {
+   "slug": "neutrogena-hydro-boost-hyaluronic-acid-water-gel",
+   "name": "Neutrogena Hydro Boost Hyaluronic Acid Water Gel",
+   "sources": 38,
+   "groups": {
+    "skin_type": {
+     "dry": 3,
+     "combination": 8,
+     "oily": 10
+    },
+    "irritation": {
+     "none": 3,
+     "a_little": 35
+    },
+    "texture": {
+     "light": 35
+    },
+    "finish": {
+     "matte": 8
+    }
+   },
+   "spec": {}
+  },
+  "neutrogena-oil-free-acne-wash": {
+   "slug": "neutrogena-oil-free-acne-wash",
+   "name": "Neutrogena Oil-Free Acne Wash",
+   "sources": 16,
+   "groups": {
+    "skin_type": {
+     "combination": 1,
+     "oily": 1
+    },
+    "irritation": {
+     "none": 1,
+     "a_little": 15
+    }
+   },
+   "spec": {}
+  },
+  "neutrogena-ultra-gentle-daily-cleanser": {
+   "slug": "neutrogena-ultra-gentle-daily-cleanser",
+   "name": "Neutrogena Ultra Gentle Daily Cleanser",
+   "sources": 22,
+   "groups": {
+    "skin_type": {
+     "dry": 2
+    },
+    "irritation": {
+     "none": 18,
+     "a_little": 4
+    }
+   },
+   "spec": {}
+  },
+  "neutrogena-ultra-sheer-dry-touch-sunscreen-lotion-spf-55": {
+   "slug": "neutrogena-ultra-sheer-dry-touch-sunscreen-lotion-spf-55",
+   "name": "Neutrogena Ultra Sheer Dry-Touch Sunscreen Lotion SPF 55",
+   "sources": 6,
+   "groups": {
+    "irritation": {
+     "a_little": 6
+    },
+    "texture": {
+     "medium": 3
+    }
+   },
+   "spec": {}
+  },
+  "numbuzin-no-3-super-glowing-essence-toner": {
+   "slug": "numbuzin-no-3-super-glowing-essence-toner",
+   "name": "numbuzin No.3 Super Glowing Essence Toner",
+   "sources": 21,
+   "groups": {
+    "skin_type": {
+     "combination": 2
+    },
+    "irritation": {
+     "none": 5,
+     "a_little": 16
+    },
+    "texture": {
+     "medium": 9
+    }
+   },
+   "spec": {}
+  },
+  "numbuzin-no-5-glutathione-vitamin-concentrated-serum": {
+   "slug": "numbuzin-no-5-glutathione-vitamin-concentrated-serum",
+   "name": "numbuzin No.5+ Glutathione Vitamin Concentrated Serum",
+   "sources": 23,
+   "groups": {
+    "skin_type": {
+     "dry": 3,
+     "combination": 4
+    },
+    "irritation": {
+     "none": 19,
+     "a_little": 4
+    },
+    "texture": {
+     "light": 12
+    },
+    "finish": {
+     "dewy": 4
+    }
+   },
+   "spec": {}
+  },
+  "numbuzin-no-9-nad-retinal-volumetox-eye-cream": {
+   "slug": "numbuzin-no-9-nad-retinal-volumetox-eye-cream",
+   "name": "numbuzin No.9 NAD+ Retinal Volumetox Eye Cream",
+   "sources": 3,
+   "groups": {
+    "irritation": {
+     "a_little": 3
+    }
+   },
+   "spec": {}
+  },
+  "paulas-choice-10-azelaic-acid-booster": {
+   "slug": "paulas-choice-10-azelaic-acid-booster",
+   "name": "Paula's Choice 10% Azelaic Acid Booster",
+   "sources": 16,
+   "groups": {
+    "irritation": {
+     "none": 10,
+     "a_little": 6
+    },
+    "texture": {
+     "light": 5
+    }
+   },
+   "spec": {}
+  },
+  "paulas-choice-10-niacinamide-booster": {
+   "slug": "paulas-choice-10-niacinamide-booster",
+   "name": "Paula's Choice 10% Niacinamide Booster",
+   "sources": 4,
+   "groups": {
+    "irritation": {
+     "none": 3,
+     "a_little": 1
+    },
+    "texture": {
+     "light": 3
+    }
+   },
+   "spec": {}
+  },
+  "paulas-choice-c15-super-booster": {
+   "slug": "paulas-choice-c15-super-booster",
+   "name": "Paula's Choice C15 Super Booster",
+   "sources": 7,
+   "groups": {
+    "irritation": {
+     "none": 3,
+     "a_little": 4
+    }
+   },
+   "spec": {}
+  },
+  "paulas-choice-c5-super-boost-eye-cream": {
+   "slug": "paulas-choice-c5-super-boost-eye-cream",
+   "name": "Paula's Choice C5 Super Boost Eye Cream",
+   "sources": 1,
+   "groups": {
+    "irritation": {
+     "none": 1
+    }
+   },
+   "spec": {}
+  },
+  "paulas-choice-calm-rescue-and-repair-weightless-moisturizer": {
+   "slug": "paulas-choice-calm-rescue-and-repair-weightless-moisturizer",
+   "name": "Paula's Choice CALM Rescue and Repair Weightless Moisturizer",
+   "sources": 0,
+   "groups": {},
+   "spec": {}
+  },
+  "paulas-choice-calm-ultra-gentle-cleanser": {
+   "slug": "paulas-choice-calm-ultra-gentle-cleanser",
+   "name": "Paula's Choice CALM Ultra Gentle Cleanser",
+   "sources": 5,
+   "groups": {
+    "irritation": {
+     "none": 5
+    }
+   },
+   "spec": {}
+  },
+  "paulas-choice-clinical-0-3-retinol-2-bakuchiol-treatment": {
+   "slug": "paulas-choice-clinical-0-3-retinol-2-bakuchiol-treatment",
+   "name": "Paula's Choice CLINICAL 0.3% Retinol + 2% Bakuchiol Treatment",
+   "sources": 7,
+   "groups": {
+    "irritation": {
+     "none": 6,
+     "a_little": 1
+    }
+   },
+   "spec": {}
+  },
+  "paulas-choice-clinical-1-retinol-treatment": {
+   "slug": "paulas-choice-clinical-1-retinol-treatment",
+   "name": "Paula's Choice CLINICAL 1% Retinol Treatment",
+   "sources": 12,
+   "groups": {
+    "irritation": {
+     "none": 2,
+     "a_little": 10
+    }
+   },
+   "spec": {}
+  },
+  "paulas-choice-peptide-booster": {
+   "slug": "paulas-choice-peptide-booster",
+   "name": "Paula's Choice Peptide Booster",
+   "sources": 2,
+   "groups": {
+    "irritation": {
+     "none": 1,
+     "a_little": 1
+    }
+   },
+   "spec": {}
+  },
+  "paulas-choice-resist-advanced-replenishing-toner": {
+   "slug": "paulas-choice-resist-advanced-replenishing-toner",
+   "name": "Paula's Choice RESIST Advanced Replenishing Toner",
+   "sources": 2,
+   "groups": {
+    "irritation": {
+     "none": 1,
+     "a_little": 1
+    }
+   },
+   "spec": {}
+  },
+  "paulas-choice-resist-youth-extending-daily-hydrating-fluid-spf-50": {
+   "slug": "paulas-choice-resist-youth-extending-daily-hydrating-fluid-spf-50",
+   "name": "Paula's Choice RESIST Youth-Extending Daily Hydrating Fluid SPF 50",
+   "sources": 12,
+   "groups": {
+    "skin_type": {
+     "combination": 1,
+     "oily": 3
+    },
+    "irritation": {
+     "none": 1,
+     "a_little": 2
+    },
+    "texture": {
+     "light": 12
+    }
+   },
+   "spec": {}
+  },
+  "paulas-choice-skin-balancing-oil-reducing-cleanser": {
+   "slug": "paulas-choice-skin-balancing-oil-reducing-cleanser",
+   "name": "Paula's Choice SKIN BALANCING Oil-Reducing Cleanser",
+   "sources": 7,
+   "groups": {
+    "skin_type": {
+     "oily": 1
+    },
+    "irritation": {
+     "none": 5,
+     "a_little": 2
+    }
+   },
+   "spec": {}
+  },
+  "paulas-choice-skin-balancing-pore-reducing-toner": {
+   "slug": "paulas-choice-skin-balancing-pore-reducing-toner",
+   "name": "Paula's Choice SKIN BALANCING Pore-Reducing Toner",
+   "sources": 6,
+   "groups": {
+    "irritation": {
+     "none": 5,
+     "a_little": 1
+    }
+   },
+   "spec": {}
+  },
+  "paulas-choice-skin-perfecting-2-bha-gel-exfoliant": {
+   "slug": "paulas-choice-skin-perfecting-2-bha-gel-exfoliant",
+   "name": "Paula's Choice SKIN PERFECTING 2% BHA Gel Exfoliant",
+   "sources": 4,
+   "groups": {
+    "skin_type": {
+     "oily": 2
+    },
+    "irritation": {
+     "none": 3,
+     "a_little": 1
+    }
+   },
+   "spec": {}
+  },
+  "paulas-choice-skin-perfecting-2-bha-liquid-exfoliant": {
+   "slug": "paulas-choice-skin-perfecting-2-bha-liquid-exfoliant",
+   "name": "Paula's Choice SKIN PERFECTING 2% BHA Liquid Exfoliant",
+   "sources": 164,
+   "groups": {
+    "skin_type": {
+     "dry": 16,
+     "combination": 10,
+     "oily": 9
+    },
+    "irritation": {
+     "none": 70,
+     "a_little": 94
+    }
+   },
+   "spec": {}
+  },
+  "paulas-choice-skin-perfecting-8-aha-gel-exfoliant": {
+   "slug": "paulas-choice-skin-perfecting-8-aha-gel-exfoliant",
+   "name": "Paula's Choice SKIN PERFECTING 8% AHA Gel Exfoliant",
+   "sources": 10,
+   "groups": {
+    "irritation": {
+     "none": 5,
+     "a_little": 5
+    }
+   },
+   "spec": {}
+  },
+  "paulas-choice-skin-recovery-enriched-calming-toner": {
+   "slug": "paulas-choice-skin-recovery-enriched-calming-toner",
+   "name": "Paula's Choice SKIN RECOVERY Enriched Calming Toner",
+   "sources": 4,
+   "groups": {
+    "irritation": {
+     "none": 3,
+     "a_little": 1
+    }
+   },
+   "spec": {}
+  },
+  "peach-lily-glass-skin-refining-serum": {
+   "slug": "peach-lily-glass-skin-refining-serum",
+   "name": "Peach & Lily Glass Skin Refining Serum",
+   "sources": 9,
+   "groups": {
+    "skin_type": {
+     "oily": 2
+    },
+    "irritation": {
+     "none": 9
+    },
+    "finish": {
+     "natural": 3
+    }
+   },
+   "spec": {}
+  },
+  "peach-slices-acne-spot-dots": {
+   "slug": "peach-slices-acne-spot-dots",
+   "name": "Peach Slices Acne Spot Dots",
+   "sources": 0,
+   "groups": {},
+   "spec": {}
+  },
+  "peach-slices-redness-relief-azelaic-acid-serum": {
+   "slug": "peach-slices-redness-relief-azelaic-acid-serum",
+   "name": "Peach Slices Redness Relief Azelaic Acid Serum",
+   "sources": 5,
+   "groups": {
+    "irritation": {
+     "none": 4,
+     "a_little": 1
+    }
+   },
+   "spec": {}
+  },
+  "skin1004-centella-air-fit-suncream-plus": {
+   "slug": "skin1004-centella-air-fit-suncream-plus",
+   "name": "SKIN1004 Centella Air-Fit Suncream Plus",
+   "sources": 3,
+   "groups": {
+    "irritation": {
+     "none": 3
+    },
+    "texture": {
+     "medium": 3
+    },
+    "finish": {
+     "matte": 3
+    }
+   },
+   "spec": {}
+  },
+  "skin1004-centella-ampoule-foam": {
+   "slug": "skin1004-centella-ampoule-foam",
+   "name": "SKIN1004 Centella Ampoule Foam",
+   "sources": 20,
+   "groups": {
+    "skin_type": {
+     "oily": 3
+    },
+    "irritation": {
+     "none": 14,
+     "a_little": 6
+    }
+   },
+   "spec": {}
+  },
+  "skin1004-centella-light-cleansing-oil": {
+   "slug": "skin1004-centella-light-cleansing-oil",
+   "name": "SKIN1004 Centella Light Cleansing Oil",
+   "sources": 8,
+   "groups": {
+    "irritation": {
+     "none": 7,
+     "a_little": 1
+    }
+   },
+   "spec": {}
+  },
+  "skin1004-centella-soothing-cream": {
+   "slug": "skin1004-centella-soothing-cream",
+   "name": "SKIN1004 Centella Soothing Cream",
+   "sources": 11,
+   "groups": {
+    "irritation": {
+     "none": 6,
+     "a_little": 2
+    },
+    "texture": {
+     "light": 11
+    },
+    "finish": {
+     "dewy": 3
+    }
+   },
+   "spec": {}
+  },
+  "skin1004-centella-toning-toner": {
+   "slug": "skin1004-centella-toning-toner",
+   "name": "SKIN1004 Centella Toning Toner",
+   "sources": 3,
+   "groups": {
+    "irritation": {
+     "none": 3
+    }
+   },
+   "spec": {}
+  },
+  "skin1004-hyalu-cica-moisture-cream": {
+   "slug": "skin1004-hyalu-cica-moisture-cream",
+   "name": "SKIN1004 Hyalu-Cica Moisture Cream",
+   "sources": 3,
+   "groups": {
+    "irritation": {
+     "none": 1,
+     "a_little": 2
+    },
+    "texture": {
+     "medium": 3
+    }
+   },
+   "spec": {}
+  },
+  "skin1004-hyalu-cica-water-fit-sun-serum": {
+   "slug": "skin1004-hyalu-cica-water-fit-sun-serum",
+   "name": "SKIN1004 Hyalu-Cica Water-Fit Sun Serum",
+   "sources": 85,
+   "groups": {
+    "skin_type": {
+     "dry": 16,
+     "combination": 15,
+     "oily": 12
+    },
+    "irritation": {
+     "none": 30,
+     "a_little": 38
+    },
+    "texture": {
+     "light": 85
+    },
+    "finish": {
+     "dewy": 38
+    }
+   },
+   "spec": {}
+  },
+  "skin1004-madagascar-centella-ampoule": {
+   "slug": "skin1004-madagascar-centella-ampoule",
+   "name": "SKIN1004 Madagascar Centella Ampoule",
+   "sources": 50,
+   "groups": {
+    "skin_type": {
+     "dry": 4,
+     "oily": 4
+    },
+    "irritation": {
+     "none": 44,
+     "a_little": 6
+    },
+    "texture": {
+     "light": 21
+    }
+   },
+   "spec": {}
+  },
+  "skin1004-poremizing-clear-toner": {
+   "slug": "skin1004-poremizing-clear-toner",
+   "name": "SKIN1004 Poremizing Clear Toner",
+   "sources": 0,
+   "groups": {},
+   "spec": {}
+  },
+  "skin1004-poremizing-quick-clay-stick-mask": {
+   "slug": "skin1004-poremizing-quick-clay-stick-mask",
+   "name": "SKIN1004 Poremizing Quick Clay Stick Mask",
+   "sources": 6,
+   "groups": {
+    "irritation": {
+     "none": 4,
+     "a_little": 2
+    }
+   },
+   "spec": {}
+  },
+  "skin1004-probio-cica-bakuchiol-eye-cream": {
+   "slug": "skin1004-probio-cica-bakuchiol-eye-cream",
+   "name": "SKIN1004 Probio-Cica Bakuchiol Eye Cream",
+   "sources": 7,
+   "groups": {
+    "irritation": {
+     "none": 1,
+     "a_little": 6
+    }
+   },
+   "spec": {}
+  },
+  "skin1004-tea-trica-bha-foam": {
+   "slug": "skin1004-tea-trica-bha-foam",
+   "name": "SKIN1004 Tea-Trica BHA Foam",
+   "sources": 5,
+   "groups": {
+    "irritation": {
+     "none": 3,
+     "a_little": 2
+    }
+   },
+   "spec": {}
+  },
+  "starface-hydro-stars-salicylic-acid": {
+   "slug": "starface-hydro-stars-salicylic-acid",
+   "name": "Starface Hydro-Stars + Salicylic Acid",
+   "sources": 0,
+   "groups": {},
+   "spec": {}
+  },
+  "starface-star-wash-salicylic-acid": {
+   "slug": "starface-star-wash-salicylic-acid",
+   "name": "Starface Star Wash + Salicylic Acid",
+   "sources": 2,
+   "groups": {
+    "irritation": {
+     "none": 1,
+     "a_little": 1
+    }
+   },
+   "spec": {}
+  },
+  "stratia-lipid-gold": {
+   "slug": "stratia-lipid-gold",
+   "name": "Stratia Lipid Gold",
+   "sources": 14,
+   "groups": {
+    "skin_type": {
+     "dry": 3
+    },
+    "irritation": {
+     "none": 6,
+     "a_little": 8
+    },
+    "texture": {
+     "light": 9
+    },
+    "finish": {
+     "dewy": 3
+    }
+   },
+   "spec": {}
+  },
+  "stratia-soft-touch-aha": {
+   "slug": "stratia-soft-touch-aha",
+   "name": "Stratia Soft Touch AHA",
+   "sources": 18,
+   "groups": {
+    "irritation": {
+     "none": 18
+    }
+   },
+   "spec": {}
+  },
+  "stratia-velvet-cleansing-milk": {
+   "slug": "stratia-velvet-cleansing-milk",
+   "name": "Stratia Velvet Cleansing Milk",
+   "sources": 16,
+   "groups": {
+    "irritation": {
+     "none": 15,
+     "a_little": 1
+    }
+   },
+   "spec": {}
+  },
+  "sunday-riley-a-high-dose-retinoid-serum": {
+   "slug": "sunday-riley-a-high-dose-retinoid-serum",
+   "name": "Sunday Riley A+ High-Dose Retinoid Serum",
+   "sources": 9,
+   "groups": {
+    "irritation": {
+     "none": 8,
+     "a_little": 1
+    }
+   },
+   "spec": {}
+  },
+  "sunday-riley-auto-correct-brightening-depuffing-eye-cream": {
+   "slug": "sunday-riley-auto-correct-brightening-depuffing-eye-cream",
+   "name": "Sunday Riley Auto Correct Brightening + Depuffing Eye Cream",
+   "sources": 2,
+   "groups": {
+    "irritation": {
+     "none": 1,
+     "a_little": 1
+    }
+   },
+   "spec": {}
+  },
+  "sunday-riley-blue-moon-clean-rinse-cleansing-balm": {
+   "slug": "sunday-riley-blue-moon-clean-rinse-cleansing-balm",
+   "name": "Sunday Riley Blue Moon Clean Rinse Cleansing Balm",
+   "sources": 0,
+   "groups": {},
+   "spec": {}
+  },
+  "sunday-riley-c-e-o-15-vitamin-c-brightening-serum": {
+   "slug": "sunday-riley-c-e-o-15-vitamin-c-brightening-serum",
+   "name": "Sunday Riley C.E.O. 15% Vitamin C Brightening Serum",
+   "sources": 5,
+   "groups": {
+    "skin_type": {
+     "dry": 4
+    },
+    "irritation": {
+     "none": 1
+    },
+    "finish": {
+     "dewy": 5
+    }
+   },
+   "spec": {}
+  },
+  "sunday-riley-good-genes-lactic-acid-treatment": {
+   "slug": "sunday-riley-good-genes-lactic-acid-treatment",
+   "name": "Sunday Riley Good Genes Lactic Acid Treatment",
+   "sources": 43,
+   "groups": {
+    "skin_type": {
+     "dry": 8,
+     "combination": 4,
+     "oily": 3
+    },
+    "irritation": {
+     "none": 24,
+     "a_little": 19
+    }
+   },
+   "spec": {}
+  },
+  "sunday-riley-ice-ceramide-moisturizing-cream": {
+   "slug": "sunday-riley-ice-ceramide-moisturizing-cream",
+   "name": "Sunday Riley Ice Ceramide Moisturizing Cream",
+   "sources": 10,
+   "groups": {
+    "skin_type": {
+     "dry": 3,
+     "combination": 2
+    },
+    "irritation": {
+     "none": 3,
+     "a_little": 5
+    },
+    "texture": {
+     "rich": 10
+    }
+   },
+   "spec": {}
+  },
+  "sunday-riley-pink-drink-firming-resurfacing-essence": {
+   "slug": "sunday-riley-pink-drink-firming-resurfacing-essence",
+   "name": "Sunday Riley Pink Drink Firming Resurfacing Essence",
+   "sources": 3,
+   "groups": {
+    "irritation": {
+     "a_little": 3
+    }
+   },
+   "spec": {}
+  },
+  "sunday-riley-u-f-o-acne-treatment-face-oil": {
+   "slug": "sunday-riley-u-f-o-acne-treatment-face-oil",
+   "name": "Sunday Riley U.F.O. Acne Treatment Face Oil",
+   "sources": 14,
+   "groups": {
+    "skin_type": {
+     "dry": 2,
+     "combination": 2,
+     "oily": 2
+    },
+    "irritation": {
+     "none": 6,
+     "a_little": 8
+    }
+   },
+   "spec": {}
+  },
+  "supergoop-bright-eyed-mineral-eye-cream-spf-40": {
+   "slug": "supergoop-bright-eyed-mineral-eye-cream-spf-40",
+   "name": "Supergoop! Bright-Eyed Mineral Eye Cream SPF 40",
+   "sources": 4,
+   "groups": {
+    "irritation": {
+     "none": 1,
+     "a_little": 3
+    }
+   },
+   "spec": {}
+  },
+  "supergoop-every-single-face-watery-lotion-spf-50": {
+   "slug": "supergoop-every-single-face-watery-lotion-spf-50",
+   "name": "Supergoop! Every. Single. Face. Watery Lotion SPF 50",
+   "sources": 4,
+   "groups": {
+    "irritation": {
+     "none": 1,
+     "a_little": 3
+    },
+    "texture": {
+     "light": 3
+    }
+   },
+   "spec": {}
+  },
+  "supergoop-glowscreen-spf-40": {
+   "slug": "supergoop-glowscreen-spf-40",
+   "name": "Supergoop! Glowscreen SPF 40",
+   "sources": 55,
+   "groups": {
+    "skin_type": {
+     "dry": 6,
+     "combination": 3,
+     "oily": 2
+    },
+    "irritation": {
+     "none": 8,
+     "a_little": 12
+    },
+    "texture": {
+     "rich": 34
+    },
+    "finish": {
+     "dewy": 55
+    }
+   },
+   "spec": {}
+  },
+  "supergoop-mineral-mattescreen-spf-40": {
+   "slug": "supergoop-mineral-mattescreen-spf-40",
+   "name": "Supergoop! Mineral Mattescreen SPF 40",
+   "sources": 19,
+   "groups": {
+    "skin_type": {
+     "combination": 4,
+     "oily": 6
+    },
+    "irritation": {
+     "none": 5,
+     "a_little": 1
+    },
+    "texture": {
+     "light": 11
+    },
+    "finish": {
+     "matte": 19
+    }
+   },
+   "spec": {}
+  },
+  "supergoop-play-everyday-lotion-spf-50": {
+   "slug": "supergoop-play-everyday-lotion-spf-50",
+   "name": "Supergoop! PLAY Everyday Lotion SPF 50",
+   "sources": 12,
+   "groups": {
+    "irritation": {
+     "none": 5,
+     "a_little": 7
+    },
+    "texture": {
+     "medium": 8
+    },
+    "finish": {
+     "dewy": 8
+    }
+   },
+   "spec": {}
+  },
+  "supergoop-superscreen-hydrating-daily-cream-spf-40": {
+   "slug": "supergoop-superscreen-hydrating-daily-cream-spf-40",
+   "name": "Supergoop! Superscreen Hydrating Daily Cream SPF 40",
+   "sources": 3,
+   "groups": {
+    "skin_type": {
+     "dry": 3
+    },
+    "irritation": {
+     "none": 1,
+     "a_little": 2
+    }
+   },
+   "spec": {}
+  },
+  "supergoop-unseen-sunscreen-spf-50": {
+   "slug": "supergoop-unseen-sunscreen-spf-50",
+   "name": "Supergoop! Unseen Sunscreen SPF 50",
+   "sources": 27,
+   "groups": {
+    "skin_type": {
+     "dry": 3,
+     "oily": 5
+    },
+    "irritation": {
+     "none": 10,
+     "a_little": 14
+    },
+    "texture": {
+     "light": 27
+    },
+    "finish": {
+     "matte": 14
+    }
+   },
+   "spec": {}
+  },
+  "tatcha-the-dewy-skin-cream": {
+   "slug": "tatcha-the-dewy-skin-cream",
+   "name": "Tatcha The Dewy Skin Cream",
+   "sources": 53,
+   "groups": {
+    "skin_type": {
+     "dry": 34,
+     "combination": 7,
+     "oily": 3
+    },
+    "irritation": {
+     "none": 11,
+     "a_little": 10
+    },
+    "texture": {
+     "rich": 53
+    },
+    "finish": {
+     "dewy": 16
+    }
+   },
+   "spec": {}
+  },
+  "tatcha-the-rice-wash": {
+   "slug": "tatcha-the-rice-wash",
+   "name": "Tatcha The Rice Wash",
+   "sources": 75,
+   "groups": {
+    "skin_type": {
+     "dry": 11,
+     "combination": 3,
+     "oily": 2
+    },
+    "irritation": {
+     "none": 65,
+     "a_little": 10
+    }
+   },
+   "spec": {}
+  },
+  "tatcha-the-silk-sunscreen-spf-50": {
+   "slug": "tatcha-the-silk-sunscreen-spf-50",
+   "name": "Tatcha The Silk Sunscreen SPF 50",
+   "sources": 8,
+   "groups": {
+    "irritation": {
+     "a_little": 1
+    },
+    "texture": {
+     "light": 8
+    },
+    "finish": {
+     "dewy": 4
+    }
+   },
+   "spec": {}
+  },
+  "tatcha-the-water-cream": {
+   "slug": "tatcha-the-water-cream",
+   "name": "Tatcha The Water Cream",
+   "sources": 47,
+   "groups": {
+    "skin_type": {
+     "dry": 5,
+     "combination": 13,
+     "oily": 9
+    },
+    "irritation": {
+     "none": 8,
+     "a_little": 6
+    },
+    "texture": {
+     "light": 47
+    },
+    "finish": {
+     "natural": 14
+    }
+   },
+   "spec": {}
+  },
+  "the-inkey-list-10-azelaic-acid-serum": {
+   "slug": "the-inkey-list-10-azelaic-acid-serum",
+   "name": "The INKEY List 10% Azelaic Acid Serum",
+   "sources": 6,
+   "groups": {
+    "irritation": {
+     "none": 4,
+     "a_little": 2
+    },
+    "texture": {
+     "light": 3
+    }
+   },
+   "spec": {}
+  },
+  "the-inkey-list-10-niacinamide-serum": {
+   "slug": "the-inkey-list-10-niacinamide-serum",
+   "name": "The INKEY List 10% Niacinamide Serum",
+   "sources": 8,
+   "groups": {
+    "irritation": {
+     "none": 4,
+     "a_little": 4
+    }
+   },
+   "spec": {}
+  },
+  "the-inkey-list-advanced-0-2-retinal-serum": {
+   "slug": "the-inkey-list-advanced-0-2-retinal-serum",
+   "name": "The INKEY List Advanced 0.2% Retinal Serum",
+   "sources": 0,
+   "groups": {},
+   "spec": {}
+  },
+  "the-inkey-list-beta-hydroxy-acid-bha-serum": {
+   "slug": "the-inkey-list-beta-hydroxy-acid-bha-serum",
+   "name": "The INKEY List Beta Hydroxy Acid (BHA) Serum",
+   "sources": 2,
+   "groups": {
+    "skin_type": {
+     "dry": 2
+    },
+    "irritation": {
+     "none": 2
+    }
+   },
+   "spec": {}
+  },
+  "the-inkey-list-bio-active-ceramide-moisturiser": {
+   "slug": "the-inkey-list-bio-active-ceramide-moisturiser",
+   "name": "The INKEY List Bio-Active Ceramide Moisturiser",
+   "sources": 3,
+   "groups": {
+    "irritation": {
+     "none": 3
+    },
+    "texture": {
+     "medium": 3
+    }
+   },
+   "spec": {}
+  },
+  "the-inkey-list-caffeine-eye-cream": {
+   "slug": "the-inkey-list-caffeine-eye-cream",
+   "name": "The INKEY List Caffeine Eye Cream",
+   "sources": 5,
+   "groups": {
+    "irritation": {
+     "none": 2,
+     "a_little": 3
+    },
+    "texture": {
+     "light": 5
+    }
+   },
+   "spec": {}
+  },
+  "the-inkey-list-glycolic-acid-toner": {
+   "slug": "the-inkey-list-glycolic-acid-toner",
+   "name": "The INKEY List Glycolic Acid Toner",
+   "sources": 8,
+   "groups": {
+    "irritation": {
+     "none": 3,
+     "a_little": 5
+    }
+   },
+   "spec": {}
+  },
+  "the-inkey-list-hyaluronic-acid-serum": {
+   "slug": "the-inkey-list-hyaluronic-acid-serum",
+   "name": "The INKEY List Hyaluronic Acid Serum",
+   "sources": 5,
+   "groups": {
+    "skin_type": {
+     "dry": 3
+    },
+    "irritation": {
+     "a_little": 3
+    },
+    "texture": {
+     "light": 5
+    }
+   },
+   "spec": {}
+  },
+  "the-inkey-list-oat-cleansing-balm": {
+   "slug": "the-inkey-list-oat-cleansing-balm",
+   "name": "The INKEY List Oat Cleansing Balm",
+   "sources": 33,
+   "groups": {
+    "skin_type": {
+     "dry": 6,
+     "combination": 2
+    },
+    "irritation": {
+     "none": 22,
+     "a_little": 11
+    }
+   },
+   "spec": {}
+  },
+  "the-inkey-list-omega-water-cream": {
+   "slug": "the-inkey-list-omega-water-cream",
+   "name": "The INKEY List Omega Water Cream",
+   "sources": 10,
+   "groups": {
+    "irritation": {
+     "none": 5,
+     "a_little": 1
+    },
+    "texture": {
+     "light": 10
+    }
+   },
+   "spec": {}
+  },
+  "the-inkey-list-pha-toner": {
+   "slug": "the-inkey-list-pha-toner",
+   "name": "The INKEY List PHA Toner",
+   "sources": 14,
+   "groups": {
+    "skin_type": {
+     "dry": 2
+    },
+    "irritation": {
+     "none": 8,
+     "a_little": 6
+    }
+   },
+   "spec": {}
+  },
+  "the-inkey-list-polyglutamic-acid-serum": {
+   "slug": "the-inkey-list-polyglutamic-acid-serum",
+   "name": "The INKEY List Polyglutamic Acid Serum",
+   "sources": 3,
+   "groups": {
+    "irritation": {
+     "none": 1,
+     "a_little": 2
+    }
+   },
+   "spec": {}
+  },
+  "the-inkey-list-retinol-eye-cream": {
+   "slug": "the-inkey-list-retinol-eye-cream",
+   "name": "The INKEY List Retinol Eye Cream",
+   "sources": 14,
+   "groups": {
+    "irritation": {
+     "none": 9,
+     "a_little": 5
+    }
+   },
+   "spec": {}
+  },
+  "the-inkey-list-salicylic-acid-cleanser": {
+   "slug": "the-inkey-list-salicylic-acid-cleanser",
+   "name": "The INKEY List Salicylic Acid Cleanser",
+   "sources": 15,
+   "groups": {
+    "skin_type": {
+     "dry": 2,
+     "oily": 1
+    },
+    "irritation": {
+     "none": 9,
+     "a_little": 6
+    }
+   },
+   "spec": {}
+  },
+  "the-inkey-list-succinic-acid-treatment": {
+   "slug": "the-inkey-list-succinic-acid-treatment",
+   "name": "The INKEY List Succinic Acid Treatment",
+   "sources": 4,
+   "groups": {
+    "irritation": {
+     "none": 3,
+     "a_little": 1
+    }
+   },
+   "spec": {}
+  },
+  "the-inkey-list-tranexamic-acid-serum": {
+   "slug": "the-inkey-list-tranexamic-acid-serum",
+   "name": "The INKEY List Tranexamic Acid Serum",
+   "sources": 1,
+   "groups": {
+    "irritation": {
+     "none": 1
+    }
+   },
+   "spec": {}
+  },
+  "the-ordinary-100-plant-derived-squalane": {
+   "slug": "the-ordinary-100-plant-derived-squalane",
+   "name": "The Ordinary 100% Plant-Derived Squalane",
+   "sources": 11,
+   "groups": {
+    "skin_type": {
+     "dry": 5
+    },
+    "irritation": {
+     "none": 8,
+     "a_little": 3
+    },
+    "texture": {
+     "light": 6
+    }
+   },
+   "spec": {}
+  },
+  "the-ordinary-aha-30-bha-2-peeling-solution": {
+   "slug": "the-ordinary-aha-30-bha-2-peeling-solution",
+   "name": "The Ordinary AHA 30% + BHA 2% Peeling Solution",
+   "sources": 165,
+   "groups": {
+    "skin_type": {
+     "dry": 4,
+     "oily": 4
+    },
+    "irritation": {
+     "none": 41,
+     "a_little": 124
+    }
+   },
+   "spec": {}
+  },
+  "the-ordinary-alpha-arbutin-2-ha": {
+   "slug": "the-ordinary-alpha-arbutin-2-ha",
+   "name": "The Ordinary Alpha Arbutin 2% + HA",
+   "sources": 3,
+   "groups": {
+    "irritation": {
+     "none": 2,
+     "a_little": 1
+    }
+   },
+   "spec": {}
+  },
+  "the-ordinary-ascorbyl-glucoside-solution-12": {
+   "slug": "the-ordinary-ascorbyl-glucoside-solution-12",
+   "name": "The Ordinary Ascorbyl Glucoside Solution 12%",
+   "sources": 7,
+   "groups": {
+    "irritation": {
+     "none": 6,
+     "a_little": 1
+    }
+   },
+   "spec": {}
+  },
+  "the-ordinary-azelaic-acid-suspension-10": {
+   "slug": "the-ordinary-azelaic-acid-suspension-10",
+   "name": "The Ordinary Azelaic Acid Suspension 10%",
+   "sources": 23,
+   "groups": {
+    "skin_type": {
+     "oily": 3
+    },
+    "irritation": {
+     "none": 8,
+     "a_little": 15
+    },
+    "texture": {
+     "medium": 8
+    }
+   },
+   "spec": {}
+  },
+  "the-ordinary-caffeine-solution-5-egcg": {
+   "slug": "the-ordinary-caffeine-solution-5-egcg",
+   "name": "The Ordinary Caffeine Solution 5% + EGCG",
+   "sources": 59,
+   "groups": {
+    "irritation": {
+     "none": 4,
+     "a_little": 55
+    },
+    "texture": {
+     "light": 3
+    }
+   },
+   "spec": {}
+  },
+  "the-ordinary-glucoside-foaming-cleanser": {
+   "slug": "the-ordinary-glucoside-foaming-cleanser",
+   "name": "The Ordinary Glucoside Foaming Cleanser",
+   "sources": 9,
+   "groups": {
+    "irritation": {
+     "none": 8,
+     "a_little": 1
+    }
+   },
+   "spec": {}
+  },
+  "the-ordinary-glycolic-acid-7-exfoliating-toner": {
+   "slug": "the-ordinary-glycolic-acid-7-exfoliating-toner",
+   "name": "The Ordinary Glycolic Acid 7% Exfoliating Toner",
+   "sources": 110,
+   "groups": {
+    "skin_type": {
+     "dry": 3,
+     "combination": 1,
+     "oily": 2
+    },
+    "irritation": {
+     "none": 13,
+     "a_little": 97
+    }
+   },
+   "spec": {}
+  },
+  "the-ordinary-glycolipid-cream": {
+   "slug": "the-ordinary-glycolipid-cream",
+   "name": "The Ordinary Glycolipid Cream Cleanser",
+   "sources": 8,
+   "groups": {
+    "skin_type": {
+     "dry": 3
+    },
+    "irritation": {
+     "none": 7,
+     "a_little": 1
+    }
+   },
+   "spec": {}
+  },
+  "the-ordinary-granactive-retinoid-2-emulsion": {
+   "slug": "the-ordinary-granactive-retinoid-2-emulsion",
+   "name": "The Ordinary Granactive Retinoid 2% Emulsion",
+   "sources": 34,
+   "groups": {
+    "irritation": {
+     "none": 33,
+     "a_little": 1
+    },
+    "texture": {
+     "light": 7
+    }
+   },
+   "spec": {}
+  },
+  "the-ordinary-granactive-retinoid-5-in-squalane": {
+   "slug": "the-ordinary-granactive-retinoid-5-in-squalane",
+   "name": "The Ordinary Granactive Retinoid 5% in Squalane",
+   "sources": 10,
+   "groups": {
+    "irritation": {
+     "none": 9,
+     "a_little": 1
+    },
+    "texture": {
+     "rich": 5
+    }
+   },
+   "spec": {}
+  },
+  "the-ordinary-hyaluronic-acid-2-b5": {
+   "slug": "the-ordinary-hyaluronic-acid-2-b5",
+   "name": "The Ordinary Hyaluronic Acid 2% + B5",
+   "sources": 16,
+   "groups": {
+    "skin_type": {
+     "dry": 4
+    },
+    "irritation": {
+     "none": 4,
+     "a_little": 12
+    },
+    "texture": {
+     "light": 7
+    }
+   },
+   "spec": {}
+  },
+  "the-ordinary-lactic-acid-10-ha": {
+   "slug": "the-ordinary-lactic-acid-10-ha",
+   "name": "The Ordinary Lactic Acid 10% + HA",
+   "sources": 7,
+   "groups": {
+    "irritation": {
+     "none": 5,
+     "a_little": 2
+    }
+   },
+   "spec": {}
+  },
+  "the-ordinary-matrixyl-10-ha": {
+   "slug": "the-ordinary-matrixyl-10-ha",
+   "name": "The Ordinary Matrixyl 10% + HA",
+   "sources": 5,
+   "groups": {
+    "irritation": {
+     "none": 3,
+     "a_little": 2
+    }
+   },
+   "spec": {}
+  },
+  "the-ordinary-multi-peptide-eye-serum": {
+   "slug": "the-ordinary-multi-peptide-eye-serum",
+   "name": "The Ordinary Multi-Peptide Eye Serum",
+   "sources": 3,
+   "groups": {
+    "irritation": {
+     "none": 2,
+     "a_little": 1
+    }
+   },
+   "spec": {}
+  },
+  "the-ordinary-multi-peptide-ha-serum": {
+   "slug": "the-ordinary-multi-peptide-ha-serum",
+   "name": "The Ordinary Multi-Peptide + HA Serum",
+   "sources": 7,
+   "groups": {
+    "skin_type": {
+     "dry": 4,
+     "combination": 3
+    },
+    "irritation": {
+     "none": 6,
+     "a_little": 1
+    },
+    "texture": {
+     "medium": 4
+    }
+   },
+   "spec": {}
+  },
+  "the-ordinary-natural-moisturizing-factors-beta-glucan": {
+   "slug": "the-ordinary-natural-moisturizing-factors-beta-glucan",
+   "name": "The Ordinary Natural Moisturizing Factors + Beta Glucan",
+   "sources": 7,
+   "groups": {
+    "skin_type": {
+     "oily": 2
+    },
+    "irritation": {
+     "a_little": 1
+    },
+    "texture": {
+     "light": 7
+    }
+   },
+   "spec": {}
+  },
+  "the-ordinary-natural-moisturizing-factors-ha": {
+   "slug": "the-ordinary-natural-moisturizing-factors-ha",
+   "name": "The Ordinary Natural Moisturizing Factors + HA",
+   "sources": 59,
+   "groups": {
+    "skin_type": {
+     "dry": 7,
+     "combination": 9,
+     "oily": 3
+    },
+    "irritation": {
+     "none": 13,
+     "a_little": 12
+    },
+    "texture": {
+     "medium": 59
+    },
+    "finish": {
+     "matte": 11
+    }
+   },
+   "spec": {}
+  },
+  "the-ordinary-niacinamide-10-zinc-1": {
+   "slug": "the-ordinary-niacinamide-10-zinc-1",
+   "name": "The Ordinary Niacinamide 10% + Zinc 1%",
+   "sources": 144,
+   "groups": {
+    "skin_type": {
+     "combination": 4,
+     "oily": 15
+    },
+    "irritation": {
+     "none": 27,
+     "a_little": 117
+    },
+    "texture": {
+     "light": 26
+    },
+    "finish": {
+     "natural": 16
+    }
+   },
+   "spec": {}
+  },
+  "the-ordinary-retinal-0-2-emulsion": {
+   "slug": "the-ordinary-retinal-0-2-emulsion",
+   "name": "The Ordinary Retinal 0.2% Emulsion",
+   "sources": 11,
+   "groups": {
+    "irritation": {
+     "none": 7,
+     "a_little": 4
+    }
+   },
+   "spec": {}
+  },
+  "the-ordinary-retinol-0-5-in-squalane": {
+   "slug": "the-ordinary-retinol-0-5-in-squalane",
+   "name": "The Ordinary Retinol 0.5% in Squalane",
+   "sources": 11,
+   "groups": {
+    "irritation": {
+     "none": 9,
+     "a_little": 2
+    },
+    "texture": {
+     "rich": 9
+    }
+   },
+   "spec": {}
+  },
+  "the-ordinary-saccharomyces-ferment-30-milky-toner": {
+   "slug": "the-ordinary-saccharomyces-ferment-30-milky-toner",
+   "name": "The Ordinary Saccharomyces Ferment 30% Milky Toner",
+   "sources": 5,
+   "groups": {
+    "irritation": {
+     "none": 5
+    }
+   },
+   "spec": {}
+  },
+  "the-ordinary-salicylic-acid-2-anhydrous-solution": {
+   "slug": "the-ordinary-salicylic-acid-2-anhydrous-solution",
+   "name": "The Ordinary Salicylic Acid 2% Anhydrous Solution",
+   "sources": 9,
+   "groups": {
+    "irritation": {
+     "none": 6,
+     "a_little": 3
+    }
+   },
+   "spec": {}
+  },
+  "the-ordinary-salicylic-acid-2-masque": {
+   "slug": "the-ordinary-salicylic-acid-2-masque",
+   "name": "The Ordinary Salicylic Acid 2% Masque",
+   "sources": 4,
+   "groups": {
+    "irritation": {
+     "none": 3,
+     "a_little": 1
+    }
+   },
+   "spec": {}
+  },
+  "the-ordinary-salicylic-acid-2-solution": {
+   "slug": "the-ordinary-salicylic-acid-2-solution",
+   "name": "The Ordinary Salicylic Acid 2% Solution",
+   "sources": 17,
+   "groups": {
+    "skin_type": {
+     "oily": 2
+    },
+    "irritation": {
+     "none": 2,
+     "a_little": 15
+    }
+   },
+   "spec": {}
+  },
+  "the-ordinary-soothing-barrier-support-serum": {
+   "slug": "the-ordinary-soothing-barrier-support-serum",
+   "name": "The Ordinary Soothing & Barrier Support Serum",
+   "sources": 16,
+   "groups": {
+    "skin_type": {
+     "dry": 2
+    },
+    "irritation": {
+     "none": 9,
+     "a_little": 7
+    }
+   },
+   "spec": {}
+  },
+  "the-ordinary-squalane-cleanser": {
+   "slug": "the-ordinary-squalane-cleanser",
+   "name": "The Ordinary Squalane Cleanser",
+   "sources": 54,
+   "groups": {
+    "skin_type": {
+     "dry": 4,
+     "combination": 2,
+     "oily": 3
+    },
+    "irritation": {
+     "none": 47,
+     "a_little": 7
+    }
+   },
+   "spec": {}
+  },
+  "the-ordinary-uv-filters-spf-45-serum": {
+   "slug": "the-ordinary-uv-filters-spf-45-serum",
+   "name": "The Ordinary UV Filters SPF 45 Serum",
+   "sources": 4,
+   "groups": {
+    "texture": {
+     "light": 3
+    },
+    "finish": {
+     "dewy": 4
+    }
+   },
+   "spec": {}
+  },
+  "the-ordinary-vitamin-c-suspension-23-ha-spheres-2": {
+   "slug": "the-ordinary-vitamin-c-suspension-23-ha-spheres-2",
+   "name": "The Ordinary Vitamin C Suspension 23% + HA Spheres 2%",
+   "sources": 9,
+   "groups": {
+    "irritation": {
+     "a_little": 9
+    },
+    "texture": {
+     "rich": 9
+    }
+   },
+   "spec": {}
+  },
+  "torriden-balanceful-toner-pad": {
+   "slug": "torriden-balanceful-toner-pad",
+   "name": "Torriden BALANCEFUL Toner Pad",
+   "sources": 2,
+   "groups": {
+    "irritation": {
+     "none": 1,
+     "a_little": 1
+    }
+   },
+   "spec": {}
+  },
+  "torriden-dive-in-cleansing-foam": {
+   "slug": "torriden-dive-in-cleansing-foam",
+   "name": "Torriden DIVE-IN Cleansing Foam",
+   "sources": 6,
+   "groups": {
+    "irritation": {
+     "none": 6
+    }
+   },
+   "spec": {}
+  },
+  "torriden-dive-in-low-molecular-hyaluronic-acid-serum": {
+   "slug": "torriden-dive-in-low-molecular-hyaluronic-acid-serum",
+   "name": "Torriden DIVE-IN Low Molecular Hyaluronic Acid Serum",
+   "sources": 19,
+   "groups": {
+    "skin_type": {
+     "dry": 9,
+     "combination": 4,
+     "oily": 2
+    },
+    "irritation": {
+     "none": 9
+    },
+    "texture": {
+     "light": 19
+    }
+   },
+   "spec": {}
+  },
+  "torriden-dive-in-mask": {
+   "slug": "torriden-dive-in-mask",
+   "name": "Torriden DIVE-IN Mask",
+   "sources": 7,
+   "groups": {
+    "irritation": {
+     "none": 7
+    }
+   },
+   "spec": {}
+  },
+  "torriden-dive-in-soothing-cream": {
+   "slug": "torriden-dive-in-soothing-cream",
+   "name": "Torriden DIVE-IN Soothing Cream",
+   "sources": 35,
+   "groups": {
+    "skin_type": {
+     "dry": 1,
+     "combination": 5,
+     "oily": 5
+    },
+    "irritation": {
+     "none": 13,
+     "a_little": 1
+    },
+    "texture": {
+     "light": 35
+    },
+    "finish": {
+     "dewy": 8
+    }
+   },
+   "spec": {}
+  },
+  "torriden-dive-in-toner": {
+   "slug": "torriden-dive-in-toner",
+   "name": "Torriden DIVE-IN Toner",
+   "sources": 3,
+   "groups": {
+    "irritation": {
+     "none": 2,
+     "a_little": 1
+    }
+   },
+   "spec": {}
+  },
+  "torriden-solid-in-ceramide-cream": {
+   "slug": "torriden-solid-in-ceramide-cream",
+   "name": "Torriden SOLID-IN Ceramide Cream",
+   "sources": 17,
+   "groups": {
+    "skin_type": {
+     "dry": 4
+    },
+    "irritation": {
+     "none": 2,
+     "a_little": 1
+    },
+    "texture": {
+     "rich": 17
+    }
+   },
+   "spec": {}
+  },
+  "vanicream-daily-facial-moisturizer": {
+   "slug": "vanicream-daily-facial-moisturizer",
+   "name": "Vanicream Daily Facial Moisturizer",
+   "sources": 44,
+   "groups": {
+    "skin_type": {
+     "dry": 5,
+     "combination": 3,
+     "oily": 5
+    },
+    "irritation": {
+     "none": 22,
+     "a_little": 22
+    },
+    "texture": {
+     "light": 29
+    },
+    "finish": {
+     "natural": 4
+    }
+   },
+   "spec": {}
+  },
+  "vanicream-facial-moisturizer-with-sunscreen-spf-30": {
+   "slug": "vanicream-facial-moisturizer-with-sunscreen-spf-30",
+   "name": "Vanicream Facial Moisturizer with Sunscreen SPF 30",
+   "sources": 6,
+   "groups": {
+    "irritation": {
+     "none": 6
+    },
+    "texture": {
+     "rich": 5
+    }
+   },
+   "spec": {}
+  },
+  "vanicream-gentle-facial-cleanser": {
+   "slug": "vanicream-gentle-facial-cleanser",
+   "name": "Vanicream Gentle Facial Cleanser",
+   "sources": 92,
+   "groups": {
+    "skin_type": {
+     "dry": 3,
+     "combination": 3,
+     "oily": 2
+    },
+    "irritation": {
+     "none": 70,
+     "a_little": 22
+    }
+   },
+   "spec": {}
+  },
+  "vanicream-moisturizing-cream": {
+   "slug": "vanicream-moisturizing-cream",
+   "name": "Vanicream Moisturizing Cream",
+   "sources": 33,
+   "groups": {
+    "skin_type": {
+     "dry": 9,
+     "combination": 1
+    },
+    "irritation": {
+     "none": 28,
+     "a_little": 5
+    },
+    "texture": {
+     "rich": 25
+    }
+   },
+   "spec": {}
+  }
+ }
+}

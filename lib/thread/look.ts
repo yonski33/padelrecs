@@ -54,7 +54,16 @@ const PICKLEBALL_GUIDES: Record<GuideKey, string> = {
   side: "/guides/doubles-or-singles",
   elbow: "/guides/tennis-elbow",
 };
-export const guidePathsFor = (nicheId: string): Record<GuideKey, string> => nicheId === "pickleball" ? PICKLEBALL_GUIDES : PADEL_GUIDES;
+/** SkinRecs (its handoff mock): choosing products, a beginner routine, textures, routine order and sensitive skin, in the
+ *  same five slots ("shape" = textures, "side" = routine order, "elbow" = sensitive skin). */
+const SKIN_GUIDES: Record<GuideKey, string> = {
+  racket: "/guide",
+  beginner: "/guides/beginner-routine",
+  shape: "/guides/cream-vs-lotion-vs-gel",
+  side: "/guides/morning-or-night",
+  elbow: "/guides/sensitive-skin",
+};
+export const guidePathsFor = (nicheId: string): Record<GuideKey, string> => nicheId === "pickleball" ? PICKLEBALL_GUIDES : nicheId === "skin" ? SKIN_GUIDES : PADEL_GUIDES;
 /** The running site's guide addresses. */
 export const GUIDE_PATHS = guidePathsFor(niche.id);
 export const GUIDE_KEYS = Object.keys(PADEL_GUIDES) as GuideKey[];
@@ -81,6 +90,11 @@ export function threadPath(pathname: string, catalog = catalogPath, nicheId = ni
   if (p === "/brands") return "/thread/brands";
   const brand = /^\/brands\/([a-z0-9-]+)$/.exec(p);
   if (brand) return `/thread/brands/${brand[1]}`;
+  // SkinRecs: products live under their type page (/moisturizers/<slug>), and each type page is a catalogue of its own.
+  if (nicheId === "skin" && nicheId === niche.id && niche.categoryPaths) {
+    const [, type, slug, extra] = p.split("/");
+    if (type && !extra && (niche.typePages ?? []).some(t => t.slug === type) && (!slug || /^[a-z0-9-]+$/.test(slug))) return slug ? `/thread/rackets/${slug}` : `/thread/types/${type}`;
+  }
   return null;
 }
 

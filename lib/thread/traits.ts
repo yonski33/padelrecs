@@ -27,6 +27,18 @@ export const PICKLEBALL_TRAIT_GROUPS: TraitGroup[] = [
   { key: "pop", title: "Pop", options: [["low", "Low"], ["medium", "Medium"], ["high", "High"]] },
   { key: "durability", title: "Durability", options: [["holds_up", "Holds up well"], ["average", "Average"], ["wears_fast", "Wears fast"]] },
 ];
+/** SkinRecs' nine (its product mock, "How does it work for you?"). Its own schema. */
+export const SKIN_TRAIT_GROUPS: TraitGroup[] = [
+  { key: "skin_type", title: "Skin type", options: [["dry", "Dry"], ["combination", "Combination"], ["oily", "Oily"]] },
+  { key: "texture", title: "Texture", options: [["rich", "Rich"], ["medium", "Medium"], ["light", "Light"]] },
+  { key: "finish", title: "Finish", options: [["dewy", "Dewy"], ["natural", "Natural"], ["matte", "Matte"]] },
+  { key: "irritation", title: "Irritation", options: [["none", "None"], ["a_little", "A little"], ["a_lot", "A lot"]] },
+  { key: "makeup", title: "Under makeup", options: [["fine", "Fine"], ["pills_bit", "Pills a bit"], ["pills", "Pills"]] },
+  { key: "results", title: "Results in", options: [["days", "Days"], ["weeks", "Weeks"], ["months", "Months"]] },
+  { key: "scent", title: "Scent", options: [["none", "None"], ["faint", "Faint"], ["strong", "Strong"]] },
+  { key: "value", title: "Value", options: [["worth_it", "Worth it"], ["ok", "OK"], ["overpriced", "Overpriced"]] },
+  { key: "best_used", title: "Best used", options: [["night", "Night"], ["both", "Morning and night"], ["morning", "Morning"]] },
+];
 /** StackRecs' Build and Grow sets together, as its API and admin accept them (one "Best for" key with both sides' options;
  *  a tool page shows only its own side, lib/stack/traits.ts). */
 const STACK_TRAIT_GROUPS: TraitGroup[] = (() => {
@@ -41,6 +53,7 @@ const STACK_TRAIT_GROUPS: TraitGroup[] = (() => {
 export function traitGroupsFor(nicheId: string): TraitGroup[] {
   if (nicheId === "pickleball") return PICKLEBALL_TRAIT_GROUPS;
   if (nicheId === "stackrecs") return STACK_TRAIT_GROUPS;
+  if (nicheId === "skin") return SKIN_TRAIT_GROUPS;
   return PADEL_TRAIT_GROUPS;
 }
 /** The running site's groups. */
@@ -63,5 +76,10 @@ const PICKLEBALL_BOARDS: VoteBoard[] = [
   { title: "Best for beginners", trait: "level", choice: "beginner" }, { title: "Most power", trait: "plays_like", choice: "power" },
   { title: "Most spin", trait: "spin", choice: "lots" }, { title: "Softest feel", trait: "feel", choice: "soft" },
 ];
-export const voteBoardsFor = (nicheId: string) => nicheId === "pickleball" ? PICKLEBALL_BOARDS : PADEL_BOARDS;
+const SKIN_BOARDS: VoteBoard[] = [
+  { title: "Gentlest", trait: "irritation", choice: "none" }, { title: "Best for dry skin", trait: "skin_type", choice: "dry" },
+  { title: "Best for oily skin", trait: "skin_type", choice: "oily" }, { title: "Best under makeup", trait: "makeup", choice: "fine" },
+  { title: "Fastest results", trait: "results", choice: "days" }, { title: "Best value", trait: "value", choice: "worth_it" },
+];
+export const voteBoardsFor = (nicheId: string) => nicheId === "pickleball" ? PICKLEBALL_BOARDS : nicheId === "skin" ? SKIN_BOARDS : PADEL_BOARDS;
 export const VOTE_BOARDS = voteBoardsFor(niche.id);

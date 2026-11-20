@@ -4,7 +4,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { Shell } from "../../shell";
 import { racketData } from "../../racket-data";
-import { threadRows, hasDb } from "../../data";
+import { threadRows, hasDb, skinOf } from "../../data";
 import { Badge, SBar, Photo, cap, plural, tone, type ThreadRow } from "../../ui";
 import { FitCheck, Poll, Reviews } from "../../live/racket";
 import { TraitVotes } from "../../live/trait-votes";
@@ -21,6 +21,8 @@ import { database } from "../../../../db/data";
 import { generateMetadata as liveMetadata } from "../../../rackets/[slug]/page";
 import { JsonLd, crumbs } from "../../seo";
 import { catalogLabel, catalogPath, productHref } from "../../../../lib/niche";
+import { SkinFitCheck } from "../../live/skin-match";
+import { W } from "../../../../lib/thread/words";
 
 export const revalidate = 86400;
 // Every listed racket's page is built with the site, as the live racket pages are (app/v/racket); none without a database (CI).
@@ -33,6 +35,7 @@ type P = { params: Promise<{ slug: string }> };
 // The live racket page's title, description, canonical and share image (app/rackets/[slug]/page.tsx).
 export const generateMetadata = ({ params }: P): Promise<Metadata> => liveMetadata({ params, searchParams: Promise.resolve({}) });
 
+const SKIN = niche.id === "skin";
 const LEVEL_WORD = (ls: string[]) => ls.length ? (ls.length === 1 ? cap(ls[0]) : `${cap(ls[0])} to ${ls[ls.length - 1]}`) : null;
 const STYLE_WORD = { control: "Control", power: "Power", balance: "All-round" } as const;
 /** The breadcrumb's play-style link (owner mock 2026-11-19b): its ranking; all-round has none, so the overall one. */
@@ -54,7 +57,17 @@ export default async function ThreadRacket({ params }: P) {
   const d = await racketData((await params).slug);
   if (!d) notFound();
   const { r, row, brand, cards, lead, bullets, traits, style, sim, line, latest, judged } = d;
-  const { rows } = await threadRows();
+  const { rows, ctx } = await threadRows();
+  // SkinRecs: its own tags, "People say" and fit check from the skin engine (app/thread/live/skin-match.tsx); the fit check
+  // gets the ranking inputs of this product's type only.
+  const sk = SKIN ? skinOf(ctx) : null;
+  const skinSame = sk ? sk.data.listed.filter(x => x.shape === r.shape && (x.id === r.id || rows.get(x.id)?.current)) : [];
+  const skinWire = sk ? (await import("../../../skin/payload")).wireOf(sk, skinSame) : [];
+  const skinLinks = Object.fromEntries(skinSame.flatMap(x => { const t = rows.get(x.id); return t ? [[x.id, { name: t.name, href: t.href }]] : []; }));
+  const skinAttrs = sk?.attrs.get(r.id), tex = skinAttrs?.scores.texture, fin = skinAttrs?.scores.finish;
+  const skinTex = tex && tex.n >= 3 ? (tex.score >= 62 ? "Rich" : tex.score <= 38 ? "Light" : null) : null;
+  const skinFin = fin && fin.n >= 3 ? (fin.score >= 62 ? "Dewy" : fin.score <= 38 ? "Matte" : null) : null;
+  const skinType = SKIN && r.shape ? (niche.typePages ?? []).find(t => t.shape === r.shape) ?? null : null;
   const also = (await lovedToo(r.id, rows)).filter(x => x.id !== r.id && x.current);
   const name = row?.name ?? r.name, bare = withoutYear(name);
   // The live racket page's buy link, the same logic (app/rackets/[slug]/page.tsx): the Amazon lookup, the saved listing when
@@ -64,11 +77,12 @@ export default async function ThreadRacket({ params }: P) {
   const site = websiteButton(r);
   const shop = amazon ? { url: amazon.url, rel: "sponsored nofollow noopener" } : site ? { url: site.url, rel: site.affiliate ? "sponsored nofollow noopener" : "noopener" } : null;
   const specs = ([["Year", String(r.year)], ...niche.specs.map(s => [s.label, r[s.column]])] as [string, string | null][]).filter((x): x is [string, string] => !!x[1]);
-  const tags = [style ? STYLE_WORD[style] : null, r.shape, row?.feel ? `${row.feel} feel` : null, LEVEL_WORD(row?.levels ?? [])].filter((x): x is string => !!x);
-  const playersSay = [style && ["Plays like", STYLE_WORD[style]], row?.levels.length && ["Best for", LEVEL_WORD(row.levels)!], row?.arm && ["Arm friendly", "Yes, say players"],
+  const tags = (SKIN ? [r.shape, skinAttrs?.facts.fragrance_free === "free" ? "Fragrance free" : null, skinTex ? `${skinTex} texture` : null, row?.best ? cap(row.best) : null]
+    : [style ? STYLE_WORD[style] : null, r.shape, row?.feel ? `${row.feel} feel` : null, LEVEL_WORD(row?.levels ?? [])]).filter((x): x is string => !!x);
+  const playersSay = SKIN ? ([row?.best && ["Best for", cap(row.best)], skinTex && ["Texture", skinTex], skinFin && ["Finish", skinFin]].filter((x): x is [string, string] => !!x)) : [style && ["Plays like", STYLE_WORD[style]], row?.levels.length && ["Best for", LEVEL_WORD(row.levels)!], row?.arm && ["Arm friendly", "Yes, say players"],
     traits.slice().sort((a, b) => b.dots - a.dots)[0] && ["Strongest at", traits.slice().sort((a, b) => b.dots - a.dots)[0].label]].filter((x): x is [string, string] => !!x);
   const day = latest ? new Date(latest).toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric", timeZone: "UTC" }) : null;
-  const buy = shop && <div className="th-buy"><a href={shop.url} target="_blank" rel={shop.rel}>Check price ↗</a><small>We may earn a commission</small></div>;
+  const buy = shop && <div className="th-buy"><a href={shop.url} target="_blank" rel={shop.rel}>Check price ↗</a><small>{SKIN ? "Commission link. It never changes the score." : "We may earn a commission"}</small></div>;
   const specsBox = specs.length > 0 && <section className="th-card th-specs th-only-m">{specs.map(([k, v]) => <span key={k} className="th-kv"><span>{k}</span><strong>{v}</strong></span>)}</section>;
   // The live page's structured data: its breadcrumbs (the catalogue, the brand, the racket).
   const ld = { "@context": "https://schema.org", "@graph": [crumbs([{ name: catalogLabel, path: catalogPath }, ...(brand ? [{ name: brand.name, path: `/brands/${brand.slug}` }] : []), { name: r.name, path: productHref(r) }])] };
@@ -76,13 +90,13 @@ export default async function ThreadRacket({ params }: P) {
     <JsonLd data={ld}/>
     <main className="th-main">
       <div className="th-col">
-        <div className="th-crumbs"><a href={th(catalogPath)}>{catalogLabel}</a>{style && <><span>/</span><a href={th(STYLE_HREF[style])}>{STYLE_WORD[style]}</a></>}{brand && <><span>/</span><a href={`/brands/${brand.slug}`}>{brand.name}</a></>}</div>
+        <div className="th-crumbs"><a href={th(catalogPath)}>{catalogLabel}</a>{SKIN ? skinType && <><span>/</span><a href={th(`/${skinType.slug}`)}>{skinType.label}</a></> : style && <><span>/</span><a href={th(STYLE_HREF[style])}>{STYLE_WORD[style]}</a></>}{brand && <><span>/</span><a href={`/brands/${brand.slug}`}>{brand.name}</a></>}</div>
         <article className="th-card th-post"><div className="th-post-in">
-          <div className="th-by"><span className="th-dot" aria-hidden="true"/><strong>{niche.site.name}</strong>{day && <><span>·</span><span>{`updated ${day}`}</span></>}{(judged > 0 || cards.length > 0) && <><span>·</span><span>{[judged > 0 ? `${plural(judged, "player opinion")} analysed` : "", cards.length > 0 ? `${plural(cards.length, "review")} to read` : ""].filter(Boolean).join(" · ")}</span></>}</div>
+          <div className="th-by"><span className="th-dot" aria-hidden="true"/><strong>{niche.site.name}</strong>{day && <><span>·</span><span>{`updated ${day}`}</span></>}{(judged > 0 || cards.length > 0) && <><span>·</span><span>{[judged > 0 ? `${plural(judged, W.opinions.replace(/s$/, ""), W.opinions)} analysed` : "", cards.length > 0 ? `${plural(cards.length, "review")} to read` : ""].filter(Boolean).join(" · ")}</span></>}</div>
           <h1 className="th-h1">{r.year && bare !== name ? `${bare} (${r.year})` : name}</h1>
           <div className="th-tags">
             {tags.map((t, i) => <span key={t} className={`th-pill${i === 0 && style ? " lime" : ""}`}>{t}</span>)}
-            <span className="th-inline-score">{row?.score != null ? <><span className={`th-badge xs ${tone(row.score)}`}>{row.score}</span>player score</> : "New, not enough votes yet"}</span>
+            <span className="th-inline-score">{row?.score != null ? <><span className={`th-badge xs ${tone(row.score)}`}>{row.score}</span>{W.score}</> : "New, not enough votes yet"}</span>
           </div>
           <div className="th-hero-grid">
             <Photo src={row?.pic ?? null} className="th-bigphoto"/>
@@ -91,7 +105,7 @@ export default async function ThreadRacket({ params }: P) {
                 {lead && <p>{lead}</p>}
                 {bullets.length > 0 && <ul>{bullets.map(b => <li key={b.text}><span className={`th-sdot ${b.tone === "pos" ? "pos" : "catch"}`}/><span>{b.text}</span></li>)}</ul>}
               </div>}
-              <FitCheck id={r.id}/>
+              {SKIN ? <SkinFitCheck id={r.id} wire={skinWire} links={skinLinks}/> : <FitCheck id={r.id}/>}
             </div>
           </div>
           <Poll id={r.id} reviews={{ positive: row?.pos ?? 0, mixed: row?.mix ?? 0, negative: row?.neg ?? 0 }}/>
@@ -104,7 +118,7 @@ export default async function ThreadRacket({ params }: P) {
         {buy && <div className="th-card th-only-m" style={{ padding: "10px 16px" }}>{buy}</div>}
         <Reviews id={r.id} cards={cards} nicknames={niche.form.quickVote?.nicknames ?? []}/>
         <Comments page={`racket:${r.id}`} nicknames={niche.form.quickVote?.nicknames ?? []}/>
-        {also.length >= 2 && <section className="th-card th-sec"><h2 className="th-h2">Players who loved this also loved</h2><div className="th-also">{also.map(x => <Mini key={x.id} x={x} small/>)}</div></section>}
+        {also.length >= 2 && <section className="th-card th-sec"><h2 className="th-h2">{`${W.lovers} who loved this also loved`}</h2><div className="th-also">{also.map(x => <Mini key={x.id} x={x} small/>)}</div></section>}
         {line.length >= 2 && brand && <section className="th-card th-sec">
           <div className="th-head-row"><h2 className="th-h2">{`More from ${brand.name}`}</h2><a className="th-link-b" href={`/brands/${brand.slug}`}>{`All ${brand.name} ${niche.words.many} →`}</a></div>
           <div className="th-also">{line.map(x => <Mini key={x.id} x={x} small/>)}</div>
@@ -116,12 +130,12 @@ export default async function ThreadRacket({ params }: P) {
             {row?.score != null ? <span className={`th-badge ${tone(row.score)}`} style={{ fontSize: 28 }}>{row.score}</span> : <span className="th-badge new">New</span>}
             {/* "player score" with the bar under it, no count (owner 2026-11-19). Without a score, the line says why it's "New". */}
             <span style={{ display: "flex", flexDirection: "column", gap: 3, fontSize: 12.5, color: "var(--body)" }}>
-              <span>{row?.score != null ? "player score" : judged > 0 ? `${plural(judged, "player opinion")} so far` : "No votes yet"}</span>
+              <span>{row?.score != null ? W.score : judged > 0 ? `${plural(judged, W.opinions.replace(/s$/, ""), W.opinions)} so far` : "No votes yet"}</span>
               {judged > 0 && <SBar lg pos={row!.pos} mix={row!.mix} neg={row!.neg}/>}
             </span>
           </div>
           <div style={{ display: "flex", flexDirection: "column" }}>
-            {playersSay.length > 0 && <><span className="th-cap">Players say</span>{playersSay.map(([k, v]) => <a key={k} className="th-kv" href="#play"><span>{k}</span><strong>{v}</strong></a>)}</>}
+            {playersSay.length > 0 && <><span className="th-cap">{`${W.People} say`}</span>{playersSay.map(([k, v]) => <a key={k} className="th-kv" href="#play"><span>{k}</span><strong>{v}</strong></a>)}</>}
             {specs.length > 0 && <><span className="th-cap" style={{ paddingTop: 10 }}>Specs</span>{specs.map(([k, v]) => <span key={k} className="th-kv"><span>{k}</span><strong>{v}</strong></span>)}</>}
           </div>
           {cards.length > 0 && <a className="th-link-b" href="#reviews">{`Read ${plural(cards.length, "review")}`}</a>}

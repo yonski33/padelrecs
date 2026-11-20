@@ -33,7 +33,7 @@ export default async function ThreadBrand({ params }: { params: Promise<{ slug: 
   const ld = listJsonLd([{ name: "Brands", path: "/brands" }, { name: brand.name, path: `/brands/${brand.slug}` }], ctx.data.listed.filter(r => r.brandId === brand.id).map(r => ({ name: all.find(x => x.id === r.id)?.name ?? r.name, href: all.find(x => x.id === r.id)?.href ?? `${catalogPath}/${r.slug}` })));
   return <Shell>
     <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: ld }}/>
-    <Catalog rows={rows} brands={[]} title={`${brand.name} ${niche.id} ${niche.words.many}`} lead={lead}
+    <Catalog rows={rows} brands={[]} title={niche.id === "skin" ? `${brand.name} skincare` : `${brand.name} ${niche.id} ${niche.words.many}`} lead={lead}
       crumbs={<div key="crumbs" className="th-crumbs"><a href={th("/brands")}>Brands</a><span>/</span><span>{brand.name}</span></div>}/>
   </Shell>;
 }

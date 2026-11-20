@@ -30,14 +30,16 @@ type Ctx = Awaited<ReturnType<typeof matchContext>>;
 const FEEL = { soft: "Soft", medium: "Medium", firm: "Hard" } as const;
 
 /** A build without a database (CI) renders the Thread pages empty, as the live pages skip their reads there; Vercel builds and
- *  serves them with data. These pages serve padel and pickleball (both on the shared match engine). StackRecs has its own
- *  pages (app/thread/stack): there they read nothing and build empty, and proxy.ts never serves them. */
-export const hasDb = () => !!process.env.DATABASE_URL && (niche.id === "padel" || niche.id === "pickleball");
+ *  serves them with data. These pages serve padel and pickleball (both on the shared match engine) and SkinRecs (its own
+ *  engine, skinRows below). StackRecs has its own pages (app/thread/stack): there they read nothing and build empty, and
+ *  proxy.ts never serves them. */
+export const hasDb = () => !!process.env.DATABASE_URL && (niche.id === "padel" || niche.id === "pickleball" || niche.id === "skin");
 /** The Thread home's top rows: the classic home's default order (app/home-payload.ts defaultHomeIds), as Thread rows. */
 export const homeTop = (rows: Map<string, ThreadRow>, ids: string[], size = 10) => ids.flatMap(id => rows.get(id) ?? []).slice(0, size);
 type Rows = { ctx: Ctx; rows: Map<string, ThreadRow>; all: ThreadRow[]; bySlug: Map<string, ThreadRow> };
 export const threadRows = cache(async (): Promise<Rows> => {
   if (!hasDb()) return { ctx: null as unknown as Ctx, rows: new Map(), all: [], bySlug: new Map() };
+  if (niche.id === "skin") return skinRows();
   const ctx = await matchContext();
   const { data, sigs, takes } = ctx;
   const brand = new Map(data.brands.map(b => [b.id, b.name]));
@@ -178,3 +180,38 @@ export const threadTopPicks = cache(async (): Promise<{ lists: PickList[]; total
   });
   return { lists: topPicks(rackets), total: ctx.data.reviews.length + ctx.data.external.length + voteTotal };
 });
+
+/** SkinRecs (owner 2026-11-20): its own engine (app/skin/context.ts: attribute scores, lib/attr-profile.ts), not the racket
+ *  match context. The rows and a context with the same fields the Thread pages read: the catalogue, scores, review counts and
+ *  quick-take hooks; the racket-only parts (fit facts, trait scores, expert lines) are empty, and the skin pages use the
+ *  attribute scores instead (\`skin\` on the context). */
+/** A skin row's filter facets, from the same scores as "Best for" (lib/skin-best.ts: 65+ from enough people) and the texture
+ *  axis (62+ rich, 38 or less light, from 3+ reports). */
+function skinFacets(a: SkinThreadCtx["attrs"] extends Map<string, infer V> ? V | undefined : never) {
+  const good = (k: string) => (a?.scores[k]?.score ?? 0) >= 65 && (a?.scores[k]?.n ?? 0) >= 3;
+  const t = a?.scores.texture;
+  return { skin: [["suits_dry", "Dry"], ["suits_oily", "Oily"], ["suits_combination", "Combination"], ["suits_normal", "Normal"]].filter(([k]) => good(k)).map(([, l]) => l),
+    texture: t && t.n >= 3 ? (t.score >= 62 ? "Rich" : t.score <= 38 ? "Light" : "Medium") : null, sensitive: good("suits_sensitive") || good("gentle") };
+}
+export type SkinThreadCtx = Awaited<ReturnType<typeof import("../skin/context").skinContext>>;
+export const skinOf = (ctx: Ctx) => (ctx as unknown as { skin?: SkinThreadCtx }).skin ?? null;
+async function skinRows(): Promise<Rows> {
+  const [{ skinContext }, { quickTakeHooks }, { skinBestFor }] = await Promise.all([import("../skin/context"), import("../../db/quick-take"), import("../../lib/skin-best")]);
+  const [skin, takes] = await Promise.all([skinContext(), quickTakeHooks()]);
+  const { data } = skin;
+  const sigs = new Map(data.listed.map(r => [r.id, { signal: skin.signal(r.id) }]));
+  const ctx = { data, sigs, takes, skin, facts: () => ({ reports: 0, tags: {} }), traits: () => ({}), expertLine: () => null } as unknown as Ctx;
+  const brand = new Map(data.brands.map(b => [b.id, b.name]));
+  const reports = new Map<string, number>();
+  for (const x of [...data.reviews, ...data.external]) reports.set(x.racketId, (reports.get(x.racketId) ?? 0) + 1);
+  const current = familyRowIds(data.listed, x => (reports.get(x.id) ?? 0) >= MIN_FIT_REPORTS);
+  const rows = new Map<string, ThreadRow>();
+  for (const r of data.listed) {
+    const c = score(data, r.id), b = brand.get(r.brandId) ?? "";
+    rows.set(r.id, { id: r.id, slug: r.slug, name: displayName(r.name, b), href: productHref(r), pic: photoHidden(r) ? null : shopPhoto(r) ?? amazonPhoto(r)?.image ?? null,
+      shape: r.shape, line: rowLine(r, takes.get(r.id)?.hook), best: skinBestFor(skin.profile, skin.attrs.get(r.id)), n: reports.get(r.id) ?? 0,
+      pos: c.positive, mix: c.mixed, neg: c.negative, score: skin.signal(r.id), brand: b, year: r.year, levels: [], feel: null, arm: false, current: current.has(r.id),
+      facets: skinFacets(skin.attrs.get(r.id)) });
+  }
+  return { ctx, rows, all: [...rows.values()], bySlug: new Map([...rows.values()].map(x => [x.slug, x])) };
+}

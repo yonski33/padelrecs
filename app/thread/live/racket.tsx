@@ -18,6 +18,7 @@ import { useFormToken } from "../../form-token-client";
 import { useAccount, signInHref } from "./use-account";
 import { MemberMark } from "./member-mark";
 import type { RvCard } from "../racket-data";
+import { W } from "../../../lib/thread/words";
 /** Optional accounts run on PadelRecs only for now (lib/thread/sites.ts accountSite). */
 const ACCOUNTS = accountSite(niche.id);
 
@@ -29,7 +30,7 @@ export function FitCheck({ id }: { id: string }) {
   const fit = useMemo(() => on && payload ? fitFor(payload, picks, id) : null, [on, payload, picks, id]);
   const adv = useMemo(() => fit && payload && fit.verdict.kind !== "thin" ? adviceFor(payload, picks, id, fit.pct) : null, [fit, payload, picks, id]);
   return <div className="th-fit">
-    <span className="th-fit-title">Is it right for me?</span>
+    <span className="th-fit-title">{W.fitTitle}</span>
     <PickChips picks={picks} set={set} small/>
     {(picks.level || picks.style) && <div className="th-fit-out" aria-live="polite">
       {!on ? <p>Pick a level and a style to see your match.</p> : !fit ? <p>Working out your match…</p> : <>
@@ -90,7 +91,8 @@ const VF: ["positive" | "mixed" | "negative" | null, string][] = [[null, "All"],
 /** Player reviews: own reviews plus labelled Reddit, YouTube and blog summaries, source tabs, sort, composer, load more. */
 /** The section's words: padel's by default; StackRecs passes its own (users, "Used it?"). */
 export type ReviewWords = { title: string; tried: string; people: string; note: string };
-const PADEL_REVIEW_WORDS: ReviewWords = { title: "Player reviews", tried: "Played it?", people: "Players", note: "From players here. Plus Reddit, YouTube and blog reviews, summarised." };
+const PADEL_REVIEW_WORDS: ReviewWords = { title: W.Reviews, tried: W.triedIt, people: W.People,
+  note: `From ${W.people} here. Plus Reddit, YouTube and blog reviews, summarised.` };
 export function Reviews({ id, cards, nicknames, words = PADEL_REVIEW_WORDS, chips }: { id: string; cards: RvCard[]; nicknames: string[]; words?: ReviewWords;
   /** Version chips (StackRecs): picking one shows only the cards about that version (RvCard.version). */ chips?: string[] }) {
   const [version, setVersion] = useState<string | null>(null);

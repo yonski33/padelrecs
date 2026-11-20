@@ -7,6 +7,7 @@ import { th } from "../../../lib/thread/look";
 import { usePicks, usePayload, rankFor, pctsFor, rowFromCard, NO_PICKS, LEVEL_OPTS, STYLE_OPTS, type Picks, type Style } from "./picks";
 import { cap } from "../ui";
 import { niche } from "../../../lib/niche";
+import { W } from "../../../lib/thread/words";
 const { one: ONE, many: MANY } = niche.words;
 
 // On the home a single pick is enough (owner 2026-11-19: "Any" is the default style), so a level alone re-ranks the list.
@@ -64,14 +65,14 @@ export function HomeList({ rows, reviewed, size = 10 }: { rows: ThreadRow[]; rev
     const list = sort === "reviews" ? reviewed : rows;
     return list.slice(0, size).map(r => ({ r, pct: undefined as number | null | undefined }));
   }, [personal, sort, rows, reviewed, payload, picks, size]);
-  const label = sort === "reviews" ? "Most reviewed" : personal ? "By your match" : "By player score";
+  const label = sort === "reviews" ? "Most reviewed" : personal ? "By your match" : `By ${W.score}`;
   return <section className="th-card th-list">
     <div className="th-sort" style={{ marginBottom: 6 }}>
       <span className="lbl">Sort</span>
       <span className="th-dd">
         <button type="button" aria-haspopup="menu" aria-expanded={open} onClick={() => setOpen(o => !o)}>{label}<small aria-hidden="true">{open ? "▲" : "▼"}</small></button>
         {open && <div className="th-dd-menu" role="menu">
-          {([["score", personal ? "By your match" : "By player score"], ["reviews", "Most reviewed"]] as const).map(([k, l]) =>
+          {([["score", personal ? "By your match" : `By ${W.score}`], ["reviews", "Most reviewed"]] as const).map(([k, l]) =>
             <button key={k} type="button" role="menuitemradio" aria-checked={sort === k} onClick={() => { setSort(k); setOpen(false); }}>{l}<span aria-hidden="true">{sort === k ? "✓" : ""}</span></button>)}
         </div>}
       </span>

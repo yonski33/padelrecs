@@ -14,6 +14,7 @@ import { SideBox, LinkList, NarrowLinks, plural } from "../../ui";
 import { th } from "../../../../lib/thread/look";
 import { generateMetadata as liveMetadata } from "../../../rankings/[slug]/page";
 import { JsonLd, crumbs, base } from "../../seo";
+import { W } from "../../../../lib/thread/words";
 
 const { one: ONE, many: MANY } = niche.words;
 const PICKLEBALL = niche.id === "pickleball";
@@ -32,7 +33,7 @@ export async function generateMetadata({ params }: P): Promise<Metadata> {
   const l = (await threadRankings()).find(x => x.slug === slug);
   if (!l) return { title: "Ranking not found", robots: { index: false } };
   if (l.own) return liveMetadata({ params });
-  const title = `${l.title}, ranked by real player reviews`, description = `${l.blurb} The top ${l.ids.length} by player score, from reviews by people who played them.`;
+  const title = `${l.title}, ranked by real ${W.reviews}`, description = `${l.blurb} The top ${l.ids.length} by ${W.score}, from reviews by people who ${W.played} them.`;
   return { title: { absolute: `${title} | ${niche.site.name}` }, description, alternates: { canonical: l.href }, openGraph: { title, description, url: l.href, type: "website" } };
 }
 
@@ -69,12 +70,12 @@ export default async function ThreadRanking({ params }: P) {
         <div className="th-crumbs"><a href={th("/rankings")}>Rankings</a><span>/</span><span>{l.label}</span></div>
         <section className="th-card th-hero">
           <h1 className="th-h1">{l.title}</h1>
-          <p className="th-lead">Ranked by player score, from reviews by people who played them. Updates as new reviews come in.</p>
+          <p className="th-lead">{`Ranked by ${W.score}, from reviews by people who ${W.played} them. Updates as new reviews come in.`}</p>
           <nav className="th-rtabs" aria-label="Rankings">{lists.slice(0, 7).map(x => <a key={x.slug} href={th(x.href)} aria-current={x.slug === l.slug ? "page" : undefined}>{x.label.replace(/^Best (for )?/, "").replace(/^./, c => c.toUpperCase())}</a>)}</nav>
         </section>
         <RankingList rows={list} title={l.label} meta={`${plural(list.length, ONE)} · ${plural(reviews, "review")}`}/>
         {boards.length > 0 && <Boards boards={boards}/>}
-        <section className="th-card th-sec"><h2 className="th-h2">Questions players ask</h2><Faq items={faqs}/></section>
+        <section className="th-card th-sec"><h2 className="th-h2">{`Questions ${W.people} ask`}</h2><Faq items={faqs}/></section>
         <Comments page={`ranking:${l.slug}`} prompt="Agree with this list? Join the conversation" nicknames={niche.form.quickVote?.nicknames ?? []}/>
         <div className="th-narrow" style={{ flexDirection: "column", gap: 12 }}><SideMatch names={nameMap}/></div>
         <NarrowLinks title="More rankings" links={more}/>
