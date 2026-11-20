@@ -5,7 +5,7 @@ import { notFound } from "next/navigation";
 import { Shell } from "../../shell";
 import { threadRows, threadBoards } from "../../data";
 import { threadRankings, ratingsFor } from "../../rankings-data";
-import { ratingCategory, RATING_NOTE, RATING_HOW } from "../../../../lib/category-rating";
+import { ratingCategory, RATING_HOW } from "../../../../lib/category-rating";
 import { RankingList, SideMatch } from "../../live/lists";
 import { Faq } from "../../live/faq";
 import { Comments } from "../../live/comments";
@@ -81,7 +81,7 @@ export default async function ThreadRanking({ params }: P) {
           <nav className="th-rtabs" aria-label="Rankings">{lists.slice(0, 7).map(x => <a key={x.slug} href={th(x.href)} aria-current={x.slug === l.slug ? "page" : undefined}>{x.label.replace(/^Best (for )?/, "").replace(/^./, c => c.toUpperCase())}</a>)}</nav>
         </section>
         <RankingList rows={list} title={l.label} meta={`${plural(list.length, ONE)} · ${plural(reviews, "review")}`}
-          {...(cat && rated ? { ratings: { by: rated, label: cat.label, note: RATING_NOTE } } : {})}/>
+          {...(cat && rated ? { ratings: { by: rated, label: cat.label } } : {})}/>
         {boards.length > 0 && <Boards boards={boards}/>}
         <section className="th-card th-sec"><h2 className="th-h2">{`Questions ${W.people} ask`}</h2><Faq items={faqs}/></section>
         <Comments page={`ranking:${l.slug}`} prompt="Agree with this list? Join the conversation" nicknames={niche.form.quickVote?.nicknames ?? []}/>

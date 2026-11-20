@@ -53,15 +53,14 @@ export function Photo({ src, className = "th-photo", href }: { src: string | nul
 
 /** The list row: photo · name + shape pill · one-line verdict · "Best for …" · reviews + sentiment bar · "See reviews ›" · badge.
  *  `badge` is the match % when the visitor picked, else the Player score. */
-/** A curated category rating (lib/category-rating.ts): the big number on a padel category ranking, with its own label and note. */
-export type RowRating = { n: number; label: string; note: string };
+/** A curated category rating (lib/category-rating.ts): the big number on a padel category ranking, with its own label. */
+export type RowRating = { n: number; label: string };
 export function Row({ r, rank, badge, badgeLabel = W.score, pct, rating }: { r: ThreadRow; rank?: number; badge?: number | null; badgeLabel?: string; pct?: boolean; rating?: RowRating }) {
   // The rating takes the badge unless the match % does; the Player score then stays on the row, small.
   const rated = rating && badge === undefined ? rating : undefined;
   if (rated) { badge = rated.n; badgeLabel = rated.label; }
   const b = badge === undefined ? r.score : badge, href = th(r.href);
   const judged = r.pos + r.mix + r.neg;
-  const note = rated && <span className="th-badge-lbl" style={{ fontSize: 10, whiteSpace: "normal", maxWidth: 104, textAlign: "center", lineHeight: 1.25 }}>{rated.note}</span>;
   return <div className={`th-row${rank ? "" : " norank"}`}>
     {rank ? <span className="th-rank">{rank}</span> : null}
     <Photo src={r.pic} href={r.href}/>
@@ -71,10 +70,9 @@ export function Row({ r, rank, badge, badgeLabel = W.score, pct, rating }: { r: 
       {r.best && <span className="th-best">{`Best for ${r.best}`}</span>}
       <span className="th-meta">{rating && r.score != null && <span>{`${W.Score} ${r.score}`}</span>}{r.n >= MIN_SHOWN && <span>{plural(r.n, "review")}</span>}{judged >= MIN_SHOWN && <SBar pos={r.pos} mix={r.mix} neg={r.neg}/>}<a className="go" href={href}>See reviews ›</a></span>
     </div>
-    {note ? <span className="th-badge-col"><Badge n={b} label={badgeLabel} pct={pct}/>{note}</span> : <Badge n={b} label={badgeLabel} pct={pct}/>}
+    <Badge n={b} label={badgeLabel} pct={pct}/>
     <div className="th-row-foot">
-      <span>{b == null ? <span className="th-badge new">New</span> : <span className={`th-badge ${tone(b)}`}>{pct ? `${b}%` : b}</span>}{b == null ? "not enough votes yet"
-        : rated ? <span style={{ display: "flex", flexDirection: "column", gap: 1 }}><span>{badgeLabel}</span><span style={{ fontSize: 11 }}>{rated.note}</span></span> : badgeLabel}</span>
+      <span>{b == null ? <span className="th-badge new">New</span> : <span className={`th-badge ${tone(b)}`}>{pct ? `${b}%` : b}</span>}{b == null ? "not enough votes yet" : badgeLabel}</span>
       <a href={href}>See reviews ›</a>
     </div>
   </div>;

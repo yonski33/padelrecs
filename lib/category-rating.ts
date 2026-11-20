@@ -18,8 +18,6 @@ export type RatingCategory = {
   /** The engine bar the evidence also reads (1-5): Attack, Control or Arm. */ dots: "power" | "control" | "arm" | null;
   /** The racket's shape nudges the prior a little (variant A: diamond +0.15, round -0.15 for power). */ shape?: Record<string, number>;
 };
-/** Small, under the big number. */
-export const RATING_NOTE = "PadelRecs pick, from player reviews";
 /** The ranking page's one line on how ratings work (≤ 105 characters). */
 export const RATING_HOW = "Ratings follow the PadelRecs pick order, set from what players report.";
 

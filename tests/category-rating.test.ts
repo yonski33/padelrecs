@@ -1,6 +1,6 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { categoryRatings, cautiousShare, priorShare, ratingCategory, RATING_HOW, RATING_NOTE } from "../lib/category-rating";
+import { categoryRatings, cautiousShare, priorShare, ratingCategory, RATING_HOW } from "../lib/category-rating";
 
 const power = ratingCategory("best-power-padel-rackets", "padel")!;
 // The curated power 10's "Plays like" counts from the Power score test (power, all-round, control), with made-up bars.
@@ -18,7 +18,7 @@ test("labels: padel category lists only; filter lists and other sites keep the p
 });
 
 test("copy: short, no score or measuring words", () => {
-  for (const t of [RATING_HOW, RATING_NOTE, power.label]) {
+  for (const t of [RATING_HOW, power.label]) {
     assert.ok(t.length <= 105, t);
     assert.doesNotMatch(t, /score|measur|test|verdict|—|\bwe\b|\bus\b/i, t);
   }
