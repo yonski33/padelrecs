@@ -1,23 +1,23 @@
 [
   {
     "slug": "axiom-crave",
-    "summary": "Most players find the Axiom Crave a straight, accurate fairway driver that goes farther than its speed suggests and holds lines well, including on forehands. The main downside is inconsistency: flight changes a lot with plastic, weight and run, and some copies turn over or get flippy quickly."
+    "summary": "A straight fairway driver for tight lines: 64 reviews say it is accurate, 32 that it holds its line.\nSuits a wide range of arms: 13 reviews call it beginner-friendly and 37 say it flies far.\nWatch out: runs fly differently. 28 reviews say it varies run to run, 22 call it too flippy."
   },
   {
     "slug": "westside-harp",
-    "summary": "Most players use the Westside Harp as a very overstable approach disc and driving putter, valued for a reliable fade, forehand use and steadiness in wind. The deep rim gives a grippy feel but is too deep for some. Downsides: little glide and short distance, and some plastics beat in or turn flippy."
+    "summary": "An overstable putter for approaches and wind: 43 reviews note a reliable fade, 23 say it is good in wind.\nSuits players who want a sure finish on upshots; 38 reviews say it is good for forehands.\nWatch out: the rim feels too deep for some hands (8 reviews), and 6 say it beats in fast."
   },
   {
     "slug": "innova-wraith",
-    "summary": "Most players praise the Innova Wraith for distance, especially on forehand, and for how it flips and glides once seasoned. The main downside is variation: stability differs a lot between plastics and runs, and many copies beat in quickly and turn flippy. Several owners bag it in a few plastics to cover different stabilities."
+    "summary": "An 11-speed distance driver with a dependable finish: 79 reviews say it flies far, 23 note the fade.\nWorks both ways: 32 reviews say it is good for forehands, and 11 call it beginner-friendly.\nWatch out: 21 reviews say it beats in fast and 18 that it varies from one run to the next."
   },
   {
     "slug": "kastaplast-berg",
-    "summary": "Most players use the Kastaplast Berg as a low-glide approach and putting disc, valued for landing and sitting near the target without skipping, and for going straight on forehands. It holds lines and is unbothered by wind. Downsides: it gives little distance or glide, and some find it gets flippier as it beats in."
+    "summary": "A 1-speed approach putter with almost no glide; 44 reviews say it is accurate on short shots.\nMade for forehand upshots and wind: 35 reviews say it is good for forehands, 13 good in wind.\nWatch out: short range by design, and 5 reviews say some copies beat in fast and turn."
   },
   {
     "slug": "innova-mako3",
-    "summary": "Most players find the Innova Mako3 a very straight, honest midrange that holds whatever line it is released on, which makes it popular with beginners learning form. The downsides are inconsistency between plastics, weights and copies, and a tendency to turn over as it beats in. Holding lines also makes it unforgiving of release errors for some."
+    "summary": "A neutral midrange that flies dead straight: 73 reviews say it is accurate, 46 that it holds its line.\nA common first midrange: 27 reviews call it beginner-friendly.\nWatch out: with 0 fade it won't fight back; 17 call it understable and 9 say runs vary."
   },
   {
     "slug": "axiom-hex",
@@ -1042,5 +1042,25 @@
   {
     "slug": "westside-shield",
     "summary": "Most players putt with the Shield and love its tacky feel that grips the chains. It wears quickly but keeps its stability, and several use it for approaches too. One finds the feel off for their putting grip."
+  },
+  {
+    "slug": "streamline-parachute",
+    "summary": "A floaty 1-speed putter for touch shots: 8 reviews say it has lots of glide, 8 that it holds its line.\nSuits soft touch shots more than drives; with glide 7 and almost no fade it floats straight.\nWatch out: 13 reviews so far, too few to say how it does in wind or as it wears."
+  },
+  {
+    "slug": "dynamic-discs-captain",
+    "summary": "A 13-speed understable driver for hyzer flips and long turnovers; 6 reviews say it flies far.\nAimed at slower and moderate arms: 5 reviews call it beginner-friendly, 5 note lots of glide.\nWatch out: a -2 turn makes it understable, so expect more turn into a headwind. 9 reviews so far."
+  },
+  {
+    "slug": "discmania-founder",
+    "summary": "A very flippy midrange for rollers, turnovers and scramble shots; 9 of 10 reviews call it too flippy.\nTurns right with little effort, so slower arms get on with it: 6 call it beginner-friendly, 5 glidey.\nWatch out: a utility disc, not a straight mid; it turns over from almost any release angle."
+  },
+  {
+    "slug": "prodigy-d-model-os",
+    "summary": "A 13-speed overstable driver for headwinds and hard fades: 6 reviews say it is good in wind.\nSuits strong arms: 5 reviews call it too overstable and 5 note a hard, reliable fade.\nWatch out: a fade of 4 is near the top of the scale, so slower arms will see it hook left early."
+  },
+  {
+    "slug": "discraft-fossil",
+    "summary": "An overstable approach putter with a sure finish: 8 of 11 reviews note a reliable fade.\nBuilt for forehand and windy upshots: 6 reviews say it is good for forehands, 6 good in wind.\nWatch out: glide 1 means little carry; it is a disc for placing upshots, not for distance."
   }
 ]
