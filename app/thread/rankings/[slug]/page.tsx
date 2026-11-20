@@ -17,10 +17,12 @@ import { JsonLd, crumbs, base } from "../../seo";
 import { W } from "../../../../lib/thread/words";
 
 const { one: ONE, many: MANY } = niche.words;
-const PICKLEBALL = niche.id === "pickleball";
+const PICKLEBALL = niche.id === "pickleball", DG = niche.id === "discgolf";
 /** The arm and shape FAQ lines, the site's own (PickleballRecs: its Rankings and Elbow Guide mocks). */
 const ARM_TIP = PICKLEBALL ? "A soft core, a lighter paddle and a relaxed grip help most." : "A soft core, a lower balance and a lighter racket help most.";
-const SHAPE_FAQ = PICKLEBALL
+const SHAPE_FAQ = DG
+  ? { q: "Understable or overstable?", a: "Understable turns over and helps a slower arm fly straight and far. Overstable fights the wind and hooks left at the end. Not sure? Stable." }
+  : PICKLEBALL
   ? { q: "Standard, hybrid or elongated?", a: "Standard is the most forgiving and quickest at the kitchen. Hybrid is the all-rounder. Elongated adds reach and drive power, with a smaller sweet spot." }
   : { q: "Round, teardrop or diamond?", a: "Round is the most forgiving and suits defenders. Teardrop is the all-rounder. Diamond adds smash power but needs better technique." };
 export const revalidate = 21600;
@@ -49,8 +51,9 @@ export default async function ThreadRanking({ params }: P) {
   const reviews = list.reduce((s, r) => s + r.n, 0);
   const beginner = list.filter(r => r.levels.includes("beginner")).slice(0, 3), arm = list.filter(r => r.arm).slice(0, 3);
   const faqs = [
-    ...(beginner.length ? [{ q: `Which ${ONE} here is best for a beginner?`, a: `${names(beginner)} ${beginner.length > 1 ? "are" : "is"} the ones players rate as fine for beginners on this list. Pick your level above to see your match.` }] : []),
-    ...(arm.length ? [{ q: "What if I have tennis elbow?", a: `Players with sore arms speak best of ${names(arm)}. ${ARM_TIP}` }] : []),
+    ...(beginner.length ? [{ q: `Which ${ONE} here is best for a beginner?`, a: `${names(beginner)} ${beginner.length > 1 ? "are" : "is"} the ones ${W.people} rate as fine for beginners on this list. Pick your level above to see your match.` }] : []),
+    ...(arm.length ? [DG ? { q: "What if I have a slow arm?", a: `Throwers with slower arms speak best of ${names(arm)}. Lighter, understable discs with a speed of 7 or less help most.` }
+      : { q: "What if I have tennis elbow?", a: `Players with sore arms speak best of ${names(arm)}. ${ARM_TIP}` }] : []),
     SHAPE_FAQ,
     { q: "How often does this ranking change?", a: `Scores update as new reviews come in, so ${MANY} can move up or down any day. A ${ONE} joins once it has enough reviews to score fairly.` },
   ];

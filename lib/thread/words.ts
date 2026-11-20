@@ -21,6 +21,6 @@ const SITES: Record<string, Words> = {
     triedIt: "Tried it?", played: "tried" },
   discgolf: { person: "thrower", people: "throwers", People: "Throwers", Person: "Thrower", score: "thrower score", Score: "Thrower score",
     reviews: "thrower reviews", Reviews: "Thrower reviews", traitsTitle: "How does it fly?", fitTitle: "Is it right for me?",
-    opinions: "thrower opinions", lovers: "Throwers", triedIt: "Thrown it?", played: "thrown" },
+    opinions: "thrower opinions", lovers: "Throwers", triedIt: "Thrown it?", played: "threw" },
 };
 export const W: Readonly<Words> = SITES[niche.id] ?? PADEL;

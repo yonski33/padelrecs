@@ -65,13 +65,15 @@ function rowOf(ctx: Ctx, r: Ctx["data"]["listed"][number], brand: string, n: num
   const feel = f.fine?.feel ? FEEL[f.fine.feel as keyof typeof FEEL] ?? null : null;
   return { id: r.id, slug: r.slug, name: displayName(r.name, brand), href: productHref(r), pic: photoHidden(r) ? null : shopPhoto(r) ?? amazonPhoto(r)?.image ?? null,
     shape: r.shape, line: rowLine(r, hook), best: best.join(", ") || null, n, pos: c.positive, mix: c.mixed, neg: c.negative,
-    score: ctx.sigs.get(r.id)?.signal ?? null, brand, year: r.year, levels, feel, arm: best.some(b => /sore arms/.test(b)), ...flightRow(r.weight) };
+    score: ctx.sigs.get(r.id)?.signal ?? null, brand, year: r.year, levels, feel, arm: best.some(b => /sore arms|slower arms/.test(b)), ...flightRow(r.weight) };
 }
 
 /** "How players vote them" until trait votes exist (migration 0024, waiting for the owner): the top 3 per trait from what
  *  players mention in their reviews (lib/trait-score.ts, the same scores as the racket pages' bars), only rackets with a
  *  Player score, and only counts of 5 or more. */
-const BOARDS: [string, string][] = niche.id === "pickleball"
+const BOARDS: [string, string][] = niche.id === "discgolf"
+  ? [["accuracy", "Straightest flight"], ["arm", "Best for slow arms"], ["distance", "Most distance"], ["wind", "Best in the wind"], ["grip", "Most grip"], ["glide", "Most glide"]]
+  : niche.id === "pickleball"
   ? [["forgiveness", "Biggest sweet spot"], ["arm", "Most arm friendly"], ["control", "Most control"], ["power", "Most power"], ["speed", "Best at the kitchen"], ["spin", "Most spin"]]
   : [["forgiveness", "Biggest sweet spot"], ["arm", "Most arm friendly"], ["control", "Most control"], ["power", "Most power"], ["speed", "Best at the net"], ["defence", "Best in defence"]];
 export type Board = { title: string; source: "votes" | "reviews"; rows: { id: string; name: string; href: string; pic: string | null; n: number }[] };
