@@ -23,10 +23,24 @@ function discgolf(p: AddV2Props): AddV2Props {
     labels: { level: "my level", side: "I throw", how: "How does it fly?", who: "" } };
 }
 
+/** SimRacingRecs' own words (it has no v2 rating words either): its five rating categories (lib/niche/simracing.ts), its main
+ *  sims and platform as the "about you" rows, and gear prompts. */
+const SR_WORDS: Record<string, readonly [string, string]> = {
+  powerRating: ["weak", "superb"], comfortRating: ["awkward", "spot on"], controlRating: ["flimsy", "rock solid"],
+  maneuverabilityRating: ["a fight", "plug and play"], forgivenessRating: ["overpriced", "worth every cent"],
+};
+function simracing(p: AddV2Props): AddV2Props {
+  const opts = (o?: { value: string }[]) => (o ?? []).map(x => ({ value: x.value, label: x.value }));
+  return { ...p, traits: niche.categories.map(c => [c.label, c.column, ...(SR_WORDS[c.column] ?? ["poor", "great"])] as const),
+    levels: opts(niche.profile.playerLevel?.options), sides: opts(niche.profile.playingSide?.options),
+    prompts: ["what you upgraded from", "what you race", "your setup", "who should skip it"],
+    labels: { level: "I mostly race", side: "on", how: "How does it drive?", who: "" } };
+}
+
 export default async function ThreadAddReviewPage({ searchParams }: { searchParams: Promise<{ racket?: string; from?: string }> }) {
   const [data, { racket, from }] = await Promise.all([catalog(), searchParams]);
   const props = addV2Props(data, racket, from);
   return <Shell>
-    <main className="th-main"><div className="th-col"><ThreadAddReview {...(niche.id === "discgolf" ? discgolf(props) : props)}/></div></main>
+    <main className="th-main"><div className="th-col"><ThreadAddReview {...(niche.id === "discgolf" ? discgolf(props) : niche.id === "simracing" ? simracing(props) : props)}/></div></main>
   </Shell>;
 }

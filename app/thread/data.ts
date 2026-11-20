@@ -88,7 +88,8 @@ function rowOf(ctx: Ctx, r: Ctx["data"]["listed"][number], brand: string, n: num
   const feel = f.fine?.feel ? FEEL[f.fine.feel as keyof typeof FEEL] ?? null : null;
   return { id: r.id, slug: r.slug, name: displayName(r.name, brand), href: productHref(r), pic: photoHidden(r) ? null : shopPhoto(r) ?? amazonPhoto(r)?.image ?? null,
     shape: r.shape, line: rowLine(r, hook), best: best.join(", ") || null, n, pos: c.positive, mix: c.mixed, neg: c.negative,
-    score: ctx.sigs.get(r.id)?.signal ?? null, brand, year: r.year, levels, feel, arm: best.some(b => /sore arms|slower arms/.test(b)), ...flightRow(r.weight) };
+    score: ctx.sigs.get(r.id)?.signal ?? null, brand, year: r.year, levels, feel, arm: best.some(b => /sore arms|slower arms/.test(b)), ...flightRow(r.weight),
+    ...(niche.id === "simracing" ? { drive: r.balance } : {}) };
 }
 
 /** "How players vote them" until trait votes exist (migration 0024, waiting for the owner): the top 3 per trait from what
