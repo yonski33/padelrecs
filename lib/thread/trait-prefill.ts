@@ -13,7 +13,7 @@ export type PrefillGroup = Record<string, number>;
 export type PrefillRacket = { slug: string; name: string; sources: number; groups: Record<string, PrefillGroup>; spec: Record<string, string> };
 export type Prefill = { built: string; rule: string; rackets: Record<string, PrefillRacket> };
 export type PrefillText = { productId: string; /** The report ref, "p:<review id>" or "w:<web report id>". */ key: string; negative: boolean; text: string };
-type Cat = { id: string; slug: string; name: string; shape: string | null; core: string | null; balance: string | null };
+type Cat = { id: string; slug: string; name: string; shape: string | null; core: string | null; balance: string | null; weight?: string | null };
 
 const NOT = String.raw`(?<!\b(?:no|not|never|without|zero|little|minimal|low|not much|not too|isn'?t|wasn'?t)\s(?:\w+\s)?)`;
 /** Words that settle a group, tried in order (the first that matches wins for that text). */
@@ -41,7 +41,8 @@ export const GAME: [string, RegExp][] = [
 const firstMatch = (rules: [string, RegExp][], text: string) => rules.find(([, re]) => re.test(text))?.[0] ?? null;
 
 /** Specs that settle a group (owner: "specs only where they settle it"); null where they don't. */
-export function specLeans(r: Pick<Cat, "shape" | "core" | "balance">, nicheId = "padel"): Record<string, string> {
+export function specLeans(r: Pick<Cat, "shape" | "core" | "balance" | "weight">, nicheId = "padel"): Record<string, string> {
+  if (nicheId === "discgolf") return discSpecs(r.weight);
   // Paddle shapes and cores don't settle a group the way a padel shape or a "Soft" core does, so pickleball has none.
   if (nicheId === "pickleball") return {};
   const out: Record<string, string> = {}, shape = (r.shape ?? "").toLowerCase(), core = (r.core ?? "").toLowerCase(), bal = (r.balance ?? "").toLowerCase().trim();
@@ -51,11 +52,41 @@ export function specLeans(r: Pick<Cat, "shape" | "core" | "balance">, nicheId = 
   return out;
 }
 
+/** DiscGolfRecs: what the maker's flight numbers ("5 / 4 / -1 / 1") settle: stability (turn + fade, the guide's rule), glide,
+ *  fade and the arm speed it needs (speed 7 or less: any arm; 8 to 10: medium; 11 and up: fast). Shown as "From the specs". */
+export function discSpecs(weight: string | null | undefined): Record<string, string> {
+  const m = (weight ?? "").match(/^\s*(-?\d+(?:\.\d+)?)\s*\/\s*(-?\d+(?:\.\d+)?)\s*\/\s*(-?\d+(?:\.\d+)?)\s*\/\s*(-?\d+(?:\.\d+)?)\s*$/);
+  if (!m) return {};
+  const [speed, glide, turn, fade] = m.slice(1).map(Number);
+  return {
+    stability: turn + fade >= 3 ? "overstable" : turn <= -2 || turn + fade <= -1 ? "understable" : "stable",
+    glide: glide >= 5 ? "lots" : glide >= 4 ? "medium" : "little",
+    fade: fade <= 1 ? "gentle" : fade < 3 ? "medium" : "hard",
+    arm_speed: speed <= 7 ? "any" : speed <= 10 ? "medium" : "fast",
+  };
+}
+
 const scale = (net: number, maxStrength: number, [yes, some, no]: [string, string, string]) => net < 0 ? no : net > 0 ? (maxStrength >= 1 ? yes : some) : null;
 /** One source's evidence rows for one racket → its pick per group (or none). */
 export function sourcePicks(rows: EvidenceRow[], nicheId = "padel"): Record<string, string> {
   const sum = (a: string) => { const rs = rows.filter(r => r.attribute === a && typeof r.value === "number"); return { net: rs.reduce((s, r) => s + (r.value as number) * r.strength, 0), max: Math.max(0, ...rs.map(r => r.strength)), n: rs.length }; };
   const out: Record<string, string> = {};
+  // DiscGolfRecs: its own evidence (lib/discgolf-profile.ts, scripts/discgolf-evidence.mts) in the grid's terms. Axes: + is
+  // towards the second end (stability: overstable, glide: lots, grip: grippy, beat-in: seasons fast); a report on the axis
+  // with no lean is the middle option. Qualities: + is good (wind holds, good for forehands). Suits rows: who it suits.
+  if (nicheId === "discgolf") {
+    const axis = (a: string, g: string, [lo, mid, hi]: [string, string, string]) => { const x = sum(a); if (x.n) out[g] = x.net > 0 ? hi : x.net < 0 ? lo : mid; };
+    axis("stability", "stability", ["understable", "stable", "overstable"]);
+    axis("glide", "glide", ["little", "medium", "lots"]);
+    axis("grip", "grip", ["slippery", "ok", "great"]);
+    axis("beat_in", "durability", ["holds_up", "average", "beats_fast"]);
+    const w = sum("wind"); if (w.n && w.net !== 0) out.wind = w.net > 0 ? "holds" : w.max >= 1 ? "flips" : "turns";
+    const fh = sum("forehand"); if (fh.n && fh.net !== 0) out.throw = fh.net > 0 ? "forehand" : "backhand";
+    const suits = (a: string) => sum(a).net > 0;
+    const lv = (["beginner", "intermediate", "advanced"] as const).find(l => suits(`suits_${l}`)); if (lv) out.level = lv;
+    const arm = ([["slow", "any"], ["mid", "medium"], ["fast", "fast"]] as const).find(([k]) => suits(`suits_arm_${k}`)); if (arm) out.arm_speed = arm[1];
+    return out;
+  }
   const p = sum("power").net, c = sum("control").net;
   if (p > 0 && c > 0) out.plays_like = "all_round"; else if (p > 0 || (c < 0 && p === 0)) out.plays_like = "power"; else if (c > 0 || (p < 0 && c === 0)) out.plays_like = "control";
   const f = sum("forgiveness"); if (f.n) { const v = f.net < 0 ? "small" : f.net > 0 ? (f.max >= 1 ? "big" : "medium") : null; if (v) out.sweet_spot = v; }
@@ -84,6 +115,7 @@ export function buildPrefill(cat: Cat[], evidence: EvidenceRow[], texts: Prefill
   // A text's source is the evidence rows' source for the same report (so a review counts once in `sources`).
   const authorOf = new Map(evidence.filter(r => r.authorKey).map(r => [`${r.productId}|${reportOf(r.sourceRef)}`, r.authorKey!]));
   for (const t of texts) {
+    if (nicheId === "discgolf") break; // padel's feel, side and trampoline words mean nothing for a disc
     const src = authorOf.get(`${t.productId}|${t.key}`) ?? t.key;
     const feel = firstMatch(FEEL, t.text);
     if (feel) put(t.productId, src, "feel", feel);
