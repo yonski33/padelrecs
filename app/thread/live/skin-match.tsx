@@ -56,7 +56,7 @@ function resultLine(p: SkinPicks, n: number, cat: string | null) {
 }
 
 /** "Find my match" as one sentence (padel's Thread home): the quick match tag, I'm [skin type] and I want [goal], a
- *  sensitive-skin box, then the category chips and a live result line. */
+ *  sensitive-skin box and a live result line. The category chips sit above the list (SkinHomeList, owner 2026-11-20). */
 export function SkinMatchBox({ wire, names }: { wire: SkinWire[]; names: Record<string, string> }) {
   const [picks, set] = useSkinPicks();
   const ctx = useCtx(wire);
@@ -73,10 +73,6 @@ export function SkinMatchBox({ wire, names }: { wire: SkinWire[]; names: Record<
       <span className="th-seg th-qm-seg" role="group" aria-label="What you want">{([[null, "Any"], ...GOAL_OPTS] as [SkinPicks["goal"], string][]).map(([v, l]) => <button key={v ?? "any"} type="button" aria-pressed={picks.goal === v} onClick={() => set({ goal: v })}>{l}</button>)}</span>
       <button type="button" className="th-check" aria-pressed={picks.sens} onClick={() => set({ sens: !picks.sens })}><span aria-hidden="true">{picks.sens ? "✓" : ""}</span>Sensitive skin</button>
     </div>
-    <div className="th-qm-cats" role="group" aria-label="Category">
-      {[{ slug: null as string | null, label: "All" }, ...CATS.map(t => ({ slug: t.slug as string | null, label: t.label }))].map(t =>
-        <button key={t.slug ?? "all"} type="button" className="th-pick sm" aria-pressed={picks.type === t.slug} onClick={() => set({ type: t.slug })}>{t.label}</button>)}
-    </div>
     <span className="th-qm-result"><span className="th-say" aria-live="polite">{line}{top && top.pct != null ? `. Top match: the ${names[top.r.id] ?? top.r.name} at ${top.pct}%.` : "."}</span>
       {(skinPickedAny(picks) || picks.type) && <button type="button" className="th-reset" onClick={() => set(NO_SKIN_PICKS)}>Reset</button>}</span>
   </div>;
@@ -85,19 +81,25 @@ export function SkinMatchBox({ wire, names }: { wire: SkinWire[]; names: Record<
 type Sort = "score" | "reviews";
 /** The home's top products: by user score (or most reviewed); with picks, the skin engine's order with match % badges. */
 export function SkinHomeList({ wire, rows, size = 10 }: { wire: SkinWire[]; rows: ThreadRow[]; size?: number }) {
-  const [picks] = useSkinPicks();
+  const [picks, set] = useSkinPicks();
   const ctx = useCtx(wire);
   const [sort, setSort] = useState<Sort>("score"), [open, setOpen] = useState(false);
   const byId = useMemo(() => new Map(rows.map(r => [r.id, r])), [rows]);
   const personal = skinPickedAny(picks);
   const shown = useMemo(() => {
-    if (!ctx) return [];
+    if (!ctx) return { n: 0, list: [] };
     const ranked = rankSkin(ctx, skinChoiceOf(picks)).flatMap(x => { const r = byId.get(x.r.id); return r ? [{ r, pct: personal ? x.pct : undefined }] : []; });
-    return (sort === "reviews" ? [...ranked].sort((a, b) => b.r.n - a.r.n) : ranked).slice(0, size);
+    return { n: ranked.length, list: (sort === "reviews" ? [...ranked].sort((a, b) => b.r.n - a.r.n) : ranked).slice(0, size) };
   }, [ctx, picks, byId, sort, size, personal]);
   const label = sort === "reviews" ? "Most reviewed" : personal ? "By your match" : `By ${W.score}`;
   return <section className="th-card th-list">
-    <div className="th-sort" style={{ marginBottom: 6 }}>
+    <div className="th-skin-listhead">
+    <div className="th-qm-cats" role="group" aria-label="Category">
+      {[{ slug: null as string | null, label: "All" }, ...CATS.map(t => ({ slug: t.slug as string | null, label: t.label }))].map(t => {
+        const on = picks.type === t.slug;
+        return <button key={t.slug ?? "all"} type="button" className="th-pick sm" aria-pressed={on} onClick={() => set({ type: t.slug })}>{t.label}{on && ctx && <span className="th-cat-n">{shown.n}</span>}</button>; })}
+    </div>
+    <div className="th-sort">
       <span className="lbl">Sort</span>
       <span className="th-dd">
         <button type="button" aria-haspopup="menu" aria-expanded={open} onClick={() => setOpen(o => !o)}>{label}<small aria-hidden="true">{open ? "▲" : "▼"}</small></button>
@@ -107,7 +109,8 @@ export function SkinHomeList({ wire, rows, size = 10 }: { wire: SkinWire[]; rows
         </div>}
       </span>
     </div>
-    {shown.map(({ r, pct }, i) => <Row key={r.id} r={r} rank={i + 1} {...(pct !== undefined ? { badge: pct, badgeLabel: "your match", pct: true } : {})}/>)}
+    </div>
+    {shown.list.map(({ r, pct }, i) => <Row key={r.id} r={r} rank={i + 1} {...(pct !== undefined ? { badge: pct, badgeLabel: "your match", pct: true } : {})}/>)}
     <a className="th-link-b" href={th("/rankings")} style={{ margin: "4px 0 10px" }}>All rankings</a>
   </section>;
 }
