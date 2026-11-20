@@ -13,6 +13,11 @@ export function tagTone(label: string): TagTone {
   return TAGS.find(t => t.label === label)?.tone ?? "neutral";
 }
 
+/** The tag as a TL;DR claim after a count ("say it holds its line"): the tag's own `says`, else it is quoted as a mention. */
+export function tagSays(label: string): string {
+  return TAGS.find(t => t.label === label)?.says ?? `mention "${label}"`;
+}
+
 /** Accepts a single value, a list, or nothing (forms send any of these); keeps unique bank terms, at most three. */
 export const tagsInput = z.preprocess(
   value => value === undefined || value === null || value === "" ? [] : Array.isArray(value) ? value : [value],

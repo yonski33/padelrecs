@@ -27,7 +27,9 @@ export type Profile = {
   options: ProfileOption[];
 };
 
-export type Tag = { label: string; tone: "pos" | "neg" | "neutral" };
+/** `says`: how a TL;DR line puts the tag after a count, "8 reviews say it holds its line" (Thread sites, 2026-11-20).
+ *  Written per tag, not built from the label, so a label like "holds lines" never reads "say it is holds lines". */
+export type Tag = { label: string; tone: "pos" | "neg" | "neutral"; says?: string };
 
 export type Seo = { title: string; description: string };
 

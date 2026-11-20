@@ -22,7 +22,7 @@ import { styleOf } from "../../lib/fit-verdict";
 import { TRAIT_LABEL } from "../../lib/trait-score";
 import { SITE_FIT } from "../../lib/fit-config";
 import { W } from "../../lib/thread/words";
-import { tagTone } from "../../lib/tags";
+import { tagTone, tagSays } from "../../lib/tags";
 import { ago, type ThreadRow } from "./ui";
 import { flightOf } from "../../lib/discgolf-profile";
 
@@ -94,8 +94,8 @@ export async function racketData(slug: string) {
   const plainLine = (t: string) => marked(t).map(x => x.text).join("");
   const bullets: { tone: "pos" | "catch"; text: string }[] = pc
     ? [...pc.yes.slice(0, 2).map(i => ({ tone: "pos" as const, text: [plainLine(i.t).replace(/\.\s*$/, ""), evidenceLine(i, DG ? W.people : undefined)].filter(Boolean).join(". ") })), ...pc.no.slice(0, 1).map(i => ({ tone: "catch" as const, text: plainLine(i.t) }))]
-    : [...sum.loved.filter(t => (sum.tagCounts.get(t) ?? 0) >= 5).slice(0, 2).map(t => ({ tone: "pos" as const, text: `${sum.tagCounts.get(t)} reviews say it is ${t}.` })),
-      ...sum.complaints.filter(t => (sum.tagCounts.get(t) ?? 0) >= 5).slice(0, 1).map(t => ({ tone: "catch" as const, text: `${sum.tagCounts.get(t)} reviews mention ${t}.` }))];
+    : [...sum.loved.filter(t => (sum.tagCounts.get(t) ?? 0) >= 5).slice(0, 2).map(t => ({ tone: "pos" as const, text: `${sum.tagCounts.get(t)} reviews ${tagSays(t)}.` })),
+      ...sum.complaints.filter(t => (sum.tagCounts.get(t) ?? 0) >= 5).slice(0, 1).map(t => ({ tone: "catch" as const, text: `${sum.tagCounts.get(t)} reviews ${tagSays(t)}.` }))];
   // SkinRecs (audit 2026-11-20): one count story. The byline counts every opinion with a clear verdict ("88 opinions
   // analysed"), so the TL;DR counts tags in those same opinions, all of them, and says "of 88 opinions". With no written
   // line and no tag 5 opinions share, the lead is the poll split, so a scored page always has a TL;DR.
@@ -105,8 +105,8 @@ export async function racketData(slug: string) {
     for (const x of [...reviews, ...external.filter(e => e.sentiment)]) for (const t of new Set(x.tags)) n.set(t, (n.get(t) ?? 0) + 1);
     const top = (tone: "pos" | "neg") => [...n].filter(([t, c]) => c >= 5 && c <= judged && tagTone(t) === tone).sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0]));
     bullets.splice(0, bullets.length,
-      ...top("pos").slice(0, 2).map(([t, c]) => ({ tone: "pos" as const, text: `${c} of ${judged} ${W.opinions} say it is ${t}.` })),
-      ...top("neg").slice(0, 1).map(([t, c]) => ({ tone: "catch" as const, text: `${c} of ${judged} ${W.opinions} mention ${t}.` })));
+      ...top("pos").slice(0, 2).map(([t, c]) => ({ tone: "pos" as const, text: `${c} of ${judged} ${W.opinions} ${tagSays(t)}.` })),
+      ...top("neg").slice(0, 1).map(([t, c]) => ({ tone: "catch" as const, text: `${c} of ${judged} ${W.opinions} ${tagSays(t)}.` })));
   }
   const pollLead = SKIN && !lead && judged >= 5 && row?.score != null
     ? `Of ${judged} ${W.opinions}, ${row.pos} loved it, ${row.neg} say not for me and ${row.mix} are mixed.` : null;

@@ -1,7 +1,7 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import { buildPrefill, sourcePicks, specLeans, FEEL, TRAMPOLINE, SIDE } from "../lib/thread/trait-prefill";
-import { groupView, groupNote, sectionNote } from "../lib/thread/trait-view";
+import { groupView, groupNote } from "../lib/thread/trait-view";
 import { TRAIT_GROUPS } from "../lib/thread/traits";
 import type { EvidenceRow } from "../lib/evidence";
 import file from "../db/thread/padel-traits.json";
@@ -66,10 +66,9 @@ test("every option with a count shows it, 1 included; reviews and votes add up; 
   assert.equal(groupView(opts, { control: 1 }, {}, "power").specOnly, false);
 });
 
-test("section line has no we/us and names the review count", () => {
-  assert.equal(sectionNote(12, 0), "Based on 12 reviews until players vote. Pick what fits. Tap again to remove.");
-  assert.match(sectionNote(12, 3), /12 reviews and 3 player votes/);
-  for (const s of [sectionNote(1, 0), sectionNote(12, 3), sectionNote(0, 0)]) assert.doesNotMatch(s, /\b(we|us|our)\b|—/i);
+test("the line above the vote grid is just \"Tap to vote\" (owner 2026-11-20)", async () => {
+  const { SECTION_NOTE } = await import("../lib/thread/trait-view");
+  assert.equal(SECTION_NOTE, "Tap to vote");
 });
 
 test("the committed file covers padel rackets and only known groups and options", () => {
@@ -81,20 +80,3 @@ test("the committed file covers padel rackets and only known groups and options"
   }
 });
 
-test("the phone section line is short; no group count line", async () => {
-  const { sectionNoteShort } = await import("../lib/thread/trait-view");
-  assert.equal(sectionNoteShort(71, 9), "From 71 reviews and 9 votes. Tap again to remove.");
-  assert.equal(sectionNoteShort(71, 1), "From 71 reviews and 1 vote. Tap again to remove.");
-  assert.equal(sectionNoteShort(3, 0), "Based on 3 reviews. Tap again to remove.");
-});
-
-test("trait note: SkinRecs counts the bars' reviews as a share of the page's opinions (audit 2026-11-20)", async () => {
-  const { sectionNote, sectionNoteShort } = await import("../lib/thread/trait-view");
-  const { W } = await import("../lib/thread/words");
-  assert.match(sectionNote(15, 0, 44), new RegExp(`^Based on 15 of the 44 ${W.opinions} until `));
-  assert.match(sectionNote(15, 2, 44), new RegExp(`^From 15 of the 44 ${W.opinions} and 2 votes\\.`));
-  assert.match(sectionNoteShort(15, 1, 44), new RegExp(`^From 15 of the 44 ${W.opinions} and 1 vote\\.`));
-  // No base, or a base smaller than the reviews: the plain count stays.
-  assert.equal(sectionNote(12, 0, 5), sectionNote(12, 0));
-  assert.equal(sectionNoteShort(3, 0), "Based on 3 reviews. Tap again to remove.");
-});
