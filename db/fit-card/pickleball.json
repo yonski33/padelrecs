@@ -63,7 +63,7 @@
     ]
    },
    {
-    "t": "Hard to beat for the money: at around $90 it plays like paddles twice the price.",
+    "t": "Hard to beat for the money: at a budget price it plays like paddles twice the price.",
     "for": [
      "beginner"
     ],
@@ -1117,7 +1117,7 @@
     ]
    },
    {
-    "t": "Hard to beat for the money: at around $100 it plays like paddles twice the price.",
+    "t": "Hard to beat for the money: at a budget price it plays like paddles twice the price.",
     "for": [],
     "src": [
      "f9b8799c-c8d5-483b-8627-b86e28a1fbac",
@@ -2578,7 +2578,7 @@
     ]
    },
    {
-    "t": "Cheap for what it does: at about $100 it holds up against paddles twice the price.",
+    "t": "Cheap for what it does: it holds up against paddles twice the price.",
     "for": [],
     "src": [
      "2b99ffd6-5091-43ff-b18d-95e4d31585ef",
@@ -3594,7 +3594,7 @@
     ]
    },
    {
-    "t": "Value: sub-$100 and a favourite over paddles at the price.",
+    "t": "Value: a budget pick and a favourite over paddles at the price.",
     "for": [
      "beginner"
     ],
@@ -4445,7 +4445,7 @@
     ]
    },
    {
-    "t": "Near Inferno play, half price: at about $100 it plays very close to the Luzz Pro 4 Inferno.",
+    "t": "Near Inferno play, half price: it plays very close to the Luzz Pro 4 Inferno.",
     "for": [
      "beginner"
     ],
@@ -4846,7 +4846,7 @@
     ]
    },
    {
-    "t": "Cheap for what it does: at about $99 it plays near paddles costing far more.",
+    "t": "Cheap for what it does: it plays near paddles costing far more.",
     "for": [
      "beginner"
     ],
@@ -4988,7 +4988,7 @@
     "minor": true
    },
    {
-    "t": "Crowded-field value: it stands out among budget paddles at about $100.",
+    "t": "Crowded-field value: it stands out among budget paddles.",
     "for": [
      "beginner"
     ],
@@ -5504,7 +5504,7 @@
     ]
    },
    {
-    "t": "Pricey for the lifespan: at about $280, an early failure stings more.",
+    "t": "Pricey for the lifespan: at a premium price, an early failure stings more.",
     "for": [],
     "src": [
      "e7cf7761-671e-4dc1-b16d-a80549c72968",
@@ -5929,7 +5929,7 @@
     ]
    },
    {
-    "t": "Steep price: at $230 to $270 it costs more than rivals that play as well.",
+    "t": "Steep price: it costs more than rivals that play as well.",
     "for": [],
     "src": [
      "e569a89e-8010-4c61-a870-e4c962e5f83a",
@@ -6269,7 +6269,7 @@
   ],
   "catches": [
    {
-    "t": "Premium price: at about $333, cheaper power paddles are tempting.",
+    "t": "Premium price: cheaper power paddles are tempting.",
     "for": [],
     "src": [
      "0d6bef88-6c49-48df-ac0d-59083f01995a",
@@ -6280,7 +6280,7 @@
     ],
     "alt": {
      "slug": "bread-butter-loco-hybrid",
-     "t": "Want similar power for less? The Bread & Butter Loco Hybrid costs about $100 less.",
+     "t": "Want similar power for less? The Bread & Butter Loco Hybrid costs much less.",
      "src": [
       "bread-butter-loco-hybrid:69ad8e66-ffa1-4c90-b1a7-e8e0d0fff351",
       "bread-butter-loco-hybrid:research-102089e9-b342-473b-a112-e78d09910ea2",
@@ -6390,7 +6390,7 @@
   ],
   "catches": [
    {
-    "t": "Lateral move: it plays very close to the Pro IV for around $300.",
+    "t": "Lateral move: it plays very close to the Pro IV at a flagship price.",
     "for": [],
     "src": [
      "research-d723a1b1-7a72-4523-95b0-916f750d9ecf",
@@ -6735,7 +6735,7 @@
     }
    },
    {
-    "t": "Premium price: at around $333 it is hard to justify next to cheaper foam paddles.",
+    "t": "Premium price: it is hard to justify next to cheaper foam paddles.",
     "for": [],
     "src": [
      "34667578-fd9d-4d7b-8290-522227f1cb2a",
@@ -7342,7 +7342,7 @@
     ]
    },
    {
-    "t": "Premium price: around $300, it is hard to justify next to cheaper paddles.",
+    "t": "Premium price: it is hard to justify next to cheaper paddles.",
     "for": [],
     "src": [
      "fb447a9f-f456-4bdb-a957-3000bbbc7032",
@@ -8898,7 +8898,7 @@
     "minor": true
    },
    {
-    "t": "Cheap to start: at about $100 after a code it plays above its price once tuned.",
+    "t": "Cheap to start: at a budget price it plays above its price once tuned.",
     "for": [
      "beginner"
     ],
@@ -9359,7 +9359,7 @@
     }
    },
    {
-    "t": "Premium price: at about $280 it costs far more than similar control paddles.",
+    "t": "Premium price: it costs far more than similar control paddles.",
     "for": [],
     "src": [
      "39882624-feba-444c-9dd6-e1bb82db6d31",
@@ -9392,7 +9392,7 @@
     ]
    },
    {
-    "t": "Budget value: at about $99 it is one of the better foam values.",
+    "t": "Budget value: it is one of the better foam values.",
     "for": [
      "beginner"
     ],
@@ -9500,7 +9500,7 @@
   ],
   "catches": [
    {
-    "t": "Premium price: at about $333 the value is hard to justify for the typical buyer.",
+    "t": "Premium price: the value is hard to justify for the typical buyer.",
     "for": [],
     "src": [
      "37c2c006-97b7-4b7f-928c-b2e20e98d8a8",

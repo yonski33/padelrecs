@@ -2,6 +2,11 @@ import { unstable_cache } from "next/cache";
 import { niche } from "./niche";
 import { affiliateTag, amazonCredentials, amazonLink, amazonSearchLink, findAmazonOffer } from "./amazon";
 import { websiteButton } from "./product-links";
+import searchOnlyFile from "../db/shop/amazon-search-only.json";
+
+/** Products whose button is always the name search (db/shop/amazon-search-only.json): the live lookup would pick another model. */
+const searchOnly = new Set(((searchOnlyFile as unknown as Record<string, string[]>)[niche.id] ?? []).map(n => n.toLowerCase()));
+export const amazonSearchOnly = (name: string) => searchOnly.has(name.trim().toLowerCase());
 
 // Each product's lookup (its Amazon item and price, or "no match") is kept for 12 hours in Next's data cache, shared by
 // every visitor and instance, so Amazon sees at most two calls per product twice a day. Amazon asks that shown prices be
@@ -53,7 +58,7 @@ export async function amazonButton(product: { name: string; brand: string | unde
     if (!warned) { warned = true; console.warn("[amazon] AMAZON_CREATORS_API_CREDENTIAL_ID or AMAZON_CREATORS_API_CREDENTIAL_SECRET is not set; using search links without prices"); }
     return search;
   }
-  if (!product.brand) return search;
+  if (!product.brand || amazonSearchOnly(product.name)) return search;
   try {
     // A slow or rate-limited Amazon (429s, 2026-11-16) must not hold the page: after LOOKUP_MS the button is the search
     // link, and the lookup still finishes and fills the cache for the next render.

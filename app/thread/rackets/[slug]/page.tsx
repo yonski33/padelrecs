@@ -30,6 +30,7 @@ import { flightOf } from "../../../../lib/discgolf-profile";
 import { stabilityOfFlight } from "../../../../lib/niche/discgolf-guide";
 import { SITE_FIT } from "../../../../lib/fit-config";
 import { levelRange } from "../../../../lib/fit-verdict";
+import specNotes from "../../../../db/shop/spec-notes.json";
 
 export const revalidate = 86400;
 // Every listed racket's page is built with the site, as the live racket pages are (app/v/racket); none without a database (CI).
@@ -102,7 +103,9 @@ export default async function ThreadRacket({ params }: P) {
     // placeholder year for every product, so it showed "2026" on old products (skin audit 2026-11-20). SkinRecs labels
     // the skin types as the brand's claim (the pill above is what reviewers say) and adds the SPF its name gives (sunscreens and the SPF eye cream).
     : [...(hasYears ? [["Year", String(r.year)]] : []), ...niche.specs.map(s => [SKIN && s.column === "surface" ? "Skin types (brand)" : s.label, r[s.column]]),
-      ...(SKIN && SPF_OF(r.name) ? [["SPF", SPF_OF(r.name)]] : [])] as [string, string | null][]).filter((x): x is [string, string] => !!x[1]);
+      ...(SKIN && SPF_OF(r.name) ? [["SPF", SPF_OF(r.name)]] : []),
+      // Sourced extra facts, e.g. a paddle's tournament status (db/shop/spec-notes.json, owner audit 2026-11-20).
+      ...(((specNotes as unknown as Record<string, Record<string, [string, string][]>>)[niche.id] ?? {})[r.slug] ?? [])] as [string, string | null][]).filter((x): x is [string, string] => !!x[1]);
   const tags = (DG ? [r.shape, stab ? cap(stab) : null, LEVEL_WORD(row?.levels ?? [])] : SKIN ? [r.shape, skinAttrs?.facts.fragrance_free === "free" ? "Fragrance free" : null, skinTex ? `${skinTex} texture` : null, row?.best ? `Reviewers say: ${row.best}` : null]
     : [style ? STYLE_WORD[style] : null, r.shape, row?.feel ? `${row.feel} feel` : null, LEVEL_WORD(row?.levels ?? [])]).filter((x): x is string => !!x);
   const playersSay = DG ? ([row?.levels.length && ["Best for", LEVEL_WORD(row.levels)!], dgStyle && ["Stability", dgStyle], row?.arm && ["Slower arm", "Yes, say throwers"],

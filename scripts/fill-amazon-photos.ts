@@ -3,6 +3,7 @@ import { brands, rackets, reviews, externalReviews } from "../db/schema";
 import { isAsin, matchesProduct, words } from "../lib/amazon";
 import { niche } from "../lib/niche";
 import { connect } from "./connection";
+import { amazonSearchOnly } from "../lib/amazon-offer";
 
 // Finds each reviewed product's Amazon ASIN and photo through SerpApi, most reviewed first, one search per product. The
 // Amazon API throttles a search per product after about 20 calls (owner choice 2026-11-05: SerpApi instead).
@@ -70,6 +71,8 @@ async function main() {
   const brandOf = (id: string) => allBrands.find(b => b.id === id)?.name ?? "";
   const todo = products.filter(p => counts.has(p.id) && (retry || !p.checkedAt || Date.now() - Date.parse(p.checkedAt) >= RETRY_NO_MATCH_MS))
     .filter(p => !onlyBrand || brandOf(p.brandId).toLowerCase() === onlyBrand)
+    // Never refill a product whose button must stay a name search (db/shop/amazon-search-only.json).
+    .filter(p => !amazonSearchOnly(p.name))
     .sort((a, b) => counts.get(b.id)! - counts.get(a.id)!).slice(0, limit);
   let matched = 0;
   for (const p of todo) {
