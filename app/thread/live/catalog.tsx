@@ -1,6 +1,7 @@
 "use client";
 // The Thread catalogue (Rackets Thread): search, the filter column (Shape, Level, Feel, Brand, Arm friendly; counts of 5+),
 // active chips, Clear all, sort and Load more, all in the browser on the rows the server sent.
+import { niche } from "../../../lib/niche";
 import { useEffect, useMemo, useState, type ReactNode } from "react";
 import { Row, cap, type ThreadRow } from "../ui";
 import { usePicks, usePayload, complete, pctsFor } from "./picks";
@@ -8,9 +9,11 @@ import { usePicks, usePayload, complete, pctsFor } from "./picks";
 type Key = "shape" | "level" | "feel" | "brand" | "arm";
 type Filters = Partial<Record<Key, string[]>>;
 const STEP = 20;
+const OWN_SHAPES = niche.id === "pickleball" ? niche.shapeFilter ?? null : null;
+const hasShape = (shape: string | null, v: string) => !!shape && new RegExp(`\\b${v}\\b`, "i").test(shape);
 
 /** `title`, `lead` and `crumbs` change the hero (a brand page: app/thread/brands/[slug]); with no `brands` the Brand filter is left out. */
-export function Catalog({ rows, brands, title = "All padel rackets", lead = "Every racket players have reviewed. Filter by how it plays, then see what people say.", crumbs }:
+export function Catalog({ rows, brands, title = `All ${niche.id} ${niche.words.many}`, lead = `Every ${niche.words.one} players have reviewed. Filter by how it plays, then see what people say.`, crumbs }:
   { rows: ThreadRow[]; brands: string[]; title?: string; lead?: string; crumbs?: ReactNode }) {
   const [q, setQ] = useState(""), [f, setF] = useState<Filters>({}), [sort, setSort] = useState<"score" | "reviews" | "new" | "match">("score");
   const [open, setOpen] = useState(false), [panel, setPanel] = useState(false), [n, setN] = useState(STEP), [older, setOlder] = useState(false);
@@ -21,9 +24,11 @@ export function Catalog({ rows, brands, title = "All padel rackets", lead = "Eve
   useEffect(() => { const u = new URLSearchParams(location.search), v = u.get("q"); if (v) setQ(v);
     const pre: Filters = {}; for (const k of ["level", "feel", "shape"] as const) { const x = u.get(k); if (x) pre[k] = [x]; }
     if (Object.keys(pre).length) setF(pre); }, []);
-  const shapes = useMemo(() => [...new Set(rows.map(r => r.shape).filter((x): x is string => !!x))].sort((a, b) => rows.filter(r => r.shape === b).length - rows.filter(r => r.shape === a).length).slice(0, 5), [rows]);
+  // PickleballRecs: the site's own shapes (Standard, Elongated, Hybrid; its catalogue mock), matching a paddle that lists
+  // the shape among several ("Hybrid, Widebody, or Elongated"). Padel: the 5 most common shape values.
+  const shapes = useMemo(() => OWN_SHAPES ?? [...new Set(rows.map(r => r.shape).filter((x): x is string => !!x))].sort((a, b) => rows.filter(r => r.shape === b).length - rows.filter(r => r.shape === a).length).slice(0, 5), [rows]);
   const GROUPS = ([["shape", "Shape", shapes], ["level", "Level", ["Beginner", "Intermediate", "Advanced"]], ["feel", "Feel", ["Soft", "Medium", "Hard"]], ["brand", "Brand", brands], ["arm", "Comfort", ["Arm friendly"]]] as [Key, string, string[]][]).filter(([, , v]) => v.length > 0);
-  const test = (r: ThreadRow, k: Key, v: string) => k === "shape" ? r.shape === v : k === "level" ? r.levels.includes(v.toLowerCase() as ThreadRow["levels"][number]) : k === "feel" ? r.feel === v : k === "brand" ? r.brand === v : r.arm;
+  const test = (r: ThreadRow, k: Key, v: string) => k === "shape" ? (OWN_SHAPES ? hasShape(r.shape, v) : r.shape === v) : k === "level" ? r.levels.includes(v.toLowerCase() as ThreadRow["levels"][number]) : k === "feel" ? r.feel === v : k === "brand" ? r.brand === v : r.arm;
   const words = q.trim().toLowerCase().split(/\s+/).filter(Boolean);
   // One row per model by default, its current year (the classic catalog's rule, ThreadRow.current); a search or "Show older
   // models" brings the older years back. Their pages stay live either way.
@@ -62,7 +67,7 @@ export function Catalog({ rows, brands, title = "All padel rackets", lead = "Eve
       </section>
       <section className="th-card th-list">
         <div className="th-active">
-          <span className="res">{`${list.length.toLocaleString("en-US")} ${list.length === 1 ? "racket" : "rackets"}`}</span>
+          <span className="res">{`${list.length.toLocaleString("en-US")} ${list.length === 1 ? niche.words.one : niche.words.many}`}</span>
           {(Object.entries(f) as [Key, string[]][]).flatMap(([k, vs]) => vs.map(v => <button key={k + v} type="button" className="th-achip" onClick={() => toggle(k, v)} aria-label={`Remove ${v}`}>{cap(v)}<span aria-hidden="true">×</span></button>))}
           {any && <button type="button" className="th-clear" onClick={clear}>Clear all</button>}
           <span className="th-sort th-push"><span className="lbl">Sort</span>
@@ -71,7 +76,7 @@ export function Catalog({ rows, brands, title = "All padel rackets", lead = "Eve
             </span></span>
         </div>
         {list.slice(0, n).map(r => <Row key={r.id} r={r} {...(pcts ? { badge: pcts.get(r.id) ?? null, badgeLabel: "your match", pct: true } : {})}/>)}
-        {list.length === 0 && <p className="th-empty">No rackets match these filters. <button type="button" onClick={clear}>Clear all</button></p>}
+        {list.length === 0 && <p className="th-empty">{`No ${niche.words.many} match these filters. `}<button type="button" onClick={clear}>Clear all</button></p>}
         {list.length > n && <button type="button" className="th-btn th-center" style={{ margin: "6px 0 10px" }} onClick={() => setN(x => x + STEP * 2)}>Load more</button>}
         {!words.length && olderN > 0 && <button type="button" className="th-btn th-center" style={{ margin: "0 0 10px" }} aria-pressed={older} onClick={() => { setOlder(o => !o); setN(STEP); }}>{older ? "Hide older models" : `Show older models (${olderN})`}</button>}
       </section>

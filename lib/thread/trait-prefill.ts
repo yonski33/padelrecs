@@ -32,10 +32,18 @@ export const TRAMPOLINE: [string, RegExp][] = [
   ["low", /\b(no|little|minimal|zero|low|without( much)?|not much|barely any|hardly any|(much |a lot )?less) (trampoline|bounce|catapult)|\b(not|less) (very |too |overly )?(bouncy|springy)|\btrampoline (effect )?(is |was )?(low|minimal|limited)|\bdead(ish)? (feel|response)/i],
   ["high", new RegExp(String.raw`${NOT}\b(trampoline|bouncy|catapult|springy)\b`, "i")],
 ];
+/** PickleballRecs' Game type (owner's paddle mock): who plays it in which format; "both" first, a negative review left out. */
+export const GAME: [string, RegExp][] = [
+  ["both", /\b(singles and doubles|doubles and singles|singles or doubles|doubles or singles|both formats|singles as well as doubles)\b/i],
+  ["singles", /\bsingles\b/i],
+  ["doubles", /\bdoubles\b/i],
+];
 const firstMatch = (rules: [string, RegExp][], text: string) => rules.find(([, re]) => re.test(text))?.[0] ?? null;
 
 /** Specs that settle a group (owner: "specs only where they settle it"); null where they don't. */
-export function specLeans(r: Pick<Cat, "shape" | "core" | "balance">): Record<string, string> {
+export function specLeans(r: Pick<Cat, "shape" | "core" | "balance">, nicheId = "padel"): Record<string, string> {
+  // Paddle shapes and cores don't settle a group the way a padel shape or a "Soft" core does, so pickleball has none.
+  if (nicheId === "pickleball") return {};
   const out: Record<string, string> = {}, shape = (r.shape ?? "").toLowerCase(), core = (r.core ?? "").toLowerCase(), bal = (r.balance ?? "").toLowerCase().trim();
   if (shape.startsWith("diamond")) out.plays_like = "power"; else if (shape.startsWith("round")) out.plays_like = "control"; else if (shape.startsWith("teardrop")) out.plays_like = "all_round";
   if (/\b(soft|flex)\b/.test(core)) out.feel = "soft"; else if (/\b(hard|firm)\b/.test(core)) out.feel = "hard";
@@ -45,21 +53,25 @@ export function specLeans(r: Pick<Cat, "shape" | "core" | "balance">): Record<st
 
 const scale = (net: number, maxStrength: number, [yes, some, no]: [string, string, string]) => net < 0 ? no : net > 0 ? (maxStrength >= 1 ? yes : some) : null;
 /** One source's evidence rows for one racket → its pick per group (or none). */
-export function sourcePicks(rows: EvidenceRow[]): Record<string, string> {
+export function sourcePicks(rows: EvidenceRow[], nicheId = "padel"): Record<string, string> {
   const sum = (a: string) => { const rs = rows.filter(r => r.attribute === a && typeof r.value === "number"); return { net: rs.reduce((s, r) => s + (r.value as number) * r.strength, 0), max: Math.max(0, ...rs.map(r => r.strength)), n: rs.length }; };
   const out: Record<string, string> = {};
   const p = sum("power").net, c = sum("control").net;
   if (p > 0 && c > 0) out.plays_like = "all_round"; else if (p > 0 || (c < 0 && p === 0)) out.plays_like = "power"; else if (c > 0 || (p < 0 && c === 0)) out.plays_like = "control";
   const f = sum("forgiveness"); if (f.n) { const v = f.net < 0 ? "small" : f.net > 0 ? (f.max >= 1 ? "big" : "medium") : null; if (v) out.sweet_spot = v; }
   const a = sum("arm"); if (a.n) { const v = scale(a.net, a.max, ["very", "somewhat", "not_really"]); if (v) out.arm = v; }
-  const s = sum("speed"); if (s.n) { const v = scale(s.net, s.max, ["very", "somewhat", "not_really"]); if (v) out.maneuver = v; }
+  if (nicheId === "pickleball") {
+    // PickleballRecs: Spin and Pop from their own evidence; no Maneuverable group.
+    const sp = sum("spin"); if (sp.n) { const v = scale(sp.net, sp.max, ["lots", "some", "little"]); if (v) out.spin = v; }
+    const po = sum("pop"); if (po.n) { const v = scale(po.net, po.max, ["high", "medium", "low"]); if (v) out.pop = v; }
+  } else { const s = sum("speed"); if (s.n) { const v = scale(s.net, s.max, ["very", "somewhat", "not_really"]); if (v) out.maneuver = v; } }
   const d = sum("durability"); if (d.n) { const v = d.net > 0 ? "holds_up" : d.net < 0 ? "wears_fast" : null; if (v) out.durability = v; }
   const lv = rows.filter(r => r.attribute === "level" && r.valueText).map(r => r.valueText!.toLowerCase()).find(l => ["beginner", "intermediate", "advanced"].includes(l));
   if (lv) out.level = lv;
   return out;
 }
 
-export function buildPrefill(cat: Cat[], evidence: EvidenceRow[], texts: PrefillText[], built: string): Prefill {
+export function buildPrefill(cat: Cat[], evidence: EvidenceRow[], texts: PrefillText[], built: string, nicheId = "padel"): Prefill {
   const bySource = new Map<string, EvidenceRow[]>();
   for (const r of evidence) {
     if (r.sourceKind === "maker" || r.sourceKind === "owner" || r.attribute.startsWith("spec:")) continue;
@@ -68,19 +80,22 @@ export function buildPrefill(cat: Cat[], evidence: EvidenceRow[], texts: Prefill
   }
   const picks = new Map<string, Map<string, Record<string, string>>>(); // product → source → group → choice
   const put = (pid: string, src: string, g: string, v: string) => { let m = picks.get(pid); if (!m) picks.set(pid, m = new Map()); const o = m.get(src) ?? {}; if (!o[g]) o[g] = v; m.set(src, o); };
-  for (const [k, rows] of bySource) { const [pid, src] = [k.slice(0, k.indexOf("|")), k.slice(k.indexOf("|") + 1)]; for (const [g, v] of Object.entries(sourcePicks(rows))) put(pid, src, g, v); }
+  for (const [k, rows] of bySource) { const [pid, src] = [k.slice(0, k.indexOf("|")), k.slice(k.indexOf("|") + 1)]; for (const [g, v] of Object.entries(sourcePicks(rows, nicheId))) put(pid, src, g, v); }
   // A text's source is the evidence rows' source for the same report (so a review counts once in `sources`).
   const authorOf = new Map(evidence.filter(r => r.authorKey).map(r => [`${r.productId}|${reportOf(r.sourceRef)}`, r.authorKey!]));
   for (const t of texts) {
     const src = authorOf.get(`${t.productId}|${t.key}`) ?? t.key;
-    const feel = firstMatch(FEEL, t.text), tramp = firstMatch(TRAMPOLINE, t.text), side = t.negative ? null : firstMatch(SIDE, t.text);
-    if (feel) put(t.productId, src, "feel", feel); if (tramp) put(t.productId, src, "trampoline", tramp); if (side) put(t.productId, src, "side", side);
+    const feel = firstMatch(FEEL, t.text);
+    if (feel) put(t.productId, src, "feel", feel);
+    if (nicheId === "pickleball") { const game = t.negative ? null : firstMatch(GAME, t.text); if (game) put(t.productId, src, "game_type", game); continue; }
+    const tramp = firstMatch(TRAMPOLINE, t.text), side = t.negative ? null : firstMatch(SIDE, t.text);
+    if (tramp) put(t.productId, src, "trampoline", tramp); if (side) put(t.productId, src, "side", side);
   }
   const out: Prefill = { built, rule: "One count per review, web report or YouTube channel per group; specs kept apart in `spec` and never counted.", rackets: {} };
   for (const r of [...cat].sort((a, b) => a.slug.localeCompare(b.slug))) {
     const m = picks.get(r.id), groups: Record<string, PrefillGroup> = {};
     for (const o of m?.values() ?? []) for (const [g, v] of Object.entries(o)) (groups[g] ??= {})[v] = (groups[g][v] ?? 0) + 1;
-    out.rackets[r.id] = { slug: r.slug, name: r.name, sources: m?.size ?? 0, groups, spec: specLeans(r) };
+    out.rackets[r.id] = { slug: r.slug, name: r.name, sources: m?.size ?? 0, groups, spec: specLeans(r, nicheId) };
   }
   return out;
 }

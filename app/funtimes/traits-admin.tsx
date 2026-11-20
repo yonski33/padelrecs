@@ -22,7 +22,7 @@ const MESSAGES: Record<string, string> = {
 const when = (iso: string) => new Date(iso).toLocaleString("en-GB", { timeZone: "UTC", day: "numeric", month: "short", hour: "2-digit", minute: "2-digit" });
 const short = (key: string) => `${key.slice(0, 10)}…`;
 const label = (trait: string, choice: string) => TRAIT_GROUPS.find(g => g.key === trait)?.options.find(([k]) => k === choice)?.[1] ?? choice;
-const title = (trait: string | null) => trait === ALL_GROUPS ? "Whole racket" : trait ? TRAIT_GROUPS.find(g => g.key === trait)?.title ?? trait : "All groups";
+const title = (trait: string | null) => trait === ALL_GROUPS ? `Whole ${niche.words.one}` : trait ? TRAIT_GROUPS.find(g => g.key === trait)?.title ?? trait : "All groups";
 
 function Hidden({ v }: { v: Record<string, string> }) { return <>{Object.entries(v).map(([k, x]) => <input key={k} type="hidden" name={k} value={x}/>)}</>; }
 function Act({ v, children, ghost = true }: { v: Record<string, string>; children: string; ghost?: boolean }) {
@@ -33,7 +33,7 @@ export async function TraitsAdmin({ racket: id, q, result, rackets }: { racket?:
   const db = await database(), byId = new Map(rackets.map(r => [r.id, r]));
   const notice = result && MESSAGES[result] && <p role="status" className={["invalid", "failed"].includes(result) ? "form-error" : "admin-notice"}>{MESSAGES[result]}</p>;
   const search = <form method="get" action="/funtimes" className="admin-filters" style={{ gap: 8 }}><input type="hidden" name="tab" value="traits"/>
-    <input name="q" defaultValue={q ?? ""} placeholder="Search a racket by name" aria-label="Search a racket" style={{ minWidth: 260 }}/><button className="button">Search</button></form>;
+    <input name="q" defaultValue={q ?? ""} placeholder={`Search a ${niche.words.one} by name`} aria-label={`Search a ${niche.words.one}`} style={{ minWidth: 260 }}/><button className="button">Search</button></form>;
   const r = id ? byId.get(id) : undefined;
   if (!r) {
     const term = (q ?? "").trim().toLowerCase(), hits = term ? rackets.filter(x => x.name.toLowerCase().includes(term) || x.slug.includes(term)).slice(0, 40) : [];
@@ -42,9 +42,9 @@ export async function TraitsAdmin({ racket: id, q, result, rackets }: { racket?:
     const changed = await overriddenRackets(db);
     const list = (ids: { id: string; note?: string }[]) => <ul>{ids.map(x => { const rr = byId.get(x.id); return rr && <li key={x.id}><a href={`/funtimes?tab=traits&racket=${encodeURIComponent(x.id)}`}>{rr.name}</a>{x.note ? <span className="muted">{` · ${x.note}`}</span> : null}</li>; })}</ul>;
     return <>{notice}{search}
-      {term && <section><h2>{`Matches for “${q}”`}</h2>{hits.length ? list(hits.map(h => ({ id: h.id }))) : <p className="admin-empty">No racket matches.</p>}</section>}
+      {term && <section><h2>{`Matches for “${q}”`}</h2>{hits.length ? list(hits.map(h => ({ id: h.id }))) : <p className="admin-empty">{`No ${niche.words.one} matches.`}</p>}</section>}
       <section><h2>Most votes in the last 7 days</h2>{busy.length ? list(busy.map(b => ({ id: b.id, note: `${Number(b.n)} votes` }))) : <p className="admin-empty">No votes this week.</p>}</section>
-      <section><h2>Rackets with a fix or a freeze</h2>{changed.length ? list(changed.map(c => ({ id: c }))) : <p className="admin-empty">None yet.</p>}</section>
+      <section><h2>{`${niche.words.Many} with a fix or a freeze`}</h2>{changed.length ? list(changed.map(c => ({ id: c }))) : <p className="admin-empty">None yet.</p>}</section>
     </>;
   }
   const [votes, ov, recent, history] = await Promise.all([traitCounts(db, r.id), traitOverridesFor(db, r.id), recentTraitVotes(db, r.id), traitAdminHistory(db, r.id)]);
@@ -54,7 +54,7 @@ export async function TraitsAdmin({ racket: id, q, result, rackets }: { racket?:
   return <>{notice}{search}
     <h2><a href={productHref(r)}>{r.name}</a></h2>
     <p className="muted">{`Review counts come from db/thread/padel-traits.json (${seed?.sources ?? 0} sources) unless an override is saved. An option shows on the page at 5+ reviews and votes together.`}</p>
-    <p>{allFrozen ? <><strong>Voting is frozen on this racket. </strong><Act v={{ ...base, action: "unfreeze", trait: ALL_GROUPS }}>Open voting</Act></> : <Act v={{ ...base, action: "freeze", trait: ALL_GROUPS }}>Freeze voting on this racket</Act>}</p>
+    <p>{allFrozen ? <><strong>{`Voting is frozen on this ${niche.words.one}. `}</strong><Act v={{ ...base, action: "unfreeze", trait: ALL_GROUPS }}>Open voting</Act></> : <Act v={{ ...base, action: "freeze", trait: ALL_GROUPS }}>Freeze voting on this racket</Act>}</p>
     <div className="admin-queue">{TRAIT_GROUPS.map(g => {
       const file = seed?.groups[g.key] ?? {}, over = ov.counts[g.key], v = votes[g.key] ?? {}, frozen = ov.frozen.includes(g.key);
       const nVotes = Object.values(v).reduce((a, b) => a + b, 0);
@@ -79,7 +79,7 @@ export async function TraitsAdmin({ racket: id, q, result, rackets }: { racket?:
           <td style={{ whiteSpace: "nowrap" }}><Act v={{ ...base, action: "remove_vote", trait: x.trait, voter: x.voter }}>Remove</Act>{" "}
             <Act v={{ ...base, action: "remove_voter", voter: x.voter, everywhere: "0" }}>All by voter here</Act>{" "}
             <Act v={{ ...base, action: "remove_voter", voter: x.voter, everywhere: "1" }}>Everywhere</Act></td></tr>)}</tbody></table>
-        : <p className="admin-empty">No votes on this racket yet.</p>}
+        : <p className="admin-empty">{`No votes on this ${niche.words.one} yet.`}</p>}
     </section>
     <section><h2>Change log</h2>
       {history.length ? <ul>{history.map(h => { const d = h.detail as { votes?: unknown[]; to?: unknown; voter?: string } | null;

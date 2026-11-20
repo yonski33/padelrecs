@@ -15,6 +15,13 @@ import { th } from "../../../../lib/thread/look";
 import { generateMetadata as liveMetadata } from "../../../rankings/[slug]/page";
 import { JsonLd, crumbs, base } from "../../seo";
 
+const { one: ONE, many: MANY } = niche.words;
+const PICKLEBALL = niche.id === "pickleball";
+/** The arm and shape FAQ lines, the site's own (PickleballRecs: its Rankings and Elbow Guide mocks). */
+const ARM_TIP = PICKLEBALL ? "A soft core, a lighter paddle and a relaxed grip help most." : "A soft core, a lower balance and a lighter racket help most.";
+const SHAPE_FAQ = PICKLEBALL
+  ? { q: "Standard, hybrid or elongated?", a: "Standard is the most forgiving and quickest at the kitchen. Hybrid is the all-rounder. Elongated adds reach and drive power, with a smaller sweet spot." }
+  : { q: "Round, teardrop or diamond?", a: "Round is the most forgiving and suits defenders. Teardrop is the all-rounder. Diamond adds smash power but needs better technique." };
 export const revalidate = 21600;
 export async function generateStaticParams() { return (await threadRankings()).map(l => ({ slug: l.slug })); }
 type P = { params: Promise<{ slug: string }> };
@@ -41,10 +48,10 @@ export default async function ThreadRanking({ params }: P) {
   const reviews = list.reduce((s, r) => s + r.n, 0);
   const beginner = list.filter(r => r.levels.includes("beginner")).slice(0, 3), arm = list.filter(r => r.arm).slice(0, 3);
   const faqs = [
-    ...(beginner.length ? [{ q: "Which racket here is best for a beginner?", a: `${names(beginner)} ${beginner.length > 1 ? "are" : "is"} the ones players rate as fine for beginners on this list. Pick your level above to see your match.` }] : []),
-    ...(arm.length ? [{ q: "What if I have tennis elbow?", a: `Players with sore arms speak best of ${names(arm)}. A soft core, a lower balance and a lighter racket help most.` }] : []),
-    { q: "Round, teardrop or diamond?", a: "Round is the most forgiving and suits defenders. Teardrop is the all-rounder. Diamond adds smash power but needs better technique." },
-    { q: "How often does this ranking change?", a: "Scores update as new reviews come in, so rackets can move up or down any day. A racket joins once it has enough reviews to score fairly." },
+    ...(beginner.length ? [{ q: `Which ${ONE} here is best for a beginner?`, a: `${names(beginner)} ${beginner.length > 1 ? "are" : "is"} the ones players rate as fine for beginners on this list. Pick your level above to see your match.` }] : []),
+    ...(arm.length ? [{ q: "What if I have tennis elbow?", a: `Players with sore arms speak best of ${names(arm)}. ${ARM_TIP}` }] : []),
+    SHAPE_FAQ,
+    { q: "How often does this ranking change?", a: `Scores update as new reviews come in, so ${MANY} can move up or down any day. A ${ONE} joins once it has enough reviews to score fairly.` },
   ];
   const more = lists.filter(x => x.slug !== l.slug).map(x => ({ label: x.label, href: x.href }));
   const nameMap = Object.fromEntries(list.map(r => [r.id, r.name]));
@@ -65,7 +72,7 @@ export default async function ThreadRanking({ params }: P) {
           <p className="th-lead">Ranked by player score, from reviews by people who played them. Updates as new reviews come in.</p>
           <nav className="th-rtabs" aria-label="Rankings">{lists.slice(0, 7).map(x => <a key={x.slug} href={th(x.href)} aria-current={x.slug === l.slug ? "page" : undefined}>{x.label.replace(/^Best (for )?/, "").replace(/^./, c => c.toUpperCase())}</a>)}</nav>
         </section>
-        <RankingList rows={list} title={l.label} meta={`${plural(list.length, "racket")} · ${plural(reviews, "review")}`}/>
+        <RankingList rows={list} title={l.label} meta={`${plural(list.length, ONE)} · ${plural(reviews, "review")}`}/>
         {boards.length > 0 && <Boards boards={boards}/>}
         <section className="th-card th-sec"><h2 className="th-h2">Questions players ask</h2><Faq items={faqs}/></section>
         <Comments page={`ranking:${l.slug}`} prompt="Agree with this list? Join the conversation" nicknames={niche.form.quickVote?.nicknames ?? []}/>

@@ -4,7 +4,7 @@
 # SkinRecs back on 2026-11-15 (match engine, owner: "lets start skinrecs already").
 # CoffeeRecs back on 2026-11-18 (match engine and v11c pages, owner OK via the PM).
 # CoffeeRecs back on 2026-11-18 (match engine and v11c pages, owner OK via the PM).
-# StackRecs (owner 2026-11-19): previews on request only ([preview stackrecs]); off the merge builds until launch.
+# StackRecs (owner 2026-11-19): previews on request ([preview stackrecs]); on the merge builds since launch (owner OK 2026-11-20).
 # Previews (owner 2026-11-16, Vercel cost): only on request, padel included: a branch named preview/… or a commit message
 # with [preview] builds PadelRecs' preview, "[preview tennis skin]" those kept sites' too; every other push to a pull request
 # builds nothing.
@@ -19,6 +19,6 @@ if [ "$VERCEL_ENV" = "preview" ]; then
   if [ "$NICHE" != "padel" ] && [ -z "$named" ]; then echo "Preview builds run on padelrecs only unless named ([preview $NICHE]); skipping $NICHE."; exit 0; fi
   exit 1
 fi
-case " padel pickleball tennis simracing discgolf skin coffee " in *" $NICHE "*) exit 1;; esac
+case " padel pickleball tennis simracing discgolf skin coffee stackrecs " in *" $NICHE "*) exit 1;; esac
 echo "Frozen site: skipping $NICHE (active sites only, owner 2026-11-15)."
 exit 0

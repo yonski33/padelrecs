@@ -9,8 +9,9 @@ import { bestFor, SUITS_OK, MIN_FIT_REPORTS } from "../../lib/fit-verdict";
 import { familyRowIds, modelFamily } from "../../lib/compare-pairs";
 import { topPicks, PICK_CATS, type PickList, type PickRacket } from "../../lib/thread/top-picks";
 import { traitSeed } from "../../lib/thread/trait-seed";
-import { traitVotes, traitOverrides } from "../../db/schema";
-import { count } from "drizzle-orm";
+import { traitVotes, traitOverrides, comments, productVotes } from "../../db/schema";
+import { and, count, desc, eq, gte, like } from "drizzle-orm";
+import { sideItems, addCounts, BUSY_DAYS, SIDE_SIZE, type SideItem } from "../../lib/thread/home-side";
 import { shopPhoto, photoHidden } from "../../lib/shop-photos";
 import { amazonPhoto } from "../../lib/amazon-photos";
 import { productHref, niche } from "../../lib/niche";
@@ -60,7 +61,9 @@ function rowOf(ctx: Ctx, r: Ctx["data"]["listed"][number], brand: string, n: num
 /** "How players vote them" until trait votes exist (migration 0024, waiting for the owner): the top 3 per trait from what
  *  players mention in their reviews (lib/trait-score.ts, the same scores as the racket pages' bars), only rackets with a
  *  Player score, and only counts of 5 or more. */
-const BOARDS: [string, string][] = [["forgiveness", "Biggest sweet spot"], ["arm", "Most arm friendly"], ["control", "Most control"], ["power", "Most power"], ["speed", "Best at the net"], ["defence", "Best in defence"]];
+const BOARDS: [string, string][] = niche.id === "pickleball"
+  ? [["forgiveness", "Biggest sweet spot"], ["arm", "Most arm friendly"], ["control", "Most control"], ["power", "Most power"], ["speed", "Best at the kitchen"], ["spin", "Most spin"]]
+  : [["forgiveness", "Biggest sweet spot"], ["arm", "Most arm friendly"], ["control", "Most control"], ["power", "Most power"], ["speed", "Best at the net"], ["defence", "Best in defence"]];
 export type Board = { title: string; source: "votes" | "reviews"; rows: { id: string; name: string; href: string; pic: string | null; n: number }[] };
 export const threadBoards = cache(async (only?: Set<string>): Promise<Board[]> => {
   if (!hasDb()) return [];
@@ -101,6 +104,28 @@ export const threadLists = cache(async () => {
 /** Review summaries from around the web (Reddit, YouTube, blogs) and own reviews, newest first, for the home feed. */
 export type FeedItem = { id: string; racketId: string; kind: "player" | "youtube" | "blog" | "reddit"; who: string; text: string; date: string; verdict: "positive" | "mixed" | "negative" | null; url: string | null; title?: string | null };
 const ASCII = /^[\x00-\x7F’‘“”–…é]+$/;
+/** The home sidebar's "Latest from the comments", with "Busy this week" filling it to 3 (lib/thread/home-side.ts). Read
+ *  with the rest of the home (its 6-hour ISR), so the block is cached like the page. Empty without a database or on a read
+ *  error: the block then hides. */
+export const threadHomeSide = cache(async (): Promise<SideItem[]> => {
+  if (!hasDb()) return [];
+  const { ctx, rows } = await threadRows();
+  try {
+    const db = await database(), since = new Date(Date.now() - BUSY_DAYS * 86_400_000).toISOString();
+    const latest = await db.select({ id: comments.id, page: comments.page, alias: comments.alias, body: comments.body, at: comments.createdAt }).from(comments)
+      .where(and(eq(comments.status, "approved"), like(comments.page, "racket:%"))).orderBy(desc(comments.createdAt)).limit(20);
+    const busy = new Map<string, number>();
+    if (latest.filter(c => rows.has(c.page.slice("racket:".length))).length < SIDE_SIZE) {
+      // New this week: approved player reviews (already loaded), quick votes and "How does it play?" votes.
+      addCounts(busy, ctx.data.reviews.filter(r => r.createdAt >= since).map(r => ({ racketId: r.racketId, n: 1 })));
+      addCounts(busy, await db.select({ racketId: productVotes.racketId, n: count() }).from(productVotes).where(gte(productVotes.createdAt, since)).groupBy(productVotes.racketId));
+      addCounts(busy, await db.select({ racketId: traitVotes.racketId, n: count() }).from(traitVotes).where(gte(traitVotes.createdAt, since)).groupBy(traitVotes.racketId));
+    }
+    // Comments on any listed racket's page; the busy list only for current models (one row per model).
+    return sideItems(latest, busy, (id, kind) => kind === "comment" ? rows.has(id) : !!rows.get(id)?.current);
+  } catch (error) { console.error("[thread] home sidebar comments failed", error); return []; }
+});
+
 export const threadFeed = cache(async (): Promise<FeedItem[]> => {
   if (!hasDb()) return [];
   const { ctx } = await threadRows();
@@ -133,7 +158,7 @@ export const threadTopPicks = cache(async (): Promise<{ lists: PickList[]; total
   } catch (error) { console.error("[thread] top picks votes failed", error); }
   const byId = new Map(ctx.data.listed.map(r => [r.id, r]));
   const rackets: PickRacket[] = [...rows.values()].filter(r => r.current).flatMap(r => {
-    const seed = traitSeed("padel", r.id), raw = byId.get(r.id);
+    const seed = traitSeed(niche.id, r.id), raw = byId.get(r.id);
     if (!raw) return [];
     // Each list's backers and its group's total from the same sources (owner 2026-11-19): the review prefill (or the owner's
     // override) plus votes, the backers for one option and the total over all of that group's options.

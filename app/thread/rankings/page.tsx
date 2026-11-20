@@ -1,4 +1,5 @@
 // Thread rankings hub (Rankings Hub Thread): every ranking as a card with its top 3 and "See ranking ›".
+import { niche } from "../../../lib/niche";
 import { Shell } from "../shell";
 import { threadRows } from "../data";
 import { threadRankings, GROUPS } from "../rankings-data";
@@ -16,8 +17,8 @@ export default async function ThreadHub() {
   return <Shell active="rankings">
     <main className="th-main"><div className="th-col" style={{ maxWidth: "none" }}>
       <section className="th-card th-hero">
-        <h1 className="th-h1">Padel racket rankings</h1>
-        <p className="th-lead">Every ranking is sorted by player score, from reviews by people who played the rackets. Scores update as new reviews come in.</p>
+        <h1 className="th-h1">{`${niche.id[0].toUpperCase()}${niche.id.slice(1)} ${niche.words.one} rankings`}</h1>
+        <p className="th-lead">{`Every ranking is sorted by player score, from reviews by people who played the ${niche.words.many}. Scores update as new reviews come in.`}</p>
       </section>
       {GROUPS.map(g => { const cards = lists.filter(l => l.group === g); return cards.length > 0 && <section key={g} style={{ display: "flex", flexDirection: "column", gap: 10 }}>
         <h2 className="th-h2 th-group-h">{g}</h2>
