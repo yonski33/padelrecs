@@ -776,3 +776,4 @@ body:has(.th-stack) .th-stack a.th-add:hover, body:has(.th-stack) .th-stack a.th
 .th-stack .th-sbox-head { background: #3730a3; color: #fff; }
 .th-stack .th-qm-tag { background: var(--lime); }
 .th-stack .th-by .th-logo-icon { width: 22px; height: 22px; }
+body:has(.th-stack) .th-stack a.th-add-plus { background: #3730a3; border-color: #3730a3; color: #fff; }
