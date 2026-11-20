@@ -1,6 +1,7 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { storyProblem, storySlug, freeSlug, storyDescription, paragraphs, hasShopLink, STORY_BODY } from "../lib/thread/stories";
+import { readFileSync } from "node:fs";
+import { storyProblem, storySlug, freeSlug, storyDescription, paragraphs, hasShopLink, STORY_BODY, readMinutes, isStoryTopic, topicLabel, STORY_TOPICS } from "../lib/thread/stories";
 import { threadPath } from "../lib/thread/look";
 import { storiesSite } from "../lib/thread/sites";
 import { PAGE_KEY } from "../db/comments";
@@ -38,4 +39,17 @@ test("stories are padel only: routing and the gate", () => {
   assert.equal(threadPath("/stories/x/y", "/rackets", "padel"), null);
   assert.equal(threadPath("/stories/10-things-3f2a9c/edit", "/rackets", "padel"), "/thread/stories/10-things-3f2a9c/edit");
   assert.equal(threadPath("/stories/10-things-3f2a9c/edit", "/paddles", "pickleball"), null);
+});
+
+test("story redesign helpers: read time and topics (owner design 2026-11-21)", () => {
+  assert.equal(readMinutes("Short."), 1);
+  assert.equal(readMinutes("word ".repeat(600)), 3);
+  assert.equal(readMinutes(`## A heading\n\n**${"word ".repeat(399)}**`), 2);
+  assert.equal(isStoryTopic("switch"), true);
+  assert.equal(isStoryTopic("video"), false);
+  assert.equal(topicLabel("comeback"), "Comeback");
+  assert.equal(topicLabel(null), null);
+  // The keys match 0033's check constraint.
+  const sql = readFileSync(new URL("../drizzle/0033_story_topics_likes.sql", import.meta.url), "utf8");
+  for (const [k] of STORY_TOPICS) assert.ok(sql.includes(`'${k}'`), k);
 });

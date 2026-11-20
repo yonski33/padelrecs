@@ -41,3 +41,15 @@ export function storyDescription(body: string) {
   const cut = first.slice(0, 155), at = cut.lastIndexOf(" ");
   return `${cut.slice(0, at > 100 ? at : 155).replace(/[,.;:!?]+$/, "")}…`;
 }
+
+/** Story topics (owner design 2026-11-21, drizzle/0033): key, the pill's word, the list tab's word. Optional per story. */
+export const STORY_TOPICS = [["switch", "Racket switch", "Racket switches"], ["first", "First year", "First year"], ["comfort", "Arm comfort", "Arm comfort"],
+  ["technique", "Technique", "Technique"], ["comeback", "Comeback", "Comebacks"]] as const;
+export type StoryTopic = typeof STORY_TOPICS[number][0];
+export const isStoryTopic = (x: unknown): x is StoryTopic => STORY_TOPICS.some(t => t[0] === x);
+export const topicLabel = (t: StoryTopic | null | undefined) => STORY_TOPICS.find(x => x[0] === t)?.[1] ?? null;
+/** "n min read": the words a reader sees at about 200 a minute, 1 at least. */
+export function readMinutes(body: string) {
+  const words = plainText(body).split(/\s+/).filter(Boolean).length;
+  return Math.max(1, Math.round(words / 200));
+}
