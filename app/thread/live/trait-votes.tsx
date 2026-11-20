@@ -14,7 +14,8 @@ import { W } from "../../../lib/thread/words";
 type Overrides = { counts: Record<string, Record<string, number>>; frozen: string[] };
 
 /** `groups` and `title`: StackRecs passes its tool's side ("How does it build?"); padel keeps its nine and its heading. */
-export function TraitVotes({ id, seed, groups = TRAIT_GROUPS, title = W.traitsTitle }: { id: string; seed: TraitSeed | null; groups?: TraitGroup[]; title?: string }) {
+/** `of`: the page's opinion count (SkinRecs), so the note reads "Based on 15 of the 44 opinions". */
+export function TraitVotes({ id, seed, groups = TRAIT_GROUPS, title = W.traitsTitle, of }: { id: string; seed: TraitSeed | null; groups?: TraitGroup[]; title?: string; of?: number }) {
   const [counts, setCounts] = useState<TraitCounts>({}), [ov, setOv] = useState<Overrides>({ counts: {}, frozen: [] }), [mine, setMine] = useState<Record<string, string>>({}), [err, setErr] = useState("");
   useEffect(() => {
     fetch(`/api/trait-votes?racket=${encodeURIComponent(id)}`, { cache: "no-store" }).then(r => r.ok ? r.json() : null)
@@ -36,7 +37,7 @@ export function TraitVotes({ id, seed, groups = TRAIT_GROUPS, title = W.traitsTi
   }
   const voteTotal = Object.values(counts).reduce((s, o) => s + Object.values(o).reduce((a, b) => a + b, 0), 0);
   return <section id="play" className="th-card th-sec" style={{ scrollMarginTop: 70 }}>
-    <div className="th-head-row"><h2 className="th-h3">{title}</h2><span className="th-sub"><span className="th-only-d">{sectionNote(seed?.sources ?? 0, voteTotal)}</span><span className="th-only-m-inline">{sectionNoteShort(seed?.sources ?? 0, voteTotal)}</span></span></div>
+    <div className="th-head-row"><h2 className="th-h3">{title}</h2><span className="th-sub"><span className="th-only-d">{sectionNote(seed?.sources ?? 0, voteTotal, of)}</span><span className="th-only-m-inline">{sectionNoteShort(seed?.sources ?? 0, voteTotal, of)}</span></span></div>
     <div className="th-vgrid">{groups.map(g => {
       const closed = ov.frozen.includes("_all") || ov.frozen.includes(g.key);
       const v = groupView(g.options, ov.counts[g.key] ?? seed?.groups[g.key], counts[g.key], seed?.spec[g.key]), max = Math.max(1, ...v.opts.filter(o => o.shown).map(o => o.n));

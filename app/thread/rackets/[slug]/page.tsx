@@ -17,7 +17,7 @@ import { amazonButton } from "../../../../lib/amazon-offer";
 import { amazonPhoto } from "../../../../lib/amazon-photos";
 import { websiteButton } from "../../../../lib/product-links";
 import { withoutYear } from "../../../../lib/brand-name";
-import { niche } from "../../../../lib/niche";
+import { niche, hasYears } from "../../../../lib/niche";
 import { alsoLoved } from "../../../../db/product-votes";
 import { database } from "../../../../db/data";
 import { generateMetadata as liveMetadata } from "../../../rackets/[slug]/page";
@@ -43,6 +43,8 @@ type P = { params: Promise<{ slug: string }> };
 export const generateMetadata = ({ params }: P): Promise<Metadata> => liveMetadata({ params, searchParams: Promise.resolve({}) });
 
 const SKIN = niche.id === "skin", DG = niche.id === "discgolf";
+/** SkinRecs' SPF spec row: the SPF the product's name gives ("SPF 50+" → "50+"); no PA rating is stored anywhere yet. */
+const SPF_OF = (name: string) => name.match(/\bSPF\s*(\d{2,3}\+?)/i)?.[1] ?? null;
 // The level words: the same formatter as the catalogue card (lib/fit-verdict.ts levelRange), capitalised.
 const LEVEL_WORD = (ls: string[]) => { const w = levelRange(ls); return w ? cap(w) : null; };
 const STYLE_WORD = { control: "Control", power: "Power", balance: "All-round" } as const;
@@ -96,8 +98,12 @@ export default async function ThreadRacket({ params }: P) {
   const site = websiteButton(r);
   const shop = amazon ? { url: amazon.url, rel: "sponsored nofollow noopener" } : site ? { url: site.url, rel: site.affiliate ? "sponsored nofollow noopener" : "noopener" } : null;
   const specs = (DG ? [...niche.specs.map(s => [s.label, r[s.column]]), ["Stability", stab ? cap(stab) : null]]
-    : [["Year", String(r.year)], ...niche.specs.map(s => [s.label, r[s.column]])] as [string, string | null][]).filter((x): x is [string, string] => !!x[1]);
-  const tags = (DG ? [r.shape, stab ? cap(stab) : null, LEVEL_WORD(row?.levels ?? [])] : SKIN ? [r.shape, skinAttrs?.facts.fragrance_free === "free" ? "Fragrance free" : null, skinTex ? `${skinTex} texture` : null, row?.best ? cap(row.best) : null]
+    // "Year" only where products carry real model years (niche.productYears): SkinRecs and PickleballRecs store one
+    // placeholder year for every product, so it showed "2026" on old products (skin audit 2026-11-20). SkinRecs labels
+    // the skin types as the brand's claim (the pill above is what reviewers say) and adds the SPF its name gives (sunscreens and the SPF eye cream).
+    : [...(hasYears ? [["Year", String(r.year)]] : []), ...niche.specs.map(s => [SKIN && s.column === "surface" ? "Skin types (brand)" : s.label, r[s.column]]),
+      ...(SKIN && SPF_OF(r.name) ? [["SPF", SPF_OF(r.name)]] : [])] as [string, string | null][]).filter((x): x is [string, string] => !!x[1]);
+  const tags = (DG ? [r.shape, stab ? cap(stab) : null, LEVEL_WORD(row?.levels ?? [])] : SKIN ? [r.shape, skinAttrs?.facts.fragrance_free === "free" ? "Fragrance free" : null, skinTex ? `${skinTex} texture` : null, row?.best ? `Reviewers say: ${row.best}` : null]
     : [style ? STYLE_WORD[style] : null, r.shape, row?.feel ? `${row.feel} feel` : null, LEVEL_WORD(row?.levels ?? [])]).filter((x): x is string => !!x);
   const playersSay = DG ? ([row?.levels.length && ["Best for", LEVEL_WORD(row.levels)!], dgStyle && ["Stability", dgStyle], row?.arm && ["Slower arm", "Yes, say throwers"],
     traits.slice().sort((a, b) => b.dots - a.dots)[0] && ["Strongest at", traits.slice().sort((a, b) => b.dots - a.dots)[0].label]].filter((x): x is [string, string] => !!x))
@@ -134,7 +140,7 @@ export default async function ThreadRacket({ params }: P) {
           <Poll id={r.id} reviews={{ positive: row?.pos ?? 0, mixed: row?.mix ?? 0, negative: row?.neg ?? 0 }}/>
         </div></article>
 
-        <TraitVotes id={r.id} seed={traitSeed(niche.id, r.id)}/>
+        <TraitVotes id={r.id} seed={traitSeed(niche.id, r.id)} {...(SKIN ? { of: judged } : {})}/>
         {/* "What reviews say" (trait dots) is off the page (owner 2026-11-19, not in the mockup); racketData still builds `traits`. */}
         {sim.length > 0 && <section className="th-card th-sec th-sec-sim"><h2 className="th-h3">{`Similar ${niche.words.many}`}</h2><div className="th-sim">{sim.map(x => <Mini key={x.id} x={x}/>)}</div></section>}
         {specsBox}
