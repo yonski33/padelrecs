@@ -871,4 +871,5 @@ body:has(.th-dg) .th-dg a.th-add:hover, body:has(.th-dg) .th-dg a.th-add:focus-v
 .th-ar-tags span { font-size: 12px; border: 1.5px solid var(--line); border-radius: 999px; padding: 1px 8px; color: var(--ink2); }
 .th-ar-post { align-self: stretch; text-align: center; justify-content: center; }
 .th-ar-again { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; margin-top: 10px; }
-@media (max-width: 639px) { .th-ar-trait { grid-template-columns: 96px auto; } .th-ar-trait > span { grid-column: 1 / -1; } }
+@media (max-width: 639px) { .th-ar-trait { grid-template-columns: 96px auto; } .th-ar-trait > span { grid-column: 1 / -1; }
+  .th-ar-row { padding: 4px 0; } .th-ar-row > span { flex-basis: 100%; } }
