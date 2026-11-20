@@ -102,5 +102,5 @@ export const LEVEL_OPTS: Level[] = ["beginner", "intermediate", "advanced"];
 export const STYLE_OPTS: Style[] = STYLES.filter((s): s is Style => s !== "any");
 /** A style chip's label: a type-picker site's own words (DiscGolfRecs "Understable", "Stable", "Overstable"), else the style. */
 export const styleLabel = (s: Style) => SITE_FIT.quick ? SITE_FIT.styleLabels[s as "control"] ?? s : s.charAt(0).toUpperCase() + s.slice(1);
-/** The arm tick's label: padel's "Sore arm", DiscGolfRecs' "Slower arm". */
-export const ARM_LABEL = SITE_FIT.quick ? "Slower arm" : "Sore arm";
+/** The arm tick's label: "Arm comfort" (owner 2026-11-21, was "Sore arm"), DiscGolfRecs' "Slower arm". */
+export const ARM_LABEL = SITE_FIT.quick ? "Slower arm" : "Arm comfort";

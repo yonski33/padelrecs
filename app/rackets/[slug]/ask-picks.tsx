@@ -38,7 +38,7 @@ export default function AskPicks({ onPick, noMain = false }: { onPick: (p: Saved
   const pickMain = (v: string) => { const next = main === v ? null : v; setMain(next); if (style && level) go({ style, level, arm, ...ff(next) }); };
   return <>
     <div className="rf-askhead"><span className="rf-badge">⚡ fit check</span>
-      {saved && <button type="button" className="rf-last" onClick={() => go(saved)} title={`${styleWordOf(saved.style)} · ${levelLabel(saved.level)}${saved.arm ? ` · ${ARM_PICK === "sore elbow / wrist" ? "sore arm" : ARM_PICK}` : ""}`}>↺ use my last answers</button>}</div>
+      {saved && <button type="button" className="rf-last" onClick={() => go(saved)} title={`${styleWordOf(saved.style)} · ${levelLabel(saved.level)}${saved.arm ? ` · ${ARM_PICK}` : ""}`}>↺ use my last answers</button>}</div>
     {/* The title (racket-fit.tsx) sits between the badge row and the questions: .rf-ask orders them with CSS. */}
     <div className="rf-q">
       {!NO_STYLE && <div className="rf-qrow"><span>1. What do you want more of?</span>

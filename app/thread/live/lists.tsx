@@ -22,12 +22,12 @@ function useMatch(home = false) {
 }
 
 const STYLE_WORD: Record<Style, string> = { control: "control", balance: "all-round", power: "power", spin: "spin" };
-/** "38 rackets for intermediate control players with a sore arm" (real counts at any size, owner 2026-11-19). */
+/** "38 rackets for intermediate control players who want arm comfort" (real counts at any size, owner 2026-11-19). */
 function resultLine(picks: Picks, n: number | null, all: number) {
   if (TYPES.length) return discLine(picks, n, all);
   if (!picked(picks)) return all > 0 ? `Showing all ${all} ${MANY}` : "";
   const who = [picks.level, picks.style ? STYLE_WORD[picks.style] : null].filter(Boolean).join(" ");
-  const forWho = `for ${who ? `${who} players` : "players"}${picks.arm ? " with a sore arm" : ""}`;
+  const forWho = `for ${who ? `${who} players` : "players"}${picks.arm ? " who want arm comfort" : ""}`;
   return n == null ? `Finding ${MANY} ${forWho}…` : n > 0 ? `Showing ${n} ${n === 1 ? ONE : MANY} ${forWho}` : `No ${MANY} ${forWho} yet`;
 }
 
@@ -41,7 +41,7 @@ function discLine(picks: Picks, n: number | null, all: number) {
 }
 
 /** "Find my match" as one sentence (owner 2026-11-19, classic's energy in Thread style): the quick match tag, I'm [level pills]
- *  and I want [Any | Control | Balance | Power] [ ] Sore arm, then a live result line. Matching runs here on the cached payload. */
+ *  and I want [Any | Control | Balance | Power] [ ] Arm comfort, then a live result line. Matching runs here on the cached payload. */
 export function MatchBox({ title, names, listed = 0, home = false }: { title?: string; names: Record<string, string>; listed?: number; home?: boolean }) {
   const { picks, set, on, payload } = useMatch(home);
   const ranked = useMemo(() => on && payload ? rankFor(payload, picks, 1000, home) : null, [on, payload, picks, home]);
