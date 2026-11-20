@@ -770,3 +770,8 @@ body:has(.th-stack) .th-stack a.th-add:hover, body:has(.th-stack) .th-stack a.th
 .th-stack .th-pick-list li + li { border-top-color: var(--div); }
 .th-stack .th-side .th-head-row { flex-wrap: nowrap; gap: 8px; }
 .th-stack .th-side .th-head-row .th-link-b { white-space: nowrap; }
+/* StackRecs: chosen chips, tabs and the sidebar box heads in the brand indigo, the "find my match" tag in mint. */
+.th-stack :is(.th-pick[aria-pressed="true"], .th-seg button[aria-pressed="true"], .th-tabs button[aria-pressed="true"], .th-fopt[aria-pressed="true"], .th-btn.dark),
+  body:has(.th-stack) .th-stack .th-rtabs a[aria-current="page"] { background: #3730a3; border-color: #3730a3; color: #fff; }
+.th-stack .th-sbox-head { background: #3730a3; color: #fff; }
+.th-stack .th-qm-tag { background: var(--lime); }
