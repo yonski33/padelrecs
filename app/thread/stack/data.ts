@@ -5,7 +5,7 @@ import { cache } from "react";
 import { count } from "drizzle-orm";
 import { catalog, database, type Catalog } from "../../../db/data";
 import { productVotes, traitVotes } from "../../../db/schema";
-import { productHref } from "../../../lib/niche";
+import { productHref, niche } from "../../../lib/niche";
 import { typedName } from "../../../lib/thread/display-name";
 import { onePerChannel } from "../../../lib/youtube-pick";
 import { redditPick, subOf } from "../../../lib/reddit-cards";
@@ -20,7 +20,9 @@ import type { MatchInput } from "../../../lib/stack/match";
 import { ago, type ThreadRow } from "../ui";
 import type { RvCard } from "../racket-data";
 
-export const hasDb = () => !!process.env.DATABASE_URL;
+/** StackRecs' pages read only on its own build: proxy.ts never serves them elsewhere, and another site's schema may not have
+ *  the Thread tables yet (DiscGolfRecs' preview build failed on trait_votes before its migrations, 2026-11-20). */
+export const hasDb = () => !!process.env.DATABASE_URL && niche.id === "stackrecs";
 export type StackRow = ThreadRow & { side: Side; facts: StackTool | null; bestFor: Record<string, number>; newest: string | null };
 type Tool = Catalog["rackets"][number];
 type Data = { data: Catalog | null; rows: StackRow[]; bySlug: Map<string, StackRow>; byId: Map<string, StackRow>; opinions: Opinion[]; boards: Map<string, Map<string, number>> };
