@@ -15,7 +15,7 @@ const TRAIT_GROUPS = traitGroupsFor(niche.id);
 
 type Racket = { id: string; slug: string; name: string; shape: string | null };
 const MESSAGES: Record<string, string> = {
-  set_counts: "Review counts saved for that group.", clear_counts: "Review counts are back to the prefill file.", freeze: "Voting frozen.", unfreeze: "Voting open again.",
+  set_counts: "Review counts saved for that group.", set_all_counts: "Review counts saved.", unchanged: "Nothing changed, so nothing was saved.", clear_counts: "Review counts are back to the prefill file.", freeze: "Voting frozen.", unfreeze: "Voting open again.",
   remove_vote: "Vote removed.", remove_voter: "That voter's votes were removed.", reset: "Group reset: its votes are gone and its review counts are back to the file.",
   invalid: "Could not read that request. Counts must be whole numbers.", failed: "Saving failed. Try again.",
 };
@@ -50,27 +50,32 @@ export async function TraitsAdmin({ racket: id, q, result, rackets }: { racket?:
   const [votes, ov, recent, history] = await Promise.all([traitCounts(db, r.id), traitOverridesFor(db, r.id), recentTraitVotes(db, r.id), traitAdminHistory(db, r.id)]);
   const seed = traitSeed(niche.id, r.id), base = { racket: r.id }, allFrozen = ov.frozen.includes(ALL_GROUPS);
   const perVoter = new Map<string, number>(), perNet = new Map<string, number>();
+  const saveAll = <p><button className="button" form="counts-all">Save all changes</button> <span className="muted">Saves every group whose numbers you changed.</span></p>;
   for (const v of recent) { perVoter.set(v.voter, (perVoter.get(v.voter) ?? 0) + 1); perNet.set(v.network, (perNet.get(v.network) ?? 0) + 1); }
   return <>{notice}{search}
     <h2><a href={productHref(r)}>{r.name}</a></h2>
-    <p className="muted">{`Review counts come from db/thread/padel-traits.json (${seed?.sources ?? 0} sources) unless an override is saved. An option shows on the page at 5+ reviews and votes together.`}</p>
-    <p>{allFrozen ? <><strong>{`Voting is frozen on this ${niche.words.one}. `}</strong><Act v={{ ...base, action: "unfreeze", trait: ALL_GROUPS }}>Open voting</Act></> : <Act v={{ ...base, action: "freeze", trait: ALL_GROUPS }}>Freeze voting on this racket</Act>}</p>
+    <p className="muted">{`Review counts come from db/thread/${niche.id}-traits.json (${seed?.sources ?? 0} sources) unless an override is saved. An option shows on the page at 5+ reviews and votes together.`}</p>
+    <p>{allFrozen ? <><strong>{`Voting is frozen on this ${niche.words.one}. `}</strong><Act v={{ ...base, action: "unfreeze", trait: ALL_GROUPS }}>Open voting</Act></> : <Act v={{ ...base, action: "freeze", trait: ALL_GROUPS }}>{`Freeze voting on this ${niche.words.one}`}</Act>}</p>
+    <form id="counts-all" method="post" action="/api/funtimes/traits"><Hidden v={{ ...base, action: "set_all_counts" }}/></form>
+    {saveAll}
     <div className="admin-queue">{TRAIT_GROUPS.map(g => {
       const file = seed?.groups[g.key] ?? {}, over = ov.counts[g.key], v = votes[g.key] ?? {}, frozen = ov.frozen.includes(g.key);
       const nVotes = Object.values(v).reduce((a, b) => a + b, 0);
       return <article className="review" key={g.key}>
         <div className="review-top"><strong>{g.title}</strong>{over && <span className="admin-status">override</span>}{(frozen || allFrozen) && <span className="admin-status">frozen</span>}</div>
-        <form method="post" action="/api/funtimes/traits"><Hidden v={{ ...base, action: "set_counts", trait: g.key }}/>
+        <div>
           <table><thead><tr><th>Option</th><th>File</th><th>Shown review count</th><th>Votes</th></tr></thead><tbody>{g.options.map(([k, l]) =>
-            <tr key={k}><td>{l}</td><td>{file[k] ?? 0}</td><td><input name={`c_${k}`} type="number" min={0} max={100000} step={1} defaultValue={(over ?? file)[k] ?? 0} style={{ width: 90 }} aria-label={`${l} review count`}/></td><td>{v[k] ?? 0}</td></tr>)}</tbody></table>
-          <div className="admin-actions" style={{ display: "flex", gap: 8, flexWrap: "wrap", marginTop: 8 }}><button className="button">Save review counts</button></div>
-        </form>
+            <tr key={k}><td>{l}</td><td>{file[k] ?? 0}</td><td><input form="counts-all" name={`c_${g.key}__${k}`} type="number" min={0} max={100000} step={1} defaultValue={(over ?? file)[k] ?? 0} style={{ width: 90 }} aria-label={`${g.title}: ${l} review count`}/>
+              <input form="counts-all" type="hidden" name={`o_${g.key}__${k}`} value={String((over ?? file)[k] ?? 0)}/></td><td>{v[k] ?? 0}</td></tr>)}</tbody></table>
+          <div className="admin-actions" style={{ display: "flex", gap: 8, flexWrap: "wrap", marginTop: 8 }}><button className="button" form="counts-all" name="only" value={g.key}>Save this group</button></div>
+        </div>
         <div className="admin-actions" style={{ display: "flex", gap: 8, flexWrap: "wrap", marginTop: 8 }}>
           {over && <Act v={{ ...base, action: "clear_counts", trait: g.key }}>Back to file counts</Act>}
           {frozen ? <Act v={{ ...base, action: "unfreeze", trait: g.key }}>Open voting</Act> : <Act v={{ ...base, action: "freeze", trait: g.key }}>Freeze voting</Act>}
           <Act v={{ ...base, action: "reset", trait: g.key }}>{`Reset group (removes ${nVotes} ${nVotes === 1 ? "vote" : "votes"}${over ? ", clears the override" : ""})`}</Act>
         </div>
       </article>; })}</div>
+    {saveAll}
     <section><h2>Recent votes</h2>
       {recent.length ? <table><thead><tr><th>Time (UTC)</th><th>Group</th><th>Choice</th><th>Voter key</th><th>Network key</th><th></th></tr></thead><tbody>{recent.map(x =>
         <tr key={`${x.voter}|${x.trait}`}><td>{when(x.at)}</td><td>{title(x.trait)}</td><td>{label(x.trait, x.choice)}</td>

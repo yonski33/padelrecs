@@ -6,7 +6,7 @@ import { migrationSql } from "../db/migrations";
 import { brands, rackets } from "../db/schema";
 import { castTraitVote, traitCounts } from "../db/thread-votes";
 import { traitOverridesFor, setReviewCounts, setFrozen, removeTraitVote, removeVoter, resetTraitGroup, recentTraitVotes, traitAdminHistory, overriddenRackets, ALL_GROUPS } from "../db/trait-admin";
-import { countsFrom } from "../lib/thread/trait-view";
+import { countsFrom, changedCounts } from "../lib/thread/trait-view";
 import type { getDb } from "../db/index";
 
 // The admin Traits tab (drizzle/0027) on a throwaway database: never against the live one.
@@ -79,4 +79,14 @@ test("typed review counts: whole numbers per option, blanks are 0, anything else
   assert.equal(countsFrom("feel", { c_soft: "-1" }), null);
   assert.equal(countsFrom("feel", { c_soft: "2.5" }), null);
   assert.equal(countsFrom("feel", { c_soft: "lots" }), null);
+});
+
+test("Save all: only the groups whose numbers changed are saved; one group's Save saves just that group", () => {
+  const groups = [{ key: "feel", title: "Feel", options: [["soft", "Soft"], ["hard", "Hard"]] as [string, string][] },
+    { key: "pop", title: "Pop", options: [["low", "Low"], ["high", "High"]] as [string, string][] }];
+  const form = { c_feel__soft: "4", o_feel__soft: "4", c_feel__hard: "1", o_feel__hard: "0", c_pop__low: "2", o_pop__low: "2", c_pop__high: "", o_pop__high: "0" };
+  assert.deepEqual(changedCounts(form, groups), [{ trait: "feel", counts: { soft: 4, hard: 1 } }]);
+  assert.deepEqual(changedCounts({ ...form, only: "pop" }, groups), [{ trait: "pop", counts: { low: 2 } }]);
+  assert.deepEqual(changedCounts({ ...form, c_feel__hard: "0" }, groups), []);
+  assert.equal(changedCounts({ ...form, c_pop__low: "-3" }, groups), null);
 });
