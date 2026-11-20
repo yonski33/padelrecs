@@ -675,7 +675,10 @@ body:has(.th) .th .th-acct { text-decoration: none; }
 body:has(.th) .th .th-acct:hover { color: var(--ink); text-decoration: underline; text-underline-offset: 3px; }
 @media (max-width: 639px) { .th-head .th-acct { display: none; } }
 /* SkinRecs' Find my match: the category chips under the sentence (its home mock). */
-.th-qm-cats { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; }
+/* SkinRecs' home list head: the category chips on the left, Sort on the right (owner 2026-11-20: not in the match box). */
+.th-skin-listhead { display: flex; align-items: center; justify-content: space-between; gap: 10px; flex-wrap: wrap; padding-bottom: 12px; margin-bottom: 6px; border-bottom: 1.5px solid var(--line); }
+.th-qm-cats { display: flex; flex-wrap: wrap; gap: 6px; }
+.th-qm-cats .th-cat-n { margin-left: 7px; font-weight: 400; opacity: .75; }
 
 /* SkinRecs' own look (owner 2026-11-20: design_handoff_skinrecs README "Design tokens": soft rose, warm neutrals, Bricolage
    Grotesque and Atkinson Hyperlegible). Same rules as PickleballRecs' block above, with skin's tokens; scoped to .th-skin. */
