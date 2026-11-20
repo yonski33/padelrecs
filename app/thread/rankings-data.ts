@@ -20,9 +20,17 @@ export type ThreadRanking = { slug: string; href: string; label: string; title: 
 const YEAR = () => new Date().getUTCFullYear();
 const SIZE = 10, MIN_REVIEWS = 10;
 
-const PICKLEBALL = niche.id === "pickleball", SKIN = niche.id === "skin", DG = niche.id === "discgolf", AUDIO = niche.id === "audio";
+const PICKLEBALL = niche.id === "pickleball", SKIN = niche.id === "skin", DG = niche.id === "discgolf", AUDIO = niche.id === "audio", SR = niche.id === "simracing";
 /** The hub's blurbs (Rankings Hub Thread copy), by list. */
-const BLURB: Record<string, string> = AUDIO ? {
+const BLURB: Record<string, string> = SR ? {
+  // SimRacingRecs' Rankings Hub mock, on its live lists by gear type plus the Thread-only lists below.
+  "best-sim-racing-gear": "The highest racer scores this year.", "best-sim-racing-gear-for-beginners": "Easy to set up, great to learn on.",
+  "best-force-feedback-sim-racing-wheelbases": "The most detail through long corners.", "best-sim-racing-wheelbases": "The highest scored wheelbases.",
+  "best-sim-racing-wheels": "Rims racers keep on their base.", "best-sim-racing-pedals": "Consistent braking, lap after lap.",
+  "best-sim-racing-cockpits": "Rigs that stay solid.", "best-sim-racing-shifters-handbrakes": "Crisp shifts and a solid pull.",
+  "best-budget-sim-racing-gear": "Strong picks at the lower prices.", "best-high-end-sim-racing-gear": "Where racers spend the most.",
+  "best-sim-racing-gear-for-console": "Works on PlayStation or Xbox.",
+} : AUDIO ? {
   // AudioRecs' Rankings Hub mock, on its live lists plus the Thread-only lists below. The mock's "Best under $100" and "Best
   // for gaming" wait for prices and gaming headsets (neither is in the catalogue); "Best for beginners" has no data behind it.
   "best-headphones-overall": "The most loved by listeners right now.", "best-noise-cancelling-headphones": "For trains, planes and open offices.",
@@ -54,7 +62,13 @@ const BLURB: Record<string, string> = AUDIO ? {
   "sore-arms": "Soft, light and kind to your elbow.", round: "The most forgiving shape.", teardrop: "The all-rounder shape.", diamond: "Power first, for clean technique.",
 };
 // PickleballRecs has live lists for beginners and tennis elbow already, so no Thread-only copies there.
-const PICKS: { key: string; slug: string; label: string; title: string; choice: QuickChoice }[] = DG ? [
+const PICKS: { key: string; slug: string; label: string; title: string; choice: QuickChoice; group?: string }[] = SR ? [
+  // SimRacingRecs' hub mock: beginners in Most popular; budget, high-end and console from its engine's own filters.
+  { key: "best-sim-racing-gear-for-beginners", slug: "best-sim-racing-gear-for-beginners", label: "Best for beginners", title: "Best sim racing gear for beginners", choice: { style: "any", level: "beginner", arm: false } },
+  { key: "best-budget-sim-racing-gear", slug: "best-budget-sim-racing-gear", label: "Best on a budget", title: "Best budget sim racing gear", choice: { style: "any", arm: false, ff: { budget: "$" } }, group: "By budget and platform" },
+  { key: "best-high-end-sim-racing-gear", slug: "best-high-end-sim-racing-gear", label: "Best high-end", title: "Best high-end sim racing gear", choice: { style: "any", arm: false, ff: { budget: "$$$" } }, group: "By budget and platform" },
+  { key: "best-sim-racing-gear-for-console", slug: "best-sim-racing-gear-for-console", label: "Best for console", title: "Best sim racing gear for console", choice: { style: "any", arm: true }, group: "By budget and platform" },
+] : DG ? [
   // DiscGolfRecs' live lists are one per disc type; the mock's beginner and slow arm lists are the home's quick match.
   { key: "best-disc-golf-discs-for-beginners", slug: "best-disc-golf-discs-for-beginners", label: "Best for beginners", title: "Best disc golf discs for beginners", choice: { style: "any", level: "beginner", arm: false } },
   { key: "best-disc-golf-discs-for-slow-arms", slug: "best-disc-golf-discs-for-slow-arms", label: "Best for slow arm speed", title: "Best disc golf discs for slow arm speed", choice: { style: "any", arm: true } },
@@ -63,7 +77,7 @@ const PICKS: { key: string; slug: string; label: string; title: string; choice: 
   // Named for tennis elbow (owner 2026-11-19); the old /rankings/best-padel-rackets-for-sore-arms 301s here (THREAD_MOVED).
   { key: "sore-arms", slug: ELBOW_SLUG, label: "Best for tennis elbow", title: "Best padel rackets for tennis elbow", choice: { style: "any", arm: true } },
 ];
-const SHAPES: readonly (readonly [string, string])[] = SKIN || DG || AUDIO ? [] : PICKLEBALL ? [["standard", "Standard"], ["elongated", "Elongated"], ["hybrid", "Hybrid"]] as const
+const SHAPES: readonly (readonly [string, string])[] = SKIN || DG || AUDIO || SR ? [] : PICKLEBALL ? [["standard", "Standard"], ["elongated", "Elongated"], ["hybrid", "Hybrid"]] as const
   : [["round", "Round"], ["teardrop", "Teardrop"], ["diamond", "Diamond"]] as const;
 const LIST = `${niche.id}-${niche.words.many}`; // "padel-rackets", "pickleball-paddles"
 
@@ -73,8 +87,8 @@ export const threadRankings = cache(async (): Promise<ThreadRanking[]> => {
   const [lists, { all, ctx }, payload] = await Promise.all([threadLists(), threadRows(), PICKS.length ? homePayload() : null]);
   const byVotes = await votesFor(lists, all, ctx);
   const own = lists.map(l => ({ slug: l.slug, href: l.href, label: AUDIO ? AUDIO_LABEL[l.slug] ?? l.label : l.label, title: l.title, blurb: BLURB[l.slug] ?? l.description ?? "", own: true, ids: byVotes.get(l.slug) ?? l.ids.slice(0, SIZE),
-    group: AUDIO ? (/noise-cancelling/.test(l.slug) ? "Most popular" : "By type") : SKIN ? (SKIN_NEEDS.some(n => n.hub === l.slug) ? HUBS : "By product type") : DG ? "By how you throw" : /power|control|spin/.test(l.slug) ? "By how you play" : "Most popular" }));
-  const picks = PICKS.map(p => ({ slug: p.slug, href: `/rankings/${p.slug}`, label: p.label, title: `${p.title} ${YEAR()}`, blurb: BLURB[p.key], own: false, group: "Most popular",
+    group: AUDIO ? (/noise-cancelling/.test(l.slug) ? "Most popular" : "By type") : SKIN ? (SKIN_NEEDS.some(n => n.hub === l.slug) ? HUBS : "By product type") : DG ? "By how you throw" : SR ? (/force-feedback/.test(l.slug) ? "Most popular" : "By gear") : /power|control|spin/.test(l.slug) ? "By how you play" : "Most popular" }));
+  const picks = PICKS.map(p => ({ slug: p.slug, href: `/rankings/${p.slug}`, label: p.label, title: `${p.title} ${YEAR()}`, blurb: BLURB[p.key], own: false, group: p.group ?? "Most popular",
     ids: rankHome(payload!.items, RANK_SETUP, NEGATIVE_TAGS, p.choice, false, SIZE).rows.map(r => r.id) }));
   const shapes = SHAPES.map(([k]) => ({ slug: `best-${k}-${LIST}`, href: `/rankings/best-${k}-${LIST}`, label: `Best ${k} ${niche.words.many}`, title: `Best ${k} ${niche.id} ${niche.words.many} ${YEAR()}`,
     blurb: BLURB[k], own: false, group: "By shape",
@@ -82,11 +96,12 @@ export const threadRankings = cache(async (): Promise<ThreadRanking[]> => {
   // The site's own lists keep their live rule (5+); a Thread-only list is a new page, so it needs a full 10 (owner 2026-11-19).
   const skin = SKIN ? await skinLists(ctx, new Set(all.filter(r => r.current).map(r => r.id))) : [];
   // DiscGolfRecs' "Best overall" (its hub mock): the highest thrower scores, current discs with 10+ reviews.
-  const overall = DG ? [{ slug: "best-disc-golf-discs", href: "/rankings/best-disc-golf-discs", label: "Best overall", title: `Best disc golf discs ${YEAR()}`,
-    blurb: BLURB["best-disc-golf-discs"], own: false, group: "Most popular",
+  const [oSlug, oTitle] = SR ? ["best-sim-racing-gear", "Best sim racing gear"] : ["best-disc-golf-discs", "Best disc golf discs"];
+  const overall = DG || SR ? [{ slug: oSlug, href: `/rankings/${oSlug}`, label: "Best overall", title: `${oTitle} ${YEAR()}`,
+    blurb: BLURB[oSlug], own: false, group: "Most popular",
     ids: all.filter(r => r.score != null && r.current && r.n >= MIN_REVIEWS).sort((a, b) => b.score! - a.score! || b.n - a.n).slice(0, SIZE).map(r => r.id) }] : [];
   if (AUDIO) return audioLists(own, all, ctx);
-  const out = (DG ? [...overall, ...picks, ...own] : [...own, ...picks, ...shapes, ...skin]).filter(l => l.ids.length >= (l.own ? 5 : 10));
+  const out = (DG || SR ? [...overall, ...picks, ...own] : [...own, ...picks, ...shapes, ...skin]).filter(l => l.ids.length >= (l.own ? 5 : 10));
   // A skin need's hub lists the per-type lists that made it (a full 10 each).
   if (!SKIN) return out;
   const shown = new Set(out.map(l => l.slug));
@@ -118,7 +133,7 @@ async function votesFor(lists: Awaited<ReturnType<typeof threadLists>>, all: Awa
 }
 /** SkinRecs' need hubs: pages of their own, not cards on the rankings hub (each need's heading links to its hub). */
 export const HUBS = "Skin needs";
-export const GROUPS = AUDIO ? ["Most popular", "By type", "By use"] : SKIN ? [...SKIN_NEEDS.map(n => n.group), "By product type"] : DG ? ["Most popular", "By how you throw"] : ["Most popular", "By how you play", "By shape"];
+export const GROUPS = AUDIO ? ["Most popular", "By type", "By use"] : SR ? ["Most popular", "By gear", "By budget and platform"] : SKIN ? [...SKIN_NEEDS.map(n => n.group), "By product type"] : DG ? ["Most popular", "By how you throw"] : ["Most popular", "By how you play", "By shape"];
 
 /** SkinRecs' Thread-only lists (its Rankings Hub mock, split by product type owner 2026-11-21): the skin engine's own match for
  *  that pick (app/skin/rank.ts rankSkin, as the live home ranks it), current products with a match only, a full 10 needed.

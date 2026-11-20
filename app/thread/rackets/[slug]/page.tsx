@@ -15,6 +15,7 @@ import { TraitVotes } from "../../live/trait-votes";
 import { traitSeed } from "../../../../lib/thread/trait-seed";
 import { racketStories } from "../../stories-data";
 import { MemberMark } from "../../live/member-mark";
+import { traitGroupsForType } from "../../../../lib/thread/traits";
 import { Comments } from "../../live/comments";
 import { th } from "../../../../lib/thread/look";
 import { amazonButton } from "../../../../lib/amazon-offer";
@@ -59,7 +60,7 @@ type P = { params: Promise<{ slug: string }> };
 // The live racket page's title, description, canonical and share image (app/rackets/[slug]/page.tsx).
 export const generateMetadata = ({ params }: P): Promise<Metadata> => liveMetadata({ params, searchParams: Promise.resolve({}) });
 
-const SKIN = niche.id === "skin", DG = niche.id === "discgolf", AUDIO = niche.id === "audio";
+const SKIN = niche.id === "skin", DG = niche.id === "discgolf", AUDIO = niche.id === "audio", SR = niche.id === "simracing";
 /** AudioRecs' TL;DR words for its quick tags ("Listeners often praise the noise cancelling."). */
 const AUDIO_SAYS: Record<string, string> = { "great noise cancelling": "praise the noise cancelling", comfortable: "find them comfortable",
   detailed: "call the sound detailed", "great bass": "praise the bass", "great value": "call them good value", "long battery life": "praise the battery life",
@@ -110,7 +111,7 @@ export default async function ThreadRacket({ params }: P) {
   const skinAttrs = sk?.attrs.get(r.id), tex = skinAttrs?.scores.texture, fin = skinAttrs?.scores.finish;
   const skinTex = tex && tex.n >= 3 ? (tex.score >= 62 ? "Rich" : tex.score <= 38 ? "Light" : null) : null;
   const skinFin = fin && fin.n >= 3 ? (fin.score >= 62 ? "Dewy" : fin.score <= 38 ? "Matte" : null) : null;
-  const skinType = (SKIN || DG || AUDIO) && r.shape ? (niche.typePages ?? []).find(t => t.shape === r.shape) ?? null : null;
+  const skinType = (SKIN || DG || AUDIO || SR) && r.shape ? (niche.typePages ?? []).find(t => t.shape === r.shape) ?? null : null;
   // DiscGolfRecs (its disc mock): the flight numbers as pills, the stability they give, and the engine's stability in its words.
   const flight = DG ? flightOf(r.weight) : null, stab = flight ? stabilityOfFlight(flight) : null;
   const dgStyle = DG && style ? SITE_FIT.styleLabels[style] : null;
@@ -122,7 +123,7 @@ export default async function ThreadRacket({ params }: P) {
   const amazon = live && saved && live.asin !== (r as { amazonAsin?: string | null }).amazonAsin ? { url: saved.url } : live;
   const site = websiteButton(r);
   const shop = amazon ? { url: amazon.url, rel: "sponsored nofollow noopener" } : site ? { url: site.url, rel: site.affiliate ? "sponsored nofollow noopener" : "noopener" } : null;
-  const specs = (DG ? [...niche.specs.map(s => [s.label, r[s.column]]), ["Stability", stab ? cap(stab) : null]]
+  const specs = (SR ? niche.specs.map(s => [s.label, r[s.column]]) : DG ? [...niche.specs.map(s => [s.label, r[s.column]]), ["Stability", stab ? cap(stab) : null]]
     // "Year" only where products carry real model years (niche.productYears): SkinRecs and PickleballRecs store one
     // placeholder year for every product, so it showed "2026" on old products (skin audit 2026-11-20). SkinRecs labels
     // the skin types as the brand's claim (the pill above is what reviewers say) and adds the SPF its name gives (sunscreens and the SPF eye cream).
@@ -130,9 +131,12 @@ export default async function ThreadRacket({ params }: P) {
       ...(SKIN && SPF_OF(r.name) ? [["SPF", SPF_OF(r.name)]] : []),
       // Sourced extra facts, e.g. a paddle's tournament status (db/shop/spec-notes.json, owner audit 2026-11-20).
       ...(((specNotes as unknown as Record<string, Record<string, [string, string][]>>)[niche.id] ?? {})[r.slug] ?? [])] as [string, string | null][]).filter((x): x is [string, string] => !!x[1]);
-  const tags = (DG ? [r.shape, stab ? cap(stab) : null, LEVEL_WORD(row?.levels ?? [])] : SKIN ? [r.shape, skinAttrs?.facts.fragrance_free === "free" ? "Fragrance free" : null, skinTex ? `${skinTex} texture` : null, row?.best ? `Reviewers say: ${row.best}` : null]
+  // SimRacingRecs (its product mock): the gear type, its drive or kind ("Direct drive"), the level.
+  const tags = (SR ? [r.shape, r.balance, LEVEL_WORD(row?.levels ?? [])] : DG ? [r.shape, stab ? cap(stab) : null, LEVEL_WORD(row?.levels ?? [])] : SKIN ? [r.shape, skinAttrs?.facts.fragrance_free === "free" ? "Fragrance free" : null, skinTex ? `${skinTex} texture` : null, row?.best ? `Reviewers say: ${row.best}` : null]
     : [style ? STYLE_WORD[style] : null, r.shape, row?.feel ? `${row.feel} feel` : null, LEVEL_WORD(row?.levels ?? [])]).filter((x): x is string => !!x);
-  const playersSay = DG ? ([row?.levels.length && ["Best for", LEVEL_WORD(row.levels)!], dgStyle && ["Stability", dgStyle], row?.arm && ["Slower arm", "Yes, say throwers"],
+  const playersSay = SR ? ([row?.levels.length && ["Best for", LEVEL_WORD(row.levels)!],
+    traits.slice().sort((a, b) => b.dots - a.dots)[0] && ["Strongest at", traits.slice().sort((a, b) => b.dots - a.dots)[0].label]].filter((x): x is [string, string] => !!x))
+    : DG ? ([row?.levels.length && ["Best for", LEVEL_WORD(row.levels)!], dgStyle && ["Stability", dgStyle], row?.arm && ["Slower arm", "Yes, say throwers"],
     traits.slice().sort((a, b) => b.dots - a.dots)[0] && ["Strongest at", traits.slice().sort((a, b) => b.dots - a.dots)[0].label]].filter((x): x is [string, string] => !!x))
     : SKIN ? ([row?.best && ["Best for", cap(row.best)], skinTex && ["Texture", skinTex], skinFin && ["Finish", skinFin]].filter((x): x is [string, string] => !!x)) : [style && ["Plays like", STYLE_WORD[style]], row?.levels.length && ["Best for", LEVEL_WORD(row.levels)!], row?.arm && ["Arm friendly", "Yes, say players"],
     traits.slice().sort((a, b) => b.dots - a.dots)[0] && ["Strongest at", traits.slice().sort((a, b) => b.dots - a.dots)[0].label]].filter((x): x is [string, string] => !!x);
@@ -141,7 +145,7 @@ export default async function ThreadRacket({ params }: P) {
   const specsBox = specs.length > 0 && <section className="th-card th-specs th-only-m">{specs.map(([k, v]) => <span key={k} className="th-kv"><span>{k}</span><strong>{v}</strong></span>)}</section>;
   // The live page's structured data: its breadcrumbs (the catalogue, the brand, the racket).
   const ld = { "@context": "https://schema.org", "@graph": [crumbs([{ name: catalogLabel, path: catalogPath }, ...(brand ? [{ name: brand.name, path: `/brands/${brand.slug}` }] : []), { name: r.name, path: productHref(r) }])] };
-  const crumbsEl = <div className="th-crumbs"><a href={th(catalogPath)}>{catalogLabel}</a>{SKIN || DG || AUDIO ? skinType && <><span>/</span><a href={th(`/${skinType.slug}`)}>{AUDIO ? audioOf(ctx)?.wire.get(r.id)?.kind ?? skinType.label : skinType.label}</a></> : style && <><span>/</span><a href={th(STYLE_HREF[style])}>{STYLE_WORD[style]}</a></>}{brand && <><span>/</span><a href={`/brands/${brand.slug}`}>{brand.name}</a></>}</div>;
+  const crumbsEl = <div className="th-crumbs"><a href={th(catalogPath)}>{catalogLabel}</a>{SKIN || DG || AUDIO || SR ? skinType && <><span>/</span><a href={th(`/${skinType.slug}`)}>{AUDIO ? audioOf(ctx)?.wire.get(r.id)?.kind ?? skinType.label : skinType.label}</a></> : style && <><span>/</span><a href={th(STYLE_HREF[style])}>{STYLE_WORD[style]}</a></>}{brand && <><span>/</span><a href={`/brands/${brand.slug}`}>{brand.name}</a></>}</div>;
   const lineEl = line.length >= 2 && brand ? <section className="th-card th-sec">
           <div className="th-head-row"><h2 className="th-h2">{`More from ${brand.name}`}</h2><a className="th-link-b" href={`/brands/${brand.slug}`}>{`All ${brand.name} ${niche.words.many} →`}</a></div>
           <div className="th-also">{line.map(x => <Mini key={x.id} x={x} small/>)}</div>
@@ -215,7 +219,7 @@ export default async function ThreadRacket({ params }: P) {
           <Poll id={r.id} reviews={{ positive: row?.pos ?? 0, mixed: row?.mix ?? 0, negative: row?.neg ?? 0 }}/>
         </div></article>
 
-        <TraitVotes id={r.id} seed={traitSeed(niche.id, r.id)} {...(SKIN ? { of: judged } : {})}/>
+        <TraitVotes id={r.id} seed={traitSeed(niche.id, r.id)} {...(SKIN ? { of: judged } : {})} {...(SR ? { groups: traitGroupsForType(niche.id, r.shape) } : {})}/>
         {/* "What reviews say" (trait dots) is off the page (owner 2026-11-19, not in the mockup); racketData still builds `traits`. */}
         {sim.length > 0 && <section className="th-card th-sec th-sec-sim"><h2 className="th-h3">{`Similar ${niche.words.many}`}</h2><div className="th-sim">{sim.map(x => <Mini key={x.id} x={x}/>)}</div></section>}
         {specsBox}

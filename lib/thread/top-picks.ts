@@ -81,8 +81,20 @@ const AUDIO_CATS: PickCat[] = [
   { key: "battery", title: "Longest battery", trait: "battery", choice: "lasts_days", href: "/rankings/best-wireless-earbuds" },
   { key: "commute", title: "Best for the commute", trait: "best_for", choice: "commute", href: "/rankings/best-headphones-for-commuting" },
 ];
+/** SimRacingRecs' lists (its "How racers vote them" mock), linking to its live rankings by gear type. */
+const SIMRACING_CATS: PickCat[] = [
+  { key: "detail", title: "Most detailed feedback", trait: "detail", choice: "sharp", href: "/rankings/best-force-feedback-sim-racing-wheelbases" },
+  { key: "torque", title: "Most torque", trait: "torque", choice: "plenty", href: "/rankings/best-sim-racing-wheelbases" },
+  { key: "brake", title: "Best brake feel", trait: "brake_feel", choice: "realistic", href: "/rankings/best-sim-racing-pedals" },
+  { key: "flex", title: "Least flex", trait: "flex", choice: "none", href: "/rankings/best-sim-racing-cockpits" },
+  { key: "beginner", title: "Best for beginners", trait: "level", choice: "beginner", href: "/rankings/best-sim-racing-gear-for-beginners" },
+  { key: "quiet", title: "Quietest", trait: "noise", choice: "quiet", href: "/rankings/best-sim-racing-wheelbases" },
+  { key: "desk", title: "Most desk friendly", trait: "desk", choice: "very", href: "/rankings/best-sim-racing-wheelbases" },
+  { key: "grip", title: "Best grip", trait: "grip", choice: "great", href: "/rankings/best-sim-racing-wheels" },
+  { key: "durable", title: "Most durable", trait: "durability", choice: "holds_up", href: "/rankings/best-sim-racing-gear" },
+];
 export const pickCatsFor = (nicheId: string) => nicheId === "pickleball" ? PICKLEBALL_CATS : nicheId === "skin" ? SKIN_CATS
-  : nicheId === "discgolf" ? DISCGOLF_CATS : nicheId === "audio" ? AUDIO_CATS : PADEL_CATS;
+  : nicheId === "discgolf" ? DISCGOLF_CATS : nicheId === "audio" ? AUDIO_CATS : nicheId === "simracing" ? SIMRACING_CATS : PADEL_CATS;
 /** The running site's lists. */
 export const PICK_CATS = pickCatsFor(niche.id);
 /** How many lists the grid shows (3 columns × 2 rows). */

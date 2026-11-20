@@ -39,7 +39,7 @@ const cap = (s: string) => s ? s[0].toUpperCase() + s.slice(1) : s;
 const short = (label: string) => label.replace(/^Best (for )?/, "").replace(/^./, c => c.toUpperCase());
 
 const { one: ONE, many: MANY } = niche.words;
-const PICKLEBALL = niche.id === "pickleball", DG = niche.id === "discgolf", SKIN = niche.id === "skin";
+const PICKLEBALL = niche.id === "pickleball", DG = niche.id === "discgolf", SKIN = niche.id === "skin", SR = niche.id === "simracing";
 /** The sidebar's "See how you match": the site's own quick match, the one its home shows, or no card (lib/thread/sites.ts). */
 const QM = quickMatchFor(niche.id);
 /** Sites whose product pages use the v7b Discussion (PadelRecs, #565) use it here too, so the two never disagree; the rest
@@ -48,7 +48,9 @@ const V7B_DISCUSSION = niche.id === "padel";
 /** The arm and shape FAQ lines, the site's own (PickleballRecs: its Rankings and Elbow Guide mocks). */
 const ARM_TIP = PICKLEBALL ? "A soft core, a lighter paddle and a relaxed grip help most." : "A soft core, a lower balance and a lighter racket help most.";
 // SkinRecs has no shape question (it showed padel's until 2026-11-21).
-const SHAPE_FAQ = SKIN ? null : niche.id === "audio"
+const SHAPE_FAQ = SKIN ? null : SR
+  ? { q: "Direct drive, belt or gear?", a: "Direct drive gives the most detail and the smoothest feel. Belt drive is a solid budget step. Gear driven wheels are fine to start but feel notchy." }
+  : niche.id === "audio"
   ? { q: "Open-back or closed-back?", a: "Open-back sounds more spacious and natural, but leaks sound and lets noise in. Closed-back blocks noise and keeps your music private. Not sure? Closed-back." }
   : DG
   ? { q: "Understable or overstable?", a: "Understable turns over and helps a slower arm fly straight and far. Overstable fights the wind and hooks left at the end. Not sure? Stable." }

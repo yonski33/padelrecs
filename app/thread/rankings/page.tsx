@@ -33,7 +33,7 @@ export default async function ThreadHub() {
   return <Shell active="rankings">
     <main className="th-main"><div className="th-col" style={{ maxWidth: "none" }}>
       <section className="th-card th-hero">
-        <h1 className="th-h1">{niche.id === "skin" ? "Skincare rankings" : niche.id === "discgolf" ? "Disc rankings" : `${niche.id[0].toUpperCase()}${niche.id.slice(1)} ${niche.words.one} rankings`}</h1>
+        <h1 className="th-h1">{niche.id === "skin" ? "Skincare rankings" : niche.id === "discgolf" ? "Disc rankings" : niche.id === "simracing" ? "Sim racing gear rankings" : `${niche.id[0].toUpperCase()}${niche.id.slice(1)} ${niche.words.one} rankings`}</h1>
         <p className="th-lead">{rated ? `Category lists follow the ${niche.site.name} pick order; the rest are sorted by ${W.score}.`
           : `Every ranking is sorted by ${W.score}, from reviews by people who ${W.played} the ${niche.words.many}. Scores update as new reviews come in.`}</p>
       </section>
