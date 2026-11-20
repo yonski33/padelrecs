@@ -2,7 +2,8 @@
 // for the hub's other cards, Thread-only lists from the same engine: the home's quick match for beginners and for sore arms
 // (as the live "for a kind of player" lists do, lib/home-rank.ts rankHome) and the best-scored rackets of each shape.
 import { cache } from "react";
-import { threadLists, threadRows, hasDb, skinOf } from "./data";
+import { threadLists, threadRows, hasDb, skinOf, traitCounts, traitGroup } from "./data";
+import { categoryRatings, priorShare, type RatingCategory } from "../../lib/category-rating";
 import { ELBOW_SLUG } from "../../lib/thread/look";
 import { homePayload } from "../home-payload";
 import { rankHome } from "../../lib/home-rank";
@@ -87,4 +88,16 @@ async function skinLists(ctx: unknown, current: Set<string>): Promise<ThreadRank
     const ids = rankSkin(sk, readSkinChoice(q, types)).filter(x => x.pct !== null && current.has(x.r.id)).slice(0, SIZE).map(x => x.r.id);
     return { slug, href: `/rankings/${slug}`, label, title: `${label} ${YEAR()}`, blurb: BLURB[key], own: false, group: key === "acne" ? "Most popular" : "By skin", ids };
   });
+}
+
+/** A padel category list's curated ratings (lib/category-rating.ts), by id, in the list's order: the "How does it play?"
+ *  group as the racket pages show it, the engine bar, and the shape; the prior is the share over every current racket. */
+export async function ratingsFor(cat: RatingCategory, ids: string[]): Promise<Record<string, number>> {
+  const [{ ctx, rows, all }, t] = await Promise.all([threadRows(), traitCounts()]);
+  const prior = priorShare(cat, all.filter(r => r.current).map(r => traitGroup(t, r.id, cat.trait)));
+  const inputs = ids.map(id => { const f = ctx.facts(id);
+    return { group: traitGroup(t, id, cat.trait), shape: rows.get(id)?.shape ?? null,
+      dots: cat.dots === "arm" ? f.armDots ?? null : cat.dots ? f.styleDots?.[cat.dots] ?? null : null }; });
+  const out = categoryRatings(cat, inputs, prior);
+  return Object.fromEntries(ids.map((id, i) => [id, out[i]]));
 }

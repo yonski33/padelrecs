@@ -53,7 +53,12 @@ export function Photo({ src, className = "th-photo", href }: { src: string | nul
 
 /** The list row: photo · name + shape pill · one-line verdict · "Best for …" · reviews + sentiment bar · "See reviews ›" · badge.
  *  `badge` is the match % when the visitor picked, else the Player score. */
-export function Row({ r, rank, badge, badgeLabel = W.score, pct }: { r: ThreadRow; rank?: number; badge?: number | null; badgeLabel?: string; pct?: boolean }) {
+/** A curated category rating (lib/category-rating.ts): the big number on a padel category ranking, with its own label. */
+export type RowRating = { n: number; label: string };
+export function Row({ r, rank, badge, badgeLabel = W.score, pct, rating }: { r: ThreadRow; rank?: number; badge?: number | null; badgeLabel?: string; pct?: boolean; rating?: RowRating }) {
+  // The rating takes the badge unless the match % does; the Player score then stays on the row, small.
+  const rated = rating && badge === undefined ? rating : undefined;
+  if (rated) { badge = rated.n; badgeLabel = rated.label; }
   const b = badge === undefined ? r.score : badge, href = th(r.href);
   const judged = r.pos + r.mix + r.neg;
   return <div className={`th-row${rank ? "" : " norank"}`}>
@@ -63,7 +68,7 @@ export function Row({ r, rank, badge, badgeLabel = W.score, pct }: { r: ThreadRo
       <span className="th-row-name">{rank ? <span className="mrank">{rank}.</span> : null}<a href={href}>{r.name}</a>{r.shape && <span className="th-pill">{cap(r.shape)}</span>}{r.flight && <Flight f={r.flight}/>}</span>
       {r.line && <span className="th-verdict">{r.line}</span>}
       {r.best && <span className="th-best">{`Best for ${r.best}`}</span>}
-      <span className="th-meta">{r.n >= MIN_SHOWN && <span>{plural(r.n, "review")}</span>}{judged >= MIN_SHOWN && <SBar pos={r.pos} mix={r.mix} neg={r.neg}/>}<a className="go" href={href}>See reviews ›</a></span>
+      <span className="th-meta">{rating && r.score != null && <span>{`${W.Score} ${r.score}`}</span>}{r.n >= MIN_SHOWN && <span>{plural(r.n, "review")}</span>}{judged >= MIN_SHOWN && <SBar pos={r.pos} mix={r.mix} neg={r.neg}/>}<a className="go" href={href}>See reviews ›</a></span>
     </div>
     <Badge n={b} label={badgeLabel} pct={pct}/>
     <div className="th-row-foot">

@@ -104,12 +104,15 @@ export function HomeList({ rows, reviewed, size = 10 }: { rows: ThreadRow[]; rev
 }
 
 /** A ranking page's list: the ranking's own order (curated picks first), with match % badges once the picks are complete. */
-export function RankingList({ rows, title, meta }: { rows: ThreadRow[]; title: string; meta: string }) {
+export function RankingList({ rows, title, meta, ratings }: { rows: ThreadRow[]; title: string; meta: string;
+  /** Padel category lists: the curated rating per row (lib/category-rating.ts) and its label. */ ratings?: { by: Record<string, number>; label: string } }) {
   const { picks, on, payload } = useMatch();
   const pcts = useMemo(() => on && payload ? pctsFor(payload, picks) : null, [on, payload, picks]);
   return <section className="th-card th-list">
     <div className="th-head-row" style={{ marginBottom: 6 }}><span className="th-stitle" style={{ fontSize: 20 }}>{title}</span><span className="th-sub">{meta}</span></div>
-    {rows.map((r, i) => <Row key={r.id} r={r} rank={i + 1} {...(pcts ? { badge: pcts.get(r.id) ?? null, badgeLabel: "your match", pct: true } : {})}/>)}
+    {rows.map((r, i) => { const n = ratings?.by[r.id];
+      return <Row key={r.id} r={r} rank={i + 1} {...(n != null ? { rating: { n, label: ratings!.label } } : {})}
+        {...(pcts ? { badge: pcts.get(r.id) ?? null, badgeLabel: "your match", pct: true } : {})}/>; })}
   </section>;
 }
 

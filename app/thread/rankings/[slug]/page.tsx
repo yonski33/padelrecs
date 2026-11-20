@@ -4,7 +4,8 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { Shell } from "../../shell";
 import { threadRows, threadBoards } from "../../data";
-import { threadRankings } from "../../rankings-data";
+import { threadRankings, ratingsFor } from "../../rankings-data";
+import { ratingCategory, RATING_HOW } from "../../../../lib/category-rating";
 import { RankingList, SideMatch } from "../../live/lists";
 import { Faq } from "../../live/faq";
 import { Comments } from "../../live/comments";
@@ -47,7 +48,10 @@ export default async function ThreadRanking({ params }: P) {
   const l = lists.find(x => x.slug === slug);
   if (!l) notFound();
   const list = l.ids.map(id => rows.get(id)!).filter(Boolean);
-  const boards = await threadBoards(new Set(l.ids));
+  // Padel category lists (owner 2026-11-21): a curated rating as the big number, the Player score small on each row. Never in
+  // the structured data below, which carries no rating at all.
+  const cat = ratingCategory(l.slug, niche.id);
+  const [boards, rated] = await Promise.all([threadBoards(new Set(l.ids)), cat ? ratingsFor(cat, list.map(r => r.id)) : null]);
   const reviews = list.reduce((s, r) => s + r.n, 0);
   const beginner = list.filter(r => r.levels.includes("beginner")).slice(0, 3), arm = list.filter(r => r.arm).slice(0, 3);
   const faqs = [
@@ -73,10 +77,11 @@ export default async function ThreadRanking({ params }: P) {
         <div className="th-crumbs"><a href={th("/rankings")}>Rankings</a><span>/</span><span>{l.label}</span></div>
         <section className="th-card th-hero">
           <h1 className="th-h1">{l.title}</h1>
-          <p className="th-lead">{`Ranked by ${W.score}, from reviews by people who ${W.played} them. Updates as new reviews come in.`}</p>
+          <p className="th-lead">{cat ? RATING_HOW : `Ranked by ${W.score}, from reviews by people who ${W.played} them. Updates as new reviews come in.`}</p>
           <nav className="th-rtabs" aria-label="Rankings">{lists.slice(0, 7).map(x => <a key={x.slug} href={th(x.href)} aria-current={x.slug === l.slug ? "page" : undefined}>{x.label.replace(/^Best (for )?/, "").replace(/^./, c => c.toUpperCase())}</a>)}</nav>
         </section>
-        <RankingList rows={list} title={l.label} meta={`${plural(list.length, ONE)} · ${plural(reviews, "review")}`}/>
+        <RankingList rows={list} title={l.label} meta={`${plural(list.length, ONE)} · ${plural(reviews, "review")}`}
+          {...(cat && rated ? { ratings: { by: rated, label: cat.label } } : {})}/>
         {boards.length > 0 && <Boards boards={boards}/>}
         <section className="th-card th-sec"><h2 className="th-h2">{`Questions ${W.people} ask`}</h2><Faq items={faqs}/></section>
         <Comments page={`ranking:${l.slug}`} prompt="Agree with this list? Join the conversation" nicknames={niche.form.quickVote?.nicknames ?? []}/>
