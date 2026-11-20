@@ -130,6 +130,8 @@ body:has(.th) .th .th-crumbs a:first-child { font-weight: 700; }
 .th-ph::after { content: ""; position: absolute; left: 50%; bottom: -26%; width: 5px; height: 30%; margin-left: -2.5px; border-radius: 2px; background: #d9d5ca; }
 .th-row-body { display: flex; flex-direction: column; gap: 3px; min-width: 0; }
 .th-row-name { display: flex; align-items: center; gap: 6px 8px; flex-wrap: wrap; }
+/* A long shape ("Hybrid, Widebody, or Elongated") wraps inside its pill on a phone instead of pushing the page wide. */
+.th-row-name .th-pill { white-space: normal; max-width: 100%; }
 body:has(.th) .th .th-row-name a { font-weight: 700; font-size: 16.5px; line-height: 1.25; text-decoration: none; }
 .th-row-name .mrank { display: none; font-family: var(--bc); font-weight: 700; font-size: 17px; }
 .th-verdict { font-size: 15px; line-height: 1.4; color: var(--body); text-wrap: pretty; }
