@@ -105,7 +105,10 @@ export const stories = catalogSchema.table("stories", {
  id: text("id").primaryKey(), slug: text("slug").notNull(), accountId: text("account_id").notNull().references(() => accounts.id, { onDelete: "cascade" }),
  title: text("title").notNull(), body: text("body").notNull(), rackets: jsonb("rackets").$type<string[]>().notNull().default([]),
  status: text("status", { enum: ["pending", "approved", "rejected"] }).notNull().default("pending"), spamScore: integer("spam_score").notNull().default(0),
- network: text("network").notNull(), createdAt: text("created_at").notNull(), updatedAt: text("updated_at").notNull()
+ network: text("network").notNull(), createdAt: text("created_at").notNull(), updatedAt: text("updated_at").notNull(),
+ /** A member's edit to a live story, waiting for the owner (drizzle/0032); the live text stays until it is approved. */
+ pendingEdit: jsonb("pending_edit").$type<{ title: string; body: string; rackets: string[]; at: string } | null>(),
+ /** When the live text last changed after it was first published ("edited <date>"). */ editedAt: text("edited_at")
 }, t => [uniqueIndex("stories_slug_unique").on(t.slug), index("stories_list_idx").on(t.status, t.createdAt), index("stories_account_idx").on(t.accountId),
  check("story_status", sql`${t.status} in ('pending','approved','rejected')`)]).enableRLS();
 /** Which reviews and comments belong to an account (their small "member" mark). Not a column on reviews/comments, so the

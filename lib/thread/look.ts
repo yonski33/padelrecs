@@ -104,8 +104,8 @@ export function threadPath(pathname: string, catalog = catalogPath, nicheId = ni
   // Member stories (PadelRecs pilot, owner 2026-11-20): the list, the composer and one page per story, Thread only.
   if (storiesSite(nicheId)) {
     if (p === "/stories") return "/thread/stories";
-    const story = /^\/stories\/([a-z0-9-]{1,80})$/.exec(p);
-    if (story) return `/thread/stories/${story[1]}`;
+    const story = /^\/stories\/([a-z0-9-]{1,80})(\/edit)?$/.exec(p);
+    if (story) return `/thread/stories/${story[1]}${story[2] ?? ""}`;
   }
   if (p === "/brands") return "/thread/brands";
   const brand = /^\/brands\/([a-z0-9-]+)$/.exec(p);

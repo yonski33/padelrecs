@@ -33,4 +33,6 @@ test("stories are padel only: routing and the gate", () => {
   assert.equal(threadPath("/stories/10-things-3f2a9c", "/rackets", "padel"), "/thread/stories/10-things-3f2a9c");
   assert.equal(threadPath("/stories", "/paddles", "pickleball"), null);
   assert.equal(threadPath("/stories/x/y", "/rackets", "padel"), null);
+  assert.equal(threadPath("/stories/10-things-3f2a9c/edit", "/rackets", "padel"), "/thread/stories/10-things-3f2a9c/edit");
+  assert.equal(threadPath("/stories/10-things-3f2a9c/edit", "/paddles", "pickleball"), null);
 });
