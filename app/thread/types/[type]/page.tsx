@@ -1,4 +1,4 @@
-// SkinRecs' type pages in the Thread look (/moisturizers, /serums…): the Thread catalogue for one product type, with the
+// SkinRecs' and SimRacingRecs' type pages in the Thread look (/moisturizers, /wheelbases…): the Thread catalogue for one product type, with the
 // live type page's metadata. proxy.ts serves it for /<type slug> on SkinRecs (lib/thread/look.ts threadPath).
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
@@ -42,5 +42,6 @@ export default async function ThreadTypePage({ params }: P) {
   const brands = [...count].filter(([b, n]) => b && n >= 3).sort((a, b) => b[1] - a[1]).slice(0, 10).map(([b]) => b);
   const top = [...rows].sort((a, b) => (b.score ?? -1) - (a.score ?? -1) || b.n - a.n);
   return <Shell active="rackets"><script type="application/ld+json" dangerouslySetInnerHTML={{ __html: listJsonLd([{ name: t.label, path: `/${t.slug}` }], top.map(r => ({ name: r.name, href: r.href }))) }}/>
-    <Catalog rows={rows} brands={brands} title={t.label} lead={`${t.intro}. Filter by how it works for your skin, then see what people say.`}/></Shell>;
+    <Catalog rows={rows} brands={brands} title={t.label} lead={niche.id === "simracing" ? `${t.intro}. Filter by level, drive and brand, then see what racers say.`
+      : `${t.intro}. Filter by how it works for your skin, then see what people say.`}/></Shell>;
 }
