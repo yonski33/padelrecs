@@ -99,7 +99,7 @@ export default async function RankingBeauty({ data, lists, found, amazon, affili
       </li>)}</ol>}
       <Link className="rb-all" href={RANKINGS_PATH}>see all rankings →</Link>
 
-      <section className="bh-own rb-own"><p className="t">Used one of these?</p><p>Your verdict moves the list. Two minutes, no account.</p><a className="bp-btn" href="/add-review">+ add a review</a></section>
+      <section className="bh-own rb-own"><p className="t">Used one of these?</p><p>Your review moves the list. Two minutes, no account.</p><a className="bp-btn" href="/add-review">+ add a review</a></section>
 
       <section className="bh-faq rb-faq" id="how-we-rank"><h2>Common questions</h2>
         <div className="bp-card">{faq.map(f => <details key={f.q}><summary><span>{f.q}</span><i aria-hidden="true"/></summary><p>{f.a}</p></details>)}

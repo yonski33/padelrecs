@@ -458,7 +458,7 @@ const PADEL_INFO: InfoCopy[] = [
       {
         title: "Web reviews are read and summarised",
         body: [
-          "Each video, thread and post is summarised and read as loved it, mixed or not for them. Posts without a clear verdict still show, but do not move the score.",
+          "Each video, thread and post is summarised and read as loved it, mixed or not for them. Posts without a clear opinion still show, but do not move the score.",
         ],
       },
       {
@@ -477,7 +477,7 @@ const PADEL_INFO: InfoCopy[] = [
       {
         title: "When a score shows",
         body: [
-          'A racket needs at least 5 reviews with a clear verdict before it gets a score. Until then it shows "Not enough votes yet".',
+          'A racket needs at least 5 reviews with a clear opinion before it gets a score. Until then it shows "Not enough votes yet".',
         ],
       },
       {

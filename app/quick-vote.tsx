@@ -57,7 +57,7 @@ export function ChoiceRow({ label, options, value, onPick }: { label: string; op
 /** The three verdict cards. compact: a smaller row for /rate. */
 export function VerdictButtons({ value, onPick, name, compact, disabled }: { value: Verdict | null; onPick: (v: typeof VERDICTS[number]) => void; name: string; compact?: boolean; disabled?: boolean }) {
   const [pop, setPop] = useState<Verdict | null>(null);
-  return <div className={compact ? "vb vb-compact" : "vb"} role="radiogroup" aria-label={`Your verdict on the ${name}`}>
+  return <div className={compact ? "vb vb-compact" : "vb"} role="radiogroup" aria-label={`Your take on the ${name}`}>
     {VERDICTS.map(v => <button type="button" key={v.key} role="radio" aria-checked={value === v.key} disabled={disabled}
       className={`s-${v.key}${pop === v.key ? " pop" : ""}`} onClick={() => { setPop(v.key); setTimeout(() => setPop(null), 220); onPick(v); }}>
       <b>{v.word}</b>{!compact && <small>{v.hint}</small>}

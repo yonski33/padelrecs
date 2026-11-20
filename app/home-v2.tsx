@@ -109,7 +109,7 @@ export default async function HomeV2({ choice, older = false }: { choice: QuickC
               l.list.maxAgeYears === 0 && !l.list.trait ? `best of ${listYear(l.list)}` : l.list.label.replace(/\{year\}/, String(listYear(l.list))).toLowerCase()}</a></li>)}</ul>
           </section>}
           <section className="hv2-own">
-            <p className="t">Own a {niche.words.one}? Add your verdict.</p>
+            <p className="t">Own a {niche.words.one}? Add your review.</p>
             <p>Two minutes, no account.</p>
             <a href="/add-review">+ add a review</a>
           </section>
@@ -127,7 +127,7 @@ export default async function HomeV2({ choice, older = false }: { choice: QuickC
         </section>
         <section className="hv2-steps" aria-label="How we score">
           <span className="k">{v2copy.plain ? "how scoring works" : "how we score"}</span>
-          {[`${total.toLocaleString("en-US")} ${WORDS?.person ?? "player"} reviews + ${channels} YouTube channels + forums`, "we count every verdict", "one honest line"].map((t, j) => <span key={j} className="s"><i>{j + 1}</i>{t}</span>)}
+          {[`${total.toLocaleString("en-US")} ${WORDS?.person ?? "player"} reviews + ${channels} YouTube channels + forums`, "we count every review", "one honest line"].map((t, j) => <span key={j} className="s"><i>{j + 1}</i>{t}</span>)}
           <b>No sponsored picks.</b>
           <a href="/how-we-make-these">how it works →</a>
         </section>

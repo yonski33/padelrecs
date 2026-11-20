@@ -37,8 +37,8 @@ export default async function HowWeMakeThese() {
   const skin = !!attrProfileFor(niche), scoreName = skin ? scoreLabel : quick && v2copy.score ? `${v2copy.score[0].toUpperCase()}${v2copy.score.slice(1)}` : "Player score";
   const steps = [
     ["Collect", skin ? "Reviews sent through this site, YouTube reviews and beauty blogs we summarise, and what people write in public skincare forums." : `Player reviews sent through this site, YouTube reviews we watch and summarise, and what players write in public ${v2copy.sport ? `${v2copy.sport} ` : ""}forums.`, siteColor("--site-acc", "oklch(0.88 0.17 125)")],
-    ["Tag the verdict", skin ? "Each review becomes one of three: loved it, mixed, or not for me. We also note the writer's own skin type, when they say it, and what they liked or hated." : "Each review becomes one of three: loved it, mixed, or not for me. We also note the player's level and what they liked or hated.", siteColor("--site-acc", "oklch(0.93 0.14 100)")],
-    ["Count it", `Verdicts roll up into a ${scoreName} per ${w.one}. More reviews = more confidence.`, "oklch(0.94 0.05 200)"],
+    ["Read the take", skin ? "Each review becomes one of three: loved it, mixed, or not for me. We also note the writer's own skin type, when they say it, and what they liked or hated." : "Each review becomes one of three: loved it, mixed, or not for me. We also note the player's level and what they liked or hated.", siteColor("--site-acc", "oklch(0.93 0.14 100)")],
+    ["Count it", `Reviews roll up into a ${scoreName} per ${w.one}. More reviews = more confidence.`, "oklch(0.94 0.05 200)"],
     ["Write one honest line", "We sum up what people keep saying, the good and the catch, so you can scan instead of reading 60 reviews.", "oklch(0.92 0.06 30)"],
   ];
   // The lowest review floor of the site's lists (each list sets its own; MIN_LIST_REVIEWS where unset).
@@ -54,7 +54,7 @@ export default async function HowWeMakeThese() {
   const faqs: [string, string][] = [
     [`Why don't you test ${w.many} yourselves?`, `One tester's arm, level and style is one data point. Sixty players across all levels tells you far more about how a ${w.one} behaves for someone like you.`],
     ["Can a brand flood you with fake reviews?", `Every site review goes through a check before it's published, and we watch for bursts from new visitors on the same ${w.one}. Suspicious batches get held, not counted.`],
-    ["What does a mixed verdict mean?", "The player liked parts but wouldn't fully recommend it, e.g. loved the sweet spot, hated the bounce. It counts as neither a yes nor a no."],
+    ["What does a mixed review mean?", "The player liked parts but wouldn't fully recommend it, e.g. loved the sweet spot, hated the bounce. It counts as neither a yes nor a no."],
   ];
   return <>
     <main className={`hw ${qtFontVars}`}>
@@ -75,7 +75,7 @@ export default async function HowWeMakeThese() {
           <div><strong>{`${w.One} A:`}</strong> 5 reviews, all loved it → <strong>New</strong>{`. No score until ${NEW_UNDER} reviews: promising, but too early to trust.`}</div>
           <div><strong>{`${w.One} B:`}</strong> 60 reviews, 48 loved it → <strong>{example(48, 8, 4)}</strong>. Fewer fans by percentage, but far more proof.</div>
         </div>
-        <p className="hw-sub hw-dots">{skin ? `"Who it suits" on ${w.one} pages counts only people who said they have that skin type: dry, oily, combination, sensitive or acne-prone. It needs at least 3 of them, and with few it leans on the ${w.one}'s overall verdict. The "How it feels" dots compare how often each ${w.one} is called hydrating or gentle (or drying and irritating) with the rest of its type. Finish and texture sit on a line from matte to dewy and light to rich.` : quick ? `The three "How it plays" bars on ${w.one} pages work the same way: from thrower reports, we count how often each ${w.one} is called easy to throw, long and accurate, then compare it with the rest of the catalog; the flight numbers set limits (a speed 11+ driver is never "easy to throw"). 5 out of 5 means more than most ${w.many}.`
+        <p className="hw-sub hw-dots">{skin ? `"Who it suits" on ${w.one} pages counts only people who said they have that skin type: dry, oily, combination, sensitive or acne-prone. It needs at least 3 of them, and with few it leans on the ${w.one}'s overall score. The "How it feels" dots compare how often each ${w.one} is called hydrating or gentle (or drying and irritating) with the rest of its type. Finish and texture sit on a line from matte to dewy and light to rich.` : quick ? `The three "How it plays" bars on ${w.one} pages work the same way: from thrower reports, we count how often each ${w.one} is called easy to throw, long and accurate, then compare it with the rest of the catalog; the flight numbers set limits (a speed 11+ driver is never "easy to throw"). 5 out of 5 means more than most ${w.many}.`
           : `The "How it ${fitConfigFor(niche)?.words?.howIt ?? "plays"}" dots on ${w.one} pages work the same way: from player reports, we count how often each ${w.one} is called ${fitConfigFor(niche)?.dotsWords ?? "forgiving, powerful, controlled, good in defence, kind to the arm or fast"}, then compare it with the rest of the catalog. 5 dots means more than most ${w.many} and 2 less than most; no dots means too few reports to say.`}</p>
       </section>
       <section id="match">

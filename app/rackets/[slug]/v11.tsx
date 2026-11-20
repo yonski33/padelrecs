@@ -182,7 +182,7 @@ export function V11BuildCards({ head, cards, ring = false }: { head: string; car
 /** "Still deciding?" (v11c): the closing card. Before an answer the Player score and the one-line verdict; after it the match
  *  pill. Quiet links only (the page has one filled price button, in the hero). */
 export function V11Decide({ id, facts, name, pic, score, line, buy, compare, ask, one }: { id: string; facts: FitFacts; name: string; pic: string | null; score: number | null;
-  line: string | null; buy: { url: string; rel: string } | null; compare: { href: string; pick: { id: string; slug: string; name: string; pic: string | null } }; /** "played it? add your verdict →" */ ask: string; one: string }) {
+  line: string | null; buy: { url: string; rel: string } | null; compare: { href: string; pick: { id: string; slug: string; name: string; pic: string | null } }; /** "played it? add your review →" */ ask: string; one: string }) {
   const a = useAnswer(id, facts);
   return <section className="v11-decide" aria-label="Still deciding?">
     <div className="v11-dl">

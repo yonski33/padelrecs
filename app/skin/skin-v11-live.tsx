@@ -152,7 +152,7 @@ export function SkinV11Live({ input, peers, choice: first, summary, buy, self, h
       <div className="sv-dlinks">
         {buy && <a href={buy.url} target="_blank" rel={buy.rel}>check price ↗</a>}
         <a href={`/compare?ids=${encodeURIComponent(self.slug)}`}>compare with another product →</a>
-        <a href="#played" onClick={toPlayed}>tried it? add your verdict →</a>
+        <a href="#played" onClick={toPlayed}>tried it? add your review →</a>
       </div>
     </section>
 
@@ -180,7 +180,7 @@ function FeelViz({ v }: { v: Viz }) {
 }
 const priceNote = (v: Viz) => v?.kind === "text" ? ({ $: "Budget: under about $15.", $$: "Mid-range: about $15 to $40.", $$$: "A splurge: over about $40." } as Record<string, string>)[v.text] ?? "Price band." : "Price band.";
 
-/** "tried it? add your verdict →": a smooth scroll to the "Tried it?" box and focus on its first button (as padel's). */
+/** "tried it? add your review →": a smooth scroll to the "Tried it?" box and focus on its first button (as padel's). */
 function toPlayed(e: React.MouseEvent<HTMLAnchorElement>) {
   const box = document.getElementById("played"); if (!box) return;
   e.preventDefault();

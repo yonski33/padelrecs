@@ -164,7 +164,7 @@ export default async function SkinV11({ productId, choice, buy, jsonLd }: { prod
             {hook && <p className="bp-hook">{hook}</p>}
             {scoreRow}
             {buy && <div className="bp-buyrow"><a className="bp-btn" href={buy.url} target="_blank" rel={buy.rel}>{`${buy.label} ↗`}</a></div>}
-            {buy && <p className="bp-aff">* affiliate link, it keeps the site running and doesn&apos;t change the verdict</p>}
+            {buy && <p className="bp-aff">* affiliate link, it keeps the site running and doesn&apos;t change the score</p>}
           </div>
         </div>}
         inside={(inside.length > 0 || routine) && <section key="inside" id="inside" className="sv-inside" aria-labelledby="sv-inside-t">

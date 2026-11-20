@@ -32,7 +32,7 @@ const VOICES: Record<string, SiteVoice> = {
         + "quietly removed. Some \"check price\" links earn a small commission. They help pay for hosting, you pay the same price "
         + "either way, and they never change the order." },
       { q: "How is the order picked?", a: ORDER("player") },
-      { q: "Where do the reviews come from?", a: "Three places: players who leave a verdict right here (each gets a quick check "
+      { q: "Where do the reviews come from?", a: "Three places: players who leave a review right here (each gets a quick check "
         + "before it's published), YouTube reviewers whose conclusions get summarised and linked back, and padel forums where "
         + "players report after months of use. Reviewers know the specs. Players know how it feels after month three." },
       { q: "Why no exact prices?", a: PRICE },
@@ -41,10 +41,10 @@ const VOICES: Record<string, SiteVoice> = {
     empty: {
       filters: "No racket ticks every box you picked. Loosen a filter or two and they'll come out of hiding.",
       search: "That search came back empty. Check the spelling, or try just the brand or model name.",
-      reviews: "No reviews yet. Own this racket? Yours could be the first verdict on the board.",
+      reviews: "No reviews yet. Own this racket? Yours could be the first review on the board.",
     },
     thanks: [
-      "Thanks! Your verdict is in, and the next player picking a racket just got a better answer.",
+      "Thanks! Your review is in, and the next player picking a racket just got a better answer.",
       "Review received. Once it's published, it counts toward this racket's player score.",
       "Thanks for sharing. Somewhere, a beginner just dodged the wrong diamond.",
     ],
@@ -61,7 +61,7 @@ const VOICES: Record<string, SiteVoice> = {
     faq: [
       { q: "Is anything sponsored?", a: `Nope, there's no pay-to-play here. Nobody can pay to move up. ${MONEY}` },
       { q: "How is the order picked?", a: ORDER("player") },
-      { q: "Where do the reviews come from?", a: "Three places. Players leave a verdict right here on the site, and each review "
+      { q: "Where do the reviews come from?", a: "Three places. Players leave a review right here on the site, and each review "
         + "gets a quick check before it's published. YouTube reviews get summarized and linked. Forum reports come from players "
         + "after months of use." },
       { q: "Why no exact prices?", a: PRICE },
@@ -74,7 +74,7 @@ const VOICES: Record<string, SiteVoice> = {
     },
     thanks: [
       "Thanks for the review! It gets a quick check, then it goes live for everyone.",
-      "Big thanks. Your verdict just helped someone at open play pick their next paddle.",
+      "Big thanks. Your review just helped someone at open play pick their next paddle.",
       "Review in the books. That's a winner, and it didn't even need a third shot drop.",
     ],
     cards: {
@@ -90,7 +90,7 @@ const VOICES: Record<string, SiteVoice> = {
     faq: [
       { q: "Is anything sponsored?", a: `No. Nobody pays to move up, and the order isn't for sale. ${MONEY}` },
       { q: "How is the order picked?", a: `${ORDER("player")} Think of it as seeding without the politics.` },
-      { q: "Where do the reviews come from?", a: "Visitors leave a verdict on the site, and each one gets a quick check before "
+      { q: "Where do the reviews come from?", a: "Visitors leave a review on the site, and each one gets a quick check before "
         + "it's published. YouTube reviews are summarised and linked. Forum reports come from people after real use, shanks and all." },
       { q: "Why no exact prices?", a: PRICE },
       { q: "Can I trust a racket with few reviews?", a: "With only a few reviews the score can swing, like a toss in a stiff "
@@ -99,10 +99,10 @@ const VOICES: Record<string, SiteVoice> = {
     empty: {
       filters: "Nothing fits all those filters. Ease one off, like string tension, and try again.",
       search: "Search came up empty. Try a shorter name, or the model without the year.",
-      reviews: "No verdicts yet. Played with this one? The first review is yours to serve.",
+      reviews: "No reviews yet. Played with this one? The first review is yours to serve.",
     },
     thanks: [
-      "Thanks for the verdict. It goes live after a quick check.",
+      "Thanks for the review. It goes live after a quick check.",
       "Thanks for telling it straight. The next player choosing a frame owes you one.",
       "Noted, with thanks. Honest reviews help more players than any new string bed.",
     ],
@@ -119,7 +119,7 @@ const VOICES: Record<string, SiteVoice> = {
     faq: [
       { q: "Is anything sponsored?", a: `No. Nobody pays to move up, so there's no buying a spot on the front row. ${MONEY}` },
       { q: "How is the order picked?", a: ORDER("racer") },
-      { q: "Where do the reviews come from?", a: "Visitors leave a verdict on the site, and each one gets a quick check before "
+      { q: "Where do the reviews come from?", a: "Visitors leave a review on the site, and each one gets a quick check before "
         + "it's published. YouTube reviews are summarised and linked. Forum reports come from people after real use, laps and all." },
       { q: "Why no exact prices?", a: PRICE },
       { q: "Can I trust a product with few reviews?", a: FEW },
@@ -127,10 +127,10 @@ const VOICES: Record<string, SiteVoice> = {
     empty: {
       filters: "No gear ticks every box. Ease off a filter or two, like lifting before a tight corner.",
       search: "Search came up empty. Check the spelling or try the brand or model name.",
-      reviews: "No verdicts yet. Raced with this one? Be the first to say how it feels.",
+      reviews: "No reviews yet. Raced with this one? Be the first to say how it feels.",
     },
     thanks: [
-      "Thanks for the verdict. It gets a quick check, then it's live for other racers.",
+      "Thanks for the review. It gets a quick check, then it's live for other racers.",
       "Cheers! Real laps make the best reviews, and yours just helped the next buyer.",
       "Thanks for sharing. That's worth more than a tenth to someone choosing their next upgrade.",
     ],
@@ -147,7 +147,7 @@ const VOICES: Record<string, SiteVoice> = {
     faq: [
       { q: "Is anything sponsored?", a: `Nope. Nobody pays to move up the list. ${MONEY}` },
       { q: "How is the order picked?", a: ORDER("thrower") },
-      { q: "Where do the reviews come from?", a: "Visitors leave a verdict on the site, and each one gets a quick check before "
+      { q: "Where do the reviews come from?", a: "Visitors leave a review on the site, and each one gets a quick check before "
         + "it's published. YouTube reviews are summarized and linked. Forum reports come from people after real use, tree hits included." },
       { q: "Why no exact prices?", a: PRICE },
       { q: "Can I trust a disc with few reviews?", a: FEW },
@@ -155,10 +155,10 @@ const VOICES: Record<string, SiteVoice> = {
     empty: {
       filters: "No discs match all that. Loosen a filter, the way a disc loosens as it beats in.",
       search: "Nothing turned up, not even in the lost-and-found bin. Try another name or spelling.",
-      reviews: "No verdicts yet. Thrown this one? Tell everyone how it flew, trees and all.",
+      reviews: "No reviews yet. Thrown this one? Tell everyone how it flew, trees and all.",
     },
     thanks: [
-      "Thanks for the verdict. It gets a quick check, then it's live for every thrower.",
+      "Thanks for the review. It gets a quick check, then it's live for every thrower.",
       "Appreciate it. Honest reviews save other throwers a whole lot of disc hunting.",
       "Thanks for sharing. That's good karma for your next round in the woods.",
     ],
@@ -176,7 +176,7 @@ const VOICES: Record<string, SiteVoice> = {
       { q: "Is anything sponsored?", a: `No. Nobody pays to move up the list. ${MONEY}` },
       { q: "How is the order picked?", a: "Each pick starts with a hand-picked top 10, then the rest sort by how well they fit "
         + "what you told it, using reviews and product details. Nobody can pay to move up." },
-      { q: "Where do the reviews come from?", a: "Visitors leave a verdict on the site, and each one gets a quick check before "
+      { q: "Where do the reviews come from?", a: "Visitors leave a review on the site, and each one gets a quick check before "
         + "it is published. YouTube reviews are summarized and linked. Forum reports come from people after real use." },
       { q: "Why no exact prices?", a: PRICE },
       { q: "Can I trust a product with few reviews?", a: `You can, just read the reviews too. ${FEW.replace(", so read the reviews too", "")}` },
@@ -184,10 +184,10 @@ const VOICES: Record<string, SiteVoice> = {
     empty: {
       filters: "Nothing fits all those filters yet. Loosen one and see what turns up.",
       search: "Nothing found for that. Check the spelling or try a simpler product name.",
-      reviews: "No reviews yet. Tried this one? Your verdict could be the first on the shelf.",
+      reviews: "No reviews yet. Tried this one? Yours could be the first on the shelf.",
     },
     thanks: [
-      "Thanks for sharing. Your verdict gets a quick check, then it goes live.",
+      "Thanks for sharing. Your review gets a quick check, then it goes live.",
       "Thank you! Honest reviews like yours make choosing skincare a lot less guesswork.",
       "Thanks! Someone standing in the skincare aisle just got a little help.",
     ],
@@ -204,7 +204,7 @@ const VOICES: Record<string, SiteVoice> = {
     faq: [
       { q: "Is anything sponsored?", a: `No. Nobody pays to move up. ${MONEY}` },
       { q: "How is the order picked?", a: ORDER("owner") },
-      { q: "Where do the reviews come from?", a: "Visitors leave verdicts on the site, and each gets a quick check before "
+      { q: "Where do the reviews come from?", a: "Visitors leave reviews on the site, and each gets a quick check before "
         + "it's published. YouTube reviews are summarised and linked. Forum reports come from people after real use." },
       { q: "Why no exact prices?", a: PRICE },
       { q: "Can I trust a product with few reviews?", a: FEW },
@@ -212,10 +212,10 @@ const VOICES: Record<string, SiteVoice> = {
     empty: {
       filters: "Nothing matches these filters. Loosen one or two and try again.",
       search: "Search came up empty. Check the spelling, or try a broader term like \"grinder\".",
-      reviews: "No reviews yet. Brewed with this one? Pour out your verdict.",
+      reviews: "No reviews yet. Brewed with this one? Pour out your review.",
     },
     thanks: [
-      "Thanks! Your verdict gets a quick check, then it's live for the next caffeine seeker.",
+      "Thanks! Your review gets a quick check, then it's live for the next caffeine seeker.",
       "Cheers for sharing. Real use beats any spec sheet.",
       "Thanks for spilling the beans. Your review helps someone pick their next brew.",
     ],

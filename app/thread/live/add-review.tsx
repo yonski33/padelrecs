@@ -45,11 +45,11 @@ export function ThreadAddReview({ rackets, initial, levels, sides, times, traits
   const noName = !!words && !me && !!nameProblem(name);
   const ready = !!(racket && verdict) && !noName;
   const label = (opts: Opt[], v: string | null) => opts.find(o => o.value === v)?.label;
-  const why = !racket ? `Pick a ${ONE} to post` : !verdict ? "Pick a verdict to post" : noName ? "Add a name to post your words" : "";
+  const why = !racket ? `Pick a ${ONE} to post` : !verdict ? "Pick your take to post" : noName ? "Add a name to post your words" : "";
 
   async function submit() {
     if (!ready || busy) return;
-    if (words && words.length < MIN_WORDS) { setError(`A little more, please: ${MIN_WORDS} characters at least, or clear the box to post just your verdict.`); return; }
+    if (words && words.length < MIN_WORDS) { setError(`A little more, please: ${MIN_WORDS} characters at least, or clear the box to post just your vote.`); return; }
     const problem = words && !me ? nameProblem(name) : null; if (problem) { setError(problem); return; }
     setBusy(true); setError("");
     try {
@@ -64,7 +64,7 @@ export function ThreadAddReview({ rackets, initial, levels, sides, times, traits
           racketMode: "existing", racketId: racket!.id, rating: v.rating, reviewText: words, tags: [], website: "", formToken: token, alias: me ? undefined : name.trim() || undefined,
           ...(level ? { playerLevel: level } : {}), ...(side ? { playingSide: side } : {}), ...(time ? { timeWithRacket: time } : {}), ...ratings }) });
         const b = await res.json() as { error?: string };
-        if (!res.ok) throw new Error(b.error || "Your verdict counted, but the words didn't post. Try again?");
+        if (!res.ok) throw new Error(b.error || "Your vote counted, but the words didn't post. Try again?");
       }
       setDone(words ? "words" : "vote"); window.scrollTo({ top: 0 });
     } catch (e) { setError(e instanceof Error ? e.message : "Could not post that. Try again?"); }
@@ -73,8 +73,8 @@ export function ThreadAddReview({ rackets, initial, levels, sides, times, traits
   function again() { setRacketId(null); setVerdict(null); setR({}); setText(""); setTime(null); setDone(null); setError(""); }
 
   if (done) return <section className="th-card th-sec th-ar-done" role="status">
-    <h1 className="th-h1">{done === "words" ? "Thanks, your verdict is in." : "Thanks, your verdict counts."}</h1>
-    <p className="th-lead">{done === "words" ? `Your words show after a quick check. Your verdict already counts toward the ${racket?.name} score.` : `It counts toward the ${racket?.name} score. Add a few words next time and they show on its page too.`}</p>
+    <h1 className="th-h1">{done === "words" ? "Thanks, your review is in." : "Thanks, your vote counts."}</h1>
+    <p className="th-lead">{done === "words" ? `Your words show after a quick check. Your vote already counts toward the ${racket?.name} score.` : `It counts toward the ${racket?.name} score. Add a few words next time and they show on its page too.`}</p>
     <div className="th-ar-again"><button type="button" className="th-btn round lime" onClick={again}>{`Review another ${ONE}`}</button>{racket && <a className="th-link-b" href={th(racket.href)}>{`Back to the ${racket.name}`}</a>}</div>
   </section>;
 
@@ -85,7 +85,7 @@ export function ThreadAddReview({ rackets, initial, levels, sides, times, traits
   return <div className="th-ar">
     <section className="th-card th-sec th-ar-intro">
       <h1 className="th-h1">Add your review</h1>
-      <p className="th-lead">{`Two taps are needed, the rest is optional. ${ACCOUNTS ? "An account is optional." : "No account needed."} Your verdict counts right away; your words show after a quick check.`}</p>
+      <p className="th-lead">{`Two taps are needed, the rest is optional. ${ACCOUNTS ? "An account is optional." : "No account needed."} Your vote counts right away; your words show after a quick check.`}</p>
     </section>
     <div className="th-ar-grid">
       <div className="th-ar-steps">
@@ -102,7 +102,7 @@ export function ThreadAddReview({ rackets, initial, levels, sides, times, traits
         </section>
         <section className="th-card th-sec">
           {head(2, "Did it work for you?", "required")}
-          <div className="th-picks" role="group" aria-label="Your verdict">{VERDICTS.map(v => <button key={v.key} type="button" className={`th-vpick ${VERDICT[v.key][1]}`} aria-pressed={verdict === v.key}
+          <div className="th-picks" role="group" aria-label="Your take">{VERDICTS.map(v => <button key={v.key} type="button" className={`th-vpick ${VERDICT[v.key][1]}`} aria-pressed={verdict === v.key}
             onClick={() => { setVerdict(v.key); setError(""); }}><span className={`th-sdot ${VERDICT[v.key][1]}`}/>{VERDICT[v.key][0]}</button>)}</div>
         </section>
         <section className="th-card th-sec">
@@ -133,7 +133,7 @@ export function ThreadAddReview({ rackets, initial, levels, sides, times, traits
           <span className="th-stitle">Preview</span>
           <span className="th-sub">How it will show on the {ONE} page</span>
           <article className="th-ar-pv">
-            <div className="th-ar-pvh"><b>{racket?.name ?? `Pick a ${ONE}`}</b>{verdict ? <span className={`th-vpill ${VERDICT[verdict][1]}`}>{VERDICT[verdict][0]}</span> : <span className="th-ar-small">No verdict yet</span>}</div>
+            <div className="th-ar-pvh"><b>{racket?.name ?? `Pick a ${ONE}`}</b>{verdict ? <span className={`th-vpill ${VERDICT[verdict][1]}`}>{VERDICT[verdict][0]}</span> : <span className="th-ar-small">Not picked yet</span>}</div>
             <div className="th-ar-who"><strong className={who ? undefined : "ph"}>{who || "Your name"}</strong>{me && <MemberMark/>}<span>{[label(levels, level), label(sides, side)].filter(Boolean).join(" · ")}</span></div>
             <p className={words ? undefined : "ph"}>{words || "Your words go here."}</p>
             <div className="th-ar-tags">{[time && `used ${label(times, time)}`, ...traits.filter(([n]) => r[n]).map(([n]) => `${n.toLowerCase()} ${r[n]}/5`)].filter(Boolean).map(t => <span key={t as string}>{t}</span>)}</div>
