@@ -1,0 +1,36 @@
+import { test } from "node:test";
+import assert from "node:assert/strict";
+import { storyProblem, storySlug, storyDescription, paragraphs, hasShopLink, STORY_BODY } from "../lib/thread/stories";
+import { threadPath } from "../lib/thread/look";
+import { storiesSite } from "../lib/thread/sites";
+import { PAGE_KEY } from "../db/comments";
+
+// Member stories (PadelRecs pilot, owner 2026-11-20).
+const long = "I started padel last spring. ".repeat(20);
+test("story rules: title and body lengths, no shop or affiliate links, five rackets at most", () => {
+  assert.equal(storyProblem({ title: "10 things I learned", body: long }), null);
+  assert.match(storyProblem({ title: "Short", body: long })!, /title/);
+  assert.match(storyProblem({ title: "10 things I learned", body: "Too short." })!, new RegExp(`${STORY_BODY.min} characters`));
+  assert.match(storyProblem({ title: "10 things I learned", body: `${long} Buy it at https://amzn.to/abc` })!, /Shop and affiliate/);
+  assert.match(storyProblem({ title: "10 things I learned", body: `${long} https://example.com/p?tag=me-21` })!, /Shop and affiliate/);
+  assert.equal(hasShopLink("see https://www.reddit.com/r/padel/comments/x"), false);
+  assert.match(storyProblem({ title: "10 things I learned", body: long, rackets: ["a", "b", "c", "d", "e", "f"] })!, /5 rackets/);
+});
+
+test("story addresses, paragraphs and description", () => {
+  assert.equal(storySlug("10 Things I Learned in my First Year of Padel!", "3f2a9c1e-0000-4000-8000-000000000000"), "10-things-i-learned-in-my-first-year-of-padel-3f2a9c");
+  assert.match(storySlug("¡Pádel!", "abcdef12-x"), /^padel-abcdef$/);
+  assert.deepEqual(paragraphs("One.\nStill one.\n\nTwo.\r\n\r\n\r\nThree."), ["One.\nStill one.", "Two.", "Three."]);
+  assert.ok(storyDescription(long).length <= 156);
+  assert.ok(PAGE_KEY.test("story:10-things-i-learned-3f2a9c"));
+});
+
+test("stories are padel only: routing and the gate", () => {
+  assert.equal(storiesSite("padel"), true);
+  for (const id of ["pickleball", "skin", "discgolf", "stackrecs"]) assert.equal(storiesSite(id), false, id);
+  assert.equal(threadPath("/stories", "/rackets", "padel"), "/thread/stories");
+  assert.equal(threadPath("/stories/new", "/rackets", "padel"), "/thread/stories/new");
+  assert.equal(threadPath("/stories/10-things-3f2a9c", "/rackets", "padel"), "/thread/stories/10-things-3f2a9c");
+  assert.equal(threadPath("/stories", "/paddles", "pickleball"), null);
+  assert.equal(threadPath("/stories/x/y", "/rackets", "padel"), null);
+});

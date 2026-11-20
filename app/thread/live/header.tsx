@@ -22,11 +22,11 @@ function AccountLink({ className }: { className?: string }) {
 
 /** The site's review flow (app/add-review): the header's "Add a review" (owner 2026-11-19, as on classic). */
 const ADD = "/add-review";
-export type Section = "rackets" | "rankings" | "brands" | "guides" | null;
+export type Section = "rackets" | "rankings" | "brands" | "guides" | "stories" | null;
 const PADEL_NAV: [Exclude<Section, null>, string, string][] = [["rackets", niche.words.Many, catalogPath], ["rankings", "Rankings", "/rankings"], ["guides", "Guides", GUIDE_PATHS.racket]];
 /** StackRecs (no guides yet): Tools and Rankings. "rackets" stays the catalogue's section key. */
 const STACK_NAV: [Exclude<Section, null>, string, string][] = [["rackets", "Tools", catalogPath], ["rankings", "Rankings", "/rankings"]];
-const NAV = niche.id === "stackrecs" ? STACK_NAV : PADEL_NAV;
+const SITE_NAV = niche.id === "stackrecs" ? STACK_NAV : PADEL_NAV;
 
 // The site's own racket search (app/racket-search.tsx: the shared name index and fuzzy matching) in the Thread look: live
 // suggestions as you type, current models first, keyboard up/down/enter; Enter with no pick filters the catalogue.
@@ -34,7 +34,8 @@ function Search({ id, shortcut = true }: { id: string; shortcut?: boolean }) {
   return <RacketSearch thread id={id} shortcut={shortcut} placeholder={`Search ${niche.words.many}`} hidden={THREAD_DEFAULT ? {} : { look: "thread" }}/>;
 }
 
-export function ThreadHeader({ active }: { active: Section }) {
+export function ThreadHeader({ active, stories = false }: { active: Section; /** Member stories are live (PadelRecs). */ stories?: boolean }) {
+  const NAV = stories ? [...SITE_NAV, ["stories", "Stories", "/stories"] as [Exclude<Section, null>, string, string]] : SITE_NAV;
   const [open, setOpen] = useState(false);
   return <header className="th-head">
     <div className="th-head-in">

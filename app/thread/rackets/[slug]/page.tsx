@@ -9,6 +9,8 @@ import { Badge, SBar, Photo, cap, plural, tone, type ThreadRow } from "../../ui"
 import { FitCheck, Poll, Reviews } from "../../live/racket";
 import { TraitVotes } from "../../live/trait-votes";
 import { traitSeed } from "../../../../lib/thread/trait-seed";
+import { racketStories } from "../../stories-data";
+import { MemberMark } from "../../live/member-mark";
 import { Comments } from "../../live/comments";
 import { th } from "../../../../lib/thread/look";
 import { amazonButton } from "../../../../lib/amazon-offer";
@@ -69,7 +71,7 @@ export default async function ThreadRacket({ params }: P) {
   const d = await racketData((await params).slug);
   if (!d) notFound();
   const { r, row, brand, cards, lead, bullets, traits, style, sim, line, latest, judged } = d;
-  const { rows, ctx } = await threadRows();
+  const [{ rows, ctx }, tales] = await Promise.all([threadRows(), racketStories(r.id)]);
   // SkinRecs: its own tags, "People say" and fit check from the skin engine (app/thread/live/skin-match.tsx); the fit check
   // gets the ranking inputs of this product's type only.
   const sk = SKIN ? skinOf(ctx) : null;
@@ -136,6 +138,9 @@ export default async function ThreadRacket({ params }: P) {
         {specsBox}
         {buy && <div className="th-card th-only-m" style={{ padding: "10px 16px" }}>{buy}</div>}
         <Reviews id={r.id} cards={cards} nicknames={niche.form.quickVote?.nicknames ?? []} {...(DG ? { chips: plastics(cards) } : {})}/>
+        {tales.length > 0 && <section className="th-card th-sec"><h2 className="th-h2">Stories mentioning this racket</h2>
+          <ul className="th-stories sm">{tales.map(s => <li key={s.id}><a className="th-story-t" href={th(`/stories/${s.slug}`)}>{s.title}</a>
+            <span className="th-story-by"><strong>{s.author.name}</strong><MemberMark/></span></li>)}</ul></section>}
         <Comments page={`racket:${r.id}`} nicknames={niche.form.quickVote?.nicknames ?? []}/>
         {also.length >= 2 && <section className="th-card th-sec"><h2 className="th-h2">{`${W.lovers} who loved this also loved`}</h2><div className="th-also">{also.map(x => <Mini key={x.id} x={x} small/>)}</div></section>}
         {line.length >= 2 && brand && <section className="th-card th-sec">
