@@ -8,6 +8,10 @@
     {
       "path": "/api/review-digest",
       "schedule": "0 14 * * *"
+    },
+    {
+      "path": "/api/follow-digest",
+      "schedule": "0 7 * * *"
     }
   ]
 }

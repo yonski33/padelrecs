@@ -22,6 +22,8 @@ import { Ago } from "./live/ago";
 import type { WhoRow } from "../../lib/thread/community";
 import type { LatestQuestion } from "./community-data";
 import { MemberMark } from "./live/member-mark";
+import { FollowButton } from "./live/follow-button";
+import { followSite } from "../../lib/thread/sites";
 import type { RvCard } from "./racket-data";
 import type { TraitGroup } from "../../lib/thread/traits";
 
@@ -97,6 +99,7 @@ export function RacketV7b(p: V7bProps) {
           <Photo src={row?.pic ?? null} className="th-bigphoto th8-photo"/>
           <div className="th8-hero-r">
             <h1 className="th-h1">{p.title}</h1>
+            {followSite(niche.id) && <FollowButton id={p.id} name={p.model} place="hero"/>}
             <div className="th-tags">
               {p.tags.map((t, i) => <span key={t} className={`th-pill${i === 0 && p.lime ? " lime" : ""}`}>{t}</span>)}
               {SHOW_SCORE && <span className="th7-tag-score">{score != null ? <>{badge("xs")}{W.score}</> : "New, not enough votes yet"}</span>}
