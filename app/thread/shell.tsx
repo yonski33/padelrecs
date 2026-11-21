@@ -1,4 +1,5 @@
 // Every Thread page: the header, the page, the footer (README "Footer": "How the score works", never "How we score").
+import { v3Site } from "../../lib/thread/sites";
 import type { ReactNode } from "react";
 import { ThreadHeader, type Section } from "./live/header";
 import { th } from "../../lib/thread/look";
@@ -7,8 +8,9 @@ import { amazonLinksOn } from "../../lib/amazon-offer";
 import { niche } from "../../lib/niche";
 import { liveStoryTotal } from "./stories-data";
 
-/** PadelRecs (v3 handoff 2026-11-21): "How rankings work" in place of the score page (no 0-100 score on its pages). */
-export const FOOTER_LINKS = [{ label: "About", href: "/about" }, niche.id === "padel" || niche.id === "audio" ? { label: "How rankings work", href: "/how-rankings-work" } : { label: "How the score works", href: "/how-we-make-these" }, { label: "Affiliate disclosure", href: "/affiliate-disclosure" }, { label: "Contact", href: "/contact" }, { label: "Privacy", href: "/privacy" }];
+/** The v3 sites (padel, audio, sim racing): "How rankings work" in place of the score page (no score on their pages; the old
+ *  address 308s there, next.config.ts). */
+export const FOOTER_LINKS = [{ label: "About", href: "/about" }, v3Site(niche.id) ? { label: "How rankings work", href: "/how-rankings-work" } : { label: "How the score works", href: "/how-we-make-these" }, { label: "Affiliate disclosure", href: "/affiliate-disclosure" }, { label: "Contact", href: "/contact" }, { label: "Privacy", href: "/privacy" }];
 
 export async function Shell({ active = null, children }: { active?: Section; children: ReactNode }) {
   // Member stories (PadelRecs pilot): the header link shows once one story is live (0 elsewhere, or before the migration).

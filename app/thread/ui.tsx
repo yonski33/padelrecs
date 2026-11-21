@@ -4,6 +4,7 @@ import type { ReactNode } from "react";
 import { th } from "../../lib/thread/look";
 import { W } from "../../lib/thread/words";
 import { niche } from "../../lib/niche";
+import { v3Site } from "../../lib/thread/sites";
 
 /** One list row's data (home, catalogue, rankings, guides). Real counts show at any size (owner 2026-11-19); 0 stays blank. */
 export type ThreadRow = {
@@ -48,7 +49,8 @@ export const plural = (n: number, one: string, many = `${one}s`) => `${n.toLocal
  *  site's accent, the rest white, both with the ink outline (thread.css .th-badge.m). PadelRecs keeps tone(). */
 const SITE_MATCH = niche.id !== "padel";
 /** Sites on the v3 rules with no score anywhere, on the pages that still use this row (guides, brands). Padel keeps its own. */
-const NO_SCORE = niche.id === "audio";
+/** No score badge on the v3 sites (padel, audio, sim racing; owner 2026-11-22 sweep): rows there show no Player score. */
+const NO_SCORE = v3Site(niche.id);
 const toneOf = (n: number, pct?: boolean, top?: boolean) => pct && SITE_MATCH ? `m${top ? " top" : ""}` : tone(n);
 /** The row id with the highest match % (the first on a tie), for the "top" badge; null without any %. */
 export function topMatch(xs: { id: string; pct?: number | null }[]) {

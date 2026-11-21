@@ -5,6 +5,9 @@ import { useEffect, useRef, useState } from "react";
 import { matchingRackets, currentFirst, type SearchRacket } from "../lib/racket-search";
 import { ProductIcon, SearchIcon } from "./icons";
 import { niche, catalogPath, productHref } from "../lib/niche";
+import { v3Site } from "../lib/thread/sites";
+/** The v3 sites (padel, audio, sim racing) show no score anywhere (owner 2026-11-22: not in the search either). */
+const NO_SCORE = v3Site(niche.id);
 
 const w = niche.words;
 
@@ -114,7 +117,7 @@ export function RacketSearch({ placeholder, thread = false, id = "search", short
           <a className="th-ac-item" id={optId(index)} role="option" aria-selected={index === active} tabIndex={-1} href={productHref(r)} onMouseEnter={() => setActive(index)}>
             <span className="th-ac-pic">{r.photo ? <img src={r.photo} alt="" loading="lazy"/> : null}</span>
             <span className="th-ac-name"><span>{highlight(withYear(r), typed)}</span>{r.current === false && <small>older model</small>}</span>
-            {r.score != null && <span className={`th-badge xs ${toneOf(r.score)}`}>{r.score}</span>}
+            {!NO_SCORE && r.score != null && <span className={`th-badge xs ${toneOf(r.score)}`}>{r.score}</span>}
           </a>
         </li>)}
       </ul>

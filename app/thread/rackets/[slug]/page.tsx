@@ -24,6 +24,7 @@ import { amazonPhoto } from "../../../../lib/amazon-photos";
 import { websiteButton } from "../../../../lib/product-links";
 import { withoutYear, shortModel } from "../../../../lib/brand-name";
 import { niche, hasYears } from "../../../../lib/niche";
+import { v3Site } from "../../../../lib/thread/sites";
 import { alsoLoved } from "../../../../db/product-votes";
 import { database } from "../../../../db/data";
 import { generateMetadata as liveMetadata } from "../../../rackets/[slug]/page";
@@ -62,6 +63,9 @@ type P = { params: Promise<{ slug: string }> };
 export const generateMetadata = ({ params }: P): Promise<Metadata> => liveMetadata({ params, searchParams: Promise.resolve({}) });
 
 const SKIN = niche.id === "skin", DG = niche.id === "discgolf", AUDIO = niche.id === "audio", SR = niche.id === "simracing", TN = niche.id === "tennis", PB = niche.id === "pickleball";
+/** The v3 sites show no score (owner 2026-11-22 sweep): an AudioRecs product with no audio-match data still gets this page, so
+ *  its score badges hide here too. */
+const V3 = v3Site(niche.id);
 /** AudioRecs' TL;DR words for its quick tags ("Listeners often praise the noise cancelling."). */
 const AUDIO_SAYS: Record<string, string> = { "great noise cancelling": "praise the noise cancelling", comfortable: "find them comfortable",
   detailed: "call the sound detailed", "great bass": "praise the bass", "great value": "call them good value", "long battery life": "praise the battery life",
@@ -81,7 +85,7 @@ const STYLE_HREF = { control: `/rankings/best-control-${LIST}`, power: `/ranking
 const Mini = ({ x, small }: { x: ThreadRow; small?: boolean }) => <a className={`th-mini${small ? " sm" : ""}`} href={th(x.href)}>
   <span>{x.pic ? <img src={x.pic} alt="" loading="lazy"/> : <span className="th-ph"/>}</span>
   <span><strong>{x.name}</strong>{(x.line || x.best) && <small>{x.line ?? `Best for ${x.best}`}</small>}</span>
-  <Badge n={x.score} size="sm"/>
+  {!V3 && <Badge n={x.score} size="sm"/>}
 </a>;
 
 async function lovedToo(id: string, rows: Map<string, ThreadRow>) {
@@ -212,7 +216,7 @@ export default async function ThreadRacket({ params }: P) {
           <div className="th-tags">
             {tags.map((t, i) => <span key={t} className={`th-pill${i === 0 && style ? " lime" : ""}`}>{t}</span>)}
             {flight && <Flight f={[flight.speed, flight.glide, flight.turn, flight.fade]}/>}
-            <span className="th-inline-score">{row?.score != null ? <><span className={`th-badge xs ${tone(row.score)}`}>{row.score}</span>{W.score}</> : "New, not enough votes yet"}</span>
+            {!V3 && <span className="th-inline-score">{row?.score != null ? <><span className={`th-badge xs ${tone(row.score)}`}>{row.score}</span>{W.score}</> : "New, not enough votes yet"}</span>}
           </div>
           <div className="th-hero-grid">
             <Photo src={row?.pic ?? null} className="th-bigphoto"/>
@@ -243,10 +247,10 @@ export default async function ThreadRacket({ params }: P) {
       <aside className="th-side">
         <section className="th-card th-sbox"><div className="th-sbox-head">{`About this ${niche.words.one}`}</div><div className="th-sbox-body pad">
           <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
-            {row?.score != null ? <span className={`th-badge ${tone(row.score)}`} style={{ fontSize: 28 }}>{row.score}</span> : <span className="th-badge new">New</span>}
+            {!V3 && (row?.score != null ? <span className={`th-badge ${tone(row.score)}`} style={{ fontSize: 28 }}>{row.score}</span> : <span className="th-badge new">New</span>)}
             {/* "player score" with the bar under it, no count (owner 2026-11-19). Without a score, the line says why it's "New". */}
             <span style={{ display: "flex", flexDirection: "column", gap: 3, fontSize: 12.5, color: "var(--body)" }}>
-              <span>{row?.score != null ? W.score : judged > 0 ? `${plural(judged, W.opinions.replace(/s$/, ""), W.opinions)} so far` : "No votes yet"}</span>
+              <span>{row?.score != null && !V3 ? W.score : judged > 0 ? `${plural(judged, W.opinions.replace(/s$/, ""), W.opinions)} so far` : "No votes yet"}</span>
               {judged > 0 && <SBar lg pos={row!.pos} mix={row!.mix} neg={row!.neg}/>}
             </span>
           </div>
