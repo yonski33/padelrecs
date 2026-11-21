@@ -6,6 +6,7 @@
 // only with 5+ players behind it and 10+ in its group (the home's Top picks rule).
 import "../thread/thread.css";
 import "../thread/sr-colors.css";
+import "../thread/tn-colors.css";
 import { Shell } from "../thread/shell";
 import { threadRows, threadFeed, traitCounts, traitGroup } from "../thread/data";
 import { ago } from "../thread/ui";
@@ -18,7 +19,7 @@ import { compareParts, TRAITS } from "./compare-v2";
 import { CompareAdd } from "./compare-add";
 import { FitBar, Cards, type V3Card } from "./compare-v3-live";
 import type { Data } from "./view";
-import { niche, catalogPath } from "../../lib/niche";
+import { niche, catalogPath, hasYears } from "../../lib/niche";
 import { W } from "../../lib/thread/words";
 import { votePill, AUDIO_PILL_LABELS, SIMRACING_PILL_WORDS, SIMRACING_PILL_LABELS } from "../../lib/thread/vote-pill";
 import { TRAIT_GROUPS, traitGroupsForType } from "../../lib/thread/traits";
@@ -27,7 +28,7 @@ const FONTS = ["https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@6
   "https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap",
   "https://fonts.googleapis.com/css2?family=Barlow:wght@400;700&text=0123456789&display=swap"];
 /** Each racket's colour (pills, dots), in card order. */
-const TINT = ["#DCE8FB", niche.id === "simracing" ? "oklch(0.92 0.07 30)" : "#E3F6B5", "#FBE0D2"], DOT = ["#5B8DEF", "#6DBE45", "#EF8A5B"];
+const TINT = ["#DCE8FB", niche.id === "simracing" ? "oklch(0.92 0.07 30)" : niche.id === "tennis" ? "oklch(0.92 0.05 45)" : "#E3F6B5", "#FBE0D2"], DOT = ["#5B8DEF", "#6DBE45", "#EF8A5B"];
 const PLAYS: Record<string, string> = { control: "control", all_round: "all-round play", power: "power" };
 /** "Who wins what": the label, the vote group and option, and what those players say. */
 const WIN: [string, string, string, string][] = [["Most power", "plays_like", "power", "say power"], ["Most control", "plays_like", "control", "say control"],
@@ -36,7 +37,8 @@ const WIN: [string, string, string, string][] = [["Most power", "plays_like", "p
   ["Best for advanced", "level", "advanced", "say advanced"]];
 const OPT: Record<string, [string, string][]> = {
   plays_like: [["control", "Control"], ["all_round", "All-round"], ["power", "Power"]], sweet_spot: [["big", "Big"], ["medium", "Medium"], ["small", "Small"]],
-  feel: [["soft", "Soft"], ["medium", "Medium"], ["hard", "Hard"]], arm: [["very", "Very"], ["somewhat", "Somewhat"], ["not_really", "Not really"]],
+  // The site's own Feel words (TennisRecs says "Crisp"; padel and pickleball "Hard").
+  feel: TRAIT_GROUPS.find(g => g.key === "feel")?.options ?? [["soft", "Soft"], ["medium", "Medium"], ["hard", "Hard"]], arm: [["very", "Very"], ["somewhat", "Somewhat"], ["not_really", "Not really"]],
   maneuver: [["very", "Very"], ["somewhat", "Somewhat"], ["not_really", "Not really"]], level: [["beginner", "Beginner"], ["intermediate", "Intermediate"], ["advanced", "Advanced"]] };
 /** AudioRecs (V3-ROLLOUT-BRIEF): "Who wins what" from its own vote groups, its quality-first pills, its words; no fit bar
  *  (its quick match lives on the home, catalogue, product and ranking pages). */
@@ -60,7 +62,7 @@ export async function CompareV3({ data, products }: { data: Data; products: Data
   const shorts = cprods.map(c => c.short);
   const cards: V3Card[] = products.map((r, i) => {
     const row = rows.get(r.id), plays = traitGroup(t, r.id, "plays_like"), top = Object.entries(plays).filter(([k]) => PLAYS[k]).sort((a, b) => b[1] - a[1])[0];
-    return { id: r.id, name: withoutYear(displayName(r.name, brandOf(r))), short: shorts[i], href: th(row?.href ?? cprods[i].href), pic: row?.pic ?? cprods[i].pic,
+    return { id: r.id, name: hasYears ? withoutYear(displayName(r.name, brandOf(r))) : displayName(r.name, brandOf(r)), short: shorts[i], href: th(row?.href ?? cprods[i].href), pic: row?.pic ?? cprods[i].pic,
       shape: r.shape ? r.shape[0].toUpperCase() + r.shape.slice(1) : null, feel: row?.feel ?? null,
       picked: SR ? votePill(Object.fromEntries(traitGroupsForType(niche.id, r.shape, r.id).map(g => [g.key, traitGroup(t, r.id, g.key)])), W.people, SIMRACING_PILL_WORDS, SIMRACING_PILL_LABELS)
         : AUDIO ? votePill(Object.fromEntries(TRAIT_GROUPS.map(g => [g.key, traitGroup(t, r.id, g.key)])), W.people, AUDIO_PILL_LABELS, AUDIO_PILL_LABELS)

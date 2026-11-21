@@ -20,7 +20,7 @@ export type ThreadRanking = { slug: string; href: string; label: string; title: 
 const YEAR = () => new Date().getUTCFullYear();
 const SIZE = 10, MIN_REVIEWS = 10;
 
-const PICKLEBALL = niche.id === "pickleball", SKIN = niche.id === "skin", DG = niche.id === "discgolf", AUDIO = niche.id === "audio", SR = niche.id === "simracing";
+const PICKLEBALL = niche.id === "pickleball", SKIN = niche.id === "skin", DG = niche.id === "discgolf", AUDIO = niche.id === "audio", SR = niche.id === "simracing", TN = niche.id === "tennis";
 /** The hub's blurbs (Rankings Hub Thread copy), by list. */
 const BLURB: Record<string, string> = SR ? {
   // SimRacingRecs' Rankings Hub mock, on its live lists by gear type plus the Thread-only lists below.
@@ -50,6 +50,11 @@ const BLURB: Record<string, string> = SR ? {
   "best-face-sunscreens": "Daily SPF people actually wear.", "best-skincare-treatments": "Retinoids, acids and spot treatments people stick with.",
   "best-balms-ointments": "Rich repair for dry, cracked skin.", "best-skincare-for-sensitive-skin": "Fragrance free and rarely stings.",
   dry: "Rich creams that repair a dry barrier.", oily: "Light, non-greasy picks for oily skin.", acne: "Clearer skin without the burn.",
+} : TN ? {
+  // TennisRecs' live lists plus the Thread-only beginners list below.
+  "best-tennis-rackets": "The best-reviewed rackets right now.", "best-power-tennis-rackets": "Easy depth and pace from the baseline.",
+  "best-control-tennis-rackets": "Swing out and keep it in.", "best-spin-tennis-rackets": "Heavy topspin and kick serves.",
+  "best-arm-friendly-tennis-rackets": "Flexible frames, kind to your elbow.", beginners: "Forgiving rackets with a big sweet spot.",
 } : PICKLEBALL ? {
   // PickleballRecs' Rankings Hub mock; the spin and tennis elbow lists are live lists the mock didn't have.
   "best-pickleball-paddles": "The highest player scores right now.", "best-power-pickleball-paddles": "For drives that land deep.",
@@ -72,12 +77,15 @@ const PICKS: { key: string; slug: string; label: string; title: string; choice: 
   // DiscGolfRecs' live lists are one per disc type; the mock's beginner and slow arm lists are the home's quick match.
   { key: "best-disc-golf-discs-for-beginners", slug: "best-disc-golf-discs-for-beginners", label: "Best for beginners", title: "Best disc golf discs for beginners", choice: { style: "any", level: "beginner", arm: false } },
   { key: "best-disc-golf-discs-for-slow-arms", slug: "best-disc-golf-discs-for-slow-arms", label: "Best for slow arm speed", title: "Best disc golf discs for slow arm speed", choice: { style: "any", arm: true } },
+] : TN ? [
+  // TennisRecs has a live arm-friendly list already, so only beginners here.
+  { key: "beginners", slug: "best-tennis-rackets-for-beginners", label: "Best for beginners", title: "Best tennis rackets for beginners", choice: { style: "any", level: "beginner", arm: false } },
 ] : PICKLEBALL || SKIN || AUDIO ? [] : [
   { key: "beginners", slug: "best-padel-rackets-for-beginners", label: "Best for beginners", title: "Best padel rackets for beginners", choice: { style: "any", level: "beginner", arm: false } },
   // Named for tennis elbow (owner 2026-11-19); the old /rankings/best-padel-rackets-for-sore-arms 301s here (THREAD_MOVED).
   { key: "sore-arms", slug: ELBOW_SLUG, label: "Best for tennis elbow", title: "Best padel rackets for tennis elbow", choice: { style: "any", arm: true } },
 ];
-const SHAPES: readonly (readonly [string, string])[] = SKIN || DG || AUDIO || SR ? [] : PICKLEBALL ? [["standard", "Standard"], ["elongated", "Elongated"], ["hybrid", "Hybrid"]] as const
+const SHAPES: readonly (readonly [string, string])[] = SKIN || DG || AUDIO || SR || TN ? [] : PICKLEBALL ? [["standard", "Standard"], ["elongated", "Elongated"], ["hybrid", "Hybrid"]] as const
   : [["round", "Round"], ["teardrop", "Teardrop"], ["diamond", "Diamond"]] as const;
 const LIST = `${niche.id}-${niche.words.many}`; // "padel-rackets", "pickleball-paddles"
 

@@ -25,6 +25,11 @@ export const PILL_LABELS: Record<string, Record<string, string>> = {
   maneuver: { very: "Quick handling" },
   durability: { holds_up: "Holds up well" },
 };
+/** TennisRecs (v3 wave 2): padel's words without court side, plus Spin and Stable; its Feel says "Crisp", not "Hard". */
+export const TENNIS_PILL_WORDS: Record<string, Record<string, string>> = { ...Object.fromEntries(Object.entries(PILL_WORDS).filter(([k]) => k !== "side")),
+  feel: { soft: "a soft feel", medium: "a medium feel", hard: "a crisp feel" }, spin: { lots: "spin" }, stability: { very: "stability" } };
+export const TENNIS_PILL_LABELS: Record<string, Record<string, string>> = { ...PILL_LABELS,
+  feel: { soft: "Soft feel", medium: "Medium feel", hard: "Crisp feel" }, spin: { lots: "Lots of spin" }, stability: { very: "Stable" } };
 export const PILL_MIN = 5, PILL_LEAD = 1.5;
 
 /** The pill's text, or null. Of the groups whose leader qualifies, the one where the leader holds the biggest share wins;

@@ -78,7 +78,7 @@ export default async function ThreadHome() {
     const live = total > 0 ? `${total.toLocaleString("en-US")} reviews${week > 0 ? ` · ${week.toLocaleString("en-US")} ${WEEK_SHORT}` : ""}` : null;
     return <Shell>
       <main className="th-main th-hp3">
-        <PadelHomeTop rows={d.rows} brands={d.brands} pills={d.pills} added={d.added} curated={d.curated} season={d.season} live={live} {...(d.wire ? { wire: d.wire, art: <Headphones/> } : niche.id === "simracing" ? { art: <Wheel/> } : {})}
+        <PadelHomeTop rows={d.rows} brands={d.brands} pills={d.pills} added={d.added} curated={d.curated} season={d.season} live={live} {...(d.wire ? { wire: d.wire, art: <Headphones/> } : niche.id === "simracing" ? { art: <Wheel/> } : niche.id === "tennis" ? { art: <TennisRacket/> } : {})}
           after={<div key="after" className="hp3-rest">
             <div key="cm" className="hp3-rest">{sideBox(" th-only-m")}</div>
             {picks.lists.length > 0 && <TopPicks key="tp" lists={picks.lists} total={picks.total} hrefs={Object.fromEntries(all.map(r => [r.id, r.href]))} unit={["vote", "votes"]}/>}
@@ -146,6 +146,12 @@ export default async function ThreadHome() {
 function Wheel() {
   return <svg className="hp3-art" width="74" height="80" viewBox="0 0 74 80" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
     <circle cx="35" cy="42" r="27" fill="#fff"/><circle cx="35" cy="42" r="8"/><path d="M27 42H9M43 42h18M35 50v18"/><path d="M58 8l3-5M64 15l6-3M66 25l6 1"/></svg>;
+}
+/** TennisRecs' hero drawing: a tennis racket (oval head, strings, long handle), in the same hand-drawn line. */
+function TennisRacket() {
+  return <svg className="hp3-art" width="74" height="80" viewBox="0 0 74 80" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+    <ellipse cx="40" cy="27" rx="17" ry="22" fill="#fff"/><path d="M33 7v40M40 5v44M47 7v40M24 20h32M23 28h34M25 36h30"/><path d="M36 48l-4 10M44 48l4 10M32 58h16"/><path d="M40 58v18"/>
+    <path d="M60 8l3-5M66 15l6-3"/></svg>;
 }
 /** AudioRecs' hero drawing, in the place of padel's racket (same box and stroke). */
 function Headphones() {

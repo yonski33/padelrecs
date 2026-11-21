@@ -48,7 +48,7 @@ test("vote groups: 9 per side, keys fit the trait_votes check, padel's nine unch
 });
 
 test("addresses: StackRecs' pages map to app/thread/stack, padel's mapping is unchanged", () => {
-  assert.ok(threadSite("stackrecs") && threadSite("padel") && !threadSite("tennis"));
+  assert.ok(threadSite("stackrecs") && threadSite("padel") && !threadSite("coffee"));
   assert.equal(threadPath("/", "/tools", "stackrecs"), "/thread/stack");
   assert.equal(threadPath("/tools", "/tools", "stackrecs"), "/thread/stack/tools");
   assert.equal(threadPath("/tools/claude-code", "/tools", "stackrecs"), "/thread/stack/tools/claude-code");

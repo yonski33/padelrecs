@@ -1,0 +1,8503 @@
+{
+ "built": "2026-11-21",
+ "rule": "One count per review, web report or YouTube channel per group; specs kept apart in `spec` and never counted.",
+ "rackets": {
+  "babolat-boost-aero-2023": {
+   "slug": "babolat-boost-aero-2023",
+   "name": "Babolat Boost Aero 2023",
+   "sources": 0,
+   "groups": {},
+   "spec": {}
+  },
+  "babolat-boost-aero-2026": {
+   "slug": "babolat-boost-aero-2026",
+   "name": "Babolat Boost Aero 2026",
+   "sources": 0,
+   "groups": {},
+   "spec": {}
+  },
+  "babolat-boost-drive-2021": {
+   "slug": "babolat-boost-drive-2021",
+   "name": "Babolat Boost Drive 2021",
+   "sources": 0,
+   "groups": {},
+   "spec": {}
+  },
+  "babolat-boost-drive-2025": {
+   "slug": "babolat-boost-drive-2025",
+   "name": "Babolat Boost Drive 2025",
+   "sources": 0,
+   "groups": {},
+   "spec": {}
+  },
+  "babolat-boost-strike-2024": {
+   "slug": "babolat-boost-strike-2024",
+   "name": "Babolat Boost Strike 2024",
+   "sources": 0,
+   "groups": {},
+   "spec": {
+    "feel": "hard"
+   }
+  },
+  "babolat-evo-aero-2022": {
+   "slug": "babolat-evo-aero-2022",
+   "name": "Babolat Evo Aero 2022",
+   "sources": 1,
+   "groups": {
+    "sweet_spot": {
+     "big": 1
+    },
+    "arm": {
+     "very": 1
+    },
+    "spin": {
+     "lots": 1
+    }
+   },
+   "spec": {
+    "feel": "soft"
+   }
+  },
+  "babolat-evo-aero-2026": {
+   "slug": "babolat-evo-aero-2026",
+   "name": "Babolat Evo Aero 2026",
+   "sources": 0,
+   "groups": {},
+   "spec": {
+    "feel": "soft"
+   }
+  },
+  "babolat-evo-drive-2025": {
+   "slug": "babolat-evo-drive-2025",
+   "name": "Babolat Evo Drive 2025",
+   "sources": 0,
+   "groups": {},
+   "spec": {}
+  },
+  "babolat-evo-strike-2024": {
+   "slug": "babolat-evo-strike-2024",
+   "name": "Babolat Evo Strike 2024",
+   "sources": 0,
+   "groups": {},
+   "spec": {}
+  },
+  "babolat-pure-aero-98-gen8": {
+   "slug": "babolat-pure-aero-98-gen8",
+   "name": "Babolat Pure Aero 98 Gen8",
+   "sources": 61,
+   "groups": {
+    "plays_like": {
+     "all_round": 7,
+     "power": 13,
+     "control": 12
+    },
+    "spin": {
+     "lots": 24,
+     "some": 6
+    },
+    "arm": {
+     "very": 5,
+     "not_really": 23,
+     "somewhat": 2
+    },
+    "stability": {
+     "very": 6,
+     "somewhat": 1
+    },
+    "sweet_spot": {
+     "big": 4,
+     "small": 4,
+     "medium": 1
+    },
+    "maneuver": {
+     "very": 6,
+     "not_really": 3,
+     "somewhat": 1
+    },
+    "feel": {
+     "hard": 7,
+     "soft": 5
+    },
+    "level": {
+     "advanced": 5,
+     "intermediate": 2
+    }
+   },
+   "spec": {}
+  },
+  "babolat-pure-aero-98-gen9": {
+   "slug": "babolat-pure-aero-98-gen9",
+   "name": "Babolat Pure Aero 98 Gen9",
+   "sources": 58,
+   "groups": {
+    "plays_like": {
+     "control": 20,
+     "power": 11,
+     "all_round": 3
+    },
+    "spin": {
+     "lots": 15,
+     "little": 4,
+     "some": 3
+    },
+    "stability": {
+     "very": 8,
+     "not_really": 3,
+     "somewhat": 3
+    },
+    "maneuver": {
+     "very": 8,
+     "not_really": 10,
+     "somewhat": 4
+    },
+    "sweet_spot": {
+     "small": 2,
+     "medium": 1,
+     "big": 2
+    },
+    "arm": {
+     "not_really": 4,
+     "very": 11,
+     "somewhat": 6
+    },
+    "feel": {
+     "soft": 10,
+     "hard": 4
+    },
+    "level": {
+     "advanced": 1
+    },
+    "durability": {
+     "wears_fast": 1
+    }
+   },
+   "spec": {}
+  },
+  "babolat-pure-aero-gen8": {
+   "slug": "babolat-pure-aero-gen8",
+   "name": "Babolat Pure Aero Gen8",
+   "sources": 37,
+   "groups": {
+    "spin": {
+     "lots": 15,
+     "little": 2,
+     "some": 2
+    },
+    "maneuver": {
+     "very": 4,
+     "somewhat": 5,
+     "not_really": 1
+    },
+    "stability": {
+     "not_really": 3,
+     "very": 2
+    },
+    "plays_like": {
+     "control": 14,
+     "power": 8,
+     "all_round": 3
+    },
+    "arm": {
+     "not_really": 14,
+     "very": 2,
+     "somewhat": 1
+    },
+    "sweet_spot": {
+     "medium": 4,
+     "small": 1
+    },
+    "feel": {
+     "soft": 2,
+     "hard": 2
+    },
+    "level": {
+     "beginner": 1
+    }
+   },
+   "spec": {}
+  },
+  "babolat-pure-aero-gen9": {
+   "slug": "babolat-pure-aero-gen9",
+   "name": "Babolat Pure Aero Gen9",
+   "sources": 45,
+   "groups": {
+    "plays_like": {
+     "all_round": 4,
+     "control": 12,
+     "power": 8
+    },
+    "arm": {
+     "somewhat": 8,
+     "very": 7,
+     "not_really": 4
+    },
+    "spin": {
+     "lots": 16,
+     "some": 1,
+     "little": 2
+    },
+    "maneuver": {
+     "very": 8,
+     "not_really": 5,
+     "somewhat": 1
+    },
+    "stability": {
+     "very": 5,
+     "somewhat": 2,
+     "not_really": 3
+    },
+    "sweet_spot": {
+     "big": 4,
+     "medium": 1
+    },
+    "feel": {
+     "hard": 4,
+     "soft": 8
+    },
+    "level": {
+     "advanced": 2
+    },
+    "durability": {
+     "wears_fast": 2
+    }
+   },
+   "spec": {}
+  },
+  "babolat-pure-aero-lite-gen8": {
+   "slug": "babolat-pure-aero-lite-gen8",
+   "name": "Babolat Pure Aero Lite Gen8",
+   "sources": 0,
+   "groups": {},
+   "spec": {}
+  },
+  "babolat-pure-aero-lite-gen9": {
+   "slug": "babolat-pure-aero-lite-gen9",
+   "name": "Babolat Pure Aero Lite Gen9",
+   "sources": 0,
+   "groups": {},
+   "spec": {}
+  },
+  "babolat-pure-aero-plus-gen8": {
+   "slug": "babolat-pure-aero-plus-gen8",
+   "name": "Babolat Pure Aero Plus Gen8",
+   "sources": 9,
+   "groups": {
+    "plays_like": {
+     "power": 9
+    },
+    "spin": {
+     "lots": 9
+    },
+    "arm": {
+     "very": 2,
+     "somewhat": 2
+    },
+    "feel": {
+     "soft": 3
+    },
+    "stability": {
+     "very": 4,
+     "somewhat": 1
+    },
+    "level": {
+     "advanced": 1
+    }
+   },
+   "spec": {}
+  },
+  "babolat-pure-aero-plus-gen9": {
+   "slug": "babolat-pure-aero-plus-gen9",
+   "name": "Babolat Pure Aero Plus Gen9",
+   "sources": 7,
+   "groups": {
+    "plays_like": {
+     "power": 6
+    },
+    "spin": {
+     "lots": 5,
+     "some": 1
+    },
+    "feel": {
+     "soft": 2
+    },
+    "maneuver": {
+     "very": 1,
+     "somewhat": 2,
+     "not_really": 1
+    },
+    "stability": {
+     "not_really": 1,
+     "somewhat": 1
+    },
+    "level": {
+     "advanced": 1
+    }
+   },
+   "spec": {}
+  },
+  "babolat-pure-aero-rafa-gen8": {
+   "slug": "babolat-pure-aero-rafa-gen8",
+   "name": "Babolat Pure Aero Rafa Gen8",
+   "sources": 14,
+   "groups": {
+    "plays_like": {
+     "power": 9
+    },
+    "spin": {
+     "lots": 9,
+     "some": 1
+    },
+    "maneuver": {
+     "very": 2,
+     "not_really": 4,
+     "somewhat": 1
+    },
+    "stability": {
+     "very": 3,
+     "somewhat": 1,
+     "not_really": 1
+    },
+    "level": {
+     "advanced": 1,
+     "intermediate": 1
+    },
+    "feel": {
+     "hard": 1
+    },
+    "sweet_spot": {
+     "medium": 1
+    },
+    "arm": {
+     "not_really": 1
+    }
+   },
+   "spec": {
+    "feel": "hard"
+   }
+  },
+  "babolat-pure-aero-rafa-origin-gen8": {
+   "slug": "babolat-pure-aero-rafa-origin-gen8",
+   "name": "Babolat Pure Aero Rafa Origin Gen8",
+   "sources": 21,
+   "groups": {
+    "plays_like": {
+     "power": 7,
+     "control": 2,
+     "all_round": 1
+    },
+    "maneuver": {
+     "not_really": 17
+    },
+    "stability": {
+     "very": 10
+    },
+    "spin": {
+     "lots": 5
+    },
+    "arm": {
+     "not_really": 4
+    },
+    "feel": {
+     "hard": 1,
+     "soft": 1
+    },
+    "sweet_spot": {
+     "big": 1,
+     "small": 3
+    },
+    "level": {
+     "advanced": 5
+    }
+   },
+   "spec": {
+    "feel": "hard"
+   }
+  },
+  "babolat-pure-aero-super-lite-gen9": {
+   "slug": "babolat-pure-aero-super-lite-gen9",
+   "name": "Babolat Pure Aero Super Lite Gen9",
+   "sources": 0,
+   "groups": {},
+   "spec": {}
+  },
+  "babolat-pure-aero-team-gen8": {
+   "slug": "babolat-pure-aero-team-gen8",
+   "name": "Babolat Pure Aero Team Gen8",
+   "sources": 13,
+   "groups": {
+    "spin": {
+     "lots": 9
+    },
+    "maneuver": {
+     "very": 7
+    },
+    "stability": {
+     "not_really": 3,
+     "very": 1
+    },
+    "plays_like": {
+     "power": 5
+    },
+    "sweet_spot": {
+     "big": 2,
+     "medium": 1
+    },
+    "arm": {
+     "very": 2,
+     "not_really": 1
+    },
+    "feel": {
+     "hard": 2,
+     "soft": 1
+    },
+    "level": {
+     "beginner": 3,
+     "intermediate": 2
+    }
+   },
+   "spec": {}
+  },
+  "babolat-pure-aero-team-gen9": {
+   "slug": "babolat-pure-aero-team-gen9",
+   "name": "Babolat Pure Aero Team Gen9",
+   "sources": 8,
+   "groups": {
+    "arm": {
+     "somewhat": 1
+    },
+    "spin": {
+     "lots": 6
+    },
+    "maneuver": {
+     "very": 6
+    },
+    "plays_like": {
+     "power": 4
+    },
+    "sweet_spot": {
+     "medium": 1
+    },
+    "stability": {
+     "very": 2,
+     "not_really": 1
+    },
+    "feel": {
+     "soft": 1
+    },
+    "level": {
+     "intermediate": 1
+    }
+   },
+   "spec": {}
+  },
+  "babolat-pure-drive-107-gen10": {
+   "slug": "babolat-pure-drive-107-gen10",
+   "name": "Babolat Pure Drive 107 Gen10",
+   "sources": 5,
+   "groups": {
+    "plays_like": {
+     "power": 5
+    },
+    "sweet_spot": {
+     "big": 4
+    },
+    "spin": {
+     "lots": 2
+    },
+    "arm": {
+     "not_really": 2,
+     "very": 1
+    },
+    "stability": {
+     "not_really": 1
+    },
+    "level": {
+     "beginner": 1,
+     "advanced": 1
+    },
+    "maneuver": {
+     "very": 1
+    }
+   },
+   "spec": {
+    "feel": "hard"
+   }
+  },
+  "babolat-pure-drive-107-gen11": {
+   "slug": "babolat-pure-drive-107-gen11",
+   "name": "Babolat Pure Drive 107 Gen11",
+   "sources": 4,
+   "groups": {
+    "plays_like": {
+     "power": 2
+    },
+    "sweet_spot": {
+     "big": 2
+    },
+    "maneuver": {
+     "very": 2
+    },
+    "level": {
+     "beginner": 1,
+     "advanced": 1
+    },
+    "stability": {
+     "not_really": 1
+    },
+    "arm": {
+     "very": 1
+    },
+    "feel": {
+     "soft": 1
+    }
+   },
+   "spec": {
+    "feel": "hard"
+   }
+  },
+  "babolat-pure-drive-110-gen10": {
+   "slug": "babolat-pure-drive-110-gen10",
+   "name": "Babolat Pure Drive 110 Gen10",
+   "sources": 1,
+   "groups": {
+    "plays_like": {
+     "control": 1
+    },
+    "stability": {
+     "not_really": 1
+    }
+   },
+   "spec": {
+    "feel": "hard"
+   }
+  },
+  "babolat-pure-drive-98-gen10": {
+   "slug": "babolat-pure-drive-98-gen10",
+   "name": "Babolat Pure Drive 98 Gen10",
+   "sources": 14,
+   "groups": {
+    "plays_like": {
+     "power": 4,
+     "all_round": 7
+    },
+    "arm": {
+     "not_really": 5
+    },
+    "spin": {
+     "lots": 4,
+     "some": 1
+    },
+    "feel": {
+     "soft": 2,
+     "hard": 5
+    },
+    "stability": {
+     "very": 2,
+     "somewhat": 1
+    },
+    "level": {
+     "advanced": 1
+    },
+    "sweet_spot": {
+     "small": 1
+    }
+   },
+   "spec": {}
+  },
+  "babolat-pure-drive-98-gen11": {
+   "slug": "babolat-pure-drive-98-gen11",
+   "name": "Babolat Pure Drive 98 Gen11",
+   "sources": 20,
+   "groups": {
+    "plays_like": {
+     "all_round": 8,
+     "control": 6,
+     "power": 1
+    },
+    "sweet_spot": {
+     "small": 7,
+     "big": 1
+    },
+    "feel": {
+     "hard": 5,
+     "soft": 4
+    },
+    "arm": {
+     "very": 4,
+     "not_really": 2,
+     "somewhat": 3
+    },
+    "maneuver": {
+     "not_really": 3,
+     "very": 2
+    },
+    "stability": {
+     "very": 4,
+     "somewhat": 2
+    },
+    "level": {
+     "advanced": 4
+    },
+    "spin": {
+     "little": 1,
+     "lots": 2
+    }
+   },
+   "spec": {
+    "feel": "hard"
+   }
+  },
+  "babolat-pure-drive-gen10": {
+   "slug": "babolat-pure-drive-gen10",
+   "name": "Babolat Pure Drive Gen10",
+   "sources": 20,
+   "groups": {
+    "plays_like": {
+     "power": 13,
+     "control": 2
+    },
+    "arm": {
+     "not_really": 6,
+     "very": 3,
+     "somewhat": 3
+    },
+    "spin": {
+     "lots": 9,
+     "some": 1
+    },
+    "sweet_spot": {
+     "big": 2,
+     "medium": 1
+    },
+    "feel": {
+     "hard": 4,
+     "soft": 2
+    },
+    "stability": {
+     "not_really": 1
+    },
+    "level": {
+     "intermediate": 1,
+     "advanced": 1
+    },
+    "maneuver": {
+     "not_really": 1
+    }
+   },
+   "spec": {
+    "feel": "hard"
+   }
+  },
+  "babolat-pure-drive-gen11": {
+   "slug": "babolat-pure-drive-gen11",
+   "name": "Babolat Pure Drive Gen11",
+   "sources": 45,
+   "groups": {
+    "arm": {
+     "not_really": 8,
+     "very": 4,
+     "somewhat": 10
+    },
+    "plays_like": {
+     "power": 25,
+     "control": 3,
+     "all_round": 5
+    },
+    "spin": {
+     "lots": 4,
+     "some": 1,
+     "little": 1
+    },
+    "feel": {
+     "hard": 9,
+     "soft": 7
+    },
+    "stability": {
+     "very": 7,
+     "not_really": 1,
+     "somewhat": 1
+    },
+    "sweet_spot": {
+     "big": 7
+    },
+    "maneuver": {
+     "very": 3,
+     "somewhat": 2,
+     "not_really": 1
+    },
+    "level": {
+     "intermediate": 2,
+     "advanced": 1,
+     "beginner": 4
+    },
+    "durability": {
+     "wears_fast": 2
+    }
+   },
+   "spec": {
+    "feel": "hard"
+   }
+  },
+  "babolat-pure-drive-lite-gen10": {
+   "slug": "babolat-pure-drive-lite-gen10",
+   "name": "Babolat Pure Drive Lite Gen10",
+   "sources": 0,
+   "groups": {},
+   "spec": {
+    "feel": "hard"
+   }
+  },
+  "babolat-pure-drive-lite-gen11": {
+   "slug": "babolat-pure-drive-lite-gen11",
+   "name": "Babolat Pure Drive Lite Gen11",
+   "sources": 0,
+   "groups": {},
+   "spec": {
+    "feel": "hard"
+   }
+  },
+  "babolat-pure-drive-plus-gen10": {
+   "slug": "babolat-pure-drive-plus-gen10",
+   "name": "Babolat Pure Drive Plus Gen10",
+   "sources": 0,
+   "groups": {},
+   "spec": {
+    "feel": "hard"
+   }
+  },
+  "babolat-pure-drive-plus-gen11": {
+   "slug": "babolat-pure-drive-plus-gen11",
+   "name": "Babolat Pure Drive Plus Gen11",
+   "sources": 0,
+   "groups": {},
+   "spec": {
+    "feel": "hard"
+   }
+  },
+  "babolat-pure-drive-super-lite-gen11": {
+   "slug": "babolat-pure-drive-super-lite-gen11",
+   "name": "Babolat Pure Drive Super Lite Gen11",
+   "sources": 0,
+   "groups": {},
+   "spec": {
+    "feel": "hard"
+   }
+  },
+  "babolat-pure-drive-team-gen10": {
+   "slug": "babolat-pure-drive-team-gen10",
+   "name": "Babolat Pure Drive Team Gen10",
+   "sources": 5,
+   "groups": {
+    "plays_like": {
+     "power": 5
+    },
+    "maneuver": {
+     "very": 4
+    },
+    "stability": {
+     "very": 2
+    },
+    "feel": {
+     "hard": 2
+    },
+    "level": {
+     "beginner": 1
+    },
+    "sweet_spot": {
+     "big": 1
+    },
+    "spin": {
+     "lots": 1
+    }
+   },
+   "spec": {
+    "feel": "hard"
+   }
+  },
+  "babolat-pure-drive-team-gen11": {
+   "slug": "babolat-pure-drive-team-gen11",
+   "name": "Babolat Pure Drive Team Gen11",
+   "sources": 9,
+   "groups": {
+    "plays_like": {
+     "power": 7,
+     "all_round": 1
+    },
+    "arm": {
+     "somewhat": 1,
+     "very": 4,
+     "not_really": 1
+    },
+    "maneuver": {
+     "very": 2
+    },
+    "stability": {
+     "very": 3
+    },
+    "sweet_spot": {
+     "big": 3
+    },
+    "spin": {
+     "some": 2,
+     "little": 1
+    },
+    "level": {
+     "beginner": 1
+    },
+    "feel": {
+     "hard": 1,
+     "soft": 1
+    }
+   },
+   "spec": {
+    "feel": "hard"
+   }
+  },
+  "babolat-pure-drive-tour-gen10": {
+   "slug": "babolat-pure-drive-tour-gen10",
+   "name": "Babolat Pure Drive Tour Gen10",
+   "sources": 0,
+   "groups": {},
+   "spec": {
+    "feel": "hard"
+   }
+  },
+  "babolat-pure-strike-100-16x20-gen4": {
+   "slug": "babolat-pure-strike-100-16x20-gen4",
+   "name": "Babolat Pure Strike 100 16x20 Gen4",
+   "sources": 19,
+   "groups": {
+    "plays_like": {
+     "control": 7,
+     "power": 4,
+     "all_round": 4
+    },
+    "arm": {
+     "very": 4,
+     "somewhat": 1,
+     "not_really": 2
+    },
+    "stability": {
+     "very": 4,
+     "not_really": 3,
+     "somewhat": 1
+    },
+    "spin": {
+     "lots": 6,
+     "some": 1
+    },
+    "maneuver": {
+     "very": 6,
+     "not_really": 1
+    },
+    "sweet_spot": {
+     "big": 5,
+     "medium": 1
+    },
+    "feel": {
+     "soft": 4,
+     "hard": 1
+    },
+    "level": {
+     "advanced": 1,
+     "intermediate": 1
+    }
+   },
+   "spec": {
+    "feel": "soft"
+   }
+  },
+  "babolat-pure-strike-100-gen3": {
+   "slug": "babolat-pure-strike-100-gen3",
+   "name": "Babolat Pure Strike 100 Gen3",
+   "sources": 16,
+   "groups": {
+    "plays_like": {
+     "control": 7,
+     "power": 5,
+     "all_round": 2
+    },
+    "sweet_spot": {
+     "big": 2
+    },
+    "spin": {
+     "lots": 8
+    },
+    "arm": {
+     "not_really": 1,
+     "very": 4
+    },
+    "stability": {
+     "very": 4,
+     "somewhat": 3
+    },
+    "maneuver": {
+     "very": 4,
+     "not_really": 1
+    },
+    "feel": {
+     "soft": 3,
+     "hard": 1
+    },
+    "durability": {
+     "wears_fast": 1
+    }
+   },
+   "spec": {
+    "feel": "hard"
+   }
+  },
+  "babolat-pure-strike-100-gen4": {
+   "slug": "babolat-pure-strike-100-gen4",
+   "name": "Babolat Pure Strike 100 Gen4",
+   "sources": 12,
+   "groups": {
+    "plays_like": {
+     "control": 7,
+     "all_round": 2,
+     "power": 1
+    },
+    "maneuver": {
+     "very": 7
+    },
+    "sweet_spot": {
+     "big": 7,
+     "medium": 1
+    },
+    "spin": {
+     "lots": 2,
+     "some": 1
+    },
+    "arm": {
+     "not_really": 1,
+     "somewhat": 1
+    },
+    "feel": {
+     "hard": 1,
+     "soft": 1
+    },
+    "level": {
+     "intermediate": 1,
+     "beginner": 1
+    },
+    "stability": {
+     "somewhat": 1
+    }
+   },
+   "spec": {}
+  },
+  "babolat-pure-strike-97-gen4": {
+   "slug": "babolat-pure-strike-97-gen4",
+   "name": "Babolat Pure Strike 97 Gen4",
+   "sources": 15,
+   "groups": {
+    "plays_like": {
+     "control": 10,
+     "all_round": 4
+    },
+    "sweet_spot": {
+     "small": 3,
+     "medium": 2
+    },
+    "arm": {
+     "very": 2,
+     "somewhat": 1
+    },
+    "stability": {
+     "very": 3,
+     "not_really": 1,
+     "somewhat": 1
+    },
+    "maneuver": {
+     "not_really": 2,
+     "very": 2
+    },
+    "spin": {
+     "lots": 2,
+     "some": 1
+    },
+    "level": {
+     "advanced": 4
+    },
+    "feel": {
+     "hard": 1,
+     "soft": 1
+    },
+    "durability": {
+     "holds_up": 1
+    }
+   },
+   "spec": {}
+  },
+  "babolat-pure-strike-98-16x19-gen3": {
+   "slug": "babolat-pure-strike-98-16x19-gen3",
+   "name": "Babolat Pure Strike 98 16x19 Gen3",
+   "sources": 19,
+   "groups": {
+    "plays_like": {
+     "power": 4,
+     "all_round": 3,
+     "control": 6
+    },
+    "arm": {
+     "not_really": 5,
+     "somewhat": 1
+    },
+    "stability": {
+     "very": 1,
+     "somewhat": 1,
+     "not_really": 1
+    },
+    "feel": {
+     "soft": 4,
+     "hard": 1
+    },
+    "maneuver": {
+     "very": 2,
+     "not_really": 2,
+     "somewhat": 1
+    },
+    "spin": {
+     "lots": 5,
+     "little": 1
+    },
+    "sweet_spot": {
+     "small": 5,
+     "medium": 1,
+     "big": 1
+    },
+    "level": {
+     "advanced": 3,
+     "intermediate": 1
+    }
+   },
+   "spec": {}
+  },
+  "babolat-pure-strike-98-16x19-gen4": {
+   "slug": "babolat-pure-strike-98-16x19-gen4",
+   "name": "Babolat Pure Strike 98 16x19 Gen4",
+   "sources": 23,
+   "groups": {
+    "plays_like": {
+     "control": 12,
+     "all_round": 7,
+     "power": 3
+    },
+    "stability": {
+     "very": 12,
+     "not_really": 1
+    },
+    "maneuver": {
+     "not_really": 7,
+     "somewhat": 1
+    },
+    "arm": {
+     "very": 4,
+     "not_really": 4,
+     "somewhat": 1
+    },
+    "feel": {
+     "hard": 4,
+     "soft": 2
+    },
+    "sweet_spot": {
+     "big": 1,
+     "medium": 3,
+     "small": 3
+    },
+    "spin": {
+     "little": 1,
+     "lots": 1
+    },
+    "level": {
+     "advanced": 1
+    }
+   },
+   "spec": {}
+  },
+  "babolat-pure-strike-98-18x20-gen3": {
+   "slug": "babolat-pure-strike-98-18x20-gen3",
+   "name": "Babolat Pure Strike 98 18x20 Gen3",
+   "sources": 12,
+   "groups": {
+    "plays_like": {
+     "control": 7
+    },
+    "maneuver": {
+     "not_really": 4
+    },
+    "stability": {
+     "very": 7,
+     "somewhat": 1
+    },
+    "sweet_spot": {
+     "big": 2,
+     "small": 3
+    },
+    "spin": {
+     "lots": 1,
+     "little": 2
+    },
+    "feel": {
+     "soft": 2,
+     "hard": 1
+    },
+    "level": {
+     "advanced": 2
+    },
+    "arm": {
+     "very": 1,
+     "not_really": 1
+    }
+   },
+   "spec": {}
+  },
+  "babolat-pure-strike-lite-gen4": {
+   "slug": "babolat-pure-strike-lite-gen4",
+   "name": "Babolat Pure Strike Lite Gen4",
+   "sources": 0,
+   "groups": {},
+   "spec": {}
+  },
+  "babolat-pure-strike-team-gen3": {
+   "slug": "babolat-pure-strike-team-gen3",
+   "name": "Babolat Pure Strike Team Gen3",
+   "sources": 0,
+   "groups": {},
+   "spec": {
+    "feel": "hard"
+   }
+  },
+  "babolat-pure-strike-team-gen4": {
+   "slug": "babolat-pure-strike-team-gen4",
+   "name": "Babolat Pure Strike Team Gen4",
+   "sources": 0,
+   "groups": {},
+   "spec": {}
+  },
+  "babolat-pure-strike-tour-gen3": {
+   "slug": "babolat-pure-strike-tour-gen3",
+   "name": "Babolat Pure Strike Tour Gen3",
+   "sources": 12,
+   "groups": {
+    "plays_like": {
+     "power": 6,
+     "control": 2
+    },
+    "spin": {
+     "lots": 4
+    },
+    "maneuver": {
+     "not_really": 7
+    },
+    "stability": {
+     "very": 9
+    },
+    "sweet_spot": {
+     "small": 2
+    },
+    "arm": {
+     "very": 1,
+     "somewhat": 1
+    },
+    "level": {
+     "advanced": 2
+    },
+    "durability": {
+     "wears_fast": 1
+    }
+   },
+   "spec": {}
+  },
+  "dunlop-cx-200-2021": {
+   "slug": "dunlop-cx-200-2021",
+   "name": "Dunlop CX 200 2021",
+   "sources": 12,
+   "groups": {
+    "plays_like": {
+     "control": 8,
+     "power": 2,
+     "all_round": 1
+    },
+    "sweet_spot": {
+     "big": 1,
+     "small": 3
+    },
+    "arm": {
+     "somewhat": 1,
+     "very": 4
+    },
+    "maneuver": {
+     "very": 2
+    },
+    "stability": {
+     "very": 4,
+     "somewhat": 1,
+     "not_really": 1
+    },
+    "spin": {
+     "lots": 1,
+     "little": 2
+    },
+    "feel": {
+     "soft": 4
+    },
+    "level": {
+     "intermediate": 1,
+     "advanced": 1
+    }
+   },
+   "spec": {}
+  },
+  "dunlop-cx-200-2024": {
+   "slug": "dunlop-cx-200-2024",
+   "name": "Dunlop CX 200 2024",
+   "sources": 13,
+   "groups": {
+    "plays_like": {
+     "control": 10,
+     "all_round": 1,
+     "power": 1
+    },
+    "maneuver": {
+     "very": 7,
+     "not_really": 1
+    },
+    "stability": {
+     "not_really": 5,
+     "very": 2,
+     "somewhat": 1
+    },
+    "spin": {
+     "lots": 4,
+     "some": 1
+    },
+    "arm": {
+     "not_really": 1,
+     "somewhat": 1
+    },
+    "feel": {
+     "hard": 1,
+     "soft": 1
+    }
+   },
+   "spec": {}
+  },
+  "dunlop-cx-200-tour-16x19-2021": {
+   "slug": "dunlop-cx-200-tour-16x19-2021",
+   "name": "Dunlop CX 200 Tour 16x19 2021",
+   "sources": 0,
+   "groups": {},
+   "spec": {}
+  },
+  "dunlop-cx-200-tour-16x19-2024": {
+   "slug": "dunlop-cx-200-tour-16x19-2024",
+   "name": "Dunlop CX 200 Tour 16x19 2024",
+   "sources": 8,
+   "groups": {
+    "plays_like": {
+     "control": 4,
+     "all_round": 3,
+     "power": 1
+    },
+    "spin": {
+     "lots": 3,
+     "some": 1
+    },
+    "maneuver": {
+     "very": 2,
+     "not_really": 1
+    },
+    "sweet_spot": {
+     "small": 2,
+     "big": 2
+    },
+    "arm": {
+     "very": 5
+    },
+    "stability": {
+     "very": 3,
+     "not_really": 1
+    },
+    "feel": {
+     "soft": 1,
+     "hard": 1
+    },
+    "level": {
+     "advanced": 1
+    }
+   },
+   "spec": {}
+  },
+  "dunlop-cx-400-2021": {
+   "slug": "dunlop-cx-400-2021",
+   "name": "Dunlop CX 400 2021",
+   "sources": 0,
+   "groups": {},
+   "spec": {
+    "feel": "hard"
+   }
+  },
+  "dunlop-cx-400-2024": {
+   "slug": "dunlop-cx-400-2024",
+   "name": "Dunlop CX 400 2024",
+   "sources": 0,
+   "groups": {},
+   "spec": {
+    "feel": "hard"
+   }
+  },
+  "dunlop-cx-400-tour-2021": {
+   "slug": "dunlop-cx-400-tour-2021",
+   "name": "Dunlop CX 400 Tour 2021",
+   "sources": 9,
+   "groups": {
+    "arm": {
+     "very": 3,
+     "somewhat": 1
+    },
+    "spin": {
+     "lots": 2,
+     "little": 1
+    },
+    "maneuver": {
+     "very": 2,
+     "not_really": 3
+    },
+    "feel": {
+     "soft": 2
+    },
+    "plays_like": {
+     "all_round": 2,
+     "power": 2,
+     "control": 3
+    },
+    "stability": {
+     "very": 2,
+     "somewhat": 1
+    },
+    "sweet_spot": {
+     "big": 1,
+     "small": 2
+    }
+   },
+   "spec": {}
+  },
+  "dunlop-cx-400-tour-2024": {
+   "slug": "dunlop-cx-400-tour-2024",
+   "name": "Dunlop CX 400 Tour 2024",
+   "sources": 17,
+   "groups": {
+    "plays_like": {
+     "all_round": 5,
+     "power": 9,
+     "control": 2
+    },
+    "arm": {
+     "very": 3,
+     "somewhat": 1
+    },
+    "spin": {
+     "lots": 7,
+     "some": 4,
+     "little": 1
+    },
+    "maneuver": {
+     "very": 7
+    },
+    "sweet_spot": {
+     "big": 2,
+     "medium": 1
+    },
+    "stability": {
+     "somewhat": 1,
+     "not_really": 2,
+     "very": 3
+    },
+    "feel": {
+     "soft": 1
+    },
+    "level": {
+     "intermediate": 1
+    }
+   },
+   "spec": {}
+  },
+  "dunlop-fx-500-2023": {
+   "slug": "dunlop-fx-500-2023",
+   "name": "Dunlop FX 500 2023",
+   "sources": 11,
+   "groups": {
+    "plays_like": {
+     "power": 9,
+     "control": 1,
+     "all_round": 1
+    },
+    "arm": {
+     "somewhat": 1,
+     "very": 2
+    },
+    "spin": {
+     "lots": 8
+    },
+    "feel": {
+     "soft": 4
+    },
+    "stability": {
+     "very": 2,
+     "somewhat": 1
+    },
+    "sweet_spot": {
+     "big": 1
+    },
+    "maneuver": {
+     "very": 3,
+     "somewhat": 1
+    }
+   },
+   "spec": {
+    "feel": "hard"
+   }
+  },
+  "dunlop-fx-500-2025": {
+   "slug": "dunlop-fx-500-2025",
+   "name": "Dunlop FX 500 2025",
+   "sources": 0,
+   "groups": {},
+   "spec": {
+    "feel": "hard"
+   }
+  },
+  "dunlop-fx-500-lite-2025": {
+   "slug": "dunlop-fx-500-lite-2025",
+   "name": "Dunlop FX 500 Lite 2025",
+   "sources": 0,
+   "groups": {},
+   "spec": {}
+  },
+  "dunlop-fx-500-ls-2023": {
+   "slug": "dunlop-fx-500-ls-2023",
+   "name": "Dunlop FX 500 LS 2023",
+   "sources": 0,
+   "groups": {},
+   "spec": {}
+  },
+  "dunlop-fx-500-ls-2025": {
+   "slug": "dunlop-fx-500-ls-2025",
+   "name": "Dunlop FX 500 LS 2025",
+   "sources": 0,
+   "groups": {},
+   "spec": {}
+  },
+  "dunlop-fx-500-tour-2023": {
+   "slug": "dunlop-fx-500-tour-2023",
+   "name": "Dunlop FX 500 Tour 2023",
+   "sources": 0,
+   "groups": {},
+   "spec": {}
+  },
+  "dunlop-fx-500-tour-2025": {
+   "slug": "dunlop-fx-500-tour-2025",
+   "name": "Dunlop FX 500 Tour 2025",
+   "sources": 11,
+   "groups": {
+    "plays_like": {
+     "power": 5,
+     "all_round": 6
+    },
+    "arm": {
+     "very": 2,
+     "not_really": 1
+    },
+    "spin": {
+     "lots": 4
+    },
+    "feel": {
+     "soft": 2,
+     "hard": 1
+    },
+    "stability": {
+     "very": 2,
+     "not_really": 1
+    },
+    "sweet_spot": {
+     "small": 2
+    },
+    "maneuver": {
+     "very": 1,
+     "not_really": 1
+    }
+   },
+   "spec": {}
+  },
+  "dunlop-fx-700-2023": {
+   "slug": "dunlop-fx-700-2023",
+   "name": "Dunlop FX 700 2023",
+   "sources": 0,
+   "groups": {},
+   "spec": {}
+  },
+  "dunlop-sx-300-2022": {
+   "slug": "dunlop-sx-300-2022",
+   "name": "Dunlop SX 300 2022",
+   "sources": 14,
+   "groups": {
+    "plays_like": {
+     "power": 12
+    },
+    "spin": {
+     "lots": 13
+    },
+    "arm": {
+     "very": 1,
+     "somewhat": 1
+    },
+    "sweet_spot": {
+     "big": 3
+    },
+    "maneuver": {
+     "very": 3
+    },
+    "stability": {
+     "not_really": 1,
+     "very": 1
+    },
+    "level": {
+     "advanced": 1
+    },
+    "feel": {
+     "soft": 1,
+     "hard": 1
+    }
+   },
+   "spec": {
+    "feel": "hard"
+   }
+  },
+  "dunlop-sx-300-2025": {
+   "slug": "dunlop-sx-300-2025",
+   "name": "Dunlop SX 300 2025",
+   "sources": 13,
+   "groups": {
+    "spin": {
+     "lots": 11
+    },
+    "maneuver": {
+     "very": 5
+    },
+    "feel": {
+     "hard": 2,
+     "soft": 1
+    },
+    "plays_like": {
+     "power": 8,
+     "all_round": 1
+    },
+    "stability": {
+     "very": 2,
+     "somewhat": 1,
+     "not_really": 1
+    },
+    "sweet_spot": {
+     "big": 2
+    },
+    "arm": {
+     "very": 3
+    },
+    "level": {
+     "intermediate": 1
+    }
+   },
+   "spec": {
+    "feel": "hard"
+   }
+  },
+  "dunlop-sx-300-ls-2022": {
+   "slug": "dunlop-sx-300-ls-2022",
+   "name": "Dunlop SX 300 LS 2022",
+   "sources": 0,
+   "groups": {},
+   "spec": {}
+  },
+  "dunlop-sx-300-tour-2022": {
+   "slug": "dunlop-sx-300-tour-2022",
+   "name": "Dunlop SX 300 Tour 2022",
+   "sources": 18,
+   "groups": {
+    "plays_like": {
+     "power": 10,
+     "all_round": 4,
+     "control": 2
+    },
+    "spin": {
+     "lots": 13,
+     "some": 2
+    },
+    "maneuver": {
+     "very": 4,
+     "somewhat": 1,
+     "not_really": 1
+    },
+    "feel": {
+     "hard": 3
+    },
+    "stability": {
+     "very": 2,
+     "somewhat": 2,
+     "not_really": 1
+    },
+    "sweet_spot": {
+     "medium": 1,
+     "small": 1,
+     "big": 1
+    },
+    "arm": {
+     "not_really": 1,
+     "very": 1
+    }
+   },
+   "spec": {}
+  },
+  "dunlop-sx-300-tour-2025": {
+   "slug": "dunlop-sx-300-tour-2025",
+   "name": "Dunlop SX 300 Tour 2025",
+   "sources": 14,
+   "groups": {
+    "plays_like": {
+     "power": 10,
+     "all_round": 1,
+     "control": 1
+    },
+    "spin": {
+     "lots": 9,
+     "some": 1
+    },
+    "arm": {
+     "not_really": 2,
+     "somewhat": 1,
+     "very": 1
+    },
+    "feel": {
+     "hard": 4
+    },
+    "stability": {
+     "very": 4
+    },
+    "maneuver": {
+     "very": 2
+    },
+    "sweet_spot": {
+     "big": 2
+    }
+   },
+   "spec": {
+    "feel": "hard"
+   }
+  },
+  "dunlop-sx-600-2022": {
+   "slug": "dunlop-sx-600-2022",
+   "name": "Dunlop SX 600 2022",
+   "sources": 0,
+   "groups": {},
+   "spec": {
+    "feel": "soft"
+   }
+  },
+  "head-boom-elite-2026": {
+   "slug": "head-boom-elite-2026",
+   "name": "Head Boom Elite 2026",
+   "sources": 0,
+   "groups": {},
+   "spec": {
+    "feel": "soft"
+   }
+  },
+  "head-boom-mp-2024": {
+   "slug": "head-boom-mp-2024",
+   "name": "Head Boom MP 2024",
+   "sources": 21,
+   "groups": {
+    "spin": {
+     "lots": 10,
+     "some": 1
+    },
+    "maneuver": {
+     "very": 13
+    },
+    "stability": {
+     "not_really": 10,
+     "somewhat": 1,
+     "very": 1
+    },
+    "plays_like": {
+     "power": 10,
+     "control": 2,
+     "all_round": 1
+    },
+    "sweet_spot": {
+     "big": 5
+    },
+    "arm": {
+     "very": 3,
+     "not_really": 1,
+     "somewhat": 1
+    },
+    "feel": {
+     "soft": 2
+    },
+    "level": {
+     "intermediate": 2,
+     "beginner": 1
+    }
+   },
+   "spec": {
+    "feel": "soft"
+   }
+  },
+  "head-boom-mp-2026": {
+   "slug": "head-boom-mp-2026",
+   "name": "Head Boom MP 2026",
+   "sources": 16,
+   "groups": {
+    "plays_like": {
+     "power": 13,
+     "control": 1
+    },
+    "sweet_spot": {
+     "big": 7
+    },
+    "spin": {
+     "lots": 10,
+     "some": 1
+    },
+    "arm": {
+     "very": 4
+    },
+    "stability": {
+     "not_really": 3,
+     "very": 2
+    },
+    "maneuver": {
+     "very": 5,
+     "not_really": 1
+    },
+    "feel": {
+     "soft": 1,
+     "hard": 1
+    },
+    "level": {
+     "beginner": 1,
+     "intermediate": 2
+    }
+   },
+   "spec": {
+    "feel": "soft"
+   }
+  },
+  "head-boom-mp-l-2024": {
+   "slug": "head-boom-mp-l-2024",
+   "name": "Head Boom MP L 2024",
+   "sources": 0,
+   "groups": {},
+   "spec": {
+    "feel": "soft"
+   }
+  },
+  "head-boom-mp-l-2026": {
+   "slug": "head-boom-mp-l-2026",
+   "name": "Head Boom MP L 2026",
+   "sources": 0,
+   "groups": {},
+   "spec": {}
+  },
+  "head-boom-mp-ul-2026": {
+   "slug": "head-boom-mp-ul-2026",
+   "name": "Head Boom MP UL 2026",
+   "sources": 0,
+   "groups": {},
+   "spec": {
+    "feel": "soft"
+   }
+  },
+  "head-boom-pro-2024": {
+   "slug": "head-boom-pro-2024",
+   "name": "Head Boom Pro 2024",
+   "sources": 20,
+   "groups": {
+    "plays_like": {
+     "power": 9,
+     "all_round": 5,
+     "control": 3
+    },
+    "sweet_spot": {
+     "big": 10
+    },
+    "spin": {
+     "lots": 5,
+     "some": 1,
+     "little": 1
+    },
+    "stability": {
+     "very": 5,
+     "somewhat": 1
+    },
+    "maneuver": {
+     "not_really": 5,
+     "very": 1
+    },
+    "feel": {
+     "soft": 2
+    },
+    "arm": {
+     "somewhat": 1,
+     "very": 2
+    },
+    "level": {
+     "advanced": 2
+    }
+   },
+   "spec": {}
+  },
+  "head-boom-pro-2026": {
+   "slug": "head-boom-pro-2026",
+   "name": "Head Boom Pro 2026",
+   "sources": 19,
+   "groups": {
+    "plays_like": {
+     "control": 6,
+     "power": 8,
+     "all_round": 2
+    },
+    "sweet_spot": {
+     "big": 6,
+     "medium": 1
+    },
+    "arm": {
+     "very": 8,
+     "somewhat": 2
+    },
+    "stability": {
+     "very": 7,
+     "somewhat": 3
+    },
+    "spin": {
+     "lots": 3,
+     "some": 2
+    },
+    "feel": {
+     "hard": 1,
+     "soft": 1
+    },
+    "level": {
+     "intermediate": 1,
+     "advanced": 2
+    },
+    "maneuver": {
+     "not_really": 2
+    }
+   },
+   "spec": {}
+  },
+  "head-boom-team-2024": {
+   "slug": "head-boom-team-2024",
+   "name": "Head Boom Team 2024",
+   "sources": 0,
+   "groups": {},
+   "spec": {
+    "feel": "soft"
+   }
+  },
+  "head-boom-team-2026": {
+   "slug": "head-boom-team-2026",
+   "name": "Head Boom Team 2026",
+   "sources": 1,
+   "groups": {
+    "plays_like": {
+     "control": 1
+    },
+    "spin": {
+     "lots": 1
+    },
+    "maneuver": {
+     "very": 1
+    },
+    "level": {
+     "beginner": 1
+    }
+   },
+   "spec": {
+    "feel": "soft"
+   }
+  },
+  "head-extreme-elite-2024": {
+   "slug": "head-extreme-elite-2024",
+   "name": "Head Extreme Elite 2024",
+   "sources": 0,
+   "groups": {},
+   "spec": {
+    "feel": "soft"
+   }
+  },
+  "head-extreme-elite-2026": {
+   "slug": "head-extreme-elite-2026",
+   "name": "Head Extreme Elite 2026",
+   "sources": 0,
+   "groups": {},
+   "spec": {
+    "feel": "soft"
+   }
+  },
+  "head-extreme-mp-2024": {
+   "slug": "head-extreme-mp-2024",
+   "name": "Head Extreme MP 2024",
+   "sources": 19,
+   "groups": {
+    "sweet_spot": {
+     "big": 4,
+     "medium": 2,
+     "small": 2
+    },
+    "arm": {
+     "somewhat": 1,
+     "very": 4,
+     "not_really": 2
+    },
+    "spin": {
+     "lots": 14,
+     "some": 1
+    },
+    "maneuver": {
+     "very": 4
+    },
+    "feel": {
+     "soft": 7
+    },
+    "plays_like": {
+     "power": 11,
+     "control": 2,
+     "all_round": 2
+    },
+    "stability": {
+     "very": 2,
+     "somewhat": 2,
+     "not_really": 2
+    },
+    "level": {
+     "intermediate": 2
+    }
+   },
+   "spec": {}
+  },
+  "head-extreme-mp-2026": {
+   "slug": "head-extreme-mp-2026",
+   "name": "Head Extreme MP 2026",
+   "sources": 0,
+   "groups": {},
+   "spec": {}
+  },
+  "head-extreme-mp-l-2024": {
+   "slug": "head-extreme-mp-l-2024",
+   "name": "Head Extreme MP L 2024",
+   "sources": 0,
+   "groups": {},
+   "spec": {}
+  },
+  "head-extreme-mp-l-2026": {
+   "slug": "head-extreme-mp-l-2026",
+   "name": "Head Extreme MP L 2026",
+   "sources": 0,
+   "groups": {},
+   "spec": {}
+  },
+  "head-extreme-mp-ul-2026": {
+   "slug": "head-extreme-mp-ul-2026",
+   "name": "Head Extreme MP UL 2026",
+   "sources": 0,
+   "groups": {},
+   "spec": {}
+  },
+  "head-extreme-mp-xl-2026": {
+   "slug": "head-extreme-mp-xl-2026",
+   "name": "Head Extreme MP XL 2026",
+   "sources": 12,
+   "groups": {
+    "plays_like": {
+     "power": 9,
+     "all_round": 2
+    },
+    "stability": {
+     "very": 1,
+     "somewhat": 3
+    },
+    "spin": {
+     "lots": 8
+    },
+    "feel": {
+     "hard": 1
+    },
+    "sweet_spot": {
+     "small": 2,
+     "medium": 2,
+     "big": 1
+    },
+    "maneuver": {
+     "very": 6,
+     "somewhat": 1
+    },
+    "arm": {
+     "somewhat": 1
+    },
+    "level": {
+     "advanced": 1
+    }
+   },
+   "spec": {}
+  },
+  "head-extreme-pro-2024": {
+   "slug": "head-extreme-pro-2024",
+   "name": "Head Extreme Pro 2024",
+   "sources": 17,
+   "groups": {
+    "arm": {
+     "very": 1,
+     "somewhat": 2
+    },
+    "spin": {
+     "lots": 10,
+     "some": 3
+    },
+    "plays_like": {
+     "control": 2,
+     "power": 10,
+     "all_round": 1
+    },
+    "sweet_spot": {
+     "big": 2,
+     "medium": 1
+    },
+    "maneuver": {
+     "not_really": 3,
+     "very": 3,
+     "somewhat": 1
+    },
+    "stability": {
+     "very": 1,
+     "somewhat": 3,
+     "not_really": 1
+    },
+    "feel": {
+     "hard": 3,
+     "soft": 2
+    },
+    "level": {
+     "advanced": 2
+    }
+   },
+   "spec": {}
+  },
+  "head-extreme-pro-2026": {
+   "slug": "head-extreme-pro-2026",
+   "name": "Head Extreme Pro 2026",
+   "sources": 16,
+   "groups": {
+    "plays_like": {
+     "control": 8,
+     "power": 3,
+     "all_round": 4
+    },
+    "spin": {
+     "lots": 8,
+     "some": 2
+    },
+    "maneuver": {
+     "very": 4,
+     "somewhat": 1,
+     "not_really": 1
+    },
+    "feel": {
+     "hard": 3,
+     "soft": 3
+    },
+    "stability": {
+     "very": 5,
+     "somewhat": 3
+    },
+    "sweet_spot": {
+     "small": 1,
+     "big": 1
+    },
+    "level": {
+     "advanced": 1
+    },
+    "arm": {
+     "not_really": 1,
+     "somewhat": 1,
+     "very": 1
+    }
+   },
+   "spec": {}
+  },
+  "head-extreme-team-2024": {
+   "slug": "head-extreme-team-2024",
+   "name": "Head Extreme Team 2024",
+   "sources": 0,
+   "groups": {},
+   "spec": {
+    "feel": "soft"
+   }
+  },
+  "head-extreme-team-2026": {
+   "slug": "head-extreme-team-2026",
+   "name": "Head Extreme Team 2026",
+   "sources": 0,
+   "groups": {},
+   "spec": {
+    "feel": "soft"
+   }
+  },
+  "head-gravity-mp-2023": {
+   "slug": "head-gravity-mp-2023",
+   "name": "Head Gravity MP 2023",
+   "sources": 25,
+   "groups": {
+    "plays_like": {
+     "control": 15,
+     "power": 3,
+     "all_round": 1
+    },
+    "arm": {
+     "very": 11,
+     "not_really": 2
+    },
+    "maneuver": {
+     "very": 9,
+     "not_really": 2
+    },
+    "stability": {
+     "very": 1,
+     "not_really": 6,
+     "somewhat": 2
+    },
+    "sweet_spot": {
+     "big": 5,
+     "medium": 1
+    },
+    "feel": {
+     "soft": 7,
+     "hard": 1
+    },
+    "spin": {
+     "lots": 3
+    },
+    "level": {
+     "intermediate": 1,
+     "advanced": 1,
+     "beginner": 1
+    }
+   },
+   "spec": {
+    "feel": "soft"
+   }
+  },
+  "head-gravity-mp-2025": {
+   "slug": "head-gravity-mp-2025",
+   "name": "Head Gravity MP 2025",
+   "sources": 16,
+   "groups": {
+    "plays_like": {
+     "control": 6,
+     "power": 4,
+     "all_round": 2
+    },
+    "arm": {
+     "very": 9
+    },
+    "sweet_spot": {
+     "big": 4,
+     "small": 1
+    },
+    "maneuver": {
+     "very": 1,
+     "not_really": 3
+    },
+    "stability": {
+     "very": 7,
+     "somewhat": 1
+    },
+    "spin": {
+     "lots": 5,
+     "some": 1,
+     "little": 3
+    },
+    "feel": {
+     "soft": 3
+    },
+    "level": {
+     "beginner": 1
+    }
+   },
+   "spec": {
+    "feel": "soft"
+   }
+  },
+  "head-gravity-mp-l-2025": {
+   "slug": "head-gravity-mp-l-2025",
+   "name": "Head Gravity MP L 2025",
+   "sources": 0,
+   "groups": {},
+   "spec": {
+    "feel": "soft"
+   }
+  },
+  "head-gravity-mp-xl-2025": {
+   "slug": "head-gravity-mp-xl-2025",
+   "name": "Head Gravity MP XL 2025",
+   "sources": 0,
+   "groups": {},
+   "spec": {
+    "feel": "soft"
+   }
+  },
+  "head-gravity-pro-2023": {
+   "slug": "head-gravity-pro-2023",
+   "name": "Head Gravity Pro 2023",
+   "sources": 23,
+   "groups": {
+    "plays_like": {
+     "control": 13,
+     "power": 3,
+     "all_round": 4
+    },
+    "maneuver": {
+     "not_really": 6,
+     "somewhat": 1
+    },
+    "stability": {
+     "very": 13,
+     "somewhat": 1
+    },
+    "arm": {
+     "somewhat": 2,
+     "very": 4,
+     "not_really": 2
+    },
+    "sweet_spot": {
+     "big": 3,
+     "medium": 1,
+     "small": 1
+    },
+    "level": {
+     "advanced": 5
+    },
+    "spin": {
+     "little": 3,
+     "some": 2,
+     "lots": 2
+    },
+    "feel": {
+     "soft": 5,
+     "hard": 1
+    }
+   },
+   "spec": {}
+  },
+  "head-gravity-pro-2025": {
+   "slug": "head-gravity-pro-2025",
+   "name": "Head Gravity Pro 2025",
+   "sources": 24,
+   "groups": {
+    "plays_like": {
+     "control": 20
+    },
+    "arm": {
+     "somewhat": 2,
+     "very": 5,
+     "not_really": 1
+    },
+    "feel": {
+     "soft": 7,
+     "hard": 1
+    },
+    "sweet_spot": {
+     "big": 4,
+     "small": 3,
+     "medium": 1
+    },
+    "spin": {
+     "lots": 1,
+     "little": 2,
+     "some": 3
+    },
+    "stability": {
+     "very": 4,
+     "not_really": 1,
+     "somewhat": 1
+    },
+    "maneuver": {
+     "somewhat": 5,
+     "very": 1,
+     "not_really": 3
+    },
+    "level": {
+     "advanced": 1
+    }
+   },
+   "spec": {
+    "feel": "soft"
+   }
+  },
+  "head-gravity-team-2023": {
+   "slug": "head-gravity-team-2023",
+   "name": "Head Gravity Team 2023",
+   "sources": 11,
+   "groups": {
+    "sweet_spot": {
+     "big": 7,
+     "medium": 1
+    },
+    "arm": {
+     "somewhat": 1,
+     "very": 3
+    },
+    "spin": {
+     "lots": 2,
+     "some": 2
+    },
+    "plays_like": {
+     "all_round": 2,
+     "power": 4,
+     "control": 1
+    },
+    "maneuver": {
+     "very": 2,
+     "not_really": 1
+    },
+    "stability": {
+     "somewhat": 3
+    },
+    "feel": {
+     "soft": 4
+    },
+    "level": {
+     "beginner": 1,
+     "intermediate": 1
+    }
+   },
+   "spec": {
+    "feel": "soft"
+   }
+  },
+  "head-gravity-team-2025": {
+   "slug": "head-gravity-team-2025",
+   "name": "Head Gravity Team 2025",
+   "sources": 0,
+   "groups": {},
+   "spec": {
+    "feel": "soft"
+   }
+  },
+  "head-gravity-tour-2023": {
+   "slug": "head-gravity-tour-2023",
+   "name": "Head Gravity Tour 2023",
+   "sources": 9,
+   "groups": {
+    "plays_like": {
+     "control": 7,
+     "all_round": 1
+    },
+    "stability": {
+     "very": 3,
+     "not_really": 1
+    },
+    "sweet_spot": {
+     "small": 1,
+     "medium": 2
+    },
+    "maneuver": {
+     "not_really": 1,
+     "very": 2
+    },
+    "arm": {
+     "very": 4
+    },
+    "feel": {
+     "hard": 1
+    },
+    "spin": {
+     "lots": 1,
+     "little": 1
+    },
+    "level": {
+     "intermediate": 1
+    }
+   },
+   "spec": {}
+  },
+  "head-gravity-tour-2025": {
+   "slug": "head-gravity-tour-2025",
+   "name": "Head Gravity Tour 2025",
+   "sources": 47,
+   "groups": {
+    "plays_like": {
+     "power": 15,
+     "control": 18,
+     "all_round": 6
+    },
+    "spin": {
+     "lots": 20,
+     "some": 2,
+     "little": 1
+    },
+    "feel": {
+     "hard": 5,
+     "soft": 6
+    },
+    "arm": {
+     "very": 11,
+     "not_really": 4
+    },
+    "maneuver": {
+     "not_really": 4,
+     "very": 6,
+     "somewhat": 3
+    },
+    "sweet_spot": {
+     "big": 4,
+     "small": 4,
+     "medium": 1
+    },
+    "stability": {
+     "not_really": 3,
+     "very": 2,
+     "somewhat": 1
+    },
+    "level": {
+     "advanced": 4
+    }
+   },
+   "spec": {
+    "feel": "soft"
+   }
+  },
+  "head-instinct-mp-2022": {
+   "slug": "head-instinct-mp-2022",
+   "name": "Head Instinct MP 2022",
+   "sources": 1,
+   "groups": {
+    "plays_like": {
+     "power": 1
+    },
+    "maneuver": {
+     "very": 1
+    },
+    "stability": {
+     "not_really": 1
+    }
+   },
+   "spec": {}
+  },
+  "head-instinct-mp-2025": {
+   "slug": "head-instinct-mp-2025",
+   "name": "Head Instinct MP 2025",
+   "sources": 0,
+   "groups": {},
+   "spec": {}
+  },
+  "head-instinct-pwr-110-2025": {
+   "slug": "head-instinct-pwr-110-2025",
+   "name": "Head PWR 110 2025",
+   "sources": 0,
+   "groups": {},
+   "spec": {}
+  },
+  "head-instinct-pwr-115-2025": {
+   "slug": "head-instinct-pwr-115-2025",
+   "name": "Head PWR 115 2025",
+   "sources": 0,
+   "groups": {},
+   "spec": {}
+  },
+  "head-instinct-team-2022": {
+   "slug": "head-instinct-team-2022",
+   "name": "Head Instinct Team 2022",
+   "sources": 1,
+   "groups": {
+    "arm": {
+     "somewhat": 1
+    },
+    "durability": {
+     "wears_fast": 1
+    }
+   },
+   "spec": {}
+  },
+  "head-instinct-team-l-2022": {
+   "slug": "head-instinct-team-l-2022",
+   "name": "Head Instinct Team L 2022",
+   "sources": 0,
+   "groups": {},
+   "spec": {}
+  },
+  "head-instinct-team-l-2025": {
+   "slug": "head-instinct-team-l-2025",
+   "name": "Head Instinct Team L 2025",
+   "sources": 0,
+   "groups": {},
+   "spec": {
+    "feel": "soft"
+   }
+  },
+  "head-prestige-mp-2021": {
+   "slug": "head-prestige-mp-2021",
+   "name": "Head Prestige MP 2021",
+   "sources": 13,
+   "groups": {
+    "plays_like": {
+     "control": 6,
+     "all_round": 3,
+     "power": 3
+    },
+    "maneuver": {
+     "not_really": 4,
+     "very": 1,
+     "somewhat": 1
+    },
+    "stability": {
+     "very": 4,
+     "not_really": 2
+    },
+    "sweet_spot": {
+     "big": 2,
+     "medium": 2
+    },
+    "spin": {
+     "lots": 1,
+     "some": 2
+    },
+    "arm": {
+     "very": 1
+    },
+    "feel": {
+     "hard": 2
+    },
+    "level": {
+     "advanced": 2,
+     "intermediate": 1
+    }
+   },
+   "spec": {}
+  },
+  "head-prestige-mp-2023": {
+   "slug": "head-prestige-mp-2023",
+   "name": "Head Prestige MP 2023",
+   "sources": 7,
+   "groups": {
+    "plays_like": {
+     "all_round": 2,
+     "control": 5
+    },
+    "arm": {
+     "somewhat": 1,
+     "very": 2
+    },
+    "feel": {
+     "soft": 3
+    },
+    "sweet_spot": {
+     "big": 1,
+     "medium": 1
+    },
+    "stability": {
+     "very": 2,
+     "somewhat": 1
+    },
+    "spin": {
+     "lots": 1,
+     "some": 1
+    },
+    "maneuver": {
+     "not_really": 1
+    },
+    "level": {
+     "advanced": 1
+    }
+   },
+   "spec": {
+    "feel": "soft"
+   }
+  },
+  "head-prestige-mp-l-2023": {
+   "slug": "head-prestige-mp-l-2023",
+   "name": "Head Prestige MP L 2023",
+   "sources": 1,
+   "groups": {
+    "plays_like": {
+     "control": 1
+    },
+    "arm": {
+     "very": 1
+    }
+   },
+   "spec": {
+    "feel": "soft"
+   }
+  },
+  "head-prestige-pro-2021": {
+   "slug": "head-prestige-pro-2021",
+   "name": "Head Prestige Pro 2021",
+   "sources": 16,
+   "groups": {
+    "plays_like": {
+     "control": 12,
+     "all_round": 1,
+     "power": 1
+    },
+    "arm": {
+     "very": 6,
+     "somewhat": 1
+    },
+    "stability": {
+     "very": 4,
+     "somewhat": 1
+    },
+    "sweet_spot": {
+     "small": 6,
+     "big": 3
+    },
+    "maneuver": {
+     "not_really": 6,
+     "very": 1
+    },
+    "spin": {
+     "little": 3
+    },
+    "level": {
+     "advanced": 3
+    }
+   },
+   "spec": {
+    "feel": "soft"
+   }
+  },
+  "head-prestige-pro-2023": {
+   "slug": "head-prestige-pro-2023",
+   "name": "Head Prestige Pro 2023",
+   "sources": 17,
+   "groups": {
+    "plays_like": {
+     "control": 14
+    },
+    "arm": {
+     "somewhat": 3,
+     "very": 4
+    },
+    "maneuver": {
+     "not_really": 3,
+     "very": 1,
+     "somewhat": 2
+    },
+    "feel": {
+     "soft": 7
+    },
+    "stability": {
+     "very": 2
+    },
+    "sweet_spot": {
+     "small": 6
+    },
+    "level": {
+     "advanced": 5
+    },
+    "spin": {
+     "little": 1
+    }
+   },
+   "spec": {
+    "feel": "soft"
+   }
+  },
+  "head-prestige-tour-2021": {
+   "slug": "head-prestige-tour-2021",
+   "name": "Head Prestige Tour 2021",
+   "sources": 13,
+   "groups": {
+    "plays_like": {
+     "control": 6,
+     "all_round": 3,
+     "power": 4
+    },
+    "stability": {
+     "very": 4,
+     "somewhat": 1
+    },
+    "sweet_spot": {
+     "big": 4
+    },
+    "feel": {
+     "soft": 5
+    },
+    "arm": {
+     "very": 3
+    },
+    "maneuver": {
+     "very": 4,
+     "somewhat": 1,
+     "not_really": 1
+    },
+    "level": {
+     "advanced": 2
+    },
+    "spin": {
+     "lots": 2
+    }
+   },
+   "spec": {}
+  },
+  "head-prestige-tour-2023": {
+   "slug": "head-prestige-tour-2023",
+   "name": "Head Prestige Tour 2023",
+   "sources": 16,
+   "groups": {
+    "plays_like": {
+     "control": 7,
+     "all_round": 2,
+     "power": 3
+    },
+    "maneuver": {
+     "not_really": 2,
+     "very": 2,
+     "somewhat": 1
+    },
+    "stability": {
+     "very": 9,
+     "somewhat": 2
+    },
+    "spin": {
+     "lots": 2,
+     "some": 1
+    },
+    "sweet_spot": {
+     "small": 2,
+     "medium": 1,
+     "big": 1
+    },
+    "feel": {
+     "soft": 4
+    },
+    "level": {
+     "advanced": 3
+    },
+    "arm": {
+     "very": 1
+    }
+   },
+   "spec": {
+    "feel": "soft"
+   }
+  },
+  "head-radical-elite-2025": {
+   "slug": "head-radical-elite-2025",
+   "name": "Head Radical Elite 2025",
+   "sources": 1,
+   "groups": {
+    "plays_like": {
+     "all_round": 1
+    }
+   },
+   "spec": {}
+  },
+  "head-radical-mp-2023": {
+   "slug": "head-radical-mp-2023",
+   "name": "Head Radical MP 2023",
+   "sources": 29,
+   "groups": {
+    "plays_like": {
+     "control": 19,
+     "power": 4,
+     "all_round": 3
+    },
+    "maneuver": {
+     "very": 7,
+     "not_really": 1,
+     "somewhat": 2
+    },
+    "arm": {
+     "very": 5,
+     "not_really": 3,
+     "somewhat": 1
+    },
+    "stability": {
+     "very": 3,
+     "not_really": 1
+    },
+    "feel": {
+     "hard": 3
+    },
+    "sweet_spot": {
+     "big": 3,
+     "small": 3,
+     "medium": 2
+    },
+    "spin": {
+     "lots": 7,
+     "little": 2,
+     "some": 2
+    },
+    "level": {
+     "intermediate": 1
+    }
+   },
+   "spec": {}
+  },
+  "head-radical-mp-2025": {
+   "slug": "head-radical-mp-2025",
+   "name": "Head Radical MP 2025",
+   "sources": 26,
+   "groups": {
+    "plays_like": {
+     "control": 19,
+     "all_round": 1,
+     "power": 2
+    },
+    "arm": {
+     "very": 5,
+     "not_really": 1
+    },
+    "sweet_spot": {
+     "big": 3,
+     "medium": 1,
+     "small": 2
+    },
+    "stability": {
+     "very": 10,
+     "somewhat": 2
+    },
+    "maneuver": {
+     "very": 4,
+     "not_really": 1
+    },
+    "feel": {
+     "soft": 5,
+     "hard": 3
+    },
+    "level": {
+     "advanced": 2,
+     "intermediate": 1
+    },
+    "spin": {
+     "little": 4
+    }
+   },
+   "spec": {}
+  },
+  "head-radical-pro-2023": {
+   "slug": "head-radical-pro-2023",
+   "name": "Head Radical Pro 2023",
+   "sources": 12,
+   "groups": {
+    "plays_like": {
+     "control": 7
+    },
+    "stability": {
+     "very": 6,
+     "somewhat": 1,
+     "not_really": 1
+    },
+    "maneuver": {
+     "not_really": 1,
+     "very": 1,
+     "somewhat": 1
+    },
+    "sweet_spot": {
+     "big": 2,
+     "medium": 2
+    },
+    "spin": {
+     "lots": 4,
+     "some": 1
+    },
+    "arm": {
+     "somewhat": 1,
+     "very": 1
+    },
+    "feel": {
+     "soft": 1
+    },
+    "level": {
+     "advanced": 3
+    }
+   },
+   "spec": {}
+  },
+  "head-radical-pro-2025": {
+   "slug": "head-radical-pro-2025",
+   "name": "Head Radical Pro 2025",
+   "sources": 13,
+   "groups": {
+    "plays_like": {
+     "control": 6,
+     "all_round": 4,
+     "power": 2
+    },
+    "sweet_spot": {
+     "small": 5
+    },
+    "stability": {
+     "very": 8,
+     "somewhat": 2
+    },
+    "maneuver": {
+     "very": 2,
+     "not_really": 2
+    },
+    "arm": {
+     "somewhat": 1,
+     "very": 1
+    },
+    "spin": {
+     "some": 1
+    }
+   },
+   "spec": {}
+  },
+  "head-radical-team-2023": {
+   "slug": "head-radical-team-2023",
+   "name": "Head Radical Team 2023",
+   "sources": 1,
+   "groups": {
+    "level": {
+     "beginner": 1
+    }
+   },
+   "spec": {}
+  },
+  "head-radical-team-2025": {
+   "slug": "head-radical-team-2025",
+   "name": "Head Radical Team 2025",
+   "sources": 0,
+   "groups": {},
+   "spec": {}
+  },
+  "head-radical-tour-2025": {
+   "slug": "head-radical-tour-2025",
+   "name": "Head Radical Tour 2025",
+   "sources": 0,
+   "groups": {},
+   "spec": {}
+  },
+  "head-speed-elite-2026": {
+   "slug": "head-speed-elite-2026",
+   "name": "Head Speed Elite 2026",
+   "sources": 0,
+   "groups": {},
+   "spec": {}
+  },
+  "head-speed-mp-2022": {
+   "slug": "head-speed-mp-2022",
+   "name": "Head Speed MP 2022",
+   "sources": 55,
+   "groups": {
+    "plays_like": {
+     "all_round": 9,
+     "control": 6,
+     "power": 14
+    },
+    "arm": {
+     "very": 12,
+     "not_really": 7,
+     "somewhat": 4
+    },
+    "spin": {
+     "lots": 10,
+     "little": 1,
+     "some": 1
+    },
+    "maneuver": {
+     "very": 10,
+     "somewhat": 3,
+     "not_really": 6
+    },
+    "feel": {
+     "soft": 6,
+     "hard": 3
+    },
+    "stability": {
+     "very": 6,
+     "not_really": 5
+    },
+    "level": {
+     "intermediate": 5,
+     "advanced": 4
+    },
+    "sweet_spot": {
+     "big": 3,
+     "medium": 2,
+     "small": 2
+    },
+    "durability": {
+     "wears_fast": 1
+    }
+   },
+   "spec": {
+    "feel": "soft"
+   }
+  },
+  "head-speed-mp-2024": {
+   "slug": "head-speed-mp-2024",
+   "name": "Head Speed MP 2024",
+   "sources": 35,
+   "groups": {
+    "plays_like": {
+     "all_round": 3,
+     "control": 11,
+     "power": 7
+    },
+    "spin": {
+     "lots": 3,
+     "some": 2,
+     "little": 1
+    },
+    "arm": {
+     "somewhat": 8,
+     "very": 2,
+     "not_really": 1
+    },
+    "stability": {
+     "very": 7,
+     "somewhat": 3
+    },
+    "sweet_spot": {
+     "big": 3,
+     "small": 2,
+     "medium": 2
+    },
+    "maneuver": {
+     "not_really": 16,
+     "very": 1
+    },
+    "feel": {
+     "soft": 5,
+     "hard": 2
+    },
+    "level": {
+     "intermediate": 4
+    }
+   },
+   "spec": {
+    "feel": "soft"
+   }
+  },
+  "head-speed-mp-2026": {
+   "slug": "head-speed-mp-2026",
+   "name": "Head Speed MP 2026",
+   "sources": 40,
+   "groups": {
+    "plays_like": {
+     "power": 12,
+     "control": 4,
+     "all_round": 2
+    },
+    "arm": {
+     "very": 13,
+     "somewhat": 2,
+     "not_really": 2
+    },
+    "spin": {
+     "lots": 4,
+     "some": 2,
+     "little": 2
+    },
+    "sweet_spot": {
+     "big": 7,
+     "small": 1
+    },
+    "maneuver": {
+     "very": 5,
+     "not_really": 10,
+     "somewhat": 2
+    },
+    "stability": {
+     "very": 13,
+     "somewhat": 3
+    },
+    "feel": {
+     "soft": 7,
+     "hard": 4
+    },
+    "level": {
+     "intermediate": 2,
+     "beginner": 1,
+     "advanced": 1
+    },
+    "durability": {
+     "wears_fast": 1
+    }
+   },
+   "spec": {
+    "feel": "soft"
+   }
+  },
+  "head-speed-mp-l-2024": {
+   "slug": "head-speed-mp-l-2024",
+   "name": "Head Speed MP L 2024",
+   "sources": 6,
+   "groups": {
+    "plays_like": {
+     "power": 4,
+     "all_round": 1
+    },
+    "spin": {
+     "lots": 1,
+     "some": 2
+    },
+    "maneuver": {
+     "very": 4,
+     "somewhat": 1
+    },
+    "sweet_spot": {
+     "big": 1,
+     "medium": 1,
+     "small": 1
+    },
+    "arm": {
+     "somewhat": 1
+    },
+    "stability": {
+     "very": 1,
+     "not_really": 2
+    }
+   },
+   "spec": {
+    "feel": "soft"
+   }
+  },
+  "head-speed-mp-l-2026": {
+   "slug": "head-speed-mp-l-2026",
+   "name": "Head Speed MP L 2026",
+   "sources": 5,
+   "groups": {
+    "spin": {
+     "lots": 1,
+     "some": 1
+    },
+    "maneuver": {
+     "very": 3,
+     "somewhat": 1
+    },
+    "plays_like": {
+     "all_round": 1
+    },
+    "sweet_spot": {
+     "big": 1
+    },
+    "arm": {
+     "somewhat": 1
+    }
+   },
+   "spec": {
+    "feel": "soft"
+   }
+  },
+  "head-speed-mp-ul-2026": {
+   "slug": "head-speed-mp-ul-2026",
+   "name": "Head Speed MP UL 2026",
+   "sources": 0,
+   "groups": {},
+   "spec": {
+    "feel": "soft"
+   }
+  },
+  "head-speed-pro-2024": {
+   "slug": "head-speed-pro-2024",
+   "name": "Head Speed Pro 2024",
+   "sources": 19,
+   "groups": {
+    "plays_like": {
+     "control": 11,
+     "all_round": 3
+    },
+    "arm": {
+     "somewhat": 4,
+     "very": 3
+    },
+    "stability": {
+     "very": 8,
+     "not_really": 1
+    },
+    "feel": {
+     "soft": 8,
+     "medium": 1
+    },
+    "maneuver": {
+     "very": 2,
+     "not_really": 3
+    },
+    "sweet_spot": {
+     "big": 1,
+     "medium": 1,
+     "small": 2
+    },
+    "spin": {
+     "little": 4,
+     "lots": 2,
+     "some": 1
+    },
+    "level": {
+     "advanced": 5
+    }
+   },
+   "spec": {
+    "feel": "soft"
+   }
+  },
+  "head-speed-pro-2026": {
+   "slug": "head-speed-pro-2026",
+   "name": "Head Speed Pro 2026",
+   "sources": 14,
+   "groups": {
+    "plays_like": {
+     "control": 8,
+     "power": 4
+    },
+    "arm": {
+     "very": 4,
+     "not_really": 1
+    },
+    "stability": {
+     "very": 7
+    },
+    "spin": {
+     "lots": 4,
+     "little": 3,
+     "some": 1
+    },
+    "maneuver": {
+     "very": 1,
+     "not_really": 5,
+     "somewhat": 1
+    },
+    "sweet_spot": {
+     "big": 2,
+     "medium": 1,
+     "small": 1
+    },
+    "level": {
+     "advanced": 1
+    },
+    "feel": {
+     "hard": 1
+    }
+   },
+   "spec": {
+    "feel": "soft"
+   }
+  },
+  "head-speed-team-2024": {
+   "slug": "head-speed-team-2024",
+   "name": "Head Speed Team 2024",
+   "sources": 0,
+   "groups": {},
+   "spec": {
+    "feel": "soft"
+   }
+  },
+  "head-speed-team-2026": {
+   "slug": "head-speed-team-2026",
+   "name": "Head Speed Team 2026",
+   "sources": 0,
+   "groups": {},
+   "spec": {
+    "feel": "soft"
+   }
+  },
+  "head-speed-tour-2026": {
+   "slug": "head-speed-tour-2026",
+   "name": "Head Speed Tour 2026",
+   "sources": 22,
+   "groups": {
+    "plays_like": {
+     "control": 10,
+     "all_round": 4,
+     "power": 2
+    },
+    "spin": {
+     "lots": 3,
+     "some": 3
+    },
+    "stability": {
+     "very": 3,
+     "not_really": 1
+    },
+    "feel": {
+     "soft": 7,
+     "hard": 2
+    },
+    "arm": {
+     "very": 4,
+     "not_really": 2,
+     "somewhat": 1
+    },
+    "maneuver": {
+     "very": 9,
+     "not_really": 1,
+     "somewhat": 1
+    },
+    "sweet_spot": {
+     "small": 5,
+     "big": 3,
+     "medium": 1
+    },
+    "level": {
+     "advanced": 3,
+     "intermediate": 1
+    }
+   },
+   "spec": {
+    "feel": "soft"
+   }
+  },
+  "prince-ats-textreme-tour-100-290": {
+   "slug": "prince-ats-textreme-tour-100-290",
+   "name": "Prince ATS Textreme Tour 100 290",
+   "sources": 0,
+   "groups": {},
+   "spec": {
+    "feel": "soft"
+   }
+  },
+  "prince-ats-textreme-tour-100-310": {
+   "slug": "prince-ats-textreme-tour-100-310",
+   "name": "Prince ATS Textreme Tour 100 310",
+   "sources": 9,
+   "groups": {
+    "spin": {
+     "lots": 8
+    },
+    "maneuver": {
+     "not_really": 2,
+     "very": 3
+    },
+    "stability": {
+     "very": 5
+    },
+    "sweet_spot": {
+     "big": 2
+    },
+    "arm": {
+     "very": 2,
+     "somewhat": 1
+    },
+    "plays_like": {
+     "power": 1,
+     "all_round": 1
+    },
+    "feel": {
+     "soft": 1
+    }
+   },
+   "spec": {
+    "feel": "soft"
+   }
+  },
+  "prince-ats-textreme-tour-100p": {
+   "slug": "prince-ats-textreme-tour-100p",
+   "name": "Prince ATS Textreme Tour 100P",
+   "sources": 8,
+   "groups": {
+    "plays_like": {
+     "control": 7
+    },
+    "arm": {
+     "very": 5
+    },
+    "maneuver": {
+     "very": 6
+    },
+    "sweet_spot": {
+     "medium": 1,
+     "small": 1,
+     "big": 1
+    },
+    "spin": {
+     "lots": 2
+    },
+    "stability": {
+     "not_really": 2
+    },
+    "feel": {
+     "soft": 3
+    },
+    "level": {
+     "advanced": 1
+    }
+   },
+   "spec": {
+    "feel": "soft"
+   }
+  },
+  "prince-ats-textreme-tour-95": {
+   "slug": "prince-ats-textreme-tour-95",
+   "name": "Prince ATS Textreme Tour 95",
+   "sources": 11,
+   "groups": {
+    "plays_like": {
+     "control": 6,
+     "power": 2,
+     "all_round": 2
+    },
+    "arm": {
+     "very": 4,
+     "not_really": 1
+    },
+    "stability": {
+     "very": 4
+    },
+    "maneuver": {
+     "not_really": 1,
+     "very": 1
+    },
+    "sweet_spot": {
+     "small": 2,
+     "big": 1,
+     "medium": 1
+    },
+    "spin": {
+     "lots": 3,
+     "some": 1
+    },
+    "level": {
+     "advanced": 2
+    },
+    "feel": {
+     "soft": 3
+    }
+   },
+   "spec": {
+    "feel": "soft"
+   }
+  },
+  "prince-ats-textreme-tour-98": {
+   "slug": "prince-ats-textreme-tour-98",
+   "name": "Prince ATS Textreme Tour 98",
+   "sources": 12,
+   "groups": {
+    "plays_like": {
+     "all_round": 6,
+     "control": 4,
+     "power": 2
+    },
+    "spin": {
+     "lots": 3,
+     "little": 1,
+     "some": 1
+    },
+    "maneuver": {
+     "not_really": 2,
+     "very": 1
+    },
+    "stability": {
+     "very": 5
+    },
+    "arm": {
+     "very": 4
+    },
+    "feel": {
+     "soft": 2
+    },
+    "sweet_spot": {
+     "small": 1,
+     "big": 1
+    },
+    "level": {
+     "advanced": 1
+    }
+   },
+   "spec": {
+    "feel": "soft"
+   }
+  },
+  "prince-phantom-100p": {
+   "slug": "prince-phantom-100p",
+   "name": "Prince Phantom 100P",
+   "sources": 2,
+   "groups": {
+    "plays_like": {
+     "control": 1
+    },
+    "arm": {
+     "very": 1
+    },
+    "maneuver": {
+     "not_really": 1
+    },
+    "sweet_spot": {
+     "small": 1
+    },
+    "spin": {
+     "little": 1
+    }
+   },
+   "spec": {
+    "feel": "soft"
+   }
+  },
+  "prince-phantom-100p-2020": {
+   "slug": "prince-phantom-100p-2020",
+   "name": "Prince Phantom 100P 2020",
+   "sources": 0,
+   "groups": {},
+   "spec": {
+    "feel": "soft"
+   }
+  },
+  "prince-phantom-100x-18x20": {
+   "slug": "prince-phantom-100x-18x20",
+   "name": "Prince Phantom 100X 18x20",
+   "sources": 0,
+   "groups": {},
+   "spec": {
+    "feel": "soft"
+   }
+  },
+  "prince-phantom-100x-290g": {
+   "slug": "prince-phantom-100x-290g",
+   "name": "Prince Phantom 100X 290g",
+   "sources": 0,
+   "groups": {},
+   "spec": {
+    "feel": "soft"
+   }
+  },
+  "prince-phantom-100x-290g-2020": {
+   "slug": "prince-phantom-100x-290g-2020",
+   "name": "Prince Phantom 100X 290g 2020",
+   "sources": 0,
+   "groups": {},
+   "spec": {
+    "feel": "soft"
+   }
+  },
+  "prince-phantom-100x-305g": {
+   "slug": "prince-phantom-100x-305g",
+   "name": "Prince Phantom 100X 305g",
+   "sources": 0,
+   "groups": {},
+   "spec": {
+    "feel": "soft"
+   }
+  },
+  "prince-phantom-100x-305g-2020": {
+   "slug": "prince-phantom-100x-305g-2020",
+   "name": "Prince Phantom 100X 305g 2020",
+   "sources": 0,
+   "groups": {},
+   "spec": {
+    "feel": "soft"
+   }
+  },
+  "prince-phantom-107g": {
+   "slug": "prince-phantom-107g",
+   "name": "Prince Phantom 107G",
+   "sources": 0,
+   "groups": {},
+   "spec": {
+    "feel": "soft"
+   }
+  },
+  "prince-phantom-107g-2020": {
+   "slug": "prince-phantom-107g-2020",
+   "name": "Prince Phantom 107G 2020",
+   "sources": 0,
+   "groups": {},
+   "spec": {
+    "feel": "soft"
+   }
+  },
+  "prince-phantom-93p-2020": {
+   "slug": "prince-phantom-93p-2020",
+   "name": "Prince Phantom 93P 2020",
+   "sources": 0,
+   "groups": {},
+   "spec": {
+    "feel": "soft"
+   }
+  },
+  "prince-phantom-97p-2020": {
+   "slug": "prince-phantom-97p-2020",
+   "name": "Prince Phantom 97P 2020",
+   "sources": 7,
+   "groups": {
+    "plays_like": {
+     "control": 6
+    },
+    "sweet_spot": {
+     "small": 6
+    },
+    "arm": {
+     "somewhat": 1,
+     "very": 4
+    },
+    "spin": {
+     "lots": 4,
+     "little": 1
+    },
+    "maneuver": {
+     "very": 2
+    },
+    "stability": {
+     "not_really": 2
+    },
+    "feel": {
+     "soft": 3
+    },
+    "level": {
+     "advanced": 2
+    }
+   },
+   "spec": {
+    "feel": "soft"
+   }
+  },
+  "prince-ripcord-100-265g": {
+   "slug": "prince-ripcord-100-265g",
+   "name": "Prince Ripcord 100 265g",
+   "sources": 0,
+   "groups": {},
+   "spec": {}
+  },
+  "prince-ripcord-100-280g": {
+   "slug": "prince-ripcord-100-280g",
+   "name": "Prince Ripcord 100 280g",
+   "sources": 0,
+   "groups": {},
+   "spec": {}
+  },
+  "prince-ripcord-100-300g": {
+   "slug": "prince-ripcord-100-300g",
+   "name": "Prince Ripcord 100 300g",
+   "sources": 0,
+   "groups": {},
+   "spec": {
+    "feel": "hard"
+   }
+  },
+  "prince-ripstick-100-280g": {
+   "slug": "prince-ripstick-100-280g",
+   "name": "Prince Ripstick 100 280g 2025",
+   "sources": 1,
+   "groups": {
+    "arm": {
+     "somewhat": 1
+    },
+    "feel": {
+     "hard": 1
+    },
+    "level": {
+     "advanced": 1
+    }
+   },
+   "spec": {}
+  },
+  "prince-ripstick-100-280g-2021": {
+   "slug": "prince-ripstick-100-280g-2021",
+   "name": "Prince Ripstick 100 280g 2021",
+   "sources": 0,
+   "groups": {},
+   "spec": {}
+  },
+  "prince-ripstick-100-300g": {
+   "slug": "prince-ripstick-100-300g",
+   "name": "Prince Ripstick 100 300g",
+   "sources": 1,
+   "groups": {
+    "plays_like": {
+     "power": 1
+    },
+    "spin": {
+     "lots": 1
+    }
+   },
+   "spec": {}
+  },
+  "prince-ripstick-100-300g-2021": {
+   "slug": "prince-ripstick-100-300g-2021",
+   "name": "Prince Ripstick 100 300g 2021",
+   "sources": 4,
+   "groups": {
+    "plays_like": {
+     "power": 3
+    },
+    "spin": {
+     "lots": 4
+    },
+    "maneuver": {
+     "not_really": 1
+    },
+    "feel": {
+     "hard": 1
+    }
+   },
+   "spec": {}
+  },
+  "prince-ripstick-98": {
+   "slug": "prince-ripstick-98",
+   "name": "Prince Ripstick 98",
+   "sources": 9,
+   "groups": {
+    "plays_like": {
+     "power": 6,
+     "control": 2,
+     "all_round": 1
+    },
+    "arm": {
+     "very": 3
+    },
+    "spin": {
+     "lots": 8
+    },
+    "feel": {
+     "soft": 3,
+     "hard": 1
+    },
+    "maneuver": {
+     "very": 4,
+     "somewhat": 1
+    },
+    "sweet_spot": {
+     "big": 1
+    },
+    "stability": {
+     "very": 1
+    }
+   },
+   "spec": {}
+  },
+  "prince-tour-100-290g-2026": {
+   "slug": "prince-tour-100-290g-2026",
+   "name": "Prince Tour 100 290g 2026",
+   "sources": 0,
+   "groups": {},
+   "spec": {}
+  },
+  "prince-tour-100-310g-2026": {
+   "slug": "prince-tour-100-310g-2026",
+   "name": "Prince Tour 100 310g 2026",
+   "sources": 5,
+   "groups": {
+    "spin": {
+     "lots": 4
+    },
+    "maneuver": {
+     "very": 1
+    },
+    "stability": {
+     "very": 4
+    },
+    "plays_like": {
+     "control": 2,
+     "all_round": 1
+    },
+    "sweet_spot": {
+     "big": 1
+    },
+    "arm": {
+     "very": 1
+    }
+   },
+   "spec": {}
+  },
+  "prince-tour-100p-2026": {
+   "slug": "prince-tour-100p-2026",
+   "name": "Prince Tour 100P 2026",
+   "sources": 0,
+   "groups": {},
+   "spec": {
+    "feel": "soft"
+   }
+  },
+  "prince-tour-98-2026": {
+   "slug": "prince-tour-98-2026",
+   "name": "Prince Tour 98 2026",
+   "sources": 11,
+   "groups": {
+    "plays_like": {
+     "control": 8,
+     "all_round": 1
+    },
+    "stability": {
+     "very": 4
+    },
+    "spin": {
+     "lots": 4,
+     "some": 1,
+     "little": 1
+    },
+    "maneuver": {
+     "very": 2
+    },
+    "feel": {
+     "hard": 1,
+     "soft": 1
+    },
+    "level": {
+     "advanced": 2
+    },
+    "arm": {
+     "very": 1
+    }
+   },
+   "spec": {}
+  },
+  "prokennex-black-ace-105-2022": {
+   "slug": "prokennex-black-ace-105-2022",
+   "name": "ProKennex Black Ace 105 2022",
+   "sources": 0,
+   "groups": {},
+   "spec": {}
+  },
+  "prokennex-black-ace-105-2025": {
+   "slug": "prokennex-black-ace-105-2025",
+   "name": "ProKennex Black Ace 105 2025",
+   "sources": 0,
+   "groups": {},
+   "spec": {
+    "feel": "soft"
+   }
+  },
+  "prokennex-black-ace-285-2022": {
+   "slug": "prokennex-black-ace-285-2022",
+   "name": "ProKennex Black Ace 285 2022",
+   "sources": 0,
+   "groups": {},
+   "spec": {
+    "feel": "soft"
+   }
+  },
+  "prokennex-black-ace-285-2025": {
+   "slug": "prokennex-black-ace-285-2025",
+   "name": "ProKennex Black Ace 285 2025",
+   "sources": 0,
+   "groups": {},
+   "spec": {
+    "feel": "soft"
+   }
+  },
+  "prokennex-black-ace-300-2022": {
+   "slug": "prokennex-black-ace-300-2022",
+   "name": "ProKennex Black Ace 300 2022",
+   "sources": 2,
+   "groups": {
+    "arm": {
+     "very": 2
+    },
+    "spin": {
+     "lots": 2
+    },
+    "maneuver": {
+     "very": 2
+    },
+    "plays_like": {
+     "control": 1
+    },
+    "feel": {
+     "soft": 1
+    }
+   },
+   "spec": {
+    "feel": "soft"
+   }
+  },
+  "prokennex-black-ace-300-2025": {
+   "slug": "prokennex-black-ace-300-2025",
+   "name": "ProKennex Black Ace 300 2025",
+   "sources": 5,
+   "groups": {
+    "plays_like": {
+     "control": 1,
+     "power": 3,
+     "all_round": 1
+    },
+    "arm": {
+     "very": 4
+    },
+    "sweet_spot": {
+     "big": 1,
+     "small": 1
+    },
+    "spin": {
+     "little": 1
+    },
+    "stability": {
+     "somewhat": 1,
+     "very": 1
+    },
+    "feel": {
+     "soft": 1
+    },
+    "level": {
+     "advanced": 1
+    }
+   },
+   "spec": {
+    "feel": "soft"
+   }
+  },
+  "prokennex-black-ace-315-2022": {
+   "slug": "prokennex-black-ace-315-2022",
+   "name": "ProKennex Black Ace 315 2022",
+   "sources": 0,
+   "groups": {},
+   "spec": {
+    "feel": "soft"
+   }
+  },
+  "prokennex-black-ace-315-2025": {
+   "slug": "prokennex-black-ace-315-2025",
+   "name": "ProKennex Black Ace 315 2025",
+   "sources": 0,
+   "groups": {},
+   "spec": {
+    "feel": "soft"
+   }
+  },
+  "prokennex-black-ace-pro-2022": {
+   "slug": "prokennex-black-ace-pro-2022",
+   "name": "ProKennex Black Ace Pro 2022",
+   "sources": 0,
+   "groups": {},
+   "spec": {
+    "feel": "soft"
+   }
+  },
+  "prokennex-black-ace-pro-2025": {
+   "slug": "prokennex-black-ace-pro-2025",
+   "name": "ProKennex Black Ace Pro 2025",
+   "sources": 0,
+   "groups": {},
+   "spec": {
+    "feel": "soft"
+   }
+  },
+  "prokennex-ki-q-plus-15-2021": {
+   "slug": "prokennex-ki-q-plus-15-2021",
+   "name": "ProKennex Ki Q+ 15 2021",
+   "sources": 0,
+   "groups": {},
+   "spec": {
+    "feel": "hard"
+   }
+  },
+  "prokennex-ki-q-plus-5-pro-2021": {
+   "slug": "prokennex-ki-q-plus-5-pro-2021",
+   "name": "ProKennex Ki Q+ 5 Pro 2021",
+   "sources": 3,
+   "groups": {
+    "plays_like": {
+     "control": 1
+    },
+    "arm": {
+     "very": 3
+    },
+    "stability": {
+     "very": 1,
+     "somewhat": 1
+    },
+    "spin": {
+     "little": 1
+    },
+    "maneuver": {
+     "not_really": 1
+    },
+    "feel": {
+     "soft": 1
+    }
+   },
+   "spec": {}
+  },
+  "prokennex-ki-q-plus-tour-2021": {
+   "slug": "prokennex-ki-q-plus-tour-2021",
+   "name": "ProKennex Ki Q+ Tour 2021",
+   "sources": 0,
+   "groups": {},
+   "spec": {
+    "feel": "soft"
+   }
+  },
+  "prokennex-ki-q-plus-tour-pro-315g-2021": {
+   "slug": "prokennex-ki-q-plus-tour-pro-315g-2021",
+   "name": "ProKennex Ki Q+ Tour Pro 315g 2021",
+   "sources": 0,
+   "groups": {},
+   "spec": {
+    "feel": "soft"
+   }
+  },
+  "solinco-blackout-285-v1": {
+   "slug": "solinco-blackout-285-v1",
+   "name": "Solinco Blackout 285 V1",
+   "sources": 3,
+   "groups": {
+    "plays_like": {
+     "all_round": 1,
+     "control": 1,
+     "power": 1
+    },
+    "maneuver": {
+     "very": 2
+    },
+    "stability": {
+     "somewhat": 1
+    },
+    "feel": {
+     "hard": 1
+    },
+    "spin": {
+     "lots": 1
+    },
+    "level": {
+     "intermediate": 1
+    }
+   },
+   "spec": {
+    "feel": "hard"
+   }
+  },
+  "solinco-blackout-285-v2": {
+   "slug": "solinco-blackout-285-v2",
+   "name": "Solinco Blackout 285 V2",
+   "sources": 5,
+   "groups": {
+    "plays_like": {
+     "power": 4
+    },
+    "spin": {
+     "lots": 4
+    },
+    "maneuver": {
+     "very": 1,
+     "somewhat": 1
+    },
+    "stability": {
+     "very": 2,
+     "somewhat": 1
+    },
+    "arm": {
+     "very": 1
+    }
+   },
+   "spec": {}
+  },
+  "solinco-blackout-300-v1": {
+   "slug": "solinco-blackout-300-v1",
+   "name": "Solinco Blackout 300 V1",
+   "sources": 12,
+   "groups": {
+    "plays_like": {
+     "power": 11,
+     "control": 1
+    },
+    "spin": {
+     "lots": 7
+    },
+    "maneuver": {
+     "very": 4
+    },
+    "sweet_spot": {
+     "big": 5,
+     "medium": 1
+    },
+    "arm": {
+     "not_really": 2,
+     "somewhat": 1
+    },
+    "stability": {
+     "not_really": 1
+    },
+    "feel": {
+     "hard": 1
+    }
+   },
+   "spec": {
+    "feel": "hard"
+   }
+  },
+  "solinco-blackout-300-v2": {
+   "slug": "solinco-blackout-300-v2",
+   "name": "Solinco Blackout 300 V2",
+   "sources": 18,
+   "groups": {
+    "plays_like": {
+     "power": 13,
+     "all_round": 4,
+     "control": 1
+    },
+    "spin": {
+     "lots": 10,
+     "some": 2
+    },
+    "stability": {
+     "very": 10,
+     "somewhat": 1
+    },
+    "arm": {
+     "somewhat": 4,
+     "very": 2
+    },
+    "maneuver": {
+     "very": 4
+    },
+    "feel": {
+     "hard": 1,
+     "soft": 5
+    },
+    "level": {
+     "advanced": 1
+    }
+   },
+   "spec": {}
+  },
+  "solinco-blackout-300-xtd-v1": {
+   "slug": "solinco-blackout-300-xtd-v1",
+   "name": "Solinco Blackout 300 XTD V1",
+   "sources": 8,
+   "groups": {
+    "plays_like": {
+     "power": 5,
+     "all_round": 1
+    },
+    "maneuver": {
+     "not_really": 4
+    },
+    "sweet_spot": {
+     "big": 2
+    },
+    "stability": {
+     "very": 2,
+     "somewhat": 1
+    },
+    "arm": {
+     "somewhat": 1
+    },
+    "spin": {
+     "little": 1,
+     "lots": 1
+    },
+    "feel": {
+     "soft": 1,
+     "hard": 1
+    }
+   },
+   "spec": {
+    "feel": "hard"
+   }
+  },
+  "solinco-blackout-300-xtd-v2": {
+   "slug": "solinco-blackout-300-xtd-v2",
+   "name": "Solinco Blackout 300 XTD V2",
+   "sources": 6,
+   "groups": {
+    "plays_like": {
+     "power": 3,
+     "all_round": 2
+    },
+    "stability": {
+     "very": 2,
+     "somewhat": 1
+    },
+    "spin": {
+     "lots": 2
+    },
+    "sweet_spot": {
+     "small": 1,
+     "medium": 1
+    },
+    "maneuver": {
+     "not_really": 1
+    },
+    "feel": {
+     "soft": 1
+    }
+   },
+   "spec": {}
+  },
+  "solinco-whiteout-290-v1": {
+   "slug": "solinco-whiteout-290-v1",
+   "name": "Solinco Whiteout 290 V1",
+   "sources": 0,
+   "groups": {},
+   "spec": {}
+  },
+  "solinco-whiteout-290-v2": {
+   "slug": "solinco-whiteout-290-v2",
+   "name": "Solinco Whiteout 290 V2",
+   "sources": 0,
+   "groups": {},
+   "spec": {}
+  },
+  "solinco-whiteout-305-18x20-v1": {
+   "slug": "solinco-whiteout-305-18x20-v1",
+   "name": "Solinco Whiteout 305 18x20 V1",
+   "sources": 3,
+   "groups": {
+    "plays_like": {
+     "control": 2
+    },
+    "spin": {
+     "lots": 3
+    },
+    "feel": {
+     "soft": 2
+    },
+    "stability": {
+     "very": 1
+    },
+    "arm": {
+     "not_really": 1
+    },
+    "level": {
+     "advanced": 1
+    }
+   },
+   "spec": {}
+  },
+  "solinco-whiteout-305-v1": {
+   "slug": "solinco-whiteout-305-v1",
+   "name": "Solinco Whiteout 305 V1",
+   "sources": 12,
+   "groups": {
+    "plays_like": {
+     "control": 5,
+     "power": 3,
+     "all_round": 4
+    },
+    "spin": {
+     "lots": 4,
+     "some": 1
+    },
+    "stability": {
+     "very": 6,
+     "somewhat": 1
+    },
+    "maneuver": {
+     "very": 1
+    },
+    "arm": {
+     "very": 2
+    },
+    "sweet_spot": {
+     "medium": 1
+    },
+    "feel": {
+     "hard": 2
+    },
+    "level": {
+     "advanced": 1
+    }
+   },
+   "spec": {}
+  },
+  "solinco-whiteout-305-v2": {
+   "slug": "solinco-whiteout-305-v2",
+   "name": "Solinco Whiteout 305 V2",
+   "sources": 18,
+   "groups": {
+    "plays_like": {
+     "all_round": 4,
+     "power": 4,
+     "control": 7
+    },
+    "stability": {
+     "very": 5,
+     "somewhat": 6,
+     "not_really": 1
+    },
+    "arm": {
+     "somewhat": 5,
+     "very": 3
+    },
+    "sweet_spot": {
+     "big": 1,
+     "medium": 3
+    },
+    "spin": {
+     "lots": 2,
+     "little": 1,
+     "some": 3
+    },
+    "maneuver": {
+     "very": 2,
+     "not_really": 2
+    },
+    "feel": {
+     "soft": 8
+    },
+    "level": {
+     "advanced": 2
+    }
+   },
+   "spec": {}
+  },
+  "solinco-whiteout-305-xtd-v1": {
+   "slug": "solinco-whiteout-305-xtd-v1",
+   "name": "Solinco Whiteout 305 XTD V1",
+   "sources": 5,
+   "groups": {
+    "plays_like": {
+     "control": 2,
+     "power": 1,
+     "all_round": 2
+    },
+    "spin": {
+     "lots": 2,
+     "some": 2
+    },
+    "maneuver": {
+     "very": 1,
+     "somewhat": 1,
+     "not_really": 1
+    },
+    "stability": {
+     "very": 2
+    },
+    "feel": {
+     "hard": 1
+    },
+    "level": {
+     "advanced": 1
+    },
+    "sweet_spot": {
+     "small": 1
+    }
+   },
+   "spec": {}
+  },
+  "solinco-whiteout-305-xtd-v2": {
+   "slug": "solinco-whiteout-305-xtd-v2",
+   "name": "Solinco Whiteout 305 XTD V2",
+   "sources": 0,
+   "groups": {},
+   "spec": {}
+  },
+  "tecnifibre-fire-285": {
+   "slug": "tecnifibre-fire-285",
+   "name": "Tecnifibre Fire 285",
+   "sources": 1,
+   "groups": {
+    "plays_like": {
+     "power": 1
+    },
+    "sweet_spot": {
+     "big": 1
+    },
+    "stability": {
+     "not_really": 1
+    }
+   },
+   "spec": {}
+  },
+  "tecnifibre-fire-300": {
+   "slug": "tecnifibre-fire-300",
+   "name": "Tecnifibre Fire 300",
+   "sources": 12,
+   "groups": {
+    "plays_like": {
+     "power": 6,
+     "all_round": 4
+    },
+    "arm": {
+     "not_really": 3,
+     "somewhat": 1
+    },
+    "maneuver": {
+     "very": 6
+    },
+    "sweet_spot": {
+     "big": 3
+    },
+    "spin": {
+     "lots": 7,
+     "some": 1
+    },
+    "feel": {
+     "hard": 3
+    },
+    "stability": {
+     "not_really": 2,
+     "very": 1
+    },
+    "level": {
+     "intermediate": 1
+    }
+   },
+   "spec": {
+    "feel": "hard"
+   }
+  },
+  "tecnifibre-fire-305s": {
+   "slug": "tecnifibre-fire-305s",
+   "name": "Tecnifibre Fire 305S",
+   "sources": 11,
+   "groups": {
+    "plays_like": {
+     "all_round": 2,
+     "power": 8
+    },
+    "arm": {
+     "not_really": 3
+    },
+    "feel": {
+     "hard": 4
+    },
+    "spin": {
+     "lots": 4
+    },
+    "stability": {
+     "very": 6,
+     "not_really": 1
+    },
+    "sweet_spot": {
+     "big": 5
+    },
+    "maneuver": {
+     "very": 2
+    },
+    "level": {
+     "intermediate": 1
+    }
+   },
+   "spec": {}
+  },
+  "tecnifibre-t-fight-270": {
+   "slug": "tecnifibre-t-fight-270",
+   "name": "Tecnifibre T-Fight 270",
+   "sources": 0,
+   "groups": {},
+   "spec": {}
+  },
+  "tecnifibre-t-fight-285": {
+   "slug": "tecnifibre-t-fight-285",
+   "name": "Tecnifibre T-Fight 285",
+   "sources": 0,
+   "groups": {},
+   "spec": {}
+  },
+  "tecnifibre-t-fight-295-iso": {
+   "slug": "tecnifibre-t-fight-295-iso",
+   "name": "Tecnifibre T-Fight 295 ISO",
+   "sources": 0,
+   "groups": {},
+   "spec": {
+    "feel": "hard"
+   }
+  },
+  "tecnifibre-t-fight-300": {
+   "slug": "tecnifibre-t-fight-300",
+   "name": "Tecnifibre T-Fight 300",
+   "sources": 20,
+   "groups": {
+    "spin": {
+     "lots": 6,
+     "some": 1,
+     "little": 1
+    },
+    "maneuver": {
+     "very": 9,
+     "not_really": 1
+    },
+    "plays_like": {
+     "power": 5,
+     "control": 8,
+     "all_round": 1
+    },
+    "sweet_spot": {
+     "big": 1,
+     "medium": 3,
+     "small": 2
+    },
+    "stability": {
+     "very": 4
+    },
+    "feel": {
+     "hard": 4
+    },
+    "level": {
+     "intermediate": 4,
+     "advanced": 1
+    },
+    "arm": {
+     "not_really": 1
+    }
+   },
+   "spec": {}
+  },
+  "tecnifibre-t-fight-300-iso": {
+   "slug": "tecnifibre-t-fight-300-iso",
+   "name": "Tecnifibre T-Fight 300 ISO",
+   "sources": 17,
+   "groups": {
+    "plays_like": {
+     "control": 7,
+     "power": 5
+    },
+    "stability": {
+     "very": 4,
+     "somewhat": 1,
+     "not_really": 2
+    },
+    "maneuver": {
+     "very": 6,
+     "not_really": 2,
+     "somewhat": 1
+    },
+    "arm": {
+     "not_really": 2,
+     "very": 1
+    },
+    "sweet_spot": {
+     "big": 2,
+     "small": 1
+    },
+    "spin": {
+     "lots": 3,
+     "some": 1,
+     "little": 1
+    },
+    "feel": {
+     "soft": 3,
+     "hard": 1
+    },
+    "level": {
+     "advanced": 1,
+     "intermediate": 2,
+     "beginner": 1
+    }
+   },
+   "spec": {}
+  },
+  "tecnifibre-t-fight-300s": {
+   "slug": "tecnifibre-t-fight-300s",
+   "name": "Tecnifibre T-Fight 300S",
+   "sources": 29,
+   "groups": {
+    "plays_like": {
+     "control": 9,
+     "power": 7,
+     "all_round": 4
+    },
+    "maneuver": {
+     "very": 13,
+     "not_really": 1,
+     "somewhat": 1
+    },
+    "feel": {
+     "hard": 3,
+     "soft": 2
+    },
+    "sweet_spot": {
+     "small": 3,
+     "big": 4,
+     "medium": 1
+    },
+    "spin": {
+     "lots": 11,
+     "some": 1
+    },
+    "arm": {
+     "very": 3,
+     "somewhat": 1,
+     "not_really": 1
+    },
+    "stability": {
+     "very": 4,
+     "not_really": 2,
+     "somewhat": 3
+    },
+    "level": {
+     "advanced": 2
+    }
+   },
+   "spec": {}
+  },
+  "tecnifibre-t-fight-305-iso": {
+   "slug": "tecnifibre-t-fight-305-iso",
+   "name": "Tecnifibre T-Fight 305 ISO",
+   "sources": 21,
+   "groups": {
+    "plays_like": {
+     "control": 9,
+     "all_round": 2,
+     "power": 3
+    },
+    "maneuver": {
+     "not_really": 11,
+     "very": 2
+    },
+    "stability": {
+     "very": 14
+    },
+    "sweet_spot": {
+     "small": 2
+    },
+    "feel": {
+     "soft": 3,
+     "hard": 4
+    },
+    "arm": {
+     "very": 3,
+     "somewhat": 2
+    },
+    "spin": {
+     "lots": 2,
+     "some": 1,
+     "little": 1
+    },
+    "level": {
+     "advanced": 5
+    }
+   },
+   "spec": {}
+  },
+  "tecnifibre-t-fight-305s": {
+   "slug": "tecnifibre-t-fight-305s",
+   "name": "Tecnifibre T-Fight 305S",
+   "sources": 93,
+   "groups": {
+    "plays_like": {
+     "control": 31,
+     "power": 15,
+     "all_round": 13
+    },
+    "maneuver": {
+     "not_really": 11,
+     "very": 18,
+     "somewhat": 5
+    },
+    "stability": {
+     "very": 18,
+     "somewhat": 2,
+     "not_really": 3
+    },
+    "arm": {
+     "very": 4,
+     "not_really": 11
+    },
+    "sweet_spot": {
+     "small": 8,
+     "big": 4,
+     "medium": 1
+    },
+    "spin": {
+     "little": 8,
+     "some": 3,
+     "lots": 10
+    },
+    "feel": {
+     "hard": 13,
+     "soft": 4
+    },
+    "level": {
+     "advanced": 7,
+     "beginner": 2,
+     "intermediate": 3
+    },
+    "durability": {
+     "wears_fast": 1
+    }
+   },
+   "spec": {}
+  },
+  "tecnifibre-t-fight-315-iso": {
+   "slug": "tecnifibre-t-fight-315-iso",
+   "name": "Tecnifibre T-Fight 315 ISO",
+   "sources": 11,
+   "groups": {
+    "plays_like": {
+     "control": 4,
+     "power": 1,
+     "all_round": 2
+    },
+    "spin": {
+     "lots": 5,
+     "some": 1
+    },
+    "sweet_spot": {
+     "small": 2
+    },
+    "arm": {
+     "very": 3
+    },
+    "maneuver": {
+     "not_really": 1,
+     "very": 3,
+     "somewhat": 1
+    },
+    "stability": {
+     "very": 3
+    },
+    "feel": {
+     "hard": 3,
+     "soft": 1
+    },
+    "level": {
+     "advanced": 2
+    }
+   },
+   "spec": {
+    "feel": "hard"
+   }
+  },
+  "tecnifibre-t-fight-315s": {
+   "slug": "tecnifibre-t-fight-315s",
+   "name": "Tecnifibre T-Fight 315S",
+   "sources": 17,
+   "groups": {
+    "plays_like": {
+     "control": 3,
+     "power": 8
+    },
+    "spin": {
+     "lots": 5,
+     "some": 1
+    },
+    "maneuver": {
+     "very": 8
+    },
+    "arm": {
+     "not_really": 2,
+     "very": 1
+    },
+    "sweet_spot": {
+     "big": 4,
+     "medium": 1,
+     "small": 1
+    },
+    "stability": {
+     "very": 5,
+     "somewhat": 1
+    },
+    "feel": {
+     "hard": 1,
+     "soft": 2
+    },
+    "level": {
+     "advanced": 2
+    }
+   },
+   "spec": {}
+  },
+  "tecnifibre-tempo-tour": {
+   "slug": "tecnifibre-tempo-tour",
+   "name": "Tecnifibre Tempo Tour",
+   "sources": 0,
+   "groups": {},
+   "spec": {}
+  },
+  "tecnifibre-tf-40-290-16m-v3": {
+   "slug": "tecnifibre-tf-40-290-16m-v3",
+   "name": "Tecnifibre TF-40 290 16M V3",
+   "sources": 11,
+   "groups": {
+    "plays_like": {
+     "control": 10,
+     "all_round": 1
+    },
+    "spin": {
+     "lots": 3,
+     "some": 1
+    },
+    "maneuver": {
+     "very": 8,
+     "somewhat": 2
+    },
+    "arm": {
+     "very": 4,
+     "somewhat": 2
+    },
+    "stability": {
+     "not_really": 2,
+     "very": 1
+    },
+    "sweet_spot": {
+     "small": 1,
+     "medium": 1
+    },
+    "feel": {
+     "soft": 1
+    },
+    "level": {
+     "intermediate": 1
+    }
+   },
+   "spec": {}
+  },
+  "tecnifibre-tf-40-305-16m-v2": {
+   "slug": "tecnifibre-tf-40-305-16m-v2",
+   "name": "Tecnifibre TF-40 305 16M V2",
+   "sources": 12,
+   "groups": {
+    "plays_like": {
+     "control": 8,
+     "power": 3
+    },
+    "sweet_spot": {
+     "big": 3,
+     "small": 1,
+     "medium": 2
+    },
+    "arm": {
+     "somewhat": 1,
+     "very": 1
+    },
+    "maneuver": {
+     "very": 2
+    },
+    "spin": {
+     "lots": 7
+    },
+    "stability": {
+     "very": 2
+    },
+    "feel": {
+     "soft": 3,
+     "hard": 1
+    },
+    "level": {
+     "advanced": 1
+    }
+   },
+   "spec": {}
+  },
+  "tecnifibre-tf-40-305-16m-v3": {
+   "slug": "tecnifibre-tf-40-305-16m-v3",
+   "name": "Tecnifibre TF-40 305 16M V3",
+   "sources": 0,
+   "groups": {},
+   "spec": {}
+  },
+  "tecnifibre-tf-40-305-18m-v3": {
+   "slug": "tecnifibre-tf-40-305-18m-v3",
+   "name": "Tecnifibre TF-40 305 18M V3",
+   "sources": 0,
+   "groups": {},
+   "spec": {}
+  },
+  "tecnifibre-tf-40-315-16m-v2": {
+   "slug": "tecnifibre-tf-40-315-16m-v2",
+   "name": "Tecnifibre TF-40 315 16M V2",
+   "sources": 13,
+   "groups": {
+    "plays_like": {
+     "power": 3,
+     "control": 3,
+     "all_round": 3
+    },
+    "arm": {
+     "very": 2
+    },
+    "maneuver": {
+     "very": 5,
+     "somewhat": 1,
+     "not_really": 1
+    },
+    "stability": {
+     "very": 4
+    },
+    "spin": {
+     "lots": 5,
+     "some": 1
+    },
+    "sweet_spot": {
+     "big": 2,
+     "small": 1
+    },
+    "feel": {
+     "soft": 3
+    },
+    "level": {
+     "advanced": 3
+    }
+   },
+   "spec": {}
+  },
+  "tecnifibre-tf-40-315-16m-v3": {
+   "slug": "tecnifibre-tf-40-315-16m-v3",
+   "name": "Tecnifibre TF-40 315 16M V3",
+   "sources": 0,
+   "groups": {},
+   "spec": {}
+  },
+  "tecnifibre-tf-x1-275": {
+   "slug": "tecnifibre-tf-x1-275",
+   "name": "Tecnifibre TF-X1 275",
+   "sources": 0,
+   "groups": {},
+   "spec": {
+    "feel": "hard"
+   }
+  },
+  "tecnifibre-tf-x1-285": {
+   "slug": "tecnifibre-tf-x1-285",
+   "name": "Tecnifibre TF-X1 285",
+   "sources": 0,
+   "groups": {},
+   "spec": {
+    "feel": "hard"
+   }
+  },
+  "tecnifibre-tf-x1-300": {
+   "slug": "tecnifibre-tf-x1-300",
+   "name": "Tecnifibre TF-X1 300",
+   "sources": 11,
+   "groups": {
+    "plays_like": {
+     "power": 9
+    },
+    "spin": {
+     "lots": 7
+    },
+    "stability": {
+     "not_really": 3
+    },
+    "arm": {
+     "very": 5,
+     "somewhat": 1
+    },
+    "sweet_spot": {
+     "big": 4
+    },
+    "maneuver": {
+     "very": 3,
+     "not_really": 1
+    },
+    "feel": {
+     "soft": 1
+    },
+    "level": {
+     "intermediate": 1
+    }
+   },
+   "spec": {
+    "feel": "hard"
+   }
+  },
+  "tecnifibre-tf-x1-305": {
+   "slug": "tecnifibre-tf-x1-305",
+   "name": "Tecnifibre TF-X1 305",
+   "sources": 11,
+   "groups": {
+    "plays_like": {
+     "all_round": 3,
+     "power": 4
+    },
+    "maneuver": {
+     "very": 1,
+     "not_really": 3,
+     "somewhat": 2
+    },
+    "sweet_spot": {
+     "big": 3,
+     "medium": 2
+    },
+    "arm": {
+     "very": 1,
+     "not_really": 1
+    },
+    "spin": {
+     "lots": 6,
+     "some": 2
+    },
+    "stability": {
+     "somewhat": 1,
+     "not_really": 1,
+     "very": 1
+    },
+    "feel": {
+     "hard": 2,
+     "soft": 1
+    }
+   },
+   "spec": {
+    "feel": "hard"
+   }
+  },
+  "volkl-c10-pro-2022": {
+   "slug": "volkl-c10-pro-2022",
+   "name": "Volkl C10 Pro 2022",
+   "sources": 5,
+   "groups": {
+    "plays_like": {
+     "control": 3,
+     "all_round": 1
+    },
+    "arm": {
+     "somewhat": 1,
+     "very": 4
+    },
+    "stability": {
+     "very": 3
+    },
+    "feel": {
+     "soft": 4
+    },
+    "maneuver": {
+     "not_really": 2,
+     "very": 1
+    },
+    "level": {
+     "advanced": 1
+    },
+    "sweet_spot": {
+     "small": 2
+    }
+   },
+   "spec": {
+    "feel": "soft"
+   }
+  },
+  "volkl-c10-pro-2025": {
+   "slug": "volkl-c10-pro-2025",
+   "name": "Volkl C10 Pro 2025",
+   "sources": 0,
+   "groups": {},
+   "spec": {
+    "feel": "soft"
+   }
+  },
+  "volkl-v-cell-10-300g": {
+   "slug": "volkl-v-cell-10-300g",
+   "name": "Volkl V-Cell 10 300g",
+   "sources": 0,
+   "groups": {},
+   "spec": {
+    "feel": "hard"
+   }
+  },
+  "volkl-v-cell-10-320g": {
+   "slug": "volkl-v-cell-10-320g",
+   "name": "Volkl V-Cell 10 320g",
+   "sources": 0,
+   "groups": {},
+   "spec": {}
+  },
+  "volkl-v-cell-6": {
+   "slug": "volkl-v-cell-6",
+   "name": "Volkl V-Cell 6",
+   "sources": 0,
+   "groups": {},
+   "spec": {
+    "feel": "hard"
+   }
+  },
+  "volkl-v-cell-8-300g": {
+   "slug": "volkl-v-cell-8-300g",
+   "name": "Volkl V-Cell 8 300g",
+   "sources": 1,
+   "groups": {
+    "plays_like": {
+     "power": 1
+    },
+    "stability": {
+     "very": 1
+    }
+   },
+   "spec": {}
+  },
+  "volkl-v-cell-8-315g": {
+   "slug": "volkl-v-cell-8-315g",
+   "name": "Volkl V-Cell 8 315g",
+   "sources": 0,
+   "groups": {},
+   "spec": {}
+  },
+  "volkl-v-cell-9": {
+   "slug": "volkl-v-cell-9",
+   "name": "Volkl V-Cell 9",
+   "sources": 0,
+   "groups": {},
+   "spec": {
+    "feel": "hard"
+   }
+  },
+  "volkl-v-cell-v1-mp": {
+   "slug": "volkl-v-cell-v1-mp",
+   "name": "Volkl V-Cell V1 MP",
+   "sources": 0,
+   "groups": {},
+   "spec": {
+    "feel": "hard"
+   }
+  },
+  "volkl-v-cell-v1-pro": {
+   "slug": "volkl-v-cell-v1-pro",
+   "name": "Volkl V-Cell V1 Pro",
+   "sources": 0,
+   "groups": {},
+   "spec": {
+    "feel": "hard"
+   }
+  },
+  "volkl-v8-pro-2023": {
+   "slug": "volkl-v8-pro-2023",
+   "name": "Volkl V8 Pro 2023",
+   "sources": 7,
+   "groups": {
+    "plays_like": {
+     "all_round": 2,
+     "control": 4
+    },
+    "spin": {
+     "lots": 3
+    },
+    "stability": {
+     "very": 2,
+     "not_really": 1
+    },
+    "feel": {
+     "hard": 2,
+     "soft": 1
+    },
+    "maneuver": {
+     "very": 2
+    },
+    "level": {
+     "intermediate": 1,
+     "advanced": 1
+    },
+    "arm": {
+     "somewhat": 1
+    },
+    "sweet_spot": {
+     "big": 1
+    }
+   },
+   "spec": {}
+  },
+  "volkl-v8-pro-2025": {
+   "slug": "volkl-v8-pro-2025",
+   "name": "Volkl V8 Pro 2025",
+   "sources": 0,
+   "groups": {},
+   "spec": {}
+  },
+  "volkl-vostra-v1-mp": {
+   "slug": "volkl-vostra-v1-mp",
+   "name": "Volkl Vostra V1 MP",
+   "sources": 0,
+   "groups": {},
+   "spec": {}
+  },
+  "volkl-vostra-v1-pro": {
+   "slug": "volkl-vostra-v1-pro",
+   "name": "Volkl Vostra V1 Pro",
+   "sources": 8,
+   "groups": {
+    "arm": {
+     "very": 5,
+     "somewhat": 1
+    },
+    "maneuver": {
+     "very": 4
+    },
+    "stability": {
+     "not_really": 3
+    },
+    "spin": {
+     "lots": 2,
+     "little": 2,
+     "some": 1
+    },
+    "plays_like": {
+     "control": 4,
+     "power": 2
+    },
+    "feel": {
+     "soft": 2
+    },
+    "level": {
+     "advanced": 2
+    }
+   },
+   "spec": {}
+  },
+  "volkl-vostra-v10-300g": {
+   "slug": "volkl-vostra-v10-300g",
+   "name": "Volkl Vostra V10 300g",
+   "sources": 0,
+   "groups": {},
+   "spec": {
+    "feel": "hard"
+   }
+  },
+  "volkl-vostra-v10-320g": {
+   "slug": "volkl-vostra-v10-320g",
+   "name": "Volkl Vostra V10 320g",
+   "sources": 7,
+   "groups": {
+    "plays_like": {
+     "all_round": 3,
+     "control": 2
+    },
+    "stability": {
+     "very": 6
+    },
+    "arm": {
+     "very": 2,
+     "somewhat": 1
+    },
+    "spin": {
+     "lots": 4
+    },
+    "feel": {
+     "soft": 2
+    },
+    "sweet_spot": {
+     "big": 1,
+     "small": 1
+    },
+    "level": {
+     "beginner": 1
+    }
+   },
+   "spec": {}
+  },
+  "volkl-vostra-v6": {
+   "slug": "volkl-vostra-v6",
+   "name": "Volkl Vostra V6",
+   "sources": 0,
+   "groups": {},
+   "spec": {
+    "feel": "hard"
+   }
+  },
+  "volkl-vostra-v7": {
+   "slug": "volkl-vostra-v7",
+   "name": "Volkl Vostra V7",
+   "sources": 0,
+   "groups": {},
+   "spec": {
+    "feel": "hard"
+   }
+  },
+  "volkl-vostra-v8-300g": {
+   "slug": "volkl-vostra-v8-300g",
+   "name": "Volkl Vostra V8 300g",
+   "sources": 0,
+   "groups": {},
+   "spec": {}
+  },
+  "volkl-vostra-v8-315g": {
+   "slug": "volkl-vostra-v8-315g",
+   "name": "Volkl Vostra V8 315g",
+   "sources": 0,
+   "groups": {},
+   "spec": {}
+  },
+  "volkl-vostra-v9-305g": {
+   "slug": "volkl-vostra-v9-305g",
+   "name": "Volkl Vostra V9 305g",
+   "sources": 0,
+   "groups": {},
+   "spec": {}
+  },
+  "wilson-blade-100-v10": {
+   "slug": "wilson-blade-100-v10",
+   "name": "Wilson Blade 100 V10",
+   "sources": 18,
+   "groups": {
+    "plays_like": {
+     "power": 5,
+     "control": 10,
+     "all_round": 1
+    },
+    "spin": {
+     "lots": 2,
+     "some": 3
+    },
+    "sweet_spot": {
+     "big": 6,
+     "medium": 1
+    },
+    "stability": {
+     "very": 3,
+     "not_really": 2
+    },
+    "arm": {
+     "very": 1,
+     "not_really": 1,
+     "somewhat": 1
+    },
+    "maneuver": {
+     "very": 5,
+     "somewhat": 1
+    },
+    "level": {
+     "advanced": 1,
+     "intermediate": 2
+    },
+    "feel": {
+     "soft": 1,
+     "hard": 1
+    }
+   },
+   "spec": {
+    "feel": "soft"
+   }
+  },
+  "wilson-blade-100-v9": {
+   "slug": "wilson-blade-100-v9",
+   "name": "Wilson Blade 100 V9",
+   "sources": 26,
+   "groups": {
+    "plays_like": {
+     "control": 7,
+     "power": 7,
+     "all_round": 3
+    },
+    "sweet_spot": {
+     "big": 12,
+     "medium": 2,
+     "small": 1
+    },
+    "stability": {
+     "very": 4,
+     "somewhat": 1
+    },
+    "arm": {
+     "very": 4,
+     "somewhat": 1
+    },
+    "spin": {
+     "lots": 6,
+     "some": 3,
+     "little": 1
+    },
+    "maneuver": {
+     "very": 5,
+     "not_really": 2,
+     "somewhat": 1
+    },
+    "feel": {
+     "hard": 3,
+     "soft": 7
+    },
+    "level": {
+     "advanced": 3,
+     "intermediate": 1
+    }
+   },
+   "spec": {
+    "feel": "soft"
+   }
+  },
+  "wilson-blade-100l-v10": {
+   "slug": "wilson-blade-100l-v10",
+   "name": "Wilson Blade 100L V10",
+   "sources": 7,
+   "groups": {
+    "plays_like": {
+     "control": 3,
+     "power": 1
+    },
+    "spin": {
+     "lots": 2
+    },
+    "maneuver": {
+     "very": 2
+    },
+    "feel": {
+     "soft": 2
+    },
+    "sweet_spot": {
+     "big": 1,
+     "medium": 1
+    },
+    "stability": {
+     "very": 1,
+     "somewhat": 1,
+     "not_really": 1
+    },
+    "arm": {
+     "not_really": 1
+    },
+    "durability": {
+     "wears_fast": 1
+    }
+   },
+   "spec": {}
+  },
+  "wilson-blade-100l-v9": {
+   "slug": "wilson-blade-100l-v9",
+   "name": "Wilson Blade 100L V9",
+   "sources": 12,
+   "groups": {
+    "plays_like": {
+     "control": 4,
+     "all_round": 2
+    },
+    "arm": {
+     "somewhat": 3
+    },
+    "maneuver": {
+     "very": 6,
+     "not_really": 1
+    },
+    "sweet_spot": {
+     "small": 2,
+     "big": 1,
+     "medium": 1
+    },
+    "spin": {
+     "lots": 2,
+     "some": 2
+    },
+    "stability": {
+     "very": 1,
+     "not_really": 1,
+     "somewhat": 3
+    },
+    "level": {
+     "beginner": 4
+    },
+    "feel": {
+     "soft": 1
+    }
+   },
+   "spec": {
+    "feel": "hard"
+   }
+  },
+  "wilson-blade-100ul-v10": {
+   "slug": "wilson-blade-100ul-v10",
+   "name": "Wilson Blade 100UL V10",
+   "sources": 0,
+   "groups": {},
+   "spec": {}
+  },
+  "wilson-blade-100ul-v9": {
+   "slug": "wilson-blade-100ul-v9",
+   "name": "Wilson Blade 100UL V9",
+   "sources": 0,
+   "groups": {},
+   "spec": {}
+  },
+  "wilson-blade-104-v10": {
+   "slug": "wilson-blade-104-v10",
+   "name": "Wilson Blade 104 V10",
+   "sources": 0,
+   "groups": {},
+   "spec": {}
+  },
+  "wilson-blade-104-v9": {
+   "slug": "wilson-blade-104-v9",
+   "name": "Wilson Blade 104 V9",
+   "sources": 2,
+   "groups": {
+    "plays_like": {
+     "power": 1
+    },
+    "arm": {
+     "very": 1
+    },
+    "maneuver": {
+     "not_really": 1
+    },
+    "stability": {
+     "very": 1
+    }
+   },
+   "spec": {}
+  },
+  "wilson-blade-98-16x19-v10": {
+   "slug": "wilson-blade-98-16x19-v10",
+   "name": "Wilson Blade 98 16x19 V10",
+   "sources": 22,
+   "groups": {
+    "plays_like": {
+     "control": 7,
+     "power": 7,
+     "all_round": 4
+    },
+    "arm": {
+     "somewhat": 2,
+     "very": 3
+    },
+    "stability": {
+     "very": 5,
+     "somewhat": 2
+    },
+    "feel": {
+     "soft": 4,
+     "hard": 1
+    },
+    "maneuver": {
+     "very": 3,
+     "not_really": 3
+    },
+    "spin": {
+     "lots": 5,
+     "some": 3
+    },
+    "sweet_spot": {
+     "small": 2,
+     "big": 2
+    },
+    "level": {
+     "advanced": 2,
+     "intermediate": 2
+    }
+   },
+   "spec": {
+    "feel": "soft"
+   }
+  },
+  "wilson-blade-98-16x19-v9": {
+   "slug": "wilson-blade-98-16x19-v9",
+   "name": "Wilson Blade 98 16x19 V9",
+   "sources": 32,
+   "groups": {
+    "plays_like": {
+     "power": 8,
+     "all_round": 4,
+     "control": 14
+    },
+    "maneuver": {
+     "not_really": 3,
+     "very": 3
+    },
+    "stability": {
+     "very": 8,
+     "somewhat": 4
+    },
+    "arm": {
+     "somewhat": 3,
+     "very": 4
+    },
+    "spin": {
+     "lots": 7,
+     "little": 3,
+     "some": 1
+    },
+    "feel": {
+     "hard": 6,
+     "soft": 5
+    },
+    "sweet_spot": {
+     "big": 3,
+     "small": 3
+    },
+    "level": {
+     "beginner": 1,
+     "advanced": 2,
+     "intermediate": 1
+    }
+   },
+   "spec": {
+    "feel": "soft"
+   }
+  },
+  "wilson-blade-98-18x20-v10": {
+   "slug": "wilson-blade-98-18x20-v10",
+   "name": "Wilson Blade 98 18x20 V10",
+   "sources": 15,
+   "groups": {
+    "plays_like": {
+     "control": 7,
+     "all_round": 5,
+     "power": 1
+    },
+    "sweet_spot": {
+     "small": 5
+    },
+    "maneuver": {
+     "not_really": 4,
+     "very": 1,
+     "somewhat": 1
+    },
+    "arm": {
+     "very": 2
+    },
+    "stability": {
+     "very": 4,
+     "somewhat": 2
+    },
+    "feel": {
+     "soft": 3,
+     "hard": 2
+    },
+    "level": {
+     "advanced": 3
+    },
+    "spin": {
+     "little": 1
+    }
+   },
+   "spec": {
+    "feel": "soft"
+   }
+  },
+  "wilson-blade-98-18x20-v9": {
+   "slug": "wilson-blade-98-18x20-v9",
+   "name": "Wilson Blade 98 18x20 V9",
+   "sources": 20,
+   "groups": {
+    "plays_like": {
+     "control": 10,
+     "all_round": 5,
+     "power": 1
+    },
+    "stability": {
+     "very": 8,
+     "somewhat": 3
+    },
+    "spin": {
+     "little": 4,
+     "lots": 4,
+     "some": 1
+    },
+    "arm": {
+     "somewhat": 1,
+     "not_really": 2
+    },
+    "sweet_spot": {
+     "small": 2,
+     "big": 1
+    },
+    "maneuver": {
+     "not_really": 1,
+     "very": 1
+    },
+    "level": {
+     "advanced": 3
+    },
+    "feel": {
+     "hard": 3
+    }
+   },
+   "spec": {
+    "feel": "soft"
+   }
+  },
+  "wilson-blade-98s-v10": {
+   "slug": "wilson-blade-98s-v10",
+   "name": "Wilson Blade 98S V10",
+   "sources": 1,
+   "groups": {
+    "plays_like": {
+     "power": 1
+    },
+    "spin": {
+     "some": 1
+    }
+   },
+   "spec": {}
+  },
+  "wilson-blade-98s-v9": {
+   "slug": "wilson-blade-98s-v9",
+   "name": "Wilson Blade 98S V9",
+   "sources": 8,
+   "groups": {
+    "spin": {
+     "lots": 7
+    },
+    "maneuver": {
+     "very": 6,
+     "not_really": 1
+    },
+    "stability": {
+     "not_really": 4
+    },
+    "arm": {
+     "very": 1,
+     "not_really": 1
+    },
+    "plays_like": {
+     "power": 5
+    },
+    "level": {
+     "advanced": 1
+    },
+    "feel": {
+     "soft": 1
+    }
+   },
+   "spec": {
+    "feel": "soft"
+   }
+  },
+  "wilson-blade-pro-100-v10": {
+   "slug": "wilson-blade-pro-100-v10",
+   "name": "Wilson Blade Pro 100 V10",
+   "sources": 21,
+   "groups": {
+    "plays_like": {
+     "all_round": 5,
+     "power": 6,
+     "control": 6
+    },
+    "maneuver": {
+     "very": 12
+    },
+    "spin": {
+     "lots": 4,
+     "little": 1
+    },
+    "arm": {
+     "very": 2,
+     "not_really": 2,
+     "somewhat": 2
+    },
+    "stability": {
+     "not_really": 2,
+     "very": 2
+    },
+    "feel": {
+     "hard": 5
+    },
+    "level": {
+     "advanced": 4
+    },
+    "sweet_spot": {
+     "big": 1
+    }
+   },
+   "spec": {
+    "feel": "hard"
+   }
+  },
+  "wilson-blade-pro-98-16x19-v10": {
+   "slug": "wilson-blade-pro-98-16x19-v10",
+   "name": "Wilson Blade Pro 98 16x19 V10",
+   "sources": 5,
+   "groups": {
+    "plays_like": {
+     "control": 3,
+     "power": 2
+    },
+    "maneuver": {
+     "not_really": 3
+    },
+    "stability": {
+     "very": 3
+    },
+    "feel": {
+     "soft": 3
+    },
+    "arm": {
+     "very": 1
+    },
+    "spin": {
+     "little": 1
+    },
+    "level": {
+     "advanced": 1
+    }
+   },
+   "spec": {
+    "feel": "soft"
+   }
+  },
+  "wilson-blade-pro-98-16x19-v9": {
+   "slug": "wilson-blade-pro-98-16x19-v9",
+   "name": "Wilson Blade Pro 98 16x19 V9",
+   "sources": 14,
+   "groups": {
+    "plays_like": {
+     "power": 5,
+     "all_round": 2,
+     "control": 2
+    },
+    "maneuver": {
+     "not_really": 7,
+     "somewhat": 1
+    },
+    "stability": {
+     "very": 10
+    },
+    "arm": {
+     "very": 1,
+     "not_really": 1
+    },
+    "feel": {
+     "soft": 2,
+     "hard": 3
+    },
+    "spin": {
+     "lots": 1,
+     "little": 1
+    },
+    "sweet_spot": {
+     "small": 1,
+     "big": 1
+    },
+    "level": {
+     "advanced": 3
+    }
+   },
+   "spec": {
+    "feel": "soft"
+   }
+  },
+  "wilson-blade-pro-98-18x20-v10": {
+   "slug": "wilson-blade-pro-98-18x20-v10",
+   "name": "Wilson Blade Pro 98 18x20 V10",
+   "sources": 1,
+   "groups": {
+    "sweet_spot": {
+     "small": 1
+    }
+   },
+   "spec": {
+    "feel": "soft"
+   }
+  },
+  "wilson-blade-pro-98-18x20-v9": {
+   "slug": "wilson-blade-pro-98-18x20-v9",
+   "name": "Wilson Blade Pro 98 18x20 V9",
+   "sources": 4,
+   "groups": {
+    "plays_like": {
+     "control": 2,
+     "all_round": 1
+    },
+    "maneuver": {
+     "not_really": 1
+    },
+    "stability": {
+     "very": 2
+    },
+    "feel": {
+     "soft": 2
+    },
+    "spin": {
+     "lots": 1
+    }
+   },
+   "spec": {
+    "feel": "soft"
+   }
+  },
+  "wilson-burn-100-v5": {
+   "slug": "wilson-burn-100-v5",
+   "name": "Wilson Burn 100 V5",
+   "sources": 12,
+   "groups": {
+    "plays_like": {
+     "power": 10
+    },
+    "arm": {
+     "not_really": 4
+    },
+    "spin": {
+     "lots": 9
+    },
+    "feel": {
+     "hard": 3
+    },
+    "sweet_spot": {
+     "big": 4
+    },
+    "stability": {
+     "very": 2
+    },
+    "level": {
+     "beginner": 1
+    }
+   },
+   "spec": {
+    "feel": "hard"
+   }
+  },
+  "wilson-burn-100ls-v5": {
+   "slug": "wilson-burn-100ls-v5",
+   "name": "Wilson Burn 100LS V5",
+   "sources": 0,
+   "groups": {},
+   "spec": {
+    "feel": "hard"
+   }
+  },
+  "wilson-burn-100ls-v6": {
+   "slug": "wilson-burn-100ls-v6",
+   "name": "Wilson Burn 100LS V6",
+   "sources": 1,
+   "groups": {
+    "plays_like": {
+     "power": 1
+    },
+    "level": {
+     "beginner": 1
+    }
+   },
+   "spec": {
+    "feel": "hard"
+   }
+  },
+  "wilson-burn-100s-v5": {
+   "slug": "wilson-burn-100s-v5",
+   "name": "Wilson Burn 100S V5",
+   "sources": 0,
+   "groups": {},
+   "spec": {
+    "feel": "hard"
+   }
+  },
+  "wilson-burn-100s-v6": {
+   "slug": "wilson-burn-100s-v6",
+   "name": "Wilson Burn 100S V6",
+   "sources": 0,
+   "groups": {},
+   "spec": {
+    "feel": "hard"
+   }
+  },
+  "wilson-burn-100uls-v5": {
+   "slug": "wilson-burn-100uls-v5",
+   "name": "Wilson Burn 100ULS V5",
+   "sources": 0,
+   "groups": {},
+   "spec": {}
+  },
+  "wilson-burn-105s-v6": {
+   "slug": "wilson-burn-105s-v6",
+   "name": "Wilson Burn 105S V6",
+   "sources": 1,
+   "groups": {
+    "level": {
+     "intermediate": 1
+    }
+   },
+   "spec": {
+    "feel": "hard"
+   }
+  },
+  "wilson-clash-100-pro-v2": {
+   "slug": "wilson-clash-100-pro-v2",
+   "name": "Wilson Clash 100 Pro V2",
+   "sources": 17,
+   "groups": {
+    "plays_like": {
+     "power": 4,
+     "control": 8,
+     "all_round": 1
+    },
+    "arm": {
+     "very": 12
+    },
+    "feel": {
+     "hard": 1,
+     "soft": 9
+    },
+    "sweet_spot": {
+     "big": 5,
+     "small": 1
+    },
+    "stability": {
+     "very": 3,
+     "somewhat": 3
+    },
+    "level": {
+     "intermediate": 2
+    },
+    "maneuver": {
+     "very": 1,
+     "not_really": 1
+    },
+    "spin": {
+     "lots": 1,
+     "little": 1
+    }
+   },
+   "spec": {
+    "feel": "soft"
+   }
+  },
+  "wilson-clash-100-pro-v3": {
+   "slug": "wilson-clash-100-pro-v3",
+   "name": "Wilson Clash 100 Pro V3",
+   "sources": 22,
+   "groups": {
+    "plays_like": {
+     "power": 5,
+     "control": 7,
+     "all_round": 1
+    },
+    "sweet_spot": {
+     "big": 6,
+     "medium": 1
+    },
+    "arm": {
+     "very": 14,
+     "not_really": 1
+    },
+    "maneuver": {
+     "not_really": 3,
+     "somewhat": 1
+    },
+    "stability": {
+     "very": 7,
+     "somewhat": 3,
+     "not_really": 2
+    },
+    "spin": {
+     "lots": 3
+    },
+    "feel": {
+     "soft": 2
+    },
+    "level": {
+     "intermediate": 3,
+     "advanced": 2
+    }
+   },
+   "spec": {
+    "feel": "soft"
+   }
+  },
+  "wilson-clash-100-v2": {
+   "slug": "wilson-clash-100-v2",
+   "name": "Wilson Clash 100 V2",
+   "sources": 25,
+   "groups": {
+    "plays_like": {
+     "power": 11,
+     "control": 1,
+     "all_round": 1
+    },
+    "arm": {
+     "very": 17,
+     "somewhat": 1
+    },
+    "stability": {
+     "not_really": 3,
+     "very": 2,
+     "somewhat": 2
+    },
+    "sweet_spot": {
+     "big": 6,
+     "medium": 1
+    },
+    "spin": {
+     "lots": 3,
+     "some": 1
+    },
+    "maneuver": {
+     "very": 3,
+     "somewhat": 1
+    },
+    "feel": {
+     "soft": 8
+    },
+    "level": {
+     "advanced": 1,
+     "beginner": 2,
+     "intermediate": 3
+    }
+   },
+   "spec": {
+    "feel": "soft"
+   }
+  },
+  "wilson-clash-100-v3": {
+   "slug": "wilson-clash-100-v3",
+   "name": "Wilson Clash 100 V3",
+   "sources": 35,
+   "groups": {
+    "plays_like": {
+     "control": 10,
+     "power": 11,
+     "all_round": 1
+    },
+    "arm": {
+     "very": 26,
+     "somewhat": 4
+    },
+    "stability": {
+     "very": 7,
+     "not_really": 7,
+     "somewhat": 1
+    },
+    "sweet_spot": {
+     "big": 6,
+     "small": 2,
+     "medium": 2
+    },
+    "maneuver": {
+     "very": 8
+    },
+    "feel": {
+     "soft": 12
+    },
+    "level": {
+     "advanced": 1,
+     "intermediate": 2,
+     "beginner": 2
+    },
+    "spin": {
+     "little": 1,
+     "lots": 2,
+     "some": 1
+    }
+   },
+   "spec": {
+    "feel": "soft"
+   }
+  },
+  "wilson-clash-100l-v2": {
+   "slug": "wilson-clash-100l-v2",
+   "name": "Wilson Clash 100L V2",
+   "sources": 13,
+   "groups": {
+    "arm": {
+     "very": 10
+    },
+    "maneuver": {
+     "very": 7
+    },
+    "sweet_spot": {
+     "big": 6,
+     "small": 1,
+     "medium": 1
+    },
+    "spin": {
+     "lots": 4,
+     "little": 1
+    },
+    "plays_like": {
+     "control": 1,
+     "power": 1,
+     "all_round": 1
+    },
+    "feel": {
+     "soft": 1,
+     "hard": 1
+    },
+    "stability": {
+     "not_really": 2,
+     "very": 1
+    }
+   },
+   "spec": {
+    "feel": "soft"
+   }
+  },
+  "wilson-clash-100l-v3": {
+   "slug": "wilson-clash-100l-v3",
+   "name": "Wilson Clash 100L V3",
+   "sources": 7,
+   "groups": {
+    "sweet_spot": {
+     "big": 2
+    },
+    "arm": {
+     "very": 6
+    },
+    "maneuver": {
+     "very": 4
+    },
+    "plays_like": {
+     "power": 2,
+     "control": 1,
+     "all_round": 1
+    },
+    "stability": {
+     "somewhat": 1,
+     "very": 1
+    },
+    "level": {
+     "intermediate": 1
+    }
+   },
+   "spec": {
+    "feel": "soft"
+   }
+  },
+  "wilson-clash-100ul-v2": {
+   "slug": "wilson-clash-100ul-v2",
+   "name": "Wilson Clash 100UL V2",
+   "sources": 0,
+   "groups": {},
+   "spec": {}
+  },
+  "wilson-clash-108-v1": {
+   "slug": "wilson-clash-108-v1",
+   "name": "Wilson Clash 108 V1",
+   "sources": 3,
+   "groups": {
+    "plays_like": {
+     "power": 1
+    },
+    "arm": {
+     "very": 2
+    },
+    "level": {
+     "intermediate": 2
+    }
+   },
+   "spec": {
+    "feel": "soft"
+   }
+  },
+  "wilson-clash-108-v2": {
+   "slug": "wilson-clash-108-v2",
+   "name": "Wilson Clash 108 V2",
+   "sources": 0,
+   "groups": {},
+   "spec": {}
+  },
+  "wilson-clash-108-v3": {
+   "slug": "wilson-clash-108-v3",
+   "name": "Wilson Clash 108 V3",
+   "sources": 0,
+   "groups": {},
+   "spec": {
+    "feel": "soft"
+   }
+  },
+  "wilson-clash-98-v2": {
+   "slug": "wilson-clash-98-v2",
+   "name": "Wilson Clash 98 V2",
+   "sources": 15,
+   "groups": {
+    "plays_like": {
+     "control": 4,
+     "all_round": 4,
+     "power": 2
+    },
+    "sweet_spot": {
+     "small": 2,
+     "medium": 1
+    },
+    "arm": {
+     "very": 8,
+     "somewhat": 3
+    },
+    "feel": {
+     "hard": 2,
+     "soft": 5
+    },
+    "stability": {
+     "very": 1,
+     "somewhat": 2,
+     "not_really": 1
+    },
+    "spin": {
+     "lots": 4,
+     "some": 2
+    },
+    "maneuver": {
+     "very": 3
+    },
+    "level": {
+     "intermediate": 1,
+     "advanced": 1
+    }
+   },
+   "spec": {
+    "feel": "soft"
+   }
+  },
+  "wilson-defyer-100": {
+   "slug": "wilson-defyer-100",
+   "name": "Wilson Defyer 100",
+   "sources": 7,
+   "groups": {
+    "plays_like": {
+     "power": 1,
+     "all_round": 1,
+     "control": 2
+    },
+    "durability": {
+     "wears_fast": 1
+    },
+    "level": {
+     "beginner": 1,
+     "advanced": 1,
+     "intermediate": 1
+    },
+    "spin": {
+     "little": 2
+    },
+    "maneuver": {
+     "somewhat": 2
+    },
+    "sweet_spot": {
+     "small": 1,
+     "medium": 1
+    },
+    "arm": {
+     "not_really": 1,
+     "very": 1
+    },
+    "stability": {
+     "not_really": 1
+    },
+    "feel": {
+     "soft": 1
+    }
+   },
+   "spec": {}
+  },
+  "wilson-defyer-98-pro": {
+   "slug": "wilson-defyer-98-pro",
+   "name": "Wilson Defyer 98 Pro",
+   "sources": 4,
+   "groups": {
+    "plays_like": {
+     "power": 1,
+     "control": 1
+    },
+    "sweet_spot": {
+     "medium": 1
+    },
+    "spin": {
+     "some": 1,
+     "little": 1
+    },
+    "maneuver": {
+     "very": 1
+    },
+    "feel": {
+     "soft": 2
+    }
+   },
+   "spec": {}
+  },
+  "wilson-pro-staff-97-classic": {
+   "slug": "wilson-pro-staff-97-classic",
+   "name": "Wilson Pro Staff 97 Classic",
+   "sources": 12,
+   "groups": {
+    "plays_like": {
+     "all_round": 3,
+     "control": 8
+    },
+    "stability": {
+     "very": 3,
+     "somewhat": 1
+    },
+    "maneuver": {
+     "not_really": 2,
+     "very": 2
+    },
+    "sweet_spot": {
+     "small": 3
+    },
+    "spin": {
+     "little": 3
+    },
+    "feel": {
+     "hard": 2
+    },
+    "level": {
+     "advanced": 3
+    }
+   },
+   "spec": {}
+  },
+  "wilson-pro-staff-97-v13": {
+   "slug": "wilson-pro-staff-97-v13",
+   "name": "Wilson Pro Staff 97 V13",
+   "sources": 18,
+   "groups": {
+    "plays_like": {
+     "control": 12
+    },
+    "sweet_spot": {
+     "small": 6
+    },
+    "maneuver": {
+     "very": 4,
+     "somewhat": 2,
+     "not_really": 2
+    },
+    "stability": {
+     "very": 4,
+     "not_really": 1
+    },
+    "feel": {
+     "soft": 5,
+     "hard": 1
+    },
+    "level": {
+     "advanced": 5
+    },
+    "spin": {
+     "lots": 1,
+     "little": 3
+    },
+    "arm": {
+     "somewhat": 1,
+     "very": 1
+    }
+   },
+   "spec": {}
+  },
+  "wilson-pro-staff-97-v14": {
+   "slug": "wilson-pro-staff-97-v14",
+   "name": "Wilson Pro Staff 97 V14",
+   "sources": 41,
+   "groups": {
+    "arm": {
+     "very": 3,
+     "somewhat": 5,
+     "not_really": 4
+    },
+    "stability": {
+     "very": 12,
+     "somewhat": 4,
+     "not_really": 2
+    },
+    "plays_like": {
+     "control": 19,
+     "power": 9
+    },
+    "sweet_spot": {
+     "small": 5,
+     "big": 2,
+     "medium": 2
+    },
+    "maneuver": {
+     "not_really": 2,
+     "very": 3,
+     "somewhat": 3
+    },
+    "spin": {
+     "little": 3,
+     "lots": 1
+    },
+    "feel": {
+     "soft": 7,
+     "hard": 2
+    },
+    "level": {
+     "advanced": 5
+    }
+   },
+   "spec": {}
+  },
+  "wilson-pro-staff-97l-v13": {
+   "slug": "wilson-pro-staff-97l-v13",
+   "name": "Wilson Pro Staff 97L V13",
+   "sources": 13,
+   "groups": {
+    "plays_like": {
+     "control": 9,
+     "all_round": 2
+    },
+    "sweet_spot": {
+     "small": 6
+    },
+    "feel": {
+     "hard": 4
+    },
+    "spin": {
+     "lots": 1,
+     "little": 1,
+     "some": 1
+    },
+    "maneuver": {
+     "very": 2
+    },
+    "stability": {
+     "not_really": 2
+    },
+    "arm": {
+     "very": 1,
+     "not_really": 1
+    },
+    "level": {
+     "advanced": 2,
+     "intermediate": 1
+    },
+    "durability": {
+     "wears_fast": 1
+    }
+   },
+   "spec": {
+    "feel": "hard"
+   }
+  },
+  "wilson-pro-staff-97l-v14": {
+   "slug": "wilson-pro-staff-97l-v14",
+   "name": "Wilson Pro Staff 97L V14",
+   "sources": 15,
+   "groups": {
+    "plays_like": {
+     "control": 11,
+     "all_round": 2
+    },
+    "arm": {
+     "somewhat": 2,
+     "very": 2,
+     "not_really": 2
+    },
+    "feel": {
+     "soft": 4
+    },
+    "sweet_spot": {
+     "big": 1,
+     "small": 5,
+     "medium": 1
+    },
+    "maneuver": {
+     "very": 4
+    },
+    "stability": {
+     "very": 2,
+     "not_really": 2
+    },
+    "spin": {
+     "little": 1,
+     "some": 1,
+     "lots": 1
+    },
+    "level": {
+     "beginner": 1,
+     "intermediate": 2
+    }
+   },
+   "spec": {
+    "feel": "hard"
+   }
+  },
+  "wilson-pro-staff-97ul-v13": {
+   "slug": "wilson-pro-staff-97ul-v13",
+   "name": "Wilson Pro Staff 97UL V13",
+   "sources": 0,
+   "groups": {},
+   "spec": {}
+  },
+  "wilson-pro-staff-97ul-v14": {
+   "slug": "wilson-pro-staff-97ul-v14",
+   "name": "Wilson Pro Staff 97UL V14",
+   "sources": 0,
+   "groups": {},
+   "spec": {}
+  },
+  "wilson-pro-staff-rf97-autograph-v13": {
+   "slug": "wilson-pro-staff-rf97-autograph-v13",
+   "name": "Wilson Pro Staff RF97 Autograph V13",
+   "sources": 19,
+   "groups": {
+    "plays_like": {
+     "control": 10,
+     "power": 3,
+     "all_round": 1
+    },
+    "maneuver": {
+     "not_really": 13,
+     "somewhat": 1
+    },
+    "stability": {
+     "very": 14,
+     "somewhat": 1
+    },
+    "arm": {
+     "very": 2,
+     "not_really": 3,
+     "somewhat": 1
+    },
+    "sweet_spot": {
+     "small": 2
+    },
+    "spin": {
+     "lots": 2,
+     "little": 1
+    },
+    "feel": {
+     "soft": 3,
+     "hard": 2
+    },
+    "level": {
+     "advanced": 3,
+     "intermediate": 1
+    },
+    "durability": {
+     "wears_fast": 1
+    }
+   },
+   "spec": {
+    "feel": "hard"
+   }
+  },
+  "wilson-pro-staff-six-one-100-v13": {
+   "slug": "wilson-pro-staff-six-one-100-v13",
+   "name": "Wilson Pro Staff Six.One 100 V13",
+   "sources": 0,
+   "groups": {},
+   "spec": {}
+  },
+  "wilson-pro-staff-six-one-100-v14": {
+   "slug": "wilson-pro-staff-six-one-100-v14",
+   "name": "Wilson Pro Staff Six.One 100 V14",
+   "sources": 9,
+   "groups": {
+    "plays_like": {
+     "power": 7,
+     "control": 2
+    },
+    "spin": {
+     "lots": 4
+    },
+    "maneuver": {
+     "very": 3,
+     "somewhat": 1
+    },
+    "stability": {
+     "very": 1,
+     "somewhat": 1,
+     "not_really": 2
+    },
+    "sweet_spot": {
+     "big": 2,
+     "medium": 2
+    },
+    "level": {
+     "intermediate": 2
+    }
+   },
+   "spec": {}
+  },
+  "wilson-pro-staff-six-one-95-v14": {
+   "slug": "wilson-pro-staff-six-one-95-v14",
+   "name": "Wilson Pro Staff Six.One 95 V14",
+   "sources": 0,
+   "groups": {},
+   "spec": {}
+  },
+  "wilson-pro-staff-team-v14": {
+   "slug": "wilson-pro-staff-team-v14",
+   "name": "Wilson Pro Staff Team V14",
+   "sources": 0,
+   "groups": {},
+   "spec": {
+    "feel": "hard"
+   }
+  },
+  "wilson-pro-staff-x-v14": {
+   "slug": "wilson-pro-staff-x-v14",
+   "name": "Wilson Pro Staff X V14",
+   "sources": 39,
+   "groups": {
+    "plays_like": {
+     "power": 15,
+     "control": 5,
+     "all_round": 4
+    },
+    "maneuver": {
+     "not_really": 9,
+     "very": 2,
+     "somewhat": 1
+    },
+    "stability": {
+     "very": 7,
+     "somewhat": 1,
+     "not_really": 1
+    },
+    "arm": {
+     "somewhat": 1,
+     "not_really": 7,
+     "very": 5
+    },
+    "sweet_spot": {
+     "big": 6,
+     "medium": 8,
+     "small": 3
+    },
+    "spin": {
+     "lots": 2,
+     "some": 4,
+     "little": 1
+    },
+    "feel": {
+     "hard": 2,
+     "soft": 3
+    },
+    "level": {
+     "advanced": 2
+    }
+   },
+   "spec": {}
+  },
+  "wilson-rf-01": {
+   "slug": "wilson-rf-01",
+   "name": "Wilson RF 01",
+   "sources": 33,
+   "groups": {
+    "plays_like": {
+     "control": 8,
+     "power": 8,
+     "all_round": 4
+    },
+    "maneuver": {
+     "very": 12,
+     "somewhat": 4
+    },
+    "spin": {
+     "lots": 9,
+     "little": 1,
+     "some": 2
+    },
+    "sweet_spot": {
+     "small": 10,
+     "big": 2,
+     "medium": 2
+    },
+    "stability": {
+     "very": 4,
+     "not_really": 3
+    },
+    "arm": {
+     "somewhat": 1,
+     "very": 1
+    },
+    "feel": {
+     "soft": 2,
+     "hard": 3,
+     "medium": 1
+    },
+    "level": {
+     "intermediate": 2,
+     "advanced": 2
+    }
+   },
+   "spec": {}
+  },
+  "wilson-rf-01-future": {
+   "slug": "wilson-rf-01-future",
+   "name": "Wilson RF 01 Future",
+   "sources": 15,
+   "groups": {
+    "plays_like": {
+     "control": 7,
+     "power": 4
+    },
+    "maneuver": {
+     "very": 14,
+     "somewhat": 1
+    },
+    "stability": {
+     "very": 1,
+     "not_really": 4,
+     "somewhat": 1
+    },
+    "spin": {
+     "lots": 3
+    },
+    "sweet_spot": {
+     "big": 2,
+     "small": 2
+    },
+    "level": {
+     "beginner": 2
+    }
+   },
+   "spec": {}
+  },
+  "wilson-rf-01-pro": {
+   "slug": "wilson-rf-01-pro",
+   "name": "Wilson RF 01 Pro",
+   "sources": 70,
+   "groups": {
+    "plays_like": {
+     "control": 5,
+     "power": 23,
+     "all_round": 12
+    },
+    "maneuver": {
+     "not_really": 13,
+     "very": 6,
+     "somewhat": 8
+    },
+    "stability": {
+     "very": 13
+    },
+    "sweet_spot": {
+     "big": 5,
+     "small": 17,
+     "medium": 7
+    },
+    "spin": {
+     "lots": 9,
+     "little": 4,
+     "some": 2
+    },
+    "level": {
+     "advanced": 7,
+     "intermediate": 3
+    },
+    "arm": {
+     "not_really": 2,
+     "very": 3,
+     "somewhat": 1
+    },
+    "feel": {
+     "hard": 11,
+     "soft": 3
+    },
+    "durability": {
+     "wears_fast": 2
+    }
+   },
+   "spec": {}
+  },
+  "wilson-shift-99-pro-v1": {
+   "slug": "wilson-shift-99-pro-v1",
+   "name": "Wilson Shift 99 Pro V1",
+   "sources": 31,
+   "groups": {
+    "plays_like": {
+     "control": 7,
+     "power": 9,
+     "all_round": 6
+    },
+    "arm": {
+     "very": 3,
+     "not_really": 2,
+     "somewhat": 1
+    },
+    "stability": {
+     "very": 10,
+     "somewhat": 2
+    },
+    "sweet_spot": {
+     "big": 4,
+     "small": 4
+    },
+    "spin": {
+     "lots": 12,
+     "little": 1,
+     "some": 1
+    },
+    "maneuver": {
+     "not_really": 8,
+     "very": 1
+    },
+    "feel": {
+     "soft": 4,
+     "hard": 2
+    },
+    "level": {
+     "advanced": 4,
+     "intermediate": 1
+    }
+   },
+   "spec": {
+    "feel": "hard"
+   }
+  },
+  "wilson-shift-99-v1": {
+   "slug": "wilson-shift-99-v1",
+   "name": "Wilson Shift 99 V1",
+   "sources": 28,
+   "groups": {
+    "plays_like": {
+     "power": 15,
+     "control": 3,
+     "all_round": 3
+    },
+    "spin": {
+     "lots": 20,
+     "some": 1
+    },
+    "maneuver": {
+     "very": 10
+    },
+    "arm": {
+     "very": 4,
+     "not_really": 2
+    },
+    "sweet_spot": {
+     "small": 2,
+     "big": 2
+    },
+    "feel": {
+     "soft": 2,
+     "hard": 2
+    },
+    "stability": {
+     "very": 1,
+     "not_really": 4
+    },
+    "level": {
+     "advanced": 2,
+     "beginner": 1
+    }
+   },
+   "spec": {}
+  },
+  "wilson-shift-99l-v1": {
+   "slug": "wilson-shift-99l-v1",
+   "name": "Wilson Shift 99L V1",
+   "sources": 9,
+   "groups": {
+    "plays_like": {
+     "power": 6,
+     "control": 1,
+     "all_round": 1
+    },
+    "sweet_spot": {
+     "big": 1,
+     "medium": 1,
+     "small": 1
+    },
+    "spin": {
+     "lots": 6
+    },
+    "maneuver": {
+     "very": 2
+    },
+    "stability": {
+     "very": 2,
+     "not_really": 1,
+     "somewhat": 1
+    },
+    "level": {
+     "intermediate": 1
+    },
+    "feel": {
+     "soft": 1
+    }
+   },
+   "spec": {
+    "feel": "hard"
+   }
+  },
+  "wilson-ultra-100-v4": {
+   "slug": "wilson-ultra-100-v4",
+   "name": "Wilson Ultra 100 V4",
+   "sources": 24,
+   "groups": {
+    "plays_like": {
+     "power": 15,
+     "control": 3,
+     "all_round": 2
+    },
+    "arm": {
+     "not_really": 5,
+     "very": 3,
+     "somewhat": 3
+    },
+    "spin": {
+     "lots": 9,
+     "little": 1,
+     "some": 1
+    },
+    "maneuver": {
+     "very": 4,
+     "not_really": 1
+    },
+    "feel": {
+     "soft": 5,
+     "hard": 5
+    },
+    "level": {
+     "intermediate": 6,
+     "advanced": 1
+    },
+    "sweet_spot": {
+     "medium": 1,
+     "small": 1
+    },
+    "stability": {
+     "not_really": 2,
+     "somewhat": 1
+    }
+   },
+   "spec": {
+    "feel": "hard"
+   }
+  },
+  "wilson-ultra-100-v5": {
+   "slug": "wilson-ultra-100-v5",
+   "name": "Wilson Ultra 100 V5",
+   "sources": 17,
+   "groups": {
+    "plays_like": {
+     "power": 15,
+     "all_round": 2
+    },
+    "sweet_spot": {
+     "big": 3,
+     "medium": 2,
+     "small": 2
+    },
+    "stability": {
+     "very": 1
+    },
+    "feel": {
+     "hard": 3,
+     "soft": 3
+    },
+    "arm": {
+     "very": 6,
+     "not_really": 5,
+     "somewhat": 3
+    },
+    "maneuver": {
+     "very": 2
+    },
+    "spin": {
+     "lots": 5,
+     "little": 2
+    },
+    "level": {
+     "intermediate": 4
+    }
+   },
+   "spec": {}
+  },
+  "wilson-ultra-100l-v4": {
+   "slug": "wilson-ultra-100l-v4",
+   "name": "Wilson Ultra 100L V4",
+   "sources": 6,
+   "groups": {
+    "plays_like": {
+     "power": 4,
+     "control": 1
+    },
+    "sweet_spot": {
+     "big": 1,
+     "medium": 1
+    },
+    "arm": {
+     "somewhat": 2,
+     "very": 1
+    },
+    "spin": {
+     "lots": 3
+    },
+    "maneuver": {
+     "very": 4
+    },
+    "stability": {
+     "very": 1,
+     "somewhat": 1,
+     "not_really": 1
+    },
+    "feel": {
+     "soft": 2
+    },
+    "level": {
+     "beginner": 2
+    }
+   },
+   "spec": {}
+  },
+  "wilson-ultra-100l-v5": {
+   "slug": "wilson-ultra-100l-v5",
+   "name": "Wilson Ultra 100L V5",
+   "sources": 7,
+   "groups": {
+    "plays_like": {
+     "power": 6
+    },
+    "arm": {
+     "somewhat": 2,
+     "very": 2
+    },
+    "maneuver": {
+     "very": 4
+    },
+    "feel": {
+     "soft": 2
+    },
+    "level": {
+     "beginner": 1
+    }
+   },
+   "spec": {}
+  },
+  "wilson-ultra-100ul-v4": {
+   "slug": "wilson-ultra-100ul-v4",
+   "name": "Wilson Ultra 100UL V4",
+   "sources": 5,
+   "groups": {
+    "sweet_spot": {
+     "big": 2,
+     "medium": 1
+    },
+    "arm": {
+     "very": 1,
+     "somewhat": 1
+    },
+    "maneuver": {
+     "very": 2,
+     "somewhat": 1,
+     "not_really": 1
+    },
+    "plays_like": {
+     "power": 1
+    },
+    "stability": {
+     "somewhat": 1,
+     "not_really": 1
+    },
+    "level": {
+     "beginner": 2
+    }
+   },
+   "spec": {
+    "feel": "hard"
+   }
+  },
+  "wilson-ultra-100ul-v5": {
+   "slug": "wilson-ultra-100ul-v5",
+   "name": "Wilson Ultra 100UL V5",
+   "sources": 0,
+   "groups": {},
+   "spec": {}
+  },
+  "wilson-ultra-108-v4": {
+   "slug": "wilson-ultra-108-v4",
+   "name": "Wilson Ultra 108 V4",
+   "sources": 3,
+   "groups": {
+    "plays_like": {
+     "power": 1,
+     "all_round": 1
+    },
+    "spin": {
+     "lots": 2
+    },
+    "maneuver": {
+     "very": 1,
+     "somewhat": 1
+    },
+    "sweet_spot": {
+     "big": 2
+    },
+    "feel": {
+     "soft": 1
+    },
+    "level": {
+     "advanced": 1
+    }
+   },
+   "spec": {
+    "feel": "hard"
+   }
+  },
+  "wilson-ultra-111-v5": {
+   "slug": "wilson-ultra-111-v5",
+   "name": "Wilson Ultra 111 V5",
+   "sources": 0,
+   "groups": {},
+   "spec": {}
+  },
+  "wilson-ultra-99-pro-v5": {
+   "slug": "wilson-ultra-99-pro-v5",
+   "name": "Wilson Ultra 99 Pro V5",
+   "sources": 37,
+   "groups": {
+    "plays_like": {
+     "all_round": 7,
+     "power": 21,
+     "control": 4
+    },
+    "spin": {
+     "lots": 14,
+     "some": 3
+    },
+    "maneuver": {
+     "not_really": 5,
+     "very": 2
+    },
+    "sweet_spot": {
+     "small": 8,
+     "medium": 1
+    },
+    "stability": {
+     "very": 4,
+     "not_really": 3
+    },
+    "level": {
+     "advanced": 6
+    },
+    "arm": {
+     "very": 2,
+     "not_really": 1
+    },
+    "feel": {
+     "hard": 2,
+     "soft": 1
+    }
+   },
+   "spec": {
+    "feel": "hard"
+   }
+  },
+  "wilson-ultra-pro-16x19-v4": {
+   "slug": "wilson-ultra-pro-16x19-v4",
+   "name": "Wilson Ultra Pro 16x19 V4",
+   "sources": 13,
+   "groups": {
+    "plays_like": {
+     "control": 7,
+     "all_round": 3,
+     "power": 1
+    },
+    "maneuver": {
+     "very": 3,
+     "not_really": 2,
+     "somewhat": 1
+    },
+    "feel": {
+     "hard": 2,
+     "soft": 3
+    },
+    "sweet_spot": {
+     "small": 3
+    },
+    "arm": {
+     "very": 2
+    },
+    "stability": {
+     "very": 1,
+     "not_really": 4
+    },
+    "spin": {
+     "lots": 2
+    },
+    "level": {
+     "advanced": 2
+    }
+   },
+   "spec": {
+    "feel": "soft"
+   }
+  },
+  "wilson-ultra-pro-18x20-v4": {
+   "slug": "wilson-ultra-pro-18x20-v4",
+   "name": "Wilson Ultra Pro 18x20 V4",
+   "sources": 5,
+   "groups": {
+    "plays_like": {
+     "control": 5
+    },
+    "maneuver": {
+     "very": 3
+    },
+    "arm": {
+     "very": 2,
+     "somewhat": 1
+    },
+    "stability": {
+     "not_really": 2
+    },
+    "feel": {
+     "soft": 1
+    }
+   },
+   "spec": {
+    "feel": "soft"
+   }
+  },
+  "wilson-ultra-team-v5": {
+   "slug": "wilson-ultra-team-v5",
+   "name": "Wilson Ultra Team V5",
+   "sources": 0,
+   "groups": {},
+   "spec": {}
+  },
+  "yonex-ezone-100-7th-gen": {
+   "slug": "yonex-ezone-100-7th-gen",
+   "name": "Yonex EZONE 100 (7th gen)",
+   "sources": 20,
+   "groups": {
+    "plays_like": {
+     "power": 11,
+     "all_round": 4,
+     "control": 2
+    },
+    "maneuver": {
+     "very": 3,
+     "somewhat": 1,
+     "not_really": 2
+    },
+    "stability": {
+     "very": 8,
+     "somewhat": 1
+    },
+    "arm": {
+     "somewhat": 2,
+     "very": 5,
+     "not_really": 2
+    },
+    "sweet_spot": {
+     "big": 5,
+     "medium": 1
+    },
+    "feel": {
+     "soft": 5,
+     "hard": 1
+    },
+    "spin": {
+     "lots": 1
+    },
+    "level": {
+     "beginner": 1,
+     "intermediate": 1,
+     "advanced": 2
+    }
+   },
+   "spec": {}
+  },
+  "yonex-ezone-100-8th-gen": {
+   "slug": "yonex-ezone-100-8th-gen",
+   "name": "Yonex EZONE 100 (8th gen)",
+   "sources": 26,
+   "groups": {
+    "plays_like": {
+     "power": 15,
+     "all_round": 3
+    },
+    "sweet_spot": {
+     "big": 8,
+     "small": 1
+    },
+    "stability": {
+     "very": 6,
+     "somewhat": 1,
+     "not_really": 1
+    },
+    "arm": {
+     "very": 9,
+     "somewhat": 3,
+     "not_really": 1
+    },
+    "maneuver": {
+     "very": 3,
+     "not_really": 1,
+     "somewhat": 1
+    },
+    "spin": {
+     "lots": 4,
+     "some": 1
+    },
+    "feel": {
+     "hard": 1,
+     "soft": 6
+    },
+    "level": {
+     "beginner": 1,
+     "advanced": 1
+    }
+   },
+   "spec": {
+    "feel": "hard"
+   }
+  },
+  "yonex-ezone-100-plus-7th-gen": {
+   "slug": "yonex-ezone-100-plus-7th-gen",
+   "name": "Yonex EZONE 100+ (7th gen)",
+   "sources": 0,
+   "groups": {},
+   "spec": {}
+  },
+  "yonex-ezone-100-plus-8th-gen": {
+   "slug": "yonex-ezone-100-plus-8th-gen",
+   "name": "Yonex EZONE 100+ (8th gen)",
+   "sources": 0,
+   "groups": {},
+   "spec": {
+    "feel": "hard"
+   }
+  },
+  "yonex-ezone-100l-7th-gen": {
+   "slug": "yonex-ezone-100l-7th-gen",
+   "name": "Yonex EZONE 100L (7th gen)",
+   "sources": 3,
+   "groups": {
+    "plays_like": {
+     "power": 3
+    },
+    "sweet_spot": {
+     "big": 2
+    },
+    "maneuver": {
+     "very": 3
+    },
+    "spin": {
+     "some": 1
+    },
+    "feel": {
+     "soft": 1
+    }
+   },
+   "spec": {
+    "feel": "hard"
+   }
+  },
+  "yonex-ezone-100l-8th-gen": {
+   "slug": "yonex-ezone-100l-8th-gen",
+   "name": "Yonex EZONE 100L (8th gen)",
+   "sources": 10,
+   "groups": {
+    "plays_like": {
+     "power": 8,
+     "all_round": 1
+    },
+    "sweet_spot": {
+     "big": 4
+    },
+    "arm": {
+     "somewhat": 2,
+     "very": 3
+    },
+    "maneuver": {
+     "very": 3
+    },
+    "spin": {
+     "some": 1
+    },
+    "feel": {
+     "soft": 2
+    },
+    "stability": {
+     "very": 2,
+     "not_really": 1
+    },
+    "level": {
+     "beginner": 1
+    }
+   },
+   "spec": {}
+  },
+  "yonex-ezone-100sl-7th-gen": {
+   "slug": "yonex-ezone-100sl-7th-gen",
+   "name": "Yonex EZONE 100SL (7th gen)",
+   "sources": 0,
+   "groups": {},
+   "spec": {
+    "feel": "hard"
+   }
+  },
+  "yonex-ezone-100sl-8th-gen": {
+   "slug": "yonex-ezone-100sl-8th-gen",
+   "name": "Yonex EZONE 100SL (8th gen)",
+   "sources": 0,
+   "groups": {},
+   "spec": {}
+  },
+  "yonex-ezone-105-7th-gen": {
+   "slug": "yonex-ezone-105-7th-gen",
+   "name": "Yonex EZONE 105 (7th gen)",
+   "sources": 5,
+   "groups": {
+    "sweet_spot": {
+     "big": 4
+    },
+    "spin": {
+     "lots": 3,
+     "some": 1
+    },
+    "maneuver": {
+     "very": 1,
+     "somewhat": 1
+    },
+    "plays_like": {
+     "power": 3
+    },
+    "level": {
+     "beginner": 2
+    },
+    "arm": {
+     "very": 1
+    }
+   },
+   "spec": {}
+  },
+  "yonex-ezone-105-8th-gen": {
+   "slug": "yonex-ezone-105-8th-gen",
+   "name": "Yonex EZONE 105 (8th gen)",
+   "sources": 0,
+   "groups": {},
+   "spec": {}
+  },
+  "yonex-ezone-110-7th-gen": {
+   "slug": "yonex-ezone-110-7th-gen",
+   "name": "Yonex EZONE 110 (7th gen)",
+   "sources": 0,
+   "groups": {},
+   "spec": {}
+  },
+  "yonex-ezone-110-8th-gen": {
+   "slug": "yonex-ezone-110-8th-gen",
+   "name": "Yonex EZONE 110 (8th gen)",
+   "sources": 0,
+   "groups": {},
+   "spec": {}
+  },
+  "yonex-ezone-98-7th-gen": {
+   "slug": "yonex-ezone-98-7th-gen",
+   "name": "Yonex EZONE 98 (7th gen)",
+   "sources": 40,
+   "groups": {
+    "plays_like": {
+     "control": 14,
+     "all_round": 9,
+     "power": 10
+    },
+    "arm": {
+     "not_really": 8,
+     "somewhat": 5,
+     "very": 5
+    },
+    "stability": {
+     "very": 3,
+     "not_really": 2,
+     "somewhat": 1
+    },
+    "sweet_spot": {
+     "big": 6,
+     "small": 3
+    },
+    "maneuver": {
+     "very": 10
+    },
+    "spin": {
+     "lots": 6,
+     "some": 2,
+     "little": 1
+    },
+    "feel": {
+     "soft": 5,
+     "hard": 4
+    },
+    "level": {
+     "advanced": 1,
+     "intermediate": 1
+    }
+   },
+   "spec": {}
+  },
+  "yonex-ezone-98-8th-gen": {
+   "slug": "yonex-ezone-98-8th-gen",
+   "name": "Yonex EZONE 98 (8th gen)",
+   "sources": 38,
+   "groups": {
+    "plays_like": {
+     "all_round": 5,
+     "power": 18,
+     "control": 6
+    },
+    "arm": {
+     "very": 12,
+     "somewhat": 8,
+     "not_really": 3
+    },
+    "feel": {
+     "soft": 17,
+     "hard": 2
+    },
+    "stability": {
+     "very": 2,
+     "not_really": 5,
+     "somewhat": 1
+    },
+    "sweet_spot": {
+     "big": 8,
+     "small": 2,
+     "medium": 5
+    },
+    "spin": {
+     "lots": 2,
+     "some": 2,
+     "little": 1
+    },
+    "maneuver": {
+     "very": 4,
+     "not_really": 1
+    },
+    "level": {
+     "advanced": 3
+    }
+   },
+   "spec": {}
+  },
+  "yonex-ezone-98-plus-7th-gen": {
+   "slug": "yonex-ezone-98-plus-7th-gen",
+   "name": "Yonex EZONE 98+ (7th gen)",
+   "sources": 0,
+   "groups": {},
+   "spec": {}
+  },
+  "yonex-ezone-98-plus-8th-gen": {
+   "slug": "yonex-ezone-98-plus-8th-gen",
+   "name": "Yonex EZONE 98+ (8th gen)",
+   "sources": 5,
+   "groups": {
+    "plays_like": {
+     "power": 4,
+     "all_round": 1
+    },
+    "stability": {
+     "very": 4
+    },
+    "maneuver": {
+     "not_really": 2
+    },
+    "arm": {
+     "very": 2
+    },
+    "sweet_spot": {
+     "big": 1
+    },
+    "feel": {
+     "hard": 1
+    }
+   },
+   "spec": {
+    "feel": "soft"
+   }
+  },
+  "yonex-ezone-98-tour-7th-gen": {
+   "slug": "yonex-ezone-98-tour-7th-gen",
+   "name": "Yonex EZONE 98 Tour (7th gen)",
+   "sources": 1,
+   "groups": {
+    "arm": {
+     "not_really": 1
+    },
+    "maneuver": {
+     "not_really": 1
+    }
+   },
+   "spec": {}
+  },
+  "yonex-ezone-98-tour-8th-gen": {
+   "slug": "yonex-ezone-98-tour-8th-gen",
+   "name": "Yonex EZONE 98 Tour (8th gen)",
+   "sources": 13,
+   "groups": {
+    "plays_like": {
+     "power": 7,
+     "control": 2,
+     "all_round": 2
+    },
+    "maneuver": {
+     "not_really": 4
+    },
+    "stability": {
+     "very": 8
+    },
+    "sweet_spot": {
+     "big": 2,
+     "medium": 1
+    },
+    "arm": {
+     "very": 2
+    },
+    "feel": {
+     "soft": 2,
+     "hard": 1
+    },
+    "spin": {
+     "little": 1
+    },
+    "level": {
+     "advanced": 1
+    }
+   },
+   "spec": {
+    "feel": "soft"
+   }
+  },
+  "yonex-ezone-98l-7th-gen": {
+   "slug": "yonex-ezone-98l-7th-gen",
+   "name": "Yonex EZONE 98L (7th gen)",
+   "sources": 0,
+   "groups": {},
+   "spec": {}
+  },
+  "yonex-muse-100": {
+   "slug": "yonex-muse-100",
+   "name": "Yonex Muse 100",
+   "sources": 12,
+   "groups": {
+    "sweet_spot": {
+     "big": 8
+    },
+    "arm": {
+     "very": 6,
+     "somewhat": 3
+    },
+    "plays_like": {
+     "power": 3,
+     "control": 1,
+     "all_round": 1
+    },
+    "spin": {
+     "lots": 3
+    },
+    "maneuver": {
+     "very": 2,
+     "somewhat": 1
+    },
+    "feel": {
+     "soft": 4,
+     "hard": 1
+    },
+    "stability": {
+     "very": 2,
+     "not_really": 1
+    },
+    "level": {
+     "beginner": 4,
+     "advanced": 1
+    }
+   },
+   "spec": {
+    "feel": "soft"
+   }
+  },
+  "yonex-muse-98": {
+   "slug": "yonex-muse-98",
+   "name": "Yonex Muse 98",
+   "sources": 10,
+   "groups": {
+    "plays_like": {
+     "control": 7,
+     "power": 1
+    },
+    "arm": {
+     "very": 6
+    },
+    "sweet_spot": {
+     "big": 3,
+     "small": 1
+    },
+    "spin": {
+     "lots": 2,
+     "little": 1,
+     "some": 1
+    },
+    "feel": {
+     "soft": 4
+    },
+    "maneuver": {
+     "very": 4
+    },
+    "stability": {
+     "not_really": 3,
+     "very": 1
+    },
+    "level": {
+     "intermediate": 1
+    }
+   },
+   "spec": {
+    "feel": "soft"
+   }
+  },
+  "yonex-percept-100": {
+   "slug": "yonex-percept-100",
+   "name": "Yonex PERCEPT 100",
+   "sources": 45,
+   "groups": {
+    "plays_like": {
+     "control": 26,
+     "power": 5,
+     "all_round": 8
+    },
+    "arm": {
+     "very": 9,
+     "somewhat": 2
+    },
+    "maneuver": {
+     "very": 7
+    },
+    "stability": {
+     "very": 3,
+     "somewhat": 3,
+     "not_really": 1
+    },
+    "sweet_spot": {
+     "big": 8,
+     "small": 3
+    },
+    "feel": {
+     "soft": 6,
+     "hard": 4
+    },
+    "spin": {
+     "lots": 4,
+     "some": 2
+    },
+    "level": {
+     "advanced": 2,
+     "intermediate": 5
+    }
+   },
+   "spec": {}
+  },
+  "yonex-percept-100d": {
+   "slug": "yonex-percept-100d",
+   "name": "Yonex PERCEPT 100D",
+   "sources": 37,
+   "groups": {
+    "plays_like": {
+     "control": 25,
+     "power": 3,
+     "all_round": 1
+    },
+    "maneuver": {
+     "very": 8,
+     "not_really": 4
+    },
+    "stability": {
+     "very": 4,
+     "somewhat": 2
+    },
+    "sweet_spot": {
+     "big": 8,
+     "small": 7,
+     "medium": 1
+    },
+    "spin": {
+     "lots": 4,
+     "some": 1,
+     "little": 1
+    },
+    "level": {
+     "intermediate": 1,
+     "advanced": 1
+    },
+    "arm": {
+     "very": 3,
+     "somewhat": 1
+    },
+    "feel": {
+     "hard": 1
+    }
+   },
+   "spec": {}
+  },
+  "yonex-percept-97": {
+   "slug": "yonex-percept-97",
+   "name": "Yonex PERCEPT 97",
+   "sources": 43,
+   "groups": {
+    "plays_like": {
+     "control": 25,
+     "power": 5,
+     "all_round": 1
+    },
+    "stability": {
+     "not_really": 8,
+     "very": 6,
+     "somewhat": 1
+    },
+    "arm": {
+     "very": 6,
+     "somewhat": 2
+    },
+    "feel": {
+     "hard": 5,
+     "soft": 7
+    },
+    "maneuver": {
+     "very": 7,
+     "not_really": 1
+    },
+    "sweet_spot": {
+     "big": 3,
+     "small": 5
+    },
+    "spin": {
+     "lots": 6,
+     "some": 2
+    },
+    "level": {
+     "intermediate": 2,
+     "advanced": 5
+    }
+   },
+   "spec": {
+    "feel": "soft"
+   }
+  },
+  "yonex-percept-97d": {
+   "slug": "yonex-percept-97d",
+   "name": "Yonex PERCEPT 97D",
+   "sources": 22,
+   "groups": {
+    "plays_like": {
+     "control": 16,
+     "power": 2
+    },
+    "arm": {
+     "somewhat": 1,
+     "very": 3,
+     "not_really": 1
+    },
+    "stability": {
+     "very": 11,
+     "somewhat": 3
+    },
+    "maneuver": {
+     "not_really": 3,
+     "very": 1,
+     "somewhat": 2
+    },
+    "sweet_spot": {
+     "big": 2,
+     "small": 5,
+     "medium": 1
+    },
+    "spin": {
+     "little": 4,
+     "lots": 1
+    },
+    "level": {
+     "advanced": 2
+    },
+    "feel": {
+     "soft": 1,
+     "hard": 1
+    }
+   },
+   "spec": {
+    "feel": "soft"
+   }
+  },
+  "yonex-percept-97h": {
+   "slug": "yonex-percept-97h",
+   "name": "Yonex PERCEPT 97H",
+   "sources": 21,
+   "groups": {
+    "plays_like": {
+     "control": 6,
+     "all_round": 1,
+     "power": 1
+    },
+    "maneuver": {
+     "not_really": 11,
+     "somewhat": 1
+    },
+    "stability": {
+     "very": 10
+    },
+    "arm": {
+     "very": 4,
+     "not_really": 3
+    },
+    "sweet_spot": {
+     "small": 3,
+     "big": 1
+    },
+    "feel": {
+     "hard": 2,
+     "soft": 3
+    },
+    "level": {
+     "advanced": 2
+    },
+    "spin": {
+     "little": 1
+    }
+   },
+   "spec": {
+    "feel": "soft"
+   }
+  },
+  "yonex-percept-97l": {
+   "slug": "yonex-percept-97l",
+   "name": "Yonex PERCEPT 97L",
+   "sources": 8,
+   "groups": {
+    "plays_like": {
+     "control": 6,
+     "all_round": 1
+    },
+    "arm": {
+     "very": 3,
+     "somewhat": 1
+    },
+    "maneuver": {
+     "very": 3
+    },
+    "stability": {
+     "not_really": 1,
+     "somewhat": 1
+    },
+    "sweet_spot": {
+     "small": 1
+    },
+    "level": {
+     "advanced": 2
+    }
+   },
+   "spec": {}
+  },
+  "yonex-vcore-100-7th-gen": {
+   "slug": "yonex-vcore-100-7th-gen",
+   "name": "Yonex VCORE 100 (7th gen)",
+   "sources": 20,
+   "groups": {
+    "plays_like": {
+     "power": 15,
+     "control": 2
+    },
+    "arm": {
+     "somewhat": 2,
+     "very": 1
+    },
+    "spin": {
+     "lots": 8,
+     "some": 2
+    },
+    "sweet_spot": {
+     "big": 8,
+     "medium": 2
+    },
+    "feel": {
+     "soft": 6,
+     "hard": 1
+    },
+    "maneuver": {
+     "very": 3
+    },
+    "stability": {
+     "very": 5
+    },
+    "durability": {
+     "wears_fast": 1
+    }
+   },
+   "spec": {}
+  },
+  "yonex-vcore-100-8th-gen": {
+   "slug": "yonex-vcore-100-8th-gen",
+   "name": "Yonex VCORE 100 (8th gen)",
+   "sources": 21,
+   "groups": {
+    "plays_like": {
+     "power": 12,
+     "control": 4
+    },
+    "spin": {
+     "lots": 11,
+     "little": 1
+    },
+    "stability": {
+     "very": 5,
+     "somewhat": 2
+    },
+    "maneuver": {
+     "very": 4,
+     "not_really": 4
+    },
+    "sweet_spot": {
+     "small": 1,
+     "medium": 2
+    },
+    "arm": {
+     "not_really": 1
+    },
+    "feel": {
+     "hard": 1,
+     "soft": 2
+    },
+    "level": {
+     "intermediate": 1
+    }
+   },
+   "spec": {}
+  },
+  "yonex-vcore-100-plus-7th-gen": {
+   "slug": "yonex-vcore-100-plus-7th-gen",
+   "name": "Yonex VCORE 100+ (7th gen)",
+   "sources": 0,
+   "groups": {},
+   "spec": {}
+  },
+  "yonex-vcore-100-plus-8th-gen": {
+   "slug": "yonex-vcore-100-plus-8th-gen",
+   "name": "Yonex VCORE 100+ (8th gen)",
+   "sources": 0,
+   "groups": {},
+   "spec": {}
+  },
+  "yonex-vcore-100d-8th-gen": {
+   "slug": "yonex-vcore-100d-8th-gen",
+   "name": "Yonex VCORE 100D (8th gen)",
+   "sources": 29,
+   "groups": {
+    "plays_like": {
+     "control": 11,
+     "power": 5,
+     "all_round": 3
+    },
+    "spin": {
+     "lots": 7,
+     "little": 1,
+     "some": 2
+    },
+    "stability": {
+     "very": 10,
+     "somewhat": 2
+    },
+    "arm": {
+     "not_really": 3
+    },
+    "maneuver": {
+     "not_really": 10
+    },
+    "sweet_spot": {
+     "big": 4,
+     "small": 1
+    },
+    "feel": {
+     "soft": 1,
+     "hard": 3
+    },
+    "level": {
+     "advanced": 1
+    }
+   },
+   "spec": {}
+  },
+  "yonex-vcore-100l-7th-gen": {
+   "slug": "yonex-vcore-100l-7th-gen",
+   "name": "Yonex VCORE 100L (7th gen)",
+   "sources": 8,
+   "groups": {
+    "plays_like": {
+     "power": 5,
+     "control": 1
+    },
+    "spin": {
+     "lots": 5,
+     "some": 1
+    },
+    "maneuver": {
+     "very": 6
+    },
+    "feel": {
+     "hard": 1,
+     "soft": 2
+    },
+    "arm": {
+     "very": 1
+    },
+    "stability": {
+     "somewhat": 1,
+     "not_really": 1
+    },
+    "level": {
+     "beginner": 2
+    }
+   },
+   "spec": {}
+  },
+  "yonex-vcore-100l-8th-gen": {
+   "slug": "yonex-vcore-100l-8th-gen",
+   "name": "Yonex VCORE 100L (8th gen)",
+   "sources": 0,
+   "groups": {},
+   "spec": {}
+  },
+  "yonex-vcore-95-7th-gen": {
+   "slug": "yonex-vcore-95-7th-gen",
+   "name": "Yonex VCORE 95 (7th gen)",
+   "sources": 22,
+   "groups": {
+    "plays_like": {
+     "control": 6,
+     "power": 5,
+     "all_round": 1
+    },
+    "spin": {
+     "lots": 8,
+     "some": 3
+    },
+    "stability": {
+     "very": 5,
+     "somewhat": 3,
+     "not_really": 1
+    },
+    "arm": {
+     "very": 6,
+     "not_really": 1,
+     "somewhat": 1
+    },
+    "feel": {
+     "soft": 7
+    },
+    "sweet_spot": {
+     "big": 8,
+     "small": 2,
+     "medium": 2
+    },
+    "maneuver": {
+     "very": 1,
+     "not_really": 1
+    },
+    "level": {
+     "advanced": 3
+    }
+   },
+   "spec": {
+    "feel": "soft"
+   }
+  },
+  "yonex-vcore-95-8th-gen": {
+   "slug": "yonex-vcore-95-8th-gen",
+   "name": "Yonex VCORE 95 (8th gen)",
+   "sources": 20,
+   "groups": {
+    "plays_like": {
+     "all_round": 5,
+     "control": 7,
+     "power": 6
+    },
+    "maneuver": {
+     "very": 5,
+     "not_really": 1
+    },
+    "feel": {
+     "soft": 4,
+     "hard": 5
+    },
+    "stability": {
+     "very": 6,
+     "not_really": 1,
+     "somewhat": 1
+    },
+    "sweet_spot": {
+     "big": 1,
+     "small": 1,
+     "medium": 2
+    },
+    "spin": {
+     "some": 1,
+     "lots": 3
+    },
+    "arm": {
+     "not_really": 1,
+     "very": 1
+    },
+    "level": {
+     "advanced": 2
+    }
+   },
+   "spec": {
+    "feel": "soft"
+   }
+  },
+  "yonex-vcore-98-7th-gen": {
+   "slug": "yonex-vcore-98-7th-gen",
+   "name": "Yonex VCORE 98 (7th gen)",
+   "sources": 38,
+   "groups": {
+    "plays_like": {
+     "control": 15,
+     "power": 11,
+     "all_round": 1
+    },
+    "arm": {
+     "somewhat": 7,
+     "not_really": 4,
+     "very": 1
+    },
+    "spin": {
+     "lots": 16,
+     "some": 2
+    },
+    "stability": {
+     "very": 2,
+     "somewhat": 2,
+     "not_really": 3
+    },
+    "feel": {
+     "soft": 11,
+     "hard": 2
+    },
+    "maneuver": {
+     "very": 7,
+     "not_really": 3
+    },
+    "sweet_spot": {
+     "big": 4,
+     "small": 2,
+     "medium": 1
+    },
+    "level": {
+     "advanced": 4
+    }
+   },
+   "spec": {
+    "feel": "soft"
+   }
+  },
+  "yonex-vcore-98-8th-gen": {
+   "slug": "yonex-vcore-98-8th-gen",
+   "name": "Yonex VCORE 98 (8th gen)",
+   "sources": 62,
+   "groups": {
+    "plays_like": {
+     "power": 35,
+     "control": 8,
+     "all_round": 3
+    },
+    "spin": {
+     "lots": 22,
+     "some": 2,
+     "little": 6
+    },
+    "feel": {
+     "soft": 7,
+     "hard": 10
+    },
+    "sweet_spot": {
+     "small": 3,
+     "big": 5,
+     "medium": 1
+    },
+    "arm": {
+     "somewhat": 2,
+     "not_really": 11,
+     "very": 2
+    },
+    "stability": {
+     "very": 11,
+     "somewhat": 2,
+     "not_really": 1
+    },
+    "maneuver": {
+     "not_really": 13,
+     "somewhat": 1
+    },
+    "level": {
+     "advanced": 3
+    }
+   },
+   "spec": {}
+  },
+  "yonex-vcore-98-plus-7th-gen": {
+   "slug": "yonex-vcore-98-plus-7th-gen",
+   "name": "Yonex VCORE 98+ (7th gen)",
+   "sources": 0,
+   "groups": {},
+   "spec": {
+    "feel": "soft"
+   }
+  },
+  "yonex-vcore-98-plus-8th-gen": {
+   "slug": "yonex-vcore-98-plus-8th-gen",
+   "name": "Yonex VCORE 98+ (8th gen)",
+   "sources": 0,
+   "groups": {},
+   "spec": {}
+  },
+  "yonex-vcore-98-tour-7th-gen": {
+   "slug": "yonex-vcore-98-tour-7th-gen",
+   "name": "Yonex VCORE 98 Tour (7th gen)",
+   "sources": 0,
+   "groups": {},
+   "spec": {}
+  },
+  "yonex-vcore-98-tour-8th-gen": {
+   "slug": "yonex-vcore-98-tour-8th-gen",
+   "name": "Yonex VCORE 98 Tour (8th gen)",
+   "sources": 7,
+   "groups": {
+    "plays_like": {
+     "power": 5
+    },
+    "spin": {
+     "lots": 5
+    },
+    "stability": {
+     "very": 6
+    },
+    "maneuver": {
+     "not_really": 3,
+     "somewhat": 1
+    },
+    "feel": {
+     "soft": 2
+    },
+    "level": {
+     "advanced": 1
+    }
+   },
+   "spec": {}
+  },
+  "yonex-vcore-pro-100-2021": {
+   "slug": "yonex-vcore-pro-100-2021",
+   "name": "Yonex VCORE PRO 100 (2021)",
+   "sources": 12,
+   "groups": {
+    "plays_like": {
+     "control": 4,
+     "all_round": 3,
+     "power": 1
+    },
+    "arm": {
+     "very": 3,
+     "somewhat": 4
+    },
+    "sweet_spot": {
+     "big": 2,
+     "medium": 2
+    },
+    "spin": {
+     "lots": 2
+    },
+    "stability": {
+     "very": 3,
+     "not_really": 2,
+     "somewhat": 1
+    },
+    "maneuver": {
+     "very": 2
+    },
+    "feel": {
+     "soft": 2
+    }
+   },
+   "spec": {}
+  },
+  "yonex-vcore-pro-97-2021": {
+   "slug": "yonex-vcore-pro-97-2021",
+   "name": "Yonex VCORE PRO 97 (2021)",
+   "sources": 1,
+   "groups": {
+    "arm": {
+     "very": 1
+    }
+   },
+   "spec": {
+    "feel": "soft"
+   }
+  },
+  "yonex-vcore-pro-97d-2021": {
+   "slug": "yonex-vcore-pro-97d-2021",
+   "name": "Yonex VCORE PRO 97D (2021)",
+   "sources": 1,
+   "groups": {
+    "spin": {
+     "little": 1
+    },
+    "stability": {
+     "very": 1
+    }
+   },
+   "spec": {
+    "feel": "soft"
+   }
+  },
+  "yonex-vcore-pro-97h-2021": {
+   "slug": "yonex-vcore-pro-97h-2021",
+   "name": "Yonex VCORE PRO 97H (2021)",
+   "sources": 0,
+   "groups": {},
+   "spec": {
+    "feel": "soft"
+   }
+  }
+ }
+}

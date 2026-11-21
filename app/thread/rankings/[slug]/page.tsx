@@ -47,7 +47,7 @@ const QM = quickMatchFor(niche.id);
  *  keep Comments. Same thread (`ranking:<slug>`), posting, votes and owner tools either way. */
 const V7B_DISCUSSION = niche.id === "padel";
 /** The arm and shape FAQ lines, the site's own (PickleballRecs: its Rankings and Elbow Guide mocks). */
-const ARM_TIP = PICKLEBALL ? "A soft core, a lighter paddle and a relaxed grip help most." : "A soft core, a lower balance and a lighter racket help most.";
+const ARM_TIP = PICKLEBALL ? "A soft core, a lighter paddle and a relaxed grip help most." : niche.id === "tennis" ? "A flexible frame, a bit more weight and soft strings help most." : "A soft core, a lower balance and a lighter racket help most.";
 // SkinRecs has no shape question (it showed padel's until 2026-11-21).
 const SHAPE_FAQ = SKIN ? null : SR
   ? { q: "Direct drive, belt or gear?", a: "Direct drive gives the most detail and the smoothest feel. Belt drive is a solid budget step. Gear driven wheels are fine to start but feel notchy." }
@@ -55,6 +55,8 @@ const SHAPE_FAQ = SKIN ? null : SR
   ? { q: "Open-back or closed-back?", a: "Open-back sounds more spacious and natural, but leaks sound and lets noise in. Closed-back blocks noise and keeps your music private. Not sure? Closed-back." }
   : DG
   ? { q: "Understable or overstable?", a: "Understable turns over and helps a slower arm fly straight and far. Overstable fights the wind and hooks left at the end. Not sure? Stable." }
+  : niche.id === "tennis"
+  ? { q: "98 or 100 sq in?", a: "A 100 sq in head is more forgiving, with easier depth and spin. A 97 or 98 gives more precision for full, clean swings. Not sure? 100." }
   : PICKLEBALL
   ? { q: "Standard, hybrid or elongated?", a: "Standard is the most forgiving and quickest at the kitchen. Hybrid is the all-rounder. Elongated adds reach and drive power, with a smaller sweet spot." }
   : { q: "Round, teardrop or diamond?", a: "Round is the most forgiving and suits defenders. Teardrop is the all-rounder. Diamond adds smash power but needs better technique." };
@@ -227,11 +229,13 @@ async function RankingV5({ l, lists, list, rated, label, faqs, ld, picOf }: { l:
   const mine = rows.map(r => r.id);
   const explore = [AUDIO ? { tag: "Guide", title: GUIDE_LINK_LABELS.racket, desc: "Where you listen, fit and sound, in plain words.", cta: "Read guide", href: GUIDE_PATHS.racket, imgs: pics(mine, 1), tone: "dark" }
       : SR ? { tag: "Guide", title: GUIDE_LINK_LABELS.racket, desc: "Base, wheel, pedals and rig, in plain words.", cta: "Read guide", href: GUIDE_PATHS.racket, imgs: pics(mine, 1), tone: "dark" }
+      : niche.id === "tennis" ? { tag: "Guide", title: GUIDE_LINK_LABELS.racket, desc: "Head size, weight, pattern and stiffness, in plain words.", cta: "Read guide", href: GUIDE_PATHS.racket, imgs: pics(mine, 1), tone: "dark" }
       : { tag: "Guide", title: "How to choose a padel racket", desc: "Shape, weight, balance and feel, in plain words.", cta: "Read guide", href: GUIDE_PATHS.racket, imgs: pics(mine, 1), tone: "dark" },
     AUDIO ? { tag: "Guide", title: GUIDE_LINK_LABELS.shape, desc: "Open or closed, and who each suits.", cta: "Read guide", href: GUIDE_PATHS.shape, imgs: pics(mine.slice(1), 3), tone: "sand" }
       : SR ? { tag: "Guide", title: GUIDE_LINK_LABELS.shape, desc: "What each drive feels like, and who each suits.", cta: "Read guide", href: GUIDE_PATHS.shape, imgs: pics(mine.slice(1), 3), tone: "sand" }
+      : niche.id === "tennis" ? { tag: "Guide", title: GUIDE_LINK_LABELS.shape, desc: "97, 100 or oversize, and who each suits.", cta: "Read guide", href: GUIDE_PATHS.shape, imgs: pics(mine.slice(1), 3), tone: "sand" }
       : { tag: "Guide", title: "Padel racket shapes explained", desc: "Round, teardrop or diamond, and who each suits.", cta: "Read guide", href: GUIDE_PATHS.shape, imgs: pics(mine.slice(1), 3), tone: "sand" },
-    ...others.filter(x => x.slug !== (SR ? "best-sim-racing-gear" : "best-padel-rackets")).slice(0, 2).map((x, i) => ({ tag: "Ranking", title: x.label, desc: x.blurb, cta: "View ranking", href: x.href,
+    ...others.filter(x => x.slug !== (SR ? "best-sim-racing-gear" : niche.id === "tennis" ? "best-tennis-rackets" : "best-padel-rackets")).slice(0, 2).map((x, i) => ({ tag: "Ranking", title: x.label, desc: x.blurb, cta: "View ranking", href: x.href,
       imgs: pics(x.ids, 2), tone: i ? "lime" : "sand" }))];
   return <Shell active="rankings">
     <JsonLd data={ld}/>

@@ -90,15 +90,24 @@ const SIMRACING_GUIDES: Record<GuideKey, string> = {
   side: "/guides/load-cell-pedals",
   elbow: "/guides/desk-or-rig",
 };
+/** TennisRecs: choosing a racket, beginner tips, head size, string pattern and tennis elbow ("shape" = head size, "side" =
+ *  string pattern). */
+const TENNIS_GUIDES: Record<GuideKey, string> = {
+  racket: "/guide",
+  beginner: "/guides/beginner-tips",
+  shape: "/guides/head-size",
+  side: "/guides/string-patterns",
+  elbow: "/guides/tennis-elbow",
+};
 export const guidePathsFor = (nicheId: string): Record<GuideKey, string> => nicheId === "pickleball" ? PICKLEBALL_GUIDES : nicheId === "skin" ? SKIN_GUIDES
-  : nicheId === "discgolf" ? DISCGOLF_GUIDES : nicheId === "audio" ? AUDIO_GUIDES : nicheId === "simracing" ? SIMRACING_GUIDES : PADEL_GUIDES;
+  : nicheId === "discgolf" ? DISCGOLF_GUIDES : nicheId === "audio" ? AUDIO_GUIDES : nicheId === "simracing" ? SIMRACING_GUIDES : nicheId === "tennis" ? TENNIS_GUIDES : PADEL_GUIDES;
 /** The running site's guide addresses. */
 export const GUIDE_PATHS = guidePathsFor(niche.id);
 export const GUIDE_KEYS = Object.keys(PADEL_GUIDES) as GuideKey[];
 export const guideKeyOf = (path: string, nicheId = niche.id): GuideKey | null => GUIDE_KEYS.find(k => guidePathsFor(nicheId)[k] === path) ?? null;
 
 /** The sites whose add-review page is the design-v2 form, which has a Thread page (StackRecs keeps its own full form). */
-export const ADD_REVIEW_SITES = new Set(["padel", "pickleball", "skin", "discgolf", "simracing"]);
+export const ADD_REVIEW_SITES = new Set(["padel", "pickleball", "skin", "discgolf", "simracing", "tennis"]);
 /** The Thread page an address shows with ?look=thread, or null when the Thread look has no page for it (compare and
  *  add-review keep their live page). `catalog` is the niche's catalogue path ("/rackets" on padel, "/paddles" on pickleball). */
 export function threadPath(pathname: string, catalog = catalogPath, nicheId = niche.id): string | null {

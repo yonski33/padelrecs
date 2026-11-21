@@ -15,7 +15,7 @@ import { and, count, desc, eq, gte, like } from "drizzle-orm";
 import { sideItems, addCounts, BUSY_DAYS, SIDE_SIZE, type SideItem } from "../../lib/thread/home-side";
 import { shopPhoto, photoHidden } from "../../lib/shop-photos";
 import { amazonPhoto } from "../../lib/amazon-photos";
-import { productHref, niche } from "../../lib/niche";
+import { productHref, niche, hasYears } from "../../lib/niche";
 import { playersWord } from "../../lib/thread/web-sources";
 import { flightOf } from "../../lib/discgolf-profile";
 import { score } from "../../db/data";
@@ -37,7 +37,7 @@ const FEEL = { soft: "Soft", medium: "Medium", firm: "Hard" } as const;
  *  engine, skinRows below). StackRecs has its own pages (app/thread/stack): there they read nothing and build empty, and
  *  proxy.ts never serves them. */
 export const hasDb = () => !!process.env.DATABASE_URL && (niche.id === "padel" || niche.id === "pickleball" || niche.id === "skin"
-  || niche.id === "discgolf" || niche.id === "audio" || niche.id === "simracing");
+  || niche.id === "discgolf" || niche.id === "audio" || niche.id === "simracing" || niche.id === "tennis");
 /** The Thread home's top rows: the classic home's default order (app/home-payload.ts defaultHomeIds), as Thread rows. */
 export const homeTop = (rows: Map<string, ThreadRow>, ids: string[], size = 10) => ids.flatMap(id => rows.get(id) ?? []).slice(0, size);
 type Rows = { ctx: Ctx; rows: Map<string, ThreadRow>; all: ThreadRow[]; bySlug: Map<string, ThreadRow> };
@@ -102,6 +102,8 @@ const BOARDS: [string, string][] = niche.id === "audio" ? [] // AudioRecs has no
   ? [["ffb_detail", "Most detailed feedback"], ["ffb_strength", "Most torque"], ["brake_feel", "Best brake feel"], ["rigidity", "Least flex"], ["quiet", "Quietest"], ["setup", "Easiest to set up"]]
   : niche.id === "discgolf"
   ? [["accuracy", "Straightest flight"], ["arm", "Best for slow arms"], ["distance", "Most distance"], ["wind", "Best in the wind"], ["grip", "Most grip"], ["glide", "Most glide"]]
+  : niche.id === "tennis"
+  ? [["forgiveness", "Biggest sweet spot"], ["arm", "Most arm friendly"], ["control", "Most control"], ["power", "Most power"], ["spin", "Most spin"], ["stability", "Most stable"]]
   : niche.id === "pickleball"
   ? [["forgiveness", "Biggest sweet spot"], ["arm", "Most arm friendly"], ["control", "Most control"], ["power", "Most power"], ["speed", "Best at the kitchen"], ["spin", "Most spin"]]
   : [["forgiveness", "Biggest sweet spot"], ["arm", "Most arm friendly"], ["control", "Most control"], ["power", "Most power"], ["speed", "Best at the net"], ["defence", "Best in defence"]];
@@ -127,7 +129,8 @@ export const threadBoards = cache(async (only?: Set<string>): Promise<Board[]> =
     return { title, source: "reviews" as const, rows: scored.map(({ r, n }) => ({ id: r.id, name: shortName(r.name, r.brand), href: r.href, pic: r.pic, n })) };
   }).filter(b => b.rows.length === 3);
 });
-const shortName = (name: string, brand: string) => (brand && name.startsWith(`${brand} `) ? name.slice(brand.length + 1) : name).replace(/\s+\(?20\d\d\)?$/, "");
+// A site without model years (TennisRecs) keeps the generation in the name ("Head Speed MP 2022").
+const shortName = (name: string, brand: string) => { const s = brand && name.startsWith(`${brand} `) ? name.slice(brand.length + 1) : name; return hasYears ? s.replace(/\s+\(?20\d\d\)?$/, "") : s; };
 
 /** The ranking lists for the header menu, the hub and the sidebars: slug, label, title, top entries (curated first). */
 export const threadLists = cache(async () => {

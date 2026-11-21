@@ -40,7 +40,7 @@ test("Thread links: plain addresses while Thread is the default; in preview mode
 
 test("PadelRecs, PickleballRecs, SkinRecs, DiscGolfRecs and SimRacingRecs run the Thread look; the other sites don't", () => {
   for (const id of ["padel", "pickleball", "skin", "discgolf", "simracing"]) assert.equal(threadSite(id), true, id);
-  for (const id of ["tennis", "coffee", "golf"]) assert.equal(threadSite(id), false, id);
+  for (const id of ["coffee", "golf"]) assert.equal(threadSite(id), false, id);
 });
 
 test("padel: the normal addresses are served by Thread; ?look=classic gets today's live routing without the query", async () => {

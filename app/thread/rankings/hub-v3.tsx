@@ -1,3 +1,4 @@
+import { hasYears } from "../../../lib/niche";
 // PadelRecs v3 rankings hub (Rankings Hub v3) and "How rankings work" (How Rankings Work v3), owner handoff
 // design_handoff_padelrecs_v3 (2026-11-21), padel only. The mock's design with today's content where the mock has less (every
 // list, its blurb, its top 3); words and rules: lib/thread/rankings-hub.ts. The ranking list pages are separate work.
@@ -18,7 +19,7 @@ export function HubV3({ groups, rows, ratings, lead }: { groups: { title: string
       <b className="t">{l.short ?? l.label}</b>
       {l.blurb && <span className="b">{l.blurb}</span>}
       <span className="rows">{l.ids.slice(0, 3).map((id, i) => { const r = rows.get(id); if (!r) return null; const n = ratings[l.slug]?.[id];
-        return <span key={id} className="row"><span className="r">{i + 1}</span><span className="n">{r.name.replace(/\s+\(?20\d\d\)?$/, "")}</span>
+        return <span key={id} className="row"><span className="r">{i + 1}</span><span className="n">{hasYears ? r.name.replace(/\s+\(?20\d\d\)?$/, "") : r.name}</span>
           {n != null && <span className="rt" title="PadelRecs rating, 0 to 10">{ratingTen(n)}</span>}
           {r.pos + r.mix + r.neg > 0 && <span className="rkh-bar sm" aria-label={`${r.pos} loved, ${r.mix} mixed, ${r.neg} not for me`}><i style={{ flex: r.pos }}/><i style={{ flex: r.mix }}/><i style={{ flex: r.neg }}/></span>}</span>; })}</span>
       <span className="go">See the full list →</span>

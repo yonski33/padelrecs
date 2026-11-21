@@ -2,6 +2,7 @@ import type { ReactNode } from "react";
 import "./thread.css";
 // SimRacingRecs' accent on the v3 pages (generated, scoped to .th-srv3; padel untouched).
 import "./sr-colors.css";
+import "./tn-colors.css";
 import { niche } from "../../lib/niche";
 
 // Indexable: Thread serves the live addresses (lib/thread/look.ts THREAD_DEFAULT); each page reuses the live page's metadata.
@@ -20,6 +21,8 @@ const SITE_FONTS: Record<string, string[]> = { discgolf: ["https://fonts.googlea
   audio: ["https://fonts.googleapis.com/css2?family=Archivo+Narrow:wght@600;700&display=swap"] };
 /** SimRacingRecs uses the PadelRecs v3 look (owner 2026-11-21), so the same fonts. */
 SITE_FONTS.simracing = SITE_FONTS.padel;
+/** TennisRecs too (owner 2026-11-21, v3 wave 2). */
+SITE_FONTS.tennis = SITE_FONTS.padel;
 
 export default function ThreadLayout({ children }: { children: ReactNode }) {
   return <>

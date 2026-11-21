@@ -24,7 +24,7 @@ export const dynamicParams = false;
 export function generateStaticParams() { return GUIDE_KEYS.map(key => ({ key })); }
 type P = { params: Promise<{ key: string }> };
 const PICKLEBALL = niche.id === "pickleball";
-const SKIN = niche.id === "skin", DG = niche.id === "discgolf", AUDIO = niche.id === "audio", SR = niche.id === "simracing";
+const SKIN = niche.id === "skin", DG = niche.id === "discgolf", AUDIO = niche.id === "audio", SR = niche.id === "simracing", TN = niche.id === "tennis";
 const SHAPES = PICKLEBALL ? ["standard", "hybrid", "elongated"] : ["round", "teardrop", "diamond"];
 const BEST = SKIN ? "best-face-moisturizers" : DG ? "best-disc-golf-discs" : AUDIO ? "best-headphones" : SR ? "best-sim-racing-gear" : `best-${niche.id}-${niche.words.many}`; // "best-padel-rackets", "best-pickleball-paddles"
 const GUIDE_NAME = `${niche.words.One} guide`;
@@ -67,6 +67,15 @@ async function picksFor(key: GuideKey): Promise<{ title?: string; rows: ThreadRo
     if (key === "side") return [{ title: "Backhand", rows: top(BEST, 2) }, { title: "Forehand", rows: await match({ style: "power", arm: false }, 2) }];
     if (key === "elbow") return [{ rows: top("best-disc-golf-discs-for-slow-arms", 4) }];
   }
+  if (TN) {
+    // TennisRecs: its live lists by exact slug, and the best of each head size band (its shape column) for the head size guide.
+    const top = (slug: string, n: number) => (lists.find(l => l.slug === slug)?.ids ?? []).slice(0, n).map(id => rows.get(id)).filter((x): x is ThreadRow => !!x);
+    const band = (r: ThreadRow) => { const n = Number(r.shape?.match(/(\d{2,3})\s*sq/)?.[1] ?? NaN); return !Number.isFinite(n) ? null : n >= 104 ? "big" : n >= 100 ? "mid" : "small"; };
+    if (key === "racket") return [{ rows: ["best-power-tennis-rackets", "best-control-tennis-rackets", "best-spin-tennis-rackets", "best-arm-friendly-tennis-rackets"].flatMap(x => top(x, 1)) }];
+    if (key === "shape") return [{ rows: (["small", "mid", "big"] as const).flatMap(b => all.filter(r => r.score != null && r.n >= 10 && r.current !== false && band(r) === b).sort((x, y) => y.score! - x.score!).slice(0, 2)) }];
+    if (key === "side") return [{ title: "Spin first", rows: top("best-spin-tennis-rackets", 2) }, { title: "Control first", rows: top("best-control-tennis-rackets", 2) }];
+    if (key === "elbow") return [{ rows: top("best-arm-friendly-tennis-rackets", 4) }];
+  }
   const seen = new Set<string>();
   const bestOfShape = (shape: string, n: number) => all.filter(r => r.score != null && r.n >= 10 && isShape(r, shape) && (!PICKLEBALL || (r.current !== false && !seen.has(r.id))))
     .sort((a, b) => b.score! - a.score!).slice(0, n).map(r => (seen.add(r.id), r));
@@ -95,6 +104,7 @@ export default async function ThreadGuide({ params }: P) {
     : DG ? (g.key === "beginner" ? `${BEST}-for-beginners` : g.key === "elbow" ? `${BEST}-for-slow-arms` : BEST)
     : SR ? (g.key === "beginner" ? `${BEST}-for-beginners` : g.key === "side" ? "best-sim-racing-pedals" : g.key === "elbow" ? "best-sim-racing-cockpits"
       : g.key === "shape" ? "best-sim-racing-wheelbases" : BEST)
+    : TN ? (g.key === "beginner" ? `${BEST}-for-beginners` : g.key === "elbow" ? "best-arm-friendly-tennis-rackets" : g.key === "side" ? "best-spin-tennis-rackets" : BEST)
     : AUDIO ? (g.key === "shape" ? "best-open-back-headphones" : g.key === "elbow" ? "best-noise-cancelling-headphones" : "best-headphones-overall")
     : g.key === "beginner" ? `${BEST}-for-beginners` : g.key === "elbow" ? (PICKLEBALL ? `${BEST}-for-tennis-elbow` : ELBOW_SLUG) : BEST;
   const fullRanking = `/rankings/${shown.has(wanted) ? wanted : BEST}`;
@@ -102,9 +112,10 @@ export default async function ThreadGuide({ params }: P) {
   const picksTitle = g.picksTitle.replace(/\bvote for\b/, "rate highest");
   const ld = { "@context": "https://schema.org", "@graph": [crumbs([{ name: "Home", path: "/" }, ...(g.key === "racket" ? [] : [{ name: GUIDE_NAME, path: GUIDE_PATHS.racket }]), { name: g.key === "racket" ? GUIDE_NAME : g.title, path: GUIDE_PATHS[g.key] }])] };
   // PadelRecs Guide v3 (owner design 2026-11-21): the same copy, picks and comments in the v3 layout; no score on the rows.
-  if (niche.id === "padel") {
+  // TennisRecs too (v3 wave 2); its elbow list is "arm-friendly".
+  if (niche.id === "padel" || TN) {
     const lists = await threadRankings();
-    const want = [/beginners/i, /control/i, /power/i, /tennis elbow/i];
+    const want = [/beginners/i, /control/i, /power/i, TN ? /arm-friendly|tennis elbow/i : /tennis elbow/i];
     const related = want.map(rx => lists.find(l => rx.test(l.label))).filter((l): l is NonNullable<typeof l> => !!l).map(l => ({ label: l.label, href: l.href }));
     return <Shell active="guides"><JsonLd data={ld}/>
       <GuideV3 g={g} picks={picks} picksTitle={picksTitle} fullRanking={fullRanking} related={related}

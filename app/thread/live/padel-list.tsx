@@ -9,7 +9,7 @@ import { th } from "../../../lib/thread/look";
 import { withoutYear } from "../../../lib/brand-name";
 import { usePicks, usePayload, pctsFor, LEVEL_OPTS, STYLE_OPTS, BUDGETS, styleLabel, type Level } from "./picks";
 import { bandOrder } from "../../../lib/thread/home-order";
-import { niche } from "../../../lib/niche";
+import { niche, hasYears } from "../../../lib/niche";
 import { W } from "../../../lib/thread/words";
 import { USES, SOUNDS, type AudioPicks } from "../../../lib/audio-match";
 
@@ -22,14 +22,16 @@ const AUDIO = niche.id === "audio";
 /** SimRacingRecs (v3 rollout 2026-11-21): no curated lists either; Type and Drive (its rows carry the drive kind as `feel`,
  *  app/thread/padel-list-data.ts); its match bar picks a budget, not a style, and "I race on console". */
 const SR = niche.id === "simracing";
-export const SORTS: [Sort, string][] = AUDIO || SR ? [["loved", "Most loved"], ["new", "Newest"], ["match", "By your match"]]
+/** TennisRecs (v3 wave 2): no curated lists; Head size and Feel (stiffness), app/thread/padel-list-data.ts. */
+const TN = niche.id === "tennis";
+export const SORTS: [Sort, string][] = AUDIO || SR || TN ? [["loved", "Most loved"], ["new", "Newest"], ["match", "By your match"]]
   : [["picks", "PadelRecs picks"], ["loved", "Most loved"], ["new", "Newest"], ["match", "By your match"]];
 const BASE_SORT: Sort = SORTS[0][0];
 /** The home's menu (owner 2026-11-21: "PadelRecs picks" read as random there): Most loved (default), Most opinions, and By
  *  your match once a pick is set. The catalogue keeps SORTS. */
 export const HOME_SORTS: [Sort, string][] = [["loved", "Most loved"], ["opinions", "Most opinions"], ["match", "By your match"]];
-const FEELS = AUDIO ? ["Warm", "Balanced", "Bright"] : SR ? ["Direct drive", "Belt", "Gear"] : ["Soft", "Medium", "Hard"];
-const GROUP_TITLES: Record<Key, string> = AUDIO ? { shape: "Type", feel: "Sound", brand: "Brand" } : SR ? { shape: "Type", feel: "Drive", brand: "Brand" } : { shape: "Shape", feel: "Feel", brand: "Brand" };
+const FEELS = AUDIO ? ["Warm", "Balanced", "Bright"] : SR ? ["Direct drive", "Belt", "Gear"] : TN ? ["Soft", "Medium", "Crisp"] : ["Soft", "Medium", "Hard"];
+const GROUP_TITLES: Record<Key, string> = AUDIO ? { shape: "Type", feel: "Sound", brand: "Brand" } : SR ? { shape: "Type", feel: "Drive", brand: "Brand" } : TN ? { shape: "Head size", feel: "Feel", brand: "Brand" } : { shape: "Shape", feel: "Feel", brand: "Brand" };
 /** AudioRecs' match (lib/audio-match.ts), worked out by the page's own hook (live/audio-match.tsx) and handed to the list. */
 export type ListMatch = { mine: boolean; pcts: Map<string, number | null> | null; picks: AudioPicks; set: (p: Partial<AudioPicks>) => void };
 const TOP_BRANDS = 6;
@@ -39,7 +41,8 @@ const readFt = (): Filters => { try { const v = JSON.parse(localStorage.getItem(
   return Object.fromEntries((["shape", "feel", "brand"] as Key[]).flatMap(k => Array.isArray(v[k]) && v[k].length ? [[k, v[k].filter((x: unknown) => typeof x === "string")]] : [])); } catch { return {}; } };
 const cap = (s: string) => s.charAt(0).toUpperCase() + s.slice(1);
 /** "Head Extreme Motion (2026)", as the racket page titles it. */
-export const named = (r: ThreadRow) => { const b = withoutYear(r.name); return r.year && b !== r.name ? `${b} (${r.year})` : r.name; };
+// A site without model years (TennisRecs) keeps the name whole: its generation is part of it ("Head Speed MP 2022").
+export const named = (r: ThreadRow) => { const b = withoutYear(r.name); return hasYears && r.year && b !== r.name ? `${b} (${r.year})` : r.name; };
 export const opinions = (r: ThreadRow) => r.pos + r.mix + r.neg;
 export const plural = (n: number, one: string, many = `${one}s`) => `${n.toLocaleString("en-US")} ${n === 1 ? one : many}`;
 
