@@ -9,6 +9,7 @@ import { metadata as live } from "../../brands/page";
 import { JsonLd, crumbs } from "../seo";
 import { th } from "../../../lib/thread/look";
 import { niche } from "../../../lib/niche";
+import { v3Site } from "../../../lib/thread/sites";
 import { W } from "../../../lib/thread/words";
 const cap = (s: string) => s[0].toUpperCase() + s.slice(1);
 
@@ -52,7 +53,7 @@ export default async function ThreadBrands() {
           <span className="th-brand-body"><strong>{b.name}</strong>
             <span className="th-note">{[models > 0 ? plural(models, niche.id === "simracing" ? niche.words.one : "racket") : "", reviews > 0 ? plural(reviews, "review") : ""].filter(Boolean).join(" · ")}</span>
             {top && <span className="th-note">{`Top rated: ${top.name.replace(new RegExp(`^${b.name}\\s+`, "i"), "")}`}</span>}</span>
-          {top?.score != null && <Badge n={top.score} size="sm"/>}
+          {/* No score on the v3 sites (audio and sim racing use this layout). */}{!v3Site(niche.id) && top?.score != null && <Badge n={top.score} size="sm"/>}
           <span className="th-link-b" aria-hidden="true">›</span>
         </a></li>)}</ul></section>
     </div>
