@@ -13,9 +13,11 @@ test("the hero has no subline and the page has one squiggle", () => {
   assert.doesNotMatch(code(page.slice(page.indexOf("if (PADEL) {"), page.indexOf("  return <Shell>\n    <main className={PADEL"))), /#B9E85A|Squiggle/);
 });
 
-test("sort starts on PadelRecs picks, Top picks say votes, no score on the list", () => {
+test("the catalogue starts on PadelRecs picks, the home on Most loved (season pool), Top picks say votes, no score", () => {
   assert.match(list, /\["picks", "PadelRecs picks"\]/);
-  assert.match(list, /useState<Sort>\("picks"\)/);
+  assert.match(list, /const base: Sort = season \? "loved" : "picks"/);
+  assert.match(list, /useState<Sort>\(base\)/);
+  assert.match(home, /useRacketList\(\{ rows, curated, added, season \}\)/);
   assert.match(page, /unit=\{\["vote", "votes"\]\}/);
   assert.doesNotMatch(code(list) + code(home), /\.score\b|Player score|th-badge/);
 });

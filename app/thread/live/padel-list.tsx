@@ -8,6 +8,7 @@ import { type ThreadRow } from "../ui";
 import { th } from "../../../lib/thread/look";
 import { withoutYear } from "../../../lib/brand-name";
 import { usePicks, usePayload, pctsFor, LEVEL_OPTS, STYLE_OPTS, styleLabel, type Level } from "./picks";
+import { bandOrder } from "../../../lib/thread/home-order";
 
 export type Sort = "picks" | "loved" | "new" | "match";
 export type Key = "shape" | "feel" | "brand";
@@ -25,9 +26,12 @@ export const named = (r: ThreadRow) => { const b = withoutYear(r.name); return r
 export const opinions = (r: ThreadRow) => r.pos + r.mix + r.neg;
 export const plural = (n: number, one: string, many = `${one}s`) => `${n.toLocaleString("en-US")} ${n === 1 ? one : many}`;
 
-/** The list's state: picks, fine-tune, search, sort and the sorted, filtered rows. `search`: the catalogue's search box. */
-export function useRacketList({ rows, curated, added, search = false }: { rows: ThreadRow[]; curated: string[]; added: Record<string, string>; search?: boolean }) {
-  const [q, setQ] = useState(""), [f, setF] = useState<Filters>({}), [sort, setSort] = useState<Sort>("picks"), [ftReady, setFtReady] = useState(false), [older, setOlder] = useState(false);
+/** The list's state: picks, fine-tune, search, sort and the sorted, filtered rows. `search`: the catalogue's search box.
+ *  `season` (the home, lib/thread/home-order.ts): only these ids, "Most loved" by default, and "By your match" in 10-point
+ *  bands with the most loved first inside each. */
+export function useRacketList({ rows, curated, added, search = false, season }: { rows: ThreadRow[]; curated: string[]; added: Record<string, string>; search?: boolean; season?: string[] }) {
+  const base: Sort = season ? "loved" : "picks";
+  const [q, setQ] = useState(""), [f, setF] = useState<Filters>({}), [sort, setSort] = useState<Sort>(base), [ftReady, setFtReady] = useState(false), [older, setOlder] = useState(false);
   const [picks, setPicks] = usePicks(); const mine = !!(picks.level || picks.style), payload = usePayload(mine);
   const pcts = useMemo(() => mine && payload ? pctsFor(payload, picks) : null, [mine, payload, picks]);
   // ?q= (catalogue), ?shape= / ?feel= from links, ?level= sets the level pick. A link's filter wins over the kept filters.
@@ -42,9 +46,10 @@ export function useRacketList({ rows, curated, added, search = false }: { rows: 
   useEffect(() => { if (!ftReady) return; try { localStorage.setItem(FT_KEY, JSON.stringify(f)); } catch { /* private mode */ } }, [f, ftReady]);
   // A level or style pick switches to "By your match"; clearing them goes back to the picks order.
   // eslint-disable-next-line react-hooks/set-state-in-effect
-  useEffect(() => { setSort(s => mine ? "match" : s === "match" ? "picks" : s); }, [mine]);
+  useEffect(() => { setSort(s => mine ? "match" : s === "match" ? base : s); }, [mine, base]);
   const words = q.trim().toLowerCase().split(/\s+/).filter(Boolean);
-  const pool = useMemo(() => older || words.length ? rows : rows.filter(r => r.current !== false), [rows, older, words.length]);
+  const only = useMemo(() => season ? new Set(season) : null, [season]);
+  const pool = useMemo(() => only ? rows.filter(r => only.has(r.id)) : older || words.length ? rows : rows.filter(r => r.current !== false), [rows, only, older, words.length]);
   const olderN = rows.length - rows.filter(r => r.current !== false).length;
   const test = (r: ThreadRow, k: Key, v: string) => k === "shape" ? r.shape === v : k === "feel" ? r.feel === v : r.brand === v;
   const pass = (r: ThreadRow, skip?: Key) => words.every(w => `${r.name} ${r.brand} ${r.slug.replace(/-/g, " ")}`.toLowerCase().includes(w))
@@ -53,13 +58,13 @@ export function useRacketList({ rows, curated, added, search = false }: { rows: 
   const chips = (Object.entries(f) as [Key, string[]][]).flatMap(([k, vs]) => vs.map(v => ({ k, v })));
   const clearAll = () => { setF({}); setQ(""); };
   const pick = useMemo(() => new Map(curated.map((id, i) => [id, i])), [curated]);
-  const by: Sort = sort === "match" && !pcts ? "picks" : sort;
+  const by: Sort = sort === "match" && !pcts ? base : sort;
   const list = useMemo(() => pool.filter(r => pass(r)).sort((a, b) => by === "loved" ? b.pos - a.pos || opinions(b) - opinions(a)
     : by === "new" ? b.year - a.year || (added[b.id] ?? "").localeCompare(added[a.id] ?? "")
-    : by === "match" ? (pcts!.get(b.id) ?? -1) - (pcts!.get(a.id) ?? -1)
+    : by === "match" ? (only ? bandOrder(a, b, pcts!) : (pcts!.get(b.id) ?? -1) - (pcts!.get(a.id) ?? -1))
     : (pick.get(a.id) ?? 1e6) - (pick.get(b.id) ?? 1e6) || b.pos - a.pos),
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  [pool, f, q, by, pcts, pick, added]);
+  [pool, f, q, by, pcts, pick, added, only]);
   return { q, setQ, f, toggle, chips, clearAll, picks, setPicks, mine, pcts, sort: by, setSort, list, pool, pass, test, older, setOlder, olderN, words };
 }
 export type RacketList = ReturnType<typeof useRacketList>;
