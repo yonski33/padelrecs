@@ -12,12 +12,20 @@ import type { Metadata } from "next";
 import { generateMetadata as liveMetadata } from "../../rankings/page";
 import { liveOr } from "../seo";
 import { W } from "../../../lib/thread/words";
+import { HubV3 } from "./hub-v3";
+/** The hub's lead (owner honesty rules 2026-11-21: picks, never "votes set the order"). */
+const HUB_LEAD = "PadelRecs picks and lists ordered by player reviews, checked against player votes. Pick a list.";
 export const generateMetadata = (): Promise<Metadata> => liveOr(liveMetadata);
 
 export default async function ThreadHub() {
   const [lists, { rows }] = await Promise.all([threadRankings(), threadRows()]);
   const ratings = await hubRatings(lists);
   const rated = Object.keys(ratings).length > 0;
+  // PadelRecs v3 (Rankings Hub v3 mock): the same lists and groups, top 3 with their opinions, ratings on 0 to 10.
+  if (niche.id === "padel") return <Shell active="rankings">
+    <HubV3 lead={HUB_LEAD} rows={rows} ratings={ratings}
+      groups={GROUPS.map(g => ({ title: g, cards: lists.filter(l => l.group === g) })).filter(g => g.cards.length > 0)}/>
+  </Shell>;
   return <Shell active="rankings">
     <main className="th-main"><div className="th-col" style={{ maxWidth: "none" }}>
       <section className="th-card th-hero">

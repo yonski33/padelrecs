@@ -39,7 +39,7 @@ const BLURB: Record<string, string> = DG ? {
   "best-pickleball-paddles-for-tennis-elbow": "Soft, stable and kind to your elbow.", "best-pickleball-paddles-for-beginners": "Forgiving paddles with a big sweet spot.",
   standard: "The most forgiving shape.", elongated: "More reach and power.", hybrid: "Some reach, a forgiving face.",
 } : {
-  "best-padel-rackets": "The highest player scores right now.", "best-power-padel-rackets": "For smashes that reach the fence.",
+  "best-padel-rackets": "The best-reviewed rackets right now.", "best-power-padel-rackets": "For smashes that reach the fence.",
   "best-control-padel-rackets": "Steady from the back, precise at the net.", beginners: "Forgiving rackets with a big sweet spot.",
   "sore-arms": "Soft, light and kind to your elbow.", round: "The most forgiving shape.", teardrop: "The all-rounder shape.", diamond: "Power first, for clean technique.",
 };

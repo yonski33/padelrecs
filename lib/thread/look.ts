@@ -100,6 +100,8 @@ export function threadPath(pathname: string, catalog = catalogPath, nicheId = ni
   if (guide) return `/thread/guides/${guide}`;
   if (p === "/about") return "/thread/about";
   if (p === "/how-we-make-these") return "/thread/score";
+  // PadelRecs v3 (owner handoff 2026-11-21): "How rankings work", a Thread-only page.
+  if (p === "/how-rankings-work" && nicheId === "padel") return "/thread/how-rankings";
   if (p === "/affiliate-disclosure") return "/thread/affiliate";
   if (p === "/contact") return "/thread/contact";
   // The design-v2 form in the Thread look (owner 2026-11-20); proxy.ts keeps its query and leaves ?classic=1 on the live form.
