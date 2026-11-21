@@ -21,6 +21,7 @@ import { signInHref } from "./use-account";
 import { MemberMark } from "./member-mark";
 import { avatarOf } from "../../../lib/thread/avatar";
 import type { RvCard } from "../racket-data";
+import { playersWord, threadTitle, thumbOf, type WebGroups } from "../../../lib/thread/web-sources";
 
 const ACCOUNTS = accountSite(niche.id);
 /** The event the poll sends to open the review form (v16 "Say why in a short review"). */
@@ -115,6 +116,8 @@ function ReviewRow({ c, owner, onChange }: { c: RvCard; owner: boolean; onChange
   const anchor = `rv-${c.id}`, rid = c.id.slice(2), web = c.kind !== "player";
   // Reddit rows: the subreddit, "r/name" (owner 2026-11-21; never "<model> owners"), else "Reddit".
   const name = c.kind === "reddit" ? subreddit(c.who) : c.who;
+  // A player review with no typed name (owner 2026-11-21): "Player", then its level and side as the small grey tag.
+  const shown = name || (c.kind === "player" ? "Player" : "");
   const run = async (f: () => Promise<void>, after: Changed) => { try { await f(); setErr(""); setEdit(null); onChange(after); } catch (e) { setErr(e instanceof Error ? e.message : "That didn't save."); } };
   const save = () => { if (!edit) return; const alias = c.alias ?? "";
     run(async () => { if (edit.name.trim() !== alias) await editName(rid, edit.name); if (edit.text !== null && edit.text.trim() !== c.text.trim()) await editText(rid, edit.text); },
@@ -132,7 +135,7 @@ function ReviewRow({ c, owner, onChange }: { c: RvCard; owner: boolean; onChange
   return <article id={anchor} className="th7-rv th7-rv-av">
     <span className={`th7-av${av ? "" : " none"}`} style={av ? { background: av.bg } : undefined} aria-hidden="true">{av?.init ?? ""}</span>
     <div className="th7-rv-b">
-    <div className="th7-rv-top">{name ? <><strong>{name}</strong>{c.member && <MemberMark/>}</> : c.info && <span className="th-rv-info">{c.info}</span>}
+    <div className="th7-rv-top">{shown && <><strong>{shown}</strong>{c.member && <MemberMark/>}</>}{!name && c.info && <span className="th-rv-info">{c.info}</span>}
       {c.verdict && <span className={`th-vpill ${VERDICT[c.verdict][1]}`}>{VERDICT[c.verdict][0]}</span>}
       {c.when && <span><Ago at={c.at || null} initial={c.when}/></span>}</div>
     {edit ? <div className="th-admin-acts">
@@ -154,8 +157,8 @@ function ReviewRow({ c, owner, onChange }: { c: RvCard; owner: boolean; onChange
   </article>;
 }
 
-// Owner mock 2026-11-21: sentiment chips on the left, source chips on the right, and Newest · Most helpful · Oldest.
-const TABS = [["all", "All sources"], ["player", niche.site.name], ["reddit", "Reddit"], ["youtube", "YouTube"], ["blog", "Blogs"], ["forum", "Forums"]] as const;
+// Owner mock 2026-11-21: sentiment chips and Newest · Most helpful · Oldest. Only the site's own reviews are listed here;
+// outside sources have their own section below (WebSources), so there are no source chips.
 const FEEL = [["all", "All"], ["positive", "Loved it"], ["mixed", "Mixed"], ["negative", "Not for me"]] as const;
 type Sort = "helpful" | "new" | "old";
 const SORTS: [Sort, string][] = [["new", "Newest"], ["helpful", "Most helpful"], ["old", "Oldest"]];
@@ -168,16 +171,15 @@ export function ReviewsV7b({ id, cards }: { id: string; cards: RvCard[]; model?:
     setTimeout(() => document.getElementById("reviews")?.scrollIntoView({ block: "start", behavior: "smooth" }), 30); };
     addEventListener(OPEN_REVIEW, on); return () => removeEventListener(OPEN_REVIEW, on); }, [setOpen, setVerdict]);
   const owner = useOwner();
-  const [tab, setTab] = useState<(typeof TABS)[number][0]>("all"), [feel, setFeel] = useState<(typeof FEEL)[number][0]>("all"), [sort, setSort] = useState<Sort>("new"), [sortOpen, setSortOpen] = useState(false), [shown, setShown] = useState(PAGE);
+  const [feel, setFeel] = useState<(typeof FEEL)[number][0]>("all"), [sort, setSort] = useState<Sort>("new"), [sortOpen, setSortOpen] = useState(false), [shown, setShown] = useState(PAGE);
   const [changed, setChanged] = useState<Record<string, Changed>>({});
   const live = useMemo(() => cards.filter(c => !changed[c.id]?.gone).map(c => { const x = changed[c.id]; return x ? { ...c, ...(x.text ? { text: x.text } : {}), ...(x.alias ? { who: x.alias, alias: x.alias, meta: null } : {}) } : c; }), [cards, changed]);
-  const has = (k: string) => k === "all" || live.some(c => c.kind === k);
   // Tabs and sort run here in the browser (instant filters); "Most helpful" uses the page's vote counts, then longer text.
   const list = useMemo(() => {
-    const l = live.filter(c => (tab === "all" || c.kind === tab) && (feel === "all" || c.verdict === feel));
+    const l = live.filter(c => feel === "all" || c.verdict === feel);
     return [...l].sort((a, b) => sort === "helpful" ? b.helpful - a.helpful || b.text.length - a.text.length
       : sort === "old" ? (a.at ?? "").localeCompare(b.at ?? "") : (b.at ?? "").localeCompare(a.at ?? ""));
-  }, [live, tab, feel, sort]);
+  }, [live, feel, sort]);
   // A link to one review (Copy link) opens on it: show enough rows and scroll there once the list is drawn.
   useEffect(() => { const h = location.hash.slice(1); if (!h.startsWith("rv-")) return; const i = list.findIndex(c => `rv-${c.id}` === h);
     // eslint-disable-next-line react-hooks/set-state-in-effect
@@ -212,14 +214,59 @@ export function ReviewsV7b({ id, cards }: { id: string; cards: RvCard[]; model?:
     {cards.length > 0 && <div className="th7-bar th7-chips">
       <div className="th7-chipset" role="group" aria-label="Show reviews that">{FEEL.map(([k, l]) =>
         <button key={k} type="button" aria-pressed={feel === k} onClick={() => { setFeel(k); setShown(PAGE); }}>{l}</button>)}</div>
-      <div className="th7-chipset" role="group" aria-label="Show reviews from">{TABS.filter(([k]) => has(k)).map(([k, l]) =>
-        <button key={k} type="button" aria-pressed={tab === k} onClick={() => { setTab(k); setShown(PAGE); }}>{l}</button>)}</div>
     </div>}
     <div className="th7-rv-list">
       {list.slice(0, shown).map(c => <ReviewRow key={c.id} c={c} owner={owner} onChange={x => setChanged(m => ({ ...m, [c.id]: { ...m[c.id], ...x } }))}/>)}
       {cards.length === 0 && <p className="th-empty">{`No reviews yet. ${W.triedIt} Be the first.`}</p>}
-      {cards.length > 0 && list.length === 0 && <p className="th-empty">No reviews match these filters yet. <button type="button" onClick={() => { setTab("all"); setFeel("all"); }}>Show all</button></p>}
+      {cards.length > 0 && list.length === 0 && <p className="th-empty">No reviews match these filters yet. <button type="button" onClick={() => setFeel("all")}>Show all</button></p>}
     </div>
     {list.length > shown && <button type="button" className="th-btn th-center" style={{ margin: "4px 0 8px" }} onClick={() => setShown(s => s + 16)}>Show more reviews</button>}
+  </section>;
+}
+
+/** One outside source's card: where and when, the overall feel, then the summary in the site's words and a link out. */
+function WebCard({ c, kind }: { c: RvCard; kind: keyof WebGroups<RvCard> }) {
+  const thumb = kind === "videos" ? thumbOf(c.url) : null, title = kind === "threads" ? threadTitle(c.url) : null;
+  const where = c.kind === "reddit" ? subreddit(c.who) : c.who;
+  const link = c.url && <a className="th-web-go" href={c.url} target="_blank" rel="noopener nofollow">{WEB_LINK[kind]}</a>;
+  const inThread = kind === "comments" ? threadTitle(c.url) : null;
+  return <article id={`rv-${c.id}`} className={`th-web-c${thumb ? " vid" : ""}`}>
+    {thumb && <a className="th-web-th" href={c.url!} target="_blank" rel="noopener nofollow" tabIndex={-1} aria-hidden="true">
+      <img src={thumb} alt="" loading="lazy" width={320} height={180}/><span className="play"/></a>}
+    <div className="th-web-b">
+      <div className="th-web-meta"><b>{where}</b>{c.when && <><span>·</span><Ago at={c.at || null} initial={c.when}/></>}
+        {c.verdict && <span className={`th-vpill ${VERDICT[c.verdict][1]}`}>{VERDICT[c.verdict][0]}</span>}</div>
+      {title && <strong className="th-web-t">{title}</strong>}
+      <p className="th-web-x">{playersWord(c.text)}</p>
+      {inThread ? <span className="th-web-in">{`in “${inThread}” `}{link}</span> : link}
+    </div>
+  </article>;
+}
+const WEB_LINK = { threads: "Read the thread ↗", videos: "Watch on YouTube ↗", comments: "View on Reddit ↗", blogs: "Read the post ↗" } as const;
+const WEB_HEAD: [keyof WebGroups<RvCard>, string, string][] = [["threads", "Reddit threads", "r"], ["videos", "YouTube reviews", "yt"],
+  ["comments", "Reddit comments", "r"], ["blogs", "Blogs", "bl"]];
+const WEB_FIRST = 2;
+
+/** "From around the web" (owner mock 2026-11-21): the outside sources, in a dashed box apart from the player reviews. Each
+ *  group shows two until the one "Show more from around the web"; none of it counts in the poll. */
+export function WebSources({ web }: { web: WebGroups<RvCard> }) {
+  const [all, setAll] = useState(false);
+  // A copied link to one card (#rv-w-…) opens the box on it.
+  useEffect(() => { const h = location.hash.slice(1); if (!h.startsWith("rv-w-")) return;
+    // eslint-disable-next-line react-hooks/set-state-in-effect
+    setAll(true); setTimeout(() => document.getElementById(h)?.scrollIntoView({ block: "center" }), 50); }, []);
+  const groups = WEB_HEAD.filter(([k]) => web[k].length > 0);
+  if (!groups.length) return null;
+  const more = groups.some(([k]) => web[k].length > WEB_FIRST);
+  return <section id="web" className="th-card th-web">
+    <h2 className="th-h2">From around the web</h2>
+    <p className="th-web-sub">Short summaries of Reddit threads, YouTube reviews and blogs. Not counted in the player poll above.</p>
+    <span className="th-web-tag">Outside sources</span>
+    <div className="th-web-groups">{groups.map(([k, head, icon]) => <div key={k} className="th-web-g">
+      <h3 className="th-web-h"><span className={`ico ${icon}`} aria-hidden="true">{icon === "r" ? "r/" : icon === "yt" ? "▶" : "¶"}</span>{head}
+        <small>{`${web[k].length} summarised`}</small></h3>
+      <div className="th-web-list">{(all ? web[k] : web[k].slice(0, WEB_FIRST)).map(c => <WebCard key={c.id} c={c} kind={k}/>)}</div>
+    </div>)}</div>
+    {more && !all && <button type="button" className="th-btn th-center" onClick={() => setAll(true)}>Show more from around the web</button>}
   </section>;
 }
