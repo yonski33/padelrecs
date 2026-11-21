@@ -11,6 +11,7 @@ import { amazonButton } from "../../lib/amazon-offer";
 import { amazonPhoto } from "../../lib/amazon-photos";
 import { websiteButton } from "../../lib/product-links";
 import { th } from "../../lib/thread/look";
+import { niche } from "../../lib/niche";
 import { ago, plural, type ThreadRow } from "./ui";
 import { Ago } from "./live/ago";
 import { withoutYear } from "../../lib/brand-name";
@@ -24,7 +25,8 @@ const BUY_NOTE = "Affiliate link - price stays the same";
 
 export async function JustIn() {
   const { all, ctx } = await threadRows();
-  if (!ctx) return null;
+  // Padel only: the v3 home this sits on also serves AudioRecs.
+  if (!ctx || niche.id !== "padel") return null;
   const listed = new Map(ctx.data.listed.map(x => [x.id, x]));
   const added = Object.fromEntries(all.map(r => [r.id, listed.get(r.id)?.createdAt ?? ""]));
   // Only rackets in the listed catalogue (each card reads its shop links from that row).
