@@ -36,6 +36,13 @@ import { writtenTldr } from "../../../../lib/thread/written-tldr";
 import { pageContent, marked } from "../../../../lib/racket-page";
 import { summary } from "../../../../lib/product-summary";
 import { tagSays } from "../../../../lib/tags";
+import { votePill } from "../../../../lib/thread/vote-pill";
+import { TRAIT_GROUPS } from "../../../../lib/thread/traits";
+import { traitCounts, traitGroup } from "../../data";
+import { threadRankings, ratingsFor } from "../../rankings-data";
+import { ratingCategory } from "../../../../lib/category-rating";
+import { curatedRankingStyle } from "../../../../lib/curated";
+import type { RankRow } from "../../racket-v7b";
 
 export const revalidate = 86400;
 // Every listed racket's page is built with the site, as the live racket pages are (app/v/racket); none without a database (CI).
@@ -67,6 +74,16 @@ async function lovedToo(id: string, rows: Map<string, ThreadRow>) {
   if (!hasDb()) return [];
   try { return (await alsoLoved(await database(), [id], [], "", 4)).flatMap(p => rows.get(p.racketId) ?? []); }
   catch (error) { console.error("[thread] also loved failed", error); return []; }
+}
+
+/** PadelRecs' sidebar rows (owner mock 2026-11-21): the curated lists (db/curated/padel.json) that carry a category rating
+ *  (lib/category-rating.ts, #567) and hold this racket, best place first, two at most. The number is the ranking page's own. */
+async function rankRows(id: string): Promise<RankRow[]> {
+  if (!hasDb()) return [];
+  const lists = (await threadRankings()).filter(l => l.ids.includes(id) && curatedRankingStyle(l.slug) && ratingCategory(l.slug, niche.id));
+  const out = await Promise.all(lists.map(async l => { const cat = ratingCategory(l.slug, niche.id)!, n = (await ratingsFor(cat, l.ids))[id];
+    return { at: l.ids.indexOf(id), row: { label: `#${l.ids.indexOf(id) + 1} in ${l.label}`, sub: [n != null ? `${cat.label} ${n}` : null, `${niche.site.name} pick`].filter(Boolean).join(" · "), href: l.href } }; }));
+  return out.sort((a, b) => a.at - b.at).slice(0, 2).map(x => x.row);
 }
 
 /** DiscGolfRecs' plastic chips over the reviews: the plastics its reviews name, most reviewed first, once 2 or more are named. */
@@ -142,11 +159,15 @@ export default async function ThreadRacket({ params }: P) {
       : sum ? [...sum.loved.filter(t => (sum.tagCounts.get(t) ?? 0) >= 5).slice(0, 2).map(t => ({ tone: "pos" as const, text: says(t) })),
         ...sum.complaints.filter(t => (sum.tagCounts.get(t) ?? 0) >= 5).slice(0, 1).map(t => ({ tone: "catch" as const, text: says(t) }))] : bullets;
     const model = brand && bare.toLowerCase().startsWith(`${brand.name.toLowerCase()} `) ? bare.slice(brand.name.length + 1) : bare;
+    // The top card's pill: the strongest "How does it play?" answer, from the groups as the page shows them (lib/thread/vote-pill.ts).
+    const tc = hasDb() ? await traitCounts() : null;
+    const pill = tc ? votePill(Object.fromEntries(TRAIT_GROUPS.map(g => [g.key, traitGroup(tc, r.id, g.key)])), W.people) : null;
+    const ranks = await rankRows(r.id);
     return <Shell active="rackets">
       <JsonLd data={ld}/>
       <RacketV7b id={r.id} title={r.year && bare !== name ? `${bare} (${r.year})` : name} model={model} crumbs={crumbsEl} tags={tags} lime={!!style} row={row} judged={judged}
-        lead={lead} bullets={v7Bullets} specs={v7Specs} shop={shop} cards={cards} sim={sim.map(x => <Mini key={x.id} x={x}/>)} also={also.map(x => <Mini key={x.id} x={x} small/>)}
-        line={lineEl} stories={tales}/>
+        lead={lead} bullets={v7Bullets} specs={v7Specs} shop={shop} cards={cards} sim={sim} also={also} brand={brand ? { name: brand.name, slug: brand.slug } : null}
+        line={line} pill={pill} ranks={ranks} stories={tales}/>
     </Shell>;
   }
   return <Shell active="rackets">

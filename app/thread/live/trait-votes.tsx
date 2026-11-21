@@ -15,7 +15,8 @@ type Overrides = { counts: Record<string, Record<string, number>>; frozen: strin
 
 /** `groups` and `title`: StackRecs passes its tool's side ("How does it build?"); padel keeps its nine and its heading. */
 /** `of`: the page's opinion count (SkinRecs); no longer shown, since the note is just "Tap to vote" (owner 2026-11-20). */
-export function TraitVotes({ id, seed, groups = TRAIT_GROUPS, title = W.traitsTitle }: { id: string; seed: TraitSeed | null; groups?: TraitGroup[]; title?: string; of?: number }) {
+/** `tieNone`: on a tie for the lead, highlight neither answer (PadelRecs racket page). */
+export function TraitVotes({ id, seed, groups = TRAIT_GROUPS, title = W.traitsTitle, tieNone = false }: { id: string; seed: TraitSeed | null; groups?: TraitGroup[]; title?: string; of?: number; tieNone?: boolean }) {
   const [counts, setCounts] = useState<TraitCounts>({}), [ov, setOv] = useState<Overrides>({ counts: {}, frozen: [] }), [mine, setMine] = useState<Record<string, string>>({}), [err, setErr] = useState("");
   useEffect(() => {
     fetch(`/api/trait-votes?racket=${encodeURIComponent(id)}`, { cache: "no-store" }).then(r => r.ok ? r.json() : null)
@@ -39,7 +40,7 @@ export function TraitVotes({ id, seed, groups = TRAIT_GROUPS, title = W.traitsTi
     <div className="th-head-row"><h2 className="th-h3">{title}</h2><span className="th-sub">{SECTION_NOTE}</span></div>
     <div className="th-vgrid">{groups.map(g => {
       const closed = ov.frozen.includes("_all") || ov.frozen.includes(g.key);
-      const v = groupView(g.options, ov.counts[g.key] ?? seed?.groups[g.key], counts[g.key], seed?.spec[g.key]), max = Math.max(1, ...v.opts.filter(o => o.shown).map(o => o.n));
+      const v = groupView(g.options, ov.counts[g.key] ?? seed?.groups[g.key], counts[g.key], seed?.spec[g.key], tieNone), max = Math.max(1, ...v.opts.filter(o => o.shown).map(o => o.n));
       return <div key={g.key} className="th-vbox slim" role="group" aria-label={g.title}>
         <span className="th-vbox-head">{g.title}<small>{[v.specOnly ? "From the specs" : "", closed ? "Voting closed" : ""].filter(Boolean).join(" · ")}</small></span>
         {v.opts.map(o => <button key={o.key} type="button" className={`th-vopt sm${o.top || o.spec ? " top" : ""}`} aria-pressed={mine[g.key] === o.key} disabled={closed} onClick={() => vote(g.key, o.key)}>

@@ -128,8 +128,8 @@ export async function racketData(slug: string) {
   const pool = ctx.data.listed.filter(x => score(ctx.data, x.id).judged >= 5);
   const sim = similarProducts(r, pool, tagProfiles([...ctx.data.reviews, ...ctx.data.external]), 12)
     .filter((x, i, a) => modelFamily(x) !== modelFamily(r) && a.findIndex(y => modelFamily(y) === modelFamily(x)) === i)
-    .map(x => rows.get(x.id)).filter((x): x is ThreadRow => !!x && x.score != null && !!x.current).sort((a, b) => b.score! - a.score!).slice(0, 2);
-  // DiscGolfRecs (audit 2026-11-20: 3 discs with few reviews had no Similar discs): a disc whose reviews give no match is
+    .map(x => rows.get(x.id)).filter((x): x is ThreadRow => !!x && x.score != null && !!x.current).sort((a, b) => b.score! - a.score!).slice(0, niche.id === "padel" ? 4 : 2);
+  // PadelRecs shows four (owner mock 2026-11-21). DiscGolfRecs (audit 2026-11-20: 3 discs with few reviews had no Similar discs): a disc whose reviews give no match is
   // filled with the same type's nearest flight numbers (speed, glide, turn, fade), one per model, scored and current.
   const fl = DG ? flightOf(r.weight) : null;
   if (fl && sim.length < 2) {
