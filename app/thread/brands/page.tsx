@@ -22,6 +22,23 @@ export default async function ThreadBrands() {
     const top = [...current].filter(r => r.score != null).sort((x, y) => y.score! - x.score! || y.n - x.n)[0] ?? null;
     return { b, models: current.length, reviews: rows.reduce((n, r) => n + r.n, 0), top, pic: top?.pic ?? current.find(r => r.pic)?.pic ?? null };
   }).filter(x => x.models > 0).sort((a, b) => b.reviews - a.reviews || a.b.name.localeCompare(b.b.name));
+  // PadelRecs Brands v3 (owner design 2026-11-21): brand cards with rackets, opinions and the most loved racket (most
+  // "loved it" reviews, not a score), sorted by opinions; the rankings move to a row of links under the cards.
+  if (niche.id === "padel") return <Shell>
+    <JsonLd data={{ "@context": "https://schema.org", "@graph": [crumbs([{ name: "Brands", path: "/brands" }])] }}/>
+    <main className="th-main thb3">
+      <section className="th-card thb3-title"><h1 className="th-h1">Brands</h1><p>{`${brands.length} brands, sorted by player opinions.`}</p></section>
+      <div className="thb3-cards">{brands.map(({ b, models, reviews }) => {
+        const loved = all.filter(r => r.brand === b.name && r.current !== false && r.pos > 0).sort((x, y) => y.pos - x.pos || y.n - x.n)[0] ?? null;
+        return <a key={b.id} className="th-card thb3-card" href={th(`/brands/${b.slug}`)}>
+          <strong className="name">{b.name}</strong>
+          <span className="counts">{[plural(models, "racket"), reviews > 0 ? plural(reviews, "opinion") : ""].filter(Boolean).join(" · ")}</span>
+          {loved && <span className="loved"><span>Most loved:</span> <strong>{loved.name.replace(new RegExp(`^${b.name}\\s+`, "i"), "")}</strong></span>}
+          <span className="go">See rackets →</span>
+        </a>; })}</div>
+      {lists.length > 0 && <nav className="thb3-links" aria-label="Rankings"><span>Rankings</span>{lists.slice(0, 8).map(l => <a key={l.href} href={th(l.href)}>{l.label}</a>)}</nav>}
+    </main>
+  </Shell>;
   return <Shell>
     <JsonLd data={{ "@context": "https://schema.org", "@graph": [crumbs([{ name: "Brands", path: "/brands" }])] }}/>
     <main className="th-main"><div className="th-col">
