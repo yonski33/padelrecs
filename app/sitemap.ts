@@ -67,6 +67,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       priority: 0.6,
     })),
     { url: `${base}/how-we-make-these`, lastModified: COPY_UPDATED, changeFrequency: "monthly", priority: 0.4 },
+    ...(niche.id === "padel" ? [{ url: `${base}/how-rankings-work`, lastModified: COPY_UPDATED, changeFrequency: "monthly" as const, priority: 0.4 }] : []),
     { url: `${base}/about`, lastModified: COPY_UPDATED, changeFrequency: "yearly", priority: 0.3 },
     { url: `${base}/contact`, lastModified: COPY_UPDATED, changeFrequency: "yearly", priority: 0.2 },
     ...(amazonLinksOn() ? [{ url: `${base}/affiliate-disclosure`, lastModified: COPY_UPDATED, changeFrequency: "yearly" as const, priority: 0.2 }] : []),

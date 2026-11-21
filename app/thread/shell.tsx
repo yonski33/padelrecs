@@ -7,7 +7,8 @@ import { amazonLinksOn } from "../../lib/amazon-offer";
 import { niche } from "../../lib/niche";
 import { liveStoryTotal } from "./stories-data";
 
-export const FOOTER_LINKS = [{ label: "About", href: "/about" }, { label: "How the score works", href: "/how-we-make-these" }, { label: "Affiliate disclosure", href: "/affiliate-disclosure" }, { label: "Contact", href: "/contact" }, { label: "Privacy", href: "/privacy" }];
+/** PadelRecs (v3 handoff 2026-11-21): "How rankings work" in place of the score page (no 0-100 score on its pages). */
+export const FOOTER_LINKS = [{ label: "About", href: "/about" }, niche.id === "padel" ? { label: "How rankings work", href: "/how-rankings-work" } : { label: "How the score works", href: "/how-we-make-these" }, { label: "Affiliate disclosure", href: "/affiliate-disclosure" }, { label: "Contact", href: "/contact" }, { label: "Privacy", href: "/privacy" }];
 
 export async function Shell({ active = null, children }: { active?: Section; children: ReactNode }) {
   // Member stories (PadelRecs pilot): the header link shows once one story is live (0 elsewhere, or before the migration).
