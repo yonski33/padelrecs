@@ -1139,3 +1139,10 @@ body:has(.th) .th .ths-more-list a { text-decoration: none; display: flex; justi
 body:has(.th) .th .ths-more-list a:hover b { color: var(--hover); }
 .ths-more-list .n { flex: none; font-size: 12.5px; color: var(--muted); }
 @media (max-width: 639px) { .ths-post { padding: 14px; } .ths-post .th-h1 { font-size: 30px !important; } }
+/* v7b one card (owner 2026-11-21): the fit check and the poll as parts of the top card, under thin dividers. */
+.th7-part { border-top: 1.5px solid var(--line); padding-top: 12px; display: flex; flex-direction: column; gap: 8px; min-width: 0; }
+.th7-subh { font-size: 19px !important; line-height: 1.1; }
+.th7-part.th7-poll .th-poll-head b { font-size: 19px; }
+/* Fit check beside the photo, under the TL;DR (owner 2026-11-21). */
+.th7-hero-side { display: flex; flex-direction: column; gap: 10px; min-width: 0; }
+.th7-hero-side .th7-part { padding-top: 10px; }
