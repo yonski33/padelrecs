@@ -22,7 +22,7 @@ import { th } from "../../../../lib/thread/look";
 import { amazonButton } from "../../../../lib/amazon-offer";
 import { amazonPhoto } from "../../../../lib/amazon-photos";
 import { websiteButton } from "../../../../lib/product-links";
-import { withoutYear } from "../../../../lib/brand-name";
+import { withoutYear, shortModel } from "../../../../lib/brand-name";
 import { niche, hasYears } from "../../../../lib/niche";
 import { alsoLoved } from "../../../../db/product-votes";
 import { database } from "../../../../db/data";
@@ -177,7 +177,7 @@ export default async function ThreadRacket({ params }: P) {
       ? [...pc.yes.slice(0, 2).map(i => ({ tone: "pos" as const, text: plain(i.t) })), ...pc.no.slice(0, 1).map(i => ({ tone: "catch" as const, text: plain(i.t) }))]
       : sum ? [...sum.loved.filter(t => (sum.tagCounts.get(t) ?? 0) >= 5).slice(0, 2).map(t => ({ tone: "pos" as const, text: says(t) })),
         ...sum.complaints.filter(t => (sum.tagCounts.get(t) ?? 0) >= 5).slice(0, 1).map(t => ({ tone: "catch" as const, text: says(t) }))] : bullets;
-    const model = brand && bare.toLowerCase().startsWith(`${brand.name.toLowerCase()} `) ? bare.slice(brand.name.length + 1) : bare;
+    const model = shortModel(bare, brand?.name);
     // The top card's pill: the strongest "How does it play?" answer, from the groups as the page shows them (lib/thread/vote-pill.ts).
     const tc = hasDb() ? await traitCounts() : null;
     const pill = tc ? votePill(Object.fromEntries((SR ? traitGroupsForType(niche.id, r.shape) : TRAIT_GROUPS).map(g => [g.key, traitGroup(tc, r.id, g.key)])), W.people, ...(aw ? [AUDIO_PILL_LABELS, AUDIO_PILL_LABELS] as const : SR ? [SIMRACING_PILL_WORDS, SIMRACING_PILL_LABELS] as const : [])) : null;

@@ -51,3 +51,12 @@ const OWN_BRAND = new Set([
   "Magic Bullet",
 ].map(words));
 export function ownBrand(name: string) { return OWN_BRAND.has(words(name)); }
+
+/** A product's name without its brand ("Metalbone CTRL" for "Adidas Metalbone CTRL"), for headings like "Players on the
+ *  Metalbone CTRL". Keeps the brand when the rest would read as a bare number or a fragment ("2 Pro" → "Simucube 2 Pro",
+ *  owner 2026-11-21): when it starts with a digit or is under 4 characters. */
+export function shortModel(name: string, brand: string | null | undefined): string {
+  if (!brand || !name.toLowerCase().startsWith(`${brand.toLowerCase()} `)) return name;
+  const rest = name.slice(brand.length + 1);
+  return /^\d/.test(rest) || rest.length < 4 ? name : rest;
+}
