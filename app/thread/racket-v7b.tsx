@@ -2,8 +2,10 @@
 // byline, no date and no Player score (SHOW_SCORE below rolls that back; the score is still worked out in code).
 // Order: top card (photo, title, tags, one line, TL;DR, the strongest vote pill + the opinions bar, jump row) → Is this racket
 // right for me? → poll → How does it play? → Similar rackets → Player reviews → Ask the community → also loved, then stories.
-// Sidebar: About this racket (curated ranking rows, specs, Check price) and More from <brand>. Under 1000px there is no
-// sidebar: Check price and the specs follow the top card; the ranking rows and More from <brand> follow the reviews.
+// Sidebar (owner OK 2026-11-21, a community feel, not a shop): this week's counts, the latest question, who plays it, often
+// compared with, then the basics (specs, an outlined Where to buy). Plain headings, no black bars, no curated ranking box and
+// no More from <brand>. Under 1000px there is no sidebar: Where to buy and the basics follow the top card; the community
+// cards follow "How does it play?".
 // app/thread/rackets/[slug]/page.tsx renders this on padel only; every other site keeps its own layout there.
 import type { ReactNode } from "react";
 import { Photo, SBar, tone, plural, type ThreadRow } from "./ui";
@@ -15,21 +17,25 @@ import { niche } from "../../lib/niche";
 import { TraitVotes } from "./live/trait-votes";
 import { FitCard, PollCard, ReviewsV7b } from "./live/racket-v7b";
 import { Discussion } from "./live/discussion";
+import { Ago } from "./live/ago";
+import type { WhoRow } from "../../lib/thread/community";
+import type { LatestQuestion } from "./community-data";
 import { MemberMark } from "./live/member-mark";
 import type { RvCard } from "./racket-data";
 
 /** Owner 2026-11-21: no Player score anywhere on the racket page. true brings the badge back (sidebar and phone tag row). */
 export const SHOW_SCORE = false;
 
-/** A curated ranking row in the sidebar: "#2 in Best for power", "Power rating 95 · PadelRecs pick". */
-export type RankRow = { label: string; sub: string; href: string };
 export type V7bProps = {
   id: string; title: string; model: string; crumbs: ReactNode; tags: string[]; lime: boolean; row: ThreadRow | null; judged: number;
   lead: string | null; bullets: { tone: "pos" | "mix" | "neg" | "catch"; text: string }[]; specs: [string, string][];
-  shop: { url: string; rel: string } | null; cards: RvCard[]; sim: ThreadRow[]; also: ThreadRow[];
-  brand: { name: string; slug: string } | null; line: ThreadRow[];
+  shop: { url: string; rel: string } | null; cards: RvCard[]; also: ThreadRow[];
+  brand: { name: string; slug: string } | null;
   /** The top card's vote pill (lib/thread/vote-pill.ts), or null. */ pill: string | null;
-  /** At most two curated ranking rows, best place first. */ ranks: RankRow[];
+  /** "3 new opinions · 2 questions this week", or null. */ week: string | null;
+  /** The newest Ask the community question. */ latest: LatestQuestion | null;
+  /** Who plays it, from votes only (lib/thread/community.ts). */ who: { headline: string; rows: WhoRow[] } | null;
+  /** Often compared with: up to 3 rackets and their compare page. */ compared: { row: ThreadRow; href: string }[];
   stories: { id: string; slug: string; title: string; author: { name: string } }[];
 };
 /** Two TL;DR bullets: the first praise and the first catch, so a downside always shows. */
@@ -58,12 +64,24 @@ export function RacketV7b(p: V7bProps) {
   const scoreEl = SHOW_SCORE && <div className="th7-score">{badge()}<span><span>{score != null ? W.Score : judged > 0 ? `${plural(judged, W.opinions.replace(/s$/, ""), W.opinions)} so far` : "No votes yet"}</span>
     {judged > 0 && <SBar lg pos={row!.pos} mix={row!.mix} neg={row!.neg}/>}</span></div>;
   const specs = p.specs.length > 0 && <div className="th8-specs">{p.specs.map(([k, v]) => <span key={k} className="th8-kv"><span>{k}</span><strong>{v}</strong></span>)}</div>;
-  const ranks = p.ranks.length > 0 && <div className="th8-ranks">{p.ranks.map(k => <a key={k.href} className="th8-rank" href={th(k.href)}>
-    <span><span>{k.label}</span><span aria-hidden="true">→</span></span><small>{k.sub}</small></a>)}</div>;
-  const buy = p.shop && <div className="th7-buy th8-buy"><a href={p.shop.url} target="_blank" rel={p.shop.rel}>Check price ↗</a><small>{BUY_NOTE}</small></div>;
-  const more = p.brand && p.line.length > 0 && <section className="th-card th-sbox th8-more"><div className="th-sbox-head">{`More from ${p.brand.name}`}</div>
-    <div className="th8-more-l">{p.line.slice(0, 3).map(x => <a key={x.id} href={th(x.href)}><span>{named(x)}</span><span aria-hidden="true">→</span></a>)}
-      <a href={th(`/brands/${p.brand.slug}`)}><span>{`All ${p.brand.name} ${niche.words.many}`}</span><span aria-hidden="true">→</span></a></div></section>;
+  const buy = p.shop && <div className="th8-buy"><a href={p.shop.url} target="_blank" rel={p.shop.rel}>Where to buy ↗</a><small>{BUY_NOTE}</small></div>;
+  const week = p.week && <section className="th-card th8-box th8-week"><span className="th8-live" aria-hidden="true"/>{p.week}</section>;
+  const latest = p.latest && <section className="th-card th8-box"><h2 className="th8-bh">Latest from the community</h2>
+    <span className="th8-q-by"><strong>{p.latest.name}</strong><span>·</span><Ago at={p.latest.at} initial=""/></span>
+    <p className="th8-q">{p.latest.text}</p>
+    <span className="th8-q-foot"><span>{plural(p.latest.replies, "reply", "replies")}</span><a href="#discussion">Join in →</a></span></section>;
+  const who = p.who && <section className="th-card th8-box"><h2 className="th8-bh">Who plays it</h2><strong className="th8-who-h">{p.who.headline}</strong>
+    <div className="th8-who">{p.who.rows.map(w => <span key={w.title} className="th8-who-r"><small>{w.title}</small><span className="th8-mini"><i style={{ width: `${Math.round(w.share * 100)}%` }}/></span>
+      <b>{w.label}</b><em>{w.n}</em></span>)}</div>
+    <small className="th8-cap2">From player votes in How does it play?</small></section>;
+  const compared = p.compared.length > 0 && <section className="th-card th8-box"><h2 className="th8-bh">Often compared with</h2>
+    <div className="th8-cmp">{p.compared.map(({ row: x, href }) => <span key={x.id} className="th8-cmp-r">
+      <a className="th8-cmp-ph" href={th(x.href)} tabIndex={-1} aria-hidden="true">{x.pic ? <img src={x.pic} alt="" loading="lazy"/> : <span className="th-ph"/>}</a>
+      <span className="th8-cmp-t"><a href={th(x.href)}>{named(x)}</a>{x.pos + x.mix + x.neg > 0 && <SBar pos={x.pos} mix={x.mix} neg={x.neg}/>}</span>
+      <a className="th8-cmp-go" href={href}>Compare</a></span>)}</div>
+    {p.brand && <a className="th8-all" href={th(`/brands/${p.brand.slug}`)}>{`All ${p.brand.name} ${niche.words.many} →`}</a>}</section>;
+  const community = (week || latest || who || compared) && <>{week}{latest}{who}{compared}</>;
+  const basics = (specs || buy) && <section className="th-card th8-box"><h2 className="th8-bh">The basics</h2>{specs}{buy}</section>;
   const one = row?.line && row.line !== p.lead ? row.line : null;
   return <main className="th-main th7 th8">
     <div className="th-col">
@@ -92,18 +110,17 @@ export function RacketV7b(p: V7bProps) {
           <a href="#overview" aria-current="true">Overview</a><a href="#feedback">Player feedback</a><a href="#reviews">Reviews</a><a href="#discussion">Ask the community</a>
         </nav>
       </article>
-      {/* No sidebar under 1000px: Check price, then the specs (owner 2026-11-21). */}
-      {(buy || specs) && <section className="th-card th8-narrow">{buy}{specs && <div><span className="th8-cap">{`About this ${niche.words.one}`}</span>{specs}</div>}</section>}
+      {/* No sidebar under 1000px: Where to buy and the basics, compact (owner 2026-11-21). */}
+      {basics && <div className="th8-narrow th8-narrow-basics">{basics}</div>}
       <FitCard id={p.id} title={`Is this ${niche.words.one} right for me?`} sub="Pick how you play and what you want, for a quick fit from community feedback."/>
       <div id="feedback" className="th8-anchor">
         <PollCard id={p.id} reviews={{ positive: row?.pos ?? 0, mixed: row?.mix ?? 0, negative: row?.neg ?? 0 }} question="Poll: would you buy it again?"
           sub={`Vote and see how other ${W.people} feel after using it.`} countsOnly/>
       </div>
       <TraitVotes id={p.id} seed={traitSeed(niche.id, p.id)} tieNone/>
-      {p.sim.length > 0 && <section className="th-card th8-sec"><h2 className="th-h2">{`Similar ${niche.words.many}`}</h2>
-        <div className="th8-grid">{p.sim.slice(0, 4).map(x => <RacketCard key={x.id} x={x}/>)}</div></section>}
+      {/* "Similar rackets" is gone: Often compared with (sidebar, and here on narrow screens) lists them. */}
+      {community && <div className="th8-narrow th8-narrow-after">{community}</div>}
       <ReviewsV7b id={p.id} cards={p.cards}/>
-      {(ranks || more) && <div className="th8-narrow-after">{ranks && <section className="th-card th8-narrow-ranks">{ranks}</section>}{more}</div>}
       <Discussion page={`racket:${p.id}`} model={p.model} words={{ heading: "Ask the community", sub: `Questions, advice, and tips about the ${p.model}.` }}/>
       {p.also.length >= 2 && <section className="th-card th8-sec"><h2 className="th-h2">{`${W.lovers} who loved this also loved`}</h2>
         <div className="th8-grid">{p.also.slice(0, 4).map(x => <RacketCard key={x.id} x={x}/>)}</div></section>}
@@ -111,10 +128,6 @@ export function RacketV7b(p: V7bProps) {
         <ul className="th-stories sm">{p.stories.map(s => <li key={s.id}><a className="th-story-t" href={th(`/stories/${s.slug}`)}>{s.title}</a>
           <span className="th-story-by"><strong>{s.author.name}</strong><MemberMark/></span></li>)}</ul></section>}
     </div>
-    <aside className="th-side">
-      <section className="th-card th-sbox"><div className="th-sbox-head">{`About this ${niche.words.one}`}</div>
-        <div className="th-sbox-body pad th8-side">{scoreEl}{ranks}{specs}{buy}</div></section>
-      {more}
-    </aside>
+    <aside className="th-side th8-aside">{scoreEl && <section className="th-card th8-box">{scoreEl}</section>}{community}{basics}</aside>
   </main>;
 }

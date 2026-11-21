@@ -39,10 +39,9 @@ import { tagSays } from "../../../../lib/tags";
 import { votePill } from "../../../../lib/thread/vote-pill";
 import { TRAIT_GROUPS } from "../../../../lib/thread/traits";
 import { traitCounts, traitGroup } from "../../data";
-import { threadRankings, ratingsFor } from "../../rankings-data";
-import { ratingCategory } from "../../../../lib/category-rating";
-import { curatedRankingStyle } from "../../../../lib/curated";
-import type { RankRow } from "../../racket-v7b";
+import { whoPlays, weekLine } from "../../../../lib/thread/community";
+import { communityFor } from "../../community-data";
+import { comparePairs } from "../../../../lib/compare-pairs";
 
 export const revalidate = 86400;
 // Every listed racket's page is built with the site, as the live racket pages are (app/v/racket); none without a database (CI).
@@ -74,16 +73,6 @@ async function lovedToo(id: string, rows: Map<string, ThreadRow>) {
   if (!hasDb()) return [];
   try { return (await alsoLoved(await database(), [id], [], "", 4)).flatMap(p => rows.get(p.racketId) ?? []); }
   catch (error) { console.error("[thread] also loved failed", error); return []; }
-}
-
-/** PadelRecs' sidebar rows (owner mock 2026-11-21): the curated lists (db/curated/padel.json) that carry a category rating
- *  (lib/category-rating.ts, #567) and hold this racket, best place first, two at most. The number is the ranking page's own. */
-async function rankRows(id: string): Promise<RankRow[]> {
-  if (!hasDb()) return [];
-  const lists = (await threadRankings()).filter(l => l.ids.includes(id) && curatedRankingStyle(l.slug) && ratingCategory(l.slug, niche.id));
-  const out = await Promise.all(lists.map(async l => { const cat = ratingCategory(l.slug, niche.id)!, n = (await ratingsFor(cat, l.ids))[id];
-    return { at: l.ids.indexOf(id), row: { label: `#${l.ids.indexOf(id) + 1} in ${l.label}`, sub: [n != null ? `${cat.label} ${n}` : null, `${niche.site.name} pick`].filter(Boolean).join(" · "), href: l.href } }; }));
-  return out.sort((a, b) => a.at - b.at).slice(0, 2).map(x => x.row);
 }
 
 /** DiscGolfRecs' plastic chips over the reviews: the plastics its reviews name, most reviewed first, once 2 or more are named. */
@@ -162,12 +151,19 @@ export default async function ThreadRacket({ params }: P) {
     // The top card's pill: the strongest "How does it play?" answer, from the groups as the page shows them (lib/thread/vote-pill.ts).
     const tc = hasDb() ? await traitCounts() : null;
     const pill = tc ? votePill(Object.fromEntries(TRAIT_GROUPS.map(g => [g.key, traitGroup(tc, r.id, g.key)])), W.people) : null;
-    const ranks = await rankRows(r.id);
+    // The community sidebar (owner OK 2026-11-21): this week's counts, the newest question, who plays it (votes only), and
+    // the rackets it is compared with (its compare pages' partners, then the engine's similar rackets).
+    const groupOf = (k: string) => tc ? traitGroup(tc, r.id, k) : null;
+    const who = whoPlays({ level: groupOf("level"), plays_like: groupOf("plays_like"), side: groupOf("side") });
+    const cm = await communityFor(r.id);
+    const partners = (ctx ? comparePairs(ctx.data).partners.get(r.id) ?? [] : []).map(x => rows.get(x.id)).filter((x): x is NonNullable<typeof x> => !!x && x.current !== false);
+    const compared = [...partners, ...sim].filter((x, i, a) => x.id !== r.id && a.findIndex(y => y.id === x.id) === i).slice(0, 3)
+      .map(x => ({ row: x, href: `/compare?ids=${encodeURIComponent(r.slug)},${encodeURIComponent(x.slug)}` }));
     return <Shell active="rackets">
       <JsonLd data={ld}/>
       <RacketV7b id={r.id} title={r.year && bare !== name ? `${bare} (${r.year})` : name} model={model} crumbs={crumbsEl} tags={tags} lime={!!style} row={row} judged={judged}
-        lead={lead} bullets={v7Bullets} specs={v7Specs} shop={shop} cards={cards} sim={sim} also={also} brand={brand ? { name: brand.name, slug: brand.slug } : null}
-        line={line} pill={pill} ranks={ranks} stories={tales}/>
+        lead={lead} bullets={v7Bullets} specs={v7Specs} shop={shop} cards={cards} also={also} brand={brand ? { name: brand.name, slug: brand.slug } : null}
+        pill={pill} week={weekLine(cm.opinions, cm.questions)} latest={cm.latest} who={who} compared={compared} stories={tales}/>
     </Shell>;
   }
   return <Shell active="rackets">

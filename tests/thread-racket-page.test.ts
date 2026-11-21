@@ -42,3 +42,28 @@ test("the padel racket page shows no Player score and sends no star rating", () 
     assert.doesNotMatch(t, /\b(we|us|our)\b/i, t);
   }
 });
+
+import { whoPlays, weekLine } from "../lib/thread/community";
+
+test("this week's line: real counts, a part at 0 left out, both 0 hides it", () => {
+  assert.equal(weekLine(3, 2), "3 new opinions · 2 questions this week");
+  assert.equal(weekLine(1, 0), "1 new opinion this week");
+  assert.equal(weekLine(0, 1), "1 question this week");
+  assert.equal(weekLine(0, 0), null);
+});
+
+test("who plays it: only vote groups with 5+ and a clear leader; side only when it qualifies", () => {
+  const w = whoPlays({ level: { advanced: 35, intermediate: 10, beginner: 2 }, plays_like: { power: 30, control: 8 }, side: { right: 6, left: 5 } });
+  assert.equal(w?.headline, "Mostly advanced · power");
+  assert.deepEqual(w?.rows.map(r => [r.title, r.label, r.n]), [["Level", "Advanced", 35], ["Style", "Power", 30]]);
+  // A tie or near tie skips the row; nothing qualifying hides the card.
+  assert.equal(whoPlays({ level: { intermediate: 39, beginner: 34 }, plays_like: { control: 58, all_round: 31 } })?.headline, "Mostly control");
+  assert.equal(whoPlays({ level: { advanced: 4 } }), null);
+  assert.equal(whoPlays({ side: { right: 20, both: 4 } })?.headline, "Mostly right side");
+});
+
+test("the sidebar has no curated ranking box and no More from <brand>", () => {
+  const page = readFileSync("app/thread/racket-v7b.tsx", "utf8");
+  assert.doesNotMatch(page, /`More from \$\{|th8-rank\b/);
+  assert.match(page, /Where to buy ↗/);
+});
