@@ -1816,3 +1816,13 @@ body:has(.th) .th .th-hp3 a.tc-row.ranked { grid-template-columns: 34px 96px min
 @media (max-width: 639px) { .th-hp3 .th-live { white-space: normal; } }
 @media (min-width: 1000px) and (max-width: 1199px) { body:has(.th) .th .th-hp3 a.tc-row.ranked { grid-template-columns: 30px 80px minmax(0,1fr) 190px; gap: 8px 18px; } .th-hp3 .tc-bar { width: 170px; } }
 @media (min-width: 1000px) and (max-width: 1199px) { .th-hp3 .tc-stat small { white-space: normal; text-align: center; } }
+/* Racket page v16 additions (v3 handoff "Racket Page v16", owner 2026-11-21). */
+.th7-rv.th7-rv-av { display: grid; grid-template-columns: 36px minmax(0,1fr); gap: 12px; align-items: start; }
+.th7-rv-av .th7-av { width: 34px; height: 34px; font-size: 13.5px; }
+.th7-rv-av .th7-av.none { background: var(--frame); }
+.th7-rv-b { display: flex; flex-direction: column; gap: 6px; min-width: 0; }
+.th7-hic { display: inline-flex; align-items: center; gap: 8px; }
+.th-poll-saved { display: flex; align-items: center; justify-content: space-between; gap: 6px 12px; flex-wrap: wrap; font-size: 14.5px; padding: 8px 12px; border-radius: 10px; background: var(--lime-box); }
+.th-poll-saved button { all: unset; cursor: pointer; font-weight: 700; text-decoration: underline; text-underline-offset: 3px; }
+.th8-sec-h { display: flex; justify-content: space-between; align-items: center; gap: 10px; flex-wrap: wrap; }
+.th8-sec-h .th8-all { padding-top: 0; }

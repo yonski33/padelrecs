@@ -69,13 +69,16 @@ export function Poll({ id, reviews, question = "Poll: would you buy it again?", 
   const n = (k: Verdict) => reviews[k] + (votes?.[k] ?? 0);
   const total = n("positive") + n("mixed") + n("negative");
   return <div className="th-poll">
-    <span className="th-poll-head">{sub ? <span className="th-poll-q"><b>{question}</b><small>{sub}</small></span> : <b>{question}</b>}<span>{mine ? "Thanks, your vote counts. Tap another to change it, or tap again to remove." : "One tap, no account"}</span></span>
+    <span className="th-poll-head">{sub ? <span className="th-poll-q"><b>{question}</b><small>{sub}</small></span> : <b>{question}</b>}<span>{mine && !countsOnly ? "Thanks, your vote counts. Tap another to change it, or tap again to remove." : "One tap, no account"}</span></span>
     {(["positive", "mixed", "negative"] as const).map(k => { const c = n(k), w = total ? Math.round(c / total * 100) : 0, cls = VERDICT[k][1];
       return <button key={k} type="button" className={`th-popt ${cls}${mine && mine !== k ? " dim" : ""}`} aria-pressed={mine === k} onClick={() => pick(k)}>
         <i style={{ width: total ? `${w}%` : 0 }}/>
         <span><span className={`th-sdot ${cls}`}/>{VERDICT[k][0]}</span>
         <em>{total >= POLL_PCT_AT && !countsOnly ? <><strong>{`${w}%`}</strong>{c > 0 && <span>{` · ${c}`}</span>}</> : c > 0 ? <strong>{c}</strong> : null}</em>
       </button>; })}
+    {/* PadelRecs v16: the saved vote, and a way to say why (opens the review form with that vote). */}
+    {countsOnly && mine && <div className="th-poll-saved"><span>{"Vote saved: "}<strong>{VERDICT[mine][0]}</strong>. Tap it again to remove.</span>
+      <button type="button" onClick={() => dispatchEvent(new CustomEvent("thread-open-review", { detail: mine }))}>Say why in a short review</button></div>}
     {total === 0 && <span className="th-note">No votes yet. Be the first.</span>}
     {err && <span className="th-err">{err}</span>}
   </div>;

@@ -30,6 +30,7 @@ export type V7bProps = {
   id: string; title: string; model: string; crumbs: ReactNode; tags: string[]; lime: boolean; row: ThreadRow | null; judged: number;
   lead: string | null; bullets: { tone: "pos" | "mix" | "neg" | "catch"; text: string }[]; specs: [string, string][];
   shop: { url: string; rel: string } | null; cards: RvCard[]; also: ThreadRow[];
+  /** v16 Similar rackets: the engine's similar rackets not already in Often compared with. */ sim: ThreadRow[];
   brand: { name: string; slug: string } | null;
   /** The top card's vote pill (lib/thread/vote-pill.ts), or null. */ pill: string | null;
   /** "3 new opinions · 2 posts this week", or null. */ week: string | null;
@@ -118,10 +119,13 @@ export function RacketV7b(p: V7bProps) {
           sub={`Vote and see how other ${W.people} feel after using it.`} countsOnly/>
       </div>
       <TraitVotes id={p.id} seed={traitSeed(niche.id, p.id)} tieNone/>
-      {/* "Similar rackets" is gone: Often compared with (sidebar, and here on narrow screens) lists them. */}
+      {/* v16: Similar rackets, without the ones Often compared with already lists (owner: no repeats). */}
+      {p.sim.length > 0 && <section className="th-card th8-sec"><div className="th8-sec-h"><h2 className="th-h2">{`Similar ${niche.words.many}`}</h2>
+        {p.brand && <a className="th8-all" href={th(`/brands/${p.brand.slug}`)}>{`All ${p.brand.name} ${niche.words.many} →`}</a>}</div>
+        <div className="th8-grid">{p.sim.slice(0, 4).map(x => <RacketCard key={x.id} x={x}/>)}</div></section>}
       {community && <div className="th8-narrow th8-narrow-after">{community}</div>}
       <ReviewsV7b id={p.id} cards={p.cards}/>
-      <Discussion page={`racket:${p.id}`} model={p.model} words={{ heading: "Ask the community", sub: `Questions, advice, and tips about the ${p.model}.` }}/>
+      <Discussion page={`racket:${p.id}`} model={p.model} words={{ heading: "Ask the community", count: true, sub: `Questions, advice, and tips about the ${p.model}.` }}/>
       {p.also.length >= 2 && <section className="th-card th8-sec"><h2 className="th-h2">{`${W.lovers} who loved this also loved`}</h2>
         <div className="th8-grid">{p.also.slice(0, 4).map(x => <RacketCard key={x.id} x={x}/>)}</div></section>}
       {p.stories.length > 0 && <section className="th-card th-sec"><h2 className="th-h2">Stories mentioning this racket</h2>
