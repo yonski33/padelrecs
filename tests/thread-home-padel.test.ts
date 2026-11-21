@@ -23,7 +23,8 @@ test("the catalogue starts on PadelRecs picks, the home on Most loved (season po
   assert.match(list, /\["picks", `\$\{niche\.site\.name\} picks`\]/);  // "PadelRecs picks" on padel
   assert.match(list, /const base: Sort = season \? "loved" : BASE_SORT/);
   assert.match(list, /useState<Sort>\(base\)/);
-  assert.match(home, /useRacketList\(\{ rows, curated, added, season, match: useAudioListMatch\(wire\) \}\)/);
+  assert.match(home, /const audio = useAudioListMatch\(wire\), skinMatch = useSkinListMatch\(skin\);/);
+  assert.match(home, /useRacketList\(\{ rows, curated, added, season, match: audio \?\? skinMatch \}\)/);
   // The home's menu has no "PadelRecs picks" (owner: read as random there).
   assert.match(list, /HOME_SORTS: \[Sort, string\]\[\] = \[\["loved", "Most loved"\], \["opinions", "Most opinions"\], \["match", "By your match"\]\]/);
   assert.match(list, /const sorts = season \? HOME_SORTS : SORTS/);

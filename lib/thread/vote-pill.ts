@@ -83,3 +83,17 @@ export const DISCGOLF_PILL_LABELS: Record<string, Record<string, string>> = {
   grip: { great: "Great grip" }, wind: { holds: "Holds in the wind" }, arm_speed: { any: "Easy for any arm" }, fade: { gentle: "Gentle fade", hard: "Hard fade" },
   durability: { holds_up: "Holds up well" }, level: { beginner: "Beginner friendly" }, throw: { forehand: "Good for forehands" },
 };
+
+/** SkinRecs (v3 rollout 2026-11-21): quality first ("Gentle, no irritation · 14 people"); the skin type keeps "Most picked for
+ *  dry skin". Its nine groups: lib/thread/traits.ts SKIN_TRAIT_GROUPS. "Best used" and a pill that only names a middle answer
+ *  (medium texture, OK value) never make a pill. */
+export const SKIN_PILL_WORDS: Record<string, Record<string, string>> = {
+  skin_type: { dry: "dry skin", combination: "combination skin", oily: "oily skin" },
+  irritation: { none: "x" }, texture: { rich: "x", light: "x" }, finish: { dewy: "x", natural: "x", matte: "x" }, makeup: { fine: "x" },
+  results: { days: "x", weeks: "x" }, scent: { none: "x" }, value: { worth_it: "x" },
+};
+export const SKIN_PILL_LABELS: Record<string, Record<string, string>> = {
+  irritation: { none: "Gentle, no irritation" }, texture: { rich: "Rich texture", light: "Light texture" },
+  finish: { dewy: "Dewy finish", natural: "Natural finish", matte: "Matte finish" }, makeup: { fine: "Fine under makeup" },
+  results: { days: "Results in days", weeks: "Results in weeks" }, scent: { none: "No scent" }, value: { worth_it: "Worth the money" },
+};

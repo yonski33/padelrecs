@@ -25,16 +25,21 @@ const AUDIO = niche.id === "audio";
 const SR = niche.id === "simracing", DG = niche.id === "discgolf";
 /** TennisRecs (v3 wave 2): no curated lists; Head size and Feel (stiffness), app/thread/padel-list-data.ts. */
 const TN = niche.id === "tennis";
-export const SORTS: [Sort, string][] = AUDIO || SR || TN || DG ? [["loved", "Most loved"], ["new", "Newest"], ["match", "By your match"]]
+/** SkinRecs (v3 rollout): no curated lists; Type and Texture (its rows carry the texture people report as `feel`,
+ *  app/thread/padel-list-data.ts); its own quick match (skin type · goal · sensitive, live/skin-match.tsx). */
+const SKIN = niche.id === "skin";
+export const SORTS: [Sort, string][] = AUDIO || SR || TN || DG || SKIN ? [["loved", "Most loved"], ["new", "Newest"], ["match", "By your match"]]
   : [["picks", `${niche.site.name} picks`], ["loved", "Most loved"], ["new", "Newest"], ["match", "By your match"]];
 const BASE_SORT: Sort = SORTS[0][0];
 /** The home's menu (owner 2026-11-21: "PadelRecs picks" read as random there): Most loved (default), Most opinions, and By
  *  your match once a pick is set. The catalogue keeps SORTS. */
 export const HOME_SORTS: [Sort, string][] = [["loved", "Most loved"], ["opinions", "Most opinions"], ["match", "By your match"]];
-const FEELS = AUDIO ? ["Warm", "Balanced", "Bright"] : DG ? ["Understable", "Stable", "Overstable"] : SR ? ["Direct drive", "Belt", "Gear"] : TN ? ["Soft", "Medium", "Crisp"] : ["Soft", "Medium", "Hard"];
-const GROUP_TITLES: Record<Key, string> = AUDIO ? { shape: "Type", feel: "Sound", brand: "Brand" } : DG ? { shape: "Type", feel: "Stability", brand: "Brand" } : SR ? { shape: "Type", feel: "Drive", brand: "Brand" } : TN ? { shape: "Head size", feel: "Feel", brand: "Brand" } : { shape: "Shape", feel: "Feel", brand: "Brand" };
+const FEELS = AUDIO ? ["Warm", "Balanced", "Bright"] : DG ? ["Understable", "Stable", "Overstable"] : SR ? ["Direct drive", "Belt", "Gear"] : TN ? ["Soft", "Medium", "Crisp"] : SKIN ? ["Light", "Medium", "Rich"] : ["Soft", "Medium", "Hard"];
+const GROUP_TITLES: Record<Key, string> = AUDIO ? { shape: "Type", feel: "Sound", brand: "Brand" } : DG ? { shape: "Type", feel: "Stability", brand: "Brand" } : SR ? { shape: "Type", feel: "Drive", brand: "Brand" } : TN ? { shape: "Head size", feel: "Feel", brand: "Brand" } : SKIN ? { shape: "Type", feel: "Texture", brand: "Brand" } : { shape: "Shape", feel: "Feel", brand: "Brand" };
 /** AudioRecs' match (lib/audio-match.ts), worked out by the page's own hook (live/audio-match.tsx) and handed to the list. */
-export type ListMatch = { mine: boolean; pcts: Map<string, number | null> | null; picks: AudioPicks; set: (p: Partial<AudioPicks>) => void };
+export type ListMatch = { mine: boolean; pcts: Map<string, number | null> | null; picks: AudioPicks; set: (p: Partial<AudioPicks>) => void; bar?: undefined }
+  /** A site's own match bar in the same classes (SkinRecs, live/skin-match.tsx). */
+  | { mine: boolean; pcts: Map<string, number | null> | null; bar: (o: { tag?: string; after?: ReactNode; ft: boolean; setFt: (x: boolean) => void }) => ReactNode };
 const TOP_BRANDS = 6;
 /** Fine-tune filters kept in this browser (handoff README: "padelrecs-ft"), the same on the home and the catalogue. */
 export const FT_KEY = "padelrecs-ft";
@@ -97,6 +102,7 @@ export type RacketList = ReturnType<typeof useRacketList>;
  *  `tag`: the yellow sticker label (catalogue: "Find my match"); `lead` and `after` add the home's icons and sticker. */
 export function MatchBar({ l, ft, setFt, tag, icons, after }: { l: RacketList; ft: boolean; setFt: (x: boolean) => void; tag?: string; icons?: Partial<Record<Level, ReactNode>>; after?: ReactNode }) {
   const { picks, setPicks, mine } = l;
+  if (l.match?.bar) return l.match.bar({ tag, after, ft, setFt });
   // AudioRecs: I use them for … | I want … · Noise cancelling (lib/audio-match.ts), the same bar and classes.
   if (l.match) { const m = l.match, any = !!(m.picks.use || m.picks.sound || m.picks.anc);
     return <div className="tc-qm" role="group" aria-label="Find my match">

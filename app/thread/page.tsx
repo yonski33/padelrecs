@@ -42,7 +42,7 @@ export default async function ThreadHome() {
   const top = payload ? homeTop(rows, defaultHomeIds(payload, DEFAULT_CHOICE)) : [];
   // SkinRecs ranks with its own engine in the browser (app/thread/live/skin-match.tsx): the current products and their
   // ranking inputs (app/skin/payload.ts wireOf) travel with the page.
-  const sk = SKIN ? skinOf(ctx) : null;
+  const sk = SKIN && !V3 ? skinOf(ctx) : null;
   const skinRows = sk ? all.filter(r => r.current !== false && r.n > 0) : [];
   const skinWire = sk ? (await import("../skin/payload")).wireOf(sk, sk.data.listed.filter(r => skinRows.some(x => x.id === r.id))) : [];
   const reviewed = all.filter(r => r.score != null && r.current).sort((a, b) => b.n - a.n).slice(0, 10);
@@ -78,7 +78,7 @@ export default async function ThreadHome() {
     const live = total > 0 ? `${total.toLocaleString("en-US")} reviews${week > 0 ? ` · ${week.toLocaleString("en-US")} ${WEEK_SHORT}` : ""}` : null;
     return <Shell>
       <main className="th-main th-hp3">
-        <PadelHomeTop rows={d.rows} brands={d.brands} pills={d.pills} added={d.added} curated={d.curated} season={d.season} live={live} {...(d.wire ? { wire: d.wire, art: <Headphones/> } : niche.id === "simracing" ? { art: <Wheel/> } : niche.id === "tennis" ? { art: <TennisRacket/> } : niche.id === "pickleball" ? { art: <Paddle/> } : DG ? { art: <Disc/> } : {})}
+        <PadelHomeTop rows={d.rows} brands={d.brands} pills={d.pills} added={d.added} curated={d.curated} season={d.season} live={live} {...(d.wire ? { wire: d.wire, art: <Headphones/> } : niche.id === "simracing" ? { art: <Wheel/> } : niche.id === "tennis" ? { art: <TennisRacket/> } : niche.id === "pickleball" ? { art: <Paddle/> } : DG ? { art: <Disc/> } : d.skin ? { skin: d.skin, art: <Jar/> } : {})}
           after={<div key="after" className="hp3-rest">
             <div key="cm" className="hp3-rest">{sideBox(" th-only-m")}</div>
             {picks.lists.length > 0 && <TopPicks key="tp" lists={picks.lists} total={picks.total} hrefs={Object.fromEntries(all.map(r => [r.id, r.href]))} unit={["vote", "votes"]}/>}
@@ -151,6 +151,11 @@ function Paddle() {
 function Wheel() {
   return <svg className="hp3-art" width="74" height="80" viewBox="0 0 74 80" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
     <circle cx="35" cy="42" r="27" fill="#fff"/><circle cx="35" cy="42" r="8"/><path d="M27 42H9M43 42h18M35 50v18"/><path d="M58 8l3-5M64 15l6-3M66 25l6 1"/></svg>;
+}
+/** SkinRecs' hero drawing: a cream jar, in the same hand-drawn line. */
+function Jar() {
+  return <svg className="hp3-art" width="74" height="80" viewBox="0 0 74 80" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+    <rect x="12" y="34" width="46" height="36" rx="9" fill="#fff"/><rect x="16" y="22" width="38" height="13" rx="4" fill="#fff"/><path d="M24 50h22M58 8l3-5M64 15l6-3M66 25l6 1"/></svg>;
 }
 /** TennisRecs' hero drawing: a tennis racket (oval head, strings, long handle), in the same hand-drawn line. */
 function TennisRacket() {

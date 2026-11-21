@@ -1,8 +1,8 @@
 // The data the PadelRecs home and catalogue lists share (v3 handoff): listed rows, brands by count, one vote pill per row
 // (lib/thread/vote-pill.ts), when each racket joined, and the "PadelRecs picks" order (db/curated/padel.json interleaved).
 import { cache } from "react";
-import { threadRows, traitCounts, traitGroup, audioOf } from "./data";
-import { votePill, AUDIO_PILL_LABELS, PILL_WORDS, PILL_LABELS, SIMRACING_PILL_WORDS, SIMRACING_PILL_LABELS, TENNIS_PILL_WORDS, TENNIS_PILL_LABELS, PICKLEBALL_PILL_WORDS, PICKLEBALL_PILL_LABELS, DISCGOLF_PILL_LABELS } from "../../lib/thread/vote-pill";
+import { threadRows, traitCounts, traitGroup, audioOf, skinOf } from "./data";
+import { votePill, AUDIO_PILL_LABELS, PILL_WORDS, PILL_LABELS, SIMRACING_PILL_WORDS, SIMRACING_PILL_LABELS, TENNIS_PILL_WORDS, TENNIS_PILL_LABELS, PICKLEBALL_PILL_WORDS, PICKLEBALL_PILL_LABELS, DISCGOLF_PILL_LABELS, SKIN_PILL_WORDS, SKIN_PILL_LABELS } from "../../lib/thread/vote-pill";
 import { niche } from "../../lib/niche";
 import { W } from "../../lib/thread/words";
 import type { ThreadRow } from "./ui";
@@ -38,25 +38,32 @@ const HEAD = (s: string | null) => { const n = Number(s?.match(/(\d{2,3})\s*sq/)
 const STIFF = (s: string | null | undefined) => { const ra = Number(s?.match(/(\d{2})\s*RA/i)?.[1] ?? NaN); return !Number.isFinite(ra) ? null : ra <= 62 ? "Soft" : ra >= 68 ? "Crisp" : "Medium"; };
 // Feel is already the tennis rule (app/thread/data.ts threadRows: stiffness unless the votes clearly disagree).
 const asTennis = (r: ThreadRow, ra: string | null | undefined): ThreadRow => ({ ...r, shape: HEAD(r.shape), feel: (r.feel ?? STIFF(ra)) as ThreadRow["feel"] });
+/** SkinRecs (v3 rollout): the product type as the row's tag and Type filter (`shape`), the texture people report as the
+ *  Texture filter (`feel`), its pills, no curated order, no model years (every product with reviews, like AudioRecs), and the
+ *  skin engine's ranking inputs (app/skin/payload.ts wireOf) for its quick match. */
+const SKIN = niche.id === "skin";
+const asSkin = (r: ThreadRow): ThreadRow => ({ ...r, feel: (r.facets?.texture ?? null) as ThreadRow["feel"] });
 const asAudio = (r: ThreadRow): ThreadRow => ({ ...r, shape: r.audio?.kind ?? r.shape, feel: (r.audio?.sound[0] ?? null) as ThreadRow["feel"] });
 export const padelListData = cache(async () => {
   const { all: rowsAll, ctx } = await threadRows();
   const surface = TN ? new Map((ctx?.data.rackets ?? []).map(x => [x.id, x.surface])) : null;
-  const all = AUDIO ? rowsAll.map(asAudio) : SR ? rowsAll.map(asSim) : TN ? rowsAll.map(r => asTennis(r, surface?.get(r.id))) : DG ? rowsAll.map(asDisc) : rowsAll;
+  const all = AUDIO ? rowsAll.map(asAudio) : SR ? rowsAll.map(asSim) : TN ? rowsAll.map(r => asTennis(r, surface?.get(r.id))) : DG ? rowsAll.map(asDisc) : SKIN ? rowsAll.map(asSkin) : rowsAll;
   const rows = all.filter(r => r.n > 0);
   const count = new Map<string, number>();
   for (const r of rows) count.set(r.brand, (count.get(r.brand) ?? 0) + 1);
   const brands = [...count].filter(([b]) => b).sort((a, b) => b[1] - a[1]).map(([b]) => b);
   const tc = ctx ? await traitCounts() : null;
-  const pills = Object.fromEntries(rows.flatMap(r => { const p = tc ? votePill(Object.fromEntries(TRAIT_GROUPS.map(g => [g.key, traitGroup(tc, r.id, g.key)])), W.people, AUDIO ? AUDIO_PILL_LABELS : SR ? SIMRACING_PILL_WORDS : TN ? TENNIS_PILL_WORDS : PB ? PICKLEBALL_PILL_WORDS : DG ? DISCGOLF_PILL_LABELS : PILL_WORDS, AUDIO ? AUDIO_PILL_LABELS : SR ? SIMRACING_PILL_LABELS : TN ? TENNIS_PILL_LABELS : PB ? PICKLEBALL_PILL_LABELS : DG ? DISCGOLF_PILL_LABELS : PILL_LABELS) : null; return p ? [[r.id, p]] : []; }));
+  const pills = Object.fromEntries(rows.flatMap(r => { const p = tc ? votePill(Object.fromEntries(TRAIT_GROUPS.map(g => [g.key, traitGroup(tc, r.id, g.key)])), W.people, AUDIO ? AUDIO_PILL_LABELS : SR ? SIMRACING_PILL_WORDS : TN ? TENNIS_PILL_WORDS : PB ? PICKLEBALL_PILL_WORDS : DG ? DISCGOLF_PILL_LABELS : SKIN ? SKIN_PILL_WORDS : PILL_WORDS, AUDIO ? AUDIO_PILL_LABELS : SR ? SIMRACING_PILL_LABELS : TN ? TENNIS_PILL_LABELS : PB ? PICKLEBALL_PILL_LABELS : DG ? DISCGOLF_PILL_LABELS : PILL_LABELS) : null; return p ? [[r.id, p]] : []; }));
   const listed = new Map((ctx?.data.listed ?? []).map(x => [x.id, x]));
   const added = Object.fromEntries(rows.map(r => [r.id, listed.get(r.id)?.createdAt ?? ""]));
-  const bySlug = new Map(rows.map(r => [r.slug, r.id])), curated = AUDIO || SR || TN || DG ? [] : curatedOrder().flatMap(s => bySlug.get(s) ?? []);
+  const bySlug = new Map(rows.map(r => [r.slug, r.id])), curated = AUDIO || SR || TN || DG || SKIN ? [] : curatedOrder().flatMap(s => bySlug.get(s) ?? []);
   // The home's pool (lib/thread/home-order.ts): this season's models with 10+ opinions, one per model.
   // AudioRecs has no model years (niche.productYears false), so its home lists every pair with reviews.
-  const season = AUDIO || DG ? undefined : seasonIds(rows.flatMap(r => { const p = listed.get(r.id); return p ? [{ id: r.id, family: modelFamily(p), year: r.year, opinions: r.pos + r.mix + r.neg }] : []; }),
+  const season = AUDIO || DG || SKIN ? undefined : seasonIds(rows.flatMap(r => { const p = listed.get(r.id); return p ? [{ id: r.id, family: modelFamily(p), year: r.year, opinions: r.pos + r.mix + r.neg }] : []; }),
     new Date().getUTCFullYear());
   const au = AUDIO && ctx ? audioOf(ctx) : null;
   const wire = au ? rows.flatMap(r => au.wire.get(r.id) ?? []) : undefined;
-  return { rows, brands, pills, added, curated, season, ...(wire ? { wire } : {}) };
+  const sk = SKIN && ctx ? skinOf(ctx) : null, ids = new Set(rows.map(r => r.id));
+  const skin = sk ? (await import("../skin/payload")).wireOf(sk, sk.data.listed.filter(r => ids.has(r.id))) : undefined;
+  return { rows, brands, pills, added, curated, season, ...(wire ? { wire } : {}), ...(skin ? { skin } : {}) };
 });

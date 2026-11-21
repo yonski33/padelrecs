@@ -73,6 +73,6 @@ test("post_type (drizzle/0035): one nullable column, padel only in the API, kept
 
 test("saved post types run on the sites whose schema has post_type (site config), not the others", async () => {
   const { postTypeSite } = await import("../lib/thread/sites");
-  assert.deepEqual(["padel", "pickleball", "tennis", "simracing", "skin", "audio"].map(postTypeSite), [true, true, true, false, false, false]);
+  assert.deepEqual(["padel", "pickleball", "tennis", "simracing", "skin", "audio"].map(postTypeSite), [true, true, true, false, true, false]); // skin: 0035 applied 2026-11-22
   assert.match(readFileSync("app/thread/live/feed-v7b.tsx", "utf8"), /const TYPED = postTypeSite\(niche\.id\);/);
 });

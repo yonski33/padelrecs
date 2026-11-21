@@ -42,6 +42,15 @@ export default async function ThreadTypePage({ params }: P) {
     return <Shell active="rackets"><PadelCatalog rows={d.rows.filter(r => r.shape === t.shape)} brands={d.brands} pills={d.pills} added={d.added} curated={[]}
       rankings={lists.slice(0, 6).map(l => ({ label: l.label, href: l.href }))} latest={[]} title={t.label} crumb={t.label}/></Shell>;
   }
+  // SkinRecs (v3 rollout 2026-11-21): the v3 catalogue for one product type, with its quick match, no score.
+  if (niche.id === "skin") {
+    const d = await padelListData(), lists = await threadRankings(), keep = new Set(d.rows.filter(r => r.shape === t.shape).map(r => r.id));
+    // The live type page's structured list, as before (top by reviews; no score shown).
+    const ld = listJsonLd([{ name: t.label, path: `/${t.slug}` }], d.rows.filter(r => keep.has(r.id)).sort((a, b) => b.n - a.n).map(r => ({ name: r.name, href: r.href })));
+    return <Shell active="rackets"><script type="application/ld+json" dangerouslySetInnerHTML={{ __html: ld }}/><PadelCatalog rows={d.rows.filter(r => keep.has(r.id))} brands={d.brands} pills={d.pills} added={d.added} curated={[]}
+      rankings={[...lists.filter(l => l.kids), ...lists.filter(l => l.group === "By product type")].slice(0, 6).map(l => ({ label: l.label, href: l.href }))}
+      latest={[]} title={t.label} crumb={t.label} {...(d.skin ? { skin: d.skin.filter(w => keep.has(w.id)) } : {})}/></Shell>;
+  }
   const { all } = await threadRows();
   const rows = all.filter(r => r.n > 0 && r.shape === t.shape);
   const count = new Map<string, number>();

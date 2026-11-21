@@ -20,12 +20,15 @@ const PADEL = {
   /** The v3 home's line under the title (owner 2026-11-22, from the v3 mock), in the site's own words. */
   tagline: "Real player opinions, votes, and comments on the top padel rackets.",
 };
-type Words = typeof PADEL;
+/** `owner`: the word that takes "owner" in outside summaries (lib/thread/web-sources.ts playersWord); `person` when absent. */
+type Words = typeof PADEL & { owner?: string };
 const SITES: Record<string, Words> = {
   // PickleballRecs on v3 (wave 2, 2026-11-21): padel's words ("players"), its paddles.
   pickleball: { ...PADEL, item: "paddle", items: "paddles", community: "The pickleball paddle community",
     tagline: "Real player opinions, votes, and comments on the top pickleball paddles." },
-  skin: { person: "person", people: "people", People: "People", Person: "Person", score: "user score", Score: "User score", reviews: "reviews",
+  // SkinRecs on the v3 pages (2026-11-21): "community" where they say "player" before a noun ("community opinions", "Based on
+  // community votes", "No community reviews yet"), "reviewer" for an outside summary's "owner". Its old pages never read these.
+  skin: { person: "community", people: "people", People: "People", Person: "Community", owner: "reviewer", score: "user score", Score: "User score", reviews: "reviews",
     Reviews: "Reviews", traitsTitle: "How does it work for you?", fitTitle: "Is it right for my skin?", opinions: "opinions", lovers: "People",
     triedIt: "Tried it?", played: "tried", item: "product", items: "products", usedIt: "Tried it?", community: "The skincare community",
     tagline: "Real people's opinions, votes, and comments on the skincare they use." },

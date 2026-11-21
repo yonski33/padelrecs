@@ -34,7 +34,7 @@ test("/questions is a v3 Thread page; the home places the section after the late
   assert.equal(threadPath("/questions", undefined, "padel"), "/thread/questions");
   assert.equal(threadPath("/questions", undefined, "pickleball"), "/thread/questions");
   assert.equal(threadPath("/questions", undefined, "simracing"), "/thread/questions");
-  assert.notEqual(threadPath("/questions", undefined, "skin"), "/thread/questions");
+  assert.equal(threadPath("/questions", undefined, "skin"), "/thread/questions"); // SkinRecs on v3
   const home = readFileSync("app/thread/page.tsx", "utf8");
   assert.ok(home.indexOf("<LatestQuestions") > home.indexOf('<Feed key="fd"'));
   const files = ["app/thread/latest-questions.tsx", "app/thread/question-row.tsx", "app/thread/live/ask-question.tsx", "app/thread/live/question-list.tsx", "app/thread/questions/page.tsx"]
