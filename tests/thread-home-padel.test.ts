@@ -13,11 +13,13 @@ test("the hero has no subline and the page has one squiggle", () => {
   assert.doesNotMatch(code(page.slice(page.indexOf("if (PADEL) {"), page.indexOf("  return <Shell>\n    <main className={PADEL"))), /#B9E85A|Squiggle/);
 });
 
-test("the catalogue starts on PadelRecs picks, the home on Most loved (season pool), Top picks say votes, no score", () => {
-  assert.match(list, /\["picks", "PadelRecs picks"\]/);
-  assert.match(list, /const base: Sort = season \? "loved" : "picks"/);
+test("the catalogue and the home start on Most loved (home: season pool), Top picks say votes, no score", () => {
+  // Neither menu has "PadelRecs picks" (owner 2026-11-21); both start on Most loved.
+  assert.doesNotMatch(list, /"PadelRecs picks"\]/);
+  assert.match(list, /SORTS: \[Sort, string\]\[\] = \[\["loved", "Most loved"\], \["new", "Newest"\], \["match", "By your match"\]\]/);
+  assert.match(list, /const base: Sort = "loved"/);
   assert.match(list, /useState<Sort>\(base\)/);
-  assert.match(home, /useRacketList\(\{ rows, curated, added, season \}\)/);
+  assert.match(home, /useRacketList\(\{ rows, curated, added, season, plays, armVotes \}\)/);
   // The home's menu has no "PadelRecs picks" (owner: read as random there).
   assert.match(list, /HOME_SORTS: \[Sort, string\]\[\] = \[\["loved", "Most loved"\], \["opinions", "Most opinions"\], \["match", "By your match"\]\]/);
   assert.match(list, /const sorts = season \? HOME_SORTS : SORTS/);

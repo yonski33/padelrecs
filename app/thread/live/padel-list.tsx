@@ -8,12 +8,14 @@ import { type ThreadRow } from "../ui";
 import { th } from "../../../lib/thread/look";
 import { withoutYear } from "../../../lib/brand-name";
 import { usePicks, usePayload, pctsFor, LEVEL_OPTS, STYLE_OPTS, styleLabel, type Level } from "./picks";
-import { bandOrder } from "../../../lib/thread/home-order";
+import { wantOrder, wantPill, WANT_TRAIT } from "../../../lib/thread/home-order";
 
 export type Sort = "picks" | "loved" | "opinions" | "new" | "match";
 export type Key = "shape" | "feel" | "brand";
 type Filters = Partial<Record<Key, string[]>>;
-export const SORTS: [Sort, string][] = [["picks", "PadelRecs picks"], ["loved", "Most loved"], ["new", "Newest"], ["match", "By your match"]];
+/** The catalogue's menu (owner 2026-11-21: "PadelRecs picks" is gone, as on the home): Most loved (default), Newest, and By
+ *  your match once a pick is set. */
+export const SORTS: [Sort, string][] = [["loved", "Most loved"], ["new", "Newest"], ["match", "By your match"]];
 /** The home's menu (owner 2026-11-21: "PadelRecs picks" read as random there): Most loved (default), Most opinions, and By
  *  your match once a pick is set. The catalogue keeps SORTS. */
 export const HOME_SORTS: [Sort, string][] = [["loved", "Most loved"], ["opinions", "Most opinions"], ["match", "By your match"]];
@@ -32,8 +34,10 @@ export const plural = (n: number, one: string, many = `${one}s`) => `${n.toLocal
 /** The list's state: picks, fine-tune, search, sort and the sorted, filtered rows. `search`: the catalogue's search box.
  *  `season` (the home, lib/thread/home-order.ts): only these ids, "Most loved" by default, and "By your match" in 10-point
  *  bands with the most loved first inside each. */
-export function useRacketList({ rows, curated, added, search = false, season }: { rows: ThreadRow[]; curated: string[]; added: Record<string, string>; search?: boolean; season?: string[] }) {
-  const base: Sort = season ? "loved" : "picks";
+export function useRacketList({ rows, curated, added, search = false, season, plays = {}, armVotes = {} }: { rows: ThreadRow[]; curated: string[]; added: Record<string, string>; search?: boolean; season?: string[];
+  /** Each row's "How does it play?" counts and Arm comfort votes: the "I want" order and pills (lib/thread/home-order.ts). */
+  plays?: Record<string, Record<string, number>>; armVotes?: Record<string, number> }) {
+  const base: Sort = "loved";
   const [q, setQ] = useState(""), [f, setF] = useState<Filters>({}), [sort, setSort] = useState<Sort>(base), [ftReady, setFtReady] = useState(false), [older, setOlder] = useState(false);
   const [picks, setPicks] = usePicks(); const mine = !!(picks.level || picks.style), payload = usePayload(mine);
   const pcts = useMemo(() => mine && payload ? pctsFor(payload, picks) : null, [mine, payload, picks]);
@@ -61,16 +65,19 @@ export function useRacketList({ rows, curated, added, search = false, season }: 
   const chips = (Object.entries(f) as [Key, string[]][]).flatMap(([k, vs]) => vs.map(v => ({ k, v })));
   const clearAll = () => { setF({}); setQ(""); };
   const pick = useMemo(() => new Map(curated.map((id, i) => [id, i])), [curated]);
+  // "I want" (power / control / balance): the trait the order and the pills follow.
+  const trait = picks.style ? WANT_TRAIT[picks.style] ?? null : null;
+  const pillOf = (id: string, fallback?: string) => (trait ? wantPill(plays[id], trait) : null) ?? fallback;
   const by: Sort = sort === "match" && !pcts ? base : sort;
   const list = useMemo(() => pool.filter(r => pass(r)).sort((a, b) => by === "loved" ? b.pos - a.pos || opinions(b) - opinions(a)
     : by === "opinions" ? opinions(b) - opinions(a) || b.pos - a.pos
     : by === "new" ? b.year - a.year || (added[b.id] ?? "").localeCompare(added[a.id] ?? "")
-    : by === "match" ? (only ? bandOrder(a, b, pcts!) : (pcts!.get(b.id) ?? -1) - (pcts!.get(a.id) ?? -1))
+    : by === "match" ? wantOrder(a, b, { pct: pcts!, trait, level: !!picks.level, arm: picks.arm, plays, armVotes })
     : (pick.get(a.id) ?? 1e6) - (pick.get(b.id) ?? 1e6) || b.pos - a.pos),
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  [pool, f, q, by, pcts, pick, added, only]);
+  [pool, f, q, by, pcts, pick, added, only, trait, picks.level, picks.arm, plays, armVotes]);
   const sorts = season ? HOME_SORTS : SORTS;
-  return { q, setQ, f, toggle, chips, clearAll, picks, setPicks, mine, pcts, sort: by, setSort, sorts, list, pool, pass, test, older, setOlder, olderN, words };
+  return { q, setQ, f, toggle, chips, clearAll, picks, setPicks, mine, pcts, sort: by, setSort, sorts, pillOf, list, pool, pass, test, older, setOlder, olderN, words };
 }
 export type RacketList = ReturnType<typeof useRacketList>;
 
@@ -110,7 +117,7 @@ export function FineTune({ l, ft, brands }: { l: RacketList; ft: boolean; brands
   </>;
 }
 
-/** The sort menu (catalogue: PadelRecs picks · Most loved · Newest · By your match; home: Most loved · Most opinions · By your
+/** The sort menu (catalogue: Most loved · Newest · By your match; home: Most loved · Most opinions · By your
  *  match), "By your match" once a pick is made. */
 export function SortMenu({ l, onPick }: { l: RacketList; onPick?: () => void }) {
   const [open, setOpen] = useState(false), label = l.sorts.find(([k]) => k === l.sort)?.[1] ?? l.sorts[0][1];

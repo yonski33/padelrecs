@@ -33,12 +33,12 @@ export default async function ThreadCatalog() {
     const brands = [...count].filter(([b, n]) => b && n >= 5).sort((a, b) => b[1] - a[1]).slice(0, 10).map(([b]) => b);
     return <Shell active="rackets">{ld}<Catalog rows={rows} brands={brands}/></Shell>;
   }
-  const { brands, pills, added, curated } = await padelListData();
+  const { brands, pills, added, curated, plays, armVotes } = await padelListData();
   const lists = await threadRankings(), rankings = RANK_LINKS.flatMap(s => { const l = lists.find(x => x.slug === s); return l ? [{ label: l.label, href: l.href }] : []; });
   // Latest reviews: the 3 newest approved player reviews with a typed name and a line to show.
   const byId = new Map(rows.map(r => [r.id, r]));
   const latest: SideReview[] = (ctx?.data.reviews ?? []).filter(x => typedName(x.alias) && x.reviewText?.trim().length >= 30 && byId.has(x.racketId))
     .sort((a, b) => b.createdAt.localeCompare(a.createdAt)).slice(0, 3)
     .map(x => ({ id: x.id, who: typedName(x.alias)!, at: x.createdAt, racket: byId.get(x.racketId)!.name, href: `${byId.get(x.racketId)!.href}#reviews`, text: x.reviewText.trim() }));
-  return <Shell active="rackets">{ld}<PadelCatalog rows={rows} brands={brands} pills={pills} added={added} curated={curated} rankings={rankings} latest={latest}/></Shell>;
+  return <Shell active="rackets">{ld}<PadelCatalog rows={rows} brands={brands} pills={pills} added={added} curated={curated} plays={plays} armVotes={armVotes} rankings={rankings} latest={latest}/></Shell>;
 }
