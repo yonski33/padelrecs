@@ -94,7 +94,7 @@ export default async function ThreadStoryPage({ params }: P) {
             {tagged.map(r => <RacketLine key={r.id} r={r}/>)}</section>}
           {byAuthor.length > 0 && <section className="th-card ths3-box"><h3>{`More from ${s.author.name}`}</h3>
             {byAuthor.map(b => { const n = extras.get(b.id)?.likes ?? 0;
-              return <a key={b.id} className="ths3-pop plain" href={th(`/stories/${b.slug}`)}><span><b>{b.title}</b><small>{`${day(b.at)}${f.likes ? ` · △ ${n}` : ""}`}</small></span></a>; })}
+              return <a key={b.id} className="ths3-pop plain" href={th(`/stories/${b.slug}`)}><span><b>{b.title}</b><small>{`${day(b.at)} · △ ${n}`}</small></span></a>; })}
           </section>}
           <section className="th-card ths3-box">
             <h3>Got a story too?</h3>

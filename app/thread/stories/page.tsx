@@ -1,7 +1,7 @@
 // Member stories (PadelRecs pilot, owner 2026-11-20), Stories v3 (owner design 2026-11-21, design_handoff_padelrecs_v3): a
 // hero with Share your story and topic pills, the owner's Featured story, "Latest stories" rows (topic, title, excerpt, author,
 // time, read time; △ and comments on the right), Load more, and a sidebar (Got a story?, Popular this month, Topics).
-// Topics, △ and Featured show once drizzle/0033 is in; until then the page leaves them out.
+// The frame (topic pills, Topics, sort, △ counts) always shows; topics, Featured by the owner and ▲s fill in once drizzle/0033 is in.
 import type { Metadata } from "next";
 import { Shell } from "../shell";
 import { threadStories, threadStoryExtras, threadStoryFeatures, threadLikedThisMonth } from "../stories-data";
@@ -26,7 +26,12 @@ export default async function ThreadStories() {
       level: s.author.level, at: s.at, ago: ago(s.at), topic: x?.topic ?? null, featured: x?.featured ?? null,
       likes: x?.likes ?? 0, comments: x?.comments ?? 0, read: readMinutes(s.body) };
   });
-  const byId = new Map(list.map(s => [s.id, s])), popular = top.map(t => ({ ...t, s: byId.get(t.id) })).filter(t => t.s);
+  // Popular this month (PM v3 check 2026-11-21: shows at 2+ stories): the month's most ▲'d, else the most ▲'d and commented
+  // overall, newest first on a tie, so the card is there before drizzle/0033 gives ▲s anywhere to live.
+  const byId = new Map(list.map(s => [s.id, s]));
+  const liked = top.map(t => ({ ...t, s: byId.get(t.id) })).filter(t => t.s);
+  const popular = items.length < 2 ? [] : liked.length ? liked
+    : [...items].sort((a, b) => b.likes - a.likes || b.comments - a.comments || b.at.localeCompare(a.at)).slice(0, 3).map(x => ({ id: x.id, likes: x.likes, s: byId.get(x.id) }));
   const hero = <div className="ths3-hero-top"><div className="words"><h1 className="th-h1">{TITLE}</h1><p>{INTRO}</p></div>
     <a className="ths3-share" href={th("/stories/new")}>+ Share your story</a></div>;
   const side = <>
