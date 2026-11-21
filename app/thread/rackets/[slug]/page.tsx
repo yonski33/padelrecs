@@ -36,6 +36,12 @@ import { writtenTldr } from "../../../../lib/thread/written-tldr";
 import { pageContent, marked } from "../../../../lib/racket-page";
 import { summary } from "../../../../lib/product-summary";
 import { tagSays } from "../../../../lib/tags";
+import { votePill } from "../../../../lib/thread/vote-pill";
+import { TRAIT_GROUPS } from "../../../../lib/thread/traits";
+import { traitCounts, traitGroup } from "../../data";
+import { whoPlays, weekLine } from "../../../../lib/thread/community";
+import { communityFor } from "../../community-data";
+import { comparePairs } from "../../../../lib/compare-pairs";
 
 export const revalidate = 86400;
 // Every listed racket's page is built with the site, as the live racket pages are (app/v/racket); none without a database (CI).
@@ -142,11 +148,22 @@ export default async function ThreadRacket({ params }: P) {
       : sum ? [...sum.loved.filter(t => (sum.tagCounts.get(t) ?? 0) >= 5).slice(0, 2).map(t => ({ tone: "pos" as const, text: says(t) })),
         ...sum.complaints.filter(t => (sum.tagCounts.get(t) ?? 0) >= 5).slice(0, 1).map(t => ({ tone: "catch" as const, text: says(t) }))] : bullets;
     const model = brand && bare.toLowerCase().startsWith(`${brand.name.toLowerCase()} `) ? bare.slice(brand.name.length + 1) : bare;
+    // The top card's pill: the strongest "How does it play?" answer, from the groups as the page shows them (lib/thread/vote-pill.ts).
+    const tc = hasDb() ? await traitCounts() : null;
+    const pill = tc ? votePill(Object.fromEntries(TRAIT_GROUPS.map(g => [g.key, traitGroup(tc, r.id, g.key)])), W.people) : null;
+    // The community sidebar (owner OK 2026-11-21): this week's counts, the newest question, who plays it (votes only), and
+    // the rackets it is compared with (its compare pages' partners, then the engine's similar rackets).
+    const groupOf = (k: string) => tc ? traitGroup(tc, r.id, k) : null;
+    const who = whoPlays({ level: groupOf("level"), plays_like: groupOf("plays_like"), side: groupOf("side") });
+    const cm = await communityFor(r.id);
+    const partners = (ctx ? comparePairs(ctx.data).partners.get(r.id) ?? [] : []).map(x => rows.get(x.id)).filter((x): x is NonNullable<typeof x> => !!x && x.current !== false);
+    const compared = [...partners, ...sim].filter((x, i, a) => x.id !== r.id && a.findIndex(y => y.id === x.id) === i).slice(0, 3)
+      .map(x => ({ row: x, href: `/compare?ids=${encodeURIComponent(r.slug)},${encodeURIComponent(x.slug)}` }));
     return <Shell active="rackets">
       <JsonLd data={ld}/>
       <RacketV7b id={r.id} title={r.year && bare !== name ? `${bare} (${r.year})` : name} model={model} crumbs={crumbsEl} tags={tags} lime={!!style} row={row} judged={judged}
-        lead={lead} bullets={v7Bullets} specs={v7Specs} shop={shop} cards={cards} sim={sim.map(x => <Mini key={x.id} x={x}/>)} also={also.map(x => <Mini key={x.id} x={x} small/>)}
-        line={lineEl} stories={tales}/>
+        lead={lead} bullets={v7Bullets} specs={v7Specs} shop={shop} cards={cards} also={also} brand={brand ? { name: brand.name, slug: brand.slug } : null}
+        pill={pill} week={weekLine(cm.opinions, cm.posts)} latest={cm.latest} who={who} compared={compared} stories={tales}/>
     </Shell>;
   }
   return <Shell active="rackets">

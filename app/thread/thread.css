@@ -1196,6 +1196,158 @@ body:has(.th) .th .th-rk-menu a[aria-current="page"] { font-weight: 700; }
    soft tint of the site's own accent (--lime, which each site maps to its accent token), the rest white; ink outline and text. */
 .th-badge.m { background: var(--card, #fff); color: var(--ink); }
 .th-badge.m.top { background: color-mix(in oklch, var(--lime) 55%, var(--card, #fff)); }
+/* PadelRecs racket page (owner mock "Racket Page", 2026-11-21). Scoped to .th8 (padel only), on top of .th7. No Player score;
+   the mock's bigger type: h1 44/32, h2 31/26, TL;DR 26 · 18 · 17, body 15.5. */
+.th8.th-main { max-width: 1320px; gap: 18px; }
+.th8 .th-col { max-width: none; gap: 10px; }
+.th8 .th-side { flex: 0 0 340px; }
+.th8 .th-h2, .th8 .th-h3 { font-size: 31px !important; line-height: 1.1; }
+.th8 .th-sub { font-size: 14px; color: var(--muted); }
+.th8 .th-card { scroll-margin-top: 70px; }
+.th8-top { padding: 14px 16px 12px; display: flex; flex-direction: column; gap: 12px; min-width: 0; }
+.th8-hero { display: grid; grid-template-columns: 250px minmax(0,1fr); gap: 16px; align-items: start; }
+.th8 .th8-photo { height: 320px; min-height: 0; border-radius: 12px; }
+.th8 .th8-photo img { max-height: 300px; }
+.th8-hero-r { display: flex; flex-direction: column; gap: 8px; min-width: 0; }
+.th8-top .th-h1 { font-size: 44px !important; line-height: 1; }
+.th8-top .th-tags .th-pill { font-size: 13.5px; }
+.th8-one { font-size: 15.5px; line-height: 1.45; color: var(--body); text-wrap: pretty; }
+.th8-tldr { border: 0; border-radius: 12px; padding: 14px 16px; gap: 9px; }
+.th8-tldr .th-tldr-h { font-size: 26px; line-height: 1; }
+.th8-tldr p { font-size: 18px; line-height: 1.45; padding-bottom: 9px; border-bottom: 1px solid var(--lime-bar); }
+.th8-tldr p:last-child { padding-bottom: 0; border-bottom: 0; }
+.th8-tldr ul { border-top: 0; padding-top: 0; gap: 9px; font-size: 17px; line-height: 1.45; }
+.th8-tldr li .th-sdot { margin-top: 7px; }
+.th8-sum { display: flex; align-items: center; justify-content: space-between; gap: 8px 14px; flex-wrap: wrap; }
+.th8-pill { font-size: 14px; font-weight: 600; padding: 3px 12px; border: 1.5px solid var(--ink); border-radius: 999px; background: var(--lime); }
+.th8-sent { display: inline-flex; align-items: center; gap: 8px; font-size: 14px; color: var(--muted); flex-wrap: wrap; }
+.th8-sent .th-sbar { width: 110px; flex: none; }
+.th8-jump { border-top: 1px solid var(--line); padding-top: 10px; margin: 0; flex-wrap: wrap; gap: 6px; }
+body:has(.th) .th .th8-jump a { padding: 3px 12px; border: 1.5px solid var(--ink); font-size: 14.5px; font-weight: 600; background: #fff; }
+body:has(.th) .th .th8-jump a[aria-current] { background: var(--lime-box); }
+@media (max-width: 1199px) { .th8-hero { grid-template-columns: 200px minmax(0,1fr); } .th8 .th8-photo { height: 270px; } .th8 .th8-photo img { max-height: 250px; } }
+@media (max-width: 639px) {
+  .th8 .th-h2, .th8 .th-h3 { font-size: 26px !important; }
+  .th8-top .th-h1 { font-size: 32px !important; }
+  .th8-jump { flex-wrap: nowrap; margin: 0 -16px; padding-left: 16px; padding-right: 16px; }
+}
+@media (max-width: 519px) { .th8-hero { grid-template-columns: minmax(0,1fr); } .th8 .th8-photo { height: 240px; } .th8 .th8-photo img { max-height: 220px; } }
+/* Sidebar and its narrow copies. */
+.th8 .th-sbox-head { font-size: 23.5px; padding: 8px 14px; line-height: 1.15; }
+.th8-side { gap: 0; padding-top: 6px !important; }
+.th8-ranks { display: flex; flex-direction: column; gap: 4px; margin: 6px 0 4px; }
+body:has(.th) .th a.th8-rank { display: flex; flex-direction: column; gap: 1px; text-decoration: none; background: var(--lime-box); border-radius: 8px; padding: 7px 10px; color: var(--ink); }
+.th8-rank > span { display: flex; justify-content: space-between; gap: 8px; font-weight: 700; font-size: 14.5px; }
+.th8-rank small { font-size: 13px; color: var(--muted); }
+.th8-specs { display: flex; flex-direction: column; }
+.th8-kv { display: flex; justify-content: space-between; gap: 8px; font-size: 14.5px; padding: 6px 0; border-bottom: 1px solid var(--div); }
+.th8-kv:last-child { border-bottom: 0; }
+.th8-kv > span { color: var(--muted); }
+.th8-kv strong { font-weight: 600; text-align: right; }
+.th8-buy { margin-top: 12px; }
+body:has(.th) .th .th8-buy a { font-size: 17px; min-height: 42px; }
+.th8-buy small { font-size: 12.5px; color: var(--muted); }
+.th8-more { overflow: hidden; }
+.th8-more .th-sbox-head { font-size: 22.5px; }
+.th8-more-l { padding: 2px 14px 6px; display: flex; flex-direction: column; }
+body:has(.th) .th .th8-more-l a { text-decoration: none; display: flex; justify-content: space-between; gap: 8px; padding: 8px 0; border-bottom: 1px solid var(--div); font-size: 14.5px; font-weight: 600; color: var(--ink); }
+body:has(.th) .th .th8-more-l a:last-child { border-bottom: 0; }
+.th8-cap { display: block; font-family: var(--bc); font-weight: 700; font-size: 20.5px; line-height: 1.1; padding: 12px 0 2px; }
+.th8-narrow, .th8-narrow-after { display: none; }
+.th8-narrow { flex-direction: column; gap: 10px; }
+.th8-narrow .th8-buy { margin-top: 0; }
+.th8-narrow-after { flex-direction: column; gap: 10px; }
+.th8-narrow-ranks { padding: 6px 14px; }
+@media (max-width: 999px) { .th8-narrow, .th8-narrow-after { display: flex; } }
+/* Fit check, poll and the vote grid as their own cards, with the mock's labels. */
+.th8 .th7-fit { padding: 12px 16px 14px; gap: 10px; }
+.th7-hd { display: flex; flex-direction: column; gap: 2px; }
+.th8 .th7-fit .th-picks > .lbl { font-weight: 700; font-size: 14.5px; min-width: 160px; }
+.th8 .th7-fit .th-pick { font-size: 14.5px; }
+.th8 .th7-fit .th-check { font-size: 14.5px; margin-left: 10px; }
+@media (max-width: 639px) { .th8 .th7-fit .th-picks > .lbl { min-width: 0; } .th8 .th7-fit .th-check { margin-left: 0; } }
+.th8-anchor { scroll-margin-top: 70px; }
+.th8 .th7-poll { padding: 12px 16px 14px; }
+.th8 .th7-poll .th-poll-head { align-items: flex-start; }
+.th8 .th7-poll .th-poll-head > span:last-child { font-size: 14px; font-weight: 600; padding: 2px 10px; border: 1px solid var(--box); border-radius: 999px; background: #fff; color: var(--ink); margin-top: 4px; }
+.th-poll-q { display: flex; flex-direction: column; gap: 2px; }
+.th8 .th7-poll .th-poll-q b { font-family: var(--bc); font-weight: 700; font-size: 31px; line-height: 1.1; }
+.th8 .th7-poll .th-poll-q small { font-size: 14px; color: var(--muted); }
+@media (max-width: 639px) { .th8 .th7-poll .th-poll-q b { font-size: 26px; } }
+.th8 .th-popt { font-size: 15.5px; }
+.th8 #play .th-vbox-head { font-size: 14.5px; }
+/* Similar and also loved: two columns of compact cards, one on phones. */
+.th8-sec { padding: 12px 16px 14px; display: flex; flex-direction: column; gap: 10px; }
+.th8-grid { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 0 20px; }
+@media (max-width: 639px) { .th8-grid { grid-template-columns: minmax(0,1fr); } }
+body:has(.th) .th a.th8-rc { text-decoration: none; display: grid; grid-template-columns: 56px minmax(0,1fr) auto; gap: 10px; align-items: center; padding: 9px 0; border-top: 1px solid var(--line); color: var(--ink); }
+.th8-rc-ph { height: 72px; display: flex; align-items: center; justify-content: center; }
+.th8-rc-ph img { height: 100%; width: auto; mix-blend-mode: multiply; }
+.th8-rc-ph .th-ph { width: 26px; height: 44px; }
+.th8-rc-t { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+.th8-rc-t strong { font-size: 15.5px; line-height: 1.25; }
+.th8-rc-t span { font-size: 14px; line-height: 1.35; color: var(--body); }
+.th8-rc-n { display: flex; flex-direction: column; align-items: flex-end; gap: 4px; }
+.th8-rc-n b { font-size: 14px; white-space: nowrap; }
+.th8-rc-n .th-sbar { width: 96px; }
+/* Reviews: Sort and Add on the right of the heading, then sentiment chips and source chips. */
+.th7-head-r { display: inline-flex; align-items: center; gap: 8px; flex-wrap: wrap; justify-content: flex-end; }
+.th8 .th7-head { flex-wrap: wrap; }
+.th8 .th7-head .th7-sort { margin-left: 0; }
+.th7-chips { justify-content: space-between; border-bottom: 0; padding: 0 0 8px; }
+.th7-chipset { display: flex; gap: 5px; flex-wrap: wrap; }
+.th7-chipset button { all: unset; cursor: pointer; font-size: 14px; font-weight: 500; padding: 2px 10px; border: 1px solid var(--box); border-radius: 999px; background: #fff; color: var(--ink); }
+.th7-chipset button[aria-pressed="true"] { background: var(--ink); color: #fbfaf6; border-color: var(--ink); font-weight: 700; }
+.th8 .th7-rv-list { margin-top: 0; }
+.th8 .th7-rv:first-child { border-top: 1px solid var(--line); }
+.th8 .th7-rv-top strong { font-size: 15.5px; }
+.th8 .th7-rv-top, .th8 .th7-rv-foot { font-size: 13.5px; }
+.th8 .th7-cm-text { font-size: 15.5px; }
+/* Community sidebar (owner OK 2026-11-21): plain white cards with plain headings, no black bars; an outlined Where to buy. */
+.th8-aside { gap: 10px; }
+.th8-box { padding: 12px 14px; display: flex; flex-direction: column; gap: 6px; min-width: 0; }
+.th8-bh { font-family: var(--bc); font-weight: 700; font-size: 21px !important; line-height: 1.1; margin: 0 0 2px; }
+.th8-week { flex-direction: row; align-items: center; gap: 8px; padding: 9px 14px; font-size: 14px; font-weight: 600; }
+.th8-live { flex: none; width: 9px; height: 9px; border-radius: 50%; background: #3fae5a; }
+.th8-q-by { display: flex; gap: 6px; align-items: baseline; font-size: 13.5px; color: var(--muted); }
+.th8-q-by strong { color: var(--ink); font-size: 14.5px; }
+.th8-q { font-size: 15px; line-height: 1.45; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; overflow-wrap: anywhere; }
+.th8-q-foot { display: flex; justify-content: flex-end; gap: 8px; font-size: 13.5px; color: var(--muted); }
+body:has(.th) .th .th8-q-foot a, body:has(.th) .th a.th8-all { font-weight: 700; color: var(--ink); text-decoration: none; }
+.th8-who-h { font-size: 16px; }
+.th8-who { display: flex; flex-direction: column; gap: 5px; }
+.th8-who-r { display: grid; grid-template-columns: 44px 56px minmax(0,1fr) auto; gap: 8px; align-items: center; font-size: 14px; }
+.th8-who-r small { font-size: 12.5px; color: var(--muted); }
+.th8-who-r b { font-weight: 600; }
+.th8-who-r em { font-style: normal; font-weight: 700; font-size: 13.5px; }
+.th8-mini { height: 7px; border-radius: 999px; background: var(--div); overflow: hidden; display: flex; }
+.th8-mini i { background: var(--lime); border-radius: 999px; }
+.th8-cap2 { font-size: 12.5px; color: var(--muted); }
+.th8-cmp { display: flex; flex-direction: column; }
+.th8-cmp-r { display: grid; grid-template-columns: 40px minmax(0,1fr) auto; gap: 10px; align-items: center; padding: 7px 0; border-bottom: 1px solid var(--div); }
+.th8-cmp-ph { height: 48px; display: flex; align-items: center; justify-content: center; }
+.th8-cmp-ph img { height: 100%; width: auto; mix-blend-mode: multiply; }
+.th8-cmp-ph .th-ph { width: 20px; height: 32px; }
+.th8-cmp-t { display: flex; flex-direction: column; gap: 4px; min-width: 0; }
+body:has(.th) .th .th8-cmp-t a { font-size: 14.5px; font-weight: 600; line-height: 1.25; color: var(--ink); text-decoration: none; }
+.th8-cmp-t .th-sbar { width: 80px; }
+body:has(.th) .th a.th8-cmp-go { font-size: 13.5px; font-weight: 700; color: var(--ink); padding: 2px 10px; border: 1.5px solid var(--ink); border-radius: 999px; text-decoration: none; }
+.th8-all { padding-top: 6px; font-size: 14.5px; }
+/* The basics: a plain two-column list and an outlined button. */
+.th8-box .th8-kv { font-size: 14.5px; padding: 5px 0; }
+.th8-box .th8-kv strong { font-weight: 500; }
+.th8-box .th8-buy { margin-top: 8px; display: flex; flex-direction: column; gap: 4px; }
+body:has(.th) .th .th8-box .th8-buy a { display: flex; align-items: center; justify-content: center; min-height: 40px; border: 2px solid var(--ink); border-radius: 999px; background: #fff; font-weight: 700; font-size: 15.5px; color: var(--ink); text-decoration: none; }
+body:has(.th) .th .th8-box .th8-buy a:hover { background: var(--frame); }
+.th8-box .th8-buy small { text-align: center; }
+.th8-narrow-basics { flex-direction: column; }
+@media (max-width: 999px) {
+  .th8-narrow-basics .th8-box { padding: 10px 14px; }
+  .th8-narrow-basics .th8-bh { order: -2; }
+  .th8-narrow-basics .th8-buy { order: -1; margin: 0 0 6px; }
+  .th8-narrow-basics .th8-specs { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 0 16px; }
+  .th8-narrow-basics .th8-kv:last-child { border-bottom: 1px solid var(--div); }
+}
 
 /* PadelRecs info pages and 404, v3 (owner design 2026-11-21, design_handoff_padelrecs_v3: About, Affiliate, Contact, Not
  * Found). Scoped to .thi3 (padel only). Shared colour tokens; the v3 page colours come with the shared token change. */
