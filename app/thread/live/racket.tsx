@@ -49,8 +49,17 @@ export const RATING: Record<Verdict, number> = { positive: 5, mixed: 3, negative
 /** "Played it? Tap to add yours": the review verdicts plus the quick votes, one vote per device, changeable. */
 /** `sub` and `countsOnly`: the PadelRecs racket page (owner mock 2026-11-21) adds a line under the question and shows plain
  *  counts, no percentages. */
+/** True the first time this browser votes on this racket (then remembered): the "add a line" prompt shows once. Never
+ *  shows when storage is blocked, so it can't nag on every vote. */
+const ASK_KEY = "th-ask-why";
+function askOnce(id: string) {
+  try { const seen = JSON.parse(localStorage.getItem(ASK_KEY) || "{}") as Record<string, 1>; if (seen[id]) return false;
+    seen[id] = 1; localStorage.setItem(ASK_KEY, JSON.stringify(seen)); return true; } catch { return false; }
+}
 export function Poll({ id, reviews, question = "Poll: would you buy it again?", sub, countsOnly = false }: { id: string; reviews: Counts; question?: string; sub?: string; countsOnly?: boolean }) {
   const [votes, setVotes] = useState<Counts | null>(null), [mine, setMine] = useState<Verdict | null>(null), [err, setErr] = useState("");
+  // PadelRecs (countsOnly): after a fresh vote, one light "Want to add a line about why?", once per racket per visitor.
+  const [ask, setAsk] = useState(false);
   // Counts from /api/thread-poll: a reviewer who also quick-voted counts once (their review is in `reviews`).
   const load = () => fetch(`/api/thread-poll?racket=${encodeURIComponent(id)}`, { cache: "no-store" }).then(r => r.ok ? r.json() : null).then((b: { votes?: Counts; mine?: number | null } | null) => {
     if (!b?.votes) return; setVotes(b.votes); setMine(b.mine ? (b.mine >= 4 ? "positive" : b.mine === 3 ? "mixed" : "negative") : null);
@@ -63,11 +72,16 @@ export function Poll({ id, reviews, question = "Poll: would you buy it again?", 
     try {
       if (off) { const r = await fetch(`/api/racket-votes?racket=${encodeURIComponent(id)}`, { method: "DELETE" }); if (!r.ok) throw new Error(); }
       else await sendVote(id, RATING[v], loadProfile());
+      if (countsOnly) setAsk(off ? false : askOnce(id));
       await load();
     } catch { setMine(was); setErr(off ? "Could not remove your vote. Try again?" : "Could not save your vote. Try again?"); }
   };
   const n = (k: Verdict) => reviews[k] + (votes?.[k] ?? 0);
   const total = n("positive") + n("mixed") + n("negative");
+  // PadelRecs: the live total for the reviews strip's "N players voted in the poll above" (racket-v7b.tsx PollPointer).
+  useEffect(() => { if (!countsOnly || !votes) return; (window as { __thPollTotal?: number }).__thPollTotal = total;
+    dispatchEvent(new CustomEvent("thread-poll-total", { detail: total })); }, [countsOnly, votes, total]);
+  const openReview = () => dispatchEvent(new CustomEvent("thread-open-review", { detail: mine }));
   return <div className="th-poll">
     <span className="th-poll-head">{sub ? <span className="th-poll-q"><b>{question}</b><small>{sub}</small></span> : <b>{question}</b>}<span>{mine && !countsOnly ? "Thanks, your vote counts. Tap another to change it, or tap again to remove." : "One tap, no account"}</span></span>
     {(["positive", "mixed", "negative"] as const).map(k => { const c = n(k), w = total ? Math.round(c / total * 100) : 0, cls = VERDICT[k][1];
@@ -78,7 +92,10 @@ export function Poll({ id, reviews, question = "Poll: would you buy it again?", 
       </button>; })}
     {/* PadelRecs v16: the saved vote, and a way to say why (opens the review form with that vote). */}
     {countsOnly && mine && <div className="th-poll-saved"><span>{"Vote saved: "}<strong>{VERDICT[mine][0]}</strong>. Tap it again to remove.</span>
-      <button type="button" onClick={() => dispatchEvent(new CustomEvent("thread-open-review", { detail: mine }))}>Say why in a short review</button></div>}
+      {!ask && <button type="button" onClick={openReview}>Say why in a short review</button>}</div>}
+    {countsOnly && mine && ask && <div className="th-poll-ask" role="status"><span>Want to add a line about why?</span>
+      <button type="button" className="go" onClick={() => { setAsk(false); openReview(); }}>Add a line</button>
+      <button type="button" className="x" aria-label="No thanks" onClick={() => setAsk(false)}>×</button></div>}
     {total === 0 && <span className="th-note">No votes yet. Be the first.</span>}
     {err && <span className="th-err">{err}</span>}
   </div>;

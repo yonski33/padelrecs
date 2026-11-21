@@ -2023,3 +2023,20 @@ body:has(.th) .th a.th-web-th { flex: none; position: relative; width: 112px; he
 .th-web-th .play::after { content: ""; position: absolute; left: 10px; top: 7px; border-style: solid; border-width: 6px 0 6px 9px; border-color: transparent transparent transparent #fff; }
 @media (max-width: 420px) { body:has(.th) .th a.th-web-th { width: 96px; height: 54px; } }
 .th-web > .th-btn { margin-top: 6px; }
+/* PadelRecs few-review pages (owner 2026-11-21): a count line under "Player reviews"; under 3 reviews a compact strip with
+   the invitation, + Add your review and a pointer to the poll; after a poll vote, one light "add a line" prompt. */
+.th7-count { margin: -4px 0 0; font-size: 13.5px; color: var(--ink2); }
+.th7-reviews.thin { padding-bottom: 14px; }
+.th7-reviews.thin .th7-rv-list:empty { display: none; }
+.th7-invite { display: flex; align-items: center; flex-wrap: wrap; gap: 8px 12px; padding: 10px 12px; border-radius: 10px;
+  background: var(--frame); border: 1.5px solid var(--line); font-size: 15px; font-weight: 600; color: var(--ink); }
+.th7-invite .th-btn { min-height: 34px; font-size: 14px; white-space: nowrap; }
+body:has(.th) .th a.th7-pollpoint { flex-basis: 100%; font-size: 13.5px; font-weight: 400; color: var(--ink2); text-decoration: underline;
+  text-underline-offset: 3px; }
+.th-poll-ask { display: flex; align-items: center; gap: 6px 12px; flex-wrap: wrap; font-size: 14.5px; padding: 8px 8px 8px 12px;
+  border-radius: 10px; border: 1.5px dashed var(--chip); background: var(--card); }
+.th-poll-ask > span { flex: 1 1 auto; min-width: 0; }
+.th-poll-ask button { all: unset; cursor: pointer; font-weight: 700; }
+.th-poll-ask .go { padding: 3px 12px; border-radius: 999px; background: var(--lime); border: 1.5px solid var(--ink); }
+.th-poll-ask .x { width: 28px; height: 28px; text-align: center; line-height: 28px; font-size: 18px; color: var(--ink2); border-radius: 50%; }
+.th-poll-ask .x:hover { background: var(--frame); color: var(--ink); }
