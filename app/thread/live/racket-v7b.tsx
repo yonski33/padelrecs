@@ -23,14 +23,15 @@ import type { RvCard } from "../racket-data";
 
 const ACCOUNTS = accountSite(niche.id);
 
-/** "Is it right for me?" as its own card: the same picks and engine as FitCheck, with the bigger match box. */
-export function FitCard({ id }: { id: string }) {
+/** "Is it right for me?": the same picks and engine as FitCheck, with the bigger match box. `part`: a section of the top card
+ *  (owner 2026-11-21: one card, as on PickleballRecs) instead of its own card. */
+export function FitCard({ id, part }: { id: string; part?: boolean }) {
   const [picks, set] = usePicks();
   const on = complete(picks), payload = usePayload(on);
   const fit = useMemo(() => on && payload ? fitFor(payload, picks, id) : null, [on, payload, picks, id]);
   const adv = useMemo(() => fit && payload && fit.verdict.kind !== "thin" ? adviceFor(payload, picks, id, fit.pct) : null, [fit, payload, picks, id]);
-  return <section className="th-card th7-card th7-fit">
-    <h2 className="th-h3">{W.fitTitle}</h2>
+  return <section className={part ? "th7-part th7-fit" : "th-card th7-card th7-fit"}>
+    <h2 className={part ? "th7-subh" : "th-h3"}>{W.fitTitle}</h2>
     <div className="th-fit"><PickChips picks={picks} set={set} small armLabel="Arm comfort"/></div>
     {(picks.level || picks.style) && <div aria-live="polite">
       {!on ? <p className="th-note">Pick a level and a style to see your match.</p> : !fit ? <p className="th-note">Working out your match…</p>
@@ -48,8 +49,8 @@ export function FitCard({ id }: { id: string }) {
 }
 
 /** The "Would you buy it again?" poll as its own card (the same Poll and votes). */
-export function PollCard(p: Parameters<typeof Poll>[0]) {
-  return <section className="th-card th7-card th7-poll"><Poll {...p}/></section>;
+export function PollCard({ part, ...p }: Parameters<typeof Poll>[0] & { part?: boolean }) {
+  return <section className={part ? "th7-part th7-poll" : "th-card th7-card th7-poll"}><Poll {...p}/></section>;
 }
 
 // ⋯ menu: Report for everyone (reviews also Copy link); the owner's tools after a thin divider (the shared owner check,

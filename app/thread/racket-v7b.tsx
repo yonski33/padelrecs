@@ -54,12 +54,14 @@ export function RacketV7b(p: V7bProps) {
             {p.bullets.length > 0 && <ul>{p.bullets.map(b => <li key={b.text}><span className={`th-sdot ${DOT[b.tone]}`}/><span>{b.text}</span></li>)}</ul>}
           </div>}
         </div>
+        {/* One card (owner 2026-11-21, as on PickleballRecs): overview, then the fit check and the poll under thin dividers,
+            the jump row last. */}
+        <FitCard id={p.id} part/>
+        <PollCard id={p.id} reviews={{ positive: row?.pos ?? 0, mixed: row?.mix ?? 0, negative: row?.neg ?? 0 }} question="Poll: would you buy it again?" part/>
         <nav className="th7-jump" aria-label="On this page">
           <a href="#overview">Overview</a><a href="#play">Player feedback</a><a href="#reviews">Reviews</a><a href="#discussion">Discussion</a>
         </nav>
       </article>
-      <FitCard id={p.id}/>
-      <PollCard id={p.id} reviews={{ positive: row?.pos ?? 0, mixed: row?.mix ?? 0, negative: row?.neg ?? 0 }} question="Poll: would you buy it again?"/>
       <TraitVotes id={p.id} seed={traitSeed(niche.id, p.id)}/>
       {p.sim.length > 0 && <section className="th-card th-sec th-sec-sim"><h2 className="th-h3">{`Similar ${niche.words.many}`}</h2><div className="th-sim">{p.sim}</div></section>}
       {/* No sidebar under 1000px: its facts as a card (mid widths), and the buy button on every narrow screen. */}
