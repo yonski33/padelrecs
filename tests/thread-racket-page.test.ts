@@ -46,9 +46,10 @@ test("the padel racket page shows no Player score and sends no star rating", () 
 import { whoPlays, weekLine } from "../lib/thread/community";
 
 test("this week's line: real counts, a part at 0 left out, both 0 hides it", () => {
-  assert.equal(weekLine(3, 2), "3 new opinions · 2 questions this week");
+  assert.equal(weekLine(3, 2), "3 new opinions · 2 posts this week");
   assert.equal(weekLine(1, 0), "1 new opinion this week");
-  assert.equal(weekLine(0, 1), "1 question this week");
+  assert.equal(weekLine(0, 1), "1 post this week");
+  assert.doesNotMatch(weekLine(4, 3)!, /question/);
   assert.equal(weekLine(0, 0), null);
 });
 

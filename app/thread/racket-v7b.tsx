@@ -32,7 +32,7 @@ export type V7bProps = {
   shop: { url: string; rel: string } | null; cards: RvCard[]; also: ThreadRow[];
   brand: { name: string; slug: string } | null;
   /** The top card's vote pill (lib/thread/vote-pill.ts), or null. */ pill: string | null;
-  /** "3 new opinions · 2 questions this week", or null. */ week: string | null;
+  /** "3 new opinions · 2 posts this week", or null. */ week: string | null;
   /** The newest Ask the community question. */ latest: LatestQuestion | null;
   /** Who plays it, from votes only (lib/thread/community.ts). */ who: { headline: string; rows: WhoRow[] } | null;
   /** Often compared with: up to 3 rackets and their compare page. */ compared: { row: ThreadRow; href: string }[];

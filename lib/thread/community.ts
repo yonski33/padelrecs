@@ -2,9 +2,10 @@
 // plain counts. The data comes from app/thread/community-data.ts.
 import { PILL_MIN, PILL_LEAD } from "./vote-pill";
 
-/** "3 new opinions · 2 questions this week": real counts from the last 7 days. A part at 0 is left out; both 0 → null. */
-export function weekLine(opinions: number, questions: number): string | null {
-  const parts = [opinions > 0 ? `${opinions} new ${opinions === 1 ? "opinion" : "opinions"}` : null, questions > 0 ? `${questions} ${questions === 1 ? "question" : "questions"}` : null].filter(Boolean);
+/** "3 new opinions · 2 posts this week": real counts from the last 7 days. Posts are top-level Ask the community posts;
+ *  nothing marks a post as a question, so the line never says "questions". A part at 0 is left out; both 0 → null. */
+export function weekLine(opinions: number, posts: number): string | null {
+  const parts = [opinions > 0 ? `${opinions} new ${opinions === 1 ? "opinion" : "opinions"}` : null, posts > 0 ? `${posts} ${posts === 1 ? "post" : "posts"}` : null].filter(Boolean);
   return parts.length ? `${parts.join(" · ")} this week` : null;
 }
 
