@@ -1336,6 +1336,16 @@ body:has(.th) .th a.th8-rc { text-decoration: none; display: grid; grid-template
 .th8-rc-n { display: flex; flex-direction: column; align-items: flex-end; gap: 4px; }
 .th8-rc-n b { font-size: 14px; white-space: nowrap; }
 .th8-rc-n .th-sbar { width: 96px; }
+/* Similar rackets as tiles across the main column from 640px (owner bug 2026-11-21: not a half-width column); phones stack rows. */
+@media (min-width: 640px) {
+  .th8-grid.th8-sim { grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 14px; }
+  body:has(.th) .th .th8-sim a.th8-rc { display: flex; flex-direction: column; align-items: stretch; gap: 8px; padding: 10px; border: 1px solid var(--line); border-radius: 12px; background: #fff; }
+  body:has(.th) .th .th8-sim a.th8-rc:hover { border-color: var(--ink); }
+  .th8-sim .th8-rc-ph { height: 130px; }
+  .th8-sim .th8-rc-t span { display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+  .th8-sim .th8-rc-n { align-items: flex-start; margin-top: auto; }
+  .th8-sim .th8-rc-n .th-sbar { width: 100%; }
+}
 /* Reviews: Sort and Add on the right of the heading, then sentiment chips and source chips. */
 .th7-head-r { display: inline-flex; align-items: center; gap: 8px; flex-wrap: wrap; justify-content: flex-end; }
 .th8 .th7-head { flex-wrap: wrap; }

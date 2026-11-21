@@ -12,7 +12,8 @@ import { padelWords } from "../../lib/content-consistency";
 import { isComplete } from "../../lib/complete-text";
 import { pageContent, evidenceLine, marked } from "../../lib/racket-page";
 import { summary } from "../../lib/product-summary";
-import { similarProducts, tagProfiles } from "../../lib/similar";
+import { similarProducts, tagProfiles, tagSimilarity } from "../../lib/similar";
+import type { SimSpec } from "../../lib/thread/similar-pick";
 import { modelFamily } from "../../lib/compare-pairs";
 import { score, database } from "../../db/data";
 import { memberMap } from "../../lib/thread/member-marks";
@@ -126,7 +127,8 @@ export async function racketData(slug: string) {
   // Similar rackets (the live page's similarProducts), one per model, best liked first, and the brand's own line. Both keep
   // only each model's current row (ThreadRow.current, the classic rule), so an older year never stands in for its model.
   const pool = ctx.data.listed.filter(x => score(ctx.data, x.id).judged >= 5);
-  const sim = similarProducts(r, pool, tagProfiles([...ctx.data.reviews, ...ctx.data.external]), 12)
+  const profiles = tagProfiles([...ctx.data.reviews, ...ctx.data.external]);
+  const sim = similarProducts(r, pool, profiles, 12)
     .filter((x, i, a) => modelFamily(x) !== modelFamily(r) && a.findIndex(y => modelFamily(y) === modelFamily(x)) === i)
     .map(x => rows.get(x.id)).filter((x): x is ThreadRow => !!x && x.score != null && !!x.current).sort((a, b) => b.score! - a.score!).slice(0, niche.id === "padel" ? 4 : 2);
   // PadelRecs shows four (owner mock 2026-11-21). DiscGolfRecs (audit 2026-11-20: 3 discs with few reviews had no Similar discs): a disc whose reviews give no match is
@@ -138,6 +140,16 @@ export async function racketData(slug: string) {
     const near = ctx.data.listed.filter(x => x.id !== r.id && x.shape === r.shape && modelFamily(x) !== modelFamily(r)).flatMap(x => { const d = gap(x.weight), t = rows.get(x.id);
       return d !== null && t && t.score != null && t.current ? [{ t, d }] : []; }).sort((a, b) => a.d - b.d || b.t.score! - a.t.score!).map(x => x.t);
     for (const t of near) { if (sim.length >= 2) break; if (!taken.has(fam.get(t.id))) { sim.push(t); taken.add(fam.get(t.id)); } }
+  }
+  // PadelRecs Similar rackets (owner bug 2026-11-21): every listed racket as a spec, for lib/thread/similar-pick.ts on the page
+  // (after Often compared with takes its three). The racket itself rides along as `simSelf`.
+  let simSpecs: SimSpec[] = [], simSelf: SimSpec | null = null;
+  if (niche.id === "padel") {
+    const tags = tagSimilarity(r, ctx.data.listed, profiles);
+    const spec = (x: typeof r): SimSpec | null => { const t = rows.get(x.id); return t ? { id: x.id, family: modelFamily(x), year: x.year, shape: x.shape ?? null,
+      feel: t.feel, balance: x.balance ?? null, levels: t.levels, style: styleOf(ctx.facts(x.id)), tags: tags.get(x.id) ?? 0, votes: t.pos + t.mix + t.neg } : null; };
+    simSpecs = ctx.data.listed.flatMap(x => spec(x) ?? []);
+    simSelf = spec(r);
   }
   const model = brand && r.name.toLowerCase().startsWith(`${brand.name.toLowerCase()} `) ? r.name.slice(brand.name.length + 1) : r.name;
   const word = model.split(" ")[0]?.toLowerCase() ?? "";
@@ -155,5 +167,5 @@ export async function racketData(slug: string) {
       c.member = true;
       c.meta = [lv(level), side ? (niche.id === "padel" ? `${side.toLowerCase()} side` : sideWord(side)) : null].filter(Boolean).join(" · ") || null; }
   }
-  return { r, row, brand, cards, lead: lead ?? pollLead, bullets, traits, style, sim, line, tagTones, latest, facts, judged };
+  return { r, row, brand, cards, lead: lead ?? pollLead, bullets, traits, style, sim, simSpecs, simSelf, line, tagTones, latest, facts, judged };
 }
