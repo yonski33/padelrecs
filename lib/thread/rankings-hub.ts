@@ -3,7 +3,7 @@
 // Honesty rules (owner, over the mock's words):
 //   - The power and control lists are PadelRecs picks, or (lib/thread/vote-order.ts "votes", owner test 2026-11-21) ordered by
 //     how many players pick each racket for power or control; copy says which. Never "rankings change as new reviews come in".
-//   - Category lists show their curated rating on a 0 to 10 scale ("Power rating 9.7"); no 0-100 score anywhere.
+//   - No rating or score on the lists (owner 2026-11-21: the "Most picked for" pill carries each row); no 0-100 score anywhere.
 //   - Sentiment as counts only: "52 loved · 18 mixed · 14 not for me".
 
 import { votesOrdered, lovedOrdered } from "./vote-order";
@@ -28,7 +28,6 @@ export const HOW: { title: string; body: string[] }[] = [
     BY_LOVED ? "Best overall is this season's rackets ordered by how many players loved them, the count on each row. A racket needs 10 or more reviews. The best of last season and the shape lists are ordered by player reviews."
       : "Best overall, the best of last season and the shape lists are ordered by player reviews. A racket needs enough reviews to be listed.",
   ] },
-  { title: "Ratings", body: ["The category lists show a PadelRecs rating from 0 to 10, such as Power rating 9.7. It follows the list's order, and what players report about each racket nudges it within its place."] },
   { title: "Most picked for", body: ["A row says \"Most picked for control · 26 players\" when that answer to \"How does it play?\" leads, with 5 or more players behind it. Otherwise the row shows no pill."] },
   { title: "Opinions", body: ["Each row counts the opinions on a racket: loved it, mixed or not for me. Counts only, never a score."] },
   { title: "What is not used", body: ["Brand payments, affiliate commission and price. The order is the same for every visitor; your match picks only change the order on the home and catalogue pages."] },

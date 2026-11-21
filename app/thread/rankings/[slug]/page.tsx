@@ -74,7 +74,8 @@ export default async function ThreadRanking({ params }: P) {
   const list = l.ids.map(id => rows.get(id)!).filter(Boolean);
   // Padel category lists (owner 2026-11-21): a curated rating as the big number, the Player score small on each row. Never in
   // the structured data below, which carries no rating at all.
-  const cat = ratingCategory(l.slug, niche.id);
+  // PadelRecs (owner 2026-11-21): no rating on its lists any more; the "Most picked for" pill and the opinions carry each row.
+  const cat = PADEL ? null : ratingCategory(l.slug, niche.id);
   const [boards, rated] = await Promise.all([threadBoards(new Set(l.ids)), cat ? ratingsFor(cat, list.map(r => r.id)) : null]);
   const reviews = list.reduce((s, r) => s + r.n, 0);
   const beginner = list.filter(r => r.levels.includes("beginner")).slice(0, 3), arm = list.filter(r => r.arm).slice(0, 3);
