@@ -15,7 +15,7 @@ import { and, count, desc, eq, gte, like } from "drizzle-orm";
 import { sideItems, addCounts, BUSY_DAYS, SIDE_SIZE, type SideItem } from "../../lib/thread/home-side";
 import { shopPhoto, photoHidden } from "../../lib/shop-photos";
 import { amazonPhoto } from "../../lib/amazon-photos";
-import { productHref, niche } from "../../lib/niche";
+import { productHref, niche, hasYears } from "../../lib/niche";
 import { playersWord } from "../../lib/thread/web-sources";
 import { flightOf } from "../../lib/discgolf-profile";
 import { score } from "../../db/data";
@@ -129,7 +129,8 @@ export const threadBoards = cache(async (only?: Set<string>): Promise<Board[]> =
     return { title, source: "reviews" as const, rows: scored.map(({ r, n }) => ({ id: r.id, name: shortName(r.name, r.brand), href: r.href, pic: r.pic, n })) };
   }).filter(b => b.rows.length === 3);
 });
-const shortName = (name: string, brand: string) => (brand && name.startsWith(`${brand} `) ? name.slice(brand.length + 1) : name).replace(/\s+\(?20\d\d\)?$/, "");
+// A site without model years (TennisRecs) keeps the generation in the name ("Head Speed MP 2022").
+const shortName = (name: string, brand: string) => { const s = brand && name.startsWith(`${brand} `) ? name.slice(brand.length + 1) : name; return hasYears ? s.replace(/\s+\(?20\d\d\)?$/, "") : s; };
 
 /** The ranking lists for the header menu, the hub and the sidebars: slug, label, title, top entries (curated first). */
 export const threadLists = cache(async () => {

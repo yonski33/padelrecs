@@ -117,7 +117,8 @@ export default async function ThreadRacket({ params }: P) {
   const flight = DG ? flightOf(r.weight) : null, stab = flight ? stabilityOfFlight(flight) : null;
   const dgStyle = DG && style ? SITE_FIT.styleLabels[style] : null;
   const also = (await lovedToo(r.id, rows)).filter(x => x.id !== r.id && x.current);
-  const name = row?.name ?? r.name, bare = withoutYear(name);
+  // A site without model years (TennisRecs) keeps the name whole: its generation is part of it ("Head Speed MP 2022").
+  const name = row?.name ?? r.name, bare = hasYears ? withoutYear(name) : name;
   // The live racket page's buy link, the same logic (app/rackets/[slug]/page.tsx): the Amazon lookup, the saved listing when
   // the two disagree, else the product's own site. So "Check price" shows here exactly where it shows on the live page.
   const live = await amazonButton({ name: r.name, brand: brand?.name }), saved = amazonPhoto(r);

@@ -19,7 +19,7 @@ import { compareParts, TRAITS } from "./compare-v2";
 import { CompareAdd } from "./compare-add";
 import { FitBar, Cards, type V3Card } from "./compare-v3-live";
 import type { Data } from "./view";
-import { niche, catalogPath } from "../../lib/niche";
+import { niche, catalogPath, hasYears } from "../../lib/niche";
 import { W } from "../../lib/thread/words";
 import { votePill, AUDIO_PILL_LABELS, SIMRACING_PILL_WORDS, SIMRACING_PILL_LABELS } from "../../lib/thread/vote-pill";
 import { TRAIT_GROUPS, traitGroupsForType } from "../../lib/thread/traits";
@@ -62,7 +62,7 @@ export async function CompareV3({ data, products }: { data: Data; products: Data
   const shorts = cprods.map(c => c.short);
   const cards: V3Card[] = products.map((r, i) => {
     const row = rows.get(r.id), plays = traitGroup(t, r.id, "plays_like"), top = Object.entries(plays).filter(([k]) => PLAYS[k]).sort((a, b) => b[1] - a[1])[0];
-    return { id: r.id, name: withoutYear(displayName(r.name, brandOf(r))), short: shorts[i], href: th(row?.href ?? cprods[i].href), pic: row?.pic ?? cprods[i].pic,
+    return { id: r.id, name: hasYears ? withoutYear(displayName(r.name, brandOf(r))) : displayName(r.name, brandOf(r)), short: shorts[i], href: th(row?.href ?? cprods[i].href), pic: row?.pic ?? cprods[i].pic,
       shape: r.shape ? r.shape[0].toUpperCase() + r.shape.slice(1) : null, feel: row?.feel ?? null,
       picked: SR ? votePill(Object.fromEntries(traitGroupsForType(niche.id, r.shape).map(g => [g.key, traitGroup(t, r.id, g.key)])), W.people, SIMRACING_PILL_WORDS, SIMRACING_PILL_LABELS)
         : AUDIO ? votePill(Object.fromEntries(TRAIT_GROUPS.map(g => [g.key, traitGroup(t, r.id, g.key)])), W.people, AUDIO_PILL_LABELS, AUDIO_PILL_LABELS)

@@ -13,7 +13,7 @@ import { th } from "../../lib/thread/look";
 import { W } from "../../lib/thread/words";
 import { traitSeed } from "../../lib/thread/trait-seed";
 import { withoutYear } from "../../lib/brand-name";
-import { niche } from "../../lib/niche";
+import { niche, hasYears } from "../../lib/niche";
 import { TraitVotes } from "./live/trait-votes";
 import { FitCard, PollCard } from "./live/racket-v7b";
 import { CommunityFeed } from "./live/feed-v7b";
@@ -53,7 +53,8 @@ const DOT = { pos: "pos", mix: "catch", catch: "catch", neg: "neg" } as const;
 /** Owner 2026-11-20: this exact note under Check price. */
 const BUY_NOTE = "Affiliate link - price stays the same";
 /** "Head Extreme Pro (2026)", as the page's own title. */
-const named = (x: ThreadRow) => { const b = withoutYear(x.name); return x.year && b !== x.name ? `${b} (${x.year})` : x.name; };
+// A site without model years (TennisRecs) keeps the name whole: its generation is part of it ("Head Speed MP 2022").
+const named = (x: ThreadRow) => { const b = withoutYear(x.name); return hasYears && x.year && b !== x.name ? `${b} (${x.year})` : x.name; };
 
 /** Similar rackets and also loved: photo, name, its short line, the opinions count and bar (no score). */
 function RacketCard({ x }: { x: ThreadRow }) {

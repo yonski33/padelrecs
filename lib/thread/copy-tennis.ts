@@ -109,7 +109,9 @@ export const TN_GUIDES: GuideCopy[] = [
 ];
 
 /** Padel's live words → tennis's, for the info pages. Order matters (the site name and "padel players" first). */
-const SWAPS: [RegExp, string][] = [[/PadelRecs/g, "TennisRecs"], [/\bpadel players\b/g, "tennis players"], [/r\/padel\b/g, "r/tennis"],
+// No score anywhere on the v3 pages (V3-ROLLOUT-BRIEF): the About line about one player score reads as counts instead.
+const SWAPS: [RegExp, string][] = [[/Every racket gets one player score, so you can see at a glance what people actually think\./g,
+  "Every racket shows how many players loved it, so you can see at a glance what people actually think."], [/PadelRecs/g, "TennisRecs"], [/\bpadel players\b/g, "tennis players"], [/r\/padel\b/g, "r/tennis"],
   [/\bpadel\b/g, "tennis"], [/\bPadel\b/g, "Tennis"]];
 export const toTennis = (t: string) => SWAPS.reduce((s, [re, to]) => s.replace(re, to), t);
 const swapDeep = <T,>(v: T): T => (typeof v === "string" ? toTennis(v) : Array.isArray(v) ? v.map(swapDeep)
