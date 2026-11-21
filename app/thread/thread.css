@@ -2205,6 +2205,11 @@ body:has(.th) .th.th-pb .rk5-box h3 { background: none; color: var(--ink); borde
    render the same size as before; the #598 multiply blend stays. */
 :is(.tc-ph, .tc-new-ph, .rk5-row .pic, .th8-rc-ph, .th8-cmp-ph, .cp3-card .pic) { overflow: hidden; }
 :is(.tc-ph, .tc-new-ph, .rk5-row .pic, .th8-rc-ph, .th8-cmp-ph, .cp3-card .pic) img { width: 100%; height: 100%; max-width: 100%; object-fit: contain; }
+/* The owner's "Edit helpful" box (app/thread/live/helpful-admin.tsx): admin only, drawn after the page loads. */
+.th-help-edit { margin-top: 8px; padding: 10px 12px; border: 1.5px dashed var(--line, #d8d4c8); border-radius: 10px; align-items: center; }
+.th-help-voters { list-style: none; margin: 6px 0 0; padding: 0; display: flex; flex-direction: column; gap: 6px; font-size: 13px; }
+.th-help-voters li { display: flex; flex-wrap: wrap; gap: 4px 10px; align-items: center; }
+.th-help-voters code { font-size: 12px; background: var(--soft, #fbfaf6); padding: 1px 5px; border-radius: 4px; }
 
 /* The marker highlight behind text ("Mostly intermediate", "N loved"; owner 2026-11-22): padel's yellow on every v3 site, never
    the site accent. It reads var(--marker, #FFE45C) and no site sets --marker. Bars, pills, buttons and the quick match sticker
