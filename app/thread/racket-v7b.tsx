@@ -1,6 +1,6 @@
 // PadelRecs' racket page (owner mock "Racket Page", Head Extreme Motion example, owner OK 2026-11-21). A community page: no
 // byline, no date and no Player score (SHOW_SCORE below rolls that back; the score is still worked out in code).
-// Order: top card (photo, title, tags, one line, TL;DR, the strongest vote pill + the opinions bar, jump row) → Is this racket
+// Order: top card (photo, title, tags, TL;DR, the strongest vote pill + the opinions bar, jump row) → Is this racket
 // right for me? → poll → How does it play? → Similar rackets → Player reviews → Ask the community → also loved, then stories.
 // Sidebar (owner OK 2026-11-21, a community feel, not a shop): this week's counts, the latest question, who plays it, often
 // compared with, then the basics (specs, a lime Check price). Plain headings, no black bars, no curated ranking box and
@@ -83,7 +83,8 @@ export function RacketV7b(p: V7bProps) {
     {p.brand && <a className="th8-all" href={th(`/brands/${p.brand.slug}`)}>{`All ${p.brand.name} ${niche.words.many} →`}</a>}</section>;
   const community = (week || latest || who || compared) && <>{week}{latest}{who}{compared}</>;
   const basics = (specs || buy) && <section className="th-card th8-box"><h2 className="th8-bh">The basics</h2>{specs}{buy}</section>;
-  const one = row?.line && row.line !== p.lead ? row.line : null;
+  // The one-line tagline is no longer shown here (owner 2026-11-21: it repeats the TL;DR); meta and OG text keep using it.
+  const votes = row ? row.pos + row.mix + row.neg : 0;
   return <main className="th-main th7 th8">
     <div className="th-col">
       {p.crumbs}
@@ -96,15 +97,19 @@ export function RacketV7b(p: V7bProps) {
               {p.tags.map((t, i) => <span key={t} className={`th-pill${i === 0 && p.lime ? " lime" : ""}`}>{t}</span>)}
               {SHOW_SCORE && <span className="th7-tag-score">{score != null ? <>{badge("xs")}{W.score}</> : "New, not enough votes yet"}</span>}
             </div>
-            {one && <p className="th8-one">{one}</p>}
             {(p.lead || p.bullets.length > 0) && <div className="th7-tldr th8-tldr"><div className="th-tldr-h">TL;DR</div>
               {p.lead && <p>{p.lead}</p>}
               {p.bullets.length > 0 && <ul>{two(p.bullets).map(b => <li key={b.text}><span className={`th-sdot ${DOT[b.tone]}`}/><span>{b.text}</span></li>)}</ul>}
             </div>}
-            {(p.pill || judged > 0) && <div className="th8-sum">
-              {p.pill && <span className="th8-pill">{p.pill}</span>}
-              {judged > 0 && <span className="th8-sent"><SBar pos={row!.pos} mix={row!.mix} neg={row!.neg}/><span>{`${row!.pos} loved · ${row!.mix} mixed · ${row!.neg} not for me`}</span></span>}
-            </div>}
+            {p.pill && <div className="th8-sum"><span className="th8-pill">{p.pill}</span></div>}
+            {/* The opinions block (owner 2026-11-21: the main community signal, bigger): N opinions, a full-width bar, raw
+                counts with colour dots (never %), all linking to the poll. */}
+            {votes > 0 && <a className="th8-op" href="#feedback">
+              <strong>{plural(votes, "opinion", "opinions")}</strong>
+              <SBar pos={row!.pos} mix={row!.mix} neg={row!.neg}/>
+              <span className="th8-op-n">{([["pos", row!.pos, "loved"], ["mix", row!.mix, "mixed"], ["neg", row!.neg, "not for me"]] as const)
+                .map(([k, n, w]) => <span key={k}><span className={`th-sdot ${k}`}/>{`${n} ${w}`}</span>)}</span>
+            </a>}
           </div>
         </div>
         <nav className="th7-jump th8-jump" aria-label="On this page">
