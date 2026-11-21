@@ -3,6 +3,7 @@
 // as their own cards, the reviews as divided rows (name · pill · date, text, ▲ helpful · source · original ↗, ⋯ menu) with
 // plain source tabs and a Sort menu. Same data and the same posting, voting and owner tools as racket.tsx; other sites keep
 // racket.tsx's Reviews. Helpful votes: /api/helpful (review_votes, already live; counts come with the page).
+import { HelpfulEditor } from "./helpful-admin";
 import { useEffect, useMemo, useRef, useState, type ReactNode } from "react";
 import { accountSite } from "../../../lib/thread/sites";
 import { niche } from "../../../lib/niche";
@@ -113,6 +114,7 @@ const LINK_WORD = { youtube: "Watch original ↗", reddit: "View original ↗", 
 export type Changed = { text?: string; alias?: string; gone?: true };
 /** `flair`: the community feed's small REVIEW chip first (feed-v7b.tsx). */
 export function ReviewRow({ c, owner, onChange, flair }: { c: RvCard; owner: boolean; onChange: (x: Changed) => void; flair?: boolean }) {
+  const [helpEdit, setHelpEdit] = useState(false);
   const [edit, setEdit] = useState<{ name: string; text: string | null } | null>(null), [err, setErr] = useState(""), [copied, setCopied] = useState(false);
   const anchor = `rv-${c.id}`, rid = c.id.slice(2), web = c.kind !== "player";
   // Reddit rows: the subreddit, "r/name" (owner 2026-11-21; never "<model> owners"), else "Reddit".
@@ -131,6 +133,8 @@ export function ReviewRow({ c, owner, onChange, flair }: { c: RvCard; owner: boo
     { label: "Hide", run: () => { if (window.confirm("Hide this review? It goes back to pending and leaves the score until approved again.")) run(() => status(rid, "pending", "approved"), { gone: true }); } },
     { label: "Delete", danger: true, run: () => { if (window.confirm("Delete this review for good? It can't be undone.")) run(async () => { await status(rid, "rejected", "approved"); await send("/api/funtimes/delete-rejected", { id: rid }); }, { gone: true }); } },
   ] : [];
+  // The owner's Helpful clean-up (drizzle/0036): player reviews and web quotes alike.
+  const helpTool = owner && !rid.startsWith("demo-") ? [{ label: "Edit helpful", run: () => setHelpEdit(true) }] : [];
   // v16: an initials avatar beside each review (grey and blank when the review has no name).
   const av = name ? avatarOf(name) : null;
   return <article id={anchor} className="th7-rv th7-rv-av">
@@ -152,8 +156,9 @@ export function ReviewRow({ c, owner, onChange, flair }: { c: RvCard; owner: boo
         {`${SRC_NAME[c.kind as keyof typeof SRC_NAME]} · ${c.quote ? "Quoted" : "Summarised"}`}</span>
         {c.url && <><span className="sep">·</span><a href={c.url} target="_blank" rel="noopener nofollow">{LINK_WORD[c.kind as keyof typeof LINK_WORD]}</a></>}</>}
       {copied && <span className="th7-copied" role="status">Link copied</span>}
-      <MoreMenu items={[{ label: "Copy link", run: copy }, { label: "Report", run: () => reportPost(anchor) }]} owner={tools}/>
+      <MoreMenu items={[{ label: "Copy link", run: copy }, { label: "Report", run: () => reportPost(anchor) }]} owner={[...tools, ...helpTool]}/>
     </div>
+    {helpEdit && <HelpfulEditor kind={web ? "web" : "player"} id={rid} onClose={() => setHelpEdit(false)}/>}
     </div>
   </article>;
 }

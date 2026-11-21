@@ -57,7 +57,8 @@ test("post_type (drizzle/0035): one nullable column, padel only in the API, kept
   assert.match(sql, /CHECK \("post_type" IS NULL OR "post_type" IN \('question', 'tip'\)\)/);
   assert.doesNotMatch(sql, /DROP|NOT NULL|UPDATE|DELETE/i); // additive only
   const j = JSON.parse(readFileSync("drizzle/meta/_journal.json", "utf8")) as { entries: { idx: number; tag: string; when: number }[] };
-  const [a, b] = j.entries.slice(-2);
+  // 0035 comes right after 0034 (later migrations, such as 0036, follow it).
+  const at = j.entries.findIndex(e => e.tag === "0035_comment_post_type"), [a, b] = [j.entries[at - 1], j.entries[at]];
   assert.deepEqual([b.idx, b.tag], [35, "0035_comment_post_type"]);
   assert.ok(b.when > a.when);
   // Other sites' schemas don't have the column: every select() of comments must keep working there.
