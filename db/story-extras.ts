@@ -20,18 +20,20 @@ export async function storyFeatures(db: Database): Promise<StoryFeatures> {
   return { topics: !!r?.topic, likes: !!r?.likes };
 }
 
-export type StoryExtra = { topic: StoryTopic | null; likes: number; comments: number };
+export type StoryExtra = { topic: StoryTopic | null; likes: number; comments: number; featured: string | null };
 /** Topic, ▲ count and shown comments for each story (by id). */
 export async function storyExtras(db: Database, list: { id: string; slug: string }[], f: StoryFeatures): Promise<Map<string, StoryExtra>> {
-  const out = new Map(list.map(s => [s.id, { topic: null, likes: 0, comments: 0 } as StoryExtra]));
+  const out = new Map(list.map(s => [s.id, { topic: null, likes: 0, comments: 0, featured: null } as StoryExtra]));
   if (!list.length) return out;
   const ids = list.map(s => s.id), pages = list.map(s => `story:${s.slug}`), bySlug = new Map(list.map(s => [`story:${s.slug}`, s.id]));
   const cm = rowsOf<{ page: string; n: number }>(await db.execute(sql`select page, count(*)::int as n from ${T()}.comments
     where status = 'approved' and page in (${sql.join(pages.map(p => sql`${p}`), sql`, `)}) group by page`));
   for (const r of cm) { const id = bySlug.get(r.page); if (id) out.get(id)!.comments = Number(r.n); }
   const inIds = sql.join(ids.map(i => sql`${i}`), sql`, `);
-  if (f.topics) for (const r of rowsOf<{ id: string; topic: string | null }>(await db.execute(sql`select id, topic from ${T()}.stories where id in (${inIds})`)))
-    if (isStoryTopic(r.topic)) out.get(r.id)!.topic = r.topic;
+  // topic and featured_at come in the same migration (0033).
+  if (f.topics) for (const r of rowsOf<{ id: string; topic: string | null; featured_at: string | null }>(await db.execute(sql`select id, topic, featured_at from ${T()}.stories where id in (${inIds})`))) {
+    const x = out.get(r.id)!; if (isStoryTopic(r.topic)) x.topic = r.topic; x.featured = r.featured_at ?? null;
+  }
   if (f.likes) for (const r of rowsOf<{ id: string; n: number }>(await db.execute(sql`select story_id as id, count(*)::int as n from ${T()}.story_likes where story_id in (${inIds}) group by story_id`)))
     out.get(r.id)!.likes = Number(r.n);
   return out;
@@ -45,14 +47,20 @@ export async function likedThisMonth(db: Database, limit = 4, now = new Date()) 
     group by l.story_id order by n desc, max(l.created_at) desc limit ${limit}`)).map(r => ({ id: r.id, likes: Number(r.n) }));
 }
 
-/** The author's live stories and the ▲ they got, for the story page's author card. */
+/** The author's live stories, the ▲ they got and their reviews (account_posts), for the story page's author card. */
 export async function authorStats(db: Database, storyId: string, f: StoryFeatures) {
-  const [r] = rowsOf<{ stories: number; likes: number }>(await db.execute(sql`select count(*)::int as stories,
+  const [r] = rowsOf<{ stories: number; likes: number; reviews: number }>(await db.execute(sql`select count(*)::int as stories,
+    (select count(*)::int from ${T()}.account_posts p where p.account_id = s0.account_id and p.kind = 'review') as reviews,
     ${f.likes ? sql`(select count(*)::int from ${T()}.story_likes l join ${T()}.stories x on x.id = l.story_id where x.account_id = s0.account_id and x.status = 'approved')` : sql`0`} as likes
     from ${T()}.stories s join ${T()}.stories s0 on s0.id = ${storyId} where s.account_id = s0.account_id and s.status = 'approved' group by s0.account_id`));
-  return { stories: Number(r?.stories ?? 0), likes: Number(r?.likes ?? 0) };
+  return { stories: Number(r?.stories ?? 0), likes: Number(r?.likes ?? 0), reviews: Number(r?.reviews ?? 0) };
 }
 
+/** Feature a story on the list page, or stop featuring it (an admin, after 0033). The newest featured one leads the list. */
+export async function setStoryFeatured(db: Database, id: string, on: boolean, now = new Date()) {
+  const r = rowsOf<{ id: string }>(await db.execute(sql`update ${T()}.stories set featured_at = ${on ? now.toISOString() : null} where id = ${id} returning id`));
+  return r.length > 0;
+}
 /** Set or clear a story's topic (after 0033). */
 export async function setStoryTopic(db: Database, id: string, topic: StoryTopic | null) {
   await db.execute(sql`update ${T()}.stories set topic = ${topic} where id = ${id}`);
