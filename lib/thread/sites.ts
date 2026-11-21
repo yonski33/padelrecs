@@ -40,3 +40,20 @@ export const quickMatchFor = (nicheId: string) => QUICK_MATCH[nicheId] ?? null;
  *  (V3-ROLLOUT-BRIEF: AudioRecs first). No score anywhere on these. */
 export const V3_SITES = ["padel", "audio", "simracing", "tennis", "pickleball"];
 export const v3Site = (nicheId: string) => V3_SITES.includes(nicheId);
+
+/** The v3 home's two community sections, per site (owner 2026-11-22). "Just in" only where model years are real (padel,
+ *  pickleball, tennis): being added to the catalogue doesn't make a product new, so sim racing and audio don't get it.
+ *  "Latest questions" and /questions on every v3 site. */
+const JUST_IN_SITES = ["padel", "pickleball", "tennis"];
+export const justInSite = (nicheId: string) => JUST_IN_SITES.includes(nicheId);
+export const questionsSite = (nicheId: string) => v3Site(nicheId);
+/** Each site's words for its questions: what a question is about ("any racket…"), the products in a sentence, and their
+ *  page ("from every racket page"). */
+const QUESTION_WORDS: Record<string, { one: string; many: string; page: string }> = {
+  padel: { one: "racket", many: "padel rackets", page: "racket" },
+  pickleball: { one: "paddle", many: "pickleball paddles", page: "paddle" },
+  tennis: { one: "racket", many: "tennis rackets", page: "racket" },
+  simracing: { one: "sim racing product", many: "sim racing gear", page: "product" },
+  audio: { one: "headphone or IEM", many: "headphones and IEMs", page: "product" },
+};
+export const questionWords = (nicheId: string) => QUESTION_WORDS[nicheId] ?? QUESTION_WORDS.padel!;
