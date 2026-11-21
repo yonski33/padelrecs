@@ -21,10 +21,9 @@ export default async function ThreadHub() {
   // PadelRecs (owner 2026-11-21): no ratings on its rankings.
   const ratings = niche.id === "padel" ? {} : await hubRatings(lists);
   const rated = Object.keys(ratings).length > 0;
-  // PadelRecs v3 (Rankings Hub v3 mock): the same lists and groups, top 3 with their opinions (no ratings since 2026-11-21).
+  // PadelRecs (owner mock "Rankings hub", 2026-11-21): every list in the mock's three groups, no ratings or counts.
   if (niche.id === "padel") return <Shell active="rankings">
-    <HubV3 lead={HUB_LEAD} rows={rows} ratings={ratings}
-      groups={GROUPS.map(g => ({ title: g, cards: lists.filter(l => l.group === g) })).filter(g => g.cards.length > 0)}/>
+    <HubV3 lead={HUB_LEAD} rows={rows} lists={lists}/>
   </Shell>;
   return <Shell active="rankings">
     <main className="th-main"><div className="th-col" style={{ maxWidth: "none" }}>
