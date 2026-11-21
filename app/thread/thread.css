@@ -1143,3 +1143,6 @@ body:has(.th) .th .ths-more-list a:hover b { color: var(--hover); }
 .th7-part { border-top: 1.5px solid var(--line); padding-top: 12px; display: flex; flex-direction: column; gap: 8px; min-width: 0; }
 .th7-subh { font-size: 19px !important; line-height: 1.1; }
 .th7-part.th7-poll .th-poll-head b { font-size: 19px; }
+/* Fit check beside the photo, under the TL;DR (owner 2026-11-21). */
+.th7-hero-side { display: flex; flex-direction: column; gap: 10px; min-width: 0; }
+.th7-hero-side .th7-part { padding-top: 10px; }

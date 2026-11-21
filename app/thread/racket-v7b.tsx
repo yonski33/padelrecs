@@ -22,6 +22,9 @@ export type V7bProps = {
   stories: { id: string; slug: string; title: string; author: { name: string } }[];
 };
 /** The mock's dots: green praise, orange mixed (the catch colour), red complaint. */
+/** Two TL;DR bullets beside the fit check: the first praise and the first catch, so a downside always shows. */
+const two = <B extends { tone: string }>(bs: B[]) => { const pos = bs.find(b => b.tone === "pos"), neg = bs.find(b => b.tone !== "pos");
+  return pos && neg ? [pos, neg] : bs.slice(0, 2); };
 const DOT = { pos: "pos", mix: "catch", catch: "catch", neg: "neg" } as const;
 /** Owner 2026-11-20: this exact note under Check price. */
 const BUY_NOTE = "Affiliate link - price stays the same";
@@ -47,16 +50,20 @@ export function RacketV7b(p: V7bProps) {
           {/* Phones only (owner 2026-11-20): no sidebar there, so a small score sits with the tags. */}
           <span className="th7-tag-score">{score != null ? <>{badge("xs")}{W.score}</> : "New, not enough votes yet"}</span>
         </div>
+        {/* Owner 2026-11-21 (as on PickleballRecs): "Is it right for me?" sits under the TL;DR beside the photo; the TL;DR keeps
+            two bullets so the two line up. Phones stack them. */}
         <div className="th7-hero">
           <Photo src={row?.pic ?? null} className="th-bigphoto"/>
-          {(p.lead || p.bullets.length > 0) && <div className="th7-tldr"><div className="th-tldr-h">TL;DR</div>
-            {p.lead && <p>{p.lead}</p>}
-            {p.bullets.length > 0 && <ul>{p.bullets.map(b => <li key={b.text}><span className={`th-sdot ${DOT[b.tone]}`}/><span>{b.text}</span></li>)}</ul>}
-          </div>}
+          <div className="th7-hero-side">
+            {(p.lead || p.bullets.length > 0) && <div className="th7-tldr"><div className="th-tldr-h">TL;DR</div>
+              {p.lead && <p>{p.lead}</p>}
+              {p.bullets.length > 0 && <ul>{two(p.bullets).map(b => <li key={b.text}><span className={`th-sdot ${DOT[b.tone]}`}/><span>{b.text}</span></li>)}</ul>}
+            </div>}
+            <FitCard id={p.id} part/>
+          </div>
         </div>
         {/* One card (owner 2026-11-21, as on PickleballRecs): overview, then the fit check and the poll under thin dividers,
             the jump row last. */}
-        <FitCard id={p.id} part/>
         <PollCard id={p.id} reviews={{ positive: row?.pos ?? 0, mixed: row?.mix ?? 0, negative: row?.neg ?? 0 }} question="Poll: would you buy it again?" part/>
         <nav className="th7-jump" aria-label="On this page">
           <a href="#overview">Overview</a><a href="#play">Player feedback</a><a href="#reviews">Reviews</a><a href="#discussion">Discussion</a>
