@@ -1370,7 +1370,7 @@ body:has(.th) .th a.th8-rc { text-decoration: none; display: grid; grid-template
 body:has(.th) .th .th8-q-foot a, body:has(.th) .th a.th8-all { font-weight: 700; color: var(--ink); text-decoration: none; }
 /* "Control, right side" with a low yellow marker stroke behind the words (owner 2026-11-21), not a box. */
 .th8-who-h { font-size: 16px; align-self: flex-start; padding: 0 3px; margin-left: -3px; box-decoration-break: clone; -webkit-box-decoration-break: clone;
-  background: linear-gradient(transparent 52%, var(--sticker, #FFE45C) 52%, var(--sticker, #FFE45C) 92%, transparent 92%); }
+  background: linear-gradient(transparent 52%, var(--marker, #FFE45C) 52%, var(--marker, #FFE45C) 92%, transparent 92%); }
 .th8-who { display: flex; flex-direction: column; gap: 5px; }
 .th8-who-r { display: grid; grid-template-columns: 44px 56px minmax(0,1fr) auto; gap: 8px; align-items: center; font-size: 14px; }
 .th8-who-r small { font-size: 12.5px; color: var(--muted); }
@@ -1727,7 +1727,7 @@ body:has(.th) .th a.rk5-row:hover .name { color: var(--hover); }
 .rk5-row .cnt { font-size: 12.5px; white-space: nowrap; }
 /* "N loved" on a list ordered by loved (Best overall): the racket page's low yellow marker stroke, not a box. */
 .rk5-row .cnt .mk { color: var(--ink); font-weight: 700; padding: 0 2px; margin-left: -2px;
-  background: linear-gradient(transparent 50%, var(--sticker, #FFE45C) 50%, var(--sticker, #FFE45C) 92%, transparent 92%); }
+  background: linear-gradient(transparent 50%, var(--marker, #FFE45C) 50%, var(--marker, #FFE45C) 92%, transparent 92%); }
 @media (max-width: 1199px) {
   body:has(.th) .th a.rk5-row { grid-template-columns: 30px 84px minmax(0,1fr) 176px; }
   .rk5-row .rank { font-size: 28px; } .rk5-row .pic { height: 82px; } .rk5-row .name { font-size: 20px; }
@@ -2205,3 +2205,7 @@ body:has(.th) .th.th-pb .rk5-box h3 { background: none; color: var(--ink); borde
    render the same size as before; the #598 multiply blend stays. */
 :is(.tc-ph, .tc-new-ph, .rk5-row .pic, .th8-rc-ph, .th8-cmp-ph, .cp3-card .pic) { overflow: hidden; }
 :is(.tc-ph, .tc-new-ph, .rk5-row .pic, .th8-rc-ph, .th8-cmp-ph, .cp3-card .pic) img { width: 100%; height: 100%; max-width: 100%; object-fit: contain; }
+
+/* The marker highlight behind text ("Mostly intermediate", "N loved"; owner 2026-11-22): padel's yellow on every v3 site, never
+   the site accent. It reads var(--marker, #FFE45C) and no site sets --marker. Bars, pills, buttons and the quick match sticker
+   keep each site's accent (--sticker, --lime). */
