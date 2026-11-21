@@ -1245,7 +1245,7 @@ body:has(.th) .th a.th8-rank { display: flex; flex-direction: column; gap: 1px; 
 .th8-kv > span { color: var(--muted); }
 .th8-kv strong { font-weight: 600; text-align: right; }
 .th8-buy { margin-top: 12px; }
-body:has(.th) .th .th8-buy a { font-size: 17px; min-height: 42px; }
+body:has(.th) .th .th8-buy a { font-size: 17px; min-height: 42px; background: var(--lime); color: var(--ink); } /* Check price in the site accent (owner 2026-11-21) */
 .th8-buy small { font-size: 12.5px; color: var(--muted); }
 .th8-more { overflow: hidden; }
 .th8-more .th-sbox-head { font-size: 22.5px; }
@@ -1303,7 +1303,7 @@ body:has(.th) .th a.th8-rc { text-decoration: none; display: grid; grid-template
 .th8 .th7-rv-top strong { font-size: 15.5px; }
 .th8 .th7-rv-top, .th8 .th7-rv-foot { font-size: 13.5px; }
 .th8 .th7-cm-text { font-size: 15.5px; }
-/* Community sidebar (owner OK 2026-11-21): plain white cards with plain headings, no black bars; an outlined Where to buy. */
+/* Community sidebar (owner OK 2026-11-21): plain white cards with plain headings, no black bars; a lime Check price (owner 2026-11-21). */
 .th8-aside { gap: 10px; }
 .th8-box { padding: 12px 14px; display: flex; flex-direction: column; gap: 6px; min-width: 0; }
 .th8-bh { font-family: var(--bc); font-weight: 700; font-size: 21px !important; line-height: 1.1; margin: 0 0 2px; }
@@ -1337,8 +1337,8 @@ body:has(.th) .th a.th8-cmp-go { font-size: 13.5px; font-weight: 700; color: var
 .th8-box .th8-kv { font-size: 14.5px; padding: 5px 0; }
 .th8-box .th8-kv strong { font-weight: 500; }
 .th8-box .th8-buy { margin-top: 8px; display: flex; flex-direction: column; gap: 4px; }
-body:has(.th) .th .th8-box .th8-buy a { display: flex; align-items: center; justify-content: center; min-height: 40px; border: 2px solid var(--ink); border-radius: 999px; background: #fff; font-weight: 700; font-size: 15.5px; color: var(--ink); text-decoration: none; }
-body:has(.th) .th .th8-box .th8-buy a:hover { background: var(--frame); }
+body:has(.th) .th .th8-box .th8-buy a { display: flex; align-items: center; justify-content: center; min-height: 40px; border: 2px solid var(--ink); border-radius: 999px; background: var(--lime); font-weight: 700; font-size: 15.5px; color: var(--ink); text-decoration: none; }
+body:has(.th) .th .th8-box .th8-buy a:hover { background: var(--lime); filter: brightness(0.96); color: var(--ink); }
 .th8-box .th8-buy small { text-align: center; }
 .th8-narrow-basics { flex-direction: column; }
 @media (max-width: 999px) {
