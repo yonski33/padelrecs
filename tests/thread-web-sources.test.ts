@@ -36,7 +36,7 @@ test("the racket page lists only player reviews and puts the rest in From around
   assert.match(page, /<CommunityFeed id=\{p\.id\} model=\{p\.model\} cards=\{src\.players\} web=\{src\.web\}\/>/);
   assert.match(readFileSync("app/thread/live/feed-v7b.tsx", "utf8"), /<WebSources web=\{web\} open=\{thin\}\/>/);
   assert.doesNotMatch(live, /All sources/);
-  assert.match(live, /Short summaries of Reddit threads, YouTube reviews and blogs\. Not counted in the player poll above\./);
+  assert.ok(live.includes("Short summaries of Reddit threads, YouTube reviews and blogs. Not counted in the ${W.person} poll above."));
   const box = live.slice(live.indexOf("function WebCard"));
   assert.doesNotMatch(box, /written by PadelRecs|—/);
 });

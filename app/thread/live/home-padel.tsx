@@ -29,7 +29,7 @@ const Squiggle = () => <svg className="hp3-sq" width="26" height="28" viewBox="0
 
 export function PadelHomeTop({ rows, brands, pills, added, curated, season, live, after, side, wire, art }: {
   rows: ThreadRow[]; brands: string[]; pills: Record<string, string>; added: Record<string, string>; curated: string[];
-  /** The list's pool: this season's models with 10+ opinions (lib/thread/home-order.ts). */ season: string[];
+  /** The list's pool: this season's models with 10+ opinions (lib/thread/home-order.ts); AudioRecs: none (every pair). */ season?: string[];
   /** "2,936 reviews · 36 opinions collected this week", or null. */ live: string | null;
   /** The rest of the main column (Top picks, reviews) and the sidebar, server-rendered. */ after: ReactNode; side: ReactNode;
   /** AudioRecs: the match inputs (its own quick match) and the hero drawing. Padel: absent. */ wire?: AudioWire[]; art?: ReactNode;
