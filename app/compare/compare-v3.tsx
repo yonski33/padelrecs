@@ -50,6 +50,9 @@ const AUDIO_OPT: Record<string, [string, string][]> = Object.fromEntries(TRAIT_G
 /** SimRacingRecs (v3 rollout 2026-11-21): "Who wins what" from its gear-type groups (a row shows only where 10+ voted), its
  *  pills from each product's own type, its fit bar in level and budget words. */
 const SR = niche.id === "simracing";
+/** PickleballRecs (wave 2): padel's rows with Most spin in place of Most maneuverable (it has no Maneuverable group). */
+const PB = niche.id === "pickleball";
+const PB_WIN: [string, string, string, string][] = WIN.map(w => w[1] === "maneuver" ? ["Most spin", "spin", "lots", "say lots of spin"] : w);
 const SR_WIN: [string, string, string, string][] = [["Most detailed feedback", "detail", "sharp", "say sharp detail"], ["Most torque", "torque", "plenty", "say plenty of torque"],
   ["Best brake feel", "brake_feel", "realistic", "say realistic"], ["Least flex", "flex", "none", "say no flex"], ["Quietest", "noise", "quiet", "say quiet"],
   ["Easiest software", "software", "easy", "say easy"], ["Best for beginners", "level", "beginner", "say beginner"], ["Best for advanced", "level", "advanced", "say advanced"]];
@@ -74,11 +77,11 @@ export async function CompareV3({ data, products }: { data: Data; products: Data
   const opinions = cards.reduce((a, c) => a + c.pos + c.mix + c.neg, 0);
 
   // Who wins what: the highest share for that option, from groups with 10+ in them, a winner with 5+ players and no tie.
-  const winners = (AUDIO ? AUDIO_WIN : SR ? SR_WIN : WIN).flatMap(([label, trait, opt, verb]) => {
+  const winners = (AUDIO ? AUDIO_WIN : SR ? SR_WIN : PB ? PB_WIN : WIN).flatMap(([label, trait, opt, verb]) => {
     const sc = cards.map((c, i) => { const g = traitGroup(t, c.id, trait), tot = total(g), hit = g[opt] ?? 0; return { i, g, tot, hit, sh: tot >= 10 ? hit / tot : 0 }; });
     const ranked = [...sc].sort((a, b) => b.sh - a.sh), w = ranked[0];
     if (cards.length < 2 || !w || w.hit < 5 || w.tot < 10 || (ranked[1] && ranked[1].sh === w.sh)) return [];
-    return [{ label, win: w.i, why: `${w.hit} of ${w.tot} ${W.people} ${verb}`, rows: sc.map(s => ({ i: s.i, tot: s.tot, opts: (AUDIO || SR ? AUDIO_OPT : OPT)[trait].map(([k, l]) => ({ l, n: s.g[k] ?? 0, on: k === opt })) })) }];
+    return [{ label, win: w.i, why: `${w.hit} of ${w.tot} ${W.people} ${verb}`, rows: sc.map(s => ({ i: s.i, tot: s.tot, opts: (AUDIO || SR || PB ? AUDIO_OPT : OPT)[trait].map(([k, l]) => ({ l, n: s.g[k] ?? 0, on: k === opt })) })) }];
   });
   const diffs = cards.length > 1 ? differRows(cprods, TRAITS) : [];
   // What players say: each racket's newest member review of a readable length.
@@ -99,14 +102,14 @@ export async function CompareV3({ data, products }: { data: Data; products: Data
     {[...FONTS, ...(AUDIO ? ["https://fonts.googleapis.com/css2?family=Archivo+Narrow:wght@600;700&display=swap"] : [])].map(href => <link key={href} rel="stylesheet" href={href} precedence="default"/>)}
     <Shell active="rackets">
       <main className="th-main cp3">
-        <div className="th-crumbs"><a href={th(catalogPath)}>{AUDIO ? "Headphones" : SR ? "Products" : "Rackets"}</a><span>/</span><span>Compare</span></div>
+        <div className="th-crumbs"><a href={th(catalogPath)}>{AUDIO ? "Headphones" : SR ? "Products" : PB ? "Paddles" : "Rackets"}</a><span>/</span><span>Compare</span></div>
         <section className="th-card cp3-top">
           <div className="cp3-title"><span><h1 className="th-h1">{`Compare ${W.items}`}</h1>
-            <small>{n ? `Side by side, from ${opinions.toLocaleString("en-US")} ${W.person} opinions.` : AUDIO ? "Pick up to three pairs to see them side by side." : SR ? "Pick up to three products to see them side by side." : "Pick up to three rackets to see them side by side."}</small></span>
-            <span className="cp3-count">{AUDIO ? `${n} of 3` : SR ? `${n} of 3 products` : `${n} of 3 rackets`}</span></div>
+            <small>{n ? `Side by side, from ${opinions.toLocaleString("en-US")} ${W.person} opinions.` : AUDIO ? "Pick up to three pairs to see them side by side." : SR ? "Pick up to three products to see them side by side." : PB ? "Pick up to three paddles to see them side by side." : "Pick up to three rackets to see them side by side."}</small></span>
+            <span className="cp3-count">{AUDIO ? `${n} of 3` : SR ? `${n} of 3 products` : PB ? `${n} of 3 paddles` : `${n} of 3 rackets`}</span></div>
           {n > 0 && !AUDIO && <FitBar {...(SR ? { hint: "Pick your level and budget. The best fit gets highlighted below.", arm: "I race on console" } : {})}/>}
           <Cards cards={cards} add={n < 3 ? <div className="cp3-add">
-            <b>{AUDIO ? "+ Add a pair" : SR ? "+ Add a product" : "+ Add a racket"}</b>
+            <b>{AUDIO ? "+ Add a pair" : SR ? "+ Add a product" : PB ? "+ Add a paddle" : "+ Add a racket"}</b>
             <CompareAdd slugs={slugs} label={`Search ${W.items}`}/>
             {add.map(a => <a key={a.href} href={a.href}>{a.name}</a>)}
           </div> : null}/>

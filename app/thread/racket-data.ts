@@ -145,7 +145,8 @@ export async function racketData(slug: string) {
   // PadelRecs Similar rackets (owner bug 2026-11-21): every listed racket as a spec, for lib/thread/similar-pick.ts on the page
   // (after Often compared with takes its three). The racket itself rides along as `simSelf`.
   let simSpecs: SimSpec[] = [], simSelf: SimSpec | null = null;
-  if (niche.id === "padel") {
+  // PickleballRecs (v3 wave 2): the same specs (shape, feel, balance, levels, style), so the same picker.
+  if (niche.id === "padel" || niche.id === "pickleball") {
     const tags = tagSimilarity(r, ctx.data.listed, profiles);
     const spec = (x: typeof r): SimSpec | null => { const t = rows.get(x.id); return t ? { id: x.id, family: modelFamily(x), year: x.year, shape: x.shape ?? null,
       feel: t.feel, balance: x.balance ?? null, levels: t.levels, style: styleOf(ctx.facts(x.id)), tags: tags.get(x.id) ?? 0, votes: t.pos + t.mix + t.neg } : null; };

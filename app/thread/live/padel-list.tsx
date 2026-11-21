@@ -25,7 +25,7 @@ const SR = niche.id === "simracing";
 /** TennisRecs (v3 wave 2): no curated lists; Head size and Feel (stiffness), app/thread/padel-list-data.ts. */
 const TN = niche.id === "tennis";
 export const SORTS: [Sort, string][] = AUDIO || SR || TN ? [["loved", "Most loved"], ["new", "Newest"], ["match", "By your match"]]
-  : [["picks", "PadelRecs picks"], ["loved", "Most loved"], ["new", "Newest"], ["match", "By your match"]];
+  : [["picks", `${niche.site.name} picks`], ["loved", "Most loved"], ["new", "Newest"], ["match", "By your match"]];
 const BASE_SORT: Sort = SORTS[0][0];
 /** The home's menu (owner 2026-11-21: "PadelRecs picks" read as random there): Most loved (default), Most opinions, and By
  *  your match once a pick is set. The catalogue keeps SORTS. */

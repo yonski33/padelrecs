@@ -14,7 +14,7 @@ test("the hero has no subline and the page has one squiggle", () => {
 });
 
 test("the catalogue starts on PadelRecs picks, the home on Most loved (season pool), Top picks say votes, no score", () => {
-  assert.match(list, /\["picks", "PadelRecs picks"\]/);
+  assert.match(list, /\["picks", `\$\{niche\.site\.name\} picks`\]/);  // "PadelRecs picks" on padel
   assert.match(list, /const base: Sort = season \? "loved" : BASE_SORT/);
   assert.match(list, /useState<Sort>\(base\)/);
   assert.match(home, /useRacketList\(\{ rows, curated, added, season, match: useAudioListMatch\(wire\) \}\)/);

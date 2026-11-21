@@ -2,17 +2,20 @@
 // (lib/thread/vote-pill.ts), when each racket joined, and the "PadelRecs picks" order (db/curated/padel.json interleaved).
 import { cache } from "react";
 import { threadRows, traitCounts, traitGroup, audioOf } from "./data";
-import { votePill, AUDIO_PILL_LABELS, PILL_WORDS, PILL_LABELS, SIMRACING_PILL_WORDS, SIMRACING_PILL_LABELS, TENNIS_PILL_WORDS, TENNIS_PILL_LABELS } from "../../lib/thread/vote-pill";
+import { votePill, AUDIO_PILL_LABELS, PILL_WORDS, PILL_LABELS, SIMRACING_PILL_WORDS, SIMRACING_PILL_LABELS, TENNIS_PILL_WORDS, TENNIS_PILL_LABELS, PICKLEBALL_PILL_WORDS, PICKLEBALL_PILL_LABELS } from "../../lib/thread/vote-pill";
 import { niche } from "../../lib/niche";
 import { W } from "../../lib/thread/words";
 import type { ThreadRow } from "./ui";
 import { TRAIT_GROUPS } from "../../lib/thread/traits";
 import padelCurated from "../../db/curated/padel.json";
+import pickleballCurated from "../../db/curated/pickleball.json";
 import { seasonIds } from "../../lib/thread/home-order";
 import { modelFamily } from "../../lib/compare-pairs";
 
 /** "PadelRecs picks": the owner's curated lists interleaved by place (#1 of each, then #2 …). */
-const curatedOrder = () => { const lists = Object.values((padelCurated as { lists: Record<string, { slug: string }[]> }).lists), out: string[] = [];
+/** PickleballRecs uses its own curated file (db/curated/pickleball.json, the same shape). */
+const PB = niche.id === "pickleball";
+const curatedOrder = () => { const lists = Object.values(((PB ? pickleballCurated : padelCurated) as { lists: Record<string, { slug: string }[]> }).lists), out: string[] = [];
   for (let i = 0; i < Math.max(0, ...lists.map(l => l.length)); i++) for (const l of lists) { const s = l[i]?.slug; if (s && !out.includes(s)) out.push(s); }
   return out; };
 
@@ -39,7 +42,7 @@ export const padelListData = cache(async () => {
   for (const r of rows) count.set(r.brand, (count.get(r.brand) ?? 0) + 1);
   const brands = [...count].filter(([b]) => b).sort((a, b) => b[1] - a[1]).map(([b]) => b);
   const tc = ctx ? await traitCounts() : null;
-  const pills = Object.fromEntries(rows.flatMap(r => { const p = tc ? votePill(Object.fromEntries(TRAIT_GROUPS.map(g => [g.key, traitGroup(tc, r.id, g.key)])), W.people, AUDIO ? AUDIO_PILL_LABELS : SR ? SIMRACING_PILL_WORDS : TN ? TENNIS_PILL_WORDS : PILL_WORDS, AUDIO ? AUDIO_PILL_LABELS : SR ? SIMRACING_PILL_LABELS : TN ? TENNIS_PILL_LABELS : PILL_LABELS) : null; return p ? [[r.id, p]] : []; }));
+  const pills = Object.fromEntries(rows.flatMap(r => { const p = tc ? votePill(Object.fromEntries(TRAIT_GROUPS.map(g => [g.key, traitGroup(tc, r.id, g.key)])), W.people, AUDIO ? AUDIO_PILL_LABELS : SR ? SIMRACING_PILL_WORDS : TN ? TENNIS_PILL_WORDS : PB ? PICKLEBALL_PILL_WORDS : PILL_WORDS, AUDIO ? AUDIO_PILL_LABELS : SR ? SIMRACING_PILL_LABELS : TN ? TENNIS_PILL_LABELS : PB ? PICKLEBALL_PILL_LABELS : PILL_LABELS) : null; return p ? [[r.id, p]] : []; }));
   const listed = new Map((ctx?.data.listed ?? []).map(x => [x.id, x]));
   const added = Object.fromEntries(rows.map(r => [r.id, listed.get(r.id)?.createdAt ?? ""]));
   const bySlug = new Map(rows.map(r => [r.slug, r.id])), curated = AUDIO || SR || TN ? [] : curatedOrder().flatMap(s => bySlug.get(s) ?? []);

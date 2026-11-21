@@ -20,6 +20,8 @@ const PADEL = {
 };
 type Words = typeof PADEL;
 const SITES: Record<string, Words> = {
+  // PickleballRecs on v3 (wave 2, 2026-11-21): padel's words ("players"), its paddles.
+  pickleball: { ...PADEL, item: "paddle", items: "paddles", community: "The pickleball paddle community" },
   skin: { person: "person", people: "people", People: "People", Person: "Person", score: "user score", Score: "User score", reviews: "reviews",
     Reviews: "Reviews", traitsTitle: "How does it work for you?", fitTitle: "Is it right for my skin?", opinions: "opinions", lovers: "People",
     triedIt: "Tried it?", played: "tried", item: "product", items: "products", usedIt: "Tried it?", community: "The skincare community" },
