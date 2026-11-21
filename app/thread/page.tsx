@@ -24,6 +24,7 @@ import { W } from "../../lib/thread/words";
 import { PadelHomeTop } from "./live/home-padel";
 import { padelListData } from "./padel-list-data";
 import { v3Site } from "../../lib/thread/sites";
+import { JustIn } from "./just-in";
 
 export const revalidate = 21600;
 const SKIN = niche.id === "skin", DG = niche.id === "discgolf";
@@ -80,6 +81,9 @@ export default async function ThreadHome() {
           after={<div key="after" className="hp3-rest">
             <div key="cm" className="hp3-rest">{sideBox(" th-only-m")}</div>
             {picks.lists.length > 0 && <TopPicks key="tp" lists={picks.lists} total={picks.total} hrefs={Object.fromEntries(all.map(r => [r.id, r.href]))} unit={["vote", "votes"]}/>}
+            {/* "2027 rackets just in" (owner mock 2026-11-21): its own component, after the mini-lists. Padel only: the v3
+                home also serves AudioRecs. */}
+            {PADEL && <JustIn key="ji"/>}
             {cards.length > 0 && <Feed key="fd" cards={cards}/>}
             <NarrowLinks key="nl" title="Rankings" links={rankLinks}/>
           </div>}
