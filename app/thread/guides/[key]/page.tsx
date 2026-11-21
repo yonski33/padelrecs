@@ -91,8 +91,8 @@ export default async function ThreadGuide({ params }: P) {
   // PadelRecs Guide v3 (owner design 2026-11-21): the same copy, picks and comments in the v3 layout; no score on the rows.
   if (niche.id === "padel") {
     const lists = await threadRankings();
-    const want = [/beginners$/, /control$/, /power$/, new RegExp(`${ELBOW_SLUG}$`)];
-    const related = want.map(rx => lists.find(l => rx.test(l.slug))).filter((l): l is NonNullable<typeof l> => !!l).map(l => ({ label: l.label, href: l.href }));
+    const want = [/beginners/i, /control/i, /power/i, /tennis elbow/i];
+    const related = want.map(rx => lists.find(l => rx.test(l.label))).filter((l): l is NonNullable<typeof l> => !!l).map(l => ({ label: l.label, href: l.href }));
     return <Shell active="guides"><JsonLd data={ld}/>
       <GuideV3 g={g} picks={picks} picksTitle={picksTitle} fullRanking={fullRanking} related={related}
         crumbs={<div className="th-crumbs"><a href={th("/guides")}>{GUIDE_UI.crumbRoot}</a><span>/</span><span>{g.title}</span></div>}/>

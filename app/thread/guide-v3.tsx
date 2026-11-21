@@ -36,7 +36,7 @@ export function GuideV3({ g, picks, picksTitle, fullRanking, related, crumbs }: 
     <div className="thg3-grid">
       <div className="thg3-main">
         <article className="th-card thg3-read">
-          <span className="eyebrow">{`${g.crumb} · ${guideMinutes(g)} min read`}</span>
+          <span className="thg3-eyebrow">{`${g.crumb} · ${guideMinutes(g)} min read`}</span>
           <h1 className="th-h1">{g.title}</h1>
           {g.tldrLead && <p className="lead">{g.tldrLead}</p>}
           {g.tldr.length > 0 && <div className="thg3-tldr"><b>{GUIDE_UI.tldrLabel}</b><ul>{g.tldr.map(t => <li key={t}>{t}</li>)}</ul></div>}
@@ -69,7 +69,7 @@ export function GuidesIndexV3() {
   return <main className="th-main thg3">
     <section className="th-card thg3-title"><h1 className="th-h1">Guides</h1><p>Plain guides to picking and using a padel racket, built from what players report.</p></section>
     <div className="thg3-cards">{GUIDES.map(g => <a key={g.key} className="th-card thg3-card" href={th(GUIDE_PATHS[g.key])}>
-      <span className="eyebrow">{g.crumb}</span><strong>{g.title}</strong><span className="desc">{g.tldrLead ?? g.description}</span>
+      <span className="thg3-eyebrow">{g.crumb}</span><strong>{g.title}</strong><span className="desc">{g.tldrLead ?? g.description}</span>
       <span className="foot"><span>{`${guideMinutes(g)} min read`}</span><span className="go">Read guide →</span></span>
     </a>)}</div>
   </main>;
