@@ -45,8 +45,9 @@ if (start < 0) throw new Error("v7b block not found in thread.css");
 const src = [thread.slice(start), readFileSync("app/thread/rankings/rankings-hub.css", "utf8")];
 const lines = [];
 for (const css of src) for (const r of rules(css)) {
-  if (!hits(r.body)) continue;
-  const decl = r.body.split(";").map(d => d.trim()).filter(d => d && hits(d)).map(swap).join("; ");
+  // The marker highlight stays padel's yellow on every site (owner 2026-11-22), so its rules are left alone.
+  if (!r.body.split(";").some(d => hits(d) && !d.includes("--marker"))) continue;
+  const decl = r.body.split(";").map(d => d.trim()).filter(d => d && hits(d) && !d.includes("--marker")).map(swap).join("; ");
   const rule = `${scope(r.sel)} { ${decl}; }`;
   lines.push(r.at ? `${r.at} { ${rule} }` : rule);
 }

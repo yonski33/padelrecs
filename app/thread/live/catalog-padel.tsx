@@ -9,6 +9,7 @@
 import { useMemo, useState } from "react";
 import { type ThreadRow } from "../ui";
 import { th } from "../../../lib/thread/look";
+import { oneShape } from "../../../lib/thread/shape";
 import { Ago } from "./ago";
 import { useRacketList, MatchBar, FineTune, SortMenu, RacketRow, named, opinions, plural } from "./padel-list";
 import { useAudioListMatch } from "./audio-match";
@@ -62,7 +63,7 @@ export function PadelCatalog({ rows, brands, pills, added, curated, rankings, la
             <b>{c.racket}</b><span className="tc-rv-t">{c.text}</span></a>)}</section>}
         {newest.length > 0 && <section className="th-card tc-box"><h2 className="tc-bh">{`New ${W.items}`}</h2>
           {newest.map(r => <a key={r.id} className="tc-new" href={th(r.href)}><span className="tc-new-ph">{r.pic ? <img src={r.pic} alt="" loading="lazy"/> : <span className="th-ph"/>}</span>
-            <span><b>{named(r)}</b><small><span className="tc-tag new">New</span>{[r.shape, plural(opinions(r), "opinion")].filter(Boolean).join(" · ")}</small></span></a>)}</section>}
+            <span><b>{named(r)}</b><small><span className="tc-tag new">New</span>{[oneShape(r.shape), plural(opinions(r), "opinion")].filter(Boolean).join(" · ")}</small></span></a>)}</section>}
       </aside>
     </div>
   </main>;

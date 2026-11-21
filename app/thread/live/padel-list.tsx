@@ -6,6 +6,7 @@
 import { useEffect, useMemo, useState, type ReactNode } from "react";
 import { type ThreadRow } from "../ui";
 import { th } from "../../../lib/thread/look";
+import { oneShape, shapeHas } from "../../../lib/thread/shape";
 import { withoutYear } from "../../../lib/brand-name";
 import { usePicks, usePayload, pctsFor, LEVEL_OPTS, STYLE_OPTS, BUDGETS, styleLabel, type Level } from "./picks";
 import { bandOrder } from "../../../lib/thread/home-order";
@@ -72,7 +73,7 @@ export function useRacketList({ rows, curated, added, search = false, season, ma
   const only = useMemo(() => season ? new Set(season) : null, [season]);
   const pool = useMemo(() => only ? rows.filter(r => only.has(r.id)) : older || words.length ? rows : rows.filter(r => r.current !== false), [rows, only, older, words.length]);
   const olderN = rows.length - rows.filter(r => r.current !== false).length;
-  const test = (r: ThreadRow, k: Key, v: string) => k === "shape" ? r.shape === v : k === "feel" ? r.feel === v : r.brand === v;
+  const test = (r: ThreadRow, k: Key, v: string) => k === "shape" ? shapeHas(r.shape, v) : k === "feel" ? r.feel === v : r.brand === v;
   const pass = (r: ThreadRow, skip?: Key) => words.every(w => `${r.name} ${r.brand} ${r.slug.replace(/-/g, " ")}`.toLowerCase().includes(w))
     && (["shape", "feel", "brand"] as Key[]).every(k => k === skip || !f[k]?.length || f[k]!.some(v => test(r, k, v)));
   const toggle = (k: Key, v: string) => setF(x => { const cur = x[k] ?? []; return { ...x, [k]: cur.includes(v) ? cur.filter(y => y !== v) : [...cur, v] }; });
@@ -128,7 +129,7 @@ export function MatchBar({ l, ft, setFt, tag, icons, after }: { l: RacketList; f
 /** "Only show:" Shape, Feel and Brand pills with live counts (top 6 brands + more), then the active chips with × and Clear all. */
 export function FineTune({ l, ft, brands }: { l: RacketList; ft: boolean; brands: string[] }) {
   const { pool, pass, test, f, toggle, chips, clearAll } = l, [allBrands, setAllBrands] = useState(false);
-  const shapes = useMemo(() => [...new Set(pool.map(r => r.shape).filter((x): x is string => !!x))].sort((a, b) => pool.filter(r => r.shape === b).length - pool.filter(r => r.shape === a).length).slice(0, 5), [pool]);
+  const shapes = useMemo(() => [...new Set(pool.map(r => oneShape(r.shape)).filter((x): x is string => !!x))].sort((a, b) => pool.filter(r => r.shape === b).length - pool.filter(r => r.shape === a).length).slice(0, 5), [pool]);
   const group = (k: Key, title: string, vals: string[], more?: boolean) => {
     const opts = vals.map(v => ({ v, c: pool.filter(r => pass(r, k) && test(r, k, v)).length, sel: !!f[k]?.includes(v) })).filter(o => o.c > 0 || o.sel);
     const shown = !more || allBrands ? opts : opts.filter((o, i) => i < TOP_BRANDS || o.sel);
@@ -162,7 +163,7 @@ export function RacketRow({ r, pill, match, isNew, rank, link }: { r: ThreadRow;
     {rank != null && <span className="tc-rank">{`#${rank}`}</span>}
     <span className="tc-ph">{r.pic ? <img src={r.pic} alt="" loading="lazy"/> : <span className="th-ph" aria-hidden="true"/>}</span>
     <span className="tc-txt">
-      <span className="tc-name"><strong>{named(r)}</strong>{r.shape && <span className="tc-tag">{r.shape}</span>}{isNew && <span className="tc-tag new">New</span>}</span>
+      <span className="tc-name"><strong>{named(r)}</strong>{oneShape(r.shape) && <span className="tc-tag">{oneShape(r.shape)}</span>}{isNew && <span className="tc-tag new">New</span>}</span>
       {(r.line || r.best) && <span className="tc-desc">{r.line ?? `Best for ${r.best}.`}</span>}
       {pill && <span className="tc-vote"><span aria-hidden="true"/>{pill}</span>}
     </span>

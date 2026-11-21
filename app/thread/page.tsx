@@ -23,7 +23,7 @@ import { niche } from "../../lib/niche";
 import { W } from "../../lib/thread/words";
 import { PadelHomeTop } from "./live/home-padel";
 import { padelListData } from "./padel-list-data";
-import { v3Site } from "../../lib/thread/sites";
+import { v3Site, justInSite, questionsSite } from "../../lib/thread/sites";
 import { JustIn } from "./just-in";
 import { LatestQuestions } from "./latest-questions";
 
@@ -84,10 +84,10 @@ export default async function ThreadHome() {
             {picks.lists.length > 0 && <TopPicks key="tp" lists={picks.lists} total={picks.total} hrefs={Object.fromEntries(all.map(r => [r.id, r.href]))} unit={["vote", "votes"]}/>}
             {/* "2027 rackets just in" (owner mock 2026-11-21): its own component, after the mini-lists. Padel only: the v3
                 home also serves AudioRecs. */}
-            {PADEL && <JustIn key="ji"/>}
+            {justInSite(niche.id) && <JustIn key="ji"/>}
             {cards.length > 0 && <Feed key="fd" cards={cards}/>}
             {/* "Latest questions from the community" (owner OK 2026-11-21): its own component, after the latest reviews. */}
-            {PADEL && <LatestQuestions key="lq"/>}
+            {questionsSite(niche.id) && <LatestQuestions key="lq"/>}
             <NarrowLinks key="nl" title="Rankings" links={rankLinks}/>
           </div>}
           side={<aside key="side" className="th-side hp3-side">
