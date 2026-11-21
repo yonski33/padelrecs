@@ -1401,6 +1401,7 @@ body:has(.th) .th a.ths4-item { text-decoration: none; color: var(--ink); displa
 .tar3 .th-ar-intro .th-lead { font-size: 17px; }
 .tar3 .th-ar-steps { background: var(--card); border: 2px solid var(--ink); border-radius: 16px; padding: 20px 24px; gap: 20px; }
 .tar3 .th-ar-steps > .th-card { border: 0; background: none; padding: 0; box-shadow: none; }
+.tar3 .th-ar-steps > .th-card { order: 5; } .tar3 .th-ar-steps > .th-card:nth-child(1) { order: 1; } .tar3 .th-ar-steps > .th-card:nth-child(2) { order: 2; }
 .tar3 .th-ar-steps > .th-card:nth-child(3) { order: 4; } .tar3 .th-ar-steps > .th-card:nth-child(4) { order: 3; }
 .tar3 .th-ar-h h2 { font: 700 21px/1.2 var(--bc); }
 .tar3 .th-ar-h .th-sub { font-size: 13px; }
