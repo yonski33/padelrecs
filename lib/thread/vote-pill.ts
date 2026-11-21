@@ -1,5 +1,5 @@
 // PadelRecs racket page (owner mock "Racket Page", 2026-11-21): one pill in the top card with the racket's strongest "How does
-// it play?" answer, in fixed words per group ("Most picked for power · 22 players"). Only when the leading answer has 5+
+// it play?" answer, in fixed words per group ("Most picked for power · 22 players", or quality first: "Big sweet spot · 29 players"). Only when the leading answer has 5+
 // behind it and clearly leads its group (1.5x the runner-up); otherwise no pill. Counts are the group as the page shows it
 // (review prefill or the owner's override, plus votes). Not the review highlights ("Often mentioned: …"), which stay off.
 // Pure, so tests feed plain counts.
@@ -16,6 +16,15 @@ export const PILL_WORDS: Record<string, Record<string, string>> = {
   maneuver: { very: "quick handling" },
   durability: { holds_up: "durability" },
 };
+/** Answers that describe the racket rather than who or what it is for read quality first (owner 2026-11-21: "Most picked for a
+ *  big sweet spot" was awkward): "Big sweet spot · 29 players". The rest keep "Most picked for power · 22 players". */
+export const PILL_LABELS: Record<string, Record<string, string>> = {
+  sweet_spot: { big: "Big sweet spot" },
+  arm: { very: "Easy on the arm" },
+  feel: { soft: "Soft feel", medium: "Medium feel", hard: "Hard feel" },
+  maneuver: { very: "Quick handling" },
+  durability: { holds_up: "Holds up well" },
+};
 export const PILL_MIN = 5, PILL_LEAD = 1.5;
 
 /** The pill's text, or null. Of the groups whose leader qualifies, the one where the leader holds the biggest share wins;
@@ -29,7 +38,8 @@ export function votePill(groups: Record<string, Record<string, number> | null | 
     const [[top, n], second] = [opts[0], opts[1]?.[1] ?? 0], total = opts.reduce((s, [, x]) => s + x, 0);
     if (n < PILL_MIN || n < PILL_LEAD * second || !words[top]) continue;
     const share = n / total;
-    if (!best || share > best.share) best = { share, text: `Most picked for ${words[top]} · ${n} ${n === 1 ? people.replace(/s$/, "") : people}` };
+    const who = `${n} ${n === 1 ? people.replace(/s$/, "") : people}`, label = PILL_LABELS[key]?.[top];
+    if (!best || share > best.share) best = { share, text: label ? `${label} · ${who}` : `Most picked for ${words[top]} · ${who}` };
   }
   return best?.text ?? null;
 }

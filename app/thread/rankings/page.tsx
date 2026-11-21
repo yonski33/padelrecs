@@ -18,9 +18,10 @@ export const generateMetadata = (): Promise<Metadata> => liveOr(liveMetadata);
 
 export default async function ThreadHub() {
   const [lists, { rows }] = await Promise.all([threadRankings(), threadRows()]);
-  const ratings = await hubRatings(lists);
+  // PadelRecs (owner 2026-11-21): no ratings on its rankings.
+  const ratings = niche.id === "padel" ? {} : await hubRatings(lists);
   const rated = Object.keys(ratings).length > 0;
-  // PadelRecs v3 (Rankings Hub v3 mock): the same lists and groups, top 3 with their opinions, ratings on 0 to 10.
+  // PadelRecs v3 (Rankings Hub v3 mock): the same lists and groups, top 3 with their opinions (no ratings since 2026-11-21).
   if (niche.id === "padel") return <Shell active="rankings">
     <HubV3 lead={HUB_LEAD} rows={rows} ratings={ratings}
       groups={GROUPS.map(g => ({ title: g, cards: lists.filter(l => l.group === g) })).filter(g => g.cards.length > 0)}/>

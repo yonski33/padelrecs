@@ -8,9 +8,12 @@ import { groupView } from "../lib/thread/trait-view";
 
 test("the pill names the group whose leader holds the biggest share", () => {
   assert.equal(votePill({ plays_like: { power: 34, all_round: 28, control: 26 }, feel: { hard: 43, medium: 23, soft: 7 }, maneuver: { very: 44, somewhat: 8, not_really: 16 } }),
-    "Most picked for quick handling · 44 players");
+    "Quick handling · 44 players");
   assert.equal(votePill({ plays_like: { power: 22, all_round: 6, control: 2 } }), "Most picked for power · 22 players");
-  assert.equal(votePill({ sweet_spot: { big: 12, medium: 3 } }), "Most picked for a big sweet spot · 12 players");
+  assert.equal(votePill({ sweet_spot: { big: 12, medium: 3 } }), "Big sweet spot · 12 players");
+  assert.equal(votePill({ feel: { soft: 30, medium: 4 } }), "Soft feel · 30 players");
+  assert.equal(votePill({ arm: { very: 20, somewhat: 3 } }), "Easy on the arm · 20 players");
+  assert.equal(votePill({ side: { right: 18, left: 2 } }), "Most picked for the right side · 18 players");
 });
 
 test("no pill without 5+ behind the leader, a clear lead, or words for the answer", () => {
