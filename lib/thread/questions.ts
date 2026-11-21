@@ -3,7 +3,8 @@
 // Pure, so the tests see exactly what the home and the page show.
 import { activity, postFlair } from "./feed";
 
-export type QComment = { id: string; page: string; parentId: string | null; alias: string; body: string; at: string; score: number };
+export type QComment = { id: string; page: string; parentId: string | null; alias: string; body: string; at: string; score: number;
+  /** A saved Question or Tip (drizzle/0035); absent for plain posts and older rows. */ type?: "question" | "tip" };
 export type QRacket = { id: string; name: string; href: string; pic: string | null };
 export type Question = { id: string; racket: QRacket; alias: string; body: string; at: string; activity: string; answers: number;
   /** The most ▲'d answer (ties: the earliest), as "Name: first line". */ top: { alias: string; line: string } | null;
@@ -26,7 +27,8 @@ export function questionsOf(list: QComment[], rackets: Map<string, QRacket>): Qu
   for (const c of list) if (c.parentId) replies.set(c.parentId, [...(replies.get(c.parentId) ?? []), c]);
   return list.flatMap(c => {
     const r = rackets.get(c.page.replace(/^racket:/, ""));
-    if (c.parentId || !r || postFlair(c.body) !== "question") return [];
+    // A saved type wins (a saved Tip is never a question); else the feed's own rule on the words.
+    if (c.parentId || !r || (c.type ?? postFlair(c.body)) !== "question") return [];
     const rs = [...(replies.get(c.id) ?? [])].sort((a, b) => b.score - a.score || a.at.localeCompare(b.at));
     return [{ id: c.id, racket: r, alias: c.alias, body: c.body, at: c.at, activity: activity(c.at, rs), answers: rs.length,
       top: rs[0] ? { alias: rs[0].alias, line: firstLine(rs[0].body) } : null }];

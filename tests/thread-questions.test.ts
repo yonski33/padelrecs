@@ -17,6 +17,9 @@ test("questions: top-level posts that read as questions, with racket, answers an
   assert.deepEqual(qs[0].top, { alias: "R2", line: "It is firm." });
   assert.equal(qs[0].activity, "2026-11-03"); // a new answer bumps it
   assert.equal(firstLine("Fine with an overgrip. Demo it first."), "Fine with an overgrip.");
+  // A saved type (drizzle/0035) wins over the words: a saved Tip is not a question, a saved Question is.
+  const typed = questionsOf([{ ...c("t2", "a", "Is this a tip though?", "2026-11-07"), type: "tip" }, { ...c("q4", "b", "Looking for a softer racket", "2026-11-08"), type: "question" }], R);
+  assert.deepEqual(typed.map(q => q.id), ["q4"]);
 });
 
 test("home order: up to 2 unanswered pinned, then newest activity; /questions sorts", () => {
