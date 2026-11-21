@@ -20,6 +20,8 @@ test("padel serves /rackets with no redirects but renamed and last season's rank
   assert.deepEqual(await config.redirects(), [
     // The Thread sore-arms ranking, named for tennis elbow (owner 2026-11-19, lib/thread/look.ts THREAD_MOVED).
     { source: "/rankings/best-padel-rackets-for-sore-arms", destination: "/rankings/best-padel-rackets-for-tennis-elbow", statusCode: 301 },
+    // "How the score works" retired on the v3 sites (owner 2026-11-22): a 308 to "How rankings work".
+    { source: "/how-we-make-these", destination: "/how-rankings-work", statusCode: 308 },
     { source: "/rankings/most-forgiving-padel-rackets", destination: "/rankings/best-control-padel-rackets", statusCode: 301 },
     ...[1, 2, 3].map(n => ({ source: `/rankings/best-padel-rackets-${last - n}`, destination: `/rankings/best-padel-rackets-${last}`, statusCode: 301 })),
   ]);

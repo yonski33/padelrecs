@@ -16,3 +16,14 @@ test("v3 sites: the search, rows, brands and the fallback racket page draw no sc
   assert.match(page, /\{!V3 && <span className="th-inline-score">/);
   assert.match(page, /\{!V3 && \(row\?\.score != null \? <span className=\{`th-badge/);
 });
+
+test("v3 sites: no em dash in the footer line; the score page is retired to How rankings work (308)", () => {
+  assert.match(readFileSync("app/layout.tsx", "utf8"), /\{`\$\{niche\.site\.domain\} · \$\{niche\.site\.footer\}`\}/);
+  assert.match(readFileSync("app/thread/shell.tsx", "utf8"), /v3Site\(niche\.id\) \? \{ label: "How rankings work", href: "\/how-rankings-work" \}/);
+  assert.match(readFileSync("lib/thread/look.ts", "utf8"), /p === "\/how-rankings-work" && v3Site\(nicheId\)/);
+  assert.match(readFileSync("next.config.ts", "utf8"), /const retired=v3Site\(niche\.id\)\?\[\{source:"\/how-we-make-these",destination:"\/how-rankings-work",statusCode:308 as const\}\]/);
+  assert.doesNotMatch(readFileSync("app/thread/rankings/[slug]/page.tsx", "utf8"), /how-we-make-these/);
+  const how = readFileSync("lib/thread/rankings-hub.ts", "utf8");
+  assert.match(how, /export const SR_HOW/);
+  assert.doesNotMatch(how.slice(how.indexOf("export const SR_HOW"), how.indexOf("export const AUDIO_HOW")), /—|\bscore\b(?!\.)(?! anywhere)/i);
+});

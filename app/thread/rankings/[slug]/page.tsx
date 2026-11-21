@@ -267,7 +267,7 @@ async function RankingV5({ l, lists, list, rated, label, faqs, ld, picOf }: { l:
                 : votes ? <><strong>Ordered by player votes</strong><span>{`Rackets go by how many players pick them for ${votes}, the number on each row. Needs 12+ reviews and 10+ players.${label ? ` The number on each pick is a ${niche.site.name} rating from 0 to 10.` : ""}`}</span></> : <><strong>Picked, then checked</strong><span>{label ? `${niche.site.name} sets the order and checks it against what ${W.people} report. The number on each pick is a ${niche.site.name} rating from 0 to 10.`
                 : `${niche.site.name} sets the order and checks it against what ${W.people} report, not brand claims.`}</span></>}</span></span>
               <span className="item"><svg className="ic" width="30" height="28" viewBox="0 0 30 28" aria-hidden="true" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round"><circle cx="15" cy="14" r="11"/><path d="M15 8v6l4 3"/></svg><span><strong>Updated as new feedback arrives</strong><span>The counts change as new reviews come in.</span></span></span>
-              <a className="more" href={th(AUDIO ? "/how-rankings-work" : "/how-we-make-these")}>How rankings work →</a>
+              <a className="more" href={th("/how-rankings-work")}>How rankings work →</a>
             </div></section>
           {others.length > 0 && <section className="th-card rk5-box"><h3>More rankings</h3>
             <div>{others.map(x => <a key={x.slug} className="arrow" href={th(x.href)}><span>{x.label}</span><span aria-hidden="true">→</span></a>)}</div></section>}

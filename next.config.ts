@@ -1,7 +1,7 @@
 import type { NextConfig } from "next";
 import { fileURLToPath } from "node:url";
 import { selectNiche } from "./lib/niche/all";
-import { threadSite, THREAD_MOVED } from "./lib/thread/sites";
+import { threadSite, THREAD_MOVED, v3Site } from "./lib/thread/sites";
 const root=fileURLToPath(new URL(".",import.meta.url));
 // Which Recs site this deployment is (lib/niche); an unknown NICHE fails the build here.
 const niche=selectNiche(process.env.NICHE);
@@ -37,8 +37,11 @@ const config:NextConfig={
   // "/product" (singular) 404'd on SkinRecs (owner 2026-11-16): the catalogue's singular, and a product under it, go to the catalogue.
   // Thread pages that moved (lib/thread/sites.ts THREAD_MOVED): a 301 to the new address, on Thread sites only.
   const thread=threadSite(niche.id)?THREAD_MOVED.map(m=>({source:m.from,destination:m.to,statusCode:301 as const})):[];
+  // The v3 sites (padel, audio, sim racing) have no score, so "How the score works" is retired: its address 308s to "How
+  // rankings work" (owner 2026-11-22), so old links don't 404. No noindex.
+  const retired=v3Site(niche.id)?[{source:"/how-we-make-these",destination:"/how-rankings-work",statusCode:308 as const}]:[];
   const singular=products.endsWith("s")&&products!=="/rackets"?[{source:products.slice(0,-1),destination:products,permanent:true},{source:`${products.slice(0,-1)}/:slug`,destination:`${products}/:slug`,permanent:true}]:[];
-  return products==="/rackets"?[...moved,...thread,...types,...rankings,...seasons]:[...moved,...thread,...types,...rankings,...seasons,...singular,{source:"/rackets",destination:products,permanent:true},
+  return products==="/rackets"?[...moved,...thread,...retired,...types,...rankings,...seasons]:[...moved,...thread,...retired,...types,...rankings,...seasons,...singular,{source:"/rackets",destination:products,permanent:true},
    // categoryPaths niches: the product's new address depends on its shape (a database value), so proxy.ts sends that 301.
    ...(niche.categoryPaths?[]:[{source:"/rackets/:slug",destination:`${products}/:slug`,permanent:true}])];
  },

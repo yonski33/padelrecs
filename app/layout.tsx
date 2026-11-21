@@ -34,7 +34,7 @@ export default async function Layout({children}: {children: React.ReactNode}) {
     <SiteHeader ranked={ranked} guide={!!niche.guide || !!attrProfileFor(niche)}/>
     <div className="site">{children}</div>
     <footer className="site-footer"><div className="wrap">
-      <span className="footer-line"><LogoIcon/>{`${niche.site.domain} — ${niche.site.footer}`}</span>
+      <span className="footer-line"><LogoIcon/>{`${niche.site.domain} · ${niche.site.footer}`}</span>
       <nav aria-label="Footer">
         <a href="/about">About this project</a>
         <a href={catalogPath}>{`All ${niche.words.many}`}</a>

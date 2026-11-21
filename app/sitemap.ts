@@ -1,4 +1,5 @@
 import type { MetadataRoute } from "next";
+import { v3Site } from "../lib/thread/sites";
 import { catalog } from "../db/data";
 import { catalogPath, niche, productHref } from "../lib/niche";
 import { amazonLinksOn } from "../lib/amazon-offer";
@@ -66,8 +67,9 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       changeFrequency: "weekly" as const,
       priority: 0.6,
     })),
-    { url: `${base}/how-we-make-these`, lastModified: COPY_UPDATED, changeFrequency: "monthly", priority: 0.4 },
-    ...(niche.id === "padel" ? [{ url: `${base}/how-rankings-work`, lastModified: COPY_UPDATED, changeFrequency: "monthly" as const, priority: 0.4 }] : []),
+    // The v3 sites list "How rankings work"; their old score page 308s there (next.config.ts), so it isn't listed.
+    ...(v3Site(niche.id) ? [{ url: `${base}/how-rankings-work`, lastModified: COPY_UPDATED, changeFrequency: "monthly" as const, priority: 0.4 }]
+      : [{ url: `${base}/how-we-make-these`, lastModified: COPY_UPDATED, changeFrequency: "monthly" as const, priority: 0.4 }]),
     { url: `${base}/about`, lastModified: COPY_UPDATED, changeFrequency: "yearly", priority: 0.3 },
     { url: `${base}/contact`, lastModified: COPY_UPDATED, changeFrequency: "yearly", priority: 0.2 },
     ...(amazonLinksOn() ? [{ url: `${base}/affiliate-disclosure`, lastModified: COPY_UPDATED, changeFrequency: "yearly" as const, priority: 0.2 }] : []),

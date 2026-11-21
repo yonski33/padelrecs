@@ -35,6 +35,20 @@ export const HOW: { title: string; body: string[] }[] = [
     : "Review counts, opinions and pills on each row refresh every few hours. PadelRecs reviews its picks from time to time."] },
 ];
 
+/** SimRacingRecs' "How rankings work" (owner 2026-11-22: the score page retired): its lists as rankings-data.ts builds them.
+ *  No score anywhere. */
+export const SR_HOW: { title: string; body: string[] }[] = [
+  { title: "What counts", body: ["Reviews and votes left on SimRacingRecs, plus summaries of Reddit threads, YouTube reviews and blogs. Summaries are labelled and kept apart from votes cast here."] },
+  { title: "How the order is set", body: [
+    "Best overall and the lists by gear type (wheelbases, wheels, pedals, cockpits, shifters and handbrakes) are ordered by racer reviews, from current gear with enough reviews to count.",
+    "Best for beginners, on a budget, high-end and for console come from the SimRacingRecs match, the same one the home uses for those picks.",
+  ] },
+  { title: "The pill on each row", body: ["A row shows a pill when one answer to \"How does it drive?\" leads, with 5 or more racers behind it. Otherwise the row shows no pill."] },
+  { title: "Opinions", body: ["Each row counts the opinions on a product: loved it, mixed or not for me. Counts only, never a score."] },
+  { title: "What is not used", body: ["Brand payments, affiliate commission and price. The order is the same for every visitor; your match picks only change the order on the home and catalogue pages."] },
+  { title: "How often it updates", body: ["Review counts, opinions and pills on each row refresh every few hours."] },
+];
+
 /** AudioRecs' "How rankings work" (V3-ROLLOUT-BRIEF): the same honesty rules for its lists. No score anywhere. */
 export const AUDIO_HOW: { title: string; body: string[] }[] = [
   { title: "What counts", body: ["Reviews and votes left on AudioRecs, plus summaries of Reddit threads, YouTube reviews and blogs. Summaries are labelled and kept apart from votes cast here."] },
