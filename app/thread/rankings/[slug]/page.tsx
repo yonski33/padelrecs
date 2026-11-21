@@ -31,6 +31,7 @@ import { ELBOW_SLUG, GUIDE_PATHS } from "../../../../lib/thread/look";
 import { RankRows, QuickMatch, type V5Row } from "../../live/ranking-v5";
 import { traitCounts, traitGroup } from "../../data";
 import { listOrder } from "../../../../lib/thread/vote-order";
+import { oneShape } from "../../../../lib/thread/shape";
 /** PadelRecs (owner 2026-11-21): no "Ranked by player score…" line, the lists as one dropdown, and phone rows with the rank
  *  inline (th-hp, as on the home page). */
 const PADEL = niche.id === "padel";
@@ -218,7 +219,7 @@ async function RankingV5({ l, lists, list, rated, label, faqs, ld, picOf }: { l:
   // AudioRecs: each row's quality-first vote pill ("Great noise cancelling · 13 listeners", lib/thread/vote-pill.ts) and its
   // match inputs for the quick match box; padel keeps "Most picked for …".
   const au = AUDIO ? audioOf((await threadRows()).ctx) : null, wire = au ? list.flatMap(r => au.wire.get(r.id) ?? []) : undefined;
-  const rows: V5Row[] = list.map((r, i) => ({ id: r.id, rank: i + 1, name: r.name, href: r.href, pic: r.pic, shape: r.shape ? r.shape[0].toUpperCase() + r.shape.slice(1) : null,
+  const rows: V5Row[] = list.map((r, i) => ({ id: r.id, rank: i + 1, name: r.name, href: r.href, pic: r.pic, shape: oneShape(r.shape) ? r.shape![0].toUpperCase() + r.shape!.slice(1) : null,
     line: r.line, pos: r.pos, mix: r.mix, neg: r.neg, rating: rated?.[r.id] != null ? (rated[r.id] / 10).toFixed(1) : null,
     picked: au ? votePill(Object.fromEntries(TRAIT_GROUPS.map(g => [g.key, traitGroup(t, r.id, g.key)])), W.people, AUDIO_PILL_LABELS, AUDIO_PILL_LABELS)
       : PICKLEBALL ? votePill(Object.fromEntries(TRAIT_GROUPS.map(g => [g.key, traitGroup(t, r.id, g.key)])), W.people, PICKLEBALL_PILL_WORDS, PICKLEBALL_PILL_LABELS)

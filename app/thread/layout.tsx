@@ -23,6 +23,8 @@ const SITE_FONTS: Record<string, string[]> = { discgolf: ["https://fonts.googlea
 SITE_FONTS.simracing = SITE_FONTS.padel;
 /** TennisRecs too (owner 2026-11-21, v3 wave 2). */
 SITE_FONTS.tennis = SITE_FONTS.padel;
+/** PickleballRecs too (owner 2026-11-22: padel's fonts, its own colours). */
+SITE_FONTS.pickleball = SITE_FONTS.padel;
 
 export default function ThreadLayout({ children }: { children: ReactNode }) {
   return <>

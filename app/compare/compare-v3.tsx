@@ -11,6 +11,7 @@ import { Shell } from "../thread/shell";
 import { threadRows, threadFeed, traitCounts, traitGroup } from "../thread/data";
 import { ago } from "../thread/ui";
 import { th } from "../../lib/thread/look";
+import { oneShape } from "../../lib/thread/shape";
 import { differRows } from "../../lib/compare-verdict";
 import { comparePairs, pairHref } from "../../lib/compare-pairs";
 import { displayName, withoutYear } from "../../lib/brand-name";
@@ -66,7 +67,7 @@ export async function CompareV3({ data, products }: { data: Data; products: Data
   const cards: V3Card[] = products.map((r, i) => {
     const row = rows.get(r.id), plays = traitGroup(t, r.id, "plays_like"), top = Object.entries(plays).filter(([k]) => PLAYS[k]).sort((a, b) => b[1] - a[1])[0];
     return { id: r.id, name: hasYears ? withoutYear(displayName(r.name, brandOf(r))) : displayName(r.name, brandOf(r)), short: shorts[i], href: th(row?.href ?? cprods[i].href), pic: row?.pic ?? cprods[i].pic,
-      shape: r.shape ? r.shape[0].toUpperCase() + r.shape.slice(1) : null, feel: row?.feel ?? null,
+      shape: oneShape(r.shape) ? r.shape![0].toUpperCase() + r.shape!.slice(1) : null, feel: row?.feel ?? null,
       picked: SR ? votePill(Object.fromEntries(traitGroupsForType(niche.id, r.shape, r.id).map(g => [g.key, traitGroup(t, r.id, g.key)])), W.people, SIMRACING_PILL_WORDS, SIMRACING_PILL_LABELS)
         : AUDIO ? votePill(Object.fromEntries(TRAIT_GROUPS.map(g => [g.key, traitGroup(t, r.id, g.key)])), W.people, AUDIO_PILL_LABELS, AUDIO_PILL_LABELS)
         : top && top[1] >= 5 && total(plays) >= 10 ? `Most picked for ${PLAYS[top[0]]} · ${top[1]} players` : null,
