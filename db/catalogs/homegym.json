@@ -178,6 +178,18 @@
   },
   {
    "brand": "bellsofsteel",
+   "name": "Bells of Steel Cable Tower",
+   "shape": "Machine",
+   "balance": "Cable tower",
+   "surface": "Plate-loaded, 110 lb or 210 lb stack",
+   "core": null,
+   "weight": null,
+   "sources": [
+    "https://bellsofsteel.us/products/cable-tower"
+   ]
+  },
+  {
+   "brand": "bellsofsteel",
    "name": "Bells of Steel Calibrated Powerlifting Plates",
    "shape": "Plates",
    "balance": "Calibrated plates",
@@ -786,6 +798,18 @@
    "weight": null,
    "sources": [
     "https://repfitness.com/products/concept2-ski-erg"
+   ]
+  },
+  {
+   "brand": "concept2",
+   "name": "Concept2 StrengthErg",
+   "shape": "Machine",
+   "balance": "Air-resistance strength trainer",
+   "surface": null,
+   "core": "Aluminum",
+   "weight": "90 lb",
+   "sources": [
+    "https://www.concept2.com/ergs/strengtherg"
    ]
   },
   {
