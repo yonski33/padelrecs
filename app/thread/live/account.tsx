@@ -9,6 +9,8 @@ import { NAME_MAX } from "../../../lib/thread/display-name";
 import { accountNameProblem } from "../../../lib/thread/account-name";
 import { forgetAccount } from "./use-account";
 import { YourPosts } from "./your-posts";
+import { YourFollows } from "./your-follows";
+import { followSite } from "../../../lib/thread/sites";
 /** Member stories are a PadelRecs pilot. */
 const STORIES = storiesSite(niche.id);
 import { niche } from "../../../lib/niche";
@@ -142,6 +144,7 @@ function Profile({ email, account, next, levels, sides, linked = 0, onChange }: 
       </form>
     </article>
     <YourPosts/>
+    {followSite(niche.id) && <YourFollows/>}
     {STORIES && <YourStories/>}
     <section className="th-card th-sec">
       <div style={{ display: "flex", gap: 12, alignItems: "center", flexWrap: "wrap" }}>

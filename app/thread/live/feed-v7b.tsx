@@ -7,7 +7,8 @@
 import { useEffect, useMemo, useState } from "react";
 import { niche } from "../../../lib/niche";
 import { W } from "../../../lib/thread/words";
-import { accountSite } from "../../../lib/thread/sites";
+import { accountSite, followSite } from "../../../lib/thread/sites";
+import { FollowButton } from "./follow-button";
 import { commenterName, nameProblem, NAME_MAX } from "../../../lib/thread/display-name";
 import { mentionOf } from "../../../lib/thread/mention";
 import { avatarOf } from "../../../lib/thread/avatar";
@@ -121,7 +122,8 @@ export function CommunityFeed({ id, model, cards, web }: { id: string; model: st
       {/* Older links point at #discussion and #comments (the separate Ask the community box). */}
       <span id="discussion" className="th7-anchor" aria-hidden="true"/><span id="comments" className="th7-anchor" aria-hidden="true"/>
       <div className="th7-head"><h2 className="th-h2 th7-hic"><svg width="24" height="22" viewBox="0 0 30 28" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinejoin="round" aria-hidden="true"><path d="M15 3C8 3 3 7.3 3 12.5c0 2.6 1.3 5 3.4 6.7L5 25l6.3-3.2c1.2.3 2.4.5 3.7.5 7 0 12-4.3 12-9.8S22 3 15 3z"/></svg>
-        {/* No counts above the lists (owner 2026-11-21): the title, no number, no mix line. */}{`${W.People} on the ${model}`}</h2></div>
+        {/* No counts above the lists (owner 2026-11-21): the title, no number, no mix line. */}{`${W.People} on the ${model}`}</h2>
+        {followSite(niche.id) && <FollowButton id={id} name={model} place="feed"/>}</div>
       <PendingReviews racketId={id} compact/>
       {rv.done ? <p className="th-ok" role="status">{rv.done === "words" ? "Thanks for sharing! Your review will appear here once it's approved." : rv.done === "live" ? "Thanks for sharing! Your review is live and shows here after a refresh." : "Thanks! Your vote has been added."}</p> : composer}
       {t.note && <p className="th-ok" role="status">{t.note}</p>}

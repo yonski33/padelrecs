@@ -135,3 +135,18 @@ export const accountDevices = catalogSchema.table("account_devices", {
 export const reviewDevices = catalogSchema.table("review_devices", {
  reviewId: text("review_id").primaryKey().references(() => reviews.id, { onDelete: "cascade" }), voter: text("voter").notNull()
 }, t => [index("review_devices_voter_idx").on(t.voter)]).enableRLS();
+/** Players following a racket page (drizzle/0034, PadelRecs first): a daily email lists new reviews, posts and stories on the
+ *  rackets they follow. Keyed by the Supabase Auth user (an account name isn't needed to follow). */
+export const racketFollows = catalogSchema.table("racket_follows", {
+ userId: text("user_id").notNull(), racketId: text("racket_id").notNull().references(() => rackets.id, { onDelete: "cascade" }),
+ createdAt: text("created_at").notNull(), lastNotifiedAt: text("last_notified_at")
+}, t => [primaryKey({ name: "racket_follows_pk", columns: [t.userId, t.racketId] }), index("racket_follows_racket_idx").on(t.racketId)]).enableRLS();
+/** What each follower's digest already listed, so a review approved days after it was written still goes out once. */
+export const followSent = catalogSchema.table("follow_sent", {
+ userId: text("user_id").notNull(), kind: text("kind", { enum: ["review", "comment", "story"] }).notNull(), postId: text("post_id").notNull(), sentAt: text("sent_at").notNull()
+}, t => [primaryKey({ name: "follow_sent_pk", columns: [t.userId, t.kind, t.postId] }), index("follow_sent_at_idx").on(t.sentAt),
+ check("follow_sent_kind", sql`${t.kind} in ('review','comment','story')`)]).enableRLS();
+/** A follower's email choice: the daily digest on (default) or paused, set on /account. */
+export const followSettings = catalogSchema.table("follow_settings", {
+ userId: text("user_id").primaryKey(), emails: boolean("emails").notNull().default(true), updatedAt: text("updated_at").notNull()
+}).enableRLS();

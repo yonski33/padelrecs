@@ -26,6 +26,10 @@ export const THREAD_MOVED: { from: string; to: string }[] = [
 export const ACCOUNT_SITES = ["padel", "pickleball", "skin", "discgolf"];
 /** Member stories (owner 2026-11-20): a PadelRecs pilot. */
 export const storiesSite = (nicheId: string) => nicheId === "padel";
+/** Following a racket page with a daily email (drizzle/0034, owner 2026-11-21): PadelRecs first. Another site needs 0034 on
+ *  its schema, then its id here. */
+export const FOLLOW_SITES = ["padel"];
+export const followSite = (nicheId: string) => FOLLOW_SITES.includes(nicheId);
 export const accountSite = (nicheId: string) => ACCOUNT_SITES.includes(nicheId);
 /** Each Thread site's quick match, as its home shows it: "engine" = level · style · arm (app/thread/live/lists.tsx MatchBox,
  *  with the site's own styles and arm words), "skin" = skin type · goal · sensitive (live/skin-match.tsx). A site not listed

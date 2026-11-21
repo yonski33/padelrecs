@@ -2096,3 +2096,18 @@ body:has(.th) .th.th-audio .cp3-card a.pic { background: transparent; border-col
 .th.th-audio .cp3 { --c3-soft: oklch(0.97 0.025 215); --c3-pos: oklch(0.72 0.15 145); --c3-mix: oklch(0.85 0.14 90); --c3-neg: oklch(0.7 0.15 30); }
 body:has(.th) .th.th-audio .rk5-box h3 { background: none; color: var(--ink); border-bottom: 1.5px solid var(--line); }
 body:has(.th) .th.th-audio .cp3-card a.pic { background: transparent; }
+/* Follow a racket (app/thread/live/follow-button.tsx): a small pill with a bell; the sign-in prompt drops under it. */
+.th-follow-wrap { position: relative; display: inline-flex; flex-direction: column; align-items: flex-start; gap: 6px; }
+.th-follow-wrap.feed { align-items: flex-end; }
+.th-follow { display: inline-flex; align-items: center; gap: 6px; min-height: 32px; padding: 0 13px; border-radius: 999px; border: 1.5px solid var(--ink, #1a1a1a);
+  background: transparent; color: var(--ink, #1a1a1a); font: inherit; font-size: 13.5px; font-weight: 700; cursor: pointer; white-space: nowrap; }
+.th-follow:hover { background: rgba(0, 0, 0, .05); }
+.th-follow.on { background: var(--ink, #1a1a1a); color: #fff; }
+.th-follow:disabled { opacity: .7; cursor: default; }
+.th-follow-pop { position: absolute; top: calc(100% + 6px); left: 0; z-index: 30; width: min(300px, calc(100vw - 32px)); display: flex; flex-direction: column; gap: 8px;
+  padding: 14px; background: var(--card, #fff); border: 1.5px solid var(--ink, #1a1a1a); border-radius: 12px; box-shadow: 0 8px 24px rgba(0, 0, 0, .12); font-size: 14px; line-height: 1.45; }
+.th-follow-wrap.feed .th-follow-pop { left: auto; right: 0; }
+.th-follow-act { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; }
+.th-follow-note { max-width: 320px; }
+/* Phones: the feed header wraps and the button lands on the left, so its prompt opens to the right like the hero's. */
+@media (max-width: 640px) { .th-follow-wrap.feed { align-items: flex-start; } .th-follow-wrap.feed .th-follow-pop { left: 0; right: auto; } }

@@ -7,6 +7,7 @@ import type { getDb } from "./index";
 import { accounts, accountPosts, accountDevices, reviewDevices, comments, reviews, productVotes } from "./schema";
 import { nameKey, accountNameProblem } from "../lib/thread/account-name";
 import { deleteComment } from "./comments";
+import { forgetFollower } from "./follows";
 import { deleteRejectedReviews } from "./review-editing";
 import { profileValues } from "../lib/review-options";
 import { approvedReviews } from "./trust";
@@ -141,6 +142,8 @@ export async function deleteAccount(db: Database, id: string, o: { removePosts?:
     if (rv.length) await deleteRejectedReviews(db, rv);
   }
   await db.delete(accounts).where(eq(accounts.id, id)); // account_posts and account_devices go with it (cascade)
+  // Followed rackets and the daily email setting (drizzle/0034); nothing to remove on a site without those tables.
+  try { await forgetFollower(db, id); } catch { /* no follow tables here */ }
   return { result: "deleted" as const, authRemoved: o.keepAuthUser ? false : await deleteAuthUser(db, id) };
 }
 /** Remove a Supabase Auth user (the email and sign-in). Callers make sure it is never an admin. */
