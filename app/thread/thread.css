@@ -396,6 +396,9 @@ body:has(.th) .th a.th-mini.sm { grid-template-columns: 48px minmax(0,1fr) auto;
 .th-hub-grid { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 10px; }
 @media (max-width: 959px) { .th-hub-grid { grid-template-columns: repeat(2, minmax(0,1fr)); } }
 @media (max-width: 639px) { .th-hub-grid { grid-template-columns: minmax(0,1fr); } }
+/* SkinRecs need hubs: two cards a row in the page column (three cut the names short); one on a phone. */
+.th-hub-grid.two { grid-template-columns: repeat(2, minmax(0,1fr)); }
+@media (max-width: 639px) { .th-hub-grid.two { grid-template-columns: minmax(0,1fr); } }
 body:has(.th) .th a.th-hub { text-decoration: none; background: #fff; border: 2px solid var(--ink); border-radius: 14px; padding: 14px; display: flex; flex-direction: column; gap: 10px; color: var(--ink); }
 body:has(.th) .th a.th-hub:hover { border-color: oklch(0.55 0.15 145); color: var(--ink); }
 .th-hub-t { display: flex; flex-direction: column; gap: 2px; }

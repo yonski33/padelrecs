@@ -4,6 +4,7 @@
 import { cache } from "react";
 import { threadLists, threadRows, hasDb, skinOf, traitCounts, traitGroup } from "./data";
 import { categoryRatings, priorShare, type RatingCategory } from "../../lib/category-rating";
+import { SKIN_NEEDS, skinSplits } from "../../lib/skin-lists";
 import { ELBOW_SLUG } from "../../lib/thread/look";
 import { homePayload } from "../home-payload";
 import { rankHome } from "../../lib/home-rank";
@@ -11,7 +12,9 @@ import { RANK_SETUP, NEGATIVE_TAGS } from "../../lib/rank-seed";
 import type { QuickChoice } from "../../lib/quick-match";
 import { niche } from "../../lib/niche";
 
-export type ThreadRanking = { slug: string; href: string; label: string; title: string; blurb: string; group: string; ids: string[]; own: boolean };
+export type ThreadRanking = { slug: string; href: string; label: string; title: string; blurb: string; group: string; ids: string[]; own: boolean;
+  /** The hub card's title inside its group ("Moisturizers" under "For sensitive skin"); else the label. */ short?: string;
+  /** A skin need's hub page (owner 2026-11-21): the slugs of its per-type lists, shown instead of one mixed list. */ kids?: string[] };
 const YEAR = () => new Date().getUTCFullYear();
 const SIZE = 10, MIN_REVIEWS = 10;
 
@@ -59,7 +62,7 @@ export const threadRankings = cache(async (): Promise<ThreadRanking[]> => {
   // The racket engine's payload only where Thread-only pick lists use it (padel); skin ranks with its own engine below.
   const [lists, { all, ctx }, payload] = await Promise.all([threadLists(), threadRows(), PICKS.length ? homePayload() : null]);
   const own = lists.map(l => ({ slug: l.slug, href: l.href, label: l.label, title: l.title, blurb: BLURB[l.slug] ?? l.description ?? "", own: true, ids: l.ids.slice(0, SIZE),
-    group: SKIN ? (/sensitive/.test(l.slug) ? "Most popular" : "By product type") : DG ? "By how you throw" : /power|control|spin/.test(l.slug) ? "By how you play" : "Most popular" }));
+    group: SKIN ? (SKIN_NEEDS.some(n => n.hub === l.slug) ? HUBS : "By product type") : DG ? "By how you throw" : /power|control|spin/.test(l.slug) ? "By how you play" : "Most popular" }));
   const picks = PICKS.map(p => ({ slug: p.slug, href: `/rankings/${p.slug}`, label: p.label, title: `${p.title} ${YEAR()}`, blurb: BLURB[p.key], own: false, group: "Most popular",
     ids: rankHome(payload!.items, RANK_SETUP, NEGATIVE_TAGS, p.choice, false, SIZE).rows.map(r => r.id) }));
   const shapes = SHAPES.map(([k]) => ({ slug: `best-${k}-${LIST}`, href: `/rankings/best-${k}-${LIST}`, label: `Best ${k} ${niche.words.many}`, title: `Best ${k} ${niche.id} ${niche.words.many} ${YEAR()}`,
@@ -71,23 +74,33 @@ export const threadRankings = cache(async (): Promise<ThreadRanking[]> => {
   const overall = DG ? [{ slug: "best-disc-golf-discs", href: "/rankings/best-disc-golf-discs", label: "Best overall", title: `Best disc golf discs ${YEAR()}`,
     blurb: BLURB["best-disc-golf-discs"], own: false, group: "Most popular",
     ids: all.filter(r => r.score != null && r.current && r.n >= MIN_REVIEWS).sort((a, b) => b.score! - a.score! || b.n - a.n).slice(0, SIZE).map(r => r.id) }] : [];
-  return (DG ? [...overall, ...picks, ...own] : [...own, ...picks, ...shapes, ...skin]).filter(l => l.ids.length >= (l.own ? 5 : 10));
+  const out = (DG ? [...overall, ...picks, ...own] : [...own, ...picks, ...shapes, ...skin]).filter(l => l.ids.length >= (l.own ? 5 : 10));
+  // A skin need's hub lists the per-type lists that made it (a full 10 each).
+  if (!SKIN) return out;
+  const shown = new Set(out.map(l => l.slug));
+  return out.map(l => { const need = SKIN_NEEDS.find(n => n.hub === l.slug);
+    return need ? { ...l, group: HUBS, kids: skinSplits().filter(x => x.need.key === need.key && shown.has(x.slug)).map(x => x.slug) } : l; });
 });
-export const GROUPS = SKIN ? ["Most popular", "By skin", "By product type"] : DG ? ["Most popular", "By how you throw"] : ["Most popular", "By how you play", "By shape"];
+/** SkinRecs' need hubs: pages of their own, not cards on the rankings hub (each need's heading links to its hub). */
+export const HUBS = "Skin needs";
+export const GROUPS = SKIN ? [...SKIN_NEEDS.map(n => n.group), "By product type"] : DG ? ["Most popular", "By how you throw"] : ["Most popular", "By how you play", "By shape"];
 
-/** SkinRecs' Thread-only lists by skin (its Rankings Hub mock): the skin engine's own match for that pick (app/skin/rank.ts
- *  rankSkin, as the live home ranks it), current products with a match only, a full 10 needed. */
+/** SkinRecs' Thread-only lists (its Rankings Hub mock, split by product type owner 2026-11-21): the skin engine's own match for
+ *  that pick (app/skin/rank.ts rankSkin, as the live home ranks it), current products with a match only, a full 10 needed.
+ *  The dry, oily and acne hubs keep their old mixed top 10 as `ids` (the guides and Top picks read it); their pages show the
+ *  per-type lists. Sensitive skin's hub is the site's own list. */
 async function skinLists(ctx: unknown, current: Set<string>): Promise<ThreadRanking[]> {
   const sk = skinOf(ctx as Parameters<typeof skinOf>[0]);
   if (!sk) return [];
   const [{ rankSkin }, { readSkinChoice }] = await Promise.all([import("../skin/rank"), import("../../lib/skin-choice")]);
   const types = niche.typePages ?? [];
-  const picks = [["dry", "Best for dry skin", { skin: "dry" }], ["oily", "Best for oily skin", { skin: "oily" }], ["acne", "Best for acne", { acne: "1" }]] as const;
-  return picks.map(([key, label, q]) => {
-    const slug = `best-skincare-for-${key === "acne" ? "acne" : `${key}-skin`}`;
-    const ids = rankSkin(sk, readSkinChoice(q, types)).filter(x => x.pct !== null && current.has(x.r.id)).slice(0, SIZE).map(x => x.r.id);
-    return { slug, href: `/rankings/${slug}`, label, title: `${label} ${YEAR()}`, blurb: BLURB[key], own: false, group: key === "acne" ? "Most popular" : "By skin", ids };
-  });
+  const top = (q: Record<string, string>) => rankSkin(sk, readSkinChoice(q, types)).filter(x => x.pct !== null && current.has(x.r.id)).slice(0, SIZE).map(x => x.r.id);
+  const hubs = SKIN_NEEDS.filter(n => n.key !== "sensitive").map(n => ({ slug: n.hub, href: `/rankings/${n.hub}`, label: n.group.replace(/^For/, "Best for"),
+    title: `${n.group.replace(/^For/, "Best for")} ${YEAR()}`, blurb: BLURB[n.key], own: false, group: HUBS, ids: top(n.q) }));
+  const label = (t: string) => types.find(x => x.slug === t)?.label ?? t;
+  const splits = skinSplits(label).map(x => ({ slug: x.slug, href: `/rankings/${x.slug}`, label: x.label, short: x.short, title: `${x.title} ${YEAR()}`,
+    blurb: x.need.blurb, own: false, group: x.need.group, ids: top({ ...x.need.q, type: x.type }) }));
+  return [...hubs, ...splits];
 }
 
 /** A padel category list's curated ratings (lib/category-rating.ts), by id, in the list's order: the "How does it play?"
@@ -95,6 +108,14 @@ async function skinLists(ctx: unknown, current: Set<string>): Promise<ThreadRank
 export async function ratingsFor(cat: RatingCategory, ids: string[]): Promise<Record<string, number>> {
   const [{ ctx, rows, all }, t] = await Promise.all([threadRows(), traitCounts()]);
   const prior = priorShare(cat, all.filter(r => r.current).map(r => traitGroup(t, r.id, cat.trait)));
+  // SkinRecs: the attribute score's plus and minus reports are the group (its rows have no vote groups or bars).
+  const sk = cat.attr ? skinOf(ctx) : null;
+  const attrGroup = (id: string): Record<string, number> => { const a = sk?.attrs.get(id)?.scores[cat.attr!]; if (!a || !a.n) return {};
+    return { plus: a.plus ?? (a.score / 100) * a.n, minus: a.minus ?? (1 - a.score / 100) * a.n }; };
+  const groupOf = (id: string) => cat.attr ? attrGroup(id) : traitGroup(t, id, cat.trait);
+  if (cat.attr) { const prior = priorShare(cat, all.filter(r => r.current).map(r => groupOf(r.id)));
+    const out = categoryRatings(cat, ids.map(id => ({ group: groupOf(id) })), prior);
+    return Object.fromEntries(ids.map((id, i) => [id, out[i]])); }
   const inputs = ids.map(id => { const f = ctx.facts(id);
     return { group: traitGroup(t, id, cat.trait), shape: rows.get(id)?.shape ?? null,
       dots: cat.dots === "arm" ? f.armDots ?? null : cat.dots ? f.styleDots?.[cat.dots] ?? null : null }; });

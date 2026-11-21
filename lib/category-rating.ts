@@ -1,4 +1,4 @@
-// Curated category ratings on PadelRecs (owner 2026-11-21) and PickleballRecs (owner 2026-11-21) ranking pages. A list in the owner's curated order (or the engine's
+// Curated category ratings on PadelRecs, PickleballRecs and SkinRecs ranking pages (owner 2026-11-21). A list in the owner's curated order (or the engine's
 // order on a kind-of-player list) showed the overall Player score as its big number, so a 70 sat above an 88. These lists now
 // show a category rating instead: "Power rating", "Control rating" and so on, labelled as the site's own pick.
 //   - It follows list position on a fixed scale: #1 in 95-97, each place about 1-3 lower, never rising down the list.
@@ -7,19 +7,22 @@
 //     the top of its step.
 //   - Fixed: no randomness, so the same data gives the same number on every build.
 //   - Never in structured data: the real Player score stays the only rating in JSON-LD.
-// Pure, so tests feed plain inputs. Padel and pickleball only; other sites and the filter-style lists (Best overall, Best of a
+// Pure, so tests feed plain inputs. Padel, pickleball and skin only; other sites and the filter-style lists (Best overall, Best of a
 // year, a shape) keep the Player score.
 import { ELBOW_SLUG } from "./thread/sites";
+import { skinSplits } from "./skin-lists";
 
 export type RatingCategory = {
   /** The big number's label ("Power rating"). */ label: string;
   /** The "How does it play?" group the evidence comes from, and each option's weight (1 = for, 0 = against). */
   trait: string; weights: Record<string, number>;
   /** The engine bar the evidence also reads (1-5): Attack, Control or Arm. */ dots: "power" | "control" | "spin" | "arm" | null;
+  /** SkinRecs: the attribute score the evidence comes from instead of a vote group (lib/attr-profile.ts "suits_dry"); its
+   *  plus and minus reports are the group. */ attr?: string;
   /** The racket's shape nudges the prior a little (variant A: diamond +0.15, round -0.15 for power). */ shape?: Record<string, number>;
 };
 /** The ranking page's one line on how ratings work (≤ 105 characters), with the site's name ("PadelRecs"). */
-export const ratingHow = (site: string) => `Ratings follow the ${site} pick order, set from what players report.`;
+export const ratingHow = (site: string, people = "players") => `Ratings follow the ${site} pick order, set from what ${people} report.`;
 
 const PADEL: Record<string, RatingCategory> = {
   "best-power-padel-rackets": { label: "Power rating", trait: "plays_like", weights: { power: 1, all_round: 0.5, control: 0 }, dots: "power",
@@ -42,7 +45,11 @@ const PICKLEBALL: Record<string, RatingCategory> = {
   "best-pickleball-paddles-for-beginners": { label: "Beginner rating", trait: "level", weights: { beginner: 1, intermediate: 0.5, advanced: 0 }, dots: null,
     shape: { standard: 0.1, elongated: -0.1 } },
 };
-const SITES: Record<string, Record<string, RatingCategory>> = { padel: PADEL, pickleball: PICKLEBALL };
+/** SkinRecs (owner 2026-11-21): the per-type lists for each skin need (lib/skin-lists.ts), rated from how people with that skin
+ *  report the product. The need hubs and the plain product-type lists keep the user score. */
+const SKIN: Record<string, RatingCategory> = Object.fromEntries(skinSplits().map(x =>
+  [x.slug, { label: x.need.rating, trait: "", attr: x.need.attr, weights: { plus: 1, minus: 0 }, dots: null } satisfies RatingCategory]));
+const SITES: Record<string, Record<string, RatingCategory>> = { padel: PADEL, pickleball: PICKLEBALL, skin: SKIN };
 /** The list's rating category, or null when it keeps the Player score (other sites, filter-style lists). */
 export const ratingCategory = (slug: string, nicheId: string): RatingCategory | null => SITES[nicheId]?.[slug] ?? null;
 
