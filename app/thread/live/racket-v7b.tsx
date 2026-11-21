@@ -21,7 +21,7 @@ import { signInHref } from "./use-account";
 import { MemberMark } from "./member-mark";
 import { avatarOf } from "../../../lib/thread/avatar";
 import type { RvCard } from "../racket-data";
-import { playersWord, threadTitle, thumbOf, type WebGroups } from "../../../lib/thread/web-sources";
+import { countLine, isThin, playersWord, POLL_POINT_MIN, threadTitle, thumbOf, type WebGroups } from "../../../lib/thread/web-sources";
 
 const ACCOUNTS = accountSite(niche.id);
 /** The event the poll sends to open the review form (v16 "Say why in a short review"). */
@@ -164,7 +164,18 @@ type Sort = "helpful" | "new" | "old";
 const SORTS: [Sort, string][] = [["new", "Newest"], ["helpful", "Most helpful"], ["old", "Oldest"]];
 const PAGE = 8;
 /** Player reviews (v7b). `model` (the racket's name without brand and year) is no longer shown here. */
-export function ReviewsV7b({ id, cards }: { id: string; cards: RvCard[]; model?: string }) {
+/** The poll's live total, as the poll itself shows it (racket.tsx Poll sends it once its counts load). */
+export const POLL_TOTAL = "thread-poll-total";
+function PollPointer() {
+  const [n, setN] = useState<number | null>(null);
+  useEffect(() => { const w = window as { __thPollTotal?: number }; if (typeof w.__thPollTotal === "number") setN(w.__thPollTotal);
+    const on = (e: Event) => setN((e as CustomEvent<number>).detail); addEventListener(POLL_TOTAL, on); return () => removeEventListener(POLL_TOTAL, on); }, []);
+  return n != null && n >= POLL_POINT_MIN ? <a className="th7-pollpoint" href="#feedback">{`${n.toLocaleString("en-US")} players voted in the poll above`}</a> : null;
+}
+
+/** Player reviews (v7b). Under THIN_REVIEWS (lib/thread/web-sources.ts) a compact strip: any reviews, an invitation, the
+ *  + Add your review button and a pointer to the poll; no sort or filter chips. `web`: how many outside summaries follow. */
+export function ReviewsV7b({ id, cards, web = 0 }: { id: string; cards: RvCard[]; web?: number; model?: string }) {
   const { open, setOpen, verdict, setVerdict, text, setText, nick, setNick, busy, error, setError, done, me, post } = useReviewPost(id);
   // v16: "Say why in a short review" under a poll vote opens the form here with that vote picked.
   useEffect(() => { const on = (e: Event) => { const v = (e as CustomEvent<Verdict>).detail; setOpen(true); if (v) setVerdict(v);
@@ -187,15 +198,17 @@ export function ReviewsV7b({ id, cards }: { id: string; cards: RvCard[]; model?:
     setTimeout(() => document.getElementById(h)?.scrollIntoView({ block: "center" }), 50);
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-  const sortLabel = SORTS.find(([k]) => k === sort)![1];
-  return <section id="reviews" className="th-card th7-card th7-reviews">
-    <div className="th7-head"><h2 className="th-h2 th7-hic"><svg width="24" height="22" viewBox="0 0 30 28" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinejoin="round" aria-hidden="true"><path d="M15 3C8 3 3 7.3 3 12.5c0 2.6 1.3 5 3.4 6.7L5 25l6.3-3.2c1.2.3 2.4.5 3.7.5 7 0 12-4.3 12-9.8S22 3 15 3z"/></svg>{cards.length > 0 ? `${W.Reviews} (${cards.length.toLocaleString("en-US")})` : W.Reviews}</h2>
-      <span className="th7-head-r">{cards.length > 0 && <span className="th7-sort">
+  const sortLabel = SORTS.find(([k]) => k === sort)![1], thin = isThin(cards.length);
+  const addBtn = !open && !done && <button type="button" className="th-btn round lime" onClick={() => setOpen(true)}>+ Add your review</button>;
+  return <section id="reviews" className={`th-card th7-card th7-reviews${thin ? " thin" : ""}`}>
+    <div className="th7-head"><h2 className="th-h2 th7-hic"><svg width="24" height="22" viewBox="0 0 30 28" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinejoin="round" aria-hidden="true"><path d="M15 3C8 3 3 7.3 3 12.5c0 2.6 1.3 5 3.4 6.7L5 25l6.3-3.2c1.2.3 2.4.5 3.7.5 7 0 12-4.3 12-9.8S22 3 15 3z"/></svg>{W.Reviews}</h2>
+      <span className="th7-head-r">{!thin && <span className="th7-sort">
         <button type="button" className="th7-sort-btn" aria-haspopup="listbox" aria-expanded={sortOpen} onClick={() => setSortOpen(o => !o)}><span className="lbl">Sort:</span>{sortLabel}<span className="arr" aria-hidden="true">▼</span></button>
         {sortOpen && <span className="th7-sort-menu" role="listbox" aria-label="Sort reviews">{SORTS.map(([k, l]) =>
           <button key={k} type="button" role="option" aria-selected={sort === k} onClick={() => { setSort(k); setSortOpen(false); setShown(PAGE); }}>{l}<span>{sort === k ? "✓" : ""}</span></button>)}</span>}
       </span>}
-      {!open && !done && <button type="button" className="th-btn round lime" onClick={() => setOpen(true)}>+ Add your review</button>}</span></div>
+      {!thin && addBtn}</span></div>
+    <p className="th7-count">{countLine(cards.length, web)}</p>
     {done && <p className="th-ok" role="status">{done === "words" ? "Thanks for sharing! Your review will appear here once it's approved." : done === "live" ? "Thanks for sharing! Your review is live and shows here after a refresh." : "Thanks! Your vote has been added."}</p>}
     {open && <div className="th-compose soft">
       {me ? <div className="th-as th-as-me">Posting as <b>{me.name}</b><MemberMark/></div>
@@ -211,15 +224,17 @@ export function ReviewsV7b({ id, cards }: { id: string; cards: RvCard[]; model?:
       {!busy && postWhy(verdict, text, nick) && <span className="th-why" style={{ alignSelf: "flex-end" }}>{postWhy(verdict, text, nick)}</span>}
     </div>}
     <PendingReviews racketId={id}/>
-    {cards.length > 0 && <div className="th7-bar th7-chips">
+    {!thin && <div className="th7-bar th7-chips">
       <div className="th7-chipset" role="group" aria-label="Show reviews that">{FEEL.map(([k, l]) =>
         <button key={k} type="button" aria-pressed={feel === k} onClick={() => { setFeel(k); setShown(PAGE); }}>{l}</button>)}</div>
     </div>}
     <div className="th7-rv-list">
       {list.slice(0, shown).map(c => <ReviewRow key={c.id} c={c} owner={owner} onChange={x => setChanged(m => ({ ...m, [c.id]: { ...m[c.id], ...x } }))}/>)}
-      {cards.length === 0 && <p className="th-empty">{`No reviews yet. ${W.triedIt} Be the first.`}</p>}
       {cards.length > 0 && list.length === 0 && <p className="th-empty">No reviews match these filters yet. <button type="button" onClick={() => setFeel("all")}>Show all</button></p>}
     </div>
+    {thin && <div className="th7-invite">
+      <span>{cards.length === 0 ? "No player reviews yet. Played with it? Add the first one" : "Played with it? Add yours"}</span>
+      {addBtn}<PollPointer/></div>}
     {list.length > shown && <button type="button" className="th-btn th-center" style={{ margin: "4px 0 8px" }} onClick={() => setShown(s => s + 16)}>Show more reviews</button>}
   </section>;
 }
@@ -249,8 +264,8 @@ const WEB_FIRST = 2;
 
 /** "From around the web" (owner mock 2026-11-21): the outside sources, in a dashed box apart from the player reviews. Each
  *  group shows two until the one "Show more from around the web"; none of it counts in the poll. */
-export function WebSources({ web }: { web: WebGroups<RvCard> }) {
-  const [all, setAll] = useState(false);
+export function WebSources({ web, open = false }: { web: WebGroups<RvCard>; open?: boolean }) {
+  const [all, setAll] = useState(open);
   // A copied link to one card (#rv-w-…) opens the box on it.
   useEffect(() => { const h = location.hash.slice(1); if (!h.startsWith("rv-w-")) return;
     // eslint-disable-next-line react-hooks/set-state-in-effect

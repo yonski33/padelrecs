@@ -16,7 +16,7 @@ import { withoutYear } from "../../lib/brand-name";
 import { niche } from "../../lib/niche";
 import { TraitVotes } from "./live/trait-votes";
 import { FitCard, PollCard, ReviewsV7b, WebSources } from "./live/racket-v7b";
-import { splitSources } from "../../lib/thread/web-sources";
+import { isThin, splitSources, webCount } from "../../lib/thread/web-sources";
 import { Discussion } from "./live/discussion";
 import { Ago } from "./live/ago";
 import type { WhoRow } from "../../lib/thread/community";
@@ -133,8 +133,9 @@ export function RacketV7b(p: V7bProps) {
         <div className="th8-grid th8-sim">{p.sim.slice(0, 4).map(x => <RacketCard key={x.id} x={x}/>)}</div></section>}
       {community && <div className="th8-narrow th8-narrow-after">{community}</div>}
       {/* Player reviews, then outside sources in their own box (owner mock 2026-11-21, lib/thread/web-sources.ts). */}
-      <ReviewsV7b id={p.id} cards={src.players}/>
-      <WebSources web={src.web}/>
+      {/* Under THIN_REVIEWS player reviews: the compact strip, then every outside summary, open (owner 2026-11-21). */}
+      <ReviewsV7b id={p.id} cards={src.players} web={webCount(src.web)}/>
+      <WebSources web={src.web} open={isThin(src.players.length)}/>
       <Discussion page={`racket:${p.id}`} model={p.model} words={{ heading: "Ask the community", count: true, sub: `Questions, advice, and tips about the ${p.model}.` }}/>
       {p.also.length >= 2 && <section className="th-card th8-sec"><h2 className="th-h2">{`${W.lovers} who loved this also loved`}</h2>
         <div className="th8-grid">{p.also.slice(0, 4).map(x => <RacketCard key={x.id} x={x}/>)}</div></section>}
