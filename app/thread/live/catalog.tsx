@@ -3,7 +3,7 @@
 // active chips, Clear all, sort and Load more, all in the browser on the rows the server sent.
 import { niche } from "../../../lib/niche";
 import { useEffect, useMemo, useState, type ReactNode } from "react";
-import { Row, cap, type ThreadRow } from "../ui";
+import { Row, cap, topMatch, type ThreadRow } from "../ui";
 import { usePicks, usePayload, complete, pctsFor, type Level } from "./picks";
 import { PickChips } from "./pick-chips";
 import { W } from "../../../lib/thread/words";
@@ -61,6 +61,7 @@ export function Catalog({ rows, brands, title = SKIN ? "All skincare products" :
     : by === "match" ? (pcts!.get(b.id) ?? -1) - (pcts!.get(a.id) ?? -1) : (b.score ?? -1) - (a.score ?? -1) || b.n - a.n),
   // eslint-disable-next-line react-hooks/exhaustive-deps
   [pool, f, q, by, pcts]);
+  const topId = pcts ? topMatch(list.map(r => ({ id: r.id, pct: pcts.get(r.id) }))) : null;
   const SORTS = [["score", `By ${W.score}`], ["reviews", "Most reviewed"], ["new", SKIN || DG ? "Newest" : "Newest models"], ...(pcts ? [["match", "By your match"]] : [])] as [typeof sort, string][];
   // A group shows only the options some racket here has (or that are picked), and no group label with nothing under it.
   const match = PADEL && <div className="th-fgroup th-cmatch"><span className="th-cmatch-h">Your match</span>
@@ -98,7 +99,7 @@ export function Catalog({ rows, brands, title = SKIN ? "All skincare products" :
               {open && <div className="th-dd-menu" role="menu">{SORTS.map(([k, l]) => <button key={k} type="button" role="menuitemradio" aria-checked={by === k} onClick={() => { setSort(k); setOpen(false); }}>{l}<span aria-hidden="true">{by === k ? "✓" : ""}</span></button>)}</div>}
             </span></span>
         </div>
-        {list.slice(0, n).map(r => <Row key={r.id} r={r} {...(pcts ? { badge: pcts.get(r.id) ?? null, badgeLabel: "your match", pct: true } : {})}/>)}
+        {list.slice(0, n).map(r => <Row key={r.id} r={r} {...(pcts ? { badge: pcts.get(r.id) ?? null, badgeLabel: "your match", pct: true, top: r.id === topId } : {})}/>)}
         {list.length === 0 && <p className="th-empty">{`No ${niche.words.many} match these filters. `}<button type="button" onClick={clear}>Clear all</button></p>}
         {list.length > n && <button type="button" className="th-btn th-center" style={{ margin: "6px 0 10px" }} onClick={() => setN(x => x + STEP * 2)}>Load more</button>}
         {!words.length && olderN > 0 && <button type="button" className="th-btn th-center" style={{ margin: "0 0 10px" }} aria-pressed={older} onClick={() => { setOlder(o => !o); setN(STEP); }}>{older ? "Hide older models" : `Show older models (${olderN})`}</button>}

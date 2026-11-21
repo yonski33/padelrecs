@@ -4,7 +4,7 @@
 // through app/instant-view.ts (no server round trip; the default view is the cached page). A shared link with picks is read once on load.
 import { useEffect, useMemo, type ReactNode } from "react";
 import { useInstantView } from "../../../instant-view";
-import { Row, type ThreadRow } from "../../ui";
+import { Row, topMatch, type ThreadRow } from "../../ui";
 import { th } from "../../../../lib/thread/look";
 import { rankMatch, readPicks, picksHref, WHO, BUDGET, DEFAULT_PICKS, type MatchInput, type Picks, type Who } from "../../../../lib/stack/match";
 import type { Side } from "../../../../lib/stack/catalog";
@@ -20,6 +20,7 @@ export function StackHome({ inputs, rows, size = 10, children }: { inputs: Match
   const ranked = useMemo(() => rankMatch(inputs, p), [inputs, p]);
   const top = ranked.slice(0, size).flatMap(x => rows[x.id] ? [{ r: rows[x.id], pct: x.pct }] : []);
   const best = p.who ? ranked.find(x => x.pct != null) : null;
+  const topId = topMatch(top.map(x => ({ id: x.r.id, pct: x.pct })));
   const who = p.who ? FOR[p.who] : null;
   const line = ranked.length === 0 ? "No tools fit these picks yet."
     : `${ranked.length} ${ranked.length === 1 ? "tool" : "tools"} to ${p.side}${who ? ` ${who}` : ""}${best && rows[best.id] ? `. Top match: ${rows[best.id].name} at ${best.pct}%.` : "."}`;
@@ -51,7 +52,7 @@ export function StackHome({ inputs, rows, size = 10, children }: { inputs: Match
       <div className="th-head-row" style={{ marginBottom: 6 }}><span className="th-stitle">{`Top tools to ${p.side}`}</span>
         <span className="th-sub">{p.who ? "By your match" : "By score"}</span></div>
       {top.map(({ r, pct }, i) => <Row key={r.id} r={r} rank={i + 1}
-        {...(p.who && pct != null ? { badge: pct, badgeLabel: "your match", pct: true } : { badgeLabel: "score" })}/>)}
+        {...(p.who && pct != null ? { badge: pct, badgeLabel: "your match", pct: true, top: r.id === topId } : { badgeLabel: "score" })}/>)}
       {top.length === 0 && <p className="th-empty">Nothing here yet.</p>}
       <a className="th-link-b" href={th(`/tools?side=${p.side}`)} style={{ margin: "4px 0 10px" }}>{`All ${SIDE_WORD[p.side]} tools`}</a>
     </section>
