@@ -74,7 +74,9 @@ export async function postTypes(db: Pick<Database, "execute">, ids: string[]): P
   if (!ids.length) return new Map();
   try {
     const rows = await db.execute(sql`select ${comments.id} as id, "post_type" as t from ${comments} where ${inArray(comments.id, ids)} and "post_type" is not null`);
-    return new Map((rows as unknown as { id: string; t: PostType }[]).filter(r => r.t === "question" || r.t === "tip").map(r => [r.id, r.t]));
+    // node-postgres (the app's client, db/index.ts) answers { rows }; postgres-js (the scripts') an array. Read either.
+    const list = (Array.isArray(rows) ? rows : (rows as { rows?: unknown[] }).rows ?? []) as { id: string; t: PostType }[];
+    return new Map(list.filter(r => r.t === "question" || r.t === "tip").map(r => [r.id, r.t]));
   } catch (error) { if (!noColumn(error)) console.error("Post types read failed", error); return new Map(); }
 }
 
