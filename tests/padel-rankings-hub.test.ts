@@ -1,7 +1,7 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
-import { ratingTen, HOW, HOW_INTRO } from "../lib/thread/rankings-hub";
+import { ratingTen, HOW, HOW_INTRO, HUB_LEAD } from "../lib/thread/rankings-hub";
 import { threadPath } from "../lib/thread/look";
 
 test("rating on a 0 to 10 scale", () => {
@@ -11,13 +11,12 @@ test("rating on a 0 to 10 scale", () => {
 });
 
 test("copy: honest order, no score, house rules", () => {
-  const hub = readFileSync(new URL("../app/thread/rankings/page.tsx", import.meta.url), "utf8");
-  const lead = hub.match(/const HUB_LEAD = "([^"]+)"/)?.[1];
+  const lead = HUB_LEAD;
   assert.ok(lead);
   for (const t of [lead, HOW_INTRO, ...HOW.flatMap(s => [s.title, ...s.body])]) {
     assert.doesNotMatch(t, /—|\bwe\b|\bus\b|\bour\b|verdict|player score|0-100|\d+%/i, t);
-    // Votes never set the order, and lists never "change as new reviews come in".
-    assert.doesNotMatch(t, /votes? (and [a-z ]+ )?(set|decide|drive)s? the order|change as new reviews/i, t);
+    // Lists never "change as new reviews come in". (Votes may order a list now: lib/thread/vote-order.ts.)
+    assert.doesNotMatch(t, /change as new reviews/i, t);
   }
   assert.ok(lead.length <= 105, lead);
 });

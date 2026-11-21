@@ -13,8 +13,7 @@ import { generateMetadata as liveMetadata } from "../../rankings/page";
 import { liveOr } from "../seo";
 import { W } from "../../../lib/thread/words";
 import { HubV3 } from "./hub-v3";
-/** The hub's lead (owner honesty rules 2026-11-21: picks, never "votes set the order"). */
-const HUB_LEAD = "PadelRecs picks and lists ordered by player reviews, checked against player votes. Pick a list.";
+import { HUB_LEAD } from "../../../lib/thread/rankings-hub";
 export const generateMetadata = (): Promise<Metadata> => liveOr(liveMetadata);
 
 export default async function ThreadHub() {
