@@ -2,6 +2,7 @@ import test from "node:test";
 import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
 import { activity, feedLine, guessedFlair, postFlair, REPLIES_SHOWN } from "../lib/thread/feed";
+import { postTypeSite } from "../lib/thread/sites";
 
 test("a post is a QUESTION when it ends with ? or starts with a question word, else it has no flair", () => {
   assert.equal(postFlair("Does the Extreme Motion feel too harsh for a touchy elbow?"), "question");
@@ -51,7 +52,7 @@ test("the feed: one section, flair chips, filters and sort in the browser, thin 
   assert.doesNotMatch(f, /racket-votes|thread-poll/);
 });
 
-test("post_type (drizzle/0035): one nullable column, padel only in the API, kept out of the shared table definition", () => {
+test("post_type (drizzle/0035): one nullable column, padel and skin only in the API, kept out of the shared table definition", () => {
   const sql = readFileSync("drizzle/0035_comment_post_type.sql", "utf8");
   assert.match(sql, /ADD COLUMN IF NOT EXISTS "post_type" text;/);
   assert.match(sql, /CHECK \("post_type" IS NULL OR "post_type" IN \('question', 'tip'\)\)/);
@@ -63,7 +64,9 @@ test("post_type (drizzle/0035): one nullable column, padel only in the API, kept
   // Other sites' schemas don't have the column: every select() of comments must keep working there.
   assert.doesNotMatch(readFileSync("db/schema.ts", "utf8"), /post_type|postType/);
   const api = readFileSync("app/api/comments/route.ts", "utf8");
-  assert.match(api, /const TYPED = niche\.id === "padel";/);
+  assert.match(api, /const TYPED = postTypeSite\(niche\.id\);/);
+  // The typed feed's sites (lib/thread/sites.ts): PadelRecs and SkinRecs (v3 rollout 2026-11-21), not AudioRecs.
+  assert.deepEqual(["padel", "skin", "audio", "pickleball"].map(postTypeSite), [true, true, false, false]);
   assert.match(api, /TYPED && v\.postType && !v\.parentId/);
   // AudioRecs (same feed) keeps the earlier guessed QUESTION / TIP.
   assert.equal(guessedFlair("Two overgrips helped."), "tip");

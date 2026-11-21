@@ -6,6 +6,7 @@
 import { useMemo, useState } from "react";
 import { th } from "../../../lib/thread/look";
 import { Box, useComments } from "./comments";
+import { W } from "../../../lib/thread/words";
 
 export type AskRacket = { id: string; name: string; href: string; pic: string | null };
 const fold = (s: string) => s.toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "");
@@ -30,13 +31,13 @@ export function AskQuestion({ rackets }: { rackets: AskRacket[] }) {
     <Composer r={picked} onCancel={() => { setPicked(null); setQ(""); setOpen(false); }}/>
   </div>;
   return <div className="thq-ask">
-    <input className="thq-ask-in" value={q} placeholder="Ask a question about any racket…" aria-label="Ask a question about any racket"
+    <input className="thq-ask-in" value={q} placeholder={`Ask a question about any ${W.item}…`} aria-label={`Ask a question about any ${W.item}`}
       onFocus={() => setOpen(true)} onChange={e => { setQ(e.target.value); setOpen(true); }}/>
     {open && <div className="thq-pick" role="listbox" aria-label="Pick the racket first">
-      <span className="lbl">Which racket is it about?</span>
+      <span className="lbl">{`Which ${W.item} is it about?`}</span>
       {hits.map(r => <button key={r.id} type="button" role="option" aria-selected={false} onClick={() => { setPicked(r); setOpen(false); }}>
         {r.pic ? <img src={r.pic} alt="" loading="lazy"/> : <span className="th-ph" aria-hidden="true"/>}{r.name}</button>)}
-      {hits.length === 0 && <span className="th-note">No racket by that name. Try the brand or model.</span>}
+      {hits.length === 0 && <span className="th-note">{`No ${W.item} by that name. Try the brand or model.`}</span>}
       <button type="button" className="thq-close" onClick={() => setOpen(false)}>Close</button>
     </div>}
   </div>;

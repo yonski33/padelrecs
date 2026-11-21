@@ -20,13 +20,18 @@ import { liveOr } from "../seo";
 const PADEL_TITLE = () => `All padel rackets ${new Date().getUTCFullYear()}: player opinions and quick match`;
 /** SimRacingRecs (v3 rollout 2026-11-21): the same, in its words. */
 const SR_TITLE = () => `All sim racing gear ${new Date().getUTCFullYear()}: racer opinions and quick match`;
+/** SkinRecs (v3 rollout 2026-11-21): no score in the title either; no model years on skin. */
+const SKIN_TITLE = () => "All skincare products: what people say, and a quick match for your skin";
 export const generateMetadata = async (): Promise<Metadata> => { const m = await liveOr(liveMetadata);
-  const t = niche.id === "simracing" ? SR_TITLE() : PADEL_TITLE();
-  return niche.id !== "padel" && niche.id !== "simracing" ? m : { ...m, title: { absolute: `${t} | ${niche.site.name}` }, openGraph: { ...m.openGraph, title: t }, twitter: { ...m.twitter, title: t } }; };
+  const t = niche.id === "simracing" ? SR_TITLE() : niche.id === "skin" ? SKIN_TITLE() : PADEL_TITLE();
+  return niche.id !== "padel" && niche.id !== "simracing" && niche.id !== "skin" ? m : { ...m, title: { absolute: `${t} | ${niche.site.name}` }, openGraph: { ...m.openGraph, title: t }, twitter: { ...m.twitter, title: t } }; };
 
 /** The sidebar's ranking links, in the mock's order, where the list exists. */
 /** SimRacingRecs' sidebar links: overall, the gear types, beginners. */
 const SR_RANK_LINKS = ["best-sim-racing-gear", "best-sim-racing-wheelbases", "best-sim-racing-pedals", "best-sim-racing-wheels", "best-sim-racing-gear-for-beginners", "best-sim-racing-cockpits"];
+/** SkinRecs' sidebar links: the skin needs, then the product types. */
+const skinRankLinks = (lists: { slug: string; group: string; kids?: string[] }[]) =>
+  [...lists.filter(l => l.kids), ...lists.filter(l => l.group === "By product type")].slice(0, 6).map(l => l.slug);
 const RANK_LINKS = ["best-padel-rackets", "best-power-padel-rackets", "best-control-padel-rackets", "best-padel-rackets-for-beginners", "best-teardrop-padel-rackets", "best-diamond-padel-rackets"];
 export default async function ThreadCatalog() {
   const { all, ctx } = await threadRows();
@@ -39,8 +44,8 @@ export default async function ThreadCatalog() {
     const brands = [...count].filter(([b, n]) => b && n >= 5).sort((a, b) => b[1] - a[1]).slice(0, 10).map(([b]) => b);
     return <Shell active="rackets">{ld}<Catalog rows={rows} brands={brands}/></Shell>;
   }
-  const { brands, pills, added, curated, wire, rows: listRows } = await padelListData();
-  const lists = await threadRankings(), rankings = (niche.id === "audio" ? lists.map(l => l.slug).slice(0, 6) : niche.id === "simracing" ? SR_RANK_LINKS : RANK_LINKS).flatMap(s => { const l = lists.find(x => x.slug === s); return l ? [{ label: l.label, href: l.href }] : []; });
+  const { brands, pills, added, curated, wire, skin, rows: listRows } = await padelListData();
+  const lists = await threadRankings(), rankings = (niche.id === "audio" ? lists.map(l => l.slug).slice(0, 6) : niche.id === "simracing" ? SR_RANK_LINKS : niche.id === "skin" ? skinRankLinks(lists) : RANK_LINKS).flatMap(s => { const l = lists.find(x => x.slug === s); return l ? [{ label: l.label, href: l.href }] : []; });
   // Latest reviews: the 3 newest approved player reviews with a typed name and a line to show.
   const byId = new Map(rows.map(r => [r.id, r]));
   const latest: SideReview[] = (ctx?.data.reviews ?? []).filter(x => typedName(x.alias) && x.reviewText?.trim().length >= 30 && byId.has(x.racketId))
@@ -48,6 +53,7 @@ export default async function ThreadCatalog() {
     .map(x => ({ id: x.id, who: typedName(x.alias)!, at: x.createdAt, racket: byId.get(x.racketId)!.name, href: `${byId.get(x.racketId)!.href}#reviews`, text: x.reviewText.trim() }));
   // AudioRecs: its list rows (kind and tuning as the filters), its match inputs and its own words.
   const audio = niche.id === "audio" ? { rows: listRows, ...(wire ? { wire } : {}), title: "All headphones", crumb: "Headphones" }
-    : niche.id === "simracing" ? { rows: listRows, title: "All sim racing gear", crumb: "Products" } : { rows };
+    : niche.id === "simracing" ? { rows: listRows, title: "All sim racing gear", crumb: "Products" }
+    : niche.id === "skin" ? { rows: listRows, ...(skin ? { skin } : {}), title: "All skincare products", crumb: "Products" } : { rows };
   return <Shell active="rackets">{ld}<PadelCatalog brands={brands} pills={pills} added={added} curated={curated} rankings={rankings} latest={latest} {...audio}/></Shell>;
 }

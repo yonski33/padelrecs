@@ -12,21 +12,25 @@ import { th } from "../../../lib/thread/look";
 import { Ago } from "./ago";
 import { useRacketList, MatchBar, FineTune, SortMenu, RacketRow, named, opinions, plural } from "./padel-list";
 import { useAudioListMatch } from "./audio-match";
+import { useSkinListMatch } from "./skin-match";
+import type { SkinWire } from "../../skin/rank";
 import { W } from "../../../lib/thread/words";
 import type { AudioWire } from "../../../lib/audio-match";
 
 export type SideReview = { id: string; who: string; at: string; racket: string; href: string; text: string };
 const STEP = 24, NEW_N = 3;
 
-export function PadelCatalog({ rows, brands, pills, added, curated, rankings, latest, wire, title = "All padel rackets", crumb = "Rackets" }: {
+export function PadelCatalog({ rows, brands, pills, added, curated, rankings, latest, wire, skin, title = "All padel rackets", crumb = "Rackets" }: {
   rows: ThreadRow[]; brands: string[];
   /** A row's vote pill ("Most picked for power · 22 players"), when it has one. */ pills: Record<string, string>;
   /** When each racket joined the catalogue (Newest, New rackets). */ added: Record<string, string>;
   /** "PadelRecs picks": the curated order, ids; the rest follow by loved count. */ curated: string[];
   rankings: { label: string; href: string }[]; latest: SideReview[];
   /** AudioRecs: its match inputs, its own title and crumb. Padel: absent (the defaults). */ wire?: AudioWire[]; title?: string; crumb?: string;
+  /** SkinRecs: the skin engine's inputs for its own quick match (live/skin-match.tsx). */ skin?: SkinWire[];
 }) {
-  const l = useRacketList({ rows, curated, added, search: true, match: useAudioListMatch(wire) }), { q, setQ, list, pcts, older, setOlder, olderN, words, clearAll } = l;
+  const audio = useAudioListMatch(wire), skinMatch = useSkinListMatch(skin);
+  const l = useRacketList({ rows, curated, added, search: true, match: audio ?? skinMatch }), { q, setQ, list, pcts, older, setOlder, olderN, words, clearAll } = l;
   const [ft, setFt] = useState(false), [n, setN] = useState(STEP);
   const newest = useMemo(() => rows.filter(r => r.current !== false).sort((a, b) => b.year - a.year || (added[b.id] ?? "").localeCompare(added[a.id] ?? "")).slice(0, NEW_N), [rows, added]);
   const isNew = useMemo(() => new Set(newest.map(r => r.id)), [newest]);

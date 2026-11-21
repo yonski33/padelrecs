@@ -7,7 +7,7 @@
 import { useEffect, useMemo, useState } from "react";
 import { niche } from "../../../lib/niche";
 import { W } from "../../../lib/thread/words";
-import { accountSite, followSite } from "../../../lib/thread/sites";
+import { accountSite, followSite, postTypeSite } from "../../../lib/thread/sites";
 import { FollowButton } from "./follow-button";
 import { commenterName, nameProblem, NAME_MAX } from "../../../lib/thread/display-name";
 import { mentionOf } from "../../../lib/thread/mention";
@@ -26,9 +26,11 @@ import { signInHref } from "./use-account";
 import { MoreMenu, OPEN_REVIEW, PollPointer, reportPost, ReviewRow, WebSources, type Changed } from "./racket-v7b";
 
 const ACCOUNTS = accountSite(niche.id);
-/** PadelRecs (owner 2026-11-21): a plain post by default, saved types (drizzle/0035), and these prompts. Other sites on this
- *  feed (AudioRecs) keep the earlier composer and the guessed QUESTION / TIP. */
-const PADEL = niche.id === "padel";
+/** PadelRecs (owner 2026-11-21): a plain post by default, saved types (drizzle/0035), and these prompts; SkinRecs too
+ *  (lib/thread/sites.ts postTypeSite). Other sites on this feed (AudioRecs) keep the earlier composer and the guessed QUESTION / TIP. */
+const PADEL = postTypeSite(niche.id);
+/** The review box's prompt on the typed feed, in the site's words. */
+const REVIEW_ASK = niche.id === "skin" ? "How did it work for you?" : "How did it play for you?";
 const flairOf = (c: C): Exclude<Flair, "review"> | null => PADEL ? c.type ?? postFlair(c.body) : guessedFlair(c.body);
 type Item = { key: string; flair: Flair | null; at: string; top: number } & ({ review: RvCard } | { post: C });
 const CHIPS: [Flair | "all", string][] = [["all", "All"], ["review", "Reviews"], ["question", "Questions"], ["tip", "Tips"]];
@@ -106,7 +108,7 @@ export function CommunityFeed({ id, model, cards, web }: { id: string; model: st
     <div className="th-picks"><span className="lbl" style={{ fontSize: 13.5, color: "var(--ink2)", minWidth: 0 }}>{W.triedIt}</span>
       {VERDICTS.map(v => <button key={v.key} type="button" className={`th-vpick ${VERDICT[v.key][1]}`} aria-pressed={rv.verdict === v.key} onClick={() => { rv.setVerdict(v.key as Verdict); rv.setError(""); }}><span className={`th-sdot ${VERDICT[v.key][1]}`}/>{VERDICT[v.key][0]}</button>)}
     </div>
-    <textarea className="th-ta th-ta-grow" rows={3} autoFocus value={rv.text} onChange={e => { rv.setText(e.target.value); rv.setError(""); grow(e.currentTarget, 240); }} maxLength={2000} placeholder={PADEL ? "How did it play for you?" : "Write your review"} aria-label="Your review"/>
+    <textarea className="th-ta th-ta-grow" rows={3} autoFocus value={rv.text} onChange={e => { rv.setText(e.target.value); rv.setError(""); grow(e.currentTarget, 240); }} maxLength={2000} placeholder={PADEL ? REVIEW_ASK : "Write your review"} aria-label="Your review"/>
     {rv.error && <span className="th-err">{rv.error}</span>}
     <div className="th-compose-foot"><span className="th-grow"/>{rv.me || !ACCOUNTS ? null : <a className="th-signin" href={signInHref("#reviews")}>Sign in to keep your name</a>}
       <button type="button" className="cancel" onClick={close}>Cancel</button>

@@ -6,7 +6,7 @@ import { Shell } from "../../shell";
 import { racketData } from "../../racket-data";
 import { AudioFitCard } from "../../live/audio-match";
 import { audioGroupsFor } from "../../../../lib/thread/traits";
-import { AUDIO_PILL_LABELS, SIMRACING_PILL_WORDS, SIMRACING_PILL_LABELS } from "../../../../lib/thread/vote-pill";
+import { AUDIO_PILL_LABELS, SIMRACING_PILL_WORDS, SIMRACING_PILL_LABELS, SKIN_PILL_WORDS, SKIN_PILL_LABELS } from "../../../../lib/thread/vote-pill";
 import { FitCard } from "../../live/racket-v7b";
 import type { AudioWire } from "../../../../lib/audio-match";
 import { threadRows, hasDb, skinOf, audioOf } from "../../data";
@@ -29,7 +29,8 @@ import { database } from "../../../../db/data";
 import { generateMetadata as liveMetadata } from "../../../rackets/[slug]/page";
 import { JsonLd, crumbs } from "../../seo";
 import { catalogLabel, catalogPath, productHref } from "../../../../lib/niche";
-import { SkinFitCheck } from "../../live/skin-match";
+import { SkinFitCheck, SkinFitCard } from "../../live/skin-match";
+import { playersWord } from "../../../../lib/thread/web-sources";
 import { W } from "../../../../lib/thread/words";
 import { Flight } from "../../ui";
 import { flightOf } from "../../../../lib/discgolf-profile";
@@ -158,8 +159,10 @@ export default async function ThreadRacket({ params }: P) {
   const au = AUDIO ? audioOf(ctx) : null, aw = au?.wire.get(r.id) ?? null;
   // SimRacingRecs (v3 rollout 2026-11-21): the same page with its own spec rows (Category, Type, Torque / brake force,
   // Platforms, Released), its gear type's vote groups and pills, a level-and-budget fit card and racer words. No score.
-  if (niche.id === "padel" || (au && aw) || SR) {
-    const v7Specs = (SR ? [...niche.specs.map(s => [s.label, r[s.column]]), ["Released", r.year ? String(r.year) : null]] : aw ? [["Type", r.balance], ["Connection", r.weight], ["Driver", r.core], ["Noise cancelling", aw.anc ? "Yes" : aw.wireless ? "No" : null], ["Notes", r.surface]] : [["Weight", r.weight], ["Shape", r.shape], ["Balance", r.balance], ["Feel", row?.feel ?? null], ["Face", r.surface], ["Released", r.year ? String(r.year) : null],
+  // SkinRecs (v3 rollout 2026-11-21): the same page with its own specs (the brand's skin types, the SPF), tags, fit card (the
+  // skin match, this type only), its nine vote groups and quality-first pills, community words. No score.
+  if (niche.id === "padel" || (au && aw) || SR || SKIN) {
+    const v7Specs = (SKIN ? specs : SR ? [...niche.specs.map(s => [s.label, r[s.column]]), ["Released", r.year ? String(r.year) : null]] : aw ? [["Type", r.balance], ["Connection", r.weight], ["Driver", r.core], ["Noise cancelling", aw.anc ? "Yes" : aw.wireless ? "No" : null], ["Notes", r.surface]] : [["Weight", r.weight], ["Shape", r.shape], ["Balance", r.balance], ["Feel", row?.feel ?? null], ["Face", r.surface], ["Released", r.year ? String(r.year) : null],
       ...(((specNotes as unknown as Record<string, Record<string, [string, string][]>>)[niche.id] ?? {})[r.slug] ?? [])] as [string, string | null][]).filter((x): x is [string, string] => !!x[1]);
     // TL;DR with no counts (owner 2026-11-21): the written one as is; else the page's own lines without "N players mention
     // it", else the most-mentioned tags as "Players often say…". Claims still need 5+ reviews behind them (as before).
@@ -167,7 +170,8 @@ export default async function ThreadRacket({ params }: P) {
     const pc = writtenTldr(r.reviewSummary) ? null : pageContent(r.slug), sum = pc || writtenTldr(r.reviewSummary) || !ctx ? null : summary(ctx.data, r.id);
     const says = (t: string) => AUDIO && AUDIO_SAYS[t] ? `${W.People} often ${AUDIO_SAYS[t]}.` : `${W.People} often ${tagSays(t)}.`;
     // AudioRecs: the tags every review carries, all time (its 12-month window leaves most pages under the 5-review rule).
-    const audioTags = au && !pc && !writtenTldr(r.reviewSummary) && ctx ? (() => {
+    // SkinRecs the same (its old page counted every opinion's tags too), with no counts in the lines.
+    const audioTags = (au || SKIN) && !pc && !writtenTldr(r.reviewSummary) && ctx ? (() => {
       const n = new Map<string, number>();
       for (const x of [...ctx.data.reviews.filter(v => v.racketId === r.id), ...ctx.data.external.filter(e => e.racketId === r.id)]) for (const t of new Set(x.tags ?? [])) n.set(t, (n.get(t) ?? 0) + 1);
       const top = (tone: "pos" | "neg") => [...n].filter(([t, c]) => c >= 5 && tagTone(t) === tone).sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0])).map(([t]) => t);
@@ -180,20 +184,20 @@ export default async function ThreadRacket({ params }: P) {
     const model = brand && bare.toLowerCase().startsWith(`${brand.name.toLowerCase()} `) ? bare.slice(brand.name.length + 1) : bare;
     // The top card's pill: the strongest "How does it play?" answer, from the groups as the page shows them (lib/thread/vote-pill.ts).
     const tc = hasDb() ? await traitCounts() : null;
-    const pill = tc ? votePill(Object.fromEntries((SR ? traitGroupsForType(niche.id, r.shape) : TRAIT_GROUPS).map(g => [g.key, traitGroup(tc, r.id, g.key)])), W.people, ...(aw ? [AUDIO_PILL_LABELS, AUDIO_PILL_LABELS] as const : SR ? [SIMRACING_PILL_WORDS, SIMRACING_PILL_LABELS] as const : [])) : null;
+    const pill = tc ? votePill(Object.fromEntries((SR ? traitGroupsForType(niche.id, r.shape) : TRAIT_GROUPS).map(g => [g.key, traitGroup(tc, r.id, g.key)])), W.people, ...(aw ? [AUDIO_PILL_LABELS, AUDIO_PILL_LABELS] as const : SR ? [SIMRACING_PILL_WORDS, SIMRACING_PILL_LABELS] as const : SKIN ? [SKIN_PILL_WORDS, SKIN_PILL_LABELS] as const : [])) : null;
     // The community sidebar (owner OK 2026-11-21): this week's counts, the newest question, who plays it (votes only), and
     // the rackets it is compared with (its compare pages' partners, then the engine's similar rackets).
     const groupOf = (k: string) => tc ? traitGroup(tc, r.id, k) : null;
-    const who = aw ? null : whoPlays({ level: groupOf("level"), plays_like: groupOf("plays_like"), side: groupOf("side") });
+    const who = aw || SKIN ? null : whoPlays({ level: groupOf("level"), plays_like: groupOf("plays_like"), side: groupOf("side") });
     const cm = await communityFor(r.id);
     const partners = (ctx ? comparePairs(ctx.data).partners.get(r.id) ?? [] : []).map(x => rows.get(x.id)).filter((x): x is NonNullable<typeof x> => !!x && x.current !== false);
     const compared = [...partners, ...sim].filter((x, i, a) => x.id !== r.id && a.findIndex(y => y.id === x.id) === i).slice(0, 3)
       .map(x => ({ row: x, href: `/compare?ids=${encodeURIComponent(r.slug)},${encodeURIComponent(x.slug)}` }));
     return <Shell active="rackets">
       <JsonLd data={ld}/>
-      <RacketV7b id={r.id} title={r.year && bare !== name ? `${bare} (${r.year})` : name} model={model} crumbs={crumbsEl} tags={aw ? audioTagsOf(aw, r.weight) : tags} lime={aw ? aw.anc : !!style} row={row} judged={judged} {...(aw && au ? audioPageProps(r.id, aw, au, rows, ctx) : SR ? srPageProps(r.id, r.shape) : {})}
-        lead={aw && lead ? lead.replace(/(?<![\w-])([Oo])wner(s?)\b/g, (_, o: string, x: string) => `${o === "O" ? "L" : "l"}istener${x}`) : SR && lead ? lead.replace(/(?<![\w-])([Oo])wner(s?)\b/g, (_, o: string, x: string) => `${o === "O" ? "R" : "r"}acer${x}`) : lead} bullets={v7Bullets} specs={v7Specs} shop={shop} cards={cards} also={also} brand={brand ? { name: brand.name, slug: brand.slug } : null}
-        sim={simSelf ? pickSimilar(simSelf, simSpecs, new Set(compared.map(c => c.row.id))).flatMap(id => rows.get(id) ?? []) : aw || SR ? sim.filter(x => !compared.some(c => c.row.id === x.id)) : []} pill={pill} week={weekLine(cm.opinions, cm.posts)} latest={cm.latest} who={who} compared={compared} stories={tales}/>
+      <RacketV7b id={r.id} title={r.year && bare !== name ? `${bare} (${r.year})` : name} model={model} crumbs={crumbsEl} tags={aw ? audioTagsOf(aw, r.weight) : tags} lime={aw ? aw.anc : !!style} row={row} judged={judged} {...(aw && au ? audioPageProps(r.id, aw, au, rows, ctx) : SR ? srPageProps(r.id, r.shape) : SKIN ? { fit: <SkinFitCard id={r.id} wire={skinWire} links={skinLinks}/> } : {})}
+        lead={aw && lead ? lead.replace(/(?<![\w-])([Oo])wner(s?)\b/g, (_, o: string, x: string) => `${o === "O" ? "L" : "l"}istener${x}`) : SKIN && lead ? playersWord(lead, "reviewer") : SR && lead ? lead.replace(/(?<![\w-])([Oo])wner(s?)\b/g, (_, o: string, x: string) => `${o === "O" ? "R" : "r"}acer${x}`) : lead} bullets={v7Bullets} specs={v7Specs} shop={shop} cards={cards} also={also} brand={brand ? { name: brand.name, slug: brand.slug } : null}
+        sim={simSelf ? pickSimilar(simSelf, simSpecs, new Set(compared.map(c => c.row.id))).flatMap(id => rows.get(id) ?? []) : aw || SR || SKIN ? sim.filter(x => !compared.some(c => c.row.id === x.id)) : []} pill={pill} week={weekLine(cm.opinions, cm.posts)} latest={cm.latest} who={who} compared={compared} stories={tales}/>
     </Shell>;
   }
   return <Shell active="rackets">

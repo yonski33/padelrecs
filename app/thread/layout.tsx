@@ -2,6 +2,8 @@ import type { ReactNode } from "react";
 import "./thread.css";
 // SimRacingRecs' accent on the v3 pages (generated, scoped to .th-srv3; padel untouched).
 import "./sr-colors.css";
+// SkinRecs' own soft look on the v3 pages (scoped to .th-skin; padel untouched).
+import "./skin-v3.css";
 import { niche } from "../../lib/niche";
 
 // Indexable: Thread serves the live addresses (lib/thread/look.ts THREAD_DEFAULT); each page reuses the live page's metadata.

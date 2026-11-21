@@ -6,6 +6,7 @@
 // only with 5+ players behind it and 10+ in its group (the home's Top picks rule).
 import "../thread/thread.css";
 import "../thread/sr-colors.css";
+import "../thread/skin-v3.css";
 import { Shell } from "../thread/shell";
 import { threadRows, threadFeed, traitCounts, traitGroup } from "../thread/data";
 import { ago } from "../thread/ui";
@@ -20,14 +21,14 @@ import { FitBar, Cards, type V3Card } from "./compare-v3-live";
 import type { Data } from "./view";
 import { niche, catalogPath } from "../../lib/niche";
 import { W } from "../../lib/thread/words";
-import { votePill, AUDIO_PILL_LABELS, SIMRACING_PILL_WORDS, SIMRACING_PILL_LABELS } from "../../lib/thread/vote-pill";
+import { votePill, AUDIO_PILL_LABELS, SIMRACING_PILL_WORDS, SIMRACING_PILL_LABELS, SKIN_PILL_WORDS, SKIN_PILL_LABELS } from "../../lib/thread/vote-pill";
 import { TRAIT_GROUPS, traitGroupsForType } from "../../lib/thread/traits";
 
 const FONTS = ["https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800;900&family=Atkinson+Hyperlegible:wght@400;700&display=swap",
   "https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap",
   "https://fonts.googleapis.com/css2?family=Barlow:wght@400;700&text=0123456789&display=swap"];
 /** Each racket's colour (pills, dots), in card order. */
-const TINT = ["#DCE8FB", niche.id === "simracing" ? "oklch(0.92 0.07 30)" : "#E3F6B5", "#FBE0D2"], DOT = ["#5B8DEF", "#6DBE45", "#EF8A5B"];
+const TINT = ["#DCE8FB", niche.id === "simracing" ? "oklch(0.92 0.07 30)" : niche.id === "skin" ? "oklch(0.92 0.045 20)" : "#E3F6B5", "#FBE0D2"], DOT = ["#5B8DEF", "#6DBE45", "#EF8A5B"];
 const PLAYS: Record<string, string> = { control: "control", all_round: "all-round play", power: "power" };
 /** "Who wins what": the label, the vote group and option, and what those players say. */
 const WIN: [string, string, string, string][] = [["Most power", "plays_like", "power", "say power"], ["Most control", "plays_like", "control", "say control"],
@@ -51,6 +52,12 @@ const SR = niche.id === "simracing";
 const SR_WIN: [string, string, string, string][] = [["Most detailed feedback", "detail", "sharp", "say sharp detail"], ["Most torque", "torque", "plenty", "say plenty of torque"],
   ["Best brake feel", "brake_feel", "realistic", "say realistic"], ["Least flex", "flex", "none", "say no flex"], ["Quietest", "noise", "quiet", "say quiet"],
   ["Easiest software", "software", "easy", "say easy"], ["Best for beginners", "level", "beginner", "say beginner"], ["Best for advanced", "level", "advanced", "say advanced"]];
+/** SkinRecs (v3 rollout 2026-11-21): "Who wins what" from its nine groups, its quality-first pills, its words; no fit bar (its
+ *  quick match lives on the home, catalogue, product and ranking pages). */
+const SKIN = niche.id === "skin";
+const SKIN_WIN: [string, string, string, string][] = [["Gentlest", "irritation", "none", "say no irritation"], ["Best for dry skin", "skin_type", "dry", "pick dry skin"],
+  ["Best for oily skin", "skin_type", "oily", "pick oily skin"], ["Best under makeup", "makeup", "fine", "say fine under makeup"],
+  ["Fastest results", "results", "days", "say results in days"], ["Best value", "value", "worth_it", "say worth it"]];
 const total = (g: Record<string, number>) => Object.values(g).reduce((a, b) => a + b, 0);
 const hrefFor = (slugs: string[]) => slugs.length ? `/compare?ids=${slugs.map(encodeURIComponent).join(",")}` : "/compare";
 
@@ -64,6 +71,7 @@ export async function CompareV3({ data, products }: { data: Data; products: Data
       shape: r.shape ? r.shape[0].toUpperCase() + r.shape.slice(1) : null, feel: row?.feel ?? null,
       picked: SR ? votePill(Object.fromEntries(traitGroupsForType(niche.id, r.shape).map(g => [g.key, traitGroup(t, r.id, g.key)])), W.people, SIMRACING_PILL_WORDS, SIMRACING_PILL_LABELS)
         : AUDIO ? votePill(Object.fromEntries(TRAIT_GROUPS.map(g => [g.key, traitGroup(t, r.id, g.key)])), W.people, AUDIO_PILL_LABELS, AUDIO_PILL_LABELS)
+        : SKIN ? votePill(Object.fromEntries(TRAIT_GROUPS.map(g => [g.key, traitGroup(t, r.id, g.key)])), W.people, SKIN_PILL_WORDS, SKIN_PILL_LABELS)
         : top && top[1] >= 5 && total(plays) >= 10 ? `Most picked for ${PLAYS[top[0]]} · ${top[1]} players` : null,
       ...(AUDIO && row?.audio?.kind ? { shape: row.audio.kind, feel: null } : {}), ...(SR ? { feel: null } : {}),
       pos: row?.pos ?? 0, mix: row?.mix ?? 0, neg: row?.neg ?? 0, shop: cprods[i].shop, tint: TINT[i], dot: DOT[i],
@@ -72,11 +80,11 @@ export async function CompareV3({ data, products }: { data: Data; products: Data
   const opinions = cards.reduce((a, c) => a + c.pos + c.mix + c.neg, 0);
 
   // Who wins what: the highest share for that option, from groups with 10+ in them, a winner with 5+ players and no tie.
-  const winners = (AUDIO ? AUDIO_WIN : SR ? SR_WIN : WIN).flatMap(([label, trait, opt, verb]) => {
+  const winners = (AUDIO ? AUDIO_WIN : SR ? SR_WIN : SKIN ? SKIN_WIN : WIN).flatMap(([label, trait, opt, verb]) => {
     const sc = cards.map((c, i) => { const g = traitGroup(t, c.id, trait), tot = total(g), hit = g[opt] ?? 0; return { i, g, tot, hit, sh: tot >= 10 ? hit / tot : 0 }; });
     const ranked = [...sc].sort((a, b) => b.sh - a.sh), w = ranked[0];
     if (cards.length < 2 || !w || w.hit < 5 || w.tot < 10 || (ranked[1] && ranked[1].sh === w.sh)) return [];
-    return [{ label, win: w.i, why: `${w.hit} of ${w.tot} ${W.people} ${verb}`, rows: sc.map(s => ({ i: s.i, tot: s.tot, opts: (AUDIO || SR ? AUDIO_OPT : OPT)[trait].map(([k, l]) => ({ l, n: s.g[k] ?? 0, on: k === opt })) })) }];
+    return [{ label, win: w.i, why: `${w.hit} of ${w.tot} ${W.people} ${verb}`, rows: sc.map(s => ({ i: s.i, tot: s.tot, opts: (AUDIO || SR || SKIN ? AUDIO_OPT : OPT)[trait].map(([k, l]) => ({ l, n: s.g[k] ?? 0, on: k === opt })) })) }];
   });
   const diffs = cards.length > 1 ? differRows(cprods, TRAITS) : [];
   // What players say: each racket's newest member review of a readable length.
@@ -97,14 +105,14 @@ export async function CompareV3({ data, products }: { data: Data; products: Data
     {[...FONTS, ...(AUDIO ? ["https://fonts.googleapis.com/css2?family=Archivo+Narrow:wght@600;700&display=swap"] : [])].map(href => <link key={href} rel="stylesheet" href={href} precedence="default"/>)}
     <Shell active="rackets">
       <main className="th-main cp3">
-        <div className="th-crumbs"><a href={th(catalogPath)}>{AUDIO ? "Headphones" : SR ? "Products" : "Rackets"}</a><span>/</span><span>Compare</span></div>
+        <div className="th-crumbs"><a href={th(catalogPath)}>{AUDIO ? "Headphones" : SR || SKIN ? "Products" : "Rackets"}</a><span>/</span><span>Compare</span></div>
         <section className="th-card cp3-top">
           <div className="cp3-title"><span><h1 className="th-h1">{`Compare ${W.items}`}</h1>
-            <small>{n ? `Side by side, from ${opinions.toLocaleString("en-US")} ${W.person} opinions.` : AUDIO ? "Pick up to three pairs to see them side by side." : SR ? "Pick up to three products to see them side by side." : "Pick up to three rackets to see them side by side."}</small></span>
-            <span className="cp3-count">{AUDIO ? `${n} of 3` : SR ? `${n} of 3 products` : `${n} of 3 rackets`}</span></div>
-          {n > 0 && !AUDIO && <FitBar {...(SR ? { hint: "Pick your level and budget. The best fit gets highlighted below.", arm: "I race on console" } : {})}/>}
+            <small>{n ? `Side by side, from ${opinions.toLocaleString("en-US")} ${W.person} opinions.` : AUDIO ? "Pick up to three pairs to see them side by side." : SR || SKIN ? "Pick up to three products to see them side by side." : "Pick up to three rackets to see them side by side."}</small></span>
+            <span className="cp3-count">{AUDIO ? `${n} of 3` : SR || SKIN ? `${n} of 3 products` : `${n} of 3 rackets`}</span></div>
+          {n > 0 && !AUDIO && !SKIN && <FitBar {...(SR ? { hint: "Pick your level and budget. The best fit gets highlighted below.", arm: "I race on console" } : {})}/>}
           <Cards cards={cards} add={n < 3 ? <div className="cp3-add">
-            <b>{AUDIO ? "+ Add a pair" : SR ? "+ Add a product" : "+ Add a racket"}</b>
+            <b>{AUDIO ? "+ Add a pair" : SR || SKIN ? "+ Add a product" : "+ Add a racket"}</b>
             <CompareAdd slugs={slugs} label={`Search ${W.items}`}/>
             {add.map(a => <a key={a.href} href={a.href}>{a.name}</a>)}
           </div> : null}/>

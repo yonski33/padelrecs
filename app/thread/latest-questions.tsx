@@ -7,6 +7,7 @@ import { threadQuestions } from "./questions-data";
 import { threadRows } from "./data";
 import { QuestionRow } from "./question-row";
 import { AskQuestion, type AskRacket } from "./live/ask-question";
+import { W } from "../../lib/thread/words";
 
 /** The ask box's racket list: each model's current row (the catalogue's rule). */
 export async function askRackets(): Promise<AskRacket[]> {
@@ -20,7 +21,7 @@ export async function LatestQuestions() {
   const [rackets, now] = [await askRackets(), Date.now()];
   return <section className="th-card thq-sec" aria-labelledby="thq-h">
     <div className="thq-head"><h2 id="thq-h" className="th-h2">Latest questions from the community</h2>
-      <p className="th-sub">Anyone can ask, players answer</p></div>
+      <p className="th-sub">{`Anyone can ask, ${W.people} answer`}</p></div>
     <AskQuestion rackets={rackets}/>
     <div className="thq-list">{homeQuestions(qs).map(q => <QuestionRow key={q.id} q={q} now={now}/>)}</div>
     <a className="thq-all" href={th("/questions")}>See all questions →</a>

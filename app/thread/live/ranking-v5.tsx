@@ -38,15 +38,16 @@ function useBestFit(rows: V5Row[], wire?: AudioWire[]) {
 
 /** markLoved: a list ordered by its loved count (lib/thread/vote-order.ts "loved", Best overall) puts a yellow marker stroke on
  *  "N loved" under the bar (owner 2026-11-21), the number the list goes by. */
-export function RankRows({ rows, ratingLabel, opinions, markLoved = false, wire }: { rows: V5Row[]; ratingLabel: string | null; opinions: [string, string]; markLoved?: boolean; wire?: AudioWire[] }) {
-  const best = useBestFit(rows, wire);
+/** `fitId`: the best fit worked out by the site's own match (SkinRecs, live/skin-match.tsx); padel's engine when left out. */
+export function RankRows({ rows, ratingLabel, opinions, markLoved = false, wire, fitId }: { rows: V5Row[]; ratingLabel: string | null; opinions: [string, string]; markLoved?: boolean; wire?: AudioWire[]; fitId?: string | null }) {
+  const auto = useBestFit(rows, wire), bestId = fitId === undefined ? auto?.row.id : fitId;
   return <>{rows.map(r => { const total = r.pos + r.mix + r.neg;
     return <a key={r.id} className="rk5-row" href={th(r.href)}>
       <span className="rank">{r.rank}</span>
       <span className="pic">{r.pic ? <img src={r.pic} alt=""/> : <span className="th-ph" aria-hidden="true"/>}</span>
       <span className="mid">
         <span className="top"><span className="name">{r.name}</span>{r.shape && <span className="shape">{r.shape}</span>}
-          {best?.row.id === r.id && <span className="fit">Your best fit here</span>}</span>
+          {bestId === r.id && <span className="fit">Your best fit here</span>}</span>
         {r.line && <span className="line">{r.line}</span>}
         {(r.picked || (r.rating && ratingLabel)) && <span className="chips">
           {r.picked && <span className="pick"><i aria-hidden="true"/>{r.picked}</span>}

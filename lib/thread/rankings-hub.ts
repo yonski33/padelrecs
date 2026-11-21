@@ -48,3 +48,16 @@ export const AUDIO_HOW: { title: string; body: string[] }[] = [
   { title: "What is not used", body: ["Brand payments, affiliate commission and price. The order is the same for every visitor; your match picks only change the order on the home and catalogue pages."] },
   { title: "How often it updates", body: ["Review counts, opinions and pills on each row refresh every few hours."] },
 ];
+
+/** SkinRecs' "How rankings work" (v3 rollout 2026-11-21): the same honesty rules for its lists. No score anywhere. */
+export const SKIN_HOW: { title: string; body: string[] }[] = [
+  { title: "What counts", body: ["Reviews and votes left on SkinRecs, plus summaries of Reddit threads, YouTube reviews and blogs. Summaries are labelled and kept apart from votes cast here."] },
+  { title: "How the order is set", body: [
+    "The product type lists (moisturizers, cleansers, sunscreens and the rest) are ordered by reviews: how consistently people are happy with each product. A product needs enough reviews to be listed.",
+    "The skin need lists (sensitive skin, acne, dry and oily skin) come from the SkinRecs match, the same one the home uses for those picks: what people with that skin report. Each need has one list per product type, and a list needs a full 10.",
+  ] },
+  { title: "The pill on each row", body: ["A row says \"Gentle, no irritation · 14 people\" when that answer to \"How does it work for you?\" leads, with 5 or more people behind it. Otherwise the row shows no pill."] },
+  { title: "Opinions", body: ["Each row counts the opinions on a product: loved it, mixed or not for me. Counts only, never a score."] },
+  { title: "What is not used", body: ["Brand payments, affiliate commission and price. The order is the same for every visitor; your match picks only change the order on the home and catalogue pages."] },
+  { title: "How often it updates", body: ["Review counts, opinions and pills on each row refresh every few hours."] },
+];
