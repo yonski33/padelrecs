@@ -1980,3 +1980,9 @@ body:has(.th) .th .cp3-more a { text-decoration: none; color: var(--ink); font-s
   .cp3-win .r, .cp3-diffs > div { grid-template-columns: minmax(0,1fr); }
   .cp3-basics .grid { min-width: calc(110px + var(--n) * 140px); } .cp3-basics .r { grid-template-columns: 110px repeat(var(--n), minmax(0,1fr)); }
 }
+/* PadelRecs racket photos sit straight on the card (owner 2026-11-21): no white tile or border behind them. The border
+   only turns transparent, so every box keeps its size and rows don't shift; multiply turns a photo's baked-in white into
+   the card colour. One rule for every padel photo box; other sites keep their tiles. */
+.th.th-pr :is(.rk5-row .pic, .tc-ph, .tc-new-ph, .th-photo, .th-bigphoto, .th-ar-pic),
+body:has(.th) .th.th-pr .cp3-card a.pic { background: transparent; border-color: transparent; }
+.th.th-pr :is(.rk5-row .pic, .tc-ph, .tc-new-ph, .th-photo, .th-bigphoto, .th-ar-pic, .cp3-card .pic) img { mix-blend-mode: multiply; }
