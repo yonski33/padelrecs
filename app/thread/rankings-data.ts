@@ -11,6 +11,8 @@ import { rankHome } from "../../lib/home-rank";
 import { RANK_SETUP, NEGATIVE_TAGS } from "../../lib/rank-seed";
 import type { QuickChoice } from "../../lib/quick-match";
 import { niche } from "../../lib/niche";
+import { listOrder, voteOrder, VOTE_ORDER } from "../../lib/thread/vote-order";
+import { modelFamily } from "../../lib/compare-pairs";
 
 export type ThreadRanking = { slug: string; href: string; label: string; title: string; blurb: string; group: string; ids: string[]; own: boolean;
   /** The hub card's title inside its group ("Moisturizers" under "For sensitive skin"); else the label. */ short?: string;
@@ -61,7 +63,8 @@ export const threadRankings = cache(async (): Promise<ThreadRanking[]> => {
   if (!hasDb()) return [];
   // The racket engine's payload only where Thread-only pick lists use it (padel); skin ranks with its own engine below.
   const [lists, { all, ctx }, payload] = await Promise.all([threadLists(), threadRows(), PICKS.length ? homePayload() : null]);
-  const own = lists.map(l => ({ slug: l.slug, href: l.href, label: l.label, title: l.title, blurb: BLURB[l.slug] ?? l.description ?? "", own: true, ids: l.ids.slice(0, SIZE),
+  const byVotes = await votesFor(lists, all, ctx);
+  const own = lists.map(l => ({ slug: l.slug, href: l.href, label: l.label, title: l.title, blurb: BLURB[l.slug] ?? l.description ?? "", own: true, ids: byVotes.get(l.slug) ?? l.ids.slice(0, SIZE),
     group: SKIN ? (SKIN_NEEDS.some(n => n.hub === l.slug) ? HUBS : "By product type") : DG ? "By how you throw" : /power|control|spin/.test(l.slug) ? "By how you play" : "Most popular" }));
   const picks = PICKS.map(p => ({ slug: p.slug, href: `/rankings/${p.slug}`, label: p.label, title: `${p.title} ${YEAR()}`, blurb: BLURB[p.key], own: false, group: "Most popular",
     ids: rankHome(payload!.items, RANK_SETUP, NEGATIVE_TAGS, p.choice, false, SIZE).rows.map(r => r.id) }));
@@ -81,6 +84,21 @@ export const threadRankings = cache(async (): Promise<ThreadRanking[]> => {
   return out.map(l => { const need = SKIN_NEEDS.find(n => n.hub === l.slug);
     return need ? { ...l, group: HUBS, kids: skinSplits().filter(x => x.need.key === need.key && shown.has(x.slug)).map(x => x.slug) } : l; });
 });
+/** The lists set to "votes" in lib/thread/vote-order.ts (owner test 2026-11-21): their ids by the "Most picked for" count, from
+ *  the curated top 10 ("curated" pool) or every racket in the list's model-year window ("all"). Other lists: none. */
+async function votesFor(lists: Awaited<ReturnType<typeof threadLists>>, all: Awaited<ReturnType<typeof threadRows>>["all"], ctx: Awaited<ReturnType<typeof threadRows>>["ctx"]) {
+  const out = new Map<string, string[]>(), wanted = lists.flatMap(l => { const o = listOrder(niche.id, l.slug); return o?.order === "votes" && o.option ? [{ l, o }] : []; });
+  if (!wanted.length) return out;
+  const t = await traitCounts(), listed = new Map(ctx.data.listed.map(p => [p.id, p]));
+  for (const { l, o } of wanted) {
+    const cfg = niche.topLists?.find(x => x.slug === l.slug), oldest = cfg?.maxAgeYears === undefined ? -Infinity : YEAR() - cfg.maxAgeYears;
+    const pool = o.pool === "curated" ? l.ids.slice(0, SIZE).flatMap(id => all.filter(r => r.id === id)) : all.filter(r => r.year >= oldest);
+    const ids = voteOrder(pool.flatMap(r => { const p = listed.get(r.id); return p ? [{ id: r.id, name: r.name, family: modelFamily(p), year: r.year, reviews: r.n,
+      group: traitGroup(t, r.id, VOTE_ORDER.trait) }] : []; }), o.option!, { ...VOTE_ORDER, minReviews: cfg?.minReviews ?? VOTE_ORDER.minReviews });
+    if (ids.length >= 5) out.set(l.slug, ids);
+  }
+  return out;
+}
 /** SkinRecs' need hubs: pages of their own, not cards on the rankings hub (each need's heading links to its hub). */
 export const HUBS = "Skin needs";
 export const GROUPS = SKIN ? [...SKIN_NEEDS.map(n => n.group), "By product type"] : DG ? ["Most popular", "By how you throw"] : ["Most popular", "By how you play", "By shape"];
