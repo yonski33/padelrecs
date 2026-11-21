@@ -25,7 +25,9 @@ test("the home places JustIn after the mini-lists and before the latest reviews;
   assert.ok(home.indexOf("<JustIn") > home.indexOf("<TopPicks") && home.indexOf("<JustIn") < home.indexOf('<Feed key="fd"'));
   assert.equal(home.split("<JustIn").length, 2);
   assert.match(home, /\{PADEL && <JustIn key="ji"\/>\}/); // the v3 home also serves AudioRecs
-  for (const t of ["rackets just in", "All new rackets →", "Played with it? Be one of the first", "See reviews ›", "check price ↗", "Added "])
+  for (const t of ["rackets just in", "All new rackets →", "Played with it? Be one of the first", "See reviews ›", "Added "])
     assert.ok(c.includes(t), t);
+  // No price link on these cards (owner 2026-11-21); the racket page keeps its buy link.
+  assert.doesNotMatch(c, /check price|Affiliate link|amazonButton|ji-buy/i);
   assert.doesNotMatch(c.replace(/\/\/.*$/gm, ""), /—|\bowners?\b|\bverdict\b/i); // shown copy, not code comments
 });

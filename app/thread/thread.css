@@ -2138,9 +2138,6 @@ body:has(.th) .th a.ji-name:hover { color: var(--hover, var(--ink)); text-decora
 body:has(.th) .th a.ji-first { font-size: 13px; font-weight: 600; color: var(--ink2); text-decoration: underline; text-underline-offset: 3px; }
 .ji-foot { margin-top: auto; display: flex; align-items: flex-start; justify-content: space-between; gap: 6px 10px; flex-wrap: wrap; padding-top: 4px; }
 body:has(.th) .th a.ji-go { font-size: 14px; font-weight: 700; color: var(--ink); text-decoration: none; }
-.ji-buy { display: flex; flex-direction: column; align-items: flex-end; gap: 1px; }
-body:has(.th) .th .ji-buy a { font-size: 13.5px; font-weight: 700; color: var(--ink); text-decoration: underline; text-underline-offset: 3px; }
-.ji-buy small { font-size: 11px; color: var(--ink2); }
 @media (max-width: 759px) {
   .ji-row { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; gap: 10px; margin: 0 -16px; padding: 0 16px 6px;
     scrollbar-width: thin; overscroll-behavior-x: contain; }
