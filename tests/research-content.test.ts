@@ -1,13 +1,14 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import padel from "../db/racket-page/padel.json";
+import skin from "../db/racket-page/skin.json";
 import type { PageContent } from "../lib/racket-page";
 
 // Research content (owner 2026-11-16): products with under 4 player reports, written from published reviews and specs. Every
 // line cites 2+ web pages on distinct domains (never a homepage or search page); player-report content never holds URLs.
 const dom = (u: string) => new URL(u).hostname.replace(/^(www|m)\./, "").split(".").slice(-2).join(".");
 test("research rows cite 2+ distinct-domain web pages per line; player rows never cite URLs", () => {
-  for (const [slug, v] of Object.entries(padel as Record<string, PageContent>)) {
+  for (const [slug, v] of Object.entries({ ...padel, ...skin } as Record<string, Pick<PageContent, "yes" | "no" | "source">>)) {
     for (const i of [...v.yes, ...v.no]) {
       const urls = i.src.filter(s => /^https?:\/\//.test(s));
       if (v.source === "research") {

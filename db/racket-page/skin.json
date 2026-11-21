@@ -27642,5 +27642,1669 @@
     ]
    }
   ]
+ },
+ "cosrx-the-niacinamide-15-serum": {
+  "bottom": "A high-strength 15% niacinamide serum with zinc PCA for oily and combination skin. It sinks in fast with no film. It can sting reactive skin.",
+  "yes": [
+   {
+    "title": "Shine in check",
+    "t": "Afternoon oil looks ==visibly calmer== on oily and combination faces after a few weeks.",
+    "src": [
+     "https://www.mirai-skin.com/blogs/mirai-skin-reviews/cosrx-the-niacinamide-15-serum-review",
+     "https://www.cottonskylab.com/post/cosrx-15-niacinamide",
+     "https://www.cosrx.com/products/the-niacinamide-15-serum-%eb%b2%88%eb%93%a4"
+    ],
+    "for": [
+     "oily",
+     "matte"
+    ]
+   },
+   {
+    "title": "Weightless layer",
+    "t": "A watery serum that ==sinks in fast== and leaves no film under makeup.",
+    "src": [
+     "https://www.mirai-skin.com/blogs/mirai-skin-reviews/cosrx-the-niacinamide-15-serum-review",
+     "https://www.cottonskylab.com/post/cosrx-15-niacinamide",
+     "https://chanhtuoi.com/serum-cosrx-niacinamide-15.html"
+    ],
+    "for": [
+     "light"
+    ]
+   },
+   {
+    "title": "Short, plain formula",
+    "t": "Fifteen ingredients with ==no fragrance or drying alcohol== on the list.",
+    "src": [
+     "https://incidecoder.com/products/cosrx-the-niacinamide-15-serum",
+     "https://www.cosrx.com/products/the-niacinamide-15-serum-%eb%b2%88%eb%93%a4",
+     "https://www.beautydecoded.com/en/products/cosrx/the-niacinamide-15-serum/"
+    ],
+    "for": [
+     "sensitive"
+    ]
+   }
+  ],
+  "no": [
+   {
+    "title": "Can sting",
+    "t": "At 15%, it ==can flush or tingle== on reactive skin, more so on damp skin.",
+    "src": [
+     "https://www.mirai-skin.com/blogs/mirai-skin-reviews/cosrx-the-niacinamide-15-serum-review",
+     "https://www.beautydecoded.com/en/products/cosrx/the-niacinamide-15-serum/",
+     "https://chanhtuoi.com/serum-cosrx-niacinamide-15.html"
+    ],
+    "for": [
+     "sensitive"
+    ],
+    "alt": {
+     "slug": "axis-y-dark-spot-correcting-glow-serum",
+     "t": "Want a gentler start? The AXIS-Y Dark Spot Correcting Glow Serum uses 5% niacinamide.",
+     "src": [
+      "https://www.mirai-skin.com/blogs/mirai-skin-reviews/cosrx-the-niacinamide-15-serum-review",
+      "https://www.beautydecoded.com/en/products/cosrx/the-niacinamide-15-serum/"
+     ]
+    }
+   },
+   {
+    "title": "Small bottle",
+    "t": "It holds ==20 ml, not the usual 30 ml==, so it goes faster than it looks.",
+    "src": [
+     "https://www.mirai-skin.com/blogs/mirai-skin-reviews/cosrx-the-niacinamide-15-serum-review",
+     "https://www.cosrx.com/products/the-niacinamide-15-serum-%eb%b2%88%eb%93%a4"
+    ],
+    "for": []
+   }
+  ],
+  "source": "research"
+ },
+ "eltamd-skin-recovery-light-moisturizer": {
+  "bottom": "A light, fragrance-free gel-cream that sits well under sunscreen and makeup. It suits oily, combination and sensitive skin. Very dry skin will want something richer.",
+  "yes": [
+   {
+    "title": "Easy under SPF",
+    "t": "The silky lotion ==layers without pilling== under sunscreen and makeup.",
+    "src": [
+     "https://www.lovelyskin.com/o/reviews/eltamd-skin-recovery-light-moisturizer",
+     "https://shop.ellemesmedspa.com/pages/eltamd-skin-recovery-light-moisturizer-reviews",
+     "https://www.amazon.com/EltaMD-Recovery-Moisturizer-Hyaluronic-Fragrance/dp/B08DD1DVXP"
+    ],
+    "for": [
+     "light"
+    ]
+   },
+   {
+    "title": "No added shine",
+    "t": "Oily and combination skin gets moisture ==without a greasy finish== or clogged feel.",
+    "src": [
+     "https://www.lovelyskin.com/o/reviews/eltamd-skin-recovery-light-moisturizer",
+     "https://shop.ellemesmedspa.com/pages/eltamd-skin-recovery-light-moisturizer-reviews"
+    ],
+    "for": [
+     "oily",
+     "combination"
+    ]
+   },
+   {
+    "title": "Gentle formula",
+    "t": "It is ==fragrance-free and alcohol-free==, which suits skin that reacts easily.",
+    "src": [
+     "https://incidecoder.com/products/eltamd-skin-recovery-light-moisturizer",
+     "https://www.lovelyskin.com/o/eltamd-skin-recovery-light-moisturizer"
+    ],
+    "for": [
+     "sensitive"
+    ]
+   }
+  ],
+  "no": [
+   {
+    "title": "Too thin for some",
+    "t": "On dry or mature skin it ==may not hold moisture overnight== without a richer cream.",
+    "src": [
+     "https://www.lovelyskin.com/o/reviews/eltamd-skin-recovery-light-moisturizer",
+     "https://shop.ellemesmedspa.com/pages/eltamd-skin-recovery-light-moisturizer-reviews"
+    ],
+    "for": [
+     "dry"
+    ],
+    "alt": {
+     "slug": "cerave-moisturizing-cream",
+     "t": "Need more richness? The CeraVe Moisturizing Cream is a thicker, fragrance-free ceramide cream.",
+     "src": [
+      "https://www.lovelyskin.com/o/reviews/eltamd-skin-recovery-light-moisturizer",
+      "https://shop.ellemesmedspa.com/pages/eltamd-skin-recovery-light-moisturizer-reviews"
+     ]
+    }
+   },
+   {
+    "title": "Odd scent",
+    "t": "Though fragrance-free, it ==can smell sharp or chemical== to some noses.",
+    "src": [
+     "https://shop.ellemesmedspa.com/pages/eltamd-skin-recovery-light-moisturizer-reviews",
+     "https://www.amazon.com/EltaMD-Recovery-Moisturizer-Hyaluronic-Fragrance/dp/B08DD1DVXP"
+    ],
+    "for": []
+   },
+   {
+    "title": "Runny texture",
+    "t": "It is ==more fluid than a typical cream==, which not everyone likes.",
+    "src": [
+     "https://shop.ellemesmedspa.com/pages/eltamd-skin-recovery-light-moisturizer-reviews",
+     "https://www.amazon.com/EltaMD-Recovery-Moisturizer-Hyaluronic-Fragrance/dp/B08DD1DVXP"
+    ],
+    "for": []
+   }
+  ],
+  "source": "research"
+ },
+ "eltamd-skin-recovery-amino-acid-foaming-cleanser": {
+  "bottom": "A soft, sulfate-free foam that cleans without stripping. It suits sensitive and easily irritated skin. The scent and bottle are the weak spots.",
+  "yes": [
+   {
+    "title": "Cloud-like foam",
+    "t": "It ==comes out of the pump already frothy==, so there is no lathering step.",
+    "src": [
+     "https://www.nytimes.com/wirecutter/reviews/best-facial-cleansers/",
+     "https://www.cosmopolitan.com/style-beauty/a61675873/the-3-step-eltamd-routine-helping-me-achieve-all-my-healthy-skin-goals/"
+    ],
+    "for": []
+   },
+   {
+    "title": "Soft, not squeaky",
+    "t": "Skin is left ==clean but comfortable==, even around the eyes.",
+    "src": [
+     "https://www.nytimes.com/wirecutter/reviews/best-facial-cleansers/",
+     "https://www.cosmopolitan.com/style-beauty/a61675873/the-3-step-eltamd-routine-helping-me-achieve-all-my-healthy-skin-goals/",
+     "https://shop.ellemesmedspa.com/pages/foaming-facial-cleanser-reviews"
+    ],
+    "for": [
+     "sensitive",
+     "dry"
+    ]
+   },
+   {
+    "title": "Lifts SPF and makeup",
+    "t": "One wash ==takes off sunscreen and makeup== along with excess oil.",
+    "src": [
+     "https://www.cosmopolitan.com/style-beauty/a61675873/the-3-step-eltamd-routine-helping-me-achieve-all-my-healthy-skin-goals/",
+     "https://www.newbeauty.com/view/eltamd-skin-recovery-amino-acid-foaming-cleanser-review"
+    ],
+    "for": []
+   }
+  ],
+  "no": [
+   {
+    "title": "Faint scent",
+    "t": "Though fragrance-free, it ==carries a faint medicinal smell== some noses notice.",
+    "src": [
+     "https://www.nytimes.com/wirecutter/reviews/best-facial-cleansers/",
+     "https://shop.ellemesmedspa.com/pages/foaming-facial-cleanser-reviews"
+    ],
+    "for": [],
+    "alt": {
+     "slug": "vanicream-gentle-facial-cleanser",
+     "t": "Want a plainer wash? The Vanicream Gentle Facial Cleanser is a fragrance-free pick for sensitive skin.",
+     "src": [
+      "https://www.nytimes.com/wirecutter/reviews/best-facial-cleansers/",
+      "https://shop.ellemesmedspa.com/pages/foaming-facial-cleanser-reviews"
+     ]
+    }
+   },
+   {
+    "title": "Flimsy bottle",
+    "t": "The plastic pump ==can feel cheap and loosen== in a travel bag.",
+    "src": [
+     "https://www.nytimes.com/wirecutter/reviews/best-facial-cleansers/",
+     "https://www.lovelyskin.com/o/eltamd-skin-recovery-amino-acid-foaming-cleanser"
+    ],
+    "for": []
+   }
+  ],
+  "source": "research"
+ },
+ "starface-star-wash-salicylic-acid": {
+  "bottom": "A light salicylic acid foam for oily skin that breaks out easily. It leaves skin matte but not tight. Sensitive skin should ease in slowly.",
+  "yes": [
+   {
+    "title": "Clean, not tight",
+    "t": "Skin feels ==soft rather than stripped== after washing, even with daily use.",
+    "src": [
+     "https://www.glamour.com/gallery/best-face-washes-for-acne",
+     "https://starface.world/products/star-wash-salicylic-acid",
+     "https://www.amazon.com/Starface-Star-Wash%C2%AE-Foaming-Cleanser/dp/B0FCVGBVX2"
+    ],
+    "for": [
+     "oily",
+     "combination"
+    ]
+   },
+   {
+    "title": "Matte finish",
+    "t": "Oily skin ==stays shine-free longer== after a few washes.",
+    "src": [
+     "https://www.glamour.com/gallery/best-face-washes-for-acne",
+     "https://www.popsugar.com/beauty/starface-moisturizer-face-wash-review-49442586"
+    ],
+    "for": [
+     "oily",
+     "matte"
+    ]
+   },
+   {
+    "title": "No added scent",
+    "t": "The formula is ==fragrance-free and alcohol-free==, with a shimmer that rinses away.",
+    "src": [
+     "https://incidecoder.com/products/starface-star-wash-salicylic-acid",
+     "https://www.glamour.com/gallery/best-face-washes-for-acne",
+     "https://starface.world/products/star-wash-salicylic-acid"
+    ],
+    "for": [
+     "sensitive"
+    ]
+   }
+  ],
+  "no": [
+   {
+    "title": "Split on cleanup",
+    "t": "Splits opinion: ==some find it clears makeup==, others still need a separate remover.",
+    "src": [
+     "https://www.popsugar.com/beauty/starface-moisturizer-face-wash-review-49442586",
+     "https://www.sowhatsowhat.com/blog/my-new-favorite-cleanser-and-moisturizer"
+    ],
+    "for": [],
+    "alt": {
+     "slug": "bioderma-sensibio-h2o-micellar-water",
+     "t": "Want a first cleanse? The Bioderma Sensibio H2O Micellar Water is a fragrance-free remover.",
+     "src": [
+      "https://www.popsugar.com/beauty/starface-moisturizer-face-wash-review-49442586",
+      "https://www.sowhatsowhat.com/blog/my-new-favorite-cleanser-and-moisturizer"
+     ]
+    }
+   },
+   {
+    "title": "Ease in slowly",
+    "t": "The salicylic acid ==can feel too active at first==, and a few skins break out early on.",
+    "src": [
+     "https://www.popsugar.com/beauty/starface-moisturizer-face-wash-review-49442586",
+     "https://www.amazon.com/Starface-Star-Wash%C2%AE-Foaming-Cleanser/dp/B0FCVGBVX2"
+    ],
+    "for": [
+     "sensitive"
+    ],
+    "alt": {
+     "slug": "vanicream-gentle-facial-cleanser",
+     "t": "Too much for your skin? The Vanicream Gentle Facial Cleanser is a fragrance-free, acid-free wash.",
+     "src": [
+      "https://www.popsugar.com/beauty/starface-moisturizer-face-wash-review-49442586",
+      "https://www.amazon.com/Starface-Star-Wash%C2%AE-Foaming-Cleanser/dp/B0FCVGBVX2"
+     ]
+    }
+   }
+  ],
+  "source": "research"
+ },
+ "mario-badescu-super-collagen-mask": {
+  "bottom": "A kaolin clay mask with oat and collagen that leaves skin smoother and brighter. It suits combination and normal skin. Skip it if fragrance or very dry skin is a concern.",
+  "yes": [
+   {
+    "title": "Smoother after rinse",
+    "t": "Skin looks ==softer and brighter== once the 20-minute mask comes off.",
+    "src": [
+     "https://shopping.yahoo.com/beauty/skincare/review/mario-badescu-super-collagen-mask-review-155441490.html",
+     "https://www.instyle.com/best-clay-masks-7106797"
+    ],
+    "for": [
+     "combination",
+     "normal"
+    ]
+   },
+   {
+    "title": "Firm, not harsh",
+    "t": "It ==tightens as it sets== without turning uncomfortable or stripping.",
+    "src": [
+     "https://shopping.yahoo.com/beauty/skincare/review/mario-badescu-super-collagen-mask-review-155441490.html",
+     "https://www.instyle.com/best-clay-masks-7106797"
+    ],
+    "for": [
+     "combination"
+    ]
+   },
+   {
+    "title": "Clay plus oat",
+    "t": "Kaolin ==sits alongside oat flour and collagen== in this simple formula.",
+    "src": [
+     "https://incidecoder.com/products/mario-badescu-super-collagen-mask",
+     "https://shopping.yahoo.com/beauty/skincare/review/mario-badescu-super-collagen-mask-review-155441490.html"
+    ],
+    "for": []
+   }
+  ],
+  "no": [
+   {
+    "title": "Added fragrance",
+    "t": "It ==contains parfum==, which can bother reactive skin.",
+    "src": [
+     "https://shopping.yahoo.com/beauty/skincare/review/mario-badescu-super-collagen-mask-review-155441490.html",
+     "https://www.instyle.com/best-clay-masks-7106797",
+     "https://incidecoder.com/products/mario-badescu-super-collagen-mask"
+    ],
+    "for": [
+     "sensitive"
+    ],
+    "alt": {
+     "slug": "beauty-of-joseon-red-bean-refreshing-pore-mask",
+     "t": "Want clay without scent? The Beauty of Joseon Red Bean Refreshing Pore Mask is fragrance-free.",
+     "src": [
+      "https://shopping.yahoo.com/beauty/skincare/review/mario-badescu-super-collagen-mask-review-155441490.html",
+      "https://www.instyle.com/best-clay-masks-7106797"
+     ]
+    }
+   },
+   {
+    "title": "Can leave a pull",
+    "t": "Very dry skin ==can feel parched== after the clay sets.",
+    "src": [
+     "https://shopping.yahoo.com/beauty/skincare/review/mario-badescu-super-collagen-mask-review-155441490.html",
+     "https://achieveyourbestskin.com/2022/11/review-mario-badescu-super-collagen-mask/"
+    ],
+    "for": [
+     "dry"
+    ],
+    "alt": {
+     "slug": "torriden-dive-in-mask",
+     "t": "Very dry skin? The Torriden DIVE-IN Mask is a fragrance-free hyaluronic acid sheet mask.",
+     "src": [
+      "https://shopping.yahoo.com/beauty/skincare/review/mario-badescu-super-collagen-mask-review-155441490.html",
+      "https://achieveyourbestskin.com/2022/11/review-mario-badescu-super-collagen-mask/"
+     ]
+    }
+   },
+   {
+    "title": "Dated formula",
+    "t": "The list ==keeps parabens and dyes== many newer masks leave out.",
+    "src": [
+     "https://shopping.yahoo.com/beauty/skincare/review/mario-badescu-super-collagen-mask-review-155441490.html",
+     "https://incidecoder.com/products/mario-badescu-super-collagen-mask"
+    ],
+    "for": []
+   }
+  ],
+  "source": "research"
+ },
+ "bioderma-hydrabio-toner": {
+  "bottom": "A watery toner with niacinamide and glycerin for dehydrated and combination skin. It feels fresh and mild. Very dry skin needs a cream after, and it contains fragrance.",
+  "yes": [
+   {
+    "title": "Water-light feel",
+    "t": "It ==absorbs fast with no sticky film==, so layering it is easy.",
+    "src": [
+     "https://unpa.me/products/74919-hydrabio-toner",
+     "https://www.beaute-test.com/produit/109871-hydrabio-tonique-bioderma"
+    ],
+    "for": [
+     "light",
+     "combination"
+    ]
+   },
+   {
+    "title": "Fresh and mild",
+    "t": "It ==leaves skin cool and fresh== and rarely feels harsh.",
+    "src": [
+     "https://www.beaute-test.com/produit/109871-hydrabio-tonique-bioderma",
+     "https://unpa.me/products/74919-hydrabio-toner"
+    ],
+    "for": [
+     "calm"
+    ]
+   }
+  ],
+  "no": [
+   {
+    "title": "Contains fragrance",
+    "t": "The formula ==lists added parfum==, which can bother reactive skin.",
+    "src": [
+     "https://incidecoder.com/products/bioderma-hydrabio-tonique",
+     "https://www.beaute-test.com/produit/109871-hydrabio-tonique-bioderma"
+    ],
+    "for": [
+     "sensitive"
+    ],
+    "alt": {
+     "slug": "anua-heartleaf-77-soothing-toner",
+     "t": "Want it scent-free? The Anua Heartleaf 77% Soothing Toner is a fragrance-free hydrating toner.",
+     "src": [
+      "https://incidecoder.com/products/bioderma-hydrabio-tonique",
+      "https://www.beaute-test.com/produit/109871-hydrabio-tonique-bioderma"
+     ]
+    }
+   },
+   {
+    "title": "Not enough alone",
+    "t": "On very dry skin, ==one layer can leave it dry==, so a cream helps.",
+    "src": [
+     "https://www.beaute-test.com/produit/109871-hydrabio-tonique-bioderma",
+     "https://unpa.me/products/74919-hydrabio-toner"
+    ],
+    "for": [
+     "dry"
+    ],
+    "alt": {
+     "slug": "byoma-milky-toner",
+     "t": "Need more cushion? The Byoma Milky Toner adds ceramides and suits dry, sensitive skin.",
+     "src": [
+      "https://www.beaute-test.com/produit/109871-hydrabio-tonique-bioderma",
+      "https://unpa.me/products/74919-hydrabio-toner"
+     ]
+    }
+   }
+  ],
+  "source": "research"
+ },
+ "hada-labo-tokyo-age-correcting-eye-cream": {
+  "bottom": "A light, fragrance-free eye cream with hyaluronic acid and caffeine. It hydrates and freshens puffy mornings. Do not expect much change in fine lines.",
+  "yes": [
+   {
+    "title": "Quick to absorb",
+    "t": "The thin cream ==disappears almost on contact== and stays non-greasy.",
+    "src": [
+     "https://kosmetista.ru/blog/uhodovaya-kosmetika/85447.html",
+     "https://www.amazon.com/Hada-Labo-Tokyo-Correcting-Cream/dp/B00OFTIP86"
+    ],
+    "for": [
+     "light"
+    ]
+   },
+   {
+    "title": "Wake-up boost",
+    "t": "Caffeine in the mix can ==make puffy eyes look fresher== in the morning.",
+    "src": [
+     "https://kosmetista.ru/blog/uhodovaya-kosmetika/85447.html",
+     "https://incidecoder.com/products/hada-labo-tokyo-eye-cream"
+    ],
+    "for": []
+   },
+   {
+    "title": "No added scent",
+    "t": "It is ==fragrance-free and alcohol-free==, a plus this close to the eyes.",
+    "src": [
+     "https://incidecoder.com/products/hada-labo-tokyo-eye-cream",
+     "https://kosmetista.ru/blog/uhodovaya-kosmetika/85447.html"
+    ],
+    "for": [
+     "sensitive"
+    ]
+   }
+  ],
+  "no": [
+   {
+    "title": "Little for lines",
+    "t": "It mostly ==hydrates rather than smooths== established fine lines.",
+    "src": [
+     "https://kosmetista.ru/blog/uhodovaya-kosmetika/85447.html",
+     "https://www.amazon.com/Hada-Labo-Tokyo-Correcting-Cream/dp/B00OFTIP86"
+    ],
+    "for": [],
+    "alt": {
+     "slug": "the-inkey-list-retinol-eye-cream",
+     "t": "Want more for lines? The INKEY List Retinol Eye Cream adds 3% Vitalease retinol.",
+     "src": [
+      "https://kosmetista.ru/blog/uhodovaya-kosmetika/85447.html",
+      "https://www.amazon.com/Hada-Labo-Tokyo-Correcting-Cream/dp/B00OFTIP86"
+     ]
+    }
+   },
+   {
+    "title": "Use a tiny amount",
+    "t": "Splits opinion: ==some find it rolls under makeup== if overapplied, others see no pilling.",
+    "src": [
+     "https://kosmetista.ru/blog/uhodovaya-kosmetika/85447.html",
+     "https://www.amazon.com/Hada-Labo-Tokyo-Correcting-Cream/dp/B00OFTIP86"
+    ],
+    "for": []
+   }
+  ],
+  "source": "research"
+ },
+ "cetaphil-deep-hydration-refreshing-eye-serum": {
+  "bottom": "A light, fragrance-free hyaluronic acid eye serum for dry, easily irritated under-eyes. It sits well under concealer. A few skins react, so patch test first.",
+  "yes": [
+   {
+    "title": "Under-eye comfort",
+    "t": "Dry under-eyes ==stay hydrated for hours==, not just right after applying.",
+    "src": [
+     "https://www.today.com/shop/cetaphil-deep-hydration-eye-serum-review-rcna103770",
+     "https://www.cetaphil.com/us/products/product-categories/eye-creams/deep-hydration-refreshing-eye-serum/302990100624.html",
+     "https://www.amazon.com/Hydration-Refreshing-Hyaluronic-Dermatologist-Recommended/dp/B0897V6H9C/ref=mp_s_a_1_3?crid=37W6RDIF2SEPG&keywords=deep+hydration+eye+cream&qid=1682918855&sprefix=deep+hydra%2Caps%2C148&sr=8-3"
+    ],
+    "for": [
+     "dry",
+     "hydrate"
+    ]
+   },
+   {
+    "title": "Concealer-friendly",
+    "t": "The light lotion ==absorbs fast and lets makeup sit== without creasing.",
+    "src": [
+     "https://www.today.com/shop/cetaphil-deep-hydration-eye-serum-review-rcna103770",
+     "https://www.realsimple.com/cetaphil-deep-hydration-refreshing-eye-serum-amazon-november-2025-11848899",
+     "https://www.amazon.com/Hydration-Refreshing-Hyaluronic-Dermatologist-Recommended/dp/B0897V6H9C/ref=mp_s_a_1_3?crid=37W6RDIF2SEPG&keywords=deep+hydration+eye+cream&qid=1682918855&sprefix=deep+hydra%2Caps%2C148&sr=8-3"
+    ],
+    "for": [
+     "light"
+    ]
+   },
+   {
+    "title": "No fragrance",
+    "t": "It is ==fragrance-free and alcohol-free==, gentle for the eye area.",
+    "src": [
+     "https://incidecoder.com/products/cetaphil-deep-hydration-refreshing-eye-serum",
+     "https://www.cetaphil.com/us/products/product-categories/eye-creams/deep-hydration-refreshing-eye-serum/302990100624.html"
+    ],
+    "for": [
+     "sensitive"
+    ]
+   }
+  ],
+  "no": [
+   {
+    "title": "Reactions happen",
+    "t": "A few eyes ==burn or swell== after use, so patch test first.",
+    "src": [
+     "https://www.cetaphil.com/us/products/product-categories/eye-creams/deep-hydration-refreshing-eye-serum/302990100624.html",
+     "https://www.amazon.com/Hydration-Refreshing-Hyaluronic-Dermatologist-Recommended/dp/B0897V6H9C/ref=mp_s_a_1_3?crid=37W6RDIF2SEPG&keywords=deep+hydration+eye+cream&qid=1682918855&sprefix=deep+hydra%2Caps%2C148&sr=8-3"
+    ],
+    "for": [
+     "sensitive"
+    ],
+    "alt": {
+     "slug": "the-inkey-list-caffeine-eye-cream",
+     "t": "Want a simpler pick? The INKEY List Caffeine Eye Cream is fragrance-free and made for sensitive skin.",
+     "src": [
+      "https://www.cetaphil.com/us/products/product-categories/eye-creams/deep-hydration-refreshing-eye-serum/302990100624.html",
+      "https://www.amazon.com/Hydration-Refreshing-Hyaluronic-Dermatologist-Recommended/dp/B0897V6H9C/ref=mp_s_a_1_3?crid=37W6RDIF2SEPG&keywords=deep+hydration+eye+cream&qid=1682918855&sprefix=deep+hydra%2Caps%2C148&sr=8-3"
+     ]
+    }
+   },
+   {
+    "title": "Fine lines",
+    "t": "Splits opinion: ==some find lines look softer==, others mainly notice hydration.",
+    "src": [
+     "https://www.today.com/shop/cetaphil-deep-hydration-eye-serum-review-rcna103770",
+     "https://www.cetaphil.com/us/products/product-categories/eye-creams/deep-hydration-refreshing-eye-serum/302990100624.html"
+    ],
+    "for": []
+   }
+  ],
+  "source": "research"
+ },
+ "anua-heartleaf-77-clear-pad": {
+  "bottom": "Two-sided toner pads with 77% heartleaf and a mild PHA for daily smoothing. They suit oily, combination and redness-prone skin. Results are gentle, not dramatic.",
+  "yes": [
+   {
+    "title": "Gentle smoothing",
+    "t": "The textured side and PHA ==smooth skin over a couple of weeks== without scratching.",
+    "src": [
+     "https://www.mirai-skin.com/blogs/mirai-skin-reviews/anua-heartleaf-clear-pad-review",
+     "https://kaoriskincarejournal.wordpress.com/2024/03/29/my-honest-unsponsored-review-on-anua-heartleaf-77-clear-pad/",
+     "https://reviewgalore.blogspot.com/2025/02/review-anua-heartleaf-77-clear-pad.html"
+    ],
+    "for": [
+     "combination",
+     "oily"
+    ]
+   },
+   {
+    "title": "Calm-feeling swipe",
+    "t": "Heartleaf and centella ==can feel calming== on redness-prone cheeks.",
+    "src": [
+     "https://www.mirai-skin.com/blogs/mirai-skin-reviews/anua-heartleaf-clear-pad-review",
+     "https://kaoriskincarejournal.wordpress.com/2024/03/29/my-honest-unsponsored-review-on-anua-heartleaf-77-clear-pad/"
+    ],
+    "for": [
+     "calm",
+     "sensitive"
+    ]
+   },
+   {
+    "title": "No fragrance",
+    "t": "The formula is ==fragrance-free and alcohol-free==.",
+    "src": [
+     "https://incidecoder.com/products/anua-heartleaf-77-clear-pad",
+     "https://pages.anua.com/products/heartleaf-77-toner-pad-160ml"
+    ],
+    "for": [
+     "sensitive"
+    ]
+   }
+  ],
+  "no": [
+   {
+    "title": "Mild results",
+    "t": "Change is ==slow and subtle==, not a strong resurfacing effect.",
+    "src": [
+     "https://www.mirai-skin.com/blogs/mirai-skin-reviews/anua-heartleaf-clear-pad-review",
+     "https://reviewgalore.blogspot.com/2025/02/review-anua-heartleaf-77-clear-pad.html"
+    ],
+    "for": [],
+    "alt": {
+     "slug": "glow-recipe-watermelon-glow-pha-bha-pore-tight-toner",
+     "t": "Want more exfoliation? The Glow Recipe Watermelon Glow PHA + BHA Pore-Tight Toner adds BHA.",
+     "src": [
+      "https://www.mirai-skin.com/blogs/mirai-skin-reviews/anua-heartleaf-clear-pad-review",
+      "https://reviewgalore.blogspot.com/2025/02/review-anua-heartleaf-77-clear-pad.html"
+     ]
+    }
+   },
+   {
+    "title": "Don't stack acids",
+    "t": "It is best ==kept apart from retinol and strong acids== to avoid overdoing it.",
+    "src": [
+     "https://www.mirai-skin.com/blogs/mirai-skin-reviews/anua-heartleaf-clear-pad-review",
+     "https://reviewgalore.blogspot.com/2025/02/review-anua-heartleaf-77-clear-pad.html"
+    ],
+    "for": [
+     "sensitive"
+    ]
+   }
+  ],
+  "source": "research"
+ },
+ "naturium-glycolic-acid-resurfacing-gel-10": {
+  "bottom": "A light 10% glycolic gel for smoother, brighter-looking skin. It can redden at first, so build up slowly. The label calls for daily sunscreen while you use it.",
+  "yes": [
+   {
+    "title": "Light, quick-sinking gel",
+    "t": "Spreads thin and ==leaves no sticky film==, so moisturizer layers on easily.",
+    "src": [
+     "https://www.spacenk.com/us/skincare/treatment/peels/glycolic-acid-resurfacing-gel-10-MUK200036499.html",
+     "https://gopicky.com/product/35455/naturium-glycolic-acid-resurfacing-gel-10"
+    ],
+    "for": [
+     "light",
+     "oily"
+    ]
+   },
+   {
+    "title": "Evens dull, marked skin",
+    "t": "Regular use ==smooths texture and fades marks== for a fresher look.",
+    "src": [
+     "https://www.spacenk.com/us/skincare/treatment/peels/glycolic-acid-resurfacing-gel-10-MUK200036499.html",
+     "https://gopicky.com/product/35455/naturium-glycolic-acid-resurfacing-gel-10"
+    ],
+    "for": []
+   },
+   {
+    "title": "Simple acid formula",
+    "t": "Pairs 10% glycolic with ==fruit extracts and hyaluronate==, and no added fragrance.",
+    "src": [
+     "https://naturium.com/products/glycolic-acid-resurfacing-gel-10",
+     "https://incidecoder.com/products/naturium-glycolic-acid-resurfacing-gel-10"
+    ],
+    "for": []
+   }
+  ],
+  "no": [
+   {
+    "title": "Redness at first",
+    "t": "Skin ==can flush pink right after applying==, though it tends to settle.",
+    "src": [
+     "https://gopicky.com/product/35455/naturium-glycolic-acid-resurfacing-gel-10",
+     "https://naturium.com/products/glycolic-acid-resurfacing-gel-10"
+    ],
+    "for": [
+     "sensitive"
+    ]
+   },
+   {
+    "title": "Go easy on frequency",
+    "t": "Nightly use ==can bring breakouts==, so keep it to a few nights a week.",
+    "src": [
+     "https://www.spacenk.com/us/skincare/treatment/peels/glycolic-acid-resurfacing-gel-10-MUK200036499.html",
+     "https://gopicky.com/product/35455/naturium-glycolic-acid-resurfacing-gel-10"
+    ],
+    "for": [
+     "acne"
+    ]
+   }
+  ],
+  "source": "research"
+ },
+ "axis-y-vegan-collagen-eye-serum": {
+  "bottom": "A light, scent-free eye serum with a cooling roller tip that sits well under concealer. Expect hydration more than big changes in lines. Patch test if your eye area reddens easily.",
+  "yes": [
+   {
+    "title": "Cooling roller tip",
+    "t": "Pump once, then the metal ball ==feels cold as it spreads== the serum.",
+    "src": [
+     "https://hikoco.com/blogs/hilog/hi-review-axis-y-vegan-collagen-eye-serum",
+     "https://www.thepinkperfectionist.be/beauty/axis-y-vegan-collagen-eye-serum-review/",
+     "https://sn.iherb.com/r/axis-y-vegan-collagen-eye-serum-0-33-fl-oz-10-ml/148962"
+    ],
+    "for": []
+   },
+   {
+    "title": "Behaves under concealer",
+    "t": "Absorbs fast, so ==concealer stays smooth without creasing== later on.",
+    "src": [
+     "https://www.thepinkperfectionist.be/beauty/axis-y-vegan-collagen-eye-serum-review/",
+     "https://hikoco.com/blogs/hilog/hi-review-axis-y-vegan-collagen-eye-serum",
+     "https://sn.iherb.com/r/axis-y-vegan-collagen-eye-serum-0-33-fl-oz-10-ml/148962"
+    ],
+    "for": []
+   },
+   {
+    "title": "No added scent",
+    "t": "Leaves out added fragrance, ==a plus for a fussy eye area==.",
+    "src": [
+     "https://www.thepinkperfectionist.be/beauty/axis-y-vegan-collagen-eye-serum-review/",
+     "https://sn.iherb.com/r/axis-y-vegan-collagen-eye-serum-0-33-fl-oz-10-ml/148962"
+    ],
+    "for": [
+     "sensitive",
+     "light"
+    ]
+   }
+  ],
+  "no": [
+   {
+    "title": "Subtle on fine lines",
+    "t": "Feels hydrating, but ==visible change in lines can be modest==.",
+    "src": [
+     "https://sn.iherb.com/r/axis-y-vegan-collagen-eye-serum-0-33-fl-oz-10-ml/148962",
+     "https://jolse.com/article/product-review/4/233351/"
+    ],
+    "for": []
+   },
+   {
+    "title": "Can redden reactive eyes",
+    "t": "Mild burning or redness ==can show up on touchy skin==; patch test first.",
+    "src": [
+     "https://sn.iherb.com/r/axis-y-vegan-collagen-eye-serum-0-33-fl-oz-10-ml/148962",
+     "https://jolse.com/article/product-review/4/233351/"
+    ],
+    "for": [
+     "sensitive"
+    ]
+   }
+  ],
+  "source": "research"
+ },
+ "cetaphil-healthy-renew-night-cream": {
+  "bottom": "A fragrance-free night cream with peptides, niacinamide and panthenol instead of retinol. Leaves dry skin soft and hydrated by morning. Its scent and thick feel split opinion.",
+  "yes": [
+   {
+    "title": "Soft skin by morning",
+    "t": "Wakes up ==feeling hydrated and smooth==, best on the dry side.",
+    "src": [
+     "https://lifewithpal.com/cetaphil-healthy-renew-smoother-more-hydrated-skin/",
+     "https://www.purewow.com/beauty/cetaphil-healthy-renew-product-review",
+     "https://business.walmart.com/reviews/product/1753379584?page=2"
+    ],
+    "for": [
+     "dry",
+     "hydrate"
+    ]
+   },
+   {
+    "title": "Retinol-free formula",
+    "t": "Purified peptides stand in for retinol, ==with niacinamide and panthenol== added.",
+    "src": [
+     "https://www.cetaphil.com/us/products/skin-concern/healthy-aging/healthy-renew-night-cream/302990260014.html",
+     "https://www.purewow.com/beauty/cetaphil-healthy-renew-product-review"
+    ],
+    "for": [
+     "sensitive"
+    ]
+   }
+  ],
+  "no": [
+   {
+    "title": "Thick, with a sheen",
+    "t": "A dense cream that ==can leave a light sheen==; oily skin may want less.",
+    "src": [
+     "https://lifewithpal.com/cetaphil-healthy-renew-smoother-more-hydrated-skin/",
+     "https://business.walmart.com/reviews/product/1753379584?page=2",
+     "https://www.purewow.com/beauty/cetaphil-healthy-renew-product-review"
+    ],
+    "for": [
+     "oily",
+     "rich"
+    ]
+   },
+   {
+    "title": "Divisive aroma",
+    "t": "Splits opinion: some smell an odd note ==despite the fragrance-free label==.",
+    "src": [
+     "https://business.walmart.com/reviews/product/1753379584?page=2",
+     "https://lifewithpal.com/cetaphil-healthy-renew-smoother-more-hydrated-skin/"
+    ],
+    "for": [
+     "sensitive"
+    ]
+   }
+  ],
+  "source": "research"
+ },
+ "naturium-mandelic-topical-acid-12": {
+  "bottom": "A 12% mandelic serum with niacinamide that exfoliates gently enough for sensitive skin. It sinks in fast and brightens dullness over weeks. Its smell splits opinion; ease in slowly.",
+  "yes": [
+   {
+    "title": "Gentle on sensitive skin",
+    "t": "Mandelic's larger molecule ==exfoliates without much bite==, a good first acid.",
+    "src": [
+     "https://www.allure.com/story/best-mandelic-acid-serum",
+     "https://www.glamour.com/story/best-mandelic-acid-serums",
+     "https://skincarestacy.com/naturium-mandelic-acid-review/"
+    ],
+    "for": [
+     "sensitive"
+    ]
+   },
+   {
+    "title": "Sinks in fast",
+    "t": "Absorbs ==almost at once==, so your next serum can follow right away.",
+    "src": [
+     "https://www.allure.com/story/best-mandelic-acid-serum",
+     "https://www.glamour.com/story/best-mandelic-acid-serums",
+     "https://skincarestacy.com/naturium-mandelic-acid-review/"
+    ],
+    "for": [
+     "light"
+    ]
+   },
+   {
+    "title": "Brighter, smoother tone",
+    "t": "Regular use ==lifts dullness and rough texture== over time.",
+    "src": [
+     "https://www.allure.com/story/best-mandelic-acid-serum",
+     "https://www.glamour.com/story/best-mandelic-acid-serums"
+    ],
+    "for": []
+   }
+  ],
+  "no": [
+   {
+    "title": "Divisive aroma",
+    "t": "Splits opinion: some notice a strong acid smell, ==others none at all==.",
+    "src": [
+     "https://www.glamour.com/story/best-mandelic-acid-serums",
+     "https://www.allure.com/story/best-mandelic-acid-serum",
+     "https://skincarestacy.com/naturium-mandelic-acid-review/"
+    ],
+    "for": [
+     "sensitive"
+    ]
+   },
+   {
+    "title": "Can still irritate",
+    "t": "Overuse ==can bring redness==; cut back to fewer nights if it does.",
+    "src": [
+     "https://skincarestacy.com/naturium-mandelic-acid-review/",
+     "https://naturium.com/products/mandelic-topical-acid-12"
+    ],
+    "for": [
+     "sensitive"
+    ]
+   }
+  ],
+  "source": "research"
+ },
+ "the-inkey-list-advanced-0-2-retinal-serum": {
+  "bottom": "A 0.2% encapsulated retinal serum in a small tube, made for skin already used to retinoids. It suits most skin types chasing smoother texture and a more even tone. Skip it as a first retinoid and start gentler.",
+  "yes": [
+   {
+    "title": "Step-up strength",
+    "t": "==0.2% encapsulated retinal== aims at smoother, more even skin faster than retinol.",
+    "src": [
+     "https://www.theinkeylist.com/products/advanced-retinal",
+     "https://www.vogue.com/article/best-retinal-serum"
+    ],
+    "for": []
+   },
+   {
+    "title": "No added scent",
+    "t": "==Fragrance-free== with no essential oils on the INCI list.",
+    "src": [
+     "https://www.theinkeylist.com/products/advanced-retinal",
+     "https://www.myskinindex.com/en/products/the-inkey-list-advanced-retinal-serum",
+     "https://www2.beaute-test.com/produit/139164-advanced-retinal-serum-the-inkey-list"
+    ],
+    "for": [
+     "sensitive"
+    ]
+   }
+  ],
+  "no": [
+   {
+    "title": "Not a first retinoid",
+    "t": "Built for ==experienced users==; newcomers do better building up on milder retinol.",
+    "src": [
+     "https://www.theinkeylist.com/products/advanced-retinal",
+     "https://www.vogue.com/article/best-retinal-serum",
+     "https://www.youtube.com/watch?v=l1gZfbARL08"
+    ],
+    "for": [],
+    "alt": {
+     "slug": "cerave-resurfacing-retinol-serum",
+     "t": "Want an easier start? The CeraVe Resurfacing Retinol Serum pairs encapsulated retinol with ceramides.",
+     "src": [
+      "https://www.independent.co.uk/extras/indybest/fashion-beauty/skincare/cerave-retinol-serum-review-b2693282.html",
+      "https://www.self.com/story/drugstore-retinol-for-beginners",
+      "https://www.cerave.com/skincare/serums/resurfacing-retinol-serum"
+     ]
+    }
+   },
+   {
+    "title": "Slow ramp needed",
+    "t": "Start at ==two or three nights a week==, and buffer with moisturizer if skin dries.",
+    "src": [
+     "https://www.theinkeylist.com/products/advanced-retinal",
+     "https://www.vogue.com/article/best-retinal-serum",
+     "https://www2.beaute-test.com/produit/139164-advanced-retinal-serum-the-inkey-list"
+    ],
+    "for": [
+     "dry"
+    ]
+   },
+   {
+    "title": "Tiny tube",
+    "t": "Only ==15 ml==, so it runs out fast for what it costs.",
+    "src": [
+     "https://www.theinkeylist.com/products/advanced-retinal",
+     "https://www.youtube.com/watch?v=l1gZfbARL08"
+    ],
+    "for": []
+   }
+  ],
+  "source": "research"
+ },
+ "eltamd-am-restore-moisturizer": {
+  "bottom": "A light, oil-free day moisturizer with niacinamide and willow bark extract, renamed from an older name. It suits oily, combination and sensitive skin and sits well under sunscreen. Dry skin, especially in winter, will want something richer.",
+  "yes": [
+   {
+    "title": "Weightless feel",
+    "t": "Sinks in fast with a ==non-greasy finish== that suits oily skin.",
+    "src": [
+     "https://innerbeauty.blog/eltamd-am-restore-daily-facial-moisturizer-review/",
+     "https://www.lovelyskin.com/o/reviews/eltamd-am-therapy-facial-moisturizer"
+    ],
+    "for": [
+     "oily",
+     "light"
+    ]
+   },
+   {
+    "title": "Good under makeup",
+    "t": "Makes a ==smooth base for sunscreen and foundation== without balling up.",
+    "src": [
+     "https://www.popsugar.com/beauty/eltamd-am-therapy-facial-moisturizer-review-49045887",
+     "https://www.lovelyskin.com/o/reviews/eltamd-am-therapy-facial-moisturizer",
+     "https://innerbeauty.blog/eltamd-am-restore-daily-facial-moisturizer-review/"
+    ],
+    "for": []
+   },
+   {
+    "title": "Scent-free formula",
+    "t": "==No fragrance or essential oils==, with niacinamide fourth on the INCI list.",
+    "src": [
+     "https://incidecoder.com/products/eltamd-am-restore-moisturizer",
+     "https://innerbeauty.blog/eltamd-am-restore-daily-facial-moisturizer-review/",
+     "https://www.lovelyskin.com/o/reviews/eltamd-am-therapy-facial-moisturizer"
+    ],
+    "for": [
+     "sensitive"
+    ]
+   }
+  ],
+  "no": [
+   {
+    "title": "Thin for dry skin",
+    "t": "Can fall short in ==cold-weather dryness== unless a serum goes underneath.",
+    "src": [
+     "https://innerbeauty.blog/eltamd-am-restore-daily-facial-moisturizer-review/",
+     "https://www.lovelyskin.com/o/reviews/eltamd-am-therapy-facial-moisturizer"
+    ],
+    "for": [
+     "dry",
+     "rich"
+    ],
+    "alt": {
+     "slug": "cerave-moisturizing-cream",
+     "t": "Want more cushion? The CeraVe Moisturizing Cream is a thick, fragrance-free ceramide cream.",
+     "src": [
+      "https://www.allure.com/review/cerave-moisturizing-cream",
+      "https://www.prevention.com/beauty/skin-care/a63665755/cerave-moisturizing-cream-review/"
+     ]
+    }
+   },
+   {
+    "title": "Primer-like slip",
+    "t": "==Silicones lead the INCI list==; can pill over a silicone-heavy serum.",
+    "src": [
+     "https://incidecoder.com/products/eltamd-am-restore-moisturizer",
+     "https://innerbeauty.blog/eltamd-am-restore-daily-facial-moisturizer-review/"
+    ],
+    "for": []
+   },
+   {
+    "title": "Salicylate source",
+    "t": "Contains ==willow bark extract==, so skip it if salicylates don't agree with you.",
+    "src": [
+     "https://incidecoder.com/products/eltamd-am-restore-moisturizer",
+     "https://innerbeauty.blog/eltamd-am-restore-daily-facial-moisturizer-review/"
+    ],
+    "for": [
+     "sensitive"
+    ]
+   }
+  ],
+  "source": "research"
+ },
+ "anua-bha-2-gentle-exfoliating-toner": {
+  "bottom": "A 2% salicylic acid toner with centella, tea tree and hyaluronic acid in a pump bottle. It suits oily and combination skin that is new to BHA or easing back in. Skip it if tacky layers or sharp, herbal smells bother you.",
+  "yes": [
+   {
+    "title": "Easygoing exfoliation",
+    "t": "A ==mild BHA starting point== that leaves skin feeling unstripped.",
+    "src": [
+     "https://thesummerstudy.com/anua-bha-gentle-exfoliating-toner-review/",
+     "https://miabeautyreview.com/anua-bha-2-percent-gentle-exfoliating-toner-review/"
+    ],
+    "for": [
+     "oily",
+     "combination",
+     "clear"
+    ]
+   },
+   {
+    "title": "Hygienic dispenser",
+    "t": "A ==pump top== keeps fingers and cotton out of the bottle.",
+    "src": [
+     "https://kaoriskincarejournal.wordpress.com/2025/02/02/why-i-wont-repurchase-anua-bha-2-gentle-exfoliating-toner-my-honest-review/",
+     "https://miabeautyreview.com/anua-bha-2-percent-gentle-exfoliating-toner-review/"
+    ],
+    "for": []
+   }
+  ],
+  "no": [
+   {
+    "title": "Tacky finish",
+    "t": "Leaves a ==sticky film== until the next layer goes on.",
+    "src": [
+     "https://kaoriskincarejournal.wordpress.com/2025/02/02/why-i-wont-repurchase-anua-bha-2-gentle-exfoliating-toner-my-honest-review/",
+     "https://miabeautyreview.com/anua-bha-2-percent-gentle-exfoliating-toner-review/"
+    ],
+    "for": []
+   },
+   {
+    "title": "Sharp smell",
+    "t": "Has a ==tea-tree scent== that ranges from faint to rubbery.",
+    "src": [
+     "https://kaoriskincarejournal.wordpress.com/2025/02/02/why-i-wont-repurchase-anua-bha-2-gentle-exfoliating-toner-my-honest-review/",
+     "https://thesummerstudy.com/anua-bha-gentle-exfoliating-toner-review/"
+    ],
+    "for": []
+   }
+  ],
+  "source": "research"
+ },
+ "anua-pdrn-hyaluronic-acid-capsule-100-serum": {
+  "bottom": "A light, fragrance-free hydrating serum that leaves skin dewy and plump. Suits dry, dull or sensitive skin and sits well under makeup. Very oily skin may find the glow reads as shine.",
+  "yes": [
+   {
+    "title": "Dewy, plump finish",
+    "t": "Leaves skin ==looking glowy and bouncy== right after it goes on, without stickiness.",
+    "src": [
+     "https://www.whowhatwear.com/beauty/skin/anua-pdrn-hyaluronic-acid-capsule-100-serum-review",
+     "https://www.glamharmonylife.com/post/anua-pdrn-serum-review",
+     "https://beautyreviewed.blog/anua-pdrn-hyaluronic-acid-capsule-100-serum-review/"
+    ],
+    "for": [
+     "hydrate",
+     "dewy",
+     "dry"
+    ]
+   },
+   {
+    "title": "No added fragrance",
+    "t": "The ingredient list skips perfume, and it ==sat comfortably on easily irritated skin==.",
+    "src": [
+     "https://anua.us/products/pdrn-hyaluronic-acid-capsule-100-serum",
+     "https://www.glamharmonylife.com/post/anua-pdrn-serum-review",
+     "https://beautyreviewed.blog/anua-pdrn-hyaluronic-acid-capsule-100-serum-review/"
+    ],
+    "for": [
+     "sensitive",
+     "calm"
+    ]
+   },
+   {
+    "title": "Works under makeup",
+    "t": "Normal to dry skin gets a ==smooth base for foundation==, with no pilling.",
+    "src": [
+     "https://www.whowhatwear.com/beauty/skin/anua-pdrn-hyaluronic-acid-capsule-100-serum-review",
+     "https://beautyreviewed.blog/anua-pdrn-hyaluronic-acid-capsule-100-serum-review/"
+    ],
+    "for": [
+     "dry",
+     "normal"
+    ]
+   }
+  ],
+  "no": [
+   {
+    "title": "Glossy finish",
+    "t": "On very oily skin the dewy, oil-like feel can ==look like shine by midday==.",
+    "src": [
+     "https://www.whowhatwear.com/beauty/skin/anua-pdrn-hyaluronic-acid-capsule-100-serum-review",
+     "https://beautyreviewed.blog/anua-pdrn-hyaluronic-acid-capsule-100-serum-review/"
+    ],
+    "for": [
+     "oily"
+    ],
+    "alt": {
+     "slug": "the-ordinary-niacinamide-10-zinc-1",
+     "t": "Want less shine? The Ordinary Niacinamide 10% + Zinc 1% is a fragrance-free serum aimed at visible oil.",
+     "src": [
+      "https://theordinary.com/en-us/niacinamide-10-zinc-1-serum-100436.html",
+      "https://incidecoder.com/products/the-ordinary-niacinamide-10-zinc-1"
+     ]
+    }
+   },
+   {
+    "title": "A hydrator at heart",
+    "t": "Best as a moisture layer; ==dark spots and deep lines need other steps==.",
+    "src": [
+     "https://beautyreviewed.blog/anua-pdrn-hyaluronic-acid-capsule-100-serum-review/",
+     "https://www.glamharmonylife.com/post/anua-pdrn-serum-review"
+    ],
+    "for": []
+   }
+  ],
+  "source": "research"
+ },
+ "skin1004-tea-trica-spot-cream": {
+  "bottom": "A light tea tree and centella gel for dotting on new spots. Suits normal, combination and oily skin. Skip it if a tea tree scent or essential oils bother your skin.",
+  "yes": [
+   {
+    "title": "Light, fast-sinking gel",
+    "t": "Absorbs quickly with ==no heavy or sticky feel==, so it layers easily.",
+    "src": [
+     "https://www.skin1004.com/products/tea-trica-spot-cream",
+     "https://www.iherb.com/r/skin1004-madagascar-centella-tea-trica-spot-cream-0-67-fl-oz-20-ml/155924",
+     "https://www.hwahae.com/en/products/SKIN1004-MADAGASCAR-CENTELLA-TEA-TRICA-SPOT-CREAM/2129178/reviews",
+     "https://jolse.com/article/product-review/4/226997/"
+    ],
+    "for": [
+     "light",
+     "oily"
+    ]
+   },
+   {
+    "title": "Calms new red spots",
+    "t": "Dotted on overnight, it can leave ==small fresh blemishes looking calmer== by morning.",
+    "src": [
+     "https://www.iherb.com/r/skin1004-madagascar-centella-tea-trica-spot-cream-0-67-fl-oz-20-ml/155924",
+     "https://www.hwahae.com/en/products/SKIN1004-MADAGASCAR-CENTELLA-TEA-TRICA-SPOT-CREAM/2129178/reviews",
+     "https://jolse.com/article/product-review/4/226997/"
+    ],
+    "for": [
+     "acne",
+     "calm"
+    ]
+   },
+   {
+    "title": "Cica-based formula",
+    "t": "Pairs 15% tea tree water with ==TECA, niacinamide and panthenol== for spot care.",
+    "src": [
+     "https://www.skin1004.com/products/tea-trica-spot-cream",
+     "https://www.yesstyle.com/en/skin1004-madagascar-centella-tea-trica-spot-cream-20ml/info.html/pid.1127686418",
+     "https://inkeedecoder.com/products/skin1004-tea-trica-spot-cream"
+    ],
+    "for": [
+     "acne"
+    ]
+   }
+  ],
+  "no": [
+   {
+    "title": "Noticeable scent",
+    "t": "Lists tea tree oil and eugenol, so ==a mild tea tree smell comes through== as it goes on.",
+    "src": [
+     "https://www.skin1004.com/products/tea-trica-spot-cream",
+     "https://inkeedecoder.com/products/skin1004-tea-trica-spot-cream",
+     "https://jolse.com/article/product-review/4/226997/",
+     "https://www.iherb.com/r/skin1004-madagascar-centella-tea-trica-spot-cream-0-67-fl-oz-20-ml/155924"
+    ],
+    "for": [
+     "sensitive"
+    ],
+    "alt": {
+     "slug": "the-ordinary-azelaic-acid-suspension-10",
+     "t": "Want no scent at all? The Ordinary Azelaic Acid Suspension 10% is fragrance-free and made for blemishes.",
+     "src": [
+      "https://theordinary.com/en-us/azelaic-acid-suspension-10-exfoliator-100407.html",
+      "https://incidecoder.com/products/the-ordinary-azelaic-acid-suspension-10"
+     ]
+    }
+   },
+   {
+    "title": "Best on small spots",
+    "t": "Works on ==new, small blemishes==; existing or bigger ones respond less.",
+    "src": [
+     "https://www.hwahae.com/en/products/SKIN1004-MADAGASCAR-CENTELLA-TEA-TRICA-SPOT-CREAM/2129178/reviews",
+     "https://jolse.com/article/product-review/4/226997/"
+    ],
+    "for": [
+     "acne"
+    ]
+   }
+  ],
+  "source": "research"
+ },
+ "anua-heartleaf-70-soothing-collagen-mask": {
+  "bottom": "A cooling, fragrance-free hydrogel mask that leaves skin plump and hydrated for a while. Suits normal and sensitive skin. Skip it in very dry rooms or if you want lasting change.",
+  "yes": [
+   {
+    "title": "Instant moisture boost",
+    "t": "Leaves skin ==plump and well hydrated==, with leftover essence that sinks in fast.",
+    "src": [
+     "https://miabeautyreview.com/anua-heartleaf-70-soothing-collagen-mask-review/",
+     "https://www.bellyrubzbeauty.com/2025/10/02/anua-collagen-masks/",
+     "https://www.cultbeauty.com/p/anua-heartleaf-70-soothing-collagen-mask-4-sheets-38g/16674993/"
+    ],
+    "for": [
+     "hydrate",
+     "dry"
+    ]
+   },
+   {
+    "title": "Gentle, scent-free",
+    "t": "No fragrance is listed, and it ==went on with no tingling== or irritation.",
+    "src": [
+     "https://miabeautyreview.com/anua-heartleaf-70-soothing-collagen-mask-review/",
+     "https://www.cultbeauty.com/p/anua-heartleaf-70-soothing-collagen-mask-4-sheets-38g/16674993/"
+    ],
+    "for": [
+     "sensitive",
+     "calm"
+    ]
+   },
+   {
+    "title": "Turns clear when done",
+    "t": "The sheet ==fades to see-through== as it absorbs, so it is easy to time.",
+    "src": [
+     "https://www.cultbeauty.com/p/anua-heartleaf-70-soothing-collagen-mask-4-sheets-38g/16674993/",
+     "https://miabeautyreview.com/anua-heartleaf-70-soothing-collagen-mask-review/"
+    ],
+    "for": []
+   }
+  ],
+  "no": [
+   {
+    "title": "Dries out fast",
+    "t": "Dries well before overnight wear and ==starts to lift at the edges==; dry rooms speed it up.",
+    "src": [
+     "https://www.bellyrubzbeauty.com/2025/10/02/anua-collagen-masks/",
+     "https://miabeautyreview.com/anua-heartleaf-70-soothing-collagen-mask-review/"
+    ],
+    "for": [
+     "dry"
+    ],
+    "alt": {
+     "slug": "cosrx-ultimate-nourishing-rice-overnight-spa-mask",
+     "t": "Want an all-night mask? The COSRX Ultimate Nourishing Rice Overnight Spa Mask is a cream you sleep in.",
+     "src": [
+      "https://incidecoder.com/products/cosrx-ultimate-nourishing-rice-overnight-spa-mask",
+      "https://www.insiderbeauty.com/reviews/cosrx/cosrx-ultimate-nourishing-rice-overnight-spa-mask"
+     ]
+    }
+   },
+   {
+    "title": "Subtle results",
+    "t": "One use ==gives comfort more than visible change==; gains build with repeat use.",
+    "src": [
+     "https://miabeautyreview.com/anua-heartleaf-70-soothing-collagen-mask-review/",
+     "https://www.bellyrubzbeauty.com/2025/10/02/anua-collagen-masks/"
+    ],
+    "for": []
+   }
+  ],
+  "source": "research"
+ },
+ "naturium-aha-exfoliating-mask-10": {
+  "bottom": "A five-minute clay and AHA mask that leaves skin softer and smoother after one rinse. Brightness builds over a few uses, then levels off. Expect a brief tingle and a rich moisturizer after.",
+  "yes": [
+   {
+    "title": "Softer after one use",
+    "t": "Skin looks ==smoother and more refined== the moment you rinse it off.",
+    "src": [
+     "https://www.byrdie.com/naturium-face-mask-launch-8706138",
+     "https://www.glooshi.com/reviewed-naturiums-aha-exfoliating-mask-10-just-how-good-is-it/",
+     "https://www.spacenk.com/nl/huidverzorging/behandeling/schilfers/aha-exfoliating-mask-10-MUK200058867.html"
+    ],
+    "for": [
+     "normal",
+     "combination"
+    ]
+   },
+   {
+    "title": "Brighter over weeks",
+    "t": "A few uses bring a ==more even, brighter look==, most of all on dull areas.",
+    "src": [
+     "https://www.cosmopolitan.com/uk/beauty-hair/skincare/g69095152/best-products-for-hyperpigmentation/",
+     "https://www.glooshi.com/reviewed-naturiums-aha-exfoliating-mask-10-just-how-good-is-it/"
+    ],
+    "for": [
+     "clear"
+    ]
+   },
+   {
+    "title": "Five minutes, done",
+    "t": "The light clay ==spreads easily and rinses clean==, so it fits a busy routine.",
+    "src": [
+     "https://www.byrdie.com/naturium-face-mask-launch-8706138",
+     "https://naturium.com/products/aha-exfoliating-mask-10"
+    ],
+    "for": [
+     "light"
+    ]
+   }
+  ],
+  "no": [
+   {
+    "title": "Mild tingle",
+    "t": "Expect a ==brief tingle on application==, mostly the first time.",
+    "src": [
+     "https://www.glooshi.com/reviewed-naturiums-aha-exfoliating-mask-10-just-how-good-is-it/",
+     "https://www.spacenk.com/nl/huidverzorging/behandeling/schilfers/aha-exfoliating-mask-10-MUK200058867.html"
+    ],
+    "for": [
+     "sensitive"
+    ]
+   },
+   {
+    "title": "Follow-up needed",
+    "t": "It can leave a ==small dry patch or two==, so finish with a rich moisturizer.",
+    "src": [
+     "https://www.glooshi.com/reviewed-naturiums-aha-exfoliating-mask-10-just-how-good-is-it/",
+     "https://www.spacenk.com/nl/huidverzorging/behandeling/schilfers/aha-exfoliating-mask-10-MUK200058867.html"
+    ],
+    "for": [
+     "dry"
+    ],
+    "alt": {
+     "slug": "cosrx-ultimate-nourishing-rice-overnight-spa-mask",
+     "t": "Want more moisture? COSRX Ultimate Nourishing Rice Overnight Spa Mask is a rice cream you sleep in.",
+     "src": [
+      "https://incidecoder.com/products/cosrx-ultimate-nourishing-rice-overnight-spa-mask",
+      "https://www.insiderbeauty.com/reviews/cosrx/cosrx-ultimate-nourishing-rice-overnight-spa-mask"
+     ]
+    }
+   }
+  ],
+  "source": "research"
+ },
+ "peach-slices-snail-rescue-ultimate-eye-gel": {
+  "bottom": "A cooling, fragrance-free snail gel that hydrates the under-eye and sits well under makeup. Dark-circle results are mixed. Snail filtrate rules it out for vegans.",
+  "yes": [
+   {
+    "title": "Cool, quick hydration",
+    "t": "Feels ==refreshing on tired eyes== and leaves the area hydrated.",
+    "src": [
+     "https://www.lemon8-app.com/@skincareshawty_/7533834184167555598?region=us",
+     "https://www.peachslices.com/products/snail-rescue-ultimate-eye-gel"
+    ],
+    "for": [
+     "hydrate"
+    ]
+   },
+   {
+    "title": "Makeup-friendly",
+    "t": "Sinks in fast with ==no sticky film==, so makeup goes on smoothly.",
+    "src": [
+     "https://www.lemon8-app.com/@skincareshawty_/7533834184167555598?region=us",
+     "https://www.peachslices.com/products/snail-rescue-ultimate-eye-gel"
+    ],
+    "for": [
+     "light"
+    ]
+   },
+   {
+    "title": "Scent-free formula",
+    "t": "The full list has ==no fragrance or essential oils==, a plus near the eyes.",
+    "src": [
+     "https://www.peachslices.com/products/snail-rescue-ultimate-eye-gel",
+     "https://incidecoder.com/products/peach-slices-snail-rescue-ultimate-eye-gel"
+    ],
+    "for": [
+     "sensitive"
+    ]
+   }
+  ],
+  "no": [
+   {
+    "title": "Animal-derived base",
+    "t": "Snail filtrate tops the list, so it ==won't suit vegan routines==, despite a vegan tag.",
+    "src": [
+     "https://www.peachslices.com/products/snail-rescue-ultimate-eye-gel",
+     "https://incidecoder.com/products/peach-slices-snail-rescue-ultimate-eye-gel"
+    ],
+    "for": []
+   },
+   {
+    "title": "Dark circles: mixed",
+    "t": "Splits opinion: ==some see brighter under-eyes==, others see little change.",
+    "src": [
+     "https://www.peachslices.com/products/snail-rescue-ultimate-eye-gel",
+     "https://www.lemon8-app.com/@skincareshawty_/7533834184167555598?region=us"
+    ],
+    "for": [],
+    "alt": {
+     "slug": "the-ordinary-caffeine-solution-5-egcg",
+     "t": "Want a dark-circle pick? The Ordinary Caffeine Solution 5% + EGCG targets shadows and puffiness.",
+     "src": [
+      "https://incidecoder.com/products/the-ordinary-caffeine-solution-5-egcg",
+      "https://www.insiderbeauty.com/reviews/the-ordinary/the-ordinary-caffeine-solution-5-egcg"
+     ]
+    }
+   }
+  ],
+  "source": "research"
+ },
+ "cetaphil-gentle-clear-clarifying-acne-cream-cleanser": {
+  "bottom": "A fragrance-free cream cleanser with 2% salicylic acid that cleans without a tight feel. It barely lathers, and the 4.2 oz tube goes fast.",
+  "yes": [
+   {
+    "title": "No tight feel",
+    "t": "Rinses off ==without leaving skin dry or taut==, even with twice-daily use.",
+    "src": [
+     "https://www.hwahae.com/en/products/Cetaphil-GENTLE-CLEAR-Clarifying-Blemish-Cream-Cleanser/2092157/reviews",
+     "https://whatsinmyjar.com/product/cetaphil-gentle-clear-clarifying-acne-cream-cleanser"
+    ],
+    "for": [
+     "sensitive",
+     "dry"
+    ]
+   },
+   {
+    "title": "Gentle formula",
+    "t": "Fragrance-free, with ==aloe and white tea== alongside the 2% salicylic acid.",
+    "src": [
+     "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=9add83f2-7da6-4cd0-b91b-f6c937a56255",
+     "https://www.cetaphil.com/us/gentle-clear.html",
+     "https://www.cetaphil.co.uk/skin-concern/dull-%26-dehydrated/gentle-clear-clarifying-cream-cleanser/5020465203414.html"
+    ],
+    "for": [
+     "sensitive",
+     "acne"
+    ]
+   }
+  ],
+  "no": [
+   {
+    "title": "Barely lathers",
+    "t": "Makes ==very little foam==, which pushes a double cleanse after sunscreen.",
+    "src": [
+     "https://www.hwahae.com/en/products/Cetaphil-GENTLE-CLEAR-Clarifying-Blemish-Cream-Cleanser/2092157",
+     "https://www.hwahae.com/en/products/Cetaphil-GENTLE-CLEAR-Clarifying-Blemish-Cream-Cleanser/2092157/reviews",
+     "https://slickdeals.net/f/18293164-4-2-oz-cetaphil-acne-face-wash-2-salicylic-acid-5-41-w-s-s-free-shipping-w-prime-or-on-35"
+    ],
+    "for": []
+   },
+   {
+    "title": "Goes fast",
+    "t": "The ==4.2 oz tube runs out quickly==, more so when extra goes on to build lather.",
+    "src": [
+     "https://www.hwahae.com/en/products/Cetaphil-GENTLE-CLEAR-Clarifying-Blemish-Cream-Cleanser/2092157/reviews",
+     "https://whatsinmyjar.com/product/cetaphil-gentle-clear-clarifying-acne-cream-cleanser",
+     "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=9add83f2-7da6-4cd0-b91b-f6c937a56255"
+    ],
+    "for": []
+   }
+  ],
+  "source": "research"
+ },
+ "skin1004-hyalu-cica-first-ampoule": {
+  "bottom": "A watery centella and hyaluronic acid first step that sinks in fast and layers under makeup. There is no added scent. Very dry skin will want a cream on top.",
+  "yes": [
+   {
+    "title": "Sinks in fast",
+    "t": "A ==watery, weightless layer== that absorbs quickly with no tacky feel.",
+    "src": [
+     "https://thesoulofseoul.net/skin1004-hyalu-cica-line-review/",
+     "https://www.iherb.com/r/skin1004-madagascar-centella-hyalu-cica-first-ampoule-3-38-fl-oz-100-ml/119400",
+     "https://www.amazon.com/SKIN1004-Hyalu-CICA-Ampoule-Soothing-Hydration/dp/B0B3G99Q14"
+    ],
+    "for": [
+     "hydrate",
+     "light"
+    ]
+   },
+   {
+    "title": "Makeup-friendly",
+    "t": "Layers ==under moisturizer and foundation== without patchiness.",
+    "src": [
+     "https://www.iherb.com/r/skin1004-madagascar-centella-hyalu-cica-first-ampoule-3-38-fl-oz-100-ml/119400",
+     "https://thesoulofseoul.net/skin1004-hyalu-cica-line-review/",
+     "https://www.amazon.com/SKIN1004-Hyalu-CICA-Ampoule-Soothing-Hydration/dp/B0B3G99Q14"
+    ],
+    "for": []
+   },
+   {
+    "title": "Perfume-free",
+    "t": "No parfum on the list, and ==any smell stays faint== in use.",
+    "src": [
+     "https://thesoulofseoul.net/skin1004-hyalu-cica-line-review/",
+     "https://www.iherb.com/r/skin1004-madagascar-centella-hyalu-cica-first-ampoule-3-38-fl-oz-100-ml/119400",
+     "https://www.skin1004.com/products/skin1004-madagascar-centella-hyalu-cica-first-ampoule"
+    ],
+    "for": [
+     "sensitive"
+    ]
+   }
+  ],
+  "no": [
+   {
+    "title": "Original may suit better",
+    "t": "Next to the brand's ==plain Centella Ampoule==, it can feel less supple.",
+    "src": [
+     "https://thesoulofseoul.net/skin1004-hyalu-cica-line-review/",
+     "https://www.amazon.com/SKIN1004-Hyalu-CICA-Ampoule-Soothing-Hydration/dp/B0B3G99Q14",
+     "https://reviews.femaledaily.com/products/treatment/serum-essence-23/skin1004/madagascar-centella-hyalu-cica-first-ampoule"
+    ],
+    "for": [
+     "dry",
+     "sensitive"
+    ],
+    "alt": {
+     "slug": "skin1004-madagascar-centella-ampoule",
+     "t": "Want the original? SKIN1004 Madagascar Centella Ampoule is a short-list centella pick for dry skin.",
+     "src": [
+      "https://incidecoder.com/products/skin1004-madagascar-centella-ampoule",
+      "https://www.skin1004.com/products/skin1004-madagascar-centella-ampoule"
+     ]
+    }
+   },
+   {
+    "title": "Not enough alone",
+    "t": "On its own it ==may not quench very dry skin==; plan on a cream over it.",
+    "src": [
+     "https://reviews.femaledaily.com/products/treatment/serum-essence-23/skin1004/madagascar-centella-hyalu-cica-first-ampoule",
+     "https://www.glowpick.com/products/158714/reviews"
+    ],
+    "for": [
+     "dry",
+     "rich"
+    ]
+   }
+  ],
+  "source": "research"
+ },
+ "torriden-cellmazing-firming-eye-cream": {
+  "bottom": "A collagen eye cream that also carries four retinoids, so start slowly. It absorbs without a greasy film and leaves the under-eye plumper. Lines look softer with steady use.",
+  "yes": [
+   {
+    "title": "Absorbs cleanly",
+    "t": "Sinks in ==without a greasy film==, so concealer stays put on the lids.",
+    "src": [
+     "https://lyko.com/en/torriden/torriden-cellmazing-firming-eye-cream-30-ml",
+     "https://beautifology.com/cellmazing-firming-eye-cream"
+    ],
+    "for": []
+   },
+   {
+    "title": "Cushioned under-eyes",
+    "t": "Leaves the eye area ==feeling hydrated and plump== after each use.",
+    "src": [
+     "https://torriden.us/products/cellmazing-firming-eye-cream",
+     "https://beautifology.com/cellmazing-firming-eye-cream"
+    ],
+    "for": [
+     "hydrate"
+    ]
+   },
+   {
+    "title": "Smoother eye area",
+    "t": "With steady use, ==fine lines around the eyes look softer==.",
+    "src": [
+     "https://lyko.com/en/torriden/torriden-cellmazing-firming-eye-cream-30-ml",
+     "https://beautifology.com/cellmazing-firming-eye-cream"
+    ],
+    "for": []
+   }
+  ],
+  "no": [
+   {
+    "title": "Four retinoids inside",
+    "t": "Retinol, retinal and two more mean ==some dryness at first==; ease in slowly.",
+    "src": [
+     "https://torriden.us/products/cellmazing-firming-eye-cream",
+     "https://lyko.com/en/torriden/torriden-cellmazing-firming-eye-cream-30-ml",
+     "https://beautifology.com/cellmazing-firming-eye-cream"
+    ],
+    "for": [
+     "sensitive"
+    ],
+    "alt": {
+     "slug": "the-ordinary-caffeine-solution-5-egcg",
+     "t": "Want it retinoid-free? The Ordinary Caffeine Solution 5% + EGCG is a light eye serum.",
+     "src": [
+      "https://incidecoder.com/products/the-ordinary-caffeine-solution-5-egcg",
+      "https://www.insiderbeauty.com/reviews/the-ordinary/the-ordinary-caffeine-solution-5-egcg"
+     ]
+    }
+   },
+   {
+    "title": "Check for nuts",
+    "t": "Lists ==peanut oil== in the base, worth noting if you avoid nuts.",
+    "src": [
+     "https://torriden.us/products/cellmazing-firming-eye-cream",
+     "https://incidecoder.com/products/torriden-cellmazing-firming-eye-cream"
+    ],
+    "for": []
+   }
+  ],
+  "source": "research"
  }
 }
