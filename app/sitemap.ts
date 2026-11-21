@@ -78,6 +78,7 @@ async function threadExtras(base: string, updated: Date | undefined): Promise<Me
   const { threadRankings } = await import("./thread/rankings-data");
   const extra = (await threadRankings()).filter(l => !l.own);
   return [
+    { url: `${base}/guides`, lastModified: updated, changeFrequency: "monthly" as const, priority: 0.6 },
     ...GUIDE_KEYS.filter(k => k !== "racket").map(k => ({ url: `${base}${GUIDE_PATHS[k]}`, lastModified: updated, changeFrequency: "monthly" as const, priority: 0.6 })),
     ...extra.map(l => ({ url: `${base}${l.href}`, lastModified: updated, changeFrequency: "weekly" as const, priority: 0.7 })),
   ];

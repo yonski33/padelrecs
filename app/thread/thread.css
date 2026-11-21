@@ -1435,3 +1435,67 @@ body:has(.th) .th .thi3-ways a:hover { background: var(--lime-box); color: var(-
   .thi3-read { padding: 18px 16px; font-size: 16.5px; } .thi3-form { padding: 16px; }
   .thi3-404 { padding: 28px 16px; } .thi3-404 .big { font-size: 84px; } .thi3-404 .th-h1 { font-size: 32px !important; }
 }
+
+/* PadelRecs Guides v3 and Guide v3 (owner design 2026-11-21, design_handoff_padelrecs_v3). Scoped to .thg3 (padel only).
+ * Shared colour tokens; the v3 soft lime and sentiment colours are page-local. */
+.thg3 { --g3-soft: #EFFADB; --g3-pos: #62C878; --g3-mix: #F0D16B; --g3-neg: #F0796A; max-width: 1380px; flex-direction: column; align-items: stretch; gap: 16px; padding: 16px 24px 32px; }
+.thg3 .th-card { border-radius: 16px; }
+.thg3 > .th-crumbs { font-size: 14px; }
+.thg3-title { padding: 18px 22px; display: flex; flex-direction: column; gap: 6px; }
+.thg3-title .th-h1 { font-size: 52px !important; line-height: 1; }
+.thg3-title p { margin: 0; font-size: 17px; max-width: 760px; }
+.thg3-cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 14px; }
+body:has(.th) .th a.thg3-card { background: var(--card); text-decoration: none; color: var(--ink); padding: 16px 18px; display: flex; flex-direction: column; gap: 8px; }
+body:has(.th) .th a.thg3-card:hover { background: #fff; color: var(--ink); }
+.thg3-eyebrow { align-self: flex-start; font-size: 12.5px; font-weight: 600; padding: 1px 10px; border: 1.5px solid var(--ink); border-radius: 999px; background: var(--g3-soft); }
+.thg3-card strong { font: 700 27px/1.05 var(--bc); }
+.thg3-card .desc { font-size: 15px; line-height: 1.45; }
+.thg3-card .foot { display: flex; justify-content: space-between; font-size: 13.5px; margin-top: auto; padding-top: 6px; color: var(--muted); }
+.thg3-card .go { font: 700 18px/1.2 var(--bc); color: var(--ink); }
+.thg3-grid { display: grid; grid-template-columns: minmax(0,72fr) minmax(0,28fr); gap: 18px; align-items: start; }
+.thg3-main, .thg3-side { min-width: 0; display: flex; flex-direction: column; gap: 16px; }
+.thg3-side { gap: 14px; position: sticky; top: 76px; }
+@media (max-width: 999px) { .thg3-grid { grid-template-columns: minmax(0,1fr); } .thg3-side { position: static; } }
+.thg3-read { padding: 26px 30px; display: flex; flex-direction: column; gap: 14px; font-size: 17.5px; line-height: 1.7; min-width: 0; }
+.thg3-read .th-h1 { font-size: 52px !important; line-height: 1; text-wrap: balance; }
+.thg3-read p { margin: 0; }
+.thg3-read .lead { font-size: 19px; line-height: 1.5; color: var(--body); }
+.thg3-tldr { margin: 4px 0; padding: 12px 16px; border-left: 4px solid var(--lime); background: var(--g3-soft); border-radius: 0 10px 10px 0; font-size: 16px; line-height: 1.5; }
+.thg3-tldr b { font: 700 20px/1.2 var(--bc); }
+.thg3-tldr ul { margin: 4px 0 0; padding-left: 20px; }
+.thg3-read h2 { margin: 10px 0 0; font: 700 30px/1.1 var(--bc); scroll-margin-top: 80px; }
+.thg3-read h2.thg3-steps-h { font-size: 22px; color: var(--muted); margin-top: 6px; }
+.thg3-read section { display: flex; flex-direction: column; gap: 6px; scroll-margin-top: 80px; }
+.thg3-picks { padding: 12px 18px 6px; display: flex; flex-direction: column; }
+.thg3-picks .head { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; padding-bottom: 6px; }
+.thg3-picks .th-h2 { font-size: 32px; margin: 0; }
+body:has(.th) .th .thg3-picks .head a { font-weight: 700; font-size: 15px; }
+.thg3-picks h3 { font: 700 20px/1.2 var(--bc); margin: 8px 0 2px; }
+body:has(.th) .th a.thg3-row { text-decoration: none; color: var(--ink); display: grid; grid-template-columns: 56px minmax(0,1fr) auto; gap: 12px; align-items: center; padding: 10px 0; border-top: 1px solid var(--line); }
+body:has(.th) .th a.thg3-row:hover strong { color: var(--hover); }
+.thg3-row .pic { height: 64px; display: flex; align-items: center; justify-content: center; }
+.thg3-row .pic img { max-height: 100%; max-width: 100%; mix-blend-mode: multiply; }
+.thg3-row .pic .th-ph { width: 40px; height: 56px; }
+.thg3-row .words { display: flex; flex-direction: column; gap: 4px; min-width: 0; }
+.thg3-row strong { font: 700 20px/1.1 var(--bc); }
+.thg3-row small { font-size: 13px; color: var(--muted); }
+.thg3-row .bar { display: flex; gap: 2px; height: 7px; max-width: 160px; }
+.thg3-row .bar i { min-width: 0; } .thg3-row .bar i:first-child { border-radius: 999px 0 0 999px; } .thg3-row .bar i:last-child { border-radius: 0 999px 999px 0; }
+.thg3-row .bar .pos { background: var(--g3-pos); } .thg3-row .bar .mix { background: var(--g3-mix); } .thg3-row .bar .neg { background: var(--g3-neg); }
+.thg3-row .go { font-size: 13.5px; font-weight: 700; text-decoration: underline; text-underline-offset: 3px; white-space: nowrap; }
+.thg3 .th7-disc { border-radius: 16px; padding: 12px 18px 8px; }
+.thg3 .th7-disc .th-h2 { font-size: 32px; }
+.thg3 .th7-disc .th7-disc-head .th-sub:empty { display: none; }
+.thg3-box { padding: 14px 16px 8px; display: flex; flex-direction: column; }
+.thg3-box h3 { margin: 0 0 6px; font: 700 24px/1.1 var(--bc); }
+.thg3-box p { margin: 0 0 8px; font-size: 14.5px; line-height: 1.45; }
+body:has(.th) .th .thg3-box a { text-decoration: none; padding: 7px 0; border-top: 1px solid var(--line); font-size: 15px; color: var(--ink); }
+body:has(.th) .th .thg3-box a.arrow { display: flex; justify-content: space-between; gap: 8px; }
+body:has(.th) .th .thg3-box a:hover { color: var(--hover); }
+.thg3-box.lime { background: var(--g3-soft); padding-bottom: 14px; }
+body:has(.th) .th .thg3-box a.thg3-btn { align-self: flex-start; border: 2px solid var(--ink); border-radius: 999px; background: var(--lime); font: 700 19px/1.2 var(--bc); padding: 5px 18px 6px; }
+@media (max-width: 639px) {
+  .thg3 { padding: 12px 12px 32px; } .thg3-title .th-h1, .thg3-read .th-h1 { font-size: 36px !important; }
+  .thg3-read { padding: 18px 16px; font-size: 16.5px; } .thg3-read h2 { font-size: 26px; } .thg3-picks .th-h2, .thg3 .th7-disc .th-h2 { font-size: 26px; }
+  body:has(.th) .th a.thg3-row { grid-template-columns: 48px minmax(0,1fr); } .thg3-row .go { display: none; }
+}
