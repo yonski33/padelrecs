@@ -1,6 +1,7 @@
 ALTER TABLE "padelrecs"."stories" ADD COLUMN IF NOT EXISTS "topic" text;--> statement-breakpoint
+ALTER TABLE "padelrecs"."stories" ADD COLUMN IF NOT EXISTS "featured_at" text;--> statement-breakpoint
 ALTER TABLE "padelrecs"."stories" DROP CONSTRAINT IF EXISTS "story_topic";--> statement-breakpoint
-ALTER TABLE "padelrecs"."stories" ADD CONSTRAINT "story_topic" CHECK ("topic" is null or "topic" in ('switch','first','comfort','technique','comeback'));--> statement-breakpoint
+ALTER TABLE "padelrecs"."stories" ADD CONSTRAINT "story_topic" CHECK ("topic" is null or "topic" in ('first','gear','injuries','technique','clubs'));--> statement-breakpoint
 CREATE TABLE IF NOT EXISTS "padelrecs"."story_likes" (
 	"story_id" text NOT NULL,
 	"account_id" text NOT NULL,

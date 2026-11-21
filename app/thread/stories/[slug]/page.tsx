@@ -1,18 +1,17 @@
-// One member story (PadelRecs pilot, owner 2026-11-20), in the owner's design (2026-11-21, design_handoff_padel_stories):
-// Stories / topic, the story card (author row with avatar, level · side, date · read time and the topic; the title; the text;
-// "Racket in this story" cards with the Player score; ▲ · comments · Share · ⋯), the v7b Discussion as "Comments" (the
-// author's own get an Author tag), More stories, and a sidebar with the author card and "Got a story too?".
+// One member story (PadelRecs pilot, owner 2026-11-20), Story v3 (owner design 2026-11-21, design_handoff_padelrecs_v3):
+// Stories / topic, the story card (topic, title, author line, the text with big-numeral points, △ Helpful · Share · comments ↓
+// · ⋯), the v7b Discussion as "Comments" (the author's own get an Author tag), More stories as cards, and a sidebar: author
+// card, the rackets it tags with loved / mixed / not for me counts (no score), more from the author, Got a story too?.
 import type { Metadata } from "next";
 import { notFound, permanentRedirect } from "next/navigation";
 import { Shell } from "../../shell";
-import { threadStory, threadMovedStory, threadStories, threadStoryExtras, threadStoryFeatures, threadAuthorStats } from "../../stories-data";
+import { threadStory, threadMovedStory, threadStories, threadStoryExtras, threadStoryFeatures, threadAuthorStats, threadAuthorStories } from "../../stories-data";
 import { threadRows } from "../../data";
-import { tone, plural, type ThreadRow } from "../../ui";
+import { plural, type ThreadRow } from "../../ui";
 import { Discussion } from "../../live/discussion";
 import { MemberMark } from "../../live/member-mark";
 import { JsonLd, crumbs, base } from "../../seo";
 import { th } from "../../../../lib/thread/look";
-import { W } from "../../../../lib/thread/words";
 import { storyDescription, readMinutes, topicLabel } from "../../../../lib/thread/stories";
 import { avatarOf } from "../../../../lib/thread/avatar";
 import { StoryBody } from "../../story-body";
@@ -33,12 +32,13 @@ export async function generateMetadata({ params }: P): Promise<Metadata> {
     openGraph: { title: s.title, description, url, type: "article", publishedTime: s.at, modifiedTime: s.updatedAt, authors: [s.author.name] } };
 }
 
-function RacketCard({ r, label }: { r: ThreadRow; label: string }) {
-  return <a className="ths-racket-card" href={th(r.href)}>
-    <span className="pic">{r.pic ? <img src={r.pic} alt="" loading="lazy"/> : <span className="th-ph" aria-hidden="true"/>}</span>
-    <span className="words"><small>{label}</small><strong>{r.name}</strong><span className="go">See reviews ›</span></span>
-    <span className="score">{r.score != null ? <><span className={`th-badge sm ${tone(r.score)}`}>{r.score}</span><small>{W.score}</small></> : <span className="th-badge new">New</span>}</span>
-  </a>;
+/** "31 loved · 12 mixed · 6 not for me": raw counts only (owner rule v3: no 0-100 score, no %). */
+const feel = (r: ThreadRow) => [[r.pos, "loved"], [r.mix, "mixed"], [r.neg, "not for me"]].filter(([n]) => (n as number) > 0).map(([n, w]) => `${n} ${w}`).join(" · ");
+function RacketLine({ r }: { r: ThreadRow }) {
+  const total = r.pos + r.mix + r.neg;
+  return <a className="ths3-rk" href={th(r.href)}><span className="name">{r.name}</span>
+    {total > 0 ? <><span className="bar" aria-hidden="true"><i className="pos" style={{ flex: r.pos }}/><i className="mix" style={{ flex: r.mix }}/><i className="neg" style={{ flex: r.neg }}/></span>
+      <small>{feel(r)}</small></> : <small>No reviews yet</small>}</a>;
 }
 
 export default async function ThreadStoryPage({ params }: P) {
@@ -49,9 +49,9 @@ export default async function ThreadStoryPage({ params }: P) {
     if (to) permanentRedirect(`/stories/${to}`);
     notFound();
   }
-  const [{ rows }, f, latest, stats] = await Promise.all([threadRows(), threadStoryFeatures(), threadStories(), threadAuthorStats(s.id)]);
-  const more = latest.filter(x => x.id !== s.id).slice(0, 3);
-  const extras = await threadStoryExtras([s, ...more]), x = extras.get(s.id);
+  const [{ rows }, f, latest, stats, mine] = await Promise.all([threadRows(), threadStoryFeatures(), threadStories(), threadAuthorStats(s.id), threadAuthorStories(s.id)]);
+  const more = latest.filter(x => x.id !== s.id && x.author.name !== s.author.name).slice(0, 3), byAuthor = mine.slice(0, 3);
+  const extras = await threadStoryExtras([s, ...more, ...byAuthor]), x = extras.get(s.id);
   const tagged = s.rackets.map(id => rows.get(id)).filter((r): r is ThreadRow => !!r);
   const who = profileLine(s.author.level, s.author.side), av = avatarOf(s.author.name), topic = topicLabel(x?.topic), read = readMinutes(s.body);
   const ld = { "@context": "https://schema.org", "@graph": [
@@ -59,47 +59,50 @@ export default async function ThreadStoryPage({ params }: P) {
     { "@type": "BlogPosting", headline: s.title, description: storyDescription(s.body), datePublished: s.at, dateModified: s.updatedAt,
       author: { "@type": "Person", name: s.author.name }, mainEntityOfPage: `${base()}/stories/${s.slug}`, publisher: { "@type": "Organization", name: niche.site.name } },
   ] };
-  // The author card's numbers: stories always, ▲ once likes are on and there are some.
-  const authorStats = [plural(stats.stories || 1, "story", "stories"), ...(f.likes && stats.likes > 0 ? [plural(stats.likes, "like")] : [])]
-    .map(t => { const [n, ...rest] = t.split(" "); return { n, label: rest.join(" ") }; });
+  const counts = [plural(Math.max(stats.stories, 1), "story", "stories"), ...(stats.reviews > 0 ? [plural(stats.reviews, "review")] : [])].join(" · ");
+  const topicOf = (id: string) => topicLabel(extras.get(id)?.topic);
   return <Shell active="stories">
     <JsonLd data={ld}/>
-    <main className="th-main ths"><div className="th-col">
+    <main className="th-main ths3">
       <div className="th-crumbs"><a href={th("/stories")}>Stories</a>{topic && <><span>/</span><span>{topic}</span></>}</div>
-      <article id="story" className="th-card ths-post">
-        <div className="ths-author">
-          <span className="th7-av lg" style={{ background: av.bg }} aria-hidden="true">{av.init}</span>
-          <span className="who"><span className="name"><strong>{s.author.name}</strong><MemberMark/>{who && <span>{who}</span>}</span>
-            <span className="when">{`${day(s.at)} · ${read} min read`}{s.editedAt && ` · edited ${day(s.editedAt)}`}</span></span>
-          {topic && <span className="ths-topic">{topic}</span>}
+      <div className="ths3-grid">
+        <div className="ths3-main">
+          <article id="story" className="th-card ths3-post">
+            <header className="ths3-post-head">
+              {topic && <span className="ths3-topic lg">{topic}</span>}
+              <h1 className="th-h1">{s.title}</h1>
+              <span className="by"><span className="th7-av" style={{ background: av.bg }} aria-hidden="true">{av.init}</span><strong>{s.author.name}</strong><MemberMark/>
+                <span>{[who, day(s.at), `${read} min read`, s.editedAt ? `edited ${day(s.editedAt)}` : null].filter(Boolean).map(t => ` · ${t}`).join("")}</span></span>
+            </header>
+            <StoryBody body={s.body} points/>
+            <StoryActions id={s.id} slug={s.slug} likes={x?.likes ?? 0} comments={x?.comments ?? 0} likesOn={f.likes} featured={!!x?.featured} canFeature={f.topics}/>
+          </article>
+          <Discussion page={`story:${s.slug}`} model={s.title} words={{ heading: x?.comments ? `Comments (${x.comments})` : "Comments", sub: `Been through something similar? Share it with ${first(s.author.name)}.`,
+            ask: "Add a comment...", askIcon: "+", placeholder: `What did you think of ${first(s.author.name)}'s story?`, empty: "No comments yet. Start it off.", author: s.author.name }}/>
+          {more.length > 0 && <section className="ths3-more-wrap"><h2 className="th-h2">More stories</h2>
+            <div className="ths3-cards">{more.map(m => <a key={m.id} className="th-card ths3-card" href={th(`/stories/${m.slug}`)}>
+              {topicOf(m.id) && <span className="ths3-topic">{topicOf(m.id)}</span>}<strong>{m.title}</strong><small>{`${m.author.name} · ${readMinutes(m.body)} min read`}</small></a>)}</div>
+          </section>}
         </div>
-        <h1 className="th-h1">{s.title}</h1>
-        <StoryBody body={s.body}/>
-        {tagged.map(r => <RacketCard key={r.id} r={r} label={tagged.length === 1 ? "Racket in this story" : "In this story"}/>)}
-        <StoryActions id={s.id} slug={s.slug} likes={x?.likes ?? 0} comments={x?.comments ?? 0} likesOn={f.likes}/>
-      </article>
-      <Discussion page={`story:${s.slug}`} model={s.title} words={{ heading: "Comments", sub: `Been through something similar? Share it with ${first(s.author.name)}.`,
-        ask: "Add a comment…", askIcon: "+", placeholder: `What did you think of ${first(s.author.name)}'s story?`, empty: "No comments yet. Start it off.", author: s.author.name }}/>
-      {more.length > 0 && <section className="th-card ths-more-list">
-        <h2 className="th-h2">More stories</h2>
-        {more.map(m => { const n = extras.get(m.id)?.likes ?? 0;
-          return <a key={m.id} href={th(`/stories/${m.slug}`)}><span><b>{m.title}</b><small>{`${m.author.name} · ${readMinutes(m.body)} min read`}</small></span>
-            {f.likes && n > 0 && <span className="n">{`▲ ${n}`}</span>}</a>; })}
-      </section>}
-    </div>
-    <aside className="th-side">
-      <section className="th-card ths-box">
-        <div className="ths-author"><span className="th7-av xl" style={{ background: av.bg }} aria-hidden="true">{av.init}</span>
-          <span className="who"><span className="name"><strong>{s.author.name}</strong><MemberMark/></span>{who && <span className="when">{who}</span>}</span></div>
-        <div className="ths-stats" style={{ gridTemplateColumns: `repeat(${authorStats.length}, minmax(0,1fr))` }}>
-          {authorStats.map(a => <span key={a.label}><strong>{a.n}</strong><small>{a.label}</small></span>)}</div>
-        {tagged[0] && <span className="ths-plays"><span>In this story</span>{" "}<a href={th(tagged[0].href)}>{tagged[0].name}</a></span>}
-      </section>
-      <section className="th-card ths-box lime">
-        <span className="ths-box-h sm">Got a story too?</span>
-        <span>A few paragraphs about your racket, your game or your comeback.</span>
-        <a className="ths-box-btn" href={th("/stories/new")}>Share your story</a>
-      </section>
-    </aside></main>
+        <aside className="ths3-side sticky">
+          <section className="th-card ths3-box">
+            <span className="ths3-author"><span className="th7-av xl" style={{ background: av.bg }} aria-hidden="true">{av.init}</span>
+              <span><strong>{s.author.name}</strong><small>{counts}</small></span></span>
+            {who && <p>{who}</p>}
+          </section>
+          {tagged.length > 0 && <section className="th-card ths3-box"><h3>{tagged.length === 1 ? "Racket in this story" : "Rackets in this story"}</h3>
+            {tagged.map(r => <RacketLine key={r.id} r={r}/>)}</section>}
+          {byAuthor.length > 0 && <section className="th-card ths3-box"><h3>{`More from ${s.author.name}`}</h3>
+            {byAuthor.map(b => { const n = extras.get(b.id)?.likes ?? 0;
+              return <a key={b.id} className="ths3-pop plain" href={th(`/stories/${b.slug}`)}><span><b>{b.title}</b><small>{`${day(b.at)}${f.likes ? ` · △ ${n}` : ""}`}</small></span></a>; })}
+          </section>}
+          <section className="th-card ths3-box">
+            <h3>Got a story too?</h3>
+            <p>A few paragraphs about your racket, your game or your comeback.</p>
+            <a className="ths3-btn" href={th("/stories/new")}>Share your story</a>
+          </section>
+        </aside>
+      </div>
+    </main>
   </Shell>;
 }

@@ -42,9 +42,9 @@ export function storyDescription(body: string) {
   return `${cut.slice(0, at > 100 ? at : 155).replace(/[,.;:!?]+$/, "")}…`;
 }
 
-/** Story topics (owner design 2026-11-21, drizzle/0033): key, the pill's word, the list tab's word. Optional per story. */
-export const STORY_TOPICS = [["switch", "Racket switch", "Racket switches"], ["first", "First year", "First year"], ["comfort", "Arm comfort", "Arm comfort"],
-  ["technique", "Technique", "Technique"], ["comeback", "Comeback", "Comebacks"]] as const;
+/** Story topics (owner design v3, 2026-11-21, drizzle/0033): key, the pill's word, the tab's word. Optional per story. */
+export const STORY_TOPICS = [["first", "First year", "First year"], ["gear", "Gear", "Gear"], ["injuries", "Injuries", "Injuries"],
+  ["technique", "Technique", "Technique"], ["clubs", "Clubs", "Clubs"]] as const;
 export type StoryTopic = typeof STORY_TOPICS[number][0];
 export const isStoryTopic = (x: unknown): x is StoryTopic => STORY_TOPICS.some(t => t[0] === x);
 export const topicLabel = (t: StoryTopic | null | undefined) => STORY_TOPICS.find(x => x[0] === t)?.[1] ?? null;
