@@ -1762,6 +1762,10 @@ body:has(.th.th-pr) { background: #FEFAF4; }
 .hp3-title { display: flex; align-items: center; gap: 14px; min-width: 0; }
 .hp3-title .th-h1 { font-size: 52px !important; font-weight: 900; line-height: 1; display: inline-flex; align-items: flex-start; gap: 6px; }
 .hp3-art { flex: none; }
+/* The line under the title (owner 2026-11-22, the v3 mock's subline): the site's own words (lib/thread/words.ts tagline). */
+.hp3-tt { display: flex; flex-direction: column; gap: 6px; min-width: 0; }
+.hp3-tag { margin: 0; font-size: 17px; line-height: 1.4; color: var(--ink2, #625F58); }
+@media (max-width: 639px) { .hp3-tag { font-size: 15px; } }
 .hp3-sq { flex: none; margin-top: -6px; }
 .th-hp3 .th-live { font-size: 14.5px; }
 .th-hp3 .tc-pill svg { margin-right: 2px; }

@@ -41,7 +41,7 @@ export function PadelHomeTop({ rows, brands, pills, added, curated, season, live
   return <>
     <section className="th-card tc-top hp3-hero">
       <div className="hp3-head">
-        <div className="hp3-title">{art ?? <Racket/>}<h1 className="th-h1">{W.community}<Squiggle/></h1></div>
+        <div className="hp3-title">{art ?? <Racket/>}<div className="hp3-tt"><h1 className="th-h1">{W.community}<Squiggle/></h1><p className="hp3-tag">{W.tagline}</p></div></div>
         {live && <span className="th-live"><i aria-hidden="true"/>{live}</span>}
       </div>
       <MatchBar l={l} ft={ft} setFt={setFt} icons={ICONS} after={sticker}/>

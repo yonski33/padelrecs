@@ -17,6 +17,8 @@ const PADEL = {
   /** One product, many products, as the v3 lists and headings say them. */ item: "racket", items: "rackets",
   /** The v3 composer's prompt. */ usedIt: "Played with it?",
   /** The home title. */ community: "The padel racket community",
+  /** The v3 home's line under the title (owner 2026-11-22, from the v3 mock), in the site's own words. */
+  tagline: "Real player opinions, votes, and comments on the top padel rackets.",
 };
 type Words = typeof PADEL;
 const SITES: Record<string, Words> = {
@@ -24,21 +26,27 @@ const SITES: Record<string, Words> = {
   pickleball: { ...PADEL, item: "paddle", items: "paddles", community: "The pickleball paddle community" },
   skin: { person: "person", people: "people", People: "People", Person: "Person", score: "user score", Score: "User score", reviews: "reviews",
     Reviews: "Reviews", traitsTitle: "How does it work for you?", fitTitle: "Is it right for my skin?", opinions: "opinions", lovers: "People",
-    triedIt: "Tried it?", played: "tried", item: "product", items: "products", usedIt: "Tried it?", community: "The skincare community" },
+    triedIt: "Tried it?", played: "tried", item: "product", items: "products", usedIt: "Tried it?", community: "The skincare community",
+    tagline: "Real people's opinions, votes, and comments on the skincare they use." },
   discgolf: { person: "thrower", people: "throwers", People: "Throwers", Person: "Thrower", score: "thrower score", Score: "Thrower score",
     reviews: "thrower reviews", Reviews: "Thrower reviews", traitsTitle: "How does it fly?", fitTitle: "Is it right for me?",
     opinions: "thrower opinions", lovers: "Throwers", triedIt: "Thrown it?", played: "threw",
-    item: "disc", items: "discs", usedIt: "Thrown it?", community: "The disc golf community" },
+    item: "disc", items: "discs", usedIt: "Thrown it?", community: "The disc golf community",
+    tagline: "Real thrower opinions, votes, and comments on the top disc golf discs." },
   // AudioRecs (its handoff README): "listeners", "listener score".
   audio: { person: "listener", people: "listeners", People: "Listeners", Person: "Listener", score: "listener score", Score: "Listener score",
     reviews: "listener reviews", Reviews: "Listener reviews", traitsTitle: "How does it sound?", fitTitle: "Is it right for me?",
     opinions: "listener opinions", lovers: "Listeners", triedIt: "Own a pair?", played: "listened to",
-    item: "pair", items: "headphones", usedIt: "Own a pair?", community: "The headphone community" },
+    item: "pair", items: "headphones", usedIt: "Own a pair?", community: "The headphone community",
+    tagline: "Real listener opinions, votes, and comments on the top headphones." },
   simracing: { person: "racer", people: "racers", People: "Racers", Person: "Racer", score: "racer score", Score: "Racer score",
     reviews: "racer reviews", Reviews: "Racer reviews", traitsTitle: "How does it drive?", fitTitle: "Is it right for me?",
     opinions: "racer opinions", lovers: "Racers", triedIt: "Raced with it?", played: "raced with",
-    item: "product", items: "products", usedIt: "Raced with it?", community: "The sim racing community" },
+    item: "product", items: "products", usedIt: "Raced with it?", community: "The sim racing community",
+    tagline: "Real racer opinions, votes, and comments on the top sim racing gear." },
   // TennisRecs: padel's words ("players", "Played with it?"), its own community line.
-  tennis: { ...PADEL, community: "The tennis racket community" },
+  tennis: { ...PADEL, community: "The tennis racket community", tagline: "Real player opinions, votes, and comments on the top tennis rackets." },
+  // PickleballRecs (not on the v3 pages yet): its own home title and line for when it moves; the rest stays padel's.
+  pickleball: { ...PADEL, community: "The pickleball paddle community", tagline: "Real player opinions, votes, and comments on the top pickleball paddles." },
 };
 export const W: Readonly<Words> = SITES[niche.id] ?? PADEL;
