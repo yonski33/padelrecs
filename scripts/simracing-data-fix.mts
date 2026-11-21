@@ -58,7 +58,7 @@ if (write) {
     const path = new URL("../db/catalogs/simracing.json", import.meta.url);
     const cat = JSON.parse(readFileSync(path, "utf8")) as { products: ({ name: string; sources?: string[] } & Partial<Record<Col, string | null>>)[] };
     for (const p of plan) { const c = cat.products.find(x => x.name === p.name); if (!c) continue;
-      Object.assign(c, Object.fromEntries(Object.entries(p.cols).filter(([k]) => CATALOG_COLS.has(k as Col)))); c.sources = [...new Set([...(c.sources ?? []), p.source])]; }
+      Object.assign(c, Object.fromEntries(Object.entries(p.cols).filter(([k]) => CATALOG_COLS.has(k as Col)))); c.sources = [...new Set([...(c.sources ?? []), ...(/^https:\/\//.test(p.source) ? [p.source] : [])])]; }
     writeFileSync(path, JSON.stringify(cat, null, 1) + "\n");
     console.log("db/catalogs/simracing.json updated");
   }

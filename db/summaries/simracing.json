@@ -338,5 +338,57 @@
   {
     "slug": "fanatec-csl-pedals-lc",
     "summary": "Drivers' opinions are mixed. Many see the load cell as a big upgrade over G29, G920 and potentiometer pedals, with fewer lockups and good value. Many others find the brake too stiff with little travel and not very adjustable, and moved on to V3 or other pedals."
+  },
+  {
+    "slug": "thrustmaster-ts-pc-racer-ferrari-488-challenge-edition",
+    "summary": "A belt-driven PC base with a licensed 320 mm Ferrari rim. Strong, smooth force feedback, but reliability worries some racers.\n+ Racers praise the strong, detailed force feedback and the comfortable Ferrari rim.\n+ The 488 Challenge rim carries over to other Thrustmaster bases.\n- Some racers report lost force or faults that needed repairs.\n~ A few find it noisy, with a loud fan and a little cogging."
+  },
+  {
+    "slug": "asetek-dual-mode-shifter",
+    "summary": "One unit that switches between a 7+R H-pattern and sequential in seconds, solid and fairly quiet.\n+ Switching modes is quick and needs no software.\n+ Racers like the solid build and the firm, car-like gate.\n~ The throws are fairly long, and there is no stiffness adjustment."
+  },
+  {
+    "slug": "gt-omega-sprint",
+    "summary": "A foldable cockpit that is sturdier than most, with a comfortable seat and a small footprint.\n+ Racers call it sturdy, with little flex even with 8 to 12 Nm bases.\n+ The breathable seat is comfortable, and it folds away small.\n- Folding it the wrong way can damage the seat fabric, and the paint scratches easily."
+  },
+  {
+    "slug": "asetek-forte-s-series-pedals",
+    "summary": "Separate throttle and brake modules you can space freely, with the Forte load cell brake.\n+ Racers praise the build quality and the room to space the pedals for two-foot braking.\n~ The brake is stiff with short travel, so it can take inserts and tuning to suit you.\n- One racer found the brake dead at first, then all or nothing, even after calibration."
+  },
+  {
+    "slug": "sim-lab-push-pull-rally-shifter",
+    "summary": "A push-pull sequential shifter that mounts behind the wheel, for rally, rallycross and drift.\n+ Racers like the machined aluminium body, the carbon paddle and the satisfying magnetic click.\n+ It works out of the box, and a hand stays on the rim on busy stages.\n~ It takes some getting used to, and a wrong push can mean a missed shift."
+  },
+  {
+    "slug": "simucube-3-ultimate",
+    "summary": "Simucube's 35 Nm flagship, with the most refined force feedback in the range, at a steep price.\n+ Racers moving up from an SC3 Pro or SC2 Ultimate feel a clear step up.\n+ Huge torque headroom with very smooth, detailed force feedback.\n~ The gain over the SC3 Pro is real but small for the price."
+  },
+  {
+    "slug": "thrustmaster-t248r",
+    "summary": "A 3.1 Nm hybrid wheel and pedals with a colour display, made as a first setup.\n+ Racers call it great value for a first wheel, with an easy setup.\n+ The hall-effect pedals stand out, with a brake you can firm up.\n~ The rim is fixed, and its inner plastic feels hard."
+  },
+  {
+    "slug": "thrustmaster-tm-competition-wheel-add-on-sparco-p310-mod",
+    "summary": "A 31 cm Sparco D-shaped rim for Thrustmaster bases, light and comfortable. No longer sold new.\n+ Racers like its light weight and suede grip for GT and formula cars.\n~ The buttons are stiff, and there is a nub instead of a D-pad.\n- A few report misalignment or a cracked rim, mostly on second-hand units."
+  },
+  {
+    "slug": "fanatec-csl-steering-wheel-p1-v2",
+    "summary": "Fanatec's basic all-round rim for the CSL range: light and grippy, but clearly a budget wheel.\n+ The grippy texture and finish improve on the first version.\n- Several racers say it feels cheap, flexes or creaks at high force.\n~ The buttons feel a bit hollow."
+  },
+  {
+    "slug": "simagic-gtc",
+    "summary": "A 325 mm flat-top GT wheel with dual clutches and plenty of buttons and rotaries.\n+ Racers praise the solid hub and build quality.\n~ Many controls are hard to reach without moving your hands.\n~ The synthetic leather grips aren't very tacky."
+  },
+  {
+    "slug": "simagic-gts",
+    "summary": "A 300 mm round all-rounder for GT and rally, with RGB buttons and funky switches.\n+ Racers call it rigid, with no flex, and fairly priced.\n+ It has plenty of inputs, and they map easily.\n- A couple of racers had one break within months."
+  },
+  {
+    "slug": "next-level-racing-gtelite",
+    "summary": "A mid-range aluminium profile cockpit that is easy to build and very adjustable.\n+ Racers say it stays solid under load and takes direct drive bases.\n+ Several find it more comfortable and adjustable than a Playseat Trophy.\n- One racer's used seat frame broke at the welds."
+  },
+  {
+    "slug": "next-level-racing-f-gt-elite-lite",
+    "summary": "A compact aluminium profile cockpit with GT and formula positions, at a fair price.\n+ Racers call it rigid, with no wobble and no flex under braking.\n+ A big step up from foldable rigs.\n~ With short legs, the pedal plate may not come close enough without moving the wheel."
   }
 ]

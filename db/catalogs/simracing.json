@@ -1,5 +1,5 @@
 {
- "about": "SimRacingRecs starter catalog (2026-10-22): sim racing gear in five categories — wheelbases (including complete wheel sets), steering wheels and rims, pedals, cockpits and wheel stands, and shifters/handbrakes — from the makers' current stores: fanatec.com, mozaracing.com, simucube.com, simagic.com, thrustmaster.com, logitechg.com, asetek.com/simsports, heusinkveld.com, sim-lab.eu, trakracer.com, nextlevelracing.com and gtomega.com (Playseat as sold by Logitech G). One entry per model: colourways, mount editions (wheel plate vs front & side mount), 2- vs 3-pedal sets and console editions of the same set are merged and their pages listed together; bundles of products already listed, accessories, seats, monitors, button boxes, motion and flight sim gear are left out. Values are blank when not read on a listed page. Columns: shape = category, balance = type, weight = peak torque (wheelbases) or brake load cell, core = platforms, surface = notes.",
+ "about": "SimRacingRecs starter catalog (2026-10-22): sim racing gear in five categories \u2014 wheelbases (including complete wheel sets), steering wheels and rims, pedals, cockpits and wheel stands, and shifters/handbrakes \u2014 from the makers' current stores: fanatec.com, mozaracing.com, simucube.com, simagic.com, thrustmaster.com, logitechg.com, asetek.com/simsports, heusinkveld.com, sim-lab.eu, trakracer.com, nextlevelracing.com and gtomega.com (Playseat as sold by Logitech G). One entry per model: colourways, mount editions (wheel plate vs front & side mount), 2- vs 3-pedal sets and console editions of the same set are merged and their pages listed together; bundles of products already listed, accessories, seats, monitors, button boxes, motion and flight sim gear are left out. Values are blank when not read on a listed page. Columns: shape = category, balance = type, weight = peak torque (wheelbases) or brake load cell, core = platforms, surface = notes.",
  "checked": "2026-10-22",
  "brands": [
   {
@@ -210,11 +210,12 @@
    "shape": "Wheel",
    "weight": null,
    "core": "PC",
-   "surface": "Handles sold separately",
+   "surface": "Handles chosen separately",
    "balance": "Button box",
    "sources": [
     "https://www.asetek.com/simsports/product/invicta-formula-steering-wheel/",
-    "https://www.asetek.com/simsports/us/product/invicta-formula-steering-wheel/"
+    "https://www.asetek.com/simsports/us/product/invicta-formula-steering-wheel/",
+    "https://www.asetek.com/simsports/global/product/invicta-formula-steering-wheel/"
    ]
   },
   {
@@ -385,7 +386,7 @@
    "weight": null,
    "core": "PC; PS4 / PS5 with a compatible PlayStation-licensed Fanatec wheelbase",
    "surface": null,
-   "balance": null,
+   "balance": "Round",
    "sources": [
     "https://www.fanatec.com/eu/en/p/steering-wheels/csl_sw_p1_v2r_qr2l/csl-steering-wheel-p1-v2-qr2-lite",
     "https://www.fanatec.com/us/en/p/steering-wheels/csl_sw_p1_v2r_qr2l/csl-steering-wheel-p1-v2-qr2-lite"
@@ -1798,8 +1799,8 @@
    "shape": "Cockpit",
    "weight": null,
    "core": null,
-   "surface": null,
-   "balance": null,
+   "surface": "Seat included",
+   "balance": "Steel tube",
    "sources": [
     "https://nextlevelracing.com/products/f-gt-shift/"
    ]
@@ -1908,7 +1909,7 @@
    "shape": "Cockpit",
    "weight": null,
    "core": null,
-   "surface": null,
+   "surface": "Seat included",
    "balance": null,
    "sources": [
     "https://nextlevelracing.com/products/rc-e-racing-cockpit-essential/"
@@ -3244,12 +3245,13 @@
    "shape": "Shifter / handbrake",
    "weight": null,
    "core": "PC via USB; PS4 / PS5 / Xbox One / Xbox Series X|S with a compatible Thrustmaster racing wheel/base",
-   "surface": "Thrustmaster's shop now sells the TSS Handbrake instead",
+   "surface": "Discontinued: no longer on Thrustmaster's shop (Nov 2026)",
    "balance": "Handbrake + sequential",
    "sources": [
     "https://www.thrustmaster.com/en-us/products/tss-handbrake-sparco-mod/",
     "https://www.thrustmaster.com/products/tss-handbrake-sparco-mod/",
-    "https://eshop.thrustmaster.com/en_us/tss-handbrake.html"
+    "https://eshop.thrustmaster.com/en_us/tss-handbrake.html",
+    "https://eshop.thrustmaster.com/en_us/catalogsearch/result/?q=TSS"
    ],
    "slug": "thrustmaster-tss-handbrake-sparco-mod-plus"
   },
