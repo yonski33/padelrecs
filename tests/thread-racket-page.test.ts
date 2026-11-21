@@ -55,12 +55,15 @@ test("this week's line: real counts, a part at 0 left out, both 0 hides it", () 
 
 test("who plays it: only vote groups with 5+ and a clear leader; side only when it qualifies", () => {
   const w = whoPlays({ level: { advanced: 35, intermediate: 10, beginner: 2 }, plays_like: { power: 30, control: 8 }, side: { right: 6, left: 5 } });
-  assert.equal(w?.headline, "Mostly advanced · power");
+  assert.equal(w?.headline, "Power"); // side 6 vs 5 has no clear lead
   assert.deepEqual(w?.rows.map(r => [r.title, r.label, r.n]), [["Level", "Advanced", 35], ["Style", "Power", 30]]);
   // A tie or near tie skips the row; nothing qualifying hides the card.
-  assert.equal(whoPlays({ level: { intermediate: 39, beginner: 34 }, plays_like: { control: 58, all_round: 31 } })?.headline, "Mostly control");
+  assert.equal(whoPlays({ level: { intermediate: 39, beginner: 34 }, plays_like: { control: 58, all_round: 31 } })?.headline, "Control");
+  assert.equal(whoPlays({ plays_like: { control: 40, power: 10 }, side: { right: 30, left: 8 } })?.headline, "Control, right side");
+  assert.equal(whoPlays({ plays_like: { all_round: 12 }, side: { both: 9 } })?.headline, "All-round, both sides");
+  assert.equal(whoPlays({ level: { advanced: 12 } })?.headline, "Mostly advanced");
   assert.equal(whoPlays({ level: { advanced: 4 } }), null);
-  assert.equal(whoPlays({ side: { right: 20, both: 4 } })?.headline, "Mostly right side");
+  assert.equal(whoPlays({ side: { right: 20, both: 4 } })?.headline, "Right side");
 });
 
 test("the sidebar has no curated ranking box and no More from <brand>", () => {

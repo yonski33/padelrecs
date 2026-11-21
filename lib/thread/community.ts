@@ -17,7 +17,8 @@ const WHO: { key: string; title: string; words: Record<string, string> }[] = [
 ];
 export type WhoRow = { title: string; label: string; n: number; share: number };
 /** The leading answer per group, kept only with 5+ behind it and 1.5x the runner-up (the vote pill's rule). The headline
- *  joins the level and style leaders ("Mostly advanced · power"); with neither, the side's; no rows → null. */
+ *  is the style and side leaders (owner 2026-11-21: "Control, right side"); style alone without a side, side alone without a
+ *  style, and "Mostly advanced" when only the level has a leader; no rows → null. */
 export function whoPlays(groups: Record<string, Record<string, number> | null | undefined>): { headline: string; rows: WhoRow[] } | null {
   const rows: (WhoRow & { key: string })[] = [];
   for (const g of WHO) {
@@ -28,6 +29,7 @@ export function whoPlays(groups: Record<string, Record<string, number> | null | 
     rows.push({ key: g.key, title: g.title, label: g.words[top], n, share: n / total });
   }
   if (!rows.length) return null;
-  const head = rows.filter(r => r.key !== "side"), words = (head.length ? head : rows).map(r => r.label.toLowerCase());
-  return { headline: `Mostly ${words.join(" · ")}`, rows: rows.map(r => ({ title: r.title, label: r.label, n: r.n, share: r.share })) };
+  const of = (k: string) => rows.find(r => r.key === k)?.label, style = of("plays_like"), side = of("side");
+  const headline = style || side ? [style, side && (style ? side.toLowerCase() : side)].filter(Boolean).join(", ") : `Mostly ${of("level")!.toLowerCase()}`;
+  return { headline, rows: rows.map(r => ({ title: r.title, label: r.label, n: r.n, share: r.share })) };
 }
