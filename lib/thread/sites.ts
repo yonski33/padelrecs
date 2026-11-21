@@ -26,3 +26,8 @@ export const ACCOUNT_SITES = ["padel", "pickleball", "skin", "discgolf"];
 /** Member stories (owner 2026-11-20): a PadelRecs pilot. */
 export const storiesSite = (nicheId: string) => nicheId === "padel";
 export const accountSite = (nicheId: string) => ACCOUNT_SITES.includes(nicheId);
+/** Each Thread site's quick match, as its home shows it: "engine" = level · style · arm (app/thread/live/lists.tsx MatchBox,
+ *  with the site's own styles and arm words), "skin" = skin type · goal · sensitive (live/skin-match.tsx). A site not listed
+ *  has none, so its ranking pages show no "See how you match" card (owner report 2026-11-21: SkinRecs showed padel's). */
+export const QUICK_MATCH: Record<string, "engine" | "skin"> = { padel: "engine", pickleball: "engine", discgolf: "engine", skin: "skin" };
+export const quickMatchFor = (nicheId: string) => QUICK_MATCH[nicheId] ?? null;

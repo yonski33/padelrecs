@@ -57,7 +57,7 @@ function resultLine(p: SkinPicks, n: number, cat: string | null) {
 
 /** "Find my match" as one sentence (padel's Thread home): the quick match tag, I'm [skin type] and I want [goal], a
  *  sensitive-skin box and a live result line. The category chips sit above the list (SkinHomeList, owner 2026-11-20). */
-export function SkinMatchBox({ wire, names }: { wire: SkinWire[]; names: Record<string, string> }) {
+export function SkinMatchBox({ wire, names, title }: { wire: SkinWire[]; names: Record<string, string>; /** The ranking sidebar's "See how you match". */ title?: string }) {
   const [picks, set] = useSkinPicks();
   const ctx = useCtx(wire);
   const ranked = useMemo(() => ctx ? rankSkin(ctx, skinChoiceOf(picks)) : [], [ctx, picks]);
@@ -65,6 +65,7 @@ export function SkinMatchBox({ wire, names }: { wire: SkinWire[]; names: Record<
   const cat = picks.type ? TYPES.find(t => t.slug === picks.type)?.label ?? null : null;
   const line = resultLine(picks, ranked.length, cat);
   return <div className="th-match th-qm">
+    {title && <span className="th-match-head"><span>{title}</span></span>}
     <div className="th-qm-line">
       <span className="th-qm-tag">quick match</span>
       <span className="lbl">I&apos;m</span>
