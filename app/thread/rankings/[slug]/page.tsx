@@ -18,6 +18,10 @@ import { th } from "../../../../lib/thread/look";
 import { generateMetadata as liveMetadata } from "../../../rankings/[slug]/page";
 import { JsonLd, crumbs, base } from "../../seo";
 import { W } from "../../../../lib/thread/words";
+/** PadelRecs (owner 2026-11-21): no "Ranked by player score…" line, the lists as one dropdown, and phone rows with the rank
+ *  inline (th-hp, as on the home page). */
+const PADEL = niche.id === "padel";
+const short = (label: string) => label.replace(/^Best (for )?/, "").replace(/^./, c => c.toUpperCase());
 
 const { one: ONE, many: MANY } = niche.words;
 const PICKLEBALL = niche.id === "pickleball", DG = niche.id === "discgolf";
@@ -82,13 +86,18 @@ export default async function ThreadRanking({ params }: P) {
   ] };
   return <Shell active="rankings">
     <JsonLd data={ld}/>
-    <main className="th-main">
+    <main className={PADEL ? "th-main th-hp" : "th-main"}>
       <div className="th-col">
         <div className="th-crumbs"><a href={th("/rankings")}>Rankings</a><span>/</span><span>{l.label}</span></div>
         <section className="th-card th-hero">
           <h1 className="th-h1">{l.title}</h1>
-          <p className="th-lead">{cat ? ratingHow(niche.site.name) : `Ranked by ${W.score}, from reviews by people who ${W.played} them. Updates as new reviews come in.`}</p>
-          <nav className="th-rtabs" aria-label="Rankings">{lists.slice(0, 7).map(x => <a key={x.slug} href={th(x.href)} aria-current={x.slug === l.slug ? "page" : undefined}>{x.label.replace(/^Best (for )?/, "").replace(/^./, c => c.toUpperCase())}</a>)}</nav>
+          {(cat || !PADEL) && <p className="th-lead">{cat ? ratingHow(niche.site.name) : `Ranked by ${W.score}, from reviews by people who ${W.played} them. Updates as new reviews come in.`}</p>}
+          {PADEL ? <details className="th-rk-dd">
+            {/* A plain links menu (no script), so the cached page works as is. */}
+            <summary><span className="lbl">Ranking</span>{short(l.label)}<small aria-hidden="true">▼</small></summary>
+            <nav className="th-rk-menu" aria-label="Rankings">{lists.map(x => <a key={x.slug} href={th(x.href)} aria-current={x.slug === l.slug ? "page" : undefined}>{short(x.label)}<span aria-hidden="true">{x.slug === l.slug ? "✓" : ""}</span></a>)}</nav>
+          </details>
+          : <nav className="th-rtabs" aria-label="Rankings">{lists.slice(0, 7).map(x => <a key={x.slug} href={th(x.href)} aria-current={x.slug === l.slug ? "page" : undefined}>{short(x.label)}</a>)}</nav>}
         </section>
         <RankingList rows={list} title={l.label} meta={`${plural(list.length, ONE)} · ${plural(reviews, "review")}`}
           {...(cat && rated ? { ratings: { by: rated, label: cat.label } } : {})}{...(QM !== "engine" ? { match: false } : {})}/>
