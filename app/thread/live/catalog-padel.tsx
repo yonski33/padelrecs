@@ -19,6 +19,10 @@ type Key = "shape" | "feel" | "brand";
 const SORTS: [Sort, string][] = [["picks", "PadelRecs picks"], ["loved", "Most loved"], ["new", "Newest"], ["match", "By your match"]];
 const FEELS = ["Soft", "Medium", "Hard"];
 const TOP_BRANDS = 6, STEP = 24, NEW_N = 3;
+/** Fine-tune filters kept in this browser (handoff README: "padelrecs-ft"), shared with the home's fine-tune panel. */
+const FT_KEY = "padelrecs-ft";
+const readFt = (): Partial<Record<Key, string[]>> => { try { const v = JSON.parse(localStorage.getItem(FT_KEY) || "{}");
+  return Object.fromEntries((["shape", "feel", "brand"] as Key[]).flatMap(k => Array.isArray(v[k]) && v[k].length ? [[k, v[k].filter((x: unknown) => typeof x === "string")]] : [])); } catch { return {}; } };
 const cap = (s: string) => s.charAt(0).toUpperCase() + s.slice(1);
 /** "Head Extreme Motion (2026)", as the racket page titles it. */
 const named = (r: ThreadRow) => { const b = withoutYear(r.name); return r.year && b !== r.name ? `${b} (${r.year})` : r.name; };
@@ -33,7 +37,7 @@ export function PadelCatalog({ rows, brands, pills, added, curated, rankings, la
   rankings: { label: string; href: string }[]; latest: SideReview[];
 }) {
   const [q, setQ] = useState(""), [f, setF] = useState<Partial<Record<Key, string[]>>>({}), [sort, setSort] = useState<Sort>("picks"), [sortOpen, setSortOpen] = useState(false);
-  const [ft, setFt] = useState(false), [allBrands, setAllBrands] = useState(false), [n, setN] = useState(STEP), [older, setOlder] = useState(false);
+  const [ftReady, setFtReady] = useState(false), [ft, setFt] = useState(false), [allBrands, setAllBrands] = useState(false), [n, setN] = useState(STEP), [older, setOlder] = useState(false);
   const [picks, setPicks] = usePicks(); const mine = !!(picks.level || picks.style), payload = usePayload(mine);
   const pcts = useMemo(() => mine && payload ? pctsFor(payload, picks) : null, [mine, payload, picks]);
   // ?q= from the header search, ?shape= / ?feel= from the home's links, ?level= sets the level pick (no Level filter here).
@@ -41,10 +45,12 @@ export function PadelCatalog({ rows, brands, pills, added, curated, rankings, la
   useEffect(() => { const u = new URLSearchParams(location.search), v = u.get("q"); if (v) setQ(v);
     const pre: Partial<Record<Key, string[]>> = {}; for (const k of ["feel", "shape"] as const) { const x = u.get(k); if (x) pre[k] = [x]; }
     const lv = u.get("level")?.toLowerCase(); if (lv && (LEVEL_OPTS as string[]).includes(lv)) setPicks({ level: lv as Level });
-    if (Object.keys(pre).length) setF(pre);
+    // A link's filter wins; else the filters kept from the last visit.
+    const kept = Object.keys(pre).length ? pre : readFt(); if (Object.keys(kept).length) setF(kept); setFtReady(true);
   // Read the address once, on load.
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+  useEffect(() => { if (!ftReady) return; try { localStorage.setItem(FT_KEY, JSON.stringify(f)); } catch { /* private mode */ } }, [f, ftReady]);
   // A level or style pick switches to "By your match"; clearing them goes back to the picks order.
   // eslint-disable-next-line react-hooks/set-state-in-effect
   useEffect(() => { setSort(s => mine ? "match" : s === "match" ? "picks" : s); }, [mine]);
@@ -132,7 +138,7 @@ export function PadelCatalog({ rows, brands, pills, added, curated, rankings, la
           {!older && !words.length && olderN > 0 && <button type="button" className="tc-link" onClick={() => setOlder(true)}>{`Show older models (${olderN})`}</button>}</div>}
       </section>
       <aside className="tc-side">
-        {rankings.length > 0 && <section className="th-card tc-box"><h2 className="tc-bh">Rankings</h2>
+        {rankings.length > 0 && <section className="th-card tc-box tc-box-dark"><h2 className="tc-bh">Rankings</h2>
           {rankings.map(k => <a key={k.href} className="tc-link-row" href={th(k.href)}><span>{k.label}</span><span aria-hidden="true">→</span></a>)}</section>}
         {latest.length > 0 && <section className="th-card tc-box"><h2 className="tc-bh">Latest reviews</h2>
           {latest.map(c => <a key={c.id} className="tc-rv" href={th(c.href)}><span className="tc-rv-by"><strong>{c.who}</strong>{" · "}<Ago at={c.at}/></span>

@@ -17,7 +17,10 @@ export const revalidate = 21600;
 import type { Metadata } from "next";
 import { generateMetadata as liveMetadata } from "../../rackets/page";
 import { liveOr } from "../seo";
-export const generateMetadata = (): Promise<Metadata> => liveOr(liveMetadata);
+/** PadelRecs (owner 2026-11-21): no "Ranked by Player Score" in the title; the rest of the live metadata stays. */
+const PADEL_TITLE = () => `All padel rackets ${new Date().getUTCFullYear()}: player opinions and quick match`;
+export const generateMetadata = async (): Promise<Metadata> => { const m = await liveOr(liveMetadata);
+  return niche.id !== "padel" ? m : { ...m, title: { absolute: `${PADEL_TITLE()} | ${niche.site.name}` }, openGraph: { ...m.openGraph, title: PADEL_TITLE() }, twitter: { ...m.twitter, title: PADEL_TITLE() } }; };
 
 /** The sidebar's ranking links, in the mock's order, where the list exists. */
 const RANK_LINKS = ["best-padel-rackets", "best-power-padel-rackets", "best-control-padel-rackets", "best-padel-rackets-for-beginners", "best-teardrop-padel-rackets", "best-diamond-padel-rackets"];

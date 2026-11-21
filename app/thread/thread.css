@@ -1758,3 +1758,23 @@ body:has(.th) .th .rk4-explore a.th-card:hover { background: #fff; color: var(--
   .rk4 .th7-disc .th-h2, .rk4-explore .th-h2 { font-size: 26px; }
   .rk4-explore > div { grid-template-columns: minmax(0,1fr); }
 }
+/* PadelRecs v3 tokens (design_handoff_padelrecs_v3 README "Tokens", owner 2026-11-21). Padel only (.th-pr, app/thread/shell.tsx);
+   every padel Thread page picks them up. Pages keep their own CSS page-scoped. Page #FEFAF4, cards #FFFCF8, ink #171717,
+   secondary #625F58, dividers #E7DFD5, lime #D4F58B, soft lime #EFFADB, sticker #FFE45C, loved/mixed/not for me
+   #62C878/#F0D16B/#F0796A; Barlow Condensed headings, Inter text. */
+body:has(.th.th-pr) { background: #FEFAF4; }
+.th.th-pr {
+  --ink: #171717; --bg: #FEFAF4; --card: #FFFCF8; --soft: #FFFCF8; --frame: #F6F0E6;
+  --ink2: #625F58; --body: #2b2925; --muted: #625F58;
+  --div: #EFE9DF; --line: #E7DFD5; --chip: #D6CFC2; --box: #E2D9CC;
+  --lime: #D4F58B; --lime-box: #EFFADB; --lime-bar: #D6E8B5; --lime-chip: #E3F6B5; --sticker: #FFE45C;
+  --s-pos: #62C878; --s-mix: #F0D16B; --s-neg: #F0796A;
+  --p-pos: #BDEFC0; --p-mix: #F9E8A3; --p-neg: #F6C8BD;
+  --body-font: 'Inter', system-ui, sans-serif;
+}
+.th.th-pr .th-card { background: var(--card); }
+.th.th-pr .tc-qm-tag { background: var(--sticker); }
+/* Catalogue sidebar's Rankings box: a black header bar (Rackets v2 mock). */
+.tc-box-dark { padding: 0 0 6px; overflow: hidden; }
+.tc-box-dark .tc-bh { background: var(--ink); color: #FEFAF4 !important; padding: 9px 16px; border-bottom: 0; }
+.tc-box-dark a.tc-link-row { margin: 0 16px; }

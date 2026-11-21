@@ -22,3 +22,13 @@ test("the catalogue shows no score, says opinions, and filters in the browser", 
   const route = readFileSync("app/thread/rackets/page.tsx", "utf8");
   assert.match(route, /niche\.id !== "padel"/, "other sites keep the shared Catalog");
 });
+
+test("v3 stores and tokens: picks in padelrecs-qm (old key read as fallback), fine-tune in padelrecs-ft, padel-only tokens", () => {
+  const picks = readFileSync("app/thread/live/picks.ts", "utf8"), cat = readFileSync("app/thread/live/catalog-padel.tsx", "utf8");
+  assert.match(picks, /niche\.id === "padel" \? "padelrecs-qm"/);
+  assert.match(picks, /getItem\(KEY\) \|\| localStorage\.getItem\(OLD_KEY\)/);
+  assert.match(cat, /"padelrecs-ft"/);
+  assert.match(readFileSync("app/thread/shell.tsx", "utf8"), /niche\.id === "padel" \? "th th-pr"/);
+  assert.match(readFileSync("app/thread/thread.css", "utf8"), /\.th\.th-pr \{[^}]*--bg: #FEFAF4/);
+  assert.match(readFileSync("app/thread/rackets/page.tsx", "utf8"), /player opinions and quick match/);
+});

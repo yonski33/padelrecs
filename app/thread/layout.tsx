@@ -11,7 +11,9 @@ const FONTS = [
   "https://fonts.googleapis.com/css2?family=Barlow:wght@400;700&text=0123456789&display=swap",
 ];
 /** DiscGolfRecs' own (design_handoff_discgolfrecs README "Design tokens"): Familjen Grotesk for headings and badges. */
-const SITE_FONTS: Record<string, string[]> = { discgolf: ["https://fonts.googleapis.com/css2?family=Familjen+Grotesk:wght@500;600;700&display=swap"] };
+const SITE_FONTS: Record<string, string[]> = { discgolf: ["https://fonts.googleapis.com/css2?family=Familjen+Grotesk:wght@500;600;700&display=swap"],
+  /** PadelRecs v3 (design_handoff_padelrecs_v3 README "Tokens"): Inter for text, Barlow Condensed up to 900 for headings. */
+  padel: ["https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Barlow+Condensed:wght@800;900&display=swap"] };
 
 export default function ThreadLayout({ children }: { children: ReactNode }) {
   return <>
