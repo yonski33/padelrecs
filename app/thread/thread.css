@@ -1799,7 +1799,7 @@ body:has(.th) .th .th-hp3 a.tc-row.ranked { grid-template-columns: 34px 96px min
 .rk5-qm .fit strong { font: 800 21px/1.05 var(--bc); }
 body:has(.th) .th .rk5-qm .fit a { font-weight: 700; text-decoration: none; color: var(--ink); }
 .rk5-box { overflow: hidden; }
-.rk5-box h3 { margin: 0; background: var(--ink); color: #FEFAF4; padding: 9px 16px; font: 800 26px/1.1 var(--bc); }
+body:has(.th) .th .rk5-box h3 { margin: 0; background: var(--ink); color: #FEFAF4; padding: 9px 16px; font: 800 26px/1.1 var(--bc); }
 .rk5-box > div { padding: 2px 16px 8px; display: flex; flex-direction: column; }
 .rk5-box .about { padding: 6px 16px 12px; }
 .rk5-box .item { display: flex; flex-direction: column; gap: 2px; padding: 12px 0; border-bottom: 1px solid var(--line); }
