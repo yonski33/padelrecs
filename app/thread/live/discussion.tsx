@@ -13,7 +13,8 @@ import { avatarOf } from "../../../lib/thread/avatar";
 
 /** The words a page can change (the story page, owner design 2026-11-21: "Comments", "Add a comment…"); the racket page
  *  keeps the defaults. `author`: the story author's member name, whose comments get a small lime Author tag. */
-export type DiscussionWords = { heading?: string; sub?: string; ask?: string; askIcon?: string; placeholder?: string; empty?: string; author?: string };
+export type DiscussionWords = { heading?: string; sub?: string; ask?: string; askIcon?: string; placeholder?: string; empty?: string; author?: string;
+  /** v16 racket page: "Ask the community (12)" with a speech-bubble icon. */ count?: boolean };
 export function Discussion({ page, model, words = {} }: { page: string; model: string; words?: DiscussionWords }) {
   const t = useComments(page);
   const { list, open, setOpen, reply, setReply, sort, setSort, nick, setNick, note, setNote, err, admin, editing, setEditing, draft, draftName, editErr, setEditErr, own, me, post, vote, tops, replies, open_ } = t;
@@ -36,7 +37,7 @@ export function Discussion({ page, model, words = {} }: { page: string; model: s
     <Box me={me} nick={nick} setNick={setNick} nicknames={[]} placeholder={placeholder} cta={cta} onPost={onPost} onCancel={onCancel} mention={mention} back="#discussion"/>;
   return <section id="discussion" className="th-card th7-card th7-disc">
     {/* Older links (home feed, sign-in) point at #comments. */}<span id="comments" className="th7-anchor" aria-hidden="true"/>
-    <div className="th7-disc-head"><h2 className="th-h2">{words.heading ?? "Discussion"}</h2><span className="th-sub">{words.sub ?? `Questions about the ${model}? Ask ${W.people} who've used it.`}</span></div>
+    <div className="th7-disc-head"><h2 className={`th-h2${words.count ? " th7-hic" : ""}`}>{words.count && <svg width="24" height="22" viewBox="0 0 30 28" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinejoin="round" aria-hidden="true"><path d="M15 3C8 3 3 7.3 3 12.5c0 2.6 1.3 5 3.4 6.7L5 25l6.3-3.2c1.2.3 2.4.5 3.7.5 7 0 12-4.3 12-9.8S22 3 15 3z"/></svg>}{`${words.heading ?? "Discussion"}${words.count && list?.length ? ` (${list.length.toLocaleString("en-US")})` : ""}`}</h2><span className="th-sub">{words.sub ?? `Questions about the ${model}? Ask ${W.people} who've used it.`}</span></div>
     {open ? box(words.placeholder ?? `What do you want to know about the ${model}?`, "Post", x => post(x, null), () => setOpen(false))
       : <button type="button" className="th7-ask" onClick={() => { setOpen(true); setNote(""); }}><span aria-hidden="true">{words.askIcon ?? "?"}</span>{words.ask ?? "Ask a question or share a tip…"}</button>}
     {note && <p className="th-ok" role="status">{note}</p>}

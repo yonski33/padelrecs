@@ -68,3 +68,18 @@ test("the sidebar has no curated ranking box and no More from <brand>", () => {
   assert.doesNotMatch(page, /`More from \$\{|th8-rank\b/);
   assert.match(page, /Check price ↗/);
 });
+
+test("v16 additions: similar rackets without repeats, counts in the headings, avatars, poll's say-why, Show more reviews", () => {
+  const route = readFileSync("app/thread/rackets/[slug]/page.tsx", "utf8"), page = readFileSync("app/thread/racket-v7b.tsx", "utf8");
+  const rv = readFileSync("app/thread/live/racket-v7b.tsx", "utf8"), poll = readFileSync("app/thread/live/racket.tsx", "utf8");
+  assert.match(route, /sim=\{sim\.filter\(x => !compared\.some\(c => c\.row\.id === x\.id\)/);
+  assert.match(page, /Similar \$\{niche\.words\.many\}/);
+  assert.match(page, /heading: "Ask the community", count: true/);
+  assert.match(rv, /\$\{W\.Reviews\} \(\$\{cards\.length/);
+  assert.match(rv, /avatarOf\(name\)/);
+  assert.match(rv, />Show more reviews</);
+  assert.match(poll, /Vote saved: /);
+  assert.match(poll, /Say why in a short review/);
+  // The owner's earlier rulings stay: posts, not questions; no reply count.
+  assert.doesNotMatch(page, /replies/);
+});

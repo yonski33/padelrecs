@@ -19,9 +19,12 @@ import { PendingReviews, useOwner, status, editText, editName, send } from "./re
 import { grow } from "./name";
 import { signInHref } from "./use-account";
 import { MemberMark } from "./member-mark";
+import { avatarOf } from "../../../lib/thread/avatar";
 import type { RvCard } from "../racket-data";
 
 const ACCOUNTS = accountSite(niche.id);
+/** The event the poll sends to open the review form (v16 "Say why in a short review"). */
+export const OPEN_REVIEW = "thread-open-review";
 
 /** "Is it right for me?": the same picks and engine as FitCheck, with the bigger match box. `part`: a section of the top card
  *  (owner 2026-11-21: one card, as on PickleballRecs) instead of its own card. */
@@ -124,7 +127,11 @@ function ReviewRow({ c, owner, onChange }: { c: RvCard; owner: boolean; onChange
     { label: "Hide", run: () => { if (window.confirm("Hide this review? It goes back to pending and leaves the score until approved again.")) run(() => status(rid, "pending", "approved"), { gone: true }); } },
     { label: "Delete", danger: true, run: () => { if (window.confirm("Delete this review for good? It can't be undone.")) run(async () => { await status(rid, "rejected", "approved"); await send("/api/funtimes/delete-rejected", { id: rid }); }, { gone: true }); } },
   ] : [];
-  return <article id={anchor} className="th7-rv">
+  // v16: an initials avatar beside each review (grey and blank when the review has no name).
+  const av = name ? avatarOf(name) : null;
+  return <article id={anchor} className="th7-rv th7-rv-av">
+    <span className={`th7-av${av ? "" : " none"}`} style={av ? { background: av.bg } : undefined} aria-hidden="true">{av?.init ?? ""}</span>
+    <div className="th7-rv-b">
     <div className="th7-rv-top">{name ? <><strong>{name}</strong>{c.member && <MemberMark/>}</> : c.info && <span className="th-rv-info">{c.info}</span>}
       {c.verdict && <span className={`th-vpill ${VERDICT[c.verdict][1]}`}>{VERDICT[c.verdict][0]}</span>}
       {c.when && <span><Ago at={c.at || null} initial={c.when}/></span>}</div>
@@ -143,6 +150,7 @@ function ReviewRow({ c, owner, onChange }: { c: RvCard; owner: boolean; onChange
       {copied && <span className="th7-copied" role="status">Link copied</span>}
       <MoreMenu items={[{ label: "Copy link", run: copy }, { label: "Report", run: () => reportPost(anchor) }]} owner={tools}/>
     </div>
+    </div>
   </article>;
 }
 
@@ -155,6 +163,10 @@ const PAGE = 8;
 /** Player reviews (v7b). `model` (the racket's name without brand and year) is no longer shown here. */
 export function ReviewsV7b({ id, cards }: { id: string; cards: RvCard[]; model?: string }) {
   const { open, setOpen, verdict, setVerdict, text, setText, nick, setNick, busy, error, setError, done, me, post } = useReviewPost(id);
+  // v16: "Say why in a short review" under a poll vote opens the form here with that vote picked.
+  useEffect(() => { const on = (e: Event) => { const v = (e as CustomEvent<Verdict>).detail; setOpen(true); if (v) setVerdict(v);
+    setTimeout(() => document.getElementById("reviews")?.scrollIntoView({ block: "start", behavior: "smooth" }), 30); };
+    addEventListener(OPEN_REVIEW, on); return () => removeEventListener(OPEN_REVIEW, on); }, [setOpen, setVerdict]);
   const owner = useOwner();
   const [tab, setTab] = useState<(typeof TABS)[number][0]>("all"), [feel, setFeel] = useState<(typeof FEEL)[number][0]>("all"), [sort, setSort] = useState<Sort>("new"), [sortOpen, setSortOpen] = useState(false), [shown, setShown] = useState(PAGE);
   const [changed, setChanged] = useState<Record<string, Changed>>({});
@@ -175,7 +187,7 @@ export function ReviewsV7b({ id, cards }: { id: string; cards: RvCard[]; model?:
   }, []);
   const sortLabel = SORTS.find(([k]) => k === sort)![1];
   return <section id="reviews" className="th-card th7-card th7-reviews">
-    <div className="th7-head"><h2 className="th-h2">{W.Reviews}</h2>
+    <div className="th7-head"><h2 className="th-h2 th7-hic"><svg width="24" height="22" viewBox="0 0 30 28" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinejoin="round" aria-hidden="true"><path d="M15 3C8 3 3 7.3 3 12.5c0 2.6 1.3 5 3.4 6.7L5 25l6.3-3.2c1.2.3 2.4.5 3.7.5 7 0 12-4.3 12-9.8S22 3 15 3z"/></svg>{cards.length > 0 ? `${W.Reviews} (${cards.length.toLocaleString("en-US")})` : W.Reviews}</h2>
       <span className="th7-head-r">{cards.length > 0 && <span className="th7-sort">
         <button type="button" className="th7-sort-btn" aria-haspopup="listbox" aria-expanded={sortOpen} onClick={() => setSortOpen(o => !o)}><span className="lbl">Sort:</span>{sortLabel}<span className="arr" aria-hidden="true">▼</span></button>
         {sortOpen && <span className="th7-sort-menu" role="listbox" aria-label="Sort reviews">{SORTS.map(([k, l]) =>
@@ -208,6 +220,6 @@ export function ReviewsV7b({ id, cards }: { id: string; cards: RvCard[]; model?:
       {cards.length === 0 && <p className="th-empty">{`No reviews yet. ${W.triedIt} Be the first.`}</p>}
       {cards.length > 0 && list.length === 0 && <p className="th-empty">No reviews match these filters yet. <button type="button" onClick={() => { setTab("all"); setFeel("all"); }}>Show all</button></p>}
     </div>
-    {list.length > shown && <button type="button" className="th-btn th-center" style={{ margin: "4px 0 8px" }} onClick={() => setShown(s => s + 16)}>{`Load ${Math.min(16, list.length - shown)} more reviews`}</button>}
+    {list.length > shown && <button type="button" className="th-btn th-center" style={{ margin: "4px 0 8px" }} onClick={() => setShown(s => s + 16)}>Show more reviews</button>}
   </section>;
 }
