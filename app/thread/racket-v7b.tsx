@@ -15,7 +15,8 @@ import { traitSeed } from "../../lib/thread/trait-seed";
 import { withoutYear } from "../../lib/brand-name";
 import { niche } from "../../lib/niche";
 import { TraitVotes } from "./live/trait-votes";
-import { FitCard, PollCard, ReviewsV7b } from "./live/racket-v7b";
+import { FitCard, PollCard, ReviewsV7b, WebSources } from "./live/racket-v7b";
+import { splitSources } from "../../lib/thread/web-sources";
 import { Discussion } from "./live/discussion";
 import { Ago } from "./live/ago";
 import type { WhoRow } from "../../lib/thread/community";
@@ -61,6 +62,7 @@ function RacketCard({ x }: { x: ThreadRow }) {
 
 export function RacketV7b(p: V7bProps) {
   const { row, judged } = p, score = SHOW_SCORE ? row?.score ?? null : null;
+  const src = splitSources(p.cards);
   const badge = (size?: string) => score != null ? <span className={`th-badge ${tone(score)}${size ? ` ${size}` : ""}`}>{score}</span> : <span className="th-badge new">New</span>;
   const scoreEl = SHOW_SCORE && <div className="th7-score">{badge()}<span><span>{score != null ? W.Score : judged > 0 ? `${plural(judged, W.opinions.replace(/s$/, ""), W.opinions)} so far` : "No votes yet"}</span>
     {judged > 0 && <SBar lg pos={row!.pos} mix={row!.mix} neg={row!.neg}/>}</span></div>;
@@ -130,7 +132,9 @@ export function RacketV7b(p: V7bProps) {
         {p.brand && <a className="th8-all" href={th(`/brands/${p.brand.slug}`)}>{`All ${p.brand.name} ${niche.words.many} →`}</a>}</div>
         <div className="th8-grid th8-sim">{p.sim.slice(0, 4).map(x => <RacketCard key={x.id} x={x}/>)}</div></section>}
       {community && <div className="th8-narrow th8-narrow-after">{community}</div>}
-      <ReviewsV7b id={p.id} cards={p.cards}/>
+      {/* Player reviews, then outside sources in their own box (owner mock 2026-11-21, lib/thread/web-sources.ts). */}
+      <ReviewsV7b id={p.id} cards={src.players}/>
+      <WebSources web={src.web}/>
       <Discussion page={`racket:${p.id}`} model={p.model} words={{ heading: "Ask the community", count: true, sub: `Questions, advice, and tips about the ${p.model}.` }}/>
       {p.also.length >= 2 && <section className="th-card th8-sec"><h2 className="th-h2">{`${W.lovers} who loved this also loved`}</h2>
         <div className="th8-grid">{p.also.slice(0, 4).map(x => <RacketCard key={x.id} x={x}/>)}</div></section>}
