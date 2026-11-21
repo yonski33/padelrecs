@@ -5,6 +5,9 @@ import { notFound } from "next/navigation";
 import { Shell } from "../../shell";
 import { threadRows } from "../../data";
 import { Catalog } from "../../live/catalog";
+import { PadelCatalog } from "../../live/catalog-padel";
+import { padelListData } from "../../padel-list-data";
+import { threadRankings } from "../../rankings-data";
 import { listJsonLd } from "../../../../lib/catalogue-seo";
 import { niche } from "../../../../lib/niche";
 import { liveOr } from "../../seo";
@@ -23,6 +26,15 @@ export async function generateMetadata({ params }: P): Promise<Metadata> {
 export default async function ThreadTypePage({ params }: P) {
   const t = typeOf((await params).type);
   if (!t) notFound();
+  // AudioRecs (V3-ROLLOUT-BRIEF): the v3 catalogue for one type, no score.
+  if (niche.id === "audio") {
+    const d = await padelListData(), kinds = t.shape === "Headphones" ? ["Over-ear", "On-ear", "Open-back"] : t.shape === "IEMs" ? ["IEM"] : [t.shape];
+    const keep = new Set(d.rows.filter(r => kinds.includes(r.shape ?? "")).map(r => r.id));
+    const lists = await threadRankings();
+    return <Shell active="rackets"><PadelCatalog rows={d.rows.filter(r => keep.has(r.id))} brands={d.brands} pills={d.pills} added={d.added} curated={[]}
+      rankings={lists.slice(0, 6).map(l => ({ label: l.label, href: l.href }))} latest={[]} title={t.label} crumb={t.label}
+      {...(d.wire ? { wire: d.wire.filter(w => keep.has(w.id)) } : {})}/></Shell>;
+  }
   const { all } = await threadRows();
   const rows = all.filter(r => r.n > 0 && r.shape === t.shape);
   const count = new Map<string, number>();

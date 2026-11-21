@@ -45,9 +45,10 @@ export function videoId(url: string | null): string | null {
 export const thumbOf = (url: string | null) => { const id = videoId(url); return id ? `https://i.ytimg.com/vi/${id}/mqdefault.jpg` : null; };
 
 /** Owner 2026-11-21: summaries say "players", never "owners". */
-export const playersWord = (t: string) => t
-  .replace(/(?<![\w-])([Aa])n owner\b/g, (_, a: string) => `${a} player`)
-  .replace(/(?<![\w-])([Oo])wner(s?)\b/g, (_, o: string, s: string) => `${o === "O" ? "P" : "p"}layer${s}`);
+/** `person`: the site's word (AudioRecs: "listener", V3-ROLLOUT-BRIEF: never "owners"). */
+export const playersWord = (t: string, person = "player") => t
+  .replace(/(?<![\w-])([Aa])n owner\b/g, (_, a: string) => `${a} ${person}`)
+  .replace(/(?<![\w-])([Oo])wner(s?)\b/g, (_, o: string, s: string) => `${o === "O" ? person[0].toUpperCase() : person[0]}${person.slice(1)}${s}`);
 
 /** Under this many player reviews the page shows the compact strip and opens "From around the web" in full (owner
  *  2026-11-21: few-review pages look full but honest). One number, used by the page and the tests. */
@@ -55,8 +56,8 @@ export const THIN_REVIEWS = 3;
 export const isThin = (players: number) => players < THIN_REVIEWS;
 const n = (x: number) => x.toLocaleString("en-US");
 /** The reviews header's count line: "1 player review · 13 from around the web" (the web part only when there is any). */
-export const countLine = (players: number, web: number) =>
-  [`${n(players)} player ${players === 1 ? "review" : "reviews"}`, web > 0 ? `${n(web)} from around the web` : ""].filter(Boolean).join(" · ");
+export const countLine = (players: number, web: number, person = "player") =>
+  [`${n(players)} ${person} ${players === 1 ? "review" : "reviews"}`, web > 0 ? `${n(web)} from around the web` : ""].filter(Boolean).join(" · ");
 /** Poll totals under this stay unsaid next to the strip (a "2 players voted" line would point at nearly nothing). */
 export const POLL_POINT_MIN = 5;
 export const webCount = <T>(w: WebGroups<T>) => w.threads.length + w.videos.length + w.comments.length + w.blogs.length;

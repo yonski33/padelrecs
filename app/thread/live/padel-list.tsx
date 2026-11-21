@@ -9,15 +9,26 @@ import { th } from "../../../lib/thread/look";
 import { withoutYear } from "../../../lib/brand-name";
 import { usePicks, usePayload, pctsFor, LEVEL_OPTS, STYLE_OPTS, styleLabel, type Level } from "./picks";
 import { bandOrder } from "../../../lib/thread/home-order";
+import { niche } from "../../../lib/niche";
+import { W } from "../../../lib/thread/words";
+import { USES, SOUNDS, type AudioPicks } from "../../../lib/audio-match";
 
 export type Sort = "picks" | "loved" | "opinions" | "new" | "match";
 export type Key = "shape" | "feel" | "brand";
 type Filters = Partial<Record<Key, string[]>>;
-export const SORTS: [Sort, string][] = [["picks", "PadelRecs picks"], ["loved", "Most loved"], ["new", "Newest"], ["match", "By your match"]];
+/** AudioRecs (V3-ROLLOUT-BRIEF): no curated lists, so no "picks" order; Type and Sound in place of Shape and Feel (its rows
+ *  carry the kind as `shape` and the tuning as `feel`, app/thread/padel-list-data.ts). */
+const AUDIO = niche.id === "audio";
+export const SORTS: [Sort, string][] = AUDIO ? [["loved", "Most loved"], ["new", "Newest"], ["match", "By your match"]]
+  : [["picks", "PadelRecs picks"], ["loved", "Most loved"], ["new", "Newest"], ["match", "By your match"]];
+const BASE_SORT: Sort = SORTS[0][0];
 /** The home's menu (owner 2026-11-21: "PadelRecs picks" read as random there): Most loved (default), Most opinions, and By
  *  your match once a pick is set. The catalogue keeps SORTS. */
 export const HOME_SORTS: [Sort, string][] = [["loved", "Most loved"], ["opinions", "Most opinions"], ["match", "By your match"]];
-const FEELS = ["Soft", "Medium", "Hard"];
+const FEELS = AUDIO ? ["Warm", "Balanced", "Bright"] : ["Soft", "Medium", "Hard"];
+const GROUP_TITLES: Record<Key, string> = AUDIO ? { shape: "Type", feel: "Sound", brand: "Brand" } : { shape: "Shape", feel: "Feel", brand: "Brand" };
+/** AudioRecs' match (lib/audio-match.ts), worked out by the page's own hook (live/audio-match.tsx) and handed to the list. */
+export type ListMatch = { mine: boolean; pcts: Map<string, number | null> | null; picks: AudioPicks; set: (p: Partial<AudioPicks>) => void };
 const TOP_BRANDS = 6;
 /** Fine-tune filters kept in this browser (handoff README: "padelrecs-ft"), the same on the home and the catalogue. */
 export const FT_KEY = "padelrecs-ft";
@@ -31,12 +42,13 @@ export const plural = (n: number, one: string, many = `${one}s`) => `${n.toLocal
 
 /** The list's state: picks, fine-tune, search, sort and the sorted, filtered rows. `search`: the catalogue's search box.
  *  `season` (the home, lib/thread/home-order.ts): only these ids, "Most loved" by default, and "By your match" in 10-point
- *  bands with the most loved first inside each. */
-export function useRacketList({ rows, curated, added, search = false, season }: { rows: ThreadRow[]; curated: string[]; added: Record<string, string>; search?: boolean; season?: string[] }) {
-  const base: Sort = season ? "loved" : "picks";
+ *  bands with the most loved first inside each. `match`: AudioRecs' own quick match (live/audio-match.tsx). */
+export function useRacketList({ rows, curated, added, search = false, season, match }: { rows: ThreadRow[]; curated: string[]; added: Record<string, string>; search?: boolean; season?: string[]; match?: ListMatch }) {
+  const base: Sort = season ? "loved" : BASE_SORT;
   const [q, setQ] = useState(""), [f, setF] = useState<Filters>({}), [sort, setSort] = useState<Sort>(base), [ftReady, setFtReady] = useState(false), [older, setOlder] = useState(false);
-  const [picks, setPicks] = usePicks(); const mine = !!(picks.level || picks.style), payload = usePayload(mine);
-  const pcts = useMemo(() => mine && payload ? pctsFor(payload, picks) : null, [mine, payload, picks]);
+  const [picks, setPicks] = usePicks(); const padelMine = !match && !!(picks.level || picks.style), payload = usePayload(padelMine);
+  const padelPcts = useMemo(() => padelMine && payload ? pctsFor(payload, picks) : null, [padelMine, payload, picks]);
+  const mine = match ? match.mine : padelMine, pcts = match ? match.pcts : padelPcts;
   // ?q= (catalogue), ?shape= / ?feel= from links, ?level= sets the level pick. A link's filter wins over the kept filters.
   // eslint-disable-next-line react-hooks/set-state-in-effect
   useEffect(() => { const u = new URLSearchParams(location.search), v = u.get("q"); if (v && search) setQ(v);
@@ -70,7 +82,7 @@ export function useRacketList({ rows, curated, added, search = false, season }: 
   // eslint-disable-next-line react-hooks/exhaustive-deps
   [pool, f, q, by, pcts, pick, added, only]);
   const sorts = season ? HOME_SORTS : SORTS;
-  return { q, setQ, f, toggle, chips, clearAll, picks, setPicks, mine, pcts, sort: by, setSort, sorts, list, pool, pass, test, older, setOlder, olderN, words };
+  return { q, setQ, f, toggle, chips, clearAll, picks, setPicks, mine, pcts, sort: by, setSort, sorts, list, pool, pass, test, older, setOlder, olderN, words, match };
 }
 export type RacketList = ReturnType<typeof useRacketList>;
 
@@ -78,6 +90,20 @@ export type RacketList = ReturnType<typeof useRacketList>;
  *  `tag`: the yellow sticker label (catalogue: "Find my match"); `lead` and `after` add the home's icons and sticker. */
 export function MatchBar({ l, ft, setFt, tag, icons, after }: { l: RacketList; ft: boolean; setFt: (x: boolean) => void; tag?: string; icons?: Partial<Record<Level, ReactNode>>; after?: ReactNode }) {
   const { picks, setPicks, mine } = l;
+  // AudioRecs: I use them for … | I want … · Noise cancelling (lib/audio-match.ts), the same bar and classes.
+  if (l.match) { const m = l.match, any = !!(m.picks.use || m.picks.sound || m.picks.anc);
+    return <div className="tc-qm" role="group" aria-label="Find my match">
+      {tag && <span className="tc-qm-tag">{tag}</span>}
+      <span className="tc-qm-l">I use them for</span>
+      {USES.map(([v, t]) => <button key={v} type="button" className="tc-pill" aria-pressed={m.picks.use === v} onClick={() => m.set({ use: m.picks.use === v ? null : v })}>{t}</button>)}
+      <span className="tc-qm-sep" aria-hidden="true"/>
+      <span className="tc-qm-l">I want</span>
+      {SOUNDS.map(([v, t]) => <button key={v} type="button" className="tc-pill" aria-pressed={m.picks.sound === v} onClick={() => m.set({ sound: m.picks.sound === v ? null : v })}>{t}</button>)}
+      <button type="button" className="th-check tc-arm" aria-pressed={m.picks.anc} onClick={() => m.set({ anc: !m.picks.anc })}><span aria-hidden="true">{m.picks.anc ? "✓" : ""}</span>Noise cancelling</button>
+      {after}
+      {any && <button type="button" className="tc-link" onClick={() => m.set({ use: null, sound: null, anc: false })}>Reset</button>}
+      <button type="button" className="tc-ft" aria-expanded={ft} onClick={() => setFt(!ft)}>Not sure yet? <u>fine-tune</u> {ft ? "▴" : "▾"}</button>
+    </div>; }
   return <div className="tc-qm" role="group" aria-label="Find my match">
     {tag && <span className="tc-qm-tag">{tag}</span>}
     <span className="tc-qm-l">{"I'm"}</span>
@@ -104,7 +130,7 @@ export function FineTune({ l, ft, brands }: { l: RacketList; ft: boolean; brands
       {more && opts.length > TOP_BRANDS && <button type="button" className="tc-more" onClick={() => setAllBrands(x => !x)}>{allBrands ? "Show fewer" : `+ ${opts.length - TOP_BRANDS} more`}</button>}</div>;
   };
   return <>
-    {ft && <div className="tc-panel"><span className="tc-panel-h">Only show:</span>{group("shape", "Shape", shapes)}{group("feel", "Feel", FEELS)}{group("brand", "Brand", brands, true)}</div>}
+    {ft && <div className="tc-panel"><span className="tc-panel-h">Only show:</span>{group("shape", GROUP_TITLES.shape, shapes)}{group("feel", GROUP_TITLES.feel, FEELS)}{group("brand", GROUP_TITLES.brand, brands, true)}</div>}
     {chips.length > 0 && <div className="tc-chips">{chips.map(c => <button key={`${c.k}:${c.v}`} type="button" className="tc-chip" onClick={() => toggle(c.k, c.v)}>{c.v}<span aria-hidden="true">×</span><span className="sr">{`Remove ${c.v}`}</span></button>)}
       <button type="button" className="tc-link" onClick={clearAll}>Clear all</button></div>}
   </>;
@@ -116,7 +142,7 @@ export function SortMenu({ l, onPick }: { l: RacketList; onPick?: () => void }) 
   const [open, setOpen] = useState(false), label = l.sorts.find(([k]) => k === l.sort)?.[1] ?? l.sorts[0][1];
   return <span className="tc-sort"><span className="lbl">Sort:</span>
     <button type="button" className="tc-sort-btn" aria-haspopup="listbox" aria-expanded={open} onClick={() => setOpen(o => !o)}>{label}<small aria-hidden="true">▼</small></button>
-    {open && <span className="tc-sort-menu" role="listbox" aria-label="Sort rackets">{l.sorts.filter(([k]) => k !== "match" || l.pcts).map(([k, t]) =>
+    {open && <span className="tc-sort-menu" role="listbox" aria-label={`Sort ${W.items}`}>{l.sorts.filter(([k]) => k !== "match" || l.pcts).map(([k, t]) =>
       <button key={k} type="button" role="option" aria-selected={l.sort === k} onClick={() => { l.setSort(k); setOpen(false); onPick?.(); }}>{t}<span>{l.sort === k ? "✓" : ""}</span></button>)}</span>}
   </span>;
 }

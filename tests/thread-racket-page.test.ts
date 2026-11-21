@@ -81,7 +81,7 @@ test("v16 additions: similar rackets without repeats, counts in the headings, av
   assert.match(route, /pickSimilar\(simSelf, simSpecs, new Set\(compared\.map\(c => c\.row\.id\)\)\)/);
   assert.match(page, /Similar \$\{niche\.words\.many\}/);
   assert.match(page, /<CommunityFeed id=\{p\.id\} model=\{p\.model\}/); // one feed replaced Ask the community (owner 2026-11-21)
-  assert.match(rv, /countLine\(cards\.length, web\)/); // the count line replaced "(N)" (owner 2026-11-21)
+  assert.match(rv, /countLine\(cards\.length, web, W\.person\)/); // the count line replaced "(N)" (owner 2026-11-21)
   assert.match(rv, /avatarOf\(name\)/);
   assert.match(rv, />Show more reviews</);
   assert.match(poll, /Vote saved: /);

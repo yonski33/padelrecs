@@ -10,6 +10,7 @@ import { listJsonLd, catalogCrumb } from "../../../lib/catalogue-seo";
 import { niche } from "../../../lib/niche";
 import { threadRankings } from "../rankings-data";
 import { typedName } from "../../../lib/thread/display-name";
+import { v3Site } from "../../../lib/thread/sites";
 
 export const revalidate = 21600;
 import type { Metadata } from "next";
@@ -29,16 +30,18 @@ export default async function ThreadCatalog() {
   for (const r of rows) count.set(r.brand, (count.get(r.brand) ?? 0) + 1);
   const top = [...rows].sort((a, b) => (b.score ?? -1) - (a.score ?? -1) || b.n - a.n);
   const ld = <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: listJsonLd([catalogCrumb], top.map(r => ({ name: r.name, href: r.href }))) }}/>;
-  if (niche.id !== "padel") {
+  if (!v3Site(niche.id)) {
     const brands = [...count].filter(([b, n]) => b && n >= 5).sort((a, b) => b[1] - a[1]).slice(0, 10).map(([b]) => b);
     return <Shell active="rackets">{ld}<Catalog rows={rows} brands={brands}/></Shell>;
   }
-  const { brands, pills, added, curated } = await padelListData();
-  const lists = await threadRankings(), rankings = RANK_LINKS.flatMap(s => { const l = lists.find(x => x.slug === s); return l ? [{ label: l.label, href: l.href }] : []; });
+  const { brands, pills, added, curated, wire, rows: listRows } = await padelListData();
+  const lists = await threadRankings(), rankings = (niche.id === "audio" ? lists.map(l => l.slug).slice(0, 6) : RANK_LINKS).flatMap(s => { const l = lists.find(x => x.slug === s); return l ? [{ label: l.label, href: l.href }] : []; });
   // Latest reviews: the 3 newest approved player reviews with a typed name and a line to show.
   const byId = new Map(rows.map(r => [r.id, r]));
   const latest: SideReview[] = (ctx?.data.reviews ?? []).filter(x => typedName(x.alias) && x.reviewText?.trim().length >= 30 && byId.has(x.racketId))
     .sort((a, b) => b.createdAt.localeCompare(a.createdAt)).slice(0, 3)
     .map(x => ({ id: x.id, who: typedName(x.alias)!, at: x.createdAt, racket: byId.get(x.racketId)!.name, href: `${byId.get(x.racketId)!.href}#reviews`, text: x.reviewText.trim() }));
-  return <Shell active="rackets">{ld}<PadelCatalog rows={rows} brands={brands} pills={pills} added={added} curated={curated} rankings={rankings} latest={latest}/></Shell>;
+  // AudioRecs: its list rows (kind and tuning as the filters), its match inputs and its own words.
+  const audio = niche.id === "audio" ? { rows: listRows, ...(wire ? { wire } : {}), title: "All headphones", crumb: "Headphones" } : { rows };
+  return <Shell active="rackets">{ld}<PadelCatalog brands={brands} pills={pills} added={added} curated={curated} rankings={rankings} latest={latest} {...audio}/></Shell>;
 }

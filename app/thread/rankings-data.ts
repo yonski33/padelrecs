@@ -2,7 +2,7 @@
 // for the hub's other cards, Thread-only lists from the same engine: the home's quick match for beginners and for sore arms
 // (as the live "for a kind of player" lists do, lib/home-rank.ts rankHome) and the best-scored rackets of each shape.
 import { cache } from "react";
-import { threadLists, threadRows, hasDb, skinOf, traitCounts, traitGroup } from "./data";
+import { threadLists, threadRows, hasDb, skinOf, audioOf, traitCounts, traitGroup } from "./data";
 import { categoryRatings, priorShare, type RatingCategory } from "../../lib/category-rating";
 import { SKIN_NEEDS, skinSplits } from "../../lib/skin-lists";
 import { ELBOW_SLUG } from "../../lib/thread/look";
@@ -20,9 +20,17 @@ export type ThreadRanking = { slug: string; href: string; label: string; title: 
 const YEAR = () => new Date().getUTCFullYear();
 const SIZE = 10, MIN_REVIEWS = 10;
 
-const PICKLEBALL = niche.id === "pickleball", SKIN = niche.id === "skin", DG = niche.id === "discgolf";
+const PICKLEBALL = niche.id === "pickleball", SKIN = niche.id === "skin", DG = niche.id === "discgolf", AUDIO = niche.id === "audio";
 /** The hub's blurbs (Rankings Hub Thread copy), by list. */
-const BLURB: Record<string, string> = DG ? {
+const BLURB: Record<string, string> = AUDIO ? {
+  // AudioRecs' Rankings Hub mock, on its live lists plus the Thread-only lists below. The mock's "Best under $100" and "Best
+  // for gaming" wait for prices and gaming headsets (neither is in the catalogue); "Best for beginners" has no data behind it.
+  "best-headphones-overall": "The most loved by listeners right now.", "best-noise-cancelling-headphones": "For trains, planes and open offices.",
+  "best-headphones-for-commuting": "Noise cancelling and comfort for the trip.", "best-headphones": "Over-ears and on-ears, open and closed.",
+  "best-wireless-earbuds": "Pocketable, for the commute and the gym.", "best-iems": "Wired detail for the money.",
+  "best-open-back-headphones": "Natural sound in a quiet room.", "best-headphones-for-home-listening": "For long sessions at home.",
+  "best-headphones-for-the-office": "Comfort and a clear mic for the workday.", "best-headphones-for-the-gym": "Wireless pairs that stay put and hold up.",
+} : DG ? {
   // DiscGolfRecs' Rankings Hub mock, on its live lists by disc type plus the Thread-only lists below.
   "best-disc-golf-discs": "The highest thrower scores this year.", "best-disc-golf-discs-for-beginners": "Straight, forgiving discs to learn with.",
   "best-disc-golf-discs-for-slow-arms": "Understable discs that still go far.", "best-disc-golf-putters": "Accurate discs for the short game.",
@@ -50,12 +58,12 @@ const PICKS: { key: string; slug: string; label: string; title: string; choice: 
   // DiscGolfRecs' live lists are one per disc type; the mock's beginner and slow arm lists are the home's quick match.
   { key: "best-disc-golf-discs-for-beginners", slug: "best-disc-golf-discs-for-beginners", label: "Best for beginners", title: "Best disc golf discs for beginners", choice: { style: "any", level: "beginner", arm: false } },
   { key: "best-disc-golf-discs-for-slow-arms", slug: "best-disc-golf-discs-for-slow-arms", label: "Best for slow arm speed", title: "Best disc golf discs for slow arm speed", choice: { style: "any", arm: true } },
-] : PICKLEBALL || SKIN ? [] : [
+] : PICKLEBALL || SKIN || AUDIO ? [] : [
   { key: "beginners", slug: "best-padel-rackets-for-beginners", label: "Best for beginners", title: "Best padel rackets for beginners", choice: { style: "any", level: "beginner", arm: false } },
   // Named for tennis elbow (owner 2026-11-19); the old /rankings/best-padel-rackets-for-sore-arms 301s here (THREAD_MOVED).
   { key: "sore-arms", slug: ELBOW_SLUG, label: "Best for tennis elbow", title: "Best padel rackets for tennis elbow", choice: { style: "any", arm: true } },
 ];
-const SHAPES: readonly (readonly [string, string])[] = SKIN || DG ? [] : PICKLEBALL ? [["standard", "Standard"], ["elongated", "Elongated"], ["hybrid", "Hybrid"]] as const
+const SHAPES: readonly (readonly [string, string])[] = SKIN || DG || AUDIO ? [] : PICKLEBALL ? [["standard", "Standard"], ["elongated", "Elongated"], ["hybrid", "Hybrid"]] as const
   : [["round", "Round"], ["teardrop", "Teardrop"], ["diamond", "Diamond"]] as const;
 const LIST = `${niche.id}-${niche.words.many}`; // "padel-rackets", "pickleball-paddles"
 
@@ -64,8 +72,8 @@ export const threadRankings = cache(async (): Promise<ThreadRanking[]> => {
   // The racket engine's payload only where Thread-only pick lists use it (padel); skin ranks with its own engine below.
   const [lists, { all, ctx }, payload] = await Promise.all([threadLists(), threadRows(), PICKS.length ? homePayload() : null]);
   const byVotes = await votesFor(lists, all, ctx);
-  const own = lists.map(l => ({ slug: l.slug, href: l.href, label: l.label, title: l.title, blurb: BLURB[l.slug] ?? l.description ?? "", own: true, ids: byVotes.get(l.slug) ?? l.ids.slice(0, SIZE),
-    group: SKIN ? (SKIN_NEEDS.some(n => n.hub === l.slug) ? HUBS : "By product type") : DG ? "By how you throw" : /power|control|spin/.test(l.slug) ? "By how you play" : "Most popular" }));
+  const own = lists.map(l => ({ slug: l.slug, href: l.href, label: AUDIO ? AUDIO_LABEL[l.slug] ?? l.label : l.label, title: l.title, blurb: BLURB[l.slug] ?? l.description ?? "", own: true, ids: byVotes.get(l.slug) ?? l.ids.slice(0, SIZE),
+    group: AUDIO ? (/noise-cancelling/.test(l.slug) ? "Most popular" : "By type") : SKIN ? (SKIN_NEEDS.some(n => n.hub === l.slug) ? HUBS : "By product type") : DG ? "By how you throw" : /power|control|spin/.test(l.slug) ? "By how you play" : "Most popular" }));
   const picks = PICKS.map(p => ({ slug: p.slug, href: `/rankings/${p.slug}`, label: p.label, title: `${p.title} ${YEAR()}`, blurb: BLURB[p.key], own: false, group: "Most popular",
     ids: rankHome(payload!.items, RANK_SETUP, NEGATIVE_TAGS, p.choice, false, SIZE).rows.map(r => r.id) }));
   const shapes = SHAPES.map(([k]) => ({ slug: `best-${k}-${LIST}`, href: `/rankings/best-${k}-${LIST}`, label: `Best ${k} ${niche.words.many}`, title: `Best ${k} ${niche.id} ${niche.words.many} ${YEAR()}`,
@@ -77,6 +85,7 @@ export const threadRankings = cache(async (): Promise<ThreadRanking[]> => {
   const overall = DG ? [{ slug: "best-disc-golf-discs", href: "/rankings/best-disc-golf-discs", label: "Best overall", title: `Best disc golf discs ${YEAR()}`,
     blurb: BLURB["best-disc-golf-discs"], own: false, group: "Most popular",
     ids: all.filter(r => r.score != null && r.current && r.n >= MIN_REVIEWS).sort((a, b) => b.score! - a.score! || b.n - a.n).slice(0, SIZE).map(r => r.id) }] : [];
+  if (AUDIO) return audioLists(own, all, ctx);
   const out = (DG ? [...overall, ...picks, ...own] : [...own, ...picks, ...shapes, ...skin]).filter(l => l.ids.length >= (l.own ? 5 : 10));
   // A skin need's hub lists the per-type lists that made it (a full 10 each).
   if (!SKIN) return out;
@@ -109,7 +118,7 @@ async function votesFor(lists: Awaited<ReturnType<typeof threadLists>>, all: Awa
 }
 /** SkinRecs' need hubs: pages of their own, not cards on the rankings hub (each need's heading links to its hub). */
 export const HUBS = "Skin needs";
-export const GROUPS = SKIN ? [...SKIN_NEEDS.map(n => n.group), "By product type"] : DG ? ["Most popular", "By how you throw"] : ["Most popular", "By how you play", "By shape"];
+export const GROUPS = AUDIO ? ["Most popular", "By type", "By use"] : SKIN ? [...SKIN_NEEDS.map(n => n.group), "By product type"] : DG ? ["Most popular", "By how you throw"] : ["Most popular", "By how you play", "By shape"];
 
 /** SkinRecs' Thread-only lists (its Rankings Hub mock, split by product type owner 2026-11-21): the skin engine's own match for
  *  that pick (app/skin/rank.ts rankSkin, as the live home ranks it), current products with a match only, a full 10 needed.
@@ -147,4 +156,34 @@ export async function ratingsFor(cat: RatingCategory, ids: string[]): Promise<Re
       dots: cat.dots === "arm" ? f.armDots ?? null : cat.dots ? f.styleDots?.[cat.dots] ?? null : null }; });
   const out = categoryRatings(cat, inputs, prior);
   return Object.fromEntries(ids.map((id, i) => [id, out[i]]));
+}
+
+/** AudioRecs' hub names for its live lists (its Rankings Hub mock). */
+const AUDIO_LABEL: Record<string, string> = { "best-headphones": "Best headphones", "best-noise-cancelling-headphones": "Best noise cancelling",
+  "best-iems": "Best IEMs", "best-wireless-earbuds": "Best earbuds" };
+/** AudioRecs: its live lists, then the Thread-only ones its hub mock asks for, each a full 10 of current models with 10+
+ *  reviews: the best listener scores overall and of the open-backs, and the audio match for each use (lib/audio-match.ts,
+ *  as the home ranks it; no pair with a catch for that use). */
+async function audioLists(own: ThreadRanking[], all: Awaited<ReturnType<typeof threadRows>>["all"], ctx: unknown): Promise<ThreadRanking[]> {
+  const au = audioOf(ctx as Parameters<typeof audioOf>[0]);
+  if (!au) return own.filter(l => l.ids.length >= 5);
+  const { rankAudio } = await import("../../lib/audio-match");
+  const ok = all.filter(r => r.score != null && r.current && r.n >= MIN_REVIEWS), okIds = new Set(ok.map(r => r.id));
+  // No score on the v3 pages (V3-ROLLOUT-BRIEF): by most loved, as padel's Best overall (#600).
+  const byScore = (keep: (r: (typeof ok)[number]) => boolean) => ok.filter(keep).sort((a, b) => b.pos - a.pos || b.n - a.n).slice(0, SIZE).map(r => r.id);
+  const list = (slug: string, label: string, title: string, group: string, ids: string[]): ThreadRanking =>
+    ({ slug, href: `/rankings/${slug}`, label, title: `${title} ${YEAR()}`, blurb: BLURB[slug] ?? "", own: false, group, ids });
+  const wire = [...au.wire.values()].filter(w => okIds.has(w.id));
+  const forUse = (use: "commute" | "office" | "home" | "gym") => rankAudio(wire, { use, sound: null, anc: false })
+    .filter(x => x.m.pct !== null && !x.m.hard && !x.m.warn).slice(0, SIZE).map(x => x.w.id);
+  const extra = [
+    list("best-headphones-overall", "Best overall", "Best headphones overall", "Most popular", byScore(() => true)),
+    list("best-headphones-for-commuting", "Best for commuting", "Best headphones for commuting", "Most popular", forUse("commute")),
+    list("best-open-back-headphones", "Best open-back", "Best open-back headphones", "By type", byScore(r => r.audio?.kind === "Open-back")),
+    list("best-headphones-for-home-listening", "Best for home listening", "Best headphones for home listening", "By use", forUse("home")),
+    list("best-headphones-for-the-office", "Best for the office", "Best headphones for the office", "By use", forUse("office")),
+    list("best-headphones-for-the-gym", "Best for the gym", "Best headphones for the gym", "By use", forUse("gym")),
+  ];
+  // The hub mock's order: Best overall leads Most popular.
+  return [extra[0], ...own, ...extra.slice(1)].filter(l => l.ids.length >= (l.own ? 5 : 10));
 }

@@ -23,16 +23,19 @@ import { niche } from "../../lib/niche";
 import { W } from "../../lib/thread/words";
 import { PadelHomeTop } from "./live/home-padel";
 import { padelListData } from "./padel-list-data";
+import { v3Site } from "../../lib/thread/sites";
 
 export const revalidate = 21600;
 const SKIN = niche.id === "skin", DG = niche.id === "discgolf";
 /** PadelRecs home on phones (owner 2026-11-21): no intro line, no "Showing N rackets" line, a tighter hero (th-hp). */
 const PADEL = niche.id === "padel";
+/** The v3 home (padel's, lib/thread/sites.ts v3Site): PadelRecs and the sites rolled onto it (AudioRecs). */
+const V3 = v3Site(niche.id), AUDIO = niche.id === "audio";
 // The live home's title, description, canonical and share card (app/home-metadata.ts).
 export const generateMetadata = (): Promise<Metadata> => liveOr(() => homeMetadata(DEFAULT_CHOICE, false));
 
 export default async function ThreadHome() {
-  const [{ all, rows, ctx }, picks, lists, feed, payload, side, tales] = await Promise.all([threadRows(), threadTopPicks(), threadRankings(), threadFeed(), hasDb() && !SKIN ? homePayload() : null, threadHomeSide(), threadStories(3)]);
+  const [{ all, rows, ctx }, picks, lists, feed, payload, side, tales] = await Promise.all([threadRows(), threadTopPicks(), threadRankings(), threadFeed(), hasDb() && !SKIN && !AUDIO ? homePayload() : null, threadHomeSide(), threadStories(3)]);
   // The classic home's own order (curated picks first, one current row per model; app/home-payload.ts defaultHomeIds).
   const top = payload ? homeTop(rows, defaultHomeIds(payload, DEFAULT_CHOICE)) : [];
   // SkinRecs ranks with its own engine in the browser (app/thread/live/skin-match.tsx): the current products and their
@@ -68,12 +71,12 @@ export default async function ThreadHome() {
         </section>;
   // PadelRecs v3 (Home Thread v6, owner 2026-11-21): hero + match bar + fine-tune, Top rackets (shared with the catalogue),
   // Top picks with "N votes", the latest reviews and the same sidebar, with the v3 headers. Other sites keep the page below.
-  if (PADEL) {
+  if (V3) {
     const d = await padelListData();
     const live = total > 0 ? `${total.toLocaleString("en-US")} reviews${week > 0 ? ` · ${week.toLocaleString("en-US")} ${WEEK_SHORT}` : ""}` : null;
     return <Shell>
       <main className="th-main th-hp3">
-        <PadelHomeTop rows={d.rows} brands={d.brands} pills={d.pills} added={d.added} curated={d.curated} season={d.season} live={live}
+        <PadelHomeTop rows={d.rows} brands={d.brands} pills={d.pills} added={d.added} curated={d.curated} season={d.season} live={live} {...(d.wire ? { wire: d.wire, art: <Headphones/> } : {})}
           after={<div key="after" className="hp3-rest">
             <div key="cm" className="hp3-rest">{sideBox(" th-only-m")}</div>
             {picks.lists.length > 0 && <TopPicks key="tp" lists={picks.lists} total={picks.total} hrefs={Object.fromEntries(all.map(r => [r.id, r.href]))} unit={["vote", "votes"]}/>}
@@ -130,4 +133,10 @@ export default async function ThreadHome() {
       </aside>
     </main>
   </Shell>;
+}
+
+/** AudioRecs' hero drawing, in the place of padel's racket (same box and stroke). */
+function Headphones() {
+  return <svg className="hp3-art" width="74" height="80" viewBox="0 0 74 80" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+    <path d="M12 48V36a25 25 0 0 1 50 0v12"/><rect x="6" y="44" width="14" height="24" rx="5" fill="#fff"/><rect x="54" y="44" width="14" height="24" rx="5" fill="#fff"/></svg>;
 }

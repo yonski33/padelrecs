@@ -68,8 +68,21 @@ const DISCGOLF_CATS: PickCat[] = [
   { key: "forehand", title: "Best for forehands", trait: "throw", choice: "forehand", href: "/rankings/best-disc-golf-discs" },
   { key: "durable", title: "Most durable", trait: "durability", choice: "holds_up", href: "/rankings/best-disc-golf-discs" },
 ];
+/** AudioRecs' lists (its "How listeners vote them" mock: noise cancelling, comfortable, detailed, value, calls, bass). Best
+ *  bass has no vote group (Sound is warm / balanced / bright), so Warmest sound stands in; then the waiting lists. */
+const AUDIO_CATS: PickCat[] = [
+  { key: "anc", title: "Best noise cancelling", trait: "anc", choice: "excellent", href: "/rankings/best-noise-cancelling-headphones" },
+  { key: "comfort", title: "Most comfortable", trait: "comfort", choice: "all_day", href: "/rankings/best-headphones" },
+  { key: "detail", title: "Most detailed", trait: "detail", choice: "lots", href: "/rankings/best-iems" },
+  { key: "value", title: "Best value", trait: "value", choice: "worth_it", href: "/rankings/best-headphones-overall" },
+  { key: "calls", title: "Best for calls", trait: "calls", choice: "clear", href: "/rankings/best-headphones-for-the-office" },
+  { key: "warm", title: "Warmest sound", trait: "sound", choice: "warm", href: "/rankings/best-headphones-overall" },
+  { key: "stage", title: "Widest soundstage", trait: "soundstage", choice: "wide", href: "/rankings/best-open-back-headphones" },
+  { key: "battery", title: "Longest battery", trait: "battery", choice: "lasts_days", href: "/rankings/best-wireless-earbuds" },
+  { key: "commute", title: "Best for the commute", trait: "best_for", choice: "commute", href: "/rankings/best-headphones-for-commuting" },
+];
 export const pickCatsFor = (nicheId: string) => nicheId === "pickleball" ? PICKLEBALL_CATS : nicheId === "skin" ? SKIN_CATS
-  : nicheId === "discgolf" ? DISCGOLF_CATS : PADEL_CATS;
+  : nicheId === "discgolf" ? DISCGOLF_CATS : nicheId === "audio" ? AUDIO_CATS : PADEL_CATS;
 /** The running site's lists. */
 export const PICK_CATS = pickCatsFor(niche.id);
 /** How many lists the grid shows (3 columns × 2 rows). */

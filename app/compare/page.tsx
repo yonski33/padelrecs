@@ -9,6 +9,7 @@ import { CompareView, compareMetadata, picked, hrefFor, type Query, type Data } 
 import { CompareV2, compareV2For } from "./compare-v2";
 import { CompareV3 } from "./compare-v3";
 import { niche } from "../../lib/niche";
+import { v3Site } from "../../lib/thread/sites";
 
 // /compare?ids=a,b,c: any two or three products. Only the empty picker is indexed; a mix that is one of the curated
 // "X vs Y" pairs moves to that pair's clean address, every other mix stays out of the index (lib/compare-pairs).
@@ -29,7 +30,7 @@ export default async function ComparePage({ searchParams }: { searchParams: Prom
   const light = isLight((q as { look?: string }).look);
   if (pair) redirect(`${pairHref(pair.a.slug, pair.b.slug)}`);
   // PadelRecs (owner mock "Compare", 2026-11-21): Compare v3 for any count; ?look=classic keeps the older pages.
-  if (niche.id === "padel" && (q as { look?: string }).look !== "classic") return <CompareV3 data={data} products={products}/>;
+  if (v3Site(niche.id) && (q as { look?: string }).look !== "classic") return <CompareV3 data={data} products={products}/>;
   if (compareV2For(products.length, (q as { look?: string }).look)) return <CompareV2 data={data} products={products}/>;
   return <CompareView data={data} products={products} light={light}/>;
 }

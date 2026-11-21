@@ -10,11 +10,13 @@ export type ThreadRow = {
   id: string; slug: string; name: string; href: string; pic: string | null; shape: string | null;
   line: string | null; best: string | null; n: number; pos: number; mix: number; neg: number;
   /** The live, volume-weighted Player score (lib/signal.ts), null until a racket has enough reviews. */ score: number | null;
-  brand: string; year: number; levels: ("beginner" | "intermediate" | "advanced")[]; feel: "Soft" | "Medium" | "Hard" | null; arm: boolean;
+  brand: string; year: number; levels: ("beginner" | "intermediate" | "advanced")[]; feel: "Soft" | "Medium" | "Hard" | "Warm" | "Balanced" | "Bright" | null; arm: boolean;
   /** The year that takes its model's row (lib/compare-pairs.ts familyRowIds, the classic catalog's and home's rule). Older
    *  years (false) stay reachable by their page and the catalog's search or "Show older models". */ current?: boolean;
   /** SkinRecs' catalogue filters (its mock): skin types it works for, its texture, gentle on sensitive skin. Other sites: absent. */
   facets?: { skin: string[]; texture: string | null; sensitive: boolean };
+  /** AudioRecs: the kind (Over-ear, Open-back, IEM, Earbuds), the tuning listeners hear and its filters. Other sites: absent. */
+  audio?: { kind: string | null; anc: boolean; wireless: boolean; sound: string[] };
   /** DiscGolfRecs: the maker's flight numbers (speed, glide, turn, fade), shown as pills. Other sites: absent. */
   flight?: [number, number, number, number];
 };
@@ -43,6 +45,8 @@ export const plural = (n: number, one: string, many = `${one}s`) => `${n.toLocal
 /** Match % badges off padel (owner 2026-11-21): no green / yellow scale; the best match ("m top") is a soft tint of the
  *  site's accent, the rest white, both with the ink outline (thread.css .th-badge.m). PadelRecs keeps tone(). */
 const SITE_MATCH = niche.id !== "padel";
+/** Sites on the v3 rules with no score anywhere, on the pages that still use this row (guides, brands). Padel keeps its own. */
+const NO_SCORE = niche.id === "audio";
 const toneOf = (n: number, pct?: boolean, top?: boolean) => pct && SITE_MATCH ? `m${top ? " top" : ""}` : tone(n);
 /** The row id with the highest match % (the first on a tie), for the "top" badge; null without any %. */
 export function topMatch(xs: { id: string; pct?: number | null }[]) {
@@ -72,6 +76,8 @@ export function Row({ r, rank, badge, badgeLabel = W.score, pct, rating, top }: 
   const rated = rating && badge === undefined ? rating : undefined;
   if (rated) { badge = rated.n; badgeLabel = rated.label; }
   const b = badge === undefined ? r.score : badge, href = th(r.href);
+  // AudioRecs (V3-ROLLOUT-BRIEF): no score anywhere; a row keeps only a match % when one is asked for.
+  const noScore = NO_SCORE && badge === undefined;
   const judged = r.pos + r.mix + r.neg;
   return <div className={`th-row${rank ? "" : " norank"}`}>
     {rank ? <span className="th-rank">{rank}</span> : null}
@@ -82,9 +88,9 @@ export function Row({ r, rank, badge, badgeLabel = W.score, pct, rating, top }: 
       {r.best && <span className="th-best">{`Best for ${r.best}`}</span>}
       <span className="th-meta">{rating && r.score != null && <span>{`${W.Score} ${r.score}`}</span>}{r.n >= MIN_SHOWN && <span>{plural(r.n, "review")}</span>}{judged >= MIN_SHOWN && <SBar pos={r.pos} mix={r.mix} neg={r.neg}/>}<a className="go" href={href}>See reviews ›</a></span>
     </div>
-    <Badge n={b} label={badgeLabel} pct={pct} top={top}/>
+    {!noScore && <Badge n={b} label={badgeLabel} pct={pct} top={top}/>}
     <div className="th-row-foot">
-      <span>{b == null ? <span className="th-badge new">New</span> : <span className={`th-badge ${toneOf(b, pct, top)}`}>{pct ? `${b}%` : b}</span>}{b == null ? "not enough votes yet" : badgeLabel}</span>
+      <span>{noScore ? null : <>{b == null ? <span className="th-badge new">New</span> : <span className={`th-badge ${toneOf(b, pct, top)}`}>{pct ? `${b}%` : b}</span>}{b == null ? "not enough votes yet" : badgeLabel}</>}</span>
       <a href={href}>See reviews ›</a>
     </div>
   </div>;

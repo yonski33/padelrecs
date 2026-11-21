@@ -13,14 +13,24 @@ const PADEL = {
   /** "People who loved this also loved" and the like. */ lovers: "Players",
   /** The review composer's prompt. */ triedIt: "Played it?",
   /** "people who played the rackets" / "people who tried the products". */ played: "played",
+  // The v3 pages (lib/thread/sites.ts v3Site): the product word and the composer's question.
+  /** One product, many products, as the v3 lists and headings say them. */ item: "racket", items: "rackets",
+  /** The v3 composer's prompt. */ usedIt: "Played with it?",
+  /** The home title. */ community: "The padel racket community",
 };
 type Words = typeof PADEL;
 const SITES: Record<string, Words> = {
   skin: { person: "person", people: "people", People: "People", Person: "Person", score: "user score", Score: "User score", reviews: "reviews",
     Reviews: "Reviews", traitsTitle: "How does it work for you?", fitTitle: "Is it right for my skin?", opinions: "opinions", lovers: "People",
-    triedIt: "Tried it?", played: "tried" },
+    triedIt: "Tried it?", played: "tried", item: "product", items: "products", usedIt: "Tried it?", community: "The skincare community" },
   discgolf: { person: "thrower", people: "throwers", People: "Throwers", Person: "Thrower", score: "thrower score", Score: "Thrower score",
     reviews: "thrower reviews", Reviews: "Thrower reviews", traitsTitle: "How does it fly?", fitTitle: "Is it right for me?",
-    opinions: "thrower opinions", lovers: "Throwers", triedIt: "Thrown it?", played: "threw" },
+    opinions: "thrower opinions", lovers: "Throwers", triedIt: "Thrown it?", played: "threw",
+    item: "disc", items: "discs", usedIt: "Thrown it?", community: "The disc golf community" },
+  // AudioRecs (its handoff README): "listeners", "listener score".
+  audio: { person: "listener", people: "listeners", People: "Listeners", Person: "Listener", score: "listener score", Score: "Listener score",
+    reviews: "listener reviews", Reviews: "Listener reviews", traitsTitle: "How does it sound?", fitTitle: "Is it right for me?",
+    opinions: "listener opinions", lovers: "Listeners", triedIt: "Own a pair?", played: "listened to",
+    item: "pair", items: "headphones", usedIt: "Own a pair?", community: "The headphone community" },
 };
 export const W: Readonly<Words> = SITES[niche.id] ?? PADEL;

@@ -107,7 +107,7 @@ export function CommunityFeed({ id, model, cards, web }: { id: string; model: st
     <button key={k} type="button" aria-pressed={kind === k} onClick={() => start(k)}>{FLAIR_WORD[k]}</button>)}</div>;
   // Thin feeds (#601): the invitation takes the composer's place, with the poll pointer, so a quiet page says where players are.
   const composer = kind === null ? thin ? <div className="th7-invite">
-      <span>{items.length === 0 ? "No player reviews yet. Played with it? Add the first one" : "Played with it? Add yours"}</span>
+      <span>{items.length === 0 ? `No ${W.person} reviews yet. ${W.usedIt} Add the first one` : `${W.usedIt} Add yours`}</span>
       <button type="button" className="th-btn round lime" onClick={() => start("review")}>+ Add your review</button>
       <button type="button" className="th-feed-alt" onClick={() => start("question")}>Ask a question or share a tip</button><PollPointer/></div>
     : <button type="button" className="th7-ask th-feed-ask" onClick={() => start("review")}><span aria-hidden="true">+</span>Share a review, ask a question or a tip</button>
@@ -121,7 +121,7 @@ export function CommunityFeed({ id, model, cards, web }: { id: string; model: st
       {/* Older links point at #discussion and #comments (the separate Ask the community box). */}
       <span id="discussion" className="th7-anchor" aria-hidden="true"/><span id="comments" className="th7-anchor" aria-hidden="true"/>
       <div className="th7-head"><h2 className="th-h2 th7-hic"><svg width="24" height="22" viewBox="0 0 30 28" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinejoin="round" aria-hidden="true"><path d="M15 3C8 3 3 7.3 3 12.5c0 2.6 1.3 5 3.4 6.7L5 25l6.3-3.2c1.2.3 2.4.5 3.7.5 7 0 12-4.3 12-9.8S22 3 15 3z"/></svg>
-        {/* No counts above the lists (owner 2026-11-21): the title, no number, no mix line. */}{`Players on the ${model}`}</h2></div>
+        {/* No counts above the lists (owner 2026-11-21): the title, no number, no mix line. */}{`${W.People} on the ${model}`}</h2></div>
       <PendingReviews racketId={id} compact/>
       {rv.done ? <p className="th-ok" role="status">{rv.done === "words" ? "Thanks for sharing! Your review will appear here once it's approved." : rv.done === "live" ? "Thanks for sharing! Your review is live and shows here after a refresh." : "Thanks! Your vote has been added."}</p> : composer}
       {t.note && <p className="th-ok" role="status">{t.note}</p>}

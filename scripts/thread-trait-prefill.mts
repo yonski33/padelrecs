@@ -14,7 +14,23 @@ import { niche } from "../lib/niche";
 
 //   NICHE=discgolf … the same (stated level and durability from the evidence; stability, glide, fade and arm speed from the flight
 //   numbers, kept apart as specs; lib/thread/trait-prefill.ts discSpecs)
-if (!["padel", "pickleball", "skin", "discgolf"].includes(niche.id)) throw new Error("Run with NICHE=padel, pickleball, skin or discgolf");
+//   NICHE=audio … from the reviews' quick tags and summary words (no evidence store there yet; lib/thread/audio-prefill.ts)
+if (!["padel", "pickleball", "skin", "discgolf", "audio"].includes(niche.id)) throw new Error("Run with NICHE=padel, pickleball, skin, discgolf or audio");
+if (niche.id === "audio") {
+  const [{ audioContext }, { buildAudioPrefill }] = await Promise.all([import("../app/audio/context"), import("../lib/thread/audio-prefill")]);
+  const ctx = await audioContext(), d = ctx.data;
+  const cat = d.listed.map(r => { const w = ctx.wire.get(r.id)!; return { id: r.id, slug: r.slug, name: r.name, kind: w.kind, wireless: w.wireless, anc: w.anc }; });
+  const sources = [
+    ...d.reviews.map(r => ({ productId: r.racketId, tags: r.tags ?? [], text: r.reviewText ?? "", negative: r.rating <= 2 })),
+    ...d.external.map(e => ({ productId: e.racketId, tags: e.tags ?? [], text: e.summary ?? "", negative: e.sentiment === "negative" })),
+  ];
+  const out = buildAudioPrefill(cat, sources, new Date().toISOString().slice(0, 10));
+  mkdirSync("db/thread", { recursive: true });
+  writeFileSync("db/thread/audio-traits.json", JSON.stringify(out, null, 1) + "\n");
+  const withAny = Object.values(out.rackets).filter(r => Object.values(r.groups).some(g => Object.values(g).some(n => n >= 5))).length;
+  console.log(`audio: ${Object.keys(out.rackets).length} products, ${withAny} with at least one option at 5+ mentions`);
+  process.exit(0);
+}
 if (niche.id === "skin") {
   // SkinRecs: from its own engine's attribute scores (lib/thread/trait-prefill.ts skinGroups). Read-only.
   const { skinContext } = await import("../app/skin/context");

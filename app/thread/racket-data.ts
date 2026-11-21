@@ -4,6 +4,7 @@
 import { reviewerInfo, typedName } from "../../lib/thread/display-name";
 import { sideWord } from "../../lib/byline";
 import { niche } from "../../lib/niche";
+import { v3Site } from "../../lib/thread/sites";
 import { threadRows } from "./data";
 import { onePerChannel, videoOf } from "../../lib/youtube-pick";
 import { redditPick, subOf } from "../../lib/reddit-cards";
@@ -130,7 +131,7 @@ export async function racketData(slug: string) {
   const profiles = tagProfiles([...ctx.data.reviews, ...ctx.data.external]);
   const sim = similarProducts(r, pool, profiles, 12)
     .filter((x, i, a) => modelFamily(x) !== modelFamily(r) && a.findIndex(y => modelFamily(y) === modelFamily(x)) === i)
-    .map(x => rows.get(x.id)).filter((x): x is ThreadRow => !!x && x.score != null && !!x.current).sort((a, b) => b.score! - a.score!).slice(0, niche.id === "padel" ? 4 : 2);
+    .map(x => rows.get(x.id)).filter((x): x is ThreadRow => !!x && x.score != null && !!x.current).sort((a, b) => b.score! - a.score!).slice(0, v3Site(niche.id) ? 4 : 2);
   // PadelRecs shows four (owner mock 2026-11-21). DiscGolfRecs (audit 2026-11-20: 3 discs with few reviews had no Similar discs): a disc whose reviews give no match is
   // filled with the same type's nearest flight numbers (speed, glide, turn, fade), one per model, scored and current.
   const fl = DG ? flightOf(r.weight) : null;
