@@ -31,7 +31,7 @@ export function SearchV3({ index }: { index: SearchIndex }) {
     </section>
     {found && found.rackets.length > 0 && <section className="th-card ths4-sec"><h2 className="th-h2">Rackets</h2>
       {found.rackets.map(r => { const total = r.pos + r.mix + r.neg;
-        return <a key={r.id} className="ths4-rk" href={th(r.href)}><span className="pic">{r.pic ? <img src={r.pic} alt="" loading="lazy"/> : <span className="th-ph" aria-hidden="true"/>}</span>
+        return <a key={r.id} className="ths4-rk" href={th(r.href)}><span className="pic">{r.pic ? <img src={r.pic} alt=""/> : <span className="th-ph" aria-hidden="true"/>}</span>
           <span className="words"><span className="top"><strong>{r.name}</strong>{r.shape && <span className="shape">{r.shape}</span>}</span>
             <span className="feel">{total > 0 && <span className="bar" aria-hidden="true"><i className="pos" style={{ flex: r.pos }}/><i className="mix" style={{ flex: r.mix }}/><i className="neg" style={{ flex: r.neg }}/></span>}{feel(r)}</span></span></a>; })}
     </section>}

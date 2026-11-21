@@ -1357,7 +1357,7 @@ body:has(.th) .th .th8-box .th8-buy a:hover { background: var(--frame); }
 .thb3-title .th-h1 { font-size: 52px !important; line-height: 1; }
 .thb3-title p { margin: 0; font-size: 17px; }
 .thb3-cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 14px; }
-body:has(.th) .th a.thb3-card { text-decoration: none; color: var(--ink); padding: 16px 18px; display: flex; flex-direction: column; gap: 6px; }
+body:has(.th) .th a.thb3-card { background: var(--card); text-decoration: none; color: var(--ink); padding: 16px 18px; display: flex; flex-direction: column; gap: 6px; }
 body:has(.th) .th a.thb3-card:hover { background: #fff; color: var(--ink); }
 .thb3-card .name { font: 700 30px/1 var(--bc); }
 .thb3-card .counts { font-size: 14px; color: var(--muted); }
