@@ -4,7 +4,7 @@
 // (app/skin/payload.ts wireOf), so a tap re-ranks here without a request (instant filters, tests/instant-views.test.ts).
 // The picks are kept on this device and shared with the product page's "Is it right for me?".
 import { useEffect, useMemo, useState } from "react";
-import { Row, type ThreadRow } from "../ui";
+import { Row, topMatch, type ThreadRow } from "../ui";
 import { th } from "../../../lib/thread/look";
 import { niche } from "../../../lib/niche";
 import { attrProfileFor } from "../../../lib/attr-profile";
@@ -93,6 +93,7 @@ export function SkinHomeList({ wire, rows, size = 10 }: { wire: SkinWire[]; rows
     return { n: ranked.length, list: (sort === "reviews" ? [...ranked].sort((a, b) => b.r.n - a.r.n) : ranked).slice(0, size) };
   }, [ctx, picks, byId, sort, size, personal]);
   const label = sort === "reviews" ? "Most reviewed" : personal ? "By your match" : `By ${W.score}`;
+  const topId = topMatch(shown.list.map(x => ({ id: x.r.id, pct: x.pct })));
   return <section className="th-card th-list">
     <div className="th-skin-listhead">
     <div className="th-qm-cats" role="group" aria-label="Category">
@@ -111,7 +112,7 @@ export function SkinHomeList({ wire, rows, size = 10 }: { wire: SkinWire[]; rows
       </span>
     </div>
     </div>
-    {shown.list.map(({ r, pct }, i) => <Row key={r.id} r={r} rank={i + 1} {...(pct !== undefined ? { badge: pct, badgeLabel: "your match", pct: true } : {})}/>)}
+    {shown.list.map(({ r, pct }, i) => <Row key={r.id} r={r} rank={i + 1} {...(pct !== undefined ? { badge: pct, badgeLabel: "your match", pct: true, top: r.id === topId } : {})}/>)}
     <a className="th-link-b" href={th("/rankings")} style={{ margin: "4px 0 10px" }}>All rankings</a>
   </section>;
 }

@@ -2,7 +2,7 @@
 // The Thread lists that follow the visitor's picks: the home's top rackets (re-ranked for the picks, curated picks first) and a
 // ranking page's list (its order stays, the badges turn into match %). The server sends the first view; the rest is here.
 import { useMemo, useState } from "react";
-import { Row, type ThreadRow } from "../ui";
+import { Row, topMatch, type ThreadRow } from "../ui";
 import { th } from "../../../lib/thread/look";
 import { usePicks, usePayload, rankFor, pctsFor, rowFromCard, NO_PICKS, LEVEL_OPTS, STYLE_OPTS, TYPES, styleLabel, ARM_LABEL, type Picks, type Style } from "./picks";
 import { cap } from "../ui";
@@ -85,6 +85,7 @@ export function HomeList({ rows, reviewed, size = 10 }: { rows: ThreadRow[]; rev
     return list.slice(0, size).map(r => ({ r, pct: undefined as number | null | undefined }));
   }, [personal, sort, rows, reviewed, payload, picks, size]);
   const label = sort === "reviews" ? "Most reviewed" : personal ? "By your match" : `By ${W.score}`;
+  const topId = topMatch(shown.map(x => ({ id: x.r.id, pct: x.pct })));
   const sortBox = <div className="th-sort" style={TYPES.length ? undefined : { marginBottom: 6 }}>
       <span className="lbl">Sort</span>
       <span className="th-dd">
@@ -104,7 +105,7 @@ export function HomeList({ rows, reviewed, size = 10 }: { rows: ThreadRow[]; rev
       </div>
       {sortBox}
     </div> : sortBox}
-    {shown.map(({ r, pct }, i) => <Row key={r.id} r={r} rank={i + 1} {...(pct !== undefined ? { badge: pct, badgeLabel: "your match", pct: true } : {})}/>)}
+    {shown.map(({ r, pct }, i) => <Row key={r.id} r={r} rank={i + 1} {...(pct !== undefined ? { badge: pct, badgeLabel: "your match", pct: true, top: r.id === topId } : {})}/>)}
     <a className="th-link-b" href={th("/rankings")} style={{ margin: "4px 0 10px" }}>All rankings</a>
   </section>;
 }
@@ -115,11 +116,12 @@ export function RankingList({ rows, title, meta, ratings, match = true }: { rows
   /** false: no "your match" % (a site without the level · style · arm quick match, lib/thread/sites.ts QUICK_MATCH). */ match?: boolean }) {
   const m = useMatch(), on = match && m.on, { picks, payload } = m;
   const pcts = useMemo(() => on && payload ? pctsFor(payload, picks) : null, [on, payload, picks]);
+  const topId = pcts ? topMatch(rows.map(r => ({ id: r.id, pct: pcts.get(r.id) }))) : null;
   return <section className="th-card th-list">
     <div className="th-head-row" style={{ marginBottom: 6 }}><span className="th-stitle" style={{ fontSize: 20 }}>{title}</span><span className="th-sub">{meta}</span></div>
     {rows.map((r, i) => { const n = ratings?.by[r.id];
       return <Row key={r.id} r={r} rank={i + 1} {...(n != null ? { rating: { n, label: ratings!.label } } : {})}
-        {...(pcts ? { badge: pcts.get(r.id) ?? null, badgeLabel: "your match", pct: true } : {})}/>; })}
+        {...(pcts ? { badge: pcts.get(r.id) ?? null, badgeLabel: "your match", pct: true, top: r.id === topId } : {})}/>; })}
   </section>;
 }
 

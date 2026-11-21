@@ -3,6 +3,7 @@
 import type { ReactNode } from "react";
 import { th } from "../../lib/thread/look";
 import { W } from "../../lib/thread/words";
+import { niche } from "../../lib/niche";
 
 /** One list row's data (home, catalogue, rankings, guides). Real counts show at any size (owner 2026-11-19); 0 stays blank. */
 export type ThreadRow = {
@@ -39,9 +40,20 @@ export const tone = (n: number | null | undefined) => n == null ? "" : n >= 85 ?
 export const cap = (s: string) => s ? s[0].toUpperCase() + s.slice(1) : s;
 export const plural = (n: number, one: string, many = `${one}s`) => `${n.toLocaleString("en-US")} ${n === 1 ? one : many}`;
 
-export function Badge({ n, label = W.score, size, pct }: { n: number | null; label?: string; size?: "sm" | "xs"; pct?: boolean }) {
+/** Match % badges off padel (owner 2026-11-21): no green / yellow scale; the best match ("m top") is a soft tint of the
+ *  site's accent, the rest white, both with the ink outline (thread.css .th-badge.m). PadelRecs keeps tone(). */
+const SITE_MATCH = niche.id !== "padel";
+const toneOf = (n: number, pct?: boolean, top?: boolean) => pct && SITE_MATCH ? `m${top ? " top" : ""}` : tone(n);
+/** The row id with the highest match % (the first on a tie), for the "top" badge; null without any %. */
+export function topMatch(xs: { id: string; pct?: number | null }[]) {
+  let best: { id: string; pct: number } | null = null;
+  for (const x of xs) if (x.pct != null && (!best || x.pct > best.pct)) best = { id: x.id, pct: x.pct };
+  return best?.id ?? null;
+}
+
+export function Badge({ n, label = W.score, size, pct, top }: { n: number | null; label?: string; size?: "sm" | "xs"; pct?: boolean; /** The best match on the list. */ top?: boolean }) {
   if (n == null) return <span className="th-badge-col"><span className={`th-badge new${size ? ` ${size}` : ""}`}>New</span><span className="th-badge-lbl">not enough votes yet</span></span>;
-  return <span className="th-badge-col"><span className={`th-badge ${tone(n)}${size ? ` ${size}` : ""}`}>{pct ? `${n}%` : n}</span><span className="th-badge-lbl">{label}</span></span>;
+  return <span className="th-badge-col"><span className={`th-badge ${toneOf(n, pct, top)}${size ? ` ${size}` : ""}`}>{pct ? `${n}%` : n}</span><span className="th-badge-lbl">{label}</span></span>;
 }
 export function SBar({ pos, mix, neg, lg }: { pos: number; mix: number; neg: number; lg?: boolean }) {
   return <span className={`th-sbar${lg ? " lg" : ""}`} aria-label={`${pos} loved it, ${mix} mixed, ${neg} not for me`}><i style={{ flex: pos }}/><i style={{ flex: mix }}/><i style={{ flex: neg }}/></span>;
@@ -55,7 +67,7 @@ export function Photo({ src, className = "th-photo", href }: { src: string | nul
  *  `badge` is the match % when the visitor picked, else the Player score. */
 /** A curated category rating (lib/category-rating.ts): the big number on a padel category ranking, with its own label. */
 export type RowRating = { n: number; label: string };
-export function Row({ r, rank, badge, badgeLabel = W.score, pct, rating }: { r: ThreadRow; rank?: number; badge?: number | null; badgeLabel?: string; pct?: boolean; rating?: RowRating }) {
+export function Row({ r, rank, badge, badgeLabel = W.score, pct, rating, top }: { r: ThreadRow; rank?: number; badge?: number | null; badgeLabel?: string; pct?: boolean; rating?: RowRating; top?: boolean }) {
   // The rating takes the badge unless the match % does; the Player score then stays on the row, small.
   const rated = rating && badge === undefined ? rating : undefined;
   if (rated) { badge = rated.n; badgeLabel = rated.label; }
@@ -70,9 +82,9 @@ export function Row({ r, rank, badge, badgeLabel = W.score, pct, rating }: { r: 
       {r.best && <span className="th-best">{`Best for ${r.best}`}</span>}
       <span className="th-meta">{rating && r.score != null && <span>{`${W.Score} ${r.score}`}</span>}{r.n >= MIN_SHOWN && <span>{plural(r.n, "review")}</span>}{judged >= MIN_SHOWN && <SBar pos={r.pos} mix={r.mix} neg={r.neg}/>}<a className="go" href={href}>See reviews ›</a></span>
     </div>
-    <Badge n={b} label={badgeLabel} pct={pct}/>
+    <Badge n={b} label={badgeLabel} pct={pct} top={top}/>
     <div className="th-row-foot">
-      <span>{b == null ? <span className="th-badge new">New</span> : <span className={`th-badge ${tone(b)}`}>{pct ? `${b}%` : b}</span>}{b == null ? "not enough votes yet" : badgeLabel}</span>
+      <span>{b == null ? <span className="th-badge new">New</span> : <span className={`th-badge ${toneOf(b, pct, top)}`}>{pct ? `${b}%` : b}</span>}{b == null ? "not enough votes yet" : badgeLabel}</span>
       <a href={href}>See reviews ›</a>
     </div>
   </div>;
