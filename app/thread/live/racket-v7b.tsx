@@ -21,7 +21,7 @@ import { signInHref } from "./use-account";
 import { MemberMark } from "./member-mark";
 import { avatarOf } from "../../../lib/thread/avatar";
 import type { RvCard } from "../racket-data";
-import { countLine, isThin, playersWord, POLL_POINT_MIN, threadTitle, thumbOf, type WebGroups } from "../../../lib/thread/web-sources";
+import { countLine, isThin, playersWord, POLL_POINT_MIN, threadTitle, thumbOf, WEB_FIRST, webLine, webList, type WebGroups } from "../../../lib/thread/web-sources";
 
 const ACCOUNTS = accountSite(niche.id);
 /** The event the poll sends to open the review form (v16 "Say why in a short review"). */
@@ -249,7 +249,7 @@ function WebCard({ c, kind }: { c: RvCard; kind: keyof WebGroups<RvCard> }) {
     {thumb && <a className="th-web-th" href={c.url!} target="_blank" rel="noopener nofollow" tabIndex={-1} aria-hidden="true">
       <img src={thumb} alt="" loading="lazy" width={320} height={180}/><span className="play"/></a>}
     <div className="th-web-b">
-      <div className="th-web-meta"><b>{where}</b>{c.when && <><span>·</span><Ago at={c.at || null} initial={c.when}/></>}
+      <div className="th-web-meta"><span className={`th-web-src ${WEB_SRC[kind][1]}`}>{WEB_SRC[kind][0]}</span><b>{where}</b>{c.when && <><span>·</span><Ago at={c.at || null} initial={c.when}/></>}
         {c.verdict && <span className={`th-vpill ${VERDICT[c.verdict][1]}`}>{VERDICT[c.verdict][0]}</span>}</div>
       {title && <strong className="th-web-t">{title}</strong>}
       <p className="th-web-x">{playersWord(c.text)}</p>
@@ -258,30 +258,26 @@ function WebCard({ c, kind }: { c: RvCard; kind: keyof WebGroups<RvCard> }) {
   </article>;
 }
 const WEB_LINK = { threads: "Read the thread ↗", videos: "Watch on YouTube ↗", comments: "View on Reddit ↗", blogs: "Read the post ↗" } as const;
-const WEB_HEAD: [keyof WebGroups<RvCard>, string, string][] = [["threads", "Reddit threads", "r"], ["videos", "YouTube reviews", "yt"],
-  ["comments", "Reddit comments", "r"], ["blogs", "Blogs", "bl"]];
-const WEB_FIRST = 2;
+/** The small source badge each card starts with. */
+const WEB_SRC = { threads: ["r/ Reddit", "r"], comments: ["r/ Reddit", "r"], videos: ["▶ YouTube", "yt"], blogs: ["Blog", "bl"] } as const;
 
-/** "From around the web" (owner mock 2026-11-21): the outside sources, in a dashed box apart from the player reviews. Each
- *  group shows two until the one "Show more from around the web"; none of it counts in the poll. */
+/** "From around the web" (owner mock 2026-11-21; one list since the owner's follow-up): the outside sources in a dashed box
+ *  apart from the player reviews, newest first across sources, in two evenly filled columns on desktop (CSS columns, so no
+ *  holes) and one on phones. `open` (under THIN_REVIEWS player reviews): every card; else WEB_FIRST, then one Show more.
+ *  None of it counts in the poll. */
 export function WebSources({ web, open = false }: { web: WebGroups<RvCard>; open?: boolean }) {
   const [all, setAll] = useState(open);
   // A copied link to one card (#rv-w-…) opens the box on it.
   useEffect(() => { const h = location.hash.slice(1); if (!h.startsWith("rv-w-")) return;
     // eslint-disable-next-line react-hooks/set-state-in-effect
     setAll(true); setTimeout(() => document.getElementById(h)?.scrollIntoView({ block: "center" }), 50); }, []);
-  const groups = WEB_HEAD.filter(([k]) => web[k].length > 0);
-  if (!groups.length) return null;
-  const more = groups.some(([k]) => web[k].length > WEB_FIRST);
+  const list = useMemo(() => webList(web), [web]);
+  if (!list.length) return null;
   return <section id="web" className="th-card th-web">
     <h2 className="th-h2">From around the web</h2>
     <p className="th-web-sub">Short summaries of Reddit threads, YouTube reviews and blogs. Not counted in the player poll above.</p>
-    <span className="th-web-tag">Outside sources</span>
-    <div className="th-web-groups">{groups.map(([k, head, icon]) => <div key={k} className="th-web-g">
-      <h3 className="th-web-h"><span className={`ico ${icon}`} aria-hidden="true">{icon === "r" ? "r/" : icon === "yt" ? "▶" : "¶"}</span>{head}
-        <small>{`${web[k].length} summarised`}</small></h3>
-      <div className="th-web-list">{(all ? web[k] : web[k].slice(0, WEB_FIRST)).map(c => <WebCard key={c.id} c={c} kind={k}/>)}</div>
-    </div>)}</div>
-    {more && !all && <button type="button" className="th-btn th-center" onClick={() => setAll(true)}>Show more from around the web</button>}
+    <span className="th-web-head"><span className="th-web-tag">Outside sources</span><span className="th-web-n">{webLine(web)}</span></span>
+    <div className="th-web-cols">{(all ? list : list.slice(0, WEB_FIRST)).map(({ c, kind }) => <WebCard key={c.id} c={c} kind={kind}/>)}</div>
+    {!all && list.length > WEB_FIRST && <button type="button" className="th-btn th-center" onClick={() => setAll(true)}>Show more from around the web</button>}
   </section>;
 }

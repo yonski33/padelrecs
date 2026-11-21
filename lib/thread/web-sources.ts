@@ -60,3 +60,17 @@ export const countLine = (players: number, web: number) =>
 /** Poll totals under this stay unsaid next to the strip (a "2 players voted" line would point at nearly nothing). */
 export const POLL_POINT_MIN = 5;
 export const webCount = <T>(w: WebGroups<T>) => w.threads.length + w.videos.length + w.comments.length + w.blogs.length;
+
+/** One list (owner 2026-11-21, after #601): every outside card with its group, newest first across sources. */
+export function webList<T extends { at?: string | null }>(w: WebGroups<T>): { c: T; kind: keyof WebGroups<T> }[] {
+  return (["threads", "videos", "comments", "blogs"] as const).flatMap(kind => w[kind].map(c => ({ c, kind })))
+    .sort((a, b) => (b.c.at ?? "").localeCompare(a.c.at ?? ""));
+}
+/** Cards shown before "Show more from around the web" on pages with THIN_REVIEWS+ player reviews (fewer: all open). */
+export const WEB_FIRST = 6;
+/** The box's count line, naming only the sources present: "18 summaries · Reddit, YouTube, blogs". */
+export function webLine<T>(w: WebGroups<T>) {
+  const total = webCount(w);
+  const names = [w.threads.length + w.comments.length ? "Reddit" : "", w.videos.length ? "YouTube" : "", w.blogs.length ? "blogs" : ""].filter(Boolean);
+  return `${n(total)} ${total === 1 ? "summary" : "summaries"}${names.length ? ` · ${names.join(", ")}` : ""}`;
+}
