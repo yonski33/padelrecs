@@ -61,12 +61,43 @@ export const DISCGOLF_TRAIT_GROUPS: TraitGroup[] = [
   { key: "durability", title: "Durability", options: [["holds_up", "Holds up well"], ["average", "Average"], ["beats_fast", "Beats in fast"]] },
   { key: "throw", title: "Best throw", options: [["backhand", "Backhand"], ["both", "Both"], ["forehand", "Forehand"]] },
 ];
+/** AudioRecs' groups (its product mock, "How does it sound?"). The mock's nine are a wireless noise cancelling pair's; each
+ *  kind of headphone shows its own nine (audioGroupsFor), so a wired IEM never asks about battery or noise cancelling. The
+ *  API and admin accept all of them. Its own schema. */
+const A = {
+  sound: { key: "sound", title: "Sound", options: [["warm", "Warm"], ["balanced", "Balanced"], ["bright", "Bright"]] },
+  anc: { key: "anc", title: "Noise cancelling", options: [["excellent", "Excellent"], ["good", "Good"], ["weak", "Weak"]] },
+  comfort: { key: "comfort", title: "Comfort", options: [["all_day", "All day"], ["few_hours", "A few hours"], ["tight", "Tight"]] },
+  calls: { key: "calls", title: "Call quality", options: [["clear", "Clear"], ["okay", "Okay"], ["poor", "Poor"]] },
+  battery: { key: "battery", title: "Battery", options: [["lasts_days", "Lasts days"], ["daily", "Daily charge"], ["short", "Short"]] },
+  build: { key: "build", title: "Build", options: [["solid", "Solid"], ["average", "Average"], ["fragile", "Fragile"]] },
+  best_for: { key: "best_for", title: "Best for", options: [["commute", "Commute"], ["travel", "Travel"], ["office", "Office"]] },
+  glasses: { key: "glasses", title: "With glasses", options: [["fine", "Fine"], ["some_pressure", "Some pressure"], ["painful", "Painful"]] },
+  value: { key: "value", title: "Value", options: [["worth_it", "Worth it"], ["fair", "Fair"], ["overpriced", "Overpriced"]] },
+  detail: { key: "detail", title: "Detail", options: [["lots", "Lots"], ["some", "Some"], ["little", "Little"]] },
+  soundstage: { key: "soundstage", title: "Soundstage", options: [["wide", "Wide"], ["medium", "Medium"], ["intimate", "Intimate"]] },
+  fit: { key: "fit", title: "Fit", options: [["secure", "Secure"], ["tips", "Needs other tips"], ["loose", "Falls out"]] },
+  amp: { key: "amp", title: "Needs an amp", options: [["no", "No"], ["helps", "It helps"], ["yes", "Yes"]] },
+  use: { key: "use", title: "Best for", options: [["home", "Home"], ["studio", "Studio"], ["on_the_go", "On the go"]] },
+  connection: { key: "connection", title: "Connection", options: [["solid", "Solid"], ["drops_sometimes", "Drops sometimes"], ["drops_often", "Drops often"]] },
+} satisfies Record<string, TraitGroup>;
+export const AUDIO_TRAIT_GROUPS: TraitGroup[] = Object.values(A);
+/** One product's nine, by kind: wireless headphones (the mock's, with Detail for a pair without noise cancelling), wired
+ *  headphones, IEMs and earbuds. Two groups say "Best for" with different options (wireless: Commute/Travel/Office, wired:
+ *  Home/Studio/On the go); a product shows one of them. */
+export function audioGroupsFor(p: { kind: string | null; wireless: boolean; anc: boolean }): TraitGroup[] {
+  if (p.kind === "Earbuds") return [A.sound, p.anc ? A.anc : A.detail, A.fit, A.calls, A.battery, A.connection, A.best_for, A.build, A.value];
+  if (p.kind === "IEM") return [A.sound, A.detail, A.soundstage, A.fit, A.comfort, A.build, A.use, A.amp, A.value];
+  if (p.wireless) return [A.sound, p.anc ? A.anc : A.detail, A.comfort, A.calls, A.battery, A.build, A.best_for, A.glasses, A.value];
+  return [A.sound, A.detail, A.soundstage, A.comfort, A.build, A.use, A.glasses, A.amp, A.value];
+}
 /** The vote groups a site's pages, API and admin use. */
 export function traitGroupsFor(nicheId: string): TraitGroup[] {
   if (nicheId === "discgolf") return DISCGOLF_TRAIT_GROUPS;
   if (nicheId === "pickleball") return PICKLEBALL_TRAIT_GROUPS;
   if (nicheId === "stackrecs") return STACK_TRAIT_GROUPS;
   if (nicheId === "skin") return SKIN_TRAIT_GROUPS;
+  if (nicheId === "audio") return AUDIO_TRAIT_GROUPS;
   return PADEL_TRAIT_GROUPS;
 }
 /** The running site's groups. */
@@ -100,6 +131,12 @@ const DISCGOLF_BOARDS: VoteBoard[] = [
   { title: "Best for beginners", trait: "level", choice: "beginner" }, { title: "Most glide", trait: "glide", choice: "lots" },
   { title: "Best in the wind", trait: "wind", choice: "holds" }, { title: "Most grip", trait: "grip", choice: "great" },
 ];
+/** AudioRecs' (its home mock, "How listeners vote them"). */
+const AUDIO_BOARDS: VoteBoard[] = [
+  { title: "Best noise cancelling", trait: "anc", choice: "excellent" }, { title: "Most comfortable", trait: "comfort", choice: "all_day" },
+  { title: "Most detailed", trait: "detail", choice: "lots" }, { title: "Best value", trait: "value", choice: "worth_it" },
+  { title: "Best for calls", trait: "calls", choice: "clear" }, { title: "Best for the commute", trait: "best_for", choice: "commute" },
+];
 export const voteBoardsFor = (nicheId: string) => nicheId === "pickleball" ? PICKLEBALL_BOARDS : nicheId === "skin" ? SKIN_BOARDS
-  : nicheId === "discgolf" ? DISCGOLF_BOARDS : PADEL_BOARDS;
+  : nicheId === "discgolf" ? DISCGOLF_BOARDS : nicheId === "audio" ? AUDIO_BOARDS : PADEL_BOARDS;
 export const VOTE_BOARDS = voteBoardsFor(niche.id);

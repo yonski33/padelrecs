@@ -27,10 +27,10 @@ export function HubV3({ groups, rows, ratings, lead }: { groups: { title: string
 }
 
 /** How rankings work, in the honesty rules' words. */
-export function HowV3() {
+export function HowV3({ how = HOW }: { how?: { title: string; body: string[] }[] }) {
   return <main className="rkh">
     <section className="rkh-card rkh-hero"><h1>How rankings work</h1><p className="rkh-desc">{HOW_INTRO}</p></section>
-    <article className="rkh-card rkh-how-body">{HOW.map(s => <section key={s.title}><h2>{s.title}</h2>{s.body.map(p => <p key={p}>{p}</p>)}</section>)}
+    <article className="rkh-card rkh-how-body">{how.map(s => <section key={s.title}><h2>{s.title}</h2>{s.body.map(p => <p key={p}>{p}</p>)}</section>)}
       <p className="rkh-how-links"><a href={th("/rankings")}>All rankings →</a></p></article>
   </main>;
 }

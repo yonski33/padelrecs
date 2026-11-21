@@ -15,12 +15,14 @@ test("the hero has no subline and the page has one squiggle", () => {
 
 test("the catalogue starts on PadelRecs picks, the home on Most loved (season pool), Top picks say votes, no score", () => {
   assert.match(list, /\["picks", "PadelRecs picks"\]/);
-  assert.match(list, /const base: Sort = season \? "loved" : "picks"/);
+  assert.match(list, /const base: Sort = season \? "loved" : BASE_SORT/);
   assert.match(list, /useState<Sort>\(base\)/);
-  assert.match(home, /useRacketList\(\{ rows, curated, added, season \}\)/);
+  assert.match(home, /useRacketList\(\{ rows, curated, added, season, match: useAudioListMatch\(wire\) \}\)/);
   // The home's menu has no "PadelRecs picks" (owner: read as random there).
   assert.match(list, /HOME_SORTS: \[Sort, string\]\[\] = \[\["loved", "Most loved"\], \["opinions", "Most opinions"\], \["match", "By your match"\]\]/);
   assert.match(list, /const sorts = season \? HOME_SORTS : SORTS/);
+  // PadelRecs' catalogue starts on "picks"; AudioRecs (no curated lists) on "loved" (V3-ROLLOUT-BRIEF).
+  assert.match(list, /const BASE_SORT: Sort = SORTS\[0\]\[0\]/);
   assert.match(page, /unit=\{\["vote", "votes"\]\}/);
   assert.doesNotMatch(code(list) + code(home), /\.score\b|Player score|th-badge/);
 });

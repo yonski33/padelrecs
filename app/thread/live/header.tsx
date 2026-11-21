@@ -26,12 +26,14 @@ export type Section = "rackets" | "rankings" | "brands" | "guides" | "stories" |
 const PADEL_NAV: [Exclude<Section, null>, string, string][] = [["rackets", niche.words.Many, catalogPath], ["rankings", "Rankings", "/rankings"], ["guides", "Guides", GUIDE_PATHS.racket]];
 /** StackRecs (no guides yet): Tools and Rankings. "rackets" stays the catalogue's section key. */
 const STACK_NAV: [Exclude<Section, null>, string, string][] = [["rackets", "Tools", catalogPath], ["rankings", "Rankings", "/rankings"]];
-const SITE_NAV = niche.id === "stackrecs" ? STACK_NAV : PADEL_NAV;
+/** AudioRecs: Headphones, Rankings, Brands, Guides. */
+const AUDIO_NAV: [Exclude<Section, null>, string, string][] = [["rackets", niche.navLabel ?? niche.words.Many, catalogPath], ["rankings", "Rankings", "/rankings"], ["brands", "Brands", "/brands"], ["guides", "Guides", GUIDE_PATHS.racket]];
+const SITE_NAV = niche.id === "stackrecs" ? STACK_NAV : niche.id === "audio" ? AUDIO_NAV : PADEL_NAV;
 
 // The site's own racket search (app/racket-search.tsx: the shared name index and fuzzy matching) in the Thread look: live
 // suggestions as you type, current models first, keyboard up/down/enter; Enter with no pick filters the catalogue.
 function Search({ id, shortcut = true }: { id: string; shortcut?: boolean }) {
-  return <RacketSearch thread id={id} shortcut={shortcut} placeholder={`Search ${niche.words.many}`} hidden={THREAD_DEFAULT ? {} : { look: "thread" }}/>;
+  return <RacketSearch thread id={id} shortcut={shortcut} placeholder={niche.id === "audio" ? "Search headphones" : `Search ${niche.words.many}`} hidden={THREAD_DEFAULT ? {} : { look: "thread" }}/>;
 }
 
 export function ThreadHeader({ active, stories = false }: { active: Section; /** Member stories are live (PadelRecs). */ stories?: boolean }) {

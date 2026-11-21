@@ -3,7 +3,11 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { Shell } from "../../shell";
-import { threadRows, threadBoards, skinOf } from "../../data";
+import { threadRows, threadBoards, skinOf, audioOf } from "../../data";
+import { v3Site } from "../../../../lib/thread/sites";
+import { votePill, AUDIO_PILL_LABELS } from "../../../../lib/thread/vote-pill";
+import { TRAIT_GROUPS } from "../../../../lib/thread/traits";
+import { GUIDE_LINK_LABELS } from "../../../../lib/thread/copy";
 import { threadRankings, ratingsFor } from "../../rankings-data";
 import { ratingCategory, ratingHow } from "../../../../lib/category-rating";
 import { SKIN_NEEDS } from "../../../../lib/skin-lists";
@@ -29,6 +33,9 @@ import { listOrder } from "../../../../lib/thread/vote-order";
 /** PadelRecs (owner 2026-11-21): no "Ranked by player score…" line, the lists as one dropdown, and phone rows with the rank
  *  inline (th-hp, as on the home page). */
 const PADEL = niche.id === "padel";
+/** The v3 ranking page (padel's RankingV5): PadelRecs and the sites rolled onto it (AudioRecs, V3-ROLLOUT-BRIEF). */
+const V3 = v3Site(niche.id), AUDIO = niche.id === "audio";
+const cap = (s: string) => s ? s[0].toUpperCase() + s.slice(1) : s;
 const short = (label: string) => label.replace(/^Best (for )?/, "").replace(/^./, c => c.toUpperCase());
 
 const { one: ONE, many: MANY } = niche.words;
@@ -41,7 +48,9 @@ const V7B_DISCUSSION = niche.id === "padel";
 /** The arm and shape FAQ lines, the site's own (PickleballRecs: its Rankings and Elbow Guide mocks). */
 const ARM_TIP = PICKLEBALL ? "A soft core, a lighter paddle and a relaxed grip help most." : "A soft core, a lower balance and a lighter racket help most.";
 // SkinRecs has no shape question (it showed padel's until 2026-11-21).
-const SHAPE_FAQ = SKIN ? null : DG
+const SHAPE_FAQ = SKIN ? null : niche.id === "audio"
+  ? { q: "Open-back or closed-back?", a: "Open-back sounds more spacious and natural, but leaks sound and lets noise in. Closed-back blocks noise and keeps your music private. Not sure? Closed-back." }
+  : DG
   ? { q: "Understable or overstable?", a: "Understable turns over and helps a slower arm fly straight and far. Overstable fights the wind and hooks left at the end. Not sure? Stable." }
   : PICKLEBALL
   ? { q: "Standard, hybrid or elongated?", a: "Standard is the most forgiving and quickest at the kitchen. Hybrid is the all-rounder. Elongated adds reach and drive power, with a smaller sweet spot." }
@@ -75,7 +84,7 @@ export default async function ThreadRanking({ params }: P) {
   // Padel category lists (owner 2026-11-21): a curated rating as the big number, the Player score small on each row. Never in
   // the structured data below, which carries no rating at all.
   // PadelRecs (owner 2026-11-21): no rating on its lists any more; the "Most picked for" pill and the opinions carry each row.
-  const cat = PADEL ? null : ratingCategory(l.slug, niche.id);
+  const cat = V3 ? null : ratingCategory(l.slug, niche.id);
   const [boards, rated] = await Promise.all([threadBoards(new Set(l.ids)), cat ? ratingsFor(cat, list.map(r => r.id)) : null]);
   const reviews = list.reduce((s, r) => s + r.n, 0);
   const beginner = list.filter(r => r.levels.includes("beginner")).slice(0, 3), arm = list.filter(r => r.arm).slice(0, 3);
@@ -84,7 +93,8 @@ export default async function ThreadRanking({ params }: P) {
     ...(arm.length ? [DG ? { q: "What if I have a slow arm?", a: `Throwers with slower arms speak best of ${names(arm)}. Lighter, understable discs with a speed of 7 or less help most.` }
       : { q: "What if I have tennis elbow?", a: `Players with sore arms speak best of ${names(arm)}. ${ARM_TIP}` }] : []),
     ...(SHAPE_FAQ ? [SHAPE_FAQ] : []),
-    { q: "How often does this ranking change?", a: `Scores update as new reviews come in, so ${MANY} can move up or down any day. A ${ONE} joins once it has enough reviews to score fairly.` },
+    niche.id === "audio" ? { q: "How often does this ranking change?", a: `The counts update as new reviews come in, so ${W.items} can move up or down. A pair joins once it has 10 or more reviews.` }
+      : { q: "How often does this ranking change?", a: `Scores update as new reviews come in, so ${MANY} can move up or down any day. A ${ONE} joins once it has enough reviews to score fairly.` },
   ];
   const more = moreFor(l, lists);
   // SkinRecs: a per-type list sits under its need's hub in the breadcrumbs.
@@ -103,7 +113,7 @@ export default async function ThreadRanking({ params }: P) {
       itemListElement: list.map((r, i) => ({ "@type": "ListItem", position: i + 1, name: r.name, url: `${base()}${r.href}` })) },
     crumbs([{ name: "Rankings", path: "/rankings" }, ...(hub ? [{ name: hub.label, path: hub.href }] : []), { name: l.label, path: l.href }]),
   ] };
-  if (PADEL) return <RankingV5 l={l} lists={lists} list={list} rated={rated} label={cat?.label ?? null} faqs={faqs} ld={ld} picOf={id => rows.get(id)?.pic ?? null}/>;
+  if (V3) return <RankingV5 l={l} lists={lists} list={list} rated={rated} label={cat?.label ?? null} faqs={faqs} ld={ld} picOf={id => rows.get(id)?.pic ?? null}/>;
   return <Shell active="rankings">
     <JsonLd data={ld}/>
     <main className={PADEL ? "th-main th-hp" : "th-main"}>
@@ -198,17 +208,23 @@ async function RankingV5({ l, lists, list, rated, label, faqs, ld, picOf }: { l:
   const t = await traitCounts();
   // A list ordered by votes (lib/thread/vote-order.ts) says so in About these rankings, with the answer it counts.
   const vo = listOrder(niche.id, l.slug), votes = vo?.order === "votes" ? PLAYS[vo.option ?? ""] ?? null : null; const loved = vo?.order === "loved";
+  // AudioRecs: each row's quality-first vote pill ("Great noise cancelling · 13 listeners", lib/thread/vote-pill.ts) and its
+  // match inputs for the quick match box; padel keeps "Most picked for …".
+  const au = AUDIO ? audioOf((await threadRows()).ctx) : null, wire = au ? list.flatMap(r => au.wire.get(r.id) ?? []) : undefined;
   const rows: V5Row[] = list.map((r, i) => ({ id: r.id, rank: i + 1, name: r.name, href: r.href, pic: r.pic, shape: r.shape ? r.shape[0].toUpperCase() + r.shape.slice(1) : null,
     line: r.line, pos: r.pos, mix: r.mix, neg: r.neg, rating: rated?.[r.id] != null ? (rated[r.id] / 10).toFixed(1) : null,
-    picked: pickedLine(traitGroup(t, r.id, "plays_like")), arm: !!r.arm }));
+    picked: au ? votePill(Object.fromEntries(TRAIT_GROUPS.map(g => [g.key, traitGroup(t, r.id, g.key)])), W.people, AUDIO_PILL_LABELS, AUDIO_PILL_LABELS)
+      : pickedLine(traitGroup(t, r.id, "plays_like")), arm: !!r.arm, ...(au && r.audio?.kind ? { shape: r.audio.kind } : {}) }));
   const opinions: [string, string] = [W.opinions.replace(/s$/, ""), W.opinions];
   const said = rows.reduce((a, r) => a + r.pos + r.mix + r.neg, 0);
   const others = lists.filter(x => x.slug !== l.slug);
   // The mock's picture strip: real photos, the list's own top rackets for a ranking and this list's for the guides.
   const pics = (ids: string[], n: number) => ids.map(picOf).filter((x): x is string => !!x).slice(0, n);
   const mine = rows.map(r => r.id);
-  const explore = [{ tag: "Guide", title: "How to choose a padel racket", desc: "Shape, weight, balance and feel, in plain words.", cta: "Read guide", href: GUIDE_PATHS.racket, imgs: pics(mine, 1), tone: "dark" },
-    { tag: "Guide", title: "Padel racket shapes explained", desc: "Round, teardrop or diamond, and who each suits.", cta: "Read guide", href: GUIDE_PATHS.shape, imgs: pics(mine.slice(1), 3), tone: "sand" },
+  const explore = [AUDIO ? { tag: "Guide", title: GUIDE_LINK_LABELS.racket, desc: "Where you listen, fit and sound, in plain words.", cta: "Read guide", href: GUIDE_PATHS.racket, imgs: pics(mine, 1), tone: "dark" }
+      : { tag: "Guide", title: "How to choose a padel racket", desc: "Shape, weight, balance and feel, in plain words.", cta: "Read guide", href: GUIDE_PATHS.racket, imgs: pics(mine, 1), tone: "dark" },
+    AUDIO ? { tag: "Guide", title: GUIDE_LINK_LABELS.shape, desc: "Open or closed, and who each suits.", cta: "Read guide", href: GUIDE_PATHS.shape, imgs: pics(mine.slice(1), 3), tone: "sand" }
+      : { tag: "Guide", title: "Padel racket shapes explained", desc: "Round, teardrop or diamond, and who each suits.", cta: "Read guide", href: GUIDE_PATHS.shape, imgs: pics(mine.slice(1), 3), tone: "sand" },
     ...others.filter(x => x.slug !== "best-padel-rackets").slice(0, 2).map((x, i) => ({ tag: "Ranking", title: x.label, desc: x.blurb, cta: "View ranking", href: x.href,
       imgs: pics(x.ids, 2), tone: i ? "lime" : "sand" }))];
   return <Shell active="rankings">
@@ -225,20 +241,20 @@ async function RankingV5({ l, lists, list, rated, label, faqs, ld, picOf }: { l:
           </section>
           <section className="th-card rk5-list">
             <div className="rk5-list-head"><h2 className="th-h2">{l.label}</h2>
-              <span>{`${plural(rows.length, ONE, MANY)}  ·  ${plural(said, opinions[0], opinions[1])}`}</span></div>
-            <RankRows rows={rows} ratingLabel={label} opinions={opinions} markLoved={loved}/>
+              <span>{`${AUDIO ? plural(rows.length, W.item, W.items) : plural(rows.length, ONE, MANY)}  ·  ${plural(said, opinions[0], opinions[1])}`}</span></div>
+            <RankRows rows={rows} ratingLabel={label} opinions={opinions} markLoved={loved} {...(wire ? { wire } : {})}/>
           </section>
         </div>
         <aside className="rk5-side">
-          <QuickMatch rows={rows}/>
+          <QuickMatch rows={rows} {...(wire ? { wire } : {})}/>
           <section className="th-card rk5-box"><h3>About these rankings</h3>
             <div className="about">
-              <span className="item"><svg className="ic" width="30" height="28" viewBox="0 0 30 28" aria-hidden="true" fill="currentColor"><circle cx="15" cy="9" r="4.5"/><circle cx="6" cy="11" r="3.5"/><circle cx="24" cy="11" r="3.5"/><path d="M7 24c0-4.5 3.6-8 8-8s8 3.5 8 8zM0 23c0-3.3 2.4-6 5.5-6 1.2 0 2.2.3 3 .9C7 19.4 6 21.3 6 23.5zM30 23c0-3.3-2.4-6-5.5-6-1.2 0-2.2.3-3 .9 1.5 1.5 2.5 3.4 2.5 5.6z"/></svg><span><strong>Based on player feedback</strong><span>Reviews and votes on {niche.site.name}, plus summaries of Reddit threads, YouTube reviews and blogs.</span></span></span>
-              <span className="item"><svg className="ic" width="30" height="28" viewBox="0 0 30 28" aria-hidden="true" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinejoin="round"><path d="M15 3L26 9 15 15 4 9z"/><path d="M4 14l11 6 11-6M4 19l11 6 11-6"/></svg><span>{loved ? <><strong>Ordered by most loved</strong><span>{`Rackets go by how many players loved them, the count on each row. ${new Date().getUTCFullYear()} models with 10+ reviews.`}</span></>
-                : votes ? <><strong>Ordered by player votes</strong><span>{`Rackets go by how many players pick them for ${votes}, the number on each row. Needs 12+ reviews and 10+ players.${label ? ` The number on each pick is a ${niche.site.name} rating from 0 to 10.` : ""}`}</span></> : <><strong>Picked, then checked</strong><span>{label ? `${niche.site.name} sets the order and checks it against what players report. The number on each pick is a ${niche.site.name} rating from 0 to 10.`
-                : `${niche.site.name} sets the order and checks it against what players report, not brand claims.`}</span></>}</span></span>
+              <span className="item"><svg className="ic" width="30" height="28" viewBox="0 0 30 28" aria-hidden="true" fill="currentColor"><circle cx="15" cy="9" r="4.5"/><circle cx="6" cy="11" r="3.5"/><circle cx="24" cy="11" r="3.5"/><path d="M7 24c0-4.5 3.6-8 8-8s8 3.5 8 8zM0 23c0-3.3 2.4-6 5.5-6 1.2 0 2.2.3 3 .9C7 19.4 6 21.3 6 23.5zM30 23c0-3.3-2.4-6-5.5-6-1.2 0-2.2.3-3 .9 1.5 1.5 2.5 3.4 2.5 5.6z"/></svg><span><strong>{`Based on ${W.person} feedback`}</strong><span>Reviews and votes on {niche.site.name}, plus summaries of Reddit threads, YouTube reviews and blogs.</span></span></span>
+              <span className="item"><svg className="ic" width="30" height="28" viewBox="0 0 30 28" aria-hidden="true" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinejoin="round"><path d="M15 3L26 9 15 15 4 9z"/><path d="M4 14l11 6 11-6M4 19l11 6 11-6"/></svg><span>{loved ? <><strong>Ordered by most loved</strong><span>{AUDIO ? `${cap(W.items)} go by how many ${W.people} loved them, the count on each row. Current models with 10+ reviews.` : `Rackets go by how many players loved them, the count on each row. ${new Date().getUTCFullYear()} models with 10+ reviews.`}</span></>
+                : votes ? <><strong>Ordered by player votes</strong><span>{`Rackets go by how many players pick them for ${votes}, the number on each row. Needs 12+ reviews and 10+ players.${label ? ` The number on each pick is a ${niche.site.name} rating from 0 to 10.` : ""}`}</span></> : <><strong>Picked, then checked</strong><span>{label ? `${niche.site.name} sets the order and checks it against what ${W.people} report. The number on each pick is a ${niche.site.name} rating from 0 to 10.`
+                : `${niche.site.name} sets the order and checks it against what ${W.people} report, not brand claims.`}</span></>}</span></span>
               <span className="item"><svg className="ic" width="30" height="28" viewBox="0 0 30 28" aria-hidden="true" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round"><circle cx="15" cy="14" r="11"/><path d="M15 8v6l4 3"/></svg><span><strong>Updated as new feedback arrives</strong><span>The counts change as new reviews come in.</span></span></span>
-              <a className="more" href={th("/how-we-make-these")}>How rankings work →</a>
+              <a className="more" href={th(AUDIO ? "/how-rankings-work" : "/how-we-make-these")}>How rankings work →</a>
             </div></section>
           {others.length > 0 && <section className="th-card rk5-box"><h3>More rankings</h3>
             <div>{others.map(x => <a key={x.slug} className="arrow" href={th(x.href)}><span>{x.label}</span><span aria-hidden="true">→</span></a>)}</div></section>}

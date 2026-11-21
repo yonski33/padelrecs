@@ -1,6 +1,7 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
+import { W } from "../lib/thread/words";
 import { countLine, isThin, playersWord, POLL_POINT_MIN, splitSources, threadTitle, THIN_REVIEWS, thumbOf, videoId } from "../lib/thread/web-sources";
 
 const card = (kind: string, url: string | null = null) => ({ kind, url });
@@ -35,7 +36,7 @@ test("the racket page lists only player reviews and puts the rest in From around
   assert.match(page, /<CommunityFeed id=\{p\.id\} model=\{p\.model\} cards=\{src\.players\} web=\{src\.web\}\/>/);
   assert.match(readFileSync("app/thread/live/feed-v7b.tsx", "utf8"), /<WebSources web=\{web\} open=\{thin\}\/>/);
   assert.doesNotMatch(live, /All sources/);
-  assert.match(live, /Short summaries of Reddit threads, YouTube reviews and blogs\. Not counted in the player poll above\./);
+  assert.ok(live.includes("Short summaries of Reddit threads, YouTube reviews and blogs. Not counted in the ${W.person} poll above."));
   const box = live.slice(live.indexOf("function WebCard"));
   assert.doesNotMatch(box, /written by PadelRecs|—/);
 });
@@ -48,15 +49,18 @@ test("few-review pages: one threshold, an honest count line, the poll pointer fr
   assert.equal(countLine(6, 0), "6 player reviews");
   assert.equal(POLL_POINT_MIN, 5);
   const live = readFileSync("app/thread/live/racket-v7b.tsx", "utf8"), poll = readFileSync("app/thread/live/racket.tsx", "utf8");
-  assert.match(live, /No player reviews yet\. Played with it\? Add the first one/);
-  assert.match(live, /players voted in the poll above/);
+  // The words are the site's (lib/thread/words.ts; padel: "player", "Played with it?"), so AudioRecs says "listener" (V3-ROLLOUT-BRIEF).
+  assert.ok(live.includes("`No ${W.person} reviews yet. ${W.usedIt} Add the first one`"));
+  assert.ok(live.includes("${W.people} voted in the poll above"));
+  assert.deepEqual([W.person, W.people, W.usedIt], ["player", "players", "Played with it?"]);
   // The post-vote prompt: padel's countsOnly poll only, once per racket (localStorage), dismissable.
   assert.match(poll, /Want to add a line about why\?/);
   assert.match(poll, /if \(countsOnly\) setAsk\(off \? false : askOnce\(id\)\)/);
   assert.match(poll, /aria-label="No thanks"/);
   const copy = ["No player reviews yet. Played with it? Add the first one", "Played with it? Add yours", " players voted in the poll above",
     "Want to add a line about why?", "Add a line", "No thanks"];
-  for (const t of copy) { assert.ok((live + poll).includes(t), t); assert.doesNotMatch(t, /—|\bowners?\b|\bverdict\b|\b(we|us)\b/i); }
+  const words = (t: string) => t.replaceAll("${W.person}", W.person).replaceAll("${W.usedIt}", W.usedIt).replaceAll("${W.people}", W.people);
+  for (const t of copy) { assert.ok(words(live + poll).includes(t), t); assert.doesNotMatch(t, /—|\bowners?\b|\bverdict\b|\b(we|us)\b/i); }
 });
 
 test("From around the web is one newest-first list with a count line naming only the sources present", async () => {

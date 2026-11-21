@@ -7,6 +7,10 @@ import { useState, type ReactNode } from "react";
 import { type ThreadRow } from "../ui";
 import { th } from "../../../lib/thread/look";
 import { useRacketList, MatchBar, FineTune, SortMenu, RacketRow } from "./padel-list";
+import { useAudioListMatch } from "./audio-match";
+import { W } from "../../../lib/thread/words";
+import { catalogPath } from "../../../lib/niche";
+import type { AudioWire } from "../../../lib/audio-match";
 import type { Level } from "./picks";
 
 const FIRST = 6, MORE = 20;
@@ -23,20 +27,21 @@ const Racket = () => <svg className="hp3-art" width="74" height="80" viewBox="0 
 /** The page's only squiggle, after the title (owner: squiggle only on the hero). */
 const Squiggle = () => <svg className="hp3-sq" width="26" height="28" viewBox="0 0 30 30" fill="none" stroke="#B9E85A" strokeWidth="4" strokeLinecap="round" aria-hidden="true"><path d="M6 14 L12 4 M12 20 L24 13 M14 27 L27 26"/></svg>;
 
-export function PadelHomeTop({ rows, brands, pills, added, curated, season, live, after, side }: {
+export function PadelHomeTop({ rows, brands, pills, added, curated, season, live, after, side, wire, art }: {
   rows: ThreadRow[]; brands: string[]; pills: Record<string, string>; added: Record<string, string>; curated: string[];
-  /** The list's pool: this season's models with 10+ opinions (lib/thread/home-order.ts). */ season: string[];
+  /** The list's pool: this season's models with 10+ opinions (lib/thread/home-order.ts); AudioRecs: none (every pair). */ season?: string[];
   /** "2,936 reviews · 36 opinions collected this week", or null. */ live: string | null;
   /** The rest of the main column (Top picks, reviews) and the sidebar, server-rendered. */ after: ReactNode; side: ReactNode;
+  /** AudioRecs: the match inputs (its own quick match) and the hero drawing. Padel: absent. */ wire?: AudioWire[]; art?: ReactNode;
 }) {
-  const l = useRacketList({ rows, curated, added, season }), { list, pcts, mine, clearAll } = l;
+  const l = useRacketList({ rows, curated, added, season, match: useAudioListMatch(wire) }), { list, pcts, mine, clearAll } = l;
   const [ft, setFt] = useState(false), [n, setN] = useState(FIRST);
   const sticker = <span className="hp3-sticker" aria-hidden="true"><svg width="58" height="26" viewBox="0 0 58 26" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"><path d="M55 20C44 24 30 23 20 16 15 12.5 11 10 5 10"/><path d="M11 4.5L4.5 10l6.5 5"/></svg>
     <span>{mine ? "your match" : "quick match"}</span></span>;
   return <>
     <section className="th-card tc-top hp3-hero">
       <div className="hp3-head">
-        <div className="hp3-title"><Racket/><h1 className="th-h1">The padel racket community<Squiggle/></h1></div>
+        <div className="hp3-title">{art ?? <Racket/>}<h1 className="th-h1">{W.community}<Squiggle/></h1></div>
         {live && <span className="th-live"><i aria-hidden="true"/>{live}</span>}
       </div>
       <MatchBar l={l} ft={ft} setFt={setFt} icons={ICONS} after={sticker}/>
@@ -44,14 +49,14 @@ export function PadelHomeTop({ rows, brands, pills, added, curated, season, live
     </section>
     <div className="hp3-cols"><div className="th-col">
     <section className="th-card tc-list hp3-top">
-      <div className="tc-list-h"><h2 className="th-h2 hp3-h2"><svg width="28" height="28" viewBox="0 0 30 30" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" aria-hidden="true"><ellipse cx="17" cy="12" rx="9" ry="10" transform="rotate(30 17 12)"/><path d="M11 20L4 28"/></svg>Top rackets right now</h2>
+      <div className="tc-list-h"><h2 className="th-h2 hp3-h2"><svg width="28" height="28" viewBox="0 0 30 30" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" aria-hidden="true"><ellipse cx="17" cy="12" rx="9" ry="10" transform="rotate(30 17 12)"/><path d="M11 20L4 28"/></svg>{`Top ${W.items} right now`}</h2>
         <SortMenu l={l} onPick={() => setN(FIRST)}/></div>
       {list.slice(0, n).map((r, i) => <RacketRow key={r.id} r={r} rank={i + 1} pill={pills[r.id]} match={pcts?.get(r.id)} link/>)}
-      {list.length === 0 && <div className="tc-none"><strong>No rackets match</strong><span>Try removing a filter.</span>
+      {list.length === 0 && <div className="tc-none"><strong>{`No ${W.items} match`}</strong><span>Try removing a filter.</span>
         <button type="button" className="th-btn lime round" onClick={clearAll}>Clear all</button></div>}
       {list.length > FIRST && <div className="tc-foot">
-        {n === FIRST ? <button type="button" className="th-btn" onClick={() => setN(MORE)}>{`Show ${Math.min(MORE, list.length) - FIRST} more rackets`}</button>
-          : <><button type="button" className="th-btn" onClick={() => setN(FIRST)}>Show fewer</button><a className="tc-link" href={th("/rackets")}>{`See all ${list.length} rackets →`}</a></>}
+        {n === FIRST ? <button type="button" className="th-btn" onClick={() => setN(MORE)}>{`Show ${Math.min(MORE, list.length) - FIRST} more ${W.items}`}</button>
+          : <><button type="button" className="th-btn" onClick={() => setN(FIRST)}>Show fewer</button><a className="tc-link" href={th(catalogPath)}>{`See all ${list.length} ${W.items} →`}</a></>}
       </div>}
     </section>
     {after}</div>{side}</div>

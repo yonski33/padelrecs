@@ -2062,3 +2062,37 @@ body:has(.th) .th a.th7-pollpoint { flex-basis: 100%; font-size: 13.5px; font-we
 .th-feed-more:hover, .th-feed-alt:hover { color: var(--ink); }
 .th-admin-line { margin: 0; font-size: 12.5px; color: var(--ink2); display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
 .th-admin-line button { all: unset; cursor: pointer; font-weight: 700; text-decoration: underline; }
+
+/* AudioRecs on the v3 pages (V3-ROLLOUT-BRIEF, owner 2026-11-21): padel's v3 structure with AudioRecs' own tokens
+   (design_handoff_audiorecs README: ink #14161b, grey-green paper #eeefeb, soft blue-cyan accent, Archivo Narrow headings,
+   Atkinson text). Scoped to .th-audio (app/thread/shell.tsx). No black header bars. */
+body:has(.th.th-audio) { background: #eeefeb; }
+.th.th-audio {
+  --ink: #14161b; --bg: #eeefeb; --card: #fff; --soft: #fafaf7; --frame: #f1f2ee;
+  --ink2: #4a4d57; --body: #2a2d35; --muted: #6a6d76;
+  --div: #e9eae5; --line: #e1e2dc; --chip: #d6d8d2; --box: #d6d8d2;
+  --lime: oklch(0.84 0.11 215); --lime-box: oklch(0.97 0.025 215); --lime-bar: oklch(0.94 0.05 215); --lime-chip: oklch(0.94 0.05 215);
+  --sticker: oklch(0.84 0.11 215);
+  --s-pos: oklch(0.72 0.15 145); --s-mix: oklch(0.85 0.14 90); --s-neg: oklch(0.7 0.15 30);
+  --p-pos: oklch(0.9 0.1 145); --p-mix: oklch(0.93 0.1 95); --p-neg: oklch(0.9 0.07 35);
+  --hover: oklch(0.45 0.1 230);
+  --bc: 'Archivo Narrow', 'Arial Narrow', sans-serif;
+  --body-font: 'Barlow', 'Atkinson Hyperlegible', system-ui, sans-serif;
+}
+.th.th-audio .th-card { background: var(--card); }
+.th.th-audio .tc-qm-tag { background: var(--sticker); }
+.th.th-audio .tc-box-dark { padding: 12px 0 6px; }
+.th.th-audio .tc-box-dark .tc-bh { background: none; color: var(--ink) !important; padding: 0 16px 8px; border-bottom: 1.5px solid var(--line); }
+.th.th-audio .th-sbox-head { background: none; color: var(--ink); border-bottom: 1.5px solid var(--line); }
+.th.th-audio :is(.rk5-row .pic, .tc-ph, .tc-new-ph, .th-photo, .th-bigphoto, .th-ar-pic),
+body:has(.th) .th.th-audio .cp3-card a.pic { background: transparent; border-color: transparent; }
+.th.th-audio :is(.rk5-row .pic, .tc-ph, .tc-new-ph, .th-photo, .th-bigphoto, .th-ar-pic, .cp3-card .pic) img { mix-blend-mode: multiply; }
+.th.th-audio .th-ph { width: 100%; height: 100%; border-radius: 6px; background: #e1e2dc; }
+.th.th-audio .th-ph::after { display: none; }
+/* AudioRecs: the rankings hub's own tokens (rankings-hub.css .rkh), in audio's colours. */
+.th.th-audio .rkh { --rh-card: #fff; --rh-ink: #14161b; --rh-ink2: #4a4d57; --rh-line: #e1e2dc; --rh-pos: oklch(0.72 0.15 145); --rh-mix: oklch(0.85 0.14 90); --rh-neg: oklch(0.7 0.15 30); }
+/* AudioRecs: the v3 pages' own soft tints in audio's colours, and no black header bars (V3-ROLLOUT-BRIEF). */
+.th.th-audio .rk5 { --r5-soft: oklch(0.97 0.025 215); --r5-chip: oklch(0.94 0.05 215); --r5-pos: oklch(0.72 0.15 145); --r5-mix: oklch(0.85 0.14 90); --r5-neg: oklch(0.7 0.15 30); }
+.th.th-audio .cp3 { --c3-soft: oklch(0.97 0.025 215); --c3-pos: oklch(0.72 0.15 145); --c3-mix: oklch(0.85 0.14 90); --c3-neg: oklch(0.7 0.15 30); }
+body:has(.th) .th.th-audio .rk5-box h3 { background: none; color: var(--ink); border-bottom: 1.5px solid var(--line); }
+body:has(.th) .th.th-audio .cp3-card a.pic { background: transparent; }

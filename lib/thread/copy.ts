@@ -42,7 +42,8 @@ import { niche } from "../niche";
 import { PB_GUIDES, PB_GUIDE_LINK_LABELS, pickleballInfo } from "./copy-pickleball";
 import { SKIN_GUIDES, SKIN_GUIDE_LINK_LABELS, skinInfo } from "./copy-skin";
 import { DG_GUIDES, DG_GUIDE_LINK_LABELS, discgolfInfo } from "./copy-discgolf";
-const PICKLEBALL = niche.id === "pickleball", SKIN = niche.id === "skin", DG = niche.id === "discgolf";
+import { AUDIO_GUIDES, AUDIO_GUIDE_LINK_LABELS, audioInfo } from "./copy-audio";
+const PICKLEBALL = niche.id === "pickleball", SKIN = niche.id === "skin", DG = niche.id === "discgolf", AUDIO = niche.id === "audio";
 
 export type GuideStep = { title: string; body: string };
 export type GuideCopy = {
@@ -81,7 +82,7 @@ export const GUIDE_UI = {
   onThisPage: "On this page",
   moreGuides: "More guides",
   footerTagline: niche.id === "skin" ? "a free, ad-light side project · built by people who love skincare"
-    : niche.id === "discgolf" ? "a free, ad-light side project · built by disc golfers" : `a free, ad-light side project · built by ${niche.id} players`, // padel, pickleball
+    : niche.id === "discgolf" ? "a free, ad-light side project · built by disc golfers" : niche.id === "audio" ? "a free, ad-light side project · built by listeners" : `a free, ad-light side project · built by ${niche.id} players`, // padel, pickleball
   footerLinks: ["About", "How the score works", "Affiliate disclosure", "Contact"],
 } as const;
 
@@ -574,9 +575,9 @@ const PADEL_INFO: InfoCopy[] = [
 ];
 
 /** The running site's guides, "More guides" labels and info pages (PickleballRecs: lib/thread/copy-pickleball.ts). */
-export const GUIDES: GuideCopy[] = PICKLEBALL ? PB_GUIDES : SKIN ? SKIN_GUIDES : DG ? DG_GUIDES : PADEL_GUIDES;
+export const GUIDES: GuideCopy[] = PICKLEBALL ? PB_GUIDES : SKIN ? SKIN_GUIDES : DG ? DG_GUIDES : AUDIO ? AUDIO_GUIDES : PADEL_GUIDES;
 export const GUIDE_LINK_LABELS: Record<GuideCopy["key"], string> = PICKLEBALL ? PB_GUIDE_LINK_LABELS : SKIN ? SKIN_GUIDE_LINK_LABELS
-  : DG ? DG_GUIDE_LINK_LABELS : PADEL_GUIDE_LINK_LABELS;
-export const INFO: InfoCopy[] = PICKLEBALL ? pickleballInfo(PADEL_INFO) : SKIN ? skinInfo(PADEL_INFO) : DG ? discgolfInfo(PADEL_INFO) : PADEL_INFO;
+  : DG ? DG_GUIDE_LINK_LABELS : AUDIO ? AUDIO_GUIDE_LINK_LABELS : PADEL_GUIDE_LINK_LABELS;
+export const INFO: InfoCopy[] = PICKLEBALL ? pickleballInfo(PADEL_INFO) : SKIN ? skinInfo(PADEL_INFO) : DG ? discgolfInfo(PADEL_INFO) : AUDIO ? audioInfo(PADEL_INFO) : PADEL_INFO;
 /** Padel's own copy, for tests. */
 export const PADEL_COPY = { GUIDES: PADEL_GUIDES, GUIDE_LINK_LABELS: PADEL_GUIDE_LINK_LABELS, INFO: PADEL_INFO };

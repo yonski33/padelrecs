@@ -24,7 +24,7 @@ test("a reply bumps its thread; the header line names only what is there", () =>
 
 test("the feed: one section, flair chips, filters and sort in the browser, thin rule over all posts, no score", () => {
   const f = readFileSync("app/thread/live/feed-v7b.tsx", "utf8");
-  assert.match(f, /\{`Players on the \$\{model\}`\}/);
+  assert.match(f, /\{`\$\{W\.People\} on the \$\{model\}`\}/); // "Players on the …" on padel, "Listeners on the …" on AudioRecs
   // No counts above the lists (owner 2026-11-21): no number in the title, no mix line, no web count line.
   assert.doesNotMatch(f, /feedLine|th7-count/);
   assert.doesNotMatch(readFileSync("app/thread/live/racket-v7b.tsx", "utf8"), /webLine\(|th-web-n/);

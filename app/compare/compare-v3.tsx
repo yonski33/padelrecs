@@ -17,6 +17,10 @@ import { compareParts, TRAITS } from "./compare-v2";
 import { CompareAdd } from "./compare-add";
 import { FitBar, Cards, type V3Card } from "./compare-v3-live";
 import type { Data } from "./view";
+import { niche, catalogPath } from "../../lib/niche";
+import { W } from "../../lib/thread/words";
+import { votePill, AUDIO_PILL_LABELS } from "../../lib/thread/vote-pill";
+import { TRAIT_GROUPS } from "../../lib/thread/traits";
 
 const FONTS = ["https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800;900&family=Atkinson+Hyperlegible:wght@400;700&display=swap",
   "https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap",
@@ -33,6 +37,13 @@ const OPT: Record<string, [string, string][]> = {
   plays_like: [["control", "Control"], ["all_round", "All-round"], ["power", "Power"]], sweet_spot: [["big", "Big"], ["medium", "Medium"], ["small", "Small"]],
   feel: [["soft", "Soft"], ["medium", "Medium"], ["hard", "Hard"]], arm: [["very", "Very"], ["somewhat", "Somewhat"], ["not_really", "Not really"]],
   maneuver: [["very", "Very"], ["somewhat", "Somewhat"], ["not_really", "Not really"]], level: [["beginner", "Beginner"], ["intermediate", "Intermediate"], ["advanced", "Advanced"]] };
+/** AudioRecs (V3-ROLLOUT-BRIEF): "Who wins what" from its own vote groups, its quality-first pills, its words; no fit bar
+ *  (its quick match lives on the home, catalogue, product and ranking pages). */
+const AUDIO = niche.id === "audio";
+const AUDIO_WIN: [string, string, string, string][] = [["Best noise cancelling", "anc", "excellent", "say excellent"], ["Most comfortable", "comfort", "all_day", "say all day"],
+  ["Most detailed", "detail", "lots", "say lots of detail"], ["Widest soundstage", "soundstage", "wide", "say wide"], ["Best battery", "battery", "lasts_days", "say it lasts days"],
+  ["Clearest calls", "calls", "clear", "say clear"], ["Best value", "value", "worth_it", "say worth it"]];
+const AUDIO_OPT: Record<string, [string, string][]> = Object.fromEntries(TRAIT_GROUPS.map(g => [g.key, g.options]));
 const total = (g: Record<string, number>) => Object.values(g).reduce((a, b) => a + b, 0);
 const hrefFor = (slugs: string[]) => slugs.length ? `/compare?ids=${slugs.map(encodeURIComponent).join(",")}` : "/compare";
 
@@ -44,18 +55,20 @@ export async function CompareV3({ data, products }: { data: Data; products: Data
     const row = rows.get(r.id), plays = traitGroup(t, r.id, "plays_like"), top = Object.entries(plays).filter(([k]) => PLAYS[k]).sort((a, b) => b[1] - a[1])[0];
     return { id: r.id, name: withoutYear(displayName(r.name, brandOf(r))), short: shorts[i], href: th(row?.href ?? cprods[i].href), pic: row?.pic ?? cprods[i].pic,
       shape: r.shape ? r.shape[0].toUpperCase() + r.shape.slice(1) : null, feel: row?.feel ?? null,
-      picked: top && top[1] >= 5 && total(plays) >= 10 ? `Most picked for ${PLAYS[top[0]]} · ${top[1]} players` : null,
+      picked: AUDIO ? votePill(Object.fromEntries(TRAIT_GROUPS.map(g => [g.key, traitGroup(t, r.id, g.key)])), W.people, AUDIO_PILL_LABELS, AUDIO_PILL_LABELS)
+        : top && top[1] >= 5 && total(plays) >= 10 ? `Most picked for ${PLAYS[top[0]]} · ${top[1]} players` : null,
+      ...(AUDIO && row?.audio?.kind ? { shape: row.audio.kind, feel: null } : {}),
       pos: row?.pos ?? 0, mix: row?.mix ?? 0, neg: row?.neg ?? 0, shop: cprods[i].shop, tint: TINT[i], dot: DOT[i],
       remove: products.length > 1 ? hrefFor(slugs.filter(s => s !== r.slug)) : "/compare" };
   });
   const opinions = cards.reduce((a, c) => a + c.pos + c.mix + c.neg, 0);
 
   // Who wins what: the highest share for that option, from groups with 10+ in them, a winner with 5+ players and no tie.
-  const winners = WIN.flatMap(([label, trait, opt, verb]) => {
+  const winners = (AUDIO ? AUDIO_WIN : WIN).flatMap(([label, trait, opt, verb]) => {
     const sc = cards.map((c, i) => { const g = traitGroup(t, c.id, trait), tot = total(g), hit = g[opt] ?? 0; return { i, g, tot, hit, sh: tot >= 10 ? hit / tot : 0 }; });
     const ranked = [...sc].sort((a, b) => b.sh - a.sh), w = ranked[0];
     if (cards.length < 2 || !w || w.hit < 5 || w.tot < 10 || (ranked[1] && ranked[1].sh === w.sh)) return [];
-    return [{ label, win: w.i, why: `${w.hit} of ${w.tot} players ${verb}`, rows: sc.map(s => ({ i: s.i, tot: s.tot, opts: OPT[trait].map(([k, l]) => ({ l, n: s.g[k] ?? 0, on: k === opt })) })) }];
+    return [{ label, win: w.i, why: `${w.hit} of ${w.tot} ${W.people} ${verb}`, rows: sc.map(s => ({ i: s.i, tot: s.tot, opts: (AUDIO ? AUDIO_OPT : OPT)[trait].map(([k, l]) => ({ l, n: s.g[k] ?? 0, on: k === opt })) })) }];
   });
   const diffs = cards.length > 1 ? differRows(cprods, TRAITS) : [];
   // What players say: each racket's newest member review of a readable length.
@@ -73,18 +86,18 @@ export async function CompareV3({ data, products }: { data: Data; products: Data
   const name = (i: number) => <><i className="dot" style={{ background: cards[i].dot }} aria-hidden="true"/><strong>{cards[i].short}</strong></>;
 
   return <>
-    {FONTS.map(href => <link key={href} rel="stylesheet" href={href} precedence="default"/>)}
+    {[...FONTS, ...(AUDIO ? ["https://fonts.googleapis.com/css2?family=Archivo+Narrow:wght@600;700&display=swap"] : [])].map(href => <link key={href} rel="stylesheet" href={href} precedence="default"/>)}
     <Shell active="rackets">
       <main className="th-main cp3">
-        <div className="th-crumbs"><a href={th("/rackets")}>Rackets</a><span>/</span><span>Compare</span></div>
+        <div className="th-crumbs"><a href={th(catalogPath)}>{AUDIO ? "Headphones" : "Rackets"}</a><span>/</span><span>Compare</span></div>
         <section className="th-card cp3-top">
-          <div className="cp3-title"><span><h1 className="th-h1">Compare rackets</h1>
-            <small>{n ? `Side by side, from ${opinions.toLocaleString("en-US")} player opinions.` : "Pick up to three rackets to see them side by side."}</small></span>
-            <span className="cp3-count">{`${n} of 3 rackets`}</span></div>
-          {n > 0 && <FitBar/>}
+          <div className="cp3-title"><span><h1 className="th-h1">{`Compare ${W.items}`}</h1>
+            <small>{n ? `Side by side, from ${opinions.toLocaleString("en-US")} ${W.person} opinions.` : AUDIO ? "Pick up to three pairs to see them side by side." : "Pick up to three rackets to see them side by side."}</small></span>
+            <span className="cp3-count">{AUDIO ? `${n} of 3` : `${n} of 3 rackets`}</span></div>
+          {n > 0 && !AUDIO && <FitBar/>}
           <Cards cards={cards} add={n < 3 ? <div className="cp3-add">
-            <b>+ Add a racket</b>
-            <CompareAdd slugs={slugs} label="Search rackets"/>
+            <b>{AUDIO ? "+ Add a pair" : "+ Add a racket"}</b>
+            <CompareAdd slugs={slugs} label={`Search ${W.items}`}/>
             {add.map(a => <a key={a.href} href={a.href}>{a.name}</a>)}
           </div> : null}/>
         </section>
@@ -102,7 +115,7 @@ export async function CompareV3({ data, products }: { data: Data; products: Data
           </div>)}</div>
         </section>}
 
-        {winners.length > 0 && <section className="th-card cp3-sec"><h2 className="th-h2">Who wins what</h2><small className="sub">Based on player votes.</small>
+        {winners.length > 0 && <section className="th-card cp3-sec"><h2 className="th-h2">Who wins what</h2><small className="sub">{`Based on ${W.person} votes.`}</small>
           {winners.map(w => <details key={w.label} className="cp3-win">
             <summary><span className="lbl">{w.label}</span><span className="res">{name(w.win)}<small>{w.why}</small></span><span className="caret" aria-hidden="true"/></summary>
             <div className="det"><small>{`All votes for "${w.label.toLowerCase()}"`}</small>
@@ -118,7 +131,7 @@ export async function CompareV3({ data, products }: { data: Data; products: Data
           <div className="cp3-diffs">{diffs.map(d => { const i = cards.findIndex(c => c.id === d.id); return <div key={d.label}><span>{d.label}</span><span>{name(i)}</span></div>; })}</div>
         </section>}
 
-        {quotes.length > 0 && <section className="th-card cp3-sec"><h2 className="th-h2">What players say</h2>
+        {quotes.length > 0 && <section className="th-card cp3-sec"><h2 className="th-h2">{`What ${W.people} say`}</h2>
           <div className="cp3-quotes" style={cols}>{quotes.map(q => <div key={q.i}>
             <span className="pill" style={{ background: cards[q.i].tint }}>{cards[q.i].short}</span>
             <p>{`"${q.text}"`}</p>

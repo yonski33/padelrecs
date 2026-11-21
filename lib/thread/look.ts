@@ -72,8 +72,17 @@ const DISCGOLF_GUIDES: Record<GuideKey, string> = {
   side: "/guides/backhand-or-forehand",
   elbow: "/guides/slow-arm-speed",
 };
+/** AudioRecs (its handoff mock): choosing headphones, listening tips, open or closed-back, earbuds or over-ear and noise
+ *  cancelling ("shape" = open or closed-back, "side" = earbuds or over-ear, "elbow" = noise cancelling). */
+const AUDIO_GUIDES: Record<GuideKey, string> = {
+  racket: "/guide",
+  beginner: "/guides/listening-tips",
+  shape: "/guides/open-or-closed-back",
+  side: "/guides/earbuds-or-over-ear",
+  elbow: "/guides/noise-cancelling",
+};
 export const guidePathsFor = (nicheId: string): Record<GuideKey, string> => nicheId === "pickleball" ? PICKLEBALL_GUIDES : nicheId === "skin" ? SKIN_GUIDES
-  : nicheId === "discgolf" ? DISCGOLF_GUIDES : PADEL_GUIDES;
+  : nicheId === "discgolf" ? DISCGOLF_GUIDES : nicheId === "audio" ? AUDIO_GUIDES : PADEL_GUIDES;
 /** The running site's guide addresses. */
 export const GUIDE_PATHS = guidePathsFor(niche.id);
 export const GUIDE_KEYS = Object.keys(PADEL_GUIDES) as GuideKey[];
@@ -101,7 +110,7 @@ export function threadPath(pathname: string, catalog = catalogPath, nicheId = ni
   if (p === "/about") return "/thread/about";
   if (p === "/how-we-make-these") return "/thread/score";
   // PadelRecs v3 (owner handoff 2026-11-21): "How rankings work", a Thread-only page.
-  if (p === "/how-rankings-work" && nicheId === "padel") return "/thread/how-rankings";
+  if (p === "/how-rankings-work" && (nicheId === "padel" || nicheId === "audio")) return "/thread/how-rankings";
   if (p === "/affiliate-disclosure") return "/thread/affiliate";
   if (p === "/contact") return "/thread/contact";
   // The design-v2 form in the Thread look (owner 2026-11-20); proxy.ts keeps its query and leaves ?classic=1 on the live form.
@@ -118,8 +127,9 @@ export function threadPath(pathname: string, catalog = catalogPath, nicheId = ni
   if (brand) return `/thread/brands/${brand[1]}`;
   // DiscGolfRecs: each type page (/putters) is a catalogue of its own; its discs stay under /discs.
   if (nicheId === "discgolf" && nicheId === niche.id && (niche.typePages ?? []).some(t => t.slug === p.slice(1))) return `/thread/types${p}`;
-  // SkinRecs: products live under their type page (/moisturizers/<slug>), and each type page is a catalogue of its own.
-  if (nicheId === "skin" && nicheId === niche.id && niche.categoryPaths) {
+  // SkinRecs and AudioRecs: products live under their type page (/moisturizers/<slug>, /headphones/<slug>), and each type
+  // page is a catalogue of its own.
+  if ((nicheId === "skin" || nicheId === "audio") && nicheId === niche.id && niche.categoryPaths) {
     const [, type, slug, extra] = p.split("/");
     if (type && !extra && (niche.typePages ?? []).some(t => t.slug === type) && (!slug || /^[a-z0-9-]+$/.test(slug))) return slug ? `/thread/rackets/${slug}` : `/thread/types/${type}`;
   }

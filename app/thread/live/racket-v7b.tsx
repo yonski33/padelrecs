@@ -171,7 +171,7 @@ export function PollPointer() {
   const [n, setN] = useState<number | null>(null);
   useEffect(() => { const w = window as { __thPollTotal?: number }; if (typeof w.__thPollTotal === "number") setN(w.__thPollTotal);
     const on = (e: Event) => setN((e as CustomEvent<number>).detail); addEventListener(POLL_TOTAL, on); return () => removeEventListener(POLL_TOTAL, on); }, []);
-  return n != null && n >= POLL_POINT_MIN ? <a className="th7-pollpoint" href="#feedback">{`${n.toLocaleString("en-US")} players voted in the poll above`}</a> : null;
+  return n != null && n >= POLL_POINT_MIN ? <a className="th7-pollpoint" href="#feedback">{`${n.toLocaleString("en-US")} ${W.people} voted in the poll above`}</a> : null;
 }
 
 /** Player reviews (v7b). Under THIN_REVIEWS (lib/thread/web-sources.ts) a compact strip: any reviews, an invitation, the
@@ -209,7 +209,7 @@ export function ReviewsV7b({ id, cards, web = 0 }: { id: string; cards: RvCard[]
           <button key={k} type="button" role="option" aria-selected={sort === k} onClick={() => { setSort(k); setSortOpen(false); setShown(PAGE); }}>{l}<span>{sort === k ? "✓" : ""}</span></button>)}</span>}
       </span>}
       {!thin && addBtn}</span></div>
-    <p className="th7-count">{countLine(cards.length, web)}</p>
+    <p className="th7-count">{countLine(cards.length, web, W.person)}</p>
     {done && <p className="th-ok" role="status">{done === "words" ? "Thanks for sharing! Your review will appear here once it's approved." : done === "live" ? "Thanks for sharing! Your review is live and shows here after a refresh." : "Thanks! Your vote has been added."}</p>}
     {open && <div className="th-compose soft">
       {me ? <div className="th-as th-as-me">Posting as <b>{me.name}</b><MemberMark/></div>
@@ -234,7 +234,7 @@ export function ReviewsV7b({ id, cards, web = 0 }: { id: string; cards: RvCard[]
       {cards.length > 0 && list.length === 0 && <p className="th-empty">No reviews match these filters yet. <button type="button" onClick={() => setFeel("all")}>Show all</button></p>}
     </div>
     {thin && <div className="th7-invite">
-      <span>{cards.length === 0 ? "No player reviews yet. Played with it? Add the first one" : "Played with it? Add yours"}</span>
+      <span>{cards.length === 0 ? `No ${W.person} reviews yet. ${W.usedIt} Add the first one` : `${W.usedIt} Add yours`}</span>
       {addBtn}<PollPointer/></div>}
     {list.length > shown && <button type="button" className="th-btn th-center" style={{ margin: "4px 0 8px" }} onClick={() => setShown(s => s + 16)}>Show more reviews</button>}
   </section>;
@@ -253,7 +253,7 @@ function WebCard({ c, kind }: { c: RvCard; kind: keyof WebGroups<RvCard> }) {
       <div className="th-web-meta"><span className={`th-web-src ${WEB_SRC[kind][1]}`}>{WEB_SRC[kind][0]}</span><b>{where}</b>{c.when && <><span>·</span><Ago at={c.at || null} initial={c.when}/></>}
         {c.verdict && <span className={`th-vpill ${VERDICT[c.verdict][1]}`}>{VERDICT[c.verdict][0]}</span>}</div>
       {title && <strong className="th-web-t">{title}</strong>}
-      <p className="th-web-x">{playersWord(c.text)}</p>
+      <p className="th-web-x">{playersWord(c.text, W.person)}</p>
       {inThread ? <span className="th-web-in">{`in “${inThread}” `}{link}</span> : link}
     </div>
   </article>;
@@ -277,7 +277,7 @@ export function WebSources({ web, open = false }: { web: WebGroups<RvCard>; open
   if (!list.length) return null;
   return <section id="web" className="th-card th-web">
     <h2 className="th-h2">From around the web</h2>
-    <p className="th-web-sub">Short summaries of Reddit threads, YouTube reviews and blogs. Not counted in the player poll above.</p>
+    <p className="th-web-sub">{`Short summaries of Reddit threads, YouTube reviews and blogs. Not counted in the ${W.person} poll above.`}</p>
     {/* No count line (owner 2026-11-21): the subline and the tag only. */}<span className="th-web-tag">Outside sources</span>
     <div className="th-web-cols">{(all ? list : list.slice(0, WEB_FIRST)).map(({ c, kind }) => <WebCard key={c.id} c={c} kind={kind}/>)}</div>
     {!all && list.length > WEB_FIRST && <button type="button" className="th-btn th-center" onClick={() => setAll(true)}>Show more from around the web</button>}

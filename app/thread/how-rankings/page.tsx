@@ -5,15 +5,16 @@ import { notFound } from "next/navigation";
 import { Shell } from "../shell";
 import { HowV3 } from "../rankings/hub-v3";
 import { niche } from "../../../lib/niche";
-import { HOW_INTRO } from "../../../lib/thread/rankings-hub";
+import { HOW_INTRO, AUDIO_HOW } from "../../../lib/thread/rankings-hub";
+import { v3Site } from "../../../lib/thread/sites";
 
 export const revalidate = 21600;
-export const metadata: Metadata = niche.id === "padel" ? {
-  title: { absolute: `How rankings work | ${niche.site.name}` }, description: `${HOW_INTRO} How ${niche.site.name} picks and orders its padel racket rankings.`,
+export const metadata: Metadata = v3Site(niche.id) ? {
+  title: { absolute: `How rankings work | ${niche.site.name}` }, description: `${HOW_INTRO} How ${niche.site.name} picks and orders its ${niche.id === "audio" ? "headphone" : "padel racket"} rankings.`,
   alternates: { canonical: "/how-rankings-work" },
 } : { robots: { index: false } };
 
 export default function HowRankings() {
-  if (niche.id !== "padel") notFound();
-  return <Shell active="rankings"><HowV3/></Shell>;
+  if (!v3Site(niche.id)) notFound();
+  return <Shell active="rankings"><HowV3 {...(niche.id === "audio" ? { how: AUDIO_HOW } : {})}/></Shell>;
 }

@@ -4,7 +4,11 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { Shell } from "../../shell";
 import { racketData } from "../../racket-data";
-import { threadRows, hasDb, skinOf } from "../../data";
+import { AudioFitCard } from "../../live/audio-match";
+import { audioGroupsFor } from "../../../../lib/thread/traits";
+import { AUDIO_PILL_LABELS } from "../../../../lib/thread/vote-pill";
+import type { AudioWire } from "../../../../lib/audio-match";
+import { threadRows, hasDb, skinOf, audioOf } from "../../data";
 import { Badge, SBar, Photo, cap, plural, tone, type ThreadRow } from "../../ui";
 import { FitCheck, Poll, Reviews } from "../../live/racket";
 import { TraitVotes } from "../../live/trait-votes";
@@ -35,7 +39,7 @@ import { RacketV7b } from "../../racket-v7b";
 import { writtenTldr } from "../../../../lib/thread/written-tldr";
 import { pageContent, marked } from "../../../../lib/racket-page";
 import { summary } from "../../../../lib/product-summary";
-import { tagSays } from "../../../../lib/tags";
+import { tagSays, tagTone } from "../../../../lib/tags";
 import { votePill } from "../../../../lib/thread/vote-pill";
 import { TRAIT_GROUPS } from "../../../../lib/thread/traits";
 import { traitCounts, traitGroup } from "../../data";
@@ -55,7 +59,15 @@ type P = { params: Promise<{ slug: string }> };
 // The live racket page's title, description, canonical and share image (app/rackets/[slug]/page.tsx).
 export const generateMetadata = ({ params }: P): Promise<Metadata> => liveMetadata({ params, searchParams: Promise.resolve({}) });
 
-const SKIN = niche.id === "skin", DG = niche.id === "discgolf";
+const SKIN = niche.id === "skin", DG = niche.id === "discgolf", AUDIO = niche.id === "audio";
+/** AudioRecs' TL;DR words for its quick tags ("Listeners often praise the noise cancelling."). */
+const AUDIO_SAYS: Record<string, string> = { "great noise cancelling": "praise the noise cancelling", comfortable: "find them comfortable",
+  detailed: "call the sound detailed", "great bass": "praise the bass", "great value": "call them good value", "long battery life": "praise the battery life",
+  "wide soundstage": "praise the wide soundstage", "great mic": "praise the mic", "build quality issues": "report build problems",
+  uncomfortable: "find them uncomfortable", overpriced: "find them overpriced", "harsh treble": "find the treble harsh",
+  "connection issues": "report connection drops", muddy: "find the sound muddy" };
+/** AudioRecs' sound tag: where 3+ listeners put the tuning (warm … bright). */
+const tuningWord = (t: [number, number] | undefined) => !t || t[1] < 3 ? null : t[0] <= 38 ? "Warm sound" : t[0] >= 62 ? "Bright sound" : "Balanced sound";
 /** SkinRecs' SPF spec row: the SPF the product's name gives ("SPF 50+" → "50+"); no PA rating is stored anywhere yet. */
 const SPF_OF = (name: string) => name.match(/\bSPF\s*(\d{2,3}\+?)/i)?.[1] ?? null;
 // The level words: the same formatter as the catalogue card (lib/fit-verdict.ts levelRange), capitalised.
@@ -98,7 +110,7 @@ export default async function ThreadRacket({ params }: P) {
   const skinAttrs = sk?.attrs.get(r.id), tex = skinAttrs?.scores.texture, fin = skinAttrs?.scores.finish;
   const skinTex = tex && tex.n >= 3 ? (tex.score >= 62 ? "Rich" : tex.score <= 38 ? "Light" : null) : null;
   const skinFin = fin && fin.n >= 3 ? (fin.score >= 62 ? "Dewy" : fin.score <= 38 ? "Matte" : null) : null;
-  const skinType = (SKIN || DG) && r.shape ? (niche.typePages ?? []).find(t => t.shape === r.shape) ?? null : null;
+  const skinType = (SKIN || DG || AUDIO) && r.shape ? (niche.typePages ?? []).find(t => t.shape === r.shape) ?? null : null;
   // DiscGolfRecs (its disc mock): the flight numbers as pills, the stability they give, and the engine's stability in its words.
   const flight = DG ? flightOf(r.weight) : null, stab = flight ? stabilityOfFlight(flight) : null;
   const dgStyle = DG && style ? SITE_FIT.styleLabels[style] : null;
@@ -129,42 +141,52 @@ export default async function ThreadRacket({ params }: P) {
   const specsBox = specs.length > 0 && <section className="th-card th-specs th-only-m">{specs.map(([k, v]) => <span key={k} className="th-kv"><span>{k}</span><strong>{v}</strong></span>)}</section>;
   // The live page's structured data: its breadcrumbs (the catalogue, the brand, the racket).
   const ld = { "@context": "https://schema.org", "@graph": [crumbs([{ name: catalogLabel, path: catalogPath }, ...(brand ? [{ name: brand.name, path: `/brands/${brand.slug}` }] : []), { name: r.name, path: productHref(r) }])] };
-  const crumbsEl = <div className="th-crumbs"><a href={th(catalogPath)}>{catalogLabel}</a>{SKIN || DG ? skinType && <><span>/</span><a href={th(`/${skinType.slug}`)}>{skinType.label}</a></> : style && <><span>/</span><a href={th(STYLE_HREF[style])}>{STYLE_WORD[style]}</a></>}{brand && <><span>/</span><a href={`/brands/${brand.slug}`}>{brand.name}</a></>}</div>;
+  const crumbsEl = <div className="th-crumbs"><a href={th(catalogPath)}>{catalogLabel}</a>{SKIN || DG || AUDIO ? skinType && <><span>/</span><a href={th(`/${skinType.slug}`)}>{AUDIO ? audioOf(ctx)?.wire.get(r.id)?.kind ?? skinType.label : skinType.label}</a></> : style && <><span>/</span><a href={th(STYLE_HREF[style])}>{STYLE_WORD[style]}</a></>}{brand && <><span>/</span><a href={`/brands/${brand.slug}`}>{brand.name}</a></>}</div>;
   const lineEl = line.length >= 2 && brand ? <section className="th-card th-sec">
           <div className="th-head-row"><h2 className="th-h2">{`More from ${brand.name}`}</h2><a className="th-link-b" href={`/brands/${brand.slug}`}>{`All ${brand.name} ${niche.words.many} →`}</a></div>
           <div className="th-also">{line.map(x => <Mini key={x.id} x={x} small/>)}</div>
         </section> : null;
   // PadelRecs: the v7b page (app/thread/racket-v7b.tsx). Six specs, each once (Weight, Shape, Balance, Feel, Face, Released),
   // then any sourced extra facts; no "updated" date anywhere (owner 2026-11-20: a community page).
-  if (niche.id === "padel") {
-    const v7Specs = ([["Weight", r.weight], ["Shape", r.shape], ["Balance", r.balance], ["Feel", row?.feel ?? null], ["Face", r.surface], ["Released", r.year ? String(r.year) : null],
+  // AudioRecs (V3-ROLLOUT-BRIEF): the same page with its own fit card (lib/audio-match.ts), its kind's vote groups, tags
+  // (noise cancelling first, the kind, the connection, the tuning), specs, pills and TL;DR words. No score.
+  const au = AUDIO ? audioOf(ctx) : null, aw = au?.wire.get(r.id) ?? null;
+  if (niche.id === "padel" || (au && aw)) {
+    const v7Specs = (aw ? [["Type", r.balance], ["Connection", r.weight], ["Driver", r.core], ["Noise cancelling", aw.anc ? "Yes" : aw.wireless ? "No" : null], ["Notes", r.surface]] : [["Weight", r.weight], ["Shape", r.shape], ["Balance", r.balance], ["Feel", row?.feel ?? null], ["Face", r.surface], ["Released", r.year ? String(r.year) : null],
       ...(((specNotes as unknown as Record<string, Record<string, [string, string][]>>)[niche.id] ?? {})[r.slug] ?? [])] as [string, string | null][]).filter((x): x is [string, string] => !!x[1]);
     // TL;DR with no counts (owner 2026-11-21): the written one as is; else the page's own lines without "N players mention
     // it", else the most-mentioned tags as "Players often say…". Claims still need 5+ reviews behind them (as before).
     const plain = (t: string) => marked(t).map(x => x.text).join("").trim();
     const pc = writtenTldr(r.reviewSummary) ? null : pageContent(r.slug), sum = pc || writtenTldr(r.reviewSummary) || !ctx ? null : summary(ctx.data, r.id);
-    const says = (t: string) => `Players often ${tagSays(t)}.`;
-    const v7Bullets = writtenTldr(r.reviewSummary) ? bullets : pc
+    const says = (t: string) => AUDIO && AUDIO_SAYS[t] ? `${W.People} often ${AUDIO_SAYS[t]}.` : `${W.People} often ${tagSays(t)}.`;
+    // AudioRecs: the tags every review carries, all time (its 12-month window leaves most pages under the 5-review rule).
+    const audioTags = au && !pc && !writtenTldr(r.reviewSummary) && ctx ? (() => {
+      const n = new Map<string, number>();
+      for (const x of [...ctx.data.reviews.filter(v => v.racketId === r.id), ...ctx.data.external.filter(e => e.racketId === r.id)]) for (const t of new Set(x.tags ?? [])) n.set(t, (n.get(t) ?? 0) + 1);
+      const top = (tone: "pos" | "neg") => [...n].filter(([t, c]) => c >= 5 && tagTone(t) === tone).sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0])).map(([t]) => t);
+      return [...top("pos").slice(0, 2).map(t => ({ tone: "pos" as const, text: says(t) })), ...top("neg").slice(0, 1).map(t => ({ tone: "catch" as const, text: says(t) }))];
+    })() : null;
+    const v7Bullets = audioTags ? audioTags : writtenTldr(r.reviewSummary) ? bullets : pc
       ? [...pc.yes.slice(0, 2).map(i => ({ tone: "pos" as const, text: plain(i.t) })), ...pc.no.slice(0, 1).map(i => ({ tone: "catch" as const, text: plain(i.t) }))]
       : sum ? [...sum.loved.filter(t => (sum.tagCounts.get(t) ?? 0) >= 5).slice(0, 2).map(t => ({ tone: "pos" as const, text: says(t) })),
         ...sum.complaints.filter(t => (sum.tagCounts.get(t) ?? 0) >= 5).slice(0, 1).map(t => ({ tone: "catch" as const, text: says(t) }))] : bullets;
     const model = brand && bare.toLowerCase().startsWith(`${brand.name.toLowerCase()} `) ? bare.slice(brand.name.length + 1) : bare;
     // The top card's pill: the strongest "How does it play?" answer, from the groups as the page shows them (lib/thread/vote-pill.ts).
     const tc = hasDb() ? await traitCounts() : null;
-    const pill = tc ? votePill(Object.fromEntries(TRAIT_GROUPS.map(g => [g.key, traitGroup(tc, r.id, g.key)])), W.people) : null;
+    const pill = tc ? votePill(Object.fromEntries(TRAIT_GROUPS.map(g => [g.key, traitGroup(tc, r.id, g.key)])), W.people, ...(aw ? [AUDIO_PILL_LABELS, AUDIO_PILL_LABELS] as const : [])) : null;
     // The community sidebar (owner OK 2026-11-21): this week's counts, the newest question, who plays it (votes only), and
     // the rackets it is compared with (its compare pages' partners, then the engine's similar rackets).
     const groupOf = (k: string) => tc ? traitGroup(tc, r.id, k) : null;
-    const who = whoPlays({ level: groupOf("level"), plays_like: groupOf("plays_like"), side: groupOf("side") });
+    const who = aw ? null : whoPlays({ level: groupOf("level"), plays_like: groupOf("plays_like"), side: groupOf("side") });
     const cm = await communityFor(r.id);
     const partners = (ctx ? comparePairs(ctx.data).partners.get(r.id) ?? [] : []).map(x => rows.get(x.id)).filter((x): x is NonNullable<typeof x> => !!x && x.current !== false);
     const compared = [...partners, ...sim].filter((x, i, a) => x.id !== r.id && a.findIndex(y => y.id === x.id) === i).slice(0, 3)
       .map(x => ({ row: x, href: `/compare?ids=${encodeURIComponent(r.slug)},${encodeURIComponent(x.slug)}` }));
     return <Shell active="rackets">
       <JsonLd data={ld}/>
-      <RacketV7b id={r.id} title={r.year && bare !== name ? `${bare} (${r.year})` : name} model={model} crumbs={crumbsEl} tags={tags} lime={!!style} row={row} judged={judged}
-        lead={lead} bullets={v7Bullets} specs={v7Specs} shop={shop} cards={cards} also={also} brand={brand ? { name: brand.name, slug: brand.slug } : null}
-        sim={simSelf ? pickSimilar(simSelf, simSpecs, new Set(compared.map(c => c.row.id))).flatMap(id => rows.get(id) ?? []) : []} pill={pill} week={weekLine(cm.opinions, cm.posts)} latest={cm.latest} who={who} compared={compared} stories={tales}/>
+      <RacketV7b id={r.id} title={r.year && bare !== name ? `${bare} (${r.year})` : name} model={model} crumbs={crumbsEl} tags={aw ? audioTagsOf(aw, r.weight) : tags} lime={aw ? aw.anc : !!style} row={row} judged={judged} {...(aw && au ? audioPageProps(r.id, aw, au, rows, ctx) : {})}
+        lead={aw && lead ? lead.replace(/(?<![\w-])([Oo])wner(s?)\b/g, (_, o: string, x: string) => `${o === "O" ? "L" : "l"}istener${x}`) : lead} bullets={v7Bullets} specs={v7Specs} shop={shop} cards={cards} also={also} brand={brand ? { name: brand.name, slug: brand.slug } : null}
+        sim={simSelf ? pickSimilar(simSelf, simSpecs, new Set(compared.map(c => c.row.id))).flatMap(id => rows.get(id) ?? []) : aw ? sim.filter(x => !compared.some(c => c.row.id === x.id)) : []} pill={pill} week={weekLine(cm.opinions, cm.posts)} latest={cm.latest} who={who} compared={compared} stories={tales}/>
     </Shell>;
   }
   return <Shell active="rackets">
@@ -227,4 +249,15 @@ export default async function ThreadRacket({ params }: P) {
     </main>
     {buy && <div className="th-only-m" style={{ justifyContent: "center", padding: "0 16px 24px", marginTop: -48 }}>{buy}</div>}
   </Shell>;
+}
+
+/** AudioRecs' tags: noise cancelling first (lime), the kind, the connection and the tuning listeners hear. */
+function audioTagsOf(aw: AudioWire, connection: string | null) {
+  return [aw.anc ? "Noise cancelling" : null, aw.kind, connection, tuningWord(aw.s.tuning)].filter((x): x is string => !!x);
+}
+/** AudioRecs' fit card (its kind's match inputs, for like-for-like "Better for you") and its kind's nine vote groups. */
+function audioPageProps(id: string, aw: AudioWire, au: NonNullable<ReturnType<typeof audioOf>>, rows: Map<string, ThreadRow>, ctx: Parameters<typeof audioOf>[0]) {
+  const same = ctx.data.listed.filter(x => x.id === id || (rows.get(x.id)?.current && au.wire.get(x.id)?.kind === aw.kind));
+  const links = Object.fromEntries(same.flatMap(x => { const t = rows.get(x.id); return t ? [[x.id, { name: t.name, href: t.href }]] : []; }));
+  return { fit: <AudioFitCard id={id} wire={same.flatMap(x => au.wire.get(x.id) ?? [])} links={links}/>, groups: audioGroupsFor(aw) };
 }

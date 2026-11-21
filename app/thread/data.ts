@@ -36,13 +36,13 @@ const FEEL = { soft: "Soft", medium: "Medium", firm: "Hard" } as const;
  *  engine, skinRows below). StackRecs has its own pages (app/thread/stack): there they read nothing and build empty, and
  *  proxy.ts never serves them. */
 export const hasDb = () => !!process.env.DATABASE_URL && (niche.id === "padel" || niche.id === "pickleball" || niche.id === "skin"
-  || niche.id === "discgolf");
+  || niche.id === "discgolf" || niche.id === "audio");
 /** The Thread home's top rows: the classic home's default order (app/home-payload.ts defaultHomeIds), as Thread rows. */
 export const homeTop = (rows: Map<string, ThreadRow>, ids: string[], size = 10) => ids.flatMap(id => rows.get(id) ?? []).slice(0, size);
 type Rows = { ctx: Ctx; rows: Map<string, ThreadRow>; all: ThreadRow[]; bySlug: Map<string, ThreadRow> };
 export const threadRows = cache(async (): Promise<Rows> => {
   if (!hasDb()) return { ctx: null as unknown as Ctx, rows: new Map(), all: [], bySlug: new Map() };
-  const [base, tallies] = await Promise.all([niche.id === "skin" ? skinRows() : countedRows(), sentimentOverrides()]);
+  const [base, tallies] = await Promise.all([niche.id === "skin" ? skinRows() : niche.id === "audio" ? audioRows() : countedRows(), sentimentOverrides()]);
   if (!tallies.size) return base;
   const rows = new Map([...base.rows].map(([id, r]) => [id, { ...r, ...tallyWith(r, tallies.get(id)) }]));
   return { ...base, rows, all: [...rows.values()], bySlug: new Map([...rows.values()].map(x => [x.slug, x])) };
@@ -94,7 +94,8 @@ function rowOf(ctx: Ctx, r: Ctx["data"]["listed"][number], brand: string, n: num
 /** "How players vote them" until trait votes exist (migration 0024, waiting for the owner): the top 3 per trait from what
  *  players mention in their reviews (lib/trait-score.ts, the same scores as the racket pages' bars), only rackets with a
  *  Player score, and only counts of 5 or more. */
-const BOARDS: [string, string][] = niche.id === "discgolf"
+const BOARDS: [string, string][] = niche.id === "audio" ? [] // AudioRecs has no review trait scores: its boards come from votes only
+  : niche.id === "discgolf"
   ? [["accuracy", "Straightest flight"], ["arm", "Best for slow arms"], ["distance", "Most distance"], ["wind", "Best in the wind"], ["grip", "Most grip"], ["glide", "Most glide"]]
   : niche.id === "pickleball"
   ? [["forgiveness", "Biggest sweet spot"], ["arm", "Most arm friendly"], ["control", "Most control"], ["power", "Most power"], ["speed", "Best at the kitchen"], ["spin", "Most spin"]]
@@ -260,4 +261,37 @@ async function skinRows(): Promise<Rows> {
       facets: skinFacets(skin.attrs.get(r.id)) });
   }
   return { ctx, rows, all: [...rows.values()], bySlug: new Map([...rows.values()].map(x => [x.slug, x])) };
+}
+
+/** AudioRecs (owner design handoff 2026-11-21): its own scores (app/audio/context.ts: listener scores and attribute scores
+ *  from the reviews' quick tags), not the racket match context, the SkinRecs way: rows and a context with the fields the
+ *  Thread pages read; the racket-only parts are empty, and the audio pages use the match inputs instead (`audio`). */
+export type AudioThreadCtx = Awaited<ReturnType<typeof import("../audio/context").audioContext>>;
+export const audioOf = (ctx: Ctx) => (ctx as unknown as { audio?: AudioThreadCtx }).audio ?? null;
+/** "Owners mostly rate…" → "Listeners mostly rate…" (V3-ROLLOUT-BRIEF: never "owners"). */
+const listenerLine = (t: string | null) => t ? t.replace(/(?<![\w-])([Oo])wner(s?)\b/g, (_, o: string, x: string) => `${o === "O" ? "L" : "l"}istener${x}`) : t;
+async function audioRows(): Promise<Rows> {
+  const [{ audioContext }, { quickTakeHooks }, { bestUses, USE_WORDS }] = await Promise.all([import("../audio/context"), import("../../db/quick-take"), import("../../lib/audio-match")]);
+  const [audio, takes] = await Promise.all([audioContext(), quickTakeHooks()]);
+  const { data } = audio;
+  const sigs = new Map(data.listed.map(r => [r.id, { signal: audio.signal(r.id) }]));
+  const ctx = { data, sigs, takes, audio, facts: () => ({ reports: 0, tags: {} }), traits: () => ({}), expertLine: () => null } as unknown as Ctx;
+  const brand = new Map(data.brands.map(b => [b.id, b.name]));
+  const current = familyRowIds(data.listed, x => (audio.counts.get(x.id)?.n ?? 0) >= MIN_FIT_REPORTS);
+  const rows = new Map<string, ThreadRow>();
+  for (const r of data.listed) {
+    const c = score(data, r.id), b = brand.get(r.brandId) ?? "", w = audio.wire.get(r.id)!;
+    const best = bestUses(w).map(u => USE_WORDS[u]);
+    rows.set(r.id, { id: r.id, slug: r.slug, name: displayName(r.name, b), href: productHref(r), pic: photoHidden(r) ? null : shopPhoto(r) ?? amazonPhoto(r)?.image ?? null,
+      shape: r.shape, line: listenerLine(rowLine(r, takes.get(r.id)?.hook)), best: best.length ? best.join(" and ") : null, n: audio.counts.get(r.id)?.n ?? 0,
+      pos: c.positive, mix: c.mixed, neg: c.negative, score: audio.signal(r.id), brand: b, year: r.year, levels: [], feel: null, arm: false, current: current.has(r.id),
+      audio: { kind: w.kind, anc: w.anc, wireless: w.wireless, sound: audioSounds(w.s) } });
+  }
+  return { ctx, rows, all: [...rows.values()], bySlug: new Map([...rows.values()].map(x => [x.slug, x])) };
+}
+/** The catalogue's Sound filter (its mock: Warm, Balanced, Bright): where 3+ listeners put the tuning, as the product
+ *  page's sound tag (38 or less warm, 62 or more bright). */
+export function audioSounds(s: Record<string, [number, number]>): string[] {
+  const t = s.tuning;
+  return !t || t[1] < 3 ? [] : [t[0] <= 38 ? "Warm" : t[0] >= 62 ? "Bright" : "Balanced"];
 }

@@ -3,7 +3,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { Shell } from "../../shell";
-import { threadRows, hasDb, skinOf } from "../../data";
+import { threadRows, hasDb, skinOf, audioOf } from "../../data";
 import { threadRankings } from "../../rankings-data";
 import { homePayload } from "../../../home-payload";
 import { rankHome } from "../../../../lib/home-rank";
@@ -24,9 +24,9 @@ export const dynamicParams = false;
 export function generateStaticParams() { return GUIDE_KEYS.map(key => ({ key })); }
 type P = { params: Promise<{ key: string }> };
 const PICKLEBALL = niche.id === "pickleball";
-const SKIN = niche.id === "skin", DG = niche.id === "discgolf";
+const SKIN = niche.id === "skin", DG = niche.id === "discgolf", AUDIO = niche.id === "audio";
 const SHAPES = PICKLEBALL ? ["standard", "hybrid", "elongated"] : ["round", "teardrop", "diamond"];
-const BEST = SKIN ? "best-face-moisturizers" : DG ? "best-disc-golf-discs" : `best-${niche.id}-${niche.words.many}`; // "best-padel-rackets", "best-pickleball-paddles"
+const BEST = SKIN ? "best-face-moisturizers" : DG ? "best-disc-golf-discs" : AUDIO ? "best-headphones" : `best-${niche.id}-${niche.words.many}`; // "best-padel-rackets", "best-pickleball-paddles"
 const GUIDE_NAME = `${niche.words.One} guide`;
 const guideOf = (key: string) => GUIDES.find(g => g.key === key);
 
@@ -42,6 +42,7 @@ export async function generateMetadata({ params }: P): Promise<Metadata> {
 /** Which rackets each guide lists: one per shape, or a ranking's top, or each side's (control for the right, power for the left). */
 async function picksFor(key: GuideKey): Promise<{ title?: string; rows: ThreadRow[] }[]> {
   if (niche.id === "skin") return skinPicksFor(key);
+  if (AUDIO) return audioPicksFor(key);
   const [{ all, rows }, lists] = await Promise.all([threadRows(), threadRankings()]);
   // PickleballRecs: a paddle stored with several shapes ("Hybrid, Widebody, or Elongated") counts for each, as in the
   // catalogue, but shows once, current models only. Padel keeps its rule.
@@ -83,6 +84,7 @@ export default async function ThreadGuide({ params }: P) {
   const shown = new Set((await threadRankings()).map(l => l.slug));
   const wanted = SKIN ? (g.key === "beginner" || g.key === "elbow" ? "best-skincare-for-sensitive-skin" : BEST)
     : DG ? (g.key === "beginner" ? `${BEST}-for-beginners` : g.key === "elbow" ? `${BEST}-for-slow-arms` : BEST)
+    : AUDIO ? (g.key === "shape" ? "best-open-back-headphones" : g.key === "elbow" ? "best-noise-cancelling-headphones" : "best-headphones-overall")
     : g.key === "beginner" ? `${BEST}-for-beginners` : g.key === "elbow" ? (PICKLEBALL ? `${BEST}-for-tennis-elbow` : ELBOW_SLUG) : BEST;
   const fullRanking = `/rankings/${shown.has(wanted) ? wanted : BEST}`;
   const lime = Number((g.extra as { highlightFirstSteps?: number } | undefined)?.highlightFirstSteps ?? g.steps.length);
@@ -153,4 +155,22 @@ async function skinPicksFor(key: GuideKey): Promise<{ title?: string; rows: Thre
     .flatMap(x => { const r = byId.get(x.r.id); return r && ok(r) ? [r] : []; }).slice(0, n);
   if (key === "racket") return [{ title: "Dry skin", rows: pick({ skin: "dry" }, 1) }, { title: "Oily skin", rows: pick({ skin: "oily" }, 1) }, { title: "Combination skin", rows: pick({ skin: "combination" }, 1) }];
   return [{ title: "Light", rows: pick({ tex: "light" }, 2) }, { title: "Rich", rows: pick({ tex: "rich" }, 2) }];
+}
+
+/** AudioRecs' guide picks (its guide mocks): the best listener score of each kind (choose, open or closed-back, earbuds or
+ *  over-ear), the pairs listeners rank highest for value (listening tips: no beginner data exists), and the top of the live
+ *  noise cancelling ranking. Current models with 10+ reviews. */
+async function audioPicksFor(key: GuideKey): Promise<{ title?: string; rows: ThreadRow[] }[]> {
+  const [{ all, rows, ctx }, lists] = await Promise.all([threadRows(), threadRankings()]);
+  const au = audioOf(ctx);
+  const ok = all.filter(r => r.score != null && r.current && r.n >= 10).sort((a, b) => b.score! - a.score! || b.n - a.n);
+  const kind = (k: string, n: number) => ok.filter(r => r.audio?.kind === k).slice(0, n);
+  if (key === "racket") return [{ rows: [...kind("Over-ear", 1), ...kind("Open-back", 1), ...kind("Earbuds", 1)] }];
+  if (key === "shape") return [{ rows: [...kind("Open-back", 2), ...kind("Over-ear", 1)] }];
+  if (key === "side") return [{ title: "For long sessions", rows: kind("Over-ear", 1) }, { title: "For pockets and the gym", rows: kind("Earbuds", 2) }];
+  if (key === "elbow") return [{ rows: (lists.find(l => l.slug === "best-noise-cancelling-headphones")?.ids ?? []).slice(0, 3).map(id => rows.get(id)).filter((x): x is ThreadRow => !!x) }];
+  // Value: the attribute score from "great value" and "overpriced" tags (lib/audio-profile.ts), the top 40% (65+) only,
+  // best listener score first.
+  const value = (r: ThreadRow) => au?.wire.get(r.id)?.s.value?.[0] ?? 0;
+  return [{ rows: ok.filter(r => value(r) >= 65).slice(0, 3) }]; // ok is by listener score
 }

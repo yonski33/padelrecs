@@ -6,6 +6,8 @@
 import { useMemo } from "react";
 import { th } from "../../../lib/thread/look";
 import { usePicks, usePayload, pctsFor, complete, LEVEL_OPTS, STYLE_OPTS, styleLabel } from "./picks";
+import { useAudioPicks } from "./audio-match";
+import { audioMatch, audioPickedAny, USES, SOUNDS, USE_WORDS, type AudioWire } from "../../../lib/audio-match";
 
 export type V5Row = { id: string; rank: number; name: string; href: string; pic: string | null; shape: string | null; line: string | null;
   pos: number; mix: number; neg: number; rating: string | null; picked: string | null; arm: boolean };
@@ -14,21 +16,30 @@ const cap = (s: string) => s[0].toUpperCase() + s.slice(1);
 const GOOD = 80;
 
 /** The best fit in this list for the visitor's picks (highest match %, ties to the higher rank), or null until both are picked. */
-function useBestFit(rows: V5Row[]) {
-  const [picks] = usePicks(), on = complete(picks), payload = usePayload(on);
+/** `wire`: AudioRecs' match inputs (lib/audio-match.ts, its own picks); absent on padel. */
+function useBestFit(rows: V5Row[], wire?: AudioWire[]) {
+  const [padel] = usePicks(), [audio] = useAudioPicks(), on = !wire && complete(padel), payload = usePayload(on);
   return useMemo(() => {
+    if (wire) {
+      if (!audioPickedAny(audio)) return null;
+      const by = new Map(wire.map(w => [w.id, w]));
+      let best: { row: V5Row; pct: number } | null = null;
+      for (const row of rows) { const w = by.get(row.id), m = w ? audioMatch(w, audio) : null; if (m?.pct != null && !m.hard && (!best || m.pct > best.pct)) best = { row, pct: m.pct }; }
+      return best;
+    }
+    const picks = padel;
     if (!on || !payload) return null;
     const pcts = pctsFor(payload, picks);
     let best: { row: V5Row; pct: number } | null = null;
     for (const row of rows) { const pct = pcts.get(row.id); if (pct != null && (!best || pct > best.pct)) best = { row, pct }; }
     return best;
-  }, [on, payload, picks, rows]);
+  }, [on, payload, padel, audio, rows, wire]);
 }
 
 /** markLoved: a list ordered by its loved count (lib/thread/vote-order.ts "loved", Best overall) puts a yellow marker stroke on
  *  "N loved" under the bar (owner 2026-11-21), the number the list goes by. */
-export function RankRows({ rows, ratingLabel, opinions, markLoved = false }: { rows: V5Row[]; ratingLabel: string | null; opinions: [string, string]; markLoved?: boolean }) {
-  const best = useBestFit(rows);
+export function RankRows({ rows, ratingLabel, opinions, markLoved = false, wire }: { rows: V5Row[]; ratingLabel: string | null; opinions: [string, string]; markLoved?: boolean; wire?: AudioWire[] }) {
+  const best = useBestFit(rows, wire);
   return <>{rows.map(r => { const total = r.pos + r.mix + r.neg;
     return <a key={r.id} className="rk5-row" href={th(r.href)}>
       <span className="rank">{r.rank}</span>
@@ -49,8 +60,27 @@ export function RankRows({ rows, ratingLabel, opinions, markLoved = false }: { r
     </a>; })}</>;
 }
 
-export function QuickMatch({ rows }: { rows: V5Row[] }) {
-  const [picks, set] = usePicks(), best = useBestFit(rows), any = !!(picks.level || picks.style || picks.arm);
+export function QuickMatch({ rows, wire }: { rows: V5Row[]; wire?: AudioWire[] }) {
+  const [picks, set] = usePicks(), best = useBestFit(rows, wire), any = !!(picks.level || picks.style || picks.arm);
+  const [ap, aset] = useAudioPicks();
+  // AudioRecs: the same box with its own picks (use, sound, noise cancelling).
+  if (wire) { const good = best != null && best.pct >= GOOD;
+    return <section className="th-card rk5-qm">
+      <div className="head"><h3>Quick match: find your fit</h3>
+        {audioPickedAny(ap) && <button type="button" className="reset" onClick={() => aset({ use: null, sound: null, anc: false })}>Reset</button>}</div>
+      <p>Pick how you listen. The list keeps its order.</p>
+      <span className="lbl">Mostly for</span>
+      <div className="opts">{USES.map(([v, t]) => <button key={v} type="button" aria-pressed={ap.use === v} onClick={() => aset({ use: ap.use === v ? null : v })}>{t}</button>)}</div>
+      <span className="lbl">I want</span>
+      <div className="opts">{SOUNDS.map(([v, t]) => <button key={v} type="button" aria-pressed={ap.sound === v} onClick={() => aset({ sound: ap.sound === v ? null : v })}>{t}</button>)}</div>
+      <button type="button" className="arm" aria-pressed={ap.anc} onClick={() => aset({ anc: !ap.anc })}><span aria-hidden="true">{ap.anc ? "✓" : ""}</span>Noise cancelling</button>
+      {best && <div className="fit">
+        <span className={good ? "ic good" : "ic"} aria-hidden="true">{good ? "✓" : "~"}</span>
+        <span className="words"><strong>{good ? "A good match for how you listen" : "The closest fit in this list"}</strong>
+          <span>Best fit here: <b>{best.row.name}</b>. {good ? (ap.use ? `Listeners rate it well for ${USE_WORDS[ap.use]}.` : "Listeners rate it well for the sound you picked.") : "Nothing here fits every pick. This one comes closest."}</span>
+          <a href={th(best.row.href)}>See more details →</a></span>
+      </div>}
+    </section>; }
   const good = best != null && best.pct >= GOOD;
   const why = best ? (good ? `It suits ${picks.level} players who want ${picks.style === "balance" ? "a balanced racket" : picks.style}.`
     : "Nothing here fits every pick. This one comes closest.")

@@ -34,3 +34,17 @@ export const HOW: { title: string; body: string[] }[] = [
   { title: "How often it updates", body: [BY_VOTES ? "Review counts, opinions, pills and the vote-ordered lists refresh every few hours. PadelRecs reviews its picks from time to time."
     : "Review counts, opinions and pills on each row refresh every few hours. PadelRecs reviews its picks from time to time."] },
 ];
+
+/** AudioRecs' "How rankings work" (V3-ROLLOUT-BRIEF): the same honesty rules for its lists. No score anywhere. */
+export const AUDIO_HOW: { title: string; body: string[] }[] = [
+  { title: "What counts", body: ["Reviews and votes left on AudioRecs, plus summaries of Reddit threads, YouTube reviews and blogs. Summaries are labelled and kept apart from votes cast here."] },
+  { title: "How the order is set", body: [
+    "Best headphones, Best IEMs, Best earbuds and Best noise cancelling are ordered by listener reviews: how many loved each pair, from pairs with enough reviews.",
+    "Best overall and Best open-back go by how many listeners loved each pair. A pair needs 10 or more reviews.",
+    "Best for commuting, the office, home listening and the gym come from the AudioRecs match, the same one the home uses for those picks. A pair with a catch for that use, such as an open-back on the commute, is left out.",
+  ] },
+  { title: "The pill on each row", body: ["A row says \"Great noise cancelling · 13 listeners\" when that answer to \"How does it sound?\" leads, with 5 or more listeners behind it. Otherwise the row shows no pill."] },
+  { title: "Opinions", body: ["Each row counts the opinions on a pair: loved it, mixed or not for me. Counts only, never a score."] },
+  { title: "What is not used", body: ["Brand payments, affiliate commission and price. The order is the same for every visitor; your match picks only change the order on the home and catalogue pages."] },
+  { title: "How often it updates", body: ["Review counts, opinions and pills on each row refresh every few hours."] },
+];
