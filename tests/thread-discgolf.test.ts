@@ -108,5 +108,5 @@ test("disc golf accounts: on, Level and Throw as the profile, staff-like name ke
   assert.equal(out.on, true);
   assert.equal(out.staff, "That name is kept for the site. Pick another.");
   assert.deepEqual(out.labels, ["Level", "Throw"]);
-  assert.deepEqual(out.lines, ["Intermediate, throws RHBH", "Throws LHFH", "Advanced player"]);
+  assert.deepEqual(out.lines, ["Intermediate · throws RHBH", "Throws LHFH", "Advanced"]);
 });

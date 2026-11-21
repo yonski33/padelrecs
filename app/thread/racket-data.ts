@@ -1,7 +1,7 @@
 // The Thread racket page's data, from what the live racket page already reads (app/rackets/[slug]/racket-fit.tsx builds the
 // same review cards): own reviews, one YouTube summary per channel, one blog per site, the Reddit summaries (lib/reddit-cards),
 // the page's own TL;DR words (lib/racket-page), the trait bars (expert How it plays first), similar rackets and the line.
-import { reviewerName, typedName } from "../../lib/thread/display-name";
+import { reviewerInfo, typedName } from "../../lib/thread/display-name";
 import { sideWord } from "../../lib/byline";
 import { niche } from "../../lib/niche";
 import { threadRows } from "./data";
@@ -30,7 +30,8 @@ import { writtenTldr } from "../../lib/thread/written-tldr";
 export type RvCard = { /** A player review's typed name ("" when none), for the owner's Rename. */ alias?: string; id: string; kind: "player" | "youtube" | "blog" | "reddit" | "forum"; who: string; meta: string | null; verdict: "positive" | "mixed" | "negative" | null;
   when: string; at: string; text: string; quote: boolean; url: string | null; video: string | null; helpful: number;
   /** A player review by a signed-in member (optional accounts, drizzle/0028): a small mark by the name. */ member?: true;
-  /** The version the review is about (StackRecs, the review's variant), shown as a chip. */ version?: string | null };
+  /** The version the review is about (StackRecs, the review's variant), shown as a chip. */ version?: string | null;
+  /** A player review with no typed name: its level and side as reviewer info ("Intermediate · right side"), else null. */ info?: string | null };
 const DG = niche.id === "discgolf", SKIN = niche.id === "skin";
 /** DiscGolfRecs' trait names (lib/discgolf-fit.ts, the shown ones: Easy to throw, Distance, Accuracy, Glide, Wind), not padel's. */
 const DG_TRAIT_LABEL: Record<string, string> = DG ? Object.fromEntries(SITE_FIT.traits.filter(t => !t.hidden).map(t => [t.key, t.label])) : {};
@@ -59,7 +60,9 @@ export async function racketData(slug: string) {
   const lv = (v?: string | null) => v ? v.toLowerCase() : null;
   const base: RvCard[] = [
     // Names (lib/thread/display-name.ts): a typed name, else one made from the level and side; those then aren't repeated.
-    ...reviews.map(x => ({ id: `p-${x.id}`, kind: "player" as const, who: reviewerName({ alias: x.alias, level: x.playerLevel, side: x.playingSide }), alias: typedName(x.alias) ?? "",
+    ...reviews.map(x => ({ id: `p-${x.id}`, kind: "player" as const, who: typedName(x.alias) ?? "", alias: typedName(x.alias) ?? "",
+      // No typed name (owner 2026-11-21): no name at all; the level and side show as a small grey tag (`info`), not a username.
+      info: typedName(x.alias) ? null : reviewerInfo({ level: x.playerLevel, side: x.playingSide }),
       meta: typedName(x.alias) ? [lv(x.playerLevel), x.playingSide ? (niche.id === "padel" ? `${x.playingSide.toLowerCase()} side` : sideWord(x.playingSide)) : null].filter(Boolean).join(" · ") || null : null,
       verdict: verdictOf(x.rating), at: x.createdAt, when: ago(x.createdAt, now), text: unmd(x.reviewText), quote: false, url: null, video: null, helpful: x.helpful })),
     ...onePerChannel(external.filter(e => e.sourcePlatform === "YouTube"), v => ytProducts.get(v) ?? 1).flatMap(e => {

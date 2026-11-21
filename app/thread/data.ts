@@ -26,7 +26,7 @@ import { database } from "../../db/data";
 import { boardCounts } from "../../db/thread-votes";
 import { VOTE_BOARDS } from "../../lib/thread/traits";
 import type { ThreadRow } from "./ui";
-import { reviewerName } from "../../lib/thread/display-name";
+import { reviewerInfo, typedName } from "../../lib/thread/display-name";
 
 type Ctx = Awaited<ReturnType<typeof matchContext>>;
 const FEEL = { soft: "Soft", medium: "Medium", firm: "Hard" } as const;
@@ -137,7 +137,7 @@ export const threadLists = cache(async () => {
 });
 
 /** Review summaries from around the web (Reddit, YouTube, blogs) and own reviews, newest first, for the home feed. */
-export type FeedItem = { id: string; racketId: string; kind: "player" | "youtube" | "blog" | "reddit"; who: string; text: string; date: string; verdict: "positive" | "mixed" | "negative" | null; url: string | null; title?: string | null };
+export type FeedItem = { id: string; racketId: string; kind: "player" | "youtube" | "blog" | "reddit"; who: string; /** An unnamed review's level and side. */ info?: string | null; text: string; date: string; verdict: "positive" | "mixed" | "negative" | null; url: string | null; title?: string | null };
 const ASCII = /^[\x00-\x7F’‘“”–…é]+$/;
 /** The home sidebar's "Latest from the comments", with "Busy this week" filling it to 3 (lib/thread/home-side.ts). Read
  *  with the rest of the home (its 6-hour ISR), so the block is cached like the page. Empty without a database or on a read
@@ -166,7 +166,7 @@ export const threadFeed = cache(async (): Promise<FeedItem[]> => {
   const { ctx } = await threadRows();
   const verdict = (rating: number) => rating >= 4 ? "positive" as const : rating === 3 ? "mixed" as const : "negative" as const;
   const own = ctx.data.reviews.filter(r => r.reviewText && r.reviewText.length >= 40 && ASCII.test(r.reviewText)).map(r => ({ id: `p-${r.id}`, racketId: r.racketId, kind: "player" as const,
-    who: reviewerName({ alias: r.alias, level: r.playerLevel, side: r.playingSide }), text: r.reviewText, date: r.createdAt, verdict: verdict(r.rating), url: null }));
+    who: typedName(r.alias) ?? "", info: typedName(r.alias) ? null : reviewerInfo({ level: r.playerLevel, side: r.playingSide }), text: r.reviewText, date: r.createdAt, verdict: verdict(r.rating), url: null }));
   const web = ctx.data.external.filter(e => e.summary && ["YouTube", "Reddit", "Blog"].includes(platformName(e.sourcePlatform))).map(e => {
     const p = platformName(e.sourcePlatform);
     return { id: `w-${e.id}`, racketId: e.racketId, kind: (p === "YouTube" ? "youtube" : p === "Reddit" ? "reddit" : "blog") as FeedItem["kind"],

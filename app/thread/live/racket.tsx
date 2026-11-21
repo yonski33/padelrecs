@@ -197,7 +197,7 @@ function ReviewCard({ c, tools }: { c: RvCard; tools?: ReactNode }) {
   const link = (body: ReactNode) => c.url ? <a href={c.url} target="_blank" rel="noopener nofollow">{body}</a> : body;
   return <article className="th-rv big">
     <div className="th-rv-who">
-      {c.kind === "player" ? <><strong>{c.who}</strong>{c.member && <MemberMark/>}</>
+      {c.kind === "player" ? c.who ? <><strong>{c.who}</strong>{c.member && <MemberMark/>}</> : c.info && <span className="th-rv-info">{c.info}</span>
         : c.kind === "reddit" ? <span className="th-src rd">{link(`${c.who} ↗`)}</span>
         : <><span className={`th-src ${src![1]}`}>{src![0]}</span>{link(<strong>{c.url ? `${c.who} ↗` : c.who}</strong>)}</>}
       {c.kind !== "player" && !c.quote && <span>· summarised</span>}

@@ -1189,3 +1189,5 @@ body:has(.th) .th .th-rk-menu a[aria-current="page"] { font-weight: 700; }
 .th-cmatch .th-picks > .lbl { flex-basis: 100%; font-size: 12.5px; color: var(--ink2); min-width: 0; }
 .th-cmatch .th-check { margin-left: 0; font-size: 13px; min-height: 28px; gap: 5px; }
 .th-cmatch .th-check > span { width: 14px; height: 14px; border-width: 1.5px; font-size: 10px; }
+/* An unnamed review's level and side (owner 2026-11-21): reviewer info, not a username. */
+.th-rv-info { display: inline-flex; align-items: center; padding: 1px 9px; border-radius: 999px; background: var(--frame); border: 1px solid var(--line); color: var(--ink2); font-size: 12.5px; font-weight: 400; white-space: nowrap; }

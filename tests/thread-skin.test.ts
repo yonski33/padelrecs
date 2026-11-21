@@ -96,5 +96,5 @@ test("skin accounts: on, skin type and main concern as the profile, staff-like n
   assert.equal(out.on, true);
   assert.equal(out.staff, "That name is kept for the site. Pick another.");
   assert.deepEqual(out.labels, ["Skin type", "Main concern"]);
-  assert.deepEqual(out.lines, ["Dry skin, for acne", "For redness", "Oily skin"]);
+  assert.deepEqual(out.lines, ["Dry skin · for acne", "For redness", "Oily skin"]);
 });

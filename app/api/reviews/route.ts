@@ -17,6 +17,7 @@ import { postingAs, afterPost, RESERVED, BLOCKED, type Poster } from "../../../l
 import { device } from "../thread-device";
 import { isTrusted } from "../../../db/trust";
 import { revalidatePath } from "next/cache";
+import { isProfileOnlyName, PROFILE_NAME } from "../../../lib/thread/display-name";
 const rating=z.coerce.number().int().min(1).max(5);
 const optionalRating=z.preprocess(v=>v===""||v===null?undefined:v,rating.optional());
 const input=z.object({
@@ -79,6 +80,8 @@ export async function POST(request:Request){
   const poster:Poster=threadSite(niche.id)?await postingAs(db,value.alias):{kind:"guest"};
   if(poster.kind==="reserved")return Response.json({error:RESERVED,reserved:true},{status:409,headers:noStore});
   if(poster.kind==="blocked")return Response.json({error:BLOCKED},{status:403,headers:noStore});
+  // A guest name that is only a level and side reads as reviewer info, so Thread sites refuse it (owner 2026-11-21).
+  if(poster.kind==="guest"&&threadSite(niche.id)&&value.alias&&isProfileOnlyName(value.alias))return Response.json({error:PROFILE_NAME},{status:400,headers:noStore});
   // A member's saved level and side (already the form's own values, db/accounts.ts cleanLevel) fill in what the form didn't
   // send; the review card shows the account's live ones.
   if(poster.kind==="member"){value.alias=poster.account.name;value.playerLevel||=poster.account.level??undefined;value.playingSide||=poster.account.side??undefined;}

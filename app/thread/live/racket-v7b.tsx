@@ -8,7 +8,7 @@ import { accountSite } from "../../../lib/thread/sites";
 import { niche } from "../../../lib/niche";
 import { th } from "../../../lib/thread/look";
 import { W } from "../../../lib/thread/words";
-import { nameProblem, NAME_MAX } from "../../../lib/thread/display-name";
+import { nameProblem, NAME_MAX, subreddit } from "../../../lib/thread/display-name";
 import { VERDICTS, type Verdict } from "../../quick-vote";
 import { tone, VERDICT } from "../ui";
 import { Ago } from "./ago";
@@ -106,10 +106,11 @@ const SRC_NAME = { youtube: "YouTube", reddit: "Reddit", blog: "Blog", forum: "F
 const LINK_WORD = { youtube: "Watch original ↗", reddit: "View original ↗", blog: "Read original ↗", forum: "Read original ↗" } as const;
 
 type Changed = { text?: string; alias?: string; gone?: true };
-function ReviewRow({ c, model, owner, onChange }: { c: RvCard; model: string; owner: boolean; onChange: (x: Changed) => void }) {
+function ReviewRow({ c, owner, onChange }: { c: RvCard; owner: boolean; onChange: (x: Changed) => void }) {
   const [edit, setEdit] = useState<{ name: string; text: string | null } | null>(null), [err, setErr] = useState(""), [copied, setCopied] = useState(false);
   const anchor = `rv-${c.id}`, rid = c.id.slice(2), web = c.kind !== "player";
-  const name = c.kind === "reddit" ? `${model} owners` : c.who;
+  // Reddit rows: the subreddit, "r/name" (owner 2026-11-21; never "<model> owners"), else "Reddit".
+  const name = c.kind === "reddit" ? subreddit(c.who) : c.who;
   const run = async (f: () => Promise<void>, after: Changed) => { try { await f(); setErr(""); setEdit(null); onChange(after); } catch (e) { setErr(e instanceof Error ? e.message : "That didn't save."); } };
   const save = () => { if (!edit) return; const alias = c.alias ?? "";
     run(async () => { if (edit.name.trim() !== alias) await editName(rid, edit.name); if (edit.text !== null && edit.text.trim() !== c.text.trim()) await editText(rid, edit.text); },
@@ -123,7 +124,7 @@ function ReviewRow({ c, model, owner, onChange }: { c: RvCard; model: string; ow
     { label: "Delete", danger: true, run: () => { if (window.confirm("Delete this review for good? It can't be undone.")) run(async () => { await status(rid, "rejected", "approved"); await send("/api/funtimes/delete-rejected", { id: rid }); }, { gone: true }); } },
   ] : [];
   return <article id={anchor} className="th7-rv">
-    <div className="th7-rv-top"><strong>{name}</strong>{c.member && <MemberMark/>}
+    <div className="th7-rv-top">{name ? <><strong>{name}</strong>{c.member && <MemberMark/>}</> : c.info && <span className="th-rv-info">{c.info}</span>}
       {c.verdict && <span className={`th-vpill ${VERDICT[c.verdict][1]}`}>{VERDICT[c.verdict][0]}</span>}
       {c.when && <span><Ago at={c.at || null} initial={c.when}/></span>}</div>
     {edit ? <div className="th-admin-acts">
@@ -148,8 +149,8 @@ const TABS = [["all", "All"], ["player", niche.site.name], ["reddit", "Reddit"],
 type Sort = "helpful" | "new" | "pos" | "crit";
 const SORTS: [Sort, string][] = [["new", "Newest"], ["helpful", "Most helpful"], ["pos", "Most positive"], ["crit", "Critical first"]];
 const PAGE = 8;
-/** Player reviews (v7b): `model` is the racket's name without brand and year, for Reddit's "<model> owners". */
-export function ReviewsV7b({ id, cards, model }: { id: string; cards: RvCard[]; model: string }) {
+/** Player reviews (v7b). `model` (the racket's name without brand and year) is no longer shown here. */
+export function ReviewsV7b({ id, cards }: { id: string; cards: RvCard[]; model?: string }) {
   const { open, setOpen, verdict, setVerdict, text, setText, nick, setNick, busy, error, setError, done, me, post } = useReviewPost(id);
   const owner = useOwner();
   const [tab, setTab] = useState<(typeof TABS)[number][0]>("all"), [sort, setSort] = useState<Sort>("new"), [sortOpen, setSortOpen] = useState(false), [shown, setShown] = useState(PAGE);
@@ -199,7 +200,7 @@ export function ReviewsV7b({ id, cards, model }: { id: string; cards: RvCard[]; 
       </span>
     </div>}
     <div className="th7-rv-list">
-      {list.slice(0, shown).map(c => <ReviewRow key={c.id} c={c} model={model} owner={owner} onChange={x => setChanged(m => ({ ...m, [c.id]: { ...m[c.id], ...x } }))}/>)}
+      {list.slice(0, shown).map(c => <ReviewRow key={c.id} c={c} owner={owner} onChange={x => setChanged(m => ({ ...m, [c.id]: { ...m[c.id], ...x } }))}/>)}
       {cards.length === 0 && <p className="th-empty">{`No reviews yet. ${W.triedIt} Be the first.`}</p>}
       {cards.length > 0 && list.length === 0 && <p className="th-empty">No reviews match. <button type="button" onClick={() => setTab("all")}>Show all</button></p>}
     </div>
