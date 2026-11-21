@@ -23,7 +23,8 @@ const PADEL = {
 type Words = typeof PADEL;
 const SITES: Record<string, Words> = {
   // PickleballRecs on v3 (wave 2, 2026-11-21): padel's words ("players"), its paddles.
-  pickleball: { ...PADEL, item: "paddle", items: "paddles", community: "The pickleball paddle community" },
+  pickleball: { ...PADEL, item: "paddle", items: "paddles", community: "The pickleball paddle community",
+    tagline: "Real player opinions, votes, and comments on the top pickleball paddles." },
   skin: { person: "person", people: "people", People: "People", Person: "Person", score: "user score", Score: "User score", reviews: "reviews",
     Reviews: "Reviews", traitsTitle: "How does it work for you?", fitTitle: "Is it right for my skin?", opinions: "opinions", lovers: "People",
     triedIt: "Tried it?", played: "tried", item: "product", items: "products", usedIt: "Tried it?", community: "The skincare community",
@@ -46,7 +47,5 @@ const SITES: Record<string, Words> = {
     tagline: "Real racer opinions, votes, and comments on the top sim racing gear." },
   // TennisRecs: padel's words ("players", "Played with it?"), its own community line.
   tennis: { ...PADEL, community: "The tennis racket community", tagline: "Real player opinions, votes, and comments on the top tennis rackets." },
-  // PickleballRecs (not on the v3 pages yet): its own home title and line for when it moves; the rest stays padel's.
-  pickleball: { ...PADEL, community: "The pickleball paddle community", tagline: "Real player opinions, votes, and comments on the top pickleball paddles." },
 };
 export const W: Readonly<Words> = SITES[niche.id] ?? PADEL;
