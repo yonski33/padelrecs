@@ -80,6 +80,9 @@ export type TopList = {
   /** A list for a kind of player ("best for beginners", "for tennis elbow"): ordered by the match engine for these picks, the
    *  home quick match's own order (lib/home-rank.ts rankHome), so a level pick keeps the niche's level gate. */
   picks?: { level?: "beginner" | "intermediate" | "advanced"; arm?: boolean };
+  /** "Get to know the top 10" under the ranked list (owner-approved mock 2026-11-19, app/rankings/[slug]/ranking-deep.tsx): quick
+   *  picks, one open block per product and the end sections. `soon`: list labels shown once each as "coming soon" cards. */
+  deep?: { soon?: string[] };
 };
 
 /** One answer on the finder (/finder). `want` tags count for a product and `avoid` tags against it; an option with neither,
