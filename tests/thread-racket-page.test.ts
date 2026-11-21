@@ -66,5 +66,5 @@ test("who plays it: only vote groups with 5+ and a clear leader; side only when 
 test("the sidebar has no curated ranking box and no More from <brand>", () => {
   const page = readFileSync("app/thread/racket-v7b.tsx", "utf8");
   assert.doesNotMatch(page, /`More from \$\{|th8-rank\b/);
-  assert.match(page, /Where to buy ↗/);
+  assert.match(page, /Check price ↗/);
 });
