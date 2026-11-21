@@ -25,6 +25,7 @@ import { PadelHomeTop } from "./live/home-padel";
 import { padelListData } from "./padel-list-data";
 import { v3Site } from "../../lib/thread/sites";
 import { JustIn } from "./just-in";
+import { LatestQuestions } from "./latest-questions";
 
 export const revalidate = 21600;
 const SKIN = niche.id === "skin", DG = niche.id === "discgolf";
@@ -85,6 +86,8 @@ export default async function ThreadHome() {
                 home also serves AudioRecs. */}
             {PADEL && <JustIn key="ji"/>}
             {cards.length > 0 && <Feed key="fd" cards={cards}/>}
+            {/* "Latest questions from the community" (owner OK 2026-11-21): its own component, after the latest reviews. */}
+            {PADEL && <LatestQuestions key="lq"/>}
             <NarrowLinks key="nl" title="Rankings" links={rankLinks}/>
           </div>}
           side={<aside key="side" className="th-side hp3-side">

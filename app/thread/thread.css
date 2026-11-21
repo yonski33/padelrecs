@@ -2146,3 +2146,39 @@ body:has(.th) .th .ji-buy a { font-size: 13.5px; font-weight: 700; color: var(--
     scrollbar-width: thin; overscroll-behavior-x: contain; }
   .ji-card { flex: 0 0 min(78%, 280px); scroll-snap-align: start; }
 }
+/* PadelRecs "Latest questions from the community" and /questions (owner OK 2026-11-21): the community feed's post look (#605),
+   a racket chip on each question, the top answer as "Name: first line", and Read › / Answer first › on the right. */
+.thq-sec { padding: 14px 16px 16px; display: flex; flex-direction: column; gap: 10px; min-width: 0; }
+.thq-head { display: flex; flex-direction: column; gap: 2px; }
+.thq-head .th-h2 { margin: 0; }
+.thq-list { display: flex; flex-direction: column; }
+.thq-row { display: grid; grid-template-columns: auto minmax(0,1fr) auto; gap: 4px 10px; align-items: start; padding: 13px 0;
+  border-top: 1.5px solid var(--div); }
+.thq-list > .thq-row:first-child { border-top: 0; }
+body:has(.th) .th a.thq-racket { align-self: flex-start; display: inline-flex; align-items: center; gap: 6px; max-width: 100%; margin: 2px 0;
+  padding: 1px 10px 1px 4px; border: 1.5px solid var(--line); border-radius: 999px; background: var(--card); font-size: 12.5px;
+  font-weight: 600; color: var(--ink); text-decoration: none; }
+body:has(.th) .th a.thq-racket:hover { border-color: var(--ink); }
+.thq-racket img { height: 20px; width: auto; mix-blend-mode: multiply; }
+.thq-top { margin: 2px 0 0; padding-left: 10px; border-left: 2px solid var(--box); font-size: 14px; line-height: 1.5; color: var(--body); }
+body:has(.th) .th a.thq-go { align-self: center; white-space: nowrap; font-size: 13.5px; font-weight: 700; color: var(--ink); text-decoration: none; }
+body:has(.th) .th a.thq-go.none { color: var(--ink2); }
+body:has(.th) .th a.thq-go:hover { text-decoration: underline; text-underline-offset: 3px; }
+@media (max-width: 639px) { .thq-row { grid-template-columns: auto minmax(0,1fr); } body:has(.th) .th a.thq-go { grid-column: 2; justify-self: start; } }
+body:has(.th) .th a.thq-all { align-self: flex-start; font-size: 14px; font-weight: 700; color: var(--ink); }
+.thq-ask { position: relative; display: flex; flex-direction: column; gap: 8px; }
+.thq-ask-in { box-sizing: border-box; width: 100%; border: 1.5px solid var(--box); border-radius: 999px; padding: 8px 14px; font: inherit;
+  font-size: 14.5px; background: var(--soft); color: var(--ink); }
+.thq-ask-in:focus { outline: none; border-color: var(--ink); }
+.thq-pick { display: flex; flex-direction: column; gap: 2px; padding: 8px; border: 1.5px solid var(--ink); border-radius: 12px; background: var(--card); }
+.thq-pick .lbl { font-size: 12.5px; color: var(--ink2); padding: 2px 6px 4px; }
+.thq-pick button { all: unset; cursor: pointer; display: flex; align-items: center; gap: 10px; padding: 6px; border-radius: 8px; font-size: 14.5px; }
+.thq-pick button:hover, .thq-pick button:focus-visible { background: var(--frame); }
+.thq-pick img, .thq-pick .th-ph { height: 32px; width: 24px; object-fit: contain; mix-blend-mode: multiply; }
+.thq-pick .thq-close { align-self: flex-end; font-size: 13px; color: var(--ink2); text-decoration: underline; padding: 2px 6px; }
+.thq-picked { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; font-size: 14px; }
+.thq-picked span { color: var(--ink2); }
+.thq-picked img { height: 28px; width: auto; mix-blend-mode: multiply; }
+.thq-picked button { all: unset; cursor: pointer; font-size: 13px; font-weight: 700; text-decoration: underline; color: var(--ink2); }
+.thq-page { flex-direction: column; align-items: stretch; gap: 14px; max-width: 900px; }
+.thq-hero { display: flex; flex-direction: column; gap: 4px; padding: 6px 0 0; }
