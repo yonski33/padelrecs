@@ -141,7 +141,7 @@ export default async function ThreadRacket({ params }: P) {
   const specsBox = specs.length > 0 && <section className="th-card th-specs th-only-m">{specs.map(([k, v]) => <span key={k} className="th-kv"><span>{k}</span><strong>{v}</strong></span>)}</section>;
   // The live page's structured data: its breadcrumbs (the catalogue, the brand, the racket).
   const ld = { "@context": "https://schema.org", "@graph": [crumbs([{ name: catalogLabel, path: catalogPath }, ...(brand ? [{ name: brand.name, path: `/brands/${brand.slug}` }] : []), { name: r.name, path: productHref(r) }])] };
-  const crumbsEl = <div className="th-crumbs"><a href={th(catalogPath)}>{catalogLabel}</a>{SKIN || DG || AUDIO ? skinType && <><span>/</span><a href={th(`/${skinType.slug}`)}>{skinType.label}</a></> : style && <><span>/</span><a href={th(STYLE_HREF[style])}>{STYLE_WORD[style]}</a></>}{brand && <><span>/</span><a href={`/brands/${brand.slug}`}>{brand.name}</a></>}</div>;
+  const crumbsEl = <div className="th-crumbs"><a href={th(catalogPath)}>{catalogLabel}</a>{SKIN || DG || AUDIO ? skinType && <><span>/</span><a href={th(`/${skinType.slug}`)}>{AUDIO ? audioOf(ctx)?.wire.get(r.id)?.kind ?? skinType.label : skinType.label}</a></> : style && <><span>/</span><a href={th(STYLE_HREF[style])}>{STYLE_WORD[style]}</a></>}{brand && <><span>/</span><a href={`/brands/${brand.slug}`}>{brand.name}</a></>}</div>;
   const lineEl = line.length >= 2 && brand ? <section className="th-card th-sec">
           <div className="th-head-row"><h2 className="th-h2">{`More from ${brand.name}`}</h2><a className="th-link-b" href={`/brands/${brand.slug}`}>{`All ${brand.name} ${niche.words.many} →`}</a></div>
           <div className="th-also">{line.map(x => <Mini key={x.id} x={x} small/>)}</div>
@@ -185,7 +185,7 @@ export default async function ThreadRacket({ params }: P) {
     return <Shell active="rackets">
       <JsonLd data={ld}/>
       <RacketV7b id={r.id} title={r.year && bare !== name ? `${bare} (${r.year})` : name} model={model} crumbs={crumbsEl} tags={aw ? audioTagsOf(aw, r.weight) : tags} lime={aw ? aw.anc : !!style} row={row} judged={judged} {...(aw && au ? audioPageProps(r.id, aw, au, rows, ctx) : {})}
-        lead={lead} bullets={v7Bullets} specs={v7Specs} shop={shop} cards={cards} also={also} brand={brand ? { name: brand.name, slug: brand.slug } : null}
+        lead={aw && lead ? lead.replace(/(?<![\w-])([Oo])wner(s?)\b/g, (_, o: string, x: string) => `${o === "O" ? "L" : "l"}istener${x}`) : lead} bullets={v7Bullets} specs={v7Specs} shop={shop} cards={cards} also={also} brand={brand ? { name: brand.name, slug: brand.slug } : null}
         sim={simSelf ? pickSimilar(simSelf, simSpecs, new Set(compared.map(c => c.row.id))).flatMap(id => rows.get(id) ?? []) : aw ? sim.filter(x => !compared.some(c => c.row.id === x.id)) : []} pill={pill} week={weekLine(cm.opinions, cm.posts)} latest={cm.latest} who={who} compared={compared} stories={tales}/>
     </Shell>;
   }

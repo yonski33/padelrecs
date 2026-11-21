@@ -277,7 +277,7 @@ export function WebSources({ web, open = false }: { web: WebGroups<RvCard>; open
   if (!list.length) return null;
   return <section id="web" className="th-card th-web">
     <h2 className="th-h2">From around the web</h2>
-    <p className="th-web-sub">Short summaries of Reddit threads, YouTube reviews and blogs. Not counted in the player poll above.</p>
+    <p className="th-web-sub">{`Short summaries of Reddit threads, YouTube reviews and blogs. Not counted in the ${W.person} poll above.`}</p>
     {/* No count line (owner 2026-11-21): the subline and the tag only. */}<span className="th-web-tag">Outside sources</span>
     <div className="th-web-cols">{(all ? list : list.slice(0, WEB_FIRST)).map(({ c, kind }) => <WebCard key={c.id} c={c} kind={kind}/>)}</div>
     {!all && list.length > WEB_FIRST && <button type="button" className="th-btn th-center" onClick={() => setAll(true)}>Show more from around the web</button>}

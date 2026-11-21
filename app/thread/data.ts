@@ -268,6 +268,8 @@ async function skinRows(): Promise<Rows> {
  *  Thread pages read; the racket-only parts are empty, and the audio pages use the match inputs instead (`audio`). */
 export type AudioThreadCtx = Awaited<ReturnType<typeof import("../audio/context").audioContext>>;
 export const audioOf = (ctx: Ctx) => (ctx as unknown as { audio?: AudioThreadCtx }).audio ?? null;
+/** "Owners mostly rate…" → "Listeners mostly rate…" (V3-ROLLOUT-BRIEF: never "owners"). */
+const listenerLine = (t: string | null) => t ? t.replace(/(?<![\w-])([Oo])wner(s?)\b/g, (_, o: string, x: string) => `${o === "O" ? "L" : "l"}istener${x}`) : t;
 async function audioRows(): Promise<Rows> {
   const [{ audioContext }, { quickTakeHooks }, { bestUses, USE_WORDS }] = await Promise.all([import("../audio/context"), import("../../db/quick-take"), import("../../lib/audio-match")]);
   const [audio, takes] = await Promise.all([audioContext(), quickTakeHooks()]);
@@ -281,7 +283,7 @@ async function audioRows(): Promise<Rows> {
     const c = score(data, r.id), b = brand.get(r.brandId) ?? "", w = audio.wire.get(r.id)!;
     const best = bestUses(w).map(u => USE_WORDS[u]);
     rows.set(r.id, { id: r.id, slug: r.slug, name: displayName(r.name, b), href: productHref(r), pic: photoHidden(r) ? null : shopPhoto(r) ?? amazonPhoto(r)?.image ?? null,
-      shape: r.shape, line: rowLine(r, takes.get(r.id)?.hook), best: best.length ? best.join(" and ") : null, n: audio.counts.get(r.id)?.n ?? 0,
+      shape: r.shape, line: listenerLine(rowLine(r, takes.get(r.id)?.hook)), best: best.length ? best.join(" and ") : null, n: audio.counts.get(r.id)?.n ?? 0,
       pos: c.positive, mix: c.mixed, neg: c.negative, score: audio.signal(r.id), brand: b, year: r.year, levels: [], feel: null, arm: false, current: current.has(r.id),
       audio: { kind: w.kind, anc: w.anc, wireless: w.wireless, sound: audioSounds(w.s) } });
   }
