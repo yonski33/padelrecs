@@ -22,14 +22,16 @@ const AUDIO = niche.id === "audio";
 /** SimRacingRecs (v3 rollout 2026-11-21): no curated lists either; Type and Drive (its rows carry the drive kind as `feel`,
  *  app/thread/padel-list-data.ts); its match bar picks a budget, not a style, and "I race on console". */
 const SR = niche.id === "simracing";
-export const SORTS: [Sort, string][] = AUDIO || SR ? [["loved", "Most loved"], ["new", "Newest"], ["match", "By your match"]]
+/** TennisRecs (v3 wave 2): no curated lists; Head size and Feel (stiffness), app/thread/padel-list-data.ts. */
+const TN = niche.id === "tennis";
+export const SORTS: [Sort, string][] = AUDIO || SR || TN ? [["loved", "Most loved"], ["new", "Newest"], ["match", "By your match"]]
   : [["picks", "PadelRecs picks"], ["loved", "Most loved"], ["new", "Newest"], ["match", "By your match"]];
 const BASE_SORT: Sort = SORTS[0][0];
 /** The home's menu (owner 2026-11-21: "PadelRecs picks" read as random there): Most loved (default), Most opinions, and By
  *  your match once a pick is set. The catalogue keeps SORTS. */
 export const HOME_SORTS: [Sort, string][] = [["loved", "Most loved"], ["opinions", "Most opinions"], ["match", "By your match"]];
-const FEELS = AUDIO ? ["Warm", "Balanced", "Bright"] : SR ? ["Direct drive", "Belt", "Gear"] : ["Soft", "Medium", "Hard"];
-const GROUP_TITLES: Record<Key, string> = AUDIO ? { shape: "Type", feel: "Sound", brand: "Brand" } : SR ? { shape: "Type", feel: "Drive", brand: "Brand" } : { shape: "Shape", feel: "Feel", brand: "Brand" };
+const FEELS = AUDIO ? ["Warm", "Balanced", "Bright"] : SR ? ["Direct drive", "Belt", "Gear"] : TN ? ["Soft", "Medium", "Crisp"] : ["Soft", "Medium", "Hard"];
+const GROUP_TITLES: Record<Key, string> = AUDIO ? { shape: "Type", feel: "Sound", brand: "Brand" } : SR ? { shape: "Type", feel: "Drive", brand: "Brand" } : TN ? { shape: "Head size", feel: "Feel", brand: "Brand" } : { shape: "Shape", feel: "Feel", brand: "Brand" };
 /** AudioRecs' match (lib/audio-match.ts), worked out by the page's own hook (live/audio-match.tsx) and handed to the list. */
 export type ListMatch = { mine: boolean; pcts: Map<string, number | null> | null; picks: AudioPicks; set: (p: Partial<AudioPicks>) => void };
 const TOP_BRANDS = 6;

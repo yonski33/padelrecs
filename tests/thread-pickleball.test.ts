@@ -43,7 +43,7 @@ test("padel: Find my match keeps Control, Balance and Power; the footer line is 
 test("pickleball: Thread is the default look (go-live); its own guide addresses", () => {
   assert.equal(threadSite("pickleball"), true);
   assert.equal(threadDefaultFor("pickleball"), true, "go-live: Thread is pickleball's default look (set to false to roll back)");
-  assert.equal(threadDefaultFor("tennis"), false);
+  assert.equal(threadDefaultFor("coffee"), false);
   const g = guidePathsFor("pickleball");
   assert.deepEqual(Object.keys(g), GUIDE_KEYS);
   assert.equal(g.racket, "/guide");

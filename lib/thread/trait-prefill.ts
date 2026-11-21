@@ -13,7 +13,7 @@ export type PrefillGroup = Record<string, number>;
 export type PrefillRacket = { slug: string; name: string; sources: number; groups: Record<string, PrefillGroup>; spec: Record<string, string> };
 export type Prefill = { built: string; rule: string; rackets: Record<string, PrefillRacket> };
 export type PrefillText = { productId: string; /** The report ref, "p:<review id>" or "w:<web report id>". */ key: string; negative: boolean; text: string };
-type Cat = { id: string; slug: string; name: string; shape: string | null; core: string | null; balance: string | null; weight?: string | null };
+type Cat = { id: string; slug: string; name: string; shape: string | null; core: string | null; balance: string | null; weight?: string | null; surface?: string | null };
 
 const NOT = String.raw`(?<!\b(?:no|not|never|without|zero|little|minimal|low|not much|not too|isn'?t|wasn'?t)\s(?:\w+\s)?)`;
 /** Words that settle a group, tried in order (the first that matches wins for that text). */
@@ -46,10 +46,12 @@ export const STRAIGHT = new RegExp(String.raw`(?<!\b(?:no|not|never|isn'?t|aren'
 const firstMatch = (rules: [string, RegExp][], text: string) => rules.find(([, re]) => re.test(text))?.[0] ?? null;
 
 /** Specs that settle a group (owner: "specs only where they settle it"); null where they don't. */
-export function specLeans(r: Pick<Cat, "shape" | "core" | "balance" | "weight">, nicheId = "padel"): Record<string, string> {
+export function specLeans(r: Pick<Cat, "shape" | "core" | "balance" | "weight" | "surface">, nicheId = "padel"): Record<string, string> {
   if (nicheId === "discgolf") return discSpecs(r.weight);
   // Paddle shapes and cores don't settle a group the way a padel shape or a "Soft" core does, so pickleball has none.
   if (nicheId === "pickleball") return {};
+  // TennisRecs: only the stiffness settles a group (Feel: 62 RA or less soft, 68 or more crisp).
+  if (nicheId === "tennis") { const ra = Number((r.surface ?? "").match(/(\d{2})\s*RA/i)?.[1] ?? NaN); return ra <= 62 ? { feel: "soft" } : ra >= 68 ? { feel: "hard" } : {}; }
   const out: Record<string, string> = {}, shape = (r.shape ?? "").toLowerCase(), core = (r.core ?? "").toLowerCase(), bal = (r.balance ?? "").toLowerCase().trim();
   if (shape.startsWith("diamond")) out.plays_like = "power"; else if (shape.startsWith("round")) out.plays_like = "control"; else if (shape.startsWith("teardrop")) out.plays_like = "all_round";
   if (/\b(soft|flex)\b/.test(core)) out.feel = "soft"; else if (/\b(hard|firm)\b/.test(core)) out.feel = "hard";
@@ -106,7 +108,13 @@ export function sourcePicks(rows: EvidenceRow[], nicheId = "padel"): Record<stri
   if (p > 0 && c > 0) out.plays_like = "all_round"; else if (p > 0 || (c < 0 && p === 0)) out.plays_like = "power"; else if (c > 0 || (p < 0 && c === 0)) out.plays_like = "control";
   const f = sum("forgiveness"); if (f.n) { const v = f.net < 0 ? "small" : f.net > 0 ? (f.max >= 1 ? "big" : "medium") : null; if (v) out.sweet_spot = v; }
   const a = sum("arm"); if (a.n) { const v = scale(a.net, a.max, ["very", "somewhat", "not_really"]); if (v) out.arm = v; }
-  if (nicheId === "pickleball") {
+  if (nicheId === "tennis") {
+    // TennisRecs: Spin, Maneuverable, Stable and Feel from its own reader rows (lib/fit-config.ts TENNIS; feel +1 soft, -1 crisp).
+    const sp = sum("spin"); if (sp.n) { const v = scale(sp.net, sp.max, ["lots", "some", "little"]); if (v) out.spin = v; }
+    const mv = sum("maneuverability"); if (mv.n) { const v = scale(mv.net, mv.max, ["very", "somewhat", "not_really"]); if (v) out.maneuver = v; }
+    const st = sum("stability"); if (st.n) { const v = scale(st.net, st.max, ["very", "somewhat", "not_really"]); if (v) out.stability = v; }
+    const fe = sum("feel"); if (fe.n && fe.net !== 0) out.feel = fe.net > 0 ? "soft" : "hard";
+  } else if (nicheId === "pickleball") {
     // PickleballRecs: Spin and Pop from their own evidence; no Maneuverable group.
     const sp = sum("spin"); if (sp.n) { const v = scale(sp.net, sp.max, ["lots", "some", "little"]); if (v) out.spin = v; }
     const po = sum("pop"); if (po.n) { const v = scale(po.net, po.max, ["high", "medium", "low"]); if (v) out.pop = v; }
@@ -137,6 +145,7 @@ export function buildPrefill(cat: Cat[], evidence: EvidenceRow[], texts: Prefill
     if (nicheId === "discgolf") { if (STRAIGHT.test(t.text)) put(t.productId, src, "stability", "stable"); continue; }
     const feel = firstMatch(FEEL, t.text);
     if (feel) put(t.productId, src, "feel", feel);
+    if (nicheId === "tennis") continue; // its feel comes from its reader rows; padel's side and trampoline words mean nothing here
     if (nicheId === "pickleball") { const game = t.negative ? null : firstMatch(GAME, t.text); if (game) put(t.productId, src, "game_type", game); continue; }
     const tramp = firstMatch(TRAMPOLINE, t.text), side = t.negative ? null : firstMatch(SIDE, t.text);
     if (tramp) put(t.productId, src, "trampoline", tramp); if (side) put(t.productId, src, "side", side);

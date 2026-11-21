@@ -27,6 +27,19 @@ export const PICKLEBALL_TRAIT_GROUPS: TraitGroup[] = [
   { key: "pop", title: "Pop", options: [["low", "Low"], ["medium", "Medium"], ["high", "High"]] },
   { key: "durability", title: "Durability", options: [["holds_up", "Holds up well"], ["average", "Average"], ["wears_fast", "Wears fast"]] },
 ];
+/** TennisRecs' nine (owner 2026-11-21, v3 wave 2): padel's set with Spin and Stability for court side and trampoline, which
+ *  mean nothing in tennis. Its own schema. */
+export const TENNIS_TRAIT_GROUPS: TraitGroup[] = [
+  { key: "plays_like", title: "Plays like", options: [["control", "Control"], ["all_round", "All-round"], ["power", "Power"]] },
+  { key: "level", title: "Best for", options: [["beginner", "Beginner"], ["intermediate", "Intermediate"], ["advanced", "Advanced"]] },
+  { key: "sweet_spot", title: "Sweet spot", options: [["big", "Big"], ["medium", "Medium"], ["small", "Small"]] },
+  { key: "arm", title: "Arm friendly", options: [["very", "Very"], ["somewhat", "Somewhat"], ["not_really", "Not really"]] },
+  { key: "feel", title: "Feel", options: [["soft", "Soft"], ["medium", "Medium"], ["hard", "Crisp"]] },
+  { key: "spin", title: "Spin", options: [["lots", "Lots"], ["some", "Some"], ["little", "Little"]] },
+  { key: "maneuver", title: "Maneuverable", options: [["very", "Very"], ["somewhat", "Somewhat"], ["not_really", "Not really"]] },
+  { key: "stability", title: "Stable", options: [["very", "Very"], ["somewhat", "Somewhat"], ["not_really", "Not really"]] },
+  { key: "durability", title: "Durability", options: [["holds_up", "Holds up well"], ["average", "Average"], ["wears_fast", "Wears fast"]] },
+];
 /** SkinRecs' nine (its product mock, "How does it work for you?"). Its own schema. */
 export const SKIN_TRAIT_GROUPS: TraitGroup[] = [
   { key: "skin_type", title: "Skin type", options: [["dry", "Dry"], ["combination", "Combination"], ["oily", "Oily"]] },
@@ -139,6 +152,7 @@ export function traitGroupsFor(nicheId: string): TraitGroup[] {
   if (nicheId === "simracing") return SIMRACING_ALL;
   if (nicheId === "discgolf") return DISCGOLF_TRAIT_GROUPS;
   if (nicheId === "pickleball") return PICKLEBALL_TRAIT_GROUPS;
+  if (nicheId === "tennis") return TENNIS_TRAIT_GROUPS;
   if (nicheId === "stackrecs") return STACK_TRAIT_GROUPS;
   if (nicheId === "skin") return SKIN_TRAIT_GROUPS;
   if (nicheId === "audio") return AUDIO_TRAIT_GROUPS;
@@ -164,6 +178,11 @@ const PICKLEBALL_BOARDS: VoteBoard[] = [
   { title: "Best for beginners", trait: "level", choice: "beginner" }, { title: "Most power", trait: "plays_like", choice: "power" },
   { title: "Most spin", trait: "spin", choice: "lots" }, { title: "Softest feel", trait: "feel", choice: "soft" },
 ];
+const TENNIS_BOARDS: VoteBoard[] = [
+  { title: "Biggest sweet spot", trait: "sweet_spot", choice: "big" }, { title: "Most arm friendly", trait: "arm", choice: "very" },
+  { title: "Best for beginners", trait: "level", choice: "beginner" }, { title: "Most power", trait: "plays_like", choice: "power" },
+  { title: "Most spin", trait: "spin", choice: "lots" }, { title: "Most control", trait: "plays_like", choice: "control" },
+];
 const SKIN_BOARDS: VoteBoard[] = [
   { title: "Gentlest", trait: "irritation", choice: "none" }, { title: "Best for dry skin", trait: "skin_type", choice: "dry" },
   { title: "Best for oily skin", trait: "skin_type", choice: "oily" }, { title: "Best under makeup", trait: "makeup", choice: "fine" },
@@ -188,5 +207,5 @@ const SIMRACING_BOARDS: VoteBoard[] = [
   { title: "Best for beginners", trait: "level", choice: "beginner" }, { title: "Quietest", trait: "noise", choice: "quiet" },
 ];
 export const voteBoardsFor = (nicheId: string) => nicheId === "pickleball" ? PICKLEBALL_BOARDS : nicheId === "skin" ? SKIN_BOARDS
-  : nicheId === "discgolf" ? DISCGOLF_BOARDS : nicheId === "audio" ? AUDIO_BOARDS : nicheId === "simracing" ? SIMRACING_BOARDS : PADEL_BOARDS;
+  : nicheId === "discgolf" ? DISCGOLF_BOARDS : nicheId === "audio" ? AUDIO_BOARDS : nicheId === "simracing" ? SIMRACING_BOARDS : nicheId === "tennis" ? TENNIS_BOARDS : PADEL_BOARDS;
 export const VOTE_BOARDS = voteBoardsFor(niche.id);

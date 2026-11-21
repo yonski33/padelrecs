@@ -16,7 +16,8 @@ import { niche } from "../lib/niche";
 //   numbers, kept apart as specs; lib/thread/trait-prefill.ts discSpecs)
 //   NICHE=audio … from the reviews' quick tags and summary words (no evidence store there yet; lib/thread/audio-prefill.ts)
 //   NICHE=simracing … the same (its quality and suits rows, per gear type's groups; no specs)
-if (!["padel", "pickleball", "skin", "discgolf", "audio", "simracing"].includes(niche.id)) throw new Error("Run with NICHE=padel, pickleball, skin, discgolf, audio or simracing");
+//   NICHE=tennis … the same (its reader rows: spin, maneuverability, stability, feel; stiffness as the one spec)
+if (!["padel", "pickleball", "skin", "discgolf", "audio", "simracing", "tennis"].includes(niche.id)) throw new Error("Run with NICHE=padel, pickleball, skin, discgolf, audio, simracing or tennis");
 if (niche.id === "audio") {
   const [{ audioContext }, { buildAudioPrefill }] = await Promise.all([import("../app/audio/context"), import("../lib/thread/audio-prefill")]);
   const ctx = await audioContext(), d = ctx.data;
@@ -48,7 +49,7 @@ if (niche.id === "skin") {
 }
 const db = await getDb();
 const [cat, own, ext, ev] = await Promise.all([
-  db.select({ id: rackets.id, slug: rackets.slug, name: rackets.name, shape: rackets.shape, core: rackets.core, balance: rackets.balance, weight: rackets.weight }).from(rackets),
+  db.select({ id: rackets.id, slug: rackets.slug, name: rackets.name, shape: rackets.shape, core: rackets.core, balance: rackets.balance, weight: rackets.weight, surface: rackets.surface }).from(rackets),
   db.select({ id: reviews.id, racketId: reviews.racketId, rating: reviews.rating, text: reviews.reviewText }).from(reviews).where(eq(reviews.status, "approved")),
   db.select({ id: externalReviews.id, racketId: externalReviews.racketId, sentiment: externalReviews.sentiment,
     summary: externalReviews.summary, excerpt: externalReviews.excerpt, translation: externalReviews.excerptTranslation }).from(externalReviews),

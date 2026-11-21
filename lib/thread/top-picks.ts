@@ -93,8 +93,20 @@ const SIMRACING_CATS: PickCat[] = [
   { key: "grip", title: "Best grip", trait: "grip", choice: "great", href: "/rankings/best-sim-racing-wheels" },
   { key: "durable", title: "Most durable", trait: "durability", choice: "holds_up", href: "/rankings/best-sim-racing-gear" },
 ];
+/** TennisRecs' lists, linking to its live rankings. */
+const TENNIS_CATS: PickCat[] = [
+  { key: "sweet", title: "Biggest sweet spot", trait: "sweet_spot", choice: "big", href: "/rankings/best-tennis-rackets" },
+  { key: "arm", title: "Most arm friendly", trait: "arm", choice: "very", href: "/rankings/best-arm-friendly-tennis-rackets" },
+  { key: "control", title: "Most control", trait: "plays_like", choice: "control", href: "/rankings/best-control-tennis-rackets" },
+  { key: "power", title: "Most power", trait: "plays_like", choice: "power", href: "/rankings/best-power-tennis-rackets" },
+  { key: "spin", title: "Most spin", trait: "spin", choice: "lots", href: "/rankings/best-spin-tennis-rackets" },
+  { key: "intermediate", title: "Best for intermediate", trait: "level", choice: "intermediate", href: "/rackets?level=Intermediate" },
+  { key: "stable", title: "Most stable", trait: "stability", choice: "very", href: "/rankings/best-control-tennis-rackets" },
+  { key: "net", title: "Quickest at the net", trait: "maneuver", choice: "very", href: "/rankings/best-tennis-rackets" },
+  { key: "beginner", title: "Best for beginners", trait: "level", choice: "beginner", href: "/rackets?level=Beginner" },
+];
 export const pickCatsFor = (nicheId: string) => nicheId === "pickleball" ? PICKLEBALL_CATS : nicheId === "skin" ? SKIN_CATS
-  : nicheId === "discgolf" ? DISCGOLF_CATS : nicheId === "audio" ? AUDIO_CATS : nicheId === "simracing" ? SIMRACING_CATS : PADEL_CATS;
+  : nicheId === "discgolf" ? DISCGOLF_CATS : nicheId === "audio" ? AUDIO_CATS : nicheId === "simracing" ? SIMRACING_CATS : nicheId === "tennis" ? TENNIS_CATS : PADEL_CATS;
 /** The running site's lists. */
 export const PICK_CATS = pickCatsFor(niche.id);
 /** How many lists the grid shows (3 columns × 2 rows). */

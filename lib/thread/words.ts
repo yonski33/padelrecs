@@ -36,5 +36,7 @@ const SITES: Record<string, Words> = {
     reviews: "racer reviews", Reviews: "Racer reviews", traitsTitle: "How does it drive?", fitTitle: "Is it right for me?",
     opinions: "racer opinions", lovers: "Racers", triedIt: "Raced with it?", played: "raced with",
     item: "product", items: "products", usedIt: "Raced with it?", community: "The sim racing community" },
+  // TennisRecs: padel's words ("players", "Played with it?"), its own community line.
+  tennis: { ...PADEL, community: "The tennis racket community" },
 };
 export const W: Readonly<Words> = SITES[niche.id] ?? PADEL;
