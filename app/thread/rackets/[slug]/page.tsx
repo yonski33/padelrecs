@@ -191,7 +191,7 @@ export default async function ThreadRacket({ params }: P) {
     // The vote boxes, the poll and the opinions count from the same reads as /api/trait-votes and /api/thread-poll (audit
     // 2026-11-21: the server HTML showed the seed only, so crawlers saw other numbers than the page after its fetches).
     // Votes and the owner's fixes refresh this page on demand (lib/thread/refresh-racket.ts); the ISR time is unchanged.
-    const live = hasDb() ? await (async () => { try { const db = await database();
+    const liveVotes = hasDb() ? await (async () => { try { const db = await database();
       const [counts, overrides, poll] = await Promise.all([liveTraitCounts(db, r.id), traitOverridesFor(db, r.id), pollVotes(db, r.id)]);
       return { counts, overrides, poll }; } catch (error) { console.error("[thread] live votes failed", error); return null; } })() : null;
     // A year the list doesn't show (audit 2026-11-21: 54 such pages, live and indexed): the page says so and links to the
@@ -206,7 +206,7 @@ export default async function ThreadRacket({ params }: P) {
       <JsonLd data={ld}/>
       <RacketV7b id={r.id} title={r.year && bare !== name ? `${bare} (${r.year})` : name} model={model} crumbs={crumbsEl} tags={aw ? audioTagsOf(aw, r.weight) : tags} lime={aw ? aw.anc : !!style} row={row} judged={judged} {...(aw && au ? audioPageProps(r.id, aw, au, rows, ctx) : SR ? srPageProps(r.id, r.shape) : {})}
         lead={aw && lead ? lead.replace(/(?<![\w-])([Oo])wner(s?)\b/g, (_, o: string, x: string) => `${o === "O" ? "L" : "l"}istener${x}`) : SR && lead ? lead.replace(/(?<![\w-])([Oo])wner(s?)\b/g, (_, o: string, x: string) => `${o === "O" ? "R" : "r"}acer${x}`) : lead} bullets={v7Bullets} specs={v7Specs} shop={shop} cards={cards} also={also} brand={brand ? { name: brand.name, slug: brand.slug } : null}
-        sim={simSelf ? pickSimilar(simSelf, simSpecs, new Set(compared.map(c => c.row.id))).flatMap(id => rows.get(id) ?? []) : aw || SR ? sim.filter(x => !compared.some(c => c.row.id === x.id)) : []} pill={pill} week={weekLine(cm.opinions, cm.posts)} latest={cm.latest} who={who} compared={compared} stories={tales} live={live} listedAs={listedAs}/>
+        sim={simSelf ? pickSimilar(simSelf, simSpecs, new Set(compared.map(c => c.row.id))).flatMap(id => rows.get(id) ?? []) : aw || SR ? sim.filter(x => !compared.some(c => c.row.id === x.id)) : []} pill={pill} week={weekLine(cm.opinions, cm.posts)} latest={cm.latest} who={who} compared={compared} stories={tales} live={liveVotes} listedAs={listedAs}/>
     </Shell>;
   }
   return <Shell active="rackets">
