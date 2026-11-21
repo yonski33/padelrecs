@@ -5,7 +5,7 @@ import { notFound } from "next/navigation";
 import { Shell } from "../../shell";
 import { threadRows, threadBoards, skinOf, audioOf } from "../../data";
 import { v3Site } from "../../../../lib/thread/sites";
-import { votePill, AUDIO_PILL_LABELS, SIMRACING_PILL_WORDS, SIMRACING_PILL_LABELS } from "../../../../lib/thread/vote-pill";
+import { votePill, AUDIO_PILL_LABELS, SIMRACING_PILL_WORDS, SIMRACING_PILL_LABELS, PICKLEBALL_PILL_WORDS, PICKLEBALL_PILL_LABELS } from "../../../../lib/thread/vote-pill";
 import { traitGroupsForType } from "../../../../lib/thread/traits";
 import { TRAIT_GROUPS } from "../../../../lib/thread/traits";
 import { GUIDE_LINK_LABELS } from "../../../../lib/thread/copy";
@@ -219,6 +219,7 @@ async function RankingV5({ l, lists, list, rated, label, faqs, ld, picOf }: { l:
   const rows: V5Row[] = list.map((r, i) => ({ id: r.id, rank: i + 1, name: r.name, href: r.href, pic: r.pic, shape: r.shape ? r.shape[0].toUpperCase() + r.shape.slice(1) : null,
     line: r.line, pos: r.pos, mix: r.mix, neg: r.neg, rating: rated?.[r.id] != null ? (rated[r.id] / 10).toFixed(1) : null,
     picked: au ? votePill(Object.fromEntries(TRAIT_GROUPS.map(g => [g.key, traitGroup(t, r.id, g.key)])), W.people, AUDIO_PILL_LABELS, AUDIO_PILL_LABELS)
+      : PICKLEBALL ? votePill(Object.fromEntries(TRAIT_GROUPS.map(g => [g.key, traitGroup(t, r.id, g.key)])), W.people, PICKLEBALL_PILL_WORDS, PICKLEBALL_PILL_LABELS)
       : SR ? votePill(Object.fromEntries(traitGroupsForType(niche.id, r.shape, r.id).map(g => [g.key, traitGroup(t, r.id, g.key)])), W.people, SIMRACING_PILL_WORDS, SIMRACING_PILL_LABELS)
       : pickedLine(traitGroup(t, r.id, "plays_like")), arm: !!r.arm, ...(au && r.audio?.kind ? { shape: r.audio.kind } : {}) }));
   const opinions: [string, string] = [W.opinions.replace(/s$/, ""), W.opinions];
@@ -228,14 +229,16 @@ async function RankingV5({ l, lists, list, rated, label, faqs, ld, picOf }: { l:
   const pics = (ids: string[], n: number) => ids.map(picOf).filter((x): x is string => !!x).slice(0, n);
   const mine = rows.map(r => r.id);
   const explore = [AUDIO ? { tag: "Guide", title: GUIDE_LINK_LABELS.racket, desc: "Where you listen, fit and sound, in plain words.", cta: "Read guide", href: GUIDE_PATHS.racket, imgs: pics(mine, 1), tone: "dark" }
+      : PICKLEBALL ? { tag: "Guide", title: GUIDE_LINK_LABELS.racket, desc: "Shape, weight, core and face, in plain words.", cta: "Read guide", href: GUIDE_PATHS.racket, imgs: pics(mine, 1), tone: "dark" }
       : SR ? { tag: "Guide", title: GUIDE_LINK_LABELS.racket, desc: "Base, wheel, pedals and rig, in plain words.", cta: "Read guide", href: GUIDE_PATHS.racket, imgs: pics(mine, 1), tone: "dark" }
       : niche.id === "tennis" ? { tag: "Guide", title: GUIDE_LINK_LABELS.racket, desc: "Head size, weight, pattern and stiffness, in plain words.", cta: "Read guide", href: GUIDE_PATHS.racket, imgs: pics(mine, 1), tone: "dark" }
       : { tag: "Guide", title: "How to choose a padel racket", desc: "Shape, weight, balance and feel, in plain words.", cta: "Read guide", href: GUIDE_PATHS.racket, imgs: pics(mine, 1), tone: "dark" },
     AUDIO ? { tag: "Guide", title: GUIDE_LINK_LABELS.shape, desc: "Open or closed, and who each suits.", cta: "Read guide", href: GUIDE_PATHS.shape, imgs: pics(mine.slice(1), 3), tone: "sand" }
+      : PICKLEBALL ? { tag: "Guide", title: GUIDE_LINK_LABELS.shape, desc: "Standard, hybrid or elongated, and who each suits.", cta: "Read guide", href: GUIDE_PATHS.shape, imgs: pics(mine.slice(1), 3), tone: "sand" }
       : SR ? { tag: "Guide", title: GUIDE_LINK_LABELS.shape, desc: "What each drive feels like, and who each suits.", cta: "Read guide", href: GUIDE_PATHS.shape, imgs: pics(mine.slice(1), 3), tone: "sand" }
       : niche.id === "tennis" ? { tag: "Guide", title: GUIDE_LINK_LABELS.shape, desc: "97, 100 or oversize, and who each suits.", cta: "Read guide", href: GUIDE_PATHS.shape, imgs: pics(mine.slice(1), 3), tone: "sand" }
       : { tag: "Guide", title: "Padel racket shapes explained", desc: "Round, teardrop or diamond, and who each suits.", cta: "Read guide", href: GUIDE_PATHS.shape, imgs: pics(mine.slice(1), 3), tone: "sand" },
-    ...others.filter(x => x.slug !== (SR ? "best-sim-racing-gear" : niche.id === "tennis" ? "best-tennis-rackets" : "best-padel-rackets")).slice(0, 2).map((x, i) => ({ tag: "Ranking", title: x.label, desc: x.blurb, cta: "View ranking", href: x.href,
+    ...others.filter(x => x.slug !== (SR ? "best-sim-racing-gear" : niche.id === "tennis" ? "best-tennis-rackets" : PICKLEBALL ? "best-pickleball-paddles" : "best-padel-rackets")).slice(0, 2).map((x, i) => ({ tag: "Ranking", title: x.label, desc: x.blurb, cta: "View ranking", href: x.href,
       imgs: pics(x.ids, 2), tone: i ? "lime" : "sand" }))];
   return <Shell active="rankings">
     <JsonLd data={ld}/>
@@ -251,7 +254,7 @@ async function RankingV5({ l, lists, list, rated, label, faqs, ld, picOf }: { l:
           </section>
           <section className="th-card rk5-list">
             <div className="rk5-list-head"><h2 className="th-h2">{l.label}</h2>
-              <span>{`${AUDIO || SR ? plural(rows.length, W.item, W.items) : plural(rows.length, ONE, MANY)}  ·  ${plural(said, opinions[0], opinions[1])}`}</span></div>
+              <span>{`${AUDIO || SR || PICKLEBALL ? plural(rows.length, W.item, W.items) : plural(rows.length, ONE, MANY)}  ·  ${plural(said, opinions[0], opinions[1])}`}</span></div>
             <RankRows rows={rows} ratingLabel={label} opinions={opinions} markLoved={loved} {...(wire ? { wire } : {})}/>
           </section>
         </div>

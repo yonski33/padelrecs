@@ -2181,6 +2181,23 @@ body:has(.th) .th a.thq-all { align-self: flex-start; font-size: 14px; font-weig
 .thq-hero { display: flex; flex-direction: column; gap: 4px; padding: 6px 0 0; }
 .thq-row .th7-cm-head { flex-wrap: wrap; row-gap: 3px; }
 
+/* PickleballRecs on the v3 pages (V3-ROLLOUT-BRIEF wave 2, 2026-11-21): padel's v3 structure in pickleball's own look (its
+   README tokens above, .th-pb, #534): navy ink, cool paper, the yellow-green accent. Same rules as AudioRecs' block. No black
+   header bars. */
+.th.th-pb { --sticker: var(--site-acc, oklch(0.92 0.17 105)); }
+.th.th-pb .th-card { background: var(--card); }
+.th.th-pb .tc-qm-tag { background: var(--sticker); }
+.th.th-pb .tc-box-dark { padding: 12px 0 6px; }
+.th.th-pb .tc-box-dark .tc-bh { background: none; color: var(--ink) !important; padding: 0 16px 8px; border-bottom: 1.5px solid var(--line); }
+.th.th-pb .th-sbox-head { background: none; color: var(--ink); border-bottom: 1.5px solid var(--line); }
+.th.th-pb :is(.rk5-row .pic, .tc-ph, .tc-new-ph, .th-photo, .th-bigphoto, .th-ar-pic),
+body:has(.th) .th.th-pb .cp3-card a.pic { background: transparent; border-color: transparent; }
+.th.th-pb :is(.rk5-row .pic, .tc-ph, .tc-new-ph, .th-photo, .th-bigphoto, .th-ar-pic, .cp3-card .pic) img { mix-blend-mode: multiply; }
+.th.th-pb .rkh { --rh-card: #fff; --rh-ink: var(--ink); --rh-ink2: var(--ink2); --rh-line: var(--line); --rh-pos: var(--s-pos); --rh-mix: var(--s-mix); --rh-neg: var(--s-neg); }
+.th.th-pb .rk5 { --r5-soft: var(--lime-box); --r5-chip: var(--lime-chip); --r5-pos: var(--s-pos); --r5-mix: var(--s-mix); --r5-neg: var(--s-neg); }
+.th.th-pb .cp3 { --c3-soft: var(--lime-box); --c3-pos: var(--s-pos); --c3-mix: var(--s-mix); --c3-neg: var(--s-neg); }
+body:has(.th) .th.th-pb .rk5-box h3 { background: none; color: var(--ink); border-bottom: 1.5px solid var(--line); }
+
 /* The v3 thumbnails keep wide photos inside their box (owner bug 2026-11-21, SimRacingRecs: wide bundles and rims ran past the
    card's border and over the name). Every v3 site: the box clips, the image fills it and is contained. Tall cutouts (padel)
    render the same size as before; the #598 multiply blend stays. */

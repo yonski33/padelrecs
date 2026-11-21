@@ -65,6 +65,10 @@ export const SIMRACING_PILL_LABELS: Record<string, Record<string, string>> = {
   shift_feel: { crisp: "Crisp shifts" }, software: { easy: "Easy software" }, durability: { holds_up: "Holds up well" },
 };
 
+/** PickleballRecs (wave 2, 2026-11-21): padel's words plus its Spin and Game type groups, quality first ("Lots of spin · 18 players"). */
+export const PICKLEBALL_PILL_WORDS: Record<string, Record<string, string>> = { ...PILL_WORDS, spin: { lots: "x" }, game_type: { doubles: "doubles", singles: "singles" } };
+export const PICKLEBALL_PILL_LABELS: Record<string, Record<string, string>> = { ...PILL_LABELS, spin: { lots: "Lots of spin" } };
+
 /** AudioRecs (V3-ROLLOUT-BRIEF: "Quality · N listeners"): every answer reads quality first, so words and labels match. */
 export const AUDIO_PILL_LABELS: Record<string, Record<string, string>> = {
   anc: { excellent: "Great noise cancelling" }, comfort: { all_day: "Comfortable all day" }, detail: { lots: "Lots of detail" },

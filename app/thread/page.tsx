@@ -78,7 +78,7 @@ export default async function ThreadHome() {
     const live = total > 0 ? `${total.toLocaleString("en-US")} reviews${week > 0 ? ` · ${week.toLocaleString("en-US")} ${WEEK_SHORT}` : ""}` : null;
     return <Shell>
       <main className="th-main th-hp3">
-        <PadelHomeTop rows={d.rows} brands={d.brands} pills={d.pills} added={d.added} curated={d.curated} season={d.season} live={live} {...(d.wire ? { wire: d.wire, art: <Headphones/> } : niche.id === "simracing" ? { art: <Wheel/> } : niche.id === "tennis" ? { art: <TennisRacket/> } : {})}
+        <PadelHomeTop rows={d.rows} brands={d.brands} pills={d.pills} added={d.added} curated={d.curated} season={d.season} live={live} {...(d.wire ? { wire: d.wire, art: <Headphones/> } : niche.id === "simracing" ? { art: <Wheel/> } : niche.id === "tennis" ? { art: <TennisRacket/> } : niche.id === "pickleball" ? { art: <Paddle/> } : {})}
           after={<div key="after" className="hp3-rest">
             <div key="cm" className="hp3-rest">{sideBox(" th-only-m")}</div>
             {picks.lists.length > 0 && <TopPicks key="tp" lists={picks.lists} total={picks.total} hrefs={Object.fromEntries(all.map(r => [r.id, r.href]))} unit={["vote", "votes"]}/>}
@@ -143,6 +143,11 @@ export default async function ThreadHome() {
 }
 
 /** SimRacingRecs' hero drawing: a wheel rim, in the same hand-drawn line. */
+/** PickleballRecs' hero drawing: a paddle with a ball, in the same hand-drawn line. */
+function Paddle() {
+  return <svg className="hp3-art" width="74" height="80" viewBox="0 0 74 80" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+    <rect x="14" y="6" width="34" height="44" rx="15" transform="rotate(24 31 28)" fill="#fff"/><path d="M24 52L13 74"/><circle cx="56" cy="58" r="8" fill="#fff"/><path d="M58 8l3-5M64 15l6-3M66 25l6 1"/></svg>;
+}
 function Wheel() {
   return <svg className="hp3-art" width="74" height="80" viewBox="0 0 74 80" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
     <circle cx="35" cy="42" r="27" fill="#fff"/><circle cx="35" cy="42" r="8"/><path d="M27 42H9M43 42h18M35 50v18"/><path d="M58 8l3-5M64 15l6-3M66 25l6 1"/></svg>;
