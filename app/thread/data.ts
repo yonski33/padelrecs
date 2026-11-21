@@ -16,6 +16,7 @@ import { sideItems, addCounts, BUSY_DAYS, SIDE_SIZE, type SideItem } from "../..
 import { shopPhoto, photoHidden } from "../../lib/shop-photos";
 import { amazonPhoto } from "../../lib/amazon-photos";
 import { productHref, niche } from "../../lib/niche";
+import { playersWord } from "../../lib/thread/web-sources";
 import { flightOf } from "../../lib/discgolf-profile";
 import { score } from "../../db/data";
 import { LEVELS } from "../../lib/quick-match";
@@ -89,7 +90,8 @@ function rowOf(ctx: Ctx, r: Ctx["data"]["listed"][number], brand: string, n: num
   return { id: r.id, slug: r.slug, name: displayName(r.name, brand), href: productHref(r), pic: photoHidden(r) ? null : shopPhoto(r) ?? amazonPhoto(r)?.image ?? null,
     shape: r.shape, line: rowLine(r, hook), best: best.join(", ") || null, n, pos: c.positive, mix: c.mixed, neg: c.negative,
     score: ctx.sigs.get(r.id)?.signal ?? null, brand, year: r.year, levels, feel, arm: best.some(b => /sore arms|slower arms/.test(b)), ...flightRow(r.weight),
-    ...(niche.id === "simracing" ? { drive: r.balance } : {}) };
+    // SimRacingRecs: its drive kind, and its row line in racer words (V3-ROLLOUT-BRIEF: never "owners").
+    ...(niche.id === "simracing" ? { drive: r.balance, line: ((l: string | null) => l && playersWord(l, "racer"))(rowLine(r, hook)) } : {}) };
 }
 
 /** "How players vote them" until trait votes exist (migration 0024, waiting for the owner): the top 3 per trait from what
