@@ -58,3 +58,17 @@ test("few-review pages: one threshold, an honest count line, the poll pointer fr
     "Want to add a line about why?", "Add a line", "No thanks"];
   for (const t of copy) { assert.ok((live + poll).includes(t), t); assert.doesNotMatch(t, /—|\bowners?\b|\bverdict\b|\b(we|us)\b/i); }
 });
+
+test("From around the web is one newest-first list with a count line naming only the sources present", async () => {
+  const { webList, webLine, WEB_FIRST } = await import("../lib/thread/web-sources");
+  const c = (kind: string, at: string, url: string | null = null) => ({ kind, at, url, id: `${kind}${at}` });
+  const s = splitSources([c("youtube", "2026-10-01"), c("reddit", "2026-11-02", "https://www.reddit.com/r/padel/comments/a1/some_long_title/"),
+    c("reddit", "2026-09-03", "https://www.reddit.com/r/padel/comments/a1/some_long_title/x9/"), c("blog", "2026-11-10")]);
+  assert.deepEqual(webList(s.web).map(x => x.c.at), ["2026-11-10", "2026-11-02", "2026-10-01", "2026-09-03"]);
+  assert.equal(webLine(s.web), "4 summaries · Reddit, YouTube, blogs");
+  assert.equal(webLine(splitSources([c("youtube", "2026-01-01")]).web), "1 summary · YouTube");
+  assert.equal(WEB_FIRST, 6);
+  const live = readFileSync("app/thread/live/racket-v7b.tsx", "utf8");
+  assert.doesNotMatch(live, /summarised|th-web-groups/);
+  assert.match(live, /\(all \? list : list\.slice\(0, WEB_FIRST\)\)/);
+});
