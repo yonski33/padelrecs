@@ -10,25 +10,29 @@ import { justIn, JUST_IN_THIN } from "../../lib/thread/just-in";
 import { amazonPhoto } from "../../lib/amazon-photos";
 import { websiteButton } from "../../lib/product-links";
 import { th } from "../../lib/thread/look";
-import { niche } from "../../lib/niche";
-import { ago } from "./ui";
+import { ago, plural, type ThreadRow } from "./ui";
 import { Ago } from "./live/ago";
-import { named, opinions, plural } from "./live/padel-list";
+import { withoutYear } from "../../lib/brand-name";
+
+// The list's helpers (live/padel-list.tsx), here too: that file is a client module, so a server component can't call them.
+const named = (r: ThreadRow) => { const b = withoutYear(r.name); return r.year && b !== r.name ? `${b} (${r.year})` : r.name; };
+const opinions = (r: ThreadRow) => r.pos + r.mix + r.neg;
 
 /** The racket page's note under Check price (racket-v7b.tsx BUY_NOTE), shown under an affiliate link only. */
 const BUY_NOTE = "Affiliate link - price stays the same";
 
 export async function JustIn() {
   const { all, ctx } = await threadRows();
-  if (!ctx || niche.id !== "padel") return null;
+  if (!ctx) return null;
   const listed = new Map(ctx.data.listed.map(x => [x.id, x]));
   const added = Object.fromEntries(all.map(r => [r.id, listed.get(r.id)?.createdAt ?? ""]));
-  const pick = justIn(all, added);
+  // Only rackets in the listed catalogue (each card reads its shop links from that row).
+  const pick = justIn(all.filter(r => listed.has(r.id)), added);
   if (!pick) return null;
-  const tc = await traitCounts(), now = Date.now();
+  const tc = await traitCounts().catch(() => null), now = Date.now();
   const cards = pick.rows.map(r => {
     const x = listed.get(r.id)!;
-    const pill = votePill(Object.fromEntries(TRAIT_GROUPS.map(g => [g.key, traitGroup(tc, r.id, g.key)])));
+    const pill = tc ? votePill(Object.fromEntries(TRAIT_GROUPS.map(g => [g.key, traitGroup(tc, r.id, g.key)]))) : null;
     // The saved Amazon listing, else the product's own site (the racket page's order, without its live Amazon lookup).
     const amazon = amazonPhoto(x), site = websiteButton(x);
     const shop = amazon ? { url: amazon.url, rel: "sponsored nofollow noopener", aff: true } : site ? { url: site.url, rel: site.affiliate ? "sponsored nofollow noopener" : "noopener", aff: !!site.affiliate } : null;
