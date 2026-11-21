@@ -2109,3 +2109,5 @@ body:has(.th) .th.th-audio .cp3-card a.pic { background: transparent; }
 .th-follow-wrap.feed .th-follow-pop { left: auto; right: 0; }
 .th-follow-act { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; }
 .th-follow-note { max-width: 320px; }
+/* Phones: the feed header wraps and the button lands on the left, so its prompt opens to the right like the hero's. */
+@media (max-width: 640px) { .th-follow-wrap.feed { align-items: flex-start; } .th-follow-wrap.feed .th-follow-pop { left: 0; right: auto; } }
