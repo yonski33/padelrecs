@@ -1779,3 +1779,39 @@ body:has(.th.th-pr) { background: #FEFAF4; }
 .tc-box-dark { padding: 0 0 6px; overflow: hidden; }
 .tc-box-dark .tc-bh { background: var(--ink); color: #FEFAF4 !important; padding: 9px 16px; border-bottom: 0; }
 .tc-box-dark a.tc-link-row { margin: 0 16px; }
+/* PadelRecs home (v3 handoff "Home Thread v6", owner 2026-11-21). Scoped to .th-hp3 (padel home only); the list rows come from the
+   catalogue (.tc-*). One squiggle, on the hero. */
+.th-hp3.th-main { max-width: 1380px; flex-direction: column; align-items: stretch; gap: 14px; }
+.hp3-hero { padding: 18px 22px 16px; }
+.hp3-head { display: flex; justify-content: space-between; align-items: center; gap: 10px 24px; flex-wrap: wrap; }
+.hp3-title { display: flex; align-items: center; gap: 14px; min-width: 0; }
+.hp3-title .th-h1 { font-size: 52px !important; font-weight: 900; line-height: 1; display: inline-flex; align-items: flex-start; gap: 6px; }
+.hp3-art { flex: none; }
+.hp3-sq { flex: none; margin-top: -6px; }
+.th-hp3 .th-live { font-size: 14.5px; }
+.th-hp3 .tc-pill svg { margin-right: 2px; }
+.hp3-sticker { flex: none; display: inline-flex; align-items: center; gap: 4px; margin-left: 6px; font-family: var(--bc); font-weight: 800; font-size: 17px; transform: rotate(-3deg); }
+.hp3-sticker span { background: var(--sticker, #FFE45C); border: 1.5px solid var(--ink); border-radius: 6px; padding: 1px 8px; }
+.hp3-cols { display: grid; grid-template-columns: minmax(0,70fr) minmax(0,30fr); gap: 18px; align-items: start; }
+.hp3-cols > .th-col { display: flex; flex-direction: column; gap: 14px; min-width: 0; }
+.hp3-side.th-side { flex: none; position: sticky; top: 76px; display: flex; }
+.hp3-h2 { display: inline-flex; align-items: center; gap: 8px; }
+.th-hp3 .tc-list-h .th-h2 { font-size: 32px !important; }
+body:has(.th) .th .th-hp3 a.tc-row.ranked { grid-template-columns: 34px 96px minmax(0,1fr) 220px; }
+.th-hp3 .tc-rank { font-family: var(--bc); font-weight: 800; font-size: 22px; align-self: center; }
+.th-hp3 .tc-stat { padding-left: 14px; border-left: 1px solid var(--line); align-self: stretch; justify-content: center; }
+.th-hp3 .tc-go { font-size: 13.5px; font-weight: 700; text-decoration: underline; text-underline-offset: 3px; }
+.th-hp3 .tc-foot { flex-direction: row; justify-content: center; gap: 14px; }
+@media (max-width: 999px) { .hp3-cols { grid-template-columns: minmax(0,1fr); } .hp3-side.th-side { display: none; } }
+@media (max-width: 639px) {
+  .hp3-hero { padding: 14px; }
+  .hp3-art, .hp3-sticker { display: none; }
+  .hp3-title .th-h1 { font-size: 34px !important; }
+  body:has(.th) .th .th-hp3 a.tc-row.ranked { grid-template-columns: 30px 70px minmax(0,1fr); }
+  .th-hp3 .tc-ph { height: 78px; }
+  .th-hp3 .tc-stat { grid-column: 1 / -1; border-left: 0; padding: 6px 0 0 46px; align-items: flex-start; }
+}
+.hp3-rest { display: contents; }
+@media (max-width: 639px) { .th-hp3 .th-live { white-space: normal; } }
+@media (min-width: 1000px) and (max-width: 1199px) { body:has(.th) .th .th-hp3 a.tc-row.ranked { grid-template-columns: 30px 80px minmax(0,1fr) 190px; gap: 8px 18px; } .th-hp3 .tc-bar { width: 170px; } }
+@media (min-width: 1000px) and (max-width: 1199px) { .th-hp3 .tc-stat small { white-space: normal; text-align: center; } }
