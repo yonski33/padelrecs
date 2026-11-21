@@ -239,6 +239,13 @@
       "when": 1794891100000,
       "tag": "0035_comment_post_type",
       "breakpoints": true
+    },
+    {
+      "idx": 37,
+      "version": "7",
+      "when": 1794891500000,
+      "tag": "0037_story_revisions",
+      "breakpoints": true
     }
   ]
 }

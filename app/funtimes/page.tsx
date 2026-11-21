@@ -77,7 +77,7 @@ export default async function Admin({searchParams}:{searchParams:Promise<{eviden
  if (q.tab === "stories" && storiesSite(niche.id)) {
   return <main><div className="page-title"><h1>Review admin</h1><p className="muted">Members' stories (PadelRecs pilot): approve them to show on /stories.</p></div>
   <AdminNav current="stories"/>
-  <StoriesAdmin status={q.status} result={q.result}/></main>;
+  <StoriesAdmin status={q.status} result={q.result} q={q.q}/></main>;
  }
  if (q.tab === "comments" && threadSite(niche.id)) {
   return <main><div className="page-title"><h1>Review admin</h1><p className="muted">Comments on the Thread pages (racket, ranking and guide pages).</p></div>
