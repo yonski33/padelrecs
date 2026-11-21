@@ -194,5 +194,49 @@
   {
     "slug": "pressable",
     "summary": "Most customers find Pressable rock solid for WordPress, with several running client or WooCommerce sites there for years and moving over from WP Engine or Kinsta. Support is described as supportive. One customer found it poor, citing unsupported plugins and paid upgrades."
+  },
+  {
+    "slug": "amazon-ec2",
+    "summary": "Users mostly praise Amazon EC2 for low cost, especially with spot instances or reserved capacity, and for steady uptime on long-running servers. The main complaints are outages and degraded or restarted instances, and some were caught by unexpected bills from forgotten or free-tier-exceeding instances."
+  },
+  {
+    "slug": "amazon-lightsail",
+    "summary": "Users like Amazon Lightsail as a simple, predictably priced host for WordPress and small apps, with several reporting long stable runs. The main complaint is poor performance, with WordPress sites freezing or locking up under little load, which some blamed on CPU limits."
+  },
+  {
+    "slug": "heroku",
+    "summary": "Users like Heroku for easy, quick deploys and for spinning up apps and test environments with little fuss. Some are moving away over confusing pricing, bills that crept up, or memory and build limits, so it suits those who value convenience over cost control."
+  },
+  {
+    "slug": "hostwinds",
+    "summary": "Customers describe a severe outage that left sites and servers down for a day or two, with client-area lockouts and little communication from support. Several had used it for years without trouble before this, but some plan to leave."
+  },
+  {
+    "slug": "hover",
+    "summary": "Customers who use Hover as a domain registrar are very happy, with many using it for a decade or more without problems. Several mention no upselling or extra fees, and no complaints of substance came up."
+  },
+  {
+    "slug": "purelymail",
+    "summary": "Users are happy with Purelymail for email on custom domains, calling it cheap, reliable and easy to set up, with mail as fast as the big providers. Several have used it for a year or more and no complaints came up."
+  },
+  {
+    "slug": "liquid-web",
+    "summary": "Customers often describe long, reliable stays with Liquid Web, but several were unhappy about renewal price increases and being pushed to prepay or commit for a year. Opinions on support are split, with some calling it good and others frustrating, especially after a buyout."
+  },
+  {
+    "slug": "name-com",
+    "summary": "Customers who use Name.com as a registrar say it has been reliable for years, with many reporting no issues over a decade or more. One complaint is that domain prices run high compared with other registrars."
+  },
+  {
+    "slug": "hostinger-website-builder",
+    "summary": "Users find Hostinger Website Builder easy and quick for simple sites and a good starter for non-developers. Several hit limits, though, such as restrictive design options, missing features needing add-ons, and publishing disabling FTP and server access."
+  },
+  {
+    "slug": "shopify",
+    "summary": "Customers most often complain about Shopify's cost, with plans plus paid add-ons and transaction fees adding up to far more than alternatives like WordPress."
+  },
+  {
+    "slug": "migadu",
+    "summary": "Users are happy with Migadu for email on multiple domains, praising low usage-based pricing, reliable service and good support. It comes across as a good fit for family or small-business domains."
   }
 ]

@@ -338,5 +338,121 @@
   {
     "slug": "fanatec-csl-pedals-lc",
     "summary": "Drivers' opinions are mixed. Many see the load cell as a big upgrade over G29, G920 and potentiometer pedals, with fewer lockups and good value. Many others find the brake too stiff with little travel and not very adjustable, and moved on to V3 or other pedals."
+  },
+  {
+    "slug": "logitech-rs-shifter-handbrake",
+    "summary": "Drivers mostly like this shifter and handbrake combo, praising a smooth handbrake and a firm sequential click. A couple say it feels less mechanical than a real shifter."
+  },
+  {
+    "slug": "moza-r21-ultra",
+    "summary": "Drivers mostly love the feel and strength of the R21 Ultra. A few report early hardware trouble, such as a grinding noise or a faulty quick release."
+  },
+  {
+    "slug": "simucube-3-pro",
+    "summary": "Drivers mostly find the force feedback smooth and detailed, a clear step up from Fanatec, Logitech and Podium bases. Some feel the gain over an SC2 Pro or Alpha EVO Pro is small for the price."
+  },
+  {
+    "slug": "thrustmaster-t3pa",
+    "summary": "Drivers using the T3PA mostly report problems, including springs, cables or a brake pedal failing and some squeaking or rattling. Several moved on to better pedals."
+  },
+  {
+    "slug": "thrustmaster-tm-open-wheel-add-on",
+    "summary": "Drivers who like it praise the simple, solid, comfortable rim on T300-class bases. A few hit console or button problems, such as chaotic mapping on PS4."
+  },
+  {
+    "slug": "fanatec-csl-dd-5-nm",
+    "summary": "Drivers coming from a T300 often find the 5 Nm CSL DD feels weaker than expected, and some fit the boost kit or retune settings. Those upgrading from entry wheels like the G29 or T128 call it a big step up."
+  },
+  {
+    "slug": "logitech-rs-track-wheel",
+    "summary": "Drivers mostly like this GT-style rim as solid and comfortable with good grip. A couple find it slippery or hard and stiff."
+  },
+  {
+    "slug": "moza-gs-v2p",
+    "summary": "Drivers mostly praise the GS V2P's build quality and buttons, with aluminium construction and no creaking or rattling."
+  },
+  {
+    "slug": "simagic-p700",
+    "summary": "Drivers mostly find the P700 pedals sturdy and trouble-free. A few report snags such as slippery pedal faces, a very stiff brake or squeaking out of the box."
+  },
+  {
+    "slug": "thrustmaster-t80-ferrari-488-gtb-edition",
+    "summary": "Drivers treat the T80 as a basic starter wheel without force feedback. Some enjoyed it for a long time, but several say it lacks FFB and that every upgrade was a big improvement."
+  },
+  {
+    "slug": "next-level-racing-f-gt-elite-160",
+    "summary": "Drivers mostly like this rig for how adjustable it is, including with a bad back. A couple say it is heavy and slow to assemble."
+  },
+  {
+    "slug": "simagic-fx",
+    "summary": "Drivers mostly praise the FX wheel's sturdy build and well-placed buttons. A couple report connection dropouts or a faulty unit."
+  },
+  {
+    "slug": "simagic-tb-rs",
+    "summary": "Drivers mostly love this hydraulic handbrake for its smooth feel. A couple dislike the foam grip."
+  },
+  {
+    "slug": "simucube-activepedal-ultimate",
+    "summary": "Drivers who own it praise the tunable, realistic pedal feel and easy per-car profiles. Two who compared it with the Pro found it very similar."
+  },
+  {
+    "slug": "thrustmaster-599xx-evo-30-wheel-add-on-alcantara-edition",
+    "summary": "Drivers mostly call it a solid, light favourite rim. Two report the right paddle going soft, and a few find the Alcantara needs care."
+  },
+  {
+    "slug": "thrustmaster-ferrari-488-gt3-wheel-add-on",
+    "summary": "Drivers like its feel and button layout, with two preferring it to the Ferrari F1 wheel. Shift LEDs and telemetry often fail on other bases or platforms."
+  },
+  {
+    "slug": "thrustmaster-th8s",
+    "summary": "Owners describe the Thrustmaster TH8S as a plastic shifter that gets the job done and beats Logitech's, though a couple saw it break within weeks or after a drop."
+  },
+  {
+    "slug": "thrustmaster-ts-xw-racer-sparco-p310-competition-mod",
+    "summary": "Drivers who came from a G923 or T300 call the Thrustmaster TS-XW Racer Sparco P310 Competition Mod much stronger and faster, but several others report problems such as ghost button presses, noise or jumpy feedback."
+  },
+  {
+    "slug": "fanatec-podium-steering-wheel-bmw-m4-gt3",
+    "summary": "Drivers praise the Fanatec Podium Steering Wheel BMW M4 GT3 for its solid build and comfort, while a couple found updating it and getting support frustrating."
+  },
+  {
+    "slug": "logitech-pro-dd11",
+    "summary": "Several drivers are very happy with the Logitech PRO DD11 and like its Trueforce feel, though one saw the base stop working after a drop and disliked its plastic build."
+  },
+  {
+    "slug": "moza-sgp-sequential-shifter",
+    "summary": "Drivers find the MOZA SGP Sequential Shifter responsive and car-like but loud, with a heavy clunk or metallic sound that some can live with and others can't."
+  },
+  {
+    "slug": "moza-srp2-pedals",
+    "summary": "Several drivers find the brake on the MOZA SRP2 Pedals very stiff, though one got used to it and another gained realism and consistency."
+  },
+  {
+    "slug": "thrustmaster-t128",
+    "summary": "Drivers call the Thrustmaster T128 good for the price and a fine first wheel, but several find the rim small and plasticky and the pedals weak."
+  },
+  {
+    "slug": "fanatec-csl-pedals",
+    "summary": "Several drivers are unhappy with the Fanatec CSL Pedals, calling them cheap or problematic and moving to other pedals, though one found a big upgrade over G29 pedals."
+  },
+  {
+    "slug": "logitech-rs-round-wheel",
+    "summary": "Drivers like the grip of the Logitech RS Round Wheel, with its leather-and-rubber feel, though it can feel small for rally."
+  },
+  {
+    "slug": "moza-r25-ultra",
+    "summary": "Drivers are very happy with the MOZA R25 Ultra, calling it amazing and praising its strong, realistic force feedback. Opinions on Pit House software differ."
+  },
+  {
+    "slug": "thrustmaster-rally-wheel-add-on-sparco-r383-mod",
+    "summary": "Drivers like the Thrustmaster Rally Wheel Add-On Sparco R383 Mod as a big size upgrade for rally and drift, though one saw suede coming off after a few uses."
+  },
+  {
+    "slug": "thrustmaster-t3pm",
+    "summary": "Drivers find the Thrustmaster T3PM pedals decent and mostly happy with them, but they lift or fly up unless mounted to a rig or wheel stand."
+  },
+  {
+    "slug": "trak-racer-tr40s",
+    "summary": "Drivers call the Trak Racer TR40S a solid, good-value entry rig, but several report flex and the seat lifting under hard braking once load-cell pedals are added."
   }
 ]

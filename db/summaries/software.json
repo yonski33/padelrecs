@@ -66,5 +66,29 @@
   {
     "slug": "windscribe",
     "summary": "Users mostly like Windscribe as good value, with useful extras such as split tunnelling, port forwarding and an ad blocker, and some use it where other VPNs are blocked. The free plan has a monthly data cap, and a couple of users found it slower than Proton VPN. Reviews are limited, so this is a rough picture."
+  },
+  {
+    "slug": "perplexity",
+    "summary": "Users mostly find Perplexity strong for sourced web research, with accurate, fast answers that many rely on daily. The main complaint by far is usage limits, especially deep research and upload caps that were cut with little warning. Some also call it expensive or find support unhelpful."
+  },
+  {
+    "slug": "microsoft-copilot",
+    "summary": "Users are split on Microsoft Copilot. Several find it useful inside Word and PowerPoint and for work tasks like summarizing documents, while many call the Office integration weak, Excel in particular, and rate its answers below Claude or ChatGPT, with some hallucinations."
+  },
+  {
+    "slug": "private-internet-access",
+    "summary": "Users report mixed experiences with Private Internet Access. A few liked it for years, including its Linux app, while others left over speeds well below their connection and an app that disconnected, crashed or changed forwarded ports."
+  },
+  {
+    "slug": "expressvpn",
+    "summary": "Users say ExpressVPN worked well for a long time, but several recently found it slow or unreliable. Some also called it expensive next to NordVPN and a few left over poor customer service."
+  },
+  {
+    "slug": "grok",
+    "summary": "Users praise Grok 4.5 for speed and for handling everyday and coding tasks quickly. A couple of others found it unintelligent, prone to hallucinating, or poor at translation."
+  },
+  {
+    "slug": "airvpn",
+    "summary": "Users mainly choose AirVPN for its port forwarding, including multiple forwarded ports. The apps are described as clunky or annoying, and there is a five-connection limit."
   }
 ]

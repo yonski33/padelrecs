@@ -14,5 +14,29 @@
   {
     "slug": "wooting-80he",
     "summary": "Most owners praise its fast, responsive rapid trigger and analog switches for gaming, along with a solid build and a smooth, fairly quiet feel for typing. The main downside is stabilizers: a few had sticky or rattly stabilized keys. The 80% layout is liked as a middle ground, and the zinc case is called worth it."
+  },
+  {
+    "slug": "asus-rog-azoth-extreme",
+    "summary": "Owners of the ASUS ROG Azoth Extreme are very happy with it. Most praise the solid build and a typing feel and sound that rival custom boards, and a few like the stock switches and wireless use."
+  },
+  {
+    "slug": "glorious-gmmk-3-pro",
+    "summary": "Owners of the Glorious GMMK 3 PRO like its heavy, tank-like build. Several, though, hit loose or dead switch sockets, sometimes fixed by soldering or cleaning, and a couple found the software finicky."
+  },
+  {
+    "slug": "hyperx-alloy-origins-core",
+    "summary": "Owners of the HyperX Alloy Origins Core often report individual keys that stop registering or work only intermittently over time. A couple enjoy its smooth feel and RGB, though they find the stabilisers or springs a bit noisy."
+  },
+  {
+    "slug": "lemokey-p1-he",
+    "summary": "Owners of the Lemokey P1 HE mostly like it for gaming, with a nice typing sound and intuitive software. A few swapped the stock switches or keycaps, and one found the keycaps wore quickly."
+  },
+  {
+    "slug": "glorious-gmmk-3-pro-he",
+    "summary": "Owners of the Glorious GMMK 3 PRO HE mostly find it poor value at full price, and several dislike the software. The stock switches and sound disappointed some, though the case and RGB are liked, and it improves with mods."
+  },
+  {
+    "slug": "asus-rog-falcata",
+    "summary": "Owners of the ASUS ROG Falcata like it for gaming and the flexible split layout. Several find the proprietary link cable too short for a comfortable split and needed a USB4 extension."
   }
 ]

@@ -246,5 +246,149 @@
   {
     "slug": "endgame-gear-op1-8k-v2",
     "summary": "Most gamers love the wired OP1 8k v2 for its light weight, fast clicks, accurate sensor and claw-grip shape. The main drawback is that its narrow, small shape does not suit everyone, especially bigger hands or palm grip. A few reported scroll wheel failures, missed clicks or stutter."
+  },
+  {
+    "slug": "corsair-sabre-v2-pro",
+    "summary": "Gamers like the Sabre v2 Pro for its very low weight, comfortable shape and value. Several also report quality control problems, such as sensor drift or disconnects, and one dislikes the plastic feel."
+  },
+  {
+    "slug": "8bitdo-ultimate-2c-wireless-controller",
+    "summary": "Gamers mostly find the 8BitDo Ultimate 2C Wireless great for its low price, light and comfortable with accurate sticks. Some report disconnects or a failing button over time, and the apps are described as poor."
+  },
+  {
+    "slug": "asus-rog-raikiri-ii-pro-pc-controller",
+    "summary": "Gamers split on the ASUS ROG Raikiri II Pro PC Controller. Several praise its grip, comfort and wireless performance, but several others returned it over a cheap-feeling faceplate, weak back buttons or stick issues."
+  },
+  {
+    "slug": "gamesir-super-nova",
+    "summary": "Gamers love the GameSir Super Nova, calling it comfortable with good face buttons and easily swappable parts. A few like its quiet paddles and charging dock, and no real complaints repeat."
+  },
+  {
+    "slug": "nacon-revolution-x-unlimited",
+    "summary": "Gamers largely rate the Nacon Revolution X Unlimited as their favourite controller, comfortable and well built, especially for larger hands. Several find the PC software clunky, and its chunky size is a downside for some."
+  },
+  {
+    "slug": "pulsar-xlite-v3-medium",
+    "summary": "Gamers are split on the Pulsar Xlite v3 Medium. Some find it solid and comfortable, but several notice a left-right wobble, and a couple report wear or a failing battery after long use."
+  },
+  {
+    "slug": "gamesir-nova-lite",
+    "summary": "Gamers find the GameSir Nova Lite comfortable, light and good value for the money. A couple report lag or connection trouble, which can make it frustrating."
+  },
+  {
+    "slug": "razer-raiju-v3-pro",
+    "summary": "Gamers praise the Razer Raiju V3 Pro for its back buttons, sticks and build, mainly for competitive shooters. It is large, though, and a few found it too big or bulky, so it suits bigger hands."
+  },
+  {
+    "slug": "sony-dualsense-wireless-controller",
+    "summary": "Gamers say the Sony DualSense works well on PC, with several calling it plug-and-play. Some note that many games do not support its special features, and a few mention weak battery life or stick drift."
+  },
+  {
+    "slug": "endgame-gear-op1w-4k-v2",
+    "summary": "Gamers like the Endgame Gear OP1w 4k v2 for its comfortable shape, light feel and good buttons. Its narrow front does not suit everyone, and a couple report double-clicking or cursor stutter."
+  },
+  {
+    "slug": "endgame-gear-xm2w-4k-v2",
+    "summary": "Gamers find the Endgame Gear XM2w 4k v2 comfortable and light with good switches. Several report faults though, including misregistering clicks, scroll wheel rattle and broken standoffs."
+  },
+  {
+    "slug": "razer-cobra-pro",
+    "summary": "Gamers like the Razer Cobra Pro's fit and wired or wireless choice. A few see its weight as odd next to the wired Cobra, and a few report a scroll wheel that starts failing after months."
+  },
+  {
+    "slug": "razer-viper-v3-hyperspeed",
+    "summary": "Gamers are very happy with the Razer Viper V3 HyperSpeed, praising responsive clicks, a good sensor and build for the price. Most report no problems, though one wished for wired use."
+  },
+  {
+    "slug": "logitech-g522-lightspeed",
+    "summary": "Gamers mostly single out the Logitech G522 LIGHTSPEED for its mic. Several were less happy with the rest, citing flat sound, discomfort, a cheap feel or connection and software glitches."
+  },
+  {
+    "slug": "sony-pulse-elite",
+    "summary": "Gamers praise the Sony PULSE Elite's sound, especially for the price. Many report durability problems such as a cracked headband or breaking plastic, and some find it uncomfortable or poorly fitting."
+  },
+  {
+    "slug": "8bitdo-pro-2-bluetooth-gamepad",
+    "summary": "Gamers like the 8BitDo Pro 2's shape, but many report durability trouble. Trigger caps coming off or loosening is the repeated complaint, and one needed repeated repairs."
+  },
+  {
+    "slug": "gamesir-g7-he",
+    "summary": "Gamers find the GameSir G7 HE good in play, with better face buttons than its siblings. Several find it a bit small, especially after a larger controller."
+  },
+  {
+    "slug": "razer-wolverine-v3-tournament-edition",
+    "summary": "Gamers are very happy with the Razer Wolverine V3 Tournament Edition, praising its back buttons, clicky buttons and sticks. The shape takes getting used to, and a couple dislike the cable."
+  },
+  {
+    "slug": "corsair-m65-rgb-ultra-wireless",
+    "summary": "Gamers are split on reliability: a few had a broken or snapped left button or occasional dongle hops, while others used it for a long time with no connection problems and like the comfortable shape."
+  },
+  {
+    "slug": "hyperx-pulsefire-haste-2-wired",
+    "summary": "Most gamers who used the HyperX Pulsefire Haste 2 Wired like it and find it light and precise. A couple had faults, such as erratic tracking or a jumping scroll wheel."
+  },
+  {
+    "slug": "lamzu-atlantis-mini-4k",
+    "summary": "Several gamers like the Lamzu Atlantis Mini 4K's claw-grip shape for FPS games. A few report accidental clicks on swipes or a scratchy scroll wheel, and one dislikes the shape entirely."
+  },
+  {
+    "slug": "audeze-maxwell-2-anc",
+    "summary": "Gamers mostly praise the Audeze Maxwell 2 ANC for clear, impressive sound. A couple had problems, such as audio artifacts or constant hiss from the noise cancelling."
+  },
+  {
+    "slug": "sony-inzone-h6-air",
+    "summary": "Most gamers find the Sony INZONE H6 Air comfortable and good sounding, with a solid build and nice mic. A couple note drawbacks such as thin earpads, some weight and clamp, or harsh treble."
+  },
+  {
+    "slug": "turtle-beach-atlas-air",
+    "summary": "Most gamers find the Turtle Beach Atlas Air light and very comfortable, with good sound and a wide soundstage from its open-back wireless design. Some report no disconnects across platforms."
+  },
+  {
+    "slug": "turtle-beach-stealth-700-gen-3",
+    "summary": "Gamers are divided on the Turtle Beach Stealth 700 Gen 3. Some like the sound, but several report it feeling heavy and uncomfortable, or spotty dongle connection and glitchy audio."
+  },
+  {
+    "slug": "nintendo-switch-2-pro-controller",
+    "summary": "Gamers find the Nintendo Switch 2 Pro Controller comfortable and well made, with smooth sticks and buttons. Some note it works well on PC, while the back buttons and digital triggers are trade-offs for a couple."
+  },
+  {
+    "slug": "logitech-g502-x-plus",
+    "summary": "Most gamers find the Logitech G502 X Plus solidly built and comfortable, with snappy clicks and good button placement. One found the recessed right side pinched a larger hand."
+  },
+  {
+    "slug": "pulsar-es-fs-1",
+    "summary": "Gamers say the Pulsar eS FS-1 is very well built, but several find it overpriced for what it is. One returned it for being too small."
+  },
+  {
+    "slug": "razer-basilisk-v3-pro-35k",
+    "summary": "A couple of gamers had the Razer Basilisk V3 Pro 35K's scroll wheel fail or misbehave within months, including repeated replacements. Others are happy with it and its clean tracking."
+  },
+  {
+    "slug": "razer-naga-v3-pro",
+    "summary": "Gamers are split on the Razer Naga V3 Pro. Some like its comfort, wireless link and dock, but a couple returned it over small or painful side buttons, and several criticise the software."
+  },
+  {
+    "slug": "steelseries-rival-pro",
+    "summary": "Most gamers like the SteelSeries Rival Pro for its shape, coating, clicks and solid build, plus the battery swap. Several say the price is the only downside."
+  },
+  {
+    "slug": "zowie-fk1-dw",
+    "summary": "Gamers like the Zowie FK1-DW's shape and weight, with several using it as a main mouse. A couple find the clicks stiff or poor."
+  },
+  {
+    "slug": "audeze-penrose",
+    "summary": "Gamers praise the Audeze Penrose's sound, but several report it breaking, often at the headband, sometimes within a month or after a couple of years."
+  },
+  {
+    "slug": "razer-blackshark-v2-x",
+    "summary": "Most gamers find the Razer BlackShark V2 X comfortable and good sounding for the low price. One returned it over a poor mic."
+  },
+  {
+    "slug": "razer-blackshark-v3",
+    "summary": "Gamers are happy with the Razer BlackShark V3, mostly praising its sound and comfort. One notes the software can bug out."
+  },
+  {
+    "slug": "microsoft-xbox-wireless-controller",
+    "summary": "Gamers like how the Microsoft Xbox Wireless Controller fits the hand and use it trouble-free on PC. A couple mention stick drift or worn stick rubber after years."
   }
 ]
