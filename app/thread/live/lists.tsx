@@ -42,12 +42,16 @@ function discLine(picks: Picks, n: number | null, all: number) {
 
 /** "Find my match" as one sentence (owner 2026-11-19, classic's energy in Thread style): the quick match tag, I'm [level pills]
  *  and I want [Any | Control | Balance | Power] [ ] Sore arm, then a live result line. Matching runs here on the cached payload. */
-export function MatchBox({ title, names, listed = 0, home = false }: { title?: string; names: Record<string, string>; listed?: number; home?: boolean }) {
+/** `compact` (PadelRecs home, owner 2026-11-21): no "Showing N rackets" line (only the top match once picked), and a smaller
+ *  "Arm comfort" box on the same line as Any / Control / Balance / Power. */
+export function MatchBox({ title, names, listed = 0, home = false, compact = false }: { title?: string; names: Record<string, string>; listed?: number; home?: boolean; compact?: boolean }) {
   const { picks, set, on, payload } = useMatch(home);
   const ranked = useMemo(() => on && payload ? rankFor(payload, picks, 1000, home) : null, [on, payload, picks, home]);
   const top = ranked?.[0] ?? null;
   const name = top ? names[top.id] ?? payload?.cards[top.id]?.name : null;
   const line = resultLine(picks, ranked ? ranked.length : null, listed);
+  const seg = <span className="th-seg th-qm-seg" role="group" aria-label="What you want">{([null, ...STYLE_OPTS] as (Style | null)[]).map(v => <button key={v ?? "any"} type="button" aria-pressed={picks.style === v} onClick={() => set({ style: v })}>{v ? styleLabel(v) : "Any"}</button>)}</span>;
+  const check = (label: string) => <button type="button" className="th-check" aria-pressed={picks.arm} onClick={() => set({ arm: !picks.arm })}><span aria-hidden="true">{picks.arm ? "✓" : ""}</span>{label}</button>;
   return <div className="th-match th-qm">
     {title && <span className="th-match-head"><span>{title}</span></span>}
     <div className="th-qm-line">
@@ -55,10 +59,12 @@ export function MatchBox({ title, names, listed = 0, home = false }: { title?: s
       <span className="lbl">I&apos;m</span>
       <span className="th-qm-group" role="group" aria-label="Your level">{LEVEL_OPTS.map(v => <button key={v} type="button" className="th-pick sm" aria-pressed={picks.level === v} onClick={() => set({ level: picks.level === v ? null : v })}>{cap(v)}</button>)}</span>
       <span className="lbl">and I want</span>
-      <span className="th-seg th-qm-seg" role="group" aria-label="What you want">{([null, ...STYLE_OPTS] as (Style | null)[]).map(v => <button key={v ?? "any"} type="button" aria-pressed={picks.style === v} onClick={() => set({ style: v })}>{v ? styleLabel(v) : "Any"}</button>)}</span>
-      <button type="button" className="th-check" aria-pressed={picks.arm} onClick={() => set({ arm: !picks.arm })}><span aria-hidden="true">{picks.arm ? "✓" : ""}</span>{ARM_LABEL}</button>
+      {compact ? <span className="th-qm-want">{seg}{check("Arm comfort")}</span> : <>{seg}{check(ARM_LABEL)}</>}
     </div>
-    {line && <span className="th-qm-result"><span className="th-say" aria-live="polite">{line}{top && name && top.pct != null ? `. Top match: the ${name} at ${top.pct}%.` : line.endsWith("…") ? "" : "."}</span>{(home ? pickedHome(picks) : picked(picks)) && <button type="button" className="th-reset" onClick={() => set(NO_PICKS)}>Reset</button>}</span>}
+    {compact ? (top && name && top.pct != null || (home ? pickedHome(picks) : picked(picks))) && <span className="th-qm-result">
+      {top && name && top.pct != null && <span className="th-say" aria-live="polite">{`Top match: the ${name} at ${top.pct}%.`}</span>}
+      {(home ? pickedHome(picks) : picked(picks)) && <button type="button" className="th-reset" onClick={() => set(NO_PICKS)}>Reset</button>}</span>
+    : line && <span className="th-qm-result"><span className="th-say" aria-live="polite">{line}{top && name && top.pct != null ? `. Top match: the ${name} at ${top.pct}%.` : line.endsWith("…") ? "" : "."}</span>{(home ? pickedHome(picks) : picked(picks)) && <button type="button" className="th-reset" onClick={() => set(NO_PICKS)}>Reset</button>}</span>}
   </div>;
 }
 

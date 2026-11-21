@@ -1146,3 +1146,23 @@ body:has(.th) .th .ths-more-list a:hover b { color: var(--hover); }
 /* Fit check beside the photo, under the TL;DR (owner 2026-11-21). */
 .th7-hero-side { display: flex; flex-direction: column; gap: 10px; min-width: 0; }
 .th7-hero-side .th7-part { padding-top: 10px; }
+
+/* PadelRecs home (owner 2026-11-21, .th-hp): "Arm comfort" small and on the style line; on phones a tighter hero and the
+   rank inline with the name ("1. Adidas…"), so the first racket shows sooner. Desktop padding unchanged. */
+.th-qm-want { display: inline-flex; align-items: center; gap: 8px; max-width: 100%; }
+.th-qm-want .th-check { margin-left: 0; min-height: 28px; gap: 5px; font-size: 13px; white-space: nowrap; }
+.th-qm-want .th-check > span { width: 14px; height: 14px; border-width: 1.5px; border-radius: 3px; font-size: 10px; }
+@media (max-width: 639px) {
+  .th-hp .th-hero { padding: 10px 10px 12px; gap: 8px; }
+  .th-hp .th-h1-row { gap: 4px 10px; }
+  .th-hp .th-match.th-qm { padding: 8px; gap: 6px; }
+  .th-hp .th-qm-line { gap: 5px; }
+  .th-hp .th-qm-want { gap: 6px; }
+  .th-hp .th-seg.th-qm-seg { font-size: 13px; }
+  .th-hp .th-seg.th-qm-seg button { padding: 4px 6px; }
+  .th-hp .th-qm-want .th-check { font-size: 12.5px; }
+  .th-hp .th-list { padding-top: 8px; }
+  .th-hp .th-row-name { display: block; }
+  .th-hp .th-row-name > * { margin-right: 6px; vertical-align: middle; }
+  .th-hp .th-row-name .th-pill { display: inline-flex; margin-top: 3px; }
+}
