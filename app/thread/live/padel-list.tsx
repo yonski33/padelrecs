@@ -4,7 +4,7 @@
 // (hides rackets, live counts), the filter chips, the sort menu and the row. All in the browser on the rows the server sent
 // (instant filters, tests/instant-views.test.ts). Picks: the shared usePicks store ("padelrecs-qm"); fine-tune: "padelrecs-ft".
 import { useEffect, useMemo, useState, type ReactNode } from "react";
-import { type ThreadRow } from "../ui";
+import { type ThreadRow, Flight } from "../ui";
 import { th } from "../../../lib/thread/look";
 import { oneShape, shapeHas } from "../../../lib/thread/shape";
 import { withoutYear } from "../../../lib/brand-name";
@@ -22,17 +22,17 @@ type Filters = Partial<Record<Key, string[]>>;
 const AUDIO = niche.id === "audio";
 /** SimRacingRecs (v3 rollout 2026-11-21): no curated lists either; Type and Drive (its rows carry the drive kind as `feel`,
  *  app/thread/padel-list-data.ts); its match bar picks a budget, not a style, and "I race on console". */
-const SR = niche.id === "simracing";
+const SR = niche.id === "simracing", DG = niche.id === "discgolf";
 /** TennisRecs (v3 wave 2): no curated lists; Head size and Feel (stiffness), app/thread/padel-list-data.ts. */
 const TN = niche.id === "tennis";
-export const SORTS: [Sort, string][] = AUDIO || SR || TN ? [["loved", "Most loved"], ["new", "Newest"], ["match", "By your match"]]
+export const SORTS: [Sort, string][] = AUDIO || SR || TN || DG ? [["loved", "Most loved"], ["new", "Newest"], ["match", "By your match"]]
   : [["picks", `${niche.site.name} picks`], ["loved", "Most loved"], ["new", "Newest"], ["match", "By your match"]];
 const BASE_SORT: Sort = SORTS[0][0];
 /** The home's menu (owner 2026-11-21: "PadelRecs picks" read as random there): Most loved (default), Most opinions, and By
  *  your match once a pick is set. The catalogue keeps SORTS. */
 export const HOME_SORTS: [Sort, string][] = [["loved", "Most loved"], ["opinions", "Most opinions"], ["match", "By your match"]];
-const FEELS = AUDIO ? ["Warm", "Balanced", "Bright"] : SR ? ["Direct drive", "Belt", "Gear"] : TN ? ["Soft", "Medium", "Crisp"] : ["Soft", "Medium", "Hard"];
-const GROUP_TITLES: Record<Key, string> = AUDIO ? { shape: "Type", feel: "Sound", brand: "Brand" } : SR ? { shape: "Type", feel: "Drive", brand: "Brand" } : TN ? { shape: "Head size", feel: "Feel", brand: "Brand" } : { shape: "Shape", feel: "Feel", brand: "Brand" };
+const FEELS = AUDIO ? ["Warm", "Balanced", "Bright"] : DG ? ["Understable", "Stable", "Overstable"] : SR ? ["Direct drive", "Belt", "Gear"] : TN ? ["Soft", "Medium", "Crisp"] : ["Soft", "Medium", "Hard"];
+const GROUP_TITLES: Record<Key, string> = AUDIO ? { shape: "Type", feel: "Sound", brand: "Brand" } : DG ? { shape: "Type", feel: "Stability", brand: "Brand" } : SR ? { shape: "Type", feel: "Drive", brand: "Brand" } : TN ? { shape: "Head size", feel: "Feel", brand: "Brand" } : { shape: "Shape", feel: "Feel", brand: "Brand" };
 /** AudioRecs' match (lib/audio-match.ts), worked out by the page's own hook (live/audio-match.tsx) and handed to the list. */
 export type ListMatch = { mine: boolean; pcts: Map<string, number | null> | null; picks: AudioPicks; set: (p: Partial<AudioPicks>) => void };
 const TOP_BRANDS = 6;
@@ -119,7 +119,7 @@ export function MatchBar({ l, ft, setFt, tag, icons, after }: { l: RacketList; f
     <span className="tc-qm-l">I want</span>
     {STYLE_OPTS.map(v => <button key={v} type="button" className="tc-pill" aria-pressed={picks.style === v} onClick={() => setPicks({ style: picks.style === v ? null : v })}>{styleLabel(v)}</button>)}
     {BUDGETS.map(([k, w]) => <button key={k} type="button" className="tc-pill" aria-pressed={picks.budget === k} onClick={() => setPicks({ budget: picks.budget === k ? null : k })}>{w}</button>)}
-    <button type="button" className="th-check tc-arm" aria-pressed={picks.arm} onClick={() => setPicks({ arm: !picks.arm })}><span aria-hidden="true">{picks.arm ? "✓" : ""}</span>{SR ? "I race on console" : "Arm comfort"}</button>
+    <button type="button" className="th-check tc-arm" aria-pressed={picks.arm} onClick={() => setPicks({ arm: !picks.arm })}><span aria-hidden="true">{picks.arm ? "✓" : ""}</span>{SR ? "I race on console" : DG ? "Slower arm" : "Arm comfort"}</button>
     {after}
     {(mine || picks.arm) && <button type="button" className="tc-link" onClick={() => setPicks({ level: null, style: null, arm: false, ...(BUDGETS.length ? { budget: null } : {}) })}>Reset</button>}
     <button type="button" className="tc-ft" aria-expanded={ft} onClick={() => setFt(!ft)}>Not sure yet? <u>fine-tune</u> {ft ? "▴" : "▾"}</button>
@@ -163,7 +163,7 @@ export function RacketRow({ r, pill, match, isNew, rank, link }: { r: ThreadRow;
     {rank != null && <span className="tc-rank">{`#${rank}`}</span>}
     <span className="tc-ph">{r.pic ? <img src={r.pic} alt="" loading="lazy"/> : <span className="th-ph" aria-hidden="true"/>}</span>
     <span className="tc-txt">
-      <span className="tc-name"><strong>{named(r)}</strong>{oneShape(r.shape) && <span className="tc-tag">{oneShape(r.shape)}</span>}{isNew && <span className="tc-tag new">New</span>}</span>
+      <span className="tc-name"><strong>{named(r)}</strong>{oneShape(r.shape) && <span className="tc-tag">{oneShape(r.shape)}</span>}{r.flight && <Flight f={r.flight}/>}{isNew && <span className="tc-tag new">New</span>}</span>
       {(r.line || r.best) && <span className="tc-desc">{r.line ?? `Best for ${r.best}.`}</span>}
       {pill && <span className="tc-vote"><span aria-hidden="true"/>{pill}</span>}
     </span>

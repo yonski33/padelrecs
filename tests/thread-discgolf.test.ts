@@ -84,7 +84,7 @@ test("discgolf process: words, picks and routing on NICHE=discgolf", () => {
   const raw = execFileSync(process.execPath, ["--conditions=react-server", "--import", "tsx", "--input-type=module", "-e", script],
     { env: { ...process.env, NICHE: "discgolf" }, cwd: new URL("..", import.meta.url).pathname, encoding: "utf8" });
   const out = JSON.parse(raw.trim().split("\n").pop()!);
-  assert.deepEqual(out.w, ["throwers", "thrower score", "thrower reviews", "How does it fly?", "threw"]);
+  assert.deepEqual(out.w, ["players", "player score", "player reviews", "How does it fly?", "threw"]); // "players" on v3 (owner 2026-11-21)
   assert.deepEqual(out.picks, ["Understable", "Stable", "Overstable", "Slower arm"]);
   assert.deepEqual(out.types, ["putter", "midrange", "fairway", "distance"]);
   assert.equal(out["/"], "/thread");
@@ -109,4 +109,18 @@ test("disc golf accounts: on, Level and Throw as the profile, staff-like name ke
   assert.equal(out.staff, "That name is kept for the site. Pick another.");
   assert.deepEqual(out.labels, ["Level", "Throw"]);
   assert.deepEqual(out.lines, ["Intermediate · throws RHBH", "Throws LHFH", "Advanced"]);
+});
+
+test("discgolf on the v3 pages: v3 site, players, plastic chips, stability fine-tune, flight pills, quality-first pills", async () => {
+  const { v3Site } = await import("../lib/thread/sites");
+  const { DISCGOLF_PILL_LABELS, votePill } = await import("../lib/thread/vote-pill");
+  const { readFileSync } = await import("node:fs");
+  assert.equal(v3Site("discgolf"), true);
+  assert.equal(votePill({ stability: { stable: 12, understable: 2 } }, "players", DISCGOLF_PILL_LABELS, DISCGOLF_PILL_LABELS), "Flies straight · 12 players");
+  const groups = traitGroupsFor("discgolf");
+  for (const [k, opts] of Object.entries(DISCGOLF_PILL_LABELS)) for (const o of Object.keys(opts)) assert.ok(validTraitVote(k, o, groups), `${k}.${o}`);
+  const list = readFileSync("app/thread/live/padel-list.tsx", "utf8"), feed = readFileSync("app/thread/live/feed-v7b.tsx", "utf8");
+  assert.match(list, /DG \? \["Understable", "Stable", "Overstable"\]/);
+  assert.match(list, /\{r\.flight && <Flight f=\{r\.flight\}\/>\}/);
+  assert.match(feed, /aria-label="Show plastic"/);
 });

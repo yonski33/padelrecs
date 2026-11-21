@@ -2,7 +2,7 @@
 // (lib/thread/vote-pill.ts), when each racket joined, and the "PadelRecs picks" order (db/curated/padel.json interleaved).
 import { cache } from "react";
 import { threadRows, traitCounts, traitGroup, audioOf } from "./data";
-import { votePill, AUDIO_PILL_LABELS, PILL_WORDS, PILL_LABELS, SIMRACING_PILL_WORDS, SIMRACING_PILL_LABELS, TENNIS_PILL_WORDS, TENNIS_PILL_LABELS, PICKLEBALL_PILL_WORDS, PICKLEBALL_PILL_LABELS } from "../../lib/thread/vote-pill";
+import { votePill, AUDIO_PILL_LABELS, PILL_WORDS, PILL_LABELS, SIMRACING_PILL_WORDS, SIMRACING_PILL_LABELS, TENNIS_PILL_WORDS, TENNIS_PILL_LABELS, PICKLEBALL_PILL_WORDS, PICKLEBALL_PILL_LABELS, DISCGOLF_PILL_LABELS } from "../../lib/thread/vote-pill";
 import { niche } from "../../lib/niche";
 import { W } from "../../lib/thread/words";
 import type { ThreadRow } from "./ui";
@@ -26,6 +26,11 @@ const AUDIO = niche.id === "audio";
  *  order (Most loved leads). */
 const SR = niche.id === "simracing", TN = niche.id === "tennis";
 const DRIVE = (d: string | null | undefined) => !d ? null : /direct/i.test(d) ? "Direct drive" : /belt/i.test(d) ? "Belt" : /gear/i.test(d) ? "Gear" : null;
+/** DiscGolfRecs: its stability (from the flight numbers, as its catalogue filter) as the Stability fine-tune (`feel`). */
+const DG = niche.id === "discgolf";
+const stabOf = (r: ThreadRow) => { if (!r.flight) return null; const [, , turn, fade] = r.flight;
+  return turn + fade >= 3 ? "Overstable" : turn <= -2 || turn + fade <= -1 ? "Understable" : "Stable"; };
+const asDisc = (r: ThreadRow): ThreadRow => ({ ...r, feel: stabOf(r) as ThreadRow["feel"] });
 const asSim = (r: ThreadRow): ThreadRow => ({ ...r, feel: DRIVE(r.drive) as ThreadRow["feel"] });
 /** TennisRecs (v3 wave 2): head size bands as the Shape filter (its shape column is the head size) and the stiffness as Feel
  *  (62 RA or less soft, 68 or more crisp), no curated order. */
@@ -36,19 +41,19 @@ const asAudio = (r: ThreadRow): ThreadRow => ({ ...r, shape: r.audio?.kind ?? r.
 export const padelListData = cache(async () => {
   const { all: rowsAll, ctx } = await threadRows();
   const surface = TN ? new Map((ctx?.data.rackets ?? []).map(x => [x.id, x.surface])) : null;
-  const all = AUDIO ? rowsAll.map(asAudio) : SR ? rowsAll.map(asSim) : TN ? rowsAll.map(r => asTennis(r, surface?.get(r.id))) : rowsAll;
+  const all = AUDIO ? rowsAll.map(asAudio) : SR ? rowsAll.map(asSim) : TN ? rowsAll.map(r => asTennis(r, surface?.get(r.id))) : DG ? rowsAll.map(asDisc) : rowsAll;
   const rows = all.filter(r => r.n > 0);
   const count = new Map<string, number>();
   for (const r of rows) count.set(r.brand, (count.get(r.brand) ?? 0) + 1);
   const brands = [...count].filter(([b]) => b).sort((a, b) => b[1] - a[1]).map(([b]) => b);
   const tc = ctx ? await traitCounts() : null;
-  const pills = Object.fromEntries(rows.flatMap(r => { const p = tc ? votePill(Object.fromEntries(TRAIT_GROUPS.map(g => [g.key, traitGroup(tc, r.id, g.key)])), W.people, AUDIO ? AUDIO_PILL_LABELS : SR ? SIMRACING_PILL_WORDS : TN ? TENNIS_PILL_WORDS : PB ? PICKLEBALL_PILL_WORDS : PILL_WORDS, AUDIO ? AUDIO_PILL_LABELS : SR ? SIMRACING_PILL_LABELS : TN ? TENNIS_PILL_LABELS : PB ? PICKLEBALL_PILL_LABELS : PILL_LABELS) : null; return p ? [[r.id, p]] : []; }));
+  const pills = Object.fromEntries(rows.flatMap(r => { const p = tc ? votePill(Object.fromEntries(TRAIT_GROUPS.map(g => [g.key, traitGroup(tc, r.id, g.key)])), W.people, AUDIO ? AUDIO_PILL_LABELS : SR ? SIMRACING_PILL_WORDS : TN ? TENNIS_PILL_WORDS : PB ? PICKLEBALL_PILL_WORDS : DG ? DISCGOLF_PILL_LABELS : PILL_WORDS, AUDIO ? AUDIO_PILL_LABELS : SR ? SIMRACING_PILL_LABELS : TN ? TENNIS_PILL_LABELS : PB ? PICKLEBALL_PILL_LABELS : DG ? DISCGOLF_PILL_LABELS : PILL_LABELS) : null; return p ? [[r.id, p]] : []; }));
   const listed = new Map((ctx?.data.listed ?? []).map(x => [x.id, x]));
   const added = Object.fromEntries(rows.map(r => [r.id, listed.get(r.id)?.createdAt ?? ""]));
-  const bySlug = new Map(rows.map(r => [r.slug, r.id])), curated = AUDIO || SR || TN ? [] : curatedOrder().flatMap(s => bySlug.get(s) ?? []);
+  const bySlug = new Map(rows.map(r => [r.slug, r.id])), curated = AUDIO || SR || TN || DG ? [] : curatedOrder().flatMap(s => bySlug.get(s) ?? []);
   // The home's pool (lib/thread/home-order.ts): this season's models with 10+ opinions, one per model.
   // AudioRecs has no model years (niche.productYears false), so its home lists every pair with reviews.
-  const season = AUDIO ? undefined : seasonIds(rows.flatMap(r => { const p = listed.get(r.id); return p ? [{ id: r.id, family: modelFamily(p), year: r.year, opinions: r.pos + r.mix + r.neg }] : []; }),
+  const season = AUDIO || DG ? undefined : seasonIds(rows.flatMap(r => { const p = listed.get(r.id); return p ? [{ id: r.id, family: modelFamily(p), year: r.year, opinions: r.pos + r.mix + r.neg }] : []; }),
     new Date().getUTCFullYear());
   const au = AUDIO && ctx ? audioOf(ctx) : null;
   const wire = au ? rows.flatMap(r => au.wire.get(r.id) ?? []) : undefined;

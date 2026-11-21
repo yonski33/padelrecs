@@ -78,7 +78,7 @@ export default async function ThreadHome() {
     const live = total > 0 ? `${total.toLocaleString("en-US")} reviews${week > 0 ? ` · ${week.toLocaleString("en-US")} ${WEEK_SHORT}` : ""}` : null;
     return <Shell>
       <main className="th-main th-hp3">
-        <PadelHomeTop rows={d.rows} brands={d.brands} pills={d.pills} added={d.added} curated={d.curated} season={d.season} live={live} {...(d.wire ? { wire: d.wire, art: <Headphones/> } : niche.id === "simracing" ? { art: <Wheel/> } : niche.id === "tennis" ? { art: <TennisRacket/> } : niche.id === "pickleball" ? { art: <Paddle/> } : {})}
+        <PadelHomeTop rows={d.rows} brands={d.brands} pills={d.pills} added={d.added} curated={d.curated} season={d.season} live={live} {...(d.wire ? { wire: d.wire, art: <Headphones/> } : niche.id === "simracing" ? { art: <Wheel/> } : niche.id === "tennis" ? { art: <TennisRacket/> } : niche.id === "pickleball" ? { art: <Paddle/> } : DG ? { art: <Disc/> } : {})}
           after={<div key="after" className="hp3-rest">
             <div key="cm" className="hp3-rest">{sideBox(" th-only-m")}</div>
             {picks.lists.length > 0 && <TopPicks key="tp" lists={picks.lists} total={picks.total} hrefs={Object.fromEntries(all.map(r => [r.id, r.href]))} unit={["vote", "votes"]}/>}
@@ -162,4 +162,10 @@ function TennisRacket() {
 function Headphones() {
   return <svg className="hp3-art" width="74" height="80" viewBox="0 0 74 80" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
     <path d="M12 48V36a25 25 0 0 1 50 0v12"/><rect x="6" y="44" width="14" height="24" rx="5" fill="#fff"/><rect x="54" y="44" width="14" height="24" rx="5" fill="#fff"/></svg>;
+}
+
+/** DiscGolfRecs' hero drawing, in the place of padel's racket (same box and stroke). */
+function Disc() {
+  return <svg className="hp3-art" width="74" height="80" viewBox="0 0 74 80" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+    <ellipse cx="37" cy="42" rx="30" ry="14" fill="#fff"/><path d="M7 42c0 5 13 10 30 10s30-5 30-10"/><ellipse cx="37" cy="40" rx="15" ry="6"/><path d="M58 14l5-6M64 22l7-2M48 10l1-7"/></svg>;
 }
