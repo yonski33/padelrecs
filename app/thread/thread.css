@@ -1196,3 +1196,50 @@ body:has(.th) .th .th-rk-menu a[aria-current="page"] { font-weight: 700; }
    soft tint of the site's own accent (--lime, which each site maps to its accent token), the rest white; ink outline and text. */
 .th-badge.m { background: var(--card, #fff); color: var(--ink); }
 .th-badge.m.top { background: color-mix(in oklch, var(--lime) 55%, var(--card, #fff)); }
+
+/* PadelRecs info pages and 404, v3 (owner design 2026-11-21, design_handoff_padelrecs_v3: About, Affiliate, Contact, Not
+ * Found). Scoped to .thi3 (padel only). Shared colour tokens; the v3 page colours come with the shared token change. */
+.thi3 { max-width: 1380px; flex-direction: column; align-items: stretch; gap: 16px; padding: 16px 24px 32px; }
+.thi3 .th-card { border-radius: 16px; }
+.thi3-title { padding: 18px 22px; display: flex; flex-direction: column; gap: 6px; }
+.thi3-title .th-h1 { font-size: 52px !important; line-height: 1; }
+.thi3-title p { margin: 0; font-size: 17px; max-width: 760px; }
+.thi3-read { padding: 24px 28px; display: flex; flex-direction: column; gap: 14px; max-width: 820px; box-sizing: border-box; font-size: 17px; line-height: 1.7; }
+.thi3-read section { display: flex; flex-direction: column; gap: 10px; }
+.thi3-read section + section, .thi3-read .thi3-note + section { margin-top: 10px; }
+.thi3-read h2 { font: 700 28px/1.1 var(--bc); margin: 0; }
+.thi3-read p { margin: 0; }
+.thi3-read ul { margin: 0; padding-left: 20px; }
+body:has(.th) .th a.thi3-more { align-self: flex-start; font-weight: 700; font-size: 15px; }
+.thi3-note { border: 1.5px solid var(--ink); border-radius: 12px; padding: 12px 14px; background: var(--lime-box); font-size: 14.5px; line-height: 1.5; display: flex; flex-direction: column; gap: 4px; }
+.thi3-note p { margin: 0; }
+.thi3-links { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; font-size: 14px; }
+.thi3-links > span { color: var(--muted); margin-right: 4px; }
+body:has(.th) .th .thi3-links a { text-decoration: none; font-weight: 600; padding: 5px 14px; border: 1.5px solid var(--ink); border-radius: 999px; background: #fff; }
+body:has(.th) .th .thi3-links a:hover { background: var(--lime-box); color: var(--ink); }
+/* Contact: the form card */
+.thi3-form { padding: 20px 24px; max-width: 720px; box-sizing: border-box; }
+.thi3-form .th-form { gap: 14px; }
+.thi3-form .th-fgroup > span { font: 700 21px/1.2 var(--bc); color: var(--ink); }
+.thi3-form .th-topics { gap: 8px; }
+.thi3-form .th-pick.sm { font-size: 14.5px; padding: 5px 14px; border: 1.5px solid var(--ink); border-radius: 999px; background: #fff; }
+.thi3-form .th-pick.sm[aria-pressed="true"] { background: var(--ink); color: #fbfaf6; }
+.thi3-form label { font-weight: 600; gap: 6px; }
+.thi3-form input, .thi3-form textarea { border: 1.5px solid var(--box); border-radius: 12px; padding: 10px 14px; font-size: 16px; background: #fff; }
+.thi3-form input:focus, .thi3-form textarea:focus { border-color: var(--ink); outline: 0; }
+.thi3-form button[type="submit"] { font: 700 20px/1.2 var(--bc); padding: 6px 22px; border: 2px solid var(--ink); border-radius: 999px; background: var(--lime); min-height: 0; }
+/* 404 */
+.thi3-404 { padding: 40px 28px; display: flex; flex-direction: column; align-items: center; gap: 12px; text-align: center; }
+.thi3-404 .big { font: 700 110px/.9 var(--bc); }
+.thi3-404 .th-h1 { font-size: 40px !important; line-height: 1; }
+.thi3-404 p { margin: 0; font-size: 17px; max-width: 520px; }
+.thi3-search { display: flex; align-items: center; gap: 10px; border: 2px solid var(--ink); border-radius: 999px; padding: 10px 18px; background: #fff; width: 100%; max-width: 440px; box-sizing: border-box; margin-top: 6px; }
+.thi3-search input { all: unset; flex: 1; min-width: 0; font-size: 16px; text-align: left; }
+.thi3-ways { display: flex; gap: 8px; flex-wrap: wrap; justify-content: center; margin-top: 6px; }
+body:has(.th) .th .thi3-ways a { text-decoration: none; font-size: 15px; font-weight: 600; padding: 6px 16px; border: 1.5px solid var(--ink); border-radius: 999px; background: #fff; }
+body:has(.th) .th .thi3-ways a:hover { background: var(--lime-box); color: var(--ink); }
+@media (max-width: 639px) {
+  .thi3 { padding: 12px 12px 32px; } .thi3-title .th-h1 { font-size: 36px !important; }
+  .thi3-read { padding: 18px 16px; font-size: 16.5px; } .thi3-form { padding: 16px; }
+  .thi3-404 { padding: 28px 16px; } .thi3-404 .big { font-size: 84px; } .thi3-404 .th-h1 { font-size: 32px !important; }
+}

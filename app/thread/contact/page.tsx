@@ -6,7 +6,7 @@ const x = (c.extra ?? {}) as { topicsLabel: string; topics: { label: string; pla
 // The live page's metadata (title, description, canonical).
 export { metadata } from "../../contact/page";
 export default function ThreadContact() {
-  return <InfoPage k="contact"><section className="th-card th-sec">
+  return <InfoPage k="contact"><section className="th-card th-sec thi3-form">
     <ContactForm topics={x.topics} labels={{ topics: x.topicsLabel, email: x.emailLabel, emailPh: x.emailPlaceholder, message: x.messageLabel, send: x.sendLabel, sentTitle: x.sent.title, sentBody: x.sent.body, again: x.sendAnotherLabel }}/>
   </section></InfoPage>;
 }
