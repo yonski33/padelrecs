@@ -44,7 +44,10 @@ export const v3Site = (nicheId: string) => V3_SITES.includes(nicheId);
 /** The v3 home's two community sections, per site (owner 2026-11-22). "Just in" only where model years are real (padel,
  *  pickleball, tennis): being added to the catalogue doesn't make a product new, so sim racing and audio don't get it.
  *  "Latest questions" and /questions on every v3 site. */
-const JUST_IN_SITES = ["padel", "pickleball", "tennis"];
+// TennisRecs waits (PM 2026-11-22): its year column is a placeholder (2026 on all 211 rackets) until the tennis year fix
+// (#633 and the tennis audit sheet, owner OK pending) lands. Flip TENNIS_YEARS_READY to true then.
+const TENNIS_YEARS_READY = false;
+const JUST_IN_SITES = ["padel", "pickleball", ...(TENNIS_YEARS_READY ? ["tennis"] : [])];
 export const justInSite = (nicheId: string) => JUST_IN_SITES.includes(nicheId);
 export const questionsSite = (nicheId: string) => v3Site(nicheId);
 /** Each site's words for its questions: what a question is about ("any racket…"), the products in a sentence, and their
