@@ -54,9 +54,12 @@ export function CommunityFeed({ id, model, cards, web }: { id: string; model: st
   const list = useMemo(() => items.filter(i => filter === "all" || i.flair === filter)
     .sort((a, b) => sort === "top" ? b.top - a.top || b.at.localeCompare(a.at) : b.at.localeCompare(a.at)), [items, filter, sort]);
   // A link to one review or post (#rv-…, #cm-…) opens the list far enough and scrolls there once the posts are in.
-  useEffect(() => { const h = location.hash.slice(1); if (!/^(rv|cm)-/.test(h) || !t.list) return;
+  // #reply-<id> (the home's and /questions' "Answer first ›"): that post's reply box opens too.
+  useEffect(() => { const h = location.hash.slice(1); if (!/^(rv|cm|reply)-/.test(h) || !t.list) return;
+    const reply = h.startsWith("reply-") ? h.slice(6) : null, el = reply ? `cm-${reply}` : h;
     // eslint-disable-next-line react-hooks/set-state-in-effect
-    setShown(Infinity); setTimeout(() => document.getElementById(h)?.scrollIntoView({ block: "center" }), 50);
+    setShown(Infinity); if (reply && t.list.some(c => c.id === reply)) t.setReply(reply);
+    setTimeout(() => document.getElementById(el)?.scrollIntoView({ block: "center" }), 50);
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [!!t.list]);
   const start = (k: Flair | null) => { setComposing(true); setKind(k); t.setNote(""); rv.setOpen(k === "review"); };

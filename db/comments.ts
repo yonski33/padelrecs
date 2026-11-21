@@ -31,6 +31,19 @@ export async function listComments(db: Pick<Database, "select">, page: string, v
   return rows.filter(r => !r.parentId || shown.has(r.parentId)).map(r => ({ id: r.id, parentId: r.parentId, alias: r.alias, body: r.body, at: r.createdAt, score: sum.get(r.id) ?? 0, mine: my.get(r.id) ?? 0 }));
 }
 
+/** Every shown comment on the racket pages, newest first, with its ▲▼ total: the home's "Latest questions" and /questions
+ *  (owner 2026-11-21). Read only; replies show only under a shown parent, as on the page. */
+export type SiteComment = { id: string; page: string; parentId: string | null; alias: string; body: string; at: string; score: number };
+export async function racketComments(db: Pick<Database, "select">, limit = 2000): Promise<SiteComment[]> {
+  const rows = await db.select().from(comments).where(and(ilike(comments.page, "racket:%"), eq(comments.status, "approved"))).orderBy(desc(comments.createdAt)).limit(limit);
+  if (!rows.length) return [];
+  const sums = await db.select({ id: commentVotes.commentId, s: sql<number>`coalesce(sum(${commentVotes.value}), 0)` }).from(commentVotes)
+    .where(inArray(commentVotes.commentId, rows.map(r => r.id))).groupBy(commentVotes.commentId);
+  const sum = new Map(sums.map(x => [x.id, Number(x.s)])), shown = new Set(rows.filter(r => !r.parentId).map(r => r.id));
+  return rows.filter(r => !r.parentId || shown.has(r.parentId))
+    .map(r => ({ id: r.id, page: r.page, parentId: r.parentId, alias: r.alias, body: r.body, at: r.createdAt, score: sum.get(r.id) ?? 0 }));
+}
+
 /** Post a comment or reply. The author's own ▲ comes with it (owner 2026-11-19, like Reddit): it starts at 1, the author's
  *  arrow shows as up, and tapping it takes the vote back like any other. */
 export async function addComment(db: Database, c: { page: string; parentId: string | null; alias: string; body: string; voter: string; network: string }, now = new Date()) {
