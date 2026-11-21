@@ -1387,6 +1387,7 @@ body:has(.th) .th .th8-box .th8-buy a:hover { background: var(--lime); filter: b
   .th8-narrow-basics .th8-buy { order: -1; margin: 0 0 6px; }
   .th8-narrow-basics .th8-specs { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 0 16px; }
   .th8-narrow-basics .th8-kv:last-child { border-bottom: 1px solid var(--div); }
+}
 /* PadelRecs catalogue (owner mock 2026-11-21). Scoped to .tc (padel /rackets only). No score; "opinions" for the counts. */
 .tc.th-main { max-width: 1380px; flex-direction: column; align-items: stretch; gap: 14px; }
 .tc .th-crumbs { margin: 0; }
