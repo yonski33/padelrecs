@@ -14,6 +14,7 @@
 import type { FitConfig, TraitDef } from "./fit-config";
 import type { EvidenceRow } from "./evidence";
 import capOverrides from "../db/level-cap/simracing.json";
+import traitPrefill from "../db/thread/simracing-traits.json";
 import { platformsOf, torqueOf } from "./attr-profile-simracing";
 
 const clamp = (o: Record<string, number>) => { for (const k of Object.keys(o)) o[k] = Math.max(-1, Math.min(1, o[k])); return o; };
@@ -157,9 +158,28 @@ export function simracingEvidence(rows: EvidenceRow[]): EvidenceRow[] {
 /** A wheelbase's levels from its torque (PM / Grok audit 2026-11-17 #14): under 6 Nm new only; 6–12 Nm new and serious; 12 Nm
  *  and up serious and all-in. The owner sheet's torque first, else the Torque column. An override needs a written reason
  *  (db/level-cap/simracing.json: { slug: { levels: [...], reason } }). Other types and unknown torque: no cap. */
-export function simracingLevelCap(r: { slug: string; shape: string | null; weight: string | null }, owner: Record<string, string | number | null>): Partial<Record<"beginner" | "intermediate" | "advanced", boolean>> | null {
+/** Racers' own stated levels per product (db/thread/simracing-traits.json, read from their reviews). */
+const RACER_LEVELS = (traitPrefill as { rackets: Record<string, { groups?: Record<string, Record<string, number>> }> }).rackets;
+/** Follow racers' levels (owner 2026-11-21, Grok audit check): with 3+ racers stating a level, a level a fifth of them or more
+ *  name is on (new or serious); the rest keep the torque rule and expert values. Rims and shifters with fewer than
+ *  3 show no level (most of theirs came from expert values, not racers). Racers only add a level; none is taken away. */
+export const RACER_LEVEL_MIN = 3, RACER_LEVEL_SHARE = 0.2;
+export function simracingLevelCap(r: { slug: string; shape: string | null; weight: string | null }, owner: Record<string, string | number | null>): Partial<Record<"beginner" | "intermediate" | "advanced", boolean | "on">> | null {
   const o = (capOverrides as Record<string, { levels: string[]; reason: string }>)[r.slug];
   if (o?.reason) return { beginner: o.levels.includes("beginner"), intermediate: o.levels.includes("intermediate"), advanced: o.levels.includes("advanced") };
+  const lv = RACER_LEVELS[r.slug]?.groups?.level ?? {}, n = (lv.beginner ?? 0) + (lv.intermediate ?? 0) + (lv.advanced ?? 0);
+  const torque = torqueCap(r, owner);
+  if (n >= RACER_LEVEL_MIN) {
+    // Racers add a level, never take one away: a review that says "upgraded to it" reads as serious, which says nothing
+    // against new racers (owner's sheet choice: "Beginner to intermediate").
+    const on = (k: "beginner" | "intermediate") => (lv[k] ?? 0) / n >= RACER_LEVEL_SHARE ? "on" as const : torque?.[k];
+    return { ...torque, beginner: on("beginner"), intermediate: on("intermediate") };
+  }
+  if (r.shape === W || r.shape === S) return { beginner: false, intermediate: false, advanced: false };
+  return torque;
+}
+/** A wheelbase's levels from its torque (owner 2026-11-18): under 6 Nm new; 6–12 Nm new and serious; 12 Nm and up serious and all-in. */
+function torqueCap(r: { shape: string | null; weight: string | null }, owner: Record<string, string | number | null>): Partial<Record<"beginner" | "intermediate" | "advanced", boolean>> | null {
   if (r.shape !== WB) return null;
   const nm = typeof owner.torque_nm === "number" ? owner.torque_nm : torqueOf(r.weight);
   if (nm === null || nm === undefined) return null;
