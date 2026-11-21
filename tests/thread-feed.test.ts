@@ -3,14 +3,23 @@ import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
 import { activity, feedLine, postFlair, REPLIES_SHOWN } from "../lib/thread/feed";
 
-test("a post is a QUESTION when it ends with ? or starts with a question word, else a TIP", () => {
+test("a post is a QUESTION when it ends with ? or starts with a question word, else it has no flair", () => {
   assert.equal(postFlair("Does the Extreme Motion feel too harsh for a touchy elbow?"), "question");
   assert.equal(postFlair("Is it ok for a 4.0 player"), "question");
   assert.equal(postFlair("Anyone tried it with an overgrip"), "question");
   assert.equal(postFlair("@Daniel how heavy is yours?"), "question");
-  assert.equal(postFlair("Two overgrips and it is fine on the arm."), "tip");
-  assert.equal(postFlair("Coello is easier in defense. Extreme hits harder."), "tip");
-  assert.equal(postFlair("Whatever you do, demo it first."), "tip"); // "whatever" is not "what"
+  // Never a guessed TIP (owner 2026-11-21): no stored type, so anything else is a plain post.
+  assert.equal(postFlair("Two overgrips and it is fine on the arm."), null);
+  assert.equal(postFlair("Whatever you do, demo it first."), null); // "whatever" is not "what"
+});
+
+test("the composer: nothing picked by default, types toggle off, a placeholder per choice", () => {
+  const f = readFileSync("app/thread/live/feed-v7b.tsx", "utf8");
+  assert.match(f, /useState<Flair \| null>\(null\)/);
+  assert.match(f, /const toggle = \(k: Flair\) => start\(kind === k \? null : k\)/);
+  assert.match(f, /onClick=\{\(\) => start\(null\)\}><span aria-hidden="true">\+<\/span>Share a review/);
+  for (const t of ["What do you want to know?", "Share something that helped", "Say something about the ${model}…", "How did it play for you?"])
+    assert.ok(f.includes(t), t);
 });
 
 test("a reply bumps its thread; the header line names only what is there", () => {

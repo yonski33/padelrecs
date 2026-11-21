@@ -26,16 +26,17 @@ import { signInHref } from "./use-account";
 import { MoreMenu, OPEN_REVIEW, PollPointer, reportPost, ReviewRow, WebSources, type Changed } from "./racket-v7b";
 
 const ACCOUNTS = accountSite(niche.id);
-type Item = { key: string; flair: Flair; at: string; top: number } & ({ review: RvCard } | { post: C });
+type Item = { key: string; flair: Flair | null; at: string; top: number } & ({ review: RvCard } | { post: C });
 const CHIPS: [Flair | "all", string][] = [["all", "All"], ["review", "Reviews"], ["question", "Questions"], ["tip", "Tips"]];
 const PAGE = 8;
 
 export function CommunityFeed({ id, model, cards, web }: { id: string; model: string; cards: RvCard[]; web: WebGroups<RvCard> }) {
   const rv = useReviewPost(id), t = useComments(`racket:${id}`), owner = useOwner();
-  const [kind, setKind] = useState<Flair | null>(null), [filter, setFilter] = useState<Flair | "all">("all"), [sort, setSort] = useState<"new" | "top">("new");
+  // The composer (owner 2026-11-21): open or closed, and an optional type. None picked posts a plain comment with no flair.
+  const [composing, setComposing] = useState(false), [kind, setKind] = useState<Flair | null>(null), [filter, setFilter] = useState<Flair | "all">("all"), [sort, setSort] = useState<"new" | "top">("new");
   const [shown, setShown] = useState(PAGE), [openReplies, setOpenReplies] = useState<Record<string, true>>({}), [changed, setChanged] = useState<Record<string, Changed>>({});
   // The poll's "Want to add a line about why?" (racket.tsx Poll) opens this composer on Review, with the vote picked.
-  useEffect(() => { const on = (e: Event) => { const v = (e as CustomEvent<Verdict>).detail; setKind("review"); rv.setOpen(true); if (v) rv.setVerdict(v);
+  useEffect(() => { const on = (e: Event) => { const v = (e as CustomEvent<Verdict>).detail; setComposing(true); setKind("review"); rv.setOpen(true); if (v) rv.setVerdict(v);
     setTimeout(() => document.getElementById("reviews")?.scrollIntoView({ block: "start", behavior: "smooth" }), 30); };
     addEventListener(OPEN_REVIEW, on); return () => removeEventListener(OPEN_REVIEW, on); }, [rv.setOpen, rv.setVerdict]);
   const reviews = useMemo(() => cards.filter(c => !changed[c.id]?.gone).map(c => { const x = changed[c.id];
@@ -54,8 +55,10 @@ export function CommunityFeed({ id, model, cards, web }: { id: string; model: st
     setShown(Infinity); setTimeout(() => document.getElementById(h)?.scrollIntoView({ block: "center" }), 50);
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [!!t.list]);
-  const start = (k: Flair) => { setKind(k); t.setNote(""); if (k === "review") rv.setOpen(true); else rv.setOpen(false); };
-  const close = () => { setKind(null); rv.setOpen(false); rv.setError(""); };
+  const start = (k: Flair | null) => { setComposing(true); setKind(k); t.setNote(""); rv.setOpen(k === "review"); };
+  // A type is a toggle: clicking the picked one again goes back to a plain post.
+  const toggle = (k: Flair) => start(kind === k ? null : k);
+  const close = () => { setComposing(false); setKind(null); rv.setOpen(false); rv.setError(""); };
 
   const Av = ({ c, sm }: { c: C; sm?: boolean }) => { const a = avatarOf(commenterName(c.alias)); return <span className={`th7-av${sm ? " sm" : ""}`} style={{ background: a.bg }} aria-hidden="true">{a.init}</span>; };
   const textOf = (c: C) => t.editing?.id === c.id ? <div className="th-compose" style={{ margin: "4px 0" }}>
@@ -69,12 +72,12 @@ export function CommunityFeed({ id, model, cards, web }: { id: string; model: st
     owner={t.admin && !c.id.startsWith("temp-") ? [{ label: "Edit", run: () => t.open_(c, false) }, ...(c.alias !== "[removed]" ? [{ label: "Rename", run: () => t.open_(c, true) }] : []),
       { label: "Hide", run: () => t.own(c, "hide") }, { label: "Delete", danger: true, run: () => t.own(c, "delete") }] : []}/>;
   const up = (c: C) => <button type="button" className="th7-up" aria-label="Upvote" aria-pressed={c.mine === 1} onClick={() => t.vote(c, 1)}><span aria-hidden="true">▲</span>{c.score}</button>;
-  const head = (c: C, flair?: Flair) => <div className="th7-cm-head">{flair && <span className={`th-flair ${flair}`}>{FLAIR_WORD[flair]}</span>}
+  const head = (c: C, flair?: Flair | null) => <div className="th7-cm-head">{flair && <span className={`th-flair ${flair}`}>{FLAIR_WORD[flair]}</span>}
     <strong>{commenterName(c.alias)}</strong>{c.member && <MemberMark/>}<span>{ago(c.at)}</span></div>;
   const box = (placeholder: string, cta: string, onPost: (x: string) => Promise<boolean>, onCancel: () => void, mention?: string) =>
     <Box me={t.me} nick={t.nick} setNick={t.setNick} nicknames={[]} placeholder={placeholder} cta={cta} onPost={onPost} onCancel={onCancel} mention={mention} back="#reviews"/>;
   // A render function, not a component: a component made here would remount on every render and drop a half-typed reply.
-  const post = (c: C, flair: Flair) => { const all = t.replies(c.id), more = all.length - REPLIES_SHOWN, rs = openReplies[c.id] ? all : all.slice(0, REPLIES_SHOWN);
+  const post = (c: C, flair: Flair | null) => { const all = t.replies(c.id), more = all.length - REPLIES_SHOWN, rs = openReplies[c.id] ? all : all.slice(0, REPLIES_SHOWN);
     return <div key={`cm-${c.id}`} id={`cm-${c.id}`} className="th7-cm th-feed-post"><Av c={c}/>
       <div className="th7-cm-body">
         {head(c, flair)}{textOf(c)}
@@ -96,7 +99,7 @@ export function CommunityFeed({ id, model, cards, web }: { id: string; model: st
     <div className="th-picks"><span className="lbl" style={{ fontSize: 13.5, color: "var(--ink2)", minWidth: 0 }}>{W.triedIt}</span>
       {VERDICTS.map(v => <button key={v.key} type="button" className={`th-vpick ${VERDICT[v.key][1]}`} aria-pressed={rv.verdict === v.key} onClick={() => { rv.setVerdict(v.key as Verdict); rv.setError(""); }}><span className={`th-sdot ${VERDICT[v.key][1]}`}/>{VERDICT[v.key][0]}</button>)}
     </div>
-    <textarea className="th-ta th-ta-grow" rows={3} autoFocus value={rv.text} onChange={e => { rv.setText(e.target.value); rv.setError(""); grow(e.currentTarget, 240); }} maxLength={2000} placeholder="Write your review" aria-label="Your review"/>
+    <textarea className="th-ta th-ta-grow" rows={3} autoFocus value={rv.text} onChange={e => { rv.setText(e.target.value); rv.setError(""); grow(e.currentTarget, 240); }} maxLength={2000} placeholder="How did it play for you?" aria-label="Your review"/>
     {rv.error && <span className="th-err">{rv.error}</span>}
     <div className="th-compose-foot"><span className="th-grow"/>{rv.me || !ACCOUNTS ? null : <a className="th-signin" href={signInHref("#reviews")}>Sign in to keep your name</a>}
       <button type="button" className="cancel" onClick={close}>Cancel</button>
@@ -105,17 +108,19 @@ export function CommunityFeed({ id, model, cards, web }: { id: string; model: st
   </div>;
   // The type picker: Review · Question · Tip, the open one pressed.
   const picker = <div className="th-feed-types" role="group" aria-label="What are you posting?">{(["review", "question", "tip"] as const).map(k =>
-    <button key={k} type="button" aria-pressed={kind === k} onClick={() => start(k)}>{FLAIR_WORD[k]}</button>)}</div>;
+    <button key={k} type="button" aria-pressed={kind === k} onClick={() => toggle(k)}>{FLAIR_WORD[k]}</button>)}</div>;
   // Thin feeds (#601): the invitation takes the composer's place, with the poll pointer, so a quiet page says where players are.
-  const composer = kind === null ? thin ? <div className="th7-invite">
+  const composer = !composing ? thin ? <div className="th7-invite">
       <span>{items.length === 0 ? `No ${W.person} reviews yet. ${W.usedIt} Add the first one` : `${W.usedIt} Add yours`}</span>
       <button type="button" className="th-btn round lime" onClick={() => start("review")}>+ Add your review</button>
       <button type="button" className="th-feed-alt" onClick={() => start("question")}>Ask a question or share a tip</button><PollPointer/></div>
-    : <button type="button" className="th7-ask th-feed-ask" onClick={() => start("review")}><span aria-hidden="true">+</span>Share a review, ask a question or a tip</button>
+    : <button type="button" className="th7-ask th-feed-ask" onClick={() => start(null)}><span aria-hidden="true">+</span>Share a review, ask a question or a tip</button>
     : <div className="th-feed-compose">{picker}
       {kind === "review" ? (rv.open && reviewForm)
-        : box(kind === "question" ? `What do you want to know about the ${model}?` : `Share a tip about the ${model}`, "Post",
-          async x => { const ok = await t.post(x, null); if (ok) setKind(null); return ok; }, close)}</div>;
+        // Tip has no stored type yet (comments.is_question is the table's only type column), so a tip posts as a plain
+        // comment: it shows with no flair, like any post that isn't a question.
+        : box(kind === "question" ? "What do you want to know?" : kind === "tip" ? "Share something that helped" : `Say something about the ${model}…`, "Post",
+          async x => { const ok = await t.post(x, null); if (ok) close(); return ok; }, close)}</div>;
 
   return <>
     <section id="reviews" className={`th-card th7-card th7-reviews th-feed${thin ? " thin" : ""}`}>
