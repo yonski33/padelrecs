@@ -1802,9 +1802,10 @@ body:has(.th) .th .rk5-qm .fit a { font-weight: 700; text-decoration: none; colo
 body:has(.th) .th .rk5-box h3 { margin: 0; background: var(--ink); color: #FEFAF4; padding: 9px 16px; font: 800 26px/1.1 var(--bc); }
 .rk5-box > div { padding: 2px 16px 8px; display: flex; flex-direction: column; }
 .rk5-box .about { padding: 6px 16px 12px; }
-.rk5-box .item { display: flex; flex-direction: column; gap: 2px; padding: 12px 0; border-bottom: 1px solid var(--line); }
+.rk5-box .item { display: grid; grid-template-columns: 34px minmax(0,1fr); gap: 14px; align-items: center; padding: 12px 0; border-bottom: 1px solid var(--line); }
+.rk5-box .item > span { display: flex; flex-direction: column; gap: 2px; }
 .rk5-box .item strong { font: 700 19px/1.1 var(--bc); }
-.rk5-box .item > span { font-size: 13px; line-height: 1.4; }
+.rk5-box .item > span > span { font-size: 13px; line-height: 1.4; }
 body:has(.th) .th .rk5-box a.more { text-decoration: none; color: var(--ink); font: 700 18px/1.2 var(--bc); margin-top: 10px; }
 body:has(.th) .th .rk5-box a.arrow { text-decoration: none; display: flex; justify-content: space-between; gap: 8px; padding: 9px 2px; border-bottom: 1px solid var(--line); font-size: 15px; color: var(--ink); }
 body:has(.th) .th .rk5-box a.arrow:last-child { border-bottom: 0; }
@@ -1815,9 +1816,14 @@ body:has(.th) .th .rk5-box a.arrow:hover { color: var(--hover); }
 .rk5-explore { display: flex; flex-direction: column; gap: 10px; }
 .rk5-explore .th-h2 { font-size: 34px; margin: 0; }
 .rk5-explore > div { display: grid; grid-template-columns: repeat(4, minmax(0,1fr)); gap: 14px; }
-body:has(.th) .th .rk5-explore a.th-card { background: var(--card); text-decoration: none; color: var(--ink); padding: 14px 16px; display: flex; flex-direction: column; gap: 5px; }
+body:has(.th) .th .rk5-explore a.th-card { background: var(--card); text-decoration: none; color: var(--ink); padding: 10px 10px 12px; display: flex; flex-direction: column; gap: 5px; }
+body:has(.th) .th .rk5-explore a.th-card > :not(.strip) { margin-left: 6px; margin-right: 6px; }
+.rk5-explore .strip { position: relative; height: 120px; border-radius: 10px; display: flex; align-items: center; justify-content: center; gap: 2px; padding: 10px; margin-bottom: 14px; }
+.rk5-explore .strip.dark { background: #1d1d1b; } .rk5-explore .strip.sand { background: #F1EADD; } .rk5-explore .strip.lime { background: #C9EE6E; }
+.rk5-explore .strip img { height: 100%; width: auto; }
+.rk5-explore .strip:not(.dark) img { mix-blend-mode: multiply; }
 body:has(.th) .th .rk5-explore a.th-card:hover { background: #fff; color: var(--ink); }
-.rk5-explore .tag { align-self: flex-start; font: 700 15px/1.4 var(--bc); padding: 1px 12px; border: 1.5px solid var(--ink); border-radius: 999px; background: var(--lime); }
+.rk5-explore .tag { position: absolute; left: 8px; bottom: -12px; font: 700 15px/1.4 var(--bc); padding: 1px 12px; border: 1.5px solid var(--ink); border-radius: 999px; background: var(--lime); }
 .rk5-explore strong { font: 700 20px/1.1 var(--bc); margin-top: 6px; }
 .rk5-explore .desc { font-size: 13px; line-height: 1.4; }
 .rk5-explore .cta { margin-top: auto; padding-top: 8px; font: 700 17px/1.2 var(--bc); }
