@@ -21,7 +21,7 @@ import { signInHref } from "./use-account";
 import { MemberMark } from "./member-mark";
 import { avatarOf } from "../../../lib/thread/avatar";
 import type { RvCard } from "../racket-data";
-import { countLine, isThin, playersWord, POLL_POINT_MIN, threadTitle, thumbOf, WEB_FIRST, webLine, webList, type WebGroups } from "../../../lib/thread/web-sources";
+import { countLine, isThin, playersWord, POLL_POINT_MIN, threadTitle, thumbOf, WEB_FIRST, webList, type WebGroups } from "../../../lib/thread/web-sources";
 
 const ACCOUNTS = accountSite(niche.id);
 /** The event the poll sends to open the review form (v16 "Say why in a short review"). */
@@ -278,7 +278,7 @@ export function WebSources({ web, open = false }: { web: WebGroups<RvCard>; open
   return <section id="web" className="th-card th-web">
     <h2 className="th-h2">From around the web</h2>
     <p className="th-web-sub">Short summaries of Reddit threads, YouTube reviews and blogs. Not counted in the player poll above.</p>
-    <span className="th-web-head"><span className="th-web-tag">Outside sources</span><span className="th-web-n">{webLine(web)}</span></span>
+    {/* No count line (owner 2026-11-21): the subline and the tag only. */}<span className="th-web-tag">Outside sources</span>
     <div className="th-web-cols">{(all ? list : list.slice(0, WEB_FIRST)).map(({ c, kind }) => <WebCard key={c.id} c={c} kind={kind}/>)}</div>
     {!all && list.length > WEB_FIRST && <button type="button" className="th-btn th-center" onClick={() => setAll(true)}>Show more from around the web</button>}
   </section>;
