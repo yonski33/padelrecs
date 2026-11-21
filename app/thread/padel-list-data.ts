@@ -31,7 +31,8 @@ const asSim = (r: ThreadRow): ThreadRow => ({ ...r, feel: DRIVE(r.drive) as Thre
  *  (62 RA or less soft, 68 or more crisp), no curated order. */
 const HEAD = (s: string | null) => { const n = Number(s?.match(/(\d{2,3})\s*sq/)?.[1] ?? NaN); return !Number.isFinite(n) ? null : n >= 104 ? "104 sq in +" : n >= 100 ? "100-103 sq in" : "Under 100 sq in"; };
 const STIFF = (s: string | null | undefined) => { const ra = Number(s?.match(/(\d{2})\s*RA/i)?.[1] ?? NaN); return !Number.isFinite(ra) ? null : ra <= 62 ? "Soft" : ra >= 68 ? "Crisp" : "Medium"; };
-const asTennis = (r: ThreadRow, ra: string | null | undefined): ThreadRow => ({ ...r, shape: HEAD(r.shape), feel: STIFF(ra) as ThreadRow["feel"] });
+// Feel is already the tennis rule (app/thread/data.ts threadRows: stiffness unless the votes clearly disagree).
+const asTennis = (r: ThreadRow, ra: string | null | undefined): ThreadRow => ({ ...r, shape: HEAD(r.shape), feel: (r.feel ?? STIFF(ra)) as ThreadRow["feel"] });
 const asAudio = (r: ThreadRow): ThreadRow => ({ ...r, shape: r.audio?.kind ?? r.shape, feel: (r.audio?.sound[0] ?? null) as ThreadRow["feel"] });
 export const padelListData = cache(async () => {
   const { all: rowsAll, ctx } = await threadRows();
