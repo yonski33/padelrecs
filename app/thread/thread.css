@@ -1082,7 +1082,7 @@ body:has(.th) .th a.ths3-share:hover { filter: brightness(0.97); color: var(--in
 }
 
 /* Featured, the list */
-body:has(.th) .th a.ths3-feat { text-decoration: none; color: var(--ink); display: flex; flex-direction: column; gap: 10px; padding: 22px 26px; }
+body:has(.th) .th a.ths3-feat { background: var(--card); text-decoration: none; color: var(--ink); display: flex; flex-direction: column; gap: 10px; padding: 22px 26px; }
 body:has(.th) .th a.ths3-feat:hover { background: #fff; color: var(--ink); }
 .ths3-feat .tags { display: flex; gap: 8px; align-items: center; }
 .ths3-feat .tags > span { font-size: 12.5px; font-weight: 600; padding: 1px 10px; border: 1.5px solid var(--ink); border-radius: 999px; background: var(--s3-soft); }
@@ -1172,7 +1172,7 @@ body:has(.th) .th a.ths3-cm { text-decoration: none; font-weight: 600; font-size
 .ths3 .th7-av:not(.sm):not(.xl):not(.lg) { width: 40px; height: 40px; font-size: 13px; }
 .ths3-more-wrap { display: flex; flex-direction: column; gap: 10px; }
 .ths3-cards { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 12px; }
-body:has(.th) .th a.ths3-card { text-decoration: none; color: var(--ink); display: flex; flex-direction: column; gap: 6px; padding: 14px 16px; border-radius: 14px; }
+body:has(.th) .th a.ths3-card { background: var(--card); text-decoration: none; color: var(--ink); display: flex; flex-direction: column; gap: 6px; padding: 14px 16px; border-radius: 14px; }
 body:has(.th) .th a.ths3-card:hover { background: #fff; color: var(--ink); }
 .ths3-card strong { font: 700 22px/1.1 var(--bc); }
 @media (max-width: 639px) {
