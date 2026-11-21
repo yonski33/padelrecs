@@ -75,7 +75,7 @@ test("the sidebar has no curated ranking box and no More from <brand>", () => {
 test("v16 additions: similar rackets without repeats, counts in the headings, avatars, poll's say-why, Show more reviews", () => {
   const route = readFileSync("app/thread/rackets/[slug]/page.tsx", "utf8"), page = readFileSync("app/thread/racket-v7b.tsx", "utf8");
   const rv = readFileSync("app/thread/live/racket-v7b.tsx", "utf8"), poll = readFileSync("app/thread/live/racket.tsx", "utf8");
-  assert.match(route, /sim=\{sim\.filter\(x => !compared\.some\(c => c\.row\.id === x\.id\)/);
+  assert.match(route, /pickSimilar\(simSelf, simSpecs, new Set\(compared\.map\(c => c\.row\.id\)\)\)/);
   assert.match(page, /Similar \$\{niche\.words\.many\}/);
   assert.match(page, /heading: "Ask the community", count: true/);
   assert.match(rv, /\$\{W\.Reviews\} \(\$\{cards\.length/);
