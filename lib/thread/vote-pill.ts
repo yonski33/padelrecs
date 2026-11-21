@@ -44,6 +44,22 @@ export function votePill(groups: Record<string, Record<string, number> | null | 
   return best?.text ?? null;
 }
 
+/** SimRacingRecs (v3 rollout 2026-11-21): quality first ("Sharp detail · 14 racers"); who or what it is for keeps "Most picked
+ *  for …". Its groups are per gear type (lib/thread/traits.ts), so a pill comes from the product's own type. */
+export const SIMRACING_PILL_WORDS: Record<string, Record<string, string>> = {
+  best_in: { gt: "GT and touring", formula: "formula cars", rally: "rally and drift" },
+  level: { beginner: "beginners", intermediate: "intermediate racers", advanced: "advanced racers" },
+  detail: { sharp: "x" }, torque: { plenty: "x" }, brake_feel: { realistic: "x" }, throttle: { smooth: "x" }, flex: { none: "x" },
+  grip: { great: "x" }, buttons: { great: "x" }, desk: { very: "x" }, noise: { quiet: "x" }, heat: { cool: "x" },
+  build: { quick: "x" }, shift_feel: { crisp: "x" }, software: { easy: "x" }, durability: { holds_up: "x" },
+};
+export const SIMRACING_PILL_LABELS: Record<string, Record<string, string>> = {
+  detail: { sharp: "Sharp detail" }, torque: { plenty: "Plenty of torque" }, brake_feel: { realistic: "Realistic brake feel" },
+  throttle: { smooth: "Smooth throttle" }, flex: { none: "No flex" }, grip: { great: "Great grip" }, buttons: { great: "Great buttons" },
+  desk: { very: "Desk friendly" }, noise: { quiet: "Quiet" }, heat: { cool: "Stays cool" }, build: { quick: "Quick to build" },
+  shift_feel: { crisp: "Crisp shifts" }, software: { easy: "Easy software" }, durability: { holds_up: "Holds up well" },
+};
+
 /** AudioRecs (V3-ROLLOUT-BRIEF: "Quality · N listeners"): every answer reads quality first, so words and labels match. */
 export const AUDIO_PILL_LABELS: Record<string, Record<string, string>> = {
   anc: { excellent: "Great noise cancelling" }, comfort: { all_day: "Comfortable all day" }, detail: { lots: "Lots of detail" },

@@ -30,14 +30,14 @@ export const OPEN_REVIEW = "thread-open-review";
 /** "Is it right for me?": the same picks and engine as FitCheck, with the bigger match box. `part`: a section of the top card
  *  (owner 2026-11-21: one card, as on PickleballRecs) instead of its own card. */
 /** `title`/`sub`: the racket page's own heading and line (owner mock 2026-11-21, "Is this racket right for me?"). */
-export function FitCard({ id, part, title = W.fitTitle, sub }: { id: string; part?: boolean; title?: string; sub?: string }) {
+export function FitCard({ id, part, title = W.fitTitle, sub, arm = "Arm comfort" }: { id: string; part?: boolean; title?: string; sub?: string; /** The check's label (SimRacingRecs: "I race on console"). */ arm?: string }) {
   const [picks, set] = usePicks();
   const on = complete(picks), payload = usePayload(on);
   const fit = useMemo(() => on && payload ? fitFor(payload, picks, id) : null, [on, payload, picks, id]);
   const adv = useMemo(() => fit && payload && fit.verdict.kind !== "thin" ? adviceFor(payload, picks, id, fit.pct) : null, [fit, payload, picks, id]);
   return <section className={part ? "th7-part th7-fit" : "th-card th7-card th7-fit"}>
     {sub ? <div className="th7-hd"><h2 className="th-h2">{title}</h2><span className="th-sub">{sub}</span></div> : <h2 className={part ? "th7-subh" : "th-h3"}>{title}</h2>}
-    <div className="th-fit"><PickChips picks={picks} set={set} small armLabel="Arm comfort" {...(sub ? { labels: ["Your level", "What matters most?"] as [string, string] } : {})}/></div>
+    <div className="th-fit"><PickChips picks={picks} set={set} small armLabel={arm} {...(sub ? { labels: ["Your level", "What matters most?"] as [string, string] } : {})}/></div>
     {(picks.level || picks.style) && <div aria-live="polite">
       {!on ? <p className="th-note">Pick a level and a style to see your match.</p> : !fit ? <p className="th-note">Working out your match…</p>
         : <div className="th7-match">

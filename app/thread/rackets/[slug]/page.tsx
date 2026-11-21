@@ -6,7 +6,8 @@ import { Shell } from "../../shell";
 import { racketData } from "../../racket-data";
 import { AudioFitCard } from "../../live/audio-match";
 import { audioGroupsFor } from "../../../../lib/thread/traits";
-import { AUDIO_PILL_LABELS } from "../../../../lib/thread/vote-pill";
+import { AUDIO_PILL_LABELS, SIMRACING_PILL_WORDS, SIMRACING_PILL_LABELS } from "../../../../lib/thread/vote-pill";
+import { FitCard } from "../../live/racket-v7b";
 import type { AudioWire } from "../../../../lib/audio-match";
 import { threadRows, hasDb, skinOf, audioOf } from "../../data";
 import { Badge, SBar, Photo, cap, plural, tone, type ThreadRow } from "../../ui";
@@ -155,8 +156,10 @@ export default async function ThreadRacket({ params }: P) {
   // AudioRecs (V3-ROLLOUT-BRIEF): the same page with its own fit card (lib/audio-match.ts), its kind's vote groups, tags
   // (noise cancelling first, the kind, the connection, the tuning), specs, pills and TL;DR words. No score.
   const au = AUDIO ? audioOf(ctx) : null, aw = au?.wire.get(r.id) ?? null;
-  if (niche.id === "padel" || (au && aw)) {
-    const v7Specs = (aw ? [["Type", r.balance], ["Connection", r.weight], ["Driver", r.core], ["Noise cancelling", aw.anc ? "Yes" : aw.wireless ? "No" : null], ["Notes", r.surface]] : [["Weight", r.weight], ["Shape", r.shape], ["Balance", r.balance], ["Feel", row?.feel ?? null], ["Face", r.surface], ["Released", r.year ? String(r.year) : null],
+  // SimRacingRecs (v3 rollout 2026-11-21): the same page with its own spec rows (Category, Type, Torque / brake force,
+  // Platforms, Released), its gear type's vote groups and pills, a level-and-budget fit card and racer words. No score.
+  if (niche.id === "padel" || (au && aw) || SR) {
+    const v7Specs = (SR ? [...niche.specs.map(s => [s.label, r[s.column]]), ["Released", r.year ? String(r.year) : null]] : aw ? [["Type", r.balance], ["Connection", r.weight], ["Driver", r.core], ["Noise cancelling", aw.anc ? "Yes" : aw.wireless ? "No" : null], ["Notes", r.surface]] : [["Weight", r.weight], ["Shape", r.shape], ["Balance", r.balance], ["Feel", row?.feel ?? null], ["Face", r.surface], ["Released", r.year ? String(r.year) : null],
       ...(((specNotes as unknown as Record<string, Record<string, [string, string][]>>)[niche.id] ?? {})[r.slug] ?? [])] as [string, string | null][]).filter((x): x is [string, string] => !!x[1]);
     // TL;DR with no counts (owner 2026-11-21): the written one as is; else the page's own lines without "N players mention
     // it", else the most-mentioned tags as "Players often say…". Claims still need 5+ reviews behind them (as before).
@@ -177,7 +180,7 @@ export default async function ThreadRacket({ params }: P) {
     const model = brand && bare.toLowerCase().startsWith(`${brand.name.toLowerCase()} `) ? bare.slice(brand.name.length + 1) : bare;
     // The top card's pill: the strongest "How does it play?" answer, from the groups as the page shows them (lib/thread/vote-pill.ts).
     const tc = hasDb() ? await traitCounts() : null;
-    const pill = tc ? votePill(Object.fromEntries(TRAIT_GROUPS.map(g => [g.key, traitGroup(tc, r.id, g.key)])), W.people, ...(aw ? [AUDIO_PILL_LABELS, AUDIO_PILL_LABELS] as const : [])) : null;
+    const pill = tc ? votePill(Object.fromEntries((SR ? traitGroupsForType(niche.id, r.shape) : TRAIT_GROUPS).map(g => [g.key, traitGroup(tc, r.id, g.key)])), W.people, ...(aw ? [AUDIO_PILL_LABELS, AUDIO_PILL_LABELS] as const : SR ? [SIMRACING_PILL_WORDS, SIMRACING_PILL_LABELS] as const : [])) : null;
     // The community sidebar (owner OK 2026-11-21): this week's counts, the newest question, who plays it (votes only), and
     // the rackets it is compared with (its compare pages' partners, then the engine's similar rackets).
     const groupOf = (k: string) => tc ? traitGroup(tc, r.id, k) : null;
@@ -188,9 +191,9 @@ export default async function ThreadRacket({ params }: P) {
       .map(x => ({ row: x, href: `/compare?ids=${encodeURIComponent(r.slug)},${encodeURIComponent(x.slug)}` }));
     return <Shell active="rackets">
       <JsonLd data={ld}/>
-      <RacketV7b id={r.id} title={r.year && bare !== name ? `${bare} (${r.year})` : name} model={model} crumbs={crumbsEl} tags={aw ? audioTagsOf(aw, r.weight) : tags} lime={aw ? aw.anc : !!style} row={row} judged={judged} {...(aw && au ? audioPageProps(r.id, aw, au, rows, ctx) : {})}
-        lead={aw && lead ? lead.replace(/(?<![\w-])([Oo])wner(s?)\b/g, (_, o: string, x: string) => `${o === "O" ? "L" : "l"}istener${x}`) : lead} bullets={v7Bullets} specs={v7Specs} shop={shop} cards={cards} also={also} brand={brand ? { name: brand.name, slug: brand.slug } : null}
-        sim={simSelf ? pickSimilar(simSelf, simSpecs, new Set(compared.map(c => c.row.id))).flatMap(id => rows.get(id) ?? []) : aw ? sim.filter(x => !compared.some(c => c.row.id === x.id)) : []} pill={pill} week={weekLine(cm.opinions, cm.posts)} latest={cm.latest} who={who} compared={compared} stories={tales}/>
+      <RacketV7b id={r.id} title={r.year && bare !== name ? `${bare} (${r.year})` : name} model={model} crumbs={crumbsEl} tags={aw ? audioTagsOf(aw, r.weight) : tags} lime={aw ? aw.anc : !!style} row={row} judged={judged} {...(aw && au ? audioPageProps(r.id, aw, au, rows, ctx) : SR ? srPageProps(r.id, r.shape) : {})}
+        lead={aw && lead ? lead.replace(/(?<![\w-])([Oo])wner(s?)\b/g, (_, o: string, x: string) => `${o === "O" ? "L" : "l"}istener${x}`) : SR && lead ? lead.replace(/(?<![\w-])([Oo])wner(s?)\b/g, (_, o: string, x: string) => `${o === "O" ? "R" : "r"}acer${x}`) : lead} bullets={v7Bullets} specs={v7Specs} shop={shop} cards={cards} also={also} brand={brand ? { name: brand.name, slug: brand.slug } : null}
+        sim={simSelf ? pickSimilar(simSelf, simSpecs, new Set(compared.map(c => c.row.id))).flatMap(id => rows.get(id) ?? []) : aw || SR ? sim.filter(x => !compared.some(c => c.row.id === x.id)) : []} pill={pill} week={weekLine(cm.opinions, cm.posts)} latest={cm.latest} who={who} compared={compared} stories={tales}/>
     </Shell>;
   }
   return <Shell active="rackets">
@@ -256,6 +259,11 @@ export default async function ThreadRacket({ params }: P) {
 }
 
 /** AudioRecs' tags: noise cancelling first (lime), the kind, the connection and the tuning listeners hear. */
+/** SimRacingRecs' product page parts: the fit card in its words (level and budget, I race on console) and the gear type's groups. */
+function srPageProps(id: string, shape: string | null) {
+  return { fit: <FitCard id={id} title="Is this product right for me?" sub="Pick your level and budget, for a quick fit from community feedback." arm="I race on console"/>,
+    groups: traitGroupsForType(niche.id, shape), whoTitle: "Who races with it" };
+}
 function audioTagsOf(aw: AudioWire, connection: string | null) {
   return [aw.anc ? "Noise cancelling" : null, aw.kind, connection, tuningWord(aw.s.tuning)].filter((x): x is string => !!x);
 }

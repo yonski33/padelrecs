@@ -5,7 +5,8 @@ import { notFound } from "next/navigation";
 import { Shell } from "../../shell";
 import { threadRows, threadBoards, skinOf, audioOf } from "../../data";
 import { v3Site } from "../../../../lib/thread/sites";
-import { votePill, AUDIO_PILL_LABELS } from "../../../../lib/thread/vote-pill";
+import { votePill, AUDIO_PILL_LABELS, SIMRACING_PILL_WORDS, SIMRACING_PILL_LABELS } from "../../../../lib/thread/vote-pill";
+import { traitGroupsForType } from "../../../../lib/thread/traits";
 import { TRAIT_GROUPS } from "../../../../lib/thread/traits";
 import { GUIDE_LINK_LABELS } from "../../../../lib/thread/copy";
 import { threadRankings, ratingsFor } from "../../rankings-data";
@@ -216,6 +217,7 @@ async function RankingV5({ l, lists, list, rated, label, faqs, ld, picOf }: { l:
   const rows: V5Row[] = list.map((r, i) => ({ id: r.id, rank: i + 1, name: r.name, href: r.href, pic: r.pic, shape: r.shape ? r.shape[0].toUpperCase() + r.shape.slice(1) : null,
     line: r.line, pos: r.pos, mix: r.mix, neg: r.neg, rating: rated?.[r.id] != null ? (rated[r.id] / 10).toFixed(1) : null,
     picked: au ? votePill(Object.fromEntries(TRAIT_GROUPS.map(g => [g.key, traitGroup(t, r.id, g.key)])), W.people, AUDIO_PILL_LABELS, AUDIO_PILL_LABELS)
+      : SR ? votePill(Object.fromEntries(traitGroupsForType(niche.id, r.shape).map(g => [g.key, traitGroup(t, r.id, g.key)])), W.people, SIMRACING_PILL_WORDS, SIMRACING_PILL_LABELS)
       : pickedLine(traitGroup(t, r.id, "plays_like")), arm: !!r.arm, ...(au && r.audio?.kind ? { shape: r.audio.kind } : {}) }));
   const opinions: [string, string] = [W.opinions.replace(/s$/, ""), W.opinions];
   const said = rows.reduce((a, r) => a + r.pos + r.mix + r.neg, 0);
@@ -224,10 +226,12 @@ async function RankingV5({ l, lists, list, rated, label, faqs, ld, picOf }: { l:
   const pics = (ids: string[], n: number) => ids.map(picOf).filter((x): x is string => !!x).slice(0, n);
   const mine = rows.map(r => r.id);
   const explore = [AUDIO ? { tag: "Guide", title: GUIDE_LINK_LABELS.racket, desc: "Where you listen, fit and sound, in plain words.", cta: "Read guide", href: GUIDE_PATHS.racket, imgs: pics(mine, 1), tone: "dark" }
+      : SR ? { tag: "Guide", title: GUIDE_LINK_LABELS.racket, desc: "Base, wheel, pedals and rig, in plain words.", cta: "Read guide", href: GUIDE_PATHS.racket, imgs: pics(mine, 1), tone: "dark" }
       : { tag: "Guide", title: "How to choose a padel racket", desc: "Shape, weight, balance and feel, in plain words.", cta: "Read guide", href: GUIDE_PATHS.racket, imgs: pics(mine, 1), tone: "dark" },
     AUDIO ? { tag: "Guide", title: GUIDE_LINK_LABELS.shape, desc: "Open or closed, and who each suits.", cta: "Read guide", href: GUIDE_PATHS.shape, imgs: pics(mine.slice(1), 3), tone: "sand" }
+      : SR ? { tag: "Guide", title: GUIDE_LINK_LABELS.shape, desc: "What each drive feels like, and who each suits.", cta: "Read guide", href: GUIDE_PATHS.shape, imgs: pics(mine.slice(1), 3), tone: "sand" }
       : { tag: "Guide", title: "Padel racket shapes explained", desc: "Round, teardrop or diamond, and who each suits.", cta: "Read guide", href: GUIDE_PATHS.shape, imgs: pics(mine.slice(1), 3), tone: "sand" },
-    ...others.filter(x => x.slug !== "best-padel-rackets").slice(0, 2).map((x, i) => ({ tag: "Ranking", title: x.label, desc: x.blurb, cta: "View ranking", href: x.href,
+    ...others.filter(x => x.slug !== (SR ? "best-sim-racing-gear" : "best-padel-rackets")).slice(0, 2).map((x, i) => ({ tag: "Ranking", title: x.label, desc: x.blurb, cta: "View ranking", href: x.href,
       imgs: pics(x.ids, 2), tone: i ? "lime" : "sand" }))];
   return <Shell active="rankings">
     <JsonLd data={ld}/>
@@ -243,7 +247,7 @@ async function RankingV5({ l, lists, list, rated, label, faqs, ld, picOf }: { l:
           </section>
           <section className="th-card rk5-list">
             <div className="rk5-list-head"><h2 className="th-h2">{l.label}</h2>
-              <span>{`${AUDIO ? plural(rows.length, W.item, W.items) : plural(rows.length, ONE, MANY)}  ·  ${plural(said, opinions[0], opinions[1])}`}</span></div>
+              <span>{`${AUDIO || SR ? plural(rows.length, W.item, W.items) : plural(rows.length, ONE, MANY)}  ·  ${plural(said, opinions[0], opinions[1])}`}</span></div>
             <RankRows rows={rows} ratingLabel={label} opinions={opinions} markLoved={loved} {...(wire ? { wire } : {})}/>
           </section>
         </div>
@@ -252,7 +256,7 @@ async function RankingV5({ l, lists, list, rated, label, faqs, ld, picOf }: { l:
           <section className="th-card rk5-box"><h3>About these rankings</h3>
             <div className="about">
               <span className="item"><svg className="ic" width="30" height="28" viewBox="0 0 30 28" aria-hidden="true" fill="currentColor"><circle cx="15" cy="9" r="4.5"/><circle cx="6" cy="11" r="3.5"/><circle cx="24" cy="11" r="3.5"/><path d="M7 24c0-4.5 3.6-8 8-8s8 3.5 8 8zM0 23c0-3.3 2.4-6 5.5-6 1.2 0 2.2.3 3 .9C7 19.4 6 21.3 6 23.5zM30 23c0-3.3-2.4-6-5.5-6-1.2 0-2.2.3-3 .9 1.5 1.5 2.5 3.4 2.5 5.6z"/></svg><span><strong>{`Based on ${W.person} feedback`}</strong><span>Reviews and votes on {niche.site.name}, plus summaries of Reddit threads, YouTube reviews and blogs.</span></span></span>
-              <span className="item"><svg className="ic" width="30" height="28" viewBox="0 0 30 28" aria-hidden="true" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinejoin="round"><path d="M15 3L26 9 15 15 4 9z"/><path d="M4 14l11 6 11-6M4 19l11 6 11-6"/></svg><span>{loved ? <><strong>Ordered by most loved</strong><span>{AUDIO ? `${cap(W.items)} go by how many ${W.people} loved them, the count on each row. Current models with 10+ reviews.` : `Rackets go by how many players loved them, the count on each row. ${new Date().getUTCFullYear()} models with 10+ reviews.`}</span></>
+              <span className="item"><svg className="ic" width="30" height="28" viewBox="0 0 30 28" aria-hidden="true" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinejoin="round"><path d="M15 3L26 9 15 15 4 9z"/><path d="M4 14l11 6 11-6M4 19l11 6 11-6"/></svg><span>{loved ? <><strong>Ordered by most loved</strong><span>{AUDIO ? `${cap(W.items)} go by how many ${W.people} loved them, the count on each row. Current models with 10+ reviews.` : SR ? `${cap(W.items)} go by how many ${W.people} loved them, the count on each row. ${new Date().getUTCFullYear()} models with 10+ reviews.` : `Rackets go by how many players loved them, the count on each row. ${new Date().getUTCFullYear()} models with 10+ reviews.`}</span></>
                 : votes ? <><strong>Ordered by player votes</strong><span>{`Rackets go by how many players pick them for ${votes}, the number on each row. Needs 12+ reviews and 10+ players.${label ? ` The number on each pick is a ${niche.site.name} rating from 0 to 10.` : ""}`}</span></> : <><strong>Picked, then checked</strong><span>{label ? `${niche.site.name} sets the order and checks it against what ${W.people} report. The number on each pick is a ${niche.site.name} rating from 0 to 10.`
                 : `${niche.site.name} sets the order and checks it against what ${W.people} report, not brand claims.`}</span></>}</span></span>
               <span className="item"><svg className="ic" width="30" height="28" viewBox="0 0 30 28" aria-hidden="true" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round"><circle cx="15" cy="14" r="11"/><path d="M15 8v6l4 3"/></svg><span><strong>Updated as new feedback arrives</strong><span>The counts change as new reviews come in.</span></span></span>

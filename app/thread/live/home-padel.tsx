@@ -9,7 +9,7 @@ import { th } from "../../../lib/thread/look";
 import { useRacketList, MatchBar, FineTune, SortMenu, RacketRow } from "./padel-list";
 import { useAudioListMatch } from "./audio-match";
 import { W } from "../../../lib/thread/words";
-import { catalogPath } from "../../../lib/niche";
+import { catalogPath, niche } from "../../../lib/niche";
 import type { AudioWire } from "../../../lib/audio-match";
 import type { Level } from "./picks";
 
@@ -25,7 +25,7 @@ const Racket = () => <svg className="hp3-art" width="74" height="80" viewBox="0 
   <g fill="currentColor" stroke="none">{[[27, 20], [35, 18], [24, 28], [32, 26], [40, 25], [29, 34], [37, 33], [26, 41], [34, 41]].map(([x, y]) => <circle key={`${x}-${y}`} cx={x} cy={y} r="2.1"/>)}</g>
   <path d="M20 51 L9 74 M15 49 L5 70 M26 53 L15 76"/><path d="M57 7 l3 -5 M63 15 l6 -3 M65 25 l6 1"/></svg>;
 /** The page's only squiggle, after the title (owner: squiggle only on the hero). */
-const Squiggle = () => <svg className="hp3-sq" width="26" height="28" viewBox="0 0 30 30" fill="none" stroke="#B9E85A" strokeWidth="4" strokeLinecap="round" aria-hidden="true"><path d="M6 14 L12 4 M12 20 L24 13 M14 27 L27 26"/></svg>;
+const Squiggle = () => <svg className="hp3-sq" width="26" height="28" viewBox="0 0 30 30" fill="none" stroke={niche.id === "simracing" ? "oklch(0.72 0.18 32)" : "#B9E85A"} strokeWidth="4" strokeLinecap="round" aria-hidden="true"><path d="M6 14 L12 4 M12 20 L24 13 M14 27 L27 26"/></svg>;
 
 export function PadelHomeTop({ rows, brands, pills, added, curated, season, live, after, side, wire, art }: {
   rows: ThreadRow[]; brands: string[]; pills: Record<string, string>; added: Record<string, string>; curated: string[];

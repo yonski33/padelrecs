@@ -35,6 +35,12 @@ export default async function ThreadTypePage({ params }: P) {
       rankings={lists.slice(0, 6).map(l => ({ label: l.label, href: l.href }))} latest={[]} title={t.label} crumb={t.label}
       {...(d.wire ? { wire: d.wire.filter(w => keep.has(w.id)) } : {})}/></Shell>;
   }
+  // SimRacingRecs (v3 rollout 2026-11-21): the v3 catalogue for one gear type, no score.
+  if (niche.id === "simracing") {
+    const d = await padelListData(), lists = await threadRankings();
+    return <Shell active="rackets"><PadelCatalog rows={d.rows.filter(r => r.shape === t.shape)} brands={d.brands} pills={d.pills} added={d.added} curated={[]}
+      rankings={lists.slice(0, 6).map(l => ({ label: l.label, href: l.href }))} latest={[]} title={t.label} crumb={t.label}/></Shell>;
+  }
   const { all } = await threadRows();
   const rows = all.filter(r => r.n > 0 && r.shape === t.shape);
   const count = new Map<string, number>();

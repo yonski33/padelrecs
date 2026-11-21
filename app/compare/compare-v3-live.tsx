@@ -3,23 +3,25 @@
 // site's shared ones (app/thread/live/picks.ts), so they follow the visitor from the home, the catalogue and the rankings.
 // The cards keep their order; the best fit gets a "Best fit for you" tag and each card its "% your match".
 import { useMemo, type ReactNode } from "react";
-import { usePicks, usePayload, pctsFor, complete, LEVEL_OPTS, STYLE_OPTS, styleLabel } from "../thread/live/picks";
+import { usePicks, usePayload, pctsFor, complete, LEVEL_OPTS, STYLE_OPTS, BUDGETS, styleLabel } from "../thread/live/picks";
 
 export type V3Card = { id: string; name: string; short: string; href: string; pic: string | null; shape: string | null; feel: string | null;
   picked: string | null; pos: number; mix: number; neg: number; shop: { url: string; rel: string } | null; tint: string; dot: string; remove: string };
 const cap = (s: string) => s[0].toUpperCase() + s.slice(1);
 const tone = (n: number) => n >= 85 ? "g" : n >= 70 ? "y" : "";
 
-export function FitBar() {
-  const [picks, set] = usePicks(), any = !!(picks.level || picks.style || picks.arm);
+/** `hint` and `arm`: SimRacingRecs' words (level and budget, "I race on console"); padel's when left out. */
+export function FitBar({ hint = "Pick your level and style. The best fit gets highlighted below.", arm = "Arm comfort" }: { hint?: string; arm?: string }) {
+  const [picks, set] = usePicks(), any = !!(picks.level || picks.style || picks.arm || picks.budget);
   return <div className="cp3-fit">
-    <div className="head"><span><h2>Which one fits you?</h2><small>Pick your level and style. The best fit gets highlighted below.</small></span>
-      {any && <button type="button" className="reset" onClick={() => set({ level: null, style: null, arm: false })}>Reset</button>}</div>
+    <div className="head"><span><h2>Which one fits you?</h2><small>{hint}</small></span>
+      {any && <button type="button" className="reset" onClick={() => set({ level: null, style: null, arm: false, ...(BUDGETS.length ? { budget: null } : {}) })}>Reset</button>}</div>
     <div className="row">
       <span className="lbl">I&apos;m</span>{LEVEL_OPTS.map(v => <button key={v} type="button" aria-pressed={picks.level === v} onClick={() => set({ level: picks.level === v ? null : v })}>{cap(v)}</button>)}
       <span className="sep" aria-hidden="true"/>
       <span className="lbl">I want</span>{STYLE_OPTS.map(v => <button key={v} type="button" aria-pressed={picks.style === v} onClick={() => set({ style: picks.style === v ? null : v })}>{styleLabel(v)}</button>)}
-      <button type="button" className="arm" aria-pressed={picks.arm} onClick={() => set({ arm: !picks.arm })}><span aria-hidden="true">{picks.arm ? "✓" : ""}</span>Arm comfort</button>
+      {BUDGETS.map(([k, w]) => <button key={k} type="button" aria-pressed={picks.budget === k} onClick={() => set({ budget: picks.budget === k ? null : k })}>{w}</button>)}
+      <button type="button" className="arm" aria-pressed={picks.arm} onClick={() => set({ arm: !picks.arm })}><span aria-hidden="true">{picks.arm ? "✓" : ""}</span>{arm}</button>
     </div>
   </div>;
 }

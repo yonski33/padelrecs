@@ -16,6 +16,8 @@ import { HubV3 } from "./hub-v3";
 import { HUB_LEAD } from "../../../lib/thread/rankings-hub";
 import { v3Site } from "../../../lib/thread/sites";
 const AUDIO_HUB_LEAD = "Lists ordered by listener reviews, what listeners love most and the AudioRecs match. Pick a list.";
+/** SimRacingRecs (v3 rollout 2026-11-21): no curated picks; Best overall by most loved, the rest by racer reviews and its match. */
+const SR_HUB_LEAD = "Lists ordered by racer reviews, most loved first, and by the SimRacingRecs match. Pick a list.";
 export const generateMetadata = (): Promise<Metadata> => liveOr(liveMetadata);
 
 export default async function ThreadHub() {
@@ -27,7 +29,7 @@ export default async function ThreadHub() {
   // AudioRecs (V3-ROLLOUT-BRIEF): the same hub, no score; its own lead (its lists: live ones by listener reviews, the
   // Thread-only ones by most loved or the AudioRecs match).
   if (v3Site(niche.id)) return <Shell active="rankings">
-    <HubV3 lead={niche.id === "audio" ? AUDIO_HUB_LEAD : HUB_LEAD} rows={rows} ratings={ratings}
+    <HubV3 lead={niche.id === "audio" ? AUDIO_HUB_LEAD : niche.id === "simracing" ? SR_HUB_LEAD : HUB_LEAD} rows={rows} ratings={ratings}
       groups={GROUPS.map(g => ({ title: g, cards: lists.filter(l => l.group === g) })).filter(g => g.cards.length > 0)}/>
   </Shell>;
   return <Shell active="rankings">

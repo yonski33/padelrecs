@@ -24,8 +24,8 @@ const PICKLEBALL = niche.id === "pickleball", SKIN = niche.id === "skin", DG = n
 /** The hub's blurbs (Rankings Hub Thread copy), by list. */
 const BLURB: Record<string, string> = SR ? {
   // SimRacingRecs' Rankings Hub mock, on its live lists by gear type plus the Thread-only lists below.
-  "best-sim-racing-gear": "The highest racer scores this year.", "best-sim-racing-gear-for-beginners": "Easy to set up, great to learn on.",
-  "best-force-feedback-sim-racing-wheelbases": "The most detail through long corners.", "best-sim-racing-wheelbases": "The highest scored wheelbases.",
+  "best-sim-racing-gear": "The most loved gear this year.", "best-sim-racing-gear-for-beginners": "Easy to set up, great to learn on.",
+  "best-force-feedback-sim-racing-wheelbases": "The most detail through long corners.", "best-sim-racing-wheelbases": "The best-reviewed wheelbases.",
   "best-sim-racing-wheels": "Rims racers keep on their base.", "best-sim-racing-pedals": "Consistent braking, lap after lap.",
   "best-sim-racing-cockpits": "Rigs that stay solid.", "best-sim-racing-shifters-handbrakes": "Crisp shifts and a solid pull.",
   "best-budget-sim-racing-gear": "Strong picks at the lower prices.", "best-high-end-sim-racing-gear": "Where racers spend the most.",

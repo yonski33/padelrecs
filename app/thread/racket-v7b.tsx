@@ -40,6 +40,7 @@ export type V7bProps = {
   /** "3 new opinions · 2 posts this week", or null. */ week: string | null;
   /** The newest Ask the community question. */ latest: LatestQuestion | null;
   /** Who plays it, from votes only (lib/thread/community.ts). */ who: { headline: string; rows: WhoRow[] } | null;
+  /** The card's heading (SimRacingRecs: "Who races with it"); padel's when left out. */ whoTitle?: string;
   /** Often compared with: up to 3 rackets and their compare page. */ compared: { row: ThreadRow; href: string }[];
   stories: { id: string; slug: string; title: string; author: { name: string } }[];
   /** AudioRecs (V3-ROLLOUT-BRIEF): its own fit card and its kind's vote groups. Padel: absent. */ fit?: ReactNode; groups?: TraitGroup[];
@@ -77,10 +78,10 @@ export function RacketV7b(p: V7bProps) {
     <span className="th8-q-by"><strong>{p.latest.name}</strong><span>·</span><Ago at={p.latest.at} initial=""/></span>
     <p className="th8-q">{p.latest.text}</p>
     <span className="th8-q-foot"><a href="#discussion">Join in →</a></span></section>;
-  const who = p.who && <section className="th-card th8-box"><h2 className="th8-bh">Who plays it</h2><strong className="th8-who-h">{p.who.headline}</strong>
+  const who = p.who && <section className="th-card th8-box"><h2 className="th8-bh">{p.whoTitle ?? "Who plays it"}</h2><strong className="th8-who-h">{p.who.headline}</strong>
     <div className="th8-who">{p.who.rows.map(w => <span key={w.title} className="th8-who-r"><small>{w.title}</small><span className="th8-mini"><i style={{ width: `${Math.round(w.share * 100)}%` }}/></span>
       <b>{w.label}</b><em>{w.n}</em></span>)}</div>
-    <small className="th8-cap2">From player votes in How does it play?</small></section>;
+    <small className="th8-cap2">{`From ${W.person} votes in ${W.traitsTitle}`}</small></section>;
   const compared = p.compared.length > 0 && <section className="th-card th8-box"><h2 className="th8-bh">Often compared with</h2>
     <div className="th8-cmp">{p.compared.map(({ row: x, href }) => <span key={x.id} className="th8-cmp-r">
       <a className="th8-cmp-ph" href={th(x.href)} tabIndex={-1} aria-hidden="true">{x.pic ? <img src={x.pic} alt="" loading="lazy"/> : <span className="th-ph"/>}</a>
@@ -143,7 +144,7 @@ export function RacketV7b(p: V7bProps) {
       <CommunityFeed id={p.id} model={p.model} cards={src.players} web={src.web}/>
       {p.also.length >= 2 && <section className="th-card th8-sec"><h2 className="th-h2">{`${W.lovers} who loved this also loved`}</h2>
         <div className="th8-grid">{p.also.slice(0, 4).map(x => <RacketCard key={x.id} x={x}/>)}</div></section>}
-      {p.stories.length > 0 && <section className="th-card th-sec"><h2 className="th-h2">Stories mentioning this racket</h2>
+      {p.stories.length > 0 && <section className="th-card th-sec"><h2 className="th-h2">{`Stories mentioning this ${niche.words.one}`}</h2>
         <ul className="th-stories sm">{p.stories.map(s => <li key={s.id}><a className="th-story-t" href={th(`/stories/${s.slug}`)}>{s.title}</a>
           <span className="th-story-by"><strong>{s.author.name}</strong><MemberMark/></span></li>)}</ul></section>}
     </div>

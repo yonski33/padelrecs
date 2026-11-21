@@ -7,7 +7,7 @@ import { useEffect, useMemo, useState, type ReactNode } from "react";
 import { type ThreadRow } from "../ui";
 import { th } from "../../../lib/thread/look";
 import { withoutYear } from "../../../lib/brand-name";
-import { usePicks, usePayload, pctsFor, LEVEL_OPTS, STYLE_OPTS, styleLabel, type Level } from "./picks";
+import { usePicks, usePayload, pctsFor, LEVEL_OPTS, STYLE_OPTS, BUDGETS, styleLabel, type Level } from "./picks";
 import { bandOrder } from "../../../lib/thread/home-order";
 import { niche } from "../../../lib/niche";
 import { W } from "../../../lib/thread/words";
@@ -19,14 +19,17 @@ type Filters = Partial<Record<Key, string[]>>;
 /** AudioRecs (V3-ROLLOUT-BRIEF): no curated lists, so no "picks" order; Type and Sound in place of Shape and Feel (its rows
  *  carry the kind as `shape` and the tuning as `feel`, app/thread/padel-list-data.ts). */
 const AUDIO = niche.id === "audio";
-export const SORTS: [Sort, string][] = AUDIO ? [["loved", "Most loved"], ["new", "Newest"], ["match", "By your match"]]
+/** SimRacingRecs (v3 rollout 2026-11-21): no curated lists either; Type and Drive (its rows carry the drive kind as `feel`,
+ *  app/thread/padel-list-data.ts); its match bar picks a budget, not a style, and "I race on console". */
+const SR = niche.id === "simracing";
+export const SORTS: [Sort, string][] = AUDIO || SR ? [["loved", "Most loved"], ["new", "Newest"], ["match", "By your match"]]
   : [["picks", "PadelRecs picks"], ["loved", "Most loved"], ["new", "Newest"], ["match", "By your match"]];
 const BASE_SORT: Sort = SORTS[0][0];
 /** The home's menu (owner 2026-11-21: "PadelRecs picks" read as random there): Most loved (default), Most opinions, and By
  *  your match once a pick is set. The catalogue keeps SORTS. */
 export const HOME_SORTS: [Sort, string][] = [["loved", "Most loved"], ["opinions", "Most opinions"], ["match", "By your match"]];
-const FEELS = AUDIO ? ["Warm", "Balanced", "Bright"] : ["Soft", "Medium", "Hard"];
-const GROUP_TITLES: Record<Key, string> = AUDIO ? { shape: "Type", feel: "Sound", brand: "Brand" } : { shape: "Shape", feel: "Feel", brand: "Brand" };
+const FEELS = AUDIO ? ["Warm", "Balanced", "Bright"] : SR ? ["Direct drive", "Belt", "Gear"] : ["Soft", "Medium", "Hard"];
+const GROUP_TITLES: Record<Key, string> = AUDIO ? { shape: "Type", feel: "Sound", brand: "Brand" } : SR ? { shape: "Type", feel: "Drive", brand: "Brand" } : { shape: "Shape", feel: "Feel", brand: "Brand" };
 /** AudioRecs' match (lib/audio-match.ts), worked out by the page's own hook (live/audio-match.tsx) and handed to the list. */
 export type ListMatch = { mine: boolean; pcts: Map<string, number | null> | null; picks: AudioPicks; set: (p: Partial<AudioPicks>) => void };
 const TOP_BRANDS = 6;
@@ -46,7 +49,7 @@ export const plural = (n: number, one: string, many = `${one}s`) => `${n.toLocal
 export function useRacketList({ rows, curated, added, search = false, season, match }: { rows: ThreadRow[]; curated: string[]; added: Record<string, string>; search?: boolean; season?: string[]; match?: ListMatch }) {
   const base: Sort = season ? "loved" : BASE_SORT;
   const [q, setQ] = useState(""), [f, setF] = useState<Filters>({}), [sort, setSort] = useState<Sort>(base), [ftReady, setFtReady] = useState(false), [older, setOlder] = useState(false);
-  const [picks, setPicks] = usePicks(); const padelMine = !match && !!(picks.level || picks.style), payload = usePayload(padelMine);
+  const [picks, setPicks] = usePicks(); const padelMine = !match && !!(picks.level || picks.style || picks.budget), payload = usePayload(padelMine);
   const padelPcts = useMemo(() => padelMine && payload ? pctsFor(payload, picks) : null, [padelMine, payload, picks]);
   const mine = match ? match.mine : padelMine, pcts = match ? match.pcts : padelPcts;
   // ?q= (catalogue), ?shape= / ?feel= from links, ?level= sets the level pick. A link's filter wins over the kept filters.
@@ -111,9 +114,10 @@ export function MatchBar({ l, ft, setFt, tag, icons, after }: { l: RacketList; f
     <span className="tc-qm-sep" aria-hidden="true"/>
     <span className="tc-qm-l">I want</span>
     {STYLE_OPTS.map(v => <button key={v} type="button" className="tc-pill" aria-pressed={picks.style === v} onClick={() => setPicks({ style: picks.style === v ? null : v })}>{styleLabel(v)}</button>)}
-    <button type="button" className="th-check tc-arm" aria-pressed={picks.arm} onClick={() => setPicks({ arm: !picks.arm })}><span aria-hidden="true">{picks.arm ? "✓" : ""}</span>Arm comfort</button>
+    {BUDGETS.map(([k, w]) => <button key={k} type="button" className="tc-pill" aria-pressed={picks.budget === k} onClick={() => setPicks({ budget: picks.budget === k ? null : k })}>{w}</button>)}
+    <button type="button" className="th-check tc-arm" aria-pressed={picks.arm} onClick={() => setPicks({ arm: !picks.arm })}><span aria-hidden="true">{picks.arm ? "✓" : ""}</span>{SR ? "I race on console" : "Arm comfort"}</button>
     {after}
-    {(mine || picks.arm) && <button type="button" className="tc-link" onClick={() => setPicks({ level: null, style: null, arm: false })}>Reset</button>}
+    {(mine || picks.arm) && <button type="button" className="tc-link" onClick={() => setPicks({ level: null, style: null, arm: false, ...(BUDGETS.length ? { budget: null } : {}) })}>Reset</button>}
     <button type="button" className="tc-ft" aria-expanded={ft} onClick={() => setFt(!ft)}>Not sure yet? <u>fine-tune</u> {ft ? "▴" : "▾"}</button>
   </div>;
 }
