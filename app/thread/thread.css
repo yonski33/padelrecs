@@ -636,14 +636,12 @@ body:has(.th-pb) { background: #f1f2ec; }
   --p-pos: oklch(0.93 0.08 145); --p-mix: oklch(0.95 0.08 95); --p-neg: oklch(0.93 0.05 35);
   --hover: oklch(0.45 0.12 235); --up: oklch(0.5 0.14 145); --down: oklch(0.55 0.15 35); --idle: #a3a8b8;
   --blog: oklch(0.95 0.1 105);
-  /* Bricolage Grotesque 800 for headings and badge numbers (app/layout.tsx --font-display); Atkinson Hyperlegible for text,
-     with the digits-only Barlow first so numbers get a plain zero (README "Digits"). */
-  --bc: var(--site-display, var(--font-display)), 'Bricolage Grotesque', 'Arial Narrow', sans-serif;
-  --body-font: 'Barlow', 'Atkinson Hyperlegible', system-ui, sans-serif;
+  /* Owner 2026-11-22: padel's fonts (the v3 pages looked busy in Bricolage and Atkinson): Barlow Condensed for display and
+     headings, Inter for body and UI (app/thread/layout.tsx loads both). Colours stay pickleball's. */
+  --bc: 'Barlow Condensed', 'Arial Narrow', sans-serif;
+  --body-font: 'Inter', system-ui, sans-serif;
 }
-body:has(.th-pb) .th-pb :is(h1, h2, h3), .th-pb :is(.th-logo, .th-rank, .th-row-name .mrank, .th-badge:not(.new), .th-sbox-head, .th-stitle, .th-tldr-h,
-  .th-hub-t b, .th-hub-row .r, .th-num, .th-sub-h), body:has(.th-pb) .th-pb .th-logo, body:has(.th-pb) .th-pb .th-menu a {
-  font-weight: 800; letter-spacing: -0.02em; }
+/* (Owner 2026-11-22: padel's fonts and heading weights now, so no Bricolage weight and spacing here.) */
 /* The literal padel colours above, in pickleball's. */
 .th-pb .th-ph, .th-pb .th-ph::after { background: #d6d9cf; }
 .th-pb .th-yt { background-color: var(--ink); }

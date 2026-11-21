@@ -17,6 +17,7 @@ import { traitSeed } from "../../../../lib/thread/trait-seed";
 import { racketStories } from "../../stories-data";
 import { MemberMark } from "../../live/member-mark";
 import { traitGroupsForType } from "../../../../lib/thread/traits";
+import { oneShape } from "../../../../lib/thread/shape";
 import { Comments } from "../../live/comments";
 import { th } from "../../../../lib/thread/look";
 import { amazonButton } from "../../../../lib/amazon-offer";
@@ -141,7 +142,7 @@ export default async function ThreadRacket({ params }: P) {
   // A product its maker no longer sells (Notes "Discontinued: …", SimRacingRecs, owner 2026-11-21): a tag first, "Used only".
   const gone = SR && /^Discontinued\b/i.test(r.surface ?? "");
   const tags = (SR ? [gone ? "Discontinued" : null, r.shape, r.balance, LEVEL_WORD(row?.levels ?? [])] : DG ? [r.shape, stab ? cap(stab) : null, LEVEL_WORD(row?.levels ?? [])] : SKIN ? [r.shape, skinAttrs?.facts.fragrance_free === "free" ? "Fragrance free" : null, skinTex ? `${skinTex} texture` : null, row?.best ? `Reviewers say: ${row.best}` : null]
-    : [style ? STYLE_WORD[style] : null, r.shape, row?.feel ? `${row.feel} feel` : null, LEVEL_WORD(row?.levels ?? [])]).filter((x): x is string => !!x);
+    : [style ? STYLE_WORD[style] : null, oneShape(r.shape), row?.feel ? `${row.feel} feel` : null, LEVEL_WORD(row?.levels ?? [])]).filter((x): x is string => !!x);
   const playersSay = SR ? ([row?.levels.length && ["Best for", LEVEL_WORD(row.levels)!],
     traits.slice().sort((a, b) => b.dots - a.dots)[0] && ["Strongest at", traits.slice().sort((a, b) => b.dots - a.dots)[0].label]].filter((x): x is [string, string] => !!x))
     : DG ? ([row?.levels.length && ["Best for", LEVEL_WORD(row.levels)!], dgStyle && ["Stability", dgStyle], row?.arm && ["Slower arm", "Yes, say throwers"],
