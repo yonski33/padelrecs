@@ -219,7 +219,7 @@ async function RankingV5({ l, lists, list, rated, label, faqs, ld, picOf }: { l:
   const rows: V5Row[] = list.map((r, i) => ({ id: r.id, rank: i + 1, name: r.name, href: r.href, pic: r.pic, shape: r.shape ? r.shape[0].toUpperCase() + r.shape.slice(1) : null,
     line: r.line, pos: r.pos, mix: r.mix, neg: r.neg, rating: rated?.[r.id] != null ? (rated[r.id] / 10).toFixed(1) : null,
     picked: au ? votePill(Object.fromEntries(TRAIT_GROUPS.map(g => [g.key, traitGroup(t, r.id, g.key)])), W.people, AUDIO_PILL_LABELS, AUDIO_PILL_LABELS)
-      : SR ? votePill(Object.fromEntries(traitGroupsForType(niche.id, r.shape).map(g => [g.key, traitGroup(t, r.id, g.key)])), W.people, SIMRACING_PILL_WORDS, SIMRACING_PILL_LABELS)
+      : SR ? votePill(Object.fromEntries(traitGroupsForType(niche.id, r.shape, r.id).map(g => [g.key, traitGroup(t, r.id, g.key)])), W.people, SIMRACING_PILL_WORDS, SIMRACING_PILL_LABELS)
       : pickedLine(traitGroup(t, r.id, "plays_like")), arm: !!r.arm, ...(au && r.audio?.kind ? { shape: r.audio.kind } : {}) }));
   const opinions: [string, string] = [W.opinions.replace(/s$/, ""), W.opinions];
   const said = rows.reduce((a, r) => a + r.pos + r.mix + r.neg, 0);

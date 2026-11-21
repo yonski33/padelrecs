@@ -237,7 +237,11 @@ const keptContext = kept(async () => {
       if (floor) for (const l of ["beginner", "intermediate", "advanced"] as const) su[l] = Math.max(su[l], floor[l] ?? 0);
       // A product fact that caps its levels (SimRacingRecs: torque): a level it can't suit stays under the bar (fit-config levelCap).
       const capRow = cfg.levelCap && data.rackets.find(r => r.id === id), cap = capRow ? cfg.levelCap!(capRow, ownerFacts.get(id) ?? {}) : null;
-      if (cap) for (const l of ["beginner", "intermediate", "advanced"] as const) if (cap[l] === false) su[l] = Math.min(su[l], SUITS_OK - 1);
+      if (cap) for (const l of ["beginner", "intermediate", "advanced"] as const) {
+        if (cap[l] === false) su[l] = Math.min(su[l], SUITS_OK - 1);
+        // "on": the racers' own levels put it there (SimRacingRecs, owner 2026-11-21: follow racers' levels).
+        else if (cap[l] === "on") su[l] = Math.max(su[l], SUITS_OK);
+      }
       // The owner's level tiers (lib/level-tiers.ts): the last word on intermediate+ and truly advanced rackets.
       const tier = levelTier(niche.id, name, su);
       if (tier) { suitsOf.set(id, { suits: applyTier(tier, su), disagree: null }); continue; }

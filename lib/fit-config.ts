@@ -41,7 +41,7 @@ export type FitConfig = {
   levelPeople?: { beginner: string; intermediate: string; advanced: string };
   /** A product fact that caps the levels it can suit (SimRacingRecs: a wheelbase's torque, Grok audit 2026-11-17 #14–#16):
    *  the levels it returns false for stay under the level bar whatever the reports say. null: no cap. */
-  levelCap?: (r: { slug: string; shape: string | null; weight: string | null }, owner: Record<string, string | number | null>) => Partial<Record<"beginner" | "intermediate" | "advanced", boolean>> | null;
+  levelCap?: (r: { slug: string; shape: string | null; weight: string | null }, owner: Record<string, string | number | null>) => Partial<Record<"beginner" | "intermediate" | "advanced", boolean | "on">> | null;
   /** A site's own words where the shared pages say "player", "throw one first", "how it plays" (SimRacingRecs, Grok audit
    *  2026-11-17 #10 #11 #25 #27 #28). Unset: every page keeps its words. */
   words?: { person: string; game: string; tryFirst: string; howIt: string; catalogPromo: string; guidePromo: string;

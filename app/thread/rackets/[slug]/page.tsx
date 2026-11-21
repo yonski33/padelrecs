@@ -22,7 +22,7 @@ import { th } from "../../../../lib/thread/look";
 import { amazonButton } from "../../../../lib/amazon-offer";
 import { amazonPhoto } from "../../../../lib/amazon-photos";
 import { websiteButton } from "../../../../lib/product-links";
-import { withoutYear } from "../../../../lib/brand-name";
+import { withoutYear, shortModel } from "../../../../lib/brand-name";
 import { niche, hasYears } from "../../../../lib/niche";
 import { alsoLoved } from "../../../../db/product-votes";
 import { database } from "../../../../db/data";
@@ -134,7 +134,9 @@ export default async function ThreadRacket({ params }: P) {
       // Sourced extra facts, e.g. a paddle's tournament status (db/shop/spec-notes.json, owner audit 2026-11-20).
       ...(((specNotes as unknown as Record<string, Record<string, [string, string][]>>)[niche.id] ?? {})[r.slug] ?? [])] as [string, string | null][]).filter((x): x is [string, string] => !!x[1]);
   // SimRacingRecs (its product mock): the gear type, its drive or kind ("Direct drive"), the level.
-  const tags = (SR ? [r.shape, r.balance, LEVEL_WORD(row?.levels ?? [])] : DG ? [r.shape, stab ? cap(stab) : null, LEVEL_WORD(row?.levels ?? [])] : SKIN ? [r.shape, skinAttrs?.facts.fragrance_free === "free" ? "Fragrance free" : null, skinTex ? `${skinTex} texture` : null, row?.best ? `Reviewers say: ${row.best}` : null]
+  // A product its maker no longer sells (Notes "Discontinued: …", SimRacingRecs, owner 2026-11-21): a tag first, "Used only".
+  const gone = SR && /^Discontinued\b/i.test(r.surface ?? "");
+  const tags = (SR ? [gone ? "Discontinued" : null, r.shape, r.balance, LEVEL_WORD(row?.levels ?? [])] : DG ? [r.shape, stab ? cap(stab) : null, LEVEL_WORD(row?.levels ?? [])] : SKIN ? [r.shape, skinAttrs?.facts.fragrance_free === "free" ? "Fragrance free" : null, skinTex ? `${skinTex} texture` : null, row?.best ? `Reviewers say: ${row.best}` : null]
     : [style ? STYLE_WORD[style] : null, r.shape, row?.feel ? `${row.feel} feel` : null, LEVEL_WORD(row?.levels ?? [])]).filter((x): x is string => !!x);
   const playersSay = SR ? ([row?.levels.length && ["Best for", LEVEL_WORD(row.levels)!],
     traits.slice().sort((a, b) => b.dots - a.dots)[0] && ["Strongest at", traits.slice().sort((a, b) => b.dots - a.dots)[0].label]].filter((x): x is [string, string] => !!x))
@@ -143,7 +145,7 @@ export default async function ThreadRacket({ params }: P) {
     : SKIN ? ([row?.best && ["Best for", cap(row.best)], skinTex && ["Texture", skinTex], skinFin && ["Finish", skinFin]].filter((x): x is [string, string] => !!x)) : [style && ["Plays like", STYLE_WORD[style]], row?.levels.length && ["Best for", LEVEL_WORD(row.levels)!], row?.arm && ["Arm friendly", "Yes, say players"],
     traits.slice().sort((a, b) => b.dots - a.dots)[0] && ["Strongest at", traits.slice().sort((a, b) => b.dots - a.dots)[0].label]].filter((x): x is [string, string] => !!x);
   const day = latest ? new Date(latest).toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric", timeZone: "UTC" }) : null;
-  const buy = shop && <div className="th-buy"><a href={shop.url} target="_blank" rel={shop.rel}>Check price ↗</a>{/* One note on every site (owner 2026-11-20: no "we"). */}<small>Commission link. It never changes the score.</small></div>;
+  const buy = shop && <div className="th-buy"><a href={shop.url} target="_blank" rel={shop.rel}>{gone ? "Used only ↗" : "Check price ↗"}</a>{/* One note on every site (owner 2026-11-20: no "we"). */}<small>Commission link. It never changes the score.</small></div>;
   const specsBox = specs.length > 0 && <section className="th-card th-specs th-only-m">{specs.map(([k, v]) => <span key={k} className="th-kv"><span>{k}</span><strong>{v}</strong></span>)}</section>;
   // The live page's structured data: its breadcrumbs (the catalogue, the brand, the racket).
   const ld = { "@context": "https://schema.org", "@graph": [crumbs([{ name: catalogLabel, path: catalogPath }, ...(brand ? [{ name: brand.name, path: `/brands/${brand.slug}` }] : []), { name: r.name, path: productHref(r) }])] };
@@ -179,10 +181,10 @@ export default async function ThreadRacket({ params }: P) {
       ? [...pc.yes.slice(0, 2).map(i => ({ tone: "pos" as const, text: plain(i.t) })), ...pc.no.slice(0, 1).map(i => ({ tone: "catch" as const, text: plain(i.t) }))]
       : sum ? [...sum.loved.filter(t => (sum.tagCounts.get(t) ?? 0) >= 5).slice(0, 2).map(t => ({ tone: "pos" as const, text: says(t) })),
         ...sum.complaints.filter(t => (sum.tagCounts.get(t) ?? 0) >= 5).slice(0, 1).map(t => ({ tone: "catch" as const, text: says(t) }))] : bullets;
-    const model = brand && bare.toLowerCase().startsWith(`${brand.name.toLowerCase()} `) ? bare.slice(brand.name.length + 1) : bare;
+    const model = shortModel(bare, brand?.name);
     // The top card's pill: the strongest "How does it play?" answer, from the groups as the page shows them (lib/thread/vote-pill.ts).
     const tc = hasDb() ? await traitCounts() : null;
-    const pill = tc ? votePill(Object.fromEntries((SR ? traitGroupsForType(niche.id, r.shape) : TRAIT_GROUPS).map(g => [g.key, traitGroup(tc, r.id, g.key)])), W.people, ...(aw ? [AUDIO_PILL_LABELS, AUDIO_PILL_LABELS] as const : SR ? [SIMRACING_PILL_WORDS, SIMRACING_PILL_LABELS] as const : TN ? [TENNIS_PILL_WORDS, TENNIS_PILL_LABELS] as const : [])) : null;
+    const pill = tc ? votePill(Object.fromEntries((SR ? traitGroupsForType(niche.id, r.shape, r.id) : TRAIT_GROUPS).map(g => [g.key, traitGroup(tc, r.id, g.key)])), W.people, ...(aw ? [AUDIO_PILL_LABELS, AUDIO_PILL_LABELS] as const : SR ? [SIMRACING_PILL_WORDS, SIMRACING_PILL_LABELS] as const : TN ? [TENNIS_PILL_WORDS, TENNIS_PILL_LABELS] as const : [])) : null;
     // The community sidebar (owner OK 2026-11-21): this week's counts, the newest question, who plays it (votes only), and
     // the rackets it is compared with (its compare pages' partners, then the engine's similar rackets).
     const groupOf = (k: string) => tc ? traitGroup(tc, r.id, k) : null;
@@ -224,7 +226,7 @@ export default async function ThreadRacket({ params }: P) {
           <Poll id={r.id} reviews={{ positive: row?.pos ?? 0, mixed: row?.mix ?? 0, negative: row?.neg ?? 0 }}/>
         </div></article>
 
-        <TraitVotes id={r.id} seed={traitSeed(niche.id, r.id)} {...(SKIN ? { of: judged } : {})} {...(SR ? { groups: traitGroupsForType(niche.id, r.shape) } : {})}/>
+        <TraitVotes id={r.id} seed={traitSeed(niche.id, r.id)} {...(SKIN ? { of: judged } : {})} {...(SR ? { groups: traitGroupsForType(niche.id, r.shape, r.id) } : {})}/>
         {/* "What reviews say" (trait dots) is off the page (owner 2026-11-19, not in the mockup); racketData still builds `traits`. */}
         {sim.length > 0 && <section className="th-card th-sec th-sec-sim"><h2 className="th-h3">{`Similar ${niche.words.many}`}</h2><div className="th-sim">{sim.map(x => <Mini key={x.id} x={x}/>)}</div></section>}
         {specsBox}
@@ -264,7 +266,7 @@ export default async function ThreadRacket({ params }: P) {
 /** SimRacingRecs' product page parts: the fit card in its words (level and budget, I race on console) and the gear type's groups. */
 function srPageProps(id: string, shape: string | null) {
   return { fit: <FitCard id={id} title="Is this product right for me?" sub="Pick your level and budget, for a quick fit from community feedback." arm="I race on console"/>,
-    groups: traitGroupsForType(niche.id, shape), whoTitle: "Who races with it" };
+    groups: traitGroupsForType(niche.id, shape, id), whoTitle: "Who races with it" };
 }
 function audioTagsOf(aw: AudioWire, connection: string | null) {
   return [aw.anc ? "Noise cancelling" : null, aw.kind, connection, tuningWord(aw.s.tuning)].filter((x): x is string => !!x);

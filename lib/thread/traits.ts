@@ -145,8 +145,24 @@ export const SIMRACING_TRAIT_GROUPS: Record<string, TraitGroup[]> = {
 /** Every sim racing group once (the API and admin accept any type's votes; a product page shows its own type's). */
 const SIMRACING_ALL: TraitGroup[] = [...new Map(Object.values(SIMRACING_TRAIT_GROUPS).flat().map(g => [g.key, g])).values()];
 /** A product's groups by its type (SimRacingRecs); other sites have one set. */
-export const traitGroupsForType = (nicheId: string, shape: string | null | undefined): TraitGroup[] =>
-  nicheId === "simracing" ? SIMRACING_TRAIT_GROUPS[shape ?? ""] ?? SIMRACING_TRAIT_GROUPS.Wheelbase : traitGroupsFor(nicheId);
+/** Vote groups a product hides although its type has them (owner 2026-11-21, Grok audit checked by the PM): the stored votes
+ *  stay, the page, pills, boards and lists just skip them. "Best in" is the discipline (GT, formula, rally), so a button box
+ *  keeps it. Keyed by product id, per site. */
+export const HIDDEN_TRAITS: Record<string, Record<string, string[]>> = {
+  simracing: {
+    // No force feedback (a bungee return; Thrustmaster's support page): nothing to vote on torque, detail, heat or noise.
+    "thrustmaster-t80-ferrari-488-gtb-edition": ["torque", "detail", "heat", "noise"],
+    // A GT button box, rims sold separately (Asetek): no grip or size of its own.
+    "asetek-forte-gt": ["grip", "size"],
+  },
+};
+export const hiddenTraits = (nicheId: string, id: string): string[] => HIDDEN_TRAITS[nicheId]?.[id] ?? [];
+/** A product's groups by its type (SimRacingRecs); other sites have one set. `id` drops the product's hidden groups. */
+export const traitGroupsForType = (nicheId: string, shape: string | null | undefined, id?: string): TraitGroup[] => {
+  const all = nicheId === "simracing" ? SIMRACING_TRAIT_GROUPS[shape ?? ""] ?? SIMRACING_TRAIT_GROUPS.Wheelbase : traitGroupsFor(nicheId);
+  const hide = id ? hiddenTraits(nicheId, id) : [];
+  return hide.length ? all.filter(g => !hide.includes(g.key)) : all;
+};
 /** The vote groups a site's pages, API and admin use. */
 export function traitGroupsFor(nicheId: string): TraitGroup[] {
   if (nicheId === "simracing") return SIMRACING_ALL;
