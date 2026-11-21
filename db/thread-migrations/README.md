@@ -21,7 +21,15 @@ replaced). Additive only. Routine: dry run (in a rolled-back transaction: clean)
 `work/backups/trait-admin-2026-11-19/`), write with `scripts/migrate.ts` (NICHE=padel), verify: history ends at 0027,
 both tables exist in padelrecs only with RLS on and 0 rows, trait_votes (9) and rackets (233) unchanged.
 
-## AudioRecs (audiorecs schema): PLAN ONLY, nothing run (2026-11-21, Thread switch PR)
+## AudioRecs (audiorecs schema): 0021-0027 APPLIED 2026-11-21 (owner typed OK in the AudioRecs session)
+
+Done as planned below: dry run (each of the 7 and all together in rolled-back transactions: clean), backup
+`work/backups/audio-thread-migrations-2026-11-21/` (rackets 449, external_reviews 11,805, reviews 131, 21 migration rows),
+write with a journal trimmed at 0027. Verified: history ends at 0027 (28 rows); evidence, trait_votes, comments,
+comment_votes, trait_overrides and trait_admin_log exist in audiorecs with RLS on and 0 rows; the three tables' row counts
+unchanged; /api/trait-votes, /api/comments and /api/thread-poll answer 200 on the preview. 0028 and later not run.
+
+### The plan (as written before the run)
 
 AudioRecs was frozen on 2026-11-14, so its history stops at **0020_quick_take** (21 applied). The Thread pages need
 **0021 to 0027**, seven migrations, not four:
