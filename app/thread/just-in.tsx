@@ -7,6 +7,7 @@ import { threadRows, traitCounts, traitGroup } from "./data";
 import { votePill } from "../../lib/thread/vote-pill";
 import { TRAIT_GROUPS } from "../../lib/thread/traits";
 import { justIn, JUST_IN_THIN } from "../../lib/thread/just-in";
+import { amazonButton } from "../../lib/amazon-offer";
 import { amazonPhoto } from "../../lib/amazon-photos";
 import { websiteButton } from "../../lib/product-links";
 import { th } from "../../lib/thread/look";
@@ -30,14 +31,16 @@ export async function JustIn() {
   const pick = justIn(all.filter(r => listed.has(r.id)), added);
   if (!pick) return null;
   const tc = await traitCounts().catch(() => null), now = Date.now();
-  const cards = pick.rows.map(r => {
+  const cards = await Promise.all(pick.rows.map(async r => {
     const x = listed.get(r.id)!;
     const pill = tc ? votePill(Object.fromEntries(TRAIT_GROUPS.map(g => [g.key, traitGroup(tc, r.id, g.key)]))) : null;
-    // The saved Amazon listing, else the product's own site (the racket page's order, without its live Amazon lookup).
-    const amazon = amazonPhoto(x), site = websiteButton(x);
+    // The racket page's buy link, the same logic (rackets/[slug]/page.tsx): the cached Amazon lookup (a slow one falls back to
+    // the search link), the saved listing when the two disagree, else the product's own site.
+    const live = await amazonButton({ name: x.name, brand: r.brand || undefined }), saved = amazonPhoto(x);
+    const amazon = live && saved && live.asin !== x.amazonAsin ? { url: saved.url } : live, site = websiteButton(x);
     const shop = amazon ? { url: amazon.url, rel: "sponsored nofollow noopener", aff: true } : site ? { url: site.url, rel: site.affiliate ? "sponsored nofollow noopener" : "noopener", aff: !!site.affiliate } : null;
     return { r, pill, shop, at: added[r.id] || null };
-  });
+  }));
   return <section className="th-card ji-sec" aria-labelledby="ji-h">
     <div className="ji-head"><span className="ji-new">New</span><h2 id="ji-h" className="th-h2">{`${pick.year} rackets just in`}</h2>
       <a className="ji-all" href={th("/rackets")}>All new rackets →</a></div>
