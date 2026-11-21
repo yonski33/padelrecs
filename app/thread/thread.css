@@ -1765,8 +1765,12 @@ body:has(.th.th-pr) { background: #FEFAF4; }
 .hp3-sq { flex: none; margin-top: -6px; }
 .th-hp3 .th-live { font-size: 14.5px; }
 .th-hp3 .tc-pill svg { margin-right: 2px; }
-.hp3-sticker { flex: none; display: inline-flex; align-items: center; gap: 4px; margin-left: 6px; font-family: var(--bc); font-weight: 800; font-size: 17px; transform: rotate(-3deg); }
-.hp3-sticker span { background: var(--sticker, #FFE45C); border: 1.5px solid var(--ink); border-radius: 6px; padding: 1px 8px; }
+/* The meta line: its own row under the title at every width (the same spot everywhere), the live count, then the sticker; its
+   arrow hangs below it, out of the flow, onto the level pills (never wraps). */
+.hp3-meta { display: flex; align-items: center; gap: 14px; flex-wrap: nowrap; min-width: 0; flex-basis: 100%; }
+.hp3-sticker { position: relative; flex: none; display: inline-flex; font-family: var(--bc); font-weight: 800; font-size: 17px; transform: rotate(-3deg); }
+.hp3-sticker span { background: var(--sticker, #FFE45C); border: 1.5px solid var(--ink); border-radius: 6px; padding: 1px 8px; white-space: nowrap; }
+.hp3-arrow { position: absolute; top: calc(100% - 2px); right: 55%; pointer-events: none; transform: rotate(3deg); }
 .hp3-cols { display: grid; grid-template-columns: minmax(0,70fr) minmax(0,30fr); gap: 18px; align-items: start; }
 .hp3-cols > .th-col { display: flex; flex-direction: column; gap: 14px; min-width: 0; }
 .hp3-side.th-side { flex: none; position: sticky; top: 76px; display: flex; }
@@ -1780,7 +1784,8 @@ body:has(.th) .th .th-hp3 a.tc-row.ranked { grid-template-columns: 34px 96px min
 @media (max-width: 999px) { .hp3-cols { grid-template-columns: minmax(0,1fr); } .hp3-side.th-side { display: none; } }
 @media (max-width: 639px) {
   .hp3-hero { padding: 14px; }
-  .hp3-art, .hp3-sticker { display: none; }
+  .hp3-art, .hp3-arrow { display: none; }
+  .hp3-meta { gap: 10px; flex-wrap: wrap; }
   .hp3-title .th-h1 { font-size: 34px !important; }
   body:has(.th) .th .th-hp3 a.tc-row.ranked { grid-template-columns: 30px 70px minmax(0,1fr); }
   .th-hp3 .tc-ph { height: 78px; }

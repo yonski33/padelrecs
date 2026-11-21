@@ -31,15 +31,17 @@ export function PadelHomeTop({ rows, brands, pills, added, curated, season, live
 }) {
   const l = useRacketList({ rows, curated, added, season }), { list, pcts, mine, clearAll } = l;
   const [ft, setFt] = useState(false), [n, setN] = useState(FIRST);
-  const sticker = <span className="hp3-sticker" aria-hidden="true"><svg width="58" height="26" viewBox="0 0 58 26" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"><path d="M55 20C44 24 30 23 20 16 15 12.5 11 10 5 10"/><path d="M11 4.5L4.5 10l6.5 5"/></svg>
-    <span>{mine ? "your match" : "quick match"}</span></span>;
+  // The sticker sits on the hero's meta line (owner 2026-11-21: in the pill row it wrapped at 1100-1300px and the arrow
+  // pointed at nothing). Its arrow is drawn out of the flow, curving down-left to the "I'm / I want" pills, so it never wraps.
+  const sticker = <span className="hp3-sticker" aria-hidden="true"><span>{mine ? "your match" : "quick match"}</span>
+    <svg className="hp3-arrow" width="56" height="26" viewBox="0 0 56 26" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"><path d="M46 2C46 14 34 20 9 21"/><path d="M15 15.5L8.5 21l6.5 4.5"/></svg></span>;
   return <>
     <section className="th-card tc-top hp3-hero">
       <div className="hp3-head">
         <div className="hp3-title"><Racket/><h1 className="th-h1">The padel racket community<Squiggle/></h1></div>
-        {live && <span className="th-live"><i aria-hidden="true"/>{live}</span>}
+        <div className="hp3-meta">{live && <span className="th-live"><i aria-hidden="true"/>{live}</span>}{sticker}</div>
       </div>
-      <MatchBar l={l} ft={ft} setFt={setFt} icons={ICONS} after={sticker}/>
+      <MatchBar l={l} ft={ft} setFt={setFt} icons={ICONS}/>
       <FineTune l={l} ft={ft} brands={brands}/>
     </section>
     <div className="hp3-cols"><div className="th-col">
