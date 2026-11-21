@@ -3,10 +3,12 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { Shell } from "../../shell";
-import { threadRows, threadBoards } from "../../data";
+import { threadRows, threadBoards, skinOf } from "../../data";
 import { threadRankings, ratingsFor } from "../../rankings-data";
 import { ratingCategory, ratingHow } from "../../../../lib/category-rating";
 import { RankingList, SideMatch } from "../../live/lists";
+import { SkinMatchBox } from "../../live/skin-match";
+import { quickMatchFor } from "../../../../lib/thread/sites";
 import { Faq } from "../../live/faq";
 import { Comments } from "../../live/comments";
 import { niche } from "../../../../lib/niche";
@@ -19,6 +21,8 @@ import { W } from "../../../../lib/thread/words";
 
 const { one: ONE, many: MANY } = niche.words;
 const PICKLEBALL = niche.id === "pickleball", DG = niche.id === "discgolf";
+/** The sidebar's "See how you match": the site's own quick match, the one its home shows, or no card (lib/thread/sites.ts). */
+const QM = quickMatchFor(niche.id);
 /** The arm and shape FAQ lines, the site's own (PickleballRecs: its Rankings and Elbow Guide mocks). */
 const ARM_TIP = PICKLEBALL ? "A soft core, a lighter paddle and a relaxed grip help most." : "A soft core, a lower balance and a lighter racket help most.";
 const SHAPE_FAQ = DG
@@ -44,7 +48,7 @@ const names = (xs: { name: string }[]) => xs.length > 1 ? `${xs.slice(0, -1).map
 
 export default async function ThreadRanking({ params }: P) {
   const { slug } = await params;
-  const [lists, { rows }] = await Promise.all([threadRankings(), threadRows()]);
+  const [lists, { rows, all, ctx }] = await Promise.all([threadRankings(), threadRows()]);
   const l = lists.find(x => x.slug === slug);
   if (!l) notFound();
   const list = l.ids.map(id => rows.get(id)!).filter(Boolean);
@@ -63,6 +67,12 @@ export default async function ThreadRanking({ params }: P) {
   ];
   const more = lists.filter(x => x.slug !== l.slug).map(x => ({ label: x.label, href: x.href }));
   const nameMap = Object.fromEntries(list.map(r => [r.id, r.name]));
+  // SkinRecs: its home's quick match (skin type · goal · sensitive), on the same ranking inputs as the home (app/thread/page.tsx).
+  const sk = QM === "skin" ? skinOf(ctx) : null;
+  const skinRows = sk ? all.filter(r => r.current !== false && r.n > 0) : [];
+  const skinWire = sk ? (await import("../../../skin/payload")).wireOf(sk, sk.data.listed.filter(r => skinRows.some(x => x.id === r.id))) : [];
+  const side = QM === "engine" ? <SideMatch names={nameMap}/>
+    : sk ? <section className="th-card" style={{ padding: "12px 14px" }}><SkinMatchBox title="See how you match" wire={skinWire} names={Object.fromEntries(all.map(r => [r.id, r.name]))}/></section> : null;
   // The live ranking page's structured data, built from what this page shows: its FAQ, the list and the breadcrumbs.
   const ld = { "@context": "https://schema.org", "@graph": [
     { "@type": "FAQPage", mainEntity: faqs.map(f => ({ "@type": "Question", name: f.q, acceptedAnswer: { "@type": "Answer", text: f.a } })) },
@@ -81,15 +91,15 @@ export default async function ThreadRanking({ params }: P) {
           <nav className="th-rtabs" aria-label="Rankings">{lists.slice(0, 7).map(x => <a key={x.slug} href={th(x.href)} aria-current={x.slug === l.slug ? "page" : undefined}>{x.label.replace(/^Best (for )?/, "").replace(/^./, c => c.toUpperCase())}</a>)}</nav>
         </section>
         <RankingList rows={list} title={l.label} meta={`${plural(list.length, ONE)} · ${plural(reviews, "review")}`}
-          {...(cat && rated ? { ratings: { by: rated, label: cat.label } } : {})}/>
+          {...(cat && rated ? { ratings: { by: rated, label: cat.label } } : {})}{...(QM !== "engine" ? { match: false } : {})}/>
         {boards.length > 0 && <Boards boards={boards}/>}
         <section className="th-card th-sec"><h2 className="th-h2">{`Questions ${W.people} ask`}</h2><Faq items={faqs}/></section>
         <Comments page={`ranking:${l.slug}`} prompt="Agree with this list? Join the conversation" nicknames={niche.form.quickVote?.nicknames ?? []}/>
-        <div className="th-narrow" style={{ flexDirection: "column", gap: 12 }}><SideMatch names={nameMap}/></div>
+        {side && <div className="th-narrow" style={{ flexDirection: "column", gap: 12 }}>{side}</div>}
         <NarrowLinks title="More rankings" links={more}/>
       </div>
       <aside className="th-side">
-        <SideMatch names={nameMap}/>
+        {side}
         <SideBox title="More rankings"><LinkList links={more}/></SideBox>
       </aside>
     </main>
