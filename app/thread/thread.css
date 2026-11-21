@@ -1312,7 +1312,7 @@ body:has(.th) .th a.th8-rc { text-decoration: none; display: grid; grid-template
 .th8-q-by { display: flex; gap: 6px; align-items: baseline; font-size: 13.5px; color: var(--muted); }
 .th8-q-by strong { color: var(--ink); font-size: 14.5px; }
 .th8-q { font-size: 15px; line-height: 1.45; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; overflow-wrap: anywhere; }
-.th8-q-foot { display: flex; justify-content: space-between; gap: 8px; font-size: 13.5px; color: var(--muted); }
+.th8-q-foot { display: flex; justify-content: flex-end; gap: 8px; font-size: 13.5px; color: var(--muted); }
 body:has(.th) .th .th8-q-foot a, body:has(.th) .th a.th8-all { font-weight: 700; color: var(--ink); text-decoration: none; }
 .th8-who-h { font-size: 16px; }
 .th8-who { display: flex; flex-direction: column; gap: 5px; }
