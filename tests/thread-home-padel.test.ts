@@ -1,4 +1,4 @@
-// PadelRecs home (v3 "Home Thread v6", owner 2026-11-21): no subline under the title, one squiggle (on the hero), "PadelRecs
+// PadelRecs home (v3 "Home Thread v6", owner 2026-11-21): the site's own line under the title (owner 2026-11-22), one squiggle (on the hero), "PadelRecs
 // picks" sort, "N votes" in Top picks, no score, and the list shared with the catalogue (client-side only).
 import test from "node:test";
 import assert from "node:assert/strict";
@@ -7,8 +7,14 @@ import { readFileSync } from "node:fs";
 const home = readFileSync("app/thread/live/home-padel.tsx", "utf8"), list = readFileSync("app/thread/live/padel-list.tsx", "utf8"), page = readFileSync("app/thread/page.tsx", "utf8");
 const code = (s: string) => s.replace(/\/\*[\s\S]*?\*\//g, "").replace(/(^|[^:"'`])\/\/.*$/gm, "$1");
 
-test("the hero has no subline and the page has one squiggle", () => {
+test("the hero has the site's own line under the title and the page has one squiggle", () => {
+  // The words live in lib/thread/words.ts per site (no hard-coded padel line in the shared hero).
   assert.doesNotMatch(code(home), /Real player opinions/);
+  assert.match(code(home), /<p className="hp3-tag">\{W\.tagline\}<\/p>/);
+  const words = readFileSync("lib/thread/words.ts", "utf8");
+  for (const line of ["Real player opinions, votes, and comments on the top padel rackets.", "Real listener opinions, votes, and comments on the top headphones.",
+    "Real racer opinions, votes, and comments on the top sim racing gear.", "Real player opinions, votes, and comments on the top tennis rackets."]) assert.ok(words.includes(line), line);
+  for (const m of words.matchAll(/tagline: "([^"]+)"/g)) assert.doesNotMatch(m[1], /—|\bwe\b|\bus\b|\bour\b|owners?/i, m[1]);
   assert.equal((code(home).match(/<Squiggle\/>/g) ?? []).length, 1);
   assert.doesNotMatch(code(page.slice(page.indexOf("if (PADEL) {"), page.indexOf("  return <Shell>\n    <main className={PADEL"))), /#B9E85A|Squiggle/);
 });
