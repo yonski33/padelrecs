@@ -1,5 +1,5 @@
 {
- "about": "SimRacingRecs starter catalog (2026-10-22): sim racing gear in five categories — wheelbases (including complete wheel sets), steering wheels and rims, pedals, cockpits and wheel stands, and shifters/handbrakes — from the makers' current stores: fanatec.com, mozaracing.com, simucube.com, simagic.com, thrustmaster.com, logitechg.com, asetek.com/simsports, heusinkveld.com, sim-lab.eu, trakracer.com, nextlevelracing.com and gtomega.com (Playseat as sold by Logitech G). One entry per model: colourways, mount editions (wheel plate vs front & side mount), 2- vs 3-pedal sets and console editions of the same set are merged and their pages listed together; bundles of products already listed, accessories, seats, monitors, button boxes, motion and flight sim gear are left out. Values are blank when not read on a listed page. Columns: shape = category, balance = type, weight = peak torque (wheelbases) or brake load cell, core = platforms, surface = notes.",
+ "about": "SimRacingRecs starter catalog (2026-10-22): sim racing gear in five categories \u2014 wheelbases (including complete wheel sets), steering wheels and rims, pedals, cockpits and wheel stands, and shifters/handbrakes \u2014 from the makers' current stores: fanatec.com, mozaracing.com, simucube.com, simagic.com, thrustmaster.com, logitechg.com, asetek.com/simsports, heusinkveld.com, sim-lab.eu, trakracer.com, nextlevelracing.com and gtomega.com (Playseat as sold by Logitech G). One entry per model: colourways, mount editions (wheel plate vs front & side mount), 2- vs 3-pedal sets and console editions of the same set are merged and their pages listed together; bundles of products already listed, accessories, seats, monitors, button boxes, motion and flight sim gear are left out. Values are blank when not read on a listed page. Columns: shape = category, balance = type, weight = peak torque (wheelbases) or brake load cell, core = platforms, surface = notes.",
  "checked": "2026-10-22",
  "brands": [
   {
@@ -66,8 +66,7 @@
    "balance": "H-pattern + sequential",
    "sources": [
     "https://www.asetek.com/simsports/product/dual-mode-shifter/",
-    "https://www.asetek.com/simsports/us/product/dual-mode-shifter/",
-    "written from the product's own opinions, Grok audit check 2026-11-21"
+    "https://www.asetek.com/simsports/us/product/dual-mode-shifter/"
    ]
   },
   {
@@ -141,8 +140,7 @@
    "surface": null,
    "balance": "Load cell",
    "sources": [
-    "https://www.asetek.com/simsports/product/forte-s-series-brake-throttle/",
-    "written from the product's own opinions, Grok audit check 2026-11-21"
+    "https://www.asetek.com/simsports/product/forte-s-series-brake-throttle/"
    ]
   },
   {
@@ -391,8 +389,7 @@
    "balance": "Round",
    "sources": [
     "https://www.fanatec.com/eu/en/p/steering-wheels/csl_sw_p1_v2r_qr2l/csl-steering-wheel-p1-v2-qr2-lite",
-    "https://www.fanatec.com/us/en/p/steering-wheels/csl_sw_p1_v2r_qr2l/csl-steering-wheel-p1-v2-qr2-lite",
-    "written from the product's own opinions, Grok audit check 2026-11-21"
+    "https://www.fanatec.com/us/en/p/steering-wheels/csl_sw_p1_v2r_qr2l/csl-steering-wheel-p1-v2-qr2-lite"
    ]
   },
   {
@@ -1047,8 +1044,7 @@
    "surface": null,
    "balance": "Foldable",
    "sources": [
-    "https://gtomega.com/products/sprint-folding-cockpit",
-    "written from the product's own opinions, Grok audit check 2026-11-21"
+    "https://gtomega.com/products/sprint-folding-cockpit"
    ]
   },
   {
@@ -1770,8 +1766,7 @@
    "balance": "Aluminium profile",
    "sources": [
     "https://nextlevelracing.com/products/f-gt-elite-lite-wheelplate-edition/",
-    "https://nextlevelracing.com/products/f-gt-elite-lite-front-side-mount-edition/",
-    "written from the product's own opinions, Grok audit check 2026-11-21"
+    "https://nextlevelracing.com/products/f-gt-elite-lite-front-side-mount-edition/"
    ]
   },
   {
@@ -1832,8 +1827,7 @@
    "balance": "Aluminium profile",
    "sources": [
     "https://nextlevelracing.com/products/gtelite-racing-simulator-cockpit-wheel-plate-edition/",
-    "https://nextlevelracing.com/products/gtelite-racing-simulator-cockpit-front-and-side-mount-edition/",
-    "written from the product's own opinions, Grok audit check 2026-11-21"
+    "https://nextlevelracing.com/products/gtelite-racing-simulator-cockpit-front-and-side-mount-edition/"
    ]
   },
   {
@@ -2149,8 +2143,7 @@
    "surface": null,
    "balance": "Push-pull sequential",
    "sources": [
-    "https://sim-lab.eu/products/push-pull-rally-shifter-sim-racing",
-    "written from the product's own opinions, Grok audit check 2026-11-21"
+    "https://sim-lab.eu/products/push-pull-rally-shifter-sim-racing"
    ]
   },
   {
@@ -2362,8 +2355,7 @@
    "surface": null,
    "balance": null,
    "sources": [
-    "https://simagic.com/products/gtc",
-    "written from the product's own opinions, Grok audit check 2026-11-21"
+    "https://simagic.com/products/gtc"
    ]
   },
   {
@@ -2375,8 +2367,7 @@
    "surface": null,
    "balance": null,
    "sources": [
-    "https://simagic.com/products/gts",
-    "written from the product's own opinions, Grok audit check 2026-11-21"
+    "https://simagic.com/products/gts"
    ]
   },
   {
@@ -2644,8 +2635,7 @@
    "surface": null,
    "balance": "Direct drive",
    "sources": [
-    "https://simucube.com/products/simucube-3-ultimate",
-    "written from the product's own opinions, Grok audit check 2026-11-21"
+    "https://simucube.com/products/simucube-3-ultimate"
    ]
   },
   {
@@ -3030,8 +3020,7 @@
    "balance": "Hybrid (belt + gear)",
    "sources": [
     "https://www.thrustmaster.com/en-us/products/t248r/",
-    "https://www.thrustmaster.com/products/t248r/",
-    "written from the product's own opinions, Grok audit check 2026-11-21"
+    "https://www.thrustmaster.com/products/t248r/"
    ]
   },
   {
@@ -3169,8 +3158,7 @@
    "balance": null,
    "sources": [
     "https://www.thrustmaster.com/en-us/products/tm-competition-wheel-add-on-sparco-p310-mod/",
-    "https://eshop.thrustmaster.com/en_us/products-steering-wheels/type/wheels.html",
-    "written from the product's own opinions, Grok audit check 2026-11-21"
+    "https://eshop.thrustmaster.com/en_us/products-steering-wheels/type/wheels.html"
    ]
   },
   {
@@ -3222,8 +3210,7 @@
    "balance": "Belt drive",
    "sources": [
     "https://www.thrustmaster.com/en-us/products/ts-pc-racer-ferrari-488-challenge-edition-2/",
-    "https://www.thrustmaster.com/products/ts-pc-racer-ferrari-488-challenge-edition/",
-    "written from the product's own opinions, Grok audit check 2026-11-21"
+    "https://www.thrustmaster.com/products/ts-pc-racer-ferrari-488-challenge-edition/"
    ]
   },
   {
