@@ -13,6 +13,10 @@ test("each previewed address maps to its Thread page; others keep their live pag
   assert.equal(threadPath("/rankings/best-padel-rackets"), "/thread/rankings/best-padel-rackets");
   assert.equal(threadPath(GUIDE_PATHS.racket), "/thread/guides/racket");
   assert.equal(threadPath(GUIDE_PATHS.elbow), "/thread/guides/elbow");
+  assert.equal(threadPath("/guides", "/rackets", "padel"), "/thread/guides"); // Guides v3 index, padel only
+  assert.equal(threadPath("/guides", "/paddles", "pickleball"), null);
+  assert.equal(threadPath("/search", "/rackets", "padel"), "/thread/search"); // Search v3, padel only
+  assert.equal(threadPath("/search", "/paddles", "pickleball"), null);
   assert.equal(threadPath("/how-we-make-these"), "/thread/score");
   assert.equal(threadPath("/affiliate-disclosure"), "/thread/affiliate");
   assert.equal(threadPath("/brands"), "/thread/brands");

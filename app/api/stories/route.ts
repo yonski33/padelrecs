@@ -4,7 +4,7 @@ import { z } from "zod";
 import { revalidatePath } from "next/cache";
 import { database, catalog } from "../../../db/data";
 import { addStory, editStory, deleteStory, storyForEditor, myStories, setStoryStatus } from "../../../db/stories";
-import { setStoryTopic, storyFeatures, storyTopic } from "../../../db/story-extras";
+import { setStoryTopic, storyFeatures, storyTopic, setStoryFeatured } from "../../../db/story-extras";
 import { currentPlayer } from "../../../lib/thread/account-session";
 import { allowedAdmin } from "../../../lib/admin-access";
 import { storiesSite } from "../../../lib/thread/sites";
@@ -24,6 +24,8 @@ const body = z.object({ title: z.string().trim().min(1).max(STORY_TITLE.max + 20
 const edit = z.object({ id: z.string().uuid(), title: body.shape.title, body: body.shape.body, rackets: body.shape.rackets, topic: body.shape.topic, formToken: z.string().optional() });
 /** An admin hides a live story from its page's ⋯ menu (owner design 2026-11-21): it goes to the Stories tab's Rejected list. */
 const hide = z.object({ id: z.string().uuid(), hide: z.literal(true) });
+/** An admin features a story on the list page, or stops featuring it (owner design v3, drizzle/0033). */
+const feature = z.object({ id: z.string().uuid(), feature: z.boolean() });
 /** The topic is plain metadata, saved at once (not part of a waiting edit); skipped before drizzle/0033. */
 async function saveTopic(db: Awaited<ReturnType<typeof database>>, id: string, topic: StoryTopic | null | undefined) {
   if (topic === undefined) return;
@@ -64,6 +66,16 @@ export async function PATCH(request: Request) {
   if (foreign(request)) return json({ error: "Edit from the story page, please." }, 403);
   if (!burst.hit(clientIp(request))) return json({ error: "Too many changes. Try again later." }, 429);
   let raw: unknown; try { raw = await request.json(); } catch { return json({ error: "Invalid request." }, 400); }
+  const featuring = feature.safeParse(raw);
+  if (featuring.success) {
+    try {
+      const db = await database(), who = await editor(db);
+      if (!who?.admin) return json({ error: "Only the owner can feature stories." }, 403);
+      if (!(await storyFeatures(db)).topics) return json({ error: "Featuring isn't on yet." }, 503);
+      if (!(await setStoryFeatured(db, featuring.data.id, featuring.data.feature))) return json({ error: "That story is gone." }, 404);
+      refresh(); return json({ status: featuring.data.feature ? "featured" : "unfeatured" });
+    } catch (error) { console.error("Story feature failed", error); return json({ error: "Could not save that. Try again?" }, 500); }
+  }
   const hiding = hide.safeParse(raw);
   if (hiding.success) {
     try {

@@ -31,5 +31,11 @@ export const threadLikedThisMonth = cache(async () => (await threadStoryFeatures
   ? safe<{ id: string; likes: number }[]>("liked", [], async () => likedThisMonth(await database())) : []);
 export const threadAuthorStats = cache(async (storyId: string) => {
   const f = await threadStoryFeatures();
-  return safe("author", { stories: 0, likes: 0 }, async () => authorStats(await database(), storyId, f));
+  return safe("author", { stories: 0, likes: 0, reviews: 0 }, async () => authorStats(await database(), storyId, f));
+});
+/** More from this story's author (live, newest first, without this one). */
+export const threadAuthorStories = cache(async (storyId: string) => {
+  const all = await threadStories();
+  const me = all.find(s => s.id === storyId);
+  return me ? all.filter(s => s.id !== storyId && s.author.name === me.author.name) : [];
 });

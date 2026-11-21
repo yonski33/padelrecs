@@ -21,6 +21,11 @@ import { th } from "../../../../lib/thread/look";
 import { generateMetadata as liveMetadata } from "../../../rankings/[slug]/page";
 import { JsonLd, crumbs, base } from "../../seo";
 import { W } from "../../../../lib/thread/words";
+import { threadFeed } from "../../data";
+import { ELBOW_SLUG, GUIDE_PATHS } from "../../../../lib/thread/look";
+import { FitBar, RankRows, RankSelect, type V4Row } from "../../live/ranking-v4";
+import { Ago } from "../../live/ago";
+import { ago } from "../../ui";
 /** PadelRecs (owner 2026-11-21): no "Ranked by player score…" line, the lists as one dropdown, and phone rows with the rank
  *  inline (th-hp, as on the home page). */
 const PADEL = niche.id === "padel";
@@ -97,6 +102,7 @@ export default async function ThreadRanking({ params }: P) {
       itemListElement: list.map((r, i) => ({ "@type": "ListItem", position: i + 1, name: r.name, url: `${base()}${r.href}` })) },
     crumbs([{ name: "Rankings", path: "/rankings" }, ...(hub ? [{ name: hub.label, path: hub.href }] : []), { name: l.label, path: l.href }]),
   ] };
+  if (PADEL) return <RankingV4 l={l} lists={lists} list={list} rated={rated} label={cat?.label ?? null} faqs={faqs} ld={ld}/>;
   return <Shell active="rankings">
     <JsonLd data={ld}/>
     <main className={PADEL ? "th-main th-hp" : "th-main"}>
@@ -170,6 +176,67 @@ async function NeedHub({ l, lists }: { l: Awaited<ReturnType<typeof threadRankin
       <aside className="th-side">
         <SideBox title="More rankings"><LinkList links={more}/></SideBox>
       </aside>
+    </main>
+  </Shell>;
+}
+
+/** PadelRecs ranking page (owner design 2026-11-21, artifact "Rankings"): hero with the crumbs, title, why and the list pills
+ *  (Best overall, Power, Control, Beginners, Arm comfort, More ▾; a select on phones), Check your fit (never reorders), the
+ *  rows (rating out of 10 on the category lists, loved / mixed / not for me counts; no Player score), a sidebar (Other
+ *  rankings, Latest reviews on this list, How this list works), the discussion, today's questions, More to explore. */
+type Lists = Awaited<ReturnType<typeof threadRankings>>;
+const MAIN = [["best-padel-rackets", "Best overall"], ["best-power-padel-rackets", "Power"], ["best-control-padel-rackets", "Control"],
+  ["best-padel-rackets-for-beginners", "Beginners"], [ELBOW_SLUG, "Arm comfort"]] as const;
+async function RankingV4({ l, lists, list, rated, label, faqs, ld }: { l: Lists[number]; lists: Lists; list: import("../../ui").ThreadRow[];
+  rated: Record<string, number> | null; label: string | null; faqs: { q: string; a: string }[]; ld: object }) {
+  const ids = new Set(l.ids), feed = (await threadFeed()).filter(f => ids.has(f.racketId) && f.kind === "player" && f.text).slice(0, 3);
+  const byId = new Map(list.map(r => [r.id, r]));
+  const main = MAIN.flatMap(([slug, short]) => lists.filter(x => x.slug === slug).map(x => ({ ...x, short })));
+  const more = lists.filter(x => !MAIN.some(([slug]) => slug === x.slug));
+  const inMore = more.find(x => x.slug === l.slug);
+  const rows: V4Row[] = list.map((r, i) => ({ id: r.id, rank: i + 1, name: r.name, href: r.href, pic: r.pic, shape: r.shape ? r.shape[0].toUpperCase() + r.shape.slice(1) : null,
+    line: r.line, pos: r.pos, mix: r.mix, neg: r.neg, rating: rated?.[r.id] != null ? (rated[r.id] / 10).toFixed(1) : null }));
+  const others = lists.filter(x => x.slug !== l.slug).slice(0, 6);
+  const explore = [...others.filter(x => x.slug !== "best-padel-rackets").slice(0, 2).map(x => ({ tag: "Ranking", title: x.label, desc: x.blurb, cta: "See the list", href: x.href })),
+    { tag: "Guide", title: "Round vs teardrop vs diamond", desc: "Round, teardrop or diamond, and who each suits.", cta: "Read guide", href: GUIDE_PATHS.shape },
+    { tag: "Guide", title: "How to choose a padel racket", desc: "Shape, weight, balance and feel, in plain words.", cta: "Read guide", href: GUIDE_PATHS.racket }];
+  return <Shell active="rankings">
+    <JsonLd data={ld}/>
+    <main className="th-main rk4">
+      <section className="th-card rk4-hero">
+        <div className="th-crumbs"><a href={th("/rankings")}>Rankings</a><span>/</span><span>{l.label}</span></div>
+        <h1 className="th-h1">{l.title}</h1>
+        {l.blurb && <p>{l.blurb}</p>}
+        <div className="rk4-pills">
+          <nav aria-label="Rankings">{main.map(x => <a key={x.slug} href={th(x.href)} aria-current={x.slug === l.slug ? "page" : undefined}>{x.short}</a>)}</nav>
+          {more.length > 0 && <details className="rk4-more"><summary className={inMore ? "on" : undefined}>{`${inMore ? inMore.label.replace(/^Best (for )?/, "").replace(/^./, c => c.toUpperCase()) : "More"} ▾`}</summary>
+            <div>{more.map(x => <a key={x.slug} href={th(x.href)} aria-current={x.slug === l.slug ? "page" : undefined}>{x.label}</a>)}</div></details>}
+        </div>
+        <RankSelect lists={lists.map(x => ({ slug: x.slug, href: x.href, label: x.label }))} current={l.slug}/>
+      </section>
+      <FitBar/>
+      <div className="rk4-grid">
+        <div className="rk4-main"><RankRows rows={rows} ratingLabel={label}/></div>
+        <aside className="rk4-side">
+          <section className="th-card rk4-box"><h3>Other rankings</h3>
+            {others.map(x => <a key={x.slug} className="arrow" href={th(x.href)}><span>{x.label}</span><span aria-hidden="true">→</span></a>)}</section>
+          {feed.length > 0 && <section className="th-card rk4-box"><h3>Latest reviews on this list</h3>
+            {feed.map(f => { const r = byId.get(f.racketId); return <a key={f.id} className="rv" href={th(`${r?.href ?? "/rackets"}#reviews`)}>
+              <span className="who"><strong>{f.who}</strong>{" · "}<Ago at={f.date} initial={ago(f.date)}/></span>
+              {r && <span className="rk">{r.name}</span>}<span className="tx">{f.text.length > 120 ? `${f.text.slice(0, 117).replace(/\s+\S*$/, "")}…` : f.text}</span></a>; })}
+          </section>}
+          <section className="th-card rk4-box"><h3>How this list works</h3>
+            <p>{label ? `${niche.site.name} picks, checked against player reviews and votes. The number next to each pick is a ${niche.site.name} rating from 0 to 10.`
+              : `${niche.site.name} picks, checked against player reviews and votes.`}</p>
+            <a className="more" href={th("/how-we-make-these")}>How rankings work →</a></section>
+        </aside>
+      </div>
+      <Discussion page={`ranking:${l.slug}`} model={l.label} words={{ heading: "Community discussion", sub: "", askIcon: "?", ask: "Ask a question or share a thought about this ranking…",
+        placeholder: "What do you want to know about this list?" }}/>
+      <section className="th-card th-sec rk4-faq"><h2 className="th-h2">{`Questions ${W.people} ask`}</h2><Faq items={faqs}/></section>
+      <section className="rk4-explore"><h2 className="th-h2">More to explore</h2>
+        <div>{explore.map(e => <a key={e.href} className="th-card" href={th(e.href)}><span className="tag">{e.tag}</span><strong>{e.title}</strong><span className="desc">{e.desc}</span><span className="cta">{`${e.cta} →`}</span></a>)}</div>
+      </section>
     </main>
   </Shell>;
 }

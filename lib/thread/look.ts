@@ -92,6 +92,10 @@ export function threadPath(pathname: string, catalog = catalogPath, nicheId = ni
   if (p === "/rankings") return "/thread/rankings";
   const ranking = /^\/rankings\/([a-z0-9-]+)$/.exec(p);
   if (ranking) return `/thread/rankings/${ranking[1]}`;
+  // PadelRecs Guides v3 (owner design 2026-11-21): an index of the guides, padel only.
+  if (nicheId === "padel" && p === "/guides") return "/thread/guides";
+  // PadelRecs Search v3 (owner design 2026-11-21): rackets, discussions and stories, padel only.
+  if (nicheId === "padel" && p === "/search") return "/thread/search";
   const guide = guideKeyOf(p, nicheId);
   if (guide) return `/thread/guides/${guide}`;
   if (p === "/about") return "/thread/about";

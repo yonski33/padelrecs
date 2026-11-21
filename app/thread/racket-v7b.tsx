@@ -3,8 +3,8 @@
 // Order: top card (photo, title, tags, one line, TL;DR, the strongest vote pill + the opinions bar, jump row) → Is this racket
 // right for me? → poll → How does it play? → Similar rackets → Player reviews → Ask the community → also loved, then stories.
 // Sidebar (owner OK 2026-11-21, a community feel, not a shop): this week's counts, the latest question, who plays it, often
-// compared with, then the basics (specs, an outlined Where to buy). Plain headings, no black bars, no curated ranking box and
-// no More from <brand>. Under 1000px there is no sidebar: Where to buy and the basics follow the top card; the community
+// compared with, then the basics (specs, a lime Check price). Plain headings, no black bars, no curated ranking box and
+// no More from <brand>. Under 1000px there is no sidebar: Check price and the basics follow the top card; the community
 // cards follow "How does it play?".
 // app/thread/rackets/[slug]/page.tsx renders this on padel only; every other site keeps its own layout there.
 import type { ReactNode } from "react";
@@ -64,7 +64,7 @@ export function RacketV7b(p: V7bProps) {
   const scoreEl = SHOW_SCORE && <div className="th7-score">{badge()}<span><span>{score != null ? W.Score : judged > 0 ? `${plural(judged, W.opinions.replace(/s$/, ""), W.opinions)} so far` : "No votes yet"}</span>
     {judged > 0 && <SBar lg pos={row!.pos} mix={row!.mix} neg={row!.neg}/>}</span></div>;
   const specs = p.specs.length > 0 && <div className="th8-specs">{p.specs.map(([k, v]) => <span key={k} className="th8-kv"><span>{k}</span><strong>{v}</strong></span>)}</div>;
-  const buy = p.shop && <div className="th8-buy"><a href={p.shop.url} target="_blank" rel={p.shop.rel}>Where to buy ↗</a><small>{BUY_NOTE}</small></div>;
+  const buy = p.shop && <div className="th8-buy"><a href={p.shop.url} target="_blank" rel={p.shop.rel}>Check price ↗</a><small>{BUY_NOTE}</small></div>;
   const week = p.week && <section className="th-card th8-box th8-week"><span className="th8-live" aria-hidden="true"/>{p.week}</section>;
   const latest = p.latest && <section className="th-card th8-box"><h2 className="th8-bh">Latest from the community</h2>
     <span className="th8-q-by"><strong>{p.latest.name}</strong><span>·</span><Ago at={p.latest.at} initial=""/></span>
@@ -110,7 +110,7 @@ export function RacketV7b(p: V7bProps) {
           <a href="#overview" aria-current="true">Overview</a><a href="#feedback">Player feedback</a><a href="#reviews">Reviews</a><a href="#discussion">Ask the community</a>
         </nav>
       </article>
-      {/* No sidebar under 1000px: Where to buy and the basics, compact (owner 2026-11-21). */}
+      {/* No sidebar under 1000px: Check price and the basics, compact (owner 2026-11-21). */}
       {basics && <div className="th8-narrow th8-narrow-basics">{basics}</div>}
       <FitCard id={p.id} title={`Is this ${niche.words.one} right for me?`} sub="Pick how you play and what you want, for a quick fit from community feedback."/>
       <div id="feedback" className="th8-anchor">

@@ -45,11 +45,21 @@ test("story redesign helpers: read time and topics (owner design 2026-11-21)", (
   assert.equal(readMinutes("Short."), 1);
   assert.equal(readMinutes("word ".repeat(600)), 3);
   assert.equal(readMinutes(`## A heading\n\n**${"word ".repeat(399)}**`), 2);
-  assert.equal(isStoryTopic("switch"), true);
+  assert.equal(isStoryTopic("gear"), true);
   assert.equal(isStoryTopic("video"), false);
-  assert.equal(topicLabel("comeback"), "Comeback");
+  assert.equal(topicLabel("injuries"), "Injuries");
   assert.equal(topicLabel(null), null);
   // The keys match 0033's check constraint.
   const sql = readFileSync(new URL("../drizzle/0033_story_topics_likes.sql", import.meta.url), "utf8");
   for (const [k] of STORY_TOPICS) assert.ok(sql.includes(`'${k}'`), k);
+});
+
+test("Story v3 numbered points: a bold '1. Heading.' opens a point", async () => {
+  const { pointOf } = await import("../app/thread/story-body");
+  const { parseStory } = await import("../lib/thread/story-markdown");
+  const [b] = parseStory("**1. Progress happens fast.** Then it slows down.");
+  assert.ok("inl" in b);
+  assert.deepEqual(pointOf(b.inl), { n: "1", head: "Progress happens fast.", rest: [{ t: "text", s: "Then it slows down." }] });
+  const [p] = parseStory("**Bold start** but no number.");
+  assert.equal("inl" in p ? pointOf(p.inl) : "x", null);
 });

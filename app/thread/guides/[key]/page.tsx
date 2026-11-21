@@ -17,6 +17,7 @@ import { generateMetadata as liveGuideMetadata } from "../../../guide/page";
 import { JsonLd, crumbs, liveOr } from "../../seo";
 import type { QuickChoice } from "../../../../lib/quick-match";
 import { niche } from "../../../../lib/niche";
+import { GuideV3 } from "../../guide-v3";
 
 export const revalidate = 21600;
 export const dynamicParams = false;
@@ -87,6 +88,16 @@ export default async function ThreadGuide({ params }: P) {
   const lime = Number((g.extra as { highlightFirstSteps?: number } | undefined)?.highlightFirstSteps ?? g.steps.length);
   const picksTitle = g.picksTitle.replace(/\bvote for\b/, "rate highest");
   const ld = { "@context": "https://schema.org", "@graph": [crumbs([{ name: "Home", path: "/" }, ...(g.key === "racket" ? [] : [{ name: GUIDE_NAME, path: GUIDE_PATHS.racket }]), { name: g.key === "racket" ? GUIDE_NAME : g.title, path: GUIDE_PATHS[g.key] }])] };
+  // PadelRecs Guide v3 (owner design 2026-11-21): the same copy, picks and comments in the v3 layout; no score on the rows.
+  if (niche.id === "padel") {
+    const lists = await threadRankings();
+    const want = [/beginners/i, /control/i, /power/i, /tennis elbow/i];
+    const related = want.map(rx => lists.find(l => rx.test(l.label))).filter((l): l is NonNullable<typeof l> => !!l).map(l => ({ label: l.label, href: l.href }));
+    return <Shell active="guides"><JsonLd data={ld}/>
+      <GuideV3 g={g} picks={picks} picksTitle={picksTitle} fullRanking={fullRanking} related={related}
+        crumbs={<div className="th-crumbs"><a href={th("/guides")}>{GUIDE_UI.crumbRoot}</a><span>/</span><span>{g.title}</span></div>}/>
+    </Shell>;
+  }
   return <Shell active="guides">
     <JsonLd data={ld}/>
     <main className="th-main">
