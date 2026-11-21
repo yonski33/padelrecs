@@ -18,12 +18,14 @@ export type Style = "control" | "balance" | "power" | "spin";
 /** `kind`: the disc type chip above the home list (DiscGolfRecs, lib/fit-config.ts quick.types); null elsewhere. */
 export type Picks = { level: Level | null; style: Style | null; arm: boolean; kind?: string | null };
 export const NO_PICKS: Picks = { level: null, style: null, arm: false };
-const KEY = "padelrecs-thread-picks";
+/** PadelRecs v3 (handoff README): the picks live under "padelrecs-qm"; the earlier key is read as a fallback, so nobody loses
+ *  their picks. Other sites keep the earlier key (each site is its own origin, so the stores never mix). */
+const KEY = niche.id === "padel" ? "padelrecs-qm" : "padelrecs-thread-picks", OLD_KEY = "padelrecs-thread-picks";
 /** The site's product types for the chips above the home list (DiscGolfRecs: putter, midrange, fairway, distance). */
 export const TYPES = SITE_FIT.quick?.types ?? [];
 const EVENT = "thread-picks";
 
-const read = (): Picks => { try { const v = JSON.parse(localStorage.getItem(KEY) || "{}"); return { level: v.level ?? null, style: v.style ?? null, arm: !!v.arm, ...(TYPES.length ? { kind: TYPES.some(t => t.key === v.kind) ? v.kind : null } : {}) }; } catch { return NO_PICKS; } };
+const read = (): Picks => { try { const v = JSON.parse(localStorage.getItem(KEY) || localStorage.getItem(OLD_KEY) || "{}"); return { level: v.level ?? null, style: v.style ?? null, arm: !!v.arm, ...(TYPES.length ? { kind: TYPES.some(t => t.key === v.kind) ? v.kind : null } : {}) }; } catch { return NO_PICKS; } };
 
 /** The visitor's picks, the same on every Thread page and tab. Starts empty so the server's HTML and the first render agree. */
 export function usePicks() {
