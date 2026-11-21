@@ -8,12 +8,14 @@ export type GroupView = {
   /** Per option: reviews + votes, and whether it shows (5+). */ opts: { key: string; label: string; n: number; shown: boolean; top: boolean; spec: boolean }[];
   reviews: number; votes: number; anyShown: boolean; specOnly: boolean;
 };
-export function groupView(options: [string, string][], reviews: Record<string, number> | undefined, votes: Record<string, number> | undefined, spec: string | undefined): GroupView {
+/** `tieNone` (PadelRecs racket page, owner mock 2026-11-21): when two answers share the lead, neither is highlighted. */
+export function groupView(options: [string, string][], reviews: Record<string, number> | undefined, votes: Record<string, number> | undefined, spec: string | undefined, tieNone = false): GroupView {
   const r = (k: string) => reviews?.[k] ?? 0, v = (k: string) => votes?.[k] ?? 0;
   const rows = options.map(([key, label]) => ({ key, label, n: r(key) + v(key) }));
   const shownRows = rows.filter(x => x.n >= MIN_MENTIONS), anyShown = shownRows.length > 0, max = Math.max(0, ...shownRows.map(x => x.n));
   const specOnly = !anyShown && !!spec && options.some(([k]) => k === spec);
-  const opts = rows.map(x => ({ ...x, shown: x.n >= MIN_MENTIONS, top: anyShown && x.n === max, spec: specOnly && x.key === spec }));
+  const tied = tieNone && shownRows.filter(x => x.n === max).length > 1;
+  const opts = rows.map(x => ({ ...x, shown: x.n >= MIN_MENTIONS, top: anyShown && !tied && x.n === max, spec: specOnly && x.key === spec }));
   if (anyShown) opts.sort((a, b) => b.n - a.n);
   return { opts, reviews: options.reduce((s, [k]) => s + r(k), 0), votes: options.reduce((s, [k]) => s + v(k), 0), anyShown, specOnly };
 }

@@ -25,14 +25,15 @@ const ACCOUNTS = accountSite(niche.id);
 
 /** "Is it right for me?": the same picks and engine as FitCheck, with the bigger match box. `part`: a section of the top card
  *  (owner 2026-11-21: one card, as on PickleballRecs) instead of its own card. */
-export function FitCard({ id, part }: { id: string; part?: boolean }) {
+/** `title`/`sub`: the racket page's own heading and line (owner mock 2026-11-21, "Is this racket right for me?"). */
+export function FitCard({ id, part, title = W.fitTitle, sub }: { id: string; part?: boolean; title?: string; sub?: string }) {
   const [picks, set] = usePicks();
   const on = complete(picks), payload = usePayload(on);
   const fit = useMemo(() => on && payload ? fitFor(payload, picks, id) : null, [on, payload, picks, id]);
   const adv = useMemo(() => fit && payload && fit.verdict.kind !== "thin" ? adviceFor(payload, picks, id, fit.pct) : null, [fit, payload, picks, id]);
   return <section className={part ? "th7-part th7-fit" : "th-card th7-card th7-fit"}>
-    <h2 className={part ? "th7-subh" : "th-h3"}>{W.fitTitle}</h2>
-    <div className="th-fit"><PickChips picks={picks} set={set} small armLabel="Arm comfort"/></div>
+    {sub ? <div className="th7-hd"><h2 className="th-h2">{title}</h2><span className="th-sub">{sub}</span></div> : <h2 className={part ? "th7-subh" : "th-h3"}>{title}</h2>}
+    <div className="th-fit"><PickChips picks={picks} set={set} small armLabel="Arm comfort" {...(sub ? { labels: ["Your level", "What matters most?"] as [string, string] } : {})}/></div>
     {(picks.level || picks.style) && <div aria-live="polite">
       {!on ? <p className="th-note">Pick a level and a style to see your match.</p> : !fit ? <p className="th-note">Working out your match…</p>
         : <div className="th7-match">
@@ -145,24 +146,26 @@ function ReviewRow({ c, owner, onChange }: { c: RvCard; owner: boolean; onChange
   </article>;
 }
 
-const TABS = [["all", "All"], ["player", niche.site.name], ["reddit", "Reddit"], ["youtube", "YouTube"], ["blog", "Blogs"], ["forum", "Forums"]] as const;
-type Sort = "helpful" | "new" | "pos" | "crit";
-const SORTS: [Sort, string][] = [["new", "Newest"], ["helpful", "Most helpful"], ["pos", "Most positive"], ["crit", "Critical first"]];
+// Owner mock 2026-11-21: sentiment chips on the left, source chips on the right, and Newest · Most helpful · Oldest.
+const TABS = [["all", "All sources"], ["player", niche.site.name], ["reddit", "Reddit"], ["youtube", "YouTube"], ["blog", "Blogs"], ["forum", "Forums"]] as const;
+const FEEL = [["all", "All"], ["positive", "Loved it"], ["mixed", "Mixed"], ["negative", "Not for me"]] as const;
+type Sort = "helpful" | "new" | "old";
+const SORTS: [Sort, string][] = [["new", "Newest"], ["helpful", "Most helpful"], ["old", "Oldest"]];
 const PAGE = 8;
 /** Player reviews (v7b). `model` (the racket's name without brand and year) is no longer shown here. */
 export function ReviewsV7b({ id, cards }: { id: string; cards: RvCard[]; model?: string }) {
   const { open, setOpen, verdict, setVerdict, text, setText, nick, setNick, busy, error, setError, done, me, post } = useReviewPost(id);
   const owner = useOwner();
-  const [tab, setTab] = useState<(typeof TABS)[number][0]>("all"), [sort, setSort] = useState<Sort>("new"), [sortOpen, setSortOpen] = useState(false), [shown, setShown] = useState(PAGE);
+  const [tab, setTab] = useState<(typeof TABS)[number][0]>("all"), [feel, setFeel] = useState<(typeof FEEL)[number][0]>("all"), [sort, setSort] = useState<Sort>("new"), [sortOpen, setSortOpen] = useState(false), [shown, setShown] = useState(PAGE);
   const [changed, setChanged] = useState<Record<string, Changed>>({});
   const live = useMemo(() => cards.filter(c => !changed[c.id]?.gone).map(c => { const x = changed[c.id]; return x ? { ...c, ...(x.text ? { text: x.text } : {}), ...(x.alias ? { who: x.alias, alias: x.alias, meta: null } : {}) } : c; }), [cards, changed]);
   const has = (k: string) => k === "all" || live.some(c => c.kind === k);
   // Tabs and sort run here in the browser (instant filters); "Most helpful" uses the page's vote counts, then longer text.
   const list = useMemo(() => {
-    const l = live.filter(c => tab === "all" || c.kind === tab), rank = (o: Record<string, number>) => (c: RvCard) => o[c.verdict ?? ""] ?? 3;
-    const by = sort === "pos" ? rank({ positive: 0, mixed: 1, negative: 2 }) : sort === "crit" ? rank({ negative: 0, mixed: 1, positive: 2 }) : null;
-    return [...l].sort((a, b) => sort === "helpful" ? b.helpful - a.helpful || b.text.length - a.text.length : (by ? by(a) - by(b) : 0) || (b.at ?? "").localeCompare(a.at ?? ""));
-  }, [live, tab, sort]);
+    const l = live.filter(c => (tab === "all" || c.kind === tab) && (feel === "all" || c.verdict === feel));
+    return [...l].sort((a, b) => sort === "helpful" ? b.helpful - a.helpful || b.text.length - a.text.length
+      : sort === "old" ? (a.at ?? "").localeCompare(b.at ?? "") : (b.at ?? "").localeCompare(a.at ?? ""));
+  }, [live, tab, feel, sort]);
   // A link to one review (Copy link) opens on it: show enough rows and scroll there once the list is drawn.
   useEffect(() => { const h = location.hash.slice(1); if (!h.startsWith("rv-")) return; const i = list.findIndex(c => `rv-${c.id}` === h);
     // eslint-disable-next-line react-hooks/set-state-in-effect
@@ -173,7 +176,12 @@ export function ReviewsV7b({ id, cards }: { id: string; cards: RvCard[]; model?:
   const sortLabel = SORTS.find(([k]) => k === sort)![1];
   return <section id="reviews" className="th-card th7-card th7-reviews">
     <div className="th7-head"><h2 className="th-h2">{W.Reviews}</h2>
-      {!open && !done && <button type="button" className="th-btn round lime" onClick={() => setOpen(true)}>+ Add your review</button>}</div>
+      <span className="th7-head-r">{cards.length > 0 && <span className="th7-sort">
+        <button type="button" className="th7-sort-btn" aria-haspopup="listbox" aria-expanded={sortOpen} onClick={() => setSortOpen(o => !o)}><span className="lbl">Sort:</span>{sortLabel}<span className="arr" aria-hidden="true">▼</span></button>
+        {sortOpen && <span className="th7-sort-menu" role="listbox" aria-label="Sort reviews">{SORTS.map(([k, l]) =>
+          <button key={k} type="button" role="option" aria-selected={sort === k} onClick={() => { setSort(k); setSortOpen(false); setShown(PAGE); }}>{l}<span>{sort === k ? "✓" : ""}</span></button>)}</span>}
+      </span>}
+      {!open && !done && <button type="button" className="th-btn round lime" onClick={() => setOpen(true)}>+ Add your review</button>}</span></div>
     {done && <p className="th-ok" role="status">{done === "words" ? "Thanks for sharing! Your review will appear here once it's approved." : done === "live" ? "Thanks for sharing! Your review is live and shows here after a refresh." : "Thanks! Your vote has been added."}</p>}
     {open && <div className="th-compose soft">
       {me ? <div className="th-as th-as-me">Posting as <b>{me.name}</b><MemberMark/></div>
@@ -188,21 +196,17 @@ export function ReviewsV7b({ id, cards }: { id: string; cards: RvCard[]; model?:
         <button type="button" className="th-post" disabled={!verdict || busy || (!!text.trim() && !!nameProblem(nick))} onClick={post}>{busy ? "Posting…" : "Post"}</button></div>
       {!busy && postWhy(verdict, text, nick) && <span className="th-why" style={{ alignSelf: "flex-end" }}>{postWhy(verdict, text, nick)}</span>}
     </div>}
-    <span className="th-note th7-intro">{`From ${W.people} here. Plus Reddit, YouTube and blog reviews, summarised.`}</span>
     <PendingReviews racketId={id}/>
-    {cards.length > 0 && <div className="th7-bar">
-      <div className="th7-tabs" role="group" aria-label="Show reviews from">{TABS.filter(([k]) => has(k)).map(([k, l]) =>
+    {cards.length > 0 && <div className="th7-bar th7-chips">
+      <div className="th7-chipset" role="group" aria-label="Show reviews that">{FEEL.map(([k, l]) =>
+        <button key={k} type="button" aria-pressed={feel === k} onClick={() => { setFeel(k); setShown(PAGE); }}>{l}</button>)}</div>
+      <div className="th7-chipset" role="group" aria-label="Show reviews from">{TABS.filter(([k]) => has(k)).map(([k, l]) =>
         <button key={k} type="button" aria-pressed={tab === k} onClick={() => { setTab(k); setShown(PAGE); }}>{l}</button>)}</div>
-      <span className="th7-sort">
-        <button type="button" className="th7-sort-btn" aria-haspopup="listbox" aria-expanded={sortOpen} onClick={() => setSortOpen(o => !o)}><span className="lbl">Sort:</span>{sortLabel}<span className="arr" aria-hidden="true">▼</span></button>
-        {sortOpen && <span className="th7-sort-menu" role="listbox" aria-label="Sort reviews">{SORTS.map(([k, l]) =>
-          <button key={k} type="button" role="option" aria-selected={sort === k} onClick={() => { setSort(k); setSortOpen(false); setShown(PAGE); }}>{l}<span>{sort === k ? "✓" : ""}</span></button>)}</span>}
-      </span>
     </div>}
     <div className="th7-rv-list">
       {list.slice(0, shown).map(c => <ReviewRow key={c.id} c={c} owner={owner} onChange={x => setChanged(m => ({ ...m, [c.id]: { ...m[c.id], ...x } }))}/>)}
       {cards.length === 0 && <p className="th-empty">{`No reviews yet. ${W.triedIt} Be the first.`}</p>}
-      {cards.length > 0 && list.length === 0 && <p className="th-empty">No reviews match. <button type="button" onClick={() => setTab("all")}>Show all</button></p>}
+      {cards.length > 0 && list.length === 0 && <p className="th-empty">No reviews match these filters yet. <button type="button" onClick={() => { setTab("all"); setFeel("all"); }}>Show all</button></p>}
     </div>
     {list.length > shown && <button type="button" className="th-btn th-center" style={{ margin: "4px 0 8px" }} onClick={() => setShown(s => s + 16)}>{`Load ${Math.min(16, list.length - shown)} more reviews`}</button>}
   </section>;
