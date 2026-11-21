@@ -47,7 +47,9 @@ export function FitCheck({ id }: { id: string }) {
 type Counts = { positive: number; mixed: number; negative: number };
 export const RATING: Record<Verdict, number> = { positive: 5, mixed: 3, negative: 1 };
 /** "Played it? Tap to add yours": the review verdicts plus the quick votes, one vote per device, changeable. */
-export function Poll({ id, reviews, question = "Poll: would you buy it again?" }: { id: string; reviews: Counts; question?: string }) {
+/** `sub` and `countsOnly`: the PadelRecs racket page (owner mock 2026-11-21) adds a line under the question and shows plain
+ *  counts, no percentages. */
+export function Poll({ id, reviews, question = "Poll: would you buy it again?", sub, countsOnly = false }: { id: string; reviews: Counts; question?: string; sub?: string; countsOnly?: boolean }) {
   const [votes, setVotes] = useState<Counts | null>(null), [mine, setMine] = useState<Verdict | null>(null), [err, setErr] = useState("");
   // Counts from /api/thread-poll: a reviewer who also quick-voted counts once (their review is in `reviews`).
   const load = () => fetch(`/api/thread-poll?racket=${encodeURIComponent(id)}`, { cache: "no-store" }).then(r => r.ok ? r.json() : null).then((b: { votes?: Counts; mine?: number | null } | null) => {
@@ -67,12 +69,12 @@ export function Poll({ id, reviews, question = "Poll: would you buy it again?" }
   const n = (k: Verdict) => reviews[k] + (votes?.[k] ?? 0);
   const total = n("positive") + n("mixed") + n("negative");
   return <div className="th-poll">
-    <span className="th-poll-head"><b>{question}</b><span>{mine ? "Thanks, your vote counts. Tap another to change it, or tap again to remove." : "One tap, no account"}</span></span>
+    <span className="th-poll-head">{sub ? <span className="th-poll-q"><b>{question}</b><small>{sub}</small></span> : <b>{question}</b>}<span>{mine ? "Thanks, your vote counts. Tap another to change it, or tap again to remove." : "One tap, no account"}</span></span>
     {(["positive", "mixed", "negative"] as const).map(k => { const c = n(k), w = total ? Math.round(c / total * 100) : 0, cls = VERDICT[k][1];
       return <button key={k} type="button" className={`th-popt ${cls}${mine && mine !== k ? " dim" : ""}`} aria-pressed={mine === k} onClick={() => pick(k)}>
         <i style={{ width: total ? `${w}%` : 0 }}/>
         <span><span className={`th-sdot ${cls}`}/>{VERDICT[k][0]}</span>
-        <em>{total >= POLL_PCT_AT ? <><strong>{`${w}%`}</strong>{c > 0 && <span>{` · ${c}`}</span>}</> : c > 0 ? <strong>{c}</strong> : null}</em>
+        <em>{total >= POLL_PCT_AT && !countsOnly ? <><strong>{`${w}%`}</strong>{c > 0 && <span>{` · ${c}`}</span>}</> : c > 0 ? <strong>{c}</strong> : null}</em>
       </button>; })}
     {total === 0 && <span className="th-note">No votes yet. Be the first.</span>}
     {err && <span className="th-err">{err}</span>}

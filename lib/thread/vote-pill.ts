@@ -1,0 +1,35 @@
+// PadelRecs racket page (owner mock "Racket Page", 2026-11-21): one pill in the top card with the racket's strongest "How does
+// it play?" answer, in fixed words per group ("Most picked for power · 22 players"). Only when the leading answer has 5+
+// behind it and clearly leads its group (1.5x the runner-up); otherwise no pill. Counts are the group as the page shows it
+// (review prefill or the owner's override, plus votes). Not the review highlights ("Often mentioned: …"), which stay off.
+// Pure, so tests feed plain counts.
+
+/** The words after "Most picked for", per group and answer. An answer without words never makes a pill (a small sweet spot
+ *  or "wears fast" is not a selling line). */
+export const PILL_WORDS: Record<string, Record<string, string>> = {
+  plays_like: { power: "power", control: "control", all_round: "all-round play" },
+  level: { beginner: "beginners", intermediate: "intermediate players", advanced: "advanced players" },
+  sweet_spot: { big: "a big sweet spot" },
+  arm: { very: "arm comfort" },
+  feel: { soft: "a soft feel", medium: "a medium feel", hard: "a hard feel" },
+  side: { right: "the right side", left: "the left side", both: "both sides" },
+  maneuver: { very: "quick handling" },
+  durability: { holds_up: "durability" },
+};
+export const PILL_MIN = 5, PILL_LEAD = 1.5;
+
+/** The pill's text, or null. Of the groups whose leader qualifies, the one where the leader holds the biggest share wins;
+ *  a tie goes to the earlier group in PILL_WORDS order. */
+export function votePill(groups: Record<string, Record<string, number> | null | undefined>, people = "players"): string | null {
+  let best: { share: number; text: string } | null = null;
+  for (const [key, words] of Object.entries(PILL_WORDS)) {
+    const g = groups[key]; if (!g) continue;
+    const opts = Object.entries(g).filter(([, n]) => n > 0).sort((a, b) => b[1] - a[1]);
+    if (!opts.length) continue;
+    const [[top, n], second] = [opts[0], opts[1]?.[1] ?? 0], total = opts.reduce((s, [, x]) => s + x, 0);
+    if (n < PILL_MIN || n < PILL_LEAD * second || !words[top]) continue;
+    const share = n / total;
+    if (!best || share > best.share) best = { share, text: `Most picked for ${words[top]} · ${n} ${n === 1 ? people.replace(/s$/, "") : people}` };
+  }
+  return best?.text ?? null;
+}
