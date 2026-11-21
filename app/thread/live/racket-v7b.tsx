@@ -110,8 +110,9 @@ const ICON: Record<Exclude<RvCard["kind"], "player">, ReactNode> = {
 const SRC_NAME = { youtube: "YouTube", reddit: "Reddit", blog: "Blog", forum: "Forum" } as const;
 const LINK_WORD = { youtube: "Watch original ↗", reddit: "View original ↗", blog: "Read original ↗", forum: "Read original ↗" } as const;
 
-type Changed = { text?: string; alias?: string; gone?: true };
-function ReviewRow({ c, owner, onChange }: { c: RvCard; owner: boolean; onChange: (x: Changed) => void }) {
+export type Changed = { text?: string; alias?: string; gone?: true };
+/** `flair`: the community feed's small REVIEW chip first (feed-v7b.tsx). */
+export function ReviewRow({ c, owner, onChange, flair }: { c: RvCard; owner: boolean; onChange: (x: Changed) => void; flair?: boolean }) {
   const [edit, setEdit] = useState<{ name: string; text: string | null } | null>(null), [err, setErr] = useState(""), [copied, setCopied] = useState(false);
   const anchor = `rv-${c.id}`, rid = c.id.slice(2), web = c.kind !== "player";
   // Reddit rows: the subreddit, "r/name" (owner 2026-11-21; never "<model> owners"), else "Reddit".
@@ -135,7 +136,7 @@ function ReviewRow({ c, owner, onChange }: { c: RvCard; owner: boolean; onChange
   return <article id={anchor} className="th7-rv th7-rv-av">
     <span className={`th7-av${av ? "" : " none"}`} style={av ? { background: av.bg } : undefined} aria-hidden="true">{av?.init ?? ""}</span>
     <div className="th7-rv-b">
-    <div className="th7-rv-top">{shown && <><strong>{shown}</strong>{c.member && <MemberMark/>}</>}{!name && c.info && <span className="th-rv-info">{c.info}</span>}
+    <div className="th7-rv-top">{flair && <span className="th-flair review">Review</span>}{shown && <><strong>{shown}</strong>{c.member && <MemberMark/>}</>}{!name && c.info && <span className="th-rv-info">{c.info}</span>}
       {c.verdict && <span className={`th-vpill ${VERDICT[c.verdict][1]}`}>{VERDICT[c.verdict][0]}</span>}
       {c.when && <span><Ago at={c.at || null} initial={c.when}/></span>}</div>
     {edit ? <div className="th-admin-acts">
@@ -166,7 +167,7 @@ const PAGE = 8;
 /** Player reviews (v7b). `model` (the racket's name without brand and year) is no longer shown here. */
 /** The poll's live total, as the poll itself shows it (racket.tsx Poll sends it once its counts load). */
 export const POLL_TOTAL = "thread-poll-total";
-function PollPointer() {
+export function PollPointer() {
   const [n, setN] = useState<number | null>(null);
   useEffect(() => { const w = window as { __thPollTotal?: number }; if (typeof w.__thPollTotal === "number") setN(w.__thPollTotal);
     const on = (e: Event) => setN((e as CustomEvent<number>).detail); addEventListener(POLL_TOTAL, on); return () => removeEventListener(POLL_TOTAL, on); }, []);
@@ -266,7 +267,8 @@ const WEB_SRC = { threads: ["r/ Reddit", "r"], comments: ["r/ Reddit", "r"], vid
  *  holes) and one on phones. `open` (under THIN_REVIEWS player reviews): every card; else WEB_FIRST, then one Show more.
  *  None of it counts in the poll. */
 export function WebSources({ web, open = false }: { web: WebGroups<RvCard>; open?: boolean }) {
-  const [all, setAll] = useState(open);
+  // `open` can turn off once the community feed's posts load (feed-v7b.tsx), so it is read live, not just at first render.
+  const [more, setAll] = useState(false), all = open || more;
   // A copied link to one card (#rv-w-…) opens the box on it.
   useEffect(() => { const h = location.hash.slice(1); if (!h.startsWith("rv-w-")) return;
     // eslint-disable-next-line react-hooks/set-state-in-effect

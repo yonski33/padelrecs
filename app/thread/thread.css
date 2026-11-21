@@ -2039,3 +2039,26 @@ body:has(.th) .th a.th7-pollpoint { flex-basis: 100%; font-size: 13.5px; font-we
 .th-poll-ask .go { padding: 3px 12px; border-radius: 999px; background: var(--lime); border: 1.5px solid var(--ink); }
 .th-poll-ask .x { width: 28px; height: 28px; text-align: center; line-height: 28px; font-size: 18px; color: var(--ink2); border-radius: 50%; }
 .th-poll-ask .x:hover { background: var(--frame); color: var(--ink); }
+/* PadelRecs one community feed (owner OK 2026-11-21): reviews and posts in one list. A small-caps flair chip leads each post
+   (REVIEW / QUESTION / TIP), filter chips and Newest activity · Top sit on one row, the composer opens with a type picker. */
+.th-flair { display: inline-flex; align-items: center; padding: 0 7px; border-radius: 5px; font-size: 10.5px; font-weight: 700;
+  letter-spacing: .06em; text-transform: uppercase; line-height: 18px; color: var(--ink); background: var(--frame); border: 1px solid var(--line); }
+.th-flair.review { background: var(--lime-chip); border-color: transparent; }
+.th-flair.question { background: oklch(0.93 0.05 240); border-color: transparent; }
+.th-flair.tip { background: oklch(0.94 0.07 85); border-color: transparent; }
+.th-feed-bar { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 8px 12px; }
+.th-feed-bar .th-seg { margin: 0; }
+.th-feed-list > .th7-cm { padding: 13px 0; border-top: 1.5px solid var(--div); scroll-margin-top: 80px; }
+.th-feed-list > :first-child { border-top: 0; }
+.th-feed-compose { display: flex; flex-direction: column; gap: 8px; }
+.th-feed-types { display: flex; gap: 6px; flex-wrap: wrap; }
+.th-feed-types button { all: unset; cursor: pointer; font-size: 13.5px; font-weight: 600; padding: 3px 12px; border-radius: 999px;
+  border: 1.5px solid var(--chip); background: var(--card); }
+.th-feed-types button[aria-pressed="true"] { border-color: var(--ink); background: var(--ink); color: #fff; }
+.th-feed-types button:focus-visible, .th-feed-more:focus-visible, .th-feed-alt:focus-visible { outline: 3px solid var(--lime); outline-offset: 2px; }
+.th-feed-more, .th-feed-alt { all: unset; cursor: pointer; font-size: 13.5px; font-weight: 700; color: var(--ink2); text-decoration: underline;
+  text-underline-offset: 3px; }
+.th-feed-more { margin: 2px 0 4px 34px; }
+.th-feed-more:hover, .th-feed-alt:hover { color: var(--ink); }
+.th-admin-line { margin: 0; font-size: 12.5px; color: var(--ink2); display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+.th-admin-line button { all: unset; cursor: pointer; font-weight: 700; text-decoration: underline; }

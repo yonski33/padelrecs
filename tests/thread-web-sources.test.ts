@@ -32,8 +32,8 @@ test("summaries say players, never owners", () => {
 
 test("the racket page lists only player reviews and puts the rest in From around the web", () => {
   const page = readFileSync("app/thread/racket-v7b.tsx", "utf8"), live = readFileSync("app/thread/live/racket-v7b.tsx", "utf8");
-  assert.match(page, /<ReviewsV7b id=\{p\.id\} cards=\{src\.players\} web=\{webCount\(src\.web\)\}\/>/);
-  assert.match(page, /<WebSources web=\{src\.web\} open=\{isThin\(src\.players\.length\)\}\/>/);
+  assert.match(page, /<CommunityFeed id=\{p\.id\} model=\{p\.model\} cards=\{src\.players\} web=\{src\.web\} webCount=\{webCount\(src\.web\)\}\/>/);
+  assert.match(readFileSync("app/thread/live/feed-v7b.tsx", "utf8"), /<WebSources web=\{web\} open=\{thin\}\/>/);
   assert.doesNotMatch(live, /All sources/);
   assert.match(live, /Short summaries of Reddit threads, YouTube reviews and blogs\. Not counted in the player poll above\./);
   const box = live.slice(live.indexOf("function WebCard"));

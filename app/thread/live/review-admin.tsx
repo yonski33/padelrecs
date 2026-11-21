@@ -30,13 +30,18 @@ const verdictOf = (rating: number) => rating >= 4 ? "positive" : rating === 3 ? 
 
 type Pending = { id: string; alias: string | null; rating: number; text: string; tags: string[]; level: string | null; at: string };
 /** Pending reviews of this racket, at the top of the reviews section: Approve, Reject, Edit then approve. */
-export function PendingReviews({ racketId }: { racketId: string }) {
+/** `compact` (PadelRecs' community feed, owner 2026-11-21): one small admin line, "2 pending · Only you see this", that
+ *  opens the full box when there is something to check. Without it, the box as before. */
+export function PendingReviews({ racketId, compact }: { racketId: string; compact?: boolean }) {
+  const [shown, setShown] = useState(false);
   const owner = useOwner();
   const [rows, setRows] = useState<Pending[] | null>(null), [edit, setEdit] = useState<Record<string, string>>({}), [names, setNames] = useState<Record<string, string>>({}), [err, setErr] = useState(""), [note, setNote] = useState("");
   useEffect(() => { if (!owner) return;
     fetch(`/api/funtimes/racket-reviews?racket=${encodeURIComponent(racketId)}`, { cache: "no-store" }).then(r => r.ok ? r.json() : null)
       .then((b: { pending?: Pending[] } | null) => setRows(b?.pending ?? [])).catch(() => setRows([])); }, [owner, racketId]);
   if (!owner || !rows) return null;
+  if (compact && !shown) return <p className="th-admin-line" role="note"><b>{`${rows.length} pending`}</b>{" · Only you see this"}
+    {rows.length > 0 && <button type="button" onClick={() => setShown(true)}>Check them</button>}</p>;
   const done = (id: string, msg: string) => { setRows(l => (l ?? []).filter(x => x.id !== id)); setNote(msg); setErr(""); };
   const act = async (p: Pending, how: "approve" | "reject" | "edit") => {
     try {
