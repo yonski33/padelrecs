@@ -2209,3 +2209,20 @@ body:has(.th) .th.th-pb .rk5-box h3 { background: none; color: var(--ink); borde
 /* The marker highlight behind text ("Mostly intermediate", "N loved"; owner 2026-11-22): padel's yellow on every v3 site, never
    the site accent. It reads var(--marker, #FFE45C) and no site sets --marker. Bars, pills, buttons and the quick match sticker
    keep each site's accent (--sticker, --lime). */
+
+/* DiscGolfRecs on the v3 pages (V3-ROLLOUT-BRIEF wave 2): padel's v3 structure with disc golf's own look (pine ink, warm
+   paper, disc orange accent, Familjen Grotesk; .th-dg above). These are the v3 pieces padel scopes to .th-pr. No black header bars. */
+.th.th-dg { --sticker: oklch(0.86 0.1 60); }
+.th.th-dg .th-card { background: var(--card); }
+.th.th-dg .tc-qm-tag { background: var(--sticker); }
+.th.th-dg .tc-box-dark { padding: 12px 0 6px; }
+.th.th-dg .tc-box-dark .tc-bh { background: none; color: var(--ink) !important; padding: 0 16px 8px; border-bottom: 1.5px solid var(--line); }
+body:has(.th) .th.th-dg .rk5-box h3 { background: none; color: var(--ink); border-bottom: 1.5px solid var(--line); }
+.th.th-dg .th-sbox-head { background: none; color: var(--ink); border-bottom: 1.5px solid var(--line); }
+.th.th-dg :is(.rk5-row .pic, .tc-ph, .tc-new-ph, .th-photo, .th-bigphoto, .th-ar-pic),
+body:has(.th) .th.th-dg .cp3-card a.pic { background: transparent; border-color: transparent; }
+.th.th-dg :is(.rk5-row .pic, .tc-ph, .tc-new-ph, .th-photo, .th-bigphoto, .th-ar-pic, .cp3-card .pic) img { mix-blend-mode: multiply; }
+.th.th-dg .rk5 { --r5-soft: oklch(0.96 0.03 150); --r5-chip: oklch(0.9 0.1 60); }
+.th.th-dg .cp3 { --c3-soft: oklch(0.96 0.03 150); }
+.th.th-dg .rkh { --rh-card: #fff; --rh-ink: #16251d; --rh-ink2: #4b5a50; --rh-line: #dce1da; }
+.th.th-dg .tc-name .th-flight { margin-left: 2px; }

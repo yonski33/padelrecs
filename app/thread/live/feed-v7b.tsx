@@ -29,7 +29,8 @@ import { MoreMenu, OPEN_REVIEW, PollPointer, reportPost, ReviewRow, WebSources, 
 const ACCOUNTS = accountSite(niche.id);
 /** PadelRecs (owner 2026-11-21): a plain post by default, saved types (drizzle/0035), and these prompts. Other sites on this
  *  feed (AudioRecs) keep the earlier composer and the guessed QUESTION / TIP. */
-const PADEL = niche.id === "padel";
+/** DiscGolfRecs (wave 2) posts the same way as padel. */
+const PADEL = niche.id === "padel" || niche.id === "discgolf";
 /** The sites with saved post types (drizzle/0035, lib/thread/sites.ts postTypeSite): a saved Question or Tip wins, else the
  *  question rule; the others keep the guessed QUESTION / TIP. */
 const TYPED = postTypeSite(niche.id);
@@ -38,10 +39,12 @@ type Item = { key: string; flair: Flair | null; at: string; top: number } & ({ r
 const CHIPS: [Flair | "all", string][] = [["all", "All"], ["review", "Reviews"], ["question", "Questions"], ["tip", "Tips"]];
 const PAGE = 8;
 
-export function CommunityFeed({ id, model, cards, web }: { id: string; model: string; cards: RvCard[]; web: WebGroups<RvCard> }) {
+/** `plastics`: DiscGolfRecs' plastic chips (the plastics its reviews name, 2+); picking one shows only the reviews about it. */
+export function CommunityFeed({ id, model, cards, web, plastics }: { id: string; model: string; cards: RvCard[]; web: WebGroups<RvCard>; plastics?: string[] }) {
   const rv = useReviewPost(id), t = useComments(`racket:${id}`), owner = useOwner();
   // The composer (owner 2026-11-21): open or closed, and an optional type. None picked posts a plain comment with no flair.
   const [composing, setComposing] = useState(false), [kind, setKind] = useState<Flair | null>(null), [filter, setFilter] = useState<Flair | "all">("all"), [sort, setSort] = useState<"new" | "top">("new");
+  const [plastic, setPlastic] = useState<string | null>(null);
   const [shown, setShown] = useState(PAGE), [openReplies, setOpenReplies] = useState<Record<string, true>>({}), [changed, setChanged] = useState<Record<string, Changed>>({});
   // The poll's "Want to add a line about why?" (racket.tsx Poll) opens this composer on Review, with the vote picked.
   useEffect(() => { const on = (e: Event) => { const v = (e as CustomEvent<Verdict>).detail; setComposing(true); setKind("review"); rv.setOpen(true); if (v) rv.setVerdict(v);
@@ -55,8 +58,8 @@ export function CommunityFeed({ id, model, cards, web }: { id: string; model: st
   ], [reviews, t.tops, t.replies]);
   // Under THIN_REVIEWS posts in all (reviews and top-level posts): the compact look of #601, and the web box open in full.
   const thin = isThin(items.length);
-  const list = useMemo(() => items.filter(i => filter === "all" || i.flair === filter)
-    .sort((a, b) => sort === "top" ? b.top - a.top || b.at.localeCompare(a.at) : b.at.localeCompare(a.at)), [items, filter, sort]);
+  const list = useMemo(() => items.filter(i => (filter === "all" || i.flair === filter) && (!plastic || ("review" in i && i.review.version === plastic)))
+    .sort((a, b) => sort === "top" ? b.top - a.top || b.at.localeCompare(a.at) : b.at.localeCompare(a.at)), [items, filter, sort, plastic]);
   // A link to one review or post (#rv-…, #cm-…) opens the list far enough and scrolls there once the posts are in.
   // #reply-<id> (the home's and /questions' "Answer first ›"): that post's reply box opens too.
   useEffect(() => { const h = location.hash.slice(1); if (!/^(rv|cm|reply)-/.test(h) || !t.list) return;
@@ -110,7 +113,7 @@ export function CommunityFeed({ id, model, cards, web }: { id: string; model: st
     <div className="th-picks"><span className="lbl" style={{ fontSize: 13.5, color: "var(--ink2)", minWidth: 0 }}>{W.triedIt}</span>
       {VERDICTS.map(v => <button key={v.key} type="button" className={`th-vpick ${VERDICT[v.key][1]}`} aria-pressed={rv.verdict === v.key} onClick={() => { rv.setVerdict(v.key as Verdict); rv.setError(""); }}><span className={`th-sdot ${VERDICT[v.key][1]}`}/>{VERDICT[v.key][0]}</button>)}
     </div>
-    <textarea className="th-ta th-ta-grow" rows={3} autoFocus value={rv.text} onChange={e => { rv.setText(e.target.value); rv.setError(""); grow(e.currentTarget, 240); }} maxLength={2000} placeholder={PADEL ? "How did it play for you?" : "Write your review"} aria-label="Your review"/>
+    <textarea className="th-ta th-ta-grow" rows={3} autoFocus value={rv.text} onChange={e => { rv.setText(e.target.value); rv.setError(""); grow(e.currentTarget, 240); }} maxLength={2000} placeholder={niche.id === "discgolf" ? "How did it fly for you?" : PADEL ? "How did it play for you?" : "Write your review"} aria-label="Your review"/>
     {rv.error && <span className="th-err">{rv.error}</span>}
     <div className="th-compose-foot"><span className="th-grow"/>{rv.me || !ACCOUNTS ? null : <a className="th-signin" href={signInHref("#reviews")}>Sign in to keep your name</a>}
       <button type="button" className="cancel" onClick={close}>Cancel</button>
@@ -150,6 +153,8 @@ export function CommunityFeed({ id, model, cards, web }: { id: string; model: st
         <div className="th-seg" role="group" aria-label="Sort"><span className="lbl">Sort</span>
           {([["new", "Newest activity"], ["top", "Top"]] as const).map(([k, l]) => <button key={k} type="button" aria-pressed={sort === k} onClick={() => setSort(k)}>{l}</button>)}</div>
       </div>}
+      {!thin && plastics && plastics.length > 1 && <div className="th-rv-chips" role="group" aria-label="Show plastic">{[null, ...plastics].map(v =>
+        <button key={v ?? "all"} type="button" className="th-chipf" aria-pressed={plastic === v} onClick={() => { setPlastic(v); setShown(PAGE); }}>{v ?? "All plastics"}</button>)}</div>}
       <div className="th7-rv-list th-feed-list">
         {list.slice(0, shown).map(i => "review" in i
           ? <ReviewRow key={i.key} c={i.review} owner={owner} flair onChange={x => setChanged(m => ({ ...m, [i.review.id]: { ...m[i.review.id], ...x } }))}/>

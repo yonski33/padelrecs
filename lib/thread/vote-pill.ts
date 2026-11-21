@@ -76,3 +76,10 @@ export const AUDIO_PILL_LABELS: Record<string, Record<string, string>> = {
   calls: { clear: "Clear calls" }, build: { solid: "Solid build" }, fit: { secure: "Secure fit" }, connection: { solid: "Solid connection" },
   sound: { warm: "Warm sound", balanced: "Balanced sound", bright: "Bright sound" }, amp: { no: "No amp needed" }, glasses: { fine: "Fine with glasses" },
 };
+
+/** DiscGolfRecs (V3-ROLLOUT-BRIEF wave 2): quality first, "Flies straight · 12 players". Words and labels match. */
+export const DISCGOLF_PILL_LABELS: Record<string, Record<string, string>> = {
+  stability: { understable: "Understable", stable: "Flies straight", overstable: "Overstable" }, glide: { lots: "Lots of glide" },
+  grip: { great: "Great grip" }, wind: { holds: "Holds in the wind" }, arm_speed: { any: "Easy for any arm" }, fade: { gentle: "Gentle fade", hard: "Hard fade" },
+  durability: { holds_up: "Holds up well" }, level: { beginner: "Beginner friendly" }, throw: { forehand: "Good for forehands" },
+};

@@ -4,9 +4,10 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { Shell } from "../../shell";
 import { racketData } from "../../racket-data";
+import { playersWord } from "../../../../lib/thread/web-sources";
 import { AudioFitCard } from "../../live/audio-match";
 import { audioGroupsFor } from "../../../../lib/thread/traits";
-import { AUDIO_PILL_LABELS, SIMRACING_PILL_WORDS, SIMRACING_PILL_LABELS, TENNIS_PILL_WORDS, TENNIS_PILL_LABELS, PICKLEBALL_PILL_WORDS, PICKLEBALL_PILL_LABELS } from "../../../../lib/thread/vote-pill";
+import { AUDIO_PILL_LABELS, SIMRACING_PILL_WORDS, SIMRACING_PILL_LABELS, TENNIS_PILL_WORDS, TENNIS_PILL_LABELS, PICKLEBALL_PILL_WORDS, PICKLEBALL_PILL_LABELS, DISCGOLF_PILL_LABELS } from "../../../../lib/thread/vote-pill";
 import { FitCard } from "../../live/racket-v7b";
 import type { AudioWire } from "../../../../lib/audio-match";
 import { threadRows, hasDb, skinOf, audioOf } from "../../data";
@@ -173,11 +174,13 @@ export default async function ThreadRacket({ params }: P) {
   // Platforms, Released), its gear type's vote groups and pills, a level-and-budget fit card and racer words. No score.
   // PickleballRecs (wave 2, 2026-11-21): the same, with its groups (Spin, Game type). No score.
   // TennisRecs (v3 wave 2, 2026-11-21): padel's page with its own spec rows (head size, weight, balance, pattern, stiffness).
-  if (niche.id === "padel" || (au && aw) || SR || TN || PB) {
+  // DiscGolfRecs (V3-ROLLOUT-BRIEF wave 2): the same v3 page with its specs, stability and flight numbers as tags, its plastic
+  // chips over the feed and "Slower arm" in the fit card. No score.
+  if (niche.id === "padel" || (au && aw) || SR || TN || PB || DG) {
     // "Released": the year in the name ("Head Radical MP 2023"), else the year field, except on TennisRecs and SimRacingRecs,
     // whose year field is a placeholder (2026 on every product, owner report 2026-11-22): there the row is left out.
     const released = r.name.match(/\b(20\d\d)\b/)?.[1] ?? (SR || (TN && !tennisYearKnown(r.slug)) ? null : r.year ? String(r.year) : null);
-    const v7Specs = (SR || TN || PB ? [...niche.specs.map(s => [s.label, r[s.column]]), ["Released", released]] : aw ? [["Type", r.balance], ["Connection", r.weight], ["Driver", r.core], ["Noise cancelling", aw.anc ? "Yes" : aw.wireless ? "No" : null], ["Notes", r.surface]] : [["Weight", r.weight], ["Shape", r.shape], ["Balance", r.balance], ["Feel", row?.feel ?? null], ["Face", r.surface], ["Released", r.year ? String(r.year) : null],
+    const v7Specs = (DG ? specs : SR || TN || PB ? [...niche.specs.map(s => [s.label, r[s.column]]), ["Released", released]] : aw ? [["Type", r.balance], ["Connection", r.weight], ["Driver", r.core], ["Noise cancelling", aw.anc ? "Yes" : aw.wireless ? "No" : null], ["Notes", r.surface]] : [["Weight", r.weight], ["Shape", r.shape], ["Balance", r.balance], ["Feel", row?.feel ?? null], ["Face", r.surface], ["Released", r.year ? String(r.year) : null],
       ...(((specNotes as unknown as Record<string, Record<string, [string, string][]>>)[niche.id] ?? {})[r.slug] ?? [])] as [string, string | null][]).filter((x): x is [string, string] => !!x[1]);
     // TL;DR with no counts (owner 2026-11-21): the written one as is; else the page's own lines without "N players mention
     // it", else the most-mentioned tags as "Players often say…". Claims still need 5+ reviews behind them (as before).
@@ -198,7 +201,7 @@ export default async function ThreadRacket({ params }: P) {
     const model = shortModel(bare, brand?.name);
     // The top card's pill: the strongest "How does it play?" answer, from the groups as the page shows them (lib/thread/vote-pill.ts).
     const tc = hasDb() ? await traitCounts() : null;
-    const pill = tc ? votePill(Object.fromEntries((SR ? traitGroupsForType(niche.id, r.shape, r.id) : TRAIT_GROUPS).map(g => [g.key, traitGroup(tc, r.id, g.key)])), W.people, ...(aw ? [AUDIO_PILL_LABELS, AUDIO_PILL_LABELS] as const : SR ? [SIMRACING_PILL_WORDS, SIMRACING_PILL_LABELS] as const : TN ? [TENNIS_PILL_WORDS, TENNIS_PILL_LABELS] as const : PB ? [PICKLEBALL_PILL_WORDS, PICKLEBALL_PILL_LABELS] as const : [])) : null;
+    const pill = tc ? votePill(Object.fromEntries((SR ? traitGroupsForType(niche.id, r.shape, r.id) : TRAIT_GROUPS).map(g => [g.key, traitGroup(tc, r.id, g.key)])), W.people, ...(DG ? [DISCGOLF_PILL_LABELS, DISCGOLF_PILL_LABELS] as const : aw ? [AUDIO_PILL_LABELS, AUDIO_PILL_LABELS] as const : SR ? [SIMRACING_PILL_WORDS, SIMRACING_PILL_LABELS] as const : TN ? [TENNIS_PILL_WORDS, TENNIS_PILL_LABELS] as const : PB ? [PICKLEBALL_PILL_WORDS, PICKLEBALL_PILL_LABELS] as const : [])) : null;
     // The community sidebar (owner OK 2026-11-21): this week's counts, the newest question, who plays it (votes only), and
     // the rackets it is compared with (its compare pages' partners, then the engine's similar rackets).
     const groupOf = (k: string) => tc ? traitGroup(tc, r.id, k) : null;
@@ -209,9 +212,9 @@ export default async function ThreadRacket({ params }: P) {
       .map(x => ({ row: x, href: `/compare?ids=${encodeURIComponent(r.slug)},${encodeURIComponent(x.slug)}` }));
     return <Shell active="rackets">
       <JsonLd data={ld}/>
-      <RacketV7b id={r.id} title={r.year && bare !== name ? `${bare} (${r.year})` : name} model={model} crumbs={crumbsEl} tags={aw ? audioTagsOf(aw, r.weight) : tags} lime={aw ? aw.anc : !!style} row={row} judged={judged} {...(aw && au ? audioPageProps(r.id, aw, au, rows, ctx) : SR ? srPageProps(r.id, r.shape) : {})}
-        lead={aw && lead ? lead.replace(/(?<![\w-])([Oo])wner(s?)\b/g, (_, o: string, x: string) => `${o === "O" ? "L" : "l"}istener${x}`) : SR && lead ? lead.replace(/(?<![\w-])([Oo])wner(s?)\b/g, (_, o: string, x: string) => `${o === "O" ? "R" : "r"}acer${x}`) : TN && lead ? lead.replace(/(?<![\w-])([Oo])wner(s?)\b/g, (_, o: string, x: string) => `${o === "O" ? "P" : "p"}layer${x}`) : lead} bullets={v7Bullets} specs={v7Specs} shop={shop} cards={cards} also={also} brand={brand ? { name: brand.name, slug: brand.slug } : null}
-        sim={simSelf ? pickSimilar(simSelf, simSpecs, new Set(compared.map(c => c.row.id))).flatMap(id => rows.get(id) ?? []) : aw || SR ? sim.filter(x => !compared.some(c => c.row.id === x.id)) : []} pill={pill} week={weekLine(cm.opinions, cm.posts)} latest={cm.latest} who={who} compared={compared} stories={tales}/>
+      <RacketV7b id={r.id} title={r.year && bare !== name ? `${bare} (${r.year})` : name} model={model} crumbs={crumbsEl} tags={aw ? audioTagsOf(aw, r.weight) : DG && flight ? [...tags, `${flight.speed} | ${flight.glide} | ${flight.turn} | ${flight.fade}`] : tags} lime={aw ? aw.anc : !!style} row={row} judged={judged} {...(aw && au ? audioPageProps(r.id, aw, au, rows, ctx) : SR ? srPageProps(r.id, r.shape) : {})}
+        lead={aw && lead ? lead.replace(/(?<![\w-])([Oo])wner(s?)\b/g, (_, o: string, x: string) => `${o === "O" ? "L" : "l"}istener${x}`) : DG && lead ? playersWord(lead, W.person) : SR && lead ? lead.replace(/(?<![\w-])([Oo])wner(s?)\b/g, (_, o: string, x: string) => `${o === "O" ? "R" : "r"}acer${x}`) : TN && lead ? lead.replace(/(?<![\w-])([Oo])wner(s?)\b/g, (_, o: string, x: string) => `${o === "O" ? "P" : "p"}layer${x}`) : lead} bullets={v7Bullets} specs={v7Specs} shop={shop} cards={cards} also={also} brand={brand ? { name: brand.name, slug: brand.slug } : null}
+        sim={simSelf ? pickSimilar(simSelf, simSpecs, new Set(compared.map(c => c.row.id))).flatMap(id => rows.get(id) ?? []) : aw || SR || DG ? sim.filter(x => !compared.some(c => c.row.id === x.id)) : []} pill={pill} week={weekLine(cm.opinions, cm.posts)} latest={cm.latest} who={who} compared={compared} stories={tales}/>
     </Shell>;
   }
   return <Shell active="rackets">
@@ -278,6 +281,11 @@ export default async function ThreadRacket({ params }: P) {
 
 /** AudioRecs' tags: noise cancelling first (lime), the kind, the connection and the tuning listeners hear. */
 /** SimRacingRecs' product page parts: the fit card in its words (level and budget, I race on console) and the gear type's groups. */
+/** DiscGolfRecs' fit card words ("Slower arm") and its plastic chips over the feed. */
+function dgPageProps(id: string, cards: { version?: string | null }[]) {
+  return { fit: <FitCard id={id} title="Is this disc right for me?" sub="Pick your level and the flight you want, for a quick fit from community feedback." arm="Slower arm"/>,
+    whoTitle: "Who throws it", ...(plastics(cards) ? { plastics: plastics(cards) } : {}) };
+}
 function srPageProps(id: string, shape: string | null) {
   return { fit: <FitCard id={id} title="Is this product right for me?" sub="Pick your level and budget, for a quick fit from community feedback." arm="I race on console"/>,
     groups: traitGroupsForType(niche.id, shape, id), whoTitle: "Who races with it" };

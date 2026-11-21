@@ -27,6 +27,7 @@ export const generateMetadata = async (): Promise<Metadata> => { const m = await
 
 /** The sidebar's ranking links, in the mock's order, where the list exists. */
 /** SimRacingRecs' sidebar links: overall, the gear types, beginners. */
+const DG_RANK_LINKS = ["best-disc-golf-discs", "best-disc-golf-discs-for-beginners", "best-disc-golf-discs-for-slow-arms", "best-disc-golf-putters", "best-disc-golf-midrange-discs", "best-disc-golf-fairway-drivers"];
 const SR_RANK_LINKS = ["best-sim-racing-gear", "best-sim-racing-wheelbases", "best-sim-racing-pedals", "best-sim-racing-wheels", "best-sim-racing-gear-for-beginners", "best-sim-racing-cockpits"];
 const TN_RANK_LINKS = ["best-tennis-rackets", "best-power-tennis-rackets", "best-control-tennis-rackets", "best-spin-tennis-rackets", "best-arm-friendly-tennis-rackets", "best-tennis-rackets-for-beginners"];
 /** PickleballRecs' sidebar links: overall, power, control, spin, beginners, tennis elbow. */
@@ -44,7 +45,7 @@ export default async function ThreadCatalog() {
     return <Shell active="rackets">{ld}<Catalog rows={rows} brands={brands}/></Shell>;
   }
   const { brands, pills, added, curated, wire, rows: listRows } = await padelListData();
-  const lists = await threadRankings(), rankings = (niche.id === "audio" ? lists.map(l => l.slug).slice(0, 6) : niche.id === "simracing" ? SR_RANK_LINKS : niche.id === "tennis" ? TN_RANK_LINKS : niche.id === "pickleball" ? PB_RANK_LINKS : RANK_LINKS).flatMap(s => { const l = lists.find(x => x.slug === s); return l ? [{ label: l.label, href: l.href }] : []; });
+  const lists = await threadRankings(), rankings = (niche.id === "audio" ? lists.map(l => l.slug).slice(0, 6) : niche.id === "simracing" ? SR_RANK_LINKS : niche.id === "tennis" ? TN_RANK_LINKS : niche.id === "pickleball" ? PB_RANK_LINKS : niche.id === "discgolf" ? DG_RANK_LINKS : RANK_LINKS).flatMap(s => { const l = lists.find(x => x.slug === s); return l ? [{ label: l.label, href: l.href }] : []; });
   // Latest reviews: the 3 newest approved player reviews with a typed name and a line to show.
   const byId = new Map(rows.map(r => [r.id, r]));
   const latest: SideReview[] = (ctx?.data.reviews ?? []).filter(x => typedName(x.alias) && x.reviewText?.trim().length >= 30 && byId.has(x.racketId))
@@ -55,6 +56,7 @@ export default async function ThreadCatalog() {
     : niche.id === "simracing" ? { rows: listRows, title: "All sim racing gear", crumb: "Products" }
     // TennisRecs: its list rows carry head size bands and stiffness as the filters (app/thread/padel-list-data.ts).
     : niche.id === "tennis" ? { rows: listRows, title: "All tennis rackets", crumb: "Rackets" }
-    : niche.id === "pickleball" ? { rows: listRows, title: "All pickleball paddles", crumb: "Paddles" } : { rows };
+    : niche.id === "pickleball" ? { rows: listRows, title: "All pickleball paddles", crumb: "Paddles" }
+    : niche.id === "discgolf" ? { rows: listRows, title: "All disc golf discs", crumb: "Discs" } : { rows };
   return <Shell active="rackets">{ld}<PadelCatalog brands={brands} pills={pills} added={added} curated={curated} rankings={rankings} latest={latest} {...audio}/></Shell>;
 }
