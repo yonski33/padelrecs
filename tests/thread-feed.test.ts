@@ -63,7 +63,7 @@ test("post_type (drizzle/0035): one nullable column, padel only in the API, kept
   // Other sites' schemas don't have the column: every select() of comments must keep working there.
   assert.doesNotMatch(readFileSync("db/schema.ts", "utf8"), /post_type|postType/);
   const api = readFileSync("app/api/comments/route.ts", "utf8");
-  assert.match(api, /const TYPED = niche\.id === "padel";/);
+  assert.match(api, /const TYPED = niche\.id === "padel" \|\| niche\.id === "discgolf";/);
   assert.match(api, /TYPED && v\.postType && !v\.parentId/);
   // AudioRecs (same feed) keeps the earlier guessed QUESTION / TIP.
   assert.equal(guessedFlair("Two overgrips helped."), "tip");
