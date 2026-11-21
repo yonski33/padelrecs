@@ -15,14 +15,16 @@ import { useRacketList, MatchBar, FineTune, SortMenu, RacketRow, named, opinions
 export type SideReview = { id: string; who: string; at: string; racket: string; href: string; text: string };
 const STEP = 24, NEW_N = 3;
 
-export function PadelCatalog({ rows, brands, pills, added, curated, rankings, latest }: {
+export function PadelCatalog({ rows, brands, pills, added, curated, plays, armVotes, rankings, latest }: {
   rows: ThreadRow[]; brands: string[];
   /** A row's vote pill ("Most picked for power · 22 players"), when it has one. */ pills: Record<string, string>;
   /** When each racket joined the catalogue (Newest, New rackets). */ added: Record<string, string>;
   /** "PadelRecs picks": the curated order, ids; the rest follow by loved count. */ curated: string[];
+  /** "How does it play?" counts and Arm comfort votes per row: the "I want" order and pills (lib/thread/home-order.ts). */
+  plays: Record<string, Record<string, number>>; armVotes: Record<string, number>;
   rankings: { label: string; href: string }[]; latest: SideReview[];
 }) {
-  const l = useRacketList({ rows, curated, added, search: true }), { q, setQ, list, pcts, older, setOlder, olderN, words, clearAll } = l;
+  const l = useRacketList({ rows, curated, added, search: true, plays, armVotes }), { q, setQ, list, pcts, older, setOlder, olderN, words, clearAll } = l;
   const [ft, setFt] = useState(false), [n, setN] = useState(STEP);
   const newest = useMemo(() => rows.filter(r => r.current !== false).sort((a, b) => b.year - a.year || (added[b.id] ?? "").localeCompare(added[a.id] ?? "")).slice(0, NEW_N), [rows, added]);
   const isNew = useMemo(() => new Set(newest.map(r => r.id)), [newest]);
@@ -43,7 +45,7 @@ export function PadelCatalog({ rows, brands, pills, added, curated, rankings, la
     <div className="tc-cols">
       <section className="th-card tc-list">
         <div className="tc-list-h"><h2 className="th-h2">{plural(list.length, "racket")}</h2><SortMenu l={l} onPick={() => setN(STEP)}/></div>
-        {list.slice(0, n).map(r => <RacketRow key={r.id} r={r} pill={pills[r.id]} match={pcts?.get(r.id)} isNew={isNew.has(r.id)}/>)}
+        {list.slice(0, n).map(r => <RacketRow key={r.id} r={r} pill={l.pillOf(r.id, pills[r.id])} match={pcts?.get(r.id)} isNew={isNew.has(r.id)}/>)}
         {list.length === 0 && <div className="tc-none"><strong>No rackets match these filters</strong><span>Try removing a filter or searching for a brand.</span>
           <button type="button" className="th-btn lime round" onClick={clearAll}>Clear all filters</button></div>}
         {(list.length > n || (!older && !words.length && olderN > 0)) && <div className="tc-foot">

@@ -27,5 +27,8 @@ export const padelListData = cache(async () => {
   // The home's pool (lib/thread/home-order.ts): this season's models with 10+ opinions, one per model.
   const season = seasonIds(rows.flatMap(r => { const p = listed.get(r.id); return p ? [{ id: r.id, family: modelFamily(p), year: r.year, opinions: r.pos + r.mix + r.neg }] : []; }),
     new Date().getUTCFullYear());
-  return { rows, brands, pills, added, curated, season };
+  // The "I want" order and pills (lib/thread/home-order.ts): each row's "How does it play?" counts and its Arm comfort votes.
+  const plays = Object.fromEntries(rows.map(r => [r.id, tc ? traitGroup(tc, r.id, "plays_like") : {}]));
+  const armVotes = Object.fromEntries(rows.flatMap(r => { const n = tc ? traitGroup(tc, r.id, "arm").very ?? 0 : 0; return n ? [[r.id, n]] : []; }));
+  return { rows, brands, pills, added, curated, season, plays, armVotes };
 });
