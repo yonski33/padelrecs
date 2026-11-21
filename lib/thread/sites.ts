@@ -60,3 +60,9 @@ const QUESTION_WORDS: Record<string, { one: string; many: string; page: string }
   audio: { one: "headphone or IEM", many: "headphones and IEMs", page: "product" },
 };
 export const questionWords = (nicheId: string) => QUESTION_WORDS[nicheId] ?? QUESTION_WORDS.padel!;
+
+/** The sites whose schema has comments.post_type (drizzle/0035): they save a post's Question or Tip and show it as its flair
+ *  (owner OK 2026-11-22). Add a site here once 0035 has run on its schema; until then it keeps the words rule (sim racing,
+ *  skin and audio for now). */
+const POST_TYPE_SITES = ["padel", "pickleball", "tennis"];
+export const postTypeSite = (nicheId: string) => POST_TYPE_SITES.includes(nicheId);

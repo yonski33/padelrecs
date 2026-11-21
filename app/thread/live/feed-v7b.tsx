@@ -5,6 +5,7 @@
 // Not for me), Question and Tip post to the discussion. Display only: reviews and posts stay in their own tables, reviews
 // still feed the poll and the loved / mixed counts, posts never do. "From around the web" follows as its own section.
 import { useEffect, useMemo, useState } from "react";
+import { postTypeSite } from "../../../lib/thread/sites";
 import { niche } from "../../../lib/niche";
 import { W } from "../../../lib/thread/words";
 import { accountSite, followSite } from "../../../lib/thread/sites";
@@ -29,7 +30,10 @@ const ACCOUNTS = accountSite(niche.id);
 /** PadelRecs (owner 2026-11-21): a plain post by default, saved types (drizzle/0035), and these prompts. Other sites on this
  *  feed (AudioRecs) keep the earlier composer and the guessed QUESTION / TIP. */
 const PADEL = niche.id === "padel";
-const flairOf = (c: C): Exclude<Flair, "review"> | null => PADEL ? c.type ?? postFlair(c.body) : guessedFlair(c.body);
+/** The sites with saved post types (drizzle/0035, lib/thread/sites.ts postTypeSite): a saved Question or Tip wins, else the
+ *  question rule; the others keep the guessed QUESTION / TIP. */
+const TYPED = postTypeSite(niche.id);
+const flairOf = (c: C): Exclude<Flair, "review"> | null => TYPED ? c.type ?? postFlair(c.body) : guessedFlair(c.body);
 type Item = { key: string; flair: Flair | null; at: string; top: number } & ({ review: RvCard } | { post: C });
 const CHIPS: [Flair | "all", string][] = [["all", "All"], ["review", "Reviews"], ["question", "Questions"], ["tip", "Tips"]];
 const PAGE = 8;
@@ -126,8 +130,8 @@ export function CommunityFeed({ id, model, cards, web }: { id: string; model: st
       {kind === "review" ? (rv.open && reviewForm)
         : box(PADEL ? kind === "question" ? "What do you want to know?" : kind === "tip" ? "Share something that helped" : `Say something about the ${model}…`
           : kind === "question" ? `What do you want to know about the ${model}?` : `Share a tip about the ${model}`, "Post",
-          // PadelRecs saves the picked Question or Tip with the post (drizzle/0035); no pick is a plain post.
-          async x => { const ok = await t.post(x, null, PADEL && (kind === "question" || kind === "tip") ? kind : undefined); if (ok) close(); return ok; }, close)}</div>;
+          // The sites with post types save the picked Question or Tip with the post (drizzle/0035); no pick is a plain post.
+          async x => { const ok = await t.post(x, null, TYPED && (kind === "question" || kind === "tip") ? kind : undefined); if (ok) close(); return ok; }, close)}</div>;
 
   return <>
     <section id="reviews" className={`th-card th7-card th7-reviews th-feed${thin ? " thin" : ""}`}>

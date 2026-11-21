@@ -19,8 +19,8 @@ test("the composer: nothing picked by default, types toggle off, a placeholder p
   assert.match(f, /const toggle = \(k: Flair\) => start\(PADEL && kind === k \? null : k\)/);
   assert.match(f, /onClick=\{\(\) => start\(PADEL \? null : "review"\)\}><span aria-hidden="true">\+<\/span>Share a review/);
   // The picked Question or Tip saves with the post; a saved type wins over the words.
-  assert.match(f, /t\.post\(x, null, PADEL && \(kind === "question" \|\| kind === "tip"\) \? kind : undefined\)/);
-  assert.match(f, /PADEL \? c\.type \?\? postFlair\(c\.body\) : guessedFlair\(c\.body\)/);
+  assert.match(f, /t\.post\(x, null, TYPED && \(kind === "question" \|\| kind === "tip"\) \? kind : undefined\)/);
+  assert.match(f, /TYPED \? c\.type \?\? postFlair\(c\.body\) : guessedFlair\(c\.body\)/);
   for (const t of ["What do you want to know?", "Share something that helped", "Say something about the ${model}…", "How did it play for you?"])
     assert.ok(f.includes(t), t);
 });
@@ -63,9 +63,15 @@ test("post_type (drizzle/0035): one nullable column, padel only in the API, kept
   // Other sites' schemas don't have the column: every select() of comments must keep working there.
   assert.doesNotMatch(readFileSync("db/schema.ts", "utf8"), /post_type|postType/);
   const api = readFileSync("app/api/comments/route.ts", "utf8");
-  assert.match(api, /const TYPED = niche\.id === "padel";/);
+  assert.match(api, /const TYPED = postTypeSite\(niche\.id\);/);
   assert.match(api, /TYPED && v\.postType && !v\.parentId/);
   // AudioRecs (same feed) keeps the earlier guessed QUESTION / TIP.
   assert.equal(guessedFlair("Two overgrips helped."), "tip");
   assert.equal(guessedFlair("Is it heavy?"), "question");
+});
+
+test("saved post types run on the sites whose schema has post_type (site config), not the others", async () => {
+  const { postTypeSite } = await import("../lib/thread/sites");
+  assert.deepEqual(["padel", "pickleball", "tennis", "simracing", "skin", "audio"].map(postTypeSite), [true, true, true, false, false, false]);
+  assert.match(readFileSync("app/thread/live/feed-v7b.tsx", "utf8"), /const TYPED = postTypeSite\(niche\.id\);/);
 });
