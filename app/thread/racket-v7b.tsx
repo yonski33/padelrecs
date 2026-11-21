@@ -15,9 +15,9 @@ import { traitSeed } from "../../lib/thread/trait-seed";
 import { withoutYear } from "../../lib/brand-name";
 import { niche } from "../../lib/niche";
 import { TraitVotes } from "./live/trait-votes";
-import { FitCard, PollCard, ReviewsV7b, WebSources } from "./live/racket-v7b";
-import { isThin, splitSources, webCount } from "../../lib/thread/web-sources";
-import { Discussion } from "./live/discussion";
+import { FitCard, PollCard } from "./live/racket-v7b";
+import { CommunityFeed } from "./live/feed-v7b";
+import { splitSources, webCount } from "../../lib/thread/web-sources";
 import { Ago } from "./live/ago";
 import type { WhoRow } from "../../lib/thread/community";
 import type { LatestQuestion } from "./community-data";
@@ -115,7 +115,7 @@ export function RacketV7b(p: V7bProps) {
           </div>
         </div>
         <nav className="th7-jump th8-jump" aria-label="On this page">
-          <a href="#overview" aria-current="true">Overview</a><a href="#feedback">Player feedback</a><a href="#reviews">Reviews</a><a href="#discussion">Ask the community</a>
+          <a href="#overview" aria-current="true">Overview</a><a href="#feedback">Player feedback</a><a href="#reviews">Players</a><a href="#web">From around the web</a>
         </nav>
       </article>
       {/* No sidebar under 1000px: Check price and the basics, compact (owner 2026-11-21). */}
@@ -133,10 +133,9 @@ export function RacketV7b(p: V7bProps) {
         <div className="th8-grid th8-sim">{p.sim.slice(0, 4).map(x => <RacketCard key={x.id} x={x}/>)}</div></section>}
       {community && <div className="th8-narrow th8-narrow-after">{community}</div>}
       {/* Player reviews, then outside sources in their own box (owner mock 2026-11-21, lib/thread/web-sources.ts). */}
-      {/* Under THIN_REVIEWS player reviews: the compact strip, then every outside summary, open (owner 2026-11-21). */}
-      <ReviewsV7b id={p.id} cards={src.players} web={webCount(src.web)}/>
-      <WebSources web={src.web} open={isThin(src.players.length)}/>
-      <Discussion page={`racket:${p.id}`} model={p.model} words={{ heading: "Ask the community", count: true, sub: `Questions, advice, and tips about the ${p.model}.` }}/>
+      {/* One community feed (owner OK 2026-11-21): player reviews and discussion posts together, "Players on the <model>",
+          then From around the web; lib/thread/feed.ts. Replaces Player reviews and Ask the community. */}
+      <CommunityFeed id={p.id} model={p.model} cards={src.players} web={src.web} webCount={webCount(src.web)}/>
       {p.also.length >= 2 && <section className="th-card th8-sec"><h2 className="th-h2">{`${W.lovers} who loved this also loved`}</h2>
         <div className="th8-grid">{p.also.slice(0, 4).map(x => <RacketCard key={x.id} x={x}/>)}</div></section>}
       {p.stories.length > 0 && <section className="th-card th-sec"><h2 className="th-h2">Stories mentioning this racket</h2>
