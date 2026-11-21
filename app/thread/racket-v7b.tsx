@@ -69,7 +69,7 @@ export function RacketV7b(p: V7bProps) {
   const latest = p.latest && <section className="th-card th8-box"><h2 className="th8-bh">Latest from the community</h2>
     <span className="th8-q-by"><strong>{p.latest.name}</strong><span>·</span><Ago at={p.latest.at} initial=""/></span>
     <p className="th8-q">{p.latest.text}</p>
-    <span className="th8-q-foot"><span>{plural(p.latest.replies, "reply", "replies")}</span><a href="#discussion">Join in →</a></span></section>;
+    <span className="th8-q-foot"><span>{p.latest.replies ? plural(p.latest.replies, "reply", "replies") : "No replies yet"}</span><a href="#discussion">Join in →</a></span></section>;
   const who = p.who && <section className="th-card th8-box"><h2 className="th8-bh">Who plays it</h2><strong className="th8-who-h">{p.who.headline}</strong>
     <div className="th8-who">{p.who.rows.map(w => <span key={w.title} className="th8-who-r"><small>{w.title}</small><span className="th8-mini"><i style={{ width: `${Math.round(w.share * 100)}%` }}/></span>
       <b>{w.label}</b><em>{w.n}</em></span>)}</div>
