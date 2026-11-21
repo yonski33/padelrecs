@@ -152,7 +152,7 @@ const PAGE = 8;
 export function ReviewsV7b({ id, cards, model }: { id: string; cards: RvCard[]; model: string }) {
   const { open, setOpen, verdict, setVerdict, text, setText, nick, setNick, busy, error, setError, done, me, post } = useReviewPost(id);
   const owner = useOwner();
-  const [tab, setTab] = useState<(typeof TABS)[number][0]>("all"), [sort, setSort] = useState<Sort>("helpful"), [sortOpen, setSortOpen] = useState(false), [shown, setShown] = useState(PAGE);
+  const [tab, setTab] = useState<(typeof TABS)[number][0]>("all"), [sort, setSort] = useState<Sort>("new"), [sortOpen, setSortOpen] = useState(false), [shown, setShown] = useState(PAGE);
   const [changed, setChanged] = useState<Record<string, Changed>>({});
   const live = useMemo(() => cards.filter(c => !changed[c.id]?.gone).map(c => { const x = changed[c.id]; return x ? { ...c, ...(x.text ? { text: x.text } : {}), ...(x.alias ? { who: x.alias, alias: x.alias, meta: null } : {}) } : c; }), [cards, changed]);
   const has = (k: string) => k === "all" || live.some(c => c.kind === k);
