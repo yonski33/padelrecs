@@ -49,6 +49,19 @@ export const SR_HOW: { title: string; body: string[] }[] = [
   { title: "How often it updates", body: ["Review counts, opinions and pills on each row refresh every few hours."] },
 ];
 
+/** TennisRecs' "How rankings work" (on the v3 pages since #618): its live lists and the one match list. No score anywhere. */
+export const TN_HOW: { title: string; body: string[] }[] = [
+  { title: "What counts", body: ["Reviews and votes left on TennisRecs, plus summaries of Reddit threads, YouTube reviews and blogs. Summaries are labelled and kept apart from votes cast here."] },
+  { title: "How the order is set", body: [
+    "Best overall and the lists for power, control, spin and arm-friendly rackets are ordered by player reviews, from current rackets with enough reviews to count.",
+    "Best for beginners comes from the TennisRecs match, the same one the home uses for that pick.",
+  ] },
+  { title: "The pill on each row", body: ["A row shows a pill when one answer to \"How does it play?\" leads, with 5 or more players behind it. Otherwise the row shows no pill."] },
+  { title: "Opinions", body: ["Each row counts the opinions on a racket: loved it, mixed or not for me. Counts only, never a score."] },
+  { title: "What is not used", body: ["Brand payments, affiliate commission and price. The order is the same for every visitor; your match picks only change the order on the home and catalogue pages."] },
+  { title: "How often it updates", body: ["Review counts, opinions and pills on each row refresh every few hours."] },
+];
+
 /** AudioRecs' "How rankings work" (V3-ROLLOUT-BRIEF): the same honesty rules for its lists. No score anywhere. */
 export const AUDIO_HOW: { title: string; body: string[] }[] = [
   { title: "What counts", body: ["Reviews and votes left on AudioRecs, plus summaries of Reddit threads, YouTube reviews and blogs. Summaries are labelled and kept apart from votes cast here."] },
