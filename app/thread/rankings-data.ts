@@ -11,7 +11,7 @@ import { rankHome } from "../../lib/home-rank";
 import { RANK_SETUP, NEGATIVE_TAGS } from "../../lib/rank-seed";
 import type { QuickChoice } from "../../lib/quick-match";
 import { niche } from "../../lib/niche";
-import { listOrder, voteOrder, VOTE_ORDER } from "../../lib/thread/vote-order";
+import { listOrder, voteOrder, VOTE_ORDER, lovedOrder, LOVED_ORDER } from "../../lib/thread/vote-order";
 import { modelFamily } from "../../lib/compare-pairs";
 
 export type ThreadRanking = { slug: string; href: string; label: string; title: string; blurb: string; group: string; ids: string[]; own: boolean;
@@ -84,12 +84,20 @@ export const threadRankings = cache(async (): Promise<ThreadRanking[]> => {
   return out.map(l => { const need = SKIN_NEEDS.find(n => n.hub === l.slug);
     return need ? { ...l, group: HUBS, kids: skinSplits().filter(x => x.need.key === need.key && shown.has(x.slug)).map(x => x.slug) } : l; });
 });
-/** The lists set to "votes" in lib/thread/vote-order.ts (owner test 2026-11-21): their ids by the "Most picked for" count, from
- *  the curated top 10 ("curated" pool) or every racket in the list's model-year window ("all"). Other lists: none. */
+/** The lists set to "votes" or "loved" in lib/thread/vote-order.ts (owner test 2026-11-21): "votes" by the "Most picked for"
+ *  count, from the curated top 10 ("curated" pool) or every racket in the list's model-year window ("all"); "loved" by the
+ *  loved count, this season's models. Other lists: none. */
 async function votesFor(lists: Awaited<ReturnType<typeof threadLists>>, all: Awaited<ReturnType<typeof threadRows>>["all"], ctx: Awaited<ReturnType<typeof threadRows>>["ctx"]) {
-  const out = new Map<string, string[]>(), wanted = lists.flatMap(l => { const o = listOrder(niche.id, l.slug); return o?.order === "votes" && o.option ? [{ l, o }] : []; });
+  const out = new Map<string, string[]>(), listed = new Map(ctx.data.listed.map(p => [p.id, p]));
+  // "loved" (Best overall): the row's loved count, this season's models only.
+  for (const l of lists) { if (listOrder(niche.id, l.slug)?.order !== "loved") continue;
+    const cfg = niche.topLists?.find(x => x.slug === l.slug);
+    const ids = lovedOrder(all.flatMap(r => { const p = listed.get(r.id); return p ? [{ id: r.id, name: r.name, family: modelFamily(p), year: r.year, reviews: r.n,
+      loved: r.pos, mixed: r.mix, notForMe: r.neg }] : []; }), YEAR(), { ...LOVED_ORDER, minReviews: cfg?.minReviews ?? LOVED_ORDER.minReviews });
+    if (ids.length >= 5) out.set(l.slug, ids); }
+  const wanted = lists.flatMap(l => { const o = listOrder(niche.id, l.slug); return o?.order === "votes" && o.option ? [{ l, o }] : []; });
   if (!wanted.length) return out;
-  const t = await traitCounts(), listed = new Map(ctx.data.listed.map(p => [p.id, p]));
+  const t = await traitCounts();
   for (const { l, o } of wanted) {
     const cfg = niche.topLists?.find(x => x.slug === l.slug), oldest = cfg?.maxAgeYears === undefined ? -Infinity : YEAR() - cfg.maxAgeYears;
     const pool = o.pool === "curated" ? l.ids.slice(0, SIZE).flatMap(id => all.filter(r => r.id === id)) : all.filter(r => r.year >= oldest);

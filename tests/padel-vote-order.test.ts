@@ -1,14 +1,15 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { voteOrder, listOrder, votesOrdered, VOTE_ORDER, type VoteCandidate } from "../lib/thread/vote-order";
+import { voteOrder, lovedOrder, listOrder, votesOrdered, lovedOrdered, VOTE_ORDER, type VoteCandidate, type LovedCandidate } from "../lib/thread/vote-order";
 
 const c = (id: string, power: number, control: number, extra: Partial<VoteCandidate> = {}): VoteCandidate =>
   ({ id, name: id, family: id, year: 2026, reviews: 30, group: { power, control, all_round: 5 }, ...extra });
 
-test("power and control are vote-ordered; other lists keep their own order", () => {
+test("power and control are vote-ordered, Best overall by loved; other lists keep their own order", () => {
   assert.equal(votesOrdered("padel", "best-power-padel-rackets"), true);
   assert.equal(votesOrdered("padel", "best-control-padel-rackets"), true);
-  for (const slug of ["best-padel-rackets", "best-padel-rackets-2025", "best-padel-rackets-for-tennis-elbow", "best-teardrop-padel-rackets", "best-diamond-padel-rackets"])
+  assert.equal(lovedOrdered("padel", "best-padel-rackets"), true);
+  for (const slug of ["best-padel-rackets-2025", "best-padel-rackets-for-tennis-elbow", "best-teardrop-padel-rackets", "best-diamond-padel-rackets"])
     assert.equal(listOrder("padel", slug), null);
   assert.equal(listOrder("pickleball", "best-power-pickleball-paddles"), null);
 });
@@ -27,4 +28,12 @@ test("one row per model, its newest year that passes", () => {
   const ids = voteOrder([c("v05-2026", 40, 5, { family: "v05" }), c("v05-2027", 18, 5, { family: "v05", reviews: 6 }), c("cm-2025", 40, 5, { family: "cm", year: 2025 }),
     c("cm-2026", 37, 5, { family: "cm" })], "power");
   assert.deepEqual(ids, ["v05-2026", "cm-2026"]);
+});
+
+const lv = (id: string, loved: number, extra: Partial<LovedCandidate> = {}): LovedCandidate =>
+  ({ id, name: id, family: id, year: 2026, reviews: 30, loved, mixed: 20, notForMe: 10, ...extra });
+test("loved: the count leads, this season only, the review floor, one row per model", () => {
+  const ids = lovedOrder([lv("a", 80), lv("b", 142), lv("c", 80, { mixed: 5 }), lv("old", 200, { year: 2025 }), lv("new", 150, { year: 2027 }),
+    lv("thin", 90, { reviews: 4 }), lv("fam-1", 60, { family: "f" }), lv("fam-2", 70, { family: "f" })], 2026);
+  assert.deepEqual(ids, ["b", "c", "a", "fam-2"]);
 });
