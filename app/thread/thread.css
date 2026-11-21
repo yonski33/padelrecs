@@ -1177,3 +1177,12 @@ body:has(.th) .th .ths-more-list a:hover b { color: var(--hover); }
 body:has(.th) .th .th-rk-menu a { display: flex; justify-content: space-between; gap: 10px; padding: 8px 10px; border-radius: 7px; text-decoration: none; font-size: 15px; color: var(--ink); }
 body:has(.th) .th .th-rk-menu a:hover { background: var(--frame); color: var(--ink); }
 body:has(.th) .th .th-rk-menu a[aria-current="page"] { font-weight: 700; }
+/* PadelRecs catalogue (owner 2026-11-21): "Your match" above "Filter" in one sidebar. */
+.th-cmatch { gap: 6px; padding-bottom: 12px; border-bottom: 1.5px solid var(--line); }
+.th-cmatch-h, .th-fgroup.th-cmatch > .th-cmatch-h { font-family: var(--bc); font-weight: 700; font-size: 19px; line-height: 1.1; color: var(--ink); }
+.th-cmatch-note { font-size: 12.5px; color: var(--ink2); }
+.th-cmatch .th-fit { border: 0; padding: 0; gap: 6px; }
+.th-cmatch .th-picks { display: flex; flex-wrap: wrap; gap: 5px; align-items: center; }
+.th-cmatch .th-picks > .lbl { flex-basis: 100%; font-size: 12.5px; color: var(--ink2); min-width: 0; }
+.th-cmatch .th-check { margin-left: 0; font-size: 13px; min-height: 28px; gap: 5px; }
+.th-cmatch .th-check > span { width: 14px; height: 14px; border-width: 1.5px; font-size: 10px; }
