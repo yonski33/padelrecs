@@ -17,7 +17,7 @@ import { niche } from "../../lib/niche";
 import { TraitVotes } from "./live/trait-votes";
 import { FitCard, PollCard } from "./live/racket-v7b";
 import { CommunityFeed } from "./live/feed-v7b";
-import { splitSources, webCount } from "../../lib/thread/web-sources";
+import { splitSources } from "../../lib/thread/web-sources";
 import { Ago } from "./live/ago";
 import type { WhoRow } from "../../lib/thread/community";
 import type { LatestQuestion } from "./community-data";
@@ -135,7 +135,7 @@ export function RacketV7b(p: V7bProps) {
       {/* Player reviews, then outside sources in their own box (owner mock 2026-11-21, lib/thread/web-sources.ts). */}
       {/* One community feed (owner OK 2026-11-21): player reviews and discussion posts together, "Players on the <model>",
           then From around the web; lib/thread/feed.ts. Replaces Player reviews and Ask the community. */}
-      <CommunityFeed id={p.id} model={p.model} cards={src.players} web={src.web} webCount={webCount(src.web)}/>
+      <CommunityFeed id={p.id} model={p.model} cards={src.players} web={src.web}/>
       {p.also.length >= 2 && <section className="th-card th8-sec"><h2 className="th-h2">{`${W.lovers} who loved this also loved`}</h2>
         <div className="th8-grid">{p.also.slice(0, 4).map(x => <RacketCard key={x.id} x={x}/>)}</div></section>}
       {p.stories.length > 0 && <section className="th-card th-sec"><h2 className="th-h2">Stories mentioning this racket</h2>

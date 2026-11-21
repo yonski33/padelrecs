@@ -11,7 +11,7 @@ import { accountSite } from "../../../lib/thread/sites";
 import { commenterName, nameProblem, NAME_MAX } from "../../../lib/thread/display-name";
 import { mentionOf } from "../../../lib/thread/mention";
 import { avatarOf } from "../../../lib/thread/avatar";
-import { activity, feedLine, FLAIR_WORD, postFlair, REPLIES_SHOWN, type Flair } from "../../../lib/thread/feed";
+import { activity, FLAIR_WORD, postFlair, REPLIES_SHOWN, type Flair } from "../../../lib/thread/feed";
 import { isThin, type WebGroups } from "../../../lib/thread/web-sources";
 import { VERDICTS, type Verdict } from "../../quick-vote";
 import { ago, VERDICT } from "../ui";
@@ -29,7 +29,7 @@ type Item = { key: string; flair: Flair; at: string; top: number } & ({ review: 
 const CHIPS: [Flair | "all", string][] = [["all", "All"], ["review", "Reviews"], ["question", "Questions"], ["tip", "Tips"]];
 const PAGE = 8;
 
-export function CommunityFeed({ id, model, cards, web, webCount }: { id: string; model: string; cards: RvCard[]; web: WebGroups<RvCard>; webCount: number }) {
+export function CommunityFeed({ id, model, cards, web }: { id: string; model: string; cards: RvCard[]; web: WebGroups<RvCard> }) {
   const rv = useReviewPost(id), t = useComments(`racket:${id}`), owner = useOwner();
   const [kind, setKind] = useState<Flair | null>(null), [filter, setFilter] = useState<Flair | "all">("all"), [sort, setSort] = useState<"new" | "top">("new");
   const [shown, setShown] = useState(PAGE), [openReplies, setOpenReplies] = useState<Record<string, true>>({}), [changed, setChanged] = useState<Record<string, Changed>>({});
@@ -43,7 +43,6 @@ export function CommunityFeed({ id, model, cards, web, webCount }: { id: string;
     ...reviews.map(c => ({ key: `rv-${c.id}`, flair: "review" as const, at: c.at ?? "", top: c.helpful, review: c })),
     ...t.tops.map(c => ({ key: `cm-${c.id}`, flair: postFlair(c.body), at: activity(c.at, t.replies(c.id)), top: c.score, post: c })),
   ], [reviews, t.tops, t.replies]);
-  const n = { review: reviews.length, question: items.filter(i => i.flair === "question").length, tip: items.filter(i => i.flair === "tip").length };
   // Under THIN_REVIEWS posts in all (reviews and top-level posts): the compact look of #601, and the web box open in full.
   const thin = isThin(items.length);
   const list = useMemo(() => items.filter(i => filter === "all" || i.flair === filter)
@@ -122,8 +121,7 @@ export function CommunityFeed({ id, model, cards, web, webCount }: { id: string;
       {/* Older links point at #discussion and #comments (the separate Ask the community box). */}
       <span id="discussion" className="th7-anchor" aria-hidden="true"/><span id="comments" className="th7-anchor" aria-hidden="true"/>
       <div className="th7-head"><h2 className="th-h2 th7-hic"><svg width="24" height="22" viewBox="0 0 30 28" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinejoin="round" aria-hidden="true"><path d="M15 3C8 3 3 7.3 3 12.5c0 2.6 1.3 5 3.4 6.7L5 25l6.3-3.2c1.2.3 2.4.5 3.7.5 7 0 12-4.3 12-9.8S22 3 15 3z"/></svg>
-        {`Players on the ${model} (${items.length.toLocaleString("en-US")})`}</h2></div>
-      <p className="th7-count">{feedLine(n, webCount)}</p>
+        {/* No counts above the lists (owner 2026-11-21): the title, no number, no mix line. */}{`Players on the ${model}`}</h2></div>
       <PendingReviews racketId={id} compact/>
       {rv.done ? <p className="th-ok" role="status">{rv.done === "words" ? "Thanks for sharing! Your review will appear here once it's approved." : rv.done === "live" ? "Thanks for sharing! Your review is live and shows here after a refresh." : "Thanks! Your vote has been added."}</p> : composer}
       {t.note && <p className="th-ok" role="status">{t.note}</p>}
