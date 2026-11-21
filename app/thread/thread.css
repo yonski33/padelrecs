@@ -1348,3 +1348,71 @@ body:has(.th) .th .th8-box .th8-buy a:hover { background: var(--frame); }
   .th8-narrow-basics .th8-specs { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 0 16px; }
   .th8-narrow-basics .th8-kv:last-child { border-bottom: 1px solid var(--div); }
 }
+
+/* PadelRecs Brands v3, Search v3 and Add Review v3 (owner design 2026-11-21, design_handoff_padelrecs_v3). Scoped to .thb3,
+ * .ths4 and .tar3 (padel only). Shared colour tokens; the v3 soft lime and sentiment colours are page-local. */
+.thb3, .ths4 { --v3-soft: #EFFADB; --v3-pos: #62C878; --v3-mix: #F0D16B; --v3-neg: #F0796A; max-width: 1380px; flex-direction: column; align-items: stretch; gap: 16px; padding: 16px 24px 32px; }
+.thb3 .th-card, .ths4 .th-card, .tar3 .th-card { border-radius: 16px; }
+.thb3-title { padding: 18px 22px; display: flex; flex-direction: column; gap: 6px; }
+.thb3-title .th-h1 { font-size: 52px !important; line-height: 1; }
+.thb3-title p { margin: 0; font-size: 17px; }
+.thb3-cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 14px; }
+body:has(.th) .th a.thb3-card { text-decoration: none; color: var(--ink); padding: 16px 18px; display: flex; flex-direction: column; gap: 6px; }
+body:has(.th) .th a.thb3-card:hover { background: #fff; color: var(--ink); }
+.thb3-card .name { font: 700 30px/1 var(--bc); }
+.thb3-card .counts { font-size: 14px; color: var(--muted); }
+.thb3-card .loved { font-size: 14.5px; line-height: 1.35; }
+.thb3-card .loved > span { color: var(--muted); }
+.thb3-card .go { margin-top: auto; padding-top: 6px; font: 700 18px/1.2 var(--bc); }
+.thb3-links { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; font-size: 14px; }
+.thb3-links > span { color: var(--muted); margin-right: 4px; }
+body:has(.th) .th .thb3-links a { text-decoration: none; font-weight: 600; padding: 5px 14px; border: 1.5px solid var(--ink); border-radius: 999px; background: #fff; }
+body:has(.th) .th .thb3-links a:hover { background: var(--v3-soft); color: var(--ink); }
+
+/* Search */
+.ths4 { max-width: 920px; }
+.ths4-head { padding: 18px 22px; display: flex; flex-direction: column; gap: 10px; }
+.ths4-box { display: flex; align-items: center; gap: 12px; border: 2px solid var(--ink); border-radius: 999px; padding: 10px 20px; background: #fff; }
+.ths4-box input { all: unset; flex: 1; min-width: 0; font-size: 20px; }
+.ths4-head .sum { font-size: 15px; color: var(--muted); }
+.ths4-sec { padding: 12px 20px 6px; display: flex; flex-direction: column; }
+.ths4 .th-h2 { font: 700 30px/1.1 var(--bc); margin: 0 0 6px; }
+body:has(.th) .th a.ths4-rk { text-decoration: none; color: var(--ink); display: grid; grid-template-columns: 56px minmax(0,1fr); gap: 12px; align-items: center; padding: 10px 0; border-top: 1px solid var(--line); }
+.ths4-rk .pic { height: 60px; display: flex; align-items: center; justify-content: center; }
+.ths4-rk .pic img { max-height: 100%; max-width: 100%; mix-blend-mode: multiply; }
+.ths4-rk .pic .th-ph { width: 38px; height: 52px; }
+.ths4-rk .words { display: flex; flex-direction: column; gap: 4px; min-width: 0; }
+.ths4-rk .top { display: flex; align-items: baseline; gap: 8px; flex-wrap: wrap; }
+.ths4-rk strong { font: 700 20px/1.15 var(--bc); }
+body:has(.th) .th a.ths4-rk:hover strong, body:has(.th) .th a.ths4-item:hover strong { color: var(--hover); }
+.ths4-rk .shape { font-size: 12px; font-weight: 600; padding: 0 9px; border: 1px solid var(--ink); border-radius: 999px; background: var(--v3-soft); }
+.ths4-rk .feel { display: flex; align-items: center; gap: 8px; font-size: 13px; color: var(--muted); flex-wrap: wrap; }
+.ths4-rk .bar { display: flex; gap: 2px; height: 7px; width: 110px; }
+.ths4-rk .bar i { min-width: 0; } .ths4-rk .bar i:first-child { border-radius: 999px 0 0 999px; } .ths4-rk .bar i:last-child { border-radius: 0 999px 999px 0; }
+.ths4-rk .bar .pos { background: var(--v3-pos); } .ths4-rk .bar .mix { background: var(--v3-mix); } .ths4-rk .bar .neg { background: var(--v3-neg); }
+body:has(.th) .th a.ths4-item { text-decoration: none; color: var(--ink); display: flex; flex-direction: column; gap: 2px; padding: 10px 0; border-top: 1px solid var(--line); }
+.ths4-item strong { font-size: 15.5px; line-height: 1.35; }
+.ths4-item span { font-size: 13px; color: var(--muted); }
+
+/* Add a review: one form card in the mock's order (racket, buy again, how it plays, about you, review); the preview stays
+ * beside it on wide screens. */
+.tar3 .th-ar-intro { border-radius: 16px; padding: 18px 22px; }
+.tar3 .th-ar-intro .th-h1 { font-size: 52px !important; line-height: 1; }
+.tar3 .th-ar-intro .th-lead { font-size: 17px; }
+.tar3 .th-ar-steps { background: var(--card); border: 2px solid var(--ink); border-radius: 16px; padding: 20px 24px; gap: 20px; }
+.tar3 .th-ar-steps > .th-card { border: 0; background: none; padding: 0; box-shadow: none; }
+.tar3 .th-ar-steps > .th-card:nth-child(3) { order: 4; } .tar3 .th-ar-steps > .th-card:nth-child(4) { order: 3; }
+.tar3 .th-ar-h h2 { font: 700 21px/1.2 var(--bc); }
+.tar3 .th-ar-h .th-sub { font-size: 13px; }
+.tar3 .th-pick.sm { font-size: 14.5px; padding: 5px 14px; border: 1.5px solid var(--ink); border-radius: 999px; background: #fff; }
+.tar3 .th-pick.sm[aria-pressed="true"] { background: var(--ink); color: #fbfaf6; }
+.tar3 .th-vpick { font-size: 15px; padding: 6px 16px; min-height: 0; border: 1.5px solid var(--ink); }
+.tar3 .th-vpick[aria-pressed="true"].pos { background: #BDEFC0; } .tar3 .th-vpick[aria-pressed="true"].mix { background: #F9E8A3; } .tar3 .th-vpick[aria-pressed="true"].neg { background: #F6C8BD; }
+.tar3 .th-ar-q, .tar3 .th-ta { border: 1.5px solid var(--box); border-radius: 12px; padding: 10px 14px; font-size: 16px; background: #fff; }
+.tar3 .th-ar-side .th-card { border-radius: 16px; }
+.tar3 .th-ar-post { font: 700 20px/1.2 var(--bc); padding: 6px 22px; border: 2px solid var(--ink); border-radius: 999px; background: var(--lime); color: var(--ink); min-height: 0; }
+.tar3 .th-ar-post:disabled { background: #f0eee8; color: #8a867c; }
+@media (max-width: 639px) {
+  .thb3, .ths4 { padding: 12px 12px 32px; } .thb3-title .th-h1, .tar3 .th-ar-intro .th-h1 { font-size: 36px !important; }
+  .ths4-box input { font-size: 17px; } .ths4 .th-h2 { font-size: 26px; } .tar3 .th-ar-steps { padding: 16px; }
+}

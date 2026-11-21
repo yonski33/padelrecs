@@ -23,6 +23,9 @@ const ACCOUNTS = accountSite(niche.id);
 const TRAITS = [["Forgiveness", "forgivenessRating", "tiny sweet spot", "huge sweet spot"], ["Power", "powerRating", "no pop", "cannon"], ["Control", "controlRating", "all over the place", "on a string"], ["Arm comfort", "comfortRating", "hurts", "zero pain"]] as const;
 const PROMPTS = ["what surprised you", "what you came from", "weights setup", "who should skip it"];
 const ONE = niche.words.one;
+/** PadelRecs Add Review v3 (owner design 2026-11-21): one form card in the mock's order and words, no score in the thanks;
+ *  the same fields, rules and posting as before. Other sites keep the numbered cards. */
+const V3 = niche.id === "padel";
 type Opt = { label: string; value: string };
 /** A member's stored level or side ("Intermediate", "Right") as one of this form's options, else null. */
 const optOf = (opts: Opt[], v?: string | null) => v ? opts.find(o => o.value.toLowerCase() === v.toLowerCase())?.value ?? null : null;
@@ -76,18 +79,19 @@ export function ThreadAddReview({ rackets, initial, levels, sides, times, traits
 
   if (done) return <section className="th-card th-sec th-ar-done" role="status">
     <h1 className="th-h1">{done === "words" ? "Thanks, your review is in." : "Thanks, your vote counts."}</h1>
-    <p className="th-lead">{done === "words" ? `Your words show after a quick check. Your vote already counts toward the ${racket?.name} score.` : `It counts toward the ${racket?.name} score. Add a few words next time and they show on its page too.`}</p>
+    <p className="th-lead">{V3 ? (done === "words" ? `Your words show after a quick check. Your vote already counts on the ${racket?.name} page.` : `It counts on the ${racket?.name} page. Add a few words next time and they show there too.`)
+      : done === "words" ? `Your words show after a quick check. Your vote already counts toward the ${racket?.name} score.` : `It counts toward the ${racket?.name} score. Add a few words next time and they show on its page too.`}</p>
     <div className="th-ar-again"><button type="button" className="th-btn round lime" onClick={again}>{`Review another ${ONE}`}</button>{racket && <a className="th-link-b" href={th(racket.href)}>{`Back to the ${racket.name}`}</a>}</div>
   </section>;
 
   const pills = (opts: Opt[], value: string | null, set: (v: string | null) => void, aria: string) => <div className="th-picks" role="group" aria-label={aria}>
     {opts.map(o => <button key={o.value} type="button" className="th-pick sm" aria-pressed={value === o.value} onClick={() => set(value === o.value ? null : o.value)}>{o.label}</button>)}</div>;
-  const head = (n: number, title: string, note: string) => <div className="th-head-row th-ar-h"><h2 className="th-h3">{`${n}. ${title}`}</h2><span className="th-sub">{note}</span></div>;
+  const head = (n: number, title: string, note: string) => <div className="th-head-row th-ar-h"><h2 className="th-h3">{V3 ? title : `${n}. ${title}`}</h2><span className="th-sub">{note}</span></div>;
 
-  return <div className="th-ar">
+  return <div className={V3 ? "th-ar tar3" : "th-ar"}>
     <section className="th-card th-sec th-ar-intro">
       <h1 className="th-h1">Add your review</h1>
-      <p className="th-lead">{`Two taps are needed, the rest is optional. ${ACCOUNTS ? "An account is optional." : "No account needed."} Your vote counts right away; your words show after a quick check.`}</p>
+      <p className="th-lead">{`${V3 ? `Played a ${ONE}? Tell other players how it went. ` : ""}Two taps are needed, the rest is optional. ${ACCOUNTS ? "An account is optional." : "No account needed."} Your vote counts right away; your words show after a quick check.`}</p>
     </section>
     <div className="th-ar-grid">
       <div className="th-ar-steps">
@@ -103,7 +107,7 @@ export function ThreadAddReview({ rackets, initial, levels, sides, times, traits
           </>}
         </section>
         <section className="th-card th-sec">
-          {head(2, "Did it work for you?", "required")}
+          {head(2, V3 ? "Would you buy it again?" : "Did it work for you?", "required")}
           <div className="th-picks" role="group" aria-label="Your take">{VERDICTS.map(v => <button key={v.key} type="button" className={`th-vpick ${VERDICT[v.key][1]}`} aria-pressed={verdict === v.key}
             onClick={() => { setVerdict(v.key); setError(""); }}><span className={`th-sdot ${VERDICT[v.key][1]}`}/>{VERDICT[v.key][0]}</button>)}</div>
         </section>
@@ -114,14 +118,14 @@ export function ThreadAddReview({ rackets, initial, levels, sides, times, traits
           <div className="th-ar-row"><span>used it for</span>{pills(times, time, setTime, "Used it for")}</div>
         </section>
         <section className="th-card th-sec">
-          {head(4, L.how, "optional · tap a dot")}
+          {head(4, L.how, V3 ? "Optional, one tap each" : "optional · tap a dot")}
           {traits.map(([n, , lo, hi]) => { const val = r[n] ?? 0; return <div key={n} className="th-ar-trait"><b>{n}</b>
             <div role="group" aria-label={n}>{[1, 2, 3, 4, 5].map(i => <button key={i} type="button" aria-label={`${n} ${i} of 5`} aria-pressed={i <= val} onClick={() => setR(x => ({ ...x, [n]: x[n] === i ? 0 : i }))}/>)}</div>
             <span>{val ? (val <= 2 ? lo : val >= 4 ? hi : "ok") : ""}</span></div>; })}
-          <p className="th-ar-small">Saved with your words (step 5).</p>
+          <p className="th-ar-small">{V3 ? "Saved with your review." : "Saved with your words (step 5)."}</p>
         </section>
         <section className="th-card th-sec">
-          {head(5, "In your words", "optional")}
+          {head(5, V3 ? "Your review" : "In your words", "optional")}
           <div className="th-ar-prompts">{prompts.map(p => <button key={p} type="button" className="th-chipf" onClick={() => setText(t => (t ? t.trimEnd() + " " : "") + p[0].toUpperCase() + p.slice(1) + ": ")}>{`+ ${p}`}</button>)}</div>
           <textarea className="th-ta" rows={5} maxLength={2000} value={text} onChange={e => { setText(e.target.value); setError(""); }} placeholder="What would you tell a friend thinking of buying it?" aria-label="Your review"/>
           {me ? <div className="th-as th-as-me">Posting as <b>{me.name}</b><MemberMark/></div>
@@ -140,7 +144,7 @@ export function ThreadAddReview({ rackets, initial, levels, sides, times, traits
             <p className={words ? undefined : "ph"}>{words || "Your words go here."}</p>
             <div className="th-ar-tags">{[time && `used ${label(times, time)}`, ...traits.filter(([n]) => r[n]).map(([n]) => `${n.toLowerCase()} ${r[n]}/5`)].filter(Boolean).map(t => <span key={t as string}>{t}</span>)}</div>
           </article>
-          <button type="button" className="th-post th-ar-post" disabled={!ready || busy} onClick={submit}>{busy ? "Posting…" : "Post my review"}</button>
+          <button type="button" className="th-post th-ar-post" disabled={!ready || busy} onClick={submit}>{busy ? "Posting…" : V3 ? "Post review" : "Post my review"}</button>
           {why && !busy && <span className="th-why">{why}</span>}
           {error && <span className="th-err" role="alert">{error}</span>}
           <p className="th-ar-small">Every review gets a check before its words show.</p>
