@@ -47,6 +47,24 @@ export async function addComment(db: Database, c: { page: string; parentId: stri
   return { status, comment: { id, parentId: c.parentId, alias: c.alias, body: c.body, at, score: 1, mine: 1 } satisfies ThreadComment };
 }
 
+/** A post's optional type (drizzle/0035, PadelRecs community feed, owner OK 2026-11-21): a question or a tip; null for a
+ *  plain post and for every row from before it. Read and written with plain SQL and kept out of the shared table definition
+ *  on purpose: only schemas that ran 0035 have the column, and a missing column there must never break a select() of the
+ *  table. Both helpers are quiet no-ops where the column is missing (Postgres 42703). */
+export type PostType = "question" | "tip";
+const noColumn = (e: unknown) => /42703|column .* does not exist/.test(String((e as { code?: string })?.code ?? "") + String((e as Error)?.message ?? e) + String((e as { cause?: { code?: string } })?.cause?.code ?? ""));
+export async function setPostType(db: Pick<Database, "execute">, id: string, type: PostType) {
+  try { await db.execute(sql`update ${comments} set "post_type" = ${type} where ${comments.id} = ${id}`); return true; }
+  catch (error) { if (!noColumn(error)) console.error("Post type save failed", error); return false; }
+}
+export async function postTypes(db: Pick<Database, "execute">, ids: string[]): Promise<Map<string, PostType>> {
+  if (!ids.length) return new Map();
+  try {
+    const rows = await db.execute(sql`select ${comments.id} as id, "post_type" as t from ${comments} where ${inArray(comments.id, ids)} and "post_type" is not null`);
+    return new Map((rows as unknown as { id: string; t: PostType }[]).filter(r => r.t === "question" || r.t === "tip").map(r => [r.id, r.t]));
+  } catch (error) { if (!noColumn(error)) console.error("Post types read failed", error); return new Map(); }
+}
+
 /** ▲ (1), ▼ (-1) or clear (0) this device's vote on a shown comment. */
 export async function voteComment(db: Database, commentId: string, voter: string, value: -1 | 0 | 1, now = new Date()) {
   const [c] = await db.select({ status: comments.status }).from(comments).where(eq(comments.id, commentId));

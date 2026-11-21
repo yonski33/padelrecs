@@ -1,14 +1,14 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
-import { activity, feedLine, postFlair, REPLIES_SHOWN } from "../lib/thread/feed";
+import { activity, feedLine, guessedFlair, postFlair, REPLIES_SHOWN } from "../lib/thread/feed";
 
 test("a post is a QUESTION when it ends with ? or starts with a question word, else it has no flair", () => {
   assert.equal(postFlair("Does the Extreme Motion feel too harsh for a touchy elbow?"), "question");
   assert.equal(postFlair("Is it ok for a 4.0 player"), "question");
   assert.equal(postFlair("Anyone tried it with an overgrip"), "question");
   assert.equal(postFlair("@Daniel how heavy is yours?"), "question");
-  // Never a guessed TIP (owner 2026-11-21): no stored type, so anything else is a plain post.
+  // Never a guessed TIP on padel (owner 2026-11-21): TIP is a saved type (drizzle/0035); anything else is a plain post.
   assert.equal(postFlair("Two overgrips and it is fine on the arm."), null);
   assert.equal(postFlair("Whatever you do, demo it first."), null); // "whatever" is not "what"
 });
@@ -16,8 +16,11 @@ test("a post is a QUESTION when it ends with ? or starts with a question word, e
 test("the composer: nothing picked by default, types toggle off, a placeholder per choice", () => {
   const f = readFileSync("app/thread/live/feed-v7b.tsx", "utf8");
   assert.match(f, /useState<Flair \| null>\(null\)/);
-  assert.match(f, /const toggle = \(k: Flair\) => start\(kind === k \? null : k\)/);
-  assert.match(f, /onClick=\{\(\) => start\(null\)\}><span aria-hidden="true">\+<\/span>Share a review/);
+  assert.match(f, /const toggle = \(k: Flair\) => start\(PADEL && kind === k \? null : k\)/);
+  assert.match(f, /onClick=\{\(\) => start\(PADEL \? null : "review"\)\}><span aria-hidden="true">\+<\/span>Share a review/);
+  // The picked Question or Tip saves with the post; a saved type wins over the words.
+  assert.match(f, /t\.post\(x, null, PADEL && \(kind === "question" \|\| kind === "tip"\) \? kind : undefined\)/);
+  assert.match(f, /PADEL \? c\.type \?\? postFlair\(c\.body\) : guessedFlair\(c\.body\)/);
   for (const t of ["What do you want to know?", "Share something that helped", "Say something about the ${model}…", "How did it play for you?"])
     assert.ok(f.includes(t), t);
 });
@@ -46,4 +49,23 @@ test("the feed: one section, flair chips, filters and sort in the browser, thin 
   assert.doesNotMatch(f, /—|\bowners\b|stars?\b|Badge/);
   // Posts never reach the poll or score: the feed only reads /api/comments through useComments.
   assert.doesNotMatch(f, /racket-votes|thread-poll/);
+});
+
+test("post_type (drizzle/0035): one nullable column, padel only in the API, kept out of the shared table definition", () => {
+  const sql = readFileSync("drizzle/0035_comment_post_type.sql", "utf8");
+  assert.match(sql, /ADD COLUMN IF NOT EXISTS "post_type" text;/);
+  assert.match(sql, /CHECK \("post_type" IS NULL OR "post_type" IN \('question', 'tip'\)\)/);
+  assert.doesNotMatch(sql, /DROP|NOT NULL|UPDATE|DELETE/i); // additive only
+  const j = JSON.parse(readFileSync("drizzle/meta/_journal.json", "utf8")) as { entries: { idx: number; tag: string; when: number }[] };
+  const [a, b] = j.entries.slice(-2);
+  assert.deepEqual([b.idx, b.tag], [35, "0035_comment_post_type"]);
+  assert.ok(b.when > a.when);
+  // Other sites' schemas don't have the column: every select() of comments must keep working there.
+  assert.doesNotMatch(readFileSync("db/schema.ts", "utf8"), /post_type|postType/);
+  const api = readFileSync("app/api/comments/route.ts", "utf8");
+  assert.match(api, /const TYPED = niche\.id === "padel";/);
+  assert.match(api, /TYPED && v\.postType && !v\.parentId/);
+  // AudioRecs (same feed) keeps the earlier guessed QUESTION / TIP.
+  assert.equal(guessedFlair("Two overgrips helped."), "tip");
+  assert.equal(guessedFlair("Is it heavy?"), "question");
 });

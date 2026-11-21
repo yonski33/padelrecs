@@ -8,13 +8,17 @@ export const FLAIR_WORD: Record<Flair, string> = { review: "Review", question: "
 /** Words a question usually starts with ("Is it ok…", "Anyone tried…", "Thoughts on…"). */
 const ASKS = /^(how|what|which|why|when|where|who|whose|is|are|am|was|were|do|does|did|can|could|should|would|will|has|have|had|any|anyone|anybody|thoughts|opinions|help)\b/i;
 
-/** A discussion post's flair: QUESTION when it ends with "?" or starts with a question word, else none (owner 2026-11-21: a
- *  plain post is the default). A leading "@Name " (a reply to a reply) is ignored. TIP is never guessed: it would need the
- *  post saved as a tip, and the comments table has no column for that (is_question, never set, is its only type column).
- *  This is the one place the rule lives. */
+/** A discussion post's flair from its words, for posts with no saved type (drizzle/0035 post_type; every row from before
+ *  it): QUESTION when it ends with "?" or starts with a question word, else none (owner 2026-11-21: a plain post is the
+ *  default). A saved type wins over this. A leading "@Name " (a reply to a reply) is ignored. The one place the rule lives. */
 export function postFlair(body: string): "question" | null {
   const t = body.trim().replace(/^@\S+\s+/, "");
   return /\?["”')\s]*$/.test(t) || ASKS.test(t) ? "question" : null;
+}
+
+/** The rule before 2026-11-21 (QUESTION or TIP from the words), kept for the other sites on this feed (AudioRecs). */
+export function guessedFlair(body: string): Exclude<Flair, "review"> {
+  return postFlair(body) ?? "tip";
 }
 
 /** A thread's last activity: its own time, or its newest reply's, so a reply bumps the thread in "Newest activity". */

@@ -12,7 +12,7 @@ import { FollowButton } from "./follow-button";
 import { commenterName, nameProblem, NAME_MAX } from "../../../lib/thread/display-name";
 import { mentionOf } from "../../../lib/thread/mention";
 import { avatarOf } from "../../../lib/thread/avatar";
-import { activity, FLAIR_WORD, postFlair, REPLIES_SHOWN, type Flair } from "../../../lib/thread/feed";
+import { activity, FLAIR_WORD, guessedFlair, postFlair, REPLIES_SHOWN, type Flair } from "../../../lib/thread/feed";
 import { isThin, type WebGroups } from "../../../lib/thread/web-sources";
 import { VERDICTS, type Verdict } from "../../quick-vote";
 import { ago, VERDICT } from "../ui";
@@ -26,6 +26,10 @@ import { signInHref } from "./use-account";
 import { MoreMenu, OPEN_REVIEW, PollPointer, reportPost, ReviewRow, WebSources, type Changed } from "./racket-v7b";
 
 const ACCOUNTS = accountSite(niche.id);
+/** PadelRecs (owner 2026-11-21): a plain post by default, saved types (drizzle/0035), and these prompts. Other sites on this
+ *  feed (AudioRecs) keep the earlier composer and the guessed QUESTION / TIP. */
+const PADEL = niche.id === "padel";
+const flairOf = (c: C): Exclude<Flair, "review"> | null => PADEL ? c.type ?? postFlair(c.body) : guessedFlair(c.body);
 type Item = { key: string; flair: Flair | null; at: string; top: number } & ({ review: RvCard } | { post: C });
 const CHIPS: [Flair | "all", string][] = [["all", "All"], ["review", "Reviews"], ["question", "Questions"], ["tip", "Tips"]];
 const PAGE = 8;
@@ -43,7 +47,7 @@ export function CommunityFeed({ id, model, cards, web }: { id: string; model: st
     return x ? { ...c, ...(x.text ? { text: x.text } : {}), ...(x.alias ? { who: x.alias, alias: x.alias, meta: null } : {}) } : c; }), [cards, changed]);
   const items = useMemo<Item[]>(() => [
     ...reviews.map(c => ({ key: `rv-${c.id}`, flair: "review" as const, at: c.at ?? "", top: c.helpful, review: c })),
-    ...t.tops.map(c => ({ key: `cm-${c.id}`, flair: postFlair(c.body), at: activity(c.at, t.replies(c.id)), top: c.score, post: c })),
+    ...t.tops.map(c => ({ key: `cm-${c.id}`, flair: flairOf(c), at: activity(c.at, t.replies(c.id)), top: c.score, post: c })),
   ], [reviews, t.tops, t.replies]);
   // Under THIN_REVIEWS posts in all (reviews and top-level posts): the compact look of #601, and the web box open in full.
   const thin = isThin(items.length);
@@ -57,7 +61,7 @@ export function CommunityFeed({ id, model, cards, web }: { id: string; model: st
   }, [!!t.list]);
   const start = (k: Flair | null) => { setComposing(true); setKind(k); t.setNote(""); rv.setOpen(k === "review"); };
   // A type is a toggle: clicking the picked one again goes back to a plain post.
-  const toggle = (k: Flair) => start(kind === k ? null : k);
+  const toggle = (k: Flair) => start(PADEL && kind === k ? null : k);
   const close = () => { setComposing(false); setKind(null); rv.setOpen(false); rv.setError(""); };
 
   const Av = ({ c, sm }: { c: C; sm?: boolean }) => { const a = avatarOf(commenterName(c.alias)); return <span className={`th7-av${sm ? " sm" : ""}`} style={{ background: a.bg }} aria-hidden="true">{a.init}</span>; };
@@ -99,7 +103,7 @@ export function CommunityFeed({ id, model, cards, web }: { id: string; model: st
     <div className="th-picks"><span className="lbl" style={{ fontSize: 13.5, color: "var(--ink2)", minWidth: 0 }}>{W.triedIt}</span>
       {VERDICTS.map(v => <button key={v.key} type="button" className={`th-vpick ${VERDICT[v.key][1]}`} aria-pressed={rv.verdict === v.key} onClick={() => { rv.setVerdict(v.key as Verdict); rv.setError(""); }}><span className={`th-sdot ${VERDICT[v.key][1]}`}/>{VERDICT[v.key][0]}</button>)}
     </div>
-    <textarea className="th-ta th-ta-grow" rows={3} autoFocus value={rv.text} onChange={e => { rv.setText(e.target.value); rv.setError(""); grow(e.currentTarget, 240); }} maxLength={2000} placeholder="How did it play for you?" aria-label="Your review"/>
+    <textarea className="th-ta th-ta-grow" rows={3} autoFocus value={rv.text} onChange={e => { rv.setText(e.target.value); rv.setError(""); grow(e.currentTarget, 240); }} maxLength={2000} placeholder={PADEL ? "How did it play for you?" : "Write your review"} aria-label="Your review"/>
     {rv.error && <span className="th-err">{rv.error}</span>}
     <div className="th-compose-foot"><span className="th-grow"/>{rv.me || !ACCOUNTS ? null : <a className="th-signin" href={signInHref("#reviews")}>Sign in to keep your name</a>}
       <button type="button" className="cancel" onClick={close}>Cancel</button>
@@ -114,13 +118,13 @@ export function CommunityFeed({ id, model, cards, web }: { id: string; model: st
       <span>{items.length === 0 ? `No ${W.person} reviews yet. ${W.usedIt} Add the first one` : `${W.usedIt} Add yours`}</span>
       <button type="button" className="th-btn round lime" onClick={() => start("review")}>+ Add your review</button>
       <button type="button" className="th-feed-alt" onClick={() => start("question")}>Ask a question or share a tip</button><PollPointer/></div>
-    : <button type="button" className="th7-ask th-feed-ask" onClick={() => start(null)}><span aria-hidden="true">+</span>Share a review, ask a question or a tip</button>
+    : <button type="button" className="th7-ask th-feed-ask" onClick={() => start(PADEL ? null : "review")}><span aria-hidden="true">+</span>Share a review, ask a question or a tip</button>
     : <div className="th-feed-compose">{picker}
       {kind === "review" ? (rv.open && reviewForm)
-        // Tip has no stored type yet (comments.is_question is the table's only type column), so a tip posts as a plain
-        // comment: it shows with no flair, like any post that isn't a question.
-        : box(kind === "question" ? "What do you want to know?" : kind === "tip" ? "Share something that helped" : `Say something about the ${model}…`, "Post",
-          async x => { const ok = await t.post(x, null); if (ok) close(); return ok; }, close)}</div>;
+        : box(PADEL ? kind === "question" ? "What do you want to know?" : kind === "tip" ? "Share something that helped" : `Say something about the ${model}…`
+          : kind === "question" ? `What do you want to know about the ${model}?` : `Share a tip about the ${model}`, "Post",
+          // PadelRecs saves the picked Question or Tip with the post (drizzle/0035); no pick is a plain post.
+          async x => { const ok = await t.post(x, null, PADEL && (kind === "question" || kind === "tip") ? kind : undefined); if (ok) close(); return ok; }, close)}</div>;
 
   return <>
     <section id="reviews" className={`th-card th7-card th7-reviews th-feed${thin ? " thin" : ""}`}>

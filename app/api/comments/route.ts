@@ -4,7 +4,7 @@
 import { NAME_MAX, nameProblem } from "../../../lib/thread/display-name";
 import { z } from "zod";
 import { database } from "../../../db/data";
-import { listComments, addComment, voteComment, PAGE_KEY } from "../../../db/comments";
+import { listComments, addComment, voteComment, PAGE_KEY, postTypes, setPostType, type PostType } from "../../../db/comments";
 import { issueFormToken, checkFormToken, tokenRejects } from "../../../lib/form-token";
 import { createLimiter, clientIp } from "../../../lib/rate-limit";
 import { threadSite } from "../../../lib/thread/look";
@@ -13,9 +13,12 @@ import { device, network, json, foreign } from "../thread-device";
 import { postingAs, afterPost, memberMap, RESERVED, BLOCKED } from "../../../lib/thread/account-post";
 
 const off = () => !threadSite(niche.id) || !process.env.DATABASE_URL;
+/** Post types (drizzle/0035) are PadelRecs only for now; other sites never read or write the column. */
+const TYPED = niche.id === "padel";
 const burst = createLimiter({ limit: 6, windowMs: 10 * 60_000 }), votes = createLimiter({ limit: 120, windowMs: 60 * 60_000 });
 const post = z.object({ page: z.string().regex(PAGE_KEY), parentId: z.string().uuid().nullish(), alias: z.string().trim().max(NAME_MAX).refine(a => !nameProblem(a), a => ({ message: nameProblem(a) ?? "Check the name." })),
-  body: z.string().trim().min(2).max(2000), formToken: z.string().optional(), website: z.string().optional() });
+  body: z.string().trim().min(2).max(2000), formToken: z.string().optional(), website: z.string().optional(),
+  /** PadelRecs community feed (drizzle/0035): an optional Question or Tip on a top-level post. */ postType: z.enum(["question", "tip"]).nullish() });
 const vote = z.object({ commentId: z.string().uuid(), value: z.union([z.literal(-1), z.literal(0), z.literal(1)]) });
 
 export async function GET(request: Request) {
@@ -26,7 +29,9 @@ export async function GET(request: Request) {
     const db = await database(), list = await listComments(db, page, await device(false));
     // The member mark (optional accounts): a comment by a signed-in member, with the account's level and side read live.
     const members = await memberMap(db, "comment", list.map(c => c.id));
-    return json({ comments: list.map(c => { const m = members.get(c.id); return m ? { ...c, member: true, level: m.level, side: m.side } : c; }), ...(q.get("token") ? { token: issueFormToken() } : {}) });
+    // PadelRecs: each post's saved type (drizzle/0035), where it has one.
+    const types = TYPED ? await postTypes(db, list.map(c => c.id)) : new Map<string, PostType>();
+    return json({ comments: list.map(c => { const m = members.get(c.id), t = types.get(c.id), x = t ? { ...c, type: t } : c; return m ? { ...x, member: true, level: m.level, side: m.side } : x; }), ...(q.get("token") ? { token: issueFormToken() } : {}) });
   } catch (error) { console.error("Comments read failed", error); return json({ error: "Could not load comments." }, 500); }
 }
 
@@ -48,9 +53,12 @@ export async function POST(request: Request) {
     const alias = poster.kind === "member" ? poster.account.name : v.alias;
     const r = await addComment(db, { page: v.page, parentId: v.parentId ?? null, alias, body: v.body, voter, network: network(request) });
     if (r.status !== "limited" && r.status !== "invalid") await afterPost(db, "comment", r.comment.id, poster, voter);
+    // PadelRecs: a top-level post's Question or Tip (drizzle/0035); replies never carry one.
+    const type = TYPED && v.postType && !v.parentId && r.status !== "limited" && r.status !== "invalid" && await setPostType(db, r.comment.id, v.postType) ? v.postType : null;
     if (r.status === "limited") return json({ error: "That's a lot of comments for one hour. Try again later." }, 429);
     if (r.status === "invalid") return json({ error: "That conversation can't take replies." }, 400);
-    return json(r.status === "approved" ? { status: "approved", comment: poster.kind === "member" ? { ...r.comment, member: true, level: poster.account.level, side: poster.account.side } : r.comment } : { status: "pending" }, 201);
+    const comment = type ? { ...r.comment, type } : r.comment;
+    return json(r.status === "approved" ? { status: "approved", comment: poster.kind === "member" ? { ...comment, member: true, level: poster.account.level, side: poster.account.side } : comment } : { status: "pending" }, 201);
   } catch (error) { console.error("Comment save failed", error); return json({ error: "Could not post that. Try again?" }, 500); }
 }
 
