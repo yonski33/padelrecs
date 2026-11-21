@@ -168,7 +168,10 @@ export default async function ThreadRacket({ params }: P) {
   // PickleballRecs (wave 2, 2026-11-21): the same, with its groups (Spin, Game type). No score.
   // TennisRecs (v3 wave 2, 2026-11-21): padel's page with its own spec rows (head size, weight, balance, pattern, stiffness).
   if (niche.id === "padel" || (au && aw) || SR || TN || PB) {
-    const v7Specs = (SR || TN || PB ? [...niche.specs.map(s => [s.label, r[s.column]]), ["Released", r.year ? String(r.year) : null]] : aw ? [["Type", r.balance], ["Connection", r.weight], ["Driver", r.core], ["Noise cancelling", aw.anc ? "Yes" : aw.wireless ? "No" : null], ["Notes", r.surface]] : [["Weight", r.weight], ["Shape", r.shape], ["Balance", r.balance], ["Feel", row?.feel ?? null], ["Face", r.surface], ["Released", r.year ? String(r.year) : null],
+    // "Released": the year in the name ("Head Radical MP 2023"), else the year field, except on TennisRecs and SimRacingRecs,
+    // whose year field is a placeholder (2026 on every product, owner report 2026-11-22): there the row is left out.
+    const released = r.name.match(/\b(20\d\d)\b/)?.[1] ?? (TN || SR ? null : r.year ? String(r.year) : null);
+    const v7Specs = (SR || TN || PB ? [...niche.specs.map(s => [s.label, r[s.column]]), ["Released", released]] : aw ? [["Type", r.balance], ["Connection", r.weight], ["Driver", r.core], ["Noise cancelling", aw.anc ? "Yes" : aw.wireless ? "No" : null], ["Notes", r.surface]] : [["Weight", r.weight], ["Shape", r.shape], ["Balance", r.balance], ["Feel", row?.feel ?? null], ["Face", r.surface], ["Released", r.year ? String(r.year) : null],
       ...(((specNotes as unknown as Record<string, Record<string, [string, string][]>>)[niche.id] ?? {})[r.slug] ?? [])] as [string, string | null][]).filter((x): x is [string, string] => !!x[1]);
     // TL;DR with no counts (owner 2026-11-21): the written one as is; else the page's own lines without "N players mention
     // it", else the most-mentioned tags as "Players often say…". Claims still need 5+ reviews behind them (as before).
