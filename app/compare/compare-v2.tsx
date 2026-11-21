@@ -34,14 +34,16 @@ export const compareV2For = (count: number, look?: string) => count >= 2 && look
 // compare-verdict.tsx). Every value is the product page's own: the Player score, the trait dots and the content lines.
 
 const DOTS = SITE_FIT.traits.filter(t => !t.hidden);
-const TRAITS: VTrait[] = DOTS.map(t => ({ label: t.label, diff: t.diff ?? `more ${t.label.toLowerCase()}`, ifYou: t.ifYou ?? `care about ${t.noun}` }));
+export const TRAITS: VTrait[] = DOTS.map(t => ({ label: t.label, diff: t.diff ?? `more ${t.label.toLowerCase()}`, ifYou: t.ifYou ?? `care about ${t.noun}` }));
 const w = niche.words;
 /** The card's name: no brand, no year ("Metalbone CTRL 3.5"). */
 const shortName = (name: string, brand?: string) => { const n = withoutYear(name);
   return brand && n.toLowerCase().startsWith(`${brand.toLowerCase()} `) ? n.slice(brand.length + 1) : n; };
 const hrefFor = (slugs: string[]) => slugs.length ? `/compare?ids=${slugs.map(encodeURIComponent).join(",")}` : "/compare";
 
-export async function CompareV2({ data, products }: { data: Data; products: Data["rackets"] }) {
+/** The products' compare facts, shared by this page and PadelRecs' Compare v3 (app/compare/compare-v3.tsx): the cards' lines
+ *  (why yes, why not), trait dots for "Where they differ", shop links, specs and the match items. */
+export async function compareParts(data: Data, products: Data["rackets"]) {
   // SkinRecs and SimRacingRecs rank by attributes (lib/attr-profile), not the match context: their products come without
   // trait dots or a quick match, and the verdict compares on the player score, the content lines and the specs.
   const engine = !!niche.fit?.engine && !attrProfileFor(niche);
@@ -80,6 +82,11 @@ export async function CompareV2({ data, products }: { data: Data; products: Data
     return { ...vp, name: b.name, slug: b.r.slug, href: productHref(b.r), pic: photoOf(b.r), shop: b.shop,
       yes: [...lead, ...(own && lead.length < 2 ? [own] : [])].slice(0, 2), no: short(b.catchLine), specs: specDefs.map(d => { const v = d.get(b.r); return v ? specValue(specNumber(String(v))) : null; }) };
   });
+  return { engine, payload, brandOf, slugs, specDefs, cprods };
+}
+
+export async function CompareV2({ data, products }: { data: Data; products: Data["rackets"] }) {
+  const { engine, payload, brandOf, slugs, specDefs, cprods } = await compareParts(data, products);
   const { partners } = comparePairs(data);
   const more = products.flatMap(r => (partners.get(r.id) ?? []).filter(x => !(products.length === 2 && products.includes(x))).map(x => ({ r, x })))
     .filter((v, i, all) => all.findIndex(o => pairHref(o.r.slug, o.x.slug) === pairHref(v.r.slug, v.x.slug)) === i).slice(0, 6);
