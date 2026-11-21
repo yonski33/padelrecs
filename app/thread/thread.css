@@ -1164,6 +1164,7 @@ body:has(.th) .th a.ths3-rk:hover .name { color: var(--hover); }
 .ths3-actions { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; padding-top: 16px; border-top: 1px solid var(--line); }
 .ths3-act { all: unset; cursor: pointer; display: inline-flex; align-items: center; gap: 8px; font-weight: 700; font-size: 15px; padding: 6px 16px; border: 1.5px solid var(--ink); border-radius: 999px; background: #fff; }
 .ths3-act[aria-pressed="true"] { background: var(--lime); }
+.ths3-act:disabled { cursor: default; }
 body:has(.th) .th a.ths3-cm { text-decoration: none; font-weight: 600; font-size: 15px; margin-left: auto; color: var(--ink); }
 .ths3-actions .th7-more { margin-left: 0; }
 .ths3-actions .th7-dots { width: 30px; height: 28px; font-size: 18px; }
