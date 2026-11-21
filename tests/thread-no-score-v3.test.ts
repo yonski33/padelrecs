@@ -27,3 +27,8 @@ test("v3 sites: no em dash in the footer line; the score page is retired to How 
   assert.match(how, /export const SR_HOW/);
   assert.doesNotMatch(how.slice(how.indexOf("export const SR_HOW"), how.indexOf("export const AUDIO_HOW")), /—|\bscore\b(?!\.)(?! anywhere)/i);
 });
+
+test("v3 ranking pages: the meta description names the order, never the score", () => {
+  const page = readFileSync("app/thread/rankings/[slug]/page.tsx", "utf8");
+  assert.match(page, /: V3 \? `\$\{l\.blurb\} The top \$\{l\.ids\.length\}, ordered by \$\{W\.reviews\}\.`/);
+});

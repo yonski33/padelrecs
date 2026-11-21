@@ -73,6 +73,8 @@ export async function generateMetadata({ params }: P): Promise<Metadata> {
   const title = `${l.title}, ranked by real ${W.reviews}`;
   const description = l.kids ? `${l.blurb} The top picks by product type, from reviews by people who ${W.played} them.`
     : ratingCategory(l.slug, niche.id) ? `${l.blurb} The top ${l.ids.length}, from reviews by people who ${W.played} them.`
+    // The v3 sites have no score (owner 2026-11-22): their lists are ordered by reviews, so the description says that.
+    : V3 ? `${l.blurb} The top ${l.ids.length}, ordered by ${W.reviews}.`
     : `${l.blurb} The top ${l.ids.length} by ${W.score}, from reviews by people who ${W.played} them.`;
   return { title: { absolute: `${title} | ${niche.site.name}` }, description, alternates: { canonical: l.href }, openGraph: { title, description, url: l.href, type: "website" } };
 }
