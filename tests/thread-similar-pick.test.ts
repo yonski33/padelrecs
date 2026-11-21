@@ -9,22 +9,24 @@ const self = s("self");
 test("similar rackets: 4, closest first, never itself, its model or Often compared with", () => {
   const all = [self, s("own", { family: "f-self", year: 2025 }), s("a", { tags: 0.9 }), s("b"), s("c", { shape: "Diamond", style: "power", feel: "Hard", tags: 0.1 }),
     s("d", { tags: 0.7 }), s("e", { tags: 0.6 }), s("cmp", { tags: 1 })];
-  assert.deepEqual(pickSimilar(self, all, new Set(["cmp"])), ["a", "d", "e", "b"]);
+  assert.deepEqual(pickSimilar(self, all, new Set(["cmp"]), 4, 3, 2026), ["a", "d", "e", "b"]);
 });
 
 test("similar rackets: a model's older year never shows when a newer one is listed; one per model", () => {
   const all = [self, s("old", { family: "f-x", year: 2024, tags: 1 }), s("new", { family: "f-x", year: 2026, tags: 0.2 }), s("new2", { family: "f-x", year: 2026, tags: 0.1 })];
-  assert.deepEqual(pickSimilar(self, all, new Set()), ["new"]);
+  assert.deepEqual(pickSimilar(self, all, new Set(), 4, 3, 2026), ["new"]);
 });
 
 test("similar rackets: current years first; old years only fill up to 3", () => {
   const all = [self, s("a"), s("b", { year: 2025 }), s("o1", { year: 2023, tags: 1 }), s("o2", { year: 2022, tags: 0.9 })];
-  assert.deepEqual(pickSimilar(self, all, new Set()), ["a", "b", "o1"]);
-  assert.deepEqual(pickSimilar(self, [self, s("a"), s("b"), s("c"), s("d"), s("o1", { year: 2023, tags: 1 })], new Set()), ["a", "b", "c", "d"]);
+  assert.deepEqual(pickSimilar(self, all, new Set(), 4, 3, 2026), ["a", "b", "o1"]);
+  assert.deepEqual(pickSimilar(self, [self, s("a"), s("b"), s("c"), s("d"), s("o1", { year: 2023, tags: 1 })], new Set(), 4, 3, 2026), ["a", "b", "c", "d"]);
+  // 2027 early releases don't push 2025 out
+  assert.deepEqual(pickSimilar(self, [self, s("n", { year: 2027 }), s("l", { year: 2025, tags: 0.9 })], new Set(), 4, 3, 2026), ["l", "n"]);
 });
 
 test("similar rackets: a thin-data racket (no tag match) still gets its closest specs", () => {
   const thin = s("thin", { tags: 0, votes: 1 });
   const all = [thin, s("a", { tags: 0 }), s("b", { tags: 0, shape: "Diamond", style: "power" }), s("c", { tags: 0, feel: "Hard" }), s("d", { tags: 0, levels: ["advanced"] })];
-  assert.deepEqual(pickSimilar(thin, all, new Set()), ["a", "c", "d", "b"]);
+  assert.deepEqual(pickSimilar(thin, all, new Set(), 4, 3, 2026), ["a", "c", "d", "b"]);
 });

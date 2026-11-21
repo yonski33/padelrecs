@@ -20,16 +20,15 @@ export function closeness(self: SimSpec, x: SimSpec): number {
 }
 
 /** Up to `n` similar rackets, closest first: never the racket itself, its own model, anything in `exclude` (Often compared
- *  with), or a model's older year when a newer one is listed. Current models only (the newest catalog year and the one
- *  before); older years only fill up to `min` when too few current ones exist. */
-export function pickSimilar(self: SimSpec, all: SimSpec[], exclude: Set<string>, n = 4, min = 3): string[] {
+ *  with), or a model's older year when a newer one is listed. Current models only (this year and last year, so 2026/2025 in
+ *  2026, plus next year's early releases); older years only fill up to `min` when too few current ones exist. */
+export function pickSimilar(self: SimSpec, all: SimSpec[], exclude: Set<string>, n = 4, min = 3, year = new Date().getUTCFullYear()): string[] {
   const newest = new Map<string, number>();
   for (const x of all) newest.set(x.family, Math.max(newest.get(x.family) ?? 0, x.year));
-  const top = Math.max(0, ...all.map(x => x.year));
   const pool = all.filter(x => x.id !== self.id && x.family !== self.family && !exclude.has(x.id) && x.year === newest.get(x.family))
     .map(x => ({ x, c: closeness(self, x) })).sort((a, b) => b.c - a.c || b.x.votes - a.x.votes || a.x.id.localeCompare(b.x.id))
     .filter((p, i, a) => a.findIndex(q => q.x.family === p.x.family) === i); // one per model
-  const fresh = pool.filter(p => !top || p.x.year >= top - 1), old = pool.filter(p => top && p.x.year < top - 1);
+  const fresh = pool.filter(p => p.x.year >= year - 1), old = pool.filter(p => p.x.year < year - 1);
   const out = fresh.slice(0, n);
   for (const p of old) { if (out.length >= min) break; out.push(p); }
   return out.map(p => p.x.id);
