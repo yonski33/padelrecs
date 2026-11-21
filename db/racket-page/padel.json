@@ -10030,8 +10030,8 @@
   ]
  },
  "bullpadel-vertex-04-hybrid-2025": {
-  "tagline": "A low-balance Bullpadel control hybrid. The catch: off-centre contact is penalised.",
-  "bottom": "For advanced control players who strike cleanly. Skip it if you want free power or a big sweet spot.",
+  "tagline": "A firm, low-balance hybrid built for control. The catch: the hard feel can tire a sore arm.",
+  "bottom": "For advanced control players who strike cleanly. Skip it if you want free power or a soft feel.",
   "yes": [
    {
     "title": "Placement you can trust",
@@ -10079,17 +10079,15 @@
   ],
   "no": [
    {
-    "title": "Small sweet spot",
-    "t": "Off-centre contact ==is penalised==, so a miss can end the point.",
-    "for": [],
+    "title": "Firmer than the 2024",
+    "t": "The 2025 ==can bother a sore elbow== more than last year's version.",
+    "for": [
+     "arm"
+    ],
     "src": [
-     "e8c95236-5324-48aa-bf62-93a11cf7eb21",
-     "9a977f6f-015c-4eea-96cc-23af08b081f0",
-     "10b8340d-e748-4af3-a742-3ddbd6b39e68",
-     "research-c4fd1194-95cd-4ca2-8878-b8dbaaadf9a4",
-     "research-5a3a65a9-396a-4dfd-9f44-761427bfc1c9",
-     "research-477fff92-1729-4977-8168-bc190b928fe9",
-     "research-f3960151-826c-47a8-a1a1-feb2b62d8af1"
+     "research-ba3a9ab2-80d2-4e9a-9579-2b5243e7b818",
+     "research-f2bf17eb-ae64-4126-97a6-b5fe19e0b31f",
+     "research-092f8063-c897-423e-97dc-90728157d6fd"
     ]
    },
    {
@@ -10106,18 +10104,6 @@
      "research-1c19ab9e-08b8-41ff-9349-707c4b32b8d0",
      "research-ad5ebd4c-0f7d-45a5-8863-6e59a4316f52",
      "research-b6a0d95a-89a4-4063-87d8-1c2892e08220"
-    ]
-   },
-   {
-    "title": "Firmer than the 2024",
-    "t": "The 2025 ==can bother a sore elbow== more than last year's version.",
-    "for": [
-     "arm"
-    ],
-    "src": [
-     "research-ba3a9ab2-80d2-4e9a-9579-2b5243e7b818",
-     "research-f2bf17eb-ae64-4126-97a6-b5fe19e0b31f",
-     "research-092f8063-c897-423e-97dc-90728157d6fd"
     ]
    }
   ]
