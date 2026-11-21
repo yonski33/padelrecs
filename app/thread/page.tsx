@@ -40,7 +40,7 @@ export default async function ThreadHome() {
   const skinWire = sk ? (await import("../skin/payload")).wireOf(sk, sk.data.listed.filter(r => skinRows.some(x => x.id === r.id))) : [];
   const reviewed = all.filter(r => r.score != null && r.current).sort((a, b) => b.n - a.n).slice(0, 10);
   const now = Date.now();
-  const card = (f: (typeof feed)[number]): FeedCard | null => { const r = rows.get(f.racketId); return r ? { id: f.id, kind: f.kind, who: f.who, text: f.text, when: ago(f.date, now), at: f.date, verdict: f.verdict, url: f.url, racket: { name: r.name, href: r.href, pic: r.pic } } : null; };
+  const card = (f: (typeof feed)[number]): FeedCard | null => { const r = rows.get(f.racketId); return r ? { id: f.id, kind: f.kind, who: f.who, info: f.info ?? null, text: f.text, when: ago(f.date, now), at: f.date, verdict: f.verdict, url: f.url, racket: { name: r.name, href: r.href, pic: r.pic } } : null; };
   const cards = feed.slice(0, 60).flatMap(f => card(f) ?? []);
   const web = feed.filter(f => f.kind !== "player" && rows.has(f.racketId)).slice(0, 3);
   const rankLinks = lists.slice(0, 8).map(l => ({ label: l.label, href: l.href }));

@@ -45,13 +45,34 @@ export function reviewerName(r: { alias?: string | null; level?: string | null; 
   if (side) return side === "both sides" ? "Plays both sides" : `${side[0].toUpperCase()}${side.slice(1).replace(" side", "-side")} player`;
   return NO_NAME;
 }
+/** A review's reviewer info when it has no typed name (owner 2026-11-21): the level and side as a small grey tag
+ *  ("Intermediate · right side", "Dry skin · acne", "Intermediate · mostly doubles"), never a name. Null when neither is set. */
+export function reviewerInfo(r: { level?: string | null; side?: string | null }): string | null {
+  const lv = r.level?.trim(), sd = r.side?.trim();
+  const levelOwn = niche.id === "skin" && lv ? (niche.profile.playerLevel?.options ?? []).find(o => o.value.toLowerCase() === lv.toLowerCase()) as { display?: string } | undefined : undefined;
+  const level = levelOwn?.display ?? (lv ? lv.toLowerCase() : null);
+  const side = sd ? formatWord(sd) ?? SIDE[sd.toLowerCase()] ?? null : null;
+  const out = [level, side].filter(Boolean).join(" · ");
+  return out ? out[0].toUpperCase() + out.slice(1) : null;
+}
 /** A comment's name: the typed name, else "Player" (comments ask no level). "[removed]" stays as it is. */
 export const commenterName = (alias: string | null | undefined) => (alias ?? "").trim() === "[removed]" ? "[removed]" : typedName(alias) ?? NO_NAME;
-/** What's wrong with a typed name, or null: required, 2 to NAME_MAX characters, no links (owner 2026-11-19). */
+/** The site's own level and side words (padel: beginner … left, right, both; PickleballRecs: doubles; SkinRecs: dry, acne …). */
+const opts = (f?: { options?: readonly { value: string; display?: string }[] }) => (f?.options ?? []).flatMap(o => [o.value, o.display ?? ""]);
+const words = (t: string) => t.toLowerCase().split(/[^\p{L}\p{N}]+/u).filter(Boolean);
+const PROFILE_WORDS = new Set(words([...opts(niche.profile.playerLevel as never), ...opts(niche.profile.playingSide as never)].join(" ")));
+const FILLER = new Set(["side", "sides", "player", "players", "level", "plays", "mostly", "and", "skin", "the", "a"]);
+/** A typed name that is only a level and side description ("intermediate right side", "beginner left"): it would read as
+ *  reviewer info, and the level and side already show on their own (owner 2026-11-21). */
+export const isProfileOnlyName = (name: string) => { const w = words(name);
+  return w.length > 0 && w.some(x => PROFILE_WORDS.has(x)) && w.every(x => PROFILE_WORDS.has(x) || FILLER.has(x)); };
+export const PROFILE_NAME = "Pick a name, your level and side show on their own.";
+/** What's wrong with a typed name, or null: required, 2 to NAME_MAX characters, no links (owner 2026-11-19), not just a
+ *  level and side (owner 2026-11-21). */
 export const nameProblem = (name: string) => { const n = name.trim();
   return !n ? "Add a name to post." : n.length < NAME_MIN ? `A name needs at least ${NAME_MIN} characters.` : n.length > NAME_MAX ? `Keep the name to ${NAME_MAX} characters.`
-    : /https?:|www\.|\.[a-z]{2,}\//i.test(n) ? "No links in the name, please." : null; };
-/** A member's level and side as one line ("Intermediate, left side", "Left-side player"), or null when neither is set. */
+    : /https?:|www\.|\.[a-z]{2,}\//i.test(n) ? "No links in the name, please." : isProfileOnlyName(n) ? PROFILE_NAME : null; };
+/** A member's level and side as one line, the same words as reviewerInfo ("Intermediate · left side"), or null. */
 export function profileLine(level: string | null | undefined, side: string | null | undefined): string | null {
-  return level?.trim() || side?.trim() ? reviewerName({ alias: null, level, side }) : null;
+  return reviewerInfo({ level, side });
 }

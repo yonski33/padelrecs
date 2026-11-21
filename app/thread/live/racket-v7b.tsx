@@ -123,7 +123,7 @@ function ReviewRow({ c, model, owner, onChange }: { c: RvCard; model: string; ow
     { label: "Delete", danger: true, run: () => { if (window.confirm("Delete this review for good? It can't be undone.")) run(async () => { await status(rid, "rejected", "approved"); await send("/api/funtimes/delete-rejected", { id: rid }); }, { gone: true }); } },
   ] : [];
   return <article id={anchor} className="th7-rv">
-    <div className="th7-rv-top"><strong>{name}</strong>{c.member && <MemberMark/>}
+    <div className="th7-rv-top">{name ? <><strong>{name}</strong>{c.member && <MemberMark/>}</> : c.info && <span className="th-rv-info">{c.info}</span>}
       {c.verdict && <span className={`th-vpill ${VERDICT[c.verdict][1]}`}>{VERDICT[c.verdict][0]}</span>}
       {c.when && <span><Ago at={c.at || null} initial={c.when}/></span>}</div>
     {edit ? <div className="th-admin-acts">

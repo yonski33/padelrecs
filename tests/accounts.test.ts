@@ -101,8 +101,8 @@ test("delete: frees the name; posts stay without the mark, or go with removePost
 });
 
 test("member posts carry the account's level and side, read live", async () => {
-  assert.equal(profileLine("Intermediate", "Right"), "Intermediate, right side");
-  assert.equal(profileLine(null, "Left"), "Left-side player");
+  assert.equal(profileLine("Intermediate", "Right"), "Intermediate · right side");
+  assert.equal(profileLine(null, "Left"), "Left side");
   assert.equal(profileLine(null, null), null);
   const { engine, db } = await setup();
   try {
