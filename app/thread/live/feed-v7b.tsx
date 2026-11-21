@@ -21,6 +21,7 @@ import { Box, useComments, type C } from "./comments";
 import { MemberMark } from "./member-mark";
 import { postWhy, useReviewPost } from "./racket";
 import { PendingReviews, useOwner } from "./review-admin";
+import { HelpfulEditor } from "./helpful-admin";
 import { grow } from "./name";
 import { signInHref } from "./use-account";
 import { MoreMenu, OPEN_REVIEW, PollPointer, reportPost, ReviewRow, WebSources, type Changed } from "./racket-v7b";
@@ -36,6 +37,8 @@ const PAGE = 8;
 
 export function CommunityFeed({ id, model, cards, web }: { id: string; model: string; cards: RvCard[]; web: WebGroups<RvCard> }) {
   const rv = useReviewPost(id), t = useComments(`racket:${id}`), owner = useOwner();
+  // The owner's "Edit helpful" box (drizzle/0036): one post at a time.
+  const [helpOpen, setHelpOpen] = useState<string | null>(null);
   // The composer (owner 2026-11-21): open or closed, and an optional type. None picked posts a plain comment with no flair.
   const [composing, setComposing] = useState(false), [kind, setKind] = useState<Flair | null>(null), [filter, setFilter] = useState<Flair | "all">("all"), [sort, setSort] = useState<"new" | "top">("new");
   const [shown, setShown] = useState(PAGE), [openReplies, setOpenReplies] = useState<Record<string, true>>({}), [changed, setChanged] = useState<Record<string, Changed>>({});
@@ -77,7 +80,9 @@ export function CommunityFeed({ id, model, cards, web }: { id: string; model: st
     : <p className="th7-cm-text">{c.body}</p>;
   const menu = (c: C) => <MoreMenu items={[{ label: "Report", run: () => reportPost(`cm-${c.id}`) }]}
     owner={t.admin && !c.id.startsWith("temp-") ? [{ label: "Edit", run: () => t.open_(c, false) }, ...(c.alias !== "[removed]" ? [{ label: "Rename", run: () => t.open_(c, true) }] : []),
-      { label: "Hide", run: () => t.own(c, "hide") }, { label: "Delete", danger: true, run: () => t.own(c, "delete") }] : []}/>;
+      { label: "Hide", run: () => t.own(c, "hide") }, { label: "Delete", danger: true, run: () => t.own(c, "delete") },
+      { label: "Edit helpful", run: () => setHelpOpen(c.id) }] : []}/>;
+  const helpBox = (c: C) => helpOpen === c.id && <HelpfulEditor kind="comment" id={c.id} onClose={() => setHelpOpen(null)}/>;
   const up = (c: C) => <button type="button" className="th7-up" aria-label="Upvote" aria-pressed={c.mine === 1} onClick={() => t.vote(c, 1)}><span aria-hidden="true">▲</span>{c.score}</button>;
   const head = (c: C, flair?: Flair | null) => <div className="th7-cm-head">{flair && <span className={`th-flair ${flair}`}>{FLAIR_WORD[flair]}</span>}
     <strong>{commenterName(c.alias)}</strong>{c.member && <MemberMark/>}<span>{ago(c.at)}</span></div>;
@@ -89,11 +94,13 @@ export function CommunityFeed({ id, model, cards, web }: { id: string; model: st
       <div className="th7-cm-body">
         {head(c, flair)}{textOf(c)}
         <div className="th7-cm-act">{up(c)}<button type="button" className="reply" onClick={() => t.setReply(t.reply === c.id ? null : c.id)}>{t.reply === c.id ? "Cancel" : "Reply"}</button>{menu(c)}</div>
+        {helpBox(c)}
         {t.reply === c.id && box(`Reply to ${commenterName(c.alias)}`, "Reply", x => t.post(x, c.id), () => t.setReply(null))}
         {rs.length > 0 && <div className="th7-replies">{rs.map(r => <div key={r.id} id={`cm-${r.id}`} className="th7-cm sm"><Av c={r} sm/>
           <div className="th7-cm-body">
             {head(r)}{textOf(r)}
             <div className="th7-cm-act">{up(r)}<button type="button" className="reply" onClick={() => t.setReply(t.reply === r.id ? null : r.id)}>{t.reply === r.id ? "Cancel" : "Reply"}</button>{menu(r)}</div>
+            {helpBox(r)}
             {t.reply === r.id && box(`Reply to ${commenterName(r.alias)}`, "Reply", x => t.post(x, c.id), () => t.setReply(null), mentionOf(commenterName(r.alias)))}
           </div></div>)}
           {more > 0 && !openReplies[c.id] && <button type="button" className="th-feed-more" onClick={() => setOpenReplies(m => ({ ...m, [c.id]: true }))}>{`View ${more} more ${more === 1 ? "reply" : "replies"}`}</button>}

@@ -4,6 +4,7 @@
 import { and, count, desc, eq, gte, ilike, inArray, or, sql } from "drizzle-orm";
 import type { getDb } from "./index";
 import { comments, commentVotes } from "./schema";
+import { helpfulOverrideMap } from "./helpful";
 import { spamScore } from "../lib/review-spam";
 import { nameProblem } from "../lib/thread/display-name";
 
@@ -26,6 +27,8 @@ export async function listComments(db: Pick<Database, "select">, page: string, v
   const sums = await db.select({ id: commentVotes.commentId, s: sql<number>`coalesce(sum(${commentVotes.value}), 0)` }).from(commentVotes).where(inArray(commentVotes.commentId, ids)).groupBy(commentVotes.commentId);
   const mine = voter ? await db.select({ id: commentVotes.commentId, v: commentVotes.value }).from(commentVotes).where(and(inArray(commentVotes.commentId, ids), eq(commentVotes.voter, voter))) : [];
   const sum = new Map(sums.map(x => [x.id, Number(x.s)])), my = new Map(mine.map(x => [x.id, x.v]));
+  // The owner's override (drizzle/0036) replaces the shown ▲ total and so the Top order.
+  for (const [k, v] of await helpfulOverrideMap(db, ["comment"], ids)) sum.set(k.slice(8), v);
   // A reply shows only under a shown parent.
   const shown = new Set(rows.filter(r => !r.parentId).map(r => r.id));
   return rows.filter(r => !r.parentId || shown.has(r.parentId)).map(r => ({ id: r.id, parentId: r.parentId, alias: r.alias, body: r.body, at: r.createdAt, score: sum.get(r.id) ?? 0, mine: my.get(r.id) ?? 0 }));
@@ -40,6 +43,7 @@ export async function racketComments(db: Pick<Database, "select">, limit = 2000)
   const sums = await db.select({ id: commentVotes.commentId, s: sql<number>`coalesce(sum(${commentVotes.value}), 0)` }).from(commentVotes)
     .where(inArray(commentVotes.commentId, rows.map(r => r.id))).groupBy(commentVotes.commentId);
   const sum = new Map(sums.map(x => [x.id, Number(x.s)])), shown = new Set(rows.filter(r => !r.parentId).map(r => r.id));
+  for (const [k, v] of await helpfulOverrideMap(db, ["comment"], rows.map(r => r.id))) sum.set(k.slice(8), v);
   return rows.filter(r => !r.parentId || shown.has(r.parentId))
     .map(r => ({ id: r.id, page: r.page, parentId: r.parentId, alias: r.alias, body: r.body, at: r.createdAt, score: sum.get(r.id) ?? 0 }));
 }

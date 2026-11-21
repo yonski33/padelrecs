@@ -150,3 +150,18 @@ export const followSent = catalogSchema.table("follow_sent", {
 export const followSettings = catalogSchema.table("follow_settings", {
  userId: text("user_id").primaryKey(), emails: boolean("emails").notNull().default(true), updatedAt: text("updated_at").notNull()
 }).enableRLS();
+/** The owner's "Helpful" override (drizzle/0036, vote abuse clean-up): the count shown, and the Top / helpful sort, use
+ *  `value` when a row is here. The real votes (review_votes, comment_votes) stay as they are. kind: "player" and "web"
+ *  (review_votes types) or "comment" (comment_votes ▲▼ total). */
+export const helpfulOverrides = catalogSchema.table("helpful_overrides", {
+ kind: text("kind", { enum: ["player", "web", "comment"] }).notNull(), postId: text("post_id").notNull(), value: integer("value").notNull(),
+ setBy: text("set_by").notNull(), setAt: text("set_at").notNull()
+}, t => [primaryKey({ name: "helpful_overrides_pk", columns: [t.kind, t.postId] }), check("helpful_override_kind", sql`${t.kind} in ('player','web','comment')`),
+ check("helpful_override_value", sql`${t.value} between -99999 and 99999`)]).enableRLS();
+/** Every Helpful change by an admin: who, when, from what to what, and the real count at the time. */
+export const helpfulAudit = catalogSchema.table("helpful_audit", {
+ id: text("id").primaryKey(), kind: text("kind").notNull(), postId: text("post_id").notNull(),
+ action: text("action", { enum: ["set", "reset", "remove-voter", "remove-voter-everywhere"] }).notNull(),
+ fromShown: integer("from_shown").notNull(), toShown: integer("to_shown").notNull(), realCount: integer("real_count").notNull(), voter: text("voter"),
+ by: text("by").notNull(), at: text("at").notNull()
+}, t => [index("helpful_audit_post_idx").on(t.kind, t.postId, t.at), check("helpful_audit_action", sql`${t.action} in ('set','reset','remove-voter','remove-voter-everywhere')`)]).enableRLS();
