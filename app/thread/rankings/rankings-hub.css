@@ -48,3 +48,33 @@
 .rkh .rkh-how-body p { margin: 8px 0 0; font-size: 16px; line-height: 1.6; }
 .rkh .rkh-how-links { margin-top: 20px !important; font-family: var(--bc); font-weight: 700; font-size: 18px; }
 .rkh .rkh-how-links a { text-decoration: none; }
+
+/* Hub v4 (owner mock "Rankings hub", 2026-11-21): the title on the page, then three groups of list cards (photo tile, title,
+   line, "#1 <racket>", "then …"). Three columns, one on phones. No black header bars. */
+.rkh.rkh-v4 { gap: 26px; padding-top: 22px; }
+.rkh .rkh-top { display: flex; justify-content: space-between; align-items: flex-end; gap: 10px 24px; flex-wrap: wrap; }
+.th .rkh .rkh-top h1 { font-family: var(--bc); font-weight: 800; font-size: 60px; line-height: 0.95; }
+.rkh .rkh-top .rkh-desc { margin-top: 8px; color: var(--rh-ink); }
+.rkh .rkh-how { font-weight: 700; font-size: 15px; color: var(--rh-ink); text-underline-offset: 3px; white-space: nowrap; }
+.rkh .rkh-group { display: flex; flex-direction: column; gap: 12px; }
+.th .rkh .rkh-group h2 { display: flex; align-items: baseline; flex-wrap: wrap; gap: 4px 12px; font-family: var(--bc); font-weight: 800; font-size: 30px; line-height: 1.05; }
+.rkh .rkh-group h2 span { font-family: var(--body-font); font-weight: 400; font-size: 15px; color: var(--rh-ink2); }
+.rkh .rkh-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+@media (max-width: 999px) { .rkh .rkh-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 639px) { .rkh .rkh-grid { grid-template-columns: minmax(0, 1fr); } }
+.rkh .rkh-list { display: grid; grid-template-columns: 112px minmax(0, 1fr); gap: 16px; align-items: center; padding: 14px; text-decoration: none; color: var(--rh-ink); }
+.rkh .rkh-list .tile { width: 112px; height: 116px; border-radius: 10px; display: flex; align-items: center; justify-content: center; overflow: hidden; }
+.rkh .rkh-list .tile img { max-height: 100px; max-width: 92px; width: auto; object-fit: contain; mix-blend-mode: multiply; }
+.rkh .rkh-list .txt { display: flex; flex-direction: column; gap: 4px; min-width: 0; }
+.rkh .rkh-list .t { font-family: var(--bc); font-weight: 800; font-size: 27px; line-height: 1.05; }
+.rkh .rkh-list .b { font-size: 13.5px; line-height: 1.4; color: var(--rh-ink2); }
+.rkh .rkh-list .one { display: flex; align-items: baseline; gap: 6px; margin-top: 6px; font-size: 14px; font-weight: 700; line-height: 1.3; }
+.rkh .rkh-list .one i { flex: none; font-style: normal; font-size: 11.5px; font-weight: 800; color: #fff; background: var(--rh-ink); border-radius: 999px; padding: 1px 7px; position: relative; top: -1px; }
+.rkh .rkh-list .then { font-size: 12.5px; line-height: 1.4; color: var(--rh-ink2); }
+.rkh .rkh-list:hover .t { text-decoration: underline; }
+@media (max-width: 639px) {
+  .th .rkh .rkh-top h1 { font-size: 44px; }
+  .rkh .rkh-list { grid-template-columns: 96px minmax(0, 1fr); gap: 14px; }
+  .rkh .rkh-list .tile { width: 96px; height: 104px; }
+  .rkh .rkh-list .tile img { max-height: 90px; max-width: 80px; }
+}
