@@ -11,7 +11,7 @@ import { ago } from "../thread/ui";
 import { th } from "../../lib/thread/look";
 import { differRows } from "../../lib/compare-verdict";
 import { comparePairs, pairHref } from "../../lib/compare-pairs";
-import { displayName } from "../../lib/brand-name";
+import { displayName, withoutYear } from "../../lib/brand-name";
 import { avatarOf } from "../../lib/thread/avatar";
 import { compareParts, TRAITS } from "./compare-v2";
 import { CompareAdd } from "./compare-add";
@@ -42,7 +42,7 @@ export async function CompareV3({ data, products }: { data: Data; products: Data
   const shorts = cprods.map(c => c.short);
   const cards: V3Card[] = products.map((r, i) => {
     const row = rows.get(r.id), plays = traitGroup(t, r.id, "plays_like"), top = Object.entries(plays).filter(([k]) => PLAYS[k]).sort((a, b) => b[1] - a[1])[0];
-    return { id: r.id, name: displayName(r.name, brandOf(r)), short: shorts[i], href: th(row?.href ?? cprods[i].href), pic: row?.pic ?? cprods[i].pic,
+    return { id: r.id, name: withoutYear(displayName(r.name, brandOf(r))), short: shorts[i], href: th(row?.href ?? cprods[i].href), pic: row?.pic ?? cprods[i].pic,
       shape: r.shape ? r.shape[0].toUpperCase() + r.shape.slice(1) : null, feel: row?.feel ?? null,
       picked: top && top[1] >= 5 && total(plays) >= 10 ? `Most picked for ${PLAYS[top[0]]} · ${top[1]} players` : null,
       pos: row?.pos ?? 0, mix: row?.mix ?? 0, neg: row?.neg ?? 0, shop: cprods[i].shop, tint: TINT[i], dot: DOT[i],
