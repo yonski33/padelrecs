@@ -5,6 +5,8 @@ import { threadRows, traitCounts, traitGroup } from "./data";
 import { votePill } from "../../lib/thread/vote-pill";
 import { TRAIT_GROUPS } from "../../lib/thread/traits";
 import padelCurated from "../../db/curated/padel.json";
+import { seasonIds } from "../../lib/thread/home-order";
+import { modelFamily } from "../../lib/compare-pairs";
 
 /** "PadelRecs picks": the owner's curated lists interleaved by place (#1 of each, then #2 …). */
 const curatedOrder = () => { const lists = Object.values((padelCurated as { lists: Record<string, { slug: string }[]> }).lists), out: string[] = [];
@@ -22,5 +24,8 @@ export const padelListData = cache(async () => {
   const listed = new Map((ctx?.data.listed ?? []).map(x => [x.id, x]));
   const added = Object.fromEntries(rows.map(r => [r.id, listed.get(r.id)?.createdAt ?? ""]));
   const bySlug = new Map(rows.map(r => [r.slug, r.id])), curated = curatedOrder().flatMap(s => bySlug.get(s) ?? []);
-  return { rows, brands, pills, added, curated };
+  // The home's pool (lib/thread/home-order.ts): this season's models with 10+ opinions, one per model.
+  const season = seasonIds(rows.flatMap(r => { const p = listed.get(r.id); return p ? [{ id: r.id, family: modelFamily(p), year: r.year, opinions: r.pos + r.mix + r.neg }] : []; }),
+    new Date().getUTCFullYear());
+  return { rows, brands, pills, added, curated, season };
 });

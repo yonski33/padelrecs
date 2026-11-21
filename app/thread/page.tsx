@@ -73,7 +73,7 @@ export default async function ThreadHome() {
     const live = total > 0 ? `${total.toLocaleString("en-US")} reviews${week > 0 ? ` · ${week.toLocaleString("en-US")} ${WEEK_SHORT}` : ""}` : null;
     return <Shell>
       <main className="th-main th-hp3">
-        <PadelHomeTop rows={d.rows} brands={d.brands} pills={d.pills} added={d.added} curated={d.curated} live={live}
+        <PadelHomeTop rows={d.rows} brands={d.brands} pills={d.pills} added={d.added} curated={d.curated} season={d.season} live={live}
           after={<div key="after" className="hp3-rest">
             <div key="cm" className="hp3-rest">{sideBox(" th-only-m")}</div>
             {picks.lists.length > 0 && <TopPicks key="tp" lists={picks.lists} total={picks.total} hrefs={Object.fromEntries(all.map(r => [r.id, r.href]))} unit={["vote", "votes"]}/>}

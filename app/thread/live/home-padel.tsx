@@ -1,7 +1,7 @@
 "use client";
 // PadelRecs home, top part (v3 handoff "Home Thread v6", owner 2026-11-21): the hero (racket drawing, the title with the one
 // squiggle on the page, the live count), the match bar (re-orders, "% your match") + fine-tune (hides), and "Top rackets right
-// now" (#1…, 6 then show more, PadelRecs picks by default). No subline under the title. The list code is shared with the
+// now" (#1…, 6 then show more; this season's models, most loved by default, lib/thread/home-order.ts). No subline under the title. The list code is shared with the
 // catalogue (./padel-list.tsx), so the two never disagree.
 import { useState, type ReactNode } from "react";
 import { type ThreadRow } from "../ui";
@@ -23,12 +23,13 @@ const Racket = () => <svg className="hp3-art" width="74" height="80" viewBox="0 
 /** The page's only squiggle, after the title (owner: squiggle only on the hero). */
 const Squiggle = () => <svg className="hp3-sq" width="26" height="28" viewBox="0 0 30 30" fill="none" stroke="#B9E85A" strokeWidth="4" strokeLinecap="round" aria-hidden="true"><path d="M6 14 L12 4 M12 20 L24 13 M14 27 L27 26"/></svg>;
 
-export function PadelHomeTop({ rows, brands, pills, added, curated, live, after, side }: {
+export function PadelHomeTop({ rows, brands, pills, added, curated, season, live, after, side }: {
   rows: ThreadRow[]; brands: string[]; pills: Record<string, string>; added: Record<string, string>; curated: string[];
+  /** The list's pool: this season's models with 10+ opinions (lib/thread/home-order.ts). */ season: string[];
   /** "2,936 reviews · 36 opinions collected this week", or null. */ live: string | null;
   /** The rest of the main column (Top picks, reviews) and the sidebar, server-rendered. */ after: ReactNode; side: ReactNode;
 }) {
-  const l = useRacketList({ rows, curated, added }), { list, pcts, mine, clearAll } = l;
+  const l = useRacketList({ rows, curated, added, season }), { list, pcts, mine, clearAll } = l;
   const [ft, setFt] = useState(false), [n, setN] = useState(FIRST);
   const sticker = <span className="hp3-sticker" aria-hidden="true"><svg width="58" height="26" viewBox="0 0 58 26" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"><path d="M55 20C44 24 30 23 20 16 15 12.5 11 10 5 10"/><path d="M11 4.5L4.5 10l6.5 5"/></svg>
     <span>{mine ? "your match" : "quick match"}</span></span>;
