@@ -180,7 +180,7 @@ export default async function ThreadRacket({ params }: P) {
     const model = brand && bare.toLowerCase().startsWith(`${brand.name.toLowerCase()} `) ? bare.slice(brand.name.length + 1) : bare;
     // The top card's pill: the strongest "How does it play?" answer, from the groups as the page shows them (lib/thread/vote-pill.ts).
     const tc = hasDb() ? await traitCounts() : null;
-    const pill = tc ? votePill(Object.fromEntries((SR ? traitGroupsForType(niche.id, r.shape) : TRAIT_GROUPS).map(g => [g.key, traitGroup(tc, r.id, g.key)])), W.people, ...(aw ? [AUDIO_PILL_LABELS, AUDIO_PILL_LABELS] as const : SR ? [SIMRACING_PILL_WORDS, SIMRACING_PILL_LABELS] as const : [])) : null;
+    const pill = tc ? votePill(Object.fromEntries((SR ? traitGroupsForType(niche.id, r.shape, r.id) : TRAIT_GROUPS).map(g => [g.key, traitGroup(tc, r.id, g.key)])), W.people, ...(aw ? [AUDIO_PILL_LABELS, AUDIO_PILL_LABELS] as const : SR ? [SIMRACING_PILL_WORDS, SIMRACING_PILL_LABELS] as const : [])) : null;
     // The community sidebar (owner OK 2026-11-21): this week's counts, the newest question, who plays it (votes only), and
     // the rackets it is compared with (its compare pages' partners, then the engine's similar rackets).
     const groupOf = (k: string) => tc ? traitGroup(tc, r.id, k) : null;
@@ -222,7 +222,7 @@ export default async function ThreadRacket({ params }: P) {
           <Poll id={r.id} reviews={{ positive: row?.pos ?? 0, mixed: row?.mix ?? 0, negative: row?.neg ?? 0 }}/>
         </div></article>
 
-        <TraitVotes id={r.id} seed={traitSeed(niche.id, r.id)} {...(SKIN ? { of: judged } : {})} {...(SR ? { groups: traitGroupsForType(niche.id, r.shape) } : {})}/>
+        <TraitVotes id={r.id} seed={traitSeed(niche.id, r.id)} {...(SKIN ? { of: judged } : {})} {...(SR ? { groups: traitGroupsForType(niche.id, r.shape, r.id) } : {})}/>
         {/* "What reviews say" (trait dots) is off the page (owner 2026-11-19, not in the mockup); racketData still builds `traits`. */}
         {sim.length > 0 && <section className="th-card th-sec th-sec-sim"><h2 className="th-h3">{`Similar ${niche.words.many}`}</h2><div className="th-sim">{sim.map(x => <Mini key={x.id} x={x}/>)}</div></section>}
         {specsBox}
@@ -262,7 +262,7 @@ export default async function ThreadRacket({ params }: P) {
 /** SimRacingRecs' product page parts: the fit card in its words (level and budget, I race on console) and the gear type's groups. */
 function srPageProps(id: string, shape: string | null) {
   return { fit: <FitCard id={id} title="Is this product right for me?" sub="Pick your level and budget, for a quick fit from community feedback." arm="I race on console"/>,
-    groups: traitGroupsForType(niche.id, shape), whoTitle: "Who races with it" };
+    groups: traitGroupsForType(niche.id, shape, id), whoTitle: "Who races with it" };
 }
 function audioTagsOf(aw: AudioWire, connection: string | null) {
   return [aw.anc ? "Noise cancelling" : null, aw.kind, connection, tuningWord(aw.s.tuning)].filter((x): x is string => !!x);

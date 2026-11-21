@@ -25,7 +25,7 @@ import { listYear } from "../../lib/top-lists";
 import { plainSummary } from "../../lib/plain-summary";
 import { database } from "../../db/data";
 import { boardCounts } from "../../db/thread-votes";
-import { VOTE_BOARDS } from "../../lib/thread/traits";
+import { VOTE_BOARDS, hiddenTraits } from "../../lib/thread/traits";
 import type { ThreadRow } from "./ui";
 import { reviewerInfo, typedName } from "../../lib/thread/display-name";
 
@@ -199,6 +199,8 @@ export const traitCounts = cache(async () => {
 });
 /** One racket's group as the racket page shows it: the owner's override or the review prefill, plus votes per option. */
 export function traitGroup(t: Awaited<ReturnType<typeof traitCounts>>, id: string, trait: string): Record<string, number> {
+  // A product's hidden groups (lib/thread/traits.ts HIDDEN_TRAITS) count as empty everywhere; the votes stay stored.
+  if (hiddenTraits(niche.id, id).includes(trait)) return {};
   const base = t.overrides.get(`${id}|${trait}`) ?? traitSeed(niche.id, id)?.groups[trait] ?? {}, out = { ...base };
   for (const [k, n] of t.votes) { const [r, tr, c] = k.split("|"); if (r === id && tr === trait) out[c] = (out[c] ?? 0) + n; }
   return out;
