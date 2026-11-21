@@ -6,6 +6,8 @@ import { alsoLoved, castVote, myVotes, removeVote, voteHash, voteStats } from ".
 import { niche, productHref } from "../../../lib/niche";
 import { displayName } from "../../../lib/brand-name";
 import { siteOrigin } from "../../../lib/site-url";
+import { threadSite } from "../../../lib/thread/look";
+import { refreshRacketPage } from "../../../lib/thread/refresh-racket";
 
 // Quick ratings: POST casts or changes this device's 1–5 rating of one product; GET returns a product's totals, this device's
 // votes, or "players who loved these also loved"; DELETE ?racket=<id> takes back this device's rating. The device is a random
@@ -44,6 +46,8 @@ export async function POST(request: Request) {
     if (result.status === "invalid") return json({ error: "Invalid vote." }, 400);
     if (result.status === "missing") return json({ error: `That ${niche.words.one} isn't in the catalog.` }, 404);
     if (result.status === "limited") return json({ error: "That's a lot of votes for one hour. Try again later." }, 429);
+    // Thread sites render the poll counts in the page's server HTML (audit 2026-11-21): mark that page stale.
+    if (threadSite(niche.id)) await refreshRacketPage(await database(), racketId);
     return json({ stats: result.stats });
   } catch (error) {
     console.error("Product vote failed", error);
@@ -59,7 +63,7 @@ export async function DELETE(request: Request) {
   const voter = await device(false);
   try {
     const db = await database();
-    if (voter) await removeVote(db, racketId, voter);
+    if (voter) { await removeVote(db, racketId, voter); if (threadSite(niche.id)) await refreshRacketPage(db, racketId); }
     return json({ stats: await voteStats(db, racketId) });
   } catch (error) { console.error("Product vote removal failed", error); return json({ error: "Could not remove your vote." }, 500); }
 }

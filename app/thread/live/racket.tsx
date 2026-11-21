@@ -56,8 +56,10 @@ function askOnce(id: string) {
   try { const seen = JSON.parse(localStorage.getItem(ASK_KEY) || "{}") as Record<string, 1>; if (seen[id]) return false;
     seen[id] = 1; localStorage.setItem(ASK_KEY, JSON.stringify(seen)); return true; } catch { return false; }
 }
-export function Poll({ id, reviews, question = "Poll: would you buy it again?", sub, countsOnly = false }: { id: string; reviews: Counts; question?: string; sub?: string; countsOnly?: boolean }) {
-  const [votes, setVotes] = useState<Counts | null>(null), [mine, setMine] = useState<Verdict | null>(null), [err, setErr] = useState("");
+/** `initialVotes`: the quick votes /api/thread-poll would return, read on the server (PadelRecs, audit 2026-11-21), so the
+ *  server HTML shows the same counts as the page after the fetch. */
+export function Poll({ id, reviews, question = "Poll: would you buy it again?", sub, countsOnly = false, initialVotes }: { id: string; reviews: Counts; question?: string; sub?: string; countsOnly?: boolean; initialVotes?: Counts }) {
+  const [votes, setVotes] = useState<Counts | null>(initialVotes ?? null), [mine, setMine] = useState<Verdict | null>(null), [err, setErr] = useState("");
   // PadelRecs (countsOnly): after a fresh vote, one light "Want to add a line about why?", once per racket per visitor.
   const [ask, setAsk] = useState(false);
   // Counts from /api/thread-poll: a reviewer who also quick-voted counts once (their review is in `reviews`).

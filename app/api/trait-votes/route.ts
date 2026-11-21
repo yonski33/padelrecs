@@ -9,6 +9,7 @@ import { validTraitVote, traitGroupsFor } from "../../../lib/thread/traits";
 import { threadSite } from "../../../lib/thread/look";
 import { niche } from "../../../lib/niche";
 import { device, network, json, foreign } from "../thread-device";
+import { refreshRacketPage } from "../../../lib/thread/refresh-racket";
 
 const input = z.object({ racketId: z.string().min(1).max(100), trait: z.string().min(2).max(20), choice: z.string().min(2).max(20).nullable() });
 const off = () => !threadSite(niche.id) || !process.env.DATABASE_URL;
@@ -35,6 +36,8 @@ export async function POST(request: Request) {
     if (status === "missing") return json({ error: "That racket isn't in the catalog." }, 404);
     if (status === "frozen") return json({ error: "Voting is closed here for now." }, 403);
     if (status === "limited") return json({ error: "That's a lot of votes for one hour. Try again later." }, 429);
+    // The page's server HTML shows these counts too (audit 2026-11-21), so mark it stale.
+    await refreshRacketPage(db, racketId);
     return json({ counts: await traitCounts(db, racketId), mine: await myTraitVotes(db, racketId, voter), overrides: await traitOverridesFor(db, racketId) });
   } catch (error) { console.error("Trait vote failed", error); return json({ error: "Could not save your vote." }, 500); }
 }

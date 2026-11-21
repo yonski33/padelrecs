@@ -25,7 +25,8 @@ import { MemberMark } from "./live/member-mark";
 import { FollowButton } from "./live/follow-button";
 import { followSite } from "../../lib/thread/sites";
 import type { RvCard } from "./racket-data";
-import type { TraitGroup } from "../../lib/thread/traits";
+import type { TraitGroup, TraitCounts } from "../../lib/thread/traits";
+import type { Overrides } from "./live/trait-votes";
 
 /** Owner 2026-11-21: no Player score anywhere on the racket page. true brings the badge back (sidebar and phone tag row). */
 export const SHOW_SCORE = false;
@@ -44,6 +45,11 @@ export type V7bProps = {
   /** Often compared with: up to 3 rackets and their compare page. */ compared: { row: ThreadRow; href: string }[];
   stories: { id: string; slug: string; title: string; author: { name: string } }[];
   /** AudioRecs (V3-ROLLOUT-BRIEF): its own fit card and its kind's vote groups. Padel: absent. */ fit?: ReactNode; groups?: TraitGroup[];
+  /** What /api/trait-votes and /api/thread-poll return, read on the server (audit 2026-11-21): the vote boxes, the poll and
+   *  the opinions count start from these, so the server HTML matches the page after its fetches. */
+  live?: { counts: TraitCounts; overrides: Overrides; poll: { positive: number; mixed: number; negative: number } } | null;
+  /** A year the list doesn't show (audit 2026-11-21): the year it shows, and whether this one is older. A note links to it. */
+  listedAs?: { row: ThreadRow; older: boolean } | null;
 };
 /** Two TL;DR bullets: the first praise and the first catch, so a downside always shows. */
 const two = <B extends { tone: string }>(bs: B[]) => { const pos = bs.find(b => b.tone === "pos"), neg = bs.find(b => b.tone !== "pos");
@@ -91,7 +97,9 @@ export function RacketV7b(p: V7bProps) {
   const community = (week || latest || who || compared) && <>{week}{latest}{who}{compared}</>;
   const basics = (specs || buy) && <section className="th-card th8-box"><h2 className="th8-bh">The basics</h2>{specs}{buy}</section>;
   // The one-line tagline is no longer shown here (owner 2026-11-21: it repeats the TL;DR); meta and OG text keep using it.
-  const votes = row ? row.pos + row.mix + row.neg : 0;
+  // The opinions block counts what the poll shows: reviews (and the owner's tally) plus the quick votes (audit 2026-11-21).
+  const q = p.live?.poll, op = row ? { pos: row.pos + (q?.positive ?? 0), mix: row.mix + (q?.mixed ?? 0), neg: row.neg + (q?.negative ?? 0) } : null;
+  const votes = op ? op.pos + op.mix + op.neg : 0;
   return <main className="th-main th7 th8">
     <div className="th-col">
       {p.crumbs}
@@ -100,6 +108,8 @@ export function RacketV7b(p: V7bProps) {
           <Photo src={row?.pic ?? null} className="th-bigphoto th8-photo"/>
           <div className="th8-hero-r">
             <h1 className="th-h1">{p.title}</h1>
+            {p.listedAs && <p className="th8-older">{p.listedAs.older ? "Older model. The current one is the " : "Newer model with few opinions so far. The list shows the "}
+              <a href={th(p.listedAs.row.href)}>{named(p.listedAs.row)}</a>{p.listedAs.older ? "." : " for now."}</p>}
             {followSite(niche.id) && <FollowButton id={p.id} name={p.model} place="hero"/>}
             <div className="th-tags">
               {p.tags.map((t, i) => <span key={t} className={`th-pill${i === 0 && p.lime ? " lime" : ""}`}>{t}</span>)}
@@ -114,8 +124,8 @@ export function RacketV7b(p: V7bProps) {
                 counts with colour dots (never %), all linking to the poll. */}
             {votes > 0 && <a className="th8-op" href="#feedback">
               <strong>{plural(votes, "opinion", "opinions")}</strong>
-              <SBar pos={row!.pos} mix={row!.mix} neg={row!.neg}/>
-              <span className="th8-op-n">{([["pos", row!.pos, "loved"], ["mix", row!.mix, "mixed"], ["neg", row!.neg, "not for me"]] as const)
+              <SBar pos={op!.pos} mix={op!.mix} neg={op!.neg}/>
+              <span className="th8-op-n">{([["pos", op!.pos, "loved"], ["mix", op!.mix, "mixed"], ["neg", op!.neg, "not for me"]] as const)
                 .map(([k, n, w]) => <span key={k}><span className={`th-sdot ${k}`}/>{`${n} ${w}`}</span>)}</span>
             </a>}
           </div>
@@ -129,9 +139,9 @@ export function RacketV7b(p: V7bProps) {
       {p.fit ?? <FitCard id={p.id} title={`Is this ${niche.words.one} right for me?`} sub="Pick how you play and what you want, for a quick fit from community feedback."/>}
       <div id="feedback" className="th8-anchor">
         <PollCard id={p.id} reviews={{ positive: row?.pos ?? 0, mixed: row?.mix ?? 0, negative: row?.neg ?? 0 }} question="Poll: would you buy it again?"
-          sub={`Vote and see how other ${W.people} feel after using it.`} countsOnly/>
+          sub={`Vote and see how other ${W.people} feel after using it.`} countsOnly {...(q ? { initialVotes: q } : {})}/>
       </div>
-      <TraitVotes id={p.id} seed={traitSeed(niche.id, p.id)} tieNone {...(p.groups ? { groups: p.groups } : {})}/>
+      <TraitVotes id={p.id} seed={traitSeed(niche.id, p.id)} tieNone {...(p.groups ? { groups: p.groups } : {})} {...(p.live ? { initial: { counts: p.live.counts, overrides: p.live.overrides } } : {})}/>
       {/* Similar rackets (owner bug 2026-11-21): four current models, none from Often compared with (lib/thread/similar-pick.ts),
           as a row of tiles across the column on desktop and a stack on phones. */}
       {p.sim.length > 0 && <section className="th-card th8-sec"><div className="th8-sec-h"><h2 className="th-h2">{`Similar ${niche.words.many}`}</h2>

@@ -1252,6 +1252,9 @@ body:has(.th) .th .th-rk-menu a[aria-current="page"] { font-weight: 700; }
 .th8-hero-r { display: flex; flex-direction: column; gap: 8px; min-width: 0; }
 .th8-top .th-h1 { font-size: 44px !important; line-height: 1; }
 .th8-top .th-tags .th-pill { font-size: 13.5px; }
+/* An older year of a listed model (audit 2026-11-21): one quiet line under the title, linking to the current one. */
+.th8-older { margin: 0; font-size: 14px; color: var(--muted); }
+.th8-older a { color: inherit; font-weight: 600; text-decoration: underline; text-underline-offset: 2px; }
 .th8-tldr { border: 0; border-radius: 12px; padding: 14px 16px; gap: 9px; }
 .th8-tldr .th-tldr-h { font-size: 26px; line-height: 1; }
 .th8-tldr p { font-size: 18px; line-height: 1.45; padding-bottom: 9px; border-bottom: 1px solid var(--lime-bar); }
