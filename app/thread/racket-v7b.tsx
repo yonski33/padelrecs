@@ -44,6 +44,7 @@ export type V7bProps = {
   /** Often compared with: up to 3 rackets and their compare page. */ compared: { row: ThreadRow; href: string }[];
   stories: { id: string; slug: string; title: string; author: { name: string } }[];
   /** AudioRecs (V3-ROLLOUT-BRIEF): its own fit card and its kind's vote groups. Padel: absent. */ fit?: ReactNode; groups?: TraitGroup[];
+  /** DiscGolfRecs: its plastic chips over the feed (2+ plastics named). Others: absent. */ plastics?: string[];
 };
 /** Two TL;DR bullets: the first praise and the first catch, so a downside always shows. */
 const two = <B extends { tone: string }>(bs: B[]) => { const pos = bs.find(b => b.tone === "pos"), neg = bs.find(b => b.tone !== "pos");
@@ -142,7 +143,7 @@ export function RacketV7b(p: V7bProps) {
       {/* Player reviews, then outside sources in their own box (owner mock 2026-11-21, lib/thread/web-sources.ts). */}
       {/* One community feed (owner OK 2026-11-21): player reviews and discussion posts together, "Players on the <model>",
           then From around the web; lib/thread/feed.ts. Replaces Player reviews and Ask the community. */}
-      <CommunityFeed id={p.id} model={p.model} cards={src.players} web={src.web}/>
+      <CommunityFeed id={p.id} model={p.model} cards={src.players} web={src.web} {...(p.plastics ? { plastics: p.plastics } : {})}/>
       {p.also.length >= 2 && <section className="th-card th8-sec"><h2 className="th-h2">{`${W.lovers} who loved this also loved`}</h2>
         <div className="th8-grid">{p.also.slice(0, 4).map(x => <RacketCard key={x.id} x={x}/>)}</div></section>}
       {p.stories.length > 0 && <section className="th-card th-sec"><h2 className="th-h2">{`Stories mentioning this ${niche.words.one}`}</h2>

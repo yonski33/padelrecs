@@ -29,11 +29,12 @@ const SITES: Record<string, Words> = {
     Reviews: "Reviews", traitsTitle: "How does it work for you?", fitTitle: "Is it right for my skin?", opinions: "opinions", lovers: "People",
     triedIt: "Tried it?", played: "tried", item: "product", items: "products", usedIt: "Tried it?", community: "The skincare community",
     tagline: "Real people's opinions, votes, and comments on the skincare they use." },
-  discgolf: { person: "thrower", people: "throwers", People: "Throwers", Person: "Thrower", score: "thrower score", Score: "Thrower score",
-    reviews: "thrower reviews", Reviews: "Thrower reviews", traitsTitle: "How does it fly?", fitTitle: "Is it right for me?",
-    opinions: "thrower opinions", lovers: "Throwers", triedIt: "Thrown it?", played: "threw",
+  // DiscGolfRecs on the v3 pages (V3-ROLLOUT-BRIEF wave 2, owner 2026-11-21): "players", like padel; no score.
+  discgolf: { person: "player", people: "players", People: "Players", Person: "Player", score: "player score", Score: "Player score",
+    reviews: "player reviews", Reviews: "Player reviews", traitsTitle: "How does it fly?", fitTitle: "Is it right for me?",
+    opinions: "player opinions", lovers: "Players", triedIt: "Thrown it?", played: "threw",
     item: "disc", items: "discs", usedIt: "Thrown it?", community: "The disc golf community",
-    tagline: "Real thrower opinions, votes, and comments on the top disc golf discs." },
+    tagline: "Real player opinions, votes, and comments on the top disc golf discs." },
   // AudioRecs (its handoff README): "listeners", "listener score".
   audio: { person: "listener", people: "listeners", People: "Listeners", Person: "Listener", score: "listener score", Score: "Listener score",
     reviews: "listener reviews", Reviews: "Listener reviews", traitsTitle: "How does it sound?", fitTitle: "Is it right for me?",

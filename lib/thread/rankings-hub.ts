@@ -88,3 +88,17 @@ export const AUDIO_HOW: { title: string; body: string[] }[] = [
   { title: "What is not used", body: ["Brand payments, affiliate commission and price. The order is the same for every visitor; your match picks only change the order on the home and catalogue pages."] },
   { title: "How often it updates", body: ["Review counts, opinions and pills on each row refresh every few hours."] },
 ];
+
+/** DiscGolfRecs' "How rankings work" (V3-ROLLOUT-BRIEF wave 2): its lists in the same honesty rules. No score anywhere. */
+export const DISCGOLF_HOW: { title: string; body: string[] }[] = [
+  { title: "What counts", body: ["Reviews and votes left on DiscGolfRecs, plus summaries of Reddit threads, YouTube reviews and blogs. Summaries are labelled and kept apart from votes cast here."] },
+  { title: "How the order is set", body: [
+    "Best overall goes by how many players loved each disc, from current discs with 10 or more reviews.",
+    "The putter, midrange, fairway and distance driver lists are ordered by player reviews, from discs with enough reviews.",
+    "Best for beginners and Best for slow arm speed come from the DiscGolfRecs match, the same one the home uses for those picks.",
+  ] },
+  { title: "The pill on each row", body: ["A row says \"Flies straight · 12 players\" when that answer to \"How does it fly?\" leads, with 5 or more players behind it. Otherwise the row shows no pill."] },
+  { title: "Opinions", body: ["Each row counts the opinions on a disc: loved it, mixed or not for me. Counts only, never a score."] },
+  { title: "What is not used", body: ["Brand payments, affiliate commission and price. The order is the same for every visitor; your match picks only change the order on the home and catalogue pages."] },
+  { title: "How often it updates", body: ["Review counts, opinions and pills on each row refresh every few hours."] },
+];

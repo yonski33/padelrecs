@@ -138,6 +138,8 @@ export function ReviewRow({ c, owner, onChange, flair }: { c: RvCard; owner: boo
     <div className="th7-rv-b">
     <div className="th7-rv-top">{flair && <span className="th-flair review">Review</span>}{shown && <><strong>{shown}</strong>{c.member && <MemberMark/>}</>}{!name && c.info && <span className="th-rv-info">{c.info}</span>}
       {c.verdict && <span className={`th-vpill ${VERDICT[c.verdict][1]}`}>{VERDICT[c.verdict][0]}</span>}
+      {/* DiscGolfRecs: the plastic the review is about (its variant chip, PR #256). Other sites' cards carry none. */}
+      {c.version && <span className="th-pill">{c.version}</span>}
       {c.when && <span><Ago at={c.at || null} initial={c.when}/></span>}</div>
     {edit ? <div className="th-admin-acts">
       <span className="th-as" style={{ flexBasis: "100%" }}><input value={edit.name} maxLength={NAME_MAX} placeholder="Name or nickname" aria-label="Reviewer's name" autoFocus={edit.text === null} onChange={e => { setEdit({ ...edit, name: e.target.value }); setErr(""); }}/></span>
@@ -251,7 +253,7 @@ function WebCard({ c, kind }: { c: RvCard; kind: keyof WebGroups<RvCard> }) {
       <img src={thumb} alt="" loading="lazy" width={320} height={180}/><span className="play"/></a>}
     <div className="th-web-b">
       <div className="th-web-meta"><span className={`th-web-src ${WEB_SRC[kind][1]}`}>{WEB_SRC[kind][0]}</span><b>{where}</b>{c.when && <><span>·</span><Ago at={c.at || null} initial={c.when}/></>}
-        {c.verdict && <span className={`th-vpill ${VERDICT[c.verdict][1]}`}>{VERDICT[c.verdict][0]}</span>}</div>
+        {c.verdict && <span className={`th-vpill ${VERDICT[c.verdict][1]}`}>{VERDICT[c.verdict][0]}</span>}{c.version && <span className="th-pill">{c.version}</span>}</div>
       {title && <strong className="th-web-t">{title}</strong>}
       <p className="th-web-x">{playersWord(c.text, W.person)}</p>
       {inThread ? <span className="th-web-in">{`in “${inThread}” `}{link}</span> : link}

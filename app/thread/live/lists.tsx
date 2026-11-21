@@ -31,7 +31,7 @@ function resultLine(picks: Picks, n: number | null, all: number) {
   return n == null ? `Finding ${MANY} ${forWho}…` : n > 0 ? `Showing ${n} ${n === 1 ? ONE : MANY} ${forWho}` : `No ${MANY} ${forWho} yet`;
 }
 
-/** DiscGolfRecs: "Showing 38 understable midranges for intermediate throwers with a slower arm", with the type chip's words. */
+/** DiscGolfRecs: "Showing 38 understable midranges for intermediate players with a slower arm", with the type chip's words. */
 function discLine(picks: Picks, n: number | null, all: number) {
   const many = TYPES.find(t => t.key === picks.kind)?.many ?? MANY, one = many.replace(/s$/, "");
   const budget = BUDGETS.find(([k]) => k === picks.budget)?.[1].toLowerCase() ?? null;

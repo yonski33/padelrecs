@@ -24,7 +24,7 @@ const hasShape = (shape: string | null, v: string) => !!shape && new RegExp(`\\b
 
 /** `title`, `lead` and `crumbs` change the hero (a brand page: app/thread/brands/[slug]); with no `brands` the Brand filter is left out. */
 export function Catalog({ rows, brands, title = SKIN ? "All skincare products" : DG ? "All discs" : SR ? "All sim racing gear" : `All ${niche.id} ${niche.words.many}`, lead = SKIN ? "Every product people have reviewed and voted on. Filter by skin type, then see what people say."
-  : DG ? "Every disc throwers have reviewed and voted on. Filter by how it flies, then see what people say."
+  : DG ? "Every disc players have reviewed and voted on. Filter by how it flies, then see what people say."
   : SR ? "Every product racers have reviewed and voted on. Filter by type and drive, then see what people say." : `Every ${niche.words.one} players have reviewed. Filter by how it plays, then see what people say.`, crumbs }:
   { rows: ThreadRow[]; brands: string[]; title?: string; lead?: string; crumbs?: ReactNode }) {
   const [q, setQ] = useState(""), [f, setF] = useState<Filters>({}), [sort, setSort] = useState<"score" | "reviews" | "new" | "match">("score");
