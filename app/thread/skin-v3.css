@@ -1,0 +1,33 @@
+/* SkinRecs on the PadelRecs v3 pages (V3-ROLLOUT-BRIEF, 2026-11-21): padel's v3 structure (home, catalogue, product page,
+   compare, rankings) in SkinRecs' own soft look, its .th-skin tokens in thread.css (warm paper, espresso ink, rose accent, its
+   display font). Every rule is scoped to .th-skin, so padel and the other sites are untouched. No black header bars. */
+.th.th-skin { --sticker: oklch(0.86 0.06 20); }
+.th.th-skin .th-card { background: var(--card); }
+/* The v3 rules' fixed padel colours, in skin's rose: the quick match sticker, the vote pill, the hero squiggle. */
+.th.th-skin .tc-qm-tag { background: var(--sticker); }
+.th.th-skin .tc-vote { background: var(--lime-chip); }
+.th.th-skin .hp3-sq path { stroke: oklch(0.72 0.1 20); }
+/* No black header bars: the catalogue's Rankings box, the product page's boxes and the ranking sidebar read as plain headings. */
+.th.th-skin .tc-box-dark { padding: 12px 0 6px; }
+.th.th-skin .tc-box-dark .tc-bh { background: none; color: var(--ink) !important; padding: 0 16px 8px; border-bottom: 1.5px solid var(--line); }
+.th.th-skin .th-sbox-head { background: none; color: var(--ink); border-bottom: 1.5px solid var(--line); }
+body:has(.th) .th.th-skin .rk5-box h3 { background: none; color: var(--ink); border-bottom: 1.5px solid var(--line); }
+/* Product photos sit on the card (padel #598): no white tile, multiply blend. */
+.th.th-skin :is(.rk5-row .pic, .tc-ph, .tc-new-ph, .th-photo, .th-bigphoto, .th-ar-pic),
+body:has(.th) .th.th-skin .cp3-card a.pic { background: transparent; border-color: transparent; }
+.th.th-skin :is(.rk5-row .pic, .tc-ph, .tc-new-ph, .th-photo, .th-bigphoto, .th-ar-pic, .cp3-card .pic) img { mix-blend-mode: multiply; }
+/* The page-scoped v3 tokens (rankings hub, ranking lists, compare) in skin's colours. */
+.th.th-skin .rkh { --rh-card: #fff; --rh-ink: #2b2221; --rh-ink2: #5e504c; --rh-line: #e2d3cc;
+  --rh-pos: oklch(0.72 0.15 145); --rh-mix: oklch(0.85 0.14 90); --rh-neg: oklch(0.7 0.15 30); }
+.th.th-skin .rk5 { --r5-soft: oklch(0.965 0.02 20); --r5-chip: oklch(0.92 0.045 20); --r5-pos: oklch(0.72 0.15 145); --r5-mix: oklch(0.85 0.14 90); --r5-neg: oklch(0.7 0.15 30); }
+.th.th-skin .cp3 { --c3-soft: oklch(0.965 0.02 20); --c3-pos: oklch(0.72 0.15 145); --c3-mix: oklch(0.85 0.14 90); --c3-neg: oklch(0.7 0.15 30); }
+.th.th-skin .cp3-card.fit { background: oklch(0.965 0.02 20); }
+.th.th-skin .rk5-explore .strip.dark { background: #4a3b38; }
+.th.th-skin .rk5-explore .strip.sand { background: #f4ebe6; }
+.th.th-skin .rk5-explore .strip.lime { background: oklch(0.86 0.06 20); }
+/* The rankings hub's skin needs, each under its own heading (app/thread/rankings/hub-v3.tsx `headed`). */
+.th.th-skin .rkh-group { display: flex; flex-direction: column; gap: 10px; }
+.th.th-skin .rkh-group-h { margin: 6px 0 0; font: 700 28px/1.1 var(--bc); letter-spacing: -0.02em; color: var(--ink); }
+.th.th-skin .rkh-group-h a { color: inherit; text-decoration: none; }
+.th.th-skin .rkh-group-h a:hover { text-decoration: underline; }
+.th.th-skin .rkh > .th-crumbs { font-size: 14px; }

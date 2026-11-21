@@ -30,10 +30,10 @@ test("hub and How page: page-scoped CSS, no score", () => {
   assert.doesNotMatch(ui, /r\.score|Badge|rk4/);
 });
 
-test("How rankings work: a padel address only", () => {
+test("How rankings work: padel and the v3 sites with their own copy (audio, skin)", () => {
   assert.equal(threadPath("/how-rankings-work", "/rackets", "padel"), "/thread/how-rankings");
   assert.equal(threadPath("/how-rankings-work/", "/rackets", "padel"), "/thread/how-rankings");
   assert.equal(threadPath("/how-rankings-work", "/paddles", "pickleball"), null);
-  assert.equal(threadPath("/how-rankings-work", "/products", "skin"), null);
+  assert.equal(threadPath("/how-rankings-work", "/products", "skin"), "/thread/how-rankings");
   assert.equal(threadPath("/how-we-make-these", "/rackets", "padel"), "/thread/score");
 });

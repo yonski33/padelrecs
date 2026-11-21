@@ -30,14 +30,15 @@ test("home order: up to 2 unanswered pinned, then newest activity; /questions so
   assert.equal(QUESTIONS_MIN, 3);
 });
 
-test("/questions is a padel Thread page; the home places the section after the latest reviews", () => {
+test("/questions is a padel (and skin) Thread page; the home places the section after the latest reviews", () => {
   assert.equal(threadPath("/questions", undefined, "padel"), "/thread/questions");
+  assert.equal(threadPath("/questions", undefined, "skin"), "/thread/questions");
   assert.notEqual(threadPath("/questions", undefined, "pickleball"), "/thread/questions");
   const home = readFileSync("app/thread/page.tsx", "utf8");
   assert.ok(home.indexOf("<LatestQuestions") > home.indexOf('<Feed key="fd"'));
   const files = ["app/thread/latest-questions.tsx", "app/thread/question-row.tsx", "app/thread/live/ask-question.tsx", "app/thread/live/question-list.tsx", "app/thread/questions/page.tsx"]
     .map(f => readFileSync(f, "utf8").replace(/\/\/.*$/gm, "").replace(/\/\*[\s\S]*?\*\//g, "")).join("\n");
-  for (const t of ["Latest questions from the community", "Anyone can ask, players answer", "See all questions →", "Ask a question about any racket…",
+  for (const t of ["Latest questions from the community", "Anyone can ask, ${W.people} answer", "See all questions →", "Ask a question about any ${W.item}…",
     "No answers yet · Answer first ›", "Questions from the community", "Unanswered", "Most answers"]) assert.ok(files.includes(t), t);
   assert.doesNotMatch(files, /—|\bowners?\b|\bverdict\b/i);
 });

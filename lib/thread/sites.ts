@@ -38,5 +38,10 @@ export const QUICK_MATCH: Record<string, "engine" | "skin"> = { padel: "engine",
 export const quickMatchFor = (nicheId: string) => QUICK_MATCH[nicheId] ?? null;
 /** The PadelRecs v3 pages (home, catalogue, product page, compare, rankings; owner 2026-11-21) and the sites rolled onto them
  *  (V3-ROLLOUT-BRIEF: AudioRecs first). No score anywhere on these. */
-export const V3_SITES = ["padel", "audio", "simracing"];
+export const V3_SITES = ["padel", "audio", "simracing", "skin"];
 export const v3Site = (nicheId: string) => V3_SITES.includes(nicheId);
+/** The typed community feed (#612: saved Question / Tip, drizzle/0035) and its questions (#613: "Latest questions" on the
+ *  home and /questions). PadelRecs, then SkinRecs (v3 rollout 2026-11-21). Without 0035 on a site's schema the saved types
+ *  quietly read and write nothing (db/comments.ts), and questions fall back to the feed's question rule. */
+export const POST_TYPE_SITES = ["padel", "skin"];
+export const postTypeSite = (nicheId: string) => POST_TYPE_SITES.includes(nicheId);

@@ -5,7 +5,7 @@
 // PickleballRecs (plans/PICKLEBALL-THREAD-PLAN.md) runs the same pages, previewed with ?look=thread until its flag is on.
 import { niche, catalogPath } from "../niche";
 
-import { threadDefaultFor, ELBOW_SLUG, storiesSite } from "./sites";
+import { threadDefaultFor, ELBOW_SLUG, storiesSite, postTypeSite } from "./sites";
 export { THREAD_DEFAULTS, threadDefaultFor, threadSite, THREAD_MOVED, ELBOW_SLUG } from "./sites";
 /** The running site's flag. */
 export const THREAD_DEFAULT = threadDefaultFor(niche.id);
@@ -114,14 +114,14 @@ export function threadPath(pathname: string, catalog = catalogPath, nicheId = ni
   if (nicheId === "padel" && p === "/guides") return "/thread/guides";
   // PadelRecs Search v3 (owner design 2026-11-21): rackets, discussions and stories, padel only.
   if (nicheId === "padel" && p === "/search") return "/thread/search";
-  // PadelRecs "Questions from the community" (owner OK 2026-11-21): every racket page's questions, padel only.
-  if (nicheId === "padel" && p === "/questions") return "/thread/questions";
+  // PadelRecs "Questions from the community" (owner OK 2026-11-21): every racket page's questions; SkinRecs too (v3 rollout).
+  if (postTypeSite(nicheId) && p === "/questions") return "/thread/questions";
   const guide = guideKeyOf(p, nicheId);
   if (guide) return `/thread/guides/${guide}`;
   if (p === "/about") return "/thread/about";
   if (p === "/how-we-make-these") return "/thread/score";
   // PadelRecs v3 (owner handoff 2026-11-21): "How rankings work", a Thread-only page.
-  if (p === "/how-rankings-work" && (nicheId === "padel" || nicheId === "audio")) return "/thread/how-rankings";
+  if (p === "/how-rankings-work" && (nicheId === "padel" || nicheId === "audio" || nicheId === "skin")) return "/thread/how-rankings";
   if (p === "/affiliate-disclosure") return "/thread/affiliate";
   if (p === "/contact") return "/thread/contact";
   // The design-v2 form in the Thread look (owner 2026-11-20); proxy.ts keeps its query and leaves ?classic=1 on the live form.

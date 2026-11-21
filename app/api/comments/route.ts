@@ -8,13 +8,14 @@ import { listComments, addComment, voteComment, PAGE_KEY, postTypes, setPostType
 import { issueFormToken, checkFormToken, tokenRejects } from "../../../lib/form-token";
 import { createLimiter, clientIp } from "../../../lib/rate-limit";
 import { threadSite } from "../../../lib/thread/look";
+import { postTypeSite } from "../../../lib/thread/sites";
 import { niche } from "../../../lib/niche";
 import { device, network, json, foreign } from "../thread-device";
 import { postingAs, afterPost, memberMap, RESERVED, BLOCKED } from "../../../lib/thread/account-post";
 
 const off = () => !threadSite(niche.id) || !process.env.DATABASE_URL;
-/** Post types (drizzle/0035) are PadelRecs only for now; other sites never read or write the column. */
-const TYPED = niche.id === "padel";
+/** Post types (drizzle/0035): PadelRecs and SkinRecs (lib/thread/sites.ts); other sites never read or write the column. */
+const TYPED = postTypeSite(niche.id);
 const burst = createLimiter({ limit: 6, windowMs: 10 * 60_000 }), votes = createLimiter({ limit: 120, windowMs: 60 * 60_000 });
 const post = z.object({ page: z.string().regex(PAGE_KEY), parentId: z.string().uuid().nullish(), alias: z.string().trim().max(NAME_MAX).refine(a => !nameProblem(a), a => ({ message: nameProblem(a) ?? "Check the name." })),
   body: z.string().trim().min(2).max(2000), formToken: z.string().optional(), website: z.string().optional(),
