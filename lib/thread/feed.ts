@@ -8,12 +8,17 @@ export const FLAIR_WORD: Record<Flair, string> = { review: "Review", question: "
 /** Words a question usually starts with ("Is it ok…", "Anyone tried…", "Thoughts on…"). */
 const ASKS = /^(how|what|which|why|when|where|who|whose|is|are|am|was|were|do|does|did|can|could|should|would|will|has|have|had|any|anyone|anybody|thoughts|opinions|help)\b/i;
 
-/** QUESTION or TIP for a discussion post. The comments table's is_question column is never set (db/comments.ts: always
- *  false), so the post's own words decide: a question when it ends with "?" or starts with a question word, else a tip.
- *  A leading "@Name " (a reply to a reply) is ignored. This is the one place the rule lives. */
-export function postFlair(body: string): Exclude<Flair, "review"> {
+/** A discussion post's flair from its words, for posts with no saved type (drizzle/0035 post_type; every row from before
+ *  it): QUESTION when it ends with "?" or starts with a question word, else none (owner 2026-11-21: a plain post is the
+ *  default). A saved type wins over this. A leading "@Name " (a reply to a reply) is ignored. The one place the rule lives. */
+export function postFlair(body: string): "question" | null {
   const t = body.trim().replace(/^@\S+\s+/, "");
-  return /\?["”')\s]*$/.test(t) || ASKS.test(t) ? "question" : "tip";
+  return /\?["”')\s]*$/.test(t) || ASKS.test(t) ? "question" : null;
+}
+
+/** The rule before 2026-11-21 (QUESTION or TIP from the words), kept for the other sites on this feed (AudioRecs). */
+export function guessedFlair(body: string): Exclude<Flair, "review"> {
+  return postFlair(body) ?? "tip";
 }
 
 /** A thread's last activity: its own time, or its newest reply's, so a reply bumps the thread in "Newest activity". */

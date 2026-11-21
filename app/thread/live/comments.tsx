@@ -16,7 +16,8 @@ import { mentionOf, withoutMention } from "../../../lib/thread/mention";
 /** Optional accounts run on PadelRecs only for now (lib/thread/sites.ts accountSite). */
 const ACCOUNTS = accountSite(niche.id);
 
-export type C = { id: string; parentId: string | null; alias: string; body: string; at: string; score: number; mine: number; member?: boolean; level?: string | null; side?: string | null };
+export type C = { id: string; parentId: string | null; alias: string; body: string; at: string; score: number; mine: number; member?: boolean; level?: string | null; side?: string | null;
+  /** PadelRecs community feed (drizzle/0035): a saved Question or Tip; absent for plain posts and older rows. */ type?: "question" | "tip" };
 const HELD = "Thanks! Your comment will show once a person has checked it.";
 
 
@@ -77,15 +78,15 @@ export function useComments(page: string) {
       .then((b: { comments?: C[]; token?: string } | null) => { setList(b?.comments ?? []); token.current = b?.token ?? ""; }).catch(() => setList([]));
   }, [page]);
   // Shown at once with the author's own ▲ (score 1); the server's copy replaces it, or it goes if the comment is held.
-  async function post(body: string, parentId: string | null) {
+  async function post(body: string, parentId: string | null, postType?: "question" | "tip") {
     setErr(""); setNote("");
     const problem = nameProblem(nick); if (problem) { setErr(problem); return false; }
     saveName(nick);
-    const temp: C = { id: `temp-${Date.now()}`, parentId, alias: nick.trim(), body, at: new Date().toISOString(), score: 1, mine: 1, member: !!me, level: me?.level ?? null, side: me?.side ?? null };
+    const temp: C = { id: `temp-${Date.now()}`, parentId, alias: nick.trim(), body, at: new Date().toISOString(), score: 1, mine: 1, member: !!me, level: me?.level ?? null, side: me?.side ?? null, ...(postType && !parentId ? { type: postType } : {}) };
     setList(l => [temp, ...(l ?? [])]); setOpen(false); setReply(null);
     try {
       const r = await fetch("/api/comments", { method: "POST", headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ page, parentId, alias: temp.alias, body, formToken: token.current, website: "" }) });
+        body: JSON.stringify({ page, parentId, alias: temp.alias, body, formToken: token.current, website: "", ...(postType && !parentId ? { postType } : {}) }) });
       const b = await r.json() as { status?: string; comment?: C; error?: string };
       if (!r.ok) throw new Error(b.error || "Could not post that. Try again?");
       setList(l => b.comment ? (l ?? []).map(x => x.id === temp.id ? b.comment! : x) : (l ?? []).filter(x => x.id !== temp.id));
