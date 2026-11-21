@@ -33,7 +33,9 @@ export default async function ThreadCatalog() {
   const rows = all.filter(r => r.n > 0);
   const count = new Map<string, number>();
   for (const r of rows) count.set(r.brand, (count.get(r.brand) ?? 0) + 1);
-  const top = [...rows].sort((a, b) => (b.score ?? -1) - (a.score ?? -1) || b.n - a.n);
+  // The ItemList names what the list shows by default (audit 2026-11-21: it said 200 while the page said 146): current models
+  // only. Older years stay live, indexed and in the sitemap; their pages link to the current model.
+  const top = rows.filter(r => r.current !== false).sort((a, b) => (b.score ?? -1) - (a.score ?? -1) || b.n - a.n);
   const ld = <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: listJsonLd([catalogCrumb], top.map(r => ({ name: r.name, href: r.href }))) }}/>;
   if (!v3Site(niche.id)) {
     const brands = [...count].filter(([b, n]) => b && n >= 5).sort((a, b) => b[1] - a[1]).slice(0, 10).map(([b]) => b);

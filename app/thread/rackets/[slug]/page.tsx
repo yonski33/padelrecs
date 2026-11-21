@@ -48,7 +48,9 @@ import { traitCounts, traitGroup } from "../../data";
 import { whoPlays, weekLine } from "../../../../lib/thread/community";
 import { pickSimilar } from "../../../../lib/thread/similar-pick";
 import { communityFor } from "../../community-data";
-import { comparePairs } from "../../../../lib/compare-pairs";
+import { comparePairs, modelFamily } from "../../../../lib/compare-pairs";
+import { traitCounts as liveTraitCounts, pollVotes } from "../../../../db/thread-votes";
+import { traitOverridesFor } from "../../../../db/trait-admin";
 
 export const revalidate = 86400;
 // Every listed racket's page is built with the site, as the live racket pages are (app/v/racket); none without a database (CI).
@@ -186,6 +188,17 @@ export default async function ThreadRacket({ params }: P) {
     const groupOf = (k: string) => tc ? traitGroup(tc, r.id, k) : null;
     const who = aw ? null : whoPlays({ level: groupOf("level"), plays_like: groupOf("plays_like"), side: groupOf("side") });
     const cm = await communityFor(r.id);
+    // The vote boxes, the poll and the opinions count from the same reads as /api/trait-votes and /api/thread-poll (audit
+    // 2026-11-21: the server HTML showed the seed only, so crawlers saw other numbers than the page after its fetches).
+    // Votes and the owner's fixes refresh this page on demand (lib/thread/refresh-racket.ts); the ISR time is unchanged.
+    const live = hasDb() ? await (async () => { try { const db = await database();
+      const [counts, overrides, poll] = await Promise.all([liveTraitCounts(db, r.id), traitOverridesFor(db, r.id), pollVotes(db, r.id)]);
+      return { counts, overrides, poll }; } catch (error) { console.error("[thread] live votes failed", error); return null; } })() : null;
+    // A year the list doesn't show (audit 2026-11-21: 54 such pages, live and indexed): the page says so and links to the
+    // year the list shows (lib/compare-pairs.ts rowOfFamily: the newest year with enough reports).
+    const fam = modelFamily(r), twin = row?.current === false ? (ctx?.data.listed ?? []).filter(x => x.id !== r.id && modelFamily(x) === fam && rows.get(x.id)?.current)
+      .map(x => rows.get(x.id)!).sort((a, b) => b.year - a.year)[0] ?? null : null;
+    const listedAs = twin ? { row: twin, older: twin.year > r.year } : null;
     const partners = (ctx ? comparePairs(ctx.data).partners.get(r.id) ?? [] : []).map(x => rows.get(x.id)).filter((x): x is NonNullable<typeof x> => !!x && x.current !== false);
     const compared = [...partners, ...sim].filter((x, i, a) => x.id !== r.id && a.findIndex(y => y.id === x.id) === i).slice(0, 3)
       .map(x => ({ row: x, href: `/compare?ids=${encodeURIComponent(r.slug)},${encodeURIComponent(x.slug)}` }));
@@ -193,7 +206,7 @@ export default async function ThreadRacket({ params }: P) {
       <JsonLd data={ld}/>
       <RacketV7b id={r.id} title={r.year && bare !== name ? `${bare} (${r.year})` : name} model={model} crumbs={crumbsEl} tags={aw ? audioTagsOf(aw, r.weight) : tags} lime={aw ? aw.anc : !!style} row={row} judged={judged} {...(aw && au ? audioPageProps(r.id, aw, au, rows, ctx) : SR ? srPageProps(r.id, r.shape) : {})}
         lead={aw && lead ? lead.replace(/(?<![\w-])([Oo])wner(s?)\b/g, (_, o: string, x: string) => `${o === "O" ? "L" : "l"}istener${x}`) : SR && lead ? lead.replace(/(?<![\w-])([Oo])wner(s?)\b/g, (_, o: string, x: string) => `${o === "O" ? "R" : "r"}acer${x}`) : lead} bullets={v7Bullets} specs={v7Specs} shop={shop} cards={cards} also={also} brand={brand ? { name: brand.name, slug: brand.slug } : null}
-        sim={simSelf ? pickSimilar(simSelf, simSpecs, new Set(compared.map(c => c.row.id))).flatMap(id => rows.get(id) ?? []) : aw || SR ? sim.filter(x => !compared.some(c => c.row.id === x.id)) : []} pill={pill} week={weekLine(cm.opinions, cm.posts)} latest={cm.latest} who={who} compared={compared} stories={tales}/>
+        sim={simSelf ? pickSimilar(simSelf, simSpecs, new Set(compared.map(c => c.row.id))).flatMap(id => rows.get(id) ?? []) : aw || SR ? sim.filter(x => !compared.some(c => c.row.id === x.id)) : []} pill={pill} week={weekLine(cm.opinions, cm.posts)} latest={cm.latest} who={who} compared={compared} stories={tales} live={live} listedAs={listedAs}/>
     </Shell>;
   }
   return <Shell active="rackets">
