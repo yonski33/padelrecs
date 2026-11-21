@@ -54,3 +54,14 @@ test("tn-colors.css is up to date, accents only, every rule under .th-tnv3", () 
   assert.doesNotMatch(before, /#FEFAF4|#f1f1ed|--bg:|--card:|--ink:/, "no background or ink changes");
   assert.match(readFileSync("app/thread/shell.tsx", "utf8"), /"th th-pr th-tnv3"/);
 });
+
+test("tennis audit notes: feel from stiffness unless votes clearly disagree; unknown years and replaced frames", async () => {
+  const { tennisFeel, tennisYearKnown, tennisReplacedBy, tennisStyle } = await import("../lib/thread/tennis-notes");
+  assert.equal(tennisFeel("60 RA", null), "Soft"); assert.equal(tennisFeel("66 RA", null), "Medium"); assert.equal(tennisFeel("69 RA", null), "Crisp");
+  assert.equal(tennisFeel("66 RA", { soft: 10, medium: 4 }), "Soft");     // 10 vs 4: clear
+  assert.equal(tennisFeel("66 RA", { soft: 5, medium: 4 }), "Medium");    // not clear: the stiffness rule
+  assert.equal(tennisFeel(null, null), null);
+  assert.equal(tennisYearKnown("wilson-blade-98s-v10"), false); assert.equal(tennisYearKnown("head-radical-mp-2023"), true);
+  assert.equal(tennisReplacedBy("wilson-blade-98-16x19-v9"), "Wilson Blade 98 16x19 V10");
+  assert.equal(tennisStyle("head-radical-mp-2023"), "control");
+});

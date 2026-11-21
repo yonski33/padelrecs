@@ -32,7 +32,7 @@ test("the home places JustIn after the mini-lists and before the latest reviews;
   assert.doesNotMatch(c.replace(/\/\/.*$/gm, ""), /—|\bowners?\b|\bverdict\b/i); // shown copy, not code comments
 });
 
-test("just in: padel and pickleball (real model years); tennis waits for its year fix; not sim racing or audio", async () => {
+test("just in: padel, pickleball and tennis (real model years; tennis since its year fill, 2026-11-22); not sim racing or audio", async () => {
   const { justInSite } = await import("../lib/thread/sites");
-  assert.deepEqual(["padel", "pickleball", "tennis", "simracing", "audio", "skin"].map(justInSite), [true, true, false, false, false, false]);
+  assert.deepEqual(["padel", "pickleball", "tennis", "simracing", "audio", "skin"].map(justInSite), [true, true, true, false, false, false]);
 });

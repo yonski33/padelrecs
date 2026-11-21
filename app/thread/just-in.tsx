@@ -10,6 +10,7 @@ import { justIn, JUST_IN_THIN } from "../../lib/thread/just-in";
 import { th } from "../../lib/thread/look";
 import { niche, catalogPath } from "../../lib/niche";
 import { justInSite } from "../../lib/thread/sites";
+import { tennisYearKnown } from "../../lib/thread/tennis-notes";
 import { W } from "../../lib/thread/words";
 import { ago, plural, type ThreadRow } from "./ui";
 import { Ago } from "./live/ago";
@@ -28,7 +29,8 @@ export async function JustIn() {
   const listed = new Map(ctx.data.listed.map(x => [x.id, x]));
   const added = Object.fromEntries(all.map(r => [r.id, listed.get(r.id)?.createdAt ?? ""]));
   // Only rackets in the listed catalogue.
-  const pick = justIn(all.filter(r => listed.has(r.id)), added);
+  // TennisRecs: a racket with no known release year never counts as new (lib/thread/tennis-notes.ts).
+  const pick = justIn(all.filter(r => listed.has(r.id) && (niche.id !== "tennis" || tennisYearKnown(r.slug))), added);
   if (!pick) return null;
   const tc = await traitCounts().catch(() => null), now = Date.now();
   const cards = pick.rows.map(r => {

@@ -46,7 +46,7 @@ export const v3Site = (nicheId: string) => V3_SITES.includes(nicheId);
  *  "Latest questions" and /questions on every v3 site. */
 // TennisRecs waits (PM 2026-11-22): its year column is a placeholder (2026 on all 211 rackets) until the tennis year fix
 // (#633 and the tennis audit sheet, owner OK pending) lands. Flip TENNIS_YEARS_READY to true then.
-const TENNIS_YEARS_READY = false;
+const TENNIS_YEARS_READY = true; // years filled 2026-11-22 (owner OK); unknown ones are skipped (lib/thread/tennis-notes.ts)
 const JUST_IN_SITES = ["padel", "pickleball", ...(TENNIS_YEARS_READY ? ["tennis"] : [])];
 export const justInSite = (nicheId: string) => JUST_IN_SITES.includes(nicheId);
 export const questionsSite = (nicheId: string) => v3Site(nicheId);
