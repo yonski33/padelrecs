@@ -114,7 +114,7 @@ export default async function ThreadHome() {
           <div className="th-h1-row"><h1 className="th-h1">{SKIN ? "The skincare community" : DG ? "The disc golf community" : SR ? "The sim racing community" : `The ${niche.id} ${niche.words.one} community`}</h1>
             {total > 0 && <span className="th-live"><i aria-hidden="true"/>{`${total.toLocaleString("en-US")} reviews${week > 0 ? ` · ${week.toLocaleString("en-US")} ${WEEK_SHORT}` : ""}`}</span>}</div>
           {!PADEL && <p className="th-lead">{SKIN ? "Real people talking about skincare. Share what worked, and see what everyone actually thinks."
-            : DG ? "Real throwers talking discs. Ask, share your take, and see what everyone actually thinks." : `Real ${W.people} talking ${niche.words.many}. Share your take, and see what everyone actually thinks.`}</p>}
+            : DG ? "Real players talking discs. Ask, share your take, and see what everyone actually thinks." : `Real ${W.people} talking ${niche.words.many}. Share your take, and see what everyone actually thinks.`}</p>}
           {SKIN ? <SkinMatchBox wire={skinWire} names={names}/> : <MatchBox names={names} listed={listed} home {...(PADEL ? { compact: true } : {})}/>}
         </section>
         {SKIN ? <SkinHomeList wire={skinWire} rows={skinRows}/> : <HomeList rows={top} reviewed={reviewed}/>}
