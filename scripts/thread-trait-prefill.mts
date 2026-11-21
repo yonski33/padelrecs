@@ -15,7 +15,8 @@ import { niche } from "../lib/niche";
 //   NICHE=discgolf … the same (stated level and durability from the evidence; stability, glide, fade and arm speed from the flight
 //   numbers, kept apart as specs; lib/thread/trait-prefill.ts discSpecs)
 //   NICHE=audio … from the reviews' quick tags and summary words (no evidence store there yet; lib/thread/audio-prefill.ts)
-if (!["padel", "pickleball", "skin", "discgolf", "audio"].includes(niche.id)) throw new Error("Run with NICHE=padel, pickleball, skin, discgolf or audio");
+//   NICHE=simracing … the same (its quality and suits rows, per gear type's groups; no specs)
+if (!["padel", "pickleball", "skin", "discgolf", "audio", "simracing"].includes(niche.id)) throw new Error("Run with NICHE=padel, pickleball, skin, discgolf, audio or simracing");
 if (niche.id === "audio") {
   const [{ audioContext }, { buildAudioPrefill }] = await Promise.all([import("../app/audio/context"), import("../lib/thread/audio-prefill")]);
   const ctx = await audioContext(), d = ctx.data;

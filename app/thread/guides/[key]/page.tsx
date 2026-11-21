@@ -24,9 +24,9 @@ export const dynamicParams = false;
 export function generateStaticParams() { return GUIDE_KEYS.map(key => ({ key })); }
 type P = { params: Promise<{ key: string }> };
 const PICKLEBALL = niche.id === "pickleball";
-const SKIN = niche.id === "skin", DG = niche.id === "discgolf", AUDIO = niche.id === "audio";
+const SKIN = niche.id === "skin", DG = niche.id === "discgolf", AUDIO = niche.id === "audio", SR = niche.id === "simracing";
 const SHAPES = PICKLEBALL ? ["standard", "hybrid", "elongated"] : ["round", "teardrop", "diamond"];
-const BEST = SKIN ? "best-face-moisturizers" : DG ? "best-disc-golf-discs" : AUDIO ? "best-headphones" : `best-${niche.id}-${niche.words.many}`; // "best-padel-rackets", "best-pickleball-paddles"
+const BEST = SKIN ? "best-face-moisturizers" : DG ? "best-disc-golf-discs" : AUDIO ? "best-headphones" : SR ? "best-sim-racing-gear" : `best-${niche.id}-${niche.words.many}`; // "best-padel-rackets", "best-pickleball-paddles"
 const GUIDE_NAME = `${niche.words.One} guide`;
 const guideOf = (key: string) => GUIDES.find(g => g.key === key);
 
@@ -47,6 +47,15 @@ async function picksFor(key: GuideKey): Promise<{ title?: string; rows: ThreadRo
   // PickleballRecs: a paddle stored with several shapes ("Hybrid, Widebody, or Elongated") counts for each, as in the
   // catalogue, but shows once, current models only. Padel keeps its rule.
   const isShape = (r: ThreadRow, shape: string) => PICKLEBALL ? !!r.shape && new RegExp(`\\b${shape}\\b`, "i").test(r.shape) : r.shape?.toLowerCase() === shape;
+  if (SR) {
+    // SimRacingRecs: each gear type's live ranking by exact slug, and the best scored wheelbase of each drive type.
+    const top = (slug: string, n: number) => (lists.find(l => l.slug === slug)?.ids ?? []).slice(0, n).map(id => rows.get(id)).filter((x): x is ThreadRow => !!x);
+    if (key === "racket") return [{ rows: ["best-sim-racing-wheelbases", "best-sim-racing-pedals", "best-sim-racing-cockpits", "best-sim-racing-wheels"].flatMap(s => top(s, 1)) }];
+    if (key === "shape") return [{ rows: (["direct", "belt", "gear"] as const).flatMap(d => all.filter(r => r.shape === "Wheelbase" && r.current !== false && r.score != null && r.n >= 10
+      && new RegExp(`\\b${d}`, "i").test(r.drive ?? "")).sort((a, b) => b.score! - a.score!).slice(0, 1)) }];
+    if (key === "side") return [{ rows: top("best-sim-racing-pedals", 4) }];
+    if (key === "elbow") return [{ rows: top("best-sim-racing-cockpits", 4) }];
+  }
   if (DG) {
     // DiscGolfRecs: each disc type's live ranking by exact slug (the choose and types guides), and the home's quick match for
     // the throws and a slower arm, as the Thread-only rankings rank them (app/thread/rankings-data.ts).
@@ -84,6 +93,8 @@ export default async function ThreadGuide({ params }: P) {
   const shown = new Set((await threadRankings()).map(l => l.slug));
   const wanted = SKIN ? (g.key === "beginner" || g.key === "elbow" ? "best-skincare-for-sensitive-skin" : BEST)
     : DG ? (g.key === "beginner" ? `${BEST}-for-beginners` : g.key === "elbow" ? `${BEST}-for-slow-arms` : BEST)
+    : SR ? (g.key === "beginner" ? `${BEST}-for-beginners` : g.key === "side" ? "best-sim-racing-pedals" : g.key === "elbow" ? "best-sim-racing-cockpits"
+      : g.key === "shape" ? "best-sim-racing-wheelbases" : BEST)
     : AUDIO ? (g.key === "shape" ? "best-open-back-headphones" : g.key === "elbow" ? "best-noise-cancelling-headphones" : "best-headphones-overall")
     : g.key === "beginner" ? `${BEST}-for-beginners` : g.key === "elbow" ? (PICKLEBALL ? `${BEST}-for-tennis-elbow` : ELBOW_SLUG) : BEST;
   const fullRanking = `/rankings/${shown.has(wanted) ? wanted : BEST}`;

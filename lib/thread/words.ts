@@ -1,6 +1,6 @@
 // The Thread pages' words for the people behind the reviews and for the score, per site. Padel and pickleball keep
 // "players" and "player score"; SkinRecs says "people" and "user score" (its handoff README: never "users" or "players");
-// DiscGolfRecs says "throwers" and "thrower score" (its handoff README).
+// DiscGolfRecs says "throwers" and "thrower score", SimRacingRecs "racers" and "racer score" (their handoff READMEs).
 import { niche } from "../niche";
 
 const PADEL = {
@@ -32,5 +32,9 @@ const SITES: Record<string, Words> = {
     reviews: "listener reviews", Reviews: "Listener reviews", traitsTitle: "How does it sound?", fitTitle: "Is it right for me?",
     opinions: "listener opinions", lovers: "Listeners", triedIt: "Own a pair?", played: "listened to",
     item: "pair", items: "headphones", usedIt: "Own a pair?", community: "The headphone community" },
+  simracing: { person: "racer", people: "racers", People: "Racers", Person: "Racer", score: "racer score", Score: "Racer score",
+    reviews: "racer reviews", Reviews: "Racer reviews", traitsTitle: "How does it drive?", fitTitle: "Is it right for me?",
+    opinions: "racer opinions", lovers: "Racers", triedIt: "Raced with it?", played: "raced with",
+    item: "product", items: "products", usedIt: "Raced with it?", community: "The sim racing community" },
 };
 export const W: Readonly<Words> = SITES[niche.id] ?? PADEL;

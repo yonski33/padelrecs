@@ -8,7 +8,7 @@ import { W } from "../../lib/thread/words";
 export function Boards({ boards }: { boards: Board[] }) {
   const votes = boards.every(b => b.source === "votes");
   return <section className="th-card th-sec">
-    <div className="th-head-row"><h2 className="th-h2">{votes ? `How ${W.people} vote them` : `How ${W.people} rate them`}</h2><span className="th-sub">{votes ? `Top 3 in each, from votes on ${niche.words.one} pages` : "Top 3 in each, from what players say in their reviews"}</span></div>
+    <div className="th-head-row"><h2 className="th-h2">{votes ? `How ${W.people} vote them` : `How ${W.people} rate them`}</h2><span className="th-sub">{votes ? `Top 3 in each, from votes on ${niche.words.one} pages` : `Top 3 in each, from what ${niche.id === "simracing" ? W.people : "players"} say in their reviews`}</span></div>
     <div className="th-vgrid">{boards.map(b => { const max = Math.max(...b.rows.map(r => r.n));
       return <div key={b.title} className="th-vbox">
         <span className="th-vbox-head">{b.title}</span>

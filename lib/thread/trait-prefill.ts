@@ -79,6 +79,16 @@ export function sourcePicks(rows: EvidenceRow[], nicheId = "padel"): Record<stri
   // DiscGolfRecs: its own evidence (lib/discgolf-profile.ts, scripts/discgolf-evidence.mts) in the grid's terms. Axes: + is
   // towards the second end (stability: overstable, glide: lots, grip: grippy, beat-in: seasons fast); a report on the axis
   // with no lean is the middle option. Qualities: + is good (wind holds, good for forehands). Suits rows: who it suits.
+  // SimRacingRecs: its own quality rows (lib/simracing-fit.ts traits), + is good, in the per-type grid's terms; suits rows for
+  // the level (new to sim racing = beginner, upgrading = intermediate). No specs settle a group.
+  if (nicheId === "simracing") {
+    const q = (a: string, g: string, good: string, bad: string) => { const x = sum(a); if (x.n && x.net !== 0) out[g] = x.net > 0 ? good : bad; };
+    q("ffb_detail", "detail", "sharp", "vague"); q("ffb_strength", "torque", "plenty", "too_light"); q("brake_feel", "brake_feel", "realistic", "vague");
+    q("rigidity", "flex", "none", "lots"); q("build", "durability", "holds_up", "wears_fast"); q("quiet", "noise", "quiet", "loud");
+    q("software", "software", "easy", "frustrating");
+    if (sum("suits_new").net > 0) out.level = "beginner"; else if (sum("suits_upgrade").net > 0) out.level = "intermediate";
+    return out;
+  }
   if (nicheId === "discgolf") {
     const axis = (a: string, g: string, [lo, mid, hi]: [string, string, string]) => { const x = sum(a); if (x.n) out[g] = x.net > 0 ? hi : x.net < 0 ? lo : mid; };
     axis("stability", "stability", ["understable", "stable", "overstable"]);
@@ -120,6 +130,7 @@ export function buildPrefill(cat: Cat[], evidence: EvidenceRow[], texts: Prefill
   // A text's source is the evidence rows' source for the same report (so a review counts once in `sources`).
   const authorOf = new Map(evidence.filter(r => r.authorKey).map(r => [`${r.productId}|${reportOf(r.sourceRef)}`, r.authorKey!]));
   for (const t of texts) {
+    if (nicheId === "simracing") break; // padel's feel, side and trampoline words mean nothing here
     const src = authorOf.get(`${t.productId}|${t.key}`) ?? t.key;
     // A disc: only the straight-flight words (STRAIGHT), and only where this source's evidence gave no stability lean (put
     // keeps the first pick). Padel's feel, side and trampoline words mean nothing for a disc.

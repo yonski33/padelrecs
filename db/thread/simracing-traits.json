@@ -1,0 +1,4522 @@
+{
+ "built": "2026-11-20",
+ "rule": "One count per review, web report or YouTube channel per group; specs kept apart in `spec` and never counted.",
+ "rackets": {
+  "asetek-dual-mode-shifter": {
+   "slug": "asetek-dual-mode-shifter",
+   "name": "Asetek Dual Mode Shifter",
+   "sources": 4,
+   "groups": {
+    "durability": {
+     "holds_up": 3
+    },
+    "noise": {
+     "quiet": 1
+    }
+   },
+   "spec": {}
+  },
+  "asetek-forte-direct-drive-wheelbase": {
+   "slug": "asetek-forte-direct-drive-wheelbase",
+   "name": "Asetek Forte Direct Drive Wheelbase",
+   "sources": 40,
+   "groups": {
+    "durability": {
+     "holds_up": 14,
+     "wears_fast": 4
+    },
+    "software": {
+     "easy": 7,
+     "frustrating": 4
+    },
+    "detail": {
+     "sharp": 24,
+     "vague": 3
+    },
+    "torque": {
+     "plenty": 12
+    },
+    "level": {
+     "intermediate": 7,
+     "beginner": 1
+    },
+    "noise": {
+     "quiet": 2,
+     "loud": 1
+    }
+   },
+   "spec": {}
+  },
+  "asetek-forte-formula": {
+   "slug": "asetek-forte-formula",
+   "name": "Asetek Forte Formula",
+   "sources": 7,
+   "groups": {
+    "durability": {
+     "holds_up": 7
+    }
+   },
+   "spec": {}
+  },
+  "asetek-forte-formula-pro": {
+   "slug": "asetek-forte-formula-pro",
+   "name": "Asetek Forte Formula Pro",
+   "sources": 15,
+   "groups": {
+    "durability": {
+     "holds_up": 10,
+     "wears_fast": 1
+    },
+    "software": {
+     "easy": 6
+    }
+   },
+   "spec": {}
+  },
+  "asetek-forte-gt": {
+   "slug": "asetek-forte-gt",
+   "name": "Asetek Forte GT",
+   "sources": 4,
+   "groups": {
+    "durability": {
+     "holds_up": 4
+    }
+   },
+   "spec": {}
+  },
+  "asetek-forte-pedals": {
+   "slug": "asetek-forte-pedals",
+   "name": "Asetek Forte Pedals",
+   "sources": 27,
+   "groups": {
+    "durability": {
+     "wears_fast": 2,
+     "holds_up": 11
+    },
+    "brake_feel": {
+     "realistic": 15,
+     "vague": 5
+    },
+    "software": {
+     "easy": 3,
+     "frustrating": 2
+    },
+    "noise": {
+     "loud": 1
+    },
+    "flex": {
+     "none": 2
+    },
+    "level": {
+     "intermediate": 1
+    }
+   },
+   "spec": {}
+  },
+  "asetek-forte-s-series-pedals": {
+   "slug": "asetek-forte-s-series-pedals",
+   "name": "Asetek Forte S-Series Pedals",
+   "sources": 4,
+   "groups": {
+    "brake_feel": {
+     "realistic": 2,
+     "vague": 1
+    },
+    "durability": {
+     "holds_up": 3
+    }
+   },
+   "spec": {}
+  },
+  "asetek-initium-2-in-1-cockpit": {
+   "slug": "asetek-initium-2-in-1-cockpit",
+   "name": "Asetek Initium 2-in-1 Cockpit",
+   "sources": 3,
+   "groups": {
+    "flex": {
+     "none": 3
+    },
+    "durability": {
+     "holds_up": 3
+    }
+   },
+   "spec": {}
+  },
+  "asetek-initium-direct-drive-wheelbase": {
+   "slug": "asetek-initium-direct-drive-wheelbase",
+   "name": "Asetek Initium Direct Drive Wheelbase",
+   "sources": 14,
+   "groups": {
+    "detail": {
+     "sharp": 11,
+     "vague": 1
+    },
+    "software": {
+     "easy": 1
+    },
+    "durability": {
+     "holds_up": 8,
+     "wears_fast": 1
+    },
+    "torque": {
+     "too_light": 1,
+     "plenty": 2
+    }
+   },
+   "spec": {}
+  },
+  "asetek-initium-pedal-set": {
+   "slug": "asetek-initium-pedal-set",
+   "name": "Asetek Initium Pedal Set",
+   "sources": 3,
+   "groups": {
+    "durability": {
+     "holds_up": 1,
+     "wears_fast": 1
+    },
+    "brake_feel": {
+     "realistic": 2
+    },
+    "flex": {
+     "none": 1
+    }
+   },
+   "spec": {}
+  },
+  "asetek-initium-steering-wheel": {
+   "slug": "asetek-initium-steering-wheel",
+   "name": "Asetek Initium Steering Wheel",
+   "sources": 4,
+   "groups": {
+    "durability": {
+     "holds_up": 3,
+     "wears_fast": 1
+    }
+   },
+   "spec": {}
+  },
+  "asetek-invicta-direct-drive-wheelbase": {
+   "slug": "asetek-invicta-direct-drive-wheelbase",
+   "name": "Asetek Invicta Direct Drive Wheelbase",
+   "sources": 41,
+   "groups": {
+    "detail": {
+     "sharp": 20,
+     "vague": 2
+    },
+    "level": {
+     "intermediate": 13
+    },
+    "torque": {
+     "plenty": 12
+    },
+    "software": {
+     "frustrating": 4,
+     "easy": 6
+    },
+    "durability": {
+     "holds_up": 12,
+     "wears_fast": 3
+    },
+    "noise": {
+     "loud": 1
+    }
+   },
+   "spec": {}
+  },
+  "asetek-invicta-formula": {
+   "slug": "asetek-invicta-formula",
+   "name": "Asetek Invicta Formula",
+   "sources": 7,
+   "groups": {
+    "durability": {
+     "holds_up": 7
+    },
+    "software": {
+     "easy": 2
+    }
+   },
+   "spec": {}
+  },
+  "asetek-invicta-pedals-thorp-ii": {
+   "slug": "asetek-invicta-pedals-thorp-ii",
+   "name": "Asetek Invicta Pedals THORP II",
+   "sources": 7,
+   "groups": {
+    "durability": {
+     "holds_up": 4,
+     "wears_fast": 1
+    },
+    "brake_feel": {
+     "realistic": 5
+    },
+    "software": {
+     "easy": 1
+    },
+    "level": {
+     "intermediate": 1
+    }
+   },
+   "spec": {}
+  },
+  "asetek-invicta-s-series-thorp-ii": {
+   "slug": "asetek-invicta-s-series-thorp-ii",
+   "name": "Asetek Invicta S-Series THORP II",
+   "sources": 6,
+   "groups": {
+    "brake_feel": {
+     "realistic": 6
+    },
+    "durability": {
+     "holds_up": 3
+    },
+    "noise": {
+     "loud": 3
+    },
+    "level": {
+     "intermediate": 1
+    }
+   },
+   "spec": {}
+  },
+  "asetek-la-prima-direct-drive-wheelbase": {
+   "slug": "asetek-la-prima-direct-drive-wheelbase",
+   "name": "Asetek La Prima Direct Drive Wheelbase",
+   "sources": 35,
+   "groups": {
+    "detail": {
+     "sharp": 18
+    },
+    "torque": {
+     "plenty": 13
+    },
+    "level": {
+     "intermediate": 8
+    },
+    "durability": {
+     "holds_up": 15,
+     "wears_fast": 2
+    },
+    "software": {
+     "easy": 4,
+     "frustrating": 2
+    }
+   },
+   "spec": {}
+  },
+  "asetek-la-prima-pedals": {
+   "slug": "asetek-la-prima-pedals",
+   "name": "Asetek La Prima Pedals",
+   "sources": 15,
+   "groups": {
+    "brake_feel": {
+     "realistic": 12,
+     "vague": 2
+    },
+    "durability": {
+     "holds_up": 4,
+     "wears_fast": 1
+    },
+    "noise": {
+     "loud": 1
+    },
+    "flex": {
+     "none": 3
+    }
+   },
+   "spec": {}
+  },
+  "asetek-load-cell-handbrake": {
+   "slug": "asetek-load-cell-handbrake",
+   "name": "Asetek Load Cell Handbrake",
+   "sources": 1,
+   "groups": {
+    "flex": {
+     "none": 1
+    },
+    "durability": {
+     "holds_up": 1
+    }
+   },
+   "spec": {}
+  },
+  "fanatec-clubsport-dd": {
+   "slug": "fanatec-clubsport-dd",
+   "name": "Fanatec ClubSport DD",
+   "sources": 16,
+   "groups": {
+    "detail": {
+     "sharp": 9,
+     "vague": 1
+    },
+    "torque": {
+     "plenty": 9
+    },
+    "durability": {
+     "holds_up": 5,
+     "wears_fast": 1
+    },
+    "software": {
+     "easy": 1
+    },
+    "noise": {
+     "quiet": 1
+    },
+    "level": {
+     "intermediate": 6
+    }
+   },
+   "spec": {}
+  },
+  "fanatec-clubsport-dd-plus": {
+   "slug": "fanatec-clubsport-dd-plus",
+   "name": "Fanatec ClubSport DD+",
+   "sources": 35,
+   "groups": {
+    "detail": {
+     "sharp": 13
+    },
+    "torque": {
+     "plenty": 12
+    },
+    "durability": {
+     "holds_up": 5,
+     "wears_fast": 1
+    },
+    "noise": {
+     "quiet": 1
+    },
+    "software": {
+     "frustrating": 10,
+     "easy": 1
+    },
+    "level": {
+     "intermediate": 12
+    }
+   },
+   "spec": {}
+  },
+  "fanatec-clubsport-formula-v3": {
+   "slug": "fanatec-clubsport-formula-v3",
+   "name": "Fanatec ClubSport Formula V3",
+   "sources": 9,
+   "groups": {
+    "durability": {
+     "holds_up": 8
+    },
+    "software": {
+     "frustrating": 2,
+     "easy": 1
+    }
+   },
+   "spec": {}
+  },
+  "fanatec-clubsport-gt-cockpit": {
+   "slug": "fanatec-clubsport-gt-cockpit",
+   "name": "Fanatec ClubSport GT Cockpit",
+   "sources": 11,
+   "groups": {
+    "flex": {
+     "none": 9,
+     "lots": 2
+    },
+    "durability": {
+     "holds_up": 5,
+     "wears_fast": 1
+    },
+    "level": {
+     "intermediate": 1
+    }
+   },
+   "spec": {}
+  },
+  "fanatec-clubsport-handbrake-v2": {
+   "slug": "fanatec-clubsport-handbrake-v2",
+   "name": "Fanatec ClubSport Handbrake V2",
+   "sources": 6,
+   "groups": {
+    "flex": {
+     "lots": 1,
+     "none": 3
+    },
+    "durability": {
+     "holds_up": 6
+    },
+    "noise": {
+     "quiet": 1
+    }
+   },
+   "spec": {}
+  },
+  "fanatec-clubsport-pedals-v3": {
+   "slug": "fanatec-clubsport-pedals-v3",
+   "name": "Fanatec ClubSport Pedals V3",
+   "sources": 42,
+   "groups": {
+    "durability": {
+     "wears_fast": 6,
+     "holds_up": 16
+    },
+    "brake_feel": {
+     "realistic": 12,
+     "vague": 9
+    },
+    "level": {
+     "intermediate": 7
+    },
+    "software": {
+     "frustrating": 2
+    },
+    "flex": {
+     "none": 1
+    },
+    "noise": {
+     "loud": 1
+    }
+   },
+   "spec": {}
+  },
+  "fanatec-clubsport-pedals-v3-inverted": {
+   "slug": "fanatec-clubsport-pedals-v3-inverted",
+   "name": "Fanatec ClubSport Pedals V3 Inverted",
+   "sources": 11,
+   "groups": {
+    "durability": {
+     "holds_up": 8
+    },
+    "level": {
+     "intermediate": 3
+    },
+    "brake_feel": {
+     "realistic": 6
+    },
+    "noise": {
+     "loud": 2
+    }
+   },
+   "spec": {}
+  },
+  "fanatec-clubsport-shifter-sq-v1-5": {
+   "slug": "fanatec-clubsport-shifter-sq-v1-5",
+   "name": "Fanatec ClubSport Shifter SQ V1.5",
+   "sources": 19,
+   "groups": {
+    "durability": {
+     "holds_up": 10,
+     "wears_fast": 7
+    },
+    "flex": {
+     "lots": 1
+    },
+    "noise": {
+     "quiet": 1
+    }
+   },
+   "spec": {}
+  },
+  "fanatec-clubsport-steering-wheel-320-for-xbox": {
+   "slug": "fanatec-clubsport-steering-wheel-320-for-xbox",
+   "name": "Fanatec ClubSport Steering Wheel 320 for Xbox",
+   "sources": 0,
+   "groups": {},
+   "spec": {}
+  },
+  "fanatec-clubsport-steering-wheel-flat-1-v2-for-xbox": {
+   "slug": "fanatec-clubsport-steering-wheel-flat-1-v2-for-xbox",
+   "name": "Fanatec ClubSport Steering Wheel Flat 1 V2 for Xbox",
+   "sources": 0,
+   "groups": {},
+   "spec": {}
+  },
+  "fanatec-clubsport-steering-wheel-flat-2-v2-for-xbox": {
+   "slug": "fanatec-clubsport-steering-wheel-flat-2-v2-for-xbox",
+   "name": "Fanatec ClubSport Steering Wheel Flat 2 V2 for Xbox",
+   "sources": 0,
+   "groups": {},
+   "spec": {}
+  },
+  "fanatec-clubsport-steering-wheel-gt-alcantara-v2-for-xbox": {
+   "slug": "fanatec-clubsport-steering-wheel-gt-alcantara-v2-for-xbox",
+   "name": "Fanatec ClubSport Steering Wheel GT Alcantara V2 for Xbox",
+   "sources": 0,
+   "groups": {},
+   "spec": {}
+  },
+  "fanatec-clubsport-steering-wheel-gt-v2-for-xbox": {
+   "slug": "fanatec-clubsport-steering-wheel-gt-v2-for-xbox",
+   "name": "Fanatec ClubSport Steering Wheel GT V2 for Xbox",
+   "sources": 0,
+   "groups": {},
+   "spec": {}
+  },
+  "fanatec-clubsport-steering-wheel-gt3-endurance-for-xbox": {
+   "slug": "fanatec-clubsport-steering-wheel-gt3-endurance-for-xbox",
+   "name": "Fanatec ClubSport Steering Wheel GT3 Endurance for Xbox",
+   "sources": 1,
+   "groups": {
+    "durability": {
+     "holds_up": 1
+    }
+   },
+   "spec": {}
+  },
+  "fanatec-clubsport-steering-wheel-gt3-for-xbox": {
+   "slug": "fanatec-clubsport-steering-wheel-gt3-for-xbox",
+   "name": "Fanatec ClubSport Steering Wheel GT3 for Xbox",
+   "sources": 0,
+   "groups": {},
+   "spec": {}
+  },
+  "fanatec-clubsport-steering-wheel-porsche-911-gt3-r-v2-for-xbox": {
+   "slug": "fanatec-clubsport-steering-wheel-porsche-911-gt3-r-v2-for-xbox",
+   "name": "Fanatec ClubSport Steering Wheel Porsche 911 GT3 R V2 for Xbox",
+   "sources": 1,
+   "groups": {
+    "durability": {
+     "holds_up": 1
+    }
+   },
+   "spec": {}
+  },
+  "fanatec-clubsport-steering-wheel-r300-v2-for-xbox": {
+   "slug": "fanatec-clubsport-steering-wheel-r300-v2-for-xbox",
+   "name": "Fanatec ClubSport Steering Wheel R300 V2 for Xbox",
+   "sources": 0,
+   "groups": {},
+   "spec": {}
+  },
+  "fanatec-clubsport-steering-wheel-r330-v2-for-xbox": {
+   "slug": "fanatec-clubsport-steering-wheel-r330-v2-for-xbox",
+   "name": "Fanatec ClubSport Steering Wheel R330 V2 for Xbox",
+   "sources": 0,
+   "groups": {},
+   "spec": {}
+  },
+  "fanatec-clubsport-steering-wheel-rally-sweden-for-xbox": {
+   "slug": "fanatec-clubsport-steering-wheel-rally-sweden-for-xbox",
+   "name": "Fanatec ClubSport Steering Wheel Rally Sweden for Xbox",
+   "sources": 0,
+   "groups": {},
+   "spec": {}
+  },
+  "fanatec-clubsport-steering-wheel-round-1-v2-for-xbox": {
+   "slug": "fanatec-clubsport-steering-wheel-round-1-v2-for-xbox",
+   "name": "Fanatec ClubSport Steering Wheel Round 1 V2 for Xbox",
+   "sources": 0,
+   "groups": {},
+   "spec": {}
+  },
+  "fanatec-clubsport-steering-wheel-sparco-gt-for-xbox": {
+   "slug": "fanatec-clubsport-steering-wheel-sparco-gt-for-xbox",
+   "name": "Fanatec ClubSport Steering Wheel Sparco GT for Xbox",
+   "sources": 0,
+   "groups": {},
+   "spec": {}
+  },
+  "fanatec-clubsport-wheel-rim-320": {
+   "slug": "fanatec-clubsport-wheel-rim-320",
+   "name": "Fanatec ClubSport Wheel Rim 320",
+   "sources": 2,
+   "groups": {
+    "durability": {
+     "holds_up": 2
+    }
+   },
+   "spec": {}
+  },
+  "fanatec-clubsport-wheel-rim-320-alcantara": {
+   "slug": "fanatec-clubsport-wheel-rim-320-alcantara",
+   "name": "Fanatec ClubSport Wheel Rim 320 Alcantara",
+   "sources": 0,
+   "groups": {},
+   "spec": {}
+  },
+  "fanatec-clubsport-wheel-rim-classic-2": {
+   "slug": "fanatec-clubsport-wheel-rim-classic-2",
+   "name": "Fanatec ClubSport Wheel Rim Classic 2",
+   "sources": 1,
+   "groups": {
+    "durability": {
+     "holds_up": 1
+    }
+   },
+   "spec": {}
+  },
+  "fanatec-clubsport-wheel-rim-flat-1": {
+   "slug": "fanatec-clubsport-wheel-rim-flat-1",
+   "name": "Fanatec ClubSport Wheel Rim Flat 1",
+   "sources": 0,
+   "groups": {},
+   "spec": {}
+  },
+  "fanatec-clubsport-wheel-rim-flat-2": {
+   "slug": "fanatec-clubsport-wheel-rim-flat-2",
+   "name": "Fanatec ClubSport Wheel Rim Flat 2",
+   "sources": 0,
+   "groups": {},
+   "spec": {}
+  },
+  "fanatec-clubsport-wheel-rim-gt": {
+   "slug": "fanatec-clubsport-wheel-rim-gt",
+   "name": "Fanatec ClubSport Wheel Rim GT",
+   "sources": 0,
+   "groups": {},
+   "spec": {}
+  },
+  "fanatec-clubsport-wheel-rim-gt-alcantara": {
+   "slug": "fanatec-clubsport-wheel-rim-gt-alcantara",
+   "name": "Fanatec ClubSport Wheel Rim GT Alcantara",
+   "sources": 0,
+   "groups": {},
+   "spec": {}
+  },
+  "fanatec-clubsport-wheel-rim-gt3": {
+   "slug": "fanatec-clubsport-wheel-rim-gt3",
+   "name": "Fanatec ClubSport Wheel Rim GT3",
+   "sources": 4,
+   "groups": {
+    "durability": {
+     "holds_up": 4
+    }
+   },
+   "spec": {}
+  },
+  "fanatec-clubsport-wheel-rim-gt3-endurance": {
+   "slug": "fanatec-clubsport-wheel-rim-gt3-endurance",
+   "name": "Fanatec ClubSport Wheel Rim GT3 Endurance",
+   "sources": 0,
+   "groups": {},
+   "spec": {}
+  },
+  "fanatec-clubsport-wheel-rim-r330": {
+   "slug": "fanatec-clubsport-wheel-rim-r330",
+   "name": "Fanatec ClubSport Wheel Rim R330",
+   "sources": 0,
+   "groups": {},
+   "spec": {}
+  },
+  "fanatec-clubsport-wheel-rim-round-1": {
+   "slug": "fanatec-clubsport-wheel-rim-round-1",
+   "name": "Fanatec ClubSport Wheel Rim Round 1",
+   "sources": 0,
+   "groups": {},
+   "spec": {}
+  },
+  "fanatec-clubsport-wheel-rim-sparco-formula": {
+   "slug": "fanatec-clubsport-wheel-rim-sparco-formula",
+   "name": "Fanatec ClubSport Wheel Rim Sparco Formula",
+   "sources": 0,
+   "groups": {},
+   "spec": {}
+  },
+  "fanatec-clubsport-wheel-rim-sparco-gt": {
+   "slug": "fanatec-clubsport-wheel-rim-sparco-gt",
+   "name": "Fanatec ClubSport Wheel Rim Sparco GT",
+   "sources": 0,
+   "groups": {},
+   "spec": {}
+  },
+  "fanatec-clubsport-wheel-rim-sparco-karting": {
+   "slug": "fanatec-clubsport-wheel-rim-sparco-karting",
+   "name": "Fanatec ClubSport Wheel Rim Sparco Karting",
+   "sources": 0,
+   "groups": {},
+   "spec": {}
+  },
+  "fanatec-clubsport-wheel-rim-sparco-rally": {
+   "slug": "fanatec-clubsport-wheel-rim-sparco-rally",
+   "name": "Fanatec ClubSport Wheel Rim Sparco Rally",
+   "sources": 0,
+   "groups": {},
+   "spec": {}
+  },
+  "fanatec-csl-cockpit-v1-5": {
+   "slug": "fanatec-csl-cockpit-v1-5",
+   "name": "Fanatec CSL Cockpit V1.5",
+   "sources": 11,
+   "groups": {
+    "flex": {
+     "none": 10,
+     "lots": 1
+    },
+    "durability": {
+     "holds_up": 3
+    },
+    "level": {
+     "intermediate": 1
+    }
+   },
+   "spec": {}
+  },
+  "fanatec-csl-dd-5-nm": {
+   "slug": "fanatec-csl-dd-5-nm",
+   "name": "Fanatec CSL DD 5 Nm",
+   "sources": 12,
+   "groups": {
+    "detail": {
+     "sharp": 5,
+     "vague": 1
+    },
+    "level": {
+     "intermediate": 3
+    },
+    "durability": {
+     "holds_up": 4,
+     "wears_fast": 1
+    },
+    "noise": {
+     "loud": 1,
+     "quiet": 3
+    },
+    "torque": {
+     "too_light": 6
+    }
+   },
+   "spec": {}
+  },
+  "fanatec-csl-dd-8-nm": {
+   "slug": "fanatec-csl-dd-8-nm",
+   "name": "Fanatec CSL DD 8 Nm",
+   "sources": 70,
+   "groups": {
+    "durability": {
+     "wears_fast": 13,
+     "holds_up": 12
+    },
+    "software": {
+     "frustrating": 5,
+     "easy": 3
+    },
+    "torque": {
+     "plenty": 26,
+     "too_light": 6
+    },
+    "detail": {
+     "sharp": 21,
+     "vague": 4
+    },
+    "level": {
+     "intermediate": 13
+    },
+    "noise": {
+     "quiet": 5,
+     "loud": 1
+    }
+   },
+   "spec": {}
+  },
+  "fanatec-csl-elite-pedals-v2": {
+   "slug": "fanatec-csl-elite-pedals-v2",
+   "name": "Fanatec CSL Elite Pedals V2",
+   "sources": 18,
+   "groups": {
+    "brake_feel": {
+     "realistic": 11,
+     "vague": 5
+    },
+    "flex": {
+     "none": 4
+    },
+    "durability": {
+     "holds_up": 8,
+     "wears_fast": 2
+    },
+    "noise": {
+     "quiet": 2
+    },
+    "level": {
+     "intermediate": 2
+    }
+   },
+   "spec": {}
+  },
+  "fanatec-csl-elite-steering-wheel-porsche-vision-gt": {
+   "slug": "fanatec-csl-elite-steering-wheel-porsche-vision-gt",
+   "name": "Fanatec CSL Elite Steering Wheel Porsche Vision GT",
+   "sources": 8,
+   "groups": {
+    "durability": {
+     "holds_up": 7,
+     "wears_fast": 1
+    },
+    "software": {
+     "frustrating": 1
+    }
+   },
+   "spec": {}
+  },
+  "fanatec-csl-pedals": {
+   "slug": "fanatec-csl-pedals",
+   "name": "Fanatec CSL Pedals",
+   "sources": 8,
+   "groups": {
+    "brake_feel": {
+     "vague": 3,
+     "realistic": 2
+    },
+    "flex": {
+     "none": 3
+    },
+    "durability": {
+     "holds_up": 5,
+     "wears_fast": 1
+    },
+    "noise": {
+     "loud": 1
+    },
+    "level": {
+     "intermediate": 1
+    }
+   },
+   "spec": {}
+  },
+  "fanatec-csl-pedals-lc": {
+   "slug": "fanatec-csl-pedals-lc",
+   "name": "Fanatec CSL Pedals LC",
+   "sources": 24,
+   "groups": {
+    "brake_feel": {
+     "realistic": 12,
+     "vague": 7
+    },
+    "durability": {
+     "holds_up": 5
+    },
+    "noise": {
+     "loud": 2
+    },
+    "software": {
+     "easy": 1,
+     "frustrating": 1
+    },
+    "flex": {
+     "none": 1
+    },
+    "level": {
+     "intermediate": 3
+    }
+   },
+   "spec": {}
+  },
+  "fanatec-csl-steering-wheel-gt3": {
+   "slug": "fanatec-csl-steering-wheel-gt3",
+   "name": "Fanatec CSL Steering Wheel GT3",
+   "sources": 5,
+   "groups": {
+    "durability": {
+     "holds_up": 4,
+     "wears_fast": 1
+    },
+    "software": {
+     "frustrating": 1
+    }
+   },
+   "spec": {}
+  },
+  "fanatec-csl-steering-wheel-p1-v2": {
+   "slug": "fanatec-csl-steering-wheel-p1-v2",
+   "name": "Fanatec CSL Steering Wheel P1 V2",
+   "sources": 4,
+   "groups": {
+    "durability": {
+     "holds_up": 2,
+     "wears_fast": 2
+    }
+   },
+   "spec": {}
+  },
+  "fanatec-csl-steering-wheel-r300-v2": {
+   "slug": "fanatec-csl-steering-wheel-r300-v2",
+   "name": "Fanatec CSL Steering Wheel R300 V2",
+   "sources": 1,
+   "groups": {
+    "durability": {
+     "holds_up": 1
+    }
+   },
+   "spec": {}
+  },
+  "fanatec-gran-turismo-dd-pro": {
+   "slug": "fanatec-gran-turismo-dd-pro",
+   "name": "Fanatec Gran Turismo DD Pro",
+   "sources": 32,
+   "groups": {
+    "torque": {
+     "too_light": 4,
+     "plenty": 3
+    },
+    "durability": {
+     "holds_up": 7,
+     "wears_fast": 1
+    },
+    "detail": {
+     "sharp": 10,
+     "vague": 4
+    },
+    "software": {
+     "easy": 2
+    },
+    "level": {
+     "intermediate": 8,
+     "beginner": 1
+    },
+    "noise": {
+     "loud": 2
+    }
+   },
+   "spec": {}
+  },
+  "fanatec-podium-dd": {
+   "slug": "fanatec-podium-dd",
+   "name": "Fanatec Podium DD",
+   "sources": 12,
+   "groups": {
+    "torque": {
+     "plenty": 7
+    },
+    "detail": {
+     "sharp": 8
+    },
+    "durability": {
+     "holds_up": 7
+    },
+    "software": {
+     "frustrating": 1,
+     "easy": 1
+    },
+    "noise": {
+     "quiet": 1
+    }
+   },
+   "spec": {}
+  },
+  "fanatec-podium-pedals-formula": {
+   "slug": "fanatec-podium-pedals-formula",
+   "name": "Fanatec Podium Pedals Formula",
+   "sources": 4,
+   "groups": {
+    "brake_feel": {
+     "vague": 1,
+     "realistic": 3
+    },
+    "flex": {
+     "none": 3
+    },
+    "durability": {
+     "holds_up": 3
+    },
+    "software": {
+     "easy": 2
+    }
+   },
+   "spec": {}
+  },
+  "fanatec-podium-pedals-sport": {
+   "slug": "fanatec-podium-pedals-sport",
+   "name": "Fanatec Podium Pedals Sport",
+   "sources": 0,
+   "groups": {},
+   "spec": {}
+  },
+  "fanatec-podium-steering-wheel-bmw-m4-gt3": {
+   "slug": "fanatec-podium-steering-wheel-bmw-m4-gt3",
+   "name": "Fanatec Podium Steering Wheel BMW M4 GT3",
+   "sources": 8,
+   "groups": {
+    "durability": {
+     "holds_up": 7
+    },
+    "software": {
+     "frustrating": 2
+    }
+   },
+   "spec": {}
+  },
+  "fanatec-podium-steering-wheel-gt3-endurance": {
+   "slug": "fanatec-podium-steering-wheel-gt3-endurance",
+   "name": "Fanatec Podium Steering Wheel GT3 Endurance",
+   "sources": 1,
+   "groups": {
+    "durability": {
+     "holds_up": 1
+    },
+    "software": {
+     "frustrating": 1
+    }
+   },
+   "spec": {}
+  },
+  "fanatec-podium-steering-wheel-monte-carlo-rally": {
+   "slug": "fanatec-podium-steering-wheel-monte-carlo-rally",
+   "name": "Fanatec Podium Steering Wheel Monte Carlo Rally",
+   "sources": 1,
+   "groups": {
+    "durability": {
+     "holds_up": 1
+    }
+   },
+   "spec": {}
+  },
+  "fanatec-podium-steering-wheel-porsche-911-gt3-r": {
+   "slug": "fanatec-podium-steering-wheel-porsche-911-gt3-r",
+   "name": "Fanatec Podium Steering Wheel Porsche 911 GT3 R",
+   "sources": 7,
+   "groups": {
+    "durability": {
+     "holds_up": 7
+    }
+   },
+   "spec": {}
+  },
+  "fanatec-podium-wheel-rim-porsche-911-gt3-cup": {
+   "slug": "fanatec-podium-wheel-rim-porsche-911-gt3-cup",
+   "name": "Fanatec Podium Wheel Rim Porsche 911 GT3 Cup",
+   "sources": 1,
+   "groups": {
+    "durability": {
+     "holds_up": 1
+    }
+   },
+   "spec": {}
+  },
+  "fanatec-podium-wheel-rim-r300": {
+   "slug": "fanatec-podium-wheel-rim-r300",
+   "name": "Fanatec Podium Wheel Rim R300",
+   "sources": 2,
+   "groups": {
+    "durability": {
+     "wears_fast": 1,
+     "holds_up": 1
+    }
+   },
+   "spec": {}
+  },
+  "gt-omega-art": {
+   "slug": "gt-omega-art",
+   "name": "GT Omega ART",
+   "sources": 32,
+   "groups": {
+    "flex": {
+     "none": 9,
+     "lots": 22
+    },
+    "durability": {
+     "holds_up": 6,
+     "wears_fast": 2
+    },
+    "level": {
+     "intermediate": 1,
+     "beginner": 1
+    }
+   },
+   "spec": {}
+  },
+  "gt-omega-hybrid": {
+   "slug": "gt-omega-hybrid",
+   "name": "GT Omega HYBRID",
+   "sources": 5,
+   "groups": {
+    "flex": {
+     "none": 5
+    },
+    "durability": {
+     "holds_up": 2
+    }
+   },
+   "spec": {}
+  },
+  "gt-omega-prime": {
+   "slug": "gt-omega-prime",
+   "name": "GT Omega PRIME",
+   "sources": 24,
+   "groups": {
+    "flex": {
+     "none": 19,
+     "lots": 2
+    },
+    "durability": {
+     "holds_up": 14,
+     "wears_fast": 2
+    },
+    "level": {
+     "intermediate": 1
+    }
+   },
+   "spec": {}
+  },
+  "gt-omega-prime-lite": {
+   "slug": "gt-omega-prime-lite",
+   "name": "GT Omega PRIME Lite",
+   "sources": 23,
+   "groups": {
+    "flex": {
+     "none": 14,
+     "lots": 2
+    },
+    "durability": {
+     "wears_fast": 7,
+     "holds_up": 6
+    },
+    "level": {
+     "intermediate": 2
+    }
+   },
+   "spec": {}
+  },
+  "gt-omega-prime-lite-r": {
+   "slug": "gt-omega-prime-lite-r",
+   "name": "GT Omega PRIME Lite-R",
+   "sources": 8,
+   "groups": {
+    "flex": {
+     "lots": 2,
+     "none": 5
+    },
+    "durability": {
+     "holds_up": 3
+    }
+   },
+   "spec": {}
+  },
+  "gt-omega-sprint": {
+   "slug": "gt-omega-sprint",
+   "name": "GT Omega SPRINT",
+   "sources": 6,
+   "groups": {
+    "flex": {
+     "none": 4,
+     "lots": 2
+    },
+    "durability": {
+     "holds_up": 4,
+     "wears_fast": 1
+    }
+   },
+   "spec": {}
+  },
+  "gt-omega-titan": {
+   "slug": "gt-omega-titan",
+   "name": "GT Omega TITAN",
+   "sources": 19,
+   "groups": {
+    "flex": {
+     "none": 12,
+     "lots": 3
+    },
+    "durability": {
+     "wears_fast": 3,
+     "holds_up": 8
+    },
+    "level": {
+     "intermediate": 2
+    }
+   },
+   "spec": {}
+  },
+  "heusinkveld-handbrake": {
+   "slug": "heusinkveld-handbrake",
+   "name": "Heusinkveld Handbrake",
+   "sources": 12,
+   "groups": {
+    "flex": {
+     "none": 5
+    },
+    "durability": {
+     "holds_up": 11,
+     "wears_fast": 1
+    },
+    "noise": {
+     "quiet": 1,
+     "loud": 1
+    }
+   },
+   "spec": {}
+  },
+  "heusinkveld-magshift": {
+   "slug": "heusinkveld-magshift",
+   "name": "Heusinkveld MagShift",
+   "sources": 10,
+   "groups": {
+    "durability": {
+     "holds_up": 10
+    },
+    "noise": {
+     "loud": 2
+    },
+    "flex": {
+     "none": 2
+    }
+   },
+   "spec": {}
+  },
+  "heusinkveld-magshift-mini": {
+   "slug": "heusinkveld-magshift-mini",
+   "name": "Heusinkveld MagShift Mini",
+   "sources": 3,
+   "groups": {
+    "durability": {
+     "holds_up": 3
+    },
+    "flex": {
+     "none": 2
+    }
+   },
+   "spec": {}
+  },
+  "heusinkveld-one": {
+   "slug": "heusinkveld-one",
+   "name": "Heusinkveld One",
+   "sources": 7,
+   "groups": {
+    "durability": {
+     "holds_up": 6
+    },
+    "software": {
+     "easy": 3
+    }
+   },
+   "spec": {}
+  },
+  "heusinkveld-racecenter": {
+   "slug": "heusinkveld-racecenter",
+   "name": "Heusinkveld RaceCenter",
+   "sources": 0,
+   "groups": {},
+   "spec": {}
+  },
+  "heusinkveld-sprint": {
+   "slug": "heusinkveld-sprint",
+   "name": "Heusinkveld Sprint",
+   "sources": 123,
+   "groups": {
+    "brake_feel": {
+     "realistic": 35,
+     "vague": 15
+    },
+    "durability": {
+     "holds_up": 44,
+     "wears_fast": 8
+    },
+    "noise": {
+     "quiet": 3,
+     "loud": 2
+    },
+    "software": {
+     "easy": 24
+    },
+    "flex": {
+     "none": 9,
+     "lots": 1
+    },
+    "level": {
+     "intermediate": 42,
+     "beginner": 1
+    }
+   },
+   "spec": {}
+  },
+  "heusinkveld-ultimate-plus": {
+   "slug": "heusinkveld-ultimate-plus",
+   "name": "Heusinkveld Ultimate+",
+   "sources": 16,
+   "groups": {
+    "durability": {
+     "wears_fast": 2,
+     "holds_up": 5
+    },
+    "brake_feel": {
+     "realistic": 10,
+     "vague": 1
+    },
+    "level": {
+     "intermediate": 4
+    },
+    "software": {
+     "easy": 4
+    }
+   },
+   "spec": {}
+  },
+  "logitech-driving-force-shifter": {
+   "slug": "logitech-driving-force-shifter",
+   "name": "Logitech Driving Force Shifter",
+   "sources": 11,
+   "groups": {
+    "durability": {
+     "holds_up": 4,
+     "wears_fast": 6
+    },
+    "flex": {
+     "none": 1
+    }
+   },
+   "spec": {}
+  },
+  "logitech-g29": {
+   "slug": "logitech-g29",
+   "name": "Logitech G29",
+   "sources": 92,
+   "groups": {
+    "software": {
+     "frustrating": 4,
+     "easy": 1
+    },
+    "durability": {
+     "wears_fast": 26,
+     "holds_up": 22
+    },
+    "noise": {
+     "loud": 22,
+     "quiet": 1
+    },
+    "level": {
+     "beginner": 7,
+     "intermediate": 1
+    },
+    "detail": {
+     "vague": 17,
+     "sharp": 2
+    },
+    "torque": {
+     "too_light": 2
+    }
+   },
+   "spec": {}
+  },
+  "logitech-g920": {
+   "slug": "logitech-g920",
+   "name": "Logitech G920",
+   "sources": 34,
+   "groups": {
+    "noise": {
+     "loud": 11
+    },
+    "detail": {
+     "sharp": 3,
+     "vague": 6
+    },
+    "level": {
+     "intermediate": 1,
+     "beginner": 1
+    },
+    "software": {
+     "frustrating": 3
+    },
+    "durability": {
+     "wears_fast": 5,
+     "holds_up": 9
+    },
+    "torque": {
+     "too_light": 4
+    }
+   },
+   "spec": {}
+  },
+  "logitech-g923": {
+   "slug": "logitech-g923",
+   "name": "Logitech G923",
+   "sources": 51,
+   "groups": {
+    "durability": {
+     "holds_up": 10,
+     "wears_fast": 10
+    },
+    "detail": {
+     "sharp": 9,
+     "vague": 7
+    },
+    "software": {
+     "frustrating": 1
+    },
+    "torque": {
+     "plenty": 3,
+     "too_light": 6
+    },
+    "noise": {
+     "loud": 15,
+     "quiet": 1
+    },
+    "level": {
+     "beginner": 6,
+     "intermediate": 2
+    }
+   },
+   "spec": {}
+  },
+  "logitech-pro-dd11": {
+   "slug": "logitech-pro-dd11",
+   "name": "Logitech PRO DD11",
+   "sources": 6,
+   "groups": {
+    "torque": {
+     "plenty": 3
+    },
+    "detail": {
+     "sharp": 4
+    },
+    "noise": {
+     "quiet": 1
+    },
+    "durability": {
+     "wears_fast": 1
+    }
+   },
+   "spec": {}
+  },
+  "logitech-pro-racing-gt-d-rim": {
+   "slug": "logitech-pro-racing-gt-d-rim",
+   "name": "Logitech PRO Racing GT D Rim",
+   "sources": 0,
+   "groups": {},
+   "spec": {}
+  },
+  "logitech-pro-racing-pedals": {
+   "slug": "logitech-pro-racing-pedals",
+   "name": "Logitech PRO Racing Pedals",
+   "sources": 30,
+   "groups": {
+    "brake_feel": {
+     "realistic": 19,
+     "vague": 3
+    },
+    "durability": {
+     "holds_up": 9
+    },
+    "flex": {
+     "lots": 2,
+     "none": 4
+    },
+    "software": {
+     "easy": 3
+    },
+    "level": {
+     "intermediate": 9
+    },
+    "noise": {
+     "quiet": 2
+    }
+   },
+   "spec": {}
+  },
+  "logitech-pro-racing-wheel": {
+   "slug": "logitech-pro-racing-wheel",
+   "name": "Logitech PRO Racing Wheel",
+   "sources": 117,
+   "groups": {
+    "torque": {
+     "plenty": 24
+    },
+    "durability": {
+     "holds_up": 24,
+     "wears_fast": 13
+    },
+    "software": {
+     "frustrating": 10,
+     "easy": 8
+    },
+    "detail": {
+     "sharp": 50,
+     "vague": 4
+    },
+    "level": {
+     "intermediate": 19,
+     "beginner": 1
+    },
+    "noise": {
+     "quiet": 6,
+     "loud": 5
+    }
+   },
+   "spec": {}
+  },
+  "logitech-rs-formula-wheel-mclaren-racing-edition": {
+   "slug": "logitech-rs-formula-wheel-mclaren-racing-edition",
+   "name": "Logitech RS Formula Wheel McLaren Racing Edition",
+   "sources": 2,
+   "groups": {
+    "durability": {
+     "holds_up": 2
+    }
+   },
+   "spec": {}
+  },
+  "logitech-rs-h-shifter": {
+   "slug": "logitech-rs-h-shifter",
+   "name": "Logitech RS H-Shifter",
+   "sources": 14,
+   "groups": {
+    "durability": {
+     "holds_up": 10,
+     "wears_fast": 2
+    },
+    "flex": {
+     "none": 5
+    },
+    "noise": {
+     "loud": 3,
+     "quiet": 1
+    }
+   },
+   "spec": {}
+  },
+  "logitech-rs-pedals": {
+   "slug": "logitech-rs-pedals",
+   "name": "Logitech RS Pedals",
+   "sources": 24,
+   "groups": {
+    "durability": {
+     "holds_up": 2,
+     "wears_fast": 2
+    },
+    "noise": {
+     "loud": 3
+    },
+    "brake_feel": {
+     "realistic": 10,
+     "vague": 5
+    },
+    "flex": {
+     "none": 2,
+     "lots": 1
+    },
+    "software": {
+     "easy": 3
+    },
+    "level": {
+     "intermediate": 10
+    }
+   },
+   "spec": {}
+  },
+  "logitech-rs-pedals-se": {
+   "slug": "logitech-rs-pedals-se",
+   "name": "Logitech RS Pedals SE",
+   "sources": 0,
+   "groups": {},
+   "spec": {}
+  },
+  "logitech-rs-round-wheel": {
+   "slug": "logitech-rs-round-wheel",
+   "name": "Logitech RS Round Wheel",
+   "sources": 3,
+   "groups": {
+    "durability": {
+     "holds_up": 2,
+     "wears_fast": 1
+    }
+   },
+   "spec": {}
+  },
+  "logitech-rs-shifter-handbrake": {
+   "slug": "logitech-rs-shifter-handbrake",
+   "name": "Logitech RS Shifter & Handbrake",
+   "sources": 6,
+   "groups": {
+    "durability": {
+     "holds_up": 5
+    },
+    "flex": {
+     "none": 2,
+     "lots": 1
+    }
+   },
+   "spec": {}
+  },
+  "logitech-rs-track-wheel": {
+   "slug": "logitech-rs-track-wheel",
+   "name": "Logitech RS Track Wheel",
+   "sources": 10,
+   "groups": {
+    "durability": {
+     "holds_up": 10
+    }
+   },
+   "spec": {}
+  },
+  "logitech-rs50": {
+   "slug": "logitech-rs50",
+   "name": "Logitech RS50",
+   "sources": 104,
+   "groups": {
+    "durability": {
+     "holds_up": 23,
+     "wears_fast": 19
+    },
+    "torque": {
+     "plenty": 18,
+     "too_light": 2
+    },
+    "level": {
+     "intermediate": 39,
+     "beginner": 3
+    },
+    "detail": {
+     "sharp": 26,
+     "vague": 2
+    },
+    "noise": {
+     "quiet": 5,
+     "loud": 2
+    },
+    "software": {
+     "frustrating": 7,
+     "easy": 2
+    }
+   },
+   "spec": {}
+  },
+  "moza-active-shifter": {
+   "slug": "moza-active-shifter",
+   "name": "MOZA Active Shifter",
+   "sources": 3,
+   "groups": {
+    "durability": {
+     "holds_up": 3
+    }
+   },
+   "spec": {}
+  },
+  "moza-crp2-pedals": {
+   "slug": "moza-crp2-pedals",
+   "name": "MOZA CRP2 Pedals",
+   "sources": 28,
+   "groups": {
+    "brake_feel": {
+     "realistic": 14,
+     "vague": 5
+    },
+    "software": {
+     "easy": 3,
+     "frustrating": 2
+    },
+    "flex": {
+     "none": 7,
+     "lots": 1
+    },
+    "durability": {
+     "holds_up": 8,
+     "wears_fast": 6
+    },
+    "noise": {
+     "quiet": 3,
+     "loud": 2
+    },
+    "level": {
+     "intermediate": 4
+    }
+   },
+   "spec": {}
+  },
+  "moza-cs-pro": {
+   "slug": "moza-cs-pro",
+   "name": "MOZA CS Pro",
+   "sources": 10,
+   "groups": {
+    "software": {
+     "easy": 4,
+     "frustrating": 1
+    },
+    "durability": {
+     "holds_up": 5,
+     "wears_fast": 2
+    }
+   },
+   "spec": {}
+  },
+  "moza-cs-v2p": {
+   "slug": "moza-cs-v2p",
+   "name": "MOZA CS V2P",
+   "sources": 6,
+   "groups": {
+    "durability": {
+     "holds_up": 6
+    }
+   },
+   "spec": {}
+  },
+  "moza-essenza-scv12-steering-wheel": {
+   "slug": "moza-essenza-scv12-steering-wheel",
+   "name": "MOZA Essenza SCV12 Steering Wheel",
+   "sources": 2,
+   "groups": {
+    "durability": {
+     "holds_up": 2
+    }
+   },
+   "spec": {}
+  },
+  "moza-esx": {
+   "slug": "moza-esx",
+   "name": "MOZA ESX",
+   "sources": 2,
+   "groups": {
+    "durability": {
+     "wears_fast": 1
+    },
+    "software": {
+     "frustrating": 1
+    }
+   },
+   "spec": {}
+  },
+  "moza-ford-mustang-gtd-wheel": {
+   "slug": "moza-ford-mustang-gtd-wheel",
+   "name": "MOZA Ford Mustang GTD Wheel",
+   "sources": 2,
+   "groups": {
+    "durability": {
+     "holds_up": 2
+    },
+    "software": {
+     "easy": 2
+    }
+   },
+   "spec": {}
+  },
+  "moza-fsr2": {
+   "slug": "moza-fsr2",
+   "name": "MOZA FSR2",
+   "sources": 14,
+   "groups": {
+    "software": {
+     "frustrating": 5,
+     "easy": 3
+    },
+    "durability": {
+     "holds_up": 12
+    }
+   },
+   "spec": {}
+  },
+  "moza-gs-v2p": {
+   "slug": "moza-gs-v2p",
+   "name": "MOZA GS V2P",
+   "sources": 14,
+   "groups": {
+    "durability": {
+     "holds_up": 12,
+     "wears_fast": 1
+    },
+    "software": {
+     "easy": 2,
+     "frustrating": 1
+    }
+   },
+   "spec": {}
+  },
+  "moza-hbp-handbrake": {
+   "slug": "moza-hbp-handbrake",
+   "name": "MOZA HBP Handbrake",
+   "sources": 19,
+   "groups": {
+    "durability": {
+     "holds_up": 17,
+     "wears_fast": 1
+    },
+    "flex": {
+     "none": 10,
+     "lots": 1
+    },
+    "noise": {
+     "quiet": 1
+    }
+   },
+   "spec": {}
+  },
+  "moza-hgp-shifter": {
+   "slug": "moza-hgp-shifter",
+   "name": "MOZA HGP Shifter",
+   "sources": 33,
+   "groups": {
+    "durability": {
+     "wears_fast": 15,
+     "holds_up": 14
+    },
+    "noise": {
+     "loud": 8
+    },
+    "flex": {
+     "none": 1
+    }
+   },
+   "spec": {}
+  },
+  "moza-ks": {
+   "slug": "moza-ks",
+   "name": "MOZA KS",
+   "sources": 22,
+   "groups": {
+    "durability": {
+     "holds_up": 8,
+     "wears_fast": 12
+    },
+    "software": {
+     "easy": 3,
+     "frustrating": 1
+    }
+   },
+   "spec": {}
+  },
+  "moza-ks-pro": {
+   "slug": "moza-ks-pro",
+   "name": "MOZA KS Pro",
+   "sources": 15,
+   "groups": {
+    "durability": {
+     "holds_up": 9,
+     "wears_fast": 6
+    },
+    "software": {
+     "easy": 2
+    }
+   },
+   "spec": {}
+  },
+  "moza-mbooster-active-pedal": {
+   "slug": "moza-mbooster-active-pedal",
+   "name": "MOZA mBooster Active Pedal",
+   "sources": 30,
+   "groups": {
+    "brake_feel": {
+     "realistic": 19,
+     "vague": 4
+    },
+    "noise": {
+     "loud": 3
+    },
+    "software": {
+     "easy": 9,
+     "frustrating": 1
+    },
+    "flex": {
+     "none": 4
+    },
+    "durability": {
+     "holds_up": 2,
+     "wears_fast": 1
+    },
+    "level": {
+     "intermediate": 2
+    }
+   },
+   "spec": {}
+  },
+  "moza-porsche-mission-r-steering-wheel": {
+   "slug": "moza-porsche-mission-r-steering-wheel",
+   "name": "MOZA Porsche Mission R Steering Wheel",
+   "sources": 5,
+   "groups": {
+    "durability": {
+     "holds_up": 5
+    }
+   },
+   "spec": {}
+  },
+  "moza-r12-v2": {
+   "slug": "moza-r12-v2",
+   "name": "MOZA R12 V2",
+   "sources": 13,
+   "groups": {
+    "detail": {
+     "sharp": 7,
+     "vague": 1
+    },
+    "durability": {
+     "holds_up": 3,
+     "wears_fast": 1
+    },
+    "software": {
+     "easy": 4
+    },
+    "torque": {
+     "plenty": 5
+    },
+    "level": {
+     "intermediate": 3,
+     "beginner": 1
+    },
+    "noise": {
+     "loud": 1
+    }
+   },
+   "spec": {}
+  },
+  "moza-r16-ultra": {
+   "slug": "moza-r16-ultra",
+   "name": "MOZA R16 Ultra",
+   "sources": 10,
+   "groups": {
+    "torque": {
+     "plenty": 6
+    },
+    "detail": {
+     "sharp": 7
+    },
+    "durability": {
+     "holds_up": 2,
+     "wears_fast": 1
+    },
+    "software": {
+     "frustrating": 2
+    },
+    "level": {
+     "intermediate": 2
+    }
+   },
+   "spec": {}
+  },
+  "moza-r21-ultra": {
+   "slug": "moza-r21-ultra",
+   "name": "MOZA R21 Ultra",
+   "sources": 19,
+   "groups": {
+    "detail": {
+     "sharp": 13,
+     "vague": 2
+    },
+    "torque": {
+     "plenty": 12
+    },
+    "durability": {
+     "wears_fast": 4,
+     "holds_up": 6
+    },
+    "software": {
+     "frustrating": 5,
+     "easy": 2
+    },
+    "noise": {
+     "quiet": 1,
+     "loud": 1
+    },
+    "level": {
+     "intermediate": 2
+    }
+   },
+   "spec": {}
+  },
+  "moza-r25-ultra": {
+   "slug": "moza-r25-ultra",
+   "name": "MOZA R25 Ultra",
+   "sources": 11,
+   "groups": {
+    "detail": {
+     "vague": 1,
+     "sharp": 7
+    },
+    "torque": {
+     "plenty": 9
+    },
+    "durability": {
+     "holds_up": 6
+    },
+    "software": {
+     "frustrating": 2,
+     "easy": 2
+    }
+   },
+   "spec": {}
+  },
+  "moza-r3": {
+   "slug": "moza-r3",
+   "name": "MOZA R3",
+   "sources": 32,
+   "groups": {
+    "torque": {
+     "plenty": 5,
+     "too_light": 4
+    },
+    "durability": {
+     "holds_up": 4,
+     "wears_fast": 6
+    },
+    "level": {
+     "beginner": 3,
+     "intermediate": 8
+    },
+    "detail": {
+     "sharp": 9,
+     "vague": 3
+    },
+    "noise": {
+     "quiet": 1,
+     "loud": 1
+    },
+    "software": {
+     "easy": 1,
+     "frustrating": 1
+    }
+   },
+   "spec": {}
+  },
+  "moza-r5": {
+   "slug": "moza-r5",
+   "name": "MOZA R5",
+   "sources": 103,
+   "groups": {
+    "durability": {
+     "wears_fast": 17,
+     "holds_up": 16
+    },
+    "software": {
+     "frustrating": 7,
+     "easy": 8
+    },
+    "detail": {
+     "sharp": 22,
+     "vague": 8
+    },
+    "level": {
+     "intermediate": 28,
+     "beginner": 3
+    },
+    "torque": {
+     "plenty": 16,
+     "too_light": 10
+    },
+    "noise": {
+     "quiet": 3,
+     "loud": 2
+    }
+   },
+   "spec": {}
+  },
+  "moza-r9-v3": {
+   "slug": "moza-r9-v3",
+   "name": "MOZA R9 V3",
+   "sources": 9,
+   "groups": {
+    "detail": {
+     "vague": 1,
+     "sharp": 5
+    },
+    "torque": {
+     "plenty": 5
+    },
+    "durability": {
+     "holds_up": 3
+    },
+    "software": {
+     "easy": 4
+    },
+    "level": {
+     "intermediate": 3
+    }
+   },
+   "spec": {}
+  },
+  "moza-revuelto-steering-wheel": {
+   "slug": "moza-revuelto-steering-wheel",
+   "name": "MOZA Revuelto Steering Wheel",
+   "sources": 8,
+   "groups": {
+    "durability": {
+     "holds_up": 6,
+     "wears_fast": 2
+    },
+    "software": {
+     "frustrating": 1,
+     "easy": 2
+    }
+   },
+   "spec": {}
+  },
+  "moza-rs-v2": {
+   "slug": "moza-rs-v2",
+   "name": "MOZA RS V2",
+   "sources": 9,
+   "groups": {
+    "durability": {
+     "wears_fast": 1,
+     "holds_up": 8
+    },
+    "software": {
+     "frustrating": 1
+    }
+   },
+   "spec": {}
+  },
+  "moza-sgp-sequential-shifter": {
+   "slug": "moza-sgp-sequential-shifter",
+   "name": "MOZA SGP Sequential Shifter",
+   "sources": 14,
+   "groups": {
+    "durability": {
+     "holds_up": 10,
+     "wears_fast": 1
+    },
+    "noise": {
+     "quiet": 1,
+     "loud": 5
+    },
+    "flex": {
+     "none": 6,
+     "lots": 1
+    }
+   },
+   "spec": {}
+  },
+  "moza-sr-p-pedals": {
+   "slug": "moza-sr-p-pedals",
+   "name": "MOZA SR-P Pedals",
+   "sources": 14,
+   "groups": {
+    "brake_feel": {
+     "realistic": 6,
+     "vague": 1
+    },
+    "durability": {
+     "holds_up": 8,
+     "wears_fast": 2
+    },
+    "noise": {
+     "quiet": 1
+    },
+    "software": {
+     "frustrating": 1
+    },
+    "flex": {
+     "lots": 1
+    },
+    "level": {
+     "intermediate": 1
+    }
+   },
+   "spec": {}
+  },
+  "moza-srp2-pedals": {
+   "slug": "moza-srp2-pedals",
+   "name": "MOZA SRP2 Pedals",
+   "sources": 12,
+   "groups": {
+    "brake_feel": {
+     "realistic": 9,
+     "vague": 2
+    },
+    "flex": {
+     "lots": 2
+    },
+    "durability": {
+     "wears_fast": 3,
+     "holds_up": 2
+    },
+    "noise": {
+     "quiet": 1
+    },
+    "software": {
+     "easy": 1,
+     "frustrating": 1
+    },
+    "level": {
+     "intermediate": 1
+    }
+   },
+   "spec": {}
+  },
+  "moza-tsw": {
+   "slug": "moza-tsw",
+   "name": "MOZA TSW",
+   "sources": 9,
+   "groups": {
+    "durability": {
+     "holds_up": 9
+    },
+    "software": {
+     "frustrating": 1,
+     "easy": 1
+    }
+   },
+   "spec": {}
+  },
+  "moza-vision-gs": {
+   "slug": "moza-vision-gs",
+   "name": "MOZA Vision GS",
+   "sources": 12,
+   "groups": {
+    "durability": {
+     "holds_up": 12
+    },
+    "software": {
+     "frustrating": 2,
+     "easy": 1
+    }
+   },
+   "spec": {}
+  },
+  "next-level-racing-f-gt": {
+   "slug": "next-level-racing-f-gt",
+   "name": "Next Level Racing F-GT",
+   "sources": 30,
+   "groups": {
+    "flex": {
+     "none": 13,
+     "lots": 10
+    },
+    "durability": {
+     "wears_fast": 4,
+     "holds_up": 7
+    },
+    "level": {
+     "intermediate": 2
+    }
+   },
+   "spec": {}
+  },
+  "next-level-racing-f-gt-elite": {
+   "slug": "next-level-racing-f-gt-elite",
+   "name": "Next Level Racing F-GT Elite",
+   "sources": 9,
+   "groups": {
+    "flex": {
+     "none": 7,
+     "lots": 2
+    },
+    "durability": {
+     "holds_up": 5
+    },
+    "level": {
+     "beginner": 1
+    }
+   },
+   "spec": {}
+  },
+  "next-level-racing-f-gt-elite-160": {
+   "slug": "next-level-racing-f-gt-elite-160",
+   "name": "Next Level Racing F-GT Elite 160",
+   "sources": 10,
+   "groups": {
+    "flex": {
+     "none": 9
+    },
+    "durability": {
+     "holds_up": 9
+    },
+    "level": {
+     "intermediate": 1
+    }
+   },
+   "spec": {}
+  },
+  "next-level-racing-f-gt-elite-lite": {
+   "slug": "next-level-racing-f-gt-elite-lite",
+   "name": "Next Level Racing F-GT Elite Lite",
+   "sources": 4,
+   "groups": {
+    "flex": {
+     "none": 4
+    },
+    "durability": {
+     "holds_up": 3
+    }
+   },
+   "spec": {}
+  },
+  "next-level-racing-f-gt-lite": {
+   "slug": "next-level-racing-f-gt-lite",
+   "name": "Next Level Racing F-GT Lite",
+   "sources": 28,
+   "groups": {
+    "flex": {
+     "lots": 11,
+     "none": 13
+    },
+    "durability": {
+     "holds_up": 3,
+     "wears_fast": 4
+    }
+   },
+   "spec": {}
+  },
+  "next-level-racing-f-gt-pro": {
+   "slug": "next-level-racing-f-gt-pro",
+   "name": "Next Level Racing F-GT Pro",
+   "sources": 12,
+   "groups": {
+    "flex": {
+     "none": 9,
+     "lots": 2
+    },
+    "durability": {
+     "holds_up": 7,
+     "wears_fast": 1
+    }
+   },
+   "spec": {}
+  },
+  "next-level-racing-f-gt-shift": {
+   "slug": "next-level-racing-f-gt-shift",
+   "name": "Next Level Racing F-GT Shift",
+   "sources": 6,
+   "groups": {
+    "flex": {
+     "lots": 2,
+     "none": 4
+    },
+    "durability": {
+     "holds_up": 1
+    }
+   },
+   "spec": {}
+  },
+  "next-level-racing-formula-lite-pro": {
+   "slug": "next-level-racing-formula-lite-pro",
+   "name": "Next Level Racing Formula Lite Pro",
+   "sources": 12,
+   "groups": {
+    "flex": {
+     "lots": 9,
+     "none": 2
+    },
+    "durability": {
+     "wears_fast": 1,
+     "holds_up": 2
+    }
+   },
+   "spec": {}
+  },
+  "next-level-racing-go-kart-plus": {
+   "slug": "next-level-racing-go-kart-plus",
+   "name": "Next Level Racing Go Kart Plus",
+   "sources": 6,
+   "groups": {
+    "flex": {
+     "lots": 2,
+     "none": 4
+    },
+    "durability": {
+     "wears_fast": 2,
+     "holds_up": 2
+    }
+   },
+   "spec": {}
+  },
+  "next-level-racing-gtelite": {
+   "slug": "next-level-racing-gtelite",
+   "name": "Next Level Racing GTElite",
+   "sources": 5,
+   "groups": {
+    "flex": {
+     "lots": 1,
+     "none": 3
+    },
+    "durability": {
+     "holds_up": 3,
+     "wears_fast": 1
+    }
+   },
+   "spec": {}
+  },
+  "next-level-racing-gtelite-lite": {
+   "slug": "next-level-racing-gtelite-lite",
+   "name": "Next Level Racing GTElite Lite",
+   "sources": 1,
+   "groups": {
+    "flex": {
+     "lots": 1
+    }
+   },
+   "spec": {}
+  },
+  "next-level-racing-gtlite-air": {
+   "slug": "next-level-racing-gtlite-air",
+   "name": "Next Level Racing GTLite Air",
+   "sources": 3,
+   "groups": {
+    "flex": {
+     "lots": 3
+    },
+    "durability": {
+     "holds_up": 1
+    }
+   },
+   "spec": {}
+  },
+  "next-level-racing-gtlite-pro": {
+   "slug": "next-level-racing-gtlite-pro",
+   "name": "Next Level Racing GTLite Pro",
+   "sources": 22,
+   "groups": {
+    "flex": {
+     "none": 6,
+     "lots": 11
+    },
+    "durability": {
+     "holds_up": 2,
+     "wears_fast": 8
+    }
+   },
+   "spec": {}
+  },
+  "next-level-racing-gtracer-2-0": {
+   "slug": "next-level-racing-gtracer-2-0",
+   "name": "Next Level Racing GTRacer 2.0",
+   "sources": 17,
+   "groups": {
+    "flex": {
+     "none": 10,
+     "lots": 1
+    },
+    "durability": {
+     "holds_up": 7
+    },
+    "level": {
+     "intermediate": 2,
+     "beginner": 2
+    }
+   },
+   "spec": {}
+  },
+  "next-level-racing-gttrack": {
+   "slug": "next-level-racing-gttrack",
+   "name": "Next Level Racing GTtrack",
+   "sources": 24,
+   "groups": {
+    "flex": {
+     "lots": 8,
+     "none": 15
+    },
+    "durability": {
+     "wears_fast": 2,
+     "holds_up": 10
+    }
+   },
+   "spec": {}
+  },
+  "next-level-racing-rc-essential": {
+   "slug": "next-level-racing-rc-essential",
+   "name": "Next Level Racing RC Essential",
+   "sources": 4,
+   "groups": {
+    "flex": {
+     "none": 4
+    },
+    "durability": {
+     "wears_fast": 1,
+     "holds_up": 3
+    }
+   },
+   "spec": {}
+  },
+  "next-level-racing-rc-foldable": {
+   "slug": "next-level-racing-rc-foldable",
+   "name": "Next Level Racing RC Foldable",
+   "sources": 3,
+   "groups": {
+    "flex": {
+     "lots": 2,
+     "none": 1
+    },
+    "durability": {
+     "holds_up": 2
+    }
+   },
+   "spec": {}
+  },
+  "next-level-racing-wheel-stand-2-0": {
+   "slug": "next-level-racing-wheel-stand-2-0",
+   "name": "Next Level Racing Wheel Stand 2.0",
+   "sources": 108,
+   "groups": {
+    "flex": {
+     "none": 76,
+     "lots": 23
+    },
+    "durability": {
+     "holds_up": 33,
+     "wears_fast": 3
+    },
+    "level": {
+     "intermediate": 2
+    }
+   },
+   "spec": {}
+  },
+  "next-level-racing-wheel-stand-lite-2-0": {
+   "slug": "next-level-racing-wheel-stand-lite-2-0",
+   "name": "Next Level Racing Wheel Stand Lite 2.0",
+   "sources": 36,
+   "groups": {
+    "flex": {
+     "none": 21,
+     "lots": 11
+    },
+    "durability": {
+     "holds_up": 8,
+     "wears_fast": 3
+    },
+    "level": {
+     "intermediate": 1,
+     "beginner": 2
+    }
+   },
+   "spec": {}
+  },
+  "playseat-challenge-x": {
+   "slug": "playseat-challenge-x",
+   "name": "Playseat Challenge X",
+   "sources": 17,
+   "groups": {
+    "flex": {
+     "none": 4,
+     "lots": 12
+    },
+    "durability": {
+     "holds_up": 3,
+     "wears_fast": 4
+    }
+   },
+   "spec": {}
+  },
+  "playseat-trophy": {
+   "slug": "playseat-trophy",
+   "name": "Playseat Trophy",
+   "sources": 120,
+   "groups": {
+    "flex": {
+     "none": 82,
+     "lots": 19
+    },
+    "durability": {
+     "holds_up": 27,
+     "wears_fast": 14
+    },
+    "level": {
+     "intermediate": 5
+    }
+   },
+   "spec": {}
+  },
+  "sim-lab-dds-torquesync": {
+   "slug": "sim-lab-dds-torquesync",
+   "name": "Sim-Lab DDS TorqueSync",
+   "sources": 0,
+   "groups": {},
+   "spec": {}
+  },
+  "sim-lab-gt1-evo": {
+   "slug": "sim-lab-gt1-evo",
+   "name": "Sim-Lab GT1 Evo",
+   "sources": 69,
+   "groups": {
+    "durability": {
+     "wears_fast": 1,
+     "holds_up": 30
+    },
+    "flex": {
+     "none": 44,
+     "lots": 9
+    },
+    "level": {
+     "intermediate": 7
+    }
+   },
+   "spec": {}
+  },
+  "sim-lab-gt1-pro": {
+   "slug": "sim-lab-gt1-pro",
+   "name": "Sim-Lab GT1 Pro",
+   "sources": 12,
+   "groups": {
+    "flex": {
+     "none": 10,
+     "lots": 1
+    },
+    "durability": {
+     "holds_up": 7,
+     "wears_fast": 1
+    },
+    "level": {
+     "intermediate": 1
+    }
+   },
+   "spec": {}
+  },
+  "sim-lab-gtsl-pro": {
+   "slug": "sim-lab-gtsl-pro",
+   "name": "Sim-Lab GTSL Pro",
+   "sources": 1,
+   "groups": {
+    "durability": {
+     "holds_up": 1
+    }
+   },
+   "spec": {}
+  },
+  "sim-lab-mercedes-amg-petronas-formula-one-team-sim-racing-cockpit": {
+   "slug": "sim-lab-mercedes-amg-petronas-formula-one-team-sim-racing-cockpit",
+   "name": "Sim-Lab Mercedes-AMG PETRONAS Formula One Team Sim Racing Cockpit",
+   "sources": 3,
+   "groups": {
+    "flex": {
+     "none": 2
+    },
+    "durability": {
+     "holds_up": 3
+    }
+   },
+   "spec": {}
+  },
+  "sim-lab-mercedes-amg-petronas-formula-one-team-steering-wheel": {
+   "slug": "sim-lab-mercedes-amg-petronas-formula-one-team-steering-wheel",
+   "name": "Sim-Lab Mercedes-AMG PETRONAS Formula One Team Steering Wheel",
+   "sources": 0,
+   "groups": {},
+   "spec": {}
+  },
+  "sim-lab-p1x-pro": {
+   "slug": "sim-lab-p1x-pro",
+   "name": "Sim-Lab P1X Pro",
+   "sources": 45,
+   "groups": {
+    "flex": {
+     "none": 28,
+     "lots": 2
+    },
+    "durability": {
+     "holds_up": 19,
+     "wears_fast": 5
+    },
+    "level": {
+     "intermediate": 7,
+     "beginner": 1
+    }
+   },
+   "spec": {}
+  },
+  "sim-lab-p1x-ultimate": {
+   "slug": "sim-lab-p1x-ultimate",
+   "name": "Sim-Lab P1X Ultimate",
+   "sources": 10,
+   "groups": {
+    "flex": {
+     "none": 7,
+     "lots": 1
+    },
+    "durability": {
+     "holds_up": 5,
+     "wears_fast": 1
+    },
+    "level": {
+     "beginner": 1
+    }
+   },
+   "spec": {}
+  },
+  "sim-lab-porsche-911-rsr-steering-wheel": {
+   "slug": "sim-lab-porsche-911-rsr-steering-wheel",
+   "name": "Sim-Lab Porsche 911 RSR Steering Wheel",
+   "sources": 10,
+   "groups": {
+    "durability": {
+     "holds_up": 10
+    },
+    "software": {
+     "frustrating": 2
+    }
+   },
+   "spec": {}
+  },
+  "sim-lab-push-pull-rally-shifter": {
+   "slug": "sim-lab-push-pull-rally-shifter",
+   "name": "Sim-Lab Push-Pull Rally Shifter",
+   "sources": 4,
+   "groups": {
+    "durability": {
+     "holds_up": 4
+    },
+    "flex": {
+     "none": 1
+    },
+    "noise": {
+     "loud": 1
+    }
+   },
+   "spec": {}
+  },
+  "sim-lab-sq1": {
+   "slug": "sim-lab-sq1",
+   "name": "Sim-Lab SQ1",
+   "sources": 8,
+   "groups": {
+    "durability": {
+     "holds_up": 5,
+     "wears_fast": 1
+    },
+    "noise": {
+     "quiet": 4,
+     "loud": 1
+    },
+    "flex": {
+     "none": 1
+    }
+   },
+   "spec": {}
+  },
+  "sim-lab-xb1": {
+   "slug": "sim-lab-xb1",
+   "name": "Sim-Lab XB1",
+   "sources": 7,
+   "groups": {
+    "durability": {
+     "holds_up": 5
+    },
+    "flex": {
+     "lots": 2,
+     "none": 3
+    }
+   },
+   "spec": {}
+  },
+  "sim-lab-xp1": {
+   "slug": "sim-lab-xp1",
+   "name": "Sim-Lab XP1",
+   "sources": 27,
+   "groups": {
+    "brake_feel": {
+     "realistic": 12,
+     "vague": 3
+    },
+    "durability": {
+     "holds_up": 15,
+     "wears_fast": 2
+    },
+    "software": {
+     "easy": 3,
+     "frustrating": 2
+    },
+    "flex": {
+     "none": 3
+    },
+    "noise": {
+     "quiet": 3,
+     "loud": 3
+    },
+    "level": {
+     "intermediate": 8
+    }
+   },
+   "spec": {}
+  },
+  "simagic-alpha": {
+   "slug": "simagic-alpha",
+   "name": "Simagic Alpha",
+   "sources": 38,
+   "groups": {
+    "durability": {
+     "holds_up": 8,
+     "wears_fast": 2
+    },
+    "level": {
+     "intermediate": 14
+    },
+    "detail": {
+     "sharp": 13,
+     "vague": 1
+    },
+    "torque": {
+     "plenty": 14,
+     "too_light": 1
+    },
+    "software": {
+     "easy": 4,
+     "frustrating": 4
+    },
+    "noise": {
+     "loud": 1,
+     "quiet": 2
+    }
+   },
+   "spec": {}
+  },
+  "simagic-alpha-evo": {
+   "slug": "simagic-alpha-evo",
+   "name": "Simagic Alpha EVO",
+   "sources": 17,
+   "groups": {
+    "detail": {
+     "sharp": 9
+    },
+    "software": {
+     "easy": 3
+    },
+    "durability": {
+     "holds_up": 5
+    },
+    "torque": {
+     "plenty": 5
+    },
+    "level": {
+     "intermediate": 2
+    },
+    "noise": {
+     "loud": 1,
+     "quiet": 2
+    }
+   },
+   "spec": {}
+  },
+  "simagic-alpha-evo-pro": {
+   "slug": "simagic-alpha-evo-pro",
+   "name": "Simagic Alpha EVO Pro",
+   "sources": 63,
+   "groups": {
+    "torque": {
+     "plenty": 20
+    },
+    "detail": {
+     "sharp": 20,
+     "vague": 7
+    },
+    "software": {
+     "easy": 8,
+     "frustrating": 6
+    },
+    "level": {
+     "intermediate": 22,
+     "beginner": 1
+    },
+    "durability": {
+     "wears_fast": 2,
+     "holds_up": 7
+    },
+    "noise": {
+     "quiet": 1,
+     "loud": 3
+    }
+   },
+   "spec": {}
+  },
+  "simagic-alpha-evo-sport": {
+   "slug": "simagic-alpha-evo-sport",
+   "name": "Simagic Alpha EVO Sport",
+   "sources": 27,
+   "groups": {
+    "detail": {
+     "sharp": 12,
+     "vague": 2
+    },
+    "torque": {
+     "plenty": 10,
+     "too_light": 4
+    },
+    "durability": {
+     "holds_up": 5
+    },
+    "noise": {
+     "quiet": 4
+    },
+    "software": {
+     "easy": 3,
+     "frustrating": 1
+    },
+    "level": {
+     "intermediate": 6
+    }
+   },
+   "spec": {}
+  },
+  "simagic-alpha-evo-ultra": {
+   "slug": "simagic-alpha-evo-ultra",
+   "name": "Simagic Alpha EVO Ultra",
+   "sources": 10,
+   "groups": {
+    "detail": {
+     "sharp": 10
+    },
+    "level": {
+     "intermediate": 1
+    },
+    "torque": {
+     "plenty": 9
+    },
+    "software": {
+     "easy": 3,
+     "frustrating": 1
+    },
+    "durability": {
+     "holds_up": 8
+    }
+   },
+   "spec": {}
+  },
+  "simagic-alpha-mini": {
+   "slug": "simagic-alpha-mini",
+   "name": "Simagic Alpha Mini",
+   "sources": 100,
+   "groups": {
+    "detail": {
+     "sharp": 19,
+     "vague": 2
+    },
+    "level": {
+     "intermediate": 32,
+     "beginner": 1
+    },
+    "torque": {
+     "plenty": 24,
+     "too_light": 2
+    },
+    "durability": {
+     "holds_up": 35,
+     "wears_fast": 5
+    },
+    "software": {
+     "easy": 4,
+     "frustrating": 6
+    },
+    "noise": {
+     "loud": 1,
+     "quiet": 1
+    }
+   },
+   "spec": {}
+  },
+  "simagic-alpha-ultimate": {
+   "slug": "simagic-alpha-ultimate",
+   "name": "Simagic Alpha Ultimate",
+   "sources": 41,
+   "groups": {
+    "durability": {
+     "holds_up": 16
+    },
+    "torque": {
+     "plenty": 20
+    },
+    "level": {
+     "intermediate": 16
+    },
+    "software": {
+     "easy": 5,
+     "frustrating": 4
+    },
+    "detail": {
+     "sharp": 12,
+     "vague": 1
+    },
+    "noise": {
+     "loud": 2
+    }
+   },
+   "spec": {}
+  },
+  "simagic-aston-martin-valkyrie": {
+   "slug": "simagic-aston-martin-valkyrie",
+   "name": "Simagic Aston Martin Valkyrie",
+   "sources": 9,
+   "groups": {
+    "durability": {
+     "holds_up": 9
+    },
+    "software": {
+     "easy": 3,
+     "frustrating": 1
+    }
+   },
+   "spec": {}
+  },
+  "simagic-ds-8x": {
+   "slug": "simagic-ds-8x",
+   "name": "Simagic DS-8X",
+   "sources": 24,
+   "groups": {
+    "noise": {
+     "loud": 5
+    },
+    "flex": {
+     "none": 8,
+     "lots": 1
+    },
+    "durability": {
+     "holds_up": 16,
+     "wears_fast": 5
+    }
+   },
+   "spec": {}
+  },
+  "simagic-fx": {
+   "slug": "simagic-fx",
+   "name": "Simagic FX",
+   "sources": 11,
+   "groups": {
+    "durability": {
+     "holds_up": 9,
+     "wears_fast": 1
+    },
+    "software": {
+     "easy": 1,
+     "frustrating": 1
+    }
+   },
+   "spec": {}
+  },
+  "simagic-fx-pro": {
+   "slug": "simagic-fx-pro",
+   "name": "Simagic FX Pro",
+   "sources": 17,
+   "groups": {
+    "software": {
+     "easy": 3,
+     "frustrating": 6
+    },
+    "durability": {
+     "holds_up": 8,
+     "wears_fast": 5
+    },
+    "level": {
+     "beginner": 1
+    }
+   },
+   "spec": {}
+  },
+  "simagic-gt-neo": {
+   "slug": "simagic-gt-neo",
+   "name": "Simagic GT Neo",
+   "sources": 54,
+   "groups": {
+    "durability": {
+     "holds_up": 34,
+     "wears_fast": 18
+    },
+    "software": {
+     "frustrating": 3,
+     "easy": 1
+    }
+   },
+   "spec": {}
+  },
+  "simagic-gt1": {
+   "slug": "simagic-gt1",
+   "name": "Simagic GT1",
+   "sources": 6,
+   "groups": {
+    "durability": {
+     "holds_up": 6
+    }
+   },
+   "spec": {}
+  },
+  "simagic-gtc": {
+   "slug": "simagic-gtc",
+   "name": "Simagic GTC",
+   "sources": 4,
+   "groups": {
+    "durability": {
+     "holds_up": 4
+    },
+    "software": {
+     "easy": 1
+    }
+   },
+   "spec": {}
+  },
+  "simagic-gts": {
+   "slug": "simagic-gts",
+   "name": "Simagic GTS",
+   "sources": 6,
+   "groups": {
+    "durability": {
+     "holds_up": 4,
+     "wears_fast": 2
+    },
+    "software": {
+     "easy": 2
+    }
+   },
+   "spec": {}
+  },
+  "simagic-p-325c": {
+   "slug": "simagic-p-325c",
+   "name": "Simagic P-325C",
+   "sources": 1,
+   "groups": {
+    "durability": {
+     "wears_fast": 1
+    }
+   },
+   "spec": {}
+  },
+  "simagic-p-325d": {
+   "slug": "simagic-p-325d",
+   "name": "Simagic P-325D",
+   "sources": 0,
+   "groups": {},
+   "spec": {}
+  },
+  "simagic-p-330r": {
+   "slug": "simagic-p-330r",
+   "name": "Simagic P-330R",
+   "sources": 0,
+   "groups": {},
+   "spec": {}
+  },
+  "simagic-p1000": {
+   "slug": "simagic-p1000",
+   "name": "Simagic P1000",
+   "sources": 64,
+   "groups": {
+    "brake_feel": {
+     "realistic": 26,
+     "vague": 4
+    },
+    "flex": {
+     "none": 4,
+     "lots": 2
+    },
+    "durability": {
+     "holds_up": 21,
+     "wears_fast": 13
+    },
+    "noise": {
+     "loud": 5,
+     "quiet": 1
+    },
+    "software": {
+     "frustrating": 4,
+     "easy": 5
+    },
+    "level": {
+     "intermediate": 6,
+     "beginner": 1
+    }
+   },
+   "spec": {}
+  },
+  "simagic-p1000i": {
+   "slug": "simagic-p1000i",
+   "name": "Simagic P1000i",
+   "sources": 8,
+   "groups": {
+    "brake_feel": {
+     "realistic": 4,
+     "vague": 1
+    },
+    "durability": {
+     "holds_up": 2,
+     "wears_fast": 1
+    },
+    "noise": {
+     "loud": 2
+    },
+    "flex": {
+     "none": 1
+    },
+    "software": {
+     "frustrating": 2
+    }
+   },
+   "spec": {}
+  },
+  "simagic-p2000": {
+   "slug": "simagic-p2000",
+   "name": "Simagic P2000",
+   "sources": 42,
+   "groups": {
+    "software": {
+     "easy": 6
+    },
+    "brake_feel": {
+     "realistic": 16
+    },
+    "noise": {
+     "loud": 5
+    },
+    "durability": {
+     "wears_fast": 15,
+     "holds_up": 19
+    },
+    "flex": {
+     "lots": 2,
+     "none": 4
+    },
+    "level": {
+     "intermediate": 4
+    }
+   },
+   "spec": {}
+  },
+  "simagic-p500": {
+   "slug": "simagic-p500",
+   "name": "Simagic P500",
+   "sources": 15,
+   "groups": {
+    "brake_feel": {
+     "realistic": 6,
+     "vague": 5
+    },
+    "durability": {
+     "holds_up": 9,
+     "wears_fast": 1
+    },
+    "flex": {
+     "none": 1
+    },
+    "software": {
+     "easy": 1,
+     "frustrating": 1
+    },
+    "level": {
+     "intermediate": 2
+    }
+   },
+   "spec": {}
+  },
+  "simagic-p700": {
+   "slug": "simagic-p700",
+   "name": "Simagic P700",
+   "sources": 13,
+   "groups": {
+    "brake_feel": {
+     "realistic": 10
+    },
+    "durability": {
+     "holds_up": 5,
+     "wears_fast": 1
+    },
+    "noise": {
+     "quiet": 2,
+     "loud": 2
+    },
+    "software": {
+     "easy": 3,
+     "frustrating": 1
+    },
+    "flex": {
+     "lots": 1
+    }
+   },
+   "spec": {}
+  },
+  "simagic-q1": {
+   "slug": "simagic-q1",
+   "name": "Simagic Q1",
+   "sources": 8,
+   "groups": {
+    "noise": {
+     "loud": 3
+    },
+    "durability": {
+     "holds_up": 4,
+     "wears_fast": 3
+    },
+    "flex": {
+     "none": 2
+    }
+   },
+   "spec": {}
+  },
+  "simagic-q1s": {
+   "slug": "simagic-q1s",
+   "name": "Simagic Q1S",
+   "sources": 4,
+   "groups": {
+    "durability": {
+     "holds_up": 3
+    },
+    "noise": {
+     "loud": 2
+    }
+   },
+   "spec": {}
+  },
+  "simagic-tb-1": {
+   "slug": "simagic-tb-1",
+   "name": "Simagic TB-1",
+   "sources": 7,
+   "groups": {
+    "durability": {
+     "holds_up": 7
+    },
+    "flex": {
+     "none": 4
+    }
+   },
+   "spec": {}
+  },
+  "simagic-tb-neo": {
+   "slug": "simagic-tb-neo",
+   "name": "Simagic TB-NEO",
+   "sources": 7,
+   "groups": {
+    "durability": {
+     "holds_up": 7
+    },
+    "flex": {
+     "none": 1
+    }
+   },
+   "spec": {}
+  },
+  "simagic-tb-rs": {
+   "slug": "simagic-tb-rs",
+   "name": "Simagic TB-RS",
+   "sources": 13,
+   "groups": {
+    "durability": {
+     "holds_up": 9,
+     "wears_fast": 2
+    },
+    "noise": {
+     "loud": 1,
+     "quiet": 1
+    },
+    "flex": {
+     "lots": 1,
+     "none": 6
+    }
+   },
+   "spec": {}
+  },
+  "simagic-zeus-formula": {
+   "slug": "simagic-zeus-formula",
+   "name": "Simagic Zeus Formula",
+   "sources": 11,
+   "groups": {
+    "durability": {
+     "holds_up": 10
+    },
+    "software": {
+     "easy": 2
+    }
+   },
+   "spec": {}
+  },
+  "simagic-zeus-gt": {
+   "slug": "simagic-zeus-gt",
+   "name": "Simagic Zeus GT",
+   "sources": 5,
+   "groups": {
+    "durability": {
+     "holds_up": 5
+    },
+    "software": {
+     "easy": 1
+    }
+   },
+   "spec": {}
+  },
+  "simagic-zeus-sport": {
+   "slug": "simagic-zeus-sport",
+   "name": "Simagic Zeus Sport",
+   "sources": 5,
+   "groups": {
+    "durability": {
+     "holds_up": 5
+    },
+    "software": {
+     "frustrating": 2
+    }
+   },
+   "spec": {}
+  },
+  "simucube-2-pro": {
+   "slug": "simucube-2-pro",
+   "name": "Simucube 2 Pro",
+   "sources": 57,
+   "groups": {
+    "durability": {
+     "holds_up": 11,
+     "wears_fast": 3
+    },
+    "software": {
+     "easy": 13,
+     "frustrating": 3
+    },
+    "torque": {
+     "plenty": 12,
+     "too_light": 1
+    },
+    "noise": {
+     "quiet": 2,
+     "loud": 2
+    },
+    "level": {
+     "intermediate": 19
+    },
+    "detail": {
+     "sharp": 23,
+     "vague": 3
+    }
+   },
+   "spec": {}
+  },
+  "simucube-2-sport": {
+   "slug": "simucube-2-sport",
+   "name": "Simucube 2 Sport",
+   "sources": 23,
+   "groups": {
+    "detail": {
+     "sharp": 11,
+     "vague": 2
+    },
+    "level": {
+     "intermediate": 8
+    },
+    "torque": {
+     "plenty": 6,
+     "too_light": 2
+    },
+    "software": {
+     "easy": 4,
+     "frustrating": 1
+    },
+    "durability": {
+     "holds_up": 3,
+     "wears_fast": 1
+    },
+    "noise": {
+     "loud": 2
+    }
+   },
+   "spec": {}
+  },
+  "simucube-3-pro": {
+   "slug": "simucube-3-pro",
+   "name": "Simucube 3 Pro",
+   "sources": 12,
+   "groups": {
+    "detail": {
+     "sharp": 12
+    },
+    "noise": {
+     "quiet": 1
+    },
+    "durability": {
+     "holds_up": 6
+    },
+    "software": {
+     "easy": 4
+    },
+    "torque": {
+     "plenty": 2
+    },
+    "level": {
+     "intermediate": 2
+    }
+   },
+   "spec": {}
+  },
+  "simucube-3-sport": {
+   "slug": "simucube-3-sport",
+   "name": "Simucube 3 Sport",
+   "sources": 0,
+   "groups": {},
+   "spec": {}
+  },
+  "simucube-3-ultimate": {
+   "slug": "simucube-3-ultimate",
+   "name": "Simucube 3 Ultimate",
+   "sources": 6,
+   "groups": {
+    "detail": {
+     "sharp": 4
+    },
+    "torque": {
+     "plenty": 4
+    },
+    "durability": {
+     "holds_up": 2
+    },
+    "software": {
+     "easy": 1
+    },
+    "level": {
+     "intermediate": 2
+    }
+   },
+   "spec": {}
+  },
+  "simucube-activepedal-pro": {
+   "slug": "simucube-activepedal-pro",
+   "name": "Simucube ActivePedal Pro",
+   "sources": 18,
+   "groups": {
+    "brake_feel": {
+     "realistic": 16,
+     "vague": 1
+    },
+    "software": {
+     "easy": 9,
+     "frustrating": 1
+    },
+    "flex": {
+     "none": 1
+    },
+    "durability": {
+     "holds_up": 8
+    },
+    "level": {
+     "intermediate": 2
+    }
+   },
+   "spec": {}
+  },
+  "simucube-activepedal-ultimate": {
+   "slug": "simucube-activepedal-ultimate",
+   "name": "Simucube ActivePedal Ultimate",
+   "sources": 10,
+   "groups": {
+    "brake_feel": {
+     "realistic": 8,
+     "vague": 1
+    },
+    "flex": {
+     "none": 1
+    },
+    "durability": {
+     "holds_up": 6
+    },
+    "software": {
+     "easy": 7
+    },
+    "noise": {
+     "loud": 1
+    },
+    "level": {
+     "intermediate": 2
+    }
+   },
+   "spec": {}
+  },
+  "simucube-pedals": {
+   "slug": "simucube-pedals",
+   "name": "Simucube Pedals",
+   "sources": 0,
+   "groups": {},
+   "spec": {}
+  },
+  "simucube-savu-pro": {
+   "slug": "simucube-savu-pro",
+   "name": "Simucube Savu Pro",
+   "sources": 4,
+   "groups": {
+    "durability": {
+     "holds_up": 4
+    },
+    "software": {
+     "frustrating": 1
+    }
+   },
+   "spec": {}
+  },
+  "simucube-savu-sport": {
+   "slug": "simucube-savu-sport",
+   "name": "Simucube Savu Sport",
+   "sources": 0,
+   "groups": {},
+   "spec": {}
+  },
+  "simucube-tahko-gt-21": {
+   "slug": "simucube-tahko-gt-21",
+   "name": "Simucube Tahko GT-21",
+   "sources": 8,
+   "groups": {
+    "durability": {
+     "holds_up": 7,
+     "wears_fast": 1
+    }
+   },
+   "spec": {}
+  },
+  "simucube-tahko-round": {
+   "slug": "simucube-tahko-round",
+   "name": "Simucube Tahko Round",
+   "sources": 0,
+   "groups": {},
+   "spec": {}
+  },
+  "simucube-valo-evo": {
+   "slug": "simucube-valo-evo",
+   "name": "Simucube Valo EVO",
+   "sources": 0,
+   "groups": {},
+   "spec": {}
+  },
+  "simucube-valo-gt-23": {
+   "slug": "simucube-valo-gt-23",
+   "name": "Simucube Valo GT-23",
+   "sources": 6,
+   "groups": {
+    "durability": {
+     "holds_up": 5,
+     "wears_fast": 1
+    },
+    "software": {
+     "frustrating": 4,
+     "easy": 1
+    }
+   },
+   "spec": {}
+  },
+  "simucube-x-ascher-racing-ultimate-usb": {
+   "slug": "simucube-x-ascher-racing-ultimate-usb",
+   "name": "Simucube x Ascher Racing Ultimate USB",
+   "sources": 0,
+   "groups": {},
+   "spec": {}
+  },
+  "simucube-x-bavariansimtec-delta-pro-sc": {
+   "slug": "simucube-x-bavariansimtec-delta-pro-sc",
+   "name": "Simucube x BavarianSimTec Delta Pro SC",
+   "sources": 1,
+   "groups": {
+    "durability": {
+     "holds_up": 1
+    }
+   },
+   "spec": {}
+  },
+  "thrustmaster-599xx-evo-30-wheel-add-on-alcantara-edition": {
+   "slug": "thrustmaster-599xx-evo-30-wheel-add-on-alcantara-edition",
+   "name": "Thrustmaster 599XX EVO 30 Wheel Add-On Alcantara Edition",
+   "sources": 10,
+   "groups": {
+    "durability": {
+     "holds_up": 8,
+     "wears_fast": 2
+    }
+   },
+   "spec": {}
+  },
+  "thrustmaster-evo-racing-31u-leather": {
+   "slug": "thrustmaster-evo-racing-31u-leather",
+   "name": "Thrustmaster EVO Racing 31U Leather",
+   "sources": 0,
+   "groups": {},
+   "spec": {}
+  },
+  "thrustmaster-evo-racing-32r-leather": {
+   "slug": "thrustmaster-evo-racing-32r-leather",
+   "name": "Thrustmaster EVO Racing 32R Leather",
+   "sources": 8,
+   "groups": {
+    "durability": {
+     "wears_fast": 5,
+     "holds_up": 3
+    }
+   },
+   "spec": {}
+  },
+  "thrustmaster-ferrari-250-gto-wheel-add-on": {
+   "slug": "thrustmaster-ferrari-250-gto-wheel-add-on",
+   "name": "Thrustmaster Ferrari 250 GTO Wheel Add-On",
+   "sources": 3,
+   "groups": {
+    "durability": {
+     "holds_up": 3
+    }
+   },
+   "spec": {}
+  },
+  "thrustmaster-ferrari-488-gt3-wheel-add-on": {
+   "slug": "thrustmaster-ferrari-488-gt3-wheel-add-on",
+   "name": "Thrustmaster Ferrari 488 GT3 Wheel Add-On",
+   "sources": 11,
+   "groups": {
+    "durability": {
+     "holds_up": 8,
+     "wears_fast": 1
+    },
+    "software": {
+     "frustrating": 3
+    }
+   },
+   "spec": {}
+  },
+  "thrustmaster-ferrari-f1-wheel-add-on": {
+   "slug": "thrustmaster-ferrari-f1-wheel-add-on",
+   "name": "Thrustmaster Ferrari F1 Wheel Add-On",
+   "sources": 10,
+   "groups": {
+    "durability": {
+     "wears_fast": 7,
+     "holds_up": 3
+    }
+   },
+   "spec": {}
+  },
+  "thrustmaster-ferrari-sf-25-edition-wheel-add-on": {
+   "slug": "thrustmaster-ferrari-sf-25-edition-wheel-add-on",
+   "name": "Thrustmaster Ferrari SF-25 Edition Wheel Add-On",
+   "sources": 0,
+   "groups": {},
+   "spec": {}
+  },
+  "thrustmaster-ferrari-sf1000-edition-wheel-add-on": {
+   "slug": "thrustmaster-ferrari-sf1000-edition-wheel-add-on",
+   "name": "Thrustmaster Ferrari SF1000 Edition Wheel Add-On",
+   "sources": 14,
+   "groups": {
+    "durability": {
+     "holds_up": 6,
+     "wears_fast": 6
+    },
+    "software": {
+     "frustrating": 2
+    }
+   },
+   "spec": {}
+  },
+  "thrustmaster-gt-wheel-add-on": {
+   "slug": "thrustmaster-gt-wheel-add-on",
+   "name": "Thrustmaster GT Wheel Add-On",
+   "sources": 3,
+   "groups": {
+    "durability": {
+     "holds_up": 3
+    }
+   },
+   "spec": {}
+  },
+  "thrustmaster-hypercar-wheel-add-on": {
+   "slug": "thrustmaster-hypercar-wheel-add-on",
+   "name": "Thrustmaster Hypercar Wheel Add-On",
+   "sources": 5,
+   "groups": {
+    "durability": {
+     "holds_up": 5
+    },
+    "software": {
+     "frustrating": 2
+    }
+   },
+   "spec": {}
+  },
+  "thrustmaster-raceline-pedals-iii": {
+   "slug": "thrustmaster-raceline-pedals-iii",
+   "name": "Thrustmaster Raceline Pedals III",
+   "sources": 1,
+   "groups": {
+    "flex": {
+     "none": 1
+    },
+    "durability": {
+     "holds_up": 1
+    }
+   },
+   "spec": {}
+  },
+  "thrustmaster-raceline-pedals-iii-lc": {
+   "slug": "thrustmaster-raceline-pedals-iii-lc",
+   "name": "Thrustmaster Raceline Pedals III LC",
+   "sources": 2,
+   "groups": {
+    "brake_feel": {
+     "realistic": 2
+    },
+    "durability": {
+     "holds_up": 2
+    }
+   },
+   "spec": {}
+  },
+  "thrustmaster-raceline-pedals-lte": {
+   "slug": "thrustmaster-raceline-pedals-lte",
+   "name": "Thrustmaster Raceline Pedals LTE",
+   "sources": 1,
+   "groups": {
+    "durability": {
+     "wears_fast": 1
+    }
+   },
+   "spec": {}
+  },
+  "thrustmaster-rally-wheel-add-on-sparco-r383-mod": {
+   "slug": "thrustmaster-rally-wheel-add-on-sparco-r383-mod",
+   "name": "Thrustmaster Rally Wheel Add-On Sparco R383 Mod",
+   "sources": 6,
+   "groups": {
+    "durability": {
+     "holds_up": 4,
+     "wears_fast": 2
+    }
+   },
+   "spec": {}
+  },
+  "thrustmaster-t-gt-ii": {
+   "slug": "thrustmaster-t-gt-ii",
+   "name": "Thrustmaster T-GT II",
+   "sources": 18,
+   "groups": {
+    "detail": {
+     "sharp": 8,
+     "vague": 1
+    },
+    "torque": {
+     "plenty": 6
+    },
+    "durability": {
+     "holds_up": 3,
+     "wears_fast": 4
+    },
+    "noise": {
+     "quiet": 1
+    },
+    "level": {
+     "intermediate": 4,
+     "beginner": 1
+    }
+   },
+   "spec": {}
+  },
+  "thrustmaster-t-lcm": {
+   "slug": "thrustmaster-t-lcm",
+   "name": "Thrustmaster T-LCM",
+   "sources": 71,
+   "groups": {
+    "durability": {
+     "wears_fast": 16,
+     "holds_up": 22
+    },
+    "brake_feel": {
+     "realistic": 24,
+     "vague": 7
+    },
+    "level": {
+     "intermediate": 13
+    },
+    "flex": {
+     "none": 8,
+     "lots": 6
+    },
+    "software": {
+     "frustrating": 1,
+     "easy": 1
+    },
+    "noise": {
+     "loud": 3
+    }
+   },
+   "spec": {}
+  },
+  "thrustmaster-t128": {
+   "slug": "thrustmaster-t128",
+   "name": "Thrustmaster T128",
+   "sources": 17,
+   "groups": {
+    "torque": {
+     "too_light": 1,
+     "plenty": 3
+    },
+    "detail": {
+     "sharp": 3,
+     "vague": 4
+    },
+    "durability": {
+     "wears_fast": 11,
+     "holds_up": 1
+    },
+    "noise": {
+     "quiet": 1
+    }
+   },
+   "spec": {}
+  },
+  "thrustmaster-t150": {
+   "slug": "thrustmaster-t150",
+   "name": "Thrustmaster T150",
+   "sources": 23,
+   "groups": {
+    "durability": {
+     "holds_up": 5,
+     "wears_fast": 10
+    },
+    "detail": {
+     "vague": 4,
+     "sharp": 5
+    },
+    "torque": {
+     "too_light": 1,
+     "plenty": 1
+    },
+    "noise": {
+     "quiet": 1,
+     "loud": 3
+    },
+    "level": {
+     "beginner": 1
+    }
+   },
+   "spec": {}
+  },
+  "thrustmaster-t248": {
+   "slug": "thrustmaster-t248",
+   "name": "Thrustmaster T248",
+   "sources": 13,
+   "groups": {
+    "torque": {
+     "plenty": 3
+    },
+    "detail": {
+     "sharp": 2
+    },
+    "durability": {
+     "wears_fast": 5,
+     "holds_up": 2
+    },
+    "noise": {
+     "loud": 2
+    },
+    "software": {
+     "easy": 1
+    },
+    "level": {
+     "beginner": 1
+    }
+   },
+   "spec": {}
+  },
+  "thrustmaster-t248r": {
+   "slug": "thrustmaster-t248r",
+   "name": "Thrustmaster T248R",
+   "sources": 8,
+   "groups": {
+    "detail": {
+     "vague": 3,
+     "sharp": 3
+    },
+    "durability": {
+     "wears_fast": 4
+    },
+    "noise": {
+     "loud": 3
+    },
+    "torque": {
+     "too_light": 2,
+     "plenty": 1
+    },
+    "level": {
+     "beginner": 1
+    }
+   },
+   "spec": {}
+  },
+  "thrustmaster-t300rs": {
+   "slug": "thrustmaster-t300rs",
+   "name": "Thrustmaster T300RS",
+   "sources": 20,
+   "groups": {
+    "torque": {
+     "plenty": 3,
+     "too_light": 1
+    },
+    "durability": {
+     "wears_fast": 5,
+     "holds_up": 4
+    },
+    "noise": {
+     "loud": 5,
+     "quiet": 2
+    },
+    "detail": {
+     "sharp": 7,
+     "vague": 2
+    },
+    "level": {
+     "beginner": 1,
+     "intermediate": 1
+    }
+   },
+   "spec": {}
+  },
+  "thrustmaster-t300rs-gt-edition": {
+   "slug": "thrustmaster-t300rs-gt-edition",
+   "name": "Thrustmaster T300RS GT Edition",
+   "sources": 17,
+   "groups": {
+    "torque": {
+     "plenty": 3
+    },
+    "noise": {
+     "loud": 2,
+     "quiet": 2
+    },
+    "detail": {
+     "sharp": 7,
+     "vague": 2
+    },
+    "durability": {
+     "holds_up": 3,
+     "wears_fast": 4
+    }
+   },
+   "spec": {}
+  },
+  "thrustmaster-t3pa": {
+   "slug": "thrustmaster-t3pa",
+   "name": "Thrustmaster T3PA",
+   "sources": 12,
+   "groups": {
+    "brake_feel": {
+     "realistic": 4,
+     "vague": 2
+    },
+    "durability": {
+     "wears_fast": 5,
+     "holds_up": 1
+    },
+    "noise": {
+     "loud": 2
+    }
+   },
+   "spec": {}
+  },
+  "thrustmaster-t3pm": {
+   "slug": "thrustmaster-t3pm",
+   "name": "Thrustmaster T3PM",
+   "sources": 6,
+   "groups": {
+    "brake_feel": {
+     "realistic": 3,
+     "vague": 1
+    },
+    "flex": {
+     "lots": 3
+    },
+    "durability": {
+     "wears_fast": 2
+    }
+   },
+   "spec": {}
+  },
+  "thrustmaster-t598": {
+   "slug": "thrustmaster-t598",
+   "name": "Thrustmaster T598",
+   "sources": 63,
+   "groups": {
+    "durability": {
+     "holds_up": 12,
+     "wears_fast": 35
+    },
+    "detail": {
+     "sharp": 14,
+     "vague": 3
+    },
+    "torque": {
+     "plenty": 5,
+     "too_light": 3
+    },
+    "software": {
+     "easy": 2,
+     "frustrating": 1
+    },
+    "level": {
+     "intermediate": 9,
+     "beginner": 2
+    },
+    "noise": {
+     "loud": 1
+    }
+   },
+   "spec": {}
+  },
+  "thrustmaster-t80-ferrari-488-gtb-edition": {
+   "slug": "thrustmaster-t80-ferrari-488-gtb-edition",
+   "name": "Thrustmaster T80 Ferrari 488 GTB Edition",
+   "sources": 4,
+   "groups": {
+    "software": {
+     "frustrating": 1
+    },
+    "durability": {
+     "wears_fast": 3
+    }
+   },
+   "spec": {}
+  },
+  "thrustmaster-t818": {
+   "slug": "thrustmaster-t818",
+   "name": "Thrustmaster T818",
+   "sources": 31,
+   "groups": {
+    "torque": {
+     "plenty": 14
+    },
+    "detail": {
+     "sharp": 16
+    },
+    "level": {
+     "intermediate": 6
+    },
+    "durability": {
+     "wears_fast": 11,
+     "holds_up": 7
+    },
+    "noise": {
+     "quiet": 6,
+     "loud": 2
+    },
+    "software": {
+     "frustrating": 7
+    }
+   },
+   "spec": {}
+  },
+  "thrustmaster-t98-ferrari-296-gtb": {
+   "slug": "thrustmaster-t98-ferrari-296-gtb",
+   "name": "Thrustmaster T98 Ferrari 296 GTB",
+   "sources": 0,
+   "groups": {},
+   "spec": {}
+  },
+  "thrustmaster-th8a": {
+   "slug": "thrustmaster-th8a",
+   "name": "Thrustmaster TH8A",
+   "sources": 22,
+   "groups": {
+    "durability": {
+     "holds_up": 16,
+     "wears_fast": 5
+    },
+    "flex": {
+     "none": 3
+    }
+   },
+   "spec": {}
+  },
+  "thrustmaster-th8s": {
+   "slug": "thrustmaster-th8s",
+   "name": "Thrustmaster TH8S",
+   "sources": 12,
+   "groups": {
+    "durability": {
+     "wears_fast": 8,
+     "holds_up": 1
+    },
+    "noise": {
+     "loud": 2
+    },
+    "flex": {
+     "lots": 1
+    }
+   },
+   "spec": {}
+  },
+  "thrustmaster-tm-competition-wheel-add-on-sparco-p310-mod": {
+   "slug": "thrustmaster-tm-competition-wheel-add-on-sparco-p310-mod",
+   "name": "Thrustmaster TM Competition Wheel Add-On Sparco P310 Mod",
+   "sources": 3,
+   "groups": {
+    "durability": {
+     "holds_up": 1,
+     "wears_fast": 2
+    }
+   },
+   "spec": {}
+  },
+  "thrustmaster-tm-leather-28-gt-wheel-add-on": {
+   "slug": "thrustmaster-tm-leather-28-gt-wheel-add-on",
+   "name": "Thrustmaster TM Leather 28 GT Wheel Add-On",
+   "sources": 3,
+   "groups": {
+    "durability": {
+     "holds_up": 2,
+     "wears_fast": 1
+    }
+   },
+   "spec": {}
+  },
+  "thrustmaster-tm-open-wheel-add-on": {
+   "slug": "thrustmaster-tm-open-wheel-add-on",
+   "name": "Thrustmaster TM Open Wheel Add-On",
+   "sources": 7,
+   "groups": {
+    "durability": {
+     "holds_up": 5,
+     "wears_fast": 1
+    },
+    "software": {
+     "frustrating": 1
+    }
+   },
+   "spec": {}
+  },
+  "thrustmaster-tmx": {
+   "slug": "thrustmaster-tmx",
+   "name": "Thrustmaster TMX",
+   "sources": 18,
+   "groups": {
+    "detail": {
+     "sharp": 8,
+     "vague": 2
+    },
+    "torque": {
+     "plenty": 3,
+     "too_light": 2
+    },
+    "durability": {
+     "wears_fast": 8,
+     "holds_up": 4
+    },
+    "software": {
+     "frustrating": 1,
+     "easy": 1
+    },
+    "noise": {
+     "quiet": 2,
+     "loud": 1
+    }
+   },
+   "spec": {}
+  },
+  "thrustmaster-ts-pc-racer-ferrari-488-challenge-edition": {
+   "slug": "thrustmaster-ts-pc-racer-ferrari-488-challenge-edition",
+   "name": "Thrustmaster TS-PC Racer Ferrari 488 Challenge Edition",
+   "sources": 8,
+   "groups": {
+    "detail": {
+     "sharp": 3,
+     "vague": 2
+    },
+    "software": {
+     "frustrating": 1
+    },
+    "torque": {
+     "plenty": 4
+    },
+    "noise": {
+     "quiet": 1,
+     "loud": 1
+    },
+    "durability": {
+     "holds_up": 2,
+     "wears_fast": 4
+    }
+   },
+   "spec": {}
+  },
+  "thrustmaster-ts-xw-racer-sparco-p310-competition-mod": {
+   "slug": "thrustmaster-ts-xw-racer-sparco-p310-competition-mod",
+   "name": "Thrustmaster TS-XW Racer Sparco P310 Competition Mod",
+   "sources": 11,
+   "groups": {
+    "detail": {
+     "sharp": 4,
+     "vague": 1
+    },
+    "torque": {
+     "plenty": 7
+    },
+    "noise": {
+     "quiet": 1,
+     "loud": 1
+    },
+    "durability": {
+     "holds_up": 3,
+     "wears_fast": 2
+    },
+    "level": {
+     "intermediate": 1
+    }
+   },
+   "spec": {}
+  },
+  "thrustmaster-tss-handbrake": {
+   "slug": "thrustmaster-tss-handbrake",
+   "name": "Thrustmaster TSS Handbrake",
+   "sources": 4,
+   "groups": {
+    "flex": {
+     "none": 2
+    },
+    "durability": {
+     "holds_up": 4
+    }
+   },
+   "spec": {}
+  },
+  "thrustmaster-tss-handbrake-sparco-mod-plus": {
+   "slug": "thrustmaster-tss-handbrake-sparco-mod-plus",
+   "name": "Thrustmaster TSS Handbrake Sparco Mod+",
+   "sources": 1,
+   "groups": {
+    "durability": {
+     "holds_up": 1
+    }
+   },
+   "spec": {}
+  },
+  "thrustmaster-tx-racing-wheel-leather-edition": {
+   "slug": "thrustmaster-tx-racing-wheel-leather-edition",
+   "name": "Thrustmaster TX Racing Wheel Leather Edition",
+   "sources": 14,
+   "groups": {
+    "detail": {
+     "sharp": 7,
+     "vague": 1
+    },
+    "durability": {
+     "holds_up": 5,
+     "wears_fast": 4
+    },
+    "noise": {
+     "quiet": 1,
+     "loud": 1
+    },
+    "torque": {
+     "plenty": 1,
+     "too_light": 1
+    },
+    "software": {
+     "frustrating": 2
+    },
+    "level": {
+     "beginner": 2
+    }
+   },
+   "spec": {}
+  },
+  "trak-racer-aston-martin-aramco-amr26": {
+   "slug": "trak-racer-aston-martin-aramco-amr26",
+   "name": "Trak Racer Aston Martin Aramco AMR26",
+   "sources": 0,
+   "groups": {},
+   "spec": {}
+  },
+  "trak-racer-bwt-alpine-formula-one-team-tra-hybrid": {
+   "slug": "trak-racer-bwt-alpine-formula-one-team-tra-hybrid",
+   "name": "Trak Racer BWT Alpine Formula One Team TRA Hybrid",
+   "sources": 0,
+   "groups": {},
+   "spec": {}
+  },
+  "trak-racer-carbon-fibre-trx": {
+   "slug": "trak-racer-carbon-fibre-trx",
+   "name": "Trak Racer Carbon Fibre TRX",
+   "sources": 0,
+   "groups": {},
+   "spec": {}
+  },
+  "trak-racer-hot-wheels-hw3": {
+   "slug": "trak-racer-hot-wheels-hw3",
+   "name": "Trak Racer Hot Wheels HW3",
+   "sources": 0,
+   "groups": {},
+   "spec": {}
+  },
+  "trak-racer-hot-wheels-hw5": {
+   "slug": "trak-racer-hot-wheels-hw5",
+   "name": "Trak Racer Hot Wheels HW5",
+   "sources": 0,
+   "groups": {},
+   "spec": {}
+  },
+  "trak-racer-porsche-91xtr": {
+   "slug": "trak-racer-porsche-91xtr",
+   "name": "Trak Racer Porsche 91XTR",
+   "sources": 0,
+   "groups": {},
+   "spec": {}
+  },
+  "trak-racer-tr120s-v2": {
+   "slug": "trak-racer-tr120s-v2",
+   "name": "Trak Racer TR120S V2",
+   "sources": 2,
+   "groups": {
+    "flex": {
+     "none": 1
+    },
+    "durability": {
+     "holds_up": 1,
+     "wears_fast": 1
+    },
+    "level": {
+     "beginner": 1
+    }
+   },
+   "spec": {}
+  },
+  "trak-racer-tr200-pro": {
+   "slug": "trak-racer-tr200-pro",
+   "name": "Trak Racer TR200 Pro",
+   "sources": 0,
+   "groups": {},
+   "spec": {}
+  },
+  "trak-racer-tr40s": {
+   "slug": "trak-racer-tr40s",
+   "name": "Trak Racer TR40S",
+   "sources": 11,
+   "groups": {
+    "flex": {
+     "none": 6,
+     "lots": 3
+    },
+    "durability": {
+     "holds_up": 4,
+     "wears_fast": 2
+    },
+    "level": {
+     "intermediate": 1
+    }
+   },
+   "spec": {}
+  },
+  "trak-racer-tr5": {
+   "slug": "trak-racer-tr5",
+   "name": "Trak Racer TR5",
+   "sources": 8,
+   "groups": {
+    "durability": {
+     "holds_up": 3,
+     "wears_fast": 1
+    },
+    "flex": {
+     "none": 6
+    }
+   },
+   "spec": {}
+  },
+  "trak-racer-tr8-pro-v2": {
+   "slug": "trak-racer-tr8-pro-v2",
+   "name": "Trak Racer TR8 Pro V2",
+   "sources": 1,
+   "groups": {
+    "flex": {
+     "none": 1
+    },
+    "durability": {
+     "holds_up": 1
+    }
+   },
+   "spec": {}
+  },
+  "trak-racer-tr80s": {
+   "slug": "trak-racer-tr80s",
+   "name": "Trak Racer TR80S",
+   "sources": 20,
+   "groups": {
+    "flex": {
+     "lots": 5,
+     "none": 10
+    },
+    "durability": {
+     "holds_up": 6,
+     "wears_fast": 6
+    }
+   },
+   "spec": {}
+  },
+  "trak-racer-trf": {
+   "slug": "trak-racer-trf",
+   "name": "Trak Racer TRF",
+   "sources": 0,
+   "groups": {},
+   "spec": {}
+  },
+  "trak-racer-trx-v2": {
+   "slug": "trak-racer-trx-v2",
+   "name": "Trak Racer TRX V2",
+   "sources": 6,
+   "groups": {
+    "flex": {
+     "lots": 3,
+     "none": 3
+    },
+    "durability": {
+     "holds_up": 3
+    }
+   },
+   "spec": {}
+  }
+ }
+}

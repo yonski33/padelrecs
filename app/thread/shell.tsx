@@ -15,7 +15,7 @@ export async function Shell({ active = null, children }: { active?: Section; chi
   const stories = (await liveStoryTotal()) > 0;
   // PickleballRecs has its own colours and fonts (owner 2026-11-19: the handoff README tokens), scoped by th-pb in thread.css.
   return <div className={niche.id === "pickleball" ? "th th-pb" : niche.id === "skin" ? "th th-skin" : niche.id === "stackrecs" ? "th th-stack"
-    : niche.id === "discgolf" ? "th th-dg" : niche.id === "padel" ? "th th-pr" : niche.id === "audio" ? "th th-audio" : "th"}>
+    : niche.id === "discgolf" ? "th th-dg" : niche.id === "padel" ? "th th-pr" : niche.id === "audio" ? "th th-audio" : niche.id === "simracing" ? "th th-pr th-srv3" : "th"}>
     <ThreadHeader active={active} {...(stories ? { stories } : {})}/>
     {children}
     <footer className="th-foot"><div className="th-foot-in">

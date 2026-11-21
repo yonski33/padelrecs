@@ -28,7 +28,7 @@ import { JustIn } from "./just-in";
 import { LatestQuestions } from "./latest-questions";
 
 export const revalidate = 21600;
-const SKIN = niche.id === "skin", DG = niche.id === "discgolf";
+const SKIN = niche.id === "skin", DG = niche.id === "discgolf", SR = niche.id === "simracing";
 /** PadelRecs home on phones (owner 2026-11-21): no intro line, no "Showing N rackets" line, a tighter hero (th-hp). */
 const PADEL = niche.id === "padel";
 /** The v3 home (padel's, lib/thread/sites.ts v3Site): PadelRecs and the sites rolled onto it (AudioRecs). */
@@ -78,7 +78,7 @@ export default async function ThreadHome() {
     const live = total > 0 ? `${total.toLocaleString("en-US")} reviews${week > 0 ? ` · ${week.toLocaleString("en-US")} ${WEEK_SHORT}` : ""}` : null;
     return <Shell>
       <main className="th-main th-hp3">
-        <PadelHomeTop rows={d.rows} brands={d.brands} pills={d.pills} added={d.added} curated={d.curated} season={d.season} live={live} {...(d.wire ? { wire: d.wire, art: <Headphones/> } : {})}
+        <PadelHomeTop rows={d.rows} brands={d.brands} pills={d.pills} added={d.added} curated={d.curated} season={d.season} live={live} {...(d.wire ? { wire: d.wire, art: <Headphones/> } : niche.id === "simracing" ? { art: <Wheel/> } : {})}
           after={<div key="after" className="hp3-rest">
             <div key="cm" className="hp3-rest">{sideBox(" th-only-m")}</div>
             {picks.lists.length > 0 && <TopPicks key="tp" lists={picks.lists} total={picks.total} hrefs={Object.fromEntries(all.map(r => [r.id, r.href]))} unit={["vote", "votes"]}/>}
@@ -111,7 +111,7 @@ export default async function ThreadHome() {
     <main className={PADEL ? "th-main th-hp" : "th-main"}>
       <div className="th-col">
         <section className="th-card th-hero">
-          <div className="th-h1-row"><h1 className="th-h1">{SKIN ? "The skincare community" : DG ? "The disc golf community" : `The ${niche.id} ${niche.words.one} community`}</h1>
+          <div className="th-h1-row"><h1 className="th-h1">{SKIN ? "The skincare community" : DG ? "The disc golf community" : SR ? "The sim racing community" : `The ${niche.id} ${niche.words.one} community`}</h1>
             {total > 0 && <span className="th-live"><i aria-hidden="true"/>{`${total.toLocaleString("en-US")} reviews${week > 0 ? ` · ${week.toLocaleString("en-US")} ${WEEK_SHORT}` : ""}`}</span>}</div>
           {!PADEL && <p className="th-lead">{SKIN ? "Real people talking about skincare. Share what worked, and see what everyone actually thinks."
             : DG ? "Real throwers talking discs. Ask, share your take, and see what everyone actually thinks." : `Real ${W.people} talking ${niche.words.many}. Share your take, and see what everyone actually thinks.`}</p>}
@@ -142,6 +142,11 @@ export default async function ThreadHome() {
   </Shell>;
 }
 
+/** SimRacingRecs' hero drawing: a wheel rim, in the same hand-drawn line. */
+function Wheel() {
+  return <svg className="hp3-art" width="74" height="80" viewBox="0 0 74 80" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+    <circle cx="35" cy="42" r="27" fill="#fff"/><circle cx="35" cy="42" r="8"/><path d="M27 42H9M43 42h18M35 50v18"/><path d="M58 8l3-5M64 15l6-3M66 25l6 1"/></svg>;
+}
 /** AudioRecs' hero drawing, in the place of padel's racket (same box and stroke). */
 function Headphones() {
   return <svg className="hp3-art" width="74" height="80" viewBox="0 0 74 80" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">

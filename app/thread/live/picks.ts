@@ -16,16 +16,23 @@ export type Level = "beginner" | "intermediate" | "advanced";
 /** "spin" only where the site's engine has it (PickleballRecs, owner 2026-11-19). */
 export type Style = "control" | "balance" | "power" | "spin";
 /** `kind`: the disc type chip above the home list (DiscGolfRecs, lib/fit-config.ts quick.types); null elsewhere. */
-export type Picks = { level: Level | null; style: Style | null; arm: boolean; kind?: string | null };
+/** `budget`: SimRacingRecs' "I want Budget / Mid-range / High-end" (its engine's budget filter, lib/simracing-fit.ts); it has
+ *  no styles. Null elsewhere. */
+export type Picks = { level: Level | null; style: Style | null; arm: boolean; kind?: string | null; budget?: string | null };
 export const NO_PICKS: Picks = { level: null, style: null, arm: false };
 /** PadelRecs v3 (handoff README): the picks live under "padelrecs-qm"; the earlier key is read as a fallback, so nobody loses
  *  their picks. Other sites keep the earlier key (each site is its own origin, so the stores never mix). */
 const KEY = niche.id === "padel" ? "padelrecs-qm" : "padelrecs-thread-picks", OLD_KEY = "padelrecs-thread-picks";
 /** The site's product types for the chips above the home list (DiscGolfRecs: putter, midrange, fairway, distance). */
 export const TYPES = SITE_FIT.quick?.types ?? [];
+/** A site without styles picks a budget instead (SimRacingRecs: $ / $$ / $$$), in the mock's words. */
+const BUDGET_WORD: Record<string, string> = { $: "Budget", $$: "Mid-range", $$$: "High-end" };
+export const BUDGETS: [string, string][] = (SITE_FIT.styles?.length === 0 ? SITE_FIT.quick?.filters?.find(f => f.key === "budget" && !f.kinds)?.options ?? [] : [])
+  .map(([k]) => [k, BUDGET_WORD[k] ?? k]);
 const EVENT = "thread-picks";
 
-const read = (): Picks => { try { const v = JSON.parse(localStorage.getItem(KEY) || localStorage.getItem(OLD_KEY) || "{}"); return { level: v.level ?? null, style: v.style ?? null, arm: !!v.arm, ...(TYPES.length ? { kind: TYPES.some(t => t.key === v.kind) ? v.kind : null } : {}) }; } catch { return NO_PICKS; } };
+const read = (): Picks => { try { const v = JSON.parse(localStorage.getItem(KEY) || localStorage.getItem(OLD_KEY) || "{}"); return { level: v.level ?? null, style: v.style ?? null, arm: !!v.arm, ...(TYPES.length ? { kind: TYPES.some(t => t.key === v.kind) ? v.kind : null } : {}),
+  ...(BUDGETS.length ? { budget: BUDGETS.some(([k]) => k === v.budget) ? v.budget : null } : {}) }; } catch { return NO_PICKS; } };
 
 /** The visitor's picks, the same on every Thread page and tab. Starts empty so the server's HTML and the first render agree. */
 export function usePicks() {
@@ -44,8 +51,9 @@ export function usePicks() {
   return [picks, set] as const;
 }
 /** A match % needs a level and a style (the mock: "Pick one more to get your match %"). */
-export const complete = (p: Picks) => !!(p.level && p.style);
-export const choiceOf = (p: Picks): QuickChoice => ({ style: p.style ?? "any", ...(p.level ? { level: p.level } : {}), arm: p.arm });
+/** A site without styles (SimRacingRecs) needs the level alone. */
+export const complete = (p: Picks) => !!(p.level && (p.style || STYLE_OPTS.length === 0));
+export const choiceOf = (p: Picks): QuickChoice => ({ style: p.style ?? "any", ...(p.level ? { level: p.level } : {}), arm: p.arm, ...(p.budget ? { ff: { budget: p.budget } } : {}) });
 /** The home's choice: the picks plus the type chip (a hard filter), which only the home list and its match line use. */
 export const homeChoiceOf = (p: Picks): QuickChoice => ({ ...choiceOf(p), ...(p.kind ? { kind: p.kind } : {}) });
 
@@ -105,4 +113,6 @@ export const STYLE_OPTS: Style[] = STYLES.filter((s): s is Style => s !== "any")
 /** A style chip's label: a type-picker site's own words (DiscGolfRecs "Understable", "Stable", "Overstable"), else the style. */
 export const styleLabel = (s: Style) => SITE_FIT.quick ? SITE_FIT.styleLabels[s as "control"] ?? s : s.charAt(0).toUpperCase() + s.slice(1);
 /** The arm tick's label: padel's "Sore arm", DiscGolfRecs' "Slower arm". */
-export const ARM_LABEL = SITE_FIT.quick ? "Slower arm" : "Sore arm";
+export const ARM_LABEL = SITE_FIT.quick?.armFilter ? SITE_FIT.quick.arm : SITE_FIT.quick ? "Slower arm" : "Sore arm";
+/** The arm pick in the result line: "with a slower arm", "on console" (SimRacingRecs), "with a sore arm". */
+export const ARM_LINE = SITE_FIT.quick?.armFilter ? " on console" : SITE_FIT.quick ? " with a slower arm" : " with a sore arm";

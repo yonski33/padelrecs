@@ -41,7 +41,7 @@ export function ThreadHeader({ active, stories = false }: { active: Section; /**
   const [open, setOpen] = useState(false);
   return <header className="th-head">
     <div className="th-head-in">
-      <a className="th-logo" href={th("/")}>{niche.id === "stackrecs" ? <img className="th-logo-icon" src={`/niches/${niche.id}/icon.svg`} alt="" width={24} height={24}/> : <span className="th-dot" aria-hidden="true"/>}{niche.site.name}</a>
+      <a className="th-logo" href={th("/")}>{niche.id === "stackrecs" || niche.id === "simracing" ? <img className="th-logo-icon" src={`/niches/${niche.id}/icon.svg`} alt="" width={24} height={24}/> : <span className="th-dot" aria-hidden="true"/>}{niche.site.name}</a>
       <nav className="th-nav" aria-label="Main">{NAV.map(([k, label, href]) => <a key={k} href={th(href)} aria-current={active === k ? "page" : undefined}>{label}</a>)}</nav>
       <span className="th-grow"/>
       <Search id="th-q"/>

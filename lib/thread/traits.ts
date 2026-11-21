@@ -91,8 +91,52 @@ export function audioGroupsFor(p: { kind: string | null; wireless: boolean; anc:
   if (p.wireless) return [A.sound, p.anc ? A.anc : A.detail, A.comfort, A.calls, A.battery, A.build, A.best_for, A.glasses, A.value];
   return [A.sound, A.detail, A.soundstage, A.comfort, A.build, A.use, A.glasses, A.amp, A.value];
 }
+/** SimRacingRecs' groups per gear type (owner 2026-11-20). Wheelbases: its product mock ("How does it play?" there, Heat in
+ *  place of the mock's stray Pop, as its README lists). Pedals, wheels, cockpits and shifters: the same idea in their terms. */
+const SR_LEVEL: TraitGroup = { key: "level", title: "Best for", options: [["beginner", "Beginner"], ["intermediate", "Intermediate"], ["advanced", "Advanced"]] };
+const SR_DURABLE: TraitGroup = { key: "durability", title: "Durability", options: [["holds_up", "Holds up well"], ["average", "Average"], ["wears_fast", "Wears fast"]] };
+const SR_SOFTWARE: TraitGroup = { key: "software", title: "Software", options: [["easy", "Easy"], ["fiddly", "Fiddly"], ["frustrating", "Frustrating"]] };
+const SR_BEST_IN: TraitGroup = { key: "best_in", title: "Best in", options: [["gt", "GT and touring"], ["formula", "Formula"], ["rally", "Rally and drift"]] };
+const SR_ADJUST: TraitGroup = { key: "adjust", title: "Adjustability", options: [["lots", "A lot"], ["some", "Some"], ["little", "Little"]] };
+export const SIMRACING_TRAIT_GROUPS: Record<string, TraitGroup[]> = {
+  Wheelbase: [SR_BEST_IN,
+    { key: "torque", title: "Torque", options: [["just_enough", "Just enough"], ["plenty", "Plenty"], ["too_light", "Too light"]] },
+    { key: "detail", title: "Detail", options: [["sharp", "Sharp"], ["average", "Average"], ["vague", "Vague"]] },
+    SR_LEVEL,
+    { key: "desk", title: "Desk friendly", options: [["very", "Very"], ["somewhat", "Somewhat"], ["not_really", "Not really"]] },
+    SR_DURABLE,
+    { key: "heat", title: "Heat", options: [["cool", "Stays cool"], ["warm", "Runs warm"], ["hot", "Runs hot"]] },
+    { key: "noise", title: "Noise", options: [["quiet", "Quiet"], ["hum", "Some hum"], ["loud", "Loud"]] },
+    SR_SOFTWARE],
+  Pedals: [
+    { key: "brake_feel", title: "Brake feel", options: [["realistic", "Realistic"], ["ok", "OK"], ["vague", "Vague"]] },
+    { key: "throttle", title: "Throttle", options: [["smooth", "Smooth"], ["ok", "OK"], ["cheap", "Feels cheap"]] },
+    SR_LEVEL, SR_ADJUST,
+    { key: "needs_rig", title: "Needs a rig", options: [["no", "No"], ["better", "Better on one"], ["yes", "Yes"]] },
+    SR_DURABLE, SR_SOFTWARE],
+  Wheel: [SR_BEST_IN,
+    { key: "grip", title: "Grip", options: [["great", "Great"], ["ok", "OK"], ["slippery", "Slippery"]] },
+    { key: "buttons", title: "Buttons and paddles", options: [["great", "Great"], ["ok", "OK"], ["poor", "Poor"]] },
+    { key: "size", title: "Size", options: [["small", "Small"], ["right", "Just right"], ["large", "Large"]] },
+    SR_LEVEL, SR_DURABLE],
+  Cockpit: [
+    { key: "flex", title: "Flex", options: [["none", "None"], ["little", "A little"], ["lots", "A lot"]] },
+    { key: "build", title: "Build time", options: [["quick", "Quick"], ["afternoon", "An afternoon"], ["weekend", "A weekend"]] },
+    SR_ADJUST,
+    { key: "space", title: "Space", options: [["small", "Fits a small room"], ["medium", "Medium"], ["large", "Needs a big room"]] },
+    SR_LEVEL, SR_DURABLE],
+  "Shifter / handbrake": [
+    { key: "shift_feel", title: "Feel", options: [["crisp", "Crisp"], ["ok", "OK"], ["vague", "Vague"]] },
+    SR_LEVEL, SR_DURABLE, SR_SOFTWARE],
+};
+/** Every sim racing group once (the API and admin accept any type's votes; a product page shows its own type's). */
+const SIMRACING_ALL: TraitGroup[] = [...new Map(Object.values(SIMRACING_TRAIT_GROUPS).flat().map(g => [g.key, g])).values()];
+/** A product's groups by its type (SimRacingRecs); other sites have one set. */
+export const traitGroupsForType = (nicheId: string, shape: string | null | undefined): TraitGroup[] =>
+  nicheId === "simracing" ? SIMRACING_TRAIT_GROUPS[shape ?? ""] ?? SIMRACING_TRAIT_GROUPS.Wheelbase : traitGroupsFor(nicheId);
 /** The vote groups a site's pages, API and admin use. */
 export function traitGroupsFor(nicheId: string): TraitGroup[] {
+  if (nicheId === "simracing") return SIMRACING_ALL;
   if (nicheId === "discgolf") return DISCGOLF_TRAIT_GROUPS;
   if (nicheId === "pickleball") return PICKLEBALL_TRAIT_GROUPS;
   if (nicheId === "stackrecs") return STACK_TRAIT_GROUPS;
@@ -137,6 +181,12 @@ const AUDIO_BOARDS: VoteBoard[] = [
   { title: "Most detailed", trait: "detail", choice: "lots" }, { title: "Best value", trait: "value", choice: "worth_it" },
   { title: "Best for calls", trait: "calls", choice: "clear" }, { title: "Best for the commute", trait: "best_for", choice: "commute" },
 ];
+/** SimRacingRecs' (its home mock, "How racers vote them": a mixed set across gear types). */
+const SIMRACING_BOARDS: VoteBoard[] = [
+  { title: "Most detailed feedback", trait: "detail", choice: "sharp" }, { title: "Most torque", trait: "torque", choice: "plenty" },
+  { title: "Best brake feel", trait: "brake_feel", choice: "realistic" }, { title: "Least flex", trait: "flex", choice: "none" },
+  { title: "Best for beginners", trait: "level", choice: "beginner" }, { title: "Quietest", trait: "noise", choice: "quiet" },
+];
 export const voteBoardsFor = (nicheId: string) => nicheId === "pickleball" ? PICKLEBALL_BOARDS : nicheId === "skin" ? SKIN_BOARDS
-  : nicheId === "discgolf" ? DISCGOLF_BOARDS : nicheId === "audio" ? AUDIO_BOARDS : PADEL_BOARDS;
+  : nicheId === "discgolf" ? DISCGOLF_BOARDS : nicheId === "audio" ? AUDIO_BOARDS : nicheId === "simracing" ? SIMRACING_BOARDS : PADEL_BOARDS;
 export const VOTE_BOARDS = voteBoardsFor(niche.id);

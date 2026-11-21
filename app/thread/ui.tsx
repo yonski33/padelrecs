@@ -19,6 +19,8 @@ export type ThreadRow = {
   audio?: { kind: string | null; anc: boolean; wireless: boolean; sound: string[] };
   /** DiscGolfRecs: the maker's flight numbers (speed, glide, turn, fade), shown as pills. Other sites: absent. */
   flight?: [number, number, number, number];
+  /** SimRacingRecs: its type column ("Direct drive", "Load cell"), for the drive guide and the catalogue's Drive filter. */
+  drive?: string | null;
 };
 /** Counts show at any size (owner 2026-11-19: the "under 5" rule is gone); 0 stays blank. Written claims ("N players say…")
  *  keep their own 5-backer rule where they're made (app/thread/racket-data.ts, data.ts boards). */

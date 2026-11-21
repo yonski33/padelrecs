@@ -1,6 +1,6 @@
 "use client";
 import { cap } from "../ui";
-import { LEVEL_OPTS, STYLE_OPTS, styleLabel, ARM_LABEL, type Picks } from "./picks";
+import { LEVEL_OPTS, STYLE_OPTS, BUDGETS, styleLabel, ARM_LABEL, type Picks } from "./picks";
 
 /** I'm [Beginner | Intermediate | Advanced] · I want [Control | Balance | Power] · [ ] Sore arm. A second tap clears a pick. */
 export function PickChips({ picks, set, small, armLabel = ARM_LABEL, labels = ["I'm", "I want"] }: { picks: Picks; set: (p: Partial<Picks>) => void; small?: boolean; /** PadelRecs v7b: "Arm comfort". */ armLabel?: string;
@@ -12,6 +12,7 @@ export function PickChips({ picks, set, small, armLabel = ARM_LABEL, labels = ["
     </div>
     <div className="th-picks" role="group" aria-label="What you want"><span className="lbl">{labels[1]}</span>
       {STYLE_OPTS.map(v => <button key={v} type="button" className={cls} aria-pressed={picks.style === v} onClick={() => set({ style: picks.style === v ? null : v })}>{styleLabel(v)}</button>)}
+      {BUDGETS.map(([k, l]) => <button key={k} type="button" className={cls} aria-pressed={picks.budget === k} onClick={() => set({ budget: picks.budget === k ? null : k })}>{l}</button>)}
       <button type="button" className="th-check" aria-pressed={picks.arm} onClick={() => set({ arm: !picks.arm })}><span aria-hidden="true">{picks.arm ? "✓" : ""}</span>{armLabel}</button>
     </div>
   </>;

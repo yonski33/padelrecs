@@ -5,7 +5,7 @@
 // visitor from the home and the catalogue, and the match % comes from the same engine as the home.
 import { useMemo } from "react";
 import { th } from "../../../lib/thread/look";
-import { usePicks, usePayload, pctsFor, complete, LEVEL_OPTS, STYLE_OPTS, styleLabel } from "./picks";
+import { usePicks, usePayload, pctsFor, complete, LEVEL_OPTS, STYLE_OPTS, BUDGETS, styleLabel } from "./picks";
 import { useAudioPicks } from "./audio-match";
 import { audioMatch, audioPickedAny, USES, SOUNDS, USE_WORDS, type AudioWire } from "../../../lib/audio-match";
 
@@ -61,7 +61,7 @@ export function RankRows({ rows, ratingLabel, opinions, markLoved = false, wire 
 }
 
 export function QuickMatch({ rows, wire }: { rows: V5Row[]; wire?: AudioWire[] }) {
-  const [picks, set] = usePicks(), best = useBestFit(rows, wire), any = !!(picks.level || picks.style || picks.arm);
+  const [picks, set] = usePicks(), best = useBestFit(rows, wire), any = !!(picks.level || picks.style || picks.arm || picks.budget);
   const [ap, aset] = useAudioPicks();
   // AudioRecs: the same box with its own picks (use, sound, noise cancelling).
   if (wire) { const good = best != null && best.pct >= GOOD;
@@ -82,18 +82,21 @@ export function QuickMatch({ rows, wire }: { rows: V5Row[]; wire?: AudioWire[] }
       </div>}
     </section>; }
   const good = best != null && best.pct >= GOOD;
-  const why = best ? (good ? `It suits ${picks.level} players who want ${picks.style === "balance" ? "a balanced racket" : picks.style}.`
+  // SimRacingRecs (BUDGETS, no styles): level and budget, "I race on console" (a hard filter, so no arm line).
+  const budget = BUDGETS.find(([k]) => k === picks.budget)?.[1].toLowerCase();
+  const why = best ? (good ? (BUDGETS.length ? `It suits ${picks.level} racers${budget ? ` on a ${budget} budget` : ""}.` : `It suits ${picks.level} players who want ${picks.style === "balance" ? "a balanced racket" : picks.style}.`)
     : "Nothing here fits every pick. This one comes closest.")
-    + (picks.arm ? (best.row.arm ? " Players with sore arms speak well of it." : " Some find it firm on the arm.") : "") : "";
+    + (picks.arm && !BUDGETS.length ? (best.row.arm ? " Players with sore arms speak well of it." : " Some find it firm on the arm.") : "") : "";
   return <section className="th-card rk5-qm">
     <div className="head"><h3>Quick match: find your fit</h3>
-      {any && <button type="button" className="reset" onClick={() => set({ level: null, style: null, arm: false })}>Reset</button>}</div>
-    <p>Pick how you play. The list keeps its order.</p>
+      {any && <button type="button" className="reset" onClick={() => set({ level: null, style: null, arm: false, ...(BUDGETS.length ? { budget: null } : {}) })}>Reset</button>}</div>
+    <p>{BUDGETS.length ? "Pick your level and budget. The list keeps its order." : "Pick how you play. The list keeps its order."}</p>
     <span className="lbl">Your level</span>
     <div className="opts">{LEVEL_OPTS.map(v => <button key={v} type="button" aria-pressed={picks.level === v} onClick={() => set({ level: picks.level === v ? null : v })}>{cap(v)}</button>)}</div>
-    <span className="lbl">What matters most?</span>
-    <div className="opts">{STYLE_OPTS.map(v => <button key={v} type="button" aria-pressed={picks.style === v} onClick={() => set({ style: picks.style === v ? null : v })}>{styleLabel(v)}</button>)}</div>
-    <button type="button" className="arm" aria-pressed={picks.arm} onClick={() => set({ arm: !picks.arm })}><span aria-hidden="true">{picks.arm ? "✓" : ""}</span>Arm comfort matters</button>
+    <span className="lbl">{BUDGETS.length ? "Your budget" : "What matters most?"}</span>
+    <div className="opts">{STYLE_OPTS.map(v => <button key={v} type="button" aria-pressed={picks.style === v} onClick={() => set({ style: picks.style === v ? null : v })}>{styleLabel(v)}</button>)}
+      {BUDGETS.map(([k, w]) => <button key={k} type="button" aria-pressed={picks.budget === k} onClick={() => set({ budget: picks.budget === k ? null : k })}>{w}</button>)}</div>
+    <button type="button" className="arm" aria-pressed={picks.arm} onClick={() => set({ arm: !picks.arm })}><span aria-hidden="true">{picks.arm ? "✓" : ""}</span>{BUDGETS.length ? "I race on console" : "Arm comfort matters"}</button>
     {best && <div className="fit">
       <span className={good ? "ic good" : "ic"} aria-hidden="true">{good ? "✓" : "~"}</span>
       <span className="words"><strong>{good ? "A good match for your game" : "The closest fit in this list"}</strong>

@@ -6,11 +6,12 @@ import pickleball from "../../db/thread/pickleball-traits.json";
 import skin from "../../db/thread/skin-traits.json";
 import discgolf from "../../db/thread/discgolf-traits.json";
 import audio from "../../db/thread/audio-traits.json";
+import simracing from "../../db/thread/simracing-traits.json";
 import type { Prefill } from "./trait-prefill";
 
 export type TraitSeed = { sources: number; groups: Record<string, Record<string, number>>; spec: Record<string, string> };
 const FILES: Record<string, Prefill> = { padel: prefill as Prefill, pickleball: pickleball as Prefill, skin: skin as Prefill, discgolf: discgolf as Prefill,
-  audio: audio as Prefill };
+  audio: audio as Prefill, simracing: simracing as Prefill };
 export function traitSeed(nicheId: string, racketId: string): TraitSeed | null {
   const r = FILES[nicheId]?.rackets[racketId];
   return r ? { sources: r.sources, groups: r.groups, spec: r.spec } : null;
