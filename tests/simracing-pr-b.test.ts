@@ -47,3 +47,11 @@ Logitech G29,yes,none,PC,single,,,https://www.logitechg.com/x,`;
   const shop = checkCompat("wheelbases", parseCsv(`name,source\nMOZA R5,https://www.amazon.com/dp/x`), catalog);
   assert.ok(shop.problems.some(p => p.includes("no moza maker link")));
 });
+
+test("follow racers' levels (owner 2026-11-21): 3+ racers add a level, never remove one; rims and shifters need 3 to show one", () => {
+  // T598: 2 new and 9 serious racers, 5 Nm. The torque rule alone said new only; racers add serious.
+  assert.deepEqual(simracingLevelCap({ slug: "thrustmaster-t598", shape: "Wheelbase", weight: "5 Nm" }, {}), { beginner: true, intermediate: "on", advanced: false });
+  // A rim with fewer than 3 racers stating a level shows none.
+  assert.deepEqual(simracingLevelCap({ slug: "no-such-rim", shape: "Wheel", weight: null }, {}), { beginner: false, intermediate: false, advanced: false });
+  assert.equal(simracingLevelCap({ slug: "no-such-pedals", shape: "Pedals", weight: null }, {}), null, "other types keep their expert values");
+});
