@@ -1814,3 +1814,4 @@ body:has(.th) .th .th-hp3 a.tc-row.ranked { grid-template-columns: 34px 96px min
 .hp3-rest { display: contents; }
 @media (max-width: 639px) { .th-hp3 .th-live { white-space: normal; } }
 @media (min-width: 1000px) and (max-width: 1199px) { body:has(.th) .th .th-hp3 a.tc-row.ranked { grid-template-columns: 30px 80px minmax(0,1fr) 190px; gap: 8px 18px; } .th-hp3 .tc-bar { width: 170px; } }
+@media (min-width: 1000px) and (max-width: 1199px) { .th-hp3 .tc-stat small { white-space: normal; text-align: center; } }
