@@ -1,23 +1,23 @@
 [
   {
     "slug": "axiom-crave",
-    "summary": "Most players find the Axiom Crave a straight, accurate fairway driver that goes farther than its speed suggests and holds lines well, including on forehands. The main downside is inconsistency: flight changes a lot with plastic, weight and run, and some copies turn over or get flippy quickly."
+    "summary": "A straight, glidey fairway driver for tight lines that goes farther than its speed suggests. How stable it flies depends a lot on the run and the plastic.\n+ Many players love how straight it flies, holding the line through tight wooded gaps.\n+ Some players say it goes long for a fairway driver.\n+ Some newer players say it was the disc that made throwing click.\n~ A common complaint is that runs vary: one flies stable, the next flips."
   },
   {
     "slug": "westside-harp",
-    "summary": "Most players use the Westside Harp as a very overstable approach disc and driving putter, valued for a reliable fade, forehand use and steadiness in wind. The deep rim gives a grippy feel but is too deep for some. Downsides: little glide and short distance, and some plastics beat in or turn flippy."
+    "summary": "A slow, overstable putter built for approaches into wind and a sure finish. With glide 3 it doesn't carry far.\n+ Players love its dependable fade, especially on windy approaches.\n+ Some players like it best on forehand upshots.\n~ Some players find the rim too deep for their hand.\n- Some players say it beats in quickly and loses its overstability."
   },
   {
     "slug": "innova-wraith",
-    "summary": "Most players praise the Innova Wraith for distance, especially on forehand, and for how it flips and glides once seasoned. The main downside is variation: stability differs a lot between plastics and runs, and many copies beat in quickly and turn flippy. Several owners bag it in a few plastics to cover different stabilities."
+    "summary": "An 11-speed distance driver that turns a little, then fades back. Base plastics beat in and get flippier with use.\n+ Many players love it for distance off the tee.\n+ Some players throw it on forehands as happily as on backhands.\n~ Runs fly differently, so some players bag several, from flippy to stable.\n~ Base plastics like DX and Pro beat in and turn flippy, which some players want."
   },
   {
     "slug": "kastaplast-berg",
-    "summary": "Most players use the Kastaplast Berg as a low-glide approach and putting disc, valued for landing and sitting near the target without skipping, and for going straight on forehands. It holds lines and is unbothered by wind. Downsides: it gives little distance or glide, and some find it gets flippier as it beats in."
+    "summary": "A 1-speed approach putter with almost no glide: it goes where it's aimed and drops. Distance comes only from throwing it hard.\n+ Many players love it for short approaches, where accuracy matters more than reach.\n+ Some players call it their go-to disc for forehand upshots.\n+ Some players keep it for windy days, since it won't lift or drift.\n~ Some players say its flight changes as it beats in, getting straighter or flippier."
   },
   {
     "slug": "innova-mako3",
-    "summary": "Most players find the Innova Mako3 a very straight, honest midrange that holds whatever line it is released on, which makes it popular with beginners learning form. The downsides are inconsistency between plastics, weights and copies, and a tendency to turn over as it beats in. Holding lines also makes it unforgiving of release errors for some."
+    "summary": "A neutral midrange that goes exactly where it's aimed and barely fades. It's a common first mid.\n+ Players love how straight it flies, with no fade to fight on tunnel shots.\n+ Some players name it as their first midrange.\n~ Some players find it turns over once they throw harder or the disc beats in.\n~ Runs differ, so some players own both a laser-straight copy and a flippy one."
   },
   {
     "slug": "axiom-hex",
@@ -1042,5 +1042,25 @@
   {
     "slug": "westside-shield",
     "summary": "Most players putt with the Shield and love its tacky feel that grips the chains. It wears quickly but keeps its stability, and several use it for approaches too. One finds the feel off for their putting grip."
+  },
+  {
+    "slug": "streamline-parachute",
+    "summary": "A 1-speed putter with huge glide that floats straight on soft throws. It's built for touch shots more than drives.\n+ Players love the float: it hovers on a straight line and lands softly.\n+ Players say it holds whatever angle it's released on, from hyzer to flat.\n+ Some players find it easy to throw, even with very little arm speed."
+  },
+  {
+    "slug": "dynamic-discs-captain",
+    "summary": "A 13-speed understable driver for hyzer flips and long turnovers. It gives slower arms distance that stable drivers won't.\n+ Players love the easy distance: it flips up from hyzer and keeps carrying.\n+ Players say the wide rim and high glide carry it far for little effort.\n+ Players say it suits beginners and slower arms."
+  },
+  {
+    "slug": "discmania-founder",
+    "summary": "A very flippy midrange for rollers, turnovers and scramble shots. It turns right from almost any release, by design.\n+ Players love it as a fun utility disc for getting out of trouble.\n+ Players say newer throwers can turn it right with ease.\n~ It isn't a straight mid: players say even a steep hyzer flips over."
+  },
+  {
+    "slug": "prodigy-d-model-os",
+    "summary": "Built for headwinds: a very overstable 13-speed driver with a hard, dumping fade. It needs a fast arm to get its full distance.\n+ Players love it into the wind, where it refuses to turn over.\n+ Players say it finishes hard left every time, a safe pick for utility hyzers.\n- Some players find it too overstable for their arm speed."
+  },
+  {
+    "slug": "discraft-fossil",
+    "summary": "An overstable approach putter with a thumb track and a safe, dumping finish. It has very little glide.\n+ Players love its reliable fade, so approaches sit down near the target.\n+ Players say it suits forehand upshots.\n+ Players trust it in heavy headwinds, where it won't turn."
   }
 ]
