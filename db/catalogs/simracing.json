@@ -66,7 +66,8 @@
    "balance": "H-pattern + sequential",
    "sources": [
     "https://www.asetek.com/simsports/product/dual-mode-shifter/",
-    "https://www.asetek.com/simsports/us/product/dual-mode-shifter/"
+    "https://www.asetek.com/simsports/us/product/dual-mode-shifter/",
+    "written from the product's own opinions, Grok audit check 2026-11-21"
    ]
   },
   {
@@ -140,7 +141,8 @@
    "surface": null,
    "balance": "Load cell",
    "sources": [
-    "https://www.asetek.com/simsports/product/forte-s-series-brake-throttle/"
+    "https://www.asetek.com/simsports/product/forte-s-series-brake-throttle/",
+    "written from the product's own opinions, Grok audit check 2026-11-21"
    ]
   },
   {
@@ -210,11 +212,12 @@
    "shape": "Wheel",
    "weight": null,
    "core": "PC",
-   "surface": "Handles sold separately",
+   "surface": "Handles chosen separately",
    "balance": "Button box",
    "sources": [
     "https://www.asetek.com/simsports/product/invicta-formula-steering-wheel/",
-    "https://www.asetek.com/simsports/us/product/invicta-formula-steering-wheel/"
+    "https://www.asetek.com/simsports/us/product/invicta-formula-steering-wheel/",
+    "https://www.asetek.com/simsports/global/product/invicta-formula-steering-wheel/"
    ]
   },
   {
@@ -385,10 +388,11 @@
    "weight": null,
    "core": "PC; PS4 / PS5 with a compatible PlayStation-licensed Fanatec wheelbase",
    "surface": null,
-   "balance": null,
+   "balance": "Round",
    "sources": [
     "https://www.fanatec.com/eu/en/p/steering-wheels/csl_sw_p1_v2r_qr2l/csl-steering-wheel-p1-v2-qr2-lite",
-    "https://www.fanatec.com/us/en/p/steering-wheels/csl_sw_p1_v2r_qr2l/csl-steering-wheel-p1-v2-qr2-lite"
+    "https://www.fanatec.com/us/en/p/steering-wheels/csl_sw_p1_v2r_qr2l/csl-steering-wheel-p1-v2-qr2-lite",
+    "written from the product's own opinions, Grok audit check 2026-11-21"
    ]
   },
   {
@@ -1043,7 +1047,8 @@
    "surface": null,
    "balance": "Foldable",
    "sources": [
-    "https://gtomega.com/products/sprint-folding-cockpit"
+    "https://gtomega.com/products/sprint-folding-cockpit",
+    "written from the product's own opinions, Grok audit check 2026-11-21"
    ]
   },
   {
@@ -1765,7 +1770,8 @@
    "balance": "Aluminium profile",
    "sources": [
     "https://nextlevelracing.com/products/f-gt-elite-lite-wheelplate-edition/",
-    "https://nextlevelracing.com/products/f-gt-elite-lite-front-side-mount-edition/"
+    "https://nextlevelracing.com/products/f-gt-elite-lite-front-side-mount-edition/",
+    "written from the product's own opinions, Grok audit check 2026-11-21"
    ]
   },
   {
@@ -1798,8 +1804,8 @@
    "shape": "Cockpit",
    "weight": null,
    "core": null,
-   "surface": null,
-   "balance": null,
+   "surface": "Seat included",
+   "balance": "Steel tube",
    "sources": [
     "https://nextlevelracing.com/products/f-gt-shift/"
    ]
@@ -1826,7 +1832,8 @@
    "balance": "Aluminium profile",
    "sources": [
     "https://nextlevelracing.com/products/gtelite-racing-simulator-cockpit-wheel-plate-edition/",
-    "https://nextlevelracing.com/products/gtelite-racing-simulator-cockpit-front-and-side-mount-edition/"
+    "https://nextlevelracing.com/products/gtelite-racing-simulator-cockpit-front-and-side-mount-edition/",
+    "written from the product's own opinions, Grok audit check 2026-11-21"
    ]
   },
   {
@@ -1908,7 +1915,7 @@
    "shape": "Cockpit",
    "weight": null,
    "core": null,
-   "surface": null,
+   "surface": "Seat included",
    "balance": null,
    "sources": [
     "https://nextlevelracing.com/products/rc-e-racing-cockpit-essential/"
@@ -2142,7 +2149,8 @@
    "surface": null,
    "balance": "Push-pull sequential",
    "sources": [
-    "https://sim-lab.eu/products/push-pull-rally-shifter-sim-racing"
+    "https://sim-lab.eu/products/push-pull-rally-shifter-sim-racing",
+    "written from the product's own opinions, Grok audit check 2026-11-21"
    ]
   },
   {
@@ -2354,7 +2362,8 @@
    "surface": null,
    "balance": null,
    "sources": [
-    "https://simagic.com/products/gtc"
+    "https://simagic.com/products/gtc",
+    "written from the product's own opinions, Grok audit check 2026-11-21"
    ]
   },
   {
@@ -2366,7 +2375,8 @@
    "surface": null,
    "balance": null,
    "sources": [
-    "https://simagic.com/products/gts"
+    "https://simagic.com/products/gts",
+    "written from the product's own opinions, Grok audit check 2026-11-21"
    ]
   },
   {
@@ -2634,7 +2644,8 @@
    "surface": null,
    "balance": "Direct drive",
    "sources": [
-    "https://simucube.com/products/simucube-3-ultimate"
+    "https://simucube.com/products/simucube-3-ultimate",
+    "written from the product's own opinions, Grok audit check 2026-11-21"
    ]
   },
   {
@@ -3019,7 +3030,8 @@
    "balance": "Hybrid (belt + gear)",
    "sources": [
     "https://www.thrustmaster.com/en-us/products/t248r/",
-    "https://www.thrustmaster.com/products/t248r/"
+    "https://www.thrustmaster.com/products/t248r/",
+    "written from the product's own opinions, Grok audit check 2026-11-21"
    ]
   },
   {
@@ -3157,7 +3169,8 @@
    "balance": null,
    "sources": [
     "https://www.thrustmaster.com/en-us/products/tm-competition-wheel-add-on-sparco-p310-mod/",
-    "https://eshop.thrustmaster.com/en_us/products-steering-wheels/type/wheels.html"
+    "https://eshop.thrustmaster.com/en_us/products-steering-wheels/type/wheels.html",
+    "written from the product's own opinions, Grok audit check 2026-11-21"
    ]
   },
   {
@@ -3209,7 +3222,8 @@
    "balance": "Belt drive",
    "sources": [
     "https://www.thrustmaster.com/en-us/products/ts-pc-racer-ferrari-488-challenge-edition-2/",
-    "https://www.thrustmaster.com/products/ts-pc-racer-ferrari-488-challenge-edition/"
+    "https://www.thrustmaster.com/products/ts-pc-racer-ferrari-488-challenge-edition/",
+    "written from the product's own opinions, Grok audit check 2026-11-21"
    ]
   },
   {
@@ -3244,12 +3258,13 @@
    "shape": "Shifter / handbrake",
    "weight": null,
    "core": "PC via USB; PS4 / PS5 / Xbox One / Xbox Series X|S with a compatible Thrustmaster racing wheel/base",
-   "surface": "Thrustmaster's shop now sells the TSS Handbrake instead",
+   "surface": "Discontinued: no longer on Thrustmaster's shop (Nov 2026)",
    "balance": "Handbrake + sequential",
    "sources": [
     "https://www.thrustmaster.com/en-us/products/tss-handbrake-sparco-mod/",
     "https://www.thrustmaster.com/products/tss-handbrake-sparco-mod/",
-    "https://eshop.thrustmaster.com/en_us/tss-handbrake.html"
+    "https://eshop.thrustmaster.com/en_us/tss-handbrake.html",
+    "https://eshop.thrustmaster.com/en_us/catalogsearch/result/?q=TSS"
    ],
    "slug": "thrustmaster-tss-handbrake-sparco-mod-plus"
   },

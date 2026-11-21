@@ -166,7 +166,8 @@ const RACER_LEVELS = (traitPrefill as { rackets: Record<string, { groups?: Recor
 export const RACER_LEVEL_MIN = 3, RACER_LEVEL_SHARE = 0.2;
 export function simracingLevelCap(r: { slug: string; shape: string | null; weight: string | null }, owner: Record<string, string | number | null>): Partial<Record<"beginner" | "intermediate" | "advanced", boolean | "on">> | null {
   const o = (capOverrides as Record<string, { levels: string[]; reason: string }>)[r.slug];
-  if (o?.reason) return { beginner: o.levels.includes("beginner"), intermediate: o.levels.includes("intermediate"), advanced: o.levels.includes("advanced") };
+  // An override with a written reason sets the levels outright: the ones it names are on, the others off.
+  if (o?.reason) { const set = (l: string) => o.levels.includes(l) ? "on" as const : false; return { beginner: set("beginner"), intermediate: set("intermediate"), advanced: set("advanced") }; }
   const lv = RACER_LEVELS[r.slug]?.groups?.level ?? {}, n = (lv.beginner ?? 0) + (lv.intermediate ?? 0) + (lv.advanced ?? 0);
   const torque = torqueCap(r, owner);
   if (n >= RACER_LEVEL_MIN) {

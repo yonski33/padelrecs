@@ -1,1 +1,16 @@
-{}
+{
+ "simucube-3-pro": {
+  "levels": [
+   "intermediate",
+   "advanced"
+  ],
+  "reason": "25 Nm flagship; the torque rule allows serious to all-in and the expert value for advanced sat under the bar (Grok audit check, owner OK 2026-11-21)"
+ },
+ "moza-r16-ultra": {
+  "levels": [
+   "intermediate",
+   "advanced"
+  ],
+  "reason": "16 Nm high-end base; the torque rule allows serious to all-in and the expert value for advanced sat under the bar (Grok audit check, owner OK 2026-11-21)"
+ }
+}
