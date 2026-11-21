@@ -16,6 +16,8 @@ export const LIST_ORDER: Record<string, Record<string, ListOrder>> = {
   },
   // SimRacingRecs (v3 rollout 2026-11-21): Best overall by most loved, like padel; the rest keep their order.
   simracing: { "best-sim-racing-gear": { order: "loved" } },
+  // DiscGolfRecs (wave 2): Best overall by most loved (app/thread/rankings-data.ts orders it so).
+  discgolf: { "best-disc-golf-discs": { order: "loved" } },
 };
 /** The floors and the tie-break for a vote-ordered list.
  *  - minVotes: players behind this list's answer.

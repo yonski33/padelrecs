@@ -34,7 +34,7 @@ test("summaries say players, never owners", () => {
 test("the racket page lists only player reviews and puts the rest in From around the web", () => {
   const page = readFileSync("app/thread/racket-v7b.tsx", "utf8"), live = readFileSync("app/thread/live/racket-v7b.tsx", "utf8");
   assert.match(page, /<CommunityFeed id=\{p\.id\} model=\{p\.model\} cards=\{src\.players\} web=\{src\.web\}/); // DiscGolfRecs adds its plastic chips
-  assert.match(readFileSync("app/thread/live/feed-v7b.tsx", "utf8"), /<WebSources web=\{web\} open=\{thin\}\/>/);
+  assert.match(readFileSync("app/thread/live/feed-v7b.tsx", "utf8"), /<WebSources web=\{plastic \? webOf\(web, plastic\) : web\} open=\{thin\}\/>/);
   assert.doesNotMatch(live, /All sources/);
   assert.ok(live.includes("Short summaries of Reddit threads, YouTube reviews and blogs. Not counted in the ${W.person} poll above."));
   const box = live.slice(live.indexOf("function WebCard"));
