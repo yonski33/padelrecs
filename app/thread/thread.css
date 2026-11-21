@@ -1727,6 +1727,9 @@ body:has(.th) .th a.rk5-row:hover .name { color: var(--hover); }
 .rk5-row .bar i { min-width: 0; } .rk5-row .bar i:first-child { border-radius: 999px 0 0 999px; } .rk5-row .bar i:last-child { border-radius: 0 999px 999px 0; }
 .rk5-row .bar .pos { background: var(--r5-pos); } .rk5-row .bar .mix { background: var(--r5-mix); } .rk5-row .bar .neg { background: var(--r5-neg); }
 .rk5-row .cnt { font-size: 12.5px; white-space: nowrap; }
+/* "N loved" on a list ordered by loved (Best overall): the racket page's low yellow marker stroke, not a box. */
+.rk5-row .cnt .mk { color: var(--ink); font-weight: 700; padding: 0 2px; margin-left: -2px;
+  background: linear-gradient(transparent 50%, var(--sticker, #FFE45C) 50%, var(--sticker, #FFE45C) 92%, transparent 92%); }
 @media (max-width: 1199px) {
   body:has(.th) .th a.rk5-row { grid-template-columns: 30px 84px minmax(0,1fr) 176px; }
   .rk5-row .rank { font-size: 28px; } .rk5-row .pic { height: 82px; } .rk5-row .name { font-size: 20px; }

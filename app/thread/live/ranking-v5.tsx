@@ -25,7 +25,9 @@ function useBestFit(rows: V5Row[]) {
   }, [on, payload, picks, rows]);
 }
 
-export function RankRows({ rows, ratingLabel, opinions }: { rows: V5Row[]; ratingLabel: string | null; opinions: [string, string] }) {
+/** markLoved: a list ordered by its loved count (lib/thread/vote-order.ts "loved", Best overall) puts a yellow marker stroke on
+ *  "N loved" under the bar (owner 2026-11-21), the number the list goes by. */
+export function RankRows({ rows, ratingLabel, opinions, markLoved = false }: { rows: V5Row[]; ratingLabel: string | null; opinions: [string, string]; markLoved?: boolean }) {
   const best = useBestFit(rows);
   return <>{rows.map(r => { const total = r.pos + r.mix + r.neg;
     return <a key={r.id} className="rk5-row" href={th(r.href)}>
@@ -42,7 +44,7 @@ export function RankRows({ rows, ratingLabel, opinions }: { rows: V5Row[]; ratin
       <span className="stat">
         <span className="n">{total > 0 ? `${total} ${total === 1 ? opinions[0] : opinions[1]}` : `No ${opinions[1]} yet`}</span>
         {total > 0 && <span className="bar" aria-hidden="true"><i className="pos" style={{ flex: r.pos }}/><i className="mix" style={{ flex: r.mix }}/><i className="neg" style={{ flex: r.neg }}/></span>}
-        {total > 0 && <span className="cnt">{`${r.pos} loved · ${r.mix} mixed · ${r.neg} not for me`}</span>}
+        {total > 0 && <span className="cnt">{markLoved ? <mark className="mk">{`${r.pos} loved`}</mark> : `${r.pos} loved`}{` · ${r.mix} mixed · ${r.neg} not for me`}</span>}
       </span>
     </a>; })}</>;
 }

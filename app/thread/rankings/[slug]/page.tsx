@@ -225,7 +225,7 @@ async function RankingV5({ l, lists, list, rated, label, faqs, ld, picOf }: { l:
           <section className="th-card rk5-list">
             <div className="rk5-list-head"><h2 className="th-h2">{l.label}</h2>
               <span>{`${plural(rows.length, ONE, MANY)}  ·  ${plural(said, opinions[0], opinions[1])}`}</span></div>
-            <RankRows rows={rows} ratingLabel={label} opinions={opinions}/>
+            <RankRows rows={rows} ratingLabel={label} opinions={opinions} markLoved={loved}/>
           </section>
         </div>
         <aside className="rk5-side">
