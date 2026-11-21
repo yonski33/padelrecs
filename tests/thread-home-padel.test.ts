@@ -18,6 +18,9 @@ test("the catalogue starts on PadelRecs picks, the home on Most loved (season po
   assert.match(list, /const base: Sort = season \? "loved" : "picks"/);
   assert.match(list, /useState<Sort>\(base\)/);
   assert.match(home, /useRacketList\(\{ rows, curated, added, season \}\)/);
+  // The home's menu has no "PadelRecs picks" (owner: read as random there).
+  assert.match(list, /HOME_SORTS: \[Sort, string\]\[\] = \[\["loved", "Most loved"\], \["opinions", "Most opinions"\], \["match", "By your match"\]\]/);
+  assert.match(list, /const sorts = season \? HOME_SORTS : SORTS/);
   assert.match(page, /unit=\{\["vote", "votes"\]\}/);
   assert.doesNotMatch(code(list) + code(home), /\.score\b|Player score|th-badge/);
 });

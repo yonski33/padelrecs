@@ -10,10 +10,13 @@ import { withoutYear } from "../../../lib/brand-name";
 import { usePicks, usePayload, pctsFor, LEVEL_OPTS, STYLE_OPTS, styleLabel, type Level } from "./picks";
 import { bandOrder } from "../../../lib/thread/home-order";
 
-export type Sort = "picks" | "loved" | "new" | "match";
+export type Sort = "picks" | "loved" | "opinions" | "new" | "match";
 export type Key = "shape" | "feel" | "brand";
 type Filters = Partial<Record<Key, string[]>>;
 export const SORTS: [Sort, string][] = [["picks", "PadelRecs picks"], ["loved", "Most loved"], ["new", "Newest"], ["match", "By your match"]];
+/** The home's menu (owner 2026-11-21: "PadelRecs picks" read as random there): Most loved (default), Most opinions, and By
+ *  your match once a pick is set. The catalogue keeps SORTS. */
+export const HOME_SORTS: [Sort, string][] = [["loved", "Most loved"], ["opinions", "Most opinions"], ["match", "By your match"]];
 const FEELS = ["Soft", "Medium", "Hard"];
 const TOP_BRANDS = 6;
 /** Fine-tune filters kept in this browser (handoff README: "padelrecs-ft"), the same on the home and the catalogue. */
@@ -60,12 +63,14 @@ export function useRacketList({ rows, curated, added, search = false, season }: 
   const pick = useMemo(() => new Map(curated.map((id, i) => [id, i])), [curated]);
   const by: Sort = sort === "match" && !pcts ? base : sort;
   const list = useMemo(() => pool.filter(r => pass(r)).sort((a, b) => by === "loved" ? b.pos - a.pos || opinions(b) - opinions(a)
+    : by === "opinions" ? opinions(b) - opinions(a) || b.pos - a.pos
     : by === "new" ? b.year - a.year || (added[b.id] ?? "").localeCompare(added[a.id] ?? "")
     : by === "match" ? (only ? bandOrder(a, b, pcts!) : (pcts!.get(b.id) ?? -1) - (pcts!.get(a.id) ?? -1))
     : (pick.get(a.id) ?? 1e6) - (pick.get(b.id) ?? 1e6) || b.pos - a.pos),
   // eslint-disable-next-line react-hooks/exhaustive-deps
   [pool, f, q, by, pcts, pick, added, only]);
-  return { q, setQ, f, toggle, chips, clearAll, picks, setPicks, mine, pcts, sort: by, setSort, list, pool, pass, test, older, setOlder, olderN, words };
+  const sorts = season ? HOME_SORTS : SORTS;
+  return { q, setQ, f, toggle, chips, clearAll, picks, setPicks, mine, pcts, sort: by, setSort, sorts, list, pool, pass, test, older, setOlder, olderN, words };
 }
 export type RacketList = ReturnType<typeof useRacketList>;
 
@@ -105,12 +110,13 @@ export function FineTune({ l, ft, brands }: { l: RacketList; ft: boolean; brands
   </>;
 }
 
-/** The sort menu (PadelRecs picks · Most loved · Newest · By your match, the last once a pick is made). */
+/** The sort menu (catalogue: PadelRecs picks · Most loved · Newest · By your match; home: Most loved · Most opinions · By your
+ *  match), "By your match" once a pick is made. */
 export function SortMenu({ l, onPick }: { l: RacketList; onPick?: () => void }) {
-  const [open, setOpen] = useState(false), label = SORTS.find(([k]) => k === l.sort)![1];
+  const [open, setOpen] = useState(false), label = l.sorts.find(([k]) => k === l.sort)?.[1] ?? l.sorts[0][1];
   return <span className="tc-sort"><span className="lbl">Sort:</span>
     <button type="button" className="tc-sort-btn" aria-haspopup="listbox" aria-expanded={open} onClick={() => setOpen(o => !o)}>{label}<small aria-hidden="true">▼</small></button>
-    {open && <span className="tc-sort-menu" role="listbox" aria-label="Sort rackets">{SORTS.filter(([k]) => k !== "match" || l.pcts).map(([k, t]) =>
+    {open && <span className="tc-sort-menu" role="listbox" aria-label="Sort rackets">{l.sorts.filter(([k]) => k !== "match" || l.pcts).map(([k, t]) =>
       <button key={k} type="button" role="option" aria-selected={l.sort === k} onClick={() => { l.setSort(k); setOpen(false); onPick?.(); }}>{t}<span>{l.sort === k ? "✓" : ""}</span></button>)}</span>}
   </span>;
 }
