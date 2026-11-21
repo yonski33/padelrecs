@@ -20,7 +20,7 @@ function Composer({ r, onCancel }: { r: AskRacket; onCancel: () => void }) {
   </>;
 }
 
-export function AskQuestion({ rackets }: { rackets: AskRacket[] }) {
+export function AskQuestion({ rackets, words = { one: "racket" } }: { rackets: AskRacket[]; words?: { one: string } }) {
   const [q, setQ] = useState(""), [open, setOpen] = useState(false), [picked, setPicked] = useState<AskRacket | null>(null);
   const hits = useMemo(() => { const words = fold(q).split(/\s+/).filter(Boolean);
     return (words.length ? rackets.filter(r => words.every(w => fold(r.name).includes(w))) : rackets).slice(0, 6); }, [q, rackets]);
@@ -30,13 +30,13 @@ export function AskQuestion({ rackets }: { rackets: AskRacket[] }) {
     <Composer r={picked} onCancel={() => { setPicked(null); setQ(""); setOpen(false); }}/>
   </div>;
   return <div className="thq-ask">
-    <input className="thq-ask-in" value={q} placeholder="Ask a question about any racket…" aria-label="Ask a question about any racket"
+    <input className="thq-ask-in" value={q} placeholder={`Ask a question about any ${words.one}…`} aria-label={`Ask a question about any ${words.one}`}
       onFocus={() => setOpen(true)} onChange={e => { setQ(e.target.value); setOpen(true); }}/>
     {open && <div className="thq-pick" role="listbox" aria-label="Pick the racket first">
-      <span className="lbl">Which racket is it about?</span>
+      <span className="lbl">{`Which ${words.one} is it about?`}</span>
       {hits.map(r => <button key={r.id} type="button" role="option" aria-selected={false} onClick={() => { setPicked(r); setOpen(false); }}>
         {r.pic ? <img src={r.pic} alt="" loading="lazy"/> : <span className="th-ph" aria-hidden="true"/>}{r.name}</button>)}
-      {hits.length === 0 && <span className="th-note">No racket by that name. Try the brand or model.</span>}
+      {hits.length === 0 && <span className="th-note">{`No ${words.one} by that name. Try the brand or model.`}</span>}
       <button type="button" className="thq-close" onClick={() => setOpen(false)}>Close</button>
     </div>}
   </div>;

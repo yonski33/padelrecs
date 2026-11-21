@@ -7,10 +7,11 @@ import { memberMap } from "../../lib/thread/member-marks";
 import { reviewerInfo } from "../../lib/thread/display-name";
 import { questionsOf, type Question, type QRacket } from "../../lib/thread/questions";
 import { niche } from "../../lib/niche";
+import { questionsSite } from "../../lib/thread/sites";
 import { threadRows } from "./data";
 
 export const threadQuestions = cache(async (): Promise<Question[]> => {
-  if (!process.env.DATABASE_URL || niche.id !== "padel") return [];
+  if (!process.env.DATABASE_URL || !questionsSite(niche.id)) return [];
   try {
     const db = await database(), [{ all }, list] = await Promise.all([threadRows(), racketComments(db)]);
     const rackets = new Map<string, QRacket>(all.map(r => [r.id, { id: r.id, name: r.name, href: r.href, pic: r.pic }]));
