@@ -38,6 +38,9 @@ const flairOf = (c: C): Exclude<Flair, "review"> | null => TYPED ? c.type ?? pos
 type Item = { key: string; flair: Flair | null; at: string; top: number } & ({ review: RvCard } | { post: C });
 const CHIPS: [Flair | "all", string][] = [["all", "All"], ["review", "Reviews"], ["question", "Questions"], ["tip", "Tips"]];
 const PAGE = 8;
+/** The web box's cards about one plastic (DiscGolfRecs' chips). */
+const webOf = (w: WebGroups<RvCard>, v: string): WebGroups<RvCard> => ({ threads: w.threads.filter(c => c.version === v), videos: w.videos.filter(c => c.version === v),
+  comments: w.comments.filter(c => c.version === v), blogs: w.blogs.filter(c => c.version === v) });
 
 /** `plastics`: DiscGolfRecs' plastic chips (the plastics its reviews name, 2+); picking one shows only the reviews about it. */
 export function CommunityFeed({ id, model, cards, web, plastics }: { id: string; model: string; cards: RvCard[]; web: WebGroups<RvCard>; plastics?: string[] }) {
@@ -153,7 +156,7 @@ export function CommunityFeed({ id, model, cards, web, plastics }: { id: string;
         <div className="th-seg" role="group" aria-label="Sort"><span className="lbl">Sort</span>
           {([["new", "Newest activity"], ["top", "Top"]] as const).map(([k, l]) => <button key={k} type="button" aria-pressed={sort === k} onClick={() => setSort(k)}>{l}</button>)}</div>
       </div>}
-      {!thin && plastics && plastics.length > 1 && <div className="th-rv-chips" role="group" aria-label="Show plastic">{[null, ...plastics].map(v =>
+      {plastics && plastics.length > 1 && <div className="th-rv-chips" role="group" aria-label="Show plastic">{[null, ...plastics].map(v =>
         <button key={v ?? "all"} type="button" className="th-chipf" aria-pressed={plastic === v} onClick={() => { setPlastic(v); setShown(PAGE); }}>{v ?? "All plastics"}</button>)}</div>}
       <div className="th7-rv-list th-feed-list">
         {list.slice(0, shown).map(i => "review" in i
@@ -163,6 +166,6 @@ export function CommunityFeed({ id, model, cards, web, plastics }: { id: string;
       </div>
       {list.length > shown && <button type="button" className="th-btn th-center" style={{ margin: "4px 0 8px" }} onClick={() => setShown(s => s + 16)}>Show more</button>}
     </section>
-    <WebSources web={web} open={thin}/>
+    <WebSources web={plastic ? webOf(web, plastic) : web} open={thin}/>
   </>;
 }
