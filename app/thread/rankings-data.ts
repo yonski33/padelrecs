@@ -57,7 +57,7 @@ const BLURB: Record<string, string> = SR ? {
   "best-arm-friendly-tennis-rackets": "Flexible frames, kind to your elbow.", beginners: "Forgiving rackets with a big sweet spot.",
 } : PICKLEBALL ? {
   // PickleballRecs' Rankings Hub mock; the spin and tennis elbow lists are live lists the mock didn't have.
-  "best-pickleball-paddles": "The highest player scores right now.", "best-power-pickleball-paddles": "For drives that land deep.",
+  "best-pickleball-paddles": "The best-reviewed paddles right now.", "best-power-pickleball-paddles": "For drives that land deep.",
   "best-control-pickleball-paddles": "Steady from the baseline, precise at the kitchen.", "best-spin-pickleball-paddles": "Grip on serves, rolls and drops.",
   "best-pickleball-paddles-for-tennis-elbow": "Soft, stable and kind to your elbow.", "best-pickleball-paddles-for-beginners": "Forgiving paddles with a big sweet spot.",
   standard: "The most forgiving shape.", elongated: "More reach and power.", hybrid: "Some reach, a forgiving face.",
