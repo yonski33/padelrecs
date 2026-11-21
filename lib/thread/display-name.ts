@@ -76,3 +76,7 @@ export const nameProblem = (name: string) => { const n = name.trim();
 export function profileLine(level: string | null | undefined, side: string | null | undefined): string | null {
   return reviewerInfo({ level, side });
 }
+
+/** A Reddit row's subreddit as "r/name" from the stored source (lib/reddit-cards.ts subOf), else "Reddit". */
+export const subreddit = (who: string) => { const w = who.trim(), m = w.match(/^\/?r\/([A-Za-z0-9_]+)/i) ?? w.match(/^([A-Za-z0-9_]{2,21})$/);
+  return m && m[1].toLowerCase() !== "reddit" ? `r/${m[1]}` : "Reddit"; };
