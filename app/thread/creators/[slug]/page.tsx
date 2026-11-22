@@ -12,6 +12,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { Shell } from "../../shell";
 import { racketData } from "../../racket-data";
+import { threadRows } from "../../data";
 import { plural } from "../../ui";
 import { niche } from "../../../../lib/niche";
 import { withoutYear } from "../../../../lib/brand-name";
@@ -24,7 +25,9 @@ import { JsonLd, crumbs } from "../../seo";
 import { catalogLabel, catalogPath, productHref } from "../../../../lib/niche";
 import { ATTRS, STANCE_LABEL, TABLE_ATTRS, checkedDay, lowestOffer, usd, reviewLists, bigPicture, howItPlays, langCode, platform, scoreText, stanceCounts, takeaway,
   wordTone, type CreatorReview } from "../../../../lib/thread/creators";
-import { creatorPage, creatorSlugs } from "../../../../lib/thread/creator-data";
+import { creatorPage, creatorSlugs, creatorHome } from "../../../../lib/thread/creator-data";
+import { threadTitle } from "../../../../lib/thread/web-sources";
+import { creatorPageFor, CREATOR_VIEW } from "../../../../lib/thread/sites";
 import { Avatar, CreatorReviews } from "../../live/creator-reviews";
 import { Comments } from "../../live/comments";
 import { th } from "../../../../lib/thread/look";
@@ -54,9 +57,24 @@ export default async function CreatorProductPage({ params }: P) {
   if (!page || !d) notFound();
   // Reviews include the TikTok takes (owner 2026-11-22): `rs` counts one per reviewer, `feed` holds every card.
   const { feed, counted: rs } = reviewLists(page), n = stanceCounts(rs);
-  const { r, row, brand, style, sim } = d;
-  // Similar paddles (the mock's section 8): the same similar list the product page uses, current models only; no prices.
-  const similar = sim.filter(x => x.id !== r.id && x.current !== false).slice(0, 4);
+  const { r, row, brand, style, sim, cards } = d;
+  // Similar paddles (the mock's section 8): the product page's similar list, current models only, filled up to four from the
+  // other staged paddles (same shape first). A staged paddle shows its reviews' takes and its lowest price; others their votes.
+  const home = creatorHome(niche.id), staged = home?.paddles ?? {};
+  const { all: allRows } = await threadRows();
+  const bySlug = new Map(allRows.map(x => [x.slug, x]));
+  const sims = sim.filter(x => x.id !== r.id && x.current !== false);
+  for (const s of Object.keys(staged).sort((a, b) => Number(bySlug.get(b)?.shape === r.shape) - Number(bySlug.get(a)?.shape === r.shape))) {
+    if (sims.length >= 4) break;
+    const x = bySlug.get(s); if (x && x.id !== r.id && !sims.some(y => y.id === x.id)) sims.push(x);
+  }
+  const similar = sims.slice(0, 4).map(x => { const p = staged[x.slug];
+    return { x, href: creatorPageFor(niche.id, x.slug) ? `${x.href}?view=${CREATOR_VIEW}` : x.href,
+      pos: p ? p.pos : x.pos, mix: p ? p.mix : x.mix, neg: p ? p.neg : x.neg, unit: p ? "reviews" : "players",
+      price: p?.price ? { label: `from ${usd(p.price.usd)} · check price ↗`, url: p.price.url, rel: p.price.affiliate ? "sponsored nofollow noopener" : "nofollow noopener" } : null }; });
+  // "Players on Reddit and forums" (the mock's roundup card): the live page's Reddit summaries for this paddle, as one card in
+  // the feed. Never counted as a review (not in N reviews, the table or the sentiment bar). Real short quotes only.
+  const reddit = cards.filter(c => c.kind === "reddit").slice(0, 4);
   const name = withoutYear(row?.name ?? r.name);
   // The live page's buy link, the same logic (app/thread/rackets/[slug]/page.tsx): the Amazon lookup, the saved listing when
   // the two disagree, else the product's own site. No prices: none are stored yet.
@@ -159,7 +177,7 @@ export default async function CreatorProductPage({ params }: P) {
           </div>
         </div>
 
-        <CreatorReviews reviews={feed} count={rs.length}/>
+        <CreatorReviews reviews={feed} count={rs.length} roundup={reddit.length > 0 ? <RedditRoundup items={reddit}/> : null}/>
 
         {/* Comments (the mock's section 7): the site's own discussion for this paddle, the same thread as its product page. */}
         <section className="thc-sec2 thc-comments"><Comments page={`racket:${r.id}`} nicknames={niche.form.quickVote?.nicknames ?? []}/></section>
@@ -167,16 +185,37 @@ export default async function CreatorProductPage({ params }: P) {
         {similar.length > 0 && <section className="thc-sec2">
           <div className="thc-sec2-h"><h2>{`Similar ${niche.words.many}`}</h2>
             {brand && <a href={th(`/brands/${brand.slug}`)}>{`All ${brand.name} ${niche.words.many} →`}</a>}</div>
-          <div className="thc-sim">{similar.map(x => { const t = x.pos + x.mix + x.neg; return <a key={x.id} className="thc-sim-c" href={th(x.href)}>
-            <span className="thc-sim-ph">{x.pic ? <img src={x.pic} alt="" loading="lazy"/> : null}</span>
-            <strong>{withoutYear(x.name)}</strong>
-            {(x.line || x.best) && <span className="thc-sim-l">{x.line ?? `Best for ${x.best}.`}</span>}
-            {t > 0 && <span className="thc-sim-s"><span className="thc-sim-bar"><i className="pos" style={{ flex: x.pos }}/><i className="mix" style={{ flex: x.mix }}/><i className="neg" style={{ flex: x.neg }}/></span>
-              <span>{`${x.pos} of ${plural(t, "player")} loved it`}</span></span>}
-            <span className="thc-sim-f"><span>See the paddle</span><span className="thc-mono">→</span></span>
-          </a>; })}</div>
+          <div className="thc-sim">{similar.map(({ x, href, pos, mix, neg, unit, price }) => { const t = pos + mix + neg;
+            return <div key={x.id} className="thc-sim-c">
+              <a className="thc-sim-ph" href={th(href)} tabIndex={-1} aria-hidden="true">{x.pic ? <img src={x.pic} alt="" loading="lazy"/> : null}</a>
+              <a className="thc-sim-n" href={th(href)}>{withoutYear(x.name)}</a>
+              {(x.line || x.best) && <span className="thc-sim-l">{x.line ?? `Best for ${x.best}.`}</span>}
+              {t > 0 && <span className="thc-sim-s"><span className="thc-sim-bar" aria-hidden="true"><i className="pos" style={{ flex: pos }}/><i className="mix" style={{ flex: mix }}/><i className="neg" style={{ flex: neg }}/></span>
+                <span>{`${pos} of ${t} ${unit} loved it`}</span></span>}
+              <span className="thc-sim-f">{price ? <a className="thc-mono" href={price.url} target="_blank" rel={price.rel}>{price.label}</a>
+                : <a href={th(href)}>See the paddle →</a>}</span>
+            </div>; })}</div>
         </section>}
       </main>
     </div>
   </Shell>;
+}
+
+/** "Players on Reddit and forums" (the mock's roundup card): one card in the feed with up to four short lines from the live
+ *  page's Reddit summaries (a real short quote where one is stored, else the summary's first sentence) and numbered thread
+ *  links. Not a review: never counted. */
+function RedditRoundup({ items }: { items: import("../../racket-data").RvCard[] }) {
+  const first = (t: string) => (t.match(/^.+?[.!?](?=\s|$)/)?.[0] ?? t).trim();
+  const threads = new Set(items.map(c => c.url?.match(/\/comments\/([a-z0-9]+)/i)?.[1] ?? c.id)).size;
+  return <article className="thc-card thc-rd">
+    <div className="thc-card-b">
+      <div className="thc-card-top"><span className="thc-av thc-rd-av" aria-hidden="true">r/</span>
+        <span className="thc-name">Players on Reddit and forums</span>
+        <span className="thc-meta">{`· ${items.length} ${items.length === 1 ? "post" : "posts"} in ${threads} ${threads === 1 ? "thread" : "threads"}`}</span>
+        <span className="thc-rd-pill">Not counted as a review</span></div>
+      <ul className="thc-rd-l">{items.map((c, i) => <li key={c.id}>{c.head ? `“${c.head}”` : first(c.text)}<sup>{`[${i + 1}]`}</sup></li>)}</ul>
+      <div className="thc-rd-src">{items.map((c, i) => c.url && <a key={c.id} href={c.url} target="_blank" rel="noopener nofollow">
+        <strong>{`[${i + 1}]`}</strong><span><b>{c.who}</b>{` · ${c.thread ?? threadTitle(c.url) ?? "View the thread"} ↗`}</span></a>)}</div>
+    </div>
+  </article>;
 }

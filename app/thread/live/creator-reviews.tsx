@@ -8,7 +8,7 @@
 // A row of "All N reviews at a glance" (any a[href="#cr-…"]) opens the list if the card is hidden, clears a filter that
 // hides it, scrolls to it and highlights it. Filtering runs in the browser on the cards the page already has, so the
 // page's ISR cache is untouched.
-import { useEffect, useMemo, useState } from "react";
+import { Fragment, useEffect, useMemo, useState, type ReactNode } from "react";
 import { atSecond, clock } from "../../../lib/thread/video-meta";
 import { dayLabel, thumbOf } from "../../../lib/thread/web-sources";
 import { SOURCE_COLOR, STANCE_LABEL, cardChips, initials, langCode, marks, measuredLine, platform, scoreText, sortReviews,
@@ -88,7 +88,8 @@ function Card({ x, lit }: { x: ReviewEntry; lit: boolean }) {
 }
 
 /** `count`: the reviews counted (one per reviewer; a TikTok channel with two videos counts once). */
-export function CreatorReviews({ reviews, count }: { reviews: ReviewEntry[]; count: number }) {
+/** `roundup`: the "Players on Reddit and forums" card, placed after the third card under All (never counted). */
+export function CreatorReviews({ reviews, count, roundup }: { reviews: ReviewEntry[]; count: number; roundup?: ReactNode }) {
   const [only, setOnly] = useState<Stance | "all">("all"), [src, setSrc] = useState<Src>(null), [by, setBy] = useState<"stance" | "newest">("stance");
   const [all, setAll] = useState(false), [lit, setLit] = useState<string | null>(null), [goTo, setGoTo] = useState<string | null>(null);
   const n = stanceCounts(reviews);
@@ -137,7 +138,7 @@ export function CreatorReviews({ reviews, count }: { reviews: ReviewEntry[]; cou
       {sources.length > 1 && <span className="thc-pills-sep" aria-hidden="true"/>}
       {sources.length > 1 && sources.map(([k, l, c]) => <button key={k} type="button" aria-pressed={src === k} onClick={() => setSrc(src === k ? null : k)}>
         {`${l} (${c})`}</button>)}</div>
-    {shown.map(x => <Card key={x.id} x={x} lit={lit === x.id}/>)}
+    {shown.map((x, i) => <Fragment key={x.id}><Card x={x} lit={lit === x.id}/>{roundup && i === Math.min(2, shown.length - 1) && only === "all" && !src && roundup}</Fragment>)}
     {list.length > shown.length && <button type="button" className="thc-show" onClick={() => setAll(true)}>
       {`Show ${list.length - shown.length} more review${list.length - shown.length === 1 ? "" : "s"}`}</button>}
   </section>;
