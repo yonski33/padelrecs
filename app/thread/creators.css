@@ -363,7 +363,7 @@ body:has(.thc) .thc a.thc-cta.wide { text-align: center; margin-top: 4px; }
 .thc-fit-why, .thc-fit-note { font-size: 13.5px; line-height: 1.45; color: var(--body2); }
 .thc .thc-fit-reset { font: inherit; font-size: 13.5px; font-weight: 700; color: var(--ink); background: none; border: 0; padding: 0; text-decoration: underline; cursor: pointer; }
 .thc-fit-row > b { font-size: 16px; } .thc .thc-chip { font-size: 15px; padding: 5px 14px; }
-/* At a glance: 13 rows, the rest behind "Show all N reviews" (a details box; the button goes once open). */
+/* At a glance: 15 rows, the rest behind "Show all N reviews" (a details box; the button goes once open). */
 .thc-g-more > summary { list-style: none; cursor: pointer; text-align: center; padding: 12px 16px; border-top: 1px solid var(--rule); font-size: 14px; font-weight: 700; }
 .thc-g-more > summary::-webkit-details-marker { display: none; }
 .thc-g-more > summary:hover { background: var(--sand); }

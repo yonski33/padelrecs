@@ -49,7 +49,7 @@ const sourceList = (rs: { kind: string }[]) => { const k = new Set(rs.map(r => r
 /** "Nov 22": a price check's day, short, for the Where to buy header. */
 const shortDay = (iso: string) => new Date(`${iso.slice(0, 10)}T12:00:00Z`).toLocaleDateString("en-US", { month: "short", day: "numeric", timeZone: "UTC" });
 /** Rows the at-a-glance table shows before "Show all N reviews". */
-const GLANCE = 13;
+const GLANCE = 15;
 const STYLE_WORD = { control: "Control", power: "Power", balance: "All-round" } as const;
 const KEYS = ["pos", "mix", "neg"] as const;
 const label = (k: (typeof ATTRS)[number][0]) => ATTRS.find(a => a[0] === k)![1];
@@ -202,7 +202,7 @@ export async function CreatorProductBody({ slug }: { slug: string }) {
             <section id="creators" className="thc-box1 flush thc-glance">
               <div className="thc-h rule"><strong>{`All ${rs.length} reviews at a glance`}</strong><span>Tap a row to jump to the full summary</span></div>
               <div className="thc-g-row thc-g-head"><span>Reviewer</span><span>Take</span><span className="kp">Key point</span>{TABLE_ATTRS.map(k => <span key={k}>{label(k)}</span>)}</div>
-              {/* Graded rows first (owner 2026-11-22), 13 shown, the rest behind "Show all N reviews" (no script: a details box). */}
+              {/* Graded rows first (owner 2026-11-22), 15 shown, the rest behind "Show all N reviews" (no script: a details box). */}
               {glance.slice(0, GLANCE).map(gRow)}
               {glance.length > GLANCE && <details className="thc-g-more"><summary>{`Show all ${rs.length} reviews`}</summary>{glance.slice(GLANCE).map(gRow)}</details>}
               <span className="thc-note">Words come from what each reviewer said in their own review.</span>
