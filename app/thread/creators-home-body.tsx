@@ -41,7 +41,7 @@ const TYPE_BG: Record<string, string> = { Widebody: "oklch(0.94 0.06 125)", Stan
 
 /** The creators home (the owner's Home Thread v6 handoff). */
 export async function CreatorsHomeBody() {
-  const home = creatorHome(niche.id);
+  const home = await creatorHome(niche.id);
   const [{ all, rows: byId, ctx }, d, side, lists, feed] = await Promise.all([threadRows(), padelListData(), threadHomeSide(), threadRankings(), threadFeed()]);
   const bySlug = new Map(all.map(r => [r.slug, r]));
   // With CREATOR_PAGE on, the normal address is the creator page; the ?view= preview link only while it is off.
