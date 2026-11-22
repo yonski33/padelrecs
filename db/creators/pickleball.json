@@ -1,0 +1,1579 @@
+{
+ "generated": "2026-11-22",
+ "source": "pb-creator-reviews-staging.json (sweep 2026-11-22), demo fixture, not in the DB",
+ "paddles": {
+  "11six24-vapor-power-2": {
+   "paddle": "11SIX24 Vapor Power 2 (2025-26)",
+   "tldr": "Creators single out the spin and a grit that keeps it; power and the soft game get more mixed words.",
+   "reviews": [
+    {
+     "id": "johnkew-pickleball",
+     "creator": "Johnkew Pickleball",
+     "kind": "youtube",
+     "type": "review",
+     "url": "https://www.youtube.com/watch?v=laYwRCWEsis",
+     "channel": "https://www.youtube.com/channel/UCIZfb6Kaorky0xrb_v7Yt4g",
+     "lang": "en",
+     "date": "2026-02-13",
+     "video": "laYwRCWEsis",
+     "len": 613,
+     "chapters": [
+      [
+       32,
+       "Paddle Specs"
+      ],
+      [
+       86,
+       "Paddle Build"
+      ],
+      [
+       131,
+       "Performance Metrics"
+      ],
+      [
+       205,
+       "KewCOR Firepower Testing"
+      ],
+      [
+       276,
+       "Accelerated Wear Test (Spin Durability)"
+      ],
+      [
+       358,
+       "Sound Comparison"
+      ],
+      [
+       425,
+       "On-Court Impressions"
+      ],
+      [
+       484,
+       "Modding"
+      ],
+      [
+       507,
+       "Final Thoughts"
+      ]
+     ],
+     "quote": "high performance spin that's built to last",
+     "quoteAt": null,
+     "stance": "pos",
+     "summary": "Finds high firepower, elite spin and an above-average twist weight in a maneuverable hybrid. Reports that the grit surface lost roughly half the spin of raw carbon in a ball cannon wear test. Says it is not for players needing a USAP-approved paddle or a soft absorbing feel.",
+     "attrs": {
+      "power": "Great",
+      "pop": "Great",
+      "spin": "Excellent",
+      "control": "Good",
+      "sweet": "Good",
+      "durability": "Excellent"
+     },
+     "score": null,
+     "measured": {
+      "swing_weight": "mid 111-ish (shown on screen)",
+      "twist_weight": 6.86
+     },
+     "alsoUrl": null,
+     "version": null,
+     "note": null,
+     "tie": null,
+     "stood": "Elite spin and high firepower in a maneuverable hybrid.",
+     "trade": "Not for players who need USAP approval or a soft, absorbing feel.",
+     "compared": null
+    },
+    {
+     "id": "pickleball-studio",
+     "creator": "Pickleball Studio",
+     "kind": "youtube",
+     "type": "long-term",
+     "url": "https://www.youtube.com/watch?v=AXJuYu5xm_M",
+     "channel": "https://www.youtube.com/channel/UCge5MvXGyRQPpFnxgRb_pXA",
+     "lang": "en",
+     "date": "2026-02-13",
+     "video": "AXJuYu5xm_M",
+     "len": 900,
+     "chapters": [
+      [
+       12,
+       "Specs"
+      ],
+      [
+       42,
+       "UPA-A certification"
+      ],
+      [
+       181,
+       "Why isn't it dual certified for USAP and UPA-A?"
+      ],
+      [
+       233,
+       "HexGrit Durability tests"
+      ],
+      [
+       372,
+       "On court performance"
+      ],
+      [
+       755,
+       "Who is this for, and who isn't it for?"
+      ]
+     ],
+     "quote": "one of the best spinning paddles that I've hit to date",
+     "quoteAt": null,
+     "stance": "pos",
+     "summary": "Calls the durable grit the main reason to buy, since the surface held up far better than raw carbon over a 100-game test. Finds a poppy, light, mid-power hybrid with elite spin that improves with added weight. Notes inconsistent soft shots and UPA-A only certification.",
+     "attrs": {
+      "power": "Good",
+      "pop": "Great",
+      "spin": "Excellent",
+      "control": "Okay",
+      "sweet": "Okay",
+      "comfort": "Good",
+      "durability": "Excellent"
+     },
+     "score": null,
+     "measured": {
+      "swing_weight": 111,
+      "twist_weight": 6.57
+     },
+     "alsoUrl": null,
+     "version": null,
+     "note": "Long-term",
+     "tie": null,
+     "stood": "A durable grit that held up over a 100-game test.",
+     "trade": "Soft shots felt inconsistent, and it is UPA-A only.",
+     "compared": "Raw carbon faces, which wore faster."
+    },
+    {
+     "id": "matt-s-pickleball",
+     "creator": "Matt's Pickleball",
+     "kind": "youtube",
+     "type": "long-term",
+     "url": "https://www.youtube.com/watch?v=ur9cZrFiGIo",
+     "channel": "https://www.youtube.com/channel/UC8JA18cHIr0DJfbvRE11bSA",
+     "lang": "en",
+     "date": "2026-02-13",
+     "video": "ur9cZrFiGIo",
+     "len": 746,
+     "chapters": [
+      [
+       76,
+       "Tech Breakdown: Gen 4 Foam Core Architecture"
+      ],
+      [
+       154,
+       "Specs & Performance Metrics"
+      ],
+      [
+       219,
+       "UPA-A vs. USAP: Why Certification Standards Matter"
+      ],
+      [
+       281,
+       "Surface Durability Breakdown: Hex Grit vs. Competitors"
+      ],
+      [
+       411,
+       "On-Court Discovery: How It Actually Plays"
+      ],
+      [
+       537,
+       "The Defining Characteristic: Fast, Tunable Platform"
+      ],
+      [
+       563,
+       "Who This Paddle Is For (And Who It Isn't)"
+      ],
+      [
+       593,
+       "Optimization & Tuning: Adding Weight Without Losing Speed"
+      ],
+      [
+       641,
+       "Market Context & Competitive Positioning"
+      ],
+      [
+       658,
+       "Final Recommendation & Closing"
+      ]
+     ],
+     "quote": "Spin is where this paddle separates.",
+     "quoteAt": null,
+     "stance": "pos",
+     "summary": "Finds a fast, light, tunable foam paddle with elite spin and top-tier serve speed. Measured the face keeping more roughness after 50 hours than rival grit paddles. Suits hand-speed and shot-shaping players, not those needing USAP approval or a heavy no-tuning build.",
+     "attrs": {
+      "power": "Great",
+      "pop": "Great",
+      "spin": "Excellent",
+      "control": "Great",
+      "sweet": "Good",
+      "comfort": "Good",
+      "durability": "Great"
+     },
+     "score": null,
+     "measured": {
+      "spin_rpm": 2335,
+      "swing_weight": 107.55,
+      "twist_weight": 6.6
+     },
+     "alsoUrl": "https://www.mattspickleball.com/blog/11six24-power-2-vapor-review-elite-spin-fast-hands-real-power",
+     "version": null,
+     "note": "Long-term",
+     "tie": null,
+     "stood": "Elite spin and top-tier serve speed in a fast, light paddle.",
+     "trade": "Not for players who want USAP approval or a heavy build with no tuning.",
+     "compared": "Rival grit paddles, which kept less roughness after 50 hours."
+    },
+    {
+     "id": "pickleball-pursuit",
+     "creator": "Pickleball Pursuit",
+     "kind": "youtube",
+     "type": "review",
+     "url": "https://www.youtube.com/watch?v=HSzLe2asSX0",
+     "channel": "https://www.youtube.com/channel/UCymbPCDl691HA0ErKcoY5EQ",
+     "lang": "en",
+     "date": "2026-02-13",
+     "video": "HSzLe2asSX0",
+     "len": 331,
+     "chapters": [],
+     "quote": "the Hex Grit produces insane spin",
+     "quoteAt": null,
+     "stance": "pos",
+     "summary": "Calls the spin among the best they have tested, with mid-to-lower power that is still enough to finish points. Finds control easy on resets, drops and dinks and the sweet spot good once perimeter weight is added. Reports no grit wear after 10 plus hours.",
+     "attrs": {
+      "power": "Good",
+      "control": "Great",
+      "spin": "Excellent",
+      "sweet": "Good",
+      "comfort": "Good",
+      "durability": "Great"
+     },
+     "score": null,
+     "measured": {},
+     "alsoUrl": null,
+     "version": null,
+     "note": null,
+     "tie": null,
+     "stood": "Spin among the best they have tested.",
+     "trade": "Power is mid to lower, though enough to finish points.",
+     "compared": null
+    },
+    {
+     "id": "pickleball-playbook",
+     "creator": "Pickleball Playbook",
+     "kind": "youtube",
+     "type": "comparison",
+     "url": "https://www.youtube.com/watch?v=ffiit6IWsHo",
+     "channel": "https://www.youtube.com/channel/UCwkHWkyarHJFSQxk8SMs4zA",
+     "lang": "en",
+     "date": "2026-03-31",
+     "video": "ffiit6IWsHo",
+     "len": 928,
+     "chapters": [
+      [
+       25,
+       "Specs"
+      ],
+      [
+       41,
+       "Power & Spin - 11SIX24 Vapor & Pegasus Power 2"
+      ],
+      [
+       132,
+       "Control - 11SIX24 Vapor & Pegasus Power 2"
+      ],
+      [
+       357,
+       "Pop - 11SIX24 Vapor & Pegasus Power 2"
+      ],
+      [
+       502,
+       "Handspeed - 11SIX24 Vapor & Pegasus Power 2"
+      ],
+      [
+       656,
+       "Drill Test - 11SIX24 Vapor & Pegasus Power 2"
+      ],
+      [
+       866,
+       "Final Thoughts - 11SIX24 Vapor & Pegasus Power 2"
+      ]
+     ],
+     "quote": "Seems like it's an all around cool paddle.",
+     "quoteAt": null,
+     "stance": "pos",
+     "summary": "Rates the spin as the standout, with plenty of power that the spin brings down. Finds control easy on drops, resets and dinks, and the sweet spot large. Says the grit lasts, citing another creator's durability test. Covers Vapor and Pegasus together.",
+     "attrs": {
+      "power": "Great",
+      "control": "Great",
+      "spin": "Excellent",
+      "pop": "Good",
+      "sweet": "Great",
+      "durability": "Great"
+     },
+     "score": null,
+     "measured": {},
+     "alsoUrl": null,
+     "version": null,
+     "note": null,
+     "tie": null,
+     "stood": "Spin, plus easy control on drops, resets and dinks.",
+     "trade": "The spin takes a little off the power.",
+     "compared": "Pegasus Power 2, covered in the same video."
+    },
+    {
+     "id": "the-kitchen-pickleball",
+     "creator": "The Kitchen Pickleball",
+     "kind": "youtube",
+     "type": "review",
+     "url": "https://www.youtube.com/watch?v=lg45i5gEn7s",
+     "channel": "https://www.youtube.com/channel/UC8Kri-ozieZq01LLzQSNavQ",
+     "lang": "en",
+     "date": "2026-04-07",
+     "video": "lg45i5gEn7s",
+     "len": 431,
+     "chapters": [
+      [
+       27,
+       "Overview"
+      ],
+      [
+       48,
+       "Basic Stats"
+      ],
+      [
+       100,
+       "How It Plays"
+      ],
+      [
+       142,
+       "Adding Weight"
+      ],
+      [
+       188,
+       "New Hexgrit"
+      ],
+      [
+       210,
+       "The Grit Problem"
+      ],
+      [
+       275,
+       "Value"
+      ],
+      [
+       320,
+       "UPAA vs USAP Approval"
+      ]
+     ],
+     "quote": "I think the Vapor Power 2 is a great paddle",
+     "quoteAt": null,
+     "stance": "pos",
+     "summary": "Describes a mid-power, poppy paddle with very good spin and room to add weight. Says the real question is how long the grit lasts, with early signs encouraging. Notes it is UPA-A only.",
+     "attrs": {
+      "power": "Good",
+      "pop": "Great",
+      "spin": "Great",
+      "sweet": "Good",
+      "comfort": "Good",
+      "durability": "Good"
+     },
+     "score": null,
+     "measured": {
+      "swing_weight": 112,
+      "twist_weight": 6.6
+     },
+     "alsoUrl": "https://thekitchenpickle.com/blogs/gear/11six24-vapor-power-2-pickleball-paddle-review/",
+     "version": null,
+     "note": null,
+     "tie": null,
+     "stood": "Very good spin, with room to add weight.",
+     "trade": "How long the grit lasts is still open, and it is UPA-A only.",
+     "compared": null
+    },
+    {
+     "id": "pickleball-effect",
+     "creator": "Pickleball Effect",
+     "kind": "youtube",
+     "type": "review",
+     "url": "https://www.youtube.com/watch?v=lShESBLqowA",
+     "channel": "https://www.youtube.com/channel/UC7uQuU1OFg0TFHMarvPoKAg",
+     "lang": "en",
+     "date": "2026-02-13",
+     "video": "lShESBLqowA",
+     "len": 526,
+     "chapters": [
+      [
+       96,
+       "Does HexGrit spin well?"
+      ],
+      [
+       124,
+       "Testing grit durability with new abrasion machine"
+      ],
+      [
+       238,
+       "Specs"
+      ],
+      [
+       295,
+       "On court performance"
+      ],
+      [
+       334,
+       "Feel map"
+      ],
+      [
+       365,
+       "Setup recommendation"
+      ],
+      [
+       402,
+       "UPA only certification"
+      ],
+      [
+       437,
+       "Final comparison to all durable grit power paddles"
+      ]
+     ],
+     "quote": "it's likely going to stay the power paddle to beat.",
+     "quoteAt": null,
+     "stance": "pos",
+     "summary": "Says it checks the boxes for a durable-grit power paddle, with best grit retention in their wear machine test. Finds dinks and resets need touch to avoid pop-ups. Calls it the power paddle to beat among durable-grit options.",
+     "attrs": {
+      "power": "Great",
+      "control": "Okay",
+      "spin": "Excellent",
+      "pop": "Great",
+      "sweet": "Great",
+      "comfort": "Good",
+      "durability": "Excellent"
+     },
+     "score": null,
+     "measured": {
+      "spin_rpm": 2113,
+      "swing_weight": 111,
+      "twist_weight": 6.7
+     },
+     "alsoUrl": "https://pickleballeffect.com/equipment-reviews/11six24-power-2-review/",
+     "version": null,
+     "note": null,
+     "tie": null,
+     "stood": "The best grit retention in their wear machine test.",
+     "trade": "Dinks and resets need touch to avoid pop-ups.",
+     "compared": "Other durable-grit power paddles."
+    },
+    {
+     "id": "jj-pickleball",
+     "creator": "JJ Pickleball",
+     "kind": "youtube",
+     "type": "long-term",
+     "url": "https://www.youtube.com/watch?v=5XqPZS8N--E",
+     "channel": "https://www.youtube.com/channel/UCct-1IfT60_mqzRwLg_QB3Q",
+     "lang": "en",
+     "date": "2026-02-27",
+     "video": "5XqPZS8N--E",
+     "len": 287,
+     "chapters": [
+      [
+       29,
+       "Specs"
+      ],
+      [
+       77,
+       "Performance"
+      ],
+      [
+       218,
+       "Final Thoughts"
+      ]
+     ],
+     "quote": "The Vapor Power 2 is a great example of a foam core paddle",
+     "quoteAt": null,
+     "stance": "pos",
+     "summary": "Reports about a month of play with spin still strong and the surface rough. Likes drives, serves and rolls, with slightly inconsistent drops. Recommends it mainly for rec play where durability matters, noting UPA-only certification.",
+     "attrs": {
+      "power": "Good",
+      "control": "Good",
+      "spin": "Excellent",
+      "pop": "Great",
+      "sweet": "Good",
+      "comfort": "Good",
+      "durability": "Great"
+     },
+     "score": null,
+     "measured": {
+      "swing_weight": 112,
+      "twist_weight": 6.7
+     },
+     "alsoUrl": null,
+     "version": null,
+     "note": "Long-term",
+     "tie": null,
+     "stood": "Spin and surface still strong after a month.",
+     "trade": "Drops were slightly inconsistent.",
+     "compared": null
+    },
+    {
+     "id": "pickleball-tech-dude",
+     "creator": "Pickleball Tech Dude",
+     "kind": "youtube",
+     "type": "comparison",
+     "url": "https://www.youtube.com/watch?v=3WGCJ4B-e3Y",
+     "channel": "https://www.youtube.com/channel/UCGpjcq9a-b8ZWv8NwuS7hkQ",
+     "lang": "en",
+     "date": "2026-03-13",
+     "video": "3WGCJ4B-e3Y",
+     "len": 674,
+     "chapters": [
+      [
+       93,
+       "CONSTRUCTION & AESTHETICS"
+      ],
+      [
+       254,
+       "COURT PERFORMANCE"
+      ],
+      [
+       412,
+       "PEGASUS & HURACHE-X COMPARISON"
+      ],
+      [
+       515,
+       "SPARTUS P1 COMPARISON"
+      ],
+      [
+       617,
+       "FINAL THOUGHTS & ALTERNATIVES"
+      ]
+     ],
+     "quote": "I still feel like the Vapor is the best choice of the three.",
+     "quoteAt": null,
+     "stance": "pos",
+     "summary": "Picks the Vapor as the best of the three Power 2 shapes, praising spin, grit retention, build consistency and value. Finds the large poppy sweet spot hard to control for average players, with a dead zone near the top.",
+     "attrs": {
+      "power": "Okay",
+      "control": "Okay",
+      "spin": "Excellent",
+      "pop": "Excellent",
+      "sweet": "Good",
+      "comfort": "Okay",
+      "durability": "Excellent"
+     },
+     "score": null,
+     "measured": {},
+     "alsoUrl": null,
+     "version": null,
+     "note": null,
+     "tie": null,
+     "stood": "Spin, grit retention, build consistency and value.",
+     "trade": "The large, poppy sweet spot is hard to control for average players.",
+     "compared": "Pegasus and Hurache-X Power 2, and the Spartus P1."
+    },
+    {
+     "id": "famous-by-friday-pickleball",
+     "creator": "Famous by Friday Pickleball",
+     "kind": "youtube",
+     "type": "review",
+     "url": "https://www.youtube.com/watch?v=06IhbCdik0o",
+     "channel": "https://www.youtube.com/channel/UCpaWAvF-WWDJdwL1OkfLHiA",
+     "lang": "en",
+     "date": "2026-05-16",
+     "video": "06IhbCdik0o",
+     "len": 1160,
+     "chapters": [],
+     "quote": "Spin it just off the charts. Incredible.",
+     "quoteAt": null,
+     "stance": "mix",
+     "summary": "Likes the huge spin, speed, large sweet spot and plush feel. Finds some chaos with occasional flyers and a break-in period. One player handed it back preferring the original Vapor Power.",
+     "attrs": {
+      "power": "Great",
+      "control": "Okay",
+      "spin": "Excellent",
+      "pop": "Great",
+      "sweet": "Great",
+      "comfort": "Great"
+     },
+     "score": null,
+     "measured": {
+      "swing_weight": "108-112",
+      "twist_weight": "6.6-6.8"
+     },
+     "alsoUrl": null,
+     "version": null,
+     "note": null,
+     "tie": null,
+     "stood": "Huge spin, speed, a large sweet spot and a plush feel.",
+     "trade": "Occasional flyers and a break-in period.",
+     "compared": "The original Vapor Power, which one player preferred."
+    },
+    {
+     "id": "pickle-li",
+     "creator": "Pickle Li",
+     "kind": "youtube",
+     "type": "review",
+     "url": "https://www.youtube.com/watch?v=7egt3gyQwKY",
+     "channel": "https://www.youtube.com/channel/UC3Sh4VgrNiR1JuqMYmbd0kw",
+     "lang": "en",
+     "date": "2026-02-23",
+     "video": "7egt3gyQwKY",
+     "len": 587,
+     "chapters": [],
+     "quote": "I'm going to give this paddle a 9 out of 10",
+     "quoteAt": null,
+     "stance": "mix",
+     "summary": "Starts underwhelmed, then rates the sweet spot and resets as excellent. Finds spin weak in stock form until weight is added. Calls it a good control-oriented power paddle for doubles with a muted feel.",
+     "attrs": {
+      "power": "Good",
+      "control": "Great",
+      "spin": "Okay",
+      "pop": "Great",
+      "sweet": "Excellent",
+      "comfort": "Good",
+      "durability": "Great"
+     },
+     "score": {
+      "value": 9,
+      "scale": 10,
+      "label": "Overall (with added weight)"
+     },
+     "measured": {},
+     "alsoUrl": null,
+     "version": null,
+     "note": "First impressions",
+     "tie": null,
+     "stood": "The sweet spot and resets.",
+     "trade": "Spin felt weak in stock form until weight was added.",
+     "compared": null
+    },
+    {
+     "id": "the-pickleball-dad",
+     "creator": "The Pickleball Dad",
+     "kind": "youtube",
+     "type": "review",
+     "url": "https://www.youtube.com/watch?v=LRsuEJKI3rQ",
+     "channel": "https://www.youtube.com/channel/UCPMEMbe5nbv0LJ9WTawJmng",
+     "lang": "en",
+     "date": "2026-02-25",
+     "video": "LRsuEJKI3rQ",
+     "len": 430,
+     "chapters": [
+      [
+       54,
+       "Specs"
+      ],
+      [
+       86,
+       "Why it's so special"
+      ],
+      [
+       183,
+       "Court Impressions"
+      ],
+      [
+       354,
+       "Who is it for?"
+      ]
+     ],
+     "quote": "the spin is about as maxed out as you can possibly get",
+     "quoteAt": null,
+     "stance": "pos",
+     "summary": "Says the spin is near the legal maximum, helping topspin dinks, speedups and counters. Finds baseline power mid-to-low and the soft game takes time to dial in. Recommends it for players at 3.0 and up who want lasting spin.",
+     "attrs": {
+      "power": "Okay",
+      "control": "Good",
+      "spin": "Excellent",
+      "pop": "Great",
+      "sweet": "Good",
+      "comfort": "Good",
+      "durability": "Great"
+     },
+     "score": null,
+     "measured": {
+      "swing_weight": 111,
+      "twist_weight": 6.6
+     },
+     "alsoUrl": null,
+     "version": null,
+     "note": null,
+     "tie": null,
+     "stood": "Spin near the legal maximum.",
+     "trade": "Baseline power is mid to low, and the soft game takes time.",
+     "compared": null
+    },
+    {
+     "id": "francis-rances-pickleball",
+     "creator": "Francis Rances Pickleball",
+     "kind": "youtube",
+     "type": "long-term",
+     "url": "https://www.youtube.com/watch?v=QPjGzMHPGy8",
+     "channel": "https://www.youtube.com/channel/UCadzgEjVxy9IgnqG83cT3OQ",
+     "lang": "en",
+     "date": "2026-04-07",
+     "video": "QPjGzMHPGy8",
+     "len": 322,
+     "chapters": [],
+     "quote": "So, spin is ridiculous.",
+     "quoteAt": null,
+     "stance": "pos",
+     "summary": "Reports over a month with the Power 2 line, which settles from crisp to a more controlled sinking feel. Says the spin is huge and the grit has not worn. Picks the Hurache-X for themself but recommends the Vapor for forgiveness. Comments partly apply to the whole line.",
+     "attrs": {
+      "power": "Good",
+      "control": "Great",
+      "spin": "Excellent",
+      "pop": "Okay",
+      "sweet": "Great",
+      "comfort": "Good",
+      "durability": "Excellent"
+     },
+     "score": null,
+     "measured": {
+      "swing_weight": 114.9
+     },
+     "alsoUrl": null,
+     "version": "Covers the Power 2 line",
+     "note": "Long-term",
+     "tie": null,
+     "stood": "Huge spin, and grit that has not worn.",
+     "trade": null,
+     "compared": "Hurache-X Power 2, their own pick; the Vapor for forgiveness."
+    },
+    {
+     "id": "pickleheads",
+     "creator": "Pickleheads",
+     "kind": "blog",
+     "type": "review",
+     "url": "https://www.pickleheads.com/pickleball-gear/11six24-vapor-power-2-review",
+     "channel": "https://www.pickleheads.com",
+     "lang": "en",
+     "date": "2026-02-13",
+     "video": null,
+     "len": null,
+     "chapters": [],
+     "quote": null,
+     "quoteAt": null,
+     "stance": "pos",
+     "summary": "Praises elite touch, heavy spin and a light base that takes added weight well. Finds it not a naturally explosive power paddle but fine for 3.5 and up players. Calls it worth the money for control-minded players.",
+     "attrs": {
+      "power": "Good",
+      "control": "Great",
+      "spin": "Great",
+      "sweet": "Good",
+      "comfort": "Great",
+      "durability": "Great"
+     },
+     "score": null,
+     "measured": {},
+     "alsoUrl": null,
+     "version": null,
+     "note": null,
+     "tie": null,
+     "stood": "Elite touch, heavy spin and a light base that takes weight well.",
+     "trade": "Not a naturally explosive power paddle.",
+     "compared": null
+    },
+    {
+     "id": "paddle-review-hub",
+     "creator": "Paddle Review Hub",
+     "kind": "blog",
+     "type": "review",
+     "url": "https://paddlereviewhub.pages.dev/reviews/11six24-vapor-power-2",
+     "channel": "https://paddlereviewhub.com",
+     "lang": "en",
+     "date": "2026-01-01",
+     "video": null,
+     "len": null,
+     "chapters": [],
+     "quote": null,
+     "quoteAt": null,
+     "stance": "mix",
+     "summary": "Calls spin the standout and names it the best all-around shape of the Power 2 line. Finds it solid but not special enough for the top tier, and less forgiving than the widebody. Calls the price good value.",
+     "attrs": {
+      "power": "Good",
+      "control": "Good",
+      "spin": "Excellent",
+      "pop": "Good",
+      "sweet": "Good",
+      "durability": "Great"
+     },
+     "score": null,
+     "measured": {},
+     "alsoUrl": null,
+     "version": null,
+     "note": null,
+     "tie": null,
+     "stood": "Spin, and the best all-around shape of the Power 2 line.",
+     "trade": "Solid but not top tier, and less forgiving than the widebody.",
+     "compared": "The widebody Power 2 shape."
+    }
+   ]
+  },
+  "six-zero-black-opal-14mm": {
+   "paddle": "Six Zero Black Opal 14mm (hybrid)",
+   "tldr": "Creators call it one of the hardest-hitting paddles around; most find the sweet spot demanding.",
+   "reviews": [
+    {
+     "id": "pickleball-studio",
+     "creator": "Pickleball Studio",
+     "kind": "youtube",
+     "type": "review",
+     "url": "https://www.youtube.com/watch?v=W0Ja8xLdHPg",
+     "channel": "https://www.youtube.com/channel/UCge5MvXGyRQPpFnxgRb_pXA",
+     "lang": "en",
+     "date": "2025-12-04",
+     "video": "W0Ja8xLdHPg",
+     "len": 700,
+     "chapters": [
+      [
+       21,
+       "Specs & design"
+      ],
+      [
+       133,
+       "On court performance & why it is polarizing"
+      ],
+      [
+       262,
+       "Weight setups"
+      ],
+      [
+       372,
+       "What makes the Black Opal stand out"
+      ],
+      [
+       525,
+       "Who it is for and who it isn't for"
+      ]
+     ],
+     "quote": "I think it's going to be very polarizing.",
+     "quoteAt": 4,
+     "stance": "mix",
+     "summary": "Calls it a top-tier power paddle that rivals the best, with a sweet spot that drops off sharply outside the center. Finds the soft game much weaker than the heavy game and says added weight helps only partly. Expects players to split into two camps and suggests a demo first.",
+     "attrs": {
+      "power": "Excellent",
+      "control": "Okay",
+      "sweet": "Weak",
+      "comfort": "Good"
+     },
+     "score": null,
+     "measured": {
+      "swing_weight": 113,
+      "twist_weight": 6.07
+     },
+     "alsoUrl": null,
+     "version": null,
+     "note": null,
+     "tie": null,
+     "stood": "Top-tier power that rivals the best.",
+     "trade": "The sweet spot drops off sharply, and the soft game is much weaker.",
+     "compared": null
+    },
+    {
+     "id": "matt-s-pickleball",
+     "creator": "Matt's Pickleball",
+     "kind": "youtube",
+     "type": "review",
+     "url": "https://www.youtube.com/watch?v=4Lg5ZFjUcyE",
+     "channel": "https://www.youtube.com/channel/UC8JA18cHIr0DJfbvRE11bSA",
+     "lang": "en",
+     "date": "2025-11-09",
+     "video": "4Lg5ZFjUcyE",
+     "len": 960,
+     "chapters": [
+      [
+       86,
+       "Tech Breakdown: Aerospace Foam & Carbon-Light Frame"
+      ],
+      [
+       231,
+       "Specs & Performance Numbers"
+      ],
+      [
+       319,
+       "First Impressions: Non-Linear Power Response"
+      ],
+      [
+       425,
+       "On-Court Testing: Drives, Volleys, Resets & Control"
+      ],
+      [
+       586,
+       "The Defining Characteristic: Exponential Power Profile"
+      ],
+      [
+       669,
+       "Break-In Period & Surface Durability"
+      ],
+      [
+       685,
+       "Market Comparisons: Boomstick, GX2, Flick F1"
+      ],
+      [
+       746,
+       "Who This Paddle Is For"
+      ]
+     ],
+     "quote": "This paddle is nonlinear in its power response.",
+     "quoteAt": 335,
+     "stance": "mix",
+     "summary": "Finds it one of the hardest-hitting, highest-spinning paddles tested, with a plush dwell and a power response that grows with swing speed. Needs a long calibration period and punishes tight or tentative swings. Recommends it for advanced players with compact mechanics but would not put it in a tournament bag.",
+     "attrs": {
+      "power": "Excellent",
+      "spin": "Excellent",
+      "control": "Okay",
+      "sweet": "Good",
+      "durability": "Good"
+     },
+     "score": null,
+     "measured": {
+      "swing_weight": 115.5,
+      "twist_weight": 6.25
+     },
+     "alsoUrl": null,
+     "version": null,
+     "note": null,
+     "tie": null,
+     "stood": "One of the hardest-hitting, highest-spinning paddles tested.",
+     "trade": "A long calibration period, and it punishes tight or tentative swings.",
+     "compared": "Boomstick, GX2 and Flick F1."
+    },
+    {
+     "id": "amir-s-pickleball",
+     "creator": "Amir's Pickleball",
+     "kind": "youtube",
+     "type": "review",
+     "url": "https://www.youtube.com/watch?v=aeAtcx3m7TE",
+     "channel": "https://www.youtube.com/channel/UCsfs2pLjuE4oetY49BoIQ4w",
+     "lang": "en",
+     "date": "2025-11-25",
+     "video": "aeAtcx3m7TE",
+     "len": 347,
+     "chapters": [],
+     "quote": "If you can hit the center, you're going to love it.",
+     "quoteAt": 325,
+     "stance": "mix",
+     "summary": "Finds it about as powerful as is legal, with elite spin, but a very small sweet spot that kills the ball off center. Dinks, resets and counters were inconsistent, partly because the player is around 3.5. Says players will either love or hate it and should try it first.",
+     "attrs": {
+      "power": "Excellent",
+      "spin": "Excellent",
+      "control": "Okay",
+      "sweet": "Weak"
+     },
+     "score": null,
+     "measured": {},
+     "alsoUrl": null,
+     "version": null,
+     "note": null,
+     "tie": null,
+     "stood": "About as much power as is legal, with elite spin.",
+     "trade": "A very small sweet spot that kills the ball off center.",
+     "compared": null
+    },
+    {
+     "id": "your-pickleball-partner",
+     "creator": "Your Pickleball Partner",
+     "kind": "youtube",
+     "type": "long-term",
+     "url": "https://www.youtube.com/watch?v=mzxAv8H28OE",
+     "channel": "https://www.youtube.com/channel/UC7VdpgwyVr5cr-ugA9JgGDQ",
+     "lang": "en",
+     "date": "2025-11-09",
+     "video": "mzxAv8H28OE",
+     "len": 319,
+     "chapters": [
+      [
+       30,
+       "Build & Construction"
+      ],
+      [
+       51,
+       "Power"
+      ],
+      [
+       90,
+       "Control & Touch"
+      ],
+      [
+       122,
+       "Spin"
+      ],
+      [
+       150,
+       "Feel, Sweet Spot & Stability"
+      ],
+      [
+       174,
+       "Comparisons (Boomstick & JOOLA Pro 4)"
+      ],
+      [
+       224,
+       "Durability & Longevity"
+      ]
+     ],
+     "quote": "It's the most exciting paddle I've played with this year.",
+     "quoteAt": 272,
+     "stance": "pos",
+     "summary": "Describes explosive, trampoline-like power with a long dwell and spin that beats most top paddles, after six weeks of exclusive use. Finds resets and dinks intuitive but calls the sweet spot average, so off-center hits feel soft. Reports no wear after six weeks and calls it the most exciting paddle of the year.",
+     "attrs": {
+      "power": "Excellent",
+      "control": "Great",
+      "spin": "Excellent",
+      "sweet": "Okay",
+      "comfort": "Great",
+      "durability": "Great"
+     },
+     "score": null,
+     "measured": {},
+     "alsoUrl": null,
+     "version": null,
+     "note": "Long-term",
+     "tie": null,
+     "stood": "Explosive power, and spin that beats most top paddles.",
+     "trade": "An average sweet spot; off-center hits feel soft.",
+     "compared": "Selkirk Boomstick and JOOLA Pro 4."
+    },
+    {
+     "id": "johnkew-pickleball",
+     "creator": "Johnkew Pickleball",
+     "kind": "youtube",
+     "type": "review",
+     "url": "https://www.youtube.com/watch?v=eiKBf2tht4M",
+     "channel": "https://www.youtube.com/channel/UCIZfb6Kaorky0xrb_v7Yt4g",
+     "lang": "en",
+     "date": "2025-11-09",
+     "video": "eiKBf2tht4M",
+     "len": 264,
+     "chapters": [],
+     "quote": "the Black Opal is absolutely a power paddle",
+     "quoteAt": 106,
+     "stance": "mix",
+     "summary": "Gives first impressions on a pre-production unit: top-percentile power and pop, elite spin with no drop-off after 20 hours, and a soft plush feel. Finds the sweet spot decent but less forgiving than floating full-foam rivals, with some flex near the neck. Expects only a few players to tame it.",
+     "attrs": {
+      "power": "Excellent",
+      "spin": "Excellent",
+      "control": "Okay",
+      "sweet": "Okay",
+      "comfort": "Great",
+      "durability": "Great"
+     },
+     "score": null,
+     "measured": {
+      "spin_rpm": 2240
+     },
+     "alsoUrl": null,
+     "version": "Pre-production unit",
+     "note": "First impressions",
+     "tie": null,
+     "stood": "Top-percentile power and pop, and elite spin.",
+     "trade": "Less forgiving than floating full-foam rivals, with some flex near the neck.",
+     "compared": null
+    },
+    {
+     "id": "limitless-pickleball",
+     "creator": "Limitless Pickleball",
+     "kind": "youtube",
+     "type": "comparison",
+     "url": "https://www.youtube.com/watch?v=o-1PmQ5kVKU",
+     "channel": "https://www.youtube.com/channel/UCxbbyF9OWhQnLVJuRRpKdjA",
+     "lang": "en",
+     "date": "2025-11-10",
+     "video": "o-1PmQ5kVKU",
+     "len": 234,
+     "chapters": [
+      [
+       27,
+       "Price Comparison"
+      ],
+      [
+       55,
+       "Weight System Differences"
+      ],
+      [
+       80,
+       "Black Opal Tech Breakdown"
+      ],
+      [
+       100,
+       "Boomstick Tech Breakdown"
+      ],
+      [
+       128,
+       "Core & Feel Differences"
+      ],
+      [
+       175,
+       "On-Court Performance"
+      ]
+     ],
+     "quote": "man, I just love the feel of this new paddle.",
+     "quoteAt": 203,
+     "stance": "pos",
+     "summary": "Compares it with the Selkirk Boomstick and prefers its traditional Gen 3 feel and easier control. Says it has real pop and power near the core limit, with movable weights and a lower price. Calls it the better all-court paddle that still has turbo when needed.",
+     "attrs": {
+      "power": "Great",
+      "control": "Great",
+      "comfort": "Great"
+     },
+     "score": null,
+     "measured": {},
+     "alsoUrl": null,
+     "version": null,
+     "note": null,
+     "tie": null,
+     "stood": "A traditional Gen 3 feel, easier control, movable weights and a lower price.",
+     "trade": null,
+     "compared": "Selkirk Boomstick; prefers the Black Opal."
+    },
+    {
+     "id": "pickleball-effect",
+     "creator": "Pickleball Effect",
+     "kind": "youtube",
+     "type": "review",
+     "url": "https://www.youtube.com/watch?v=2kLT-8gmEc4",
+     "channel": "https://www.youtube.com/channel/UC7uQuU1OFg0TFHMarvPoKAg",
+     "lang": "en",
+     "date": "2025-11-10",
+     "video": "2kLT-8gmEc4",
+     "len": 632,
+     "chapters": [
+      [
+       141,
+       "Tech"
+      ],
+      [
+       213,
+       "Specs"
+      ],
+      [
+       273,
+       "Performance insights"
+      ],
+      [
+       499,
+       "Set up recommendation"
+      ],
+      [
+       561,
+       "Final thoughts & recommendation"
+      ]
+     ],
+     "quote": "Offensively, it hits big, like really big.",
+     "quoteAt": 278,
+     "stance": "pos",
+     "summary": "Finds it one of the hardest-hitting legal paddles tested, with a dense, springy feel unlike other foam paddles. Notes a below-average sweet spot near the throat and a heavier swing, which makes it a hard fit for developing players. Recommends it for aggressive players with good technique.",
+     "attrs": {
+      "power": "Excellent",
+      "pop": "Great",
+      "spin": "Great",
+      "control": "Okay",
+      "sweet": "Okay",
+      "comfort": "Great"
+     },
+     "score": null,
+     "measured": {
+      "spin_rpm": 2240,
+      "swing_weight": 114,
+      "twist_weight": 6.2
+     },
+     "alsoUrl": "https://pickleballeffect.com/equipment-reviews/six-zero-black-opal-review-six-zero-shows-off-rd-capabilities/",
+     "version": null,
+     "note": null,
+     "tie": null,
+     "stood": "One of the hardest-hitting legal paddles, with a dense, springy feel.",
+     "trade": "A below-average sweet spot near the throat and a heavier swing.",
+     "compared": null
+    },
+    {
+     "id": "pickleball-blast",
+     "creator": "Pickleball Blast",
+     "kind": "youtube",
+     "type": "review",
+     "url": "https://www.youtube.com/watch?v=WANIH8Z9NlA",
+     "channel": "https://www.youtube.com/channel/UCsPTdgkeMp68IyHd5gMFDfg",
+     "lang": "en",
+     "date": "2025-11-09",
+     "video": "WANIH8Z9NlA",
+     "len": 626,
+     "chapters": [
+      [
+       32,
+       "Where Has Six Zero Been?"
+      ],
+      [
+       88,
+       "Black Opal Paddle Stats"
+      ],
+      [
+       116,
+       "Sound Examples"
+      ],
+      [
+       152,
+       "Six Zero's New Tech"
+      ],
+      [
+       160,
+       "Diamond Grit"
+      ],
+      [
+       200,
+       "Power Gel"
+      ],
+      [
+       222,
+       "Shock Shield"
+      ],
+      [
+       239,
+       "Power"
+      ],
+      [
+       265,
+       "Control"
+      ],
+      [
+       305,
+       "Spin"
+      ],
+      [
+       532,
+       "Gameplay Footage"
+      ]
+     ],
+     "quote": "I'm hitting absolute rockets with this paddle.",
+     "quoteAt": 15,
+     "stance": "pos",
+     "summary": "Puts the power on par with the Selkirk Boomstick, possibly above it, with deep, dense pop and impressive dwell for a 14mm core. Finds control confident when set up but inconsistent in fast hand battles. Calls it high risk and high reward that rewards time spent learning it.",
+     "attrs": {
+      "power": "Excellent",
+      "control": "Okay",
+      "spin": "Great",
+      "comfort": "Good"
+     },
+     "score": null,
+     "measured": {
+      "swing_weight": 116.4,
+      "twist_weight": 6.3
+     },
+     "alsoUrl": null,
+     "version": null,
+     "note": null,
+     "tie": null,
+     "stood": "Power on par with the Boomstick, with deep pop and dwell.",
+     "trade": "Control is inconsistent in fast hand battles.",
+     "compared": "Selkirk Boomstick."
+    },
+    {
+     "id": "all-drive-no-drop-pickleball",
+     "creator": "All Drive No Drop Pickleball",
+     "kind": "youtube",
+     "type": "review",
+     "url": "https://www.youtube.com/watch?v=JrVS6PRcBgI",
+     "channel": "https://www.youtube.com/channel/UC6XF2LqwvzbRYmaC1_RdD-w",
+     "lang": "en",
+     "date": "2025-11-09",
+     "video": "JrVS6PRcBgI",
+     "len": 852,
+     "chapters": [
+      [
+       54,
+       "What has Six Zero Been Doing?"
+      ],
+      [
+       74,
+       "What is the new Technology in the Six Zero Black Opal?"
+      ],
+      [
+       173,
+       "Specs"
+      ],
+      [
+       219,
+       "Weight Setup"
+      ],
+      [
+       319,
+       "Gameplay and Performance Thoughts"
+      ],
+      [
+       611,
+       "Comparisons to Other Top Power Paddles"
+      ],
+      [
+       746,
+       "Conclusion"
+      ]
+     ],
+     "quote": "This thing hits very hard",
+     "quoteAt": 320,
+     "stance": "pos",
+     "summary": "Rates the power at the high end of the elite tier and the spin among the highest recorded, with a plush, low-vibration feel. Finds the stock sweet spot average, weakest toward the bottom, and says added weight helps a lot. Notes resets from low transition balls are the hardest part.",
+     "attrs": {
+      "power": "Excellent",
+      "spin": "Excellent",
+      "control": "Okay",
+      "sweet": "Okay",
+      "comfort": "Good"
+     },
+     "score": null,
+     "measured": {
+      "spin_rpm": 2452
+     },
+     "alsoUrl": null,
+     "version": null,
+     "note": null,
+     "tie": null,
+     "stood": "Elite-tier power and some of the highest spin recorded.",
+     "trade": "An average stock sweet spot; low transition resets are the hardest part.",
+     "compared": "Other top power paddles."
+    },
+    {
+     "id": "jj-pickleball",
+     "creator": "JJ Pickleball",
+     "kind": "youtube",
+     "type": "review",
+     "url": "https://www.youtube.com/watch?v=X0DXyUfv0UI",
+     "channel": "https://www.youtube.com/channel/UCct-1IfT60_mqzRwLg_QB3Q",
+     "lang": "en",
+     "date": "2025-11-15",
+     "video": "X0DXyUfv0UI",
+     "len": 319,
+     "chapters": [
+      [
+       42,
+       "Specs"
+      ],
+      [
+       113,
+       "Performance"
+      ],
+      [
+       249,
+       "Final Thoughts"
+      ]
+     ],
+     "quote": "It's one of the hardest legal hitting paddles on the market",
+     "quoteAt": 255,
+     "stance": "mix",
+     "summary": "Calls it one of the hardest legal-hitting paddles with a deep thud and plush, long-dwell feel. Found the original unit's flex disappointing, but says the production tweak near the neck improved sweet spot and feel. Expects it to be slightly polarizing and not for players who need kitchen control.",
+     "attrs": {
+      "power": "Excellent",
+      "spin": "Great",
+      "sweet": "Okay",
+      "comfort": "Good",
+      "control": "Okay"
+     },
+     "score": null,
+     "measured": {
+      "swing_weight": 113,
+      "twist_weight": 6.3
+     },
+     "alsoUrl": null,
+     "version": null,
+     "note": null,
+     "tie": null,
+     "stood": "One of the hardest legal hitters, with a deep thud and plush dwell.",
+     "trade": "Not for players who need kitchen control.",
+     "compared": null
+    },
+    {
+     "id": "rackets-runners-pickleball",
+     "creator": "Rackets & Runners - Pickleball",
+     "kind": "youtube",
+     "type": "review",
+     "url": "https://www.youtube.com/watch?v=udUmtp1zLoI",
+     "channel": "https://www.youtube.com/channel/UC-CTKnZZwrGMdVGWW34c22A",
+     "lang": "en",
+     "date": "2025-12-01",
+     "video": "udUmtp1zLoI",
+     "len": 1437,
+     "chapters": [],
+     "quote": "the inherent power here is phenomenal",
+     "quoteAt": 886,
+     "stance": "mix",
+     "summary": "Finds the inherent power phenomenal, with a long, hollow Gen 3-like dwell and good feedback, though a slightly random firm exit point. Calls the sweet spot standard rather than huge and the spin strong on big swings but weaker on soft shots. Sees it as better suited to singles.",
+     "attrs": {
+      "power": "Excellent",
+      "spin": "Good",
+      "control": "Okay",
+      "sweet": "Okay",
+      "comfort": "Great"
+     },
+     "score": null,
+     "measured": {},
+     "alsoUrl": null,
+     "version": null,
+     "note": null,
+     "tie": null,
+     "stood": "Phenomenal inherent power with a long dwell.",
+     "trade": "A slightly random exit point; spin is weaker on soft shots.",
+     "compared": null
+    },
+    {
+     "id": "ignatowich-hq",
+     "creator": "Ignatowich HQ",
+     "kind": "youtube",
+     "type": "review",
+     "url": "https://www.youtube.com/watch?v=hPB9cjjhYBg",
+     "channel": "https://www.youtube.com/channel/UCqnitCp1PcFtS-EWt_ZCBSg",
+     "lang": "en",
+     "date": "2026-02-03",
+     "video": "hPB9cjjhYBg",
+     "len": 258,
+     "chapters": [],
+     "quote": "This isn't a bad paddle by any means.",
+     "quoteAt": 229,
+     "stance": "mix",
+     "summary": "Finds the sweet spot very rewarding but isolated, with a harsh, vibrating feel and little forgiveness below center. Ranks it third of the three full-foam paddles they have reviewed, behind the Boomstick and the Honolulu J6CR. Says it is still a good paddle that some advanced, aggressive players will like.",
+     "attrs": {
+      "sweet": "Weak",
+      "comfort": "Weak"
+     },
+     "score": null,
+     "measured": {},
+     "alsoUrl": null,
+     "version": null,
+     "note": null,
+     "tie": null,
+     "stood": "A rewarding sweet spot when you find it.",
+     "trade": "A harsh, vibrating feel and little forgiveness below center.",
+     "compared": "Selkirk Boomstick and Honolulu J6CR, both ranked above it."
+    },
+    {
+     "id": "west-side-pickleball",
+     "creator": "West Side Pickleball",
+     "kind": "youtube",
+     "type": "review",
+     "url": "https://www.youtube.com/watch?v=BvN14Wxd5C8",
+     "channel": "https://www.youtube.com/channel/UC167L67NklnhuIHOwhFxM8g",
+     "lang": "en",
+     "date": "2025-11-21",
+     "video": "BvN14Wxd5C8",
+     "len": 818,
+     "chapters": [
+      [
+       29,
+       "Price, specs, & tech"
+      ],
+      [
+       124,
+       "Power at a price..."
+      ],
+      [
+       339,
+       "Paddle feel/Power Gel"
+      ],
+      [
+       391,
+       "Too risky to use?"
+      ],
+      [
+       541,
+       "Suffering sweet spot"
+      ],
+      [
+       606,
+       "Spin/Diamond Tough"
+      ],
+      [
+       674,
+       "Who is this for?"
+      ],
+      [
+       742,
+       "Final thoughts"
+      ]
+     ],
+     "quote": "If you can't control the power, it's going to burn you.",
+     "quoteAt": 320,
+     "stance": "neg",
+     "summary": "Rates the power as sometimes beating the Boomstick, with elite spin and a bouncy, cushioned feel from the Power Gel. Finds control average at best and the sweet spot smaller than the Boomstick or Loco, and dislikes the hybrid shape. Calls it high risk and suited to very advanced players around 4.0 to 4.5 and up.",
+     "attrs": {
+      "power": "Excellent",
+      "spin": "Excellent",
+      "control": "Weak",
+      "sweet": "Weak",
+      "comfort": "Good"
+     },
+     "score": null,
+     "measured": {},
+     "alsoUrl": null,
+     "version": null,
+     "note": null,
+     "tie": null,
+     "stood": "Power that sometimes beats the Boomstick, and elite spin.",
+     "trade": "Control is average at best, with a small sweet spot.",
+     "compared": "Selkirk Boomstick and Loco, both with bigger sweet spots."
+    },
+    {
+     "id": "famous-by-friday-pickleball",
+     "creator": "Famous by Friday Pickleball",
+     "kind": "youtube",
+     "type": "review",
+     "url": "https://www.youtube.com/watch?v=xkkbfT2weYE",
+     "channel": "https://www.youtube.com/channel/UCpaWAvF-WWDJdwL1OkfLHiA",
+     "lang": "en",
+     "date": "2025-11-29",
+     "video": "xkkbfT2weYE",
+     "len": 1101,
+     "chapters": [],
+     "quote": "I like this paddle a lot.",
+     "quoteAt": 826,
+     "stance": "pos",
+     "summary": "Finds the surprise to be accuracy and consistency for a foam paddle, with easy depth and a plush, comfortable feel. Calls the spin good rather than great and the price a bit high. Says it suits compact swings and is fun to go after shots with, though foam flyers still happen.",
+     "attrs": {
+      "power": "Great",
+      "control": "Great",
+      "spin": "Good",
+      "sweet": "Good",
+      "comfort": "Great"
+     },
+     "score": null,
+     "measured": {
+      "swing_weight": 114,
+      "twist_weight": 6.4
+     },
+     "alsoUrl": null,
+     "version": null,
+     "note": null,
+     "tie": null,
+     "stood": "Accuracy and consistency for a foam paddle, with a plush feel.",
+     "trade": "Spin is good rather than great, and the price a bit high.",
+     "compared": null
+    },
+    {
+     "id": "pickleheads",
+     "creator": "Pickleheads",
+     "kind": "blog",
+     "type": "review",
+     "url": "https://www.pickleheads.com/pickleball-gear/six-zero-black-opal-review",
+     "channel": "https://www.pickleheads.com/",
+     "lang": "en",
+     "date": "2025-10-27",
+     "video": null,
+     "len": null,
+     "chapters": [],
+     "quote": null,
+     "quoteAt": null,
+     "stance": "pos",
+     "summary": "Calls it a very powerful hybrid with aggressive spin and pop that makes drives easy to finish. Finds control and forgiveness good rather than top tier, with a firmer feel than many foam paddles. Says it plays like a $250 paddle and would be a clearer pick nearer $200, suiting serious intermediate and advanced players.",
+     "attrs": {
+      "power": "Great",
+      "control": "Good",
+      "spin": "Excellent",
+      "sweet": "Good",
+      "durability": "Great"
+     },
+     "score": null,
+     "measured": {},
+     "alsoUrl": null,
+     "version": null,
+     "note": null,
+     "tie": null,
+     "stood": "Big power, aggressive spin and pop.",
+     "trade": "Control and forgiveness are good, not top tier.",
+     "compared": null
+    }
+   ]
+  }
+ }
+}

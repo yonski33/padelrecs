@@ -1,0 +1,130 @@
+/* The creator page (app/thread/creators/[slug]): scoped to .thc, so no other page changes. Built on the v3 (th8) parts and
+   the site's own tokens (.th-pb on PickleballRecs). */
+.thc { --w1: oklch(0.86 0.13 150); --w2: oklch(0.92 0.09 145); --w3: oklch(0.95 0.08 110); --w4: oklch(0.94 0.08 80); --w5: oklch(0.91 0.07 35); }
+.thc .thc-sub { font-size: 14px; color: var(--muted); margin: 0; }
+.thc .thc-foot { font-size: 13px; color: var(--muted); margin: 2px 0 0; line-height: 1.45; }
+.thc .thc-end { padding: 4px 2px 0; }
+/* Word chips: one fixed scale, colour by word. */
+.thc-w { display: inline-block; font-size: 12.5px; font-weight: 700; line-height: 1.2; padding: 2px 8px; border-radius: 999px; color: var(--ink); white-space: nowrap; }
+.thc-w.w1, .thc-dist .w1, .thc-key .w1 { background: var(--w1); } .thc-w.w2, .thc-dist .w2, .thc-key .w2 { background: var(--w2); }
+.thc-w.w3, .thc-dist .w3, .thc-key .w3 { background: var(--w3); } .thc-w.w4, .thc-dist .w4, .thc-key .w4 { background: var(--w4); }
+.thc-w.w5, .thc-dist .w5, .thc-key .w5 { background: var(--w5); }
+.thc-w.none { background: none; color: var(--idle); font-weight: 500; }
+.thc-av { flex: none; width: 34px; height: 34px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center;
+  background: var(--ink); color: #fff; font: 700 13px/1 var(--body-font); letter-spacing: .02em; }
+/* Top card */
+.thc-tldr-h { display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap; }
+.thc-tldr-h small { font-size: 14px; color: var(--ink2); font-weight: 600; }
+.thc .th8-tldr p { font-size: 17px; font-weight: 600; }
+/* Creator sentiment */
+.thc-sbar { display: flex; height: 30px; border: 1.5px solid var(--ink); border-radius: 8px; overflow: hidden; }
+.thc-sbar span { display: flex; align-items: center; padding: 0 10px; font-size: 14px; font-weight: 700; white-space: nowrap; overflow: hidden; min-width: 22px; }
+.thc-sbar .pos { background: var(--s-pos); } .thc-sbar .mix { background: var(--s-mix); } .thc-sbar .neg { background: var(--s-neg); }
+.thc-sbar span + span { border-left: 1.5px solid var(--ink); }
+.thc-sent-g { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; }
+.thc-sent-c { border: 1px solid var(--line); border-radius: 10px; padding: 10px 12px; display: flex; flex-direction: column; gap: 4px; }
+.thc-sent-h { display: flex; align-items: center; gap: 7px; font-size: 15px; }
+.thc-sent-h strong { margin-left: auto; font: 700 26px/1 var(--bc); }
+.thc-sent-c small { font-size: 13px; color: var(--muted); line-height: 1.4; }
+/* The creator table (desktop) and its phone rows */
+/* No horizontal scrollbar (owner 2026-11-22): the table shows only when the card is wide enough for all of it; narrower,
+   the same rows stack (a container query on the card, so it follows the column, not the window). */
+.thc-table { container-type: inline-size; }
+.thc-scroll { overflow: hidden; }
+.thc-table table { width: 100%; border-collapse: collapse; font-size: 14px; table-layout: auto; }
+.thc-table th { text-align: left; font-size: 11.5px; text-transform: uppercase; letter-spacing: .04em; color: var(--muted); font-weight: 700;
+  padding: 6px 6px 8px; border-bottom: 1.5px solid var(--ink); white-space: nowrap; }
+.thc-table td { padding: 8px 6px; border-bottom: 1px solid var(--div); vertical-align: middle; }
+.thc-table tr:last-child td { border-bottom: 0; }
+.thc-table th.w, .thc-table td.w { text-align: center; padding-left: 2px; padding-right: 2px; }
+.thc-table th.w { white-space: normal; line-height: 1.15; vertical-align: bottom; width: 56px; font-size: 11px; letter-spacing: .02em; }
+.thc-table .th-vpill { white-space: nowrap; }
+.thc-table td .thc-w { padding: 2px 7px; font-size: 12px; }
+.thc-table td.kp { color: var(--body); line-height: 1.35; min-width: 170px; font-size: 13px; }
+body:has(.th) .th a.thc-who { display: flex; align-items: center; gap: 9px; text-decoration: none; color: var(--ink); min-width: 150px; }
+.thc-who > span:last-child, .thc-rows-t > span:nth-child(2) { display: flex; flex-direction: column; gap: 1px; min-width: 0; }
+.thc-who b, .thc-rows-t b { font-size: 14px; line-height: 1.2; }
+.thc-who small, .thc-rows-t small { font-size: 12px; color: var(--muted); }
+body:has(.th) .th a.thc-who:hover b { text-decoration: underline; text-underline-offset: 3px; }
+.thc-rows { display: none; list-style: none; margin: 0; padding: 0; }
+.thc-rows li + li { border-top: 1px solid var(--div); }
+body:has(.th) .th .thc-rows a { display: flex; flex-direction: column; gap: 6px; padding: 10px 0; text-decoration: none; color: var(--ink); }
+.thc-rows-t { display: flex; align-items: center; gap: 9px; }
+.thc-rows-t .th-vpill { margin-left: auto; white-space: nowrap; }
+.thc-rows-x { font-size: 14px; line-height: 1.4; color: var(--body); }
+.thc-chips { display: flex; flex-wrap: wrap; gap: 5px 6px; }
+.thc-chip { display: inline-flex; align-items: center; gap: 5px; border: 1px solid var(--line); border-radius: 999px; padding: 2px 3px 2px 9px; background: #fff; }
+.thc-chip small { font-size: 12px; color: var(--ink2); font-weight: 600; }
+@container (max-width: 879px) { .thc-scroll { display: none; } .thc-rows { display: block; } }
+/* How it plays */
+.thc-how-l { list-style: none; margin: 4px 0 0; padding: 0; display: flex; flex-direction: column; gap: 9px; }
+.thc-how-l li { display: flex; flex-direction: column; gap: 4px; }
+.thc-how-t { display: flex; align-items: center; gap: 8px; font-size: 14.5px; }
+.thc-how-t b { flex: 1; } .thc-how-t small { font-size: 12.5px; color: var(--muted); min-width: 44px; text-align: right; }
+.thc-dist { display: flex; height: 7px; border-radius: 4px; overflow: hidden; gap: 1px; background: var(--div); }
+.thc-key { display: flex; flex-wrap: wrap; gap: 4px 10px; font-size: 12px; color: var(--muted); padding-top: 6px; border-top: 1px solid var(--div); margin-top: 4px; }
+.thc-key span { display: inline-flex; align-items: center; gap: 4px; } .thc-key i { width: 10px; height: 10px; border-radius: 3px; display: inline-block; }
+/* Where to buy */
+.thc-shop { display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 8px 0; border-bottom: 1px solid var(--div); }
+.thc-shop > span { display: flex; flex-direction: column; } .thc-shop small { font-size: 12.5px; color: var(--muted); }
+body:has(.th) .th .thc-shop a { flex: none; font-size: 14.5px; font-weight: 700; padding: 6px 12px; border-radius: 999px; border: 1.5px solid var(--ink);
+  background: var(--lime); color: var(--ink); text-decoration: none; }
+.thc-note { font-size: 12.5px; color: var(--muted); }
+/* The cards */
+.thc-reviews { display: flex; flex-direction: column; gap: 10px; scroll-margin-top: 70px; padding-top: 8px; }
+.thc-rv-h { display: flex; justify-content: space-between; align-items: flex-end; gap: 10px 16px; flex-wrap: wrap; }
+.thc-rv-h .th-h2 { margin: 0 0 2px; }
+.thc-sort { display: inline-flex; align-items: center; gap: 6px; font-size: 13.5px; color: var(--muted); }
+.thc-sort select { font: inherit; color: var(--ink); font-weight: 600; border: 1.5px solid var(--ink); border-radius: 999px; padding: 4px 10px; background: #fff; }
+.thc-tabs { align-self: flex-start; }
+.thc-card { display: grid; grid-template-columns: minmax(0, 1fr) 270px; gap: 18px; padding: 14px 16px; scroll-margin-top: 70px; }
+.thc-card-b { display: flex; flex-direction: column; gap: 10px; min-width: 0; }
+.thc-card-top { display: flex; align-items: center; gap: 10px; }
+.thc-by { display: flex; flex-direction: column; min-width: 0; }
+body:has(.th) .th .thc-by a { color: var(--ink); text-decoration: none; font-size: 15.5px; }
+body:has(.th) .th .thc-by a:hover { text-decoration: underline; text-underline-offset: 3px; }
+.thc-by small { font-size: 12.5px; color: var(--muted); }
+.thc-card-top .th-vpill { margin-left: auto; white-space: nowrap; }
+.thc-tags { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; }
+.thc-tags .th-pill { font-size: 12.5px; }
+.thc-own { background: var(--lime-box); }
+.thc-tie { font-size: 12.5px; color: var(--ink2); border: 1px dashed var(--chip); border-radius: 999px; padding: 2px 9px; }
+.thc-q { margin: 0; font: 700 25px/1.15 var(--bc); color: var(--ink); }
+body:has(.th) .th .thc-q a { color: var(--ink); text-decoration: none; }
+body:has(.th) .th .thc-q a:hover { text-decoration: underline; text-decoration-thickness: 2px; text-underline-offset: 4px; }
+.thc-q small { font: 600 12.5px/1 var(--body-font); color: var(--muted); margin-left: 8px; vertical-align: middle; }
+.thc-boxes { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 8px; }
+.thc-box { border-radius: 10px; padding: 8px 11px; display: flex; flex-direction: column; gap: 2px; font-size: 13.5px; line-height: 1.4; }
+.thc-box b { font-size: 12.5px; }
+.thc-box.pos { background: var(--p-pos); } .thc-box.neg { background: var(--p-neg); } .thc-box.cmp { background: var(--frame); }
+.thc-sum { margin: 0; font-size: 15px; line-height: 1.55; color: var(--body); }
+.thc-measured { margin: 0; font-size: 13.5px; color: var(--ink2); }
+.thc-card-f { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; }
+.thc .thc-more { all: unset; cursor: pointer; font-size: 14px; font-weight: 700; color: var(--ink); text-decoration: underline; text-underline-offset: 3px; }
+.thc .thc-more.sm { font-size: 13px; font-weight: 600; color: var(--ink2); }
+.thc .thc-more:focus-visible { outline: 3px solid var(--lime); outline-offset: 2px; }
+body:has(.th) .th a.thc-go { font-size: 14px; font-weight: 600; color: var(--ink2); }
+.thc-media { display: flex; flex-direction: column; gap: 10px; min-width: 0; }
+body:has(.th) .th a.thc-thumb { position: relative; display: block; aspect-ratio: 16 / 9; border-radius: 10px; overflow: hidden; background: #1d1d1b; }
+.thc-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.thc-thumb .play { position: absolute; inset: 0; margin: auto; width: 42px; height: 42px; border-radius: 50%; background: rgba(0,0,0,.55); }
+.thc-thumb .play::after { content: ""; position: absolute; left: 16px; top: 12px; border-style: solid; border-width: 9px 0 9px 14px; border-color: transparent transparent transparent #fff; }
+.thc-thumb .len { position: absolute; right: 6px; bottom: 6px; background: rgba(0,0,0,.8); color: #fff; font-size: 12px; font-weight: 700; padding: 1px 5px; border-radius: 4px; }
+body:has(.th) .th a.thc-blog { display: flex; flex-direction: column; gap: 3px; padding: 14px; border-radius: 10px; background: oklch(0.96 0.015 265); text-decoration: none; color: var(--ink); }
+.thc-blog > span { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: .05em; color: var(--ink2); }
+.thc-blog small { font-size: 13.5px; color: var(--ink2); margin-top: 6px; }
+.thc-chap > b { font-size: 13px; }
+.thc-chap ul { list-style: none; margin: 4px 0 0; padding: 0; display: flex; flex-direction: column; }
+body:has(.th) .th .thc-chap a { display: flex; gap: 8px; font-size: 13px; line-height: 1.35; padding: 4px 0; color: var(--body); text-decoration: none; border-bottom: 1px solid var(--div); }
+body:has(.th) .th .thc-chap a:hover { color: var(--ink); text-decoration: underline; text-underline-offset: 2px; }
+.thc-chap a span { flex: none; min-width: 38px; font-weight: 700; color: var(--ink); font-variant-numeric: tabular-nums; }
+@media (max-width: 759px) {
+  .thc-card { grid-template-columns: minmax(0, 1fr); gap: 12px; }
+  .thc-q { font-size: 22px; }
+  .thc-sent-g { grid-template-columns: minmax(0, 1fr); }
+}
+/* The stacked rows in a wide-but-not-wide-enough column: two per line. */
+@container (min-width: 600px) and (max-width: 879px) {
+  .thc-rows { display: grid !important; grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: 20px; }
+  .thc-rows li + li { border-top: 0; } .thc-rows li { border-bottom: 1px solid var(--div); }
+}

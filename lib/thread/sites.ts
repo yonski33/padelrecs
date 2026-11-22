@@ -83,3 +83,12 @@ export const postTypeSite = (nicheId: string) => POST_TYPE_SITES.includes(nicheI
  *  page for a side-by-side look. */
 export const WEB_V2_SITES = ["padel"];
 export const webV2Site = (nicheId: string) => WEB_V2_SITES.includes(nicheId);
+
+/** The creator-centred product page (owner direction 2026-11-22, iemranking-style: what YouTube and blog creators said, as
+ *  words), a preview for now: on these sites ?view=creators on a product page with creator data (CREATOR_PAGE_SLUGS, the
+ *  demo fixture db/creators/<site>.json) shows app/thread/creators/[slug]; the live product pages are unchanged. */
+export const CREATOR_PAGE_SITES = ["pickleball"];
+export const CREATOR_PAGE_SLUGS: Record<string, string[]> = { pickleball: ["11six24-vapor-power-2", "six-zero-black-opal-14mm"] };
+export const CREATOR_VIEW = "creators";
+export const creatorPageFor = (nicheId: string, slug: string) => CREATOR_PAGE_SITES.includes(nicheId)
+  && (CREATOR_PAGE_SLUGS[nicheId] ?? []).includes(slug);
