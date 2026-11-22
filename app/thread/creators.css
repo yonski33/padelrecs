@@ -381,7 +381,8 @@ body:has(.thc) .thc a.thc-tt-cover.pic { overflow: hidden; }
    bottom of the middle column, level with the bottom of Where to buy). */
 @media (min-width: 1081px) {
   .thc-v19 .thc-head { align-items: stretch; }
-  .thc-v19 .thc-photo { flex: 0 0 250px; height: auto; min-height: 340px; align-self: stretch; }
+  /* The photo a little bigger than the mock (owner: "just a tiny bit"), not stretched to the head's height. */
+  .thc-v19 .thc-photo { flex: 0 0 220px; height: 300px; align-self: flex-start; }
   .thc-v19 .thc-head-m { justify-content: flex-start; }
   .thc-v19 .thc-votes { margin-top: auto; }
 }
