@@ -209,7 +209,7 @@ export default async function ThreadRacket({ params }: P) {
     // The community sidebar (owner OK 2026-11-21): this week's counts, the newest question, who plays it (votes only), and
     // the rackets it is compared with (its compare pages' partners, then the engine's similar rackets).
     const groupOf = (k: string) => tc ? traitGroup(tc, r.id, k) : null;
-    const who = aw || SKIN ? null : whoPlays({ level: groupOf("level"), plays_like: groupOf("plays_like"), side: groupOf("side") });
+    const who = aw || SKIN ? null : whoPlays({ level: groupOf("level"), plays_like: groupOf("plays_like"), side: groupOf("side") }, { withLevel: niche.id !== "padel" });
     const cm = await communityFor(r.id);
     const partners = (ctx ? comparePairs(ctx.data).partners.get(r.id) ?? [] : []).map(x => rows.get(x.id)).filter((x): x is NonNullable<typeof x> => !!x && x.current !== false);
     const compared = [...partners, ...sim].filter((x, i, a) => x.id !== r.id && a.findIndex(y => y.id === x.id) === i).slice(0, 3)
