@@ -11,11 +11,11 @@
 import { Fragment, useEffect, useMemo, useState, type ReactNode } from "react";
 import { atSecond, clock } from "../../../lib/thread/video-meta";
 import { dayLabel, thumbOf } from "../../../lib/thread/web-sources";
-import { SOURCE_COLOR, STANCE_LABEL, cardChips, initials, langCode, marks, measuredLine, platform, scoreText, sortReviews,
+import { SOURCE_COLOR, STANCE_LABEL, cardChips, initials, langCode, marks, measuredLine, platform, scoreText, sortReviews, mixTikToks,
   stanceCounts, type CreatorReview, type ReviewEntry, type Stance } from "../../../lib/thread/creators";
 
 const OUT = { target: "_blank", rel: "noopener nofollow" } as const;
-const CHAPTERS = 5, FIRST = 6;
+const CHAPTERS = 5;
 const TYPE_TAG: Record<CreatorReview["type"], string | null> = { review: null, comparison: "Comparison", "long-term": null };
 const DOT: Record<Stance | "all", string> = { all: "#171717", pos: "#62C878", mix: "#F0D16B", neg: "#F0796A" };
 const SOURCES: [CreatorReview["kind"], string][] = [["youtube", "YouTube"], ["blog", "Blog"], ["tiktok", "TikTok"]];
@@ -51,7 +51,8 @@ function Card({ x, lit }: { x: ReviewEntry; lit: boolean }) {
     </div>}
     {/* TikTok: a plain 9:16 tile (TikTok's oEmbed gives no cover) where the thumbnail sits. */}
     {tt && <div className="thc-media thc-tt-m">
-      <a className="thc-tt-cover" href={x.url} {...OUT} aria-label={`Watch on TikTok: ${x.creator}`}>
+      <a className={`thc-tt-cover${x.cover ? " pic" : ""}`} href={x.url} {...OUT} aria-label={`Watch on TikTok: ${x.creator}`}>
+        {x.cover && <img src={x.cover} alt="" loading="lazy"/>}
         <span className="logo">TikTok</span><span className="play" aria-hidden="true"/>{x.len ? <span className="len">{clock(x.len)}</span> : null}</a>
     </div>}
     <div className="thc-card-b">
@@ -91,11 +92,13 @@ function Card({ x, lit }: { x: ReviewEntry; lit: boolean }) {
 /** `roundup`: the "Players on Reddit and forums" card, placed after the third card under All (never counted). */
 export function CreatorReviews({ reviews, count, roundup }: { reviews: ReviewEntry[]; count: number; roundup?: ReactNode }) {
   const [only, setOnly] = useState<Stance | "all">("all"), [src, setSrc] = useState<Src>(null), [by, setBy] = useState<"stance" | "newest">("stance");
-  const [all, setAll] = useState(false), [lit, setLit] = useState<string | null>(null), [goTo, setGoTo] = useState<string | null>(null);
+  const [lit, setLit] = useState<string | null>(null), [goTo, setGoTo] = useState<string | null>(null);
   const n = stanceCounts(reviews);
-  const list = useMemo(() => sortReviews(reviews.filter(r => (only === "all" || r.stance === only) && (!src || r.kind === src)), by),
-    [reviews, only, src, by]);
-  const shown = all ? list : list.slice(0, FIRST);
+  // Under All sources, TikToks are mixed in between the others (owner 2026-11-22), never several in a row.
+  const list = useMemo(() => { const l = sortReviews(reviews.filter(r => (only === "all" || r.stance === only) && (!src || r.kind === src)), by);
+    return src ? l : mixTikToks(l, by); }, [reviews, only, src, by]);
+  // Every review shows at once (owner 2026-11-22: little else follows on the page, so no reason to limit them).
+  const shown = list;
   const pills = ([["all", "All", reviews.length], ...(["pos", "mix", "neg"] as const).map(k => [k, STANCE_LABEL[k], n[k]] as const)] as const)
     .filter(c => c[2] > 0);
   const sources = SOURCES.map(([k, l]) => [k, l, reviews.filter(r => r.kind === k).length] as const).filter(c => c[2] > 0);
@@ -111,7 +114,7 @@ export function CreatorReviews({ reviews, count, roundup }: { reviews: ReviewEnt
       const r = reviews.find(x => x.id === id)!;
       if (only !== "all" && r.stance !== only) setOnly("all");
       if (src && r.kind !== src) setSrc(null);
-      setAll(true); setGoTo(id);
+      setGoTo(id);
     };
     document.addEventListener("click", onClick);
     return () => document.removeEventListener("click", onClick);
@@ -139,7 +142,5 @@ export function CreatorReviews({ reviews, count, roundup }: { reviews: ReviewEnt
       {sources.length > 1 && sources.map(([k, l, c]) => <button key={k} type="button" aria-pressed={src === k} onClick={() => setSrc(src === k ? null : k)}>
         {`${l} (${c})`}</button>)}</div>
     {shown.map((x, i) => <Fragment key={x.id}><Card x={x} lit={lit === x.id}/>{roundup && i === Math.min(2, shown.length - 1) && only === "all" && !src && roundup}</Fragment>)}
-    {list.length > shown.length && <button type="button" className="thc-show" onClick={() => setAll(true)}>
-      {`Show ${list.length - shown.length} more review${list.length - shown.length === 1 ? "" : "s"}`}</button>}
   </section>;
 }
