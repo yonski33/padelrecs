@@ -28,6 +28,10 @@ import { creatorPageFor, CREATOR_VIEW, CREATOR_MIN_REVIEWS, creatorPageOn } from
 import { Avatar, CreatorReviews } from "./live/creator-reviews";
 import { Comments } from "./live/comments";
 import { th } from "../../lib/thread/look";
+import { PollCard } from "./live/racket-v7b";
+import { TraitVotes } from "./live/trait-votes";
+import { traitSeed } from "../../lib/thread/trait-seed";
+import { creatorVoteGroups } from "../../lib/thread/creator-votes";
 import "./creators.css";
 
 
@@ -49,6 +53,7 @@ export async function CreatorProductBody({ slug }: { slug: string }) {
   // Under CREATOR_MIN_REVIEWS reviews the product keeps its usual page.
   if (rs.length < CREATOR_MIN_REVIEWS) return null;
   const { r, row, brand, style, sim, cards } = d;
+  const voteGroups = creatorVoteGroups(niche.id);
   // Similar paddles (the mock's section 8): the product page's similar list, current models only, filled up to four from the
   // other staged paddles (same shape first). A staged paddle shows its reviews' takes and its lowest price; others their votes.
   const home = await creatorHome(niche.id), staged = home?.paddles ?? {};
@@ -166,6 +171,15 @@ export async function CreatorProductBody({ slug }: { slug: string }) {
         </div>
 
         <CreatorReviews reviews={feed} count={rs.length} roundup={reddit.length > 0 ? <RedditRoundup items={reddit}/> : null}/>
+
+        {/* Played it? Vote and rate it (owner OK 2026-11-22): the padel page's poll and vote grid, asking this site's ranking
+            categories (lib/thread/creator-votes.ts). Its own player reviews count in the poll, as on the usual page; the votes
+            already stored (product_votes, trait votes) load live, one tap, no account. */}
+        <section id="vote" className="thc-sec2 thc-vote">
+          <div className="thc-sec2-h"><h2>Played it? Vote and rate it</h2><span>One tap, no account</span></div>
+          <PollCard id={r.id} reviews={{ positive: row?.pos ?? 0, mixed: row?.mix ?? 0, negative: row?.neg ?? 0 }} question="Would you buy it again?" countLine/>
+          {voteGroups.length > 0 && <TraitVotes id={r.id} seed={traitSeed(niche.id, r.id)} groups={voteGroups} tieNone/>}
+        </section>
 
         {/* Comments (the mock's section 7): the site's own discussion for this paddle, the same thread as its product page. */}
         <section className="thc-sec2 thc-comments"><Comments page={`racket:${r.id}`} nicknames={niche.form.quickVote?.nicknames ?? []}/></section>

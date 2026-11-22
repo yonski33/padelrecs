@@ -19,6 +19,7 @@ import { useAccount, signInHref } from "./use-account";
 import { MemberMark } from "./member-mark";
 import type { RvCard } from "../racket-data";
 import { W } from "../../../lib/thread/words";
+import { voteCountLine } from "../../../lib/thread/vote-count";
 /** Optional accounts run on PadelRecs only for now (lib/thread/sites.ts accountSite). */
 const ACCOUNTS = accountSite(niche.id);
 
@@ -56,7 +57,9 @@ function askOnce(id: string) {
   try { const seen = JSON.parse(localStorage.getItem(ASK_KEY) || "{}") as Record<string, 1>; if (seen[id]) return false;
     seen[id] = 1; localStorage.setItem(ASK_KEY, JSON.stringify(seen)); return true; } catch { return false; }
 }
-export function Poll({ id, reviews, question = "Poll: would you buy it again?", sub, countsOnly = false }: { id: string; reviews: Counts; question?: string; sub?: string; countsOnly?: boolean }) {
+/** `countLine` (the creator page, PR #649): the head's right side shows the vote count, "Be the first to vote" at zero, in
+ *  place of "One tap, no account" and the "No votes yet" note. */
+export function Poll({ id, reviews, question = "Poll: would you buy it again?", sub, countsOnly = false, countLine = false }: { id: string; reviews: Counts; question?: string; sub?: string; countsOnly?: boolean; countLine?: boolean }) {
   const [votes, setVotes] = useState<Counts | null>(null), [mine, setMine] = useState<Verdict | null>(null), [err, setErr] = useState("");
   // PadelRecs (countsOnly): after a fresh vote, one light "Want to add a line about why?", once per racket per visitor.
   const [ask, setAsk] = useState(false);
@@ -80,7 +83,7 @@ export function Poll({ id, reviews, question = "Poll: would you buy it again?", 
   const total = n("positive") + n("mixed") + n("negative");
   const openReview = () => dispatchEvent(new CustomEvent("thread-open-review", { detail: mine }));
   return <div className="th-poll">
-    <span className="th-poll-head">{sub ? <span className="th-poll-q"><b>{question}</b><small>{sub}</small></span> : <b>{question}</b>}<span>{mine && !countsOnly ? "Thanks, your vote counts. Tap another to change it, or tap again to remove." : "One tap, no account"}</span></span>
+    <span className="th-poll-head">{sub ? <span className="th-poll-q"><b>{question}</b><small>{sub}</small></span> : <b>{question}</b>}<span>{countLine ? voteCountLine(total) : mine && !countsOnly ? "Thanks, your vote counts. Tap another to change it, or tap again to remove." : "One tap, no account"}</span></span>
     {(["positive", "mixed", "negative"] as const).map(k => { const c = n(k), w = total ? Math.round(c / total * 100) : 0, cls = VERDICT[k][1];
       return <button key={k} type="button" className={`th-popt ${cls}${mine && mine !== k ? " dim" : ""}`} aria-pressed={mine === k} onClick={() => pick(k)}>
         <i style={{ width: total ? `${w}%` : 0 }}/>
@@ -93,7 +96,7 @@ export function Poll({ id, reviews, question = "Poll: would you buy it again?", 
     {countsOnly && mine && ask && <div className="th-poll-ask" role="status"><span>Want to add a line about why?</span>
       <button type="button" className="go" onClick={() => { setAsk(false); openReview(); }}>Add a line</button>
       <button type="button" className="x" aria-label="No thanks" onClick={() => setAsk(false)}>×</button></div>}
-    {total === 0 && <span className="th-note">No votes yet. Be the first.</span>}
+    {total === 0 && !countLine && <span className="th-note">No votes yet. Be the first.</span>}
     {err && <span className="th-err">{err}</span>}
   </div>;
 }

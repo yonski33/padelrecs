@@ -156,3 +156,20 @@ test("creator data from the database: row mappers and the home's counts", async 
   assert.equal(home.total, 3);
   assert.equal(home.paddles.paddle!.price!.usd, 120, "the lowest in-stock price, never a sold-out one");
 });
+
+// Played it? Vote and rate it (PR #649): the site's ranking categories, the count line.
+import { creatorVoteGroups } from "../lib/thread/creator-votes";
+import { voteCountLine } from "../lib/thread/vote-count";
+import { rankingTraits } from "../lib/category-rating";
+test("creator votes ask the pickleball ranking categories, no padel-only group", () => {
+  assert.deepEqual(rankingTraits("pickleball"), ["plays_like", "spin", "arm", "level"]);
+  const keys = creatorVoteGroups("pickleball").map(g => g.key);
+  assert.deepEqual(keys, ["plays_like", "spin", "arm", "level"]);
+  assert.ok(!keys.includes("side") && !keys.includes("game_type"));
+  assert.deepEqual(creatorVoteGroups("discgolf"), []);
+});
+test("vote count line: plain counts, never 0 votes", () => {
+  assert.equal(voteCountLine(0), "Be the first to vote");
+  assert.equal(voteCountLine(1), "1 vote");
+  assert.equal(voteCountLine(3), "3 votes");
+});
