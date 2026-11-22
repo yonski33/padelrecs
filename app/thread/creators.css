@@ -465,3 +465,18 @@ body:has(.thc) .thc .thc-pbox a.thc-cta.wide { display: block; text-align: cente
 body:has(.thc) .thc .thc-chap a { grid-template-columns: 44px minmax(0, 1fr); font-size: 14px; }
 .thc-chap a > span { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .thc-chap a > span:first-child { font-size: 14px; line-height: inherit; }
+/* Owner 2026-11-23: the middle column and the price box always end on one line, whatever the TL;DR length or shop count:
+   both stretch to the taller one; the vote box sits at the middle's bottom, the price box grows below its shops. */
+@media (min-width: 1081px) {
+  .thc-v19 .thc-hd3 { align-items: stretch; }
+  .thc-v19 .thc-hd3 .thc-photo { align-self: flex-start; }
+  .thc-v19 .thc-hd3 .thc-vbox { margin-top: auto; }
+  .thc-v19 .thc-hd3 .thc-head-r { align-self: stretch; display: flex; flex-direction: column; }
+  .thc-v19 .thc-hd3 .thc-head-r > #buy { flex: 1 1 auto; }
+}
+/* At a glance (owner 2026-11-23, the mockup): reviewer, take, key point; no word columns; the key point bigger. */
+.thc-g-row { grid-template-columns: minmax(170px, 1.1fr) 100px minmax(0, 2.6fr); gap: 14px; padding-top: 12px; padding-bottom: 12px; }
+.thc-g-row .kp { font-size: 16.5px; line-height: 1.4; font-weight: 500; color: var(--ink); }
+.thc-g-head .kp { font-size: 11px; font-weight: 700; }
+.thc-g-who strong { font-size: 15px; } .thc-g-who > span:last-child > span { font-size: 12.5px; }
+@media (max-width: 600px) { .thc-g-row { grid-template-columns: minmax(0, 1fr) auto; } .thc-g-row .kp { font-size: 15.5px; } }
