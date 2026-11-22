@@ -30,6 +30,7 @@ import { Comments } from "./live/comments";
 import { th } from "../../lib/thread/look";
 import { PollCard } from "./live/racket-v7b";
 import { CompactFit } from "./live/creator-fit";
+import { StickyCol } from "./live/sticky-col";
 import { TraitVotes } from "./live/trait-votes";
 import { traitSeed } from "../../lib/thread/trait-seed";
 import { creatorVoteGroups } from "../../lib/thread/creator-votes";
@@ -47,6 +48,8 @@ const sourceList = (rs: { kind: string }[]) => { const k = new Set(rs.map(r => r
   return l.length > 1 ? `${l.slice(0, -1).join(", ")} and ${l.at(-1)}` : l[0] ?? "reviewers"; };
 /** "Nov 22": a price check's day, short, for the Where to buy header. */
 const shortDay = (iso: string) => new Date(`${iso.slice(0, 10)}T12:00:00Z`).toLocaleDateString("en-US", { month: "short", day: "numeric", timeZone: "UTC" });
+/** Rows the at-a-glance table shows before "Show all N reviews". */
+const GLANCE = 13;
 const STYLE_WORD = { control: "Control", power: "Power", balance: "All-round" } as const;
 const KEYS = ["pos", "mix", "neg"] as const;
 const label = (k: (typeof ATTRS)[number][0]) => ATTRS.find(a => a[0] === k)![1];
@@ -101,6 +104,16 @@ export async function CreatorProductBody({ slug }: { slug: string }) {
   // The one filled Check price button (README rule) goes to a lowest in-stock shop; without prices, to the live page's link.
   const cta = low ? { url: low.shops[0]!.url, rel: relOf(low.shops[0]!.affiliate) } : shop;
   const how = howItPlays(rs), agree = agreeChips(rs);
+  // The at-a-glance table: rows with a word in a table column first, otherwise the reviews' own order.
+  const graded = (x: (typeof rs)[number]) => TABLE_ATTRS.some(k => !!x.attrs[k]);
+  const glance = [...rs.filter(graded), ...rs.filter(x => !graded(x))];
+  const gRow = (x: (typeof rs)[number]) => <a key={x.id} className="thc-g-row" href={`#cr-${x.id}`}>
+    <span className="thc-g-who"><Avatar name={x.creator} kind={x.kind} size="sm"/><span><strong>{x.creator}</strong>
+      <span>{`${platform(x)} · ${langCode(x.lang)}`}{x.score && ` · ${scoreText(x.score)}`}</span></span></span>
+    <span className={`thc-take sm ${x.stance}`}>{STANCE_LABEL[x.stance]}</span>
+    <span className={`kp${x.keyPoint ? "" : " clamp"}`} title={x.keyPoint ? undefined : takeaway(x.short)}>{x.keyPoint || takeaway(x.short)}</span>
+    {TABLE_ATTRS.map(k => <span key={k} className="thc-g-w" data-l={label(k)}><Word w={x.attrs[k]}/></span>)}
+  </a>;
   const ld = { "@context": "https://schema.org", "@graph": [crumbs([{ name: catalogLabel, path: catalogPath },
     ...(brand ? [{ name: brand.name, path: `/brands/${brand.slug}` }] : []), { name: r.name, path: productHref(r) }])] };
   const pic = row?.pic ?? null;
@@ -189,17 +202,13 @@ export async function CreatorProductBody({ slug }: { slug: string }) {
             <section id="creators" className="thc-box1 flush thc-glance">
               <div className="thc-h rule"><strong>{`All ${rs.length} reviews at a glance`}</strong><span>Tap a row to jump to the full summary</span></div>
               <div className="thc-g-row thc-g-head"><span>Reviewer</span><span>Take</span><span className="kp">Key point</span>{TABLE_ATTRS.map(k => <span key={k}>{label(k)}</span>)}</div>
-              {rs.map(x => <a key={x.id} className="thc-g-row" href={`#cr-${x.id}`}>
-                <span className="thc-g-who"><Avatar name={x.creator} kind={x.kind} size="sm"/><span><strong>{x.creator}</strong>
-                  <span>{`${platform(x)} · ${langCode(x.lang)}`}{x.score && ` · ${scoreText(x.score)}`}</span></span></span>
-                <span className={`thc-take sm ${x.stance}`}>{STANCE_LABEL[x.stance]}</span>
-                <span className={`kp${x.keyPoint ? "" : " clamp"}`} title={x.keyPoint ? undefined : takeaway(x.short)}>{x.keyPoint || takeaway(x.short)}</span>
-                {TABLE_ATTRS.map(k => <span key={k} className="thc-g-w" data-l={label(k)}><Word w={x.attrs[k]}/></span>)}
-              </a>)}
+              {/* Graded rows first (owner 2026-11-22), 13 shown, the rest behind "Show all N reviews" (no script: a details box). */}
+              {glance.slice(0, GLANCE).map(gRow)}
+              {glance.length > GLANCE && <details className="thc-g-more"><summary>{`Show all ${rs.length} reviews`}</summary>{glance.slice(GLANCE).map(gRow)}</details>}
               <span className="thc-note">Words come from what each reviewer said in their own review.</span>
             </section>
           </div>
-          <div className="thc-row-r">
+          <StickyCol className="thc-row-r">
             {how.length > 0 && <section className="thc-box1 flush">
               <div className="thc-h rule"><strong>How it plays</strong><span>{`From all ${rs.length} reviews`}</span></div>
               {how.map(h => <div key={h.k} className="thc-grade"><span><strong>{h.label}</strong><Word w={h.word}/></span><span>{h.line}</span></div>)}
@@ -211,7 +220,7 @@ export async function CreatorProductBody({ slug }: { slug: string }) {
                 <span><strong>{withoutYear(m.row.name)}</strong>{m.row.line && <span>{m.row.line}</span>}
                   <small>{`Mentioned in ${plural(m.n, "review")}${m.price ? ` · from ${usd(m.price.usd)}` : ""}`}</small></span></a>)}
             </section>}
-          </div>
+          </StickyCol>
         </div>
 
         <CreatorReviews reviews={feed} count={rs.length} roundup={null}/>
