@@ -28,6 +28,8 @@ const SITES: Record<string, Record<string, PageContent>> = { padel: padel as Rec
 export function pageContent(slug: string, site = niche.id): PageContent | null {
   return SITES[site]?.[slug] ?? null;
 }
+/** Every racket's page content on this site (the fit check's better picks, app/api/fit-picks). */
+export const allPageContent = (site = niche.id): Record<string, PageContent> => SITES[site] ?? {};
 
 /** The fewest reports an evidence line may show (owner rule, all sites, 2026-11-16): under this the item still shows but its
  *  "N players mention it" line (and any special line with a count) is left out. Copy guide: QUICK-TAKE-RECIPE.md, "Counts". */
