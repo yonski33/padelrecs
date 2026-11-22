@@ -28,7 +28,8 @@ import { creatorPageFor, CREATOR_VIEW, CREATOR_MIN_REVIEWS, creatorPageOn } from
 import { Avatar, CreatorReviews } from "./live/creator-reviews";
 import { Comments } from "./live/comments";
 import { th } from "../../lib/thread/look";
-import { PollCard, FitCard } from "./live/racket-v7b";
+import { PollCard } from "./live/racket-v7b";
+import { CompactFit } from "./live/creator-fit";
 import { TraitVotes } from "./live/trait-votes";
 import { traitSeed } from "../../lib/thread/trait-seed";
 import { creatorVoteGroups } from "../../lib/thread/creator-votes";
@@ -137,7 +138,7 @@ export async function CreatorProductBody({ slug }: { slug: string }) {
               : <span className="thc-none"><a href="#vote">Be the first to vote</a></span>}</div>
         </div>
         <div className="thc-head-r">
-          <FitCard id={r.id} title={`Is this ${niche.words.one} right for me?`} sub="Pick your level and style"/>
+          <CompactFit id={r.id} title={`Is this ${niche.words.one} right for me?`} sub="Pick your level and style"/>
           {/* Where to buy (owner 2026-11-22): the 3 cheapest in-stock shops as quiet links, no filled button; the check date in
               the header; "Lowest" only when one shop is cheapest. No stored price: the usual shop link as one quiet row. */}
           {(buy.length > 0 || cta) && <section id="buy" className="thc-box1 thc-buy">

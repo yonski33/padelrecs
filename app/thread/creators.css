@@ -344,3 +344,22 @@ body:has(.thc) .thc a.thc-cta.wide { text-align: center; margin-top: 4px; }
 .thc .th-cm-av { flex: 0 0 28px; width: 28px; height: 28px; border-radius: 50%; border: 1.5px solid var(--ink); display: inline-flex; align-items: center; justify-content: center;
   font-size: 11px; font-weight: 800; color: var(--ink); margin-right: 2px; }
 .thc .th-cm-av.sm { flex-basis: 24px; width: 24px; height: 24px; font-size: 10px; }
+/* "Is this paddle right for me?" (Hybrid v19 mockup, live/creator-fit.tsx): compact chips, a small result under a thin rule. */
+.thc-fit { padding: 16px 18px; gap: 10px; }
+.thc-fit h2 { margin: 0; font-family: 'Barlow Condensed', var(--bc, sans-serif); font-size: 26px !important; font-weight: 800; line-height: 1.05; }
+.thc-fit-sub { font-size: 13.5px; color: var(--muted); margin-top: -6px; }
+.thc-fit-row { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+.thc-fit-row > b { font-size: 15px; font-weight: 800; margin-right: 2px; }
+.thc .thc-chip { display: inline-flex; align-items: center; gap: 6px; font: inherit; font-size: 14px; font-weight: 700; color: var(--ink); background: var(--card);
+  border: 2px solid var(--ink); border-radius: 999px; padding: 4px 13px; cursor: pointer; }
+.thc .thc-chip svg { width: 14px; height: 14px; }
+.thc .thc-chip[aria-pressed="true"] { background: var(--acc); }
+.thc-arm { display: inline-flex; align-items: center; gap: 7px; font-size: 14px; font-weight: 700; cursor: pointer; }
+.thc-arm input { width: 18px; height: 18px; margin: 0; accent-color: var(--ink); }
+.thc-fit-out { display: flex; flex-direction: column; align-items: flex-start; gap: 6px; padding-top: 12px; margin-top: 2px; border-top: 1px solid var(--rule); }
+.thc-fit-pct { font-size: 14px; font-weight: 800; border: 2px solid var(--ink); border-radius: 999px; padding: 3px 12px; background: var(--sand); }
+.thc-fit-pct.g { background: var(--acc); } .thc-fit-pct.y { background: #F0D16B; } .thc-fit-pct.r { background: var(--card); }
+.thc-fit-out > strong { font-size: 15px; }
+.thc-fit-why, .thc-fit-note { font-size: 13.5px; line-height: 1.45; color: var(--body2); }
+.thc .thc-fit-reset { font: inherit; font-size: 13.5px; font-weight: 700; color: var(--ink); background: none; border: 0; padding: 0; text-decoration: underline; cursor: pointer; }
+.thc-fit-row > b { font-size: 16px; } .thc .thc-chip { font-size: 15px; padding: 5px 14px; }

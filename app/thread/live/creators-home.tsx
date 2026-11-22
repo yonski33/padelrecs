@@ -17,7 +17,7 @@ import { W } from "../../../lib/thread/words";
 const FIRST = 6;
 const STYLES: [Style, string][] = [["control", "Control"], ["balance", "Balance"], ["power", "Power"]];
 const LEVEL_WORD: Record<Level, string> = { beginner: "Beginner", intermediate: "Intermediate", advanced: "Advanced" };
-const LEVEL_ICON: Record<Level, ReactNode> = {
+export const LEVEL_ICON: Record<Level, ReactNode> = {
   beginner: <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" aria-hidden="true"><path d="M7 13V6M7 6C7 3 5 1.5 2 1.5 2 4.5 4 6 7 6zM7 7.5c0-2.5 1.8-4 5-4 0 3-2 4-5 4"/></svg>,
   intermediate: <svg width="12" height="15" viewBox="0 0 12 15" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinejoin="round" aria-hidden="true"><path d="M7 1L1.5 8.5H6L5 14l5.5-7.5H6z"/></svg>,
   advanced: <svg width="16" height="14" viewBox="0 0 16 14" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinejoin="round" aria-hidden="true"><path d="M4 1h8l3 4-7 8-7-8zM1 5h14M6 1L5 5l3 8 3-8-1-4"/></svg>,
