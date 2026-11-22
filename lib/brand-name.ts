@@ -30,6 +30,8 @@ export function repeatsBrand(name: string, brand: string) {
   const n = words(name), b = words(brand);
   if (!b) return false;
   if (n === b || n.startsWith(b + " ")) return true;
+  // The brand glued to a model number: "CRBN¹ TruFoam Genesis" (CRBN's own names) shows once, not "CRBN CRBN¹…" (pickleball audit 2026-11-22).
+  if (name.toLowerCase().startsWith(brand.toLowerCase()) && /^[0-9¹²³⁴⁵⁶⁷⁸⁹⁰]/.test(name.slice(brand.length))) return true;
   const first = n.split(" ")[0], bw = b.split(" ");
   if (first.length >= 3 && bw.includes(first)) return true;
   if (first.length >= 5 && bw[0].startsWith(first)) return true;

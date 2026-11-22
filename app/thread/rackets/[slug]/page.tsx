@@ -177,7 +177,9 @@ export default async function ThreadRacket({ params }: P) {
     // "Released": the year in the name ("Head Radical MP 2023"), else the year field, except on TennisRecs and SimRacingRecs,
     // whose year field is a placeholder (2026 on every product, owner report 2026-11-22): there the row is left out.
     const released = r.name.match(/\b(20\d\d)\b/)?.[1] ?? (SR || (TN && !tennisYearKnown(r.slug)) ? null : r.year ? String(r.year) : null);
-    const v7Specs = (SR || TN || PB ? [...niche.specs.map(s => [s.label, r[s.column]]), ["Released", released]] : aw ? [["Type", r.balance], ["Connection", r.weight], ["Driver", r.core], ["Noise cancelling", aw.anc ? "Yes" : aw.wireless ? "No" : null], ["Notes", r.surface]] : [["Weight", r.weight], ["Shape", r.shape], ["Balance", r.balance], ["Feel", row?.feel ?? null], ["Face", r.surface], ["Released", r.year ? String(r.year) : null],
+    const v7Specs = (SR || TN || PB ? [...niche.specs.map(s => [s.label, r[s.column]]), ["Released", released],
+      // Sourced extra facts (db/shop/spec-notes.json): the v3 pickleball page dropped them (audit 2026-11-22).
+      ...(((specNotes as unknown as Record<string, Record<string, [string, string][]>>)[niche.id] ?? {})[r.slug] ?? [])] : aw ? [["Type", r.balance], ["Connection", r.weight], ["Driver", r.core], ["Noise cancelling", aw.anc ? "Yes" : aw.wireless ? "No" : null], ["Notes", r.surface]] : [["Weight", r.weight], ["Shape", r.shape], ["Balance", r.balance], ["Feel", row?.feel ?? null], ["Face", r.surface], ["Released", r.year ? String(r.year) : null],
       ...(((specNotes as unknown as Record<string, Record<string, [string, string][]>>)[niche.id] ?? {})[r.slug] ?? [])] as [string, string | null][]).filter((x): x is [string, string] => !!x[1]);
     // TL;DR with no counts (owner 2026-11-21): the written one as is; else the page's own lines without "N players mention
     // it", else the most-mentioned tags as "Players often say…". Claims still need 5+ reviews behind them (as before).
@@ -202,6 +204,13 @@ export default async function ThreadRacket({ params }: P) {
     // The community sidebar (owner OK 2026-11-21): this week's counts, the newest question, who plays it (votes only), and
     // the rackets it is compared with (its compare pages' partners, then the engine's similar rackets).
     const groupOf = (k: string) => tc ? traitGroup(tc, r.id, k) : null;
+    // PickleballRecs (audit 2026-11-22): the vote boxes start from the same counts the browser loads (owner counts + votes).
+    const votes = PB && tc ? (() => {
+      const counts: Record<string, Record<string, number>> = {}, ov: Record<string, Record<string, number>> = {};
+      for (const [k, n] of tc.votes) { const [rid, tr, c] = k.split("|"); if (rid === r.id) (counts[tr] ??= {})[c] = n; }
+      for (const [k, c] of tc.overrides) { const [rid, tr] = k.split("|"); if (rid === r.id) ov[tr] = c; }
+      return { counts, overrides: { counts: ov, frozen: [] as string[] } };
+    })() : undefined;
     const who = aw ? null : whoPlays({ level: groupOf("level"), plays_like: groupOf("plays_like"), side: groupOf("side") });
     const cm = await communityFor(r.id);
     const partners = (ctx ? comparePairs(ctx.data).partners.get(r.id) ?? [] : []).map(x => rows.get(x.id)).filter((x): x is NonNullable<typeof x> => !!x && x.current !== false);
@@ -209,7 +218,7 @@ export default async function ThreadRacket({ params }: P) {
       .map(x => ({ row: x, href: `/compare?ids=${encodeURIComponent(r.slug)},${encodeURIComponent(x.slug)}` }));
     return <Shell active="rackets">
       <JsonLd data={ld}/>
-      <RacketV7b id={r.id} title={r.year && bare !== name ? `${bare} (${r.year})` : name} model={model} crumbs={crumbsEl} tags={aw ? audioTagsOf(aw, r.weight) : tags} lime={aw ? aw.anc : !!style} row={row} judged={judged} {...(aw && au ? audioPageProps(r.id, aw, au, rows, ctx) : SR ? srPageProps(r.id, r.shape) : {})}
+      <RacketV7b id={r.id} {...(votes ? { votes } : {})} title={r.year && bare !== name ? `${bare} (${r.year})` : name} model={model} crumbs={crumbsEl} tags={aw ? audioTagsOf(aw, r.weight) : tags} lime={aw ? aw.anc : !!style} row={row} judged={judged} {...(aw && au ? audioPageProps(r.id, aw, au, rows, ctx) : SR ? srPageProps(r.id, r.shape) : {})}
         lead={aw && lead ? lead.replace(/(?<![\w-])([Oo])wner(s?)\b/g, (_, o: string, x: string) => `${o === "O" ? "L" : "l"}istener${x}`) : SR && lead ? lead.replace(/(?<![\w-])([Oo])wner(s?)\b/g, (_, o: string, x: string) => `${o === "O" ? "R" : "r"}acer${x}`) : TN && lead ? lead.replace(/(?<![\w-])([Oo])wner(s?)\b/g, (_, o: string, x: string) => `${o === "O" ? "P" : "p"}layer${x}`) : lead} bullets={v7Bullets} specs={v7Specs} shop={shop} cards={cards} also={also} brand={brand ? { name: brand.name, slug: brand.slug } : null}
         sim={simSelf ? pickSimilar(simSelf, simSpecs, new Set(compared.map(c => c.row.id))).flatMap(id => rows.get(id) ?? []) : aw || SR ? sim.filter(x => !compared.some(c => c.row.id === x.id)) : []} pill={pill} week={weekLine(cm.opinions, cm.posts)} latest={cm.latest} who={who} compared={compared} stories={tales}/>
     </Shell>;

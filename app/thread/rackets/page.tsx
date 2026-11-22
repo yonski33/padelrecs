@@ -38,7 +38,10 @@ export default async function ThreadCatalog() {
   const count = new Map<string, number>();
   for (const r of rows) count.set(r.brand, (count.get(r.brand) ?? 0) + 1);
   const top = [...rows].sort((a, b) => (b.score ?? -1) - (a.score ?? -1) || b.n - a.n);
-  const ld = <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: listJsonLd([catalogCrumb], top.map(r => ({ name: r.name, href: r.href }))) }}/>;
+  // The v3 catalogue counts and lists current models only (older ones sit behind "Show older models"), so its ItemList
+  // says the same number (pickleball audit 2026-11-22: "162 paddles" on the page, 178 in the JSON-LD).
+  const ldRows = v3Site(niche.id) ? top.filter(r => r.current !== false) : top;
+  const ld = <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: listJsonLd([catalogCrumb], ldRows.map(r => ({ name: r.name, href: r.href }))) }}/>;
   if (!v3Site(niche.id)) {
     const brands = [...count].filter(([b, n]) => b && n >= 5).sort((a, b) => b[1] - a[1]).slice(0, 10).map(([b]) => b);
     return <Shell active="rackets">{ld}<Catalog rows={rows} brands={brands}/></Shell>;

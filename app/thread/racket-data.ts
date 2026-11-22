@@ -123,7 +123,8 @@ export async function racketData(slug: string) {
   const facts = ctx.facts(r.id), traitScores = ctx.traits(r.id).scores;
   const traits = Object.entries(DG || SR ? DG_TRAIT_LABEL : TRAIT_LABEL).flatMap(([k, label]) => { const t = traitScores?.[k]; if (!t || t.basis === "none") return [];
     return [{ key: k, label, dots: t.dots, line: ctx.expertLine(r.id, k), expert: !!t.expert, n: t.people ? t.people.players.plus + t.people.reviewers.plus : t.plus }]; });
-  const style = styleOf(facts);
+  // PickleballRecs: the clear vote leader wins the label (app/thread/data.ts votedLabels); else the reviews' lean.
+  const style = row?.styleVote ?? styleOf(facts);
 
   // Similar rackets (the live page's similarProducts), one per model, best liked first, and the brand's own line. Both keep
   // only each model's current row (ThreadRow.current, the classic rule), so an older year never stands in for its model.

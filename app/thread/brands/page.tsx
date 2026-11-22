@@ -33,7 +33,7 @@ export default async function ThreadBrands() {
         const loved = all.filter(r => r.brand === b.name && r.current !== false && r.pos > 0).sort((x, y) => y.pos - x.pos || y.n - x.n)[0] ?? null;
         return <a key={b.id} className="th-card thb3-card" href={th(`/brands/${b.slug}`)}>
           <strong className="name">{b.name}</strong>
-          <span className="counts">{[plural(models, "racket"), reviews > 0 ? plural(reviews, "opinion") : ""].filter(Boolean).join(" · ")}</span>
+          <span className="counts">{[plural(models, niche.words.one), reviews > 0 ? plural(reviews, "opinion") : ""].filter(Boolean).join(" · ")}</span>
           {loved && <span className="loved"><span>Most loved:</span> <strong>{loved.name.replace(new RegExp(`^${b.name}\\s+`, "i"), "")}</strong></span>}
           <span className="go">See rackets →</span>
         </a>; })}</div>
@@ -51,7 +51,7 @@ export default async function ThreadBrands() {
         <li key={b.id}><a className="th-brand" href={th(`/brands/${b.slug}`)}>
           <Photo src={pic} className="th-brand-pic"/>
           <span className="th-brand-body"><strong>{b.name}</strong>
-            <span className="th-note">{[models > 0 ? plural(models, niche.id === "simracing" ? niche.words.one : "racket") : "", reviews > 0 ? plural(reviews, "review") : ""].filter(Boolean).join(" · ")}</span>
+            <span className="th-note">{[models > 0 ? plural(models, niche.words.one) : "", reviews > 0 ? plural(reviews, "review") : ""].filter(Boolean).join(" · ")}</span>
             {top && <span className="th-note">{`Top rated: ${top.name.replace(new RegExp(`^${b.name}\\s+`, "i"), "")}`}</span>}</span>
           {/* No score on the v3 sites (audio and sim racing use this layout). */}{!v3Site(niche.id) && top?.score != null && <Badge n={top.score} size="sm"/>}
           <span className="th-link-b" aria-hidden="true">›</span>

@@ -1,5 +1,6 @@
 // The Thread pages' data, all from what the live site already reads (no new tables): the match context (catalogue, Player
 // scores, fit facts, trait scores), the ranked lists (curated top 10s first) and the web reports. Built once per instance copy.
+import { votedLabels } from "../../lib/thread/vote-label";
 import { cache } from "react";
 import { tennisFeel } from "../../lib/thread/tennis-notes";
 import { matchContext } from "../match-context";
@@ -70,6 +71,12 @@ async function countedRows(): Promise<Rows> {
   const rows = new Map<string, ThreadRow>();
   const current = familyRowIds(data.listed, x => (reports.get(x.id) ?? 0) >= MIN_FIT_REPORTS);
   for (const r of data.listed) rows.set(r.id, { ...rowOf(ctx, r, brand.get(r.brandId) ?? "", reports.get(r.id) ?? 0, takes.get(r.id)?.hook), current: current.has(r.id) });
+  // PickleballRecs (owner rule, audit 2026-11-22): the style, feel and level labels follow the page's own vote boxes once
+  // they are clear (30+ votes, the leader at least 1.5 times the runner-up); otherwise the reviews and the maker's positioning.
+  if (niche.id === "pickleball") {
+    const t = await traitCounts();
+    for (const row of rows.values()) Object.assign(row, votedLabels(row, id => trait => traitGroup(t, id, trait)));
+  }
   return { ctx, rows, all: [...rows.values()], bySlug: new Map([...rows.values()].map(x => [x.slug, x])) };
 }
 

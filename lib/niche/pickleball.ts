@@ -149,7 +149,7 @@ export const pickleball: Niche = {
     { column: "surface", label: "Surface", max: 200, placeholder: "e.g. Raw T700 carbon" },
     { column: "balance", label: "Swing weight", max: 120, placeholder: "e.g. 115" },
   ],
-  shapeFilter: ["Standard", "Elongated", "Hybrid"],
+  shapeFilter: ["Standard", "Widebody", "Elongated", "Hybrid"],
   rowDetail: { column: "core", suffix: " core" },
   // Add new terms at the end; renaming or removing one orphans it on existing reviews.
   tags: [

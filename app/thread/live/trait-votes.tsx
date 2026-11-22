@@ -16,8 +16,10 @@ type Overrides = { counts: Record<string, Record<string, number>>; frozen: strin
 /** `groups` and `title`: StackRecs passes its tool's side ("How does it build?"); padel keeps its nine and its heading. */
 /** `of`: the page's opinion count (SkinRecs); no longer shown, since the note is just "Tap to vote" (owner 2026-11-20). */
 /** `tieNone`: on a tie for the lead, highlight neither answer (PadelRecs racket page). */
-export function TraitVotes({ id, seed, groups = TRAIT_GROUPS, title = W.traitsTitle, tieNone = false }: { id: string; seed: TraitSeed | null; groups?: TraitGroup[]; title?: string; of?: number; tieNone?: boolean }) {
-  const [counts, setCounts] = useState<TraitCounts>({}), [ov, setOv] = useState<Overrides>({ counts: {}, frozen: [] }), [mine, setMine] = useState<Record<string, string>>({}), [err, setErr] = useState("");
+/** `initial`: the server's counts at render (PickleballRecs, audit 2026-11-22), so the page's HTML shows the same boxes as the
+ *  browser does after /api/trait-votes loads; without it the HTML has the review prefill only. */
+export function TraitVotes({ id, seed, groups = TRAIT_GROUPS, title = W.traitsTitle, tieNone = false, initial }: { id: string; seed: TraitSeed | null; groups?: TraitGroup[]; title?: string; of?: number; tieNone?: boolean; initial?: { counts: TraitCounts; overrides: Overrides } }) {
+  const [counts, setCounts] = useState<TraitCounts>(initial?.counts ?? {}), [ov, setOv] = useState<Overrides>(initial?.overrides ?? { counts: {}, frozen: [] }), [mine, setMine] = useState<Record<string, string>>({}), [err, setErr] = useState("");
   useEffect(() => {
     fetch(`/api/trait-votes?racket=${encodeURIComponent(id)}`, { cache: "no-store" }).then(r => r.ok ? r.json() : null)
       .then((b: { counts?: TraitCounts; mine?: Record<string, string>; overrides?: Overrides } | null) => { if (b?.counts) { setCounts(b.counts); setMine(b.mine ?? {}); if (b.overrides) setOv(b.overrides); } }).catch(() => {});

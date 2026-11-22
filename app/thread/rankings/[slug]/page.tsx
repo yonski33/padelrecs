@@ -70,8 +70,22 @@ export async function generateMetadata({ params }: P): Promise<Metadata> {
   const { slug } = await params;
   const l = (await threadRankings()).find(x => x.slug === slug);
   if (!l) return { title: "Ranking not found", robots: { index: false } };
-  if (l.own) return liveMetadata({ params });
-  const title = `${l.title}, ranked by real ${W.reviews}`;
+  if (l.own) {
+    const m = await liveMetadata({ params });
+    if (!V3) return m;
+    // The title's "Ranked by N Real Player Reviews" counts the paddles this page lists (they can be ordered by votes, so the
+    // old list's own count no longer matched; pickleball audit 2026-11-22).
+    const { rows } = await threadRows(), n = l.ids.reduce((a, id) => a + (rows.get(id)?.n ?? 0), 0);
+    const fix = (t: unknown) => typeof t === "string" ? t.replace(/Ranked by [\d,]+ Real/, `Ranked by ${n.toLocaleString("en-US")} Real`) : t;
+    const t = m.title && typeof m.title === "object" && "absolute" in m.title ? { ...m.title, absolute: fix(m.title.absolute) as string } : fix(m.title) as Metadata["title"];
+    return { ...m, title: t, ...(m.openGraph ? { openGraph: { ...m.openGraph, title: fix(m.openGraph.title) as string } } : {}) };
+  }
+  // PickleballRecs' Thread-only lists (best elongated, best hybrid) use the same title pattern as its other lists
+  // (audit 2026-11-22): "Best Elongated Pickleball Paddles 2026, Ranked by N Real Player Reviews".
+  const pbCount = niche.id === "pickleball" ? await (async () => { const { rows } = await threadRows(); return l.ids.reduce((a, id) => a + (rows.get(id)?.n ?? 0), 0); })() : 0;
+  const title = niche.id === "pickleball" && pbCount > 0
+    ? `${l.title.replace(/\b[a-z]/g, c => c.toUpperCase())}, Ranked by ${pbCount.toLocaleString("en-US")} Real Player Reviews`
+    : `${l.title}, ranked by real ${W.reviews}`;
   const description = l.kids ? `${l.blurb} The top picks by product type, from reviews by people who ${W.played} them.`
     : ratingCategory(l.slug, niche.id) ? `${l.blurb} The top ${l.ids.length}, from reviews by people who ${W.played} them.`
     // The v3 sites have no score (owner 2026-11-22): their lists are ordered by reviews, so the description says that.

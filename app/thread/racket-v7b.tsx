@@ -44,6 +44,7 @@ export type V7bProps = {
   /** Often compared with: up to 3 rackets and their compare page. */ compared: { row: ThreadRow; href: string }[];
   stories: { id: string; slug: string; title: string; author: { name: string } }[];
   /** AudioRecs (V3-ROLLOUT-BRIEF): its own fit card and its kind's vote groups. Padel: absent. */ fit?: ReactNode; groups?: TraitGroup[];
+  /** The vote boxes' server counts (PickleballRecs), so the HTML matches the browser. */ votes?: { counts: Record<string, Record<string, number>>; overrides: { counts: Record<string, Record<string, number>>; frozen: string[] } };
 };
 /** Two TL;DR bullets: the first praise and the first catch, so a downside always shows. */
 const two = <B extends { tone: string }>(bs: B[]) => { const pos = bs.find(b => b.tone === "pos"), neg = bs.find(b => b.tone !== "pos");
@@ -132,7 +133,7 @@ export function RacketV7b(p: V7bProps) {
         <PollCard id={p.id} reviews={{ positive: row?.pos ?? 0, mixed: row?.mix ?? 0, negative: row?.neg ?? 0 }} question="Poll: would you buy it again?"
           sub={`Vote and see how other ${W.people} feel after using it.`} countsOnly/>
       </div>
-      <TraitVotes id={p.id} seed={traitSeed(niche.id, p.id)} tieNone {...(p.groups ? { groups: p.groups } : {})}/>
+      <TraitVotes id={p.id} seed={traitSeed(niche.id, p.id)} tieNone {...(p.groups ? { groups: p.groups } : {})} {...(p.votes ? { initial: p.votes } : {})}/>
       {/* Similar rackets (owner bug 2026-11-21): four current models, none from Often compared with (lib/thread/similar-pick.ts),
           as a row of tiles across the column on desktop and a stack on phones. */}
       {p.sim.length > 0 && <section className="th-card th8-sec"><div className="th8-sec-h"><h2 className="th-h2">{`Similar ${niche.words.many}`}</h2>

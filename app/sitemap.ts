@@ -77,9 +77,12 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 }
 
 async function threadExtras(base: string, updated: Date | undefined): Promise<MetadataRoute.Sitemap> {
-  if (niche.id !== "padel" || !threadSite(niche.id) || !THREAD_DEFAULT) return [];
+  if (!threadSite(niche.id) || !THREAD_DEFAULT) return [];
   const { threadRankings } = await import("./thread/rankings-data");
   const extra = (await threadRankings()).filter(l => !l.own);
+  // The other v3 sites: their Thread-only rankings (e.g. PickleballRecs' best elongated and best hybrid, audit 2026-11-22),
+  // which every ranking page links to. Padel keeps its guides too.
+  if (niche.id !== "padel") return v3Site(niche.id) ? extra.map(l => ({ url: `${base}${l.href}`, lastModified: updated, changeFrequency: "weekly" as const, priority: 0.7 })) : [];
   return [
     { url: `${base}/guides`, lastModified: updated, changeFrequency: "monthly" as const, priority: 0.6 },
     ...GUIDE_KEYS.filter(k => k !== "racket").map(k => ({ url: `${base}${GUIDE_PATHS[k]}`, lastModified: updated, changeFrequency: "monthly" as const, priority: 0.6 })),

@@ -60,6 +60,22 @@ const SR_WIN: [string, string, string, string][] = [["Most detailed feedback", "
 const total = (g: Record<string, number>) => Object.values(g).reduce((a, b) => a + b, 0);
 const hrefFor = (slugs: string[]) => slugs.length ? `/compare?ids=${slugs.map(encodeURIComponent).join(",")}` : "/compare";
 
+/** PickleballRecs (audit 2026-11-22): "Where they differ" rows that have a vote group follow the votes once every paddle
+ *  has 30+ in that group: the highest share wins, a tie drops the row. Otherwise the trait dots decide, as before. */
+const VOTE_DIFF: Record<string, [string, string]> = { "More control": ["plays_like", "control"], "More spin": ["spin", "lots"], "More pop": ["pop", "high"] };
+function votedDiffs(rows: { label: string; id: string }[], ids: string[], t: Awaited<ReturnType<typeof traitCounts>>) {
+  const out = rows.filter(r => !VOTE_DIFF[r.label]);
+  for (const [label, [trait, opt]] of Object.entries(VOTE_DIFF)) {
+    const sc = ids.map(id => { const g = traitGroup(t, id, trait), tot = total(g); return { id, tot, sh: tot ? (g[opt] ?? 0) / tot : 0 }; });
+    if (sc.every(x => x.tot >= 30)) {
+      const ranked = [...sc].sort((a, b) => b.sh - a.sh);
+      if (ranked[0].sh > (ranked[1]?.sh ?? -1)) out.push({ label, id: ranked[0].id });
+    } else { const old = rows.find(r => r.label === label); if (old) out.push(old); }
+  }
+  // Keep the page's usual row order.
+  return rows.map(r => r.label).concat(Object.keys(VOTE_DIFF)).filter((l, i, a) => a.indexOf(l) === i).flatMap(l => out.filter(r => r.label === l));
+}
+
 export async function CompareV3({ data, products }: { data: Data; products: Data["rackets"] }) {
   const [{ rows, all }, t, feed, parts] = await Promise.all([threadRows(), traitCounts(), threadFeed(), compareParts(data, products)]);
   const { cprods, specDefs, slugs, brandOf } = parts;
@@ -84,7 +100,7 @@ export async function CompareV3({ data, products }: { data: Data; products: Data
     if (cards.length < 2 || !w || w.hit < 5 || w.tot < 10 || (ranked[1] && ranked[1].sh === w.sh)) return [];
     return [{ label, win: w.i, why: `${w.hit} of ${w.tot} ${W.people} ${verb}`, rows: sc.map(s => ({ i: s.i, tot: s.tot, opts: (AUDIO || SR || PB ? AUDIO_OPT : OPT)[trait].map(([k, l]) => ({ l, n: s.g[k] ?? 0, on: k === opt })) })) }];
   });
-  const diffs = cards.length > 1 ? differRows(cprods, TRAITS) : [];
+  const diffs = cards.length > 1 ? (PB ? votedDiffs(differRows(cprods, TRAITS), cards.map(c => c.id), t) : differRows(cprods, TRAITS)) : [];
   // What players say: each racket's newest member review of a readable length.
   const quotes = cards.flatMap((c, i) => { const q = feed.find(f => f.racketId === c.id && f.kind === "player" && f.text.length >= 40 && f.text.length <= 280)
     ?? feed.find(f => f.racketId === c.id && f.kind === "player" && f.text.length >= 40);

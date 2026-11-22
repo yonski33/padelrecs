@@ -11,6 +11,8 @@ export type ThreadRow = {
   id: string; slug: string; name: string; href: string; pic: string | null; shape: string | null;
   line: string | null; best: string | null; n: number; pos: number; mix: number; neg: number;
   /** The live, volume-weighted Player score (lib/signal.ts), null until a racket has enough reviews. */ score: number | null;
+  /** PickleballRecs (audit 2026-11-22): the "Plays like" vote leader when the votes are clear (lib/thread/vote-label.ts);
+   *  the style label shows it instead of the reviews' lean. The match engine keeps its own lean. */ styleVote?: "control" | "power" | "balance";
   brand: string; year: number; levels: ("beginner" | "intermediate" | "advanced")[]; feel: "Soft" | "Medium" | "Hard" | "Warm" | "Balanced" | "Bright" | null; arm: boolean;
   /** The year that takes its model's row (lib/compare-pairs.ts familyRowIds, the classic catalog's and home's rule). Older
    *  years (false) stay reachable by their page and the catalog's search or "Show older models". */ current?: boolean;
