@@ -11,6 +11,7 @@ import { viewKey, readViewKey, viewQuery, CATALOG_VIEW, RANKING_VIEW, RACKET_VIE
 import { catalogPath } from "./lib/niche";
 import { specGroups } from "./lib/guide";
 import { threadPath, threadSite, THREAD_LOOK, THREAD_DEFAULT, CLASSIC_LOOK } from "./lib/thread/look";
+import { creatorPageFor, CREATOR_VIEW } from "./lib/thread/sites";
 // The catalogue's cached views also hold the niche's spec filters (its guide config: padel balance and face).
 const CATALOG_Q = [...CATALOG_VIEW, ...specGroups(niche.guide).map(g => g.key)];
 
@@ -76,6 +77,10 @@ export function threadView(request:NextRequest) {
  const add=to==="/thread/add-review";
  if(add&&request.nextUrl.searchParams.get("classic"))return null;
  const url=request.nextUrl.clone();url.pathname=to;if(!add)url.search="";
+ // The creator-page preview (lib/thread/sites.ts CREATOR_PAGE_SITES): ?view=creators on a product with creator data is
+ // served by its own cached page (app/thread/creators/[slug]); every other address routes as before.
+ const product=/^\/thread\/rackets\/([a-z0-9-]+)$/.exec(to);
+ if(product&&request.nextUrl.searchParams.get("view")===CREATOR_VIEW&&creatorPageFor(niche.id,product[1]!))url.pathname=`/thread/creators/${product[1]}`;
  return NextResponse.rewrite(url);
 }
 
@@ -85,14 +90,15 @@ export function threadView(request:NextRequest) {
  *  Rewrites never pass through here again, and Next's own revalidation requests are left alone. */
 export async function threadRedirect(request:NextRequest, lookup:()=>Promise<Map<string,{slug:string;shape:string|null}>>) {
  if(!threadSite(niche.id)||request.headers.has("x-prerender-revalidate"))return null;
- const m=/^\/thread\/rackets(?:\/([a-z0-9-]+))?\/?$/.exec(request.nextUrl.pathname);
+ const m=/^\/thread\/(?:rackets|creators)(?:\/([a-z0-9-]+))?\/?$/.exec(request.nextUrl.pathname);
  if(!m)return null;
+ const creators=request.nextUrl.pathname.startsWith("/thread/creators");
  let to=m[1]?`${catalogPath}/${m[1]}`:catalogPath;
  if(m[1]&&niche.categoryPaths){
   try{const products=await lookup();to=productRedirect(niche,`/rackets/${m[1]}`,slug=>products.get(slug))??to;}
   catch(error){console.error("Thread redirect lookup failed",error);}
  }
- const url=request.nextUrl.clone();url.pathname=to;url.search="";
+ const url=request.nextUrl.clone();url.pathname=to;url.search=creators&&m[1]?`?view=${CREATOR_VIEW}`:"";
  return NextResponse.redirect(url,301);
 }
 
