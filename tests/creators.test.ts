@@ -110,3 +110,17 @@ test("creator page: TikTok short takes (Coral Pro demo) follow the copy rules an
   // Not in the other demo paddles.
   assert.equal(creatorPage("pickleball", "11six24-vapor-power-2")!.tiktok, undefined);
 });
+
+test("creator page: TikTok takes are reviews, counted once per channel", async () => {
+  const { reviewLists } = await import("../lib/thread/creators");
+  const p = creatorPage("pickleball", "six-zero-coral-pro-16mm")!;
+  const { feed, counted } = reviewLists(p);
+  assert.equal(feed.length, 15 + 6, "every TikTok video has a card");
+  assert.equal(counted.length, 15 + 5, "@identify.as.a.5.0 counts once");
+  const idn = counted.filter(r => r.handle === "@identify.as.a.5.0");
+  assert.equal(idn.length, 1); assert.equal(idn[0]!.date, "2026-11-19", "by its newest take");
+  for (const t of feed.filter(r => r.kind === "tiktok")) { assert.deepEqual(t.attrs, {}); assert.equal(t.stood, null); assert.equal(t.chapters.length, 0); }
+  // The other demo paddles are unchanged.
+  const v = reviewLists(creatorPage("pickleball", "11six24-vapor-power-2")!);
+  assert.equal(v.feed.length, v.counted.length);
+});
