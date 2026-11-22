@@ -2,7 +2,7 @@ import test from "node:test";
 import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
 import { W } from "../lib/thread/words";
-import { countLine, isThin, playersWord, POLL_POINT_MIN, splitSources, threadTitle, THIN_REVIEWS, thumbOf, videoId } from "../lib/thread/web-sources";
+import { countLine, isThin, playersWord, splitSources, threadTitle, THIN_REVIEWS, thumbOf, videoId } from "../lib/thread/web-sources";
 
 const card = (kind: string, url: string | null = null) => ({ kind, url });
 
@@ -47,17 +47,17 @@ test("few-review pages: one threshold, an honest count line, the poll pointer fr
   assert.equal(countLine(1, 13), "1 player review · 13 from around the web");
   assert.equal(countLine(0, 3), "0 player reviews · 3 from around the web");
   assert.equal(countLine(6, 0), "6 player reviews");
-  assert.equal(POLL_POINT_MIN, 5);
-  const live = readFileSync("app/thread/live/racket-v7b.tsx", "utf8"), poll = readFileSync("app/thread/live/racket.tsx", "utf8");
+  const live = readFileSync("app/thread/live/racket-v7b.tsx", "utf8"), poll = readFileSync("app/thread/live/racket.tsx", "utf8"), feed = readFileSync("app/thread/live/feed-v7b.tsx", "utf8");
   // The words are the site's (lib/thread/words.ts; padel: "player", "Played with it?"), so AudioRecs says "listener" (V3-ROLLOUT-BRIEF).
   assert.ok(live.includes("`No ${W.person} reviews yet. ${W.usedIt} Add the first one`"));
-  assert.ok(live.includes("${W.people} voted in the poll above"));
+  // No poll total next to the reviews (owner 2026-11-22): the "N players voted in the poll above" link is gone.
+  assert.ok(!live.includes("voted in the poll above") && !feed.includes("voted in the poll above"));
   assert.deepEqual([W.person, W.people, W.usedIt], ["player", "players", "Played with it?"]);
   // The post-vote prompt: padel's countsOnly poll only, once per racket (localStorage), dismissable.
   assert.match(poll, /Want to add a line about why\?/);
   assert.match(poll, /if \(countsOnly\) setAsk\(off \? false : askOnce\(id\)\)/);
   assert.match(poll, /aria-label="No thanks"/);
-  const copy = ["No player reviews yet. Played with it? Add the first one", "Played with it? Add yours", " players voted in the poll above",
+  const copy = ["No player reviews yet. Played with it? Add the first one", "Played with it? Add yours",
     "Want to add a line about why?", "Add a line", "No thanks"];
   const words = (t: string) => t.replaceAll("${W.person}", W.person).replaceAll("${W.usedIt}", W.usedIt).replaceAll("${W.people}", W.people);
   for (const t of copy) { assert.ok(words(live + poll).includes(t), t); assert.doesNotMatch(t, /—|\bowners?\b|\bverdict\b|\b(we|us)\b/i); }

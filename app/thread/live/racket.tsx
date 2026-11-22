@@ -78,9 +78,6 @@ export function Poll({ id, reviews, question = "Poll: would you buy it again?", 
   };
   const n = (k: Verdict) => reviews[k] + (votes?.[k] ?? 0);
   const total = n("positive") + n("mixed") + n("negative");
-  // PadelRecs: the live total for the reviews strip's "N players voted in the poll above" (racket-v7b.tsx PollPointer).
-  useEffect(() => { if (!countsOnly || !votes) return; (window as { __thPollTotal?: number }).__thPollTotal = total;
-    dispatchEvent(new CustomEvent("thread-poll-total", { detail: total })); }, [countsOnly, votes, total]);
   const openReview = () => dispatchEvent(new CustomEvent("thread-open-review", { detail: mine }));
   return <div className="th-poll">
     <span className="th-poll-head">{sub ? <span className="th-poll-q"><b>{question}</b><small>{sub}</small></span> : <b>{question}</b>}<span>{mine && !countsOnly ? "Thanks, your vote counts. Tap another to change it, or tap again to remove." : "One tap, no account"}</span></span>

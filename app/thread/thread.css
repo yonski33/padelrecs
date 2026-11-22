@@ -2032,8 +2032,6 @@ body:has(.th) .th a.th-web-th { flex: none; position: relative; width: 112px; he
 .th7-invite { display: flex; align-items: center; flex-wrap: wrap; gap: 8px 12px; padding: 10px 12px; border-radius: 10px;
   background: var(--frame); border: 1.5px solid var(--line); font-size: 15px; font-weight: 600; color: var(--ink); }
 .th7-invite .th-btn { min-height: 34px; font-size: 14px; white-space: nowrap; }
-body:has(.th) .th a.th7-pollpoint { flex-basis: 100%; font-size: 13.5px; font-weight: 400; color: var(--ink2); text-decoration: underline;
-  text-underline-offset: 3px; }
 .th-poll-ask { display: flex; align-items: center; gap: 6px 12px; flex-wrap: wrap; font-size: 14.5px; padding: 8px 8px 8px 12px;
   border-radius: 10px; border: 1.5px dashed var(--chip); background: var(--card); }
 .th-poll-ask > span { flex: 1 1 auto; min-width: 0; }
