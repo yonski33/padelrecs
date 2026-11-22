@@ -190,3 +190,24 @@ test("stance line: one review gives its key point, none says so", () => {
   assert.equal(stanceLine([x], "neg"), "Too stiff for touch.");
   assert.equal(stanceLine([x], "pos"), "None of the reviews.");
 });
+
+// Site sentiment (owner 2026-11-22): the bar and counts come from site votes, never creator stances.
+import { siteSentiment, countsLine, opinionsLabel, sentimentSentence, shareLine } from "../lib/thread/site-sentiment";
+import { rowExtras, homePaddle, praiseLine as praise } from "../lib/thread/creator-home";
+test("site sentiment: counts, lines and the empty case", () => {
+  const s = siteSentiment({ pos: 155, mix: 64, neg: 65 });
+  assert.equal(s.total, 284);
+  assert.equal(countsLine(s), "155 loved · 64 mixed · 65 not for me");
+  assert.equal(opinionsLabel(1, "player"), "1 player opinion");
+  assert.equal(sentimentSentence(s, "players"), "155 of 284 players loved it, 64 were mixed and 65 found it not for them.");
+  assert.equal(sentimentSentence(siteSentiment(null), "players"), null);
+  assert.equal(shareLine(155, s, "players"), "55% of players");
+});
+test("home extras keep the row's own votes and add only praise and price", () => {
+  const [slug, page] = pages[0]!; const p = homePaddle(page);
+  const rows = [{ id: "a", slug, href: `/paddles/${slug}`, pos: 9, mix: 1, neg: 0 }, { id: "b", slug: "none", href: "/paddles/none", pos: 2, mix: 0, neg: 0 }];
+  const x = rowExtras(rows, { [slug]: p }, { b: "Lots of spin · 4 players" }, (_s, h) => h);
+  assert.equal(x.a!.pill, praise(p) ?? null);
+  assert.equal(x.b!.pill, "Lots of spin · 4 players");
+  assert.ok(!("pos" in x.a!));
+});

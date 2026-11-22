@@ -256,3 +256,15 @@ body:has(.thc) .thc a.thc-tt-cover { position: relative; display: flex; align-it
 
 /* What reviewers agree on: the likes and concerns panel inside the stance box (owner 2026-11-22). */
 .thc .thc-big.in { border: 1px solid var(--rule); border-radius: 12px; }
+
+/* Compact creator cards (owner 2026-11-22): the same cards, a bit smaller and tighter, still the page's big section. */
+.thc .thc-reviews { gap: 14px; }
+.thc .thc-card { gap: 18px; padding: 16px 18px; border-radius: 14px; }
+.thc .thc-card-b { gap: 10px; }
+.thc .thc-media { flex-basis: 168px; gap: 8px; }
+.thc .thc-q { font-size: 20px; }
+.thc .thc-sum { font-size: 14px; line-height: 1.55; }
+@media (max-width: 640px) { .thc .thc-card { padding: 14px; gap: 12px; } .thc .thc-q { font-size: 18px; } }
+/* The head's creator line: "Praised for spin in 13 reviews · See reviews ›", plain, never a score. */
+.thc .thc-praise { display: flex; flex-wrap: wrap; gap: 4px 10px; align-items: baseline; font-size: 13px; color: var(--muted); }
+.thc .thc-praise a { font-weight: 700; color: var(--ink); }
