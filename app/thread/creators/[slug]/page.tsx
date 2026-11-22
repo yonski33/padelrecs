@@ -185,29 +185,37 @@ export default async function CreatorProductPage({ params }: P) {
   </Shell>;
 }
 
-/** "Short takes on TikTok" (owner 2026-11-22), under the review feed: compact cards, not review cards (no Stood out /
- *  Trade-off / Compared to, no chapters: TikTok has none). A sideways row on desktop, a stack on phones.
+/** "Short takes on TikTok" (owner 2026-11-22), its own block right after the review feed (the feed's chips filter by take,
+ *  not by source). Stacked full-width cards in the YouTube review card's frame and layout (owner: "stack them just like we
+ *  do for the youtube videos"): a 9:16 tile where the thumbnail sits, then the short content only (no Stood out / Trade-off /
+ *  Compared to, no chapters: TikTok has none).
  *  UNVERIFIED (data flag tiktok.unverified): Grok's cards; the quotes need a caption check before this goes live. Covers: TikTok's
  *  oEmbed gave none, so each cover is a plain TikTok tile. */
 function TikTokStrip({ takes }: { takes: import("../../../../lib/thread/creators").TikTokTake[] }) {
   const day = (iso: string) => new Date(`${iso}T12:00:00Z`).toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric", timeZone: "UTC" });
   const clock = (s: number) => `${Math.floor(s / 60)}:${String(s % 60).padStart(2, "0")}`;
   const sorted = takes.slice().sort((a, b) => b.date.localeCompare(a.date));
-  return <section className="thc-tt" aria-labelledby="thc-tt-h">
-    <div className="thc-tt-h"><h2 id="thc-tt-h">Short takes on TikTok <span>{`· ${takes.length}`}</span></h2>
-      <span>Quick clips from TikTok creators. Counted in the sentiment bar, one per channel.</span></div>
-    <div className="thc-tt-row">{sorted.map(t => <article key={t.id} className="thc-tt-c">
-      <a className="thc-tt-cover" href={t.url} target="_blank" rel="noopener nofollow" aria-label={`Watch on TikTok: ${t.creator}`}>
-        <span className="logo">TikTok</span><span className="play" aria-hidden="true"/><span className="len">{clock(t.len)}</span></a>
-      <div className="thc-tt-b">
-        <span className="thc-tt-top"><span className="who"><strong>{t.creator}</strong><small>{`${t.handle} · ${day(t.date)} · ${clock(t.len)}`}</small></span>
-          <span className={`thc-take sm ${t.stance}`}>{STANCE_LABEL[t.stance]}</span></span>
-        <strong className="thc-tt-q">{`“${t.quote}”`}</strong>
-        <p>{t.take}</p>
-        <span className="thc-tags">{t.tags.map(x => <span key={x} className={`thc-pm ${x.startsWith("-") || x.startsWith("−") ? "neg" : "pos"}`}>{x.replace(/^-\s*/, "− ")}</span>)}</span>
-        <small className="thc-tt-d">{t.disclosure}</small>
-        <a className="thc-tt-go" href={t.url} target="_blank" rel="noopener nofollow">Watch on TikTok ↗</a>
+  const OUT = { target: "_blank", rel: "noopener nofollow" } as const;
+  return <section className="thc-reviews thc-tt" aria-labelledby="thc-tt-h">
+    <div className="thc-rv-h"><h2 id="thc-tt-h">Short takes on TikTok <span>{`· ${takes.length}`}</span></h2></div>
+    {sorted.map(t => <article key={t.id} className="thc-card thc-tt-c">
+      <div className="thc-media thc-tt-m">
+        <a className="thc-tt-cover" href={t.url} {...OUT} aria-label={`Watch on TikTok: ${t.creator}`}>
+          <span className="logo">TikTok</span><span className="play" aria-hidden="true"/><span className="len">{clock(t.len)}</span></a>
       </div>
-    </article>)}</div>
+      <div className="thc-card-b">
+        <div className="thc-card-top">
+          <span className="thc-av thc-tt-av" aria-hidden="true">{t.creator.replace(/[^A-Za-z0-9 ]/g, " ").split(/\s+/).filter(Boolean).slice(0, 2).map(w => w[0]!.toUpperCase()).join("")}</span>
+          <a className="thc-name" href={t.url} {...OUT}>{t.creator}</a>
+          <span className="thc-meta">{`· TikTok · ${t.handle} · ${day(t.date)}`}</span>
+          <span className={`thc-take ${t.stance}`}>{`♡ ${STANCE_LABEL[t.stance]}`}</span>
+        </div>
+        <h3 className="thc-q">{`“${t.quote}”`}</h3>
+        <p className="thc-sum">{t.take}</p>
+        <div className="thc-tags">{t.tags.map(x => <span key={x} className={`thc-pm ${x.startsWith("-") || x.startsWith("−") ? "neg" : "pos"}`}>{x.replace(/^-\s*/, "− ")}</span>)}</div>
+        <small className="thc-tt-d">{t.disclosure}</small>
+        <div className="thc-links"><a href={t.url} {...OUT}><span className="thc-tt-i" aria-hidden="true">♪</span>Watch on TikTok ↗</a></div>
+      </div>
+    </article>)}
   </section>;
 }
