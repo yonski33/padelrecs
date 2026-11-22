@@ -805,7 +805,12 @@
      "trade": "Solid but not top tier, and less forgiving than the widebody.",
      "compared": "The widebody Power 2 shape."
     }
-   ]
+   ],
+   "groups": {
+    "pos": "Spin near the legal limit, and a grit that keeps it after weeks of play.",
+    "mix": "Liked the spin, but found the stock feel, spin or soft game uneven.",
+    "neg": ""
+   }
   },
   "six-zero-black-opal-14mm": {
    "paddle": "Six Zero Black Opal 14mm (hybrid)",
@@ -1573,7 +1578,12 @@
      "trade": "Control and forgiveness are good, not top tier.",
      "compared": null
     }
-   ]
+   ],
+   "groups": {
+    "pos": "Huge power and spin for players with clean, compact swings.",
+    "mix": "Liked the power, but found the sweet spot small and the soft game hard.",
+    "neg": "Found the power hard to control, with a small sweet spot."
+   }
   }
  }
 }

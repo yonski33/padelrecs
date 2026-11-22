@@ -27,7 +27,9 @@ export type CreatorReview = {
   /** A disclosed tie with this product's brand: "Works with <tie>". */ tie: string | null;
   stood: string | null; trade: string | null; compared: string | null;
 };
-export type CreatorPage = { paddle: string; tldr: string; reviews: CreatorReview[] };
+export type CreatorPage = { paddle: string; tldr: string;
+  /** One line per take for the sentiment boxes (written from the reviews' own summaries; "" when none). */
+  groups: Record<Stance, string>; reviews: CreatorReview[] };
 /** Loved / Mixed / Not for me counts. */
 export function stanceCounts(rs: Pick<CreatorReview, "stance">[]) {
   const n = { pos: 0, mix: 0, neg: 0 };
@@ -77,3 +79,46 @@ export const STANCE_ORDER: Record<Stance, number> = { pos: 0, mix: 1, neg: 2 };
 export function sortReviews<T extends Pick<CreatorReview, "stance" | "date">>(rs: T[], by: "stance" | "newest"): T[] {
   return rs.slice().sort((a, b) => (by === "stance" ? STANCE_ORDER[a.stance] - STANCE_ORDER[b.stance] : 0) || b.date.localeCompare(a.date));
 }
+
+/** The table's word columns (owner mock: a few, so the table fits without a scrollbar). */
+export const TABLE_ATTRS: AttrKey[] = ["power", "control", "spin"];
+const label = (k: AttrKey) => ATTRS.find(a => a[0] === k)![1];
+const HIGH: Word[] = ["Excellent", "Great"], LOW: Word[] = ["Okay", "Weak"];
+
+/** "How it plays": per attribute, the middle word of all the creators' words (the lower one on an even count, the
+ *  cautious read) and one plain line with the counts ("12 of 15 call it Excellent or Great; 2 Okay or weaker."). */
+export function howItPlays(rs: Pick<CreatorReview, "attrs">[]) {
+  return ATTRS.flatMap(([k, l]) => {
+    const s = attrSummary(rs, k);
+    if (!s) return [];
+    const words = WORDS.flatMap((w, i) => Array<Word>(s.counts[i]!).fill(w)), word = words[Math.floor(words.length / 2)]!;
+    const high = s.counts[0]! + s.counts[1]!, low = s.counts[3]! + s.counts[4]!;
+    const line = [high ? `${high} of ${s.n} call it Excellent or Great` : `None of ${s.n} call it Excellent or Great`,
+      low ? `${low} Okay or weaker` : null].filter(Boolean).join("; ") + ".";
+    return [{ k, label: l, word, line }];
+  });
+}
+
+/** "The big picture": what creators like (attributes most call Excellent or Great) and common concerns (attributes at
+ *  least a third call Okay or Weak), as short chips. */
+export function bigPicture(rs: Pick<CreatorReview, "attrs">[]) {
+  const likes: string[] = [], concerns: string[] = [];
+  for (const [k] of ATTRS) {
+    const s = attrSummary(rs, k);
+    if (!s || s.n < 3) continue;
+    const high = s.counts[0]! + s.counts[1]!, low = s.counts[3]! + s.counts[4]!;
+    if (high * 2 > s.n) likes.push(`${high >= s.n * 0.75 && s.counts[0]! * 2 > s.n ? "Excellent" : "Strong"} ${label(k).toLowerCase()}`);
+    if (low * 3 >= s.n) concerns.push(`${label(k)} Okay or weaker for ${low} of ${s.n}`);
+  }
+  return { likes, concerns };
+}
+
+/** A card's +/- chips: the attributes this creator called Excellent or Great (+), and Okay or Weak (-). */
+export const cardChips = (attrs: CreatorReview["attrs"]) => ATTRS.flatMap(([k, l]): { tone: "pos" | "neg"; text: string }[] => {
+  const w = attrs[k];
+  return !w ? [] : HIGH.includes(w) ? [{ tone: "pos", text: `${w} ${l.toLowerCase()}` }]
+    : LOW.includes(w) ? [{ tone: "neg", text: `${w} ${l.toLowerCase()}` }] : [];
+}).sort((a, b) => (a.tone === b.tone ? 0 : a.tone === "pos" ? -1 : 1));
+
+/** A steady avatar colour per creator (hue from the name). */
+export const avatarHue = (name: string) => [...name].reduce((h, c) => (h * 31 + c.charCodeAt(0)) % 360, 7);

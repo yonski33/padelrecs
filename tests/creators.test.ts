@@ -1,6 +1,6 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { attrSummary, splitSummary, takeaway, sortReviews, stanceCounts, measuredLine, initials, WORDS } from "../lib/thread/creators";
+import { attrSummary, bigPicture, cardChips, howItPlays, splitSummary, takeaway, sortReviews, stanceCounts, measuredLine, initials, WORDS } from "../lib/thread/creators";
 import { creatorPage, creatorSlugs } from "../lib/thread/creator-data";
 import { creatorPageFor, CREATOR_PAGE_SLUGS } from "../lib/thread/sites";
 
@@ -45,4 +45,10 @@ test("creator page: helpers", () => {
     .map(x => x.date), ["2026-01-01", "2025-01-01", "2026-03-01"]);
   assert.equal(measuredLine({ swing_weight: 111, spin_rpm: 2113, other: 1 }), "Swing weight 111 · Spin 2113 rpm");
   assert.equal(initials("Rackets & Runners - Pickleball"), "RR");
+  const many = [{ attrs: { spin: "Excellent" as const, control: "Okay" as const } }, { attrs: { spin: "Excellent" as const, control: "Good" as const } },
+    { attrs: { spin: "Excellent" as const, control: "Weak" as const } }, { attrs: { spin: "Great" as const, control: "Great" as const } }];
+  assert.deepEqual(bigPicture(many), { likes: ["Excellent spin"], concerns: ["Control Okay or weaker for 2 of 4"] });
+  assert.deepEqual(howItPlays(many).find(h => h.k === "control"), { k: "control", label: "Control", word: "Okay", line: "1 of 4 call it Excellent or Great; 2 Okay or weaker." });
+  assert.equal(howItPlays(many).find(h => h.k === "spin")!.word, "Excellent");
+  assert.deepEqual(cardChips({ control: "Okay", spin: "Excellent", power: "Good" }), [{ tone: "pos", text: "Excellent spin" }, { tone: "neg", text: "Okay control" }]);
 });
