@@ -72,3 +72,10 @@ export const questionWords = (nicheId: string) => QUESTION_WORDS[nicheId] ?? QUE
  *  skin and audio for now). */
 const POST_TYPE_SITES = ["padel", "pickleball", "tennis", "discgolf", "skin"];
 export const postTypeSite = (nicheId: string) => POST_TYPE_SITES.includes(nicheId);
+
+/** "From around the web" v2 on the racket page (owner mock 2026-11-22, app/thread/live/web-v2.tsx): source tabs, video
+ *  thumbnails, Reddit and blog tiles with a real short quote, the sentiment on the right, Show N more. Rollback: take a site
+ *  out and it shows the earlier two-column box (live/racket-v7b.tsx WebSources) again; ?web=classic shows that box on any
+ *  page for a side-by-side look. */
+export const WEB_V2_SITES = ["padel"];
+export const webV2Site = (nicheId: string) => WEB_V2_SITES.includes(nicheId);

@@ -8,6 +8,7 @@ import { v3Site } from "../../lib/thread/sites";
 import { threadRows } from "./data";
 import { onePerChannel, videoOf } from "../../lib/youtube-pick";
 import { redditPick, subOf } from "../../lib/reddit-cards";
+import { shortQuote } from "../../lib/thread/web-sources";
 import { plainSummary } from "../../lib/plain-summary";
 import { padelWords } from "../../lib/content-consistency";
 import { isComplete } from "../../lib/complete-text";
@@ -33,6 +34,8 @@ export type RvCard = { /** A player review's typed name ("" when none), for the 
   when: string; at: string; text: string; quote: boolean; url: string | null; video: string | null; helpful: number;
   /** A player review by a signed-in member (optional accounts, drizzle/0028): a small mark by the name. */ member?: true;
   /** The version the review is about (StackRecs, the review's variant), shown as a chip. */ version?: string | null;
+  /** Reddit and blog summaries: a real short line from the source (its stored excerpt, lib/thread/web-sources.ts shortQuote)
+   *  for the v2 web section's bold headline, else null. */ head?: string | null;
   /** A player review with no typed name: its level and side as reviewer info ("Intermediate · right side"), else null. */ info?: string | null };
 const DG = niche.id === "discgolf", SKIN = niche.id === "skin", SR = niche.id === "simracing";
 /** DiscGolfRecs' trait names (lib/discgolf-fit.ts, the shown ones: Easy to throw, Distance, Accuracy, Glide, Wind), not padel's. */
@@ -82,10 +85,11 @@ export async function racketData(slug: string) {
       }).filter(x => x.text).sort((a, b) => (b.e.sourceDate ?? "").localeCompare(a.e.sourceDate ?? ""))
         .filter(({ e }) => { const k = host(e.sourceUrl) || e.sourceName.trim().toLowerCase(); if (hosts.has(k)) return false; hosts.add(k); return true; })
         .map(({ e, text }) => ({ id: `w-${e.id}`, kind: "blog" as const, who: e.sourceName, meta: null, verdict: e.sentiment ?? null, at: e.sourceDate ?? "", when: ago(e.sourceDate, now), text,
-          quote: !e.summary, url: e.sourceUrl, video: null, helpful: e.helpful }));
+          quote: !e.summary, url: e.sourceUrl, video: null, helpful: e.helpful, head: e.summary ? shortQuote(e.excerpt, e.sourceLanguage) : null }));
     })(),
     ...redditPick(ctx.data.external, r.id).map(({ row: e, text }) => ({ id: `w-${e.id}`, kind: "reddit" as const, who: subOf(e.sourceUrl, e.sourceName), meta: null, verdict: e.sentiment ?? null,
-      at: e.sourceDate ?? "", when: ago(e.sourceDate, now), text: padelWords(text), quote: false, url: e.sourceUrl, video: null, helpful: (e as { helpful?: number }).helpful ?? 0 })),
+      at: e.sourceDate ?? "", when: ago(e.sourceDate, now), text: padelWords(text), quote: false, url: e.sourceUrl, video: null, helpful: (e as { helpful?: number }).helpful ?? 0,
+      head: shortQuote(e.excerpt, e.sourceLanguage) })),
   ].sort((a, b) => b.at.localeCompare(a.at));
   // DiscGolfRecs: each review's plastic (review_variant, PR #256) as its version chip; other sites carry none.
   const plastic = niche.id === "discgolf" ? new Map<string, string>([
