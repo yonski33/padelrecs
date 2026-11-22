@@ -187,3 +187,31 @@ export function reviewLists(page: CreatorPage) {
   for (const t of takes) { const x = newest.get(t.handle!); if (!x || t.date > x.date) newest.set(t.handle!, t); }
   return { feed: [...page.reviews, ...takes] as ReviewEntry[], counted: [...page.reviews, ...newest.values()] as ReviewEntry[] };
 }
+
+/** "What reviewers agree on" chips (owner 2026-11-22): short phrases, never counts, each backed by 2 or more reviews that rate
+ *  the attribute Excellent or Great (likes) or Okay or Weak (concerns). Most backed first, up to 3 a side. A like needs more
+ *  reviews for it than against it. */
+const LIKE: Record<AttrKey, string> = { power: "Strong power", control: "Strong control", spin: "Strong spin", pop: "Lively pop",
+  sweet: "Forgiving sweet spot", comfort: "Easy on the arm", durability: "Grit that lasts" };
+const CONCERN: Record<AttrKey, string> = { power: "Low on power for some", control: "Harder to control for some", spin: "Less spin than some rivals",
+  pop: "Muted pop for some", sweet: "Smaller sweet spot for some", comfort: "Firm on the arm for some", durability: "Durability doubts" };
+export function agreeChips(rs: Pick<CreatorReview, "attrs">[], max = 3) {
+  const rows = ATTRS.map(([k]) => ({ k, hi: rs.filter(r => r.attrs[k] && HIGH.includes(r.attrs[k]!)).length, lo: rs.filter(r => r.attrs[k] && LOW.includes(r.attrs[k]!)).length }));
+  const likes = rows.filter(x => x.hi >= 2 && x.hi > x.lo).sort((a, b) => b.hi - a.hi).slice(0, max).map(x => LIKE[x.k]);
+  const concerns = rows.filter(x => x.lo >= 2).sort((a, b) => b.lo - a.lo).slice(0, max).map(x => CONCERN[x.k]);
+  return { likes, concerns };
+}
+/** A stance card's one line when the page has no written group line: one review, its key point; more, the attributes those
+ *  reviews rate highest (Loved it) or lowest (Mixed, Not for me); else the newest one's key point. */
+export function stanceLine(rs: Pick<CreatorReview, "attrs" | "stance" | "keyPoint" | "short" | "date">[], k: Stance): string {
+  const own = rs.filter(r => r.stance === k).sort((a, b) => b.date.localeCompare(a.date));
+  if (!own.length) return "None of the reviews.";
+  const one = own[0]!.keyPoint || takeaway(own[0]!.short);
+  if (own.length === 1) return one;
+  const words = k === "pos" ? HIGH : LOW;
+  const top = ATTRS.map(([a, l]) => ({ l: l.toLowerCase(), n: own.filter(r => r.attrs[a] && words.includes(r.attrs[a]!)).length }))
+    .filter(x => x.n >= 2).sort((a, b) => b.n - a.n).slice(0, 2).map(x => x.l);
+  if (!top.length) return one;
+  const list = top.join(" and ");
+  return k === "pos" ? `Praise for the ${list}.` : k === "mix" ? `Doubts about the ${list}.` : `Low marks for the ${list}.`;
+}

@@ -253,3 +253,6 @@ body:has(.thc) .thc a.thc-tt-cover { position: relative; display: flex; align-it
 .thc .thc-vote .th-vgrid { grid-template-columns: repeat(4, minmax(0,1fr)); }
 @media (max-width: 899px) { .thc .thc-vote .th-vgrid { grid-template-columns: repeat(2, minmax(0,1fr)); } }
 @media (max-width: 639px) { .thc .thc-vote .th-vgrid { grid-template-columns: minmax(0,1fr); } }
+
+/* What reviewers agree on: the likes and concerns panel inside the stance box (owner 2026-11-22). */
+.thc .thc-big.in { border: 1px solid var(--rule); border-radius: 12px; }

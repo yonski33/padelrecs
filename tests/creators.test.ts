@@ -173,3 +173,20 @@ test("vote count line: plain counts, never 0 votes", () => {
   assert.equal(voteCountLine(1), "1 vote");
   assert.equal(voteCountLine(3), "3 votes");
 });
+
+// What reviewers agree on (owner 2026-11-22): phrases, 2+ reviews behind each, never counts.
+import { agreeChips, stanceLine, reviewLists as lists } from "../lib/thread/creators";
+test("agree chips: phrases backed by 2+ reviews, no count wording", () => {
+  const r = (attrs: Record<string, string>) => ({ attrs } as never);
+  const out = agreeChips([r({ spin: "Excellent", power: "Okay" }), r({ spin: "Great", power: "Weak" }), r({ spin: "Good", durability: "Great" })]);
+  assert.deepEqual(out.likes, ["Strong spin"]);
+  assert.deepEqual(out.concerns, ["Low on power for some"]);
+  for (const [, p] of pages) { const c = agreeChips(lists(p).counted);
+    for (const t of [...c.likes, ...c.concerns]) assert.ok(!/\d|Okay|weaker|creator|—/.test(t), t);
+    assert.ok(c.likes.length <= 3 && c.concerns.length <= 3); }
+});
+test("stance line: one review gives its key point, none says so", () => {
+  const x = { attrs: {}, stance: "neg", keyPoint: "Too stiff for touch.", short: "x", date: "2026-01-01" } as never;
+  assert.equal(stanceLine([x], "neg"), "Too stiff for touch.");
+  assert.equal(stanceLine([x], "pos"), "None of the reviews.");
+});
