@@ -72,6 +72,9 @@ export async function CreatorProductBody({ slug }: { slug: string }) {
   // Under CREATOR_MIN_REVIEWS reviews the product keeps its usual page.
   if (rs.length < CREATOR_MIN_REVIEWS) return null;
   const { r, row, brand, style, sim, cards } = d;
+  // The TL;DR sentence (owner 2026-11-23): the creator page's own line where it has one, else the same line the usual
+  // product page shows (racketData: the written "In short" summary, the page content's tagline, the short or list line).
+  const tldr = page.tldr || d.lead || null;
   // The bar and its counts are the site's own players (lib/thread/site-sentiment.ts, owner 2026-11-22); the creator reviews
   // keep their cards and a praise line ("Praised for spin in 13 reviews").
   const votes = siteSentiment(row);
@@ -143,9 +146,9 @@ export async function CreatorProductBody({ slug }: { slug: string }) {
         <div className="thc-head-m">
           <h1>{name}</h1>
           {tags.length > 0 && <span className="thc-tags">{tags.map((t, k) => <span key={t} className={k === 0 && style ? "on" : undefined}>{t}</span>)}</span>}
-          {(page.tldr || plus.length > 0 || minus) && <div className="thc-tldr">
+          {(tldr || plus.length > 0 || minus) && <div className="thc-tldr">
             <span className="thc-tldr-h"><b>TL;DR</b><span>{`From ${plural(rs.length, "review")}`}</span></span>
-            {page.tldr && <span className="thc-tldr-t">{page.tldr}</span>}
+            {tldr && <span className="thc-tldr-t">{tldr}</span>}
             {(plus.length > 0 || minus) && <span className="thc-pts2">{plus.map(t => <span key={t} className="pos">{`✓ ${t}`}</span>)}{minus && <span className="neg">{`✗ ${minus}`}</span>}</span>}
           </div>}
           {/* The site's own players (owner 2026-11-22, #651): the bar and shares, never the creator reviews. */}
