@@ -216,7 +216,7 @@ export async function CreatorProductBody({ slug }: { slug: string }) {
         <CreatorReviews reviews={feed} count={rs.length} roundup={null}/>
 
         {/* Comments (the mock's section 7): the site's own discussion for this paddle, the same thread as its product page. */}
-        <section className="thc-sec2 thc-comments"><Comments page={`racket:${r.id}`} nicknames={niche.form.quickVote?.nicknames ?? []}/></section>
+        <section className="thc-sec2 thc-comments"><Comments page={`racket:${r.id}`} title="Discussion" avatars nicknames={niche.form.quickVote?.nicknames ?? []}/></section>
 
         {similar.length > 0 && <section className="thc-sec2">
           <div className="thc-sec2-h"><h2>{`Similar ${niche.words.many}`}</h2>

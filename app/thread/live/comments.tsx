@@ -109,7 +109,8 @@ export function useComments(page: string) {
   return { list, setList, open, setOpen, reply, setReply, sort, setSort, nick, setNick, note, setNote, err, setErr, admin, editing, setEditing, draft, draftName, editErr, setEditErr, own, me, post, vote, tops, replies, open_ };
 }
 
-export function Comments({ page, title = "Comments", prompt = "Join the conversation", placeholder = "Join the conversation", nicknames = [] }: { page: string; title?: string; prompt?: string; placeholder?: string; nicknames?: string[] }) {
+/** `avatars` (the PickleballRecs paddle page, Hybrid v19 mockup): an initials circle before each poster's name. */
+export function Comments({ page, title = "Comments", prompt = "Join the conversation", placeholder = "Join the conversation", nicknames = [], avatars = false }: { page: string; title?: string; prompt?: string; placeholder?: string; nicknames?: string[]; avatars?: boolean }) {
   const { list, open, setOpen, reply, setReply, sort, setSort, nick, setNick, note, setNote, err, admin, editing, setEditing, draft, draftName, editErr, setEditErr, own, me, post, vote, tops, replies, open_ } = useComments(page);
   const Votes = ({ c }: { c: C }) => <span>
     <button type="button" className="arrow up" aria-label="Upvote" aria-pressed={c.mine === 1} onClick={() => vote(c, 1)}>▲</button>
@@ -138,12 +139,12 @@ export function Comments({ page, title = "Comments", prompt = "Join the conversa
     {err && <span className="th-err" role="alert">{err}</span>}
     <div style={{ display: "flex", flexDirection: "column" }}>
       {tops.map(c => <div key={c.id} className="th-cm">
-        <div className="th-cm-head"><strong>{commenterName(c.alias)}</strong>{c.member && <MemberMark/>}{c.member && profileLine(c.level, c.side) && <span>{`· ${profileLine(c.level, c.side)}`}</span>}<span>{`· ${ago(c.at)}`}</span><Rename c={c}/></div>
+        <div className="th-cm-head">{avatars && <Av name={commenterName(c.alias)}/>}<strong>{commenterName(c.alias)}</strong>{c.member && <MemberMark/>}{c.member && profileLine(c.level, c.side) && <span>{`· ${profileLine(c.level, c.side)}`}</span>}<span>{`· ${ago(c.at)}`}</span><Rename c={c}/></div>
         {textOf(c)}
         <div className="th-cm-act"><Votes c={c}/><button type="button" className="reply" onClick={() => setReply(reply === c.id ? null : c.id)}>{reply === c.id ? "Cancel" : "Reply"}</button><Own c={c}/></div>
         {reply === c.id && <div style={{ marginLeft: 14 }}><Box me={me} nick={nick} setNick={setNick} nicknames={nicknames} placeholder={`Reply to ${commenterName(c.alias)}`} cta="Reply" onPost={t => post(t, c.id)} onCancel={() => setReply(null)}/></div>}
         {replies(c.id).length > 0 && <div className="th-replies">{replies(c.id).map(r => <div key={r.id} style={{ display: "flex", flexDirection: "column", gap: 2 }}>
-          <div className="th-cm-head"><strong style={{ fontSize: 14 }}>{commenterName(r.alias)}</strong>{r.member && <MemberMark/>}{r.member && profileLine(r.level, r.side) && <span>{`· ${profileLine(r.level, r.side)}`}</span>}<span>{`· ${ago(r.at)}`}</span><Rename c={r}/></div>
+          <div className="th-cm-head">{avatars && <Av name={commenterName(r.alias)} sm/>}<strong style={{ fontSize: 14 }}>{commenterName(r.alias)}</strong>{r.member && <MemberMark/>}{r.member && profileLine(r.level, r.side) && <span>{`· ${profileLine(r.level, r.side)}`}</span>}<span>{`· ${ago(r.at)}`}</span><Rename c={r}/></div>
           {textOf(r)}
           {/* Reply to a reply (owner 2026-11-20): one indent level, as before; it posts under the top-level comment, with "@Name". */}
           <div className="th-cm-act"><Votes c={r}/><button type="button" className="reply" onClick={() => setReply(reply === r.id ? null : r.id)}>{reply === r.id ? "Cancel" : "Reply"}</button><Own c={r}/></div>
@@ -154,4 +155,11 @@ export function Comments({ page, title = "Comments", prompt = "Join the conversa
       {list && tops.length === 0 && !open && <p className="th-note" style={{ padding: "6px 0" }}>No comments yet. Start the conversation.</p>}
     </div>
   </section>;
+}
+
+/** A poster's initials on a soft colour picked from the name (the mockup's comment avatars). */
+const AV = ["oklch(0.93 0.06 145)", "oklch(0.92 0.05 250)", "oklch(0.93 0.06 60)", "oklch(0.93 0.05 320)", "oklch(0.94 0.07 100)"];
+function Av({ name, sm = false }: { name: string; sm?: boolean }) {
+  const ini = name.replace(/[^A-Za-z0-9 ]/g, " ").trim().split(/\s+/).map(x => x[0]).join("").slice(0, 2).toUpperCase() || "?";
+  return <span className={`th-cm-av${sm ? " sm" : ""}`} aria-hidden="true" style={{ background: AV[[...name].reduce((a, c) => a + c.charCodeAt(0), 0) % AV.length] }}>{ini}</span>;
 }
