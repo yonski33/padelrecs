@@ -22,7 +22,7 @@ import { websiteButton } from "../../../../lib/product-links";
 import { generateMetadata as liveMetadata } from "../../../rackets/[slug]/page";
 import { JsonLd, crumbs } from "../../seo";
 import { catalogLabel, catalogPath, productHref } from "../../../../lib/niche";
-import { ATTRS, STANCE_LABEL, TABLE_ATTRS, checkedDay, lowestOffer, usd, bigPicture, howItPlays, langCode, platform, scoreText, stanceCounts, takeaway,
+import { ATTRS, STANCE_LABEL, TABLE_ATTRS, checkedDay, lowestOffer, usd, tiktokStances, bigPicture, howItPlays, langCode, platform, scoreText, stanceCounts, takeaway,
   wordTone, type CreatorReview } from "../../../../lib/thread/creators";
 import { creatorPage, creatorSlugs } from "../../../../lib/thread/creator-data";
 import { Avatar, CreatorReviews } from "../../live/creator-reviews";
@@ -78,6 +78,10 @@ export default async function CreatorProductPage({ params }: P) {
   const ld = { "@context": "https://schema.org", "@graph": [crumbs([{ name: catalogLabel, path: catalogPath },
     ...(brand ? [{ name: brand.name, path: `/brands/${brand.slug}` }] : []), { name: r.name, path: productHref(r) }])] };
   const pic = row?.pic ?? null;
+  // The sentiment bar also counts the TikTok short takes, one per channel (owner 2026-11-22); the review count, the TL;DR
+  // line and the reviewer table stay reviews only.
+  const takes = page.tiktok?.takes ?? [], tk = tiktokStances(takes), channels = tk.pos + tk.mix + tk.neg;
+  const bar = { pos: n.pos + tk.pos, mix: n.mix + tk.mix, neg: n.neg + tk.neg };
 
   return <Shell active="rackets">
     <JsonLd data={ld}/>
@@ -105,11 +109,11 @@ export default async function CreatorProductPage({ params }: P) {
 
       <main className="thc-body">
         <section id="sentiment" className="thc-box1 thc-sent">
-          <div className="thc-h"><strong>Sentiment in detail</strong><span>{plural(rs.length, "review")}</span></div>
-          <div className="thc-sbar">{KEYS.map(k => n[k] > 0 && <span key={k} className={k} style={{ flex: n[k] }}>{k === "pos" ? `${n[k]} loved it` : n[k]}</span>)}</div>
+          <div className="thc-h"><strong>Sentiment in detail</strong><span>{`${plural(rs.length, "review")}${channels ? ` + ${plural(channels, "TikTok channel")}` : ""}`}</span></div>
+          <div className="thc-sbar">{KEYS.map(k => bar[k] > 0 && <span key={k} className={k} style={{ flex: bar[k] }}>{k === "pos" ? `${bar[k]} loved it` : bar[k]}</span>)}</div>
           <div className="thc-sent-g">{KEYS.map(k => <div key={k}>
-            <span className="thc-sent-h"><span><span className={`thc-dot ${k}`}>●</span>{STANCE_LABEL[k]}</span><strong>{n[k]}</strong></span>
-            <span className="thc-sent-x">{n[k] ? page.groups[k] : "None of the reviews."}</span></div>)}</div>
+            <span className="thc-sent-h"><span><span className={`thc-dot ${k}`}>●</span>{STANCE_LABEL[k]}</span><strong>{bar[k]}</strong></span>
+            <span className="thc-sent-x">{bar[k] ? page.groups[k] || (tk[k] ? "From the TikTok short takes." : "") : "None of the reviews."}</span></div>)}</div>
         </section>
 
         {(big.likes.length > 0 || big.concerns.length > 0) && <section className="thc-box1 flush">
@@ -159,6 +163,8 @@ export default async function CreatorProductPage({ params }: P) {
 
         <CreatorReviews reviews={rs}/>
 
+        {takes.length > 0 && <TikTokStrip takes={takes}/>}
+
         {/* Comments (the mock's section 7): the site's own discussion for this paddle, the same thread as its product page. */}
         <section className="thc-sec2 thc-comments"><Comments page={`racket:${r.id}`} nicknames={niche.form.quickVote?.nicknames ?? []}/></section>
 
@@ -177,4 +183,31 @@ export default async function CreatorProductPage({ params }: P) {
       </main>
     </div>
   </Shell>;
+}
+
+/** "Short takes on TikTok" (owner 2026-11-22), under the review feed: compact cards, not review cards (no Stood out /
+ *  Trade-off / Compared to, no chapters: TikTok has none). A sideways row on desktop, a stack on phones.
+ *  UNVERIFIED (data flag tiktok.unverified): Grok's cards; the quotes need a caption check before this goes live. Covers: TikTok's
+ *  oEmbed gave none, so each cover is a plain TikTok tile. */
+function TikTokStrip({ takes }: { takes: import("../../../../lib/thread/creators").TikTokTake[] }) {
+  const day = (iso: string) => new Date(`${iso}T12:00:00Z`).toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric", timeZone: "UTC" });
+  const clock = (s: number) => `${Math.floor(s / 60)}:${String(s % 60).padStart(2, "0")}`;
+  const sorted = takes.slice().sort((a, b) => b.date.localeCompare(a.date));
+  return <section className="thc-tt" aria-labelledby="thc-tt-h">
+    <div className="thc-tt-h"><h2 id="thc-tt-h">Short takes on TikTok <span>{`· ${takes.length}`}</span></h2>
+      <span>Quick clips from TikTok creators. Counted in the sentiment bar, one per channel.</span></div>
+    <div className="thc-tt-row">{sorted.map(t => <article key={t.id} className="thc-tt-c">
+      <a className="thc-tt-cover" href={t.url} target="_blank" rel="noopener nofollow" aria-label={`Watch on TikTok: ${t.creator}`}>
+        <span className="logo">TikTok</span><span className="play" aria-hidden="true"/><span className="len">{clock(t.len)}</span></a>
+      <div className="thc-tt-b">
+        <span className="thc-tt-top"><span className="who"><strong>{t.creator}</strong><small>{`${t.handle} · ${day(t.date)} · ${clock(t.len)}`}</small></span>
+          <span className={`thc-take sm ${t.stance}`}>{STANCE_LABEL[t.stance]}</span></span>
+        <strong className="thc-tt-q">{`“${t.quote}”`}</strong>
+        <p>{t.take}</p>
+        <span className="thc-tags">{t.tags.map(x => <span key={x} className={`thc-pm ${x.startsWith("-") || x.startsWith("−") ? "neg" : "pos"}`}>{x.replace(/^-\s*/, "− ")}</span>)}</span>
+        <small className="thc-tt-d">{t.disclosure}</small>
+        <a className="thc-tt-go" href={t.url} target="_blank" rel="noopener nofollow">Watch on TikTok ↗</a>
+      </div>
+    </article>)}</div>
+  </section>;
 }

@@ -1909,6 +1909,1033 @@
      "compared": "Bread & Butter Loco Elongated, their main paddle."
     }
    ]
+  },
+  "six-zero-coral-pro-16mm": {
+   "paddle": "Six Zero Coral Pro (16mm hybrid/widebody/elongated lineup, 2026, Double Diamond Tough grit)",
+   "tldr": "Huge spin and a grit that lasts, in an easy all-court paddle; power stays moderate.",
+   "groups": {
+    "pos": "Spin and a grit that lasts, with easy drops, dinks and resets for an all-court paddle.",
+    "mix": "Liked the spin and grit, but found it low on power or stiffer than expected.",
+    "neg": ""
+   },
+   "prices": {
+    "checked": "2026-11-22",
+    "offers": [
+     {
+      "shop": "JustPaddles",
+      "url": "https://www.justpaddles.com/product/six-zero-coral-pro-hybrid-upa-a-carbon-fiber-pickleball-paddle/40480/",
+      "price": 176,
+      "inStock": true,
+      "edition": "Hybrid, UPA-A",
+      "affiliate": false
+     },
+     {
+      "shop": "PickleballGalaxy",
+      "url": "https://www.pickleballgalaxy.com/six-zero-coral-pro-elongated-pickleball-paddle.html",
+      "price": 176,
+      "inStock": true,
+      "edition": "Elongated",
+      "affiliate": false
+     },
+     {
+      "shop": "Pickleball Central",
+      "url": "https://www.pickleballcentral.com/six-zero-coral-pro-widebody-pickleball-paddle/?sku=SZO137-0001",
+      "price": 176,
+      "inStock": true,
+      "edition": "Widebody",
+      "affiliate": false
+     },
+     {
+      "shop": "Pickleball Warehouse",
+      "url": "https://www.pickleballwarehouse.com/Six_Zero_Coral_Pro_Widebody_Pickleball_Paddle/descpage-SZCORPW.html",
+      "price": 176,
+      "inStock": true,
+      "edition": "Widebody",
+      "affiliate": false
+     },
+     {
+      "shop": "Desert Paddles",
+      "url": "https://desertpaddles.com/products/six-zero-coral-pro-pickleball-paddle?variant=51055481422080",
+      "price": 194.65,
+      "inStock": true,
+      "edition": "Hybrid, dual USAP & UPA stamp",
+      "affiliate": false
+     },
+     {
+      "shop": "LovePickle.store",
+      "url": "https://lovepickle.store/products/six-zero-coral-pro-pickleball-paddle?variant=67733163180332",
+      "price": 202,
+      "inStock": true,
+      "edition": "Elongated",
+      "affiliate": false
+     },
+     {
+      "shop": "Six Zero (brand US store)",
+      "url": "https://us.sixzeropickleball.com/products/coral-pro?variant=52804379181341",
+      "price": 220,
+      "inStock": true,
+      "edition": "Widebody (brand US store)",
+      "affiliate": false
+     }
+    ]
+   },
+   "reviews": [
+    {
+     "id": "johnkew-pickleball",
+     "creator": "Johnkew Pickleball",
+     "kind": "youtube",
+     "type": "review",
+     "url": "https://www.youtube.com/watch?v=vTWE2guy574",
+     "channel": "https://www.youtube.com/channel/UCIZfb6Kaorky0xrb_v7Yt4g",
+     "lang": "en",
+     "date": "2026-06-15",
+     "video": "vTWE2guy574",
+     "len": 566,
+     "chapters": [
+      [
+       63,
+       "Specs & Shapes"
+      ],
+      [
+       157,
+       "Performance Metrics"
+      ],
+      [
+       240,
+       "KewCOR Results"
+      ],
+      [
+       273,
+       "Spin Durability Testing"
+      ],
+      [
+       367,
+       "On-Court Impressions"
+      ],
+      [
+       459,
+       "Paddle Modifications"
+      ]
+     ],
+     "quote": "the Coral Pro generates elite spin",
+     "quoteAt": null,
+     "stance": "pos",
+     "summary": "Runs the Coral Pro through lab testing that covers radar gun, spin, Q-core firepower, weight and balance and accelerated wear, then plays it on court next to the original Coral. Measures Q-core at 0.410 for the elongated and 0.413 for the hybrid and wide body, which puts all three in the power category. Finds no measurable spin loss after 100 high speed impacts, with spin up about 0.7 percent, placing the surface in durability tier one. Calls it more offensive than the original Coral, with elite spin and balanced power and pop, so control never became difficult.",
+     "more": "Finds the feel slightly crisper and a little hollower than the original Coral, which sat in the soft dense quadrant. Picks the hybrid as the best mix of reach, stability, forgiveness and maneuverability, calls the elongated best for reach and the wide body best for forgiveness. Rates all three shapes as low in swing weight and balance point, and likes perimeter weighting, especially on the elongated, with weight at 3 and 9 o'clock on the hybrid. Notes it is approved by UPA only, not USAP, and costs $220, $20 more than the original.",
+     "highlights": [
+      "no measurable spin loss",
+      "placing the surface in durability tier one",
+      "more offensive than the original Coral",
+      "elite spin"
+     ],
+     "short": "Finds it a better version of the original Coral, with elite spin, a little extra firepower and balanced power and pop. Reports no measurable spin loss in an accelerated wear test and favors the hybrid shape. Calls the extra $20 a reasonable trade, with the caveat that it is UPA-approved only.",
+     "attrs": {
+      "power": "Good",
+      "control": "Good",
+      "spin": "Excellent",
+      "sweet": "Great",
+      "durability": "Excellent"
+     },
+     "score": null,
+     "measured": {
+      "spin_change_after_100_impacts_pct": 0.7,
+      "q_core_hybrid": 0.413
+     },
+     "alsoUrl": "https://www.johnkewpickleball.com/six-zero-coral-pro-review",
+     "version": null,
+     "note": null,
+     "tie": null,
+     "stood": "Elite spin and a little extra firepower over the original.",
+     "trade": "It is UPA-approved only.",
+     "compared": "The original Coral, with balanced power and pop added."
+    },
+    {
+     "id": "rackets-runners-pickleball",
+     "creator": "Rackets & Runners - Pickleball",
+     "kind": "youtube",
+     "type": "review",
+     "url": "https://www.youtube.com/watch?v=eHIAAizDRSY",
+     "channel": "https://www.youtube.com/channel/UC-CTKnZZwrGMdVGWW34c22A",
+     "lang": "en",
+     "date": "2026-07-18",
+     "video": "eHIAAizDRSY",
+     "len": 985,
+     "chapters": [],
+     "quote": "It's control focused and it's got grit that lasts.",
+     "quoteAt": null,
+     "stance": "mix",
+     "summary": "Tests only the 16 mm hybrid over about a month, a 16.3 inch long paddle with a 5 1/2 inch handle, 8 to 8.3 oz weight, 114 swing weight and 6.7 twist weight. Describes a plush, spongy, muted feel with a large sweet spot that makes the touch game forgiving, and calls it a control paddle. Finds it less stable on off center hits than stiffer paddles such as the Boomstick, which made drops and resets inconsistent when out of rhythm. Calls the power limited at the baseline and at the net. Rates the spin very good with grit that lasts, strongest in the soft spin game, and backs it for control focused players.",
+     "more": "Explains that the lower launch angle makes rolled volleys and roll dinks easy without overhitting, while top end spin is limited. Plays partners using the RPM Friction Pro and Q2 and finds the power gap large, and could not compete from the baseline in a singles game against the Friction Pro. Rates it as much softer and easier to control than the Omni. Says adding weight to the sides helps stability. Does not see it working at the highest level or in singles.",
+     "highlights": [
+      "plush, spongy, muted feel",
+      "large sweet spot",
+      "less stable on off center hits",
+      "strongest in the soft spin game",
+      "control focused players"
+     ],
+     "short": "Describes a plush, spongy control paddle with grit that holds up for a long time and strong soft-spin shots. Finds it too low on power and not stable enough off-center for top-level or singles play. Sees it as a good fit for control-first players.",
+     "attrs": {
+      "power": "Okay",
+      "control": "Good",
+      "spin": "Great",
+      "sweet": "Good",
+      "durability": "Excellent"
+     },
+     "score": null,
+     "measured": {
+      "swing_weight": 114,
+      "twist_weight": 6.7
+     },
+     "alsoUrl": null,
+     "version": null,
+     "note": null,
+     "tie": null,
+     "stood": "Grit that lasts and strong soft-spin shots.",
+     "trade": "Low on power, and not stable enough off center for top-level or singles play.",
+     "compared": null
+    },
+    {
+     "id": "pickleball-effect",
+     "creator": "Pickleball Effect",
+     "kind": "youtube",
+     "type": "review",
+     "url": "https://www.youtube.com/watch?v=A3FRHPcMC5U",
+     "channel": "https://www.youtube.com/channel/UC7uQuU1OFg0TFHMarvPoKAg",
+     "lang": "en",
+     "date": "2026-06-25",
+     "video": "A3FRHPcMC5U",
+     "len": 777,
+     "chapters": [
+      [
+       36,
+       "What's new"
+      ],
+      [
+       86,
+       "Spin of Coral Pro vs original"
+      ],
+      [
+       208,
+       "Performance of Coral Pro vs original"
+      ],
+      [
+       260,
+       "Power & control comparison of all paddles"
+      ],
+      [
+       311,
+       "Feel profile comparison of all paddles"
+      ],
+      [
+       348,
+       "Weight & forgiveness comparison of all paddles"
+      ],
+      [
+       484,
+       "Price/value & recommendations"
+      ],
+      [
+       675,
+       "Thoughts on Coral Pro shapes"
+      ]
+     ],
+     "quote": "if you haven't bought one yet, the Pro is the better paddle",
+     "quoteAt": null,
+     "stance": "pos",
+     "summary": "Compares the Coral Pro with the original Coral, the Selkirk Omni and the Glider, using lab numbers and court play. Measures 95 percent grit retention on RA and 94 percent on RZ in an accelerated wear test, the highest RZ retention measured so far. Averages about 50 RPM more spin than the original Coral, a difference felt at the net on flicks, rolls and roll dinks more than from the back court. Finds the feel a little stiffer with a bit more feedback, and power only slightly higher, so it stays an all court paddle. Calls it the best value of the group. Measures a 114 swing weight and 6.7 twist weight.",
+     "more": "Ranks firepower as Omni first, Coral Pro second, Glider third, with Coral Pro and Glider close on control. Finds the Glider better in sweet spot when weighted, and credits the Coral Pro grit as the most durable of the group. Adds a cap coin at the bottom to lower the balance point. Names the hybrid the best shape, finds the elongated has grown on them for wristy net players, and weights the wide body to about 111 swing weight. Lists it at about $200 after discount code.",
+     "highlights": [
+      "95 percent grit retention",
+      "about 50 RPM more spin",
+      "stays an all court paddle",
+      "best value of the group"
+     ],
+     "short": "Rates it a more aggressive all-court paddle than the original, with about 50 RPM more spin and the best grit retention they have measured. Finds the feel slightly stiffer and the sweet spot good but not the best of the group. Picks it as the best value among the all-court paddles compared.",
+     "attrs": {
+      "power": "Good",
+      "control": "Good",
+      "spin": "Great",
+      "sweet": "Good",
+      "durability": "Excellent"
+     },
+     "score": null,
+     "measured": {
+      "ra_retention_pct": 95,
+      "rz_retention_pct": 94,
+      "spin_rpm_gain_vs_original": 50
+     },
+     "alsoUrl": "https://pickleballeffect.com/paddles/six-zero-coral-pro-hybrid/",
+     "version": null,
+     "note": null,
+     "tie": null,
+     "stood": "About 50 RPM more spin than the original, and the best grit retention they measured.",
+     "trade": "A slightly stiffer feel, and a good but not best-in-group sweet spot.",
+     "compared": "Other all-court paddles; the best value of the group."
+    },
+    {
+     "id": "matt-s-pickleball",
+     "creator": "Matt's Pickleball",
+     "kind": "youtube",
+     "type": "review",
+     "url": "https://www.youtube.com/watch?v=89sqtO1a_kI",
+     "channel": "https://www.youtube.com/channel/UC8JA18cHIr0DJfbvRE11bSA",
+     "lang": "en",
+     "date": "2026-06-14",
+     "video": "89sqtO1a_kI",
+     "len": 672,
+     "chapters": [
+      [
+       82,
+       "Construction & Diamond Grit Surface"
+      ],
+      [
+       151,
+       "Specs & Lab Data"
+      ],
+      [
+       254,
+       "On-Court Feel & Playtest"
+      ],
+      [
+       345,
+       "Spin Performance & Key Tradeoffs"
+      ],
+      [
+       381,
+       "Shape Breakdown: Hybrid, Widebody, Elongated"
+      ],
+      [
+       479,
+       "Market Comparison: Crystal Blue, Power 2, Coral Pro"
+      ],
+      [
+       569,
+       "Who This Paddle Is For"
+      ]
+     ],
+     "quote": "You don't lose touch game to get more spin.",
+     "quoteAt": null,
+     "stance": "pos",
+     "summary": "Plays about 40 hours on the Coral Pro, 24 of them their own, and measures all three shapes. Reports the hybrid at 8.11 oz, 111.65 swing weight and 6.65 twist weight, the wide body at 8.22 oz, 108.75 swing weight and 7.25 twist weight, and the elongated at 8.01 oz, 114.3 swing weight and 6.0 twist weight. Rates spin as high on all three, with more shape on serves, dinks and drops than the original. Finds the grit level has hardly dropped over 40 hours, against a 3.4 percent drop for the original at 50 hours. Notes the paddle plays slightly firmer than the original. Finds it suits a soft game.",
+     "more": "Compares it with the Honolulu Crystal Blue and Power 2, which drop 18 and 12 percent at 50 hours, and says both are stiff, hollow and power oriented while the Coral Pro suits a soft game. Picks the wide body for most players, the hybrid as their own choice, and the elongated for reach and singles, but did not care for it in doubles. Calls it a poor fit for players who want raw power. Notes it is UPA approved only and retails for $200.",
+     "highlights": [
+      "hardly dropped over 40 hours",
+      "spin as high on all three",
+      "slightly firmer than the original",
+      "suits a soft game"
+     ],
+     "short": "Measures spin as high on all three shapes and finds the grit holds up through 40 hours of play. Likes the dense, forgiving soft game and picks the widebody for stability and the hybrid as their own choice. Says it is not for players who want the paddle to add power.",
+     "attrs": {
+      "power": "Okay",
+      "control": "Great",
+      "spin": "Great",
+      "sweet": "Good",
+      "durability": "Excellent"
+     },
+     "score": null,
+     "measured": {
+      "swing_weight_widebody": 108.75,
+      "twist_weight_widebody": 7.25,
+      "grit_hours_played": 40
+     },
+     "alsoUrl": "https://www.mattspickleball.com/blog/six-zero-coral-pro-review",
+     "version": null,
+     "note": null,
+     "tie": null,
+     "stood": "High spin on all three shapes, and grit that held through 40 hours.",
+     "trade": "Not for players who want the paddle to add power.",
+     "compared": "Its own shapes: the widebody for stability, the hybrid as their pick."
+    },
+    {
+     "id": "pickleball-playbook",
+     "creator": "Pickleball Playbook",
+     "kind": "youtube",
+     "type": "review",
+     "url": "https://www.youtube.com/watch?v=c5KQQclgOOU",
+     "channel": "https://www.youtube.com/channel/UCikz-D2j4_jMVYZrQuPin6A",
+     "lang": "en",
+     "date": "2026-06-14",
+     "video": "c5KQQclgOOU",
+     "len": 1097,
+     "chapters": [
+      [
+       16,
+       "Specs of the 6.0 Coral Pro"
+      ],
+      [
+       57,
+       "97% Grit Retention"
+      ],
+      [
+       95,
+       "Power and Spin Test"
+      ],
+      [
+       319,
+       "Control Test"
+      ],
+      [
+       756,
+       "Pop and Firepower Test"
+      ],
+      [
+       892,
+       "Handspeed and Maneuverability Test"
+      ]
+     ],
+     "quote": "I think this is the spinniest paddle that I've ever played with",
+     "quoteAt": null,
+     "stance": "pos",
+     "summary": "Tests the Coral Pro with a Titan ball machine in power and spin, control, pop and hand speed drills. Calls it an all court paddle with more spin than any paddle played before, citing 97 percent grit retention. Finds it heavy and not very swift in the hand, with pace similar to the original Coral but far more spin, and a heavier, sturdier feel. Rates pop at 5 out of 10 and the sweet spot as massive on volleys. Needs about two ball baskets, roughly 125 balls, to adjust, and says to hit for at least 30 minutes to learn it. Calls it an upgrade for current Coral players.",
+     "more": "Shanked drops off the throat until aiming for the tip, which fixed the problem. Finds push and under spin drops very consistent, while top spin took longer. Finds drives slower than the Vapor Power 2, and calls the Honolulu J2 CR a rocket that is harder to keep in, with the Coral Pro a bit softer. Feels the drives come off the face quickly but volleys feel dwelly and plush, and finds it maneuverable despite the weight.",
+     "highlights": [
+      "more spin than any paddle",
+      "97 percent grit retention",
+      "pop at 5 out of 10",
+      "upgrade for current Coral players"
+     ],
+     "short": "Calls it the spinniest paddle they have played, with a plush, dwelly feel and a very large sweet spot once it is broken in. Finds the pop moderate and easy to keep in play on resets and counters. Says it needs about 30 minutes of break-in to learn.",
+     "attrs": {
+      "power": "Good",
+      "control": "Great",
+      "spin": "Excellent",
+      "sweet": "Great",
+      "comfort": "Great",
+      "durability": "Excellent"
+     },
+     "score": null,
+     "measured": {
+      "grit_retention_pct": 97
+     },
+     "alsoUrl": "https://www.youtube.com/watch?v=MGcomJI1OiM",
+     "version": null,
+     "note": null,
+     "tie": null,
+     "stood": "The spinniest paddle they have played, with a very large sweet spot once broken in.",
+     "trade": "Needs about 30 minutes of break-in.",
+     "compared": null
+    },
+    {
+     "id": "pickleball-pursuit",
+     "creator": "Pickleball Pursuit",
+     "kind": "youtube",
+     "type": "review",
+     "url": "https://www.youtube.com/watch?v=aPPnj1iz5lU",
+     "channel": "https://www.youtube.com/channel/UCymbPCDl691HA0ErKcoY5EQ",
+     "lang": "en",
+     "date": "2026-07-07",
+     "video": "aPPnj1iz5lU",
+     "len": 221,
+     "chapters": [],
+     "quote": "easily the best 6.0 paddle out there by far",
+     "quoteAt": null,
+     "stance": "pos",
+     "summary": "Reviews the hybrid shape, the only one available on the maker's site at recording, and priced at $198 with a code. Calls it an all court paddle that tiptoes the line to power, good on drive serves and put aways, with plenty of pop at the kitchen line on counters. Finds drops, dinks and resets still easy and predictable, even for players coming from a very powerful paddle. Rates the spin as top tier, level with Hex Grit, Honolulu Blue Grit and Spartus. Recommends it for 3.0 to 4.5 players who want easier control while staying offensive, and wants a longer handle for two handed backhands.",
+     "more": "Describes the feel as a little softer and denser than most newer paddles, close to the Friday Aura and the J2 SE Plus, and more muted. Calls it a better all court option than the Friday Aura, with more power, pop and spin. Calls it a no brainer for original Coral fans who want more spin, though it is UPA approved only. Would like the top to bottom corner taper removed for a bigger sweet spot.",
+     "highlights": [
+      "tiptoes the line to power",
+      "spin as top tier",
+      "3.0 to 4.5 players",
+      "longer handle for two handed backhands"
+     ],
+     "short": "Finds it an all-court paddle that leans toward power on drives, serves and put-aways while staying easy on drops, dinks and resets. Rates the grit among the top spin generators and expects it to last. Recommends it for roughly 3.0 to 4.5 players, hybrid shape tested.",
+     "attrs": {
+      "power": "Good",
+      "control": "Good",
+      "spin": "Excellent",
+      "pop": "Good",
+      "comfort": "Good",
+      "durability": "Great"
+     },
+     "score": null,
+     "measured": {},
+     "alsoUrl": null,
+     "version": null,
+     "note": null,
+     "tie": null,
+     "stood": "Top-tier spin, and easy on drops, dinks and resets.",
+     "trade": null,
+     "compared": null
+    },
+    {
+     "id": "tickle-my-pickleball",
+     "creator": "Tickle My Pickleball",
+     "kind": "youtube",
+     "type": "review",
+     "url": "https://www.youtube.com/watch?v=XBxlG8Er6BM",
+     "channel": "https://www.youtube.com/channel/UC5Txk5Su1Qv1AUVaXJ5FbzA",
+     "lang": "en",
+     "date": "2026-06-26",
+     "video": "XBxlG8Er6BM",
+     "len": 318,
+     "chapters": [
+      [
+       21,
+       "Gameplay Segment"
+      ],
+      [
+       56,
+       "Coral vs Coral Pro"
+      ],
+      [
+       125,
+       "Coral Pro vs Current All Court Foam Market"
+      ],
+      [
+       214,
+       "Blooper Reel"
+      ]
+     ],
+     "quote": "it's one of the few paddle series that has durable grit texture",
+     "quoteAt": null,
+     "stance": "pos",
+     "summary": "Compares the Coral Pro with the original Coral and finds the main change is a grittier Double Diamond Tough surface, now approved by UPA only. Describes the play profile as similar, with crisper feedback, a little more pop off the face and more spin, which helps on aggressive topspin dinks. Places the feel on the stiffer end of the all-court spectrum and calls it easy to pick up for most players. Rates the extra $20 as worth it for players who do not need USAPA certification and want durable high spin. Does not recommend it to anyone who wants plusher feedback.",
+     "more": "Ranks the Coral Pro against other all-court foam paddles. Puts the Flick F3 series at the most dense and muted end, with lower firepower, and places the Engage X2s as denser than the Coral Pro. Calls the Paddletek Apex Joy a little lower in firepower and more plush. Says the Selkirk Omni feels like the original Boomstick, with fuller feedback, harder hitting and a more aggressive all-court game. Notes that only the Omni shares its durable grit, and that the Coral Pro has the highest spin of the group. Lists the price as $220.",
+     "highlights": [
+      "crisper feedback",
+      "more spin",
+      "stiffer end of the all-court spectrum",
+      "durable high spin"
+     ],
+     "short": "Describes the Pro as crisper and a bit poppier than the original, with the highest spin of the foam all-court paddles they list. Places the feel on the stiffer side, so not for players who want plush feedback. Calls the $220 price fair for a durable-grit paddle.",
+     "attrs": {
+      "power": "Good",
+      "spin": "Great",
+      "comfort": "Okay",
+      "durability": "Great"
+     },
+     "score": null,
+     "measured": {},
+     "alsoUrl": null,
+     "version": null,
+     "note": null,
+     "tie": null,
+     "stood": "The highest spin of the foam all-court paddles they list.",
+     "trade": "A stiffer feel, so not for players who want plush feedback.",
+     "compared": "The original Coral: crisper and a bit poppier."
+    },
+    {
+     "id": "dinking-and-driving",
+     "creator": "Dinking And Driving",
+     "kind": "youtube",
+     "type": "review",
+     "url": "https://www.youtube.com/watch?v=lIKJHxUQzPQ",
+     "channel": "https://www.youtube.com/channel/UCI9grPBnpxuu1Hoarzdj9Qw",
+     "lang": "en",
+     "date": "2026-06-26",
+     "video": "lIKJHxUQzPQ",
+     "len": 367,
+     "chapters": [
+      [
+       20,
+       "Design & Shape Breakdown"
+      ],
+      [
+       36,
+       "Overall Opinion: The Epitome of an All-Court Paddle"
+      ],
+      [
+       64,
+       "Sweet Spot & Consistency"
+      ],
+      [
+       102,
+       "How It Compares to the Six Zero Black Opal"
+      ],
+      [
+       142,
+       "Diamond Tough Grit & Spin Performance"
+      ],
+      [
+       169,
+       "Ball Shaping, Angles & Dwell Time"
+      ],
+      [
+       195,
+       "Compared to Power Paddles (Loco, Gurkha Draco)"
+      ],
+      [
+       237,
+       "All-Court Paddle vs. Power Paddle Mindset"
+      ]
+     ],
+     "quote": "this is what every all-court paddle should be",
+     "quoteAt": null,
+     "stance": "pos",
+     "summary": "Plays about 12 hours over a little more than a week with the wide body version, a free unit from the brand, and calls it a preview, not a full review. Finds plenty of power, control and pop, no hot or dead spots and a really good sweet spot. Reports crazy spin from the UPA only grit, with extra dwell helping dip and shape the ball. Cannot judge grit durability yet. Calls it the epitome of an all-court paddle and names it the number one all-court paddle available in 2026. Would change only the handle length, wanting it slightly longer.",
+     "more": "Did not care for the Black Opal from last fall, citing a small, inconsistent sweet spot, so liking the Coral Pro came as a surprise. Compares it with power paddles such as the Loco and Gearbox Draco, which remain phenomenal but feel less consistent. Says the Coral Pro gives more confidence to swing hard and trust the ball stays in. Finds it well weighted and not too heavy, and expects a better swing weight on wide body shapes. Skips swing weight and twist weight numbers. Plans more play to see how the grit lasts.",
+     "highlights": [
+      "plenty of power, control and pop",
+      "no hot or dead spots",
+      "number one all-court paddle",
+      "extra dwell"
+     ],
+     "short": "Calls it the paddle every all-court paddle should be, with plenty of power, control and pop and no hot or dead spots. Gets a lot of dip and angle from the grit and dwell on the widebody. Labels it a preview after about 12 hours and could not judge grit longevity.",
+     "attrs": {
+      "power": "Great",
+      "control": "Great",
+      "spin": "Excellent",
+      "pop": "Great",
+      "sweet": "Great"
+     },
+     "score": null,
+     "measured": {},
+     "alsoUrl": null,
+     "version": "Widebody",
+     "note": null,
+     "tie": null,
+     "stood": "Plenty of power, control and pop, with no hot or dead spots.",
+     "trade": "A preview after about 12 hours, so grit life is not judged yet.",
+     "compared": null
+    },
+    {
+     "id": "dwell-time-pickleball",
+     "creator": "Dwell Time Pickleball",
+     "kind": "youtube",
+     "type": "review",
+     "url": "https://www.youtube.com/watch?v=kzCtEAN96pE",
+     "channel": "https://www.youtube.com/channel/UCoPBS606t7L7A_-ul2eH05A",
+     "lang": "en",
+     "date": "2026-08-07",
+     "video": "kzCtEAN96pE",
+     "len": 339,
+     "chapters": [],
+     "quote": "it's quickly worked its way into my top five pickleball paddles",
+     "quoteAt": null,
+     "stance": "pos",
+     "summary": "Plays a little over a month with a self bought hybrid measuring 7.9 oz static weight, 111 swing weight and 6.5 twist weight. Finds the low swing weight quick through the air and in kitchen exchanges, but prefers it with 3 g added on each side for stability and plow through. Calls drive power a little greater than pop, and more powerful than the original Coral. Rates the grit as very rough and tier 1 among durable grit paddles, with no measurable reduction after about a month. Names the short handle and tapering shape as the main criticisms. Calls it a top five paddle.",
+     "more": "Estimates the handle at about 5.3 to 5.4 inches against an advertised 5.5, and finds a two handed backhand harder. Compares that to the Honolulu J2 before its longer handle and the Vatic V-Sol Pro. Notes the elongated has a slightly longer handle, and that the sides taper from 7.5 to about 7.3 inches. Places the grit close to the Honolulu CR series and not far behind the 11SIX24 Power 2. Says the shape and handle keep it out of the top three. Suggests 4 or 5 g up the sides for more power.",
+     "highlights": [
+      "prefers it with 3 g added on each side",
+      "tier 1 among durable grit paddles",
+      "short handle and tapering shape",
+      "top five paddle"
+     ],
+     "short": "Describes a high-end all-court paddle that reaches into the lower power tier once weight is added to the sides. Finds the spin elite and the feel manageable, with drive power slightly above pop. Reports no measurable grit loss after about a month and criticizes the short handle and tapered shape.",
+     "attrs": {
+      "power": "Good",
+      "control": "Good",
+      "spin": "Excellent",
+      "pop": "Good",
+      "durability": "Great"
+     },
+     "score": null,
+     "measured": {
+      "swing_weight": 111,
+      "twist_weight": 6.5,
+      "static_weight_oz": 7.9
+     },
+     "alsoUrl": null,
+     "version": null,
+     "note": null,
+     "tie": null,
+     "stood": "Elite spin, and no measurable grit loss after a month.",
+     "trade": "A short handle and a tapered shape.",
+     "compared": null
+    },
+    {
+     "id": "jj-pickleball",
+     "creator": "JJ Pickleball",
+     "kind": "youtube",
+     "type": "review",
+     "url": "https://www.youtube.com/watch?v=YCBa1QfToCk",
+     "channel": "https://www.youtube.com/channel/UCct-1IfT60_mqzRwLg_QB3Q",
+     "lang": "en",
+     "date": "2026-06-22",
+     "video": "YCBa1QfToCk",
+     "len": 262,
+     "chapters": [
+      [
+       40,
+       "Specs"
+      ],
+      [
+       84,
+       "Performance"
+      ],
+      [
+       189,
+       "Final Thoughts"
+      ]
+     ],
+     "quote": "this is one of the strongest options on the market right now",
+     "quoteAt": null,
+     "stance": "pos",
+     "summary": "Tests a hybrid unit supplied by the brand, measuring 113 swing weight, 6.6 twist weight and 8.1 oz static weight, and compares it with the original Coral. Notices a slight bump in power and pop, with drives landing harder and finishing at the net easier, while control stays strong. Finds the sweet spot still really good and the feel a touch crisper. Runs spin tests new and after 30 games, and sees very little to no spin loss. Finds the rougher surface helps dinks, flicks and touch shots. Recommends it for players wanting control, spin and durability without moving into the power category.",
+     "more": "Calls it upper all court, at 16 mm with a foam core and EVA foam ring, offered in three shapes, with a 5.5 inch handle on the hybrid and a 12 month limited warranty. Describes the change as a refinement of the original, not a new paddle. Notes it is UPA approved only, so USAPA players need the original Coral. Puts the price at $220, $20 more than the original, and says that is easy to justify if spin matters most. Praises the balance of maneuverability and stability on the hybrid.",
+     "highlights": [
+      "slight bump in power and pop",
+      "sweet spot still really good",
+      "very little to no spin loss",
+      "control, spin and durability"
+     ],
+     "short": "Finds it a noticeable step up from the original, with slightly more power and pop, a crisper feel and the same all-court control. Sees very little spin loss after 30 games. Says the $20 premium is easy to justify if spin matters most.",
+     "attrs": {
+      "power": "Good",
+      "control": "Great",
+      "spin": "Great",
+      "sweet": "Great",
+      "durability": "Excellent"
+     },
+     "score": null,
+     "measured": {
+      "swing_weight": 113,
+      "twist_weight": 6.6
+     },
+     "alsoUrl": null,
+     "version": null,
+     "note": null,
+     "tie": null,
+     "stood": "A step up from the original, with more power and pop and very little spin loss.",
+     "trade": "The $20 premium mainly pays off if spin matters most.",
+     "compared": "The original Coral: crisper, with the same all-court control."
+    },
+    {
+     "id": "supasenpai",
+     "creator": "SupaSenpai",
+     "kind": "youtube",
+     "type": "review",
+     "url": "https://www.youtube.com/watch?v=rRn-pGcwdQ8",
+     "channel": "https://www.youtube.com/channel/UCOtjrYVy6JlCSccNwW_v44Q",
+     "lang": "en",
+     "date": "2026-09-02",
+     "video": "rRn-pGcwdQ8",
+     "len": 374,
+     "chapters": [],
+     "quote": "the Coral Pro was what the Coral was meant to be",
+     "quoteAt": null,
+     "stance": "mix",
+     "summary": "Rates the Coral Pro with a group of testers after about 3 hours of break in, and gives it a B+. Calls it an upgrade over the original Coral, but says it plays as a power paddle, not an all-court or control one. Finds most of the face a sweet spot, yet less comfortable than hoped, with little dwell and a poor sense of where the ball is going. Scores serving, drives and spin control 4.0 each, kitchen and hand battles 4.5, smash 4.0, and durability and value 4.5. Says spin is better than before but not top tier, and that players under 4.0 may not generate enough of it.",
+     "more": "Reports that most players found the original Coral disconnected and mushy, and says the Pro is what the Coral was meant to be. Says it plays like the older 6-0 Double Black Diamond with more grip, and sees higher level players liking the stiffness and immediate pop. Does not expect lower level players to enjoy it, since they want comfort, control and power on command. Would pick the 11SIX24 Power 2 at this price, and wishes it were cheaper and more control oriented. Notes some testers loved it, but most felt more connected to other paddles.",
+     "highlights": [
+      "plays as a power paddle",
+      "less comfortable than hoped",
+      "gives it a B+",
+      "not top tier"
+     ],
+     "short": "Finds it an upgrade over the original with better spin and durability, but stiffer, less dwelly and more power-leaning than expected. Says testers felt less connected and that it is hard to recommend at the price for lower-level players. Gives a B+ overall.",
+     "attrs": {
+      "power": "Good",
+      "control": "Okay",
+      "spin": "Good",
+      "comfort": "Okay",
+      "durability": "Great"
+     },
+     "score": null,
+     "measured": {},
+     "alsoUrl": null,
+     "version": null,
+     "note": null,
+     "tie": null,
+     "stood": "Better spin and durability than the original.",
+     "trade": "Stiffer and less dwelly than expected, and hard to recommend at the price for lower-level players.",
+     "compared": "The original Coral, as what it was meant to be."
+    },
+    {
+     "id": "limitless-pickleball",
+     "creator": "Limitless Pickleball",
+     "kind": "youtube",
+     "type": "long-term",
+     "url": "https://www.youtube.com/watch?v=Z-iXTH6LH6s",
+     "channel": "https://www.youtube.com/channel/UCxbbyF9OWhQnLVJuRRpKdjA",
+     "lang": "en",
+     "date": "2026-10-13",
+     "video": "Z-iXTH6LH6s",
+     "len": 333,
+     "chapters": [
+      [
+       12,
+       "Why paddles lose grit"
+      ],
+      [
+       20,
+       "What is Diamond Tough?"
+      ],
+      [
+       48,
+       "New vs 4-month-old Coral Pro"
+      ],
+      [
+       90,
+       "Under the microscope"
+      ],
+      [
+       132,
+       "Spin test: 4-month-old paddle"
+      ],
+      [
+       159,
+       "Spin test: brand-new paddle"
+      ],
+      [
+       223,
+       "How it compares to other grit surfaces"
+      ],
+      [
+       273,
+       "Should you buy the Coral Pro?"
+      ]
+     ],
+     "quote": "The spin is off the charts.",
+     "quoteAt": null,
+     "stance": "pos",
+     "summary": "Revisits the Coral Pro after about 4 months and 176 hours of play to check whether the grit wore down. Finds the used face has about 60 percent fewer small diamond particles than a new one, with no change in the large diamonds, and feels no difference in spin when hitting. Measures an average of 2164 RPM on a new paddle over 10 serves against 1945 RPM on the used one, a 10.2 percent decrease. Calls the spin off the charts, with great touch and adequate power. Recommends it for just about any player.",
+     "more": "Compares the result with other reviewers' accelerated tests, where raw carbon lost about 18 percent after 100 high speed impacts, Selkirk Infini Grit 13 to 24 percent after 100 to 200 impacts, and an Arrow Grit surface about 23 percent. Notes that 11SIX24 Hex Grit, other 6-0 Diamond Tough samples and Spartus Permagrit lost 3.5 to 4.5 percent after 100 impacts, but in accelerated tests, not hundreds of hours of real play. Says power is below the Opal, which many players do not want. Plans to keep testing.",
+     "highlights": [
+      "60 percent fewer small diamond particles",
+      "10.2 percent decrease",
+      "spin off the charts",
+      "just about any player"
+     ],
+     "short": "Compares a four-month-old Coral Pro (176 hours) with a new one and measures a 10.2 percent drop in serve spin. Finds the spin still excellent with good touch and adequate power. Recommends it for just about any player.",
+     "attrs": {
+      "power": "Good",
+      "control": "Good",
+      "spin": "Excellent",
+      "durability": "Great"
+     },
+     "score": null,
+     "measured": {
+      "spin_rpm_new": 2164,
+      "spin_rpm_after_176h": 1945,
+      "spin_loss_pct": 10.2
+     },
+     "alsoUrl": null,
+     "version": null,
+     "note": "Long-term",
+     "tie": null,
+     "stood": "Spin still excellent after 176 hours, with good touch.",
+     "trade": "Serve spin dropped 10.2 percent over four months.",
+     "compared": "A new Coral Pro, side by side with a four-month-old one."
+    },
+    {
+     "id": "amir-s-pickleball",
+     "creator": "Amir's Pickleball",
+     "kind": "youtube",
+     "type": "review",
+     "url": "https://www.youtube.com/watch?v=RUbWdsW5Isc",
+     "channel": "https://www.youtube.com/channel/UCsfs2pLjuE4oetY49BoIQ4w",
+     "lang": "en",
+     "date": "2026-06-30",
+     "video": "RUbWdsW5Isc",
+     "len": 680,
+     "chapters": [],
+     "quote": "This paddle is the most perfect all-court paddle you can find.",
+     "quoteAt": null,
+     "stance": "pos",
+     "summary": "Buys a hybrid with their own money and plays it indoors and outdoors, coming from the Glider. Finds more pop and power on serves than expected, standout dinks, resets that absorb pace and drives with a ton of spin and shape. Needs a few games to time drops. Calls the sweet spot solid but not edge to edge, and notes less energy return low on the face near the handle. Adds 3 g pods on the top corners, which gives more plow through and easier overheads. Says the grit keeps spin consistent across sessions.",
+     "more": "Picks the hybrid over the elongated, finding the elongated too narrow with a rounded top. Notes it is a Gen 4, full foam, 16 mm paddle, UPA only, so it does not suit USAPA sanctioned play. Calls it the most perfect all-court paddle you can find, soft on dinks and resets and powerful on drives and overheads. Prefers it to the Honolulu CR and 11SIX24 Power 2, which have a fiberglass layer, and expects it to be less unpredictable. Advises against it for tight budgets, elite firepower seekers and flat top fans. Recommends it for 3.0 plus players.",
+     "highlights": [
+      "standout dinks",
+      "sweet spot solid but not edge to edge",
+      "3 g pods on the top corners",
+      "grit keeps spin consistent"
+     ],
+     "short": "Calls it close to a perfect all-court paddle, with crisp dinks, easy resets, excellent drives and a lot of spin that lasts. Finds the sweet spot solid but not edge to edge and wants more on overheads until weight is added. Uses it as their main paddle after buying it themself.",
+     "attrs": {
+      "power": "Good",
+      "control": "Great",
+      "spin": "Great",
+      "sweet": "Good",
+      "durability": "Great"
+     },
+     "score": null,
+     "measured": {},
+     "alsoUrl": null,
+     "version": null,
+     "note": null,
+     "tie": null,
+     "stood": "Crisp dinks, easy resets, excellent drives and spin that lasts.",
+     "trade": "A solid but not edge-to-edge sweet spot, and less on overheads until weight is added.",
+     "compared": null
+    },
+    {
+     "id": "nikki-maldonado",
+     "creator": "Nikki Maldonado",
+     "kind": "youtube",
+     "type": "review",
+     "url": "https://www.youtube.com/watch?v=gAPRY7r5EGw",
+     "channel": "https://www.youtube.com/channel/UCPA3BvZ-AC_EqQwE09iJQag",
+     "lang": "en",
+     "date": "2026-10-16",
+     "video": "gAPRY7r5EGw",
+     "len": 1489,
+     "chapters": [],
+     "quote": "these are hands-down two of the best pickleball paddles I've ever played with",
+     "quoteAt": null,
+     "stance": "pos",
+     "summary": "Tests the wide body and hybrid versions side by side, hitting 20 of each shot type, and finds both extremely plush with deep dwell yet enough response to control the release of the ball. Reports heavy spin and shape on serves, close to perfect drives, the best backhands they have ever hit, and fantastic drops, resets and dinks. Measures swing weight at 108 for the wide body and 111 for the hybrid. Finds the hybrid adds power, with drops and resets coming easier. Names the hybrid their new main paddle.",
+     "more": "Reports twist weight of 7.25 for the wide body and 6.7 for the hybrid, with balance points of 23.7 and 24.2. Adds 3 g strips at the top corners, which brings more power on flicks and rolls, but finds the wide body better stock against hard hitters since it absorbs pace. Finds the taped hybrid noticeably slower through the air, yet still manageable. Suggests the wide body for someone needing speed or with tennis elbow. Says almost everyone who likes a soft, plushy feel ends up obsessed with these paddles.",
+     "highlights": [
+      "extremely plush with deep dwell",
+      "heavy spin and shape on serves",
+      "hybrid their new main paddle"
+     ],
+     "short": "Calls the hybrid and widebody two of the best paddles they have played, with a plush feel, lots of dwell and just enough pop. Finds resets fluid and the widebody faster and easier on the arm. Makes the hybrid their new main paddle.",
+     "attrs": {
+      "power": "Good",
+      "control": "Great",
+      "pop": "Good",
+      "comfort": "Great"
+     },
+     "score": null,
+     "measured": {},
+     "alsoUrl": null,
+     "version": "Hybrid and widebody",
+     "note": null,
+     "tie": null,
+     "stood": "A plush feel with lots of dwell and just enough pop.",
+     "trade": null,
+     "compared": "Its own shapes: the widebody is faster and easier on the arm."
+    },
+    {
+     "id": "pickleheads",
+     "creator": "Pickleheads",
+     "kind": "blog",
+     "type": "review",
+     "url": "https://www.pickleheads.com/pickleball-gear/six-zero-coral-pro-review",
+     "channel": "https://www.pickleheads.com",
+     "lang": "en",
+     "date": "2026-09-21",
+     "video": null,
+     "len": null,
+     "chapters": [],
+     "quote": null,
+     "quoteAt": null,
+     "stance": "pos",
+     "summary": "Describes a stiff, crisp feel where the ball leaves the face quickly, without the plush dwell of foam or flexible cores. Rates spin as the standout, with aggressive grit for heavy topspin drives, drops and deep serves, and durability as premium, with grit that holds up over long play. Finds enough pop for quick kitchen exchanges and pressure shots, but not explosive, and short on putaway power. Calls the sweet spot decent but dead near the side edges, so fine touch shots need center contact. Suits players who value spin and all-court balance, and less so newer players.",
+     "more": "Lists the paddle at 8.0 to 8.3 oz with a 16 mm Tectonic core and ProPulsion foam, in hybrid, elongated and widebody shapes, light and well balanced out of the box with room to add weight. Says the springy pop can make dinks and roll dinks harder to control until adjusted. Names the Honolulu J2CR Crystal Blue and 11SIX24 Power 2 as rivals with durable grit, the 11SIX24 with a touch more power. Points to the standard Coral or FLiK F3 for a friendlier sweet spot, and the Holbrook Fuze for a plush feel. Prices it at $220.",
+     "highlights": [
+      "stiff, crisp feel",
+      "spin as the standout",
+      "dead near the side edges",
+      "grit that holds up over long play"
+     ],
+     "short": "Calls it a stiff, responsive all-court paddle with standout spin and grit that holds up. Finds power and control solid, though soft dinks and resets take time to dial in and side-edge hits feel dead. Calls the $220 price fair, especially with discounts.",
+     "attrs": {
+      "power": "Good",
+      "control": "Good",
+      "spin": "Excellent",
+      "sweet": "Good",
+      "durability": "Great"
+     },
+     "score": null,
+     "measured": {},
+     "alsoUrl": null,
+     "version": null,
+     "note": null,
+     "tie": null,
+     "stood": "Standout spin and grit that holds up.",
+     "trade": "Soft dinks and resets take time, and side-edge hits feel dead.",
+     "compared": null
+    }
+   ],
+   "tiktok": {
+    "unverified": true,
+    "note": "Grok cards, quotes not caption-checked yet; covers not available (TikTok oEmbed gave none)",
+    "takes": [
+     {
+      "id": "7656915774702914830",
+      "creator": "Pickleball Pursuit",
+      "handle": "@pickleballpursuit",
+      "date": "2026-06-29",
+      "len": 101,
+      "stance": "pos",
+      "quote": "The Coral Pro is my number one recommendation.",
+      "take": "Gives first impressions on a unit sent by Six Zero, with no hours or lab specs. Finds it close to the original Coral but with a much rougher grit, great spin and grit that should last. Says it brings plenty of power on drives, serves and put-aways while staying easy on drops and resets, and makes it the top pick for players who want offense without a power paddle.",
+      "tags": [
+       "+ Great spin",
+       "+ Easy to control",
+       "- Not a power paddle"
+      ],
+      "disclosure": "Gifted by Six Zero with no obligation; affiliate code Pursuit (small commission).",
+      "url": "https://www.tiktok.com/@pickleballpursuit/video/7656915774702914830"
+     },
+     {
+      "id": "7663283659629235487",
+      "creator": "Limitless Pickleball",
+      "handle": "@limitlesspickleball",
+      "date": "2026-07-17",
+      "len": 29,
+      "stance": "pos",
+      "quote": "It's my new paddle.",
+      "take": "Gives a three-and-a-half-week update after an earlier unweighted, unwrapped first look, and calls it their new paddle. Finds it lacks the kick of the Opal, which suits them because they want control more than power, but says it still has good power. Gives no detail on spin, feel or the sweet spot in this short clip.",
+      "tags": [
+       "+ New main paddle",
+       "+ Good power",
+       "+ More control than the Opal"
+      ],
+      "disclosure": "Affiliate code COACHJEFF10 / 15% off is promoted in the video description (not spoken in the captions).",
+      "url": "https://www.tiktok.com/@limitlesspickleball/video/7663283659629235487"
+     },
+     {
+      "id": "7689677028429221150",
+      "creator": "Pickleball Paddle Reviews",
+      "handle": "@identify.as.a.5.0",
+      "date": "2026-09-26",
+      "len": 179,
+      "stance": "pos",
+      "quote": "The hybrid shape specifically is an absolute killer.",
+      "take": "Ranks the Coral Pro Hybrid number two for 2026 on the control player's list in a split top five. Says it is the paddle that makes an opponent notice the ball spun like crazy, and calls the hybrid shape an absolute killer with next-level feel. The power player leaves it out of their five. Gives no hours or measured specs.",
+      "tags": [
+       "+ Great spin",
+       "+ Next-level feel"
+      ],
+      "disclosure": "Paddles in the video were provided by the brands, except the Spitfire, which they bought; they say no brand had any say in the rankings. Affiliate code IDENTIFY.",
+      "url": "https://www.tiktok.com/@identify.as.a.5.0/video/7689677028429221150"
+     },
+     {
+      "id": "7698052374652341518",
+      "creator": "bepickleballer",
+      "handle": "@bepickleballer",
+      "date": "2026-10-18",
+      "len": 109,
+      "stance": "pos",
+      "quote": "The spin is just absolutely incredible.",
+      "take": "Ranks it number four among about 100 paddles tried this year. Finds it keeps the original Coral's plush, comfortable feel, with an upgraded surface that adds bite for shaping the ball. Calls it a control paddle, not one for maximum power, and great for drops, resets and drives, with incredible spin and placement on serves. Likes the stock grip.",
+      "tags": [
+       "+ Great spin",
+       "+ Plush feel",
+       "- Not for max power"
+      ],
+      "disclosure": "Affiliate code pickleballOR10 (10% off, spoken as bringing the price from $220 to $198). The video also plugs a three-paddle giveaway.",
+      "url": "https://www.tiktok.com/@bepickleballer/video/7698052374652341518"
+     },
+     {
+      "id": "7701092678196317471",
+      "creator": "Nico the Lefty",
+      "handle": "@nicothelefty_",
+      "date": "2026-10-26",
+      "len": 93,
+      "stance": "pos",
+      "quote": "Maybe my favourite all court paddle of the year.",
+      "take": "Ranks it number four on a top-five list for spin, behind the RPM Jade, Honolulu J2CR and J6CR, and Luzz Cannon XPP M1. Calls it maybe their favourite all-court paddle of the year, with Diamond grit that keeps spinning. Says it would sit higher if they liked all-court paddles more, since they lean toward power. Gives no hours or specs.",
+      "tags": [
+       "+ Great spin",
+       "+ Favourite all-court"
+      ],
+      "disclosure": "Affiliate code NICOTHELEFTY is in the video description and title (not spoken in the captions).",
+      "url": "https://www.tiktok.com/@nicothelefty_/video/7701092678196317471"
+     },
+     {
+      "id": "7709685575883771149",
+      "creator": "Pickleball Paddle Reviews",
+      "handle": "@identify.as.a.5.0",
+      "date": "2026-11-19",
+      "len": 109,
+      "stance": "pos",
+      "quote": "These are two of the top all court hybrid paddles that have ever been made.",
+      "take": "Compares it head to head with the Volair CMD Hybrid, calling both surfaces S-tier grit and the two best hybrids for control players right now. Warns there is not a ton of pop and power. Finds the feel, balance and RPMs very similar; the Coral Pro widens a little at the top, while the Volair has a longer handle.",
+      "tags": [
+       "+ S-tier grit",
+       "+ Control player's paddle",
+       "- Not much pop and power"
+      ],
+      "disclosure": "Gifted, no obligation, views are their own; affiliate code IDENTIFY.",
+      "url": "https://www.tiktok.com/@identify.as.a.5.0/video/7709685575883771149"
+     }
+    ]
+   }
   }
  }
 }

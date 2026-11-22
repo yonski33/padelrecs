@@ -37,7 +37,20 @@ export type CreatorPage = { paddle: string; tldr: string;
   /** Shop prices from the price sweep (USD, new, US shops, hand-checked), lowest first with in-stock rows first; null when
    *  none were collected. A static snapshot for the demo, dated by `checked`. */
   prices: { checked: string; offers: Offer[] } | null;
+  /** "Short takes on TikTok" (owner 2026-11-22, Coral Pro demo only). UNVERIFIED: Grok's cards, the quotes still need a
+   *  caption check before anything goes live (`unverified` stays true until then). */
+  tiktok?: { unverified: boolean; note: string; takes: TikTokTake[] };
   reviews: CreatorReview[] };
+export type TikTokTake = { id: string; creator: string; handle: string; date: string; len: number; stance: Stance; quote: string;
+  /** 40-70 words, rewritten to the copy rules. */ take: string; tags: string[]; disclosure: string; url: string };
+
+/** The TikTok takes counted the way the sentiment bar counts them: one per channel (the newest take's stance), so a channel
+ *  with two takes counts once. They never join the review count or the reviewer table. */
+export function tiktokStances(takes: TikTokTake[]) {
+  const latest = new Map<string, TikTokTake>();
+  for (const t of takes) { const x = latest.get(t.handle); if (!x || t.date > x.date) latest.set(t.handle, t); }
+  return stanceCounts([...latest.values()]);
+}
 export type Offer = { shop: string; url: string; price: number; inStock: boolean; edition: string | null; affiliate: boolean };
 
 /** "$110", "$159.99". */
