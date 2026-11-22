@@ -253,6 +253,20 @@
       "when": 1794891700000,
       "tag": "0038_comment_flair_none",
       "breakpoints": true
+    },
+    {
+      "idx": 39,
+      "version": "7",
+      "when": 1794891900000,
+      "tag": "0039_creator_reviews",
+      "breakpoints": true
+    },
+    {
+      "idx": 40,
+      "version": "7",
+      "when": 1794892100000,
+      "tag": "0040_creator_key_point",
+      "breakpoints": true
     }
   ]
 }
