@@ -14,7 +14,7 @@ export type Stance = "pos" | "mix" | "neg";
 export const STANCE_LABEL: Record<Stance, string> = { pos: "Loved it", mix: "Mixed", neg: "Not for me" };
 
 export type CreatorReview = {
-  id: string; creator: string; kind: "youtube" | "blog"; type: "review" | "comparison" | "long-term";
+  id: string; creator: string; kind: "youtube" | "blog" | "tiktok"; type: "review" | "comparison" | "long-term";
   url: string; channel: string; lang: string; date: string; video: string | null; len: number | null;
   /** The creator's own chapters (start second, title), intro, outro and discount-code lines left out. */ chapters: [number, string][];
   /** A real quote (verbatim; plain caption spellings fixed), or null. */ quote: string | null; quoteAt: number | null;
@@ -94,7 +94,7 @@ export function splitSummary(summary: string): [string, string] {
 }
 
 /** "YouTube", "Blog"; and the language as a short code. */
-export const platform = (r: Pick<CreatorReview, "kind">) => r.kind === "youtube" ? "YouTube" : "Blog";
+export const platform = (r: Pick<CreatorReview, "kind">) => r.kind === "youtube" ? "YouTube" : r.kind === "tiktok" ? "TikTok" : "Blog";
 export const langCode = (l: string) => l.slice(0, 2).toUpperCase();
 /** The creator's own number as they gave it: "9/10", with its label. */
 export const scoreText = (s: NonNullable<CreatorReview["score"]>) => `${s.value}/${s.scale}`;
@@ -155,7 +155,7 @@ export const cardChips = (attrs: CreatorReview["attrs"]) => ATTRS.flatMap(([k, l
 }).sort((a, b) => (a.tone === b.tone ? 0 : a.tone === "pos" ? -1 : 1));
 
 /** The owner mock's avatar colour, by source: YouTube coral, blog blue. */
-export const SOURCE_COLOR = { youtube: "#F0796A", blog: "#3D5A99" } as const;
+export const SOURCE_COLOR = { youtube: "#F0796A", blog: "#3D5A99", tiktok: "#111111" } as const;
 
 /** The summary cut into plain and marked pieces, in order (the mock's yellow marker); overlapping marks keep the first. */
 export function marks(text: string, hs: string[]): { t: string; on: boolean }[] {
@@ -166,4 +166,22 @@ export function marks(text: string, hs: string[]): { t: string; on: boolean }[] 
   for (const [a, b] of spans) { if (a > at) out.push({ t: text.slice(at, a), on: false }); out.push({ t: text.slice(a, b), on: true }); at = b; }
   if (at < text.length) out.push({ t: text.slice(at), on: false });
   return out;
+}
+
+/** TikTok takes as reviews (owner 2026-11-22: "tiktok is part of the reviews"): each take becomes a short review card (its
+ *  quote, its take as the summary, its own tags, no Stood out / Trade-off / Compared to, no chapters, no attribute words).
+ *  `handle` and `tags` ride along for the card. UNVERIFIED like the takes themselves (page.tiktok.unverified). */
+export type ReviewEntry = CreatorReview & { handle?: string; tags?: string[] };
+export const takeAsReview = (t: TikTokTake): ReviewEntry => ({
+  id: `tt-${t.id}`, creator: t.creator, kind: "tiktok", type: "review", url: t.url, channel: `https://www.tiktok.com/${t.handle}`,
+  lang: "en", date: t.date, video: null, len: t.len, chapters: [], quote: t.quote, quoteAt: null, stance: t.stance,
+  summary: t.take, more: null, highlights: [], short: t.take, attrs: {}, score: null, measured: {}, alsoUrl: null,
+  version: null, note: null, tie: null, stood: null, trade: null, compared: null, handle: t.handle, tags: t.tags });
+/** The page's two lists: `feed`, every card (each TikTok video); `counted`, one entry per reviewer (a TikTok channel with two
+ *  videos counts once, by its newest take), which every count, the table, How it plays and the sentiment bar use. */
+export function reviewLists(page: CreatorPage) {
+  const takes = (page.tiktok?.takes ?? []).map(takeAsReview);
+  const newest = new Map<string, ReviewEntry>();
+  for (const t of takes) { const x = newest.get(t.handle!); if (!x || t.date > x.date) newest.set(t.handle!, t); }
+  return { feed: [...page.reviews, ...takes] as ReviewEntry[], counted: [...page.reviews, ...newest.values()] as ReviewEntry[] };
 }
