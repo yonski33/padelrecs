@@ -25,6 +25,7 @@ import { amazonPhoto } from "../../../../lib/amazon-photos";
 import { websiteButton } from "../../../../lib/product-links";
 import { withoutYear, shortModel } from "../../../../lib/brand-name";
 import { niche, hasYears } from "../../../../lib/niche";
+import { tennisYearKnown, tennisReplacedBy, tennisStyle } from "../../../../lib/thread/tennis-notes";
 import { v3Site } from "../../../../lib/thread/sites";
 import { alsoLoved } from "../../../../db/product-votes";
 import { database } from "../../../../db/data";
@@ -106,7 +107,11 @@ const plastics = (cards: { version?: string | null }[]) => {
 export default async function ThreadRacket({ params }: P) {
   const d = await racketData((await params).slug);
   if (!d) notFound();
-  const { r, row, brand, cards, lead, bullets, traits, style, sim, simSpecs, simSelf, line, latest, judged } = d;
+  const { r, row, brand, cards, lead, bullets, traits, style: engineStyle, sim, simSpecs, simSelf, line, latest, judged } = d;
+  // TennisRecs: the audit's style fixes (votes and the maker agree, owner OK 2026-11-22) win over the engine's axis.
+  const style = (TN ? tennisStyle(r.slug) : null) ?? engineStyle;
+  // TennisRecs: an older generation its maker has replaced is tagged first, like sim racing's discontinued gear.
+  const replaced = TN ? tennisReplacedBy(r.slug) : null;
   const [{ rows, ctx }, tales] = await Promise.all([threadRows(), racketStories(r.id)]);
   // SkinRecs: its own tags, "People say" and fit check from the skin engine (app/thread/live/skin-match.tsx); the fit check
   // gets the ranking inputs of this product's type only.
@@ -142,7 +147,7 @@ export default async function ThreadRacket({ params }: P) {
   // A product its maker no longer sells (Notes "Discontinued: …", SimRacingRecs, owner 2026-11-21): a tag first, "Used only".
   const gone = SR && /^Discontinued\b/i.test(r.surface ?? "");
   const tags = (SR ? [gone ? "Discontinued" : null, r.shape, r.balance, LEVEL_WORD(row?.levels ?? [])] : DG ? [r.shape, stab ? cap(stab) : null, LEVEL_WORD(row?.levels ?? [])] : SKIN ? [r.shape, skinAttrs?.facts.fragrance_free === "free" ? "Fragrance free" : null, skinTex ? `${skinTex} texture` : null, row?.best ? `Reviewers say: ${row.best}` : null]
-    : [style ? STYLE_WORD[style] : null, oneShape(r.shape), row?.feel ? `${row.feel} feel` : null, LEVEL_WORD(row?.levels ?? [])]).filter((x): x is string => !!x);
+    : [replaced ? "Discontinued" : null, style ? STYLE_WORD[style] : null, oneShape(r.shape), row?.feel ? `${row.feel} feel` : null, LEVEL_WORD(row?.levels ?? [])]).filter((x): x is string => !!x);
   const playersSay = SR ? ([row?.levels.length && ["Best for", LEVEL_WORD(row.levels)!],
     traits.slice().sort((a, b) => b.dots - a.dots)[0] && ["Strongest at", traits.slice().sort((a, b) => b.dots - a.dots)[0].label]].filter((x): x is [string, string] => !!x))
     : DG ? ([row?.levels.length && ["Best for", LEVEL_WORD(row.levels)!], dgStyle && ["Stability", dgStyle], row?.arm && ["Slower arm", "Yes, say throwers"],
@@ -171,7 +176,7 @@ export default async function ThreadRacket({ params }: P) {
   if (niche.id === "padel" || (au && aw) || SR || TN || PB) {
     // "Released": the year in the name ("Head Radical MP 2023"), else the year field, except on TennisRecs and SimRacingRecs,
     // whose year field is a placeholder (2026 on every product, owner report 2026-11-22): there the row is left out.
-    const released = r.name.match(/\b(20\d\d)\b/)?.[1] ?? (TN || SR ? null : r.year ? String(r.year) : null);
+    const released = r.name.match(/\b(20\d\d)\b/)?.[1] ?? (SR || (TN && !tennisYearKnown(r.slug)) ? null : r.year ? String(r.year) : null);
     const v7Specs = (SR || TN || PB ? [...niche.specs.map(s => [s.label, r[s.column]]), ["Released", released]] : aw ? [["Type", r.balance], ["Connection", r.weight], ["Driver", r.core], ["Noise cancelling", aw.anc ? "Yes" : aw.wireless ? "No" : null], ["Notes", r.surface]] : [["Weight", r.weight], ["Shape", r.shape], ["Balance", r.balance], ["Feel", row?.feel ?? null], ["Face", r.surface], ["Released", r.year ? String(r.year) : null],
       ...(((specNotes as unknown as Record<string, Record<string, [string, string][]>>)[niche.id] ?? {})[r.slug] ?? [])] as [string, string | null][]).filter((x): x is [string, string] => !!x[1]);
     // TL;DR with no counts (owner 2026-11-21): the written one as is; else the page's own lines without "N players mention

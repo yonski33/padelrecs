@@ -1,6 +1,7 @@
 // The Thread pages' data, all from what the live site already reads (no new tables): the match context (catalogue, Player
 // scores, fit facts, trait scores), the ranked lists (curated top 10s first) and the web reports. Built once per instance copy.
 import { cache } from "react";
+import { tennisFeel } from "../../lib/thread/tennis-notes";
 import { matchContext } from "../match-context";
 import { rankedLists } from "../rankings/lists";
 import { displayName } from "../../lib/brand-name";
@@ -44,8 +45,11 @@ type Rows = { ctx: Ctx; rows: Map<string, ThreadRow>; all: ThreadRow[]; bySlug: 
 export const threadRows = cache(async (): Promise<Rows> => {
   if (!hasDb()) return { ctx: null as unknown as Ctx, rows: new Map(), all: [], bySlug: new Map() };
   const [base, tallies] = await Promise.all([niche.id === "skin" ? skinRows() : niche.id === "audio" ? audioRows() : countedRows(), sentimentOverrides()]);
-  if (!tallies.size) return base;
-  const rows = new Map([...base.rows].map(([id, r]) => [id, { ...r, ...tallyWith(r, tallies.get(id)) }]));
+  // TennisRecs: Feel from the stiffness, unless the votes clearly disagree (lib/thread/tennis-notes.ts, owner OK 2026-11-22).
+  const tc = niche.id === "tennis" ? await traitCounts() : null, ra = tc ? new Map(base.ctx.data.rackets.map(x => [x.id, x.surface])) : null;
+  const felt = (r: ThreadRow): ThreadRow => tc ? { ...r, feel: tennisFeel(ra!.get(r.id), traitGroup(tc, r.id, "feel") as Record<string, number> | null) as ThreadRow["feel"] } : r;
+  if (!tallies.size && !tc) return base;
+  const rows = new Map([...base.rows].map(([id, r]) => [id, felt({ ...r, ...tallyWith(r, tallies.get(id)) })]));
   return { ...base, rows, all: [...rows.values()], bySlug: new Map([...rows.values()].map(x => [x.slug, x])) };
 });
 /** The owner's typed overall tallies (Traits tab, trait_overrides under SENTIMENT_KEY), by product. Empty on any error, so
