@@ -58,8 +58,6 @@ const n = (x: number) => x.toLocaleString("en-US");
 /** The reviews header's count line: "1 player review · 13 from around the web" (the web part only when there is any). */
 export const countLine = (players: number, web: number, person = "player") =>
   [`${n(players)} ${person} ${players === 1 ? "review" : "reviews"}`, web > 0 ? `${n(web)} from around the web` : ""].filter(Boolean).join(" · ");
-/** Poll totals under this stay unsaid next to the strip (a "2 players voted" line would point at nearly nothing). */
-export const POLL_POINT_MIN = 5;
 export const webCount = <T>(w: WebGroups<T>) => w.threads.length + w.videos.length + w.comments.length + w.blogs.length;
 
 /** One list (owner 2026-11-21, after #601): every outside card with its group, newest first across sources. */

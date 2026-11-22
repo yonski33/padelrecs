@@ -22,7 +22,7 @@ import { signInHref } from "./use-account";
 import { MemberMark } from "./member-mark";
 import { avatarOf } from "../../../lib/thread/avatar";
 import type { RvCard } from "../racket-data";
-import { countLine, isThin, playersWord, POLL_POINT_MIN, threadTitle, thumbOf, WEB_FIRST, webList, type WebGroups } from "../../../lib/thread/web-sources";
+import { countLine, isThin, playersWord, threadTitle, thumbOf, WEB_FIRST, webList, type WebGroups } from "../../../lib/thread/web-sources";
 
 const ACCOUNTS = accountSite(niche.id);
 /** The event the poll sends to open the review form (v16 "Say why in a short review"). */
@@ -173,14 +173,6 @@ type Sort = "helpful" | "new" | "old";
 const SORTS: [Sort, string][] = [["new", "Newest"], ["helpful", "Most helpful"], ["old", "Oldest"]];
 const PAGE = 8;
 /** Player reviews (v7b). `model` (the racket's name without brand and year) is no longer shown here. */
-/** The poll's live total, as the poll itself shows it (racket.tsx Poll sends it once its counts load). */
-export const POLL_TOTAL = "thread-poll-total";
-export function PollPointer() {
-  const [n, setN] = useState<number | null>(null);
-  useEffect(() => { const w = window as { __thPollTotal?: number }; if (typeof w.__thPollTotal === "number") setN(w.__thPollTotal);
-    const on = (e: Event) => setN((e as CustomEvent<number>).detail); addEventListener(POLL_TOTAL, on); return () => removeEventListener(POLL_TOTAL, on); }, []);
-  return n != null && n >= POLL_POINT_MIN ? <a className="th7-pollpoint" href="#feedback">{`${n.toLocaleString("en-US")} ${W.people} voted in the poll above`}</a> : null;
-}
 
 /** Player reviews (v7b). Under THIN_REVIEWS (lib/thread/web-sources.ts) a compact strip: any reviews, an invitation, the
  *  + Add your review button and a pointer to the poll; no sort or filter chips. `web`: how many outside summaries follow. */
@@ -242,8 +234,9 @@ export function ReviewsV7b({ id, cards, web = 0 }: { id: string; cards: RvCard[]
       {cards.length > 0 && list.length === 0 && <p className="th-empty">No reviews match these filters yet. <button type="button" onClick={() => setFeel("all")}>Show all</button></p>}
     </div>
     {thin && <div className="th7-invite">
-      <span>{cards.length === 0 ? `No ${W.person} reviews yet. ${W.usedIt} Add the first one` : `${W.usedIt} Add yours`}</span>
-      {addBtn}<PollPointer/></div>}
+      {/* No empty-state line (owner 2026-11-22): with 0 reviews, only the button. */}
+      {cards.length > 0 && <span>{`${W.usedIt} Add yours`}</span>}
+      {addBtn}</div>}
     {list.length > shown && <button type="button" className="th-btn th-center" style={{ margin: "4px 0 8px" }} onClick={() => setShown(s => s + 16)}>Show more reviews</button>}
   </section>;
 }
