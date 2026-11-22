@@ -44,7 +44,8 @@ export type CreatorPage = { paddle: string; tldr: string;
   tiktok?: { unverified: boolean; note: string; takes: TikTokTake[] };
   reviews: CreatorReview[] };
 export type TikTokTake = { id: string; creator: string; handle: string; date: string; len: number; stance: Stance; quote: string;
-  /** 40-70 words, rewritten to the copy rules. */ take: string; tags: string[]; disclosure: string; url: string; /** One line for the glance table (creator_reviews.key_point). */ keyPoint?: string | null };
+  /** 40-70 words, rewritten to the copy rules. */ take: string; tags: string[]; disclosure: string; url: string; /** One line for the glance table (creator_reviews.key_point). */ keyPoint?: string | null;
+  /** Our saved copy of the TikTok cover (db/creators/covers.json), or none. */ cover?: string | null };
 
 /** The TikTok takes counted the way the sentiment bar counts them: one per channel (the newest take's stance), so a channel
  *  with two takes counts once. They never join the review count or the reviewer table. */
@@ -116,6 +117,26 @@ export function sortReviews<T extends Pick<CreatorReview, "stance" | "date">>(rs
   return rs.slice().sort((a, b) => (by === "stance" ? STANCE_ORDER[a.stance] - STANCE_ORDER[b.stance] : 0) || b.date.localeCompare(a.date));
 }
 
+/** The feed's mix (owner 2026-11-22): three YouTube or blog reviews first, then the TikToks spread evenly through the rest,
+ *  so two TikToks only meet when there are not enough others to put between them. Under "Most relevant" each stance group is
+ *  mixed on its own, so the order of Loved it, Mixed and Not for me holds. */
+export function mixTikToks<T extends Pick<CreatorReview, "kind" | "stance">>(rs: T[], by: "stance" | "newest", lead = 3): T[] {
+  const mix = (xs: T[], first: boolean) => {
+    const tt = xs.filter(r => r.kind === "tiktok"), other = xs.filter(r => r.kind !== "tiktok");
+    if (!tt.length || !other.length) return xs;
+    const head = first ? other.slice(0, lead) : [], rest = first ? other.slice(lead) : other;
+    // One TikTok after each slot of `gap` others; a group not led by others still opens with one of its others.
+    const gap = Math.max(1, rest.length / tt.length), out: T[] = [...head];
+    let k = 0;
+    rest.forEach((r, i) => { out.push(r); while (k < tt.length && i + 1 >= Math.round((k + 1) * gap)) out.push(tt[k++]!); });
+    if (!rest.length && k < tt.length) out.push(tt[k++]!);
+    return [...out, ...tt.slice(k)];
+  };
+  if (by !== "stance") return mix(rs, true);
+  const groups = (["pos", "mix", "neg"] as const).map(k => rs.filter(r => r.stance === k)).filter(g => g.length);
+  return groups.flatMap((g, i) => mix(g, i === 0));
+}
+
 /** The table's word columns (owner mock: a few, so the table fits without a scrollbar). */
 export const TABLE_ATTRS: AttrKey[] = ["control", "power"];
 const label = (k: AttrKey) => ATTRS.find(a => a[0] === k)![1];
@@ -173,12 +194,12 @@ export function marks(text: string, hs: string[]): { t: string; on: boolean }[] 
 /** TikTok takes as reviews (owner 2026-11-22: "tiktok is part of the reviews"): each take becomes a short review card (its
  *  quote, its take as the summary, its own tags, no Stood out / Trade-off / Compared to, no chapters, no attribute words).
  *  `handle` and `tags` ride along for the card. UNVERIFIED like the takes themselves (page.tiktok.unverified). */
-export type ReviewEntry = CreatorReview & { handle?: string; tags?: string[] };
+export type ReviewEntry = CreatorReview & { handle?: string; tags?: string[]; cover?: string | null };
 export const takeAsReview = (t: TikTokTake): ReviewEntry => ({
   id: `tt-${t.id}`, creator: t.creator, kind: "tiktok", type: "review", url: t.url, channel: `https://www.tiktok.com/${t.handle}`,
   lang: "en", date: t.date, video: null, len: t.len, chapters: [], quote: t.quote, quoteAt: null, stance: t.stance,
   summary: t.take, more: null, highlights: [], short: t.take, keyPoint: t.keyPoint ?? null, attrs: {}, score: null, measured: {}, alsoUrl: null,
-  version: null, note: null, tie: null, stood: null, trade: null, compared: null, handle: t.handle, tags: t.tags });
+  version: null, note: null, tie: null, stood: null, trade: null, compared: null, handle: t.handle, tags: t.tags, cover: t.cover ?? null });
 /** The page's two lists: `feed`, every card (each TikTok video); `counted`, one entry per reviewer (a TikTok channel with two
  *  videos counts once, by its newest take), which every count, the table, How it plays and the sentiment bar use. */
 export function reviewLists(page: CreatorPage) {

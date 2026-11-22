@@ -164,7 +164,8 @@ import { rankingTraits } from "../lib/category-rating";
 test("creator votes ask the pickleball ranking categories, no padel-only group", () => {
   assert.deepEqual(rankingTraits("pickleball"), ["plays_like", "spin", "arm", "level"]);
   const keys = creatorVoteGroups("pickleball").map(g => g.key);
-  assert.deepEqual(keys, ["plays_like", "spin", "arm", "level"]);
+  assert.deepEqual(keys, ["plays_like", "level", "sweet_spot", "arm", "feel", "spin"]);
+  for (const k of rankingTraits("pickleball")) assert.ok(keys.includes(k), k);
   assert.ok(!keys.includes("side") && !keys.includes("game_type"));
   assert.deepEqual(creatorVoteGroups("discgolf"), []);
 });
@@ -210,4 +211,27 @@ test("home extras keep the row's own votes and add only praise and price", () =>
   assert.equal(x.a!.pill, praise(p) ?? null);
   assert.equal(x.b!.pill, "Lots of spin · 4 players");
   assert.ok(!("pos" in x.a!));
+});
+
+// Similar paddles mentioned (Hybrid v19): real names only, a later generation is a different paddle.
+import { mentions } from "../lib/thread/mentions";
+test("mentions: full and distinctive model names, never the self, never a generation mix-up", () => {
+  const rows = [{ id: "a", name: "11SIX24 Vapor Power 2", brand: "11SIX24" }, { id: "b", name: "11SIX24 Vapor Power", brand: "11SIX24" },
+    { id: "c", name: "Joola Perseus Pro IV", brand: "Joola" }, { id: "d", name: "Six Zero Coral (2025)", brand: "Six Zero" }, { id: "e", name: "Honolulu J6CR", brand: "Honolulu" }];
+  const out = mentions([{ summary: "Better than the Vapor Power 2 and the Perseus Pro IV." }, { summary: "vs Vapor Power 2, a coral, the J6CR" }], rows, "c");
+  assert.deepEqual(out.map(m => [m.row.id, m.n]), [["a", 2], ["e", 1]]);
+});
+
+// The feed's mix (owner 2026-11-22): three others first, then one TikTok after every two, never TikToks in a row.
+import { mixTikToks } from "../lib/thread/creators";
+test("mixTikToks: three others first, TikToks spread evenly, stance groups kept", () => {
+  const r = (id: string, kind: string, stance = "pos") => ({ id, kind, stance } as never as { id: string; kind: "youtube" | "tiktok"; stance: "pos" });
+  const xs = [r("y1", "youtube"), r("y2", "youtube"), r("y3", "youtube"), r("y4", "youtube"), r("y5", "youtube"), r("t1", "tiktok"), r("t2", "tiktok"), r("t3", "tiktok")];
+  const m = mixTikToks(xs, "newest").map(x => x.id);
+  assert.deepEqual(m.slice(0, 3), ["y1", "y2", "y3"]);
+  assert.equal(m.length, 8);
+  const tts = mixTikToks([r("y1", "youtube"), r("y2", "youtube"), r("y3", "youtube"), ...[1, 2, 3, 4, 5, 6].map(i => r(`y${i + 3}`, "youtube")), r("t1", "tiktok"), r("t2", "tiktok"), r("t3", "tiktok")], "newest").map(x => x.kind).join(",");
+  assert.ok(!tts.includes("tiktok,tiktok"), tts);
+  const g = [r("a", "youtube"), r("b", "tiktok"), r("c", "youtube", "mix" as "pos")];
+  assert.deepEqual(mixTikToks(g, "stance").map(x => x.id), ["a", "b", "c"]);
 });

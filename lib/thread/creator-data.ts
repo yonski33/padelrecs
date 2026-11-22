@@ -1,6 +1,7 @@
 // The creator pages' data. From the database (db/creator-reviews.ts, drizzle/0039, PickleballRecs) once its tables exist;
 // until then, and wherever the database is not reachable (CI), from the demo fixtures (db/creators/<site>.json and
 // <site>-home.json), so the preview keeps working. Server only: the browser never gets the whole file.
+import covers from "../../db/creators/covers.json";
 import { cache } from "react";
 import pickleball from "../../db/creators/pickleball.json";
 import pickleballHome from "../../db/creators/pickleball-home.json";
@@ -34,8 +35,15 @@ const allPages = cache((site: string) => withDb(site, (db, m) => m.readAllCreato
 /** One product's creator page, or null (per product: the product route asks this for every paddle). */
 export const creatorPage = cache(async (site: string, slug: string): Promise<CreatorPage | null> => {
   const r = await withDb(site, (db, m) => m.readCreatorPage(db, niche.schema, slug));
-  return r ? r.v : fixturePage(site, slug);
+  return withCovers(site, r ? r.v : fixturePage(site, slug));
 });
+/** Each TikTok take's saved cover (db/creators/covers.json; the stored TikTok links expire), where one is saved. */
+const COVERS = covers as unknown as Record<string, string[]>;
+function withCovers(site: string, page: CreatorPage | null): CreatorPage | null {
+  const have = new Set(COVERS[site] ?? []);
+  if (!page?.tiktok || !have.size) return page;
+  return { ...page, tiktok: { ...page.tiktok, takes: page.tiktok.takes.map(t => have.has(t.id) ? { ...t, cover: `/creator-covers/${site}/${t.id}.jpg` } : t) } };
+}
 /** The products with a creator page (generateStaticParams). */
 export async function creatorSlugs(site: string): Promise<string[]> {
   const r = await withDb(site, (db, m) => m.readCreatorSlugs(db, niche.schema));
