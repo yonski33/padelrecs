@@ -11,6 +11,8 @@ import { th } from "../../../lib/thread/look";
 import { oneShape } from "../../../lib/thread/shape";
 import { useRacketList, named, type Key } from "./padel-list";
 import { LEVEL_OPTS, type Level, type Style } from "./picks";
+import { countsLine, opinionsLabel, siteSentiment } from "../../../lib/thread/site-sentiment";
+import { W } from "../../../lib/thread/words";
 
 const FIRST = 6;
 const STYLES: [Style, string][] = [["control", "Control"], ["balance", "Balance"], ["power", "Power"]];
@@ -22,8 +24,10 @@ const LEVEL_ICON: Record<Level, ReactNode> = {
 };
 const SHAPES = ["Widebody", "Standard", "Elongated", "Hybrid"], FEELS = ["Soft", "Medium", "Hard"], TOP_BRANDS = 6;
 
-/** One row's extra data from the server: its praise pill, where it links, its lowest price. */
-export type HomeExtra = { pill: string | null; href: string; reviews: number; price: { label: string; url: string; rel: string } | null };
+/** One row's extra data from the server: its praise pill, where it links, its lowest price (lib/thread/creator-home.ts). The
+ *  bar and counts are the row's own site votes (owner 2026-11-22). */
+import type { RowExtra as HomeExtra } from "../../../lib/thread/creator-home";
+export type { HomeExtra };
 
 export function CreatorsHomeTop({ rows, extra, curated, added, total, brands, after, side }: {
   rows: ThreadRow[]; extra: Record<string, HomeExtra>; curated: string[]; added: Record<string, string>;
@@ -96,9 +100,9 @@ export function CreatorsHomeTop({ rows, extra, curated, added, total, brands, af
               </div>
               <div className="tch-stat">
                 {mine && m != null ? <span className={`tch-match ${m >= 85 ? "g" : m >= 70 ? "y" : ""}`}>{`${m}% your match`}</span>
-                  : <span className="tch-n">{`${t} ${t === 1 ? "review" : "reviews"}`}</span>}
+                  : <span className="tch-n">{opinionsLabel(t, W.person)}</span>}
                 <span className="tch-bar" aria-hidden="true"><i className="p" style={{ flex: r.pos }}/><i className="m" style={{ flex: r.mix }}/><i className="n" style={{ flex: r.neg }}/></span>
-                <span className="tch-counts">{`${r.pos} loved · ${r.mix} mixed · ${r.neg} not for me`}</span>
+                <span className="tch-counts">{countsLine(siteSentiment(r))}</span>
                 <span className="tch-links"><a className="tch-go" href={th(x?.href ?? r.href)}>See reviews ›</a>
                   {x?.price && <a className="tch-price" href={x.price.url} target="_blank" rel={x.price.rel}>{x.price.label}</a>}</span>
               </div>

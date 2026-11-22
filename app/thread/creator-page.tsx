@@ -20,7 +20,7 @@ import { amazonPhoto } from "../../lib/amazon-photos";
 import { websiteButton } from "../../lib/product-links";
 import { JsonLd, crumbs } from "./seo";
 import { catalogLabel, catalogPath, productHref } from "../../lib/niche";
-import { ATTRS, STANCE_LABEL, TABLE_ATTRS, checkedDay, lowestOffer, usd, reviewLists, agreeChips, stanceLine, howItPlays, langCode, platform, scoreText, stanceCounts, takeaway,
+import { ATTRS, STANCE_LABEL, TABLE_ATTRS, checkedDay, lowestOffer, usd, reviewLists, agreeChips, howItPlays, langCode, platform, scoreText, takeaway,
   wordTone, type CreatorReview } from "../../lib/thread/creators";
 import { creatorPage, creatorSlugs, creatorHome } from "../../lib/thread/creator-data";
 import { threadTitle } from "../../lib/thread/web-sources";
@@ -32,6 +32,9 @@ import { PollCard } from "./live/racket-v7b";
 import { TraitVotes } from "./live/trait-votes";
 import { traitSeed } from "../../lib/thread/trait-seed";
 import { creatorVoteGroups } from "../../lib/thread/creator-votes";
+import { siteSentiment, sentimentSentence, opinionsLabel, shareLine } from "../../lib/thread/site-sentiment";
+import { homePaddle, praiseLine } from "../../lib/thread/creator-home";
+import { W } from "../../lib/thread/words";
 import "./creators.css";
 
 
@@ -49,10 +52,13 @@ export async function CreatorProductBody({ slug }: { slug: string }) {
   const [page, d] = await Promise.all([creatorPage(niche.id, slug), racketData(slug)]);
   if (!page || !d) return null;
   // Reviews include the TikTok takes (owner 2026-11-22): `rs` counts one per reviewer, `feed` holds every card.
-  const { feed, counted: rs } = reviewLists(page), n = stanceCounts(rs);
+  const { feed, counted: rs } = reviewLists(page);
   // Under CREATOR_MIN_REVIEWS reviews the product keeps its usual page.
   if (rs.length < CREATOR_MIN_REVIEWS) return null;
   const { r, row, brand, style, sim, cards } = d;
+  // The bar and its counts are the site's own players (lib/thread/site-sentiment.ts, owner 2026-11-22); the creator reviews
+  // keep their cards and a praise line ("Praised for spin in 13 reviews").
+  const votes = siteSentiment(row), said = sentimentSentence(votes, W.people), praise = praiseLine(homePaddle(page));
   const voteGroups = creatorVoteGroups(niche.id);
   // Similar paddles (the mock's section 8): the product page's similar list, current models only, filled up to four from the
   // other staged paddles (same shape first). A staged paddle shows its reviews' takes and its lowest price; others their votes.
@@ -66,7 +72,7 @@ export async function CreatorProductBody({ slug }: { slug: string }) {
   }
   const similar = sims.slice(0, 4).map(x => { const p = staged[x.slug];
     return { x, href: !creatorPageOn(niche.id) && creatorPageFor(niche.id, x.slug) ? `${x.href}?view=${CREATOR_VIEW}` : x.href,
-      pos: p ? p.pos : x.pos, mix: p ? p.mix : x.mix, neg: p ? p.neg : x.neg, unit: p ? "reviews" : "players",
+      pos: x.pos, mix: x.mix, neg: x.neg, unit: W.people,
       price: p?.price ? { label: `from ${usd(p.price.usd)} · check price ↗`, url: p.price.url, rel: p.price.affiliate ? "sponsored nofollow noopener" : "nofollow noopener" } : null }; });
   // "Players on Reddit and forums" (the mock's roundup card): the live page's Reddit summaries for this paddle, as one card in
   // the feed. Never counted as a review (not in N reviews, the table or the sentiment bar). Real short quotes only.
@@ -108,7 +114,8 @@ export async function CreatorProductBody({ slug }: { slug: string }) {
           <div className="thc-tldr">
             <span className="thc-tldr-h"><b>TL;DR</b><span>{`from ${plural(rs.length, "review")}`}</span></span>
             {page.tldr && <strong>{page.tldr}</strong>}
-            <span className="thc-tldr-s">{`${n.pos} of ${rs.length} reviews loved it${n.mix ? `, ${n.mix} were mixed` : ""}${n.neg ? ` and ${n.neg} found it not for them` : ""}.`}</span>
+            {said && <span className="thc-tldr-s">{said}</span>}
+            <span className="thc-praise">{praise && <span>{praise}</span>}<a href="#reviews">See reviews ›</a></span>
             {/* A price only where one is stored; with none, the shop link alone; with neither, no row. */}
             {(low || cta) && <span className="thc-tldr-f">{low ? <span><strong>{usd(low.price)}</strong>{` lowest today${low.shops.length > 1 ? ` at ${low.shops.length} shops` : ""}`}</span> : <span/>}
               {cta && <a className="thc-cta" href={cta.url} target="_blank" rel={cta.rel}>Check price ↗</a>}</span>}
@@ -120,14 +127,15 @@ export async function CreatorProductBody({ slug }: { slug: string }) {
       <div className="thc-rule"/>
 
       <main className="thc-body">
-        {/* What reviewers agree on (owner 2026-11-22, the padel design): the stance bar, the three stance cards and what
-            reviewers like and worry about, in one box. Chips are phrases backed by 2+ reviews (lib/thread/creators.ts agreeChips). */}
+        {/* What players say (owner 2026-11-22): the bar and the three stance cards from the site's own players, as the rankings
+            count them; then what the creator reviews like and worry about (phrases backed by 2+ reviews, agreeChips). */}
         <section id="sentiment" className="thc-box1 thc-sent">
-          <div className="thc-h"><strong>What reviewers agree on</strong><span>{plural(rs.length, "review")}</span></div>
-          <div className="thc-sbar">{KEYS.map(k => n[k] > 0 && <span key={k} className={k} style={{ flex: n[k] }}>{k === "pos" ? `${n[k]} loved it` : n[k]}</span>)}</div>
+          <div className="thc-h"><strong>{`What ${W.people} say`}</strong><span>{opinionsLabel(votes.total, W.person)}</span></div>
+          {votes.total > 0 ? <div className="thc-sbar">{KEYS.map(k => votes[k] > 0 && <span key={k} className={k} style={{ flex: votes[k] }}>{k === "pos" ? `${votes[k]} loved it` : votes[k]}</span>)}</div>
+            : <span className="thc-none">{`No ${W.person} votes yet. Be the first below.`}</span>}
           <div className="thc-sent-g">{KEYS.map(k => <div key={k}>
-            <span className="thc-sent-h"><span><span className={`thc-dot ${k}`}>●</span>{STANCE_LABEL[k]}</span><strong>{n[k]}</strong></span>
-            <span className="thc-sent-x">{n[k] ? page.groups[k] || stanceLine(rs, k) : "None of the reviews."}</span></div>)}</div>
+            <span className="thc-sent-h"><span><span className={`thc-dot ${k}`}>●</span>{STANCE_LABEL[k]}</span><strong>{votes[k]}</strong></span>
+            <span className="thc-sent-x">{shareLine(votes[k], votes, W.people)}</span></div>)}</div>
           {(agree.likes.length > 0 || agree.concerns.length > 0) && <div className="thc-big in">
             <div><strong className="pos">What reviewers like</strong><span className="thc-chips">{agree.likes.length ? agree.likes.map(t => <span key={t} className="thc-pm pos lg">{`+ ${t}`}</span>)
               : <span className="thc-none">Nothing drew praise from 2 or more reviews.</span>}</span></div>

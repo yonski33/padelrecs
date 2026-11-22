@@ -1,13 +1,14 @@
-// The creators home preview (owner handoff "PickleballRecs Home Thread v6", 2026-11-22: "do this with the exact mockup").
-// proxy.ts serves it for "/?view=creators" on the CREATOR_PAGE_SITES (lib/thread/sites.ts); the live home is unchanged.
-// Sections, as the mock: hero + quick match + fine-tune, Top paddles right now (live/creators-home.tsx), Top picks by
-// creators, 2027 paddles just in (only when real 2027 paddles are listed), Latest YouTube review summaries, Latest questions
+// The creators home (owner handoff "PickleballRecs Home Thread v6", 2026-11-22), served at "/" on the CREATOR_PAGE sites
+// (lib/thread/sites.ts). Sections, as the mock: hero + quick match + fine-tune, Top paddles right now (live/creators-home.tsx),
+// Top picks, 2027 paddles just in (only when real 2027 paddles are listed), Latest YouTube review summaries, Latest questions
 // from the community; sidebar: Latest from the comments, Rankings, New from around the web.
-// Real data: the 20 staged paddles' review takes and words (db/creators/<site>-home.json), their photos, lines and filters
-// (the catalogue rows), the real match engine, prices from the price sweep (quiet "check price" links only), and the site's
-// own comments, questions, rankings and Reddit summaries. No score badge (owner rule; the README's badge waits on the owner).
+// Owner 2026-11-22, after the first live day: the list and Top picks rank by the site's own players again (padelListData and
+// threadTopPicks, the same rows, votes and curated order as the catalogue and the rankings, PR #600). Creator reviews are few
+// and almost all positive, so they never set the order or the loved/mixed bar; they add a praise line ("Praised for spin in
+// 13 reviews"), a price and the YouTube summaries. Reusable: lib/thread/creator-home.ts rowExtras and lib/thread/site-sentiment.ts
+// take the site's own words (SkinRecs: "people").
 import { Shell } from "./shell";
-import { threadRows, threadFeed, threadHomeSide } from "./data";
+import { threadRows, threadFeed, threadHomeSide, threadTopPicks } from "./data";
 import { threadRankings } from "./rankings-data";
 import { padelListData } from "./padel-list-data";
 import { LatestQuestions } from "./latest-questions";
@@ -21,7 +22,10 @@ import { oneShape } from "../../lib/thread/shape";
 import { ago } from "./ui";
 import { Ago } from "./live/ago";
 import { STANCE_LABEL } from "../../lib/thread/creators";
-import { boards, praiseLine, usd } from "../../lib/thread/creator-home";
+import { rowExtras } from "../../lib/thread/creator-home";
+import { opinionsLabel } from "../../lib/thread/site-sentiment";
+import { SHOWN } from "../../lib/thread/top-picks";
+import { W } from "../../lib/thread/words";
 import { creatorHome } from "../../lib/thread/creator-data";
 import { creatorPageFor, creatorPageOn, CREATOR_VIEW } from "../../lib/thread/sites";
 import { CreatorsHomeTop, type HomeExtra } from "./live/creators-home";
@@ -36,31 +40,28 @@ const ICON = {
   spin: <svg width="19" height="19" viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" aria-hidden="true"><circle cx="10" cy="10" r="8.5"/><path d="M5 7c3 2 7 2 10 0M5 13c3-2 7-2 10 0"/></svg>,
   shield: <svg width="17" height="19" viewBox="0 0 18 20" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinejoin="round" aria-hidden="true"><path d="M9 1l7 3v5c0 5-3 8-7 10-4-2-7-5-7-10V4z"/><path d="M6 10l2 2 4-4"/></svg>,
 } as const;
+/** Each vote board's icon (lib/thread/top-picks.ts keys). */
+const BOARD_ICON: Record<string, keyof typeof ICON> = { sweet: "target", arm: "arm", control: "ctrl", power: "bolt", spin: "spin", beginner: "target", pop: "bolt", soft: "shield" };
 const PILL_BG = { pos: "oklch(0.93 0.08 145)", mix: "oklch(0.95 0.08 95)", neg: "oklch(0.93 0.05 35)" } as const;
 const TYPE_BG: Record<string, string> = { Widebody: "oklch(0.94 0.06 125)", Standard: "oklch(0.94 0.04 250)", Elongated: "oklch(0.93 0.05 35)", Hybrid: "oklch(0.94 0.04 250)" };
 
 /** The creators home (the owner's Home Thread v6 handoff). */
 export async function CreatorsHomeBody() {
   const home = await creatorHome(niche.id);
-  const [{ all, rows: byId, ctx }, d, side, lists, feed] = await Promise.all([threadRows(), padelListData(), threadHomeSide(), threadRankings(), threadFeed()]);
+  const [{ all, rows: byId, ctx }, d, side, lists, feed, picks] = await Promise.all([threadRows(), padelListData(), threadHomeSide(), threadRankings(), threadFeed(), threadTopPicks()]);
   const bySlug = new Map(all.map(r => [r.slug, r]));
   // With CREATOR_PAGE on, the normal address is the creator page; the ?view= preview link only while it is off.
   const hrefOf = (slug: string, href: string) => !creatorPageOn(niche.id) && creatorPageFor(niche.id, slug) ? `${href}?view=${CREATOR_VIEW}` : href;
-  // The 20 staged paddles, with their reviews' takes in place of the vote counts.
-  const rows = home ? Object.entries(home.paddles).flatMap(([slug, p]) => { const r = bySlug.get(slug);
-    return r ? [{ ...r, pos: p.pos, mix: p.mix, neg: p.neg, n: p.reviews, current: true }] : []; }) : [];
-  const extra: Record<string, HomeExtra> = Object.fromEntries(rows.map(r => { const p = home!.paddles[r.slug]!;
-    return [r.id, { pill: praiseLine(p), href: hrefOf(r.slug, r.href), reviews: p.reviews,
-      price: p.price ? { label: `from ${usd(p.price.usd)} · check price ↗`, url: p.price.url, rel: p.price.affiliate ? "sponsored nofollow noopener" : "nofollow noopener" } : null }]; }));
-  const ids = new Set(rows.map(r => r.id)), curated = d.curated.filter(id => ids.has(id));
-  const count = new Map<string, number>(); for (const r of rows) count.set(r.brand, (count.get(r.brand) ?? 0) + 1);
-  const brands = [...count].sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0])).map(([b]) => b);
+  // Ranked by the site's own players (owner 2026-11-22, after #649 went live): the same rows, votes, curated order and filters
+  // as the catalogue list (padelListData, PR #600). Creator reviews add a praise line and a price, never the order or counts.
+  const rows = d.rows, curated = d.curated, brands = d.brands;
+  const extra: Record<string, HomeExtra> = rowExtras(rows, home?.paddles ?? {}, d.pills ?? {}, hrefOf);
   const now = Date.now();
   const total = home ? `${home.total.toLocaleString("en-US")} reviews summarised` : "";
   const name = (slug: string) => { const r = bySlug.get(slug); return r ? withoutYear(r.name) : slug; };
 
-  // Top picks by creators: the six boards from the reviews' words.
-  const bd = home ? boards(home.paddles) : [];
+  // Top picks: the site's vote boards (threadTopPicks, the same lists the other homes show), six at most.
+  const bd = picks.lists.slice(0, SHOWN);
   // 2027 paddles just in: real 2027 models only (the catalogue's just-in rule); hidden otherwise.
   const listed = new Map((ctx?.data.listed ?? []).map(x => [x.id, x]));
   const added = Object.fromEntries(all.map(r => [r.id, listed.get(r.id)?.createdAt ?? ""]));
@@ -76,14 +77,14 @@ export async function CreatorsHomeBody() {
       <CreatorsHomeTop rows={rows} extra={extra} curated={curated} added={d.added} total={total} brands={brands}
         after={<>
           {bd.length > 0 && <section key="tp" className="tch-card tch-sec">
-            <div className="tch-sec-h"><h2><svg width="28" height="26" viewBox="0 0 30 28" fill="none" stroke="currentColor" strokeWidth="2" strokeLinejoin="round" aria-hidden="true"><path d="M15 3C8 3 3 7.3 3 12.5c0 2.6 1.3 5 3.4 6.7L5 25l6.3-3.2c1.2.3 2.4.5 3.7.5 7 0 12-4.3 12-9.8S22 3 15 3z"/><g fill="currentColor" stroke="none"><circle cx="10" cy="12.5" r="1.5"/><circle cx="15" cy="12.5" r="1.5"/><circle cx="20" cy="12.5" r="1.5"/></g></svg>Top picks by creators
+            <div className="tch-sec-h"><h2><svg width="28" height="26" viewBox="0 0 30 28" fill="none" stroke="currentColor" strokeWidth="2" strokeLinejoin="round" aria-hidden="true"><path d="M15 3C8 3 3 7.3 3 12.5c0 2.6 1.3 5 3.4 6.7L5 25l6.3-3.2c1.2.3 2.4.5 3.7.5 7 0 12-4.3 12-9.8S22 3 15 3z"/><g fill="currentColor" stroke="none"><circle cx="10" cy="12.5" r="1.5"/><circle cx="15" cy="12.5" r="1.5"/><circle cx="20" cy="12.5" r="1.5"/></g></svg>{`Top picks by ${W.people}`}
               <svg width="17" height="20" viewBox="0 0 20 22" fill="none" stroke="oklch(0.92 0.17 105)" strokeWidth="3.4" strokeLinecap="round" aria-hidden="true"><path d="M4 9L10 3M6 14L16 10M7 19L17 19"/></svg></h2>
-              <span>{`From ${home!.total.toLocaleString("en-US")} creator reviews`}</span></div>
-            <div className="tch-boards">{bd.map(b => <div key={b.key} className="tch-board">
-              <span className="tch-board-h">{ICON[b.icon]}<b>{b.title}</b><a href={th("/rankings")}>See all</a></span>
-              {b.rows.map((o, j) => { const r = bySlug.get(o.slug);
-                return <a key={o.slug} className={j === 0 ? "first" : undefined} href={th(r ? hrefOf(o.slug, r.href) : catalogPath)}
-                  title={`${o.n} of ${o.reviews} reviews call it Excellent or Great`}><span>{`${j + 1}.`}</span><span>{name(o.slug)}</span><span>{o.n}</span></a>; })}
+              <span>{`From ${opinionsLabel(picks.total, W.person)} and votes`}</span></div>
+            <div className="tch-boards">{bd.map(b => <div key={b.cat.key} className="tch-board">
+              <span className="tch-board-h">{ICON[BOARD_ICON[b.cat.key] ?? "shield"]}<b>{b.cat.title}</b><a href={th(b.cat.href)}>See all</a></span>
+              {b.rows.map((o, j) => { const r = byId.get(o.id);
+                return <a key={o.id} className={j === 0 ? "first" : undefined} href={th(r ? hrefOf(r.slug, r.href) : catalogPath)}
+                  title={`${o.n} ${o.n === 1 ? W.person : W.people} picked it`}><span>{`${j + 1}.`}</span><span>{withoutYear(o.name)}</span><span>{o.n}</span></a>; })}
             </div>)}</div>
           </section>}
 

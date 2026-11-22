@@ -34,18 +34,32 @@ export const usd = (n: number) => `$${Number.isInteger(n) ? n : n.toFixed(2)}`;
  *  TikTok channels once), the most praised attribute, every attribute's Excellent-or-Great count, the lowest in-stock price,
  *  and the newest YouTube summaries. */
 const PRAISE: Record<AttrKey, string> = { power: "power", control: "control", spin: "spin", pop: "pop", sweet: "its sweet spot", comfort: "arm comfort", durability: "durability" };
+/** One product's home summary from its creator page: counts one per reviewer, every attribute's Excellent-or-Great count, the
+ *  most praised one (2+ reviews), the lowest in-stock price. The paddle page's praise line uses it too. */
+export function homePaddle(page: CreatorPage): HomePaddle {
+  const { counted } = reviewLists(page);
+  const high = Object.fromEntries(ATTRS.map(([k]) => [k, counted.filter(r => r.attrs[k] === "Excellent" || r.attrs[k] === "Great").length])) as Record<AttrKey, number>;
+  const top = ATTRS.map(([k]) => k).reduce((a, k) => high[k] > high[a] ? k : a, "power" as AttrKey);
+  const low = page.prices ? lowestOffer(page.prices.offers) : null, shop = low?.shops[0];
+  return { ...stanceCounts(counted), reviews: counted.length, high,
+    praise: high[top] >= 2 ? { key: top, words: PRAISE[top], n: high[top] } : null,
+    price: low && shop ? { usd: low.price, shop: shop.shop, url: shop.url, affiliate: shop.affiliate } : null };
+}
+/** The home list's extras per row (owner 2026-11-22): the rows keep the site's own vote counts and order; a product with
+ *  creator reviews adds its praise line and lowest price, never its creator stance counts. */
+export type RowExtra = { pill: string | null; href: string; reviews: number; price: { label: string; url: string; rel: string } | null };
+export function rowExtras<R extends { id: string; slug: string; href: string }>(rows: R[], creator: Record<string, HomePaddle>,
+  pills: Record<string, string>, hrefOf: (slug: string, href: string) => string): Record<string, RowExtra> {
+  return Object.fromEntries(rows.map(r => { const p = creator[r.slug];
+    return [r.id, { pill: (p ? praiseLine(p) : null) ?? pills[r.id] ?? null, href: hrefOf(r.slug, r.href), reviews: p?.reviews ?? 0,
+      price: p?.price ? { label: `from ${usd(p.price.usd)} · check price ↗`, url: p.price.url, rel: p.price.affiliate ? "sponsored nofollow noopener" : "nofollow noopener" } : null }]; }));
+}
 export function homeFromPages(pages: Map<string, CreatorPage>, latestN = 4): CreatorHome {
   const paddles: Record<string, HomePaddle> = {}, yt: HomeSummary[] = [];
   let checked = "";
   for (const [slug, page] of pages) {
-    const { counted } = reviewLists(page);
-    const high = Object.fromEntries(ATTRS.map(([k]) => [k, counted.filter(r => r.attrs[k] === "Excellent" || r.attrs[k] === "Great").length])) as Record<AttrKey, number>;
-    const top = ATTRS.map(([k]) => k).reduce((a, k) => high[k] > high[a] ? k : a, "power" as AttrKey);
-    const low = page.prices ? lowestOffer(page.prices.offers) : null, shop = low?.shops[0];
     if (page.prices && page.prices.checked > checked) checked = page.prices.checked;
-    paddles[slug] = { ...stanceCounts(counted), reviews: counted.length, high,
-      praise: high[top] >= 2 ? { key: top, words: PRAISE[top], n: high[top] } : null,
-      price: low && shop ? { usd: low.price, shop: shop.shop, url: shop.url, affiliate: shop.affiliate } : null };
+    paddles[slug] = homePaddle(page);
     for (const r of page.reviews) if (r.kind === "youtube") yt.push({ slug, creator: r.creator, stance: r.stance, date: r.date, url: r.url, text: r.short });
   }
   yt.sort((a, b) => b.date.localeCompare(a.date));
