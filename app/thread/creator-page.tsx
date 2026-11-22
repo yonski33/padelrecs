@@ -20,7 +20,7 @@ import { amazonPhoto } from "../../lib/amazon-photos";
 import { websiteButton } from "../../lib/product-links";
 import { JsonLd, crumbs } from "./seo";
 import { catalogLabel, catalogPath, productHref } from "../../lib/niche";
-import { ATTRS, STANCE_LABEL, TABLE_ATTRS, checkedDay, lowestOffer, usd, reviewLists, agreeChips, stanceLine, stanceCounts, howItPlays, langCode, platform, scoreText, takeaway,
+import { ATTRS, STANCE_LABEL, TABLE_ATTRS, lowestOffer, usd, reviewLists, agreeChips, stanceLine, stanceCounts, howItPlays, langCode, platform, scoreText, takeaway,
   wordTone, type CreatorReview } from "../../lib/thread/creators";
 import { creatorPage, creatorSlugs, creatorHome } from "../../lib/thread/creator-data";
 import { threadTitle } from "../../lib/thread/web-sources";
@@ -44,6 +44,8 @@ import "./creators.css";
 const sourceList = (rs: { kind: string }[]) => { const k = new Set(rs.map(r => r.kind));
   const l = [k.has("youtube") && "YouTube", k.has("tiktok") && "TikTok", k.has("blog") && "blogs"].filter((x): x is string => !!x);
   return l.length > 1 ? `${l.slice(0, -1).join(", ")} and ${l.at(-1)}` : l[0] ?? "reviewers"; };
+/** "Nov 22": a price check's day, short, for the Where to buy header. */
+const shortDay = (iso: string) => new Date(`${iso.slice(0, 10)}T12:00:00Z`).toLocaleDateString("en-US", { month: "short", day: "numeric", timeZone: "UTC" });
 const STYLE_WORD = { control: "Control", power: "Power", balance: "All-round" } as const;
 const KEYS = ["pos", "mix", "neg"] as const;
 const label = (k: (typeof ATTRS)[number][0]) => ATTRS.find(a => a[0] === k)![1];
@@ -136,13 +138,14 @@ export async function CreatorProductBody({ slug }: { slug: string }) {
         </div>
         <div className="thc-head-r">
           <FitCard id={r.id} title={`Is this ${niche.words.one} right for me?`} sub="Pick your level and style"/>
+          {/* Where to buy (owner 2026-11-22): the 3 cheapest in-stock shops as quiet links, no filled button; the check date in
+              the header; "Lowest" only when one shop is cheapest. No stored price: the usual shop link as one quiet row. */}
           {(buy.length > 0 || cta) && <section id="buy" className="thc-box1 thc-buy">
-            <div className="thc-h"><strong>Where to buy</strong>{buy.length > 1 && <span>Lowest first</span>}</div>
-            {buy.map((o, i) => <div key={o.shop} className="thc-shop2"><strong>{o.shop}</strong>{i === 0 && buy.length > 1 && <span className="thc-low">Lowest</span>}
+            <div className="thc-h"><strong>Where to buy</strong>{buy.length > 0 && <span>{[buy.length > 1 ? "Lowest first" : null, page.prices ? shortDay(page.prices.checked) : null].filter(Boolean).join(" · ")}</span>}</div>
+            {buy.map((o, i) => <div key={o.shop} className="thc-shop2"><strong>{o.shop}</strong>{i === 0 && buy.length > 1 && buy[1]!.price > o.price && <span className="thc-low">Lowest</span>}
               <span className="thc-price">{usd(o.price)}</span><a className="thc-mono" href={o.url} target="_blank" rel={relOf(o.affiliate)}>check ↗</a></div>)}
-            {/* The page's one filled Check price button (README rule), to the cheapest in-stock shop, else the usual link. */}
-            {cta && <a className="thc-cta wide" href={cta.url} target="_blank" rel={cta.rel}>Check price ↗</a>}
-            {page.prices && buy.length > 0 && <span className="thc-note">{`Prices checked ${checkedDay(page.prices.checked)}.${buy.some(o => o.affiliate) ? " Some links are affiliate links." : ""}`}</span>}
+            {buy.length === 0 && cta && <div className="thc-shop2"><strong>{shop?.where ?? "Shop"}</strong><a className="thc-mono" href={cta.url} target="_blank" rel={cta.rel}>check price ↗</a></div>}
+            {buy.some(o => o.affiliate) && <span className="thc-note">Some links are affiliate links.</span>}
           </section>}
         </div>
       </header>
