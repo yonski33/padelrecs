@@ -129,7 +129,8 @@ export function CommunityFeed({ id, model, cards, web }: { id: string; model: st
     <button key={k} type="button" aria-pressed={kind === k} onClick={() => toggle(k)}>{FLAIR_WORD[k]}</button>)}</div>;
   // Thin feeds (#601): the invitation takes the composer's place.
   const composer = !composing ? thin ? <div className="th7-invite">
-      <span>{items.length === 0 ? `No ${W.person} reviews yet. ${W.usedIt} Add the first one` : `${W.usedIt} Add yours`}</span>
+      {/* No empty-state line (owner 2026-11-22): with no posts yet, only the buttons. */}
+      {items.length > 0 && <span>{`${W.usedIt} Add yours`}</span>}
       <button type="button" className="th-btn round lime" onClick={() => start("review")}>+ Add your review</button>
       <button type="button" className="th-feed-alt" onClick={() => start("question")}>Ask a question or share a tip</button></div>
     : <button type="button" className="th7-ask th-feed-ask" onClick={() => start(PADEL ? null : "review")}><span aria-hidden="true">+</span>Share a review, ask a question or a tip</button>

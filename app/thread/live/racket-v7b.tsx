@@ -231,7 +231,8 @@ export function ReviewsV7b({ id, cards, web = 0 }: { id: string; cards: RvCard[]
       {cards.length > 0 && list.length === 0 && <p className="th-empty">No reviews match these filters yet. <button type="button" onClick={() => setFeel("all")}>Show all</button></p>}
     </div>
     {thin && <div className="th7-invite">
-      <span>{cards.length === 0 ? `No ${W.person} reviews yet. ${W.usedIt} Add the first one` : `${W.usedIt} Add yours`}</span>
+      {/* No empty-state line (owner 2026-11-22): with 0 reviews, only the button. */}
+      {cards.length > 0 && <span>{`${W.usedIt} Add yours`}</span>}
       {addBtn}</div>}
     {list.length > shown && <button type="button" className="th-btn th-center" style={{ margin: "4px 0 8px" }} onClick={() => setShown(s => s + 16)}>Show more reviews</button>}
   </section>;
