@@ -3,7 +3,7 @@
 // 2026-11-22): the heading row with Sort, the filter pills (All / Loved it / Mixed / Not for me, a pill only when it has a
 // card), then one card per creator: avatar, name, source, date, language box and the take; the real quote as the headline
 // (none when the creator gave no clean quote); Stood out / The trade-off / Compared to; the summary with its marked
-// phrases (the mock's yellow marker), the rest behind Read more; +/- chips; Watch on YouTube or Read the full review. Videos have the thumbnail with its
+// phrases (the mock's yellow marker) and an inline Read more at its end (owner 2026-11-22) that opens the rest; +/- chips; Watch on YouTube or Read the full review. Videos have the thumbnail with its
 // length and the creator's own chapters on the right. Filtering runs in the browser on the cards the page already has, so
 // the page's ISR cache is untouched.
 import { useMemo, useState } from "react";
@@ -28,6 +28,7 @@ function Card({ x }: { x: CreatorReview }) {
   const thumb = x.kind === "youtube" ? thumbOf(x.url) : null;
   const chapters = open ? x.chapters : x.chapters.slice(0, CHAPTERS), hidden = x.chapters.length - chapters.length;
   const more = !!x.more || !!measured || hidden > 0 || !!x.alsoUrl;
+  const toggle = <button type="button" className="thc-more" aria-expanded={open} onClick={() => setOpen(!open)}>{open ? "Show less" : "Read more"}</button>;
   const tags = [TYPE_TAG[x.type], x.note, x.version].filter((t): t is string => !!t);
   const boxes = ([["+", "Stood out", x.stood, "pos"], ["−", "The trade-off", x.trade, "neg"], ["⇄", "Compared to", x.compared, "cmp"]] as
     [string, string, string | null, string][]).filter((b): b is [string, string, string, string] => !!b[2]);
@@ -58,15 +59,16 @@ function Card({ x }: { x: CreatorReview }) {
         ? <a href={atSecond(x.url, x.quoteAt)} {...OUT} aria-label={`Watch from ${clock(x.quoteAt)}`}>{`“${x.quote}”`}</a> : `“${x.quote}”`}</h3>}
       {boxes.length > 0 && <div className="thc-boxes">{boxes.map(([i, h, t, k]) => <div key={h} className={`thc-box ${k}`}>
         <span className="thc-box-h"><b aria-hidden="true">{i}</b><span>{h}</span></span><span>{t}</span></div>)}</div>}
-      <p className="thc-sum">{marks(x.summary, x.highlights).map((m, i) => m.on ? <mark key={i}>{m.t}</mark> : m.t)}</p>
+      <p className="thc-sum">{marks(x.summary, x.highlights).map((m, i) => m.on ? <mark key={i}>{m.t}</mark> : m.t)}
+        {more && !open && <>{" "}{toggle}</>}</p>
       {open && x.more && <p className="thc-sum">{x.more}</p>}
-      {open && measured && <p className="thc-sum sm">{`Measured by the creator: ${measured}.`}</p>}
+      {open && measured && <p className="thc-sum sm">{`Measured by the reviewer: ${measured}.`}</p>}
+      {open && <p className="thc-sum">{toggle}</p>}
       {chips.length > 0 && <div className="thc-tags">{chips.map(c => <span key={c.text} className={`thc-pm ${c.tone}`}>{`${c.tone === "pos" ? "+" : "−"} ${c.text}`}</span>)}</div>}
       <div className="thc-links">
         <a href={x.url} {...OUT}>{x.kind === "youtube" ? <><span className="thc-yt" aria-hidden="true"/>Watch on YouTube ↗</>
           : <><span className="thc-blog-i" aria-hidden="true">✎</span>Read the full review ↗</>}</a>
         {open && x.alsoUrl && <a href={x.alsoUrl} {...OUT}>Their written review ↗</a>}
-        {more && <button type="button" className="thc-more" aria-expanded={open} onClick={() => setOpen(!open)}>{open ? "Show less" : "Read more"}</button>}
       </div>
     </div>
   </article>;
@@ -81,7 +83,7 @@ export function CreatorReviews({ reviews }: { reviews: CreatorReview[] }) {
     .filter(c => c[2] > 0);
   return <section id="reviews" className="thc-reviews">
     <div className="thc-rv-h">
-      <h2>Creator reviews <span>{`· ${reviews.length}`}</span></h2>
+      <h2>Reviews <span>{`· ${reviews.length}`}</span></h2>
       <span className="thc-rv-sub">Summaries from YouTube and blogs. Watch or read the original review for the full details.</span>
       <label className="thc-sort"><span>Sort:</span><select value={by} onChange={e => setBy(e.target.value as "stance" | "newest")}>
         <option value="stance">Most relevant</option><option value="newest">Newest</option></select></label>

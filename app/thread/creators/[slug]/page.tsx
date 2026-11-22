@@ -90,9 +90,9 @@ export default async function CreatorProductPage({ params }: P) {
           <h1>{name}</h1>
           {sub && <span className="thc-lede">{`${sub[0]!.toUpperCase()}${sub.slice(1)} paddle${brand ? ` from ${brand.name}` : ""}.`}</span>}
           <div className="thc-tldr">
-            <span className="thc-tldr-h"><b>TL;DR</b><span>{`from ${plural(rs.length, "creator review")}`}</span></span>
+            <span className="thc-tldr-h"><b>TL;DR</b><span>{`from ${plural(rs.length, "review")}`}</span></span>
             <strong>{page.tldr}</strong>
-            <span className="thc-tldr-s">{`${n.pos} of ${rs.length} creators loved it${n.mix ? `, ${n.mix} were mixed` : ""}${n.neg ? ` and ${n.neg} found it not for them` : ""}.`}</span>
+            <span className="thc-tldr-s">{`${n.pos} of ${rs.length} reviews loved it${n.mix ? `, ${n.mix} were mixed` : ""}${n.neg ? ` and ${n.neg} found it not for them` : ""}.`}</span>
             <span className="thc-tldr-f">{low ? <span><strong>{usd(low.price)}</strong>{` lowest today${low.shops.length > 1 ? ` at ${low.shops.length} shops` : ""}`}</span>
               : <span>{shop ? "Price not tracked yet" : "No shop links yet"}</span>}
               {cta && <a className="thc-cta" href={cta.url} target="_blank" rel={cta.rel}>Check price ↗</a>}</span>
@@ -105,27 +105,27 @@ export default async function CreatorProductPage({ params }: P) {
 
       <main className="thc-body">
         <section id="sentiment" className="thc-box1 thc-sent">
-          <div className="thc-h"><strong>Creator sentiment in detail</strong><span>{plural(rs.length, "creator review")}</span></div>
+          <div className="thc-h"><strong>Sentiment in detail</strong><span>{plural(rs.length, "review")}</span></div>
           <div className="thc-sbar">{KEYS.map(k => n[k] > 0 && <span key={k} className={k} style={{ flex: n[k] }}>{k === "pos" ? `${n[k]} loved it` : n[k]}</span>)}</div>
           <div className="thc-sent-g">{KEYS.map(k => <div key={k}>
             <span className="thc-sent-h"><span><span className={`thc-dot ${k}`}>●</span>{STANCE_LABEL[k]}</span><strong>{n[k]}</strong></span>
-            <span className="thc-sent-x">{n[k] ? page.groups[k] : "None of the creators."}</span></div>)}</div>
+            <span className="thc-sent-x">{n[k] ? page.groups[k] : "None of the reviews."}</span></div>)}</div>
         </section>
 
         {(big.likes.length > 0 || big.concerns.length > 0) && <section className="thc-box1 flush">
-          <div className="thc-h rule"><strong>The big picture</strong><span>{`What ${rs.length} creators agree on`}</span></div>
+          <div className="thc-h rule"><strong>The big picture</strong><span>{`What ${rs.length} reviewers agree on`}</span></div>
           <div className="thc-big">
-            <div><strong className="pos">What creators like</strong><span className="thc-chips">{big.likes.map(t => <span key={t} className="thc-pm pos lg">{`+ ${t}`}</span>)}</span></div>
+            <div><strong className="pos">What reviewers like</strong><span className="thc-chips">{big.likes.map(t => <span key={t} className="thc-pm pos lg">{`+ ${t}`}</span>)}</span></div>
             <div><strong className="neg">Common concerns</strong><span className="thc-chips">{big.concerns.length ? big.concerns.map(t => <span key={t} className="thc-pm neg lg">{`− ${t}`}</span>)
-              : <span className="thc-none">No attribute drew Okay or Weak from a third of creators.</span>}</span></div>
+              : <span className="thc-none">No attribute drew Okay or Weak from a third of reviewers.</span>}</span></div>
           </div>
         </section>}
 
         <div className="thc-row">
           <div className="thc-row-l">
             <section id="creators" className="thc-box1 flush thc-glance">
-              <div className="thc-h rule"><strong>{`All ${rs.length} creators at a glance`}</strong><span>Tap a row to jump to the full summary</span></div>
-              <div className="thc-g-row thc-g-head"><span>Creator</span><span>Take</span><span className="kp">Key point</span>{TABLE_ATTRS.map(k => <span key={k}>{label(k)}</span>)}</div>
+              <div className="thc-h rule"><strong>{`All ${rs.length} reviews at a glance`}</strong><span>Tap a row to jump to the full summary</span></div>
+              <div className="thc-g-row thc-g-head"><span>Reviewer</span><span>Take</span><span className="kp">Key point</span>{TABLE_ATTRS.map(k => <span key={k}>{label(k)}</span>)}</div>
               {rs.map(x => <a key={x.id} className="thc-g-row" href={`#cr-${x.id}`}>
                 <span className="thc-g-who"><Avatar name={x.creator} kind={x.kind} size="sm"/><span><strong>{x.creator}</strong>
                   <span>{`${platform(x)} · ${langCode(x.lang)}`}{x.score && ` · ${scoreText(x.score)}`}</span></span></span>
@@ -133,7 +133,7 @@ export default async function CreatorProductPage({ params }: P) {
                 <span className="kp">{takeaway(x.short)}</span>
                 {TABLE_ATTRS.map(k => <span key={k} className="thc-g-w" data-l={label(k)}><Word w={x.attrs[k]}/></span>)}
               </a>)}
-              <span className="thc-note">Words come from what each creator said in their own review. A number shows only where the creator published one.</span>
+              <span className="thc-note">Words come from what each reviewer said in their own review. A number shows only where the reviewer published one.</span>
             </section>
           </div>
           <div className="thc-row-r">
