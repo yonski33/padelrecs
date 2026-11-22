@@ -42,7 +42,7 @@ export function reviewFromRow(r: Record<string, unknown>): CreatorReview {
 export function takeFromRow(r: Record<string, unknown>): TikTokTake {
   return { id: String(r.id), creator: String(r.creator), handle: str(r.handle) ?? String(r.creator), date: str(r.published_on) ?? "",
     len: num(r.duration_s) ?? 0, stance: String(r.stance) as Stance, quote: str(r.quote) ?? "", take: String(r.summary),
-    tags: list(r.tags).slice(0, 3), disclosure: "", url: String(r.url) };
+    tags: list(r.tags).slice(0, 3), disclosure: "", url: String(r.url), keyPoint: str(r.key_point) };
 }
 /** creator_prices rows as offers, in stock first then cheapest, and the newest check date. */
 export function offersFromRows(rows: Record<string, unknown>[]): { checked: string; offers: Offer[] } | null {

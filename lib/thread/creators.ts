@@ -44,7 +44,7 @@ export type CreatorPage = { paddle: string; tldr: string;
   tiktok?: { unverified: boolean; note: string; takes: TikTokTake[] };
   reviews: CreatorReview[] };
 export type TikTokTake = { id: string; creator: string; handle: string; date: string; len: number; stance: Stance; quote: string;
-  /** 40-70 words, rewritten to the copy rules. */ take: string; tags: string[]; disclosure: string; url: string };
+  /** 40-70 words, rewritten to the copy rules. */ take: string; tags: string[]; disclosure: string; url: string; /** One line for the glance table (creator_reviews.key_point). */ keyPoint?: string | null };
 
 /** The TikTok takes counted the way the sentiment bar counts them: one per channel (the newest take's stance), so a channel
  *  with two takes counts once. They never join the review count or the reviewer table. */
@@ -177,7 +177,7 @@ export type ReviewEntry = CreatorReview & { handle?: string; tags?: string[] };
 export const takeAsReview = (t: TikTokTake): ReviewEntry => ({
   id: `tt-${t.id}`, creator: t.creator, kind: "tiktok", type: "review", url: t.url, channel: `https://www.tiktok.com/${t.handle}`,
   lang: "en", date: t.date, video: null, len: t.len, chapters: [], quote: t.quote, quoteAt: null, stance: t.stance,
-  summary: t.take, more: null, highlights: [], short: t.take, attrs: {}, score: null, measured: {}, alsoUrl: null,
+  summary: t.take, more: null, highlights: [], short: t.take, keyPoint: t.keyPoint ?? null, attrs: {}, score: null, measured: {}, alsoUrl: null,
   version: null, note: null, tie: null, stood: null, trade: null, compared: null, handle: t.handle, tags: t.tags });
 /** The page's two lists: `feed`, every card (each TikTok video); `counted`, one entry per reviewer (a TikTok channel with two
  *  videos counts once, by its newest take), which every count, the table, How it plays and the sentiment bar use. */
