@@ -2333,3 +2333,12 @@ body:has(.th) .th a.th-wv-go { align-self: flex-start; font-size: 14px; font-wei
   .th-wv-tile > span { flex: none; }
   .th-wv-h { font-size: 15.5px; } .th-wv-h.plain { font-size: 15px; } .th-wv-x.lg { font-size: 15px; }
 }
+/* v2 video length on the thumbnail and the channel's own chapter chips (db/video-meta). */
+.th-wv-len { position: absolute; right: 8px; bottom: 8px; padding: 1px 6px; border-radius: 5px; background: rgba(0,0,0,.82); color: #fff;
+  font: 700 12.5px/1.4 ui-monospace, SFMono-Regular, Menlo, monospace; letter-spacing: .02em; }
+.th-wv-chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 2px; }
+body:has(.th) .th a.th-wv-chip { display: inline-flex; align-items: baseline; gap: 7px; padding: 6px 12px; border: 1.5px solid var(--line);
+  border-radius: 10px; background: var(--card); color: var(--ink); font-size: 14px; text-decoration: none; line-height: 1.3; max-width: 100%; }
+body:has(.th) .th a.th-wv-chip:hover { border-color: var(--chip); }
+.th-wv-chip b { font: 600 14px/1.3 ui-monospace, SFMono-Regular, Menlo, monospace; color: #B3261E; }
+@media (max-width: 620px) { body:has(.th) .th a.th-wv-chip { font-size: 13.5px; padding: 5px 10px; } }
