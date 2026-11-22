@@ -38,7 +38,7 @@ export const QUICK_MATCH: Record<string, "engine" | "skin"> = { padel: "engine",
 export const quickMatchFor = (nicheId: string) => QUICK_MATCH[nicheId] ?? null;
 /** The PadelRecs v3 pages (home, catalogue, product page, compare, rankings; owner 2026-11-21) and the sites rolled onto them
  *  (V3-ROLLOUT-BRIEF: AudioRecs first). No score anywhere on these. */
-export const V3_SITES = ["padel", "audio", "simracing", "tennis", "pickleball"];
+export const V3_SITES = ["padel", "audio", "simracing", "tennis", "pickleball", "discgolf"];
 export const v3Site = (nicheId: string) => V3_SITES.includes(nicheId);
 
 /** The v3 home's two community sections, per site (owner 2026-11-22). "Just in" only where model years are real (padel,
@@ -64,5 +64,5 @@ export const questionWords = (nicheId: string) => QUESTION_WORDS[nicheId] ?? QUE
 /** The sites whose schema has comments.post_type (drizzle/0035): they save a post's Question or Tip and show it as its flair
  *  (owner OK 2026-11-22). Add a site here once 0035 has run on its schema; until then it keeps the words rule (sim racing,
  *  skin and audio for now). */
-const POST_TYPE_SITES = ["padel", "pickleball", "tennis"];
+const POST_TYPE_SITES = ["padel", "pickleball", "tennis", "discgolf"];
 export const postTypeSite = (nicheId: string) => POST_TYPE_SITES.includes(nicheId);

@@ -40,7 +40,7 @@ const BLURB: Record<string, string> = SR ? {
   "best-headphones-for-the-office": "Comfort and a clear mic for the workday.", "best-headphones-for-the-gym": "Wireless pairs that stay put and hold up.",
 } : DG ? {
   // DiscGolfRecs' Rankings Hub mock, on its live lists by disc type plus the Thread-only lists below.
-  "best-disc-golf-discs": "The highest thrower scores this year.", "best-disc-golf-discs-for-beginners": "Straight, forgiving discs to learn with.",
+  "best-disc-golf-discs": "The most loved by players right now.", "best-disc-golf-discs-for-beginners": "Straight, forgiving discs to learn with.",
   "best-disc-golf-discs-for-slow-arms": "Understable discs that still go far.", "best-disc-golf-putters": "Accurate discs for the short game.",
   "best-disc-golf-distance-drivers": "For the longest throws.", "best-disc-golf-fairway-drivers": "Control off the tee.",
   "best-disc-golf-midrange-discs": "Straight lines and upshots.",
@@ -107,7 +107,8 @@ export const threadRankings = cache(async (): Promise<ThreadRanking[]> => {
   const [oSlug, oTitle] = SR ? ["best-sim-racing-gear", "Best sim racing gear"] : ["best-disc-golf-discs", "Best disc golf discs"];
   const overall = DG || SR ? [{ slug: oSlug, href: `/rankings/${oSlug}`, label: "Best overall", title: `${oTitle} ${YEAR()}`,
     blurb: BLURB[oSlug], own: false, group: "Most popular",
-    ids: all.filter(r => r.score != null && r.current && r.n >= MIN_REVIEWS).sort((a, b) => b.score! - a.score! || b.n - a.n).slice(0, SIZE).map(r => r.id) }] : [];
+    // DiscGolfRecs on v3 (no score): by how many players loved each disc, as padel's Best overall (#600).
+    ids: all.filter(r => r.score != null && r.current && r.n >= MIN_REVIEWS).sort((a, b) => (DG ? b.pos - a.pos : b.score! - a.score!) || b.n - a.n).slice(0, SIZE).map(r => r.id) }] : [];
   if (AUDIO) return audioLists(own, all, ctx);
   const out = (DG || SR ? [...overall, ...picks, ...own] : [...own, ...picks, ...shapes, ...skin]).filter(l => l.ids.length >= (l.own ? 5 : 10));
   // A skin need's hub lists the per-type lists that made it (a full 10 each).

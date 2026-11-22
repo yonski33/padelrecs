@@ -5,6 +5,7 @@
 // visitor from the home and the catalogue, and the match % comes from the same engine as the home.
 import { useMemo } from "react";
 import { th } from "../../../lib/thread/look";
+import { niche } from "../../../lib/niche";
 import { usePicks, usePayload, pctsFor, complete, LEVEL_OPTS, STYLE_OPTS, BUDGETS, styleLabel } from "./picks";
 import { useAudioPicks } from "./audio-match";
 import { audioMatch, audioPickedAny, USES, SOUNDS, USE_WORDS, type AudioWire } from "../../../lib/audio-match";
@@ -96,7 +97,7 @@ export function QuickMatch({ rows, wire }: { rows: V5Row[]; wire?: AudioWire[] }
     <span className="lbl">{BUDGETS.length ? "Your budget" : "What matters most?"}</span>
     <div className="opts">{STYLE_OPTS.map(v => <button key={v} type="button" aria-pressed={picks.style === v} onClick={() => set({ style: picks.style === v ? null : v })}>{styleLabel(v)}</button>)}
       {BUDGETS.map(([k, w]) => <button key={k} type="button" aria-pressed={picks.budget === k} onClick={() => set({ budget: picks.budget === k ? null : k })}>{w}</button>)}</div>
-    <button type="button" className="arm" aria-pressed={picks.arm} onClick={() => set({ arm: !picks.arm })}><span aria-hidden="true">{picks.arm ? "✓" : ""}</span>{BUDGETS.length ? "I race on console" : "Arm comfort matters"}</button>
+    <button type="button" className="arm" aria-pressed={picks.arm} onClick={() => set({ arm: !picks.arm })}><span aria-hidden="true">{picks.arm ? "✓" : ""}</span>{BUDGETS.length ? "I race on console" : niche.id === "discgolf" ? "Slower arm" : "Arm comfort matters"}</button>
     {best && <div className="fit">
       <span className={good ? "ic good" : "ic"} aria-hidden="true">{good ? "✓" : "~"}</span>
       <span className="words"><strong>{good ? "A good match for your game" : "The closest fit in this list"}</strong>

@@ -97,7 +97,9 @@ function rowOf(ctx: Ctx, r: Ctx["data"]["listed"][number], brand: string, n: num
     // SimRacingRecs: its drive kind, and its row line in racer words (V3-ROLLOUT-BRIEF: never "owners").
     ...(niche.id === "simracing" ? { drive: r.balance, line: ((l: string | null) => l && playersWord(l, "racer"))(rowLine(r, hook)) } : {}),
     // PickleballRecs (v3 wave 2): its row line says players, never owners.
-    ...(niche.id === "pickleball" ? { line: ((l: string | null) => l && playersWord(l))(rowLine(r, hook)) } : {}) };
+    ...(niche.id === "pickleball" ? { line: ((l: string | null) => l && playersWord(l))(rowLine(r, hook)) } : {}),
+    // DiscGolfRecs: "owners" in a stored line read as "players" (V3-ROLLOUT-BRIEF).
+    ...(niche.id === "discgolf" ? { line: ((l: string | null) => l && playersWord(l))(rowLine(r, hook)) } : {}) };
 }
 
 /** "How players vote them" until trait votes exist (migration 0024, waiting for the owner): the top 3 per trait from what

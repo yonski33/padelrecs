@@ -69,9 +69,9 @@ export const DG_GUIDES: GuideCopy[] = [
   {
     key: "racket", crumb: "Discs", title: "How to choose a disc", seoTitle: "How to choose a disc golf disc",
     description: "Pick the disc type first, then the stability for your arm speed. Beginners: putter and midrange first. Slow arm: understable.",
-    tldrLead: "Pick the disc type first, then the stability for your arm speed. Most throwers do better with slower, more forgiving discs than they think.",
+    tldrLead: "Pick the disc type first, then the stability for your arm speed. Most players do better with slower, more forgiving discs than they think.",
     tldr: ["Beginners: putter and midrange first.", "Slow arm: understable discs fly straighter.", "Windy course: add something overstable."],
-    stepsTitle: "7 things to check, in order", steps: CHOOSE_STEPS, picksTitle: "Throwers' favourite in each type",
+    stepsTitle: "7 things to check, in order", steps: CHOOSE_STEPS, picksTitle: "Players' favourite in each type",
     commentsTitle: "Ask or share", composerPrompt: "What made you pick your disc? Or ask for advice", composerPlaceholder: COMPOSER_PLACEHOLDER,
     onThisPage: CHOOSE_STEPS.map(s => s.title),
   },
@@ -89,7 +89,7 @@ export const DG_GUIDES: GuideCopy[] = [
     description: "Disc type decides speed, distance and control. Putters are the most accurate, drivers fly furthest, midranges sit in between.",
     tldrLead: "Disc type decides speed, distance and control. Putters are the most accurate, drivers fly furthest, midranges sit in between.",
     tldr: ["Putter: short throws and putting, most accurate.", "Midrange: control and approach shots.", "Driver: distance, but needs more arm speed."],
-    stepsTitle: "6 things that change with disc type", steps: TYPES_STEPS, picksTitle: "Throwers' favourite in each type",
+    stepsTitle: "6 things that change with disc type", steps: TYPES_STEPS, picksTitle: "Players' favourite in each type",
     commentsTitle: "Ask or share", composerPrompt: "Which disc type do you throw most, and why?", composerPlaceholder: COMPOSER_PLACEHOLDER,
     onThisPage: TYPES_STEPS.map(s => s.title),
   },
@@ -98,7 +98,7 @@ export const DG_GUIDES: GuideCopy[] = [
     description: "Backhand is the most common throw and easiest to learn. Forehand adds shot shapes the backhand cannot reach.",
     tldrLead: "Backhand is the most common throw and easiest to learn. Forehand adds shot shapes the backhand cannot reach. Most good players use both.",
     tldr: ["Backhand: easiest to learn, most distance for most people.", "Forehand: great for curving around trees.", "Learn backhand first, add forehand later."],
-    stepsTitle: "6 ways to think about your throw", steps: THROW_STEPS, picksTitle: "Throwers' picks for each throw", picksTitles: ["Backhand", "Forehand"],
+    stepsTitle: "6 ways to think about your throw", steps: THROW_STEPS, picksTitle: "Players' picks for each throw", picksTitles: ["Backhand", "Forehand"],
     commentsTitle: "Ask or share", composerPrompt: "Backhand, forehand or both? Share why", composerPlaceholder: COMPOSER_PLACEHOLDER,
     onThisPage: THROW_STEPS.map(s => s.title),
   },
@@ -107,17 +107,17 @@ export const DG_GUIDES: GuideCopy[] = [
     description: "Understable, lighter and slower discs fly straight and far for slower arms. Fast, overstable drivers just fade early.",
     tldrLead: "Understable, lighter and slower discs fly straight and far for slower arms. Fast, overstable drivers just fade early.",
     tldr: ["Pick understable discs with lots of glide.", "Try lighter weights, around 150 to 165 g.", "Fairway drivers often beat distance drivers."],
-    stepsTitle: "6 things that help a slower arm", steps: ARM_STEPS, picksTitle: "Discs throwers with slower arms vote for",
+    stepsTitle: "6 things that help a slower arm", steps: ARM_STEPS, picksTitle: "Discs players with slower arms vote for",
     commentsTitle: "Ask or share", composerPrompt: "Slower arm? Share what helped, or ask", composerPlaceholder: COMPOSER_PLACEHOLDER,
     onThisPage: ARM_STEPS.map(s => s.title),
   },
 ];
 
 /** Padel's live words → disc golf's, for the info pages. Order matters (the site name and "padel players" first). */
-const SWAPS: [RegExp, string][] = [[/PadelRecs/g, "DiscGolfRecs"], [/\bpadel players\b/g, "disc golfers"], [/\bpadel\b/g, "disc golf"], [/\bPadel\b/g, "Disc golf"],
+const SWAPS: [RegExp, string][] = [[/PadelRecs/g, "DiscGolfRecs"], [/\bpadel players\b/g, "disc golf players"], [/\bpadel\b/g, "disc golf"], [/\bPadel\b/g, "Disc golf"],
   [/\brackets\b/g, "discs"], [/\bracket\b/g, "disc"], [/\bRackets\b/g, "Discs"], [/\bRacket\b/g, "Disc"],
-  [/\bplayer score\b/g, "thrower score"], [/\bPlayer score\b/g, "Thrower score"], [/\bplayers\b/g, "throwers"], [/\bPlayers\b/g, "Throwers"],
-  [/\bplayer\b/g, "thrower"], [/\bPlayer\b/g, "Thrower"], [/\bplayed\b/g, "threw"]];
+  // "players" since the v3 move (owner 2026-11-21); only "played" becomes "threw".
+  [/\bplayed\b/g, "threw"]];
 export const toDiscGolf = (t: string) => SWAPS.reduce((s, [re, to]) => s.replace(re, to), t);
 const swapDeep = <T,>(v: T): T => (typeof v === "string" ? toDiscGolf(v) : Array.isArray(v) ? v.map(swapDeep)
   : v && typeof v === "object" ? Object.fromEntries(Object.entries(v).map(([k, x]) => [toDiscGolf(k), swapDeep(x)])) : v) as T;

@@ -5,7 +5,7 @@ import { notFound } from "next/navigation";
 import { Shell } from "../../shell";
 import { threadRows, threadBoards, skinOf, audioOf } from "../../data";
 import { v3Site } from "../../../../lib/thread/sites";
-import { votePill, AUDIO_PILL_LABELS, SIMRACING_PILL_WORDS, SIMRACING_PILL_LABELS, PICKLEBALL_PILL_WORDS, PICKLEBALL_PILL_LABELS } from "../../../../lib/thread/vote-pill";
+import { votePill, AUDIO_PILL_LABELS, SIMRACING_PILL_WORDS, SIMRACING_PILL_LABELS, PICKLEBALL_PILL_WORDS, PICKLEBALL_PILL_LABELS, DISCGOLF_PILL_LABELS } from "../../../../lib/thread/vote-pill";
 import { traitGroupsForType } from "../../../../lib/thread/traits";
 import { TRAIT_GROUPS } from "../../../../lib/thread/traits";
 import { GUIDE_LINK_LABELS } from "../../../../lib/thread/copy";
@@ -98,7 +98,7 @@ export default async function ThreadRanking({ params }: P) {
   const beginner = list.filter(r => r.levels.includes("beginner")).slice(0, 3), arm = list.filter(r => r.arm).slice(0, 3);
   const faqs = [
     ...(beginner.length ? [{ q: `Which ${ONE} here is best for a beginner?`, a: `${names(beginner)} ${beginner.length > 1 ? "are" : "is"} the ones ${W.people} rate as fine for beginners on this list. Pick your level above to see your match.` }] : []),
-    ...(arm.length ? [DG ? { q: "What if I have a slow arm?", a: `Throwers with slower arms speak best of ${names(arm)}. Lighter, understable discs with a speed of 7 or less help most.` }
+    ...(arm.length ? [DG ? { q: "What if I have a slow arm?", a: `Players with slower arms speak best of ${names(arm)}. Lighter, understable discs with a speed of 7 or less help most.` }
       : { q: "What if I have tennis elbow?", a: `Players with sore arms speak best of ${names(arm)}. ${ARM_TIP}` }] : []),
     ...(SHAPE_FAQ ? [SHAPE_FAQ] : []),
     niche.id === "audio" ? { q: "How often does this ranking change?", a: `The counts update as new reviews come in, so ${W.items} can move up or down. A pair joins once it has 10 or more reviews.` }
@@ -224,6 +224,7 @@ async function RankingV5({ l, lists, list, rated, label, faqs, ld, picOf }: { l:
     picked: au ? votePill(Object.fromEntries(TRAIT_GROUPS.map(g => [g.key, traitGroup(t, r.id, g.key)])), W.people, AUDIO_PILL_LABELS, AUDIO_PILL_LABELS)
       : PICKLEBALL ? votePill(Object.fromEntries(TRAIT_GROUPS.map(g => [g.key, traitGroup(t, r.id, g.key)])), W.people, PICKLEBALL_PILL_WORDS, PICKLEBALL_PILL_LABELS)
       : SR ? votePill(Object.fromEntries(traitGroupsForType(niche.id, r.shape, r.id).map(g => [g.key, traitGroup(t, r.id, g.key)])), W.people, SIMRACING_PILL_WORDS, SIMRACING_PILL_LABELS)
+      : DG ? votePill(Object.fromEntries(TRAIT_GROUPS.map(g => [g.key, traitGroup(t, r.id, g.key)])), W.people, DISCGOLF_PILL_LABELS, DISCGOLF_PILL_LABELS)
       : pickedLine(traitGroup(t, r.id, "plays_like")), arm: !!r.arm, ...(au && r.audio?.kind ? { shape: r.audio.kind } : {}) }));
   const opinions: [string, string] = [W.opinions.replace(/s$/, ""), W.opinions];
   const said = rows.reduce((a, r) => a + r.pos + r.mix + r.neg, 0);
@@ -233,15 +234,17 @@ async function RankingV5({ l, lists, list, rated, label, faqs, ld, picOf }: { l:
   const mine = rows.map(r => r.id);
   const explore = [AUDIO ? { tag: "Guide", title: GUIDE_LINK_LABELS.racket, desc: "Where you listen, fit and sound, in plain words.", cta: "Read guide", href: GUIDE_PATHS.racket, imgs: pics(mine, 1), tone: "dark" }
       : PICKLEBALL ? { tag: "Guide", title: GUIDE_LINK_LABELS.racket, desc: "Shape, weight, core and face, in plain words.", cta: "Read guide", href: GUIDE_PATHS.racket, imgs: pics(mine, 1), tone: "dark" }
+      : DG ? { tag: "Guide", title: GUIDE_LINK_LABELS.racket, desc: "Disc type, flight numbers and stability, in plain words.", cta: "Read guide", href: GUIDE_PATHS.racket, imgs: pics(mine, 1), tone: "dark" }
       : SR ? { tag: "Guide", title: GUIDE_LINK_LABELS.racket, desc: "Base, wheel, pedals and rig, in plain words.", cta: "Read guide", href: GUIDE_PATHS.racket, imgs: pics(mine, 1), tone: "dark" }
       : niche.id === "tennis" ? { tag: "Guide", title: GUIDE_LINK_LABELS.racket, desc: "Head size, weight, pattern and stiffness, in plain words.", cta: "Read guide", href: GUIDE_PATHS.racket, imgs: pics(mine, 1), tone: "dark" }
       : { tag: "Guide", title: "How to choose a padel racket", desc: "Shape, weight, balance and feel, in plain words.", cta: "Read guide", href: GUIDE_PATHS.racket, imgs: pics(mine, 1), tone: "dark" },
     AUDIO ? { tag: "Guide", title: GUIDE_LINK_LABELS.shape, desc: "Open or closed, and who each suits.", cta: "Read guide", href: GUIDE_PATHS.shape, imgs: pics(mine.slice(1), 3), tone: "sand" }
       : PICKLEBALL ? { tag: "Guide", title: GUIDE_LINK_LABELS.shape, desc: "Standard, hybrid or elongated, and who each suits.", cta: "Read guide", href: GUIDE_PATHS.shape, imgs: pics(mine.slice(1), 3), tone: "sand" }
+      : DG ? { tag: "Guide", title: GUIDE_LINK_LABELS.shape, desc: "Putter, midrange or driver, and who each suits.", cta: "Read guide", href: GUIDE_PATHS.shape, imgs: pics(mine.slice(1), 3), tone: "sand" }
       : SR ? { tag: "Guide", title: GUIDE_LINK_LABELS.shape, desc: "What each drive feels like, and who each suits.", cta: "Read guide", href: GUIDE_PATHS.shape, imgs: pics(mine.slice(1), 3), tone: "sand" }
       : niche.id === "tennis" ? { tag: "Guide", title: GUIDE_LINK_LABELS.shape, desc: "97, 100 or oversize, and who each suits.", cta: "Read guide", href: GUIDE_PATHS.shape, imgs: pics(mine.slice(1), 3), tone: "sand" }
       : { tag: "Guide", title: "Padel racket shapes explained", desc: "Round, teardrop or diamond, and who each suits.", cta: "Read guide", href: GUIDE_PATHS.shape, imgs: pics(mine.slice(1), 3), tone: "sand" },
-    ...others.filter(x => x.slug !== (SR ? "best-sim-racing-gear" : niche.id === "tennis" ? "best-tennis-rackets" : PICKLEBALL ? "best-pickleball-paddles" : "best-padel-rackets")).slice(0, 2).map((x, i) => ({ tag: "Ranking", title: x.label, desc: x.blurb, cta: "View ranking", href: x.href,
+    ...others.filter(x => x.slug !== (SR ? "best-sim-racing-gear" : niche.id === "tennis" ? "best-tennis-rackets" : PICKLEBALL ? "best-pickleball-paddles" : DG ? "best-disc-golf-discs" : "best-padel-rackets")).slice(0, 2).map((x, i) => ({ tag: "Ranking", title: x.label, desc: x.blurb, cta: "View ranking", href: x.href,
       imgs: pics(x.ids, 2), tone: i ? "lime" : "sand" }))];
   return <Shell active="rankings">
     <JsonLd data={ld}/>
@@ -257,7 +260,7 @@ async function RankingV5({ l, lists, list, rated, label, faqs, ld, picOf }: { l:
           </section>
           <section className="th-card rk5-list">
             <div className="rk5-list-head"><h2 className="th-h2">{l.label}</h2>
-              <span>{`${AUDIO || SR || PICKLEBALL ? plural(rows.length, W.item, W.items) : plural(rows.length, ONE, MANY)}  ·  ${plural(said, opinions[0], opinions[1])}`}</span></div>
+              <span>{`${AUDIO || SR || PICKLEBALL || DG ? plural(rows.length, W.item, W.items) : plural(rows.length, ONE, MANY)}  ·  ${plural(said, opinions[0], opinions[1])}`}</span></div>
             <RankRows rows={rows} ratingLabel={label} opinions={opinions} markLoved={loved} {...(wire ? { wire } : {})}/>
           </section>
         </div>
@@ -266,7 +269,7 @@ async function RankingV5({ l, lists, list, rated, label, faqs, ld, picOf }: { l:
           <section className="th-card rk5-box"><h3>About these rankings</h3>
             <div className="about">
               <span className="item"><svg className="ic" width="30" height="28" viewBox="0 0 30 28" aria-hidden="true" fill="currentColor"><circle cx="15" cy="9" r="4.5"/><circle cx="6" cy="11" r="3.5"/><circle cx="24" cy="11" r="3.5"/><path d="M7 24c0-4.5 3.6-8 8-8s8 3.5 8 8zM0 23c0-3.3 2.4-6 5.5-6 1.2 0 2.2.3 3 .9C7 19.4 6 21.3 6 23.5zM30 23c0-3.3-2.4-6-5.5-6-1.2 0-2.2.3-3 .9 1.5 1.5 2.5 3.4 2.5 5.6z"/></svg><span><strong>{`Based on ${W.person} feedback`}</strong><span>Reviews and votes on {niche.site.name}, plus summaries of Reddit threads, YouTube reviews and blogs.</span></span></span>
-              <span className="item"><svg className="ic" width="30" height="28" viewBox="0 0 30 28" aria-hidden="true" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinejoin="round"><path d="M15 3L26 9 15 15 4 9z"/><path d="M4 14l11 6 11-6M4 19l11 6 11-6"/></svg><span>{loved ? <><strong>Ordered by most loved</strong><span>{AUDIO ? `${cap(W.items)} go by how many ${W.people} loved them, the count on each row. Current models with 10+ reviews.` : SR ? `${cap(W.items)} go by how many ${W.people} loved them, the count on each row. ${new Date().getUTCFullYear()} models with 10+ reviews.` : `Rackets go by how many players loved them, the count on each row. ${new Date().getUTCFullYear()} models with 10+ reviews.`}</span></>
+              <span className="item"><svg className="ic" width="30" height="28" viewBox="0 0 30 28" aria-hidden="true" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinejoin="round"><path d="M15 3L26 9 15 15 4 9z"/><path d="M4 14l11 6 11-6M4 19l11 6 11-6"/></svg><span>{loved ? <><strong>Ordered by most loved</strong><span>{AUDIO || DG ? `${cap(W.items)} go by how many ${W.people} loved them, the count on each row. Current models with 10+ reviews.` : SR ? `${cap(W.items)} go by how many ${W.people} loved them, the count on each row. ${new Date().getUTCFullYear()} models with 10+ reviews.` : `Rackets go by how many players loved them, the count on each row. ${new Date().getUTCFullYear()} models with 10+ reviews.`}</span></>
                 : votes ? <><strong>Ordered by player votes</strong><span>{`Rackets go by how many players pick them for ${votes}, the number on each row. Needs 12+ reviews and 10+ players.${label ? ` The number on each pick is a ${niche.site.name} rating from 0 to 10.` : ""}`}</span></> : <><strong>Picked, then checked</strong><span>{label ? `${niche.site.name} sets the order and checks it against what ${W.people} report. The number on each pick is a ${niche.site.name} rating from 0 to 10.`
                 : `${niche.site.name} sets the order and checks it against what ${W.people} report, not brand claims.`}</span></>}</span></span>
               <span className="item"><svg className="ic" width="30" height="28" viewBox="0 0 30 28" aria-hidden="true" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round"><circle cx="15" cy="14" r="11"/><path d="M15 8v6l4 3"/></svg><span><strong>Updated as new feedback arrives</strong><span>The counts change as new reviews come in.</span></span></span>
