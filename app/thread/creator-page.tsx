@@ -4,7 +4,7 @@
 // product with creator data (lib/thread/sites.ts creatorPageFor); the live product page is unchanged. Cached like the live
 // product pages (ISR); the cards' filter, sort, Read more and Show more run in the browser (live/creator-reviews.tsx).
 // Order, as the mock: the head (photo · name, TL;DR "from N creator reviews", Check price · Specs) → a rule → Creator
-// sentiment in detail → The big picture → the at-a-glance table beside How it plays and Where to buy → Creator reviews.
+// What reviewers agree on (stance bar, cards, likes and concerns) → the at-a-glance table beside How it plays and Where to buy → Creator reviews.
 // Data: db/creators/<site>.json (lib/thread/creator-data.ts), a static demo fixture; the photo, specs and shop link are the
 // product's own (racketData). Words, never invented scores; a number only where the creator published one; no prices
 // (none are stored yet); no Reddit card (no Reddit data staged for these paddles yet).
@@ -20,7 +20,7 @@ import { amazonPhoto } from "../../lib/amazon-photos";
 import { websiteButton } from "../../lib/product-links";
 import { JsonLd, crumbs } from "./seo";
 import { catalogLabel, catalogPath, productHref } from "../../lib/niche";
-import { ATTRS, STANCE_LABEL, TABLE_ATTRS, checkedDay, lowestOffer, usd, reviewLists, bigPicture, howItPlays, langCode, platform, scoreText, stanceCounts, takeaway,
+import { ATTRS, STANCE_LABEL, TABLE_ATTRS, checkedDay, lowestOffer, usd, reviewLists, agreeChips, stanceLine, howItPlays, langCode, platform, scoreText, stanceCounts, takeaway,
   wordTone, type CreatorReview } from "../../lib/thread/creators";
 import { creatorPage, creatorSlugs, creatorHome } from "../../lib/thread/creator-data";
 import { threadTitle } from "../../lib/thread/web-sources";
@@ -90,7 +90,7 @@ export async function CreatorProductBody({ slug }: { slug: string }) {
   const specs = ([...niche.specs.map(s => [s.label, r[s.column]]), ["Released", released]] as [string, string | null][])
     .filter((x): x is [string, string] => !!x[1]);
   const sub = [style ? STYLE_WORD[style] : null, oneShape(r.shape)?.toLowerCase()].filter(Boolean).join(", ");
-  const how = howItPlays(rs), big = bigPicture(rs);
+  const how = howItPlays(rs), agree = agreeChips(rs);
   const ld = { "@context": "https://schema.org", "@graph": [crumbs([{ name: catalogLabel, path: catalogPath },
     ...(brand ? [{ name: brand.name, path: `/brands/${brand.slug}` }] : []), { name: r.name, path: productHref(r) }])] };
   const pic = row?.pic ?? null;
@@ -120,22 +120,21 @@ export async function CreatorProductBody({ slug }: { slug: string }) {
       <div className="thc-rule"/>
 
       <main className="thc-body">
+        {/* What reviewers agree on (owner 2026-11-22, the padel design): the stance bar, the three stance cards and what
+            reviewers like and worry about, in one box. Chips are phrases backed by 2+ reviews (lib/thread/creators.ts agreeChips). */}
         <section id="sentiment" className="thc-box1 thc-sent">
-          <div className="thc-h"><strong>Sentiment in detail</strong><span>{plural(rs.length, "review")}</span></div>
+          <div className="thc-h"><strong>What reviewers agree on</strong><span>{plural(rs.length, "review")}</span></div>
           <div className="thc-sbar">{KEYS.map(k => n[k] > 0 && <span key={k} className={k} style={{ flex: n[k] }}>{k === "pos" ? `${n[k]} loved it` : n[k]}</span>)}</div>
           <div className="thc-sent-g">{KEYS.map(k => <div key={k}>
             <span className="thc-sent-h"><span><span className={`thc-dot ${k}`}>●</span>{STANCE_LABEL[k]}</span><strong>{n[k]}</strong></span>
-            <span className="thc-sent-x">{n[k] ? page.groups[k] : "None of the reviews."}</span></div>)}</div>
+            <span className="thc-sent-x">{n[k] ? page.groups[k] || stanceLine(rs, k) : "None of the reviews."}</span></div>)}</div>
+          {(agree.likes.length > 0 || agree.concerns.length > 0) && <div className="thc-big in">
+            <div><strong className="pos">What reviewers like</strong><span className="thc-chips">{agree.likes.length ? agree.likes.map(t => <span key={t} className="thc-pm pos lg">{`+ ${t}`}</span>)
+              : <span className="thc-none">Nothing drew praise from 2 or more reviews.</span>}</span></div>
+            <div><strong className="neg">Common concerns</strong><span className="thc-chips">{agree.concerns.length ? agree.concerns.map(t => <span key={t} className="thc-pm neg lg">{`− ${t}`}</span>)
+              : <span className="thc-none">No concern came up in 2 or more reviews.</span>}</span></div>
+          </div>}
         </section>
-
-        {(big.likes.length > 0 || big.concerns.length > 0) && <section className="thc-box1 flush">
-          <div className="thc-h rule"><strong>The big picture</strong><span>{`What ${rs.length} reviewers agree on`}</span></div>
-          <div className="thc-big">
-            <div><strong className="pos">What reviewers like</strong><span className="thc-chips">{big.likes.map(t => <span key={t} className="thc-pm pos lg">{`+ ${t}`}</span>)}</span></div>
-            <div><strong className="neg">Common concerns</strong><span className="thc-chips">{big.concerns.length ? big.concerns.map(t => <span key={t} className="thc-pm neg lg">{`− ${t}`}</span>)
-              : <span className="thc-none">No attribute drew Okay or Weak from a third of reviewers.</span>}</span></div>
-          </div>
-        </section>}
 
         <div className="thc-row">
           <div className="thc-row-l">
