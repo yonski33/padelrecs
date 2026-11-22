@@ -17,7 +17,8 @@ import { mentionOf, withoutMention } from "../../../lib/thread/mention";
 const ACCOUNTS = accountSite(niche.id);
 
 export type C = { id: string; parentId: string | null; alias: string; body: string; at: string; score: number; mine: number; member?: boolean; level?: string | null; side?: string | null;
-  /** PadelRecs community feed (drizzle/0035): a saved Question or Tip; absent for plain posts and older rows. */ type?: "question" | "tip" };
+  /** PadelRecs community feed (drizzle/0035): a saved Question or Tip, or an admin's "none" (no flair, 0038); absent for
+   *  plain posts and older rows. */ type?: "question" | "tip" | "none" };
 const HELD = "Thanks! Your comment will show once a person has checked it.";
 
 

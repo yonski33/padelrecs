@@ -13,7 +13,7 @@ import { FollowButton } from "./follow-button";
 import { commenterName, nameProblem, NAME_MAX } from "../../../lib/thread/display-name";
 import { mentionOf } from "../../../lib/thread/mention";
 import { avatarOf } from "../../../lib/thread/avatar";
-import { activity, FLAIR_WORD, guessedFlair, postFlair, REPLIES_SHOWN, type Flair } from "../../../lib/thread/feed";
+import { activity, FLAIR_WORD, flairFor, guessedFlair, REPLIES_SHOWN, type Flair } from "../../../lib/thread/feed";
 import { isThin, type WebGroups } from "../../../lib/thread/web-sources";
 import { VERDICTS, type Verdict } from "../../quick-vote";
 import { ago, VERDICT } from "../ui";
@@ -23,6 +23,7 @@ import { MemberMark } from "./member-mark";
 import { postWhy, useReviewPost } from "./racket";
 import { PendingReviews, useOwner } from "./review-admin";
 import { HelpfulEditor } from "./helpful-admin";
+import { FlairEditor, type FlairPick } from "./flair-admin";
 import { grow } from "./name";
 import { signInHref } from "./use-account";
 import { MoreMenu, OPEN_REVIEW, reportPost, ReviewRow, WebSources, type Changed } from "./racket-v7b";
@@ -32,10 +33,12 @@ const ACCOUNTS = accountSite(niche.id);
  *  feed (AudioRecs) keep the earlier composer and the guessed QUESTION / TIP. */
 /** DiscGolfRecs (wave 2) posts the same way as padel. */
 const PADEL = niche.id === "padel" || niche.id === "discgolf";
-/** The sites with saved post types (drizzle/0035, lib/thread/sites.ts postTypeSite): a saved Question or Tip wins, else the
- *  question rule; the others keep the guessed QUESTION / TIP. */
+/** The sites with saved post types (drizzle/0035, lib/thread/sites.ts postTypeSite): a saved Question or Tip wins, an
+ *  admin's "none" (0038) shows no flair, else the question rule; the others keep the guessed QUESTION / TIP. */
 const TYPED = postTypeSite(niche.id);
-const flairOf = (c: C): Exclude<Flair, "review"> | null => TYPED ? c.type ?? postFlair(c.body) : guessedFlair(c.body);
+const flairOf = (c: C): Exclude<Flair, "review"> | null => TYPED ? flairFor(c.type, c.body) : guessedFlair(c.body);
+/** A post with the admin's flair pick from this visit applied ("auto": no saved type). */
+const withPick = (c: C, p?: FlairPick): C => !p ? c : p === "auto" ? { ...c, type: undefined } : { ...c, type: p };
 type Item = { key: string; flair: Flair | null; at: string; top: number } & ({ review: RvCard } | { post: C });
 const CHIPS: [Flair | "all", string][] = [["all", "All"], ["review", "Reviews"], ["question", "Questions"], ["tip", "Tips"]];
 const PAGE = 8;
@@ -48,6 +51,8 @@ export function CommunityFeed({ id, model, cards, web, plastics }: { id: string;
   const rv = useReviewPost(id), t = useComments(`racket:${id}`), owner = useOwner();
   // The owner's "Edit helpful" box (drizzle/0036): one post at a time.
   const [helpOpen, setHelpOpen] = useState<string | null>(null);
+  // The admin's "Edit flair" box (drizzle/0038): one post at a time, and the picks made on this visit, shown at once.
+  const [flairOpen, setFlairOpen] = useState<string | null>(null), [picks, setPicks] = useState<Record<string, FlairPick>>({});
   // The composer (owner 2026-11-21): open or closed, and an optional type. None picked posts a plain comment with no flair.
   const [composing, setComposing] = useState(false), [kind, setKind] = useState<Flair | null>(null), [filter, setFilter] = useState<Flair | "all">("all"), [sort, setSort] = useState<"new" | "top">("new");
   const [plastic, setPlastic] = useState<string | null>(null);
@@ -60,8 +65,8 @@ export function CommunityFeed({ id, model, cards, web, plastics }: { id: string;
     return x ? { ...c, ...(x.text ? { text: x.text } : {}), ...(x.alias ? { who: x.alias, alias: x.alias, meta: null } : {}) } : c; }), [cards, changed]);
   const items = useMemo<Item[]>(() => [
     ...reviews.map(c => ({ key: `rv-${c.id}`, flair: "review" as const, at: c.at ?? "", top: c.helpful, review: c })),
-    ...t.tops.map(c => ({ key: `cm-${c.id}`, flair: flairOf(c), at: activity(c.at, t.replies(c.id)), top: c.score, post: c })),
-  ], [reviews, t.tops, t.replies]);
+    ...t.tops.map(c => withPick(c, picks[c.id])).map(c => ({ key: `cm-${c.id}`, flair: flairOf(c), at: activity(c.at, t.replies(c.id)), top: c.score, post: c })),
+  ], [reviews, t.tops, t.replies, picks]);
   // Under THIN_REVIEWS posts in all (reviews and top-level posts): the compact look of #601, and the web box open in full.
   const thin = isThin(items.length);
   const list = useMemo(() => items.filter(i => (filter === "all" || i.flair === filter) && (!plastic || ("review" in i && i.review.version === plastic)))
@@ -91,8 +96,12 @@ export function CommunityFeed({ id, model, cards, web, plastics }: { id: string;
   const menu = (c: C) => <MoreMenu items={[{ label: "Report", run: () => reportPost(`cm-${c.id}`) }]}
     owner={t.admin && !c.id.startsWith("temp-") ? [{ label: "Edit", run: () => t.open_(c, false) }, ...(c.alias !== "[removed]" ? [{ label: "Rename", run: () => t.open_(c, true) }] : []),
       { label: "Hide", run: () => t.own(c, "hide") }, { label: "Delete", danger: true, run: () => t.own(c, "delete") },
-      { label: "Edit helpful", run: () => setHelpOpen(c.id) }] : []}/>;
+      { label: "Edit helpful", run: () => setHelpOpen(c.id) },
+      // Top-level posts only (replies carry no flair), on the sites with saved types.
+      ...(TYPED && !c.parentId ? [{ label: "Edit flair", run: () => setFlairOpen(c.id) }] : [])] : []}/>;
   const helpBox = (c: C) => helpOpen === c.id && <HelpfulEditor kind="comment" id={c.id} onClose={() => setHelpOpen(null)}/>;
+  const flairBox = (c: C) => flairOpen === c.id && <FlairEditor id={c.id} body={c.body} type={c.type}
+    onSaved={p => setPicks(m => ({ ...m, [c.id]: p }))} onClose={() => setFlairOpen(null)}/>;
   const up = (c: C) => <button type="button" className="th7-up" aria-label="Upvote" aria-pressed={c.mine === 1} onClick={() => t.vote(c, 1)}><span aria-hidden="true">▲</span>{c.score}</button>;
   const head = (c: C, flair?: Flair | null) => <div className="th7-cm-head">{flair && <span className={`th-flair ${flair}`}>{FLAIR_WORD[flair]}</span>}
     <strong>{commenterName(c.alias)}</strong>{c.member && <MemberMark/>}<span>{ago(c.at)}</span></div>;
@@ -104,7 +113,7 @@ export function CommunityFeed({ id, model, cards, web, plastics }: { id: string;
       <div className="th7-cm-body">
         {head(c, flair)}{textOf(c)}
         <div className="th7-cm-act">{up(c)}<button type="button" className="reply" onClick={() => t.setReply(t.reply === c.id ? null : c.id)}>{t.reply === c.id ? "Cancel" : "Reply"}</button>{menu(c)}</div>
-        {helpBox(c)}
+        {helpBox(c)}{flairBox(c)}
         {t.reply === c.id && box(`Reply to ${commenterName(c.alias)}`, "Reply", x => t.post(x, c.id), () => t.setReply(null))}
         {rs.length > 0 && <div className="th7-replies">{rs.map(r => <div key={r.id} id={`cm-${r.id}`} className="th7-cm sm"><Av c={r} sm/>
           <div className="th7-cm-body">

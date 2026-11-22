@@ -16,6 +16,12 @@ export function postFlair(body: string): "question" | null {
   return /\?["”')\s]*$/.test(t) || ASKS.test(t) ? "question" : null;
 }
 
+/** A post's flair on the sites with saved types: a saved Question or Tip wins, an admin's "none" (drizzle/0038) means no
+ *  flair whatever the words say, else the words rule above. */
+export function flairFor(type: "question" | "tip" | "none" | null | undefined, body: string): "question" | "tip" | null {
+  return type === "none" ? null : type ?? postFlair(body);
+}
+
 /** The rule before 2026-11-21 (QUESTION or TIP from the words), kept for the other sites on this feed (AudioRecs). */
 export function guessedFlair(body: string): Exclude<Flair, "review"> {
   return postFlair(body) ?? "tip";
