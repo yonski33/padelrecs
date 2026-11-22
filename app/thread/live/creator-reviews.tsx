@@ -1,22 +1,25 @@
 "use client";
-// The creator page's cards (app/thread/creators/[slug]): filter chips (All / Loved it / Mixed / Not for me, a chip only when
-// it has a card), a sort, then one card per creator: the real quote as the headline (none when the creator gave no clean
-// quote), Stood out / Trade-off / Compared to, a short summary with Read more, and the video with its length and the
-// creator's own chapters (or the blog link). Filtering is in the browser on the cards the page already has, so the page's
-// ISR cache is untouched.
+// The creator page's reviews (app/thread/creators/[slug]), in the owner mock's card structure (creator-page mockup
+// 2026-11-22): the heading row with Sort, the filter pills (All / Loved it / Mixed / Not for me, a pill only when it has a
+// card), then one card per creator: avatar, name, source, date, language box and the take; the real quote as the headline
+// (none when the creator gave no clean quote); Stood out / The trade-off / Compared to; a short summary with Read more
+// (owner: no long paragraphs); +/- chips; Watch on YouTube or Read the full review. Videos have the thumbnail with its
+// length and the creator's own chapters on the right. Filtering runs in the browser on the cards the page already has, so
+// the page's ISR cache is untouched.
 import { useMemo, useState } from "react";
 import { atSecond, clock } from "../../../lib/thread/video-meta";
 import { dayLabel, thumbOf } from "../../../lib/thread/web-sources";
-import { STANCE_LABEL, avatarHue, cardChips, initials, langCode, measuredLine, platform, scoreText, sortReviews, splitSummary,
+import { SOURCE_COLOR, STANCE_LABEL, cardChips, initials, langCode, measuredLine, platform, scoreText, sortReviews, splitSummary,
   stanceCounts, type CreatorReview, type Stance } from "../../../lib/thread/creators";
 
 const OUT = { target: "_blank", rel: "noopener nofollow" } as const;
-const CHAPTERS = 5;
+const CHAPTERS = 5, FIRST = 6;
 const TYPE_TAG: Record<CreatorReview["type"], string | null> = { review: null, comparison: "Comparison", "long-term": null };
+const DOT: Record<Stance | "all", string> = { all: "#171717", pos: "#62C878", mix: "#F0D16B", neg: "#F0796A" };
 
-/** The creator's initials on a steady colour (the mock's round avatars). */
-export function Avatar({ name }: { name: string }) {
-  return <span className="thc-av" style={{ background: `oklch(0.62 0.13 ${avatarHue(name)})` }} aria-hidden="true">{initials(name)}</span>;
+/** The creator's initials on their source's colour (the mock: YouTube coral, blog blue). */
+export function Avatar({ name, kind, size }: { name: string; kind: CreatorReview["kind"]; size?: "sm" }) {
+  return <span className={`thc-av${size ? ` ${size}` : ""}`} style={{ background: SOURCE_COLOR[kind] }} aria-hidden="true">{initials(name)}</span>;
 }
 
 function Card({ x }: { x: CreatorReview }) {
@@ -26,61 +29,67 @@ function Card({ x }: { x: CreatorReview }) {
   const chapters = open ? x.chapters : x.chapters.slice(0, CHAPTERS), hidden = x.chapters.length - chapters.length;
   const more = !!rest || !!measured || hidden > 0 || !!x.alsoUrl;
   const tags = [TYPE_TAG[x.type], x.note, x.version].filter((t): t is string => !!t);
-  const boxes = ([["Stood out", x.stood, "pos"], ["Trade-off", x.trade, "neg"], ["Compared to", x.compared, "cmp"]] as [string, string | null, string][])
-    .filter((b): b is [string, string, string] => !!b[1]);
-  const day = dayLabel(x.date), chips = cardChips(x.attrs);
-  return <article id={`cr-${x.id}`} className="th-card thc-card">
+  const boxes = ([["+", "Stood out", x.stood, "pos"], ["−", "The trade-off", x.trade, "neg"], ["⇄", "Compared to", x.compared, "cmp"]] as
+    [string, string, string | null, string][]).filter((b): b is [string, string, string, string] => !!b[2]);
+  const chips = cardChips(x.attrs), day = dayLabel(x.date);
+  return <article id={`cr-${x.id}`} className="thc-card">
+    {thumb && <div className="thc-media">
+      <a className="thc-thumb" href={x.url} {...OUT} aria-label={`Watch on YouTube: ${x.creator}`}>
+        <img src={thumb} alt="" loading="lazy" width={320} height={200}/><span className="play" aria-hidden="true"/>
+        {x.len ? <span className="len">{clock(x.len)}</span> : null}</a>
+      {x.chapters.length > 0 && <div className="thc-chap"><strong>Chapters</strong>{chapters.map(([s, t]) =>
+        <a key={s} href={atSecond(x.url, s)} {...OUT}><span aria-hidden="true">▶</span><strong>{clock(s)}</strong><span>{t}</span></a>)}
+        {hidden > 0 && <button type="button" className="thc-more sm" onClick={() => setOpen(true)}>{`+${hidden} more`}</button>}</div>}
+    </div>}
     <div className="thc-card-b">
       <div className="thc-card-top">
-        <Avatar name={x.creator}/>
-        <span className="thc-by"><a href={x.channel} {...OUT}><b>{x.creator}</b></a>
-          <small>{[platform(x), day, x.len ? clock(x.len) : null].filter(Boolean).join(" · ")}<span className="thc-lang">{langCode(x.lang)}</span></small></span>
-        <span className={`th-vpill ${x.stance}`}>{STANCE_LABEL[x.stance]}</span>
+        <Avatar name={x.creator} kind={x.kind}/>
+        <a className="thc-name" href={x.channel} {...OUT}>{x.creator}</a>
+        <span className="thc-meta">{`· ${platform(x)}${day ? ` · ${day}` : ""}`}</span>
+        <span className="thc-lang">{langCode(x.lang)}</span>
+        <span className={`thc-take ${x.stance}`}>{`♡ ${STANCE_LABEL[x.stance]}`}</span>
       </div>
       {(tags.length > 0 || x.score || x.tie) && <div className="thc-tags">
-        {tags.map(t => <span key={t} className="th-pill">{t}</span>)}
-        {x.score && <span className="th-pill thc-own">{`Own score ${scoreText(x.score)}${x.score.label ? ` (${x.score.label.toLowerCase()})` : ""}`}</span>}
-        {x.tie && <span className="thc-tie">{`Works with ${x.tie}`}</span>}
+        {tags.map(t => <span key={t} className="thc-tag">{t}</span>)}
+        {x.score && <span className="thc-tag">{`Own score ${scoreText(x.score)}${x.score.label ? ` (${x.score.label.toLowerCase()})` : ""}`}</span>}
+        {x.tie && <span className="thc-tag">{`Works with ${x.tie}`}</span>}
       </div>}
-      {x.quote && <blockquote className="thc-q">{x.quoteAt != null && x.kind === "youtube"
-        ? <a href={atSecond(x.url, x.quoteAt)} {...OUT} aria-label={`Watch from ${clock(x.quoteAt)}`}>{`“${x.quote}”`}<small>{clock(x.quoteAt)}</small></a>
-        : `“${x.quote}”`}</blockquote>}
-      {boxes.length > 0 && <div className="thc-boxes">{boxes.map(([h, t, k]) => <div key={h} className={`thc-box ${k}`}><b>{h}</b><span>{t}</span></div>)}</div>}
+      {x.quote && <h3 className="thc-q">{x.quoteAt != null && x.kind === "youtube"
+        ? <a href={atSecond(x.url, x.quoteAt)} {...OUT} aria-label={`Watch from ${clock(x.quoteAt)}`}>{`“${x.quote}”`}</a> : `“${x.quote}”`}</h3>}
+      {boxes.length > 0 && <div className="thc-boxes">{boxes.map(([i, h, t, k]) => <div key={h} className={`thc-box ${k}`}>
+        <span className="thc-box-h"><b aria-hidden="true">{i}</b><span>{h}</span></span><span>{t}</span></div>)}</div>}
       <p className="thc-sum">{short}{open && rest && <> {rest}</>}</p>
-      {open && measured && <p className="thc-measured">{`Measured by the creator: ${measured}`}</p>}
-      {open && x.alsoUrl && <a className="thc-go" href={x.alsoUrl} {...OUT}>Their written review ↗</a>}
+      {open && measured && <p className="thc-sum sm">{`Measured by the creator: ${measured}.`}</p>}
       {chips.length > 0 && <div className="thc-tags">{chips.map(c => <span key={c.text} className={`thc-pm ${c.tone}`}>{`${c.tone === "pos" ? "+" : "−"} ${c.text}`}</span>)}</div>}
-      <div className="thc-card-f">
+      <div className="thc-links">
+        <a href={x.url} {...OUT}>{x.kind === "youtube" ? <><span className="thc-yt" aria-hidden="true"/>Watch on YouTube ↗</>
+          : <><span className="thc-blog-i" aria-hidden="true">✎</span>Read the full review ↗</>}</a>
+        {open && x.alsoUrl && <a href={x.alsoUrl} {...OUT}>Their written review ↗</a>}
         {more && <button type="button" className="thc-more" aria-expanded={open} onClick={() => setOpen(!open)}>{open ? "Show less" : "Read more"}</button>}
-        <a className="thc-go" href={x.url} {...OUT}>{x.kind === "youtube" ? <><span className="thc-yt" aria-hidden="true"/>Watch on YouTube ↗</> : "Read the full review ↗"}</a>
       </div>
-    </div>
-    <div className="thc-media">
-      {thumb ? <a className="thc-thumb" href={x.url} {...OUT} aria-label={`Watch on YouTube: ${x.creator}`}>
-        <img src={thumb} alt="" loading="lazy" width={320} height={180}/><span className="play" aria-hidden="true"/>
-        {x.len ? <span className="len">{clock(x.len)}</span> : null}</a>
-        : <a className="thc-blog" href={x.url} {...OUT}><span>Blog</span><b>{x.creator}</b><small>Read the full review ↗</small></a>}
-      {x.chapters.length > 0 && <div className="thc-chap"><b>Chapters</b><ul>{chapters.map(([s, t]) => <li key={s}>
-        <a href={atSecond(x.url, s)} {...OUT}><span>{clock(s)}</span>{t}</a></li>)}</ul>
-        {hidden > 0 && <button type="button" className="thc-more sm" onClick={() => setOpen(true)}>{`+${hidden} more`}</button>}</div>}
     </div>
   </article>;
 }
 
 export function CreatorReviews({ reviews }: { reviews: CreatorReview[] }) {
-  const [only, setOnly] = useState<Stance | "all">("all"), [by, setBy] = useState<"stance" | "newest">("stance");
+  const [only, setOnly] = useState<Stance | "all">("all"), [by, setBy] = useState<"stance" | "newest">("stance"), [all, setAll] = useState(false);
   const n = stanceCounts(reviews);
   const list = useMemo(() => sortReviews(only === "all" ? reviews : reviews.filter(r => r.stance === only), by), [reviews, only, by]);
-  const chips = ([["all", "All", reviews.length], ...(["pos", "mix", "neg"] as const).map(k => [k, STANCE_LABEL[k], n[k]] as const)] as const)
+  const shown = all ? list : list.slice(0, FIRST);
+  const pills = ([["all", "All", reviews.length], ...(["pos", "mix", "neg"] as const).map(k => [k, STANCE_LABEL[k], n[k]] as const)] as const)
     .filter(c => c[2] > 0);
   return <section id="reviews" className="thc-reviews">
     <div className="thc-rv-h">
-      <div><h2 className="th-h2">{`Creator reviews · ${reviews.length}`}</h2><span className="thc-sub">Summaries from YouTube and blogs. Watch or read the original for the full details.</span></div>
-      <label className="thc-sort"><span>Sort</span><select value={by} onChange={e => setBy(e.target.value as "stance" | "newest")}>
+      <h2>Creator reviews <span>{`· ${reviews.length}`}</span></h2>
+      <span className="thc-rv-sub">Summaries from YouTube and blogs. Watch or read the original review for the full details.</span>
+      <label className="thc-sort"><span>Sort:</span><select value={by} onChange={e => setBy(e.target.value as "stance" | "newest")}>
         <option value="stance">Most relevant</option><option value="newest">Newest</option></select></label>
     </div>
-    <div className="thc-tabs" role="group" aria-label="Filter by take">{chips.map(([k, l, c]) =>
-      <button key={k} type="button" aria-pressed={only === k} onClick={() => setOnly(k)}>{k !== "all" && <span className={`th-sdot ${k}`}/>}{`${l} (${c})`}</button>)}</div>
-    {list.map(x => <Card key={x.id} x={x}/>)}
+    <div className="thc-pills" role="group" aria-label="Filter by take">{pills.map(([k, l, c]) =>
+      <button key={k} type="button" aria-pressed={only === k} onClick={() => setOnly(k)}>
+        <span style={{ color: only === k && k === "all" ? "#fff" : DOT[k] }} aria-hidden="true">●</span>{`${l} (${c})`}</button>)}</div>
+    {shown.map(x => <Card key={x.id} x={x}/>)}
+    {list.length > shown.length && <button type="button" className="thc-show" onClick={() => setAll(true)}>
+      {`Show ${list.length - shown.length} more review${list.length - shown.length === 1 ? "" : "s"}`}</button>}
   </section>;
 }

@@ -1,10 +1,10 @@
-// The creator-centred product page (owner mock 2026-11-22, the AT10 "editorial redesign" layout; owner direction: an
-// iemranking-style page of what YouTube and blog creators said). A preview: proxy.ts serves it for ?view=creators on a
+// The creator-centred product page, built to the owner's creator-page mockup (2026-11-22, its source unpacked in the
+// shared notes: spacing, type scale, colours, card structure and section order copied from it). Owner direction: an
+// iemranking-style page of what YouTube and blog creators said. A preview: proxy.ts serves it for ?view=creators on a
 // product with creator data (lib/thread/sites.ts creatorPageFor); the live product page is unchanged. Cached like the live
-// product pages (ISR); the cards' filter, sort and Read more run in the browser (live/creator-reviews.tsx).
-// Order, as the mock: the head (photo · name, TL;DR "from N creator reviews", Check price · Specs box) → Creator sentiment
-// in detail → The big picture → the creator table beside How it plays and Where to buy → Creator reviews. Full width, no
-// sidebar; under 1000px everything stacks.
+// product pages (ISR); the cards' filter, sort, Read more and Show more run in the browser (live/creator-reviews.tsx).
+// Order, as the mock: the head (photo · name, TL;DR "from N creator reviews", Check price · Specs) → a rule → Creator
+// sentiment in detail → The big picture → the at-a-glance table beside How it plays and Where to buy → Creator reviews.
 // Data: db/creators/<site>.json (lib/thread/creator-data.ts), a static demo fixture; the photo, specs and shop link are the
 // product's own (racketData). Words, never invented scores; a number only where the creator published one; no prices
 // (none are stored yet); no Reddit card (no Reddit data staged for these paddles yet).
@@ -12,9 +12,8 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { Shell } from "../../shell";
 import { racketData } from "../../racket-data";
-import { Photo, plural } from "../../ui";
-import { th } from "../../../../lib/thread/look";
-import { niche, catalogLabel, catalogPath, productHref } from "../../../../lib/niche";
+import { plural } from "../../ui";
+import { niche } from "../../../../lib/niche";
 import { withoutYear } from "../../../../lib/brand-name";
 import { oneShape } from "../../../../lib/thread/shape";
 import { amazonButton } from "../../../../lib/amazon-offer";
@@ -22,6 +21,7 @@ import { amazonPhoto } from "../../../../lib/amazon-photos";
 import { websiteButton } from "../../../../lib/product-links";
 import { generateMetadata as liveMetadata } from "../../../rackets/[slug]/page";
 import { JsonLd, crumbs } from "../../seo";
+import { catalogLabel, catalogPath, productHref } from "../../../../lib/niche";
 import { ATTRS, STANCE_LABEL, TABLE_ATTRS, bigPicture, howItPlays, langCode, platform, scoreText, stanceCounts, takeaway,
   wordTone, type CreatorReview } from "../../../../lib/thread/creators";
 import { creatorPage, creatorSlugs } from "../../../../lib/thread/creator-data";
@@ -40,6 +40,7 @@ const STYLE_WORD = { control: "Control", power: "Power", balance: "All-round" } 
 /** Owner 2026-11-20: this exact note under Check price (app/thread/racket-v7b.tsx). */
 const BUY_NOTE = "Affiliate link - price stays the same";
 const KEYS = ["pos", "mix", "neg"] as const;
+const label = (k: (typeof ATTRS)[number][0]) => ATTRS.find(a => a[0] === k)![1];
 
 function Word({ w }: { w: CreatorReview["attrs"][keyof CreatorReview["attrs"]] }) {
   return w ? <span className={`thc-w ${wordTone(w)}`}>{w}</span> : <span className="thc-w none" aria-label="Not covered">–</span>;
@@ -65,77 +66,79 @@ export default async function CreatorProductPage({ params }: P) {
   const how = howItPlays(rs), big = bigPicture(rs);
   const ld = { "@context": "https://schema.org", "@graph": [crumbs([{ name: catalogLabel, path: catalogPath },
     ...(brand ? [{ name: brand.name, path: `/brands/${brand.slug}` }] : []), { name: r.name, path: productHref(r) }])] };
+  const pic = row?.pic ?? null;
 
   return <Shell active="rackets">
     <JsonLd data={ld}/>
-    <main className="thc">
-      <div className="th-crumbs"><a href={th(catalogPath)}>{catalogLabel}</a>{brand && <><span>/</span><a href={`/brands/${brand.slug}`}>{brand.name}</a></>}</div>
+    <div className="thc">
       <header className="thc-head">
-        <Photo src={row?.pic ?? null} className="th-bigphoto thc-photo"/>
+        <div className="thc-photo">{pic ? <img src={pic} alt={name}/> : <span className="th-ph" aria-hidden="true"/>}</div>
         <div className="thc-head-m">
-          <h1 className="th-h1">{name}</h1>
-          {sub && <p className="thc-lede">{`${sub[0]!.toUpperCase()}${sub.slice(1)} paddle${brand ? ` from ${brand.name}` : ""}.`}</p>}
+          <h1>{name}</h1>
+          {sub && <span className="thc-lede">{`${sub[0]!.toUpperCase()}${sub.slice(1)} paddle${brand ? ` from ${brand.name}` : ""}.`}</span>}
           <div className="thc-tldr">
-            <span className="thc-tldr-h"><b>TL;DR</b><small>{`from ${plural(rs.length, "creator review")}`}</small></span>
-            <p className="thc-tldr-t">{page.tldr}</p>
-            <p className="thc-tldr-s">{`${n.pos} of ${rs.length} creators loved it${n.mix ? `, ${n.mix} were mixed` : ""}${n.neg ? ` and ${n.neg} found it not for them` : ""}.`}</p>
-            <div className="thc-tldr-f"><small>{shop ? "Price not tracked yet" : "No shop links yet"}</small>
-              {shop && <a className="thc-cta" href={shop.url} target="_blank" rel={shop.rel}>Check price ↗</a>}</div>
+            <span className="thc-tldr-h"><b>TL;DR</b><span>{`from ${plural(rs.length, "creator review")}`}</span></span>
+            <strong>{page.tldr}</strong>
+            <span className="thc-tldr-s">{`${n.pos} of ${rs.length} creators loved it${n.mix ? `, ${n.mix} were mixed` : ""}${n.neg ? ` and ${n.neg} found it not for them` : ""}.`}</span>
+            <span className="thc-tldr-f"><span>{shop ? "Price not tracked yet" : "No shop links yet"}</span>
+              {shop && <a className="thc-cta" href={shop.url} target="_blank" rel={shop.rel}>Check price ↗</a>}</span>
           </div>
         </div>
-        {specs.length > 0 && <section className="th-card thc-specs"><h2>Specs</h2>
-          {specs.map(([k, v]) => <span key={k} className="thc-kv"><span>{k}</span><strong>{v}</strong></span>)}</section>}
+        {specs.length > 0 && <div className="thc-specs"><strong>Specs</strong>
+          {specs.map(([k, v]) => <span key={k}><span>{k}</span><strong>{v}</strong></span>)}</div>}
       </header>
+      <div className="thc-rule"/>
 
-      <section id="sentiment" className="th-card thc-sec">
-        <div className="thc-sec-h"><h2 className="th-h2">Creator sentiment in detail</h2><span className="thc-sub">{plural(rs.length, "creator review")}</span></div>
-        <div className="thc-sbar">{KEYS.map(k => n[k] > 0 && <span key={k} className={k} style={{ flex: n[k] }}>{k === "pos" ? `${n[k]} loved it` : n[k]}</span>)}</div>
-        <div className="thc-sent-g">{KEYS.map(k => <div key={k} className="thc-sent-c">
-          <span className="thc-sent-h"><span className={`th-sdot ${k}`}/><b>{STANCE_LABEL[k]}</b><strong>{n[k]}</strong></span>
-          <p>{n[k] ? page.groups[k] : "None of the creators."}</p></div>)}</div>
-      </section>
-
-      {(big.likes.length > 0 || big.concerns.length > 0) && <section className="th-card thc-sec thc-big">
-        <div className="thc-sec-h"><h2 className="th-h2">The big picture</h2><span className="thc-sub">{`What ${rs.length} creators agree on`}</span></div>
-        <div className="thc-big-g">
-          <div><b className="pos">What creators like</b><span className="thc-tags">{big.likes.map(t => <span key={t} className="thc-pm pos">{`+ ${t}`}</span>)}</span></div>
-          <div><b className="neg">Common concerns</b><span className="thc-tags">{big.concerns.length ? big.concerns.map(t => <span key={t} className="thc-pm neg">{`− ${t}`}</span>)
-            : <span className="thc-sub">No attribute drew Okay or Weak from a third of creators.</span>}</span></div>
-        </div>
-      </section>}
-
-      <div className="thc-row">
-        <section id="creators" className="th-card thc-sec thc-table">
-          <div className="thc-sec-h"><h2 className="th-h2">{`All ${rs.length} creators at a glance`}</h2>
-            <span className="thc-sub">Tap a row to jump to the full summary</span></div>
-          <table>
-            <thead><tr><th>Creator</th><th>Take</th><th className="kp">Key point</th>{TABLE_ATTRS.map(k => <th key={k} className="w">{ATTRS.find(a => a[0] === k)![1]}</th>)}</tr></thead>
-            <tbody>{rs.map(x => <tr key={x.id}>
-              <td><a className="thc-who" href={`#cr-${x.id}`}><Avatar name={x.creator}/>
-                <span><b>{x.creator}</b><small>{`${platform(x)} · ${langCode(x.lang)}`}{x.score && ` · ${scoreText(x.score)}`}</small></span></a></td>
-              <td><span className={`th-vpill ${x.stance}`}>{STANCE_LABEL[x.stance]}</span></td>
-              <td className="kp">{takeaway(x.summary)}</td>
-              {TABLE_ATTRS.map(k => <td key={k} className="w" data-l={ATTRS.find(a => a[0] === k)![1]}><Word w={x.attrs[k]}/></td>)}
-            </tr>)}</tbody>
-          </table>
-          <p className="thc-foot">Words come from each creator&apos;s own review. A number shows only where the creator published one.</p>
+      <main className="thc-body">
+        <section id="sentiment" className="thc-box1 thc-sent">
+          <div className="thc-h"><strong>Creator sentiment in detail</strong><span>{plural(rs.length, "creator review")}</span></div>
+          <div className="thc-sbar">{KEYS.map(k => n[k] > 0 && <span key={k} className={k} style={{ flex: n[k] }}>{k === "pos" ? `${n[k]} loved it` : n[k]}</span>)}</div>
+          <div className="thc-sent-g">{KEYS.map(k => <div key={k}>
+            <span className="thc-sent-h"><span><span className={`thc-dot ${k}`}>●</span>{STANCE_LABEL[k]}</span><strong>{n[k]}</strong></span>
+            <span className="thc-sent-x">{n[k] ? page.groups[k] : "None of the creators."}</span></div>)}</div>
         </section>
-        <div className="thc-side">
-          {how.length > 0 && <section className="th-card thc-sec thc-how">
-            <div className="thc-sec-h"><h2 className="th-h2">How it plays</h2><span className="thc-sub">{`From all ${rs.length} reviews`}</span></div>
-            <ul>{how.map(h => <li key={h.k}><span className="thc-how-k"><b>{h.label}</b><Word w={h.word}/></span><span>{h.line}</span></li>)}</ul>
-          </section>}
-          <section id="buy" className="th-card thc-sec thc-buy">
-            <div className="thc-sec-h"><h2 className="th-h2">Where to buy</h2></div>
-            {shop ? <div className="thc-shop"><span><b>{shop.where}</b><small>Price not tracked yet</small></span>
-              <a href={shop.url} target="_blank" rel={shop.rel}>Check price ↗</a></div>
-              : <p className="thc-sub">No shop links for this paddle yet.</p>}
-            <p className="thc-foot">{`Prices from more shops, updated daily, are on the way.${shop ? ` ${BUY_NOTE}.` : ""}`}</p>
-          </section>
-        </div>
-      </div>
 
-      <CreatorReviews reviews={rs}/>
-    </main>
+        {(big.likes.length > 0 || big.concerns.length > 0) && <section className="thc-box1 flush">
+          <div className="thc-h rule"><strong>The big picture</strong><span>{`What ${rs.length} creators agree on`}</span></div>
+          <div className="thc-big">
+            <div><strong className="pos">What creators like</strong><span className="thc-chips">{big.likes.map(t => <span key={t} className="thc-pm pos lg">{`+ ${t}`}</span>)}</span></div>
+            <div><strong className="neg">Common concerns</strong><span className="thc-chips">{big.concerns.length ? big.concerns.map(t => <span key={t} className="thc-pm neg lg">{`− ${t}`}</span>)
+              : <span className="thc-none">No attribute drew Okay or Weak from a third of creators.</span>}</span></div>
+          </div>
+        </section>}
+
+        <div className="thc-row">
+          <div className="thc-row-l">
+            <section id="creators" className="thc-box1 flush thc-glance">
+              <div className="thc-h rule"><strong>{`All ${rs.length} creators at a glance`}</strong><span>Tap a row to jump to the full summary</span></div>
+              <div className="thc-g-row thc-g-head"><span>Creator</span><span>Take</span><span className="kp">Key point</span>{TABLE_ATTRS.map(k => <span key={k}>{label(k)}</span>)}</div>
+              {rs.map(x => <a key={x.id} className="thc-g-row" href={`#cr-${x.id}`}>
+                <span className="thc-g-who"><Avatar name={x.creator} kind={x.kind} size="sm"/><span><strong>{x.creator}</strong>
+                  <span>{`${platform(x)} · ${langCode(x.lang)}`}{x.score && ` · ${scoreText(x.score)}`}</span></span></span>
+                <span className={`thc-take sm ${x.stance}`}>{STANCE_LABEL[x.stance]}</span>
+                <span className="kp">{takeaway(x.summary)}</span>
+                {TABLE_ATTRS.map(k => <span key={k} className="thc-g-w" data-l={label(k)}><Word w={x.attrs[k]}/></span>)}
+              </a>)}
+              <span className="thc-note">Words come from what each creator said in their own review. A number shows only where the creator published one.</span>
+            </section>
+          </div>
+          <div className="thc-row-r">
+            {how.length > 0 && <section className="thc-box1 flush">
+              <div className="thc-h rule"><strong>How it plays</strong><span>{`From all ${rs.length} reviews`}</span></div>
+              {how.map(h => <div key={h.k} className="thc-grade"><span><strong>{h.label}</strong><Word w={h.word}/></span><span>{h.line}</span></div>)}
+            </section>}
+            <section id="buy" className="thc-box1 flush">
+              <div className="thc-h rule"><strong>Where to buy</strong></div>
+              {shop ? <div className="thc-shop"><span><strong>{shop.where}</strong><span>Price not tracked yet</span></span>
+                <a href={shop.url} target="_blank" rel={shop.rel}>check price ↗</a></div>
+                : <div className="thc-shop"><span><span>No shop links for this paddle yet.</span></span></div>}
+              <span className="thc-note">{`Prices from more shops, updated daily, are on the way.${shop ? ` ${BUY_NOTE}.` : ""}`}</span>
+            </section>
+          </div>
+        </div>
+
+        <CreatorReviews reviews={rs}/>
+      </main>
+    </div>
   </Shell>;
 }

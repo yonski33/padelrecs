@@ -81,7 +81,7 @@ export function sortReviews<T extends Pick<CreatorReview, "stance" | "date">>(rs
 }
 
 /** The table's word columns (owner mock: a few, so the table fits without a scrollbar). */
-export const TABLE_ATTRS: AttrKey[] = ["power", "control", "spin"];
+export const TABLE_ATTRS: AttrKey[] = ["control", "power"];
 const label = (k: AttrKey) => ATTRS.find(a => a[0] === k)![1];
 const HIGH: Word[] = ["Excellent", "Great"], LOW: Word[] = ["Okay", "Weak"];
 
@@ -120,5 +120,5 @@ export const cardChips = (attrs: CreatorReview["attrs"]) => ATTRS.flatMap(([k, l
     : LOW.includes(w) ? [{ tone: "neg", text: `${w} ${l.toLowerCase()}` }] : [];
 }).sort((a, b) => (a.tone === b.tone ? 0 : a.tone === "pos" ? -1 : 1));
 
-/** A steady avatar colour per creator (hue from the name). */
-export const avatarHue = (name: string) => [...name].reduce((h, c) => (h * 31 + c.charCodeAt(0)) % 360, 7);
+/** The owner mock's avatar colour, by source: YouTube coral, blog blue. */
+export const SOURCE_COLOR = { youtube: "#F0796A", blog: "#3D5A99" } as const;
