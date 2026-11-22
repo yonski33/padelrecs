@@ -19,9 +19,9 @@ export type WhoRow = { title: string; label: string; n: number; share: number };
 /** The leading answer per group, kept only with 5+ behind it and 1.5x the runner-up (the vote pill's rule). The headline
  *  is the style and side leaders (owner 2026-11-21: "Control, right side"); style alone without a side, side alone without a
  *  style, and "Mostly advanced" when only the level has a leader; no rows → null. */
-/** `withLevel` (sites with no side vote, owner 2026-11-22: pickleball's box read just "Power"): a near tie between two
- *  neighbouring levels becomes a range row ("Intermediate to advanced"), and the level joins the headline ("Power,
- *  intermediate to advanced"). Padel leaves it off and keeps its rows and headline. */
+/** `withLevel` (owner 2026-11-22: the box read just "Power" / "Control"): a near tie between two neighbouring levels
+ *  becomes a range row ("Intermediate to advanced"), and when no side leads, the level joins the headline ("Control,
+ *  intermediate to advanced"). On for every site; a clear side leader keeps "Control, right side". */
 const LEVELS = ["beginner", "intermediate", "advanced"];
 function levelRange(g: Record<string, number> | null | undefined, words: Record<string, string>): { label: string; n: number; share: number } | null {
   const opts = Object.entries(g ?? {}).filter(([k, n]) => n > 0 && words[k]).sort((a, b) => b[1] - a[1]);
