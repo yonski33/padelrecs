@@ -26,6 +26,7 @@ const PAGE: [RegExp, string][] = [
   [/^\/thread\/brands\/[^/]+$/, "app/thread/brands/[slug]/page.tsx"],
   // The creator-page preview (?view=creators, lib/thread/sites.ts CREATOR_PAGE_SITES).
   [/^\/thread\/creators\/[^/]+$/, "app/thread/creators/[slug]/page.tsx"],
+  [/^\/thread\/creators-home$/, "app/thread/creators-home/page.tsx"],
 ];
 const DYNAMIC: [RegExp, string][] = [
   [/from\s+["']next\/headers["']/, "next/headers"],

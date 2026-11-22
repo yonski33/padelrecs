@@ -11,7 +11,7 @@ import { viewKey, readViewKey, viewQuery, CATALOG_VIEW, RANKING_VIEW, RACKET_VIE
 import { catalogPath } from "./lib/niche";
 import { specGroups } from "./lib/guide";
 import { threadPath, threadSite, THREAD_LOOK, THREAD_DEFAULT, CLASSIC_LOOK } from "./lib/thread/look";
-import { creatorPageFor, CREATOR_VIEW } from "./lib/thread/sites";
+import { creatorPageFor, CREATOR_VIEW, CREATOR_PAGE_SITES } from "./lib/thread/sites";
 // The catalogue's cached views also hold the niche's spec filters (its guide config: padel balance and face).
 const CATALOG_Q = [...CATALOG_VIEW, ...specGroups(niche.guide).map(g => g.key)];
 
@@ -79,6 +79,8 @@ export function threadView(request:NextRequest) {
  const url=request.nextUrl.clone();url.pathname=to;if(!add)url.search="";
  // The creator-page preview (lib/thread/sites.ts CREATOR_PAGE_SITES): ?view=creators on a product with creator data is
  // served by its own cached page (app/thread/creators/[slug]); every other address routes as before.
+ // The same switch on the home: ?view=creators shows the creators home (app/thread/creators-home).
+ if(to==="/thread"&&request.nextUrl.searchParams.get("view")===CREATOR_VIEW&&CREATOR_PAGE_SITES.includes(niche.id))url.pathname="/thread/creators-home";
  const product=/^\/thread\/rackets\/([a-z0-9-]+)$/.exec(to);
  if(product&&request.nextUrl.searchParams.get("view")===CREATOR_VIEW&&creatorPageFor(niche.id,product[1]!))url.pathname=`/thread/creators/${product[1]}`;
  return NextResponse.rewrite(url);

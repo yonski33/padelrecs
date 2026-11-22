@@ -10,3 +10,10 @@ const FIXTURES: Record<string, Fixture> = { pickleball: pickleball as unknown as
 export const creatorPage = (site: string, slug: string): CreatorPage | null => FIXTURES[site]?.paddles[slug] ?? null;
 /** The products with a creator page on the site (generateStaticParams). */
 export const creatorSlugs = (site: string): string[] => Object.keys(FIXTURES[site]?.paddles ?? {});
+
+// The creators home preview's data (db/creators/<site>-home.json, lib/thread/creator-home.ts).
+import pickleballHome from "../../db/creators/pickleball-home.json";
+import type { CreatorHome } from "./creator-home";
+const HOMES: Record<string, CreatorHome> = { pickleball: pickleballHome as unknown as CreatorHome };
+/** The site's creators home data, or null. */
+export const creatorHome = (site: string): CreatorHome | null => HOMES[site] ?? null;

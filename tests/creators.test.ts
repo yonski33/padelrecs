@@ -70,3 +70,24 @@ test("creator page: prices are USD snapshots, sold-out rows last and never the l
     assert.ok(low.shops.every(x => x.inStock), slug);
   }
 });
+
+test("creators home: fixture rules and the boards", async () => {
+  const { creatorHome } = await import("../lib/thread/creator-data");
+  const { boards, praiseLine } = await import("../lib/thread/creator-home");
+  const h = creatorHome("pickleball")!;
+  assert.equal(Object.keys(h.paddles).length, 20);
+  const text = JSON.stringify(h);
+  assert.doesNotMatch(text, /verdict|—|\bowners?\b/i);
+  for (const [slug, p] of Object.entries(h.paddles)) {
+    assert.equal(p.pos + p.mix + p.neg, p.reviews, slug);
+    if (p.praise) assert.ok(p.praise.n >= 2 && p.praise.n <= p.reviews, slug);
+    if (p.price) assert.ok(p.price.usd > 0 && /^https:\/\//.test(p.price.url), slug);
+  }
+  assert.equal(h.total, Object.values(h.paddles).reduce((a, p) => a + p.reviews, 0));
+  assert.equal(praiseLine({ ...h.paddles["11six24-vapor-power-2"]!, praise: { key: "spin", words: "spin", n: 14 } }), "Praised for spin in 14 reviews");
+  const b = boards(h.paddles);
+  assert.equal(b.length, 6);
+  for (const x of b) { assert.ok(x.rows.length <= 3); for (let i = 1; i < x.rows.length; i++) assert.ok(x.rows[i - 1]!.n >= x.rows[i]!.n); }
+  // The latest summaries are YouTube, newest first.
+  for (let i = 1; i < h.latest.length; i++) assert.ok(h.latest[i - 1]!.date >= h.latest[i]!.date);
+});
