@@ -92,3 +92,11 @@ export const CREATOR_PAGE_SLUGS: Record<string, string[]> = { pickleball: ["11si
 export const CREATOR_VIEW = "creators";
 export const creatorPageFor = (nicheId: string, slug: string) => CREATOR_PAGE_SITES.includes(nicheId)
   && (CREATOR_PAGE_SLUGS[nicheId] ?? []).includes(slug);
+
+/** THE creator page switch (owner "yes" 2026-11-22, first live wave): on these sites a product with CREATOR_MIN_REVIEWS or
+ *  more creator reviews (one per reviewer, TikTok channels once) gets the creator page (app/thread/creator-page.tsx) at its
+ *  normal address, and "/" gets the creators home (app/thread/creators-home-body.tsx). Every other product keeps today's
+ *  page. Set a site to false to switch it all off at once. */
+export const CREATOR_PAGE: Record<string, boolean> = { pickleball: true };
+export const creatorPageOn = (nicheId: string) => CREATOR_PAGE[nicheId] ?? false;
+export const CREATOR_MIN_REVIEWS = 3;

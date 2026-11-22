@@ -26,6 +26,8 @@ import { padelListData } from "./padel-list-data";
 import { v3Site, justInSite, questionsSite } from "../../lib/thread/sites";
 import { JustIn } from "./just-in";
 import { LatestQuestions } from "./latest-questions";
+import { creatorPageOn } from "../../lib/thread/sites";
+import { CreatorsHomeBody } from "./creators-home-body";
 
 export const revalidate = 21600;
 const SKIN = niche.id === "skin", DG = niche.id === "discgolf", SR = niche.id === "simracing";
@@ -37,6 +39,8 @@ const V3 = v3Site(niche.id), AUDIO = niche.id === "audio";
 export const generateMetadata = (): Promise<Metadata> => liveOr(() => homeMetadata(DEFAULT_CHOICE, false));
 
 export default async function ThreadHome() {
+  // The creators home (lib/thread/sites.ts CREATOR_PAGE).
+  if (creatorPageOn(niche.id)) return <CreatorsHomeBody/>;
   const [{ all, rows, ctx }, picks, lists, feed, payload, side, tales] = await Promise.all([threadRows(), threadTopPicks(), threadRankings(), threadFeed(), hasDb() && !SKIN && !AUDIO ? homePayload() : null, threadHomeSide(), threadStories(3)]);
   // The classic home's own order (curated picks first, one current row per model; app/home-payload.ts defaultHomeIds).
   const top = payload ? homeTop(rows, defaultHomeIds(payload, DEFAULT_CHOICE)) : [];
