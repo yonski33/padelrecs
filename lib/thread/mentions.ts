@@ -13,7 +13,7 @@ export function mentions<R extends { id: string; name: string; brand: string; cu
     const full = norm(row.name.replace(/\s*\(?20\d\d\)?\s*$/, "")).trim();
     const model = full.startsWith(norm(row.brand).trim()) ? full.slice(norm(row.brand).trim().length).trim() : "";
     // A name followed by a generation ("Vapor Power" in "Vapor Power 2") is a different paddle.
-    const keys = [full, ...((model.split(" ").length >= 2 && model.replace(/ /g, "").length >= 8) || /^(?=.*\\d)[a-z0-9]{4,}$/.test(model) ? [model] : [])]
+    const keys = [full, ...((model.split(" ").length >= 2 && model.replace(/ /g, "").length >= 8) || /^(?=.*\d)[a-z0-9]{4,}$/.test(model) ? [model] : [])]
       .map(k => new RegExp(` ${k.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")} (?!(\\d+|ii|iii|iv|v|vi|gen\\d*|pro)\\b)`));
     const n = texts.filter(t => keys.some(k => k.test(t))).length;
     if (n >= min) out.push({ row, n });
