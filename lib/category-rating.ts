@@ -96,3 +96,9 @@ export function categoryRatings(cat: RatingCategory, list: RatingInput[], prior:
   });
   return out;
 }
+
+/** The vote groups a site's category rankings are built from, in list order, each once ("plays_like" for Power and Control,
+ *  then "spin", "arm", "level" on PickleballRecs). The creator page's vote section asks these (lib/thread/creator-votes.ts).
+ *  Empty for a site without category ratings, and SkinRecs' attribute-based lists have no vote group. */
+export const rankingTraits = (nicheId: string): string[] =>
+  [...new Set(Object.values(SITES[nicheId] ?? {}).map(c => c.trait).filter(Boolean))];

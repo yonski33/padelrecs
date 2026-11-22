@@ -245,3 +245,11 @@ body:has(.thc) .thc a.thc-tt-cover { position: relative; display: flex; align-it
   .thc-g-w::before { content: attr(data-l); font-size: 11.5px; color: var(--faint); font-weight: 600; }
   .thc-g-row .thc-g-w + .thc-g-w { justify-self: start; }
 }
+
+/* Played it? Vote and rate it (PR #649): the padel poll and vote grid, flush in the column. */
+.thc .thc-vote .thc-sec2-h > span { font-size: 13px; color: var(--muted); }
+.thc .thc-vote > .th-card { margin: 0; }
+/* Four groups (the ranking categories): one row of four on desktop, two by two below 900px, one column on phones. */
+.thc .thc-vote .th-vgrid { grid-template-columns: repeat(4, minmax(0,1fr)); }
+@media (max-width: 899px) { .thc .thc-vote .th-vgrid { grid-template-columns: repeat(2, minmax(0,1fr)); } }
+@media (max-width: 639px) { .thc .thc-vote .th-vgrid { grid-template-columns: minmax(0,1fr); } }
