@@ -27,6 +27,8 @@ import { FlairEditor, type FlairPick } from "./flair-admin";
 import { grow } from "./name";
 import { signInHref } from "./use-account";
 import { MoreMenu, OPEN_REVIEW, reportPost, ReviewRow, WebSources, type Changed } from "./racket-v7b";
+import { WebSourcesV2 } from "./web-v2";
+import { webV2Site } from "../../../lib/thread/sites";
 
 const ACCOUNTS = accountSite(niche.id);
 /** PadelRecs (owner 2026-11-21): a plain post by default, saved types (drizzle/0035), and these prompts. Other sites on this
@@ -56,6 +58,11 @@ export function CommunityFeed({ id, model, cards, web, plastics }: { id: string;
   // The composer (owner 2026-11-21): open or closed, and an optional type. None picked posts a plain comment with no flair.
   const [composing, setComposing] = useState(false), [kind, setKind] = useState<Flair | null>(null), [filter, setFilter] = useState<Flair | "all">("all"), [sort, setSort] = useState<"new" | "top">("new");
   const [plastic, setPlastic] = useState<string | null>(null);
+  // "From around the web" v2 where lib/thread/sites.ts says so; ?web=classic shows the earlier box (read after load, so the
+  // cached page is the same for everyone).
+  const webV2 = webV2Site(niche.id), [webClassic, setWebClassic] = useState(false);
+  // eslint-disable-next-line react-hooks/set-state-in-effect
+  useEffect(() => { if (webV2) setWebClassic(new URLSearchParams(location.search).get("web") === "classic"); }, [webV2]);
   const [shown, setShown] = useState(PAGE), [openReplies, setOpenReplies] = useState<Record<string, true>>({}), [changed, setChanged] = useState<Record<string, Changed>>({});
   // The poll's "Want to add a line about why?" (racket.tsx Poll) opens this composer on Review, with the vote picked.
   useEffect(() => { const on = (e: Event) => { const v = (e as CustomEvent<Verdict>).detail; setComposing(true); setKind("review"); rv.setOpen(true); if (v) rv.setVerdict(v);
@@ -183,6 +190,6 @@ export function CommunityFeed({ id, model, cards, web, plastics }: { id: string;
       </div>
       {list.length > shown && <button type="button" className="th-btn th-center" style={{ margin: "4px 0 8px" }} onClick={() => setShown(s => s + 16)}>Show more</button>}
     </section>
-    <WebSources web={plastic ? webOf(web, plastic) : web} open={thin}/>
+    {webV2 && !webClassic ? <WebSourcesV2 web={plastic ? webOf(web, plastic) : web}/> : <WebSources web={plastic ? webOf(web, plastic) : web} open={thin}/>}
   </>;
 }

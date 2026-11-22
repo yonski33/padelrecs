@@ -73,3 +73,54 @@ export function webLine<T>(w: WebGroups<T>) {
   const names = [w.threads.length + w.comments.length ? "Reddit" : "", w.videos.length ? "YouTube" : "", w.blogs.length ? "blogs" : ""].filter(Boolean);
   return `${n(total)} ${total === 1 ? "summary" : "summaries"}${names.length ? ` · ${names.join(", ")}` : ""}`;
 }
+
+// ── "From around the web" v2 (owner mock 2026-11-22, web-section-mock-owner.png): source tabs, one row per summary with a
+// thumbnail or source tile, a bold headline and the sentiment on the right. lib/thread/sites.ts webV2Site switches it on.
+
+/** The v2 tabs, in the mock's order. Reddit threads and comments share one tab. No counts on the tabs (owner choice). */
+export type WebTab = "all" | "videos" | "reddit" | "blogs";
+export const WEB_TABS: [WebTab, string][] = [["all", "All"], ["videos", "Videos"], ["reddit", "Reddit"], ["blogs", "Blogs"]];
+export const tabOf = (kind: keyof WebGroups<unknown>): Exclude<WebTab, "all"> => kind === "videos" ? "videos" : kind === "blogs" ? "blogs" : "reddit";
+/** The tabs to show: All plus each source that has a card. None at all when only one source is present (the tab would
+ *  repeat All). */
+export function webTabs<T>(w: WebGroups<T>): WebTab[] {
+  const has = { videos: w.videos.length > 0, reddit: w.threads.length + w.comments.length > 0, blogs: w.blogs.length > 0 };
+  const on = (["videos", "reddit", "blogs"] as const).filter(k => has[k]);
+  return on.length > 1 ? ["all", ...on] : [];
+}
+
+/** The longest a headline quote may be (owner rule and the copyright rule: under 15 words). */
+export const QUOTE_MAX_WORDS = 14;
+const ENGLISH = /^[\x00-\x7F’‘–…é]+$/, STOP = /\b(the|it|is|was|and|i|my|for|but|this|with|very|really)\b/i;
+/** A real short line from the source for the bold headline, or null. Only the stored excerpt counts, because it is the
+ *  source's exact words (our summaries are paraphrase and never go in quote marks): the whole excerpt when it is short
+ *  enough, else its first sentence, kept exactly (only a trailing comma or dash is dropped). Null when it is not English,
+ *  starts mid-sentence, is a question, quotes someone, names a price or carries a link, so the row falls back to the
+ *  summary without quote marks. */
+export function shortQuote(excerpt?: string | null, lang?: string | null): string | null {
+  if (!excerpt || (lang && lang !== "en")) return null;
+  const t = excerpt.replace(/\s+/g, " ").trim();
+  const words = (s: string) => s.split(" ").filter(Boolean).length;
+  const first = t.match(/^.+?[.!](?=\s|$)/)?.[0] ?? t;
+  const q = (words(t) <= QUOTE_MAX_WORDS ? t : first).replace(/[\s,;:–-]+$/, "");
+  const n = words(q);
+  if (n < 4 || n > QUOTE_MAX_WORDS) return null;
+  if (!ENGLISH.test(q) || !STOP.test(q) || !/^[A-Z0-9]/.test(q) || /\?$/.test(q)) return null;
+  if (/["“”]|—|https?:|www\.|\*|[$€£]\s?\d|\d\s?(€|eur|euros?|usd|dollars?|pounds?)\b/i.test(q)) return null;
+  return q;
+}
+
+const MON = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+/** The row's date as the mock shows it: "Sep 21" this year, "Sep 21, 2024" before. From the stored YYYY-MM-DD, so it is the
+ *  same on the server and in the browser. "" when there is no date. */
+export function dayLabel(at: string | null | undefined, year = new Date().getUTCFullYear()): string {
+  const m = at?.match(/^(\d{4})-(\d{2})-(\d{2})/);
+  if (!m) return "";
+  const [y, mo, d] = [Number(m[1]), Number(m[2]), Number(m[3])];
+  if (!MON[mo - 1] || !d) return "";
+  return `${MON[mo - 1]} ${d}${y === year ? "" : `, ${y}`}`;
+}
+/** A YouTube link to a viewer comment (…&lc=…): a comment under that channel's video, not the channel's own review. */
+export const isVideoComment = (url: string | null) => !!url && /[?&]lc=/.test(url);
+/** Rows shown before "Show N more" (mock: 6). */
+export const WEB_V2_FIRST = 6;
