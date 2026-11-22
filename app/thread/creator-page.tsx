@@ -123,7 +123,8 @@ export async function CreatorProductBody({ slug }: { slug: string }) {
   // The level tag from the catalogue's "best for" line: its first part, "intermediate → advanced" as "Intermediate to advanced".
   const level = row?.best?.split(",")[0]?.replace(/\s*(→|->)\s*/g, " to ").trim() ?? null;
   const tags = [style ? STYLE_WORD[style] : null, row?.feel ? `${row.feel} feel` : null, level ? `${level[0]!.toUpperCase()}${level.slice(1)}` : null].filter((x): x is string => !!x);
-  const plus = agree.likes[0] ?? null, minus = agree.concerns[0] ?? null;
+  // Two + points and one - point (owner 2026-11-22), the likes and concerns backed by 2+ reviews.
+  const plus = agree.likes.slice(0, 2), minus = agree.concerns[0] ?? null;
   const n = stanceCounts(rs), buy = offers.filter(o => o.inStock).slice(0, 3);
   // Similar paddles mentioned: other catalogue paddles the reviews name, with their lowest stored price.
   const named = mentions(rs, allRows, r.id).map(m => ({ ...m, href: m.row.href, price: staged[m.row.slug]?.price ?? null }));
@@ -138,10 +139,10 @@ export async function CreatorProductBody({ slug }: { slug: string }) {
         <div className="thc-head-m">
           <h1>{name}</h1>
           {tags.length > 0 && <span className="thc-tags">{tags.map((t, k) => <span key={t} className={k === 0 && style ? "on" : undefined}>{t}</span>)}</span>}
-          {(page.tldr || plus || minus) && <div className="thc-tldr">
+          {(page.tldr || plus.length > 0 || minus) && <div className="thc-tldr">
             <span className="thc-tldr-h"><b>TL;DR</b></span>
             {page.tldr && <span className="thc-tldr-t">{page.tldr}</span>}
-            {(plus || minus) && <ul className="thc-pts">{plus && <li className="pos">{plus}</li>}{minus && <li className="neg">{minus}</li>}</ul>}
+            {(plus.length > 0 || minus) && <ul className="thc-pts">{plus.map(t => <li key={t} className="pos">{t}</li>)}{minus && <li className="neg">{minus}</li>}</ul>}
           </div>}
           {praise && <a className="thc-pill" href="#reviews">{praise}</a>}
           {/* The site's own players (owner 2026-11-22, #651): the bar and counts, never the creator reviews. */}

@@ -377,3 +377,16 @@ body:has(.thc) .thc a.thc-tt-cover.pic { overflow: hidden; }
 .thc-tt-cover.pic > span { position: relative; z-index: 2; }
 .thc-tt-cover.pic > .logo, .thc-tt-cover.pic > .len { position: absolute; }
 .thc-tt-cover.pic > .play { filter: drop-shadow(0 1px 3px rgba(0,0,0,.5)); }
+/* Head, owner 2026-11-22: a bigger photo and a bigger TL;DR, and the three columns end on one line (the votes sit at the
+   bottom of the middle column, level with the bottom of Where to buy). */
+@media (min-width: 1081px) {
+  .thc-v19 .thc-head { align-items: stretch; }
+  .thc-v19 .thc-photo { flex: 0 0 250px; height: auto; min-height: 340px; align-self: stretch; }
+  .thc-v19 .thc-head-m { justify-content: flex-start; }
+  .thc-v19 .thc-votes { margin-top: auto; }
+}
+.thc-v19 .thc-tldr { padding: 18px 20px; gap: 8px; }
+.thc-v19 .thc-tldr-h b { font-size: 22px; }
+.thc-tldr-t { font-size: 16.5px; line-height: 1.5; }
+.thc-pts { font-size: 15px; gap: 6px; }
+@media (min-width: 1081px) { .thc-v19 .thc-head-r { align-self: stretch; } .thc-v19 .thc-head-r > #buy { flex: 1 1 auto; } }
