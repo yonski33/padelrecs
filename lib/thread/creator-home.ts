@@ -2,7 +2,7 @@
 // staged creator reviews say per paddle (takes, the attribute most praised, words per attribute) and the latest YouTube
 // summaries, from a static demo fixture (db/creators/<site>-home.json, built by the sweep's home-fixture.py). Pure, so the
 // tests see what the page shows. No scores: a paddle is described by its reviews' words and takes only.
-import type { AttrKey, Stance } from "./creators";
+import { ATTRS, lowestOffer, reviewLists, stanceCounts, type AttrKey, type CreatorPage, type Stance } from "./creators";
 
 export type HomePaddle = { pos: number; mix: number; neg: number; reviews: number;
   /** The attribute most reviews call Excellent or Great, with that count; null under 2. */ praise: { key: AttrKey; words: string; n: number } | null;
@@ -29,3 +29,25 @@ export function boards(paddles: Record<string, HomePaddle>, size = 3) {
 
 /** "$110". */
 export const usd = (n: number) => `$${Number.isInteger(n) ? n : n.toFixed(2)}`;
+
+/** The home's data from the creator pages themselves (the database path): the same counts as each page (one per reviewer,
+ *  TikTok channels once), the most praised attribute, every attribute's Excellent-or-Great count, the lowest in-stock price,
+ *  and the newest YouTube summaries. */
+const PRAISE: Record<AttrKey, string> = { power: "power", control: "control", spin: "spin", pop: "pop", sweet: "its sweet spot", comfort: "arm comfort", durability: "durability" };
+export function homeFromPages(pages: Map<string, CreatorPage>, latestN = 4): CreatorHome {
+  const paddles: Record<string, HomePaddle> = {}, yt: HomeSummary[] = [];
+  let checked = "";
+  for (const [slug, page] of pages) {
+    const { counted } = reviewLists(page);
+    const high = Object.fromEntries(ATTRS.map(([k]) => [k, counted.filter(r => r.attrs[k] === "Excellent" || r.attrs[k] === "Great").length])) as Record<AttrKey, number>;
+    const top = ATTRS.map(([k]) => k).reduce((a, k) => high[k] > high[a] ? k : a, "power" as AttrKey);
+    const low = page.prices ? lowestOffer(page.prices.offers) : null, shop = low?.shops[0];
+    if (page.prices && page.prices.checked > checked) checked = page.prices.checked;
+    paddles[slug] = { ...stanceCounts(counted), reviews: counted.length, high,
+      praise: high[top] >= 2 ? { key: top, words: PRAISE[top], n: high[top] } : null,
+      price: low && shop ? { usd: low.price, shop: shop.shop, url: shop.url, affiliate: shop.affiliate } : null };
+    for (const r of page.reviews) if (r.kind === "youtube") yt.push({ slug, creator: r.creator, stance: r.stance, date: r.date, url: r.url, text: r.short });
+  }
+  yt.sort((a, b) => b.date.localeCompare(a.date));
+  return { generated: "", pricesChecked: checked, total: Object.values(paddles).reduce((a, p) => a + p.reviews, 0), paddles, latest: yt.slice(0, latestN) };
+}

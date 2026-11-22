@@ -42,7 +42,7 @@ function Word({ w }: { w: CreatorReview["attrs"][keyof CreatorReview["attrs"]] }
 
 /** The creator page for one product, or null when it has no creator data (the caller then shows the usual page). */
 export async function CreatorProductBody({ slug }: { slug: string }) {
-  const page = creatorPage(niche.id, slug), d = await racketData(slug);
+  const [page, d] = await Promise.all([creatorPage(niche.id, slug), racketData(slug)]);
   if (!page || !d) return null;
   // Reviews include the TikTok takes (owner 2026-11-22): `rs` counts one per reviewer, `feed` holds every card.
   const { feed, counted: rs } = reviewLists(page), n = stanceCounts(rs);
@@ -51,7 +51,7 @@ export async function CreatorProductBody({ slug }: { slug: string }) {
   const { r, row, brand, style, sim, cards } = d;
   // Similar paddles (the mock's section 8): the product page's similar list, current models only, filled up to four from the
   // other staged paddles (same shape first). A staged paddle shows its reviews' takes and its lowest price; others their votes.
-  const home = creatorHome(niche.id), staged = home?.paddles ?? {};
+  const home = await creatorHome(niche.id), staged = home?.paddles ?? {};
   const { all: allRows } = await threadRows();
   const bySlug = new Map(allRows.map(x => [x.slug, x]));
   const sims = sim.filter(x => x.id !== r.id && x.current !== false);

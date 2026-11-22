@@ -1,7 +1,9 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import { attrSummary, bigPicture, cardChips, checkedDay, howItPlays, lowestOffer, marks, splitSummary, usd, takeaway, sortReviews, stanceCounts, measuredLine, initials, WORDS } from "../lib/thread/creators";
-import { creatorPage, creatorSlugs } from "../lib/thread/creator-data";
+import { fixturePage as creatorPage, fixtureHome } from "../lib/thread/creator-data";
+import fixture from "../db/creators/pickleball.json";
+const creatorSlugs = (site: string) => site === "pickleball" ? Object.keys((fixture as { paddles: Record<string, unknown> }).paddles) : [];
 import { creatorPageFor, CREATOR_PAGE_SLUGS } from "../lib/thread/sites";
 
 const pages = creatorSlugs("pickleball").map(s => [s, creatorPage("pickleball", s)!] as const);
@@ -72,9 +74,8 @@ test("creator page: prices are USD snapshots, sold-out rows last and never the l
 });
 
 test("creators home: fixture rules and the boards", async () => {
-  const { creatorHome } = await import("../lib/thread/creator-data");
   const { boards, praiseLine } = await import("../lib/thread/creator-home");
-  const h = creatorHome("pickleball")!;
+  const h = fixtureHome("pickleball")!;
   assert.equal(Object.keys(h.paddles).length, 20);
   const text = JSON.stringify(h);
   assert.doesNotMatch(text, /verdict|—|\bowners?\b/i);
@@ -123,4 +124,35 @@ test("creator page: TikTok takes are reviews, counted once per channel", async (
   // The other demo paddles are unchanged.
   const v = reviewLists(creatorPage("pickleball", "11six24-vapor-power-2")!);
   assert.equal(v.feed.length, v.counted.length);
+});
+
+test("creator data from the database: row mappers and the home's counts", async () => {
+  const { reviewFromRow, takeFromRow, pageFromRows, offersFromRows } = await import("../db/creator-reviews");
+  const { homeFromPages } = await import("../lib/thread/creator-home");
+  const yt = { id: "a", racket_id: "r1", url: "https://youtube.com/watch?v=x", platform: "youtube", review_type: "long-term", creator: "Studio",
+    channel_url: null, language: "en", published_on: "2026-10-01", duration_s: 600, video_id: "x", stance: "pos", summary: "Finds big spin. Likes it.",
+    summary_more: null, summary_short: "Finds big spin.", highlights: ["big spin", "not in text"], quote: "Big spin.", quote_at_s: 12,
+    chapters: [[30, "Spin"]], attributes: { spin: "Excellent", forgiveness: "Great", value: "Good", power: "Huge" }, tags: [],
+    score_value: "4.5", score_scale: "5", score_label: "Overall", score_hidden: true, measured: {}, also_url: null, version: null, note: null,
+    brand_tie: null, disclosure: "Gifted", stood_out: "Spin", trade_off: null, compared_to: null, status: "live" };
+  const r = reviewFromRow(yt);
+  assert.equal(r.score, null, "a hidden score never shows");
+  assert.equal(reviewFromRow({ ...yt, score_hidden: false }).score!.value, 4.5);
+  assert.deepEqual(r.attrs, { spin: "Excellent", sweet: "Great" }, "forgiveness is the sweet spot; unknown words and value are left out");
+  assert.deepEqual(r.highlights, ["big spin"], "only exact substrings of the summary");
+  assert.equal(r.channel, yt.url, "no channel url: link the video");
+  assert.equal(r.type, "long-term");
+  const tt = (id: string, handle: string, date: string) => ({ ...yt, id, platform: "tiktok", review_type: "short_update", handle, published_on: date, tags: ["+ Spin", "- Price", "+ Grit", "+ Extra"] });
+  assert.deepEqual(takeFromRow(tt("t1", "@a", "2026-11-01")).tags, ["+ Spin", "- Price", "+ Grit"]);
+  const page = pageFromRows({ tldr: "Spin.", group_pos: "Loved", group_mix: null, group_neg: null }, [yt, tt("t1", "@a", "2026-11-01"), tt("t2", "@a", "2026-11-09"), tt("t3", "@b", "2026-10-01")],
+    [{ shop: "B", url: "https://b", price: "120.00", currency: "USD", in_stock: true, edition: null, affiliate: false, checked_at: "2026-11-22T08:00:00Z" },
+     { shop: "A", url: "https://a", price: "99.99", currency: "USD", in_stock: false, edition: null, affiliate: false, checked_at: "2026-11-21T08:00:00Z" }], "Paddle");
+  assert.equal(page.reviews.length, 1); assert.equal(page.tiktok!.takes.length, 3);
+  assert.deepEqual(page.prices!.offers.map(o => o.shop), ["B", "A"], "in stock first");
+  assert.equal(page.prices!.checked, "2026-11-22");
+  assert.equal(offersFromRows([]), null);
+  const home = homeFromPages(new Map([["paddle", page]]));
+  assert.equal(home.paddles.paddle!.reviews, 3, "1 review + 2 TikTok channels");
+  assert.equal(home.total, 3);
+  assert.equal(home.paddles.paddle!.price!.usd, 120, "the lowest in-stock price, never a sold-out one");
 });
