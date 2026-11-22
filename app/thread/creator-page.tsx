@@ -177,8 +177,8 @@ export async function CreatorProductBody({ slug }: { slug: string }) {
             already stored (product_votes, trait votes) load live, one tap, no account. */}
         <section id="vote" className="thc-sec2 thc-vote">
           <div className="thc-sec2-h"><h2>Played it? Vote and rate it</h2><span>One tap, no account</span></div>
-          <PollCard id={r.id} reviews={{ positive: row?.pos ?? 0, mixed: row?.mix ?? 0, negative: row?.neg ?? 0 }} question="Would you buy it again?" countLine/>
-          {voteGroups.length > 0 && <TraitVotes id={r.id} seed={traitSeed(niche.id, r.id)} groups={voteGroups} tieNone/>}
+          <PollCard id={r.id} reviews={{ positive: row?.pos ?? 0, mixed: row?.mix ?? 0, negative: row?.neg ?? 0 }} question="" countLine/>
+          {voteGroups.length > 0 && <TraitVotes id={r.id} seed={traitSeed(niche.id, r.id)} groups={voteGroups} title="" tieNone/>}
         </section>
 
         {/* Comments (the mock's section 7): the site's own discussion for this paddle, the same thread as its product page. */}
