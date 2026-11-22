@@ -12,21 +12,25 @@ import { th } from "../../../lib/thread/look";
 
 const LEVEL_WORD: Record<Level, string> = { beginner: "Beginner", intermediate: "Intermediate", advanced: "Advanced" };
 
-export function CompactFit({ id, title, sub }: { id: string; title: string; sub: string }) {
+/** `bar`: one row across the page under the head (owner mock 2026-11-23), the chips in joined groups, the result below. */
+export function CompactFit({ id, title, sub, bar = false }: { id: string; title: string; sub: string; bar?: boolean }) {
   const [picks, set] = usePicks();
   const on = complete(picks), payload = usePayload(on);
   const fit = useMemo(() => on && payload ? fitFor(payload, picks, id) : null, [on, payload, picks, id]);
   const adv = useMemo(() => fit && payload && fit.verdict.kind !== "thin" ? adviceFor(payload, picks, id, fit.pct) : null, [fit, payload, picks, id]);
   const reason = adv?.line ?? fit?.verdict.reasons[0] ?? null;
   const tone = fit?.pct == null ? "" : fit.pct >= 85 ? " g" : fit.pct >= 70 ? " y" : " r";
-  return <section className="thc-box1 thc-fit">
+  const levels = LEVEL_OPTS.map(v => <button key={v} type="button" className="thc-chip" aria-pressed={picks.level === v} onClick={() => set({ level: picks.level === v ? null : v })}>{!bar && LEVEL_ICON[v]}{LEVEL_WORD[v]}</button>);
+  const styles = STYLE_OPTS.map(v => <button key={v} type="button" className="thc-chip" aria-pressed={picks.style === v} onClick={() => set({ style: picks.style === v ? null : v })}>{styleLabel(v)}</button>);
+  const arm = <label className="thc-arm"><input type="checkbox" checked={picks.arm} onChange={() => set({ arm: !picks.arm })}/><span>Arm comfort</span></label>;
+  return <section className={`thc-box1 thc-fit${bar ? " bar" : ""}`}>
+    {bar ? <div className="thc-fit-line"><h2>{title}</h2>
+      <span className="thc-fit-grp"><b>{"I'm"}</b><span className="thc-seg">{levels}</span></span>
+      <span className="thc-fit-grp"><b>I want</b><span className="thc-seg">{styles}</span></span>{arm}</div> : <>
     <h2>{title}</h2>
     <span className="thc-fit-sub">{sub}</span>
-    <div className="thc-fit-row"><b>{"I'm"}</b>
-      {LEVEL_OPTS.map(v => <button key={v} type="button" className="thc-chip" aria-pressed={picks.level === v} onClick={() => set({ level: picks.level === v ? null : v })}>{LEVEL_ICON[v]}{LEVEL_WORD[v]}</button>)}</div>
-    <div className="thc-fit-row"><b>I want</b>
-      {STYLE_OPTS.map(v => <button key={v} type="button" className="thc-chip" aria-pressed={picks.style === v} onClick={() => set({ style: picks.style === v ? null : v })}>{styleLabel(v)}</button>)}
-      <label className="thc-arm"><input type="checkbox" checked={picks.arm} onChange={() => set({ arm: !picks.arm })}/><span>Arm comfort</span></label></div>
+    <div className="thc-fit-row"><b>{"I'm"}</b>{levels}</div>
+    <div className="thc-fit-row"><b>I want</b>{styles}{arm}</div></>}
     {(picks.level || picks.style || picks.arm) && <div className="thc-fit-out" aria-live="polite">
       {!on ? <span className="thc-fit-note">Pick a level and a style to see your match.</span> : !fit ? <span className="thc-fit-note">Working out your match…</span> : <>
         {fit.pct != null && <span className={`thc-fit-pct${tone}`}>{`${fit.pct}% your match`}</span>}

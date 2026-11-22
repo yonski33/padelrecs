@@ -393,3 +393,56 @@ body:has(.thc) .thc a.thc-tt-cover.pic { overflow: hidden; }
 @media (min-width: 1081px) { .thc-v19 .thc-head-r { align-self: stretch; } .thc-v19 .thc-head-r > #buy { flex: 1 1 auto; } }
 /* Video summaries (owner 2026-11-22): a readable measure, 17px on 1.65. */
 .thc .thc-sum.vid { max-width: 68ch; font-size: 17px; line-height: 1.65; }
+
+/* Head v3 (owner mock 2026-11-23): photo · name, tags, TL;DR, the vote box · the price box; the fit check as a row below. */
+.thc-hd3 .thc-head-m { gap: 12px; }
+.thc-v19 .thc-hd3 h1 { font-size: 52px; }
+.thc-hd3 .thc-tldr-h { justify-content: space-between; }
+.thc-hd3 .thc-tldr-h > span { font-size: 13.5px; color: var(--muted); }
+.thc-hd3 .thc-tldr-t { font-size: 17.5px; line-height: 1.5; color: var(--ink); }
+.thc-pts2 { display: flex; flex-wrap: wrap; gap: 6px 22px; font-size: 15.5px; margin-top: 4px; }
+.thc-pts2 .pos { color: var(--ink); } .thc-pts2 .neg { color: #A3301F; }
+.thc-vbox { display: flex; flex-direction: column; gap: 8px; border: 2px solid var(--ink); border-radius: 14px; background: var(--card); padding: 12px 16px; }
+.thc-vbox-h { display: flex; justify-content: space-between; align-items: baseline; }
+.thc-vbox-h strong { font-size: 16px; }
+body:has(.thc) .thc .thc-vbox-h a { font-size: 14px; font-weight: 700; color: var(--ink); text-decoration: underline; }
+.thc-vbox .thc-vbar { height: 12px; }
+.thc-vpct { display: flex; flex-wrap: wrap; gap: 4px 18px; font-size: 14.5px; color: var(--body2); }
+.thc-vpct b { color: var(--ink); }
+/* The price box: lowest price, stock line, the one filled button, the shops, the check date. */
+.thc-pbox { padding: 16px 18px; gap: 10px; }
+.thc-pbox-l { font-size: 13.5px; color: var(--muted); }
+.thc-pbox-p { font-family: 'Barlow Condensed', var(--bc, sans-serif); font-size: 44px; font-weight: 900; line-height: 1; }
+.thc-pbox-s { font-size: 14px; font-weight: 700; color: #2F6E22; margin-top: -4px; }
+body:has(.thc) .thc .thc-pbox a.thc-cta.wide { display: block; text-align: center; font-size: 17px; padding: 10px 16px; margin: 4px 0; }
+.thc-pbox-list { display: flex; flex-direction: column; border-top: 1px solid var(--rule); }
+.thc-pbox-list .thc-shop2 { padding: 9px 0; border-bottom: 1px solid var(--rule); font-size: 14px; }
+.thc-pbox .thc-note { font-size: 12.5px; }
+@media (min-width: 1081px) {
+  .thc-v19 .thc-hd3 { align-items: flex-start; }
+  .thc-v19 .thc-hd3 .thc-head-r { align-self: flex-start; }
+  .thc-v19 .thc-hd3 .thc-photo { flex: 0 0 220px; height: 300px; }
+}
+/* The fit check as one row (CompactFit bar): title, joined chip groups, the arm check; the result under it. */
+.thc-fitrow { max-width: 1200px; width: 100%; box-sizing: border-box; margin: 18px auto 0; padding: 0 24px; }
+.thc-fit.bar { padding: 12px 18px; }
+.thc-fit-line { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 22px; }
+.thc-fit.bar h2 { font-size: 22px !important; margin-right: 4px; }
+.thc-fit-grp { display: inline-flex; align-items: center; gap: 10px; }
+.thc-fit-grp > b { font-size: 15px; font-weight: 800; }
+.thc-seg { display: inline-flex; border: 2px solid var(--ink); border-radius: 999px; overflow: hidden; }
+.thc .thc-seg .thc-chip { border: 0; border-radius: 0; padding: 6px 15px; }
+.thc .thc-seg .thc-chip + .thc-chip { border-left: 2px solid var(--ink); }
+.thc-fit.bar .thc-fit-out { flex-direction: row; flex-wrap: wrap; align-items: center; gap: 6px 14px; }
+@media (max-width: 640px) {
+  .thc-fitrow { padding: 0 16px; } .thc-v19 .thc-hd3 h1 { font-size: 38px; }
+  .thc-fit-grp { flex-wrap: wrap; } .thc .thc-seg .thc-chip { padding: 6px 11px; font-size: 14px; }
+}
+/* The fit row lines up with the sections below it, on one line where it fits. */
+.thc-v19 .thc-fitrow { max-width: 1120px; }
+.thc-fit-line { gap: 10px 16px; }
+.thc-fit.bar h2 { font-size: 21px !important; }
+.thc .thc-seg .thc-chip { padding: 5px 13px; font-size: 14.5px; }
+.thc-fit-line { gap: 10px 14px; } .thc-fit-grp { gap: 8px; }
+.thc-fit.bar h2 { font-size: 20px !important; }
+.thc .thc-seg .thc-chip { padding: 5px 11px; font-size: 14px; }

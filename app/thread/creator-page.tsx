@@ -35,7 +35,6 @@ import { TraitVotes } from "./live/trait-votes";
 import { traitSeed } from "../../lib/thread/trait-seed";
 import { creatorVoteGroups } from "../../lib/thread/creator-votes";
 import { siteSentiment } from "../../lib/thread/site-sentiment";
-import { homePaddle, praiseLine } from "../../lib/thread/creator-home";
 import { W } from "../../lib/thread/words";
 import { mentions } from "../../lib/thread/mentions";
 import "./creators.css";
@@ -69,7 +68,7 @@ export async function CreatorProductBody({ slug }: { slug: string }) {
   const { r, row, brand, style, sim, cards } = d;
   // The bar and its counts are the site's own players (lib/thread/site-sentiment.ts, owner 2026-11-22); the creator reviews
   // keep their cards and a praise line ("Praised for spin in 13 reviews").
-  const votes = siteSentiment(row), praise = praiseLine(homePaddle(page));
+  const votes = siteSentiment(row);
   const voteGroups = creatorVoteGroups(niche.id);
   // Similar paddles (the mock's section 8): the product page's similar list, current models only, filled up to four from the
   // other staged paddles (same shape first). A staged paddle shows its reviews' takes and its lowest price; others their votes.
@@ -134,36 +133,40 @@ export async function CreatorProductBody({ slug }: { slug: string }) {
     {/* The mock's third font (README tokens): JetBrains Mono for the small "check price ↗" links, this page only. */}
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500;700&display=swap" precedence="default"/>
     <div className="thc thc-v19">
-      <header className="thc-head">
+      {/* Head (owner mock 2026-11-23): photo · name, tags, TL;DR with ✓ and ✗ points, the players' vote box · the price box. */}
+      <header className="thc-head thc-hd3">
         <div className="thc-photo">{pic ? <img src={pic} alt={name}/> : <span className="th-ph" aria-hidden="true"/>}</div>
         <div className="thc-head-m">
           <h1>{name}</h1>
           {tags.length > 0 && <span className="thc-tags">{tags.map((t, k) => <span key={t} className={k === 0 && style ? "on" : undefined}>{t}</span>)}</span>}
           {(page.tldr || plus.length > 0 || minus) && <div className="thc-tldr">
-            <span className="thc-tldr-h"><b>TL;DR</b></span>
+            <span className="thc-tldr-h"><b>TL;DR</b><span>{`From ${plural(rs.length, "review")}`}</span></span>
             {page.tldr && <span className="thc-tldr-t">{page.tldr}</span>}
-            {(plus.length > 0 || minus) && <ul className="thc-pts">{plus.map(t => <li key={t} className="pos">{t}</li>)}{minus && <li className="neg">{minus}</li>}</ul>}
+            {(plus.length > 0 || minus) && <span className="thc-pts2">{plus.map(t => <span key={t} className="pos">{`✓ ${t}`}</span>)}{minus && <span className="neg">{`✗ ${minus}`}</span>}</span>}
           </div>}
-          {praise && <a className="thc-pill" href="#reviews">{praise}</a>}
-          {/* The site's own players (owner 2026-11-22, #651): the bar and counts, never the creator reviews. */}
-          <div className="thc-votes"><strong>{`${votes.total.toLocaleString("en-US")} ${W.person} ${votes.total === 1 ? "vote" : "votes"}`}</strong>
+          {/* The site's own players (owner 2026-11-22, #651): the bar and shares, never the creator reviews. */}
+          <div className="thc-vbox">
+            <span className="thc-vbox-h"><strong>{`${votes.total.toLocaleString("en-US")} ${W.person} ${votes.total === 1 ? "vote" : "votes"}`}</strong><a href="#vote">Vote ↓</a></span>
             {votes.total > 0 ? <><span className="thc-vbar" aria-hidden="true">{KEYS.map(k => votes[k] > 0 && <i key={k} className={k} style={{ flex: votes[k] }}/>)}</span>
-              <span className="thc-vcounts">{KEYS.map(k => <span key={k}><span className={`thc-dot ${k}`}>●</span>{`${votes[k]} ${k === "pos" ? "loved" : k === "mix" ? "mixed" : "not for me"}`}</span>)}</span></>
-              : <span className="thc-none"><a href="#vote">Be the first to vote</a></span>}</div>
+              <span className="thc-vpct">{KEYS.map(k => { const p = Math.round(votes[k] / votes.total * 100);
+                return <span key={k} className={k}>{k === "pos" ? <b>{`${p}% loved it`}</b> : `${p}% ${k === "mix" ? "mixed" : "not for me"}`}</span>; })}</span></>
+              : <span className="thc-none">No votes yet. Be the first.</span>}
+          </div>
         </div>
-        <div className="thc-head-r">
-          <CompactFit id={r.id} title={`Is this ${niche.words.one} right for me?`} sub="Pick your level and style"/>
-          {/* Where to buy (owner 2026-11-22): the 3 cheapest in-stock shops as quiet links, no filled button; the check date in
-              the header; "Lowest" only when one shop is cheapest. No stored price: the usual shop link as one quiet row. */}
-          {(buy.length > 0 || cta) && <section id="buy" className="thc-box1 thc-buy">
-            <div className="thc-h"><strong>Where to buy</strong>{buy.length > 0 && <span>{[buy.length > 1 ? "Lowest first" : null, page.prices ? shortDay(page.prices.checked) : null].filter(Boolean).join(" · ")}</span>}</div>
-            {buy.map((o, i) => <div key={o.shop} className="thc-shop2"><strong>{o.shop}</strong>{i === 0 && buy.length > 1 && buy[1]!.price > o.price && <span className="thc-low">Lowest</span>}
-              <span className="thc-price">{usd(o.price)}</span><a className="thc-mono" href={o.url} target="_blank" rel={relOf(o.affiliate)}>check ↗</a></div>)}
-            {buy.length === 0 && cta && <div className="thc-shop2"><strong>{shop?.where ?? "Shop"}</strong><a className="thc-mono" href={cta.url} target="_blank" rel={cta.rel}>check price ↗</a></div>}
-            {buy.some(o => o.affiliate) && <span className="thc-note">Some links are affiliate links.</span>}
-          </section>}
-        </div>
+        {(buy.length > 0 || cta) && <div className="thc-head-r">
+          {/* The price box: the lowest in-stock price, the page's one filled Check price button, the shops as quiet links. */}
+          <section id="buy" className="thc-box1 thc-pbox">
+            {low && <><span className="thc-pbox-l">Lowest price today</span><strong className="thc-pbox-p">{usd(low.price)}</strong>
+              <span className="thc-pbox-s">{`In stock at ${plural(offers.filter(o => o.inStock).length, "shop")}`}</span></>}
+            {cta && <a className="thc-cta wide" href={cta.url} target="_blank" rel={cta.rel}>Check price ↗</a>}
+            {buy.length > 0 && <div className="thc-pbox-list">{buy.map(o => <div key={o.shop} className="thc-shop2"><strong>{o.shop}</strong>
+              <span className="thc-price">{usd(o.price)}</span><a className="thc-mono" href={o.url} target="_blank" rel={relOf(o.affiliate)}>check ↗</a></div>)}</div>}
+            {page.prices && buy.length > 0 && <span className="thc-note">{`Checked ${shortDay(page.prices.checked)}.${buy.some(o => o.affiliate) ? " Some links are affiliate links." : ""}`}</span>}
+          </section>
+        </div>}
       </header>
+      {/* Is this paddle right for me? as one row under the head (owner mock 2026-11-23). */}
+      <div className="thc-fitrow"><CompactFit id={r.id} title={`Is this ${niche.words.one} right for me?`} sub="Pick your level and style" bar/></div>
       <div className="thc-rule"/>
 
       <main className="thc-body">
