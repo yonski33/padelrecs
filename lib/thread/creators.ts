@@ -33,7 +33,24 @@ export type CreatorReview = {
 };
 export type CreatorPage = { paddle: string; tldr: string;
   /** One line per take for the sentiment boxes (written from the reviews' own summaries; "" when none). */
-  groups: Record<Stance, string>; reviews: CreatorReview[] };
+  groups: Record<Stance, string>;
+  /** Shop prices from the price sweep (USD, new, US shops, hand-checked), lowest first with in-stock rows first; null when
+   *  none were collected. A static snapshot for the demo, dated by `checked`. */
+  prices: { checked: string; offers: Offer[] } | null;
+  reviews: CreatorReview[] };
+export type Offer = { shop: string; url: string; price: number; inStock: boolean; edition: string | null; affiliate: boolean };
+
+/** "$110", "$159.99". */
+export const usd = (n: number) => `$${Number.isInteger(n) ? n : n.toFixed(2)}`;
+/** The lowest in-stock price and the shops at it ("Lowest today" goes on each); sold-out rows never count. */
+export function lowestOffer(offers: Offer[]) {
+  const live = offers.filter(o => o.inStock);
+  if (!live.length) return null;
+  const price = Math.min(...live.map(o => o.price));
+  return { price, shops: live.filter(o => o.price === price) };
+}
+/** "2026-11-22" to "Nov 22, 2026". */
+export const checkedDay = (iso: string) => new Date(`${iso}T12:00:00Z`).toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric", timeZone: "UTC" });
 /** Loved / Mixed / Not for me counts. */
 export function stanceCounts(rs: Pick<CreatorReview, "stance">[]) {
   const n = { pos: 0, mix: 0, neg: 0 };

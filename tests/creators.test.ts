@@ -1,6 +1,6 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { attrSummary, bigPicture, cardChips, howItPlays, marks, splitSummary, takeaway, sortReviews, stanceCounts, measuredLine, initials, WORDS } from "../lib/thread/creators";
+import { attrSummary, bigPicture, cardChips, checkedDay, howItPlays, lowestOffer, marks, splitSummary, usd, takeaway, sortReviews, stanceCounts, measuredLine, initials, WORDS } from "../lib/thread/creators";
 import { creatorPage, creatorSlugs } from "../lib/thread/creator-data";
 import { creatorPageFor, CREATOR_PAGE_SLUGS } from "../lib/thread/sites";
 
@@ -53,4 +53,20 @@ test("creator page: helpers", () => {
   assert.equal(howItPlays(many).find(h => h.k === "spin")!.word, "Excellent");
   assert.deepEqual(cardChips({ control: "Okay", spin: "Excellent", power: "Good" }), [{ tone: "pos", text: "Excellent spin" }, { tone: "neg", text: "Okay control" }]);
   assert.deepEqual(marks("a big hit, a soft touch", ["big hit", "soft"]), [{ t: "a ", on: false }, { t: "big hit", on: true }, { t: ", a ", on: false }, { t: "soft", on: true }, { t: " touch", on: false }]);
+  const o = (shop: string, price: number, inStock = true) => ({ shop, url: "https://x.test", price, inStock, edition: null, affiliate: false });
+  assert.deepEqual(lowestOffer([o("A", 159), o("B", 159.99), o("Brand", 99.99, false)])?.shops.map(x => x.shop), ["A"]);
+  assert.equal(lowestOffer([o("A", 110), o("B", 110), o("C", 200)])?.shops.length, 2);
+  assert.equal(lowestOffer([o("Brand", 99.99, false)]), null);
+  assert.equal(usd(110), "$110"); assert.equal(usd(159.99), "$159.99"); assert.equal(checkedDay("2026-11-22"), "Nov 22, 2026");
+});
+
+test("creator page: prices are USD snapshots, sold-out rows last and never the lowest", () => {
+  for (const [slug, p] of pages) {
+    const offers = p.prices?.offers ?? [];
+    assert.ok(offers.length > 0, slug);
+    const firstOut = offers.findIndex(x => !x.inStock);
+    if (firstOut >= 0) assert.ok(offers.slice(firstOut).every(x => !x.inStock), `${slug}: sold out rows last`);
+    const low = lowestOffer(offers)!;
+    assert.ok(low.shops.every(x => x.inStock), slug);
+  }
 });

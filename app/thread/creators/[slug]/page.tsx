@@ -22,7 +22,7 @@ import { websiteButton } from "../../../../lib/product-links";
 import { generateMetadata as liveMetadata } from "../../../rackets/[slug]/page";
 import { JsonLd, crumbs } from "../../seo";
 import { catalogLabel, catalogPath, productHref } from "../../../../lib/niche";
-import { ATTRS, STANCE_LABEL, TABLE_ATTRS, bigPicture, howItPlays, langCode, platform, scoreText, stanceCounts, takeaway,
+import { ATTRS, STANCE_LABEL, TABLE_ATTRS, checkedDay, lowestOffer, usd, bigPicture, howItPlays, langCode, platform, scoreText, stanceCounts, takeaway,
   wordTone, type CreatorReview } from "../../../../lib/thread/creators";
 import { creatorPage, creatorSlugs } from "../../../../lib/thread/creator-data";
 import { Avatar, CreatorReviews } from "../../live/creator-reviews";
@@ -63,6 +63,13 @@ export default async function CreatorProductPage({ params }: P) {
   const site = websiteButton(r);
   const shop = amazon ? { url: amazon.url, rel: "sponsored nofollow noopener", where: "Amazon" }
     : site ? { url: site.url, rel: site.affiliate ? "sponsored nofollow noopener" : "noopener", where: brand?.name ?? "The maker" } : null;
+  // Where to buy (the mock's shop list): the price sweep's offers when there are any. The Amazon row uses the site's own
+  // tagged link (the same as the live page's Check price); other shops are plain links (no affiliate deals yet).
+  const offers = (page.prices?.offers ?? []).map(o => o.shop === "Amazon" && shop?.where === "Amazon" ? { ...o, url: shop.url } : o);
+  const low = lowestOffer(offers);
+  const relOf = (aff: boolean) => aff ? "sponsored nofollow noopener" : "nofollow noopener";
+  // The one filled Check price button (README rule) goes to a lowest in-stock shop; without prices, to the live page's link.
+  const cta = low ? { url: low.shops[0]!.url, rel: relOf(low.shops[0]!.affiliate) } : shop;
   const released = r.name.match(/\b(20\d\d)\b/)?.[1] ?? (r.year ? String(r.year) : null);
   const specs = ([...niche.specs.map(s => [s.label, r[s.column]]), ["Released", released]] as [string, string | null][])
     .filter((x): x is [string, string] => !!x[1]);
@@ -86,8 +93,9 @@ export default async function CreatorProductPage({ params }: P) {
             <span className="thc-tldr-h"><b>TL;DR</b><span>{`from ${plural(rs.length, "creator review")}`}</span></span>
             <strong>{page.tldr}</strong>
             <span className="thc-tldr-s">{`${n.pos} of ${rs.length} creators loved it${n.mix ? `, ${n.mix} were mixed` : ""}${n.neg ? ` and ${n.neg} found it not for them` : ""}.`}</span>
-            <span className="thc-tldr-f"><span>{shop ? "Price not tracked yet" : "No shop links yet"}</span>
-              {shop && <a className="thc-cta" href={shop.url} target="_blank" rel={shop.rel}>Check price ↗</a>}</span>
+            <span className="thc-tldr-f">{low ? <span><strong>{usd(low.price)}</strong>{` lowest today${low.shops.length > 1 ? ` at ${low.shops.length} shops` : ""}`}</span>
+              : <span>{shop ? "Price not tracked yet" : "No shop links yet"}</span>}
+              {cta && <a className="thc-cta" href={cta.url} target="_blank" rel={cta.rel}>Check price ↗</a>}</span>
           </div>
         </div>
         {specs.length > 0 && <div className="thc-specs"><strong>Specs</strong>
@@ -134,11 +142,17 @@ export default async function CreatorProductPage({ params }: P) {
               {how.map(h => <div key={h.k} className="thc-grade"><span><strong>{h.label}</strong><Word w={h.word}/></span><span>{h.line}</span></div>)}
             </section>}
             <section id="buy" className="thc-box1 flush">
-              <div className="thc-h rule"><strong>Where to buy</strong></div>
-              {shop ? <div className="thc-shop"><span><strong>{shop.where}</strong><span>Price not tracked yet</span></span>
-                <a className="thc-mono" href={shop.url} target="_blank" rel={shop.rel}>check price ↗</a></div>
+              <div className="thc-h rule"><strong>Where to buy</strong>{offers.length > 1 && <span>Lowest first</span>}</div>
+              {offers.length > 0 ? offers.map(o => <div key={o.shop} className={`thc-shop${o.inStock ? "" : " out"}`}>
+                <span><span className="thc-shop-n"><strong>{o.shop}</strong>{o.inStock && low && o.price === low.price && <span className="thc-low">Lowest today</span>}</span>
+                  <span className={o.inStock ? "in" : "gone"}>{[o.inStock ? "In stock" : "Sold out", o.edition].filter(Boolean).join(" · ")}</span></span>
+                <strong className="thc-price">{usd(o.price)}</strong>
+                <a className="thc-mono" href={o.url} target="_blank" rel={relOf(o.affiliate)}>check price ↗</a></div>)
+                : shop ? <div className="thc-shop"><span><strong>{shop.where}</strong><span>Price not tracked yet</span></span>
+                  <a className="thc-mono" href={shop.url} target="_blank" rel={shop.rel}>check price ↗</a></div>
                 : <div className="thc-shop"><span><span>No shop links for this paddle yet.</span></span></div>}
-              <span className="thc-note">{`Prices from more shops, updated daily, are on the way.${shop ? ` ${BUY_NOTE}.` : ""}`}</span>
+              <span className="thc-note">{page.prices ? `Prices checked ${checkedDay(page.prices.checked)}, new paddles from US shops.${offers.some(o => o.affiliate) ? " Some links are affiliate links." : ""}`
+                : `Prices from more shops are on the way.${shop ? ` ${BUY_NOTE}.` : ""}`}</span>
             </section>
           </div>
         </div>

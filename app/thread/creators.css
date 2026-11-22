@@ -104,6 +104,12 @@ body:has(.thc) .thc a.thc-g-row:hover { background: #F6F0E6; }
 .thc-shop > span { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 1px; }
 .thc-shop strong { font-size: 13.5px; } .thc-shop > span > span { font-size: 11.5px; color: var(--faint); }
 body:has(.thc) .thc .thc-shop a { font-size: 12px; font-weight: 600; text-decoration: underline; white-space: nowrap; }
+.thc-shop > span > span.thc-shop-n { display: flex; gap: 6px; align-items: center; flex-wrap: wrap; color: var(--ink); font-size: inherit; }
+.thc-low { font-size: 10.5px; font-weight: 700; background: #EDFACF; color: #2F6E22; border-radius: 999px; padding: 1px 7px; }
+.thc-shop > span > span.in { color: #1E6B33; } .thc-shop > span > span.gone { color: #8A2E1C; }
+.thc-price { font-size: 15px; }
+.thc-shop.out .thc-price { color: var(--faint); text-decoration: line-through; font-weight: 600; }
+.thc-tldr-f > span strong { color: var(--ink); font-size: 15px; }
 
 /* Creator reviews */
 .thc-reviews { display: flex; flex-direction: column; gap: 20px; scroll-margin-top: 70px; }

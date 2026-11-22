@@ -10,6 +10,35 @@
     "mix": "Liked the spin, but found the stock feel, spin or soft game uneven.",
     "neg": ""
    },
+   "prices": {
+    "checked": "2026-11-22",
+    "offers": [
+     {
+      "shop": "Pickleball Warehouse",
+      "url": "https://www.pickleballwarehouse.com/11SIX24_Vapor_Power_2_Pickleball_Paddle/descpage-11VP2.html",
+      "price": 159,
+      "inStock": true,
+      "edition": "16mm",
+      "affiliate": false
+     },
+     {
+      "shop": "tuckerpickleball.com",
+      "url": "https://tuckerpickleball.com/products/vapor-power-2-pickleball-paddle?variant=42889537159253",
+      "price": 159.99,
+      "inStock": true,
+      "edition": "16mm, Teal",
+      "affiliate": false
+     },
+     {
+      "shop": "11SIX24 (brand store)",
+      "url": "https://11six24.com/products/vapor-power-2",
+      "price": 99.99,
+      "inStock": false,
+      "edition": "16mm (only core listed), Teal/Lavender/White",
+      "affiliate": false
+     }
+    ]
+   },
    "reviews": [
     {
      "id": "johnkew-pickleball",
@@ -932,6 +961,67 @@
     "pos": "Huge power and spin for players with clean, compact swings.",
     "mix": "Liked the power, but found the sweet spot small and the soft game hard.",
     "neg": "Found the power hard to control, with a small sweet spot."
+   },
+   "prices": {
+    "checked": "2026-11-22",
+    "offers": [
+     {
+      "shop": "Six Zero (brand US store)",
+      "url": "https://us.sixzeropickleball.com/products/black-opal-14mm?variant=50316231770397",
+      "price": 110,
+      "inStock": true,
+      "edition": "14mm (brand US store)",
+      "affiliate": false
+     },
+     {
+      "shop": "JustPaddles",
+      "url": "https://www.justpaddles.com/product/six-zero-black-opal-14mm-carbon-fiber-pickleball-paddle/39566/",
+      "price": 110,
+      "inStock": true,
+      "edition": "14mm",
+      "affiliate": false
+     },
+     {
+      "shop": "PickleballGalaxy",
+      "url": "https://www.pickleballgalaxy.com/six-zero-black-opal-pickleball-paddle.html",
+      "price": 110,
+      "inStock": true,
+      "edition": "14mm",
+      "affiliate": false
+     },
+     {
+      "shop": "Amazon",
+      "url": "https://www.amazon.com/dp/B0GF3XDHD8",
+      "price": 200,
+      "inStock": true,
+      "edition": "14mm",
+      "affiliate": true
+     },
+     {
+      "shop": "Pickleball Paddles US",
+      "url": "https://pickleballpaddlesus.com/products/six-zero-black-opal-14mm-pickleball-paddle",
+      "price": 219.99,
+      "inStock": true,
+      "edition": "14mm",
+      "affiliate": false
+     },
+     {
+      "shop": "DICK'S Sporting Goods",
+      "url": "https://www.dickssportinggoods.com/p/six-zero-black-opal-pickleball-paddle-25sixapickblckplxxynj/25sixapickblckplxxynj?sku=27971526",
+      "price": 250,
+      "inStock": true,
+      "edition": "14mm",
+      "affiliate": false
+     },
+     {
+      "shop": "paddlepro.com",
+      "url": "https://www.paddlepro.com/six-zero-black-opal-14mm-pickleball-paddle/?sku=6.0-BlackOpal-14mm",
+      "price": 250,
+      "inStock": true,
+      "edition": "14mm",
+      "affiliate": false
+     }
+    ]
    },
    "reviews": [
     {
