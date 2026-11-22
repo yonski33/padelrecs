@@ -157,7 +157,7 @@ export async function CreatorProductBody({ slug }: { slug: string }) {
           {/* The price box: the lowest in-stock price, the page's one filled Check price button, the shops as quiet links. */}
           <section id="buy" className="thc-box1 thc-pbox">
             {low && <><span className="thc-pbox-l">Lowest price today</span><strong className="thc-pbox-p">{usd(low.price)}</strong>
-              <span className="thc-pbox-s">{`In stock at ${plural(offers.filter(o => o.inStock).length, "shop")}`}</span></>}
+              <span className="thc-pbox-s">{/* The shops listed below (owner 2026-11-23), not every in-stock offer. */}{buy.length > 0 && `In stock at ${plural(buy.length, "shop")}`}</span></>}
             {cta && <a className="thc-cta wide" href={cta.url} target="_blank" rel={cta.rel}>Check price ↗</a>}
             {buy.length > 0 && <div className="thc-pbox-list">{buy.map(o => <div key={o.shop} className="thc-shop2"><strong>{o.shop}</strong>
               <span className="thc-price">{usd(o.price)}</span><a className="thc-mono" href={o.url} target="_blank" rel={relOf(o.affiliate)}>check ↗</a></div>)}</div>}
