@@ -22,6 +22,8 @@ export type CreatorReview = {
   /** The summary shown on the card (80-120 words, the sweep's fuller pass), the rest for Read more, 3-5 exact substrings of
    *  `summary` to mark, and a 2-3 sentence version for one-line spots (the table's key point). */
   summary: string; more: string | null; highlights: string[]; short: string;
+  /** The glance table's one-line bottom line (creator_reviews.key_point, one sentence, 70 characters or fewer), when written. */
+  keyPoint?: string | null;
   attrs: Partial<Record<AttrKey, Word>>;
   /** Only where the creator published a number (Pickleheads' are hidden until their scale is confirmed). */
   score: { value: number; scale: number; label: string | null } | null;

@@ -102,7 +102,7 @@ export async function CreatorProductBody({ slug }: { slug: string }) {
           {sub && <span className="thc-lede">{`${sub[0]!.toUpperCase()}${sub.slice(1)} paddle${brand ? ` from ${brand.name}` : ""}.`}</span>}
           <div className="thc-tldr">
             <span className="thc-tldr-h"><b>TL;DR</b><span>{`from ${plural(rs.length, "review")}`}</span></span>
-            <strong>{page.tldr}</strong>
+            {page.tldr && <strong>{page.tldr}</strong>}
             <span className="thc-tldr-s">{`${n.pos} of ${rs.length} reviews loved it${n.mix ? `, ${n.mix} were mixed` : ""}${n.neg ? ` and ${n.neg} found it not for them` : ""}.`}</span>
             {/* A price only where one is stored; with none, the shop link alone; with neither, no row. */}
             {(low || cta) && <span className="thc-tldr-f">{low ? <span><strong>{usd(low.price)}</strong>{` lowest today${low.shops.length > 1 ? ` at ${low.shops.length} shops` : ""}`}</span> : <span/>}
@@ -141,7 +141,7 @@ export async function CreatorProductBody({ slug }: { slug: string }) {
                 <span className="thc-g-who"><Avatar name={x.creator} kind={x.kind} size="sm"/><span><strong>{x.creator}</strong>
                   <span>{`${platform(x)} · ${langCode(x.lang)}`}{x.score && ` · ${scoreText(x.score)}`}</span></span></span>
                 <span className={`thc-take sm ${x.stance}`}>{STANCE_LABEL[x.stance]}</span>
-                <span className="kp">{takeaway(x.short)}</span>
+                <span className={`kp${x.keyPoint ? "" : " clamp"}`} title={x.keyPoint ? undefined : takeaway(x.short)}>{x.keyPoint || takeaway(x.short)}</span>
                 {TABLE_ATTRS.map(k => <span key={k} className="thc-g-w" data-l={label(k)}><Word w={x.attrs[k]}/></span>)}
               </a>)}
               <span className="thc-note">Words come from what each reviewer said in their own review. A number shows only where the reviewer published one.</span>

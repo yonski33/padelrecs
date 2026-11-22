@@ -104,6 +104,8 @@ body:has(.thc) .thc a.thc-g-row:hover::after { color: var(--ink); }
 .thc-g-who strong { font-size: 13.5px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .thc-g-who > span:last-child > span { font-size: 11px; color: var(--faint); }
 .thc-g-row .kp { font-size: 13px; line-height: 1.35; color: var(--para); }
+/* Until a review has its short key point, its first sentence, held to two lines (owner 2026-11-22: rows stay compact). */
+.thc-g-row .kp.clamp { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
 .thc-g-head .kp { font-size: 11px; color: var(--faint); }
 .thc-grade { display: grid; grid-template-columns: 84px minmax(0, 1fr); gap: 12px; align-items: start; padding: 11px 16px; border-bottom: 1px solid var(--rule); }
 .thc-grade:last-child { border-bottom: 0; }

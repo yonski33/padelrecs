@@ -32,7 +32,7 @@ export function reviewFromRow(r: Record<string, unknown>): CreatorReview {
     video: str(r.video_id), len: num(r.duration_s), chapters: json<[number, string][]>(r.chapters, []),
     quote: str(r.quote), quoteAt: num(r.quote_at_s), stance: String(r.stance) as Stance,
     summary: String(r.summary), more: str(r.summary_more), highlights: list(r.highlights).filter(h => String(r.summary).includes(h)),
-    short: str(r.summary_short) ?? String(r.summary), attrs,
+    short: str(r.summary_short) ?? String(r.summary), keyPoint: str(r.key_point), attrs,
     score: !hidden && sv != null && ss != null ? { value: sv, scale: ss, label: str(r.score_label) } : null,
     measured: json<Record<string, number | string>>(r.measured, {}), alsoUrl: str(r.also_url), version: str(r.version),
     note: str(r.note), tie: str(r.brand_tie), stood: str(r.stood_out), trade: str(r.trade_off), compared: str(r.compared_to),
