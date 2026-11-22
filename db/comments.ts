@@ -74,13 +74,23 @@ export async function setPostType(db: Pick<Database, "execute">, id: string, typ
   try { await db.execute(sql`update ${comments} set "post_type" = ${type} where ${comments.id} = ${id}`); return true; }
   catch (error) { if (!noColumn(error)) console.error("Post type save failed", error); return false; }
 }
-export async function postTypes(db: Pick<Database, "execute">, ids: string[]): Promise<Map<string, PostType>> {
+/** What the column can hold: a type, or (drizzle/0038) "none", an admin's "no flair" that beats the words guess. */
+export type SavedType = PostType | "none";
+const SAVED: readonly string[] = ["question", "tip", "none"];
+/** The admin's "Edit flair" (app/api/funtimes/flair): Question, Tip, "none" (no flair, drizzle/0038) or null (back to the
+ *  words guess), on a top-level post only. Unlike setPostType it throws, so the route can say what went wrong (a missing
+ *  column, or a site without 0038 refusing "none"). True when a post changed. */
+export async function setFlair(db: Pick<Database, "execute">, id: string, type: SavedType | null) {
+  const rows = await db.execute(sql`update ${comments} set "post_type" = ${type} where ${comments.id} = ${id} and ${comments.parentId} is null returning ${comments.id} as id`);
+  return (Array.isArray(rows) ? rows : (rows as { rows?: unknown[] }).rows ?? []).length > 0;
+}
+export async function postTypes(db: Pick<Database, "execute">, ids: string[]): Promise<Map<string, SavedType>> {
   if (!ids.length) return new Map();
   try {
     const rows = await db.execute(sql`select ${comments.id} as id, "post_type" as t from ${comments} where ${inArray(comments.id, ids)} and "post_type" is not null`);
     // node-postgres (the app's client, db/index.ts) answers { rows }; postgres-js (the scripts') an array. Read either.
-    const list = (Array.isArray(rows) ? rows : (rows as { rows?: unknown[] }).rows ?? []) as { id: string; t: PostType }[];
-    return new Map(list.filter(r => r.t === "question" || r.t === "tip").map(r => [r.id, r.t]));
+    const list = (Array.isArray(rows) ? rows : (rows as { rows?: unknown[] }).rows ?? []) as { id: string; t: SavedType }[];
+    return new Map(list.filter(r => SAVED.includes(r.t)).map(r => [r.id, r.t]));
   } catch (error) { if (!noColumn(error)) console.error("Post types read failed", error); return new Map(); }
 }
 

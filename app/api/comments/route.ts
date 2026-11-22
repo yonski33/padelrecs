@@ -4,7 +4,7 @@
 import { NAME_MAX, nameProblem } from "../../../lib/thread/display-name";
 import { z } from "zod";
 import { database } from "../../../db/data";
-import { listComments, addComment, voteComment, PAGE_KEY, postTypes, setPostType, type PostType } from "../../../db/comments";
+import { listComments, addComment, voteComment, PAGE_KEY, postTypes, setPostType, type SavedType } from "../../../db/comments";
 import { issueFormToken, checkFormToken, tokenRejects } from "../../../lib/form-token";
 import { createLimiter, clientIp } from "../../../lib/rate-limit";
 import { threadSite } from "../../../lib/thread/look";
@@ -31,7 +31,7 @@ export async function GET(request: Request) {
     // The member mark (optional accounts): a comment by a signed-in member, with the account's level and side read live.
     const members = await memberMap(db, "comment", list.map(c => c.id));
     // PadelRecs: each post's saved type (drizzle/0035), where it has one.
-    const types = TYPED ? await postTypes(db, list.map(c => c.id)) : new Map<string, PostType>();
+    const types = TYPED ? await postTypes(db, list.map(c => c.id)) : new Map<string, SavedType>();
     return json({ comments: list.map(c => { const m = members.get(c.id), t = types.get(c.id), x = t ? { ...c, type: t } : c; return m ? { ...x, member: true, level: m.level, side: m.side } : x; }), ...(q.get("token") ? { token: issueFormToken() } : {}) });
   } catch (error) { console.error("Comments read failed", error); return json({ error: "Could not load comments." }, 500); }
 }

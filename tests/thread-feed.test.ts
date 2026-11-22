@@ -20,7 +20,7 @@ test("the composer: nothing picked by default, types toggle off, a placeholder p
   assert.match(f, /onClick=\{\(\) => start\(PADEL \? null : "review"\)\}><span aria-hidden="true">\+<\/span>Share a review/);
   // The picked Question or Tip saves with the post; a saved type wins over the words.
   assert.match(f, /t\.post\(x, null, TYPED && \(kind === "question" \|\| kind === "tip"\) \? kind : undefined\)/);
-  assert.match(f, /TYPED \? c\.type \?\? postFlair\(c\.body\) : guessedFlair\(c\.body\)/);
+  assert.match(f, /TYPED \? flairFor\(c\.type, c\.body\) : guessedFlair\(c\.body\)/);
   for (const t of ["What do you want to know?", "Share something that helped", "Say something about the ${model}…", "How did it play for you?"])
     assert.ok(f.includes(t), t);
 });
