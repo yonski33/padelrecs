@@ -1,6 +1,6 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { attrSummary, bigPicture, cardChips, howItPlays, splitSummary, takeaway, sortReviews, stanceCounts, measuredLine, initials, WORDS } from "../lib/thread/creators";
+import { attrSummary, bigPicture, cardChips, howItPlays, marks, splitSummary, takeaway, sortReviews, stanceCounts, measuredLine, initials, WORDS } from "../lib/thread/creators";
 import { creatorPage, creatorSlugs } from "../lib/thread/creator-data";
 import { creatorPageFor, CREATOR_PAGE_SLUGS } from "../lib/thread/sites";
 
@@ -25,7 +25,8 @@ test("creator page: the owner's data rules hold in the fixture", () => {
     assert.doesNotMatch(text, /\bowners?\b/i, slug);
     for (const r of p.reviews) {
       assert.ok(!dropped.includes(r.creator), `${slug}: ${r.creator} should be dropped`);
-      if (r.creator === "Pickleheads") { assert.equal(r.score, null); assert.doesNotMatch(r.summary, /\d(\.\d)? out of 5/); }
+      if (r.creator === "Pickleheads") { assert.equal(r.score, null); for (const t of [r.summary, r.more ?? "", r.short]) assert.doesNotMatch(t, /\d(\.\d)? out of 5|stars/); }
+      for (const h of r.highlights) assert.ok(r.summary.includes(h), `${slug}: ${r.creator} highlight not in summary`);
       if (r.quote) assert.ok(r.quote.split(/\s+/).length < 15, `${slug}: ${r.creator} quote too long`);
       for (const w of Object.values(r.attrs)) assert.ok((WORDS as readonly string[]).includes(w!), `${slug}: ${r.creator} ${w}`);
       for (const [s, t] of r.chapters) { assert.ok(s > 0); assert.doesNotMatch(t, /\b(intro|verdict|discount|code)\b/i); }
@@ -51,4 +52,5 @@ test("creator page: helpers", () => {
   assert.deepEqual(howItPlays(many).find(h => h.k === "control"), { k: "control", label: "Control", word: "Okay", line: "1 of 4 call it Excellent or Great; 2 Okay or weaker." });
   assert.equal(howItPlays(many).find(h => h.k === "spin")!.word, "Excellent");
   assert.deepEqual(cardChips({ control: "Okay", spin: "Excellent", power: "Good" }), [{ tone: "pos", text: "Excellent spin" }, { tone: "neg", text: "Okay control" }]);
+  assert.deepEqual(marks("a big hit, a soft touch", ["big hit", "soft"]), [{ t: "a ", on: false }, { t: "big hit", on: true }, { t: ", a ", on: false }, { t: "soft", on: true }, { t: " touch", on: false }]);
 });

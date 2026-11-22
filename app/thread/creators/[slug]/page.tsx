@@ -26,6 +26,8 @@ import { ATTRS, STANCE_LABEL, TABLE_ATTRS, bigPicture, howItPlays, langCode, pla
   wordTone, type CreatorReview } from "../../../../lib/thread/creators";
 import { creatorPage, creatorSlugs } from "../../../../lib/thread/creator-data";
 import { Avatar, CreatorReviews } from "../../live/creator-reviews";
+import { Comments } from "../../live/comments";
+import { th } from "../../../../lib/thread/look";
 import "../../creators.css";
 
 export const revalidate = 86400;
@@ -50,7 +52,9 @@ export default async function CreatorProductPage({ params }: P) {
   const slug = (await params).slug;
   const page = creatorPage(niche.id, slug), d = await racketData(slug);
   if (!page || !d) notFound();
-  const { r, row, brand, style } = d, rs = page.reviews, n = stanceCounts(rs);
+  const { r, row, brand, style, sim } = d, rs = page.reviews, n = stanceCounts(rs);
+  // Similar paddles (the mock's section 8): the same similar list the product page uses, current models only; no prices.
+  const similar = sim.filter(x => x.id !== r.id && x.current !== false).slice(0, 4);
   const name = withoutYear(row?.name ?? r.name);
   // The live page's buy link, the same logic (app/thread/rackets/[slug]/page.tsx): the Amazon lookup, the saved listing when
   // the two disagree, else the product's own site. No prices: none are stored yet.
@@ -70,6 +74,8 @@ export default async function CreatorProductPage({ params }: P) {
 
   return <Shell active="rackets">
     <JsonLd data={ld}/>
+    {/* The mock's third font (README tokens): JetBrains Mono for the small "check price ↗" links, this page only. */}
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500;700&display=swap" precedence="default"/>
     <div className="thc">
       <header className="thc-head">
         <div className="thc-photo">{pic ? <img src={pic} alt={name}/> : <span className="th-ph" aria-hidden="true"/>}</div>
@@ -116,7 +122,7 @@ export default async function CreatorProductPage({ params }: P) {
                 <span className="thc-g-who"><Avatar name={x.creator} kind={x.kind} size="sm"/><span><strong>{x.creator}</strong>
                   <span>{`${platform(x)} · ${langCode(x.lang)}`}{x.score && ` · ${scoreText(x.score)}`}</span></span></span>
                 <span className={`thc-take sm ${x.stance}`}>{STANCE_LABEL[x.stance]}</span>
-                <span className="kp">{takeaway(x.summary)}</span>
+                <span className="kp">{takeaway(x.short)}</span>
                 {TABLE_ATTRS.map(k => <span key={k} className="thc-g-w" data-l={label(k)}><Word w={x.attrs[k]}/></span>)}
               </a>)}
               <span className="thc-note">Words come from what each creator said in their own review. A number shows only where the creator published one.</span>
@@ -130,7 +136,7 @@ export default async function CreatorProductPage({ params }: P) {
             <section id="buy" className="thc-box1 flush">
               <div className="thc-h rule"><strong>Where to buy</strong></div>
               {shop ? <div className="thc-shop"><span><strong>{shop.where}</strong><span>Price not tracked yet</span></span>
-                <a href={shop.url} target="_blank" rel={shop.rel}>check price ↗</a></div>
+                <a className="thc-mono" href={shop.url} target="_blank" rel={shop.rel}>check price ↗</a></div>
                 : <div className="thc-shop"><span><span>No shop links for this paddle yet.</span></span></div>}
               <span className="thc-note">{`Prices from more shops, updated daily, are on the way.${shop ? ` ${BUY_NOTE}.` : ""}`}</span>
             </section>
@@ -138,6 +144,22 @@ export default async function CreatorProductPage({ params }: P) {
         </div>
 
         <CreatorReviews reviews={rs}/>
+
+        {/* Comments (the mock's section 7): the site's own discussion for this paddle, the same thread as its product page. */}
+        <section className="thc-sec2 thc-comments"><Comments page={`racket:${r.id}`} nicknames={niche.form.quickVote?.nicknames ?? []}/></section>
+
+        {similar.length > 0 && <section className="thc-sec2">
+          <div className="thc-sec2-h"><h2>{`Similar ${niche.words.many}`}</h2>
+            {brand && <a href={th(`/brands/${brand.slug}`)}>{`All ${brand.name} ${niche.words.many} →`}</a>}</div>
+          <div className="thc-sim">{similar.map(x => { const t = x.pos + x.mix + x.neg; return <a key={x.id} className="thc-sim-c" href={th(x.href)}>
+            <span className="thc-sim-ph">{x.pic ? <img src={x.pic} alt="" loading="lazy"/> : null}</span>
+            <strong>{withoutYear(x.name)}</strong>
+            {(x.line || x.best) && <span className="thc-sim-l">{x.line ?? `Best for ${x.best}.`}</span>}
+            {t > 0 && <span className="thc-sim-s"><span className="thc-sim-bar"><i className="pos" style={{ flex: x.pos }}/><i className="mix" style={{ flex: x.mix }}/><i className="neg" style={{ flex: x.neg }}/></span>
+              <span>{`${x.pos} of ${plural(t, "player")} loved it`}</span></span>}
+            <span className="thc-sim-f"><span>See the paddle</span><span className="thc-mono">→</span></span>
+          </a>; })}</div>
+        </section>}
       </main>
     </div>
   </Shell>;

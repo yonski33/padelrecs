@@ -5,6 +5,11 @@
   "11six24-vapor-power-2": {
    "paddle": "11SIX24 Vapor Power 2 (2025-26)",
    "tldr": "Creators single out the spin and a grit that keeps it; power and the soft game get more mixed words.",
+   "groups": {
+    "pos": "Spin near the legal limit, and a grit that keeps it after weeks of play.",
+    "mix": "Liked the spin, but found the stock feel, spin or soft game uneven.",
+    "neg": ""
+   },
    "reviews": [
     {
      "id": "johnkew-pickleball",
@@ -58,7 +63,15 @@
      "quote": "high performance spin that's built to last",
      "quoteAt": null,
      "stance": "pos",
-     "summary": "Finds high firepower, elite spin and an above-average twist weight in a maneuverable hybrid. Reports that the grit surface lost roughly half the spin of raw carbon in a ball cannon wear test. Says it is not for players needing a USAP-approved paddle or a soft absorbing feel.",
+     "summary": "Tests a unit sent by the brand with no payment or editorial input, using a radar gun, a rebound test and a ball cannon. Measures a 6.86 twist weight, a low balance point and a swing weight in the middle of the range. Rates power and pop as high, with pop above power, and spin as high. Finds off-centre stability strong, baseline drives heavy enough and the ball jumping off the face in hands battles, though pop-ups can happen. Calls control better than expected for this firepower. Recommends it for players who want durable elite spin, and rules it out for players who need USAP approval or a soft control paddle.",
+     "more": "Runs an accelerated wear test, firing a ball cannon 100 times at 70 mph at a paddle clamped at 30 degrees and measuring spin before and after. Reports half the spin degradation of a raw carbon fiber paddle, with no meaningful spin loss on court afterwards. Scores overall firepower 83 out of 100. Places the feel in the stiff and hollow quadrant without going overly rigid. Adds 3 g tuning pods above the centre, lifting swing weight to 116 and twist weight to 7.1 for more plow through.",
+     "highlights": [
+      "pop above power",
+      "off-centre stability strong",
+      "durable elite spin",
+      "need USAP approval"
+     ],
+     "short": "Finds high firepower, elite spin and an above-average twist weight in a maneuverable hybrid. Reports that the grit surface lost roughly half the spin of raw carbon in a ball cannon wear test. Says it is not for players needing a USAP-approved paddle or a soft absorbing feel.",
      "attrs": {
       "power": "Great",
       "pop": "Great",
@@ -120,7 +133,14 @@
      "quote": "one of the best spinning paddles that I've hit to date",
      "quoteAt": null,
      "stance": "pos",
-     "summary": "Calls the durable grit the main reason to buy, since the surface held up far better than raw carbon over a 100-game test. Finds a poppy, light, mid-power hybrid with elite spin that improves with added weight. Notes inconsistent soft shots and UPA-A only certification.",
+     "summary": "Logs the equivalent of 100 games of drilling and play on a unit with a 111 swing weight, measuring spin from a cannon before and after. Finds spin holding close to its new reading of 2141 RPM, while two raw carbon fiber paddles fell into the 1700 and 1600 RPM ranges. Rates power as mid-tier, more pop than power, with drives and serves lacking out of the box until weight is added. Calls spin one of the best they have hit. Reports slightly more misses than expected on dinks and thirds. Recommends it for players who want longer-lasting grit and a maneuverable hybrid.",
+     "more": "Places the feel between the Spartus P1 and the Loco, less stiff and hollow than the Loco and less dense than the P1. Rates the P1 better for rolls and soft dinks, and this paddle better for shaping drives and serves. Settles on 5 g sliders at 3 and 9 plus a 5 inch strip of half gram tungsten at the head, raising swing weight to 119 and twist weight to 7.64. Suggests most players need only a little weight near 3 and 9. Rules it out for players who want a soft, dense feel or need USAP approval.",
+     "highlights": [
+      "spin holding close to its new reading",
+      "more pop than power",
+      "longer-lasting grit"
+     ],
+     "short": "Calls the durable grit the main reason to buy, since the surface held up far better than raw carbon over a 100-game test. Finds a poppy, light, mid-power hybrid with elite spin that improves with added weight. Notes inconsistent soft shots and UPA-A only certification.",
      "attrs": {
       "power": "Good",
       "pop": "Great",
@@ -199,7 +219,14 @@
      "quote": "Spin is where this paddle separates.",
      "quoteAt": null,
      "stance": "pos",
-     "summary": "Finds a fast, light, tunable foam paddle with elite spin and top-tier serve speed. Measured the face keeping more roughness after 50 hours than rival grit paddles. Suits hand-speed and shot-shaping players, not those needing USAP approval or a heavy no-tuning build.",
+     "summary": "Plays 50 hours with one unit and finds the face still factory fresh, with no ball marks or grit wear. Measures a 7.85 oz static weight, a 107.55 swing weight, a 6.6 twist weight, 61.1 mph serve speed, 39.2 mph punch volley and 2,335 RPM of spin. Finds surface roughness fell from 8.6 to 7.568 micrometers, a 12 percent loss, yet stayed rougher than three other paddles measured. Calls the power controllable and scaling with the swing, and the sweet spot generous. Recommends it for players who like a quick, tunable paddle with elite spin, not for those wanting maximum forgiveness with no tuning or USAP approval.",
+     "more": "Compares roughness after 50 hours: the Selkirk Boomstick lost 30 percent and the Spartus P1 17.4 percent, while another paddle kept 96.6 percent. Adds about 9 g of tape in 0.5 g per inch strips, raising swing weight from 107.55 to 109.55 for more stability and plow through without slowing it. Explains that UPAA limits spin at 2,200 RPM while USAPA caps roughness, so this paddle would fail USAPA. Cautions that 50 hours on one unit says nothing certain about a year.",
+     "highlights": [
+      "factory fresh",
+      "stayed rougher than three other paddles",
+      "quick, tunable paddle with elite spin"
+     ],
+     "short": "Finds a fast, light, tunable foam paddle with elite spin and top-tier serve speed. Measured the face keeping more roughness after 50 hours than rival grit paddles. Suits hand-speed and shot-shaping players, not those needing USAP approval or a heavy no-tuning build.",
      "attrs": {
       "power": "Great",
       "pop": "Great",
@@ -238,7 +265,14 @@
      "quote": "the Hex Grit produces insane spin",
      "quoteAt": null,
      "stance": "pos",
-     "summary": "Calls the spin among the best they have tested, with mid-to-lower power that is still enough to finish points. Finds control easy on resets, drops and dinks and the sweet spot good once perimeter weight is added. Reports no grit wear after 10 plus hours.",
+     "summary": "Tests it ahead of its February 13 release for over 10 hours and reports no grit degradation, with the surface feeling identical to a new paddle. Calls it the grittiest paddle they have felt and one of the spinniest they have tested, with elite shot shaping on dinks, drops, resets and counters. Rates power as middle to lower tier but enough to finish points, with the sweet spot okay stock and very large with perimeter weight. Finds the feel in the middle, neither stiff nor soft, and control easy on resets, drops and dinks. Recommends it first to players who put spin above everything else.",
+     "more": "Compares the playability to the J2 NF, with a slightly smaller sweet spot and a little less stability but significantly higher spin. Places the feel a bit softer than most floating foam core paddles and well short of stiffer, more hollow EP paddles such as the Loco and the Speed Up Tide. Measures a hybrid shape of 16.175 by 7.75 inches with a long handle for two-hand backhands. Explains it is UPA only because the grit exceeds USAP roughness limits, and stresses this is not a long-term review.",
+     "highlights": [
+      "no grit degradation",
+      "spinniest they have tested",
+      "players who put spin above everything else"
+     ],
+     "short": "Calls the spin among the best they have tested, with mid-to-lower power that is still enough to finish points. Finds control easy on resets, drops and dinks and the sweet spot good once perimeter weight is added. Reports no grit wear after 10 plus hours.",
      "attrs": {
       "power": "Good",
       "control": "Great",
@@ -301,7 +335,14 @@
      "quote": "Seems like it's an all around cool paddle.",
      "quoteAt": null,
      "stance": "pos",
-     "summary": "Rates the spin as the standout, with plenty of power that the spin brings down. Finds control easy on drops, resets and dinks, and the sweet spot large. Says the grit lasts, citing another creator's durability test. Covers Vapor and Pegasus together.",
+     "summary": "Tests the Vapor 2 alongside the Pegasus 2 for about 2 hours combined, covering power and spin, control, pop and hand speed, then plays a skinny singles drill. Reports plenty of power on the upper power scale that the spin tempers, with drives landing in the back third of the court. Finds control easy, with rolls, drops and resets dipping reliably, and stability good even without added weight. Rates pop as mid-tier and balanced, with a big sweet spot. Notes the hex grit feels the same everywhere on the face and gives spin even to players who cannot spin the ball.",
+     "more": "Hears the spin as a whiz through the air. Cites another reviewer's 100-game test where spin barely moved, from about 2,100 to 2,090 RPM. Says they would prefer more power given the amount of spin, but can create their own pop on counters. Compares the pop with the CRBN Barrage, which they call advanced and out of control. Finds it fun to attack and defend with, using counter spin on resets, and names it among the favorite paddles they have played.",
+     "highlights": [
+      "power on the upper power scale",
+      "control easy",
+      "stability good even without added weight"
+     ],
+     "short": "Rates the spin as the standout, with plenty of power that the spin brings down. Finds control easy on drops, resets and dinks, and the sweet spot large. Says the grit lasts, citing another creator's durability test. Covers Vapor and Pegasus together.",
      "attrs": {
       "power": "Great",
       "control": "Great",
@@ -368,7 +409,15 @@
      "quote": "I think the Vapor Power 2 is a great paddle",
      "quoteAt": null,
      "stance": "pos",
-     "summary": "Describes a mid-power, poppy paddle with very good spin and room to add weight. Says the real question is how long the grit lasts, with early signs encouraging. Notes it is UPA-A only.",
+     "summary": "Plays 10 to 15 hours over about 10 days on a unit with an 8.04 oz static weight, 112 swing weight and 6.6 twist weight. Places power in the middle of the power category, under the Boomstick, Black Opal and Loco, and pop at the higher end, giving an edge in hand battles. Finds the feel slightly hollow and crisp but not overly stiff, and spin generation very good. Notes almost no ball marks on the face. Warns players not coming from a poppy paddle may need time to adjust. Recommends adding weight, starting around 4 g per side at the lower corners.",
+     "more": "Frames durability as the main selling point: if Hex Grit keeps its texture longer, it could change how players think about value. Says the jury is out and more wear is needed. Groups it with Selkirk, Six Zero and Spartus in tackling grit longevity. Guesses at a fiberglass layer in the face from the feel, which is unconfirmed. Notes it is UPA only and not USAP approved, so local tournament rules are worth checking. Calls it a solid power paddle that belongs on a short list.",
+     "highlights": [
+      "middle of the power category",
+      "higher end",
+      "spin generation very good",
+      "adding weight"
+     ],
+     "short": "Describes a mid-power, poppy paddle with very good spin and room to add weight. Says the real question is how long the grit lasts, with early signs encouraging. Notes it is UPA-A only.",
      "attrs": {
       "power": "Good",
       "pop": "Great",
@@ -438,7 +487,14 @@
      "quote": "it's likely going to stay the power paddle to beat.",
      "quoteAt": null,
      "stance": "pos",
-     "summary": "Says it checks the boxes for a durable-grit power paddle, with best grit retention in their wear machine test. Finds dinks and resets need touch to avoid pop-ups. Calls it the power paddle to beat among durable-grit options.",
+     "summary": "Tests spin by averaging RPM from 10 serves with a speed gun, getting 2,113 RPM, the fourth highest in their database. Builds an accelerated grit wear machine and runs eight paddles, four raw carbon and four durable grit, with this one finishing first on grit retention. Measures a 7.92 oz unit with a 111 swing weight and 6.7 twist weight, light and stable enough to play stock. Rates power and pop as high, with a good sweet spot and strong spin. Warns dinks and resets need touch to avoid pop-ups. Recommends it where grit durability and forgiveness matter more than maxed out power.",
+     "more": "Describes the feel as noticeably softer and more dense than other floating foam paddles, closer to the center of the stiff and hollow quadrant. Ranks firepower below the Selkirk Boomstick. Calls it cheaper than the Boomstick with better spin and spin durability, easier to wield than the Spartus P1, and more stable than the Black Opal though less powerful. Tunes it with 1 g higher and 3 g lower on the sides plus a 9 g cap coin in the handle, reaching 8.67 oz, 114.7 swing weight and 7.45 twist weight. Notes it is UPA only.",
+     "highlights": [
+      "finishing first on grit retention",
+      "Rates power and pop as high",
+      "dinks and resets need touch"
+     ],
+     "short": "Says it checks the boxes for a durable-grit power paddle, with best grit retention in their wear machine test. Finds dinks and resets need touch to avoid pop-ups. Calls it the power paddle to beat among durable-grit options.",
      "attrs": {
       "power": "Great",
       "control": "Okay",
@@ -490,7 +546,14 @@
      "quote": "The Vapor Power 2 is a great example of a foam core paddle",
      "quoteAt": null,
      "stance": "pos",
-     "summary": "Reports about a month of play with spin still strong and the surface rough. Likes drives, serves and rolls, with slightly inconsistent drops. Recommends it mainly for rec play where durability matters, noting UPA-only certification.",
+     "summary": "Uses it for several weeks and calls it a favorite, having been slower to adopt foam core paddles. Measures a 112 swing weight, 6.7 twist weight and 8 oz static weight on the unit. Finds good power, great pop and amazing spin, with a slightly stiff, hollow feel that sits closer to the Loco and CR than the Boomstick. Reports that after a month the surface is still rough and spin has only slightly decreased. Notes some inconsistency dropping thirds, which pushed a more aggressive style. Recommends it for low to mid-tier power with a focus on durability, and not for players who need USAP approval.",
+     "more": "Adds weight at 3 and 9 o'clock, which gives more stability and opens up the sweet spot. Rates the stock sweet spot in line with the rest of the market. Says drives and serves shape well, rolls are fun and crosscourt dinks feel controllable. Says they were skeptical of the Boomstick's Infinigrit from tournament use and comments from pros, but finds longer-lasting grit realistic here. Warns the paddle is UPAA only while the Boomstick is dual certified, so a local tournament could refuse it.",
+     "highlights": [
+      "spin has only slightly decreased",
+      "great pop and amazing spin",
+      "low to mid-tier power"
+     ],
+     "short": "Reports about a month of play with spin still strong and the surface rough. Likes drives, serves and rolls, with slightly inconsistent drops. Recommends it mainly for rec play where durability matters, noting UPA-only certification.",
      "attrs": {
       "power": "Good",
       "control": "Good",
@@ -549,7 +612,15 @@
      "quote": "I still feel like the Vapor is the best choice of the three.",
      "quoteAt": null,
      "stance": "pos",
-     "summary": "Picks the Vapor as the best of the three Power 2 shapes, praising spin, grit retention, build consistency and value. Finds the large poppy sweet spot hard to control for average players, with a dead zone near the top.",
+     "summary": "Tests it over 50 to 60 games and reports spin retention above 95 percent from the hex grit face. Rates ball feel at 70 to 75 on a soft to stiff scale, with a temperate level of baseline power despite the louder sound. Adds 1.5 g to the top corners, which puts power in the low to mid tier. Finds the sweet spot large and poppy but notes a dead zone near the top, which makes it hard to control for average players. Finds dinks fly low, so the challenge is creating enough arc. Picks the Vapor as the best of the three Power 2 shapes.",
+     "more": "Notes the face is only UPA approved, not USA Pickleball approved, because surface roughness is too high, though tournament directors they worked with raised no issue. Finds the Pegasus and Hurache-X share the same solidity problem, with the Hurache-X also weak near the throat. Prefers the Spartus P1 feel for their own game but picks the Vapor Power 2 for its lower swing weight and balance point, which make it easier to weight up, and reports six units with no quality problems. Suggests demoing it against the Bread & Butter Loco, Gherkin Draco and Proton Peacock.",
+     "highlights": [
+      "spin retention above 95 percent",
+      "dead zone near the top",
+      "hard to control for average players",
+      "best of the three Power 2 shapes"
+     ],
+     "short": "Picks the Vapor as the best of the three Power 2 shapes, praising spin, grit retention, build consistency and value. Finds the large poppy sweet spot hard to control for average players, with a dead zone near the top.",
      "attrs": {
       "power": "Okay",
       "control": "Okay",
@@ -584,7 +655,16 @@
      "quote": "Spin it just off the charts. Incredible.",
      "quoteAt": null,
      "stance": "mix",
-     "summary": "Likes the huge spin, speed, large sweet spot and plush feel. Finds some chaos with occasional flyers and a break-in period. One player handed it back preferring the original Vapor Power.",
+     "summary": "Tests it over a few weeks with drills, target work and a speed gun, measuring a swing weight of 108 to 112 and a twist weight of 6.6 to 6.8 on an 8.1 oz static weight. Records a serve speed of 53.2 mph, against 52.4 for the original Vapor Power. Calls the spin off the charts, the sweet spot large and the ride plush with no jarring. Finds accuracy suffers, with occasional flyers, and a break-in period where it feels stiff and clunky. Rates defense to offense and dinks as very good.",
+     "more": "Calls it fully customizable, since the light head makes adding weight easy, and would add a little weight plus an overgrip to the small 4 and 8 circumference grip for more control. Recommends it for players who stay back and hit heavy topspin, expecting one or two of ten to go out but plenty of pressure on opponents. Notes one player of the original Vapor Power handed it back after a while, preferring the original, and doubts it is an upgrade for them. Lists the price as 209.99 dollars, under 200 with a code.",
+     "highlights": [
+      "spin off the charts",
+      "sweet spot large",
+      "ride plush with no jarring",
+      "occasional flyers",
+      "break-in period"
+     ],
+     "short": "Likes the huge spin, speed, large sweet spot and plush feel. Finds some chaos with occasional flyers and a break-in period. One player handed it back preferring the original Vapor Power.",
      "attrs": {
       "power": "Great",
       "control": "Okay",
@@ -621,7 +701,15 @@
      "quote": "I'm going to give this paddle a 9 out of 10",
      "quoteAt": null,
      "stance": "mix",
-     "summary": "Starts underwhelmed, then rates the sweet spot and resets as excellent. Finds spin weak in stock form until weight is added. Calls it a good control-oriented power paddle for doubles with a muted feel.",
+     "summary": "Plays it for a few days in a first-impressions test, trying several weighted setups and ending at 9.1 oz. Finds the sweet spot and resets the best parts, calling them among the best recently, especially out of the air. Struggles with spin in stock form, only getting good spin after adding 3 g at the corners plus 3 g just below them. Rates power as mid tier, a step down from the Inferno and Aerial Cyclone. Describes the feel as soft and muted, close to the Inferno and Loco but denser.",
+     "more": "Calls the grit textured but not that rough, and believes hex grit works for longevity, though they cannot speak on long-term wear. Finds it possibly overhyped for spin and not far above the Inferno or Loco in performance. Recommends it for doubles players who want a consistent power paddle with a big sweet spot, comparing the consistency to the Gherkin Draco. Advises against it for players who dislike modding, want something as light as possible or want a crisp, responsive feel. Rates it 9 out of 10 with weight added, lower without.",
+     "highlights": [
+      "sweet spot and resets",
+      "Struggles with spin in stock form",
+      "mid tier",
+      "soft and muted"
+     ],
+     "short": "Starts underwhelmed, then rates the sweet spot and resets as excellent. Finds spin weak in stock form until weight is added. Calls it a good control-oriented power paddle for doubles with a muted feel.",
      "attrs": {
       "power": "Good",
       "control": "Great",
@@ -677,7 +765,14 @@
      "quote": "the spin is about as maxed out as you can possibly get",
      "quoteAt": null,
      "stance": "pos",
-     "summary": "Says the spin is near the legal maximum, helping topspin dinks, speedups and counters. Finds baseline power mid-to-low and the soft game takes time to dial in. Recommends it for players at 3.0 and up who want lasting spin.",
+     "summary": "Buys the paddle and measures a swing weight of 111 with a twist weight of 6.6, then adds 3 g at 9 and 3 o'clock to reach 114 and 7.2, mainly for plow through. Calls it lighter than a typical hybrid and the ratio very stable. Finds the spin about as maxed out as possible within legal limits, especially at the kitchen, where topspin dinks push opponents wide. Rates baseline power mid to low despite the pop, though speedups and counters put the ball away easily. Says the soft game takes time to dial in, helped by the spin.",
+     "more": "Places the feel slightly toward stiff and hollow, which they prefer, calling it enough response without being jarring, which matters with their wrist issues. Estimates the Gen 4 core and hex grit face last three to five times longer than a traditional paddle. Recommends it for players at the 3 level or higher, saying the grit gives forgiveness around the kitchen despite the pop. Advises looking elsewhere for anyone who dislikes a poppy paddle or needs a wide body or elongated shape. Praises the brand's customer service.",
+     "highlights": [
+      "spin about as maxed out as possible",
+      "mid to low",
+      "soft game takes time to dial in"
+     ],
+     "short": "Says the spin is near the legal maximum, helping topspin dinks, speedups and counters. Finds baseline power mid-to-low and the soft game takes time to dial in. Recommends it for players at 3.0 and up who want lasting spin.",
      "attrs": {
       "power": "Okay",
       "control": "Good",
@@ -715,7 +810,15 @@
      "quote": "So, spin is ridiculous.",
      "quoteAt": null,
      "stance": "pos",
-     "summary": "Reports over a month with the Power 2 line, which settles from crisp to a more controlled sinking feel. Says the spin is huge and the grit has not worn. Picks the Hurache-X for themself but recommends the Vapor for forgiveness. Comments partly apply to the whole line.",
+     "summary": "Tests the Vapor shape for over a month alongside the Hurache-X, which shares the same materials. Finds it crisp out of the box, then after about two sessions of games and drills the feel shifts to a ball sinking into the paddle, with less pop and more control while keeping power for putaways. Calls the spin ridiculous, with dinks and drives easier to shape, and finds the grit still basically new after the month. Reports a stock weight of 8.15 oz and swing weight of 114.9, ending at 8.64 oz and 119.6 after setup.",
+     "more": "Describes the Vapor as a hybrid with a bigger sweet spot and more forgiveness, while the Hurache-X is elongated with more reach and plow through. Mains the Hurache-X instead for faster hands in the kitchen, easier counters of speedups and quicker resets, at a stock 7.83 oz and swing weight 111.2, ending at 8.32 oz and 116.8. Recommends the Vapor for players who want more forgiveness and a bigger sweet spot, noting Dekel Bar uses it. Calls it a toned-down version of the Loco, which was their favorite before.",
+     "highlights": [
+      "less pop and more control",
+      "spin ridiculous",
+      "grit still basically new",
+      "more control"
+     ],
+     "short": "Reports over a month with the Power 2 line, which settles from crisp to a more controlled sinking feel. Says the spin is huge and the grit has not worn. Picks the Hurache-X for themself but recommends the Vapor for forgiveness. Comments partly apply to the whole line.",
      "attrs": {
       "power": "Good",
       "control": "Great",
@@ -752,7 +855,15 @@
      "quote": null,
      "quoteAt": null,
      "stance": "pos",
-     "summary": "Praises elite touch, heavy spin and a light base that takes added weight well. Finds it not a naturally explosive power paddle but fine for 3.5 and up players. Calls it worth the money for control-minded players.",
+     "summary": "Tests it for about eight hours, including a semi-pro team tryout, and finds it light and fast with confident aggressive dinks. Wants more power after about three hours and adds weight, finding the paddle stays fast without slowing the hands. Praises control, touch on drops and dinking, and finds spin helps drive the ball down, suiting a shake-and-bake style. Calls it not an explosive power paddle, but enough for 3.5 and up players using spin or added weight. Notes a paddle used for months had grit feeling nearly identical to new.",
+     "more": "Rates it as more rounded than the RPM Friction Pro, Franklin C45 and Six Zero Coral, and favorably against the Holbrook Fuze, Bread & Butter Loco and Honolulu J2NF at a similar price. Finds the JOOLA Pro IV, about 80 dollars more, has more power while the Vapor Power 2 is more forgiving and controllable. Recommends it for new or intermediate players, those who like to customize and value seekers. Advises passing for anyone wanting a naturally explosive paddle or the most forgiving option, such as the FLiK F3 or Warping Point Neon.",
+     "highlights": [
+      "not an explosive power paddle",
+      "light and fast",
+      "touch on drops and dinking",
+      "grit feeling nearly identical to new"
+     ],
+     "short": "Praises elite touch, heavy spin and a light base that takes added weight well. Finds it not a naturally explosive power paddle but fine for 3.5 and up players. Calls it worth the money for control-minded players.",
      "attrs": {
       "power": "Good",
       "control": "Great",
@@ -786,7 +897,14 @@
      "quote": null,
      "quoteAt": null,
      "stance": "mix",
-     "summary": "Calls spin the standout and names it the best all-around shape of the Power 2 line. Finds it solid but not special enough for the top tier, and less forgiving than the widebody. Calls the price good value.",
+     "summary": "Reviews it through a standard on-court protocol of drills, recreational play and at least one tournament match, reporting group consensus rather than one opinion. Lists a 16mm hybrid shape with a foam core, 7.9 oz weight, swing weight 111 and twist weight 6.7. Calls spin the standout across rolls, serves and dipping drives, at about 2,141 RPM, with under 5 percent spin loss in an independent lab test. Finds drives have enough pace and good hand speed for a power-leaning paddle. Rates the overall feel good but not exceptional, so it misses the top tier.",
+     "more": "Names it the best all-around shape of the Power 2 line, though less forgiving than the Pegasus and with less reach than the Hurache-X. Notes it still needs clean touch on resets. Compares it with the RPM Friction Pro V2 Hybrid, Six Zero Coral Pro Hybrid and Volair CMD HYB, which share a swing weight near 111. Recommends it for all-court players wanting a spin-friendly hybrid with a durable surface, and skips it for those wanting a softer control paddle or elite power. Calls it good value at 199.99 dollars with a code.",
+     "highlights": [
+      "spin the standout",
+      "under 5 percent spin loss",
+      "good but not exceptional"
+     ],
+     "short": "Calls spin the standout and names it the best all-around shape of the Power 2 line. Finds it solid but not special enough for the top tier, and less forgiving than the widebody. Calls the price good value.",
      "attrs": {
       "power": "Good",
       "control": "Good",
@@ -805,16 +923,16 @@
      "trade": "Solid but not top tier, and less forgiving than the widebody.",
      "compared": "The widebody Power 2 shape."
     }
-   ],
-   "groups": {
-    "pos": "Spin near the legal limit, and a grit that keeps it after weeks of play.",
-    "mix": "Liked the spin, but found the stock feel, spin or soft game uneven.",
-    "neg": ""
-   }
+   ]
   },
   "six-zero-black-opal-14mm": {
    "paddle": "Six Zero Black Opal 14mm (hybrid)",
    "tldr": "Creators call it one of the hardest-hitting paddles around; most find the sweet spot demanding.",
+   "groups": {
+    "pos": "Huge power and spin for players with clean, compact swings.",
+    "mix": "Liked the power, but found the sweet spot small and the soft game hard.",
+    "neg": "Found the power hard to control, with a small sweet spot."
+   },
    "reviews": [
     {
      "id": "pickleball-studio",
@@ -852,7 +970,15 @@
      "quote": "I think it's going to be very polarizing.",
      "quoteAt": 4,
      "stance": "mix",
-     "summary": "Calls it a top-tier power paddle that rivals the best, with a sweet spot that drops off sharply outside the center. Finds the soft game much weaker than the heavy game and says added weight helps only partly. Expects players to split into two camps and suggests a demo first.",
+     "summary": "Tests a unit measuring 113 swing weight and 6.07 twist weight, in hybrid shape only, and calls it a power paddle that rivals the best on the market. Finds the sweet spot the main problem, with a clear drop in feel and power outside the center, especially in the bottom third of the face. Struggles with resets, since results ranged from shoulder-high balls to weak ones. Adds 12 g of tungsten pods, lifting swing weight to 117 and twist weight to 7.26, which helps but does not fix the dead areas. Rates it 9 out of 10 for heavy, fast play and four or five for the soft game.",
+     "more": "Compares the power and pop to the Boomstick, Gearbox GX2 Power and a weighted Rhombus Quanta when the center is hit. Wraps the whole head in half-gram tungsten tape for a swing weight of 121, which helps most but makes a 14 mm paddle swing like an elongated one. Likes the flexible neck, long dwell, serves and third shot drives, and finds singles easier because there is more time to set up. Recommends a demo first. Suits players who like Paddletek Bantam style flex, not those needing a large forgiving sweet spot or a balanced game.",
+     "highlights": [
+      "rivals the best on the market",
+      "clear drop in feel and power",
+      "9 out of 10",
+      "four or five for the soft game"
+     ],
+     "short": "Calls it a top-tier power paddle that rivals the best, with a sweet spot that drops off sharply outside the center. Finds the soft game much weaker than the heavy game and says added weight helps only partly. Expects players to split into two camps and suggests a demo first.",
      "attrs": {
       "power": "Excellent",
       "control": "Okay",
@@ -920,7 +1046,15 @@
      "quote": "This paddle is nonlinear in its power response.",
      "quoteAt": 335,
      "stance": "mix",
-     "summary": "Finds it one of the hardest-hitting, highest-spinning paddles tested, with a plush dwell and a power response that grows with swing speed. Needs a long calibration period and punishes tight or tentative swings. Recommends it for advanced players with compact mechanics but would not put it in a tournament bag.",
+     "summary": "Puts a lot of play time into a unit measuring 8.13 oz static weight, 115.5 swing weight and 6.25 twist weight, and finds it one of the hardest hitting, highest spinning paddles tested. Calls the power nonlinear, with a 60 percent swing giving closer to 80 percent output. Expects a long calibration period, taking about five sessions to stop overhitting resets and blocks. Reports no change to the diamond grit surface after 35 to 40 plus hours. Recommends it only for advanced players with compact mechanics who play loose, since nerves and tentative strokes get punished.",
+     "more": "Places the feel between the Boomstick and the Rhombus Quanta, with more rebound, speed and spin than either. Compares the dense dwell and elastic rebound to the Rhombus Ripple, and says the GX2 Power is more controlled out of the box. Tries about 3 g on each side at the 3 and 9 o'clock positions for stability on off center hits, and calls it optional. Finds the stock sweet spot slightly small. Leaves it out of their tournament bag, since it swings heavier and denser than preferred.",
+     "highlights": [
+      "hardest hitting, highest spinning paddles",
+      "long calibration period",
+      "advanced players with compact mechanics",
+      "closer to 80 percent output"
+     ],
+     "short": "Finds it one of the hardest-hitting, highest-spinning paddles tested, with a plush dwell and a power response that grows with swing speed. Needs a long calibration period and punishes tight or tentative swings. Recommends it for advanced players with compact mechanics but would not put it in a tournament bag.",
      "attrs": {
       "power": "Excellent",
       "spin": "Excellent",
@@ -956,7 +1090,15 @@
      "quote": "If you can hit the center, you're going to love it.",
      "quoteAt": 325,
      "stance": "mix",
-     "summary": "Finds it about as powerful as is legal, with elite spin, but a very small sweet spot that kills the ball off center. Dinks, resets and counters were inconsistent, partly because the player is around 3.5. Says players will either love or hate it and should try it first.",
+     "summary": "Plays it across multiple sessions and matches, and finds it just about as powerful as legally possible, with elite spin and strong drives, serves, overheads and flicks. Calls the sweet spot very small, with big drop offs in power and frequent balls dumped into the net off center. Finds dinks, resets and counters inconsistent, while noting they are a lower level player and that stronger players may have a better time. Adds 0.5 g per inch tungsten tape at the 3 and 9 positions, which helps a little but does not solve it. Wins most matches with it anyway.",
+     "more": "Contrasts the small sweet spot with the Boomstick, which has a very large one but launches the ball from every spot and causes pop-ups. Compares the power with a high power paddle like the GX2 Power and finds this one more powerful. Notes the Diamond Tough face claims three to four times more longevity than standard carbon fiber, and the Gen 4 foam core took two years of R&D. Recommends trying it first, with a 30 day trial at Pickleball Central, since players will either love or hate it.",
+     "highlights": [
+      "just about as powerful as legally possible",
+      "very small",
+      "big drop offs in power",
+      "stronger players may have a better time"
+     ],
+     "short": "Finds it about as powerful as is legal, with elite spin, but a very small sweet spot that kills the ball off center. Dinks, resets and counters were inconsistent, partly because the player is around 3.5. Says players will either love or hate it and should try it first.",
      "attrs": {
       "power": "Excellent",
       "spin": "Excellent",
@@ -1017,7 +1159,15 @@
      "quote": "It's the most exciting paddle I've played with this year.",
      "quoteAt": 272,
      "stance": "pos",
-     "summary": "Describes explosive, trampoline-like power with a long dwell and spin that beats most top paddles, after six weeks of exclusive use. Finds resets and dinks intuitive but calls the sweet spot average, so off-center hits feel soft. Reports no wear after six weeks and calls it the most exciting paddle of the year.",
+     "summary": "Plays exclusively with it for six weeks, drilling, in casual and open play and in highly competitive games, and tests it with and against the Boomstick and another popular paddle. Calls the power explosive at the maximum allowed 0.43 core rating, with a nonlinear profile where output rises sharply as swing speed rises, like a trampoline. Finds the plush foam core intuitive for resets and dinks, with longer dwell than any paddle played before. Rates spin above most other top paddles. Reports no delamination, dead spots or face softening after six weeks, and calls the sweet spot average.",
+     "more": "Describes the Boomstick as having a huge sweet spot and effortless power but feeling clunky, like swinging through water, with almost no dwell. Feels the other popular paddle has slightly more dwell than the Boomstick but less spin and shaping, like a modest upgrade to older Gen 3 paddles. Adds that the Opal is light, maneuverable, stable in hand battles and good at counters, while misses come off soft. Recommends the Boomstick for newer players still struggling with the sweet spot, and calls this the most exciting paddle played this year.",
+     "highlights": [
+      "power explosive at the maximum",
+      "intuitive for resets and dinks",
+      "no delamination, dead spots or face softening",
+      "calls the sweet spot average"
+     ],
+     "short": "Describes explosive, trampoline-like power with a long dwell and spin that beats most top paddles, after six weeks of exclusive use. Finds resets and dinks intuitive but calls the sweet spot average, so off-center hits feel soft. Reports no wear after six weeks and calls it the most exciting paddle of the year.",
      "attrs": {
       "power": "Excellent",
       "control": "Great",
@@ -1051,7 +1201,15 @@
      "quote": "the Black Opal is absolutely a power paddle",
      "quoteAt": 106,
      "stance": "mix",
-     "summary": "Gives first impressions on a pre-production unit: top-percentile power and pop, elite spin with no drop-off after 20 hours, and a soft plush feel. Finds the sweet spot decent but less forgiving than floating full-foam rivals, with some flex near the neck. Expects only a few players to tame it.",
+     "summary": "Gives first impressions on pre-production paddles from a factory trip in August, holding off a full review until the final model arrives. Averages about 2240 RPM, with zero spin drop-off after more than 20 hours of play. Averages 62.5 mph on serves and 39.8 mph on punch volleys, putting it in the high 90s percentile for power and pop, with a 0.435 core score. Calls the feel soft and plush with plenty of dwell. Finds the sweet spot decent but less forgiving than floating full foam cores, with some flex near the neck.",
+     "more": "Reports meta scores of 92 for spin, 98 for power and 59 for control, as the big power and smaller sweet spot pull control down. Compares the sweet spot with the more forgiving Selkirk Boomstick and Bread and Butter Loco. Advises playing loose and swinging freely, since tight or second guessing swings send the ball way out. Expects only a few players to tame it. Says a stiffer neck in the final version could make it a contender for paddle of the year, and wants the diamond grit on every paddle.",
+     "highlights": [
+      "zero spin drop-off",
+      "high 90s percentile for power and pop",
+      "less forgiving than floating full foam cores",
+      "some flex near the neck"
+     ],
+     "short": "Gives first impressions on a pre-production unit: top-percentile power and pop, elite spin with no drop-off after 20 hours, and a soft plush feel. Finds the sweet spot decent but less forgiving than floating full-foam rivals, with some flex near the neck. Expects only a few players to tame it.",
      "attrs": {
       "power": "Excellent",
       "spin": "Excellent",
@@ -1112,7 +1270,15 @@
      "quote": "man, I just love the feel of this new paddle.",
      "quoteAt": 203,
      "stance": "pos",
-     "summary": "Compares it with the Selkirk Boomstick and prefers its traditional Gen 3 feel and easier control. Says it has real pop and power near the core limit, with movable weights and a lower price. Calls it the better all-court paddle that still has turbo when needed.",
+     "summary": "Tests a production copy against the Selkirk Boomstick, both foam floating core paddles, and calls it a massively great paddle. Prefers its traditional feel, closer to a Gen 3 paddle and easier to control, over the hollow plush feel of the Boomstick. Says it has pop and power right up against the 0.44 core limit and jumps off the face when swung hard. Notes the denser aerospace foam brings it in at about 8.2 to 8.3 oz instead of 8 oz. Calls it a better all court paddle with great touch.",
+     "more": "Dislikes that the Boomstick has weights fixed permanently, while on the Opal weight can go wherever wanted. Puts weight near the head on their own paddles, which seems to expand the sweet spot and make it a little head heavier. Lists the Opal's thinner profile for quicker hand speed, carbon light frame, Diamond Tough face for spin, shock shield grip and power gel layer. Compares price at $250, or $225 with a discount, against $333 for the Boomstick, a $100 gap.",
+     "highlights": [
+      "traditional feel",
+      "easier to control",
+      "right up against the 0.44 core limit",
+      "better all court paddle with great touch"
+     ],
+     "short": "Compares it with the Selkirk Boomstick and prefers its traditional Gen 3 feel and easier control. Says it has real pop and power near the core limit, with movable weights and a lower price. Calls it the better all-court paddle that still has turbo when needed.",
      "attrs": {
       "power": "Great",
       "control": "Great",
@@ -1164,7 +1330,15 @@
      "quote": "Offensively, it hits big, like really big.",
      "quoteAt": 278,
      "stance": "pos",
-     "summary": "Finds it one of the hardest-hitting legal paddles tested, with a dense, springy feel unlike other foam paddles. Notes a below-average sweet spot near the throat and a heavier swing, which makes it a hard fit for developing players. Recommends it for aggressive players with good technique.",
+     "summary": "Tests a pre-production unit measuring 8.1 oz static weight, 114 swing weight and 6.2 twist weight. Calls it one of the hardest hitting legal paddles tested, second in power at the time and in the top 5 percent, with pop at the 89th percentile. Describes a dense, springy, thud-like feel, softer at impact than EP floating core paddles. Needs time to stop spraying balls long and high, then controls drops and dinks well but stays delicate on resets. Finds the sweet spot below average, especially near the throat, and side to side forgiveness slightly below average.",
+     "more": "Adds three grams of half gram per inch tape on each side from the bottom corners, lifting twist weight to 6.89 and swing weight to 118, plus a 9 g cap coin in the handle to offset head weight. Finds this adds side to side stability but does not fix the throat area, and flicks and quick volleys still feel sluggish. Compares the feel to the Gearbox Pro Ultimate 16 mm, though denser, and the springy pocket to the Gearbox GXT Power. Recommends it for aggressive players with good technique, not developing players.",
+     "highlights": [
+      "one of the hardest hitting legal paddles",
+      "dense, springy, thud-like feel",
+      "sweet spot below average",
+      "top 5 percent"
+     ],
+     "short": "Finds it one of the hardest-hitting legal paddles tested, with a dense, springy feel unlike other foam paddles. Notes a below-average sweet spot near the throat and a heavier swing, which makes it a hard fit for developing players. Recommends it for aggressive players with good technique.",
      "attrs": {
       "power": "Excellent",
       "pop": "Great",
@@ -1247,7 +1421,15 @@
      "quote": "I'm hitting absolute rockets with this paddle.",
      "quoteAt": 15,
      "stance": "pos",
-     "summary": "Puts the power on par with the Selkirk Boomstick, possibly above it, with deep, dense pop and impressive dwell for a 14mm core. Finds control confident when set up but inconsistent in fast hand battles. Calls it high risk and high reward that rewards time spent learning it.",
+     "summary": "Tests a unit that might not be the final production version, measuring 8.26 oz static weight, 116.4 swing weight and 6.3 twist weight, in a hybrid shape with a 14 mm core. Puts the power right up with the Boomstick, possibly above it, and calls it deep and dense, not hollow. Finds control confident when set up for dinks, drops and anticipated resets, but inconsistent in fast hand battles and on slower shots. Rates spin great even though the face feels much smoother than the Ruby Pro, with strong topspin on drives and dip on third shots.",
+     "more": "Notes the Ruby Pro with the same diamond grit felt like sandpaper, while this one feels like a standard surface, and says they got no answer from the brand about why. Calls dwell impressive for a 14 mm core, and describes a loud sound at contact. Calls it a paddle that rewards time spent learning it, with an adjustment period expected for most people. Recommends it for players who thrive on offense and love taking control of points with power.",
+     "highlights": [
+      "possibly above it",
+      "inconsistent in fast hand battles",
+      "inconsistent in fast hand battles",
+      "slower shots"
+     ],
+     "short": "Puts the power on par with the Selkirk Boomstick, possibly above it, with deep, dense pop and impressive dwell for a 14mm core. Finds control confident when set up but inconsistent in fast hand battles. Calls it high risk and high reward that rewards time spent learning it.",
      "attrs": {
       "power": "Excellent",
       "control": "Okay",
@@ -1311,7 +1493,15 @@
      "quote": "This thing hits very hard",
      "quoteAt": 320,
      "stance": "pos",
-     "summary": "Rates the power at the high end of the elite tier and the spin among the highest recorded, with a plush, low-vibration feel. Finds the stock sweet spot average, weakest toward the bottom, and says added weight helps a lot. Notes resets from low transition balls are the hardest part.",
+     "summary": "Tests it over 20 hours of play, with a swing weight of 114 and a twist weight of 6.54, against the Selkirk Boomstick, Loco and Honolulu paddles. Finds the stock sweet spot average, weakest toward the bottom where the ball dies faster, and says two 4 inch strips of 0.5 g weighting tape help a lot. Rates power at the high end of the elite tier and spin among the highest recorded, with 2452 RPM and no drop in grit after 20 hours. Calls the feel plush and dense with long dwell, though shots launch high and resets from low transition balls are the hardest part.",
+     "more": "Finds that with weight added to reach a similar swing weight, it hits harder than the Boomstick Elongated, and ranks third in a serve test, tied with the Gearbox GX11 Power Elongated and just below the Boomstick. Says the feel is closest to the GX2 Power, plusher than the Loco and Boomstick. Finds dinks controllable, the hybrid shape good for hands battles, and rolling volleys at 50 to 70 percent swings a strength. Recommends it for singles players and drive-first players who accept added weight. Lists the price as 250 dollars, or 225 with a code.",
+     "highlights": [
+      "high end of the elite tier",
+      "spin among the highest recorded",
+      "weakest toward the bottom",
+      "resets from low transition balls"
+     ],
+     "short": "Rates the power at the high end of the elite tier and the spin among the highest recorded, with a plush, low-vibration feel. Finds the stock sweet spot average, weakest toward the bottom, and says added weight helps a lot. Notes resets from low transition balls are the hardest part.",
      "attrs": {
       "power": "Excellent",
       "spin": "Excellent",
@@ -1359,7 +1549,15 @@
      "quote": "It's one of the hardest legal hitting paddles on the market",
      "quoteAt": 255,
      "stance": "mix",
-     "summary": "Calls it one of the hardest legal-hitting paddles with a deep thud and plush, long-dwell feel. Found the original unit's flex disappointing, but says the production tweak near the neck improved sweet spot and feel. Expects it to be slightly polarizing and not for players who need kitchen control.",
+     "summary": "Tests it for three weeks, starting with an early unit played just over two weeks, on units supplied by the brand, with opinions stated as their own. Measures a swing weight of 113, a twist weight of 6.3 and a static weight of 8.1 oz. Finds the early unit's flex near the neck disappointing, then says production tweaks greatly improved the sweet spot and feel, though still not the best on the market, only sufficient. Describes a deep thud sound, a plush feel with lots of dwell, and plenty of pop and power from the baseline. Notes some balls still rocket off on deflections and wild swings.",
+     "more": "Calls it one of the hardest legal hitting paddles on the market and expects it to be slightly polarizing. Recommends it for players who like unique paddles with new innovation, and for those who like power paddles with good control on full swings. Does not recommend it for players who want an oversized sweet spot, need added control at the kitchen line, or want a choice of shapes, as it launches only as a hybrid. Says it may need a longer adjustment than the Loco Quanta or the new VSOL, and puts the price at 250 dollars.",
+     "highlights": [
+      "production tweaks greatly improved the sweet spot and feel",
+      "deep thud sound",
+      "plenty of pop and power from the baseline",
+      "rocket off on deflections"
+     ],
+     "short": "Calls it one of the hardest legal-hitting paddles with a deep thud and plush, long-dwell feel. Found the original unit's flex disappointing, but says the production tweak near the neck improved sweet spot and feel. Expects it to be slightly polarizing and not for players who need kitchen control.",
      "attrs": {
       "power": "Excellent",
       "spin": "Great",
@@ -1395,7 +1593,16 @@
      "quote": "the inherent power here is phenomenal",
      "quoteAt": 886,
      "stance": "mix",
-     "summary": "Finds the inherent power phenomenal, with a long, hollow Gen 3-like dwell and good feedback, though a slightly random firm exit point. Calls the sweet spot standard rather than huge and the spin strong on big swings but weaker on soft shots. Sees it as better suited to singles.",
+     "summary": "Plays it for a couple of weeks, adding 8 inches of lead tape at 0.5 g per inch on either side of the throat, on a paddle with a 113 swing weight and 6.6 twist weight. Finds the feel closest to a Gen 3, with a long, hollow, thuddy dwell and strong feedback, but ending in a firm, somewhat random exit point. Calls the inherent power phenomenal, a level under the Boomstick, and the sweet spot standard rather than large. Rates spin as elite on big swings but weaker on soft shots, and control as inconsistent, since a dink can suddenly fly. Sees it as better suited to singles.",
+     "more": "Finds the grit standard, bordering on below average, unlike the much grittier Ruby Pro, and says spin variety falls short for spinny drops. Notes the sweet spot is smaller than on the Boomstick, Loco, Genesis or J2NF, so off center hits lose more playability, especially in hands battles. Feels more confident on drops and resets from farther back than at the kitchen. Prefers the feel to Gen 4 paddles, and suggests higher level players who like Gen 3 feel without durability worries try it. Advises players who prioritise control, and lower level players, to stay away.",
+     "highlights": [
+      "inherent power phenomenal",
+      "long, hollow, thuddy dwell",
+      "firm, somewhat random exit point",
+      "spin as elite on big swings",
+      "better suited to singles"
+     ],
+     "short": "Finds the inherent power phenomenal, with a long, hollow Gen 3-like dwell and good feedback, though a slightly random firm exit point. Calls the sweet spot standard rather than huge and the spin strong on big swings but weaker on soft shots. Sees it as better suited to singles.",
      "attrs": {
       "power": "Excellent",
       "spin": "Good",
@@ -1428,7 +1635,15 @@
      "quote": "This isn't a bad paddle by any means.",
      "quoteAt": 229,
      "stance": "mix",
-     "summary": "Finds the sweet spot very rewarding but isolated, with a harsh, vibrating feel and little forgiveness below center. Ranks it third of the three full-foam paddles they have reviewed, behind the Boomstick and the Honolulu J6CR. Says it is still a good paddle that some advanced, aggressive players will like.",
+     "summary": "Plays it side by side with the Honolulu J6CR and the Selkirk Boomstick, having now reviewed three full foam paddles. Finds the feel unique and the sweet spot very rewarding, good for shaping drives and hitting precise serves, but isolated, with contact anywhere low on the face a no-go zone. Reports strong vibration and little forgiveness off center, which caused trouble on returns of serve and resets. Ranks it third of the three, behind the Boomstick and the J6CR, which kept pulling them back, while calling it still a good paddle and not a bad one by any means.",
+     "more": "Suggests it suits advanced, super aggressive players who can hit the sweet spot every time and do not worry about third shot drops, noting that a top 10 pro uses it. Says the Boomstick is significantly more forgiving on off center hits, has a very big sweet spot and is easier to reset with, and that this paddle does not beat it in any major power category. Says the J6CR was more forgiving. Expects it to be fun for some players but not for everyone, and says everybody's preferences differ.",
+     "highlights": [
+      "sweet spot very rewarding",
+      "contact anywhere low on the face a no-go zone",
+      "little forgiveness off center",
+      "Ranks it third of the three"
+     ],
+     "short": "Finds the sweet spot very rewarding but isolated, with a harsh, vibrating feel and little forgiveness below center. Ranks it third of the three full-foam paddles they have reviewed, behind the Boomstick and the Honolulu J6CR. Says it is still a good paddle that some advanced, aggressive players will like.",
      "attrs": {
       "sweet": "Weak",
       "comfort": "Weak"
@@ -1491,7 +1706,16 @@
      "quote": "If you can't control the power, it's going to burn you.",
      "quoteAt": 320,
      "stance": "neg",
-     "summary": "Rates the power as sometimes beating the Boomstick, with elite spin and a bouncy, cushioned feel from the Power Gel. Finds control average at best and the sweet spot smaller than the Boomstick or Loco, and dislikes the hybrid shape. Calls it high risk and suited to very advanced players around 4.0 to 4.5 and up.",
+     "summary": "Plays a production unit bought with their own money on launch day, and compares it with the Boomstick, Loco and J2NF. Rates the power as sometimes beating the Boomstick, with a bouncy, cushioned feel from the Power Gel that can feel like a 15 mm, and spin as elite on drives and serves even though the grit feels like regular carbon fiber. Finds control only average, the sweet spot smaller than the Boomstick's or the Loco's, and the hybrid shape a drawback. Calls it high risk, high reward, and suited to very advanced players at 4.0 to 4.5 minimum.",
+     "more": "Reports overshooting serves and drives easily, so tones swings down. Finds dinks workable but pops up dead center dinks and loses balls hit on the corners, and says games against 4.5 to 5.3 level cousins punished every mistake. Likes it for counters, punch volleys and hands battles. Says the taper makes the 5.5 inch handle feel shorter, asks for an elongated or wide body version, and will not use it as their main paddle.",
+     "highlights": [
+      "sometimes beating the Boomstick",
+      "spin as elite on drives and serves",
+      "Finds control only average",
+      "high risk, high reward",
+      "very advanced players at 4.0 to 4.5 minimum"
+     ],
+     "short": "Rates the power as sometimes beating the Boomstick, with elite spin and a bouncy, cushioned feel from the Power Gel. Finds control average at best and the sweet spot smaller than the Boomstick or Loco, and dislikes the hybrid shape. Calls it high risk and suited to very advanced players around 4.0 to 4.5 and up.",
      "attrs": {
       "power": "Excellent",
       "spin": "Excellent",
@@ -1524,7 +1748,15 @@
      "quote": "I like this paddle a lot.",
      "quoteAt": 826,
      "stance": "pos",
-     "summary": "Finds the surprise to be accuracy and consistency for a foam paddle, with easy depth and a plush, comfortable feel. Calls the spin good rather than great and the price a bit high. Says it suits compact swings and is fun to go after shots with, though foam flyers still happen.",
+     "summary": "Tests it for a few weeks, with a 114 swing weight, a 6.4 twist weight and an 8.0 oz weight, and adds no weight. Finds the surprise to be accuracy and consistency for a foam paddle, with easy depth, a plush, comfortable feel and a large, accessible sweet spot. Records 53 mph on a serve with no need to jump on it. Calls the spin good rather than great, with late bite. Notes occasional flyers, since it is a foam core paddle, and says it is very quick at the net and moves from defense to offense well.",
+     "more": "Calls the price of 250 dollars a little pricey, though justified by the extra layers, power gel and diamond tough surface. Says it suits compact swings, and players who dink with a push and topspin or go after shots at the net, but may be hard to control for players who already swing hard. Suggests a little weight could help control. Says it probably would not go in the bag as a main paddle because it is a little chaos, yet reaches for it first on court and likes it a lot.",
+     "highlights": [
+      "accuracy and consistency for a foam paddle",
+      "plush, comfortable feel",
+      "good rather than great",
+      "very quick at the net"
+     ],
+     "short": "Finds the surprise to be accuracy and consistency for a foam paddle, with easy depth and a plush, comfortable feel. Calls the spin good rather than great and the price a bit high. Says it suits compact swings and is fun to go after shots with, though foam flyers still happen.",
      "attrs": {
       "power": "Great",
       "control": "Great",
@@ -1560,7 +1792,15 @@
      "quote": null,
      "quoteAt": null,
      "stance": "pos",
-     "summary": "Calls it a very powerful hybrid with aggressive spin and pop that makes drives easy to finish. Finds control and forgiveness good rather than top tier, with a firmer feel than many foam paddles. Says it plays like a $250 paddle and would be a clearer pick nearer $200, suiting serious intermediate and advanced players.",
+     "summary": "Plays it on court against a main paddle, the Bread & Butter Loco Elongated, with other comparisons to the JOOLA Perseus, CRBN TruFoam Genesis 4, Selkirk Boomstik and Honolulu J2NF. Rates the power as lively with a cannon-like pop that makes drives easy to finish, closer to the Perseus than the Loco, and the spin as big dipping topspin from strong grit. Needs no lead tape. Finds control and forgiveness good but with less finesse than many Gen 4 foam paddles, with serves long early on and a tight grip popping dinks up. Calls it stiffer than the Loco, with less dwell.",
+     "more": "Prefers the hybrid shape to the Loco Hybrid for pairing elongated style power with more sweet spot and hand speed. Finds it heavier and slower in hands battles than the Loco, and the hard, Boomstik-like pop less connective than plush paddles. Says it rivals the JOOLA Pro IV at 55 dollars less after a discount, but would prefer a price near 200 dollars. Recommends it for serious intermediate to advanced players who want an aggressive hybrid, and not for beginners or those seeking plush feel.",
+     "highlights": [
+      "cannon-like pop",
+      "big dipping topspin",
+      "Needs no lead tape",
+      "stiffer than the Loco"
+     ],
+     "short": "Calls it a very powerful hybrid with aggressive spin and pop that makes drives easy to finish. Finds control and forgiveness good rather than top tier, with a firmer feel than many foam paddles. Says it plays like a $250 paddle and would be a clearer pick nearer $200, suiting serious intermediate and advanced players.",
      "attrs": {
       "power": "Great",
       "control": "Good",
@@ -1578,12 +1818,7 @@
      "trade": "Control and forgiveness are good, not top tier.",
      "compared": null
     }
-   ],
-   "groups": {
-    "pos": "Huge power and spin for players with clean, compact swings.",
-    "mix": "Liked the power, but found the sweet spot small and the soft game hard.",
-    "neg": "Found the power hard to control, with a small sweet spot."
-   }
+   ]
   }
  }
 }

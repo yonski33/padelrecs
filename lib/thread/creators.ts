@@ -18,7 +18,11 @@ export type CreatorReview = {
   url: string; channel: string; lang: string; date: string; video: string | null; len: number | null;
   /** The creator's own chapters (start second, title), intro, outro and discount-code lines left out. */ chapters: [number, string][];
   /** A real quote (verbatim; plain caption spellings fixed), or null. */ quote: string | null; quoteAt: number | null;
-  stance: Stance; summary: string; attrs: Partial<Record<AttrKey, Word>>;
+  stance: Stance;
+  /** The summary shown on the card (80-120 words, the sweep's fuller pass), the rest for Read more, 3-5 exact substrings of
+   *  `summary` to mark, and a 2-3 sentence version for one-line spots (the table's key point). */
+  summary: string; more: string | null; highlights: string[]; short: string;
+  attrs: Partial<Record<AttrKey, Word>>;
   /** Only where the creator published a number (Pickleheads' are hidden until their scale is confirmed). */
   score: { value: number; scale: number; label: string | null } | null;
   measured: Record<string, number | string>; alsoUrl: string | null;
@@ -122,3 +126,14 @@ export const cardChips = (attrs: CreatorReview["attrs"]) => ATTRS.flatMap(([k, l
 
 /** The owner mock's avatar colour, by source: YouTube coral, blog blue. */
 export const SOURCE_COLOR = { youtube: "#F0796A", blog: "#3D5A99" } as const;
+
+/** The summary cut into plain and marked pieces, in order (the mock's yellow marker); overlapping marks keep the first. */
+export function marks(text: string, hs: string[]): { t: string; on: boolean }[] {
+  const spans: [number, number][] = [];
+  for (const h of hs) { const i = text.indexOf(h); if (i >= 0 && !spans.some(([a, b]) => i < b && i + h.length > a)) spans.push([i, i + h.length]); }
+  spans.sort((a, b) => a[0] - b[0]);
+  const out: { t: string; on: boolean }[] = []; let at = 0;
+  for (const [a, b] of spans) { if (a > at) out.push({ t: text.slice(at, a), on: false }); out.push({ t: text.slice(a, b), on: true }); at = b; }
+  if (at < text.length) out.push({ t: text.slice(at), on: false });
+  return out;
+}
