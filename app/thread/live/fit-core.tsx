@@ -33,7 +33,8 @@ export function FitCore({ id, slug, short, sub, yes, no, taps }: { id: string; s
   const fit = useMemo(() => on && payload ? fitFor(payload, picks, id) : null, [on, payload, picks, id]);
   const adv = useMemo(() => fit && payload && fit.verdict.kind !== "thin" ? adviceFor(payload, picks, id, fit.pct) : null, [fit, payload, picks, id]);
   const self = useMemo(() => payload?.items.find(x => x.id === id) ?? null, [payload, id]);
-  const lines = useMemo(() => fit ? pickLines(yes, no, picks, levelLine(picks, self?.facts.suits)) : [], [fit, yes, no, picks, self]);
+  // The level line only when the headline doesn't already say it ("Made for advanced players, so…").
+  const lines = useMemo(() => fit ? pickLines(yes, no, picks, /^Made for/.test(adv?.line ?? "") ? null : levelLine(picks, self?.facts.suits)) : [], [fit, adv, yes, no, picks, self]);
   const better = useMemo(() => {
     if (!fit || !payload || !data || !self || fit.verdict.kind === "good") return [];
     const pcts = pctsFor(payload, picks);

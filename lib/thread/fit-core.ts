@@ -12,6 +12,13 @@ export const FIT_LABEL = { good: "Good fit", maybe: "Could work", no: "Probably 
 type SrcKind = "player" | "youtube" | "reddit" | "blog" | "forum";
 
 const plain = (t: string) => marked(t).map(x => x.text).join("").trim();
+/** A line that starts by repeating its title ("Heavier than the label: often 380 g…") keeps only the rest ("Often 380 g…"). */
+export function noRepeat(title: string, text: string): string {
+  const t = title.replace(/\.$/, "");
+  if (!text.toLowerCase().startsWith(t.toLowerCase())) return text;
+  const rest = text.slice(t.length).replace(/^[\s:,.;]+/, "");
+  return rest ? rest[0].toUpperCase() + rest.slice(1) : text;
+}
 const n = (k: number, one: string, many: string) => `${k} ${k === 1 ? one : many}`;
 
 /** The source chip under a line: what its reports are, from the page's own list ("1 player review · 2 YouTube reviews");
@@ -30,7 +37,7 @@ export function chipFor(src: string[], kinds: Record<string, SrcKind>): string |
 /** The page content as fit lines: plain text (no == marks), the title as the bold lead, a chip from its reports. */
 export function contentLines(c: PageContent | null, kinds: Record<string, SrcKind>): { yes: FitLine[]; no: FitLine[] } {
   const line = (tone: FitTone) => (i: PageContent["yes"][number]): FitLine =>
-    ({ tone, title: i.title.replace(/\.?$/, "."), text: plain(i.t), chip: chipFor(i.src, kinds), for: i.for ?? [] });
+    ({ tone, title: i.title.replace(/\.?$/, "."), text: noRepeat(i.title, plain(i.t)), chip: chipFor(i.src, kinds), for: i.for ?? [] });
   return { yes: (c?.yes ?? []).map(line("pos")), no: (c?.no ?? []).map(line("neg")) };
 }
 
@@ -97,7 +104,8 @@ const FALLBACK: Record<string, string> = { sweet_spot: "medium", arm: "very" };
 export type TapChip = { group: string; choice: string; label: string };
 export function tapChips(seed: { groups: Record<string, Record<string, number>>; spec: Record<string, string> } | null): TapChip[] {
   return Object.keys(TAP).flatMap(g => {
-    const counts = seed?.groups[g] ?? {}, lead = Object.entries(counts).sort((a, b) => b[1] - a[1])[0]?.[0];
+    // The leading answer only when it leads (a 1–1–1 tie says nothing).
+    const top = Object.entries(seed?.groups[g] ?? {}).sort((a, b) => b[1] - a[1]), lead = top[0] && (!top[1] || top[0][1] > top[1][1]) ? top[0][0] : undefined;
     const choice = [seed?.spec[g], lead, FALLBACK[g]].find(x => x && TAP[g][x]);
     return choice ? [{ group: g, choice, label: TAP[g][choice] }] : [];
   });
