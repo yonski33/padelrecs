@@ -50,10 +50,10 @@ function Card({ x }: { x: CreatorReview }) {
         <span className="thc-lang">{langCode(x.lang)}</span>
         <span className={`thc-take ${x.stance}`}>{`♡ ${STANCE_LABEL[x.stance]}`}</span>
       </div>
-      {(tags.length > 0 || x.score || x.tie) && <div className="thc-tags">
+      {/* No "Works with [brand]" note (owner 2026-11-22: no disclosure lines; `tie` stays in the data). */}
+      {(tags.length > 0 || x.score) && <div className="thc-tags">
         {tags.map(t => <span key={t} className="thc-tag">{t}</span>)}
         {x.score && <span className="thc-tag">{`Own score ${scoreText(x.score)}${x.score.label ? ` (${x.score.label.toLowerCase()})` : ""}`}</span>}
-        {x.tie && <span className="thc-tag">{`Works with ${x.tie}`}</span>}
       </div>}
       {x.quote && <h3 className="thc-q">{x.quoteAt != null && x.kind === "youtube"
         ? <a href={atSecond(x.url, x.quoteAt)} {...OUT} aria-label={`Watch from ${clock(x.quoteAt)}`}>{`“${x.quote}”`}</a> : `“${x.quote}”`}</h3>}

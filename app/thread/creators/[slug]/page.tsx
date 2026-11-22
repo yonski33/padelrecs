@@ -189,6 +189,7 @@ export default async function CreatorProductPage({ params }: P) {
  *  not by source). Stacked full-width cards in the YouTube review card's frame and layout (owner: "stack them just like we
  *  do for the youtube videos"): a 9:16 tile where the thumbnail sits, then the short content only (no Stood out / Trade-off /
  *  Compared to, no chapters: TikTok has none).
+ *  No disclosure line (owner 2026-11-22: "every creator is doing it for a living"); the field stays in the data.
  *  UNVERIFIED (data flag tiktok.unverified): Grok's cards; the quotes need a caption check before this goes live. Covers: TikTok's
  *  oEmbed gave none, so each cover is a plain TikTok tile. */
 function TikTokStrip({ takes }: { takes: import("../../../../lib/thread/creators").TikTokTake[] }) {
@@ -213,7 +214,6 @@ function TikTokStrip({ takes }: { takes: import("../../../../lib/thread/creators
         <h3 className="thc-q">{`“${t.quote}”`}</h3>
         <p className="thc-sum">{t.take}</p>
         <div className="thc-tags">{t.tags.map(x => <span key={x} className={`thc-pm ${x.startsWith("-") || x.startsWith("−") ? "neg" : "pos"}`}>{x.replace(/^-\s*/, "− ")}</span>)}</div>
-        <small className="thc-tt-d">{t.disclosure}</small>
         <div className="thc-links"><a href={t.url} {...OUT}><span className="thc-tt-i" aria-hidden="true">♪</span>Watch on TikTok ↗</a></div>
       </div>
     </article>)}
