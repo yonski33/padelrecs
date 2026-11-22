@@ -20,7 +20,7 @@ import { amazonPhoto } from "../../lib/amazon-photos";
 import { websiteButton } from "../../lib/product-links";
 import { JsonLd, crumbs } from "./seo";
 import { catalogLabel, catalogPath, productHref } from "../../lib/niche";
-import { ATTRS, STANCE_LABEL, TABLE_ATTRS, lowestOffer, usd, reviewLists, agreeChips, stanceLine, stanceCounts, howItPlays, langCode, platform, scoreText, takeaway,
+import { STANCE_LABEL, lowestOffer, usd, reviewLists, agreeChips, stanceLine, stanceCounts, howItPlays, langCode, platform, scoreText, takeaway,
   wordTone, type CreatorReview } from "../../lib/thread/creators";
 import { creatorPage, creatorSlugs, creatorHome } from "../../lib/thread/creator-data";
 import { threadTitle } from "../../lib/thread/web-sources";
@@ -47,9 +47,17 @@ const sourceList = (rs: { kind: string }[]) => { const k = new Set(rs.map(r => r
   return l.length > 1 ? `${l.slice(0, -1).join(", ")} and ${l.at(-1)}` : l[0] ?? "reviewers"; };
 /** Rows the at-a-glance table shows before "Show all N reviews". */
 const GLANCE = 15;
+/** A row's key point (owner 2026-11-23): the stored short line (70 characters or fewer); without one, the summary's first
+ *  sentence cut at a word to 70 characters. Never the longer summary. */
+const KP_MAX = 70;
+function keyPoint(x: { keyPoint?: string | null; short: string }): string {
+  const k = x.keyPoint?.trim();
+  if (k && k.length <= KP_MAX) return k;
+  const t = (k || takeaway(x.short)).trim();
+  return t.length <= KP_MAX ? t : `${t.slice(0, t.lastIndexOf(" ", KP_MAX - 1)).replace(/[,;:]$/, "")}…`;
+}
 const STYLE_WORD = { control: "Control", power: "Power", balance: "All-round" } as const;
 const KEYS = ["pos", "mix", "neg"] as const;
-const label = (k: (typeof ATTRS)[number][0]) => ATTRS.find(a => a[0] === k)![1];
 
 function Word({ w }: { w: CreatorReview["attrs"][keyof CreatorReview["attrs"]] }) {
   return w ? <span className={`thc-w ${wordTone(w)}`}>{w}</span> : <span className="thc-w none" aria-label="Not covered">–</span>;
@@ -101,15 +109,13 @@ export async function CreatorProductBody({ slug }: { slug: string }) {
   // The one filled Check price button (README rule) goes to a lowest in-stock shop; without prices, to the live page's link.
   const cta = low ? { url: low.shops[0]!.url, rel: relOf(low.shops[0]!.affiliate) } : shop;
   const how = howItPlays(rs), agree = agreeChips(rs);
-  // The at-a-glance table: rows with a word in a table column first, otherwise the reviews' own order.
-  const graded = (x: (typeof rs)[number]) => TABLE_ATTRS.some(k => !!x.attrs[k]);
-  const glance = [...rs.filter(graded), ...rs.filter(x => !graded(x))];
+  // The at-a-glance table (owner 2026-11-23): reviewer, take and the short key point only, in the reviews' own order.
+  const glance = rs;
   const gRow = (x: (typeof rs)[number]) => <a key={x.id} className="thc-g-row" href={`#cr-${x.id}`}>
     <span className="thc-g-who"><Avatar name={x.creator} kind={x.kind} size="sm"/><span><strong>{x.creator}</strong>
       <span>{`${platform(x)} · ${langCode(x.lang)}`}{x.score && ` · ${scoreText(x.score)}`}</span></span></span>
     <span className={`thc-take sm ${x.stance}`}>{STANCE_LABEL[x.stance]}</span>
-    <span className={`kp${x.keyPoint ? "" : " clamp"}`} title={x.keyPoint ? undefined : takeaway(x.short)}>{x.keyPoint || takeaway(x.short)}</span>
-    {TABLE_ATTRS.map(k => <span key={k} className="thc-g-w" data-l={label(k)}><Word w={x.attrs[k]}/></span>)}
+    <span className="kp">{keyPoint(x)}</span>
   </a>;
   const ld = { "@context": "https://schema.org", "@graph": [crumbs([{ name: catalogLabel, path: catalogPath },
     ...(brand ? [{ name: brand.name, path: `/brands/${brand.slug}` }] : []), { name: r.name, path: productHref(r) }])] };
@@ -202,12 +208,11 @@ export async function CreatorProductBody({ slug }: { slug: string }) {
           <div className="thc-row-l">
             <section id="creators" className="thc-box1 flush thc-glance">
               <div className="thc-h rule"><strong>{`All ${rs.length} reviews at a glance`}</strong><span>Tap a row to jump to the full summary</span></div>
-              <div className="thc-g-row thc-g-head"><span>Reviewer</span><span>Take</span><span className="kp">Key point</span>{TABLE_ATTRS.map(k => <span key={k}>{label(k)}</span>)}</div>
+              <div className="thc-g-row thc-g-head"><span>Reviewer</span><span>Take</span><span className="kp">Key point</span></div>
               {/* Graded rows first (owner 2026-11-22), 15 shown, the rest behind "Show all N reviews" (no script: a details box). */}
               {glance.slice(0, GLANCE).map(gRow)}
               {glance.length > GLANCE && <details className="thc-g-more"><summary>{`Show all ${rs.length} reviews`}</summary>{glance.slice(GLANCE).map(gRow)}</details>}
-              <span className="thc-note">Words come from what each reviewer said in their own review.</span>
-            </section>
+                          </section>
           </div>
           <StickyCol className="thc-row-r">
             {how.length > 0 && <section className="thc-box1 flush">
