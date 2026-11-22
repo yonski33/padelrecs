@@ -88,7 +88,7 @@ export const webV2Site = (nicheId: string) => WEB_V2_SITES.includes(nicheId);
  *  words), a preview for now: on these sites ?view=creators on a product page with creator data (CREATOR_PAGE_SLUGS, the
  *  demo fixture db/creators/<site>.json) shows app/thread/creators/[slug]; the live product pages are unchanged. */
 export const CREATOR_PAGE_SITES = ["pickleball"];
-export const CREATOR_PAGE_SLUGS: Record<string, string[]> = { pickleball: ["11six24-vapor-power-2", "six-zero-black-opal-14mm"] };
+export const CREATOR_PAGE_SLUGS: Record<string, string[]> = { pickleball: ["11six24-vapor-power-2", "six-zero-black-opal-14mm", "six-zero-coral-pro-16mm"] };
 export const CREATOR_VIEW = "creators";
 export const creatorPageFor = (nicheId: string, slug: string) => CREATOR_PAGE_SITES.includes(nicheId)
   && (CREATOR_PAGE_SLUGS[nicheId] ?? []).includes(slug);

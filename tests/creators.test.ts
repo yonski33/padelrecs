@@ -91,3 +91,22 @@ test("creators home: fixture rules and the boards", async () => {
   // The latest summaries are YouTube, newest first.
   for (let i = 1; i < h.latest.length; i++) assert.ok(h.latest[i - 1]!.date >= h.latest[i]!.date);
 });
+
+test("creator page: TikTok short takes (Coral Pro demo) follow the copy rules and count once per channel", async () => {
+  const { tiktokStances } = await import("../lib/thread/creators");
+  const p = creatorPage("pickleball", "six-zero-coral-pro-16mm")!;
+  assert.ok(p.tiktok, "Coral Pro has the strip");
+  assert.equal(p.tiktok!.unverified, true, "stays flagged until the quotes pass a caption check");
+  for (const t of p.tiktok!.takes) {
+    const n = t.take.split(/\s+/).length;
+    assert.ok(n >= 40 && n <= 70, `${t.id}: ${n} words`);
+    assert.doesNotMatch(` ${t.take} `, /—|verdict|\b(he|his|him|we|us)\b|Jeff|Marcus|Samson/i, t.id);
+    assert.ok(t.tags.length >= 2 && t.tags.length <= 3, t.id);
+    assert.match(t.date, /^2026-\d\d-\d\d$/);
+  }
+  // Six takes, five channels (@identify.as.a.5.0 twice).
+  assert.equal(p.tiktok!.takes.length, 6);
+  assert.deepEqual(tiktokStances(p.tiktok!.takes), { pos: 5, mix: 0, neg: 0 });
+  // Not in the other demo paddles.
+  assert.equal(creatorPage("pickleball", "11six24-vapor-power-2")!.tiktok, undefined);
+});
