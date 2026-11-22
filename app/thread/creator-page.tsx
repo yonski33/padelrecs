@@ -45,8 +45,6 @@ import "./creators.css";
 const sourceList = (rs: { kind: string }[]) => { const k = new Set(rs.map(r => r.kind));
   const l = [k.has("youtube") && "YouTube", k.has("tiktok") && "TikTok", k.has("blog") && "blogs"].filter((x): x is string => !!x);
   return l.length > 1 ? `${l.slice(0, -1).join(", ")} and ${l.at(-1)}` : l[0] ?? "reviewers"; };
-/** "Nov 22": a price check's day, short, for the Where to buy header. */
-const shortDay = (iso: string) => new Date(`${iso.slice(0, 10)}T12:00:00Z`).toLocaleDateString("en-US", { month: "short", day: "numeric", timeZone: "UTC" });
 /** Rows the at-a-glance table shows before "Show all N reviews". */
 const GLANCE = 15;
 const STYLE_WORD = { control: "Control", power: "Power", balance: "All-round" } as const;
@@ -161,7 +159,6 @@ export async function CreatorProductBody({ slug }: { slug: string }) {
             {cta && <a className="thc-cta wide" href={cta.url} target="_blank" rel={cta.rel}>Check price ↗</a>}
             {buy.length > 0 && <div className="thc-pbox-list">{buy.map(o => <div key={o.shop} className="thc-shop2"><strong>{o.shop}</strong>
               <span className="thc-price">{usd(o.price)}</span><a className="thc-mono" href={o.url} target="_blank" rel={relOf(o.affiliate)}>check ↗</a></div>)}</div>}
-            {page.prices && buy.length > 0 && <span className="thc-note">{`Checked ${shortDay(page.prices.checked)}.${buy.some(o => o.affiliate) ? " Some links are affiliate links." : ""}`}</span>}
           </section>
         </div>}
       </header>
