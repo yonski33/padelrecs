@@ -31,7 +31,12 @@ function Card({ x, lit }: { x: ReviewEntry; lit: boolean }) {
   const tt = x.kind === "tiktok", measured = measuredLine(x.measured);
   const thumb = x.kind === "youtube" ? thumbOf(x.url) : null;
   const chapters = open ? x.chapters : x.chapters.slice(0, CHAPTERS), hidden = x.chapters.length - chapters.length;
-  const more = !!x.more || !!measured || hidden > 0 || !!x.alsoUrl;
+  // Video summaries (YouTube, TikTok; owner 2026-11-22): about three sentences before Read more, at most two marked
+  // phrases, the rest of the summary after it. Blog cards keep their whole summary.
+  const vid = x.kind === "youtube" || x.kind === "tiktok";
+  const [lead, rest] = vid ? leadSentences(x.summary, 3) : [x.summary, ""];
+  const hl = vid ? x.highlights.slice(0, 2) : x.highlights;
+  const more = !!rest || !!x.more || !!measured || hidden > 0 || !!x.alsoUrl;
   const toggle = <button type="button" className="thc-more" aria-expanded={open} onClick={() => setOpen(!open)}>{open ? "Show less" : "Read more"}</button>;
   const tags = [TYPE_TAG[x.type], x.note, x.version].filter((t): t is string => !!t);
   const boxes = ([["+", "Stood out", x.stood, "pos"], ["−", "The trade-off", x.trade, "neg"], ["⇄", "Compared to", x.compared, "cmp"]] as
@@ -72,9 +77,10 @@ function Card({ x, lit }: { x: ReviewEntry; lit: boolean }) {
         ? <a href={atSecond(x.url, x.quoteAt)} {...OUT} aria-label={`Watch from ${clock(x.quoteAt)}`}>{`“${x.quote}”`}</a> : `“${x.quote}”`}</h3>}
       {boxes.length > 0 && <div className="thc-boxes">{boxes.map(([i, h, t, k]) => <div key={h} className={`thc-box ${k}`}>
         <span className="thc-box-h"><b aria-hidden="true">{i}</b><span>{h}</span></span><span>{t}</span></div>)}</div>}
-      <p className="thc-sum">{marks(x.summary, x.highlights).map((m, i) => m.on ? <mark key={i}>{m.t}</mark> : m.t)}
+      <p className={`thc-sum${vid ? " vid" : ""}`}>{marks(lead, hl).map((m, i) => m.on ? <mark key={i}>{m.t}</mark> : m.t)}
         {more && !open && <>{" "}{toggle}</>}</p>
-      {open && x.more && <p className="thc-sum">{x.more}</p>}
+      {open && rest && <p className={`thc-sum${vid ? " vid" : ""}`}>{marks(rest, hl.filter(h => !lead.includes(h))).map((m, i) => m.on ? <mark key={i}>{m.t}</mark> : m.t)}</p>}
+      {open && x.more && <p className={`thc-sum${vid ? " vid" : ""}`}>{x.more}</p>}
       {open && measured && <p className="thc-sum sm">{`Measured by the reviewer: ${measured}.`}</p>}
       {open && <p className="thc-sum">{toggle}</p>}
       {chips.length > 0 && <div className="thc-tags">{chips.map(c => <span key={c.text} className={`thc-pm ${c.tone}`}>{`${c.tone === "pos" ? "+" : "−"} ${c.text}`}</span>)}</div>}
@@ -143,4 +149,11 @@ export function CreatorReviews({ reviews, count, roundup }: { reviews: ReviewEnt
         {`${l} (${c})`}</button>)}</div>
     {shown.map((x, i) => <Fragment key={x.id}><Card x={x} lit={lit === x.id}/>{roundup && i === Math.min(2, shown.length - 1) && only === "all" && !src && roundup}</Fragment>)}
   </section>;
+}
+
+/** The first `n` sentences of a summary and the rest ("No. 1" style abbreviations aside, a sentence ends at . ! or ? before
+ *  a space or the end). */
+function leadSentences(t: string, n: number): [string, string] {
+  const parts = t.match(/[^.!?]+(?:[.!?]+["”’)]*)(?=\s|$)|[^.!?]+$/g)?.map(x => x.trim()).filter(Boolean) ?? [t];
+  return parts.length <= n ? [t, ""] : [parts.slice(0, n).join(" "), parts.slice(n).join(" ")];
 }

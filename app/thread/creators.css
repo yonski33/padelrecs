@@ -390,3 +390,5 @@ body:has(.thc) .thc a.thc-tt-cover.pic { overflow: hidden; }
 .thc-tldr-t { font-size: 16.5px; line-height: 1.5; }
 .thc-pts { font-size: 15px; gap: 6px; }
 @media (min-width: 1081px) { .thc-v19 .thc-head-r { align-self: stretch; } .thc-v19 .thc-head-r > #buy { flex: 1 1 auto; } }
+/* Video summaries (owner 2026-11-22): a readable measure, 17px on 1.65. */
+.thc .thc-sum.vid { max-width: 68ch; font-size: 17px; line-height: 1.65; }
