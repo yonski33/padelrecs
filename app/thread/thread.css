@@ -2273,19 +2273,6 @@ body:has(.th) .th a.th-fc-src:hover { border-color: var(--ink); color: var(--ink
 .th-fc-act { display: flex; justify-content: space-between; align-items: center; font-size: 14.5px; font-weight: 700; }
 body:has(.th) .th .th-fc-act a { color: var(--ink); text-underline-offset: 3px; }
 body:has(.th) .th .th-fc-act a.see { text-decoration: none; }
-.th-fc-tap { border: 2px dashed var(--chip); border-radius: 12px; padding: 14px 16px; display: flex; flex-wrap: wrap; gap: 10px 18px; align-items: center;
-  justify-content: space-between; background: var(--lime-box); }
-.th-fc-tap-t { flex: 1 1 260px; min-width: 0; display: flex; flex-direction: column; }
-.th-fc-tap-t strong { font-size: 16.5px; } .th-fc-tap-t span { font-size: 14.5px; color: var(--muted); }
-.th-fc-chips { display: flex; flex-wrap: wrap; gap: 8px; }
-body:has(.th) .th .th-fc-chips button { font: 500 14.5px/1 var(--body-font); padding: 10px 14px; min-height: 44px; border: 1.5px solid var(--ink);
-  border-radius: 999px; background: #fff; color: var(--ink); cursor: pointer; }
-body:has(.th) .th .th-fc-chips button[aria-pressed="true"] { background: var(--lime); box-shadow: 2px 2px 0 var(--ink); }
-.th-fc-thanks { flex-basis: 100%; margin: 0; display: flex; flex-wrap: wrap; gap: 8px 14px; align-items: center; font-size: 14.5px; border-top: 1.5px solid var(--chip); padding-top: 10px; }
-body:has(.th) .th .th-fc-thanks .go { font: 700 14px var(--body-font); padding: 8px 15px; border: 1.5px solid var(--ink); border-radius: 999px; background: var(--lime); color: var(--ink); cursor: pointer; }
-.th-fc-more { flex-basis: 100%; display: flex; flex-wrap: wrap; gap: 6px 18px; font-size: 14.5px; font-weight: 600; }
-body:has(.th) .th .th-fc-more :is(a, button) { font: 600 14.5px var(--body-font); background: none; border: 0; padding: 0; color: var(--ink); text-decoration: underline;
-  text-underline-offset: 3px; cursor: pointer; }
 @media (max-width: 640px) {
   .th-fc-badge { width: 46px; height: 46px; }
   .th-fc-ans-h h3 { font-size: 22px; }

@@ -1,6 +1,6 @@
 // The racket page's fit check as the page's core (owner OK 2026-11-22, "Is this racket right for me?" mock): picks, a fit
 // label in words (no match %), up to three lines (good, caution, bad) from the racket's own page content with a source chip,
-// better picks that really are better for the answers, and a two-tap box that writes to "How does it play?".
+// and better picks that really are better for the answers (the two-tap box was taken out, owner 2026-11-22).
 // Site flag: lib/thread/sites.ts fitCoreSite. The earlier card (app/thread/live/racket-v7b.tsx FitCard) stays for rollback.
 import { marked, type PageContent } from "../racket-page";
 
@@ -91,24 +91,6 @@ export function betterPicks(self: PickCand, cands: PickCand[], data: PickData, p
     out.push({ id: c.id, slug: c.slug, why: why.t, pct: c.pct });
   }
   return out.sort((a, b) => b.pct - a.pct || a.slug.localeCompare(b.slug)).slice(0, count).map(({ id, slug, why }) => ({ id, slug, why }));
-}
-
-/** The two-tap box's chips: "How does it play?" answers players can confirm in one tap, from the racket's prefill (its spec
- *  first, else the leading answer), for Plays like, Sweet spot and Arm friendly. */
-const TAP: Record<string, Record<string, string>> = {
-  plays_like: { control: "Plays like control", all_round: "Plays all-round", power: "Plays like power" },
-  sweet_spot: { big: "Big sweet spot", medium: "Medium sweet spot", small: "Small sweet spot" },
-  arm: { very: "Easy on my arm", somewhat: "Fairly easy on my arm", not_really: "Hard on my arm" },
-};
-const FALLBACK: Record<string, string> = { sweet_spot: "medium", arm: "very" };
-export type TapChip = { group: string; choice: string; label: string };
-export function tapChips(seed: { groups: Record<string, Record<string, number>>; spec: Record<string, string> } | null): TapChip[] {
-  return Object.keys(TAP).flatMap(g => {
-    // The leading answer only when it leads (a 1–1–1 tie says nothing).
-    const top = Object.entries(seed?.groups[g] ?? {}).sort((a, b) => b[1] - a[1]), lead = top[0] && (!top[1] || top[0][1] > top[1][1]) ? top[0][0] : undefined;
-    const choice = [seed?.spec[g], lead, FALLBACK[g]].find(x => x && TAP[g][x]);
-    return choice ? [{ group: g, choice, label: TAP[g][choice] }] : [];
-  });
 }
 
 /** The heading's line: honest about where the opinions come from (never "N players voted" for mixed sources). */

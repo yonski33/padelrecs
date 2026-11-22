@@ -29,7 +29,7 @@ import { niche, hasYears } from "../../../../lib/niche";
 import { tennisYearKnown, tennisReplacedBy, tennisStyle } from "../../../../lib/thread/tennis-notes";
 import { v3Site, fitCoreSite } from "../../../../lib/thread/sites";
 import { FitCore } from "../../live/fit-core";
-import { contentLines, fitSub, tapChips } from "../../../../lib/thread/fit-core";
+import { contentLines, fitSub } from "../../../../lib/thread/fit-core";
 import { alsoLoved } from "../../../../db/product-votes";
 import { database } from "../../../../db/data";
 import { generateMetadata as liveMetadata } from "../../../rackets/[slug]/page";
@@ -215,10 +215,10 @@ export default async function ThreadRacket({ params }: P) {
     const compared = [...partners, ...sim].filter((x, i, a) => x.id !== r.id && a.findIndex(y => y.id === x.id) === i).slice(0, 3)
       .map(x => ({ row: x, href: `/compare?ids=${encodeURIComponent(r.slug)},${encodeURIComponent(x.slug)}` }));
     // The fit check as the page's core (owner OK 2026-11-22, lib/thread/sites.ts fitCoreSite): its lines from the page
-    // content with source chips from this page's own reviews, the honest opinions line, and the two-tap chips.
+    // content with source chips from this page's own reviews, and the honest opinions line.
     const fitCore = fitCoreSite(niche.id) ? (() => {
       const kinds = Object.fromEntries(cards.map(c => [c.id.slice(2), c.kind])), { yes, no } = contentLines(pageContent(r.slug), kinds);
-      return <FitCore id={r.id} slug={r.slug} short={model} sub={fitSub(judged, cards.filter(c => c.kind === "player").length)} yes={yes} no={no} taps={tapChips(traitSeed(niche.id, r.id))}/>;
+      return <FitCore id={r.id} slug={r.slug} sub={fitSub(judged, cards.filter(c => c.kind === "player").length)} yes={yes} no={no}/>;
     })() : null;
     return <Shell active="rackets">
       <JsonLd data={ld}/>

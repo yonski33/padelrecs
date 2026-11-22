@@ -5,11 +5,11 @@
 import { useEffect, useMemo, useState } from "react";
 import { th } from "../../../lib/thread/look";
 import { niche } from "../../../lib/niche";
-import { FIT_LABEL, betterPicks, levelLine, pickLines, type FitLine, type PickData, type TapChip } from "../../../lib/thread/fit-core";
+import { FIT_LABEL, betterPicks, levelLine, pickLines, type FitLine, type PickData } from "../../../lib/thread/fit-core";
 import { PickChips } from "./pick-chips";
 import { usePicks, usePayload, complete, fitFor, adviceFor, pctsFor } from "./picks";
 import { FIT_HEAD } from "./racket";
-import { FitCard, OPEN_REVIEW } from "./racket-v7b";
+import { FitCard } from "./racket-v7b";
 
 let picksData: Promise<PickData> | null = null;
 const loadPickData = () => picksData ??= fetch("/api/fit-picks").then(r => r.ok ? r.json() as Promise<PickData> : {}).catch(() => { picksData = null; return {}; });
@@ -22,7 +22,7 @@ const Icon = ({ tone }: { tone: FitLine["tone"] }) => <span className={`th-fc-ic
     {tone === "pos" ? <path d="M5 12.5l4.5 4.5L19 7"/> : tone === "mix" ? <><path d="M12 5v9"/><path d="M12 19.2v.1"/></> : <path d="M6.5 6.5l11 11M17.5 6.5l-11 11"/>}
   </svg></span>;
 
-export function FitCore({ id, slug, short, sub, yes, no, taps }: { id: string; slug: string; short: string; sub: string; yes: FitLine[]; no: FitLine[]; taps: TapChip[] }) {
+export function FitCore({ id, slug, sub, yes, no }: { id: string; slug: string; sub: string; yes: FitLine[]; no: FitLine[] }) {
   const [classic, setClassic] = useState(false);
   // eslint-disable-next-line react-hooks/set-state-in-effect
   useEffect(() => { setClassic(new URLSearchParams(location.search).get("fit") === "classic"); }, []);
@@ -42,17 +42,6 @@ export function FitCore({ id, slug, short, sub, yes, no, taps }: { id: string; s
       return c && pct != null ? [{ id: x.id, row: x.row, slug: slugOf(c.href), pct, facts: x.facts }] : []; });
     return betterPicks({ id, row: self.row, slug, pct: 0, facts: self.facts }, cands, data, picks);
   }, [fit, payload, data, self, picks, id, slug]);
-  // Two taps: each chip casts (or clears) one "How does it play?" vote; the review form follows from "Add a line".
-  const [tapped, setTapped] = useState<Record<string, boolean>>({}), [tapErr, setTapErr] = useState("");
-  const tap = async (c: TapChip) => {
-    const was = !!tapped[c.group]; setTapped(t => ({ ...t, [c.group]: !was })); setTapErr("");
-    try {
-      const r = await fetch("/api/trait-votes", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ racketId: id, trait: c.group, choice: was ? null : c.choice }) });
-      if (!r.ok) throw new Error();
-    } catch { setTapped(t => ({ ...t, [c.group]: was })); setTapErr("Could not save that. Try again?"); }
-  };
-  const nTapped = Object.values(tapped).filter(Boolean).length;
-  const review = () => dispatchEvent(new CustomEvent(OPEN_REVIEW, { detail: null }));
 
   if (classic) return <FitCard id={id} title={`Is this ${niche.words.one} right for me?`} sub="Pick how you play and what you want, for a quick fit from community feedback."/>;
   const kind = fit?.verdict.kind;
@@ -87,15 +76,6 @@ export function FitCore({ id, slug, short, sub, yes, no, taps }: { id: string; s
             </article>; })}</div>
         </div>}
       </>}
-    </div>
-    <div className="th-fc-tap">
-      <div className="th-fc-tap-t"><strong>{`Played the ${short}?`}</strong><span>{`Two quick taps help the next ${niche.people.one} get a sharper answer.`}</span></div>
-      {taps.length > 0 && <div className="th-fc-chips" role="group" aria-label="How does it play?">{taps.map(c =>
-        <button key={c.group} type="button" aria-pressed={!!tapped[c.group]} onClick={() => tap(c)}>{`${tapped[c.group] ? "✓" : "+"} ${c.label}`}</button>)}</div>}
-      {tapErr ? <p className="th-fc-thanks" role="alert">{tapErr}</p>
-        : nTapped === 1 ? <p className="th-fc-thanks" role="status">Saved to How does it play. One more tap?</p>
-        : nTapped >= 2 ? <p className="th-fc-thanks" role="status"><span>Thanks, that helps. Want to add a line about why?</span><button type="button" className="go" onClick={review}>Add a line</button></p> : null}
-      <div className="th-fc-more"><button type="button" onClick={review}>Add your review</button><a href="#reviews">Ask a question or share a tip</a></div>
     </div>
   </section>;
 }
