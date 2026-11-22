@@ -1,6 +1,6 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { noRepeat, betterPicks, chipFor, fitSub, levelLine, pickLines, type FitLine, type PickData } from "../lib/thread/fit-core";
+import { noRepeat, picksWord, betterPicks, chipFor, fitSub, levelLine, pickLines, type FitLine, type PickData } from "../lib/thread/fit-core";
 
 const L = (tone: FitLine["tone"], title: string, f: string[]): FitLine => ({ tone, title, text: "x", chip: null, for: f });
 
@@ -43,4 +43,15 @@ test("the heading never says players voted", () => {
 test("a line never repeats its title", () => {
   assert.equal(noRepeat("Heavier than the label", "Heavier than the label: often 380 g or more."), "Often 380 g or more.");
   assert.equal(noRepeat("Huge sweet spot", "Off-centre hits still land."), "Off-centre hits still land.");
+});
+
+test("the classic card's link line says Easier picks only when the racket is above the player's level", () => {
+  assert.equal(picksWord({ level: "intermediate", style: "power", arm: false }, { beginner: 20, intermediate: 45, advanced: 85 }), "Easier picks");
+  assert.equal(picksWord({ level: "intermediate", style: "power", arm: false }, { beginner: 25, intermediate: 74, advanced: 67 }), "Better picks");
+});
+
+test("padel is back on the classic card, with the easier-picks line", async () => {
+  const { fitCoreSite, easierPicksSite } = await import("../lib/thread/sites");
+  assert.equal(fitCoreSite("padel"), false);
+  assert.equal(easierPicksSite("padel"), true);
 });
