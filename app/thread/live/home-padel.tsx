@@ -8,6 +8,8 @@ import { type ThreadRow } from "../ui";
 import { th } from "../../../lib/thread/look";
 import { useRacketList, MatchBar, FineTune, SortMenu, RacketRow } from "./padel-list";
 import { useAudioListMatch } from "./audio-match";
+import { useSkinListMatch } from "./skin-match";
+import type { SkinWire } from "../../skin/rank";
 import { W } from "../../../lib/thread/words";
 import { catalogPath, niche } from "../../../lib/niche";
 import type { AudioWire } from "../../../lib/audio-match";
@@ -27,14 +29,16 @@ const Racket = () => <svg className="hp3-art" width="74" height="80" viewBox="0 
 /** The page's only squiggle, after the title (owner: squiggle only on the hero). */
 const Squiggle = () => <svg className="hp3-sq" width="26" height="28" viewBox="0 0 30 30" fill="none" stroke={niche.id === "simracing" ? "oklch(0.72 0.18 32)" : niche.id === "tennis" ? "oklch(0.80 0.11 45)" : niche.id === "discgolf" ? "oklch(0.78 0.14 60)" : "#B9E85A"} strokeWidth="4" strokeLinecap="round" aria-hidden="true"><path d="M6 14 L12 4 M12 20 L24 13 M14 27 L27 26"/></svg>;
 
-export function PadelHomeTop({ rows, brands, pills, added, curated, season, live, after, side, wire, art }: {
+export function PadelHomeTop({ rows, brands, pills, added, curated, season, live, after, side, wire, skin, art }: {
   rows: ThreadRow[]; brands: string[]; pills: Record<string, string>; added: Record<string, string>; curated: string[];
   /** The list's pool: this season's models with 10+ opinions (lib/thread/home-order.ts); AudioRecs: none (every pair). */ season?: string[];
   /** "2,936 reviews · 36 opinions collected this week", or null. */ live: string | null;
   /** The rest of the main column (Top picks, reviews) and the sidebar, server-rendered. */ after: ReactNode; side: ReactNode;
   /** AudioRecs: the match inputs (its own quick match) and the hero drawing. Padel: absent. */ wire?: AudioWire[]; art?: ReactNode;
+  /** SkinRecs: the skin engine's inputs for its own quick match (live/skin-match.tsx). */ skin?: SkinWire[];
 }) {
-  const l = useRacketList({ rows, curated, added, season, match: useAudioListMatch(wire) }), { list, pcts, mine, clearAll } = l;
+  const audio = useAudioListMatch(wire), skinMatch = useSkinListMatch(skin);
+  const l = useRacketList({ rows, curated, added, season, match: audio ?? skinMatch }), { list, pcts, mine, clearAll } = l;
   const [ft, setFt] = useState(false), [n, setN] = useState(FIRST);
   const sticker = <span className="hp3-sticker" aria-hidden="true"><svg width="58" height="26" viewBox="0 0 58 26" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"><path d="M55 20C44 24 30 23 20 16 15 12.5 11 10 5 10"/><path d="M11 4.5L4.5 10l6.5 5"/></svg>
     <span>{mine ? "your match" : "quick match"}</span></span>;

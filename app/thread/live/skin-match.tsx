@@ -3,8 +3,10 @@
 // (app/skin/rank.ts rankSkin and skinMatch, the live skin home's own functions) on the ranking inputs sent with the page
 // (app/skin/payload.ts wireOf), so a tap re-ranks here without a request (instant filters, tests/instant-views.test.ts).
 // The picks are kept on this device and shared with the product page's "Is it right for me?".
-import { useEffect, useMemo, useState } from "react";
-import { Row, topMatch, type ThreadRow } from "../ui";
+import { useEffect, useMemo, useState, type ReactNode } from "react";
+import { Row, topMatch, tone, type ThreadRow } from "../ui";
+import type { ListMatch } from "./padel-list";
+import { RankRows, type V5Row } from "./ranking-v5";
 import { th } from "../../../lib/thread/look";
 import { niche } from "../../../lib/niche";
 import { attrProfileFor } from "../../../lib/attr-profile";
@@ -155,4 +157,107 @@ export function SkinFitCheck({ id, wire, links }: { id: string; wire: SkinWire[]
       {res.better.length > 0 && <p className="th-fit-better">{"Better for you: "}{res.better.map((b, i) => <span key={b.r.id}>{i > 0 && " or "}<a href={th(links[b.r.id].href)}>{links[b.r.id].name}</a>{` (${b.pct}%)`}</span>)}.</p>}
     </div>}
   </div>;
+}
+
+// SkinRecs on the PadelRecs v3 pages (v3 rollout 2026-11-21): the same picks and engine in the v3 markup. The match re-orders by
+// "% your match" and hides nothing (home and catalogue), names the best fit and never reorders (rankings), and checks one
+// product (product page). All in the browser on the inputs the page sent (instant, tests/instant-views.test.ts). No score.
+const NONE: SkinWire[] = [];
+const clearPicks = (set: (p: Partial<SkinPicks>) => void) => set({ skin: null, goal: null, sens: false });
+
+/** The v3 match bar in its classes (live/padel-list.tsx MatchBar): My skin … | I want to … · Sensitive skin · Reset. */
+function SkinBar({ picks, set, tag, after, ft, setFt }: { picks: SkinPicks; set: (p: Partial<SkinPicks>) => void; tag?: string; after?: ReactNode; ft: boolean; setFt: (x: boolean) => void }) {
+  return <div className="tc-qm" role="group" aria-label="Find my match">
+    {tag && <span className="tc-qm-tag">{tag}</span>}
+    <span className="tc-qm-l">My skin</span>
+    {SKIN_OPTS.map(([v, l]) => <button key={v} type="button" className="tc-pill" aria-pressed={picks.skin === v} onClick={() => set({ skin: picks.skin === v ? null : v })}>{l}</button>)}
+    <span className="tc-qm-sep" aria-hidden="true"/>
+    <span className="tc-qm-l">I want to</span>
+    {GOAL_OPTS.map(([v, l]) => <button key={v} type="button" className="tc-pill" aria-pressed={picks.goal === v} onClick={() => set({ goal: picks.goal === v ? null : v })}>{l}</button>)}
+    <button type="button" className="th-check tc-arm" aria-pressed={picks.sens} onClick={() => set({ sens: !picks.sens })}><span aria-hidden="true">{picks.sens ? "✓" : ""}</span>Sensitive skin</button>
+    {after}
+    {skinPickedAny(picks) && <button type="button" className="tc-link" onClick={() => clearPicks(set)}>Reset</button>}
+    <button type="button" className="tc-ft" aria-expanded={ft} onClick={() => setFt(!ft)}>Not sure yet? <u>fine-tune</u> {ft ? "▴" : "▾"}</button>
+  </div>;
+}
+
+/** The home's and catalogue's match (live/padel-list.tsx useRacketList `match`): each product's % for the picks, null where too
+ *  few reports back it. Undefined off SkinRecs (no inputs sent). */
+export function useSkinListMatch(wire: SkinWire[] | undefined): ListMatch | undefined {
+  const [picks, set] = useSkinPicks();
+  const ctx = useCtx(wire ?? NONE), mine = skinPickedAny(picks);
+  const pcts = useMemo(() => { if (!wire || !ctx || !mine) return null; const c = skinChoiceOf(picks, false);
+    return new Map(wire.map(w => [w.id, skinMatch(ctx, w.id, c).pct])); }, [wire, ctx, mine, picks]);
+  return wire ? { mine, pcts, bar: o => <SkinBar picks={picks} set={set} {...o}/> } : undefined;
+}
+
+/** "Is it right for my skin?" in the v3 FitCard's markup (live/racket-v7b.tsx): My skin, Help with and Sensitive skin, then this
+ *  product's match %, the reason it rests on and, under 80%, up to 2 better fits of the same type. `wire`: this type only. */
+export function SkinFitCard({ id, wire, links }: { id: string; wire: SkinWire[]; links: Record<string, { name: string; href: string }> }) {
+  const [picks, set] = useSkinPicks();
+  const ctx = useCtx(wire);
+  const res = useMemo(() => {
+    if (!ctx || !skinPickedAny(picks)) return null;
+    const choice = skinChoiceOf(picks, false), m = skinMatch(ctx, id, choice);
+    const shape = wire.find(w => w.id === id)?.shape ?? null;
+    const better = m.pct != null && m.pct < 80 ? rankSkin(ctx, choice, r => r.shape === shape && r.id !== id)
+      .filter(x => x.pct != null && x.pct >= m.pct! + 10 && links[x.r.id]).slice(0, m.pct < 60 ? 2 : 1) : [];
+    return { m, reason: reasonOf(ctx, m), better };
+  }, [ctx, picks, id, wire, links]);
+  return <section className="th-card th7-card th7-fit">
+    <div className="th7-hd"><h2 className="th-h2">{W.fitTitle}</h2><span className="th-sub">Pick your skin and what you want help with, for a quick fit from what people report.</span></div>
+    <div className="th-fit">
+      <div className="th-picks" role="group" aria-label="Your skin type"><span className="lbl">My skin</span>
+        {SKIN_OPTS.map(([v, l]) => <button key={v} type="button" className="th-pick sm" aria-pressed={picks.skin === v} onClick={() => set({ skin: picks.skin === v ? null : v })}>{l}</button>)}</div>
+      <div className="th-picks" role="group" aria-label="Help with"><span className="lbl">Help with</span>
+        {GOAL_OPTS.map(([v, l]) => <button key={v} type="button" className="th-pick sm" aria-pressed={picks.goal === v} onClick={() => set({ goal: picks.goal === v ? null : v })}>{l}</button>)}
+        <button type="button" className="th-check" aria-pressed={picks.sens} onClick={() => set({ sens: !picks.sens })}><span aria-hidden="true">{picks.sens ? "✓" : ""}</span>Sensitive skin</button></div>
+    </div>
+    {res && <div aria-live="polite"><div className="th7-match">
+      {res.m.pct != null && <span className="th7-match-pct"><span className={`th-badge ${tone(res.m.pct)}`}>{`${res.m.pct}%`}</span><small>your match</small></span>}
+      <span className="th7-match-body"><b>{FIT_HEAD[verdictOf(res.m.pct) ?? "thin"]}</b>
+        {res.reason && <span>{`${res.reason[0].toUpperCase()}${res.reason.slice(1)}.`}</span>}
+        {res.better.length > 0 && <span className="th-fit-better">{"Better for you: "}{res.better.map((b, i) => <span key={b.r.id}>{i > 0 && " or "}<a href={th(links[b.r.id].href)}>{links[b.r.id].name}</a>{` (${b.pct}%)`}</span>)}.</span>}
+      </span>
+    </div></div>}
+  </section>;
+}
+
+const GOOD = 80;
+/** The best fit in a ranking for the picks (highest match %, ties to the higher rank), or null without picks. */
+function useSkinBest(rows: V5Row[], wire: SkinWire[]) {
+  const [picks] = useSkinPicks(), ctx = useCtx(wire);
+  return useMemo(() => {
+    if (!ctx || !skinPickedAny(picks)) return null;
+    const c = skinChoiceOf(picks, false), ids = new Set(wire.map(w => w.id));
+    let best: { row: V5Row; pct: number; reason: string | null } | null = null;
+    for (const row of rows) { if (!ids.has(row.id)) continue; const m = skinMatch(ctx, row.id, c);
+      if (m.pct != null && (!best || m.pct > best.pct)) best = { row, pct: m.pct, reason: reasonOf(ctx, m) }; }
+    return best;
+  }, [ctx, picks, rows, wire]);
+}
+/** A ranking's rows with "Your best fit here" from the skin match (live/ranking-v5.tsx RankRows). */
+export function SkinRankRows({ wire, ...p }: Omit<Parameters<typeof RankRows>[0], "wire" | "fitId"> & { wire: SkinWire[] }) {
+  const best = useSkinBest(p.rows, wire);
+  return <RankRows {...p} fitId={best?.row.id ?? null}/>;
+}
+/** The ranking sidebar's "Quick match: find your fit" with the skin picks (live/ranking-v5.tsx QuickMatch's markup). */
+export function SkinRankMatch({ rows, wire }: { rows: V5Row[]; wire: SkinWire[] }) {
+  const [picks, set] = useSkinPicks(), best = useSkinBest(rows, wire), good = best != null && best.pct >= GOOD;
+  return <section className="th-card rk5-qm">
+    <div className="head"><h3>Quick match: find your fit</h3>
+      {skinPickedAny(picks) && <button type="button" className="reset" onClick={() => clearPicks(set)}>Reset</button>}</div>
+    <p>Pick your skin. The list keeps its order.</p>
+    <span className="lbl">My skin</span>
+    <div className="opts">{SKIN_OPTS.map(([v, l]) => <button key={v} type="button" aria-pressed={picks.skin === v} onClick={() => set({ skin: picks.skin === v ? null : v })}>{l}</button>)}</div>
+    <span className="lbl">I want to</span>
+    <div className="opts">{GOAL_OPTS.map(([v, l]) => <button key={v} type="button" aria-pressed={picks.goal === v} onClick={() => set({ goal: picks.goal === v ? null : v })}>{l}</button>)}</div>
+    <button type="button" className="arm" aria-pressed={picks.sens} onClick={() => set({ sens: !picks.sens })}><span aria-hidden="true">{picks.sens ? "✓" : ""}</span>Sensitive skin</button>
+    {best && <div className="fit">
+      <span className={good ? "ic good" : "ic"} aria-hidden="true">{good ? "✓" : "~"}</span>
+      <span className="words"><strong>{good ? "A good match for your skin" : "The closest fit in this list"}</strong>
+        <span>Best fit here: <b>{best.row.name}</b>. {good ? best.reason ? `${best.reason[0].toUpperCase()}${best.reason.slice(1)}.` : "" : "Nothing here fits every pick. This one comes closest."}</span>
+        <a href={th(best.row.href)}>See more details →</a></span>
+    </div>}
+  </section>;
 }

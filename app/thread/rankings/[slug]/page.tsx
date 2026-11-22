@@ -5,7 +5,7 @@ import { notFound } from "next/navigation";
 import { Shell } from "../../shell";
 import { threadRows, threadBoards, skinOf, audioOf } from "../../data";
 import { v3Site } from "../../../../lib/thread/sites";
-import { votePill, AUDIO_PILL_LABELS, SIMRACING_PILL_WORDS, SIMRACING_PILL_LABELS, PICKLEBALL_PILL_WORDS, PICKLEBALL_PILL_LABELS, DISCGOLF_PILL_LABELS } from "../../../../lib/thread/vote-pill";
+import { votePill, AUDIO_PILL_LABELS, SIMRACING_PILL_WORDS, SIMRACING_PILL_LABELS, PICKLEBALL_PILL_WORDS, PICKLEBALL_PILL_LABELS, DISCGOLF_PILL_LABELS, SKIN_PILL_WORDS, SKIN_PILL_LABELS } from "../../../../lib/thread/vote-pill";
 import { traitGroupsForType } from "../../../../lib/thread/traits";
 import { TRAIT_GROUPS } from "../../../../lib/thread/traits";
 import { GUIDE_LINK_LABELS } from "../../../../lib/thread/copy";
@@ -14,7 +14,8 @@ import { ratingCategory, ratingHow } from "../../../../lib/category-rating";
 import { SKIN_NEEDS } from "../../../../lib/skin-lists";
 import { HubCards, hubRatings } from "../../hub-cards";
 import { RankingList, SideMatch } from "../../live/lists";
-import { SkinMatchBox } from "../../live/skin-match";
+import { SkinMatchBox, SkinRankRows, SkinRankMatch } from "../../live/skin-match";
+import { HubV3 } from "../hub-v3";
 import { quickMatchFor } from "../../../../lib/thread/sites";
 import { Faq } from "../../live/faq";
 import { Comments } from "../../live/comments";
@@ -75,6 +76,7 @@ export async function generateMetadata({ params }: P): Promise<Metadata> {
   const description = l.kids ? `${l.blurb} The top picks by product type, from reviews by people who ${W.played} them.`
     : ratingCategory(l.slug, niche.id) ? `${l.blurb} The top ${l.ids.length}, from reviews by people who ${W.played} them.`
     // The v3 sites have no score (owner 2026-11-22): their lists are ordered by reviews, so the description says that.
+    : SKIN ? `${l.blurb} The top ${l.ids.length}, from what ${W.people} with that skin report.`
     : V3 ? `${l.blurb} The top ${l.ids.length}, ordered by ${W.reviews}.`
     : `${l.blurb} The top ${l.ids.length} by ${W.score}, from reviews by people who ${W.played} them.`;
   return { title: { absolute: `${title} | ${niche.site.name}` }, description, alternates: { canonical: l.href }, openGraph: { title, description, url: l.href, type: "website" } };
@@ -87,7 +89,7 @@ export default async function ThreadRanking({ params }: P) {
   const [lists, { rows, all, ctx }] = await Promise.all([threadRankings(), threadRows()]);
   const l = lists.find(x => x.slug === slug);
   if (!l) notFound();
-  if (l.kids) return <NeedHub l={l} lists={lists}/>;
+  if (l.kids) return V3 ? <NeedHubV3 l={l} lists={lists}/> : <NeedHub l={l} lists={lists}/>;
   const list = l.ids.map(id => rows.get(id)!).filter(Boolean);
   // Padel category lists (owner 2026-11-21): a curated rating as the big number, the Player score small on each row. Never in
   // the structured data below, which carries no rating at all.
@@ -102,6 +104,7 @@ export default async function ThreadRanking({ params }: P) {
       : { q: "What if I have tennis elbow?", a: `Players with sore arms speak best of ${names(arm)}. ${ARM_TIP}` }] : []),
     ...(SHAPE_FAQ ? [SHAPE_FAQ] : []),
     niche.id === "audio" ? { q: "How often does this ranking change?", a: `The counts update as new reviews come in, so ${W.items} can move up or down. A pair joins once it has 10 or more reviews.` }
+      : V3 && SKIN ? { q: "How often does this ranking change?", a: "The lists refresh as new reviews come in, so products can move up or down. A product joins once enough people have reviewed it." }
       : { q: "How often does this ranking change?", a: `Scores update as new reviews come in, so ${MANY} can move up or down any day. A ${ONE} joins once it has enough reviews to score fairly.` },
   ];
   const more = moreFor(l, lists);
@@ -109,7 +112,7 @@ export default async function ThreadRanking({ params }: P) {
   const hub = lists.find(x => x.kids?.includes(l.slug));
   const nameMap = Object.fromEntries(list.map(r => [r.id, r.name]));
   // SkinRecs: its home's quick match (skin type · goal · sensitive), on the same ranking inputs as the home (app/thread/page.tsx).
-  const sk = QM === "skin" ? skinOf(ctx) : null;
+  const sk = QM === "skin" && !V3 ? skinOf(ctx) : null;
   const skinRows = sk ? all.filter(r => r.current !== false && r.n > 0) : [];
   const skinWire = sk ? (await import("../../../skin/payload")).wireOf(sk, sk.data.listed.filter(r => skinRows.some(x => x.id === r.id))) : [];
   const side = QM === "engine" ? <SideMatch names={nameMap}/>
@@ -199,6 +202,22 @@ async function NeedHub({ l, lists }: { l: Awaited<ReturnType<typeof threadRankin
   </Shell>;
 }
 
+/** A SkinRecs skin need's hub on the v3 pages: the rankings hub's cards for its per-type lists, under the need's title. */
+async function NeedHubV3({ l, lists }: { l: Awaited<ReturnType<typeof threadRankings>>[number]; lists: Awaited<ReturnType<typeof threadRankings>> }) {
+  const { rows } = await threadRows();
+  const kids = l.kids!.flatMap(k => lists.filter(x => x.slug === k)), need = SKIN_NEEDS.find(n => n.hub === l.slug);
+  const ld = { "@context": "https://schema.org", "@graph": [
+    { "@type": "ItemList", name: l.title, url: `${base()}${l.href}`, numberOfItems: kids.length,
+      itemListElement: kids.map((k, i) => ({ "@type": "ListItem", position: i + 1, name: k.title, url: `${base()}${k.href}` })) },
+    crumbs([{ name: "Rankings", path: "/rankings" }, { name: l.label, path: l.href }]),
+  ] };
+  return <Shell active="rankings">
+    <JsonLd data={ld}/>
+    <HubV3 title={l.title} lead={`One ranking per product type${need ? ` for ${need.words}` : ""}. Pick one to see its top 10.`} rows={rows} ratings={{}}
+      groups={[{ title: l.label, cards: kids }]} crumbs={<div className="th-crumbs"><a href={th("/rankings")}>Rankings</a><span>/</span><span>{l.label}</span></div>}/>
+  </Shell>;
+}
+
 /** PadelRecs ranking page v5 (owner mock "Rankings Thread v4", 2026-11-21): one grid with the hero, every list as a pill and
  *  the list card on the left; Quick match, About these rankings and More rankings on the right. Then the discussion, today's
  *  questions (kept: the mock has none) and More to explore. No score; the curated rating stays on the category lists. */
@@ -219,26 +238,35 @@ async function RankingV5({ l, lists, list, rated, label, faqs, ld, picOf }: { l:
   // AudioRecs: each row's quality-first vote pill ("Great noise cancelling · 13 listeners", lib/thread/vote-pill.ts) and its
   // match inputs for the quick match box; padel keeps "Most picked for …".
   const au = AUDIO ? audioOf((await threadRows()).ctx) : null, wire = au ? list.flatMap(r => au.wire.get(r.id) ?? []) : undefined;
+  // SkinRecs: its pills, and the skin engine's inputs for this list's rows (its quick match names the best fit, never reorders).
+  const sk = SKIN ? skinOf((await threadRows()).ctx) : null, ids = new Set(list.map(r => r.id));
+  const skinWire = sk ? (await import("../../../skin/payload")).wireOf(sk, sk.data.listed.filter(r => ids.has(r.id))) : null;
   const rows: V5Row[] = list.map((r, i) => ({ id: r.id, rank: i + 1, name: r.name, href: r.href, pic: r.pic, shape: oneShape(r.shape) ? r.shape![0].toUpperCase() + r.shape!.slice(1) : null,
     line: r.line, pos: r.pos, mix: r.mix, neg: r.neg, rating: rated?.[r.id] != null ? (rated[r.id] / 10).toFixed(1) : null,
     picked: au ? votePill(Object.fromEntries(TRAIT_GROUPS.map(g => [g.key, traitGroup(t, r.id, g.key)])), W.people, AUDIO_PILL_LABELS, AUDIO_PILL_LABELS)
       : PICKLEBALL ? votePill(Object.fromEntries(TRAIT_GROUPS.map(g => [g.key, traitGroup(t, r.id, g.key)])), W.people, PICKLEBALL_PILL_WORDS, PICKLEBALL_PILL_LABELS)
       : SR ? votePill(Object.fromEntries(traitGroupsForType(niche.id, r.shape, r.id).map(g => [g.key, traitGroup(t, r.id, g.key)])), W.people, SIMRACING_PILL_WORDS, SIMRACING_PILL_LABELS)
       : DG ? votePill(Object.fromEntries(TRAIT_GROUPS.map(g => [g.key, traitGroup(t, r.id, g.key)])), W.people, DISCGOLF_PILL_LABELS, DISCGOLF_PILL_LABELS)
+      : SKIN ? votePill(Object.fromEntries(TRAIT_GROUPS.map(g => [g.key, traitGroup(t, r.id, g.key)])), W.people, SKIN_PILL_WORDS, SKIN_PILL_LABELS)
       : pickedLine(traitGroup(t, r.id, "plays_like")), arm: !!r.arm, ...(au && r.audio?.kind ? { shape: r.audio.kind } : {}) }));
   const opinions: [string, string] = [W.opinions.replace(/s$/, ""), W.opinions];
   const said = rows.reduce((a, r) => a + r.pos + r.mix + r.neg, 0);
-  const others = lists.filter(x => x.slug !== l.slug);
+  // SkinRecs has ~30 lists: its pills and More rankings are the skin needs, this list's need and the product types (moreFor).
+  const others = SKIN ? moreFor(l, lists).flatMap(m => lists.filter(x => x.href === m.href)) : lists.filter(x => x.slug !== l.slug);
+  const pillLists = SKIN ? [l, ...others].filter(x => x.group === l.group || x.kids || x.group === "By product type")
+    .sort((a, b) => lists.indexOf(a) - lists.indexOf(b)) : lists;
   // The mock's picture strip: real photos, the list's own top rackets for a ranking and this list's for the guides.
   const pics = (ids: string[], n: number) => ids.map(picOf).filter((x): x is string => !!x).slice(0, n);
   const mine = rows.map(r => r.id);
-  const explore = [AUDIO ? { tag: "Guide", title: GUIDE_LINK_LABELS.racket, desc: "Where you listen, fit and sound, in plain words.", cta: "Read guide", href: GUIDE_PATHS.racket, imgs: pics(mine, 1), tone: "dark" }
+  const explore = [SKIN ? { tag: "Guide", title: GUIDE_LINK_LABELS.racket, desc: "Skin type, texture and what to look for, in plain words.", cta: "Read guide", href: GUIDE_PATHS.racket, imgs: pics(mine, 1), tone: "dark" }
+      : AUDIO ? { tag: "Guide", title: GUIDE_LINK_LABELS.racket, desc: "Where you listen, fit and sound, in plain words.", cta: "Read guide", href: GUIDE_PATHS.racket, imgs: pics(mine, 1), tone: "dark" }
       : PICKLEBALL ? { tag: "Guide", title: GUIDE_LINK_LABELS.racket, desc: "Shape, weight, core and face, in plain words.", cta: "Read guide", href: GUIDE_PATHS.racket, imgs: pics(mine, 1), tone: "dark" }
       : DG ? { tag: "Guide", title: GUIDE_LINK_LABELS.racket, desc: "Disc type, flight numbers and stability, in plain words.", cta: "Read guide", href: GUIDE_PATHS.racket, imgs: pics(mine, 1), tone: "dark" }
       : SR ? { tag: "Guide", title: GUIDE_LINK_LABELS.racket, desc: "Base, wheel, pedals and rig, in plain words.", cta: "Read guide", href: GUIDE_PATHS.racket, imgs: pics(mine, 1), tone: "dark" }
       : niche.id === "tennis" ? { tag: "Guide", title: GUIDE_LINK_LABELS.racket, desc: "Head size, weight, pattern and stiffness, in plain words.", cta: "Read guide", href: GUIDE_PATHS.racket, imgs: pics(mine, 1), tone: "dark" }
       : { tag: "Guide", title: "How to choose a padel racket", desc: "Shape, weight, balance and feel, in plain words.", cta: "Read guide", href: GUIDE_PATHS.racket, imgs: pics(mine, 1), tone: "dark" },
-    AUDIO ? { tag: "Guide", title: GUIDE_LINK_LABELS.shape, desc: "Open or closed, and who each suits.", cta: "Read guide", href: GUIDE_PATHS.shape, imgs: pics(mine.slice(1), 3), tone: "sand" }
+    SKIN ? { tag: "Guide", title: GUIDE_LINK_LABELS.shape, desc: "Which texture suits which skin, and when.", cta: "Read guide", href: GUIDE_PATHS.shape, imgs: pics(mine.slice(1), 3), tone: "sand" }
+      : AUDIO ? { tag: "Guide", title: GUIDE_LINK_LABELS.shape, desc: "Open or closed, and who each suits.", cta: "Read guide", href: GUIDE_PATHS.shape, imgs: pics(mine.slice(1), 3), tone: "sand" }
       : PICKLEBALL ? { tag: "Guide", title: GUIDE_LINK_LABELS.shape, desc: "Standard, hybrid or elongated, and who each suits.", cta: "Read guide", href: GUIDE_PATHS.shape, imgs: pics(mine.slice(1), 3), tone: "sand" }
       : DG ? { tag: "Guide", title: GUIDE_LINK_LABELS.shape, desc: "Putter, midrange or driver, and who each suits.", cta: "Read guide", href: GUIDE_PATHS.shape, imgs: pics(mine.slice(1), 3), tone: "sand" }
       : SR ? { tag: "Guide", title: GUIDE_LINK_LABELS.shape, desc: "What each drive feels like, and who each suits.", cta: "Read guide", href: GUIDE_PATHS.shape, imgs: pics(mine.slice(1), 3), tone: "sand" }
@@ -255,21 +283,25 @@ async function RankingV5({ l, lists, list, rated, label, faqs, ld, picOf }: { l:
           <section className="th-card rk5-hero">
             <h1 className="th-h1">{l.title}</h1>
             {l.blurb && <p>{l.blurb}</p>}
-            <nav className="rk5-pills" aria-label="Rankings">{lists.map(x =>
+            <nav className="rk5-pills" aria-label="Rankings">{pillLists.map(x =>
               <a key={x.slug} href={th(x.href)} aria-current={x.slug === l.slug ? "page" : undefined}>{x.label}</a>)}</nav>
           </section>
           <section className="th-card rk5-list">
             <div className="rk5-list-head"><h2 className="th-h2">{l.label}</h2>
-              <span>{`${AUDIO || SR || PICKLEBALL || DG ? plural(rows.length, W.item, W.items) : plural(rows.length, ONE, MANY)}  ·  ${plural(said, opinions[0], opinions[1])}`}</span></div>
-            <RankRows rows={rows} ratingLabel={label} opinions={opinions} markLoved={loved} {...(wire ? { wire } : {})}/>
+              <span>{`${AUDIO || SR || PICKLEBALL || DG || SKIN ? plural(rows.length, W.item, W.items) : plural(rows.length, ONE, MANY)}  ·  ${plural(said, opinions[0], opinions[1])}`}</span></div>
+            {skinWire ? <SkinRankRows rows={rows} ratingLabel={label} opinions={opinions} markLoved={loved} wire={skinWire}/>
+              : <RankRows rows={rows} ratingLabel={label} opinions={opinions} markLoved={loved} {...(wire ? { wire } : {})}/>}
           </section>
         </div>
         <aside className="rk5-side">
-          <QuickMatch rows={rows} {...(wire ? { wire } : {})}/>
+          {skinWire ? <SkinRankMatch rows={rows} wire={skinWire}/> : <QuickMatch rows={rows} {...(wire ? { wire } : {})}/>}
           <section className="th-card rk5-box"><h3>About these rankings</h3>
             <div className="about">
               <span className="item"><svg className="ic" width="30" height="28" viewBox="0 0 30 28" aria-hidden="true" fill="currentColor"><circle cx="15" cy="9" r="4.5"/><circle cx="6" cy="11" r="3.5"/><circle cx="24" cy="11" r="3.5"/><path d="M7 24c0-4.5 3.6-8 8-8s8 3.5 8 8zM0 23c0-3.3 2.4-6 5.5-6 1.2 0 2.2.3 3 .9C7 19.4 6 21.3 6 23.5zM30 23c0-3.3-2.4-6-5.5-6-1.2 0-2.2.3-3 .9 1.5 1.5 2.5 3.4 2.5 5.6z"/></svg><span><strong>{`Based on ${W.person} feedback`}</strong><span>Reviews and votes on {niche.site.name}, plus summaries of Reddit threads, YouTube reviews and blogs.</span></span></span>
-              <span className="item"><svg className="ic" width="30" height="28" viewBox="0 0 30 28" aria-hidden="true" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinejoin="round"><path d="M15 3L26 9 15 15 4 9z"/><path d="M4 14l11 6 11-6M4 19l11 6 11-6"/></svg><span>{loved ? <><strong>Ordered by most loved</strong><span>{AUDIO || DG ? `${cap(W.items)} go by how many ${W.people} loved them, the count on each row. Current models with 10+ reviews.` : SR ? `${cap(W.items)} go by how many ${W.people} loved them, the count on each row. ${new Date().getUTCFullYear()} models with 10+ reviews.` : `Rackets go by how many players loved them, the count on each row. ${new Date().getUTCFullYear()} models with 10+ reviews.`}</span></>
+              <span className="item"><svg className="ic" width="30" height="28" viewBox="0 0 30 28" aria-hidden="true" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinejoin="round"><path d="M15 3L26 9 15 15 4 9z"/><path d="M4 14l11 6 11-6M4 19l11 6 11-6"/></svg><span>{SKIN ? <><strong>{l.own ? "Ordered by reviews" : "Ordered by the skin match"}</strong><span>{l.own
+                  ? `Products go by how consistently ${W.people} are happy with them, from products with enough reviews.`
+                  : `The ${niche.site.name} match for this skin need, from what ${W.people} with that skin report. Products with a match only.`}</span></>
+                : loved ? <><strong>Ordered by most loved</strong><span>{AUDIO || DG ? `${cap(W.items)} go by how many ${W.people} loved them, the count on each row. Current models with 10+ reviews.` : SR ? `${cap(W.items)} go by how many ${W.people} loved them, the count on each row. ${new Date().getUTCFullYear()} models with 10+ reviews.` : `Rackets go by how many players loved them, the count on each row. ${new Date().getUTCFullYear()} models with 10+ reviews.`}</span></>
                 : votes ? <><strong>Ordered by player votes</strong><span>{`Rackets go by how many players pick them for ${votes}, the number on each row. Needs 12+ reviews and 10+ players.${label ? ` The number on each pick is a ${niche.site.name} rating from 0 to 10.` : ""}`}</span></> : <><strong>Picked, then checked</strong><span>{label ? `${niche.site.name} sets the order and checks it against what ${W.people} report. The number on each pick is a ${niche.site.name} rating from 0 to 10.`
                 : `${niche.site.name} sets the order and checks it against what ${W.people} report, not brand claims.`}</span></>}</span></span>
               <span className="item"><svg className="ic" width="30" height="28" viewBox="0 0 30 28" aria-hidden="true" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round"><circle cx="15" cy="14" r="11"/><path d="M15 8v6l4 3"/></svg><span><strong>Updated as new feedback arrives</strong><span>The counts change as new reviews come in.</span></span></span>

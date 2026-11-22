@@ -34,6 +34,6 @@ test("How rankings work: the v3 sites' address (padel, audio, sim racing, tennis
   assert.equal(threadPath("/how-rankings-work", "/rackets", "padel"), "/thread/how-rankings");
   assert.equal(threadPath("/how-rankings-work/", "/rackets", "padel"), "/thread/how-rankings");
   assert.equal(threadPath("/how-rankings-work", "/paddles", "pickleball"), "/thread/how-rankings"); // v3 since #616
-  assert.equal(threadPath("/how-rankings-work", "/products", "skin"), null);
+  assert.equal(threadPath("/how-rankings-work", "/products", "skin"), "/thread/how-rankings"); // SkinRecs on v3
   assert.equal(threadPath("/how-we-make-these", "/rackets", "padel"), "/thread/score");
 });

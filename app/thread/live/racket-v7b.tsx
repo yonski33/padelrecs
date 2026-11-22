@@ -120,7 +120,8 @@ export function ReviewRow({ c, owner, onChange, flair }: { c: RvCard; owner: boo
   // Reddit rows: the subreddit, "r/name" (owner 2026-11-21; never "<model> owners"), else "Reddit".
   const name = c.kind === "reddit" ? subreddit(c.who) : c.who;
   // A player review with no typed name (owner 2026-11-21): "Player", then its level and side as the small grey tag.
-  const shown = name || (c.kind === "player" ? "Player" : "");
+  // SkinRecs: "Reviewer" (its `owner` word, lib/thread/words.ts); the other sites keep "Player".
+  const shown = name || (c.kind === "player" ? W.owner ? `${W.owner[0].toUpperCase()}${W.owner.slice(1)}` : "Player" : "");
   const run = async (f: () => Promise<void>, after: Changed) => { try { await f(); setErr(""); setEdit(null); onChange(after); } catch (e) { setErr(e instanceof Error ? e.message : "That didn't save."); } };
   const save = () => { if (!edit) return; const alias = c.alias ?? "";
     run(async () => { if (edit.name.trim() !== alias) await editName(rid, edit.name); if (edit.text !== null && edit.text.trim() !== c.text.trim()) await editText(rid, edit.text); },
@@ -260,7 +261,7 @@ function WebCard({ c, kind }: { c: RvCard; kind: keyof WebGroups<RvCard> }) {
       <div className="th-web-meta"><span className={`th-web-src ${WEB_SRC[kind][1]}`}>{WEB_SRC[kind][0]}</span><b>{where}</b>{c.when && <><span>·</span><Ago at={c.at || null} initial={c.when}/></>}
         {c.verdict && <span className={`th-vpill ${VERDICT[c.verdict][1]}`}>{VERDICT[c.verdict][0]}</span>}{c.version && <span className="th-pill">{c.version}</span>}</div>
       {title && <strong className="th-web-t">{title}</strong>}
-      <p className="th-web-x">{playersWord(c.text, W.person)}</p>
+      <p className="th-web-x">{playersWord(c.text, W.owner ?? W.person)}</p>
       {inThread ? <span className="th-web-in">{`in “${inThread}” `}{link}</span> : link}
     </div>
   </article>;

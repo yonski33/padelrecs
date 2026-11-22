@@ -274,7 +274,8 @@ async function skinRows(): Promise<Rows> {
   for (const r of data.listed) {
     const c = score(data, r.id), b = brand.get(r.brandId) ?? "";
     rows.set(r.id, { id: r.id, slug: r.slug, name: displayName(r.name, b), href: productHref(r), pic: photoHidden(r) ? null : shopPhoto(r) ?? amazonPhoto(r)?.image ?? null,
-      shape: r.shape, line: rowLine(r, takes.get(r.id)?.hook), best: skinBestFor(skin.profile, skin.attrs.get(r.id)), n: reports.get(r.id) ?? 0,
+      // "Owners say…" reads "Reviewers say…" (V3-ROLLOUT-BRIEF: never "owners").
+      shape: r.shape, line: ((l: string | null) => l && playersWord(l, "reviewer"))(rowLine(r, takes.get(r.id)?.hook)), best: skinBestFor(skin.profile, skin.attrs.get(r.id)), n: reports.get(r.id) ?? 0,
       pos: c.positive, mix: c.mixed, neg: c.negative, score: skin.signal(r.id), brand: b, year: r.year, levels: [], feel: null, arm: false, current: current.has(r.id),
       facets: skinFacets(skin.attrs.get(r.id)) });
   }
