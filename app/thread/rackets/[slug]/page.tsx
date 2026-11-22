@@ -55,6 +55,8 @@ import { whoPlays, weekLine } from "../../../../lib/thread/community";
 import { pickSimilar } from "../../../../lib/thread/similar-pick";
 import { communityFor } from "../../community-data";
 import { comparePairs } from "../../../../lib/compare-pairs";
+import { creatorPageOn } from "../../../../lib/thread/sites";
+import { CreatorProductBody } from "../../creator-page";
 
 export const revalidate = 86400;
 // Every listed racket's page is built with the site, as the live racket pages are (app/v/racket); none without a database (CI).
@@ -108,6 +110,8 @@ const plastics = (cards: { version?: string | null }[]) => {
 };
 
 export default async function ThreadRacket({ params }: P) {
+  // The creator page (lib/thread/sites.ts CREATOR_PAGE): products with enough creator reviews; the rest keep this page.
+  if (creatorPageOn(niche.id)) { const body = await CreatorProductBody({ slug: (await params).slug }); if (body) return body; }
   const d = await racketData((await params).slug);
   if (!d) notFound();
   const { r, row, brand, cards, lead, bullets, traits, style: engineStyle, sim, simSpecs, simSelf, line, latest, judged } = d;
