@@ -465,3 +465,12 @@ body:has(.thc) .thc .thc-pbox a.thc-cta.wide { display: block; text-align: cente
 body:has(.thc) .thc .thc-chap a { grid-template-columns: 44px minmax(0, 1fr); font-size: 14px; }
 .thc-chap a > span { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .thc-chap a > span:first-child { font-size: 14px; line-height: inherit; }
+/* Owner 2026-11-23: the middle column and the price box always end on one line, whatever the TL;DR length or shop count:
+   both stretch to the taller one; the vote box sits at the middle's bottom, the price box grows below its shops. */
+@media (min-width: 1081px) {
+  .thc-v19 .thc-hd3 { align-items: stretch; }
+  .thc-v19 .thc-hd3 .thc-photo { align-self: flex-start; }
+  .thc-v19 .thc-hd3 .thc-vbox { margin-top: auto; }
+  .thc-v19 .thc-hd3 .thc-head-r { align-self: stretch; display: flex; flex-direction: column; }
+  .thc-v19 .thc-hd3 .thc-head-r > #buy { flex: 1 1 auto; }
+}
