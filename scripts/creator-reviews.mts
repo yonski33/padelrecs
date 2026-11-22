@@ -223,7 +223,7 @@ async function main() {
     for (const r of [...built.reviews, ...built.prices, ...built.pages]) r.racket_id = bySlug.get(r.slug)!.id;
     for (const r of built.reviews) r.id = id("cr", r.racket_id, r.url);
     const withKp = Object.keys(inp.keyPoints).length > 0;
-    if (withKp) for (const r of built.reviews) r.key_point = inp.keyPoints[r.id] ?? null;
+    if (withKp) for (const r of built.reviews) r.key_point = inp.keyPoints[r.id as string] ?? null;
     for (const r of built.prices) r.id = id("cp", r.racket_id, r.url);
     // One row per (product, url): a duplicate inside the files is a data problem, reported and the first kept.
     const seen = new Set<string>(), dups: string[] = [];
@@ -256,7 +256,7 @@ async function main() {
     }
     console.log("TOTAL".padEnd(42), String(totals.yt).padStart(3), String(totals.blog).padStart(4), String(totals.tt).padStart(3), " |", String(totals.counted).padStart(7), " |", "".padStart(11), " |", String(totals.prices).padStart(6));
     console.log(`\nRows: creator_pages ${built.pages.length}, creator_reviews ${built.reviews.length}, creator_prices ${built.prices.length}`);
-    console.log(`Pages with tldr: ${built.pages.filter(p => p.tldr).length}; scores shown ${built.reviews.filter(r => r.score_value != null && !r.score_hidden).length}, hidden ${built.reviews.filter(r => r.score_hidden).length}; brand ties ${built.reviews.filter(r => r.brand_tie).length}; editions ${built.reviews.filter(r => r.edition).length}`);
+    console.log(`Pages with tldr: ${built.pages.filter(p => (p as Row).tldr).length}; scores shown ${built.reviews.filter(r => r.score_value != null && !r.score_hidden).length}, hidden ${built.reviews.filter(r => r.score_hidden).length}; brand ties ${built.reviews.filter(r => r.brand_tie).length}; editions ${built.reviews.filter(r => r.edition).length}`);
     console.log(`Skipped from files: ${built.skipped.length}`); for (const s of built.skipped) console.log("  -", s);
     if (dups.length) { console.log(`Duplicates in files (first kept): ${dups.length}`); for (const d of dups) console.log("  -", d); }
     console.log(`No channel link (video link used instead): ${noChannel.length}`, noChannel.map(r => `${r.creator}`).filter((v, i, a) => a.indexOf(v) === i).join(", "));
