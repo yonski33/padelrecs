@@ -64,8 +64,12 @@ async function loadInputs() {
     .map(async f => JSON.parse(await readFile(join(tiktokDir, f), "utf8"))));
   const prices = JSON.parse(await readFile(need("prices"), "utf8"));
   const fixture: Fixture | null = flag("fixture") ? JSON.parse(await readFile(flag("fixture")!, "utf8")) : null;
+  // Glance-table key points (0040): out/batch-*.json files of { "<review id>": "<line>" }, written from the verified fields.
+  const keyPoints: Record<string, string> = {};
+  if (flag("key-points")) for (const f of (await readdir(flag("key-points")!)).filter(f => f.endsWith(".json")))
+    Object.assign(keyPoints, JSON.parse(await readFile(join(flag("key-points")!, f), "utf8")));
   const channels: Record<string, string> = flag("channels") ? JSON.parse(await readFile(flag("channels")!, "utf8")) : {};
-  return { staging, verified, tiktok, prices, fixture, channels };
+  return { staging, verified, tiktok, prices, fixture, channels, keyPoints };
 }
 
 /** Every row the files describe, by product slug (resolved to racket ids later). */
@@ -157,11 +161,23 @@ function copyProblems(rows: Row[]) {
   return out;
 }
 
-const REVIEW_COLS = ["id", "racket_id", "url", "platform", "review_type", "creator", "channel_url", "handle", "same_channel_as", "language",
+const REVIEW_COLS_BASE = ["id", "racket_id", "url", "platform", "review_type", "creator", "channel_url", "handle", "same_channel_as", "language",
   "published_on", "duration_s", "video_id", "thumbnail_url", "stance", "summary", "summary_more", "summary_short", "highlights", "stood_out",
   "trade_off", "compared_to", "quote", "quote_at_s", "chapters", "attributes", "tags", "score_value", "score_scale", "score_label",
   "score_hidden", "measured", "also_url", "version", "edition", "note", "brand_tie", "disclosure", "evidence_note", "check_result", "status",
   "source", "created_at", "updated_at"];
+/** Rules for the glance-table line (owner 2026-11-22). */
+export function keyPointProblems(line: string) {
+  const out: string[] = [], words = line.trim().split(/\s+/).length;
+  if (words < 6 || words > 12) out.push(`${words} words`);
+  if (line.length > 70) out.push(`${line.length} chars`);
+  if (!/\.$/.test(line)) out.push("no final period");
+  if (/[—–]/.test(line)) out.push("dash");
+  if (/\bverdict\b/i.test(line)) out.push("verdict");
+  if (/\b(we|us|our|I|he|she|his|her)\b/.test(line)) out.push("pronoun");
+  if (/\b(owners?|creators?)\b/i.test(line)) out.push("owners/creators");
+  return out;
+}
 const PRICE_COLS = ["id", "racket_id", "shop", "url", "price", "currency", "in_stock", "edition", "listing_title", "affiliate", "affiliate_note",
   "source", "checked_at", "status"];
 const PAGE_COLS = ["racket_id", "tldr", "group_pos", "group_mix", "group_neg", "status", "updated_at"];
@@ -187,10 +203,11 @@ async function main() {
     }
     if (cmd === "migrate") {
       if (!has("owner-ok")) throw new Error("migrate needs --owner-ok (the owner's typed OK in the session, after a backup).");
-      const sql = forSchema(await readFile("drizzle/0039_creator_reviews.sql", "utf8"), S);
+      const file = flag("file") ?? "drizzle/0039_creator_reviews.sql";
+      const sql = forSchema(await readFile(file, "utf8"), S);
       await client.begin(async tx => { for (const st of sql.split("--> statement-breakpoint")) if (st.trim()) await tx.unsafe(st); });
       const t = await client`select table_name from information_schema.tables where table_schema = ${S} and table_name like 'creator_%' order by 1`;
-      console.log(`0039 applied to ${S}:`, t.map(x => x.table_name).join(", "));
+      console.log(`${file} applied to ${S}:`, t.map(x => x.table_name).join(", "));
       return;
     }
     if (cmd !== "import") throw new Error("Usage: backup <dir> | migrate --owner-ok | import [--apply] ...");
@@ -205,11 +222,20 @@ async function main() {
     if (missing.length) throw new Error(`Slugs not in ${S}.rackets: ${missing.join(", ")}`);
     for (const r of [...built.reviews, ...built.prices, ...built.pages]) r.racket_id = bySlug.get(r.slug)!.id;
     for (const r of built.reviews) r.id = id("cr", r.racket_id, r.url);
+    const withKp = Object.keys(inp.keyPoints).length > 0;
+    if (withKp) for (const r of built.reviews) r.key_point = inp.keyPoints[r.id] ?? null;
     for (const r of built.prices) r.id = id("cp", r.racket_id, r.url);
     // One row per (product, url): a duplicate inside the files is a data problem, reported and the first kept.
     const seen = new Set<string>(), dups: string[] = [];
     built.reviews = built.reviews.filter(r => { const k = `${r.racket_id}|${r.url}`; if (seen.has(k)) { dups.push(`${r.slug} ${r.creator} ${r.url}`); return false; } seen.add(k); return true; });
     const problems = copyProblems([...built.reviews, ...built.pages]);
+    if (withKp) {
+      const missingKp = built.reviews.filter(r => !r.key_point);
+      if (missingKp.length) problems.push(`no key point: ${missingKp.length} rows (${missingKp.slice(0, 5).map(r => r.id).join(", ")})`);
+      for (const r of built.reviews) if (r.key_point) for (const p of keyPointProblems(r.key_point as string)) problems.push(`key point ${p}: ${r.id} ${r.key_point}`);
+      const known = new Set(built.reviews.map(r => r.id)), stray = Object.keys(inp.keyPoints).filter(k => !known.has(k));
+      if (stray.length) problems.push(`key points for unknown ids: ${stray.join(", ")}`);
+    }
     const bad = built.reviews.filter(r => !r.stance || !r.summary || !["youtube", "blog", "tiktok"].includes(r.platform as string));
     const noChannel = built.reviews.filter(r => !r.channel_url);
 
@@ -246,6 +272,11 @@ async function main() {
       console.log(`In DB now: ${cur.length} reviews; would insert ${built.reviews.filter(r => !cur.some(c => c.id === r.id)).length}, update ${built.reviews.filter(r => cur.some(c => c.id === r.id)).length}; in DB but not in files (left alone): ${stale.length}`);
     } else console.log("creator_* tables do not exist yet (0039 not applied): nothing compared.");
 
+    if (withKp && flag("kp-samples")) {
+      const n = Number(flag("kp-samples")), step = Math.max(1, Math.floor(built.reviews.length / n));
+      console.log(`\nKey point samples (${n}):`);
+      for (let i = 0; i < n; i++) { const r = built.reviews[i * step]!; console.log(`  ${r.slug.padEnd(38)} ${String(r.platform).padEnd(7)} ${String(r.creator).slice(0, 24).padEnd(24)} ${r.key_point}`); }
+    }
     if (has("samples")) {
       const pick = [built.reviews.find(r => r.platform === "youtube" && r.slug.startsWith("joola")), built.reviews.find(r => r.platform === "blog"), built.reviews.find(r => r.platform === "tiktok" && r.edition)];
       for (const s of pick) console.log("\nSAMPLE", JSON.stringify(s, null, 1));
@@ -267,6 +298,7 @@ async function main() {
       };
       // Page lines written later by hand are never cleared by a re-import (null in the files keeps the DB value).
       await up("creator_pages", PAGE_COLS, ["racket_id"], built.pages, [], true);
+      const REVIEW_COLS = withKp ? [...REVIEW_COLS_BASE, "key_point"] : REVIEW_COLS_BASE;
       await up("creator_reviews", REVIEW_COLS, ["racket_id", "url"], built.reviews, ["id", "created_at"]);
       await up("creator_prices", PRICE_COLS, ["racket_id", "url"], built.prices, ["id"]);
     });
