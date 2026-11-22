@@ -8,10 +8,12 @@ import { v3Site } from "../../lib/thread/sites";
 import { threadRows } from "./data";
 import { onePerChannel, videoOf } from "../../lib/youtube-pick";
 import { redditPick, subOf } from "../../lib/reddit-cards";
-import { shortQuote } from "../../lib/thread/web-sources";
+import { shortQuote, threadTitle } from "../../lib/thread/web-sources";
 import { pickChips, type VideoMeta } from "../../lib/thread/video-meta";
 import { webV2Site } from "../../lib/thread/sites";
 import padelVideos from "../../db/video-meta/padel.json";
+import padelThreads from "../../db/reddit-titles/padel.json";
+import { threadLinkText } from "../../lib/thread/reddit-titles";
 import { plainSummary } from "../../lib/plain-summary";
 import { padelWords } from "../../lib/content-consistency";
 import { isComplete } from "../../lib/complete-text";
@@ -41,6 +43,7 @@ export type RvCard = { /** A player review's typed name ("" when none), for the 
    *  for the v2 web section's bold headline, else null. */ head?: string | null;
   /** YouTube videos (the v2 web section): the length in seconds and up to three of the channel's own chapters for this
    *  racket (lib/thread/video-meta.ts pickChips), from db/video-meta. */ len?: number | null; chips?: [number, string][];
+  /** Reddit cards on v2 sites: the link line, the thread's real title (lib/thread/reddit-titles.ts). */ thread?: string;
   /** A player review with no typed name: its level and side as reviewer info ("Intermediate · right side"), else null. */ info?: string | null };
 const DG = niche.id === "discgolf", SKIN = niche.id === "skin", SR = niche.id === "simracing";
 /** DiscGolfRecs' trait names (lib/discgolf-fit.ts, the shown ones: Easy to throw, Distance, Accuracy, Glide, Wind), not padel's. */
@@ -52,6 +55,8 @@ const host = (u: string) => { try { return new URL(u).hostname.replace(/^www\./,
 const SOCIAL = /(^|\.)(t\.me|telegram\.org|facebook\.com|instagram\.com|x\.com|twitter\.com|reddit\.com|tiktok\.com|discord\.(gg|com))$/;
 /** Each site's stored video lengths and chapters (scripts/video-meta-build.mts); a site not here shows neither. */
 const VIDEO_META: Record<string, Record<string, VideoMeta>> = { padel: (padelVideos as unknown as { videos: Record<string, VideoMeta> }).videos };
+/** Each site's real Reddit thread titles (scripts/reddit-titles-build.mts); a site not here keeps the slug titles. */
+const THREAD_TITLES: Record<string, Record<string, string>> = { padel: (padelThreads as { titles: Record<string, string> }).titles };
 const shortEnglish = (t?: string | null) => !!t && t.length >= 30 && t.length <= 320 && /^[\x00-\x7F’‘“”–…é]+$/.test(t);
 
 export async function racketData(slug: string) {
@@ -66,6 +71,7 @@ export async function racketData(slug: string) {
   const external = ctx.data.external.filter(e => e.racketId === r.id);
   // The v2 web section's video length and chapter chips (db/video-meta): a comment under a video gets the length only.
   const metas = webV2Site(niche.id) ? VIDEO_META[niche.id] : undefined, brandNames = ctx.data.brands.map(b => b.name);
+  const threads = webV2Site(niche.id) ? THREAD_TITLES[niche.id] : undefined;
   const videoExtras = (url: string) => { const v = vid(url), m = v ? metas?.[v] : undefined;
     return m ? { len: m.d, chips: /[?&]lc=/.test(url) ? [] : pickChips(m.ch, r.name, brandNames) } : {}; };
 
@@ -101,7 +107,7 @@ export async function racketData(slug: string) {
     })(),
     ...redditPick(ctx.data.external, r.id).map(({ row: e, text }) => ({ id: `w-${e.id}`, kind: "reddit" as const, who: subOf(e.sourceUrl, e.sourceName), meta: null, verdict: e.sentiment ?? null,
       at: e.sourceDate ?? "", when: ago(e.sourceDate, now), text: padelWords(text), quote: false, url: e.sourceUrl, video: null, helpful: (e as { helpful?: number }).helpful ?? 0,
-      head: shortQuote(e.excerpt, e.sourceLanguage) })),
+      head: shortQuote(e.excerpt, e.sourceLanguage), ...(threads ? { thread: threadLinkText(e.sourceUrl, threads, threadTitle) } : {}) })),
   ].sort((a, b) => b.at.localeCompare(a.at));
   // DiscGolfRecs: each review's plastic (review_variant, PR #256) as its version chip; other sites carry none.
   const plastic = niche.id === "discgolf" ? new Map<string, string>([

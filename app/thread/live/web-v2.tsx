@@ -40,7 +40,7 @@ function Row({ c, kind }: { c: RvCard; kind: keyof WebGroups<RvCard> }) {
   // Reddit and blogs: the source tile, then a bold headline. A real short quote from the source when one is stored, in quote
   // marks with the summary under it; otherwise the summary itself is the headline, without quote marks.
   const reddit = tab === "reddit", title = reddit ? threadTitle(c.url) : null;
-  const link = c.url && <a className="th-wv-go" href={c.url} {...OUT}>{reddit ? `${title ?? "View on Reddit"} ↗` : "Read the review ↗"}</a>;
+  const link = c.url && <a className="th-wv-go" href={c.url} {...OUT}>{reddit ? `${c.thread ?? title ?? "View the thread on Reddit"} ↗` : "Read the review ↗"}</a>;
   return <article id={`rv-${c.id}`} className="th-wv-row">
     <div className={`th-wv-tile ${reddit ? "r" : "bl"}`}>
       <span className={`th-web-src ${reddit ? "r" : "bl"}`}>{reddit ? "r/ Reddit" : "Blog"}</span>
