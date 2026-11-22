@@ -53,7 +53,7 @@ export const padelListData = cache(async () => {
   for (const r of rows) count.set(r.brand, (count.get(r.brand) ?? 0) + 1);
   const brands = [...count].filter(([b]) => b).sort((a, b) => b[1] - a[1]).map(([b]) => b);
   const tc = ctx ? await traitCounts() : null;
-  const pills = Object.fromEntries(rows.flatMap(r => { const p = tc ? votePill(Object.fromEntries(TRAIT_GROUPS.map(g => [g.key, traitGroup(tc, r.id, g.key)])), W.people, AUDIO ? AUDIO_PILL_LABELS : SR ? SIMRACING_PILL_WORDS : TN ? TENNIS_PILL_WORDS : PB ? PICKLEBALL_PILL_WORDS : DG ? DISCGOLF_PILL_LABELS : SKIN ? SKIN_PILL_WORDS : PILL_WORDS, AUDIO ? AUDIO_PILL_LABELS : SR ? SIMRACING_PILL_LABELS : TN ? TENNIS_PILL_LABELS : PB ? PICKLEBALL_PILL_LABELS : DG ? DISCGOLF_PILL_LABELS : PILL_LABELS) : null; return p ? [[r.id, p]] : []; }));
+  const pills = Object.fromEntries(rows.flatMap(r => { const p = tc ? votePill(Object.fromEntries(TRAIT_GROUPS.map(g => [g.key, traitGroup(tc, r.id, g.key)])), W.people, AUDIO ? AUDIO_PILL_LABELS : SR ? SIMRACING_PILL_WORDS : TN ? TENNIS_PILL_WORDS : PB ? PICKLEBALL_PILL_WORDS : DG ? DISCGOLF_PILL_LABELS : SKIN ? SKIN_PILL_WORDS : PILL_WORDS, AUDIO ? AUDIO_PILL_LABELS : SR ? SIMRACING_PILL_LABELS : TN ? TENNIS_PILL_LABELS : PB ? PICKLEBALL_PILL_LABELS : DG ? DISCGOLF_PILL_LABELS : SKIN ? SKIN_PILL_LABELS : PILL_LABELS) : null; return p ? [[r.id, p]] : []; }));
   const listed = new Map((ctx?.data.listed ?? []).map(x => [x.id, x]));
   const added = Object.fromEntries(rows.map(r => [r.id, listed.get(r.id)?.createdAt ?? ""]));
   const bySlug = new Map(rows.map(r => [r.slug, r.id])), curated = AUDIO || SR || TN || DG || SKIN ? [] : curatedOrder().flatMap(s => bySlug.get(s) ?? []);

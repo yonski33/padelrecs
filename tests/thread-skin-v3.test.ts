@@ -44,3 +44,14 @@ test("the skin look stays its own: skin-v3.css is scoped to .th-skin and has no 
   for (const rule of css.split("}").map(r => r.trim()).filter(Boolean)) assert.match(rule.split("{")[0], /\.th-skin/, rule);
   assert.doesNotMatch(css, /background:\s*var\(--ink\)/);
 });
+
+test("skin pills: every placeholder word has a label, and each page that uses skin's words passes skin's labels", async () => {
+  const { SKIN_PILL_WORDS, SKIN_PILL_LABELS } = await import("../lib/thread/vote-pill");
+  for (const [g, words] of Object.entries(SKIN_PILL_WORDS)) for (const [k, w] of Object.entries(words))
+    if (w === "x") assert.ok(SKIN_PILL_LABELS[g]?.[k], `${g}.${k} has a label`);
+  const { readFileSync } = await import("node:fs");
+  for (const f of ["app/thread/padel-list-data.ts", "app/thread/rackets/[slug]/page.tsx", "app/thread/rankings/[slug]/page.tsx", "app/compare/compare-v3.tsx"]) {
+    const src = readFileSync(f, "utf8");
+    if (src.includes("SKIN_PILL_WORDS")) assert.ok(/SKIN \? SKIN_PILL_LABELS|SKIN_PILL_WORDS, SKIN_PILL_LABELS/.test(src), `${f} passes SKIN_PILL_LABELS`);
+  }
+});
