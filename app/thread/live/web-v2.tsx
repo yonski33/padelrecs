@@ -4,12 +4,14 @@
 // thumbnail, or a Reddit / blog tile with the source and date; then a headline and the summary; the sentiment on the right.
 // WEB_V2_FIRST rows, then "Showing 6 of N" and "Show N more ↓". Filtering is in the browser, on the cards the page already
 // has, so the page's ISR cache is untouched. Display only: none of it counts in the poll or the opinion counts.
-// No chapter chips yet (phase 2): nothing stored has video chapters or timed transcripts, and timestamps are never made up.
+// Video length and chapter chips come from YouTube itself (db/video-meta, lib/thread/video-meta.ts): the channel's own chapters,
+// never made up or retimed; a video without them shows none.
 import { useEffect, useMemo, useState } from "react";
 import { W } from "../../../lib/thread/words";
 import { subreddit } from "../../../lib/thread/display-name";
 import { VERDICT } from "../ui";
 import type { RvCard } from "../racket-data";
+import { atSecond, clock } from "../../../lib/thread/video-meta";
 import { dayLabel, isVideoComment, playersWord, tabOf, threadTitle, thumbOf, WEB_TABS, WEB_V2_FIRST, webList, webTabs,
   type WebGroups, type WebTab } from "../../../lib/thread/web-sources";
 
@@ -22,12 +24,15 @@ function Row({ c, kind }: { c: RvCard; kind: keyof WebGroups<RvCard> }) {
     const thumb = thumbOf(c.url), comment = isVideoComment(c.url);
     return <article id={`rv-${c.id}`} className="th-wv-row">
       {thumb && c.url ? <a className="th-wv-thumb" href={c.url} {...OUT} aria-label={`Watch on YouTube: ${c.who}`}>
-        <img src={thumb} alt="" loading="lazy" width={320} height={180}/><span className="play" aria-hidden="true"/></a>
+        <img src={thumb} alt="" loading="lazy" width={320} height={180}/><span className="play" aria-hidden="true"/>
+        {c.len ? <span className="th-wv-len">{clock(c.len)}</span> : null}</a>
         : <span className="th-wv-thumb none" aria-hidden="true"/>}
       <div className="th-wv-b">
         <div className="th-wv-meta"><span className="th-web-src yt">▶ YouTube</span><b>{c.who}</b>
           {comment && <span>viewer comment</span>}{day && <span>{day}</span>}</div>
         <p className="th-wv-x lg">{text}</p>
+        {c.url && c.chips && c.chips.length > 0 && <div className="th-wv-chips">{c.chips.map(([sec, t]) =>
+          <a key={sec} className="th-wv-chip" href={atSecond(c.url!, sec)} {...OUT} aria-label={`Watch from ${clock(sec)}: ${t}`}><b>{clock(sec)}</b>{t}</a>)}</div>}
         {c.version && <span className="th-pill th-wv-ver">{c.version}</span>}
       </div>{tag}
     </article>;
@@ -35,7 +40,7 @@ function Row({ c, kind }: { c: RvCard; kind: keyof WebGroups<RvCard> }) {
   // Reddit and blogs: the source tile, then a bold headline. A real short quote from the source when one is stored, in quote
   // marks with the summary under it; otherwise the summary itself is the headline, without quote marks.
   const reddit = tab === "reddit", title = reddit ? threadTitle(c.url) : null;
-  const link = c.url && <a className="th-wv-go" href={c.url} {...OUT}>{reddit ? `${title ?? "View on Reddit"} ↗` : "Read the review ↗"}</a>;
+  const link = c.url && <a className="th-wv-go" href={c.url} {...OUT}>{reddit ? `${c.thread ?? title ?? "View the thread on Reddit"} ↗` : "Read the review ↗"}</a>;
   return <article id={`rv-${c.id}`} className="th-wv-row">
     <div className={`th-wv-tile ${reddit ? "r" : "bl"}`}>
       <span className={`th-web-src ${reddit ? "r" : "bl"}`}>{reddit ? "r/ Reddit" : "Blog"}</span>
