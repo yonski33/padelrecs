@@ -457,3 +457,11 @@ body:has(.thc) .thc .thc-pbox a.thc-cta.wide { display: block; text-align: cente
 .thc-fit-sep { flex: none; width: 2px; height: 24px; background: var(--ink); margin: 0 6px; }
 .thc-fit.bar .thc-arm { flex: none; margin-left: 6px; }
 @media (max-width: 1000px) { .thc-fit.bar .thc-fit-line { flex-wrap: wrap; } }
+/* Chapters (owner 2026-11-23): collapsed to "▸ N chapters" under the thumbnail; opened, one line each, long titles cut. */
+.thc-chap { gap: 4px; padding: 8px 12px; }
+.thc .thc-chap-t { all: unset; cursor: pointer; font-size: 14px; font-weight: 700; color: var(--ink); }
+.thc .thc-chap-t:focus-visible { outline: 2px solid var(--ink); outline-offset: 2px; }
+.thc-chap.open { gap: 6px; }
+body:has(.thc) .thc .thc-chap a { grid-template-columns: 44px minmax(0, 1fr); font-size: 14px; }
+.thc-chap a > span { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.thc-chap a > span:first-child { font-size: 14px; line-height: inherit; }

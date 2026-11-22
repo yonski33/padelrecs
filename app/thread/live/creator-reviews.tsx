@@ -15,7 +15,7 @@ import { SOURCE_COLOR, STANCE_LABEL, cardChips, initials, langCode, marks, measu
   stanceCounts, type CreatorReview, type ReviewEntry, type Stance } from "../../../lib/thread/creators";
 
 const OUT = { target: "_blank", rel: "noopener nofollow" } as const;
-const CHAPTERS = 5;
+
 const TYPE_TAG: Record<CreatorReview["type"], string | null> = { review: null, comparison: "Comparison", "long-term": null };
 const DOT: Record<Stance | "all", string> = { all: "#171717", pos: "#62C878", mix: "#F0D16B", neg: "#F0796A" };
 const SOURCES: [CreatorReview["kind"], string][] = [["youtube", "YouTube"], ["blog", "Blog"], ["tiktok", "TikTok"]];
@@ -30,13 +30,14 @@ function Card({ x, lit }: { x: ReviewEntry; lit: boolean }) {
   const [open, setOpen] = useState(false);
   const tt = x.kind === "tiktok", measured = measuredLine(x.measured);
   const thumb = x.kind === "youtube" ? thumbOf(x.url) : null;
-  const chapters = open ? x.chapters : x.chapters.slice(0, CHAPTERS), hidden = x.chapters.length - chapters.length;
+  // Chapters collapsed by default (owner 2026-11-23): "▸ N chapters" under the thumbnail opens the full list.
+  const [chOpen, setChOpen] = useState(false);
   // Video summaries (YouTube, TikTok; owner 2026-11-22): about three sentences before Read more, at most two marked
   // phrases, the rest of the summary after it. Blog cards keep their whole summary.
   const vid = x.kind === "youtube" || x.kind === "tiktok";
   const [lead, rest] = vid ? leadSentences(x.summary, 3) : [x.summary, ""];
   const hl = vid ? x.highlights.slice(0, 2) : x.highlights;
-  const more = !!rest || !!x.more || !!measured || hidden > 0 || !!x.alsoUrl;
+  const more = !!rest || !!x.more || !!measured || !!x.alsoUrl;
   const toggle = <button type="button" className="thc-more" aria-expanded={open} onClick={() => setOpen(!open)}>{open ? "Show less" : "Read more"}</button>;
   const tags = [TYPE_TAG[x.type], x.note, x.version].filter((t): t is string => !!t);
   const boxes = ([["+", "Stood out", x.stood, "pos"], ["−", "The trade-off", x.trade, "neg"], ["⇄", "Compared to", x.compared, "cmp"]] as
@@ -50,9 +51,9 @@ function Card({ x, lit }: { x: ReviewEntry; lit: boolean }) {
       <a className="thc-thumb" href={x.url} {...OUT} aria-label={`Watch on YouTube: ${x.creator}`}>
         <img src={thumb} alt="" loading="lazy" width={320} height={200}/><span className="play" aria-hidden="true"/>
         {x.len ? <span className="len">{clock(x.len)}</span> : null}</a>
-      {x.chapters.length > 0 && <div className="thc-chap"><strong>Chapters</strong>{chapters.map(([s, t]) =>
-        <a key={s} href={atSecond(x.url, s)} {...OUT}><span aria-hidden="true">▶</span><strong>{clock(s)}</strong><span>{t}</span></a>)}
-        {hidden > 0 && <button type="button" className="thc-more sm" onClick={() => setOpen(true)}>{`+${hidden} more`}</button>}</div>}
+      {x.chapters.length > 0 && <div className={`thc-chap${chOpen ? " open" : ""}`}>
+        <button type="button" className="thc-chap-t" aria-expanded={chOpen} onClick={() => setChOpen(o => !o)}>{`${chOpen ? "▾" : "▸"} ${x.chapters.length} chapter${x.chapters.length === 1 ? "" : "s"}`}</button>
+        {chOpen && x.chapters.map(([s, t]) => <a key={s} href={atSecond(x.url, s)} {...OUT} title={t}><strong>{clock(s)}</strong><span>{t}</span></a>)}</div>}
     </div>}
     {/* TikTok: a plain 9:16 tile (TikTok's oEmbed gives no cover) where the thumbnail sits. */}
     {tt && <div className="thc-media thc-tt-m">
