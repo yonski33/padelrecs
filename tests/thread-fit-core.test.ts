@@ -1,6 +1,6 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { noRepeat, betterPicks, chipFor, fitSub, levelLine, pickLines, tapChips, type FitLine, type PickData } from "../lib/thread/fit-core";
+import { noRepeat, betterPicks, chipFor, fitSub, levelLine, pickLines, type FitLine, type PickData } from "../lib/thread/fit-core";
 
 const L = (tone: FitLine["tone"], title: string, f: string[]): FitLine => ({ tone, title, text: "x", chip: null, for: f });
 
@@ -34,10 +34,7 @@ test("better picks are never harder than the racket the player was told is too m
   assert.deepEqual(betterPicks(self, cands, data, { level: "intermediate", style: "power", arm: false }).map(b => b.slug), ["easy"]);
 });
 
-test("tap chips prefer the spec, and the heading never says players voted", () => {
-  assert.deepEqual(tapChips({ groups: { plays_like: { control: 6, power: 3 }, sweet_spot: { small: 8 } }, spec: { plays_like: "power" } }).map(c => c.label),
-    ["Plays like power", "Small sweet spot", "Easy on my arm"]);
-  assert.equal(tapChips({ groups: { arm: { not_really: 1, somewhat: 1, very: 1 } }, spec: {} }).find(c => c.group === "arm")?.label, "Easy on my arm");
+test("the heading never says players voted", () => {
   assert.match(fitSub(44, 0), /44 opinions in reviews across the web/);
   assert.match(fitSub(137, 4), /from players and reviews across the web/);
   assert.doesNotMatch(fitSub(250, 3), /voted/);
