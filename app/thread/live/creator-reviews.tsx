@@ -7,12 +7,17 @@
 import { useMemo, useState } from "react";
 import { atSecond, clock } from "../../../lib/thread/video-meta";
 import { dayLabel, thumbOf } from "../../../lib/thread/web-sources";
-import { ATTRS, STANCE_LABEL, initials, langCode, measuredLine, platform, scoreText, sortReviews, splitSummary, stanceCounts,
-  wordTone, type CreatorReview, type Stance } from "../../../lib/thread/creators";
+import { STANCE_LABEL, avatarHue, cardChips, initials, langCode, measuredLine, platform, scoreText, sortReviews, splitSummary,
+  stanceCounts, type CreatorReview, type Stance } from "../../../lib/thread/creators";
 
 const OUT = { target: "_blank", rel: "noopener nofollow" } as const;
 const CHAPTERS = 5;
 const TYPE_TAG: Record<CreatorReview["type"], string | null> = { review: null, comparison: "Comparison", "long-term": null };
+
+/** The creator's initials on a steady colour (the mock's round avatars). */
+export function Avatar({ name }: { name: string }) {
+  return <span className="thc-av" style={{ background: `oklch(0.62 0.13 ${avatarHue(name)})` }} aria-hidden="true">{initials(name)}</span>;
+}
 
 function Card({ x }: { x: CreatorReview }) {
   const [open, setOpen] = useState(false);
@@ -23,13 +28,13 @@ function Card({ x }: { x: CreatorReview }) {
   const tags = [TYPE_TAG[x.type], x.note, x.version].filter((t): t is string => !!t);
   const boxes = ([["Stood out", x.stood, "pos"], ["Trade-off", x.trade, "neg"], ["Compared to", x.compared, "cmp"]] as [string, string | null, string][])
     .filter((b): b is [string, string, string] => !!b[1]);
-  const day = dayLabel(x.date);
+  const day = dayLabel(x.date), chips = cardChips(x.attrs);
   return <article id={`cr-${x.id}`} className="th-card thc-card">
     <div className="thc-card-b">
       <div className="thc-card-top">
-        <span className="thc-av" aria-hidden="true">{initials(x.creator)}</span>
+        <Avatar name={x.creator}/>
         <span className="thc-by"><a href={x.channel} {...OUT}><b>{x.creator}</b></a>
-          <small>{[platform(x), day, x.len ? clock(x.len) : null, langCode(x.lang)].filter(Boolean).join(" · ")}</small></span>
+          <small>{[platform(x), day, x.len ? clock(x.len) : null].filter(Boolean).join(" · ")}<span className="thc-lang">{langCode(x.lang)}</span></small></span>
         <span className={`th-vpill ${x.stance}`}>{STANCE_LABEL[x.stance]}</span>
       </div>
       {(tags.length > 0 || x.score || x.tie) && <div className="thc-tags">
@@ -44,11 +49,10 @@ function Card({ x }: { x: CreatorReview }) {
       <p className="thc-sum">{short}{open && rest && <> {rest}</>}</p>
       {open && measured && <p className="thc-measured">{`Measured by the creator: ${measured}`}</p>}
       {open && x.alsoUrl && <a className="thc-go" href={x.alsoUrl} {...OUT}>Their written review ↗</a>}
-      <div className="thc-chips">{ATTRS.filter(([k]) => x.attrs[k]).map(([k, l]) => <span key={k} className="thc-chip"><small>{l}</small>
-        <span className={`thc-w ${wordTone(x.attrs[k])}`}>{x.attrs[k]}</span></span>)}</div>
+      {chips.length > 0 && <div className="thc-tags">{chips.map(c => <span key={c.text} className={`thc-pm ${c.tone}`}>{`${c.tone === "pos" ? "+" : "−"} ${c.text}`}</span>)}</div>}
       <div className="thc-card-f">
         {more && <button type="button" className="thc-more" aria-expanded={open} onClick={() => setOpen(!open)}>{open ? "Show less" : "Read more"}</button>}
-        <a className="thc-go" href={x.url} {...OUT}>{x.kind === "youtube" ? "Watch on YouTube ↗" : "Read the full review ↗"}</a>
+        <a className="thc-go" href={x.url} {...OUT}>{x.kind === "youtube" ? <><span className="thc-yt" aria-hidden="true"/>Watch on YouTube ↗</> : "Read the full review ↗"}</a>
       </div>
     </div>
     <div className="thc-media">
@@ -71,12 +75,12 @@ export function CreatorReviews({ reviews }: { reviews: CreatorReview[] }) {
     .filter(c => c[2] > 0);
   return <section id="reviews" className="thc-reviews">
     <div className="thc-rv-h">
-      <div><h2 className="th-h2">{`Creator reviews · ${reviews.length}`}</h2><span className="thc-sub">Summaries of YouTube and blog reviews. Open the original for the full details.</span></div>
+      <div><h2 className="th-h2">{`Creator reviews · ${reviews.length}`}</h2><span className="thc-sub">Summaries from YouTube and blogs. Watch or read the original for the full details.</span></div>
       <label className="thc-sort"><span>Sort</span><select value={by} onChange={e => setBy(e.target.value as "stance" | "newest")}>
-        <option value="stance">Loved it first</option><option value="newest">Newest</option></select></label>
+        <option value="stance">Most relevant</option><option value="newest">Newest</option></select></label>
     </div>
-    <div className="th-wv-tabs thc-tabs" role="group" aria-label="Filter by take">{chips.map(([k, l, c]) =>
-      <button key={k} type="button" aria-pressed={only === k} onClick={() => setOnly(k)}>{`${l} (${c})`}</button>)}</div>
+    <div className="thc-tabs" role="group" aria-label="Filter by take">{chips.map(([k, l, c]) =>
+      <button key={k} type="button" aria-pressed={only === k} onClick={() => setOnly(k)}>{k !== "all" && <span className={`th-sdot ${k}`}/>}{`${l} (${c})`}</button>)}</div>
     {list.map(x => <Card key={x.id} x={x}/>)}
   </section>;
 }
