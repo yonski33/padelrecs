@@ -20,13 +20,13 @@ export function CompactFit({ id, title, sub, bar = false }: { id: string; title:
   const adv = useMemo(() => fit && payload && fit.verdict.kind !== "thin" ? adviceFor(payload, picks, id, fit.pct) : null, [fit, payload, picks, id]);
   const reason = adv?.line ?? fit?.verdict.reasons[0] ?? null;
   const tone = fit?.pct == null ? "" : fit.pct >= 85 ? " g" : fit.pct >= 70 ? " y" : " r";
-  const levels = LEVEL_OPTS.map(v => <button key={v} type="button" className="thc-chip" aria-pressed={picks.level === v} onClick={() => set({ level: picks.level === v ? null : v })}>{!bar && LEVEL_ICON[v]}{LEVEL_WORD[v]}</button>);
+  const levels = LEVEL_OPTS.map(v => <button key={v} type="button" className="thc-chip" aria-pressed={picks.level === v} onClick={() => set({ level: picks.level === v ? null : v })}>{LEVEL_ICON[v]}{LEVEL_WORD[v]}</button>);
   const styles = STYLE_OPTS.map(v => <button key={v} type="button" className="thc-chip" aria-pressed={picks.style === v} onClick={() => set({ style: picks.style === v ? null : v })}>{styleLabel(v)}</button>);
   const arm = <label className="thc-arm"><input type="checkbox" checked={picks.arm} onChange={() => set({ arm: !picks.arm })}/><span>Arm comfort</span></label>;
   return <section className={`thc-box1 thc-fit${bar ? " bar" : ""}`}>
-    {bar ? <div className="thc-fit-line"><h2>{title}</h2>
-      <span className="thc-fit-grp"><b>{"I'm"}</b><span className="thc-seg">{levels}</span></span>
-      <span className="thc-fit-grp"><b>I want</b><span className="thc-seg">{styles}</span></span>{arm}</div> : <>
+    {/* The home's quick-match row (owner 2026-11-23): separate chips with icons, a thin divider, all on one line. */}
+    {bar ? <><h2>{title}</h2><div className="thc-fit-line">
+      <b>{"I'm"}</b>{levels}<span className="thc-fit-sep" aria-hidden="true"/><b>I want</b>{styles}{arm}</div></> : <>
     <h2>{title}</h2>
     <span className="thc-fit-sub">{sub}</span>
     <div className="thc-fit-row"><b>{"I'm"}</b>{levels}</div>

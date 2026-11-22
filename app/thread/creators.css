@@ -446,3 +446,14 @@ body:has(.thc) .thc .thc-pbox a.thc-cta.wide { display: block; text-align: cente
 .thc-fit-line { gap: 10px 14px; } .thc-fit-grp { gap: 8px; }
 .thc-fit.bar h2 { font-size: 20px !important; }
 .thc .thc-seg .thc-chip { padding: 5px 11px; font-size: 14px; }
+/* The fit row in the home's quick-match style (creators-home.css .tch-chip): separate 1.5px pills with icons, a thin
+   divider between the groups, the title on its own line, the chips on one line. */
+.thc-fit.bar { gap: 8px; }
+.thc-fit.bar h2 { font-size: 20px !important; }
+.thc-fit.bar .thc-fit-line { flex-wrap: nowrap; gap: 8px; overflow: visible; }
+.thc-fit.bar .thc-fit-line > b { flex: none; font-size: 16px; font-weight: 700; }
+.thc .thc-fit.bar .thc-chip { flex: none; gap: 6px; font-size: 15.5px; font-weight: 600; padding: 4px 13px; border-width: 1.5px; background: #fff; }
+.thc .thc-fit.bar .thc-chip[aria-pressed="true"] { background: var(--acc); }
+.thc-fit-sep { flex: none; width: 2px; height: 24px; background: var(--ink); margin: 0 6px; }
+.thc-fit.bar .thc-arm { flex: none; margin-left: 6px; }
+@media (max-width: 1000px) { .thc-fit.bar .thc-fit-line { flex-wrap: wrap; } }
