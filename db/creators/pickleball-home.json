@@ -1,0 +1,557 @@
+{
+ "generated": "2026-11-22",
+ "pricesChecked": "2026-11-22",
+ "source": "pb-creator-reviews-staging.json + pb-prices/prices.json, demo fixture, not in the DB",
+ "total": 247,
+ "paddles": {
+  "11six24-hurache-x-power-2": {
+   "pos": 7,
+   "mix": 4,
+   "neg": 0,
+   "reviews": 11,
+   "praise": {
+    "key": "spin",
+    "words": "spin",
+    "n": 9
+   },
+   "high": {
+    "power": 2,
+    "control": 4,
+    "spin": 9,
+    "pop": 2,
+    "sweet": 0,
+    "comfort": 0,
+    "durability": 9
+   },
+   "price": {
+    "usd": 99,
+    "shop": "Pickleball Central",
+    "url": "https://www.pickleballcentral.com/11six24-hurache-x-power-2-pickleball-paddle/?sku=SIX102-0001",
+    "affiliate": false
+   }
+  },
+  "11six24-pegasus-jelly-bean-2": {
+   "pos": 7,
+   "mix": 0,
+   "neg": 0,
+   "reviews": 7,
+   "praise": {
+    "key": "spin",
+    "words": "spin",
+    "n": 6
+   },
+   "high": {
+    "power": 0,
+    "control": 5,
+    "spin": 6,
+    "pop": 0,
+    "sweet": 5,
+    "comfort": 1,
+    "durability": 3
+   },
+   "price": {
+    "usd": 169.99,
+    "shop": "11SIX24 (brand store)",
+    "url": "https://11six24.com/products/pegasus-jelly-bean-2",
+    "affiliate": false
+   }
+  },
+  "11six24-pegasus-power-2": {
+   "pos": 7,
+   "mix": 2,
+   "neg": 1,
+   "reviews": 10,
+   "praise": {
+    "key": "spin",
+    "words": "spin",
+    "n": 6
+   },
+   "high": {
+    "power": 4,
+    "control": 4,
+    "spin": 6,
+    "pop": 1,
+    "sweet": 6,
+    "comfort": 0,
+    "durability": 6
+   },
+   "price": {
+    "usd": 99,
+    "shop": "Pickleball Central",
+    "url": "https://www.pickleballcentral.com/11six24-pegasus-power-2-pickleball-paddle/?sku=SIX100-0003",
+    "affiliate": false
+   }
+  },
+  "11six24-ultre-power-2": {
+   "pos": 10,
+   "mix": 3,
+   "neg": 0,
+   "reviews": 13,
+   "praise": {
+    "key": "spin",
+    "words": "spin",
+    "n": 13
+   },
+   "high": {
+    "power": 10,
+    "control": 2,
+    "spin": 13,
+    "pop": 6,
+    "sweet": 5,
+    "comfort": 0,
+    "durability": 9
+   },
+   "price": null
+  },
+  "11six24-vapor-power-2": {
+   "pos": 12,
+   "mix": 3,
+   "neg": 0,
+   "reviews": 15,
+   "praise": {
+    "key": "spin",
+    "words": "spin",
+    "n": 14
+   },
+   "high": {
+    "power": 5,
+    "control": 6,
+    "spin": 14,
+    "pop": 10,
+    "sweet": 5,
+    "comfort": 2,
+    "durability": 13
+   },
+   "price": {
+    "usd": 159,
+    "shop": "Pickleball Warehouse",
+    "url": "https://www.pickleballwarehouse.com/11SIX24_Vapor_Power_2_Pickleball_Paddle/descpage-11VP2.html",
+    "affiliate": false
+   }
+  },
+  "enhance-duo": {
+   "pos": 13,
+   "mix": 0,
+   "neg": 0,
+   "reviews": 13,
+   "praise": {
+    "key": "spin",
+    "words": "spin",
+    "n": 7
+   },
+   "high": {
+    "power": 3,
+    "control": 6,
+    "spin": 7,
+    "pop": 0,
+    "sweet": 3,
+    "comfort": 1,
+    "durability": 0
+   },
+   "price": {
+    "usd": 159.99,
+    "shop": "Enhance (brand store)",
+    "url": "https://enhancepickleball.com/products/duo",
+    "affiliate": false
+   }
+  },
+  "honolulu-j2cr": {
+   "pos": 13,
+   "mix": 1,
+   "neg": 0,
+   "reviews": 14,
+   "praise": {
+    "key": "spin",
+    "words": "spin",
+    "n": 13
+   },
+   "high": {
+    "power": 4,
+    "control": 5,
+    "spin": 13,
+    "pop": 6,
+    "sweet": 9,
+    "comfort": 0,
+    "durability": 10
+   },
+   "price": {
+    "usd": 175.5,
+    "shop": "Honolulu Pickleball Co (brand store)",
+    "url": "https://808pickle.com/products/j6cr-pre-order-copy?variant=51392711033152",
+    "affiliate": false
+   }
+  },
+  "honolulu-j6cr": {
+   "pos": 14,
+   "mix": 2,
+   "neg": 0,
+   "reviews": 16,
+   "praise": {
+    "key": "power",
+    "words": "power",
+    "n": 10
+   },
+   "high": {
+    "power": 10,
+    "control": 5,
+    "spin": 9,
+    "pop": 5,
+    "sweet": 8,
+    "comfort": 0,
+    "durability": 2
+   },
+   "price": {
+    "usd": 190,
+    "shop": "Racquetstore.com",
+    "url": "https://racquetstore.com/products/honolulu-j6cr-crystal-blue-endurance-surface?variant=48267896783086",
+    "affiliate": false
+   }
+  },
+  "joola-perseus-pro-iv": {
+   "pos": 11,
+   "mix": 2,
+   "neg": 0,
+   "reviews": 13,
+   "praise": {
+    "key": "power",
+    "words": "power",
+    "n": 13
+   },
+   "high": {
+    "power": 13,
+    "control": 2,
+    "spin": 7,
+    "pop": 8,
+    "sweet": 3,
+    "comfort": 6,
+    "durability": 1
+   },
+   "price": {
+    "usd": 99.95,
+    "shop": "JOOLA (brand store)",
+    "url": "https://joola.com/products/joola-perseus-iv-14mm-pickleball-paddle-1?variant=46568210464982",
+    "affiliate": false
+   }
+  },
+  "luzz-cannon": {
+   "pos": 9,
+   "mix": 4,
+   "neg": 0,
+   "reviews": 13,
+   "praise": {
+    "key": "power",
+    "words": "power",
+    "n": 11
+   },
+   "high": {
+    "power": 11,
+    "control": 3,
+    "spin": 7,
+    "pop": 5,
+    "sweet": 0,
+    "comfort": 0,
+    "durability": 0
+   },
+   "price": {
+    "usd": 87.2,
+    "shop": "Desert Paddles",
+    "url": "https://desertpaddles.com/products/luzz-cannon-pickleball-paddle?variant=47135334498560",
+    "affiliate": false
+   }
+  },
+  "luzz-pro-4-inferno": {
+   "pos": 10,
+   "mix": 1,
+   "neg": 0,
+   "reviews": 11,
+   "praise": {
+    "key": "power",
+    "words": "power",
+    "n": 9
+   },
+   "high": {
+    "power": 9,
+    "control": 6,
+    "spin": 8,
+    "pop": 5,
+    "sweet": 8,
+    "comfort": 2,
+    "durability": 1
+   },
+   "price": {
+    "usd": 189.0,
+    "shop": "Luzz (brand store)",
+    "url": "https://luzzpickleball.com/products/luzzpickleball-pro-4-inferno-mpp-pickleball-paddle-large-sweet-spot-durable-core",
+    "affiliate": false
+   }
+  },
+  "paddletek-bantam-esq-c": {
+   "pos": 9,
+   "mix": 2,
+   "neg": 0,
+   "reviews": 11,
+   "praise": {
+    "key": "power",
+    "words": "power",
+    "n": 11
+   },
+   "high": {
+    "power": 11,
+    "control": 2,
+    "spin": 10,
+    "pop": 10,
+    "sweet": 2,
+    "comfort": 1,
+    "durability": 3
+   },
+   "price": {
+    "usd": 139.99,
+    "shop": "Paddletek (brand store)",
+    "url": "https://www.paddletek.com/products/bantam-esq-c",
+    "affiliate": false
+   }
+  },
+  "rpm-jade-elongated": {
+   "pos": 6,
+   "mix": 5,
+   "neg": 0,
+   "reviews": 11,
+   "praise": {
+    "key": "spin",
+    "words": "spin",
+    "n": 10
+   },
+   "high": {
+    "power": 3,
+    "control": 3,
+    "spin": 10,
+    "pop": 1,
+    "sweet": 3,
+    "comfort": 0,
+    "durability": 3
+   },
+   "price": {
+    "usd": 249.99,
+    "shop": "The Bat Flip Shop",
+    "url": "https://batflipshop.com/products/rpm-jade-16mm-elongated-pickleball-paddle-limited-edition-jade-cover?variant=68197554290917",
+    "affiliate": false
+   }
+  },
+  "six-zero-black-opal-14mm": {
+   "pos": 7,
+   "mix": 7,
+   "neg": 1,
+   "reviews": 15,
+   "praise": {
+    "key": "power",
+    "words": "power",
+    "n": 14
+   },
+   "high": {
+    "power": 14,
+    "control": 3,
+    "spin": 10,
+    "pop": 1,
+    "sweet": 0,
+    "comfort": 6,
+    "durability": 3
+   },
+   "price": {
+    "usd": 110,
+    "shop": "Six Zero (brand US store)",
+    "url": "https://us.sixzeropickleball.com/products/black-opal-14mm?variant=50316231770397",
+    "affiliate": false
+   }
+  },
+  "six-zero-coral-16mm": {
+   "pos": 10,
+   "mix": 2,
+   "neg": 0,
+   "reviews": 12,
+   "praise": {
+    "key": "control",
+    "words": "control",
+    "n": 9
+   },
+   "high": {
+    "power": 0,
+    "control": 9,
+    "spin": 7,
+    "pop": 0,
+    "sweet": 6,
+    "comfort": 2,
+    "durability": 3
+   },
+   "price": {
+    "usd": 149.99,
+    "shop": "Pickleball Paddles US",
+    "url": "https://pickleballpaddlesus.com/ar/products/six-zero-coral-16mm-elongated-pickleball-paddle-copy",
+    "affiliate": false
+   }
+  },
+  "six-zero-coral-pro-16mm": {
+   "pos": 13,
+   "mix": 2,
+   "neg": 0,
+   "reviews": 15,
+   "praise": {
+    "key": "spin",
+    "words": "spin",
+    "n": 13
+   },
+   "high": {
+    "power": 1,
+    "control": 6,
+    "spin": 13,
+    "pop": 1,
+    "sweet": 4,
+    "comfort": 2,
+    "durability": 13
+   },
+   "price": {
+    "usd": 176,
+    "shop": "JustPaddles",
+    "url": "https://www.justpaddles.com/product/six-zero-coral-pro-hybrid-upa-a-carbon-fiber-pickleball-paddle/40480/",
+    "affiliate": false
+   }
+  },
+  "six-zero-ruby": {
+   "pos": 11,
+   "mix": 2,
+   "neg": 0,
+   "reviews": 13,
+   "praise": {
+    "key": "spin",
+    "words": "spin",
+    "n": 13
+   },
+   "high": {
+    "power": 7,
+    "control": 10,
+    "spin": 13,
+    "pop": 2,
+    "sweet": 9,
+    "comfort": 2,
+    "durability": 1
+   },
+   "price": {
+    "usd": 99,
+    "shop": "Hometownpickleball.com",
+    "url": "https://hometownpickleball.com/products/sixzero-ruby-16mm?variant=45120520519836",
+    "affiliate": false
+   }
+  },
+  "spartus-spitfire-elongated": {
+   "pos": 9,
+   "mix": 0,
+   "neg": 0,
+   "reviews": 9,
+   "praise": {
+    "key": "spin",
+    "words": "spin",
+    "n": 9
+   },
+   "high": {
+    "power": 5,
+    "control": 5,
+    "spin": 9,
+    "pop": 3,
+    "sweet": 4,
+    "comfort": 4,
+    "durability": 3
+   },
+   "price": {
+    "usd": 99.99,
+    "shop": "Spartus (brand store)",
+    "url": "https://gospartus.com/products/spitfire-elongated",
+    "affiliate": false
+   }
+  },
+  "vatic-pro-prism-flash": {
+   "pos": 13,
+   "mix": 0,
+   "neg": 0,
+   "reviews": 13,
+   "praise": {
+    "key": "control",
+    "words": "control",
+    "n": 12
+   },
+   "high": {
+    "power": 3,
+    "control": 12,
+    "spin": 11,
+    "pop": 1,
+    "sweet": 6,
+    "comfort": 2,
+    "durability": 2
+   },
+   "price": {
+    "usd": 79.99,
+    "shop": "Vatic Pro (brand store)",
+    "url": "https://vaticpro.com/products/prism",
+    "affiliate": false
+   }
+  },
+  "vatic-pro-saga": {
+   "pos": 10,
+   "mix": 2,
+   "neg": 0,
+   "reviews": 12,
+   "praise": {
+    "key": "control",
+    "words": "control",
+    "n": 9
+   },
+   "high": {
+    "power": 6,
+    "control": 9,
+    "spin": 7,
+    "pop": 0,
+    "sweet": 3,
+    "comfort": 6,
+    "durability": 4
+   },
+   "price": {
+    "usd": 79.99,
+    "shop": "Vatic Pro (brand store)",
+    "url": "https://vaticpro.com/products/saga",
+    "affiliate": false
+   }
+  }
+ },
+ "latest": [
+  {
+   "slug": "rpm-jade-elongated",
+   "creator": "Pickleball Playbook",
+   "stance": "pos",
+   "date": "2026-11-17",
+   "url": "https://www.youtube.com/watch?v=EWnpEpvN5bM",
+   "text": "Says it delivers exceptional spin that holds up over time, with a power and control balance that feels easy at the kitchen line. Tests it across power, control, pop, drills and feel, and compares it with the Q2 and V2. Reports being impressed and asks whether it becomes a main paddle."
+  },
+  {
+   "slug": "honolulu-j6cr",
+   "creator": "PickleBaller",
+   "stance": "pos",
+   "date": "2026-11-07",
+   "url": "https://www.youtube.com/watch?v=GPeDZ5DAh5Q",
+   "text": "Ranks the J6CR Crystal Blue as the overall favorite among five paddles including the Loco 2, Loco 1, J6CR M105 and RPM Jade. Calls it a strong all-court option while giving the spin crown to the RPM Jade and top control to the M105."
+  },
+  {
+   "slug": "rpm-jade-elongated",
+   "creator": "Pickleball Effect",
+   "stance": "mix",
+   "date": "2026-11-06",
+   "url": "https://www.youtube.com/watch?v=H2ztCs2PFHE",
+   "text": "Calls the 16mm elongated firmly a power paddle with exceptional spin, and a unit that kept its grit through 60 games. Finds the sweet spot only good enough stock, easy to fix with tuning tape, and the feel soft and thuddy. Says it is a very good paddle but not a great value against cheaper foam paddles."
+  },
+  {
+   "slug": "11six24-ultre-power-2",
+   "creator": "West Side Pickleball",
+   "stance": "mix",
+   "date": "2026-11-02",
+   "url": "https://www.youtube.com/watch?v=HWwdsbF40EE",
+   "text": "Finds the Ultra Power 2 and Bread & Butter Loco 2 very similar in spin, power and pop, with slightly better off-center feel on the Ultra. Likes the shape but does not feel fully connected to the feel and picks the Loco 2 by a small edge at the same price."
+  }
+ ]
+}
