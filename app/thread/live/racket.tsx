@@ -58,7 +58,7 @@ function askOnce(id: string) {
     seen[id] = 1; localStorage.setItem(ASK_KEY, JSON.stringify(seen)); return true; } catch { return false; }
 }
 /** `countLine` (the creator page, PR #649): the head's right side shows the vote count, "Be the first to vote" at zero, in
- *  place of "One tap, no account" and the "No votes yet" note. */
+ *  place of "One tap, no account" and the "No votes yet" note. An empty `question` drops the title (owner 2026-11-22). */
 export function Poll({ id, reviews, question = "Poll: would you buy it again?", sub, countsOnly = false, countLine = false }: { id: string; reviews: Counts; question?: string; sub?: string; countsOnly?: boolean; countLine?: boolean }) {
   const [votes, setVotes] = useState<Counts | null>(null), [mine, setMine] = useState<Verdict | null>(null), [err, setErr] = useState("");
   // PadelRecs (countsOnly): after a fresh vote, one light "Want to add a line about why?", once per racket per visitor.
@@ -83,7 +83,7 @@ export function Poll({ id, reviews, question = "Poll: would you buy it again?", 
   const total = n("positive") + n("mixed") + n("negative");
   const openReview = () => dispatchEvent(new CustomEvent("thread-open-review", { detail: mine }));
   return <div className="th-poll">
-    <span className="th-poll-head">{sub ? <span className="th-poll-q"><b>{question}</b><small>{sub}</small></span> : <b>{question}</b>}<span>{countLine ? voteCountLine(total) : mine && !countsOnly ? "Thanks, your vote counts. Tap another to change it, or tap again to remove." : "One tap, no account"}</span></span>
+    <span className="th-poll-head">{sub ? <span className="th-poll-q"><b>{question}</b><small>{sub}</small></span> : question ? <b>{question}</b> : <span/>}<span>{countLine ? voteCountLine(total) : mine && !countsOnly ? "Thanks, your vote counts. Tap another to change it, or tap again to remove." : "One tap, no account"}</span></span>
     {(["positive", "mixed", "negative"] as const).map(k => { const c = n(k), w = total ? Math.round(c / total * 100) : 0, cls = VERDICT[k][1];
       return <button key={k} type="button" className={`th-popt ${cls}${mine && mine !== k ? " dim" : ""}`} aria-pressed={mine === k} onClick={() => pick(k)}>
         <i style={{ width: total ? `${w}%` : 0 }}/>

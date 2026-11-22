@@ -15,6 +15,7 @@ type Overrides = { counts: Record<string, Record<string, number>>; frozen: strin
 
 /** `groups` and `title`: StackRecs passes its tool's side ("How does it build?"); padel keeps its nine and its heading. */
 /** `of`: the page's opinion count (SkinRecs); no longer shown, since the note is just "Tap to vote" (owner 2026-11-20). */
+/** An empty `title` drops the heading (the creator page: one heading over both boxes). */
 /** `tieNone`: on a tie for the lead, highlight neither answer (PadelRecs racket page). */
 export function TraitVotes({ id, seed, groups = TRAIT_GROUPS, title = W.traitsTitle, tieNone = false }: { id: string; seed: TraitSeed | null; groups?: TraitGroup[]; title?: string; of?: number; tieNone?: boolean }) {
   const [counts, setCounts] = useState<TraitCounts>({}), [ov, setOv] = useState<Overrides>({ counts: {}, frozen: [] }), [mine, setMine] = useState<Record<string, string>>({}), [err, setErr] = useState("");
@@ -37,7 +38,7 @@ export function TraitVotes({ id, seed, groups = TRAIT_GROUPS, title = W.traitsTi
     } catch (e) { setCounts(was.counts); setMine(was.mine); setErr(e instanceof Error ? e.message : "Could not save your vote."); }
   }
   return <section id="play" className="th-card th-sec" style={{ scrollMarginTop: 70 }}>
-    <div className="th-head-row"><h2 className="th-h3">{title}</h2><span className="th-sub">{SECTION_NOTE}</span></div>
+    <div className="th-head-row">{title ? <h2 className="th-h3">{title}</h2> : <span/>}<span className="th-sub">{SECTION_NOTE}</span></div>
     <div className="th-vgrid">{groups.map(g => {
       const closed = ov.frozen.includes("_all") || ov.frozen.includes(g.key);
       const v = groupView(g.options, ov.counts[g.key] ?? seed?.groups[g.key], counts[g.key], seed?.spec[g.key], tieNone), max = Math.max(1, ...v.opts.filter(o => o.shown).map(o => o.n));
