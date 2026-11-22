@@ -32,9 +32,9 @@ function Card({ x, lit }: { x: ReviewEntry; lit: boolean }) {
   const thumb = x.kind === "youtube" ? thumbOf(x.url) : null;
   // Chapters collapsed by default (owner 2026-11-23): "▸ N chapters" under the thumbnail opens the full list.
   const [chOpen, setChOpen] = useState(false);
-  // Video summaries (YouTube, TikTok; owner 2026-11-22): about three sentences before Read more, at most two marked
-  // phrases, the rest of the summary after it. Blog cards keep their whole summary.
-  const vid = x.kind === "youtube" || x.kind === "tiktok";
+  // Every summary (videos 2026-11-22, blogs too 2026-11-23, owner): about three sentences before Read more, at most two
+  // marked phrases, the rest of the summary after it, 68ch at 17px on 1.65.
+  const vid = true;
   const [lead, rest] = vid ? leadSentences(x.summary, 3) : [x.summary, ""];
   const hl = vid ? x.highlights.slice(0, 2) : x.highlights;
   const more = !!rest || !!x.more || !!measured || !!x.alsoUrl;
@@ -155,6 +155,8 @@ export function CreatorReviews({ reviews, count, roundup }: { reviews: ReviewEnt
 /** The first `n` sentences of a summary and the rest ("No. 1" style abbreviations aside, a sentence ends at . ! or ? before
  *  a space or the end). */
 function leadSentences(t: string, n: number): [string, string] {
-  const parts = t.match(/[^.!?]+(?:[.!?]+["”’)]*)(?=\s|$)|[^.!?]+$/g)?.map(x => x.trim()).filter(Boolean) ?? [t];
+  // Split only where a sentence end (. ! or ?, maybe a closing quote) is followed by a space, so "6.5" stays whole and no
+  // text is ever dropped: the two parts always join back into the summary.
+  const parts = t.split(/(?<=[.!?]["”’)]*)\s+(?=\S)/).filter(Boolean);
   return parts.length <= n ? [t, ""] : [parts.slice(0, n).join(" "), parts.slice(n).join(" ")];
 }
