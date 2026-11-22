@@ -2,14 +2,14 @@
 // The creator page's reviews (app/thread/creators/[slug]), in the owner mock's card structure (creator-page mockup
 // 2026-11-22): the heading row with Sort, the filter pills (All / Loved it / Mixed / Not for me, a pill only when it has a
 // card), then one card per creator: avatar, name, source, date, language box and the take; the real quote as the headline
-// (none when the creator gave no clean quote); Stood out / The trade-off / Compared to; a short summary with Read more
-// (owner: no long paragraphs); +/- chips; Watch on YouTube or Read the full review. Videos have the thumbnail with its
+// (none when the creator gave no clean quote); Stood out / The trade-off / Compared to; the summary with its marked
+// phrases (the mock's yellow marker), the rest behind Read more; +/- chips; Watch on YouTube or Read the full review. Videos have the thumbnail with its
 // length and the creator's own chapters on the right. Filtering runs in the browser on the cards the page already has, so
 // the page's ISR cache is untouched.
 import { useMemo, useState } from "react";
 import { atSecond, clock } from "../../../lib/thread/video-meta";
 import { dayLabel, thumbOf } from "../../../lib/thread/web-sources";
-import { SOURCE_COLOR, STANCE_LABEL, cardChips, initials, langCode, measuredLine, platform, scoreText, sortReviews, splitSummary,
+import { SOURCE_COLOR, STANCE_LABEL, cardChips, initials, langCode, marks, measuredLine, platform, scoreText, sortReviews,
   stanceCounts, type CreatorReview, type Stance } from "../../../lib/thread/creators";
 
 const OUT = { target: "_blank", rel: "noopener nofollow" } as const;
@@ -24,10 +24,10 @@ export function Avatar({ name, kind, size }: { name: string; kind: CreatorReview
 
 function Card({ x }: { x: CreatorReview }) {
   const [open, setOpen] = useState(false);
-  const [short, rest] = splitSummary(x.summary), measured = measuredLine(x.measured);
+  const measured = measuredLine(x.measured);
   const thumb = x.kind === "youtube" ? thumbOf(x.url) : null;
   const chapters = open ? x.chapters : x.chapters.slice(0, CHAPTERS), hidden = x.chapters.length - chapters.length;
-  const more = !!rest || !!measured || hidden > 0 || !!x.alsoUrl;
+  const more = !!x.more || !!measured || hidden > 0 || !!x.alsoUrl;
   const tags = [TYPE_TAG[x.type], x.note, x.version].filter((t): t is string => !!t);
   const boxes = ([["+", "Stood out", x.stood, "pos"], ["−", "The trade-off", x.trade, "neg"], ["⇄", "Compared to", x.compared, "cmp"]] as
     [string, string, string | null, string][]).filter((b): b is [string, string, string, string] => !!b[2]);
@@ -58,7 +58,8 @@ function Card({ x }: { x: CreatorReview }) {
         ? <a href={atSecond(x.url, x.quoteAt)} {...OUT} aria-label={`Watch from ${clock(x.quoteAt)}`}>{`“${x.quote}”`}</a> : `“${x.quote}”`}</h3>}
       {boxes.length > 0 && <div className="thc-boxes">{boxes.map(([i, h, t, k]) => <div key={h} className={`thc-box ${k}`}>
         <span className="thc-box-h"><b aria-hidden="true">{i}</b><span>{h}</span></span><span>{t}</span></div>)}</div>}
-      <p className="thc-sum">{short}{open && rest && <> {rest}</>}</p>
+      <p className="thc-sum">{marks(x.summary, x.highlights).map((m, i) => m.on ? <mark key={i}>{m.t}</mark> : m.t)}</p>
+      {open && x.more && <p className="thc-sum">{x.more}</p>}
       {open && measured && <p className="thc-sum sm">{`Measured by the creator: ${measured}.`}</p>}
       {chips.length > 0 && <div className="thc-tags">{chips.map(c => <span key={c.text} className={`thc-pm ${c.tone}`}>{`${c.tone === "pos" ? "+" : "−"} ${c.text}`}</span>)}</div>}
       <div className="thc-links">
