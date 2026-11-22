@@ -23,6 +23,7 @@ import type { WhoRow } from "../../lib/thread/community";
 import type { LatestQuestion } from "./community-data";
 import { MemberMark } from "./live/member-mark";
 import { FollowButton } from "./live/follow-button";
+import { SideFit } from "./live/side-fit";
 import { followSite } from "../../lib/thread/sites";
 import type { RvCard } from "./racket-data";
 import type { TraitGroup } from "../../lib/thread/traits";
@@ -150,6 +151,6 @@ export function RacketV7b(p: V7bProps) {
         <ul className="th-stories sm">{p.stories.map(s => <li key={s.id}><a className="th-story-t" href={th(`/stories/${s.slug}`)}>{s.title}</a>
           <span className="th-story-by"><strong>{s.author.name}</strong><MemberMark/></span></li>)}</ul></section>}
     </div>
-    <aside className="th-side th8-aside">{scoreEl && <section className="th-card th8-box">{scoreEl}</section>}{community}{basics}</aside>
+    <aside className="th-side th8-aside">{scoreEl && <section className="th-card th8-box">{scoreEl}</section>}{community}{basics}<SideFit/></aside>
   </main>;
 }
