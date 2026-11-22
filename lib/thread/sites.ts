@@ -33,7 +33,11 @@ export const followSite = (nicheId: string) => FOLLOW_SITES.includes(nicheId);
 /** The racket page's fit check as the page's core (owner OK 2026-11-22, lib/thread/fit-core.ts): picks, a fit label, three
  *  lines with source chips, better picks and a two-tap box. Rollback: take a site out and it shows the earlier "Is this
  *  racket right for me?" card again; ?fit=classic shows that card on any page for a side-by-side look. */
-export const FIT_CORE_SITES = ["padel"];
+export const FIT_CORE_SITES: string[] = [];
+/** Owner 2026-11-22: padel back on the classic card (the fit check above was "too overwhelming"); on a poor or cautious
+ *  fit it names 1 or 2 better rackets as plain links (lib/thread/fit-core.ts betterPicks), in place of "Better for you". */
+export const EASIER_PICKS_SITES = ["padel"];
+export const easierPicksSite = (nicheId: string) => EASIER_PICKS_SITES.includes(nicheId);
 export const fitCoreSite = (nicheId: string) => FIT_CORE_SITES.includes(nicheId);
 export const accountSite = (nicheId: string) => ACCOUNT_SITES.includes(nicheId);
 /** Each Thread site's quick match, as its home shows it: "engine" = level · style · arm (app/thread/live/lists.tsx MatchBox,

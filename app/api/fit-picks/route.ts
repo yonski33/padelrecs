@@ -4,11 +4,11 @@
 import { niche } from "../../../lib/niche";
 import { allPageContent } from "../../../lib/racket-page";
 import { pickData } from "../../../lib/thread/fit-core";
-import { fitCoreSite } from "../../../lib/thread/sites";
+import { easierPicksSite, fitCoreSite } from "../../../lib/thread/sites";
 
 export const revalidate = 21600;
 
 export async function GET() {
-  if (!fitCoreSite(niche.id)) return Response.json({});
+  if (!fitCoreSite(niche.id) && !easierPicksSite(niche.id)) return Response.json({});
   return Response.json(pickData(allPageContent()));
 }

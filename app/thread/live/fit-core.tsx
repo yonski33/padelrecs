@@ -5,14 +5,12 @@
 import { useEffect, useMemo, useState } from "react";
 import { th } from "../../../lib/thread/look";
 import { niche } from "../../../lib/niche";
-import { FIT_LABEL, betterPicks, levelLine, pickLines, type FitLine, type PickData } from "../../../lib/thread/fit-core";
+import { FIT_LABEL, betterPicks, levelLine, loadPickData, pickLines, type FitLine, type PickData } from "../../../lib/thread/fit-core";
 import { PickChips } from "./pick-chips";
 import { usePicks, usePayload, complete, fitFor, adviceFor, pctsFor } from "./picks";
 import { FIT_HEAD } from "./racket";
 import { FitCard } from "./racket-v7b";
 
-let picksData: Promise<PickData> | null = null;
-const loadPickData = () => picksData ??= fetch("/api/fit-picks").then(r => r.ok ? r.json() as Promise<PickData> : {}).catch(() => { picksData = null; return {}; });
 /** "intermediate → advanced, power players" → "Intermediate to advanced, power". */
 const bestWords = (b?: string) => b ? (b[0].toUpperCase() + b.slice(1)).replace(/ → /g, " to ").replace(/ players\b/g, "") : "";
 const slugOf = (href: string) => href.split("/").pop() ?? href;

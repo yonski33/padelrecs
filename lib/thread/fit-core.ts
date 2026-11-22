@@ -59,6 +59,11 @@ export function pickLines(yes: FitLine[], no: FitLine[], p: FitPicks, level: Fit
 
 /** The better-picks data per racket (app/api/fit-picks): the tags its downsides matter for, and its strengths. */
 export type PickData = Record<string, { no: string[]; yes: { for: string[]; t: string }[] }>;
+let picksData: Promise<PickData> | null = null;
+/** The better-picks data, fetched once per visit (app/api/fit-picks, static). */
+export const loadPickData = () => picksData ??= fetch("/api/fit-picks").then(r => r.ok ? r.json() as Promise<PickData> : {}).catch(() => { picksData = null; return {}; });
+/** "Easier picks" when the racket is rated above the player's level, else "Better picks". */
+export const picksWord = (p: FitPicks, suits: Suits | null | undefined) => levelLine(p, suits) ? "Easier picks" : "Better picks";
 export function pickData(all: Record<string, PageContent>): PickData {
   return Object.fromEntries(Object.entries(all).map(([slug, c]) => [slug, {
     no: [...new Set(c.no.flatMap(i => i.for ?? []))], yes: c.yes.map(i => ({ for: i.for ?? [], t: plain(i.t) })) }]));

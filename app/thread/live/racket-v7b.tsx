@@ -5,7 +5,8 @@
 // racket.tsx's Reviews. Helpful votes: /api/helpful (review_votes, already live; counts come with the page).
 import { HelpfulEditor } from "./helpful-admin";
 import { useEffect, useMemo, useRef, useState, type ReactNode } from "react";
-import { accountSite } from "../../../lib/thread/sites";
+import { accountSite, easierPicksSite } from "../../../lib/thread/sites";
+import { betterPicks, loadPickData, picksWord, type PickData } from "../../../lib/thread/fit-core";
 import { niche } from "../../../lib/niche";
 import { th } from "../../../lib/thread/look";
 import { W } from "../../../lib/thread/words";
@@ -14,7 +15,7 @@ import { VERDICTS, type Verdict } from "../../quick-vote";
 import { tone, VERDICT } from "../ui";
 import { Ago } from "./ago";
 import { PickChips } from "./pick-chips";
-import { usePicks, usePayload, complete, fitFor, adviceFor } from "./picks";
+import { usePicks, usePayload, complete, fitFor, adviceFor, pctsFor } from "./picks";
 import { FIT_HEAD, Poll, postWhy, useReviewPost } from "./racket";
 import { PendingReviews, useOwner, status, editText, editName, send } from "./review-admin";
 import { grow } from "./name";
@@ -36,6 +37,21 @@ export function FitCard({ id, part, title = W.fitTitle, sub, arm = "Arm comfort"
   const on = complete(picks), payload = usePayload(on);
   const fit = useMemo(() => on && payload ? fitFor(payload, picks, id) : null, [on, payload, picks, id]);
   const adv = useMemo(() => fit && payload && fit.verdict.kind !== "thin" ? adviceFor(payload, picks, id, fit.pct) : null, [fit, payload, picks, id]);
+  // PadelRecs (owner 2026-11-22): on a poor or cautious fit, 1 or 2 better rackets as plain links, filtered so they are never
+  // harder than this one for the player's level (lib/thread/fit-core.ts betterPicks); none on a good fit.
+  const EASY = easierPicksSite(niche.id), [data, setData] = useState<PickData | null>(null);
+  useEffect(() => { if (EASY && on && !data) loadPickData().then(setData); }, [EASY, on, data]);
+  const easier = useMemo(() => {
+    if (!EASY || !fit || !payload || !data || fit.verdict.kind === "good" || fit.verdict.kind === "thin") return null;
+    const self = payload.items.find(x => x.id === id), card = payload.cards[id];
+    if (!self || !card) return null;
+    const pcts = pctsFor(payload, picks), slugOf = (h: string) => h.split("/").pop() ?? h;
+    const cands = payload.items.flatMap(x => { const c = payload.cards[x.id], pct = pcts.get(x.id);
+      return c && pct != null ? [{ id: x.id, row: x.row, slug: slugOf(c.href), pct, facts: x.facts }] : []; });
+    const list = betterPicks({ id, row: self.row, slug: slugOf(card.href), pct: 0, facts: self.facts }, cands, data, picks, 2)
+      .map(b => ({ id: b.id, href: payload.cards[b.id].href, name: payload.cards[b.id].name.replace(/\s+\(?20\d\d\)?$/, "") }));
+    return list.length ? { word: picksWord(picks, self.facts.suits), list } : null;
+  }, [EASY, fit, payload, data, picks, id]);
   return <section className={part ? "th7-part th7-fit" : "th-card th7-card th7-fit"}>
     {sub ? <div className="th7-hd"><h2 className="th-h2">{title}</h2><span className="th-sub">{sub}</span></div> : <h2 className={part ? "th7-subh" : "th-h3"}>{title}</h2>}
     <div className="th-fit"><PickChips picks={picks} set={set} small armLabel={arm} {...(sub ? { labels: ["Your level", "What matters most?"] as [string, string] } : {})}/></div>
@@ -46,7 +62,8 @@ export function FitCard({ id, part, title = W.fitTitle, sub, arm = "Arm comfort"
           <span className="th7-match-body"><b>{FIT_HEAD[fit.verdict.kind]}</b>
             {adv ? <>
               <span>{adv.line}</span>
-              {adv.better.length > 0 && <span className="th-fit-better">{"Better for you: "}{adv.better.map((b, i) => <span key={b.id}>{i > 0 && " or "}<a href={th(b.href)}>{b.name}</a>{` (${b.pct}%)`}</span>)}.</span>}
+              {EASY ? easier && <span className="th-fit-better">{`${easier.word}: `}{easier.list.map((b, i) => <span key={b.id}>{i > 0 && " or "}<a href={th(b.href)}>{b.name}</a></span>)}.</span>
+                : adv.better.length > 0 && <span className="th-fit-better">{"Better for you: "}{adv.better.map((b, i) => <span key={b.id}>{i > 0 && " or "}<a href={th(b.href)}>{b.name}</a>{` (${b.pct}%)`}</span>)}.</span>}
             </> : fit.verdict.reasons.length > 0 && <span>{fit.verdict.reasons.slice(0, 2).join(" ")}</span>}
           </span>
         </div>}
