@@ -81,7 +81,7 @@ export async function CreatorProductBody({ slug }: { slug: string }) {
       price: p?.price ? { label: `from ${usd(p.price.usd)} · check price ↗`, url: p.price.url, rel: p.price.affiliate ? "sponsored nofollow noopener" : "nofollow noopener" } : null }; });
   // "Players on Reddit and forums" (the mock's roundup card): the live page's Reddit summaries for this paddle, as one card in
   // the feed. Never counted as a review (not in N reviews, the table or the sentiment bar). Real short quotes only.
-  const reddit = cards.filter(c => c.kind === "reddit").slice(0, 4);
+  const reddit = cards.filter(c => c.kind === "reddit").slice(0, 6);
   const name = withoutYear(row?.name ?? r.name);
   // The live page's buy link, the same logic (app/thread/rackets/[slug]/page.tsx): the Amazon lookup, the saved listing when
   // the two disagree, else the product's own site. No prices: none are stored yet.
@@ -234,21 +234,31 @@ export async function CreatorProductBody({ slug }: { slug: string }) {
   </Shell>;
 }
 
-/** "Players on Reddit and forums" (the mock's roundup card): one card in the feed with up to four short lines from the live
- *  page's Reddit summaries (a real short quote where one is stored, else the summary's first sentence) and numbered thread
- *  links. Not a review: never counted. */
+/** "Players on Reddit and forums" (Hybrid v19 mockup, owner 2026-11-22: fill the box like the mock). Real data only: the
+ *  paddle's Reddit summaries (PickleballRecs summaries of each post). A headline from the posts' own takes, each summary in
+ *  full with its short real quote marked and a numbered source chip, then the numbered thread links. Never counted as a review. */
 function RedditRoundup({ items }: { items: import("./racket-data").RvCard[] }) {
-  const first = (t: string) => (t.match(/^.+?[.!?](?=\s|$)/)?.[0] ?? t).trim();
   const threads = new Set(items.map(c => c.url?.match(/\/comments\/([a-z0-9]+)/i)?.[1] ?? c.id)).size;
+  const pos = items.filter(c => c.verdict === "positive").length, neg = items.filter(c => c.verdict === "negative").length;
+  const head = pos * 2 > items.length ? `${W.People} mostly like it.` : neg * 2 > items.length ? `${W.People} mostly have doubts.` : `${W.People} are split on it.`;
+  const newest = items.map(c => c.at).filter(Boolean).sort().pop();
+  const day = newest ? new Date(newest).toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric", timeZone: "UTC" }) : null;
+  // The post's short real quote, marked where it sits in its summary (the mock's yellow marker).
+  const marked = (c: (typeof items)[number]) => { const q = c.head?.replace(/^[“"]|[”"]$/g, "").trim(), at = q ? c.text.indexOf(q) : -1;
+    // Not in the summary: the quote follows it, marked, in the player's own words.
+    return at >= 0 ? [c.text.slice(0, at), <mark key="m">{q}</mark>, c.text.slice(at + q!.length)] : q ? [c.text, " ", <mark key="m">{`“${q}”`}</mark>] : [c.text]; };
+  const half = Math.ceil(items.length / 2), paras = [items.slice(0, half), items.slice(half)].filter(x => x.length);
   return <article className="thc-card thc-rd">
     <div className="thc-card-b">
       <div className="thc-card-top"><span className="thc-av thc-rd-av" aria-hidden="true">r/</span>
-        <span className="thc-name">Players on Reddit and forums</span>
-        <span className="thc-meta">{`· ${items.length} ${items.length === 1 ? "post" : "posts"} in ${threads} ${threads === 1 ? "thread" : "threads"}`}</span>
-        <span className="thc-rd-pill">Not counted as a review</span></div>
-      <ul className="thc-rd-l">{items.map((c, i) => <li key={c.id}>{c.head ? `“${c.head}”` : first(c.text)}<sup>{`[${i + 1}]`}</sup></li>)}</ul>
+        <span className="thc-name">Players on Reddit and forums</span></div>
+      <span className="thc-meta">{`${niche.site.name} summary of ${plural(items.length, `${W.person} post`)} in ${plural(threads, "thread")}${day ? ` · ${day}` : ""}`}</span>
+      <h3 className="thc-rd-h">{head}</h3>
+      {paras.map((ps, k) => <p key={k} className="thc-sum">{ps.map(c => { const n = items.indexOf(c) + 1;
+        return <span key={c.id}>{marked(c)}<b className="thc-num">{n}</b>{" "}</span>; })}</p>)}
       <div className="thc-rd-src">{items.map((c, i) => c.url && <a key={c.id} href={c.url} target="_blank" rel="noopener nofollow">
         <strong>{`[${i + 1}]`}</strong><span><b>{c.who}</b>{` · ${c.thread ?? threadTitle(c.url) ?? "View the thread"} ↗`}</span></a>)}</div>
+      <span className="thc-note">Not counted as a review.</span>
     </div>
   </article>;
 }
