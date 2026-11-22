@@ -67,6 +67,14 @@ test("who plays it: only vote groups with 5+ and a clear leader; side only when 
   assert.equal(whoPlays({ level: { advanced: 12 } })?.headline, "Mostly advanced");
   assert.equal(whoPlays({ level: { advanced: 4 } }), null);
   assert.equal(whoPlays({ side: { right: 20, both: 4 } })?.headline, "Right side");
+  // Sites without a side vote (pickleball, 2026-11-22): a neighbouring-level near tie is a range, and the level joins the headline.
+  const pb = whoPlays({ level: { intermediate: 40, advanced: 40, beginner: 13 }, plays_like: { power: 71, all_round: 20 } }, { withLevel: true });
+  assert.equal(pb?.headline, "Power, intermediate to advanced");
+  assert.deepEqual(pb?.rows.map(r => [r.title, r.label, r.n]), [["Level", "Intermediate to advanced", 80], ["Style", "Power", 71]]);
+  assert.equal(whoPlays({ level: { advanced: 30, beginner: 4 }, plays_like: { control: 20 } }, { withLevel: true })?.headline, "Control, mostly advanced");
+  // Beginner and advanced are not neighbours, so no range; padel (no option) is unchanged.
+  assert.equal(whoPlays({ level: { beginner: 20, advanced: 20 }, plays_like: { power: 30 } }, { withLevel: true })?.headline, "Power");
+  assert.equal(whoPlays({ level: { intermediate: 40, advanced: 40 }, plays_like: { power: 71 } })?.headline, "Power");
 });
 
 test("the sidebar has no curated ranking box and no More from <brand>", () => {
