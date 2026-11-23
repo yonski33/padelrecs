@@ -313,7 +313,6 @@ function RedditBox({ rd }: { rd: Roundup }) {
       {rd.paras.map((p, i) => <p key={i} className="thc-sum">{mark(p)}</p>)}
       <div className="thc-rd-src">{rd.highlights.map((h, i) => <a key={h.url + i} href={h.url} target="_blank" rel="noopener nofollow">
         <strong>{`[${i + 1}]`}</strong><span>{`${threadTitle(h.url) ?? "View the thread"} ↗`}</span></a>)}</div>
-      <span className="thc-note">Not counted as a review.</span>
     </div>
   </article>;
 }
@@ -342,7 +341,6 @@ function RedditRoundup({ items }: { items: import("./racket-data").RvCard[] }) {
         return <span key={c.id}>{marked(c)}<b className="thc-num">{n}</b>{" "}</span>; })}</p>)}
       <div className="thc-rd-src">{items.map((c, i) => c.url && <a key={c.id} href={c.url} target="_blank" rel="noopener nofollow">
         <strong>{`[${i + 1}]`}</strong><span><b>{c.who}</b>{` · ${c.thread ?? threadTitle(c.url) ?? "View the thread"} ↗`}</span></a>)}</div>
-      <span className="thc-note">Not counted as a review.</span>
     </div>
   </article>;
 }
