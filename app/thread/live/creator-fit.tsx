@@ -36,7 +36,7 @@ export function CompactFit({ id, title, sub, bar = false }: { id: string; title:
         {fit.pct != null && <span className={`thc-fit-pct${tone}`}>{`${fit.pct}% your match`}</span>}
         <strong>{FIT_HEAD[fit.verdict.kind]}</strong>
         {reason && <span className="thc-fit-why">{reason}</span>}
-        {adv && adv.better.length > 0 && fit.verdict.kind !== "good" && <span className="thc-fit-why">{"Better for you: "}{adv.better.slice(0, 2).map((b, i) => <span key={b.id}>{i > 0 && " or "}<a href={th(b.href)}>{b.name}</a></span>)}.</span>}
+        {adv && adv.better.length > 0 && fit.verdict.kind !== "good" && <span className="thc-fit-why">{"Better for you: "}{adv.better.slice(0, 2).map((b, i) => <span key={b.id}>{i > 0 && " or "}<a className="thc-fit-alt" href={th(b.href)}>{b.name}</a></span>)}.</span>}
       </>}
       <button type="button" className="thc-fit-reset" onClick={() => set({ level: null, style: null, arm: false })}>Reset</button>
     </div>}

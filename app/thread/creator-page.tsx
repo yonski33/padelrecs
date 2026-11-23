@@ -59,6 +59,8 @@ function keyPoint(x: { keyPoint?: string | null; short: string }): string {
   const t = (k || takeaway(x.short)).trim();
   return t.length <= KP_MAX ? t : `${t.slice(0, t.lastIndexOf(" ", KP_MAX - 1)).replace(/[,;:]$/, "")}…`;
 }
+/** "Nov 22": a price check's day, short. */
+const shortDay = (iso: string) => new Date(`${iso.slice(0, 10)}T12:00:00Z`).toLocaleDateString("en-US", { month: "short", day: "numeric", timeZone: "UTC" });
 const STYLE_WORD = { control: "Control", power: "Power", balance: "All-round" } as const;
 const KEYS = ["pos", "mix", "neg"] as const;
 
@@ -174,6 +176,8 @@ export async function CreatorProductBody({ slug }: { slug: string }) {
             {cta && <a className="thc-cta wide" href={cta.url} target="_blank" rel={cta.rel}>Check price ↗</a>}
             {buy.length > 0 && <div className="thc-pbox-list">{buy.map(o => <div key={o.shop} className="thc-shop2"><strong>{o.shop}</strong>
               <span className="thc-price">{usd(o.price)}</span><a className="thc-mono" href={o.url} target="_blank" rel={relOf(o.affiliate)}>check ↗</a></div>)}</div>}
+            {/* Back under the shops (owner 2026-11-23): the check date and, where any link is one, the affiliate note. */}
+            {page.prices && buy.length > 0 && <span className="thc-note">{`Checked ${shortDay(page.prices.checked)}.${buy.some(o => o.affiliate) ? " Some links are affiliate links." : ""}`}</span>}
           </section>
         </div>}
       </header>
