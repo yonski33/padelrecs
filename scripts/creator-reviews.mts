@@ -153,6 +153,7 @@ function buildRows(inp: Awaited<ReturnType<typeof loadInputs>>, brandOf: (slug: 
       source: niche.id === "skin" ? "skin-creator-reviews 2026-11-22" : "pb-creator-reviews-51-80 2026-11-23",
       key_point: kp ? (/[.!?]$/.test(kp) ? kp : `${kp}.`) : null, created_at: now, updated_at: now });
   }
+  const EDITIONS = new Set(["original", "crystal_blue", "unknown"]);
   const TT_TYPE: Record<string, string> = { full_review: "review", short_update: "short_update", ranking_mention: "ranking_mention" };
   for (const f of inp.tiktok) for (const t of f.takes) {
     if (t.check === "drop" || t.check === "unverified") { skipped.push(`${f.slug}: TikTok ${t.handle} (${t.check})`); continue; }
@@ -162,7 +163,10 @@ function buildRows(inp: Awaited<ReturnType<typeof loadInputs>>, brandOf: (slug: 
       thumbnail_url: t.thumbnail_url ?? null, stance: STANCE[t.stance], summary: t.take, summary_more: null, summary_short: t.take,
       highlights: [], stood_out: null, trade_off: null, compared_to: null, quote: fixQuote(t.quote), quote_at_s: secs(t.quote_time),
       chapters: [], attributes: {}, tags: t.tags ?? [], score_value: null, score_scale: null, score_label: null, score_hidden: false,
-      measured: {}, also_url: null, version: null, edition: t.edition ?? null, note: null, brand_tie: null, disclosure: t.disclosure ?? null,
+      measured: {}, also_url: null,
+      // The edition column takes original / crystal_blue / unknown only; any other note ("16mm", "armorgrit") goes in version.
+      version: t.edition && !EDITIONS.has(t.edition) ? (t.edition === "armorgrit" ? "ArmorGrit" : t.edition) : null,
+      edition: t.edition && EDITIONS.has(t.edition) ? t.edition : null, note: null, brand_tie: null, disclosure: t.disclosure ?? null,
       evidence_note: [t.transcript_source, t.caption_source, t.fix_note].filter(Boolean).join("; ") || null, check_result: t.check,
       status: "live", source: "tiktok-check verified 2026-11-22", created_at: now, updated_at: now });
   }
@@ -259,6 +263,18 @@ async function main() {
     // One row per (product, url): a duplicate inside the files is a data problem, reported and the first kept.
     const seen = new Set<string>(), dups: string[] = [];
     built.reviews = built.reviews.filter(r => { const k = `${r.racket_id}|${r.url}`; if (seen.has(k)) { dups.push(`${r.slug} ${r.creator} ${r.url}`); return false; } seen.add(k); return true; });
+    // --drop-url <url,...>: takes the owner left out (2026-11-23: three Ronbus/Pakle TikToks).
+    const dropUrls = new Set((flag("drop-url") ?? "").split(",").map(u => u.trim()).filter(Boolean));
+    if (dropUrls.size) { const before = built.reviews.length; built.reviews = built.reviews.filter(r => !dropUrls.has(r.url)); console.log(`Dropped by --drop-url: ${before - built.reviews.length}`); }
+    // --insert-only (owner 2026-11-23): rows and pages already in the DB are left exactly as they are.
+    if (has("insert-only")) {
+      const curIds = new Set((await client.unsafe(`select id from "${S}"."creator_reviews"`)).map(r => r.id as string));
+      const curPages = new Set((await client.unsafe(`select racket_id from "${S}"."creator_pages"`)).map(r => r.racket_id as string));
+      const before = built.reviews.length;
+      built.reviews = built.reviews.filter(r => !curIds.has(r.id as string));
+      built.pages = built.pages.filter(p => !curPages.has(p.racket_id as string) && built.reviews.some(r => r.racket_id === p.racket_id));
+      console.log(`--insert-only: ${before - built.reviews.length} already in the DB, left alone`);
+    }
     const problems = copyProblems([...built.reviews, ...built.pages]);
     if (withKp) {
       const missingKp = built.reviews.filter(r => !r.key_point);
