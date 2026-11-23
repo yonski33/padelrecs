@@ -549,3 +549,4 @@ body:has(.th-skin .thc) .th-skin .thc a.thc-g-row:hover { background: #f4ebe6; }
 .thc .thc-box-h b { font-size: 16px; }
 .thc .thc-box-t { font-size: 16px; font-weight: 600; line-height: 1.4; color: var(--ink); }
 .th-skin .thc .thc-box.pos .thc-box-h span { color: oklch(0.45 0.11 145); } .th-skin .thc .thc-box.neg .thc-box-h span { color: oklch(0.5 0.14 30); }
+.th-skin .thc-pbox-on { font-size: 12.5px; line-height: 1.45; } .th-skin .thc-pbox-on a { color: inherit; text-decoration: underline; }

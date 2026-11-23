@@ -192,7 +192,9 @@ export async function CreatorProductBody({ slug }: { slug: string }) {
             {/* With a price shown (owner 2026-11-23) the button names its shop: the lowest in-stock shop ("Desert Paddles ›",
                 its "(brand store)" note left off), or on SkinRecs "Amazon ›". */}
             {cta && <a className="thc-cta wide" href={cta.url} target="_blank" rel={cta.rel}>{low ? `${low.shops[0]!.shop.replace(/\s*\([^)]*\)\s*$/, "")} ›` : SKIN && shop ? `${shop.where} ›` : "Check price ↗"}</a>}
-            {SKIN && !low && shop && <span className="thc-pbox-on">{`on ${shop.where}`}</span>}
+            {/* The affiliate note under the shop button (owner 2026-11-23), linking to the site's disclosure page. */}
+            {SKIN && !low && shop && <span className="thc-pbox-on">{shop.rel.includes("sponsored")
+              ? <>{`Affiliate link: ${niche.site.name} may earn a small commission. `}<a href={th("/affiliate-disclosure")}>Learn more</a></> : `on ${shop.where}`}</span>}
 
             {/* The button's own shop is not listed again below it (owner 2026-11-23). */}
             {listed.length > 0 && <div className="thc-pbox-list">{listed.map(o => <div key={o.shop} className="thc-shop2"><strong>{o.shop}</strong>
