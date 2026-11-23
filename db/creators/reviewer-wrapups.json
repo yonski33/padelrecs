@@ -371,6 +371,460 @@
      "tone": "pos"
     }
    ]
+  },
+  "11six24-hurache-x-power-2": {
+   "paras": [
+    "Reviewers recommend it for fans of the 11six24 shape and players who want reach, a long handle for two-handed backhands and elite spin, with several reporting little grit loss. Two of the mixed reviews call it the least forgiving Power 2 shape, one finds less pop high on the face, and two lean toward the Vapor. Several rate power as mid-tier."
+   ],
+   "highlights": [
+    {
+     "text": "elite spin",
+     "tone": "pos"
+    },
+    {
+     "text": "least forgiving Power 2 shape",
+     "tone": "neg"
+    }
+   ]
+  },
+  "bread-butter-loco-elongated": {
+   "paras": [
+    "Reviewers describe it as one of the best price-to-performance power paddles, with elite power and a large sweet spot for an elongated shape. One reviewer lists the high stock swing weight as the main con, since it leaves little room for perimeter weight, and had a weight pod fly off the matte edge guard. Three say it is more controllable than the Boomstick, though Johnkew finds it a bit more unpredictable, and several prefer the standard or hybrid shape."
+   ],
+   "highlights": [
+    {
+     "text": "best price-to-performance",
+     "tone": "pos"
+    },
+    {
+     "text": "high stock swing weight",
+     "tone": "neg"
+    }
+   ]
+  },
+  "bread-butter-loco-standard": {
+   "paras": [
+    "Two reviewers call the standard widebody the standout of the Loco line, and reviewers praise its large, stable sweet spot and value at under $180 with a code. Several measure a stock swing weight near 110, and two say that leaves room for perimeter weight. Two reviewers put its power a little below the Boomstik, and one says it is probably not for players who struggle with elite power paddles."
+   ],
+   "highlights": [
+    {
+     "text": "standout of the Loco line",
+     "tone": "pos"
+    },
+    {
+     "text": "probably not for players who struggle",
+     "tone": "neg"
+    }
+   ]
+  },
+  "crbn1-trufoam-genesis": {
+   "paras": [
+    "Reviewers who like a foam core that shapes spin and still plays soft at the net respond best, with Paddle Addicts calling it the one paddle that does everything. Both mixed takes find the elongated shape less forgiving than other Genesis shapes, and Pickleball Effect says it needs modifications to reach its potential. Three creators prefer the CRBN 2 shape for hand speed or stability."
+   ],
+   "highlights": [
+    {
+     "text": "one paddle that does everything",
+     "tone": "pos"
+    },
+    {
+     "text": "needs modifications to reach its potential",
+     "tone": "neg"
+    }
+   ]
+  },
+  "crbn2-trufoam-genesis": {
+   "paras": [
+    "Most reviewers pick this standard second shape as the best of the series, calling it the most maneuverable and forgiving, and a fit for players who value spin and stability. Several place its power in the lower or middle range. Tickle My Pickleball, the one mixed take, found the first session underwhelming and still prefers the 3X shape."
+   ],
+   "highlights": [
+    {
+     "text": "best of the series",
+     "tone": "pos"
+    },
+    {
+     "text": "found the first session underwhelming",
+     "tone": "neg"
+    }
+   ]
+  },
+  "crbn3-trufoam-genesis": {
+   "paras": [
+    "Reviewers suit it to precision players who value dwell and soft-game control and are willing to tune it, and several call its spin among the best available. Two of the three mixed takes point to the high swing weight, with one finding it clunky and another struggling in hand battles. Several prefer the CRBN 2 shape."
+   ],
+   "highlights": [
+    {
+     "text": "spin among the best available",
+     "tone": "pos"
+    },
+    {
+     "text": "finding it clunky",
+     "tone": "neg"
+    }
+   ]
+  },
+  "enhance-duo": {
+   "paras": [
+    "Reviewers describe it as a dense, connected foam paddle with predictable mid-tier power, below the Boomstick and Loco, and recommend it as an easier-to-control power paddle. Several praise the stable, forgiving sweet spot and note it plays well stock, usually at about $155 to $175 with a code. Mild criticisms include a head-heavy elongated shape, a peel ply surface that wears quickly, and a less satisfying sound."
+   ],
+   "highlights": [
+    {
+     "text": "easier-to-control power paddle",
+     "tone": "pos"
+    },
+    {
+     "text": "head-heavy elongated shape",
+     "tone": "neg"
+    }
+   ]
+  },
+  "enhance-mpp-turbo": {
+   "paras": [
+    "Reviewers describe it as strong power for about $100, playing very close to the Luzz Inferno, and suit it to bangers and Gen 3 players who dislike the EPP feel. The one mixed take, from Pickleball Studio, finds soft shots less consistent, warns that MPP paddles disbond more often than EPP ones, and would pick the EPP Turbo. Two other reviewers needed a few games to adjust to the stiff, hollow feel."
+   ],
+   "highlights": [
+    {
+     "text": "strong power for about $100",
+     "tone": "pos"
+    },
+    {
+     "text": "MPP paddles disbond more often",
+     "tone": "neg"
+    }
+   ]
+  },
+  "friday-aura-pro-elongated": {
+   "paras": [
+    "Reviewers describe an attacking power paddle, with UnforcedErrorsPB saying the Pro clearly wants to attack and Famous by Friday finding the feel mega plush. Both mixed takes point to the soft game: Johnny Pickleball says resets and blocks needed adjustment, and Matt's Pickleball keeps returning to the regular Aura for easier resets."
+   ],
+   "highlights": [
+    {
+     "text": "clearly wants to attack",
+     "tone": "pos"
+    },
+    {
+     "text": "returning to the regular Aura",
+     "tone": "neg"
+    }
+   ]
+  },
+  "gearbox-gx2-power-hybrid": {
+   "paras": [
+    "Several reviewers prefer the hybrid shape to the elongated GX2 Power, finding it more maneuverable, stable and forgiving, and Matt's Pickleball calls it the clear standout. High dwell time means resets and short shots take practice for three reviewers. Pickleball Studio, the one mixed take, calls it an advanced paddle for 4.5 and above players with a dialed in soft game."
+   ],
+   "highlights": [
+    {
+     "text": "clear standout",
+     "tone": "pos"
+    },
+    {
+     "text": "an advanced paddle",
+     "tone": "neg"
+    }
+   ]
+  },
+  "joola-agassi-pro": {
+   "paras": [
+    "Reviewers mostly compare it with the Perseus Pro 4, and Pickleball Studio prefers it as more predictable and easier to swing. Three place the sweet spot higher on the face, while two find it weaker near the top corners. Three mixed takes cover a niche paddle that punishes low contact, a 14 mm that pops a lot, and $280 for a Gen 3 paddle with an expiration date."
+   ],
+   "highlights": [
+    {
+     "text": "more predictable and easier to swing",
+     "tone": "pos"
+    },
+    {
+     "text": "niche paddle",
+     "tone": "neg"
+    }
+   ]
+  },
+  "joola-hyperion-pro-iv": {
+   "paras": [
+    "Most reviewers like it, with bouncecraft calling it an all-court paddle that is good at doing everything and suits most players. Reviewers split on thickness: both mixed takes prefer the 14mm, while Pickleheads and Paddle Addicts prefer the 16mm for its more cushioned feel. Mid-Century finds the power adequate and on the lower end, and one host would not spend their own money on it."
+   ],
+   "highlights": [
+    {
+     "text": "good at doing everything",
+     "tone": "pos"
+    },
+    {
+     "text": "would not spend their own money",
+     "tone": "neg"
+    }
+   ]
+  },
+  "joola-kosmos-pro-v": {
+   "paras": [
+    "Reviewers see a refinement of the Pro IV more than an upgrade, with a softer feel, less pop and more predictable resets. Several fault the smooth, low-grit face, and three question the $300 price, with Francis Rances calling it a tough sell. Two suggest it for Pro IV fans who want a hybrid shape with more control."
+   ],
+   "highlights": [
+    {
+     "text": "more predictable resets",
+     "tone": "pos"
+    },
+    {
+     "text": "a tough sell",
+     "tone": "neg"
+    }
+   ]
+  },
+  "joola-perseus-pro-v": {
+   "paras": [
+    "Reviewers credit it with a softer, more controlled feel than the Pro 4, though most of the six mixed takes see only a minor or lateral update. Price is the main sticking point, with several pointing to a discounted Pro 4 or waiting, and one choosing the Honolulu J6CR instead. The one positive take likes it right out of the box."
+   ],
+   "highlights": [
+    {
+     "text": "softer, more controlled feel",
+     "tone": "pos"
+    },
+    {
+     "text": "main sticking point",
+     "tone": "neg"
+    },
+    {
+     "text": "right out of the box",
+     "tone": "pos"
+    }
+   ]
+  },
+  "luzz-cannon": {
+   "paras": [
+    "Reviewers cast it as a cheap Gen 3 power paddle, with Pickleball Willy calling it probably the best power paddle under $100 and several comparing it with the JOOLA Perseus Pro 4. Three of the four mixed takes find the sweet spot small or tight, and Pickleheads sees few beginners using it for lack of forgiveness. Several players added weight or lead tape."
+   ],
+   "highlights": [
+    {
+     "text": "best power paddle under $100",
+     "tone": "pos"
+    },
+    {
+     "text": "sweet spot small or tight",
+     "tone": "neg"
+    }
+   ]
+  },
+  "luzz-pro-4-inferno": {
+   "paras": [
+    "Reviewers praise strong power, heavy grit and a bigger sweet spot, and Pickleball Paddle Reviews picked it as the favorite of three new Luzz paddles. Several say it plays stiff at first and softens with break-in. BK Pickleball tells players at 3.5 or below to stay away until technique improves. One mixed take could not match the $99 Enhance MPP Turbo for power."
+   ],
+   "highlights": [
+    {
+     "text": "bigger sweet spot",
+     "tone": "pos"
+    },
+    {
+     "text": "stay away until technique improves",
+     "tone": "neg"
+    }
+   ]
+  },
+  "paddletek-bantam-esq-c": {
+   "paras": [
+    "Reviewers describe one of the most powerful square paddles on the market with standout spin, and its Gen 1 non-thermoformed build lowers core crush worries. Control is the catch: both mixed takes say it suits aggressive players, and Matthew K says it is for attackers and not patient dinking, and Pickleheads finds the loud pop makes dinks hard. Several prefer the 12.7 mm, though Pickleball Pursuit and JJ prefer the 14.3 mm."
+   ],
+   "highlights": [
+    {
+     "text": "most powerful square paddles",
+     "tone": "pos"
+    },
+    {
+     "text": "not patient dinking",
+     "tone": "neg"
+    }
+   ]
+  },
+  "paddletek-bantam-tko-c": {
+   "paras": [
+    "Reviewers frame this Gen 1, non-thermoformed paddle as near Gen 3 power with more control, and Pickleheads calls it the best paddle Paddletek has made. Several say the 12.7 mm pops more than the 14.3 mm. Farmer Lanky, the one mixed take, finds the 12.7 really hard to control and says players who dink and play soft should skip it."
+   ],
+   "highlights": [
+    {
+     "text": "best paddle Paddletek has made",
+     "tone": "pos"
+    },
+    {
+     "text": "players who dink and play soft should skip it",
+     "tone": "neg"
+    }
+   ]
+  },
+  "paddletek-bantam-tko-cx": {
+   "paras": [
+    "Reviewers recommend it to players who want maximum power, including those coming from tennis, and Cody Childers and STS both single out the 12.7 mm for power. The one mixed take says it is hard to control, very loud and weaker toward the edges, and prefers the lower swing weight TKO C. Another expects a fairly small sweet spot, and reset and block timing takes time to dial in."
+   ],
+   "highlights": [
+    {
+     "text": "single out the 12.7 mm for power",
+     "tone": "pos"
+    },
+    {
+     "text": "hard to control, very loud",
+     "tone": "neg"
+    }
+   ]
+  },
+  "proton-series-four-project-roadrunner": {
+   "paras": [
+    "Reviewers suit it to spin-minded players with fast hands who drop the third shot and flick at the kitchen, and one calls it the best edgeless paddle available. The price of about $300 is the most common complaint, even among positive takes, and the one negative take fears a bulge at the bottom of the head is the core breaking. Several find power only average."
+   ],
+   "highlights": [
+    {
+     "text": "the best edgeless paddle available",
+     "tone": "pos"
+    },
+    {
+     "text": "a bulge at the bottom of the head",
+     "tone": "neg"
+    }
+   ]
+  },
+  "ronbus-quanta-r3-16": {
+   "paras": [
+    "Most reviewers treat it as a budget elongated power paddle that needs weight, since the stock unit is light and unstable on off-center hits. Weighted, several put it close to but below the Selkirk Boomstick, and Pickleheads says it hits hard for a budget paddle. West Side, the one mixed take, calls the stock paddle average and tells anyone unwilling to add weight to skip it."
+   ],
+   "highlights": [
+    {
+     "text": "hits hard for a budget paddle",
+     "tone": "pos"
+    },
+    {
+     "text": "unwilling to add weight to skip it",
+     "tone": "neg"
+    }
+   ]
+  },
+  "ronbus-quanta-r4-16": {
+   "paras": [
+    "Reviewers like the R4 hybrid for its maneuverability and suit it to players willing to add weight, since several find the stock paddle thin, twitchy or short on power. Two reviewers say a weighted Quanta plays close to a Boomstick, though the Boomstick keeps an edge in peak power. The mixed take, from WhiskyDink, found the stock paddle flimsy and encourages players to try it stock first."
+   ],
+   "highlights": [
+    {
+     "text": "like the R4 hybrid",
+     "tone": "pos"
+    },
+    {
+     "text": "thin, twitchy or short on power",
+     "tone": "neg"
+    }
+   ]
+  },
+  "ronbus-ripple-v2-r4-14": {
+   "paras": [
+    "Reviewers point this at advanced players and attackers who can control power, and the two positive takes both like the R4 shape. Two of the three mixed takes find the stock sweet spot tight, and two mention a stiff, tingy feel. Three reviewers add tungsten or throat weight to widen it."
+   ],
+   "highlights": [
+    {
+     "text": "both like the R4 shape",
+     "tone": "pos"
+    },
+    {
+     "text": "stiff, tingy feel",
+     "tone": "neg"
+    }
+   ]
+  },
+  "rpm-jade-elongated": {
+   "paras": [
+    "Reviewers mostly praise elite spin and a softer, more controllable feel than the RPM Q2, with The Kitchen and Pickleball Paddle Reviews both calling it a toned down Q2. Several mixed takes question grit durability or its long term spin, including one report of face disbonding after about 20 hours. A few reviewers find power low to mid tier and the price hard to justify."
+   ],
+   "highlights": [
+    {
+     "text": "elite spin",
+     "tone": "pos"
+    },
+    {
+     "text": "face disbonding",
+     "tone": "neg"
+    }
+   ]
+  },
+  "rpm-q2-elongated": {
+   "paras": [
+    "Reviewers repeatedly say it plays very similarly to the Selkirk Boomstik, and suit it to aggressive players with a compact swing rather than beginners. One mixed take flags unpredictable response near the center, the other long returns when overswinging. Three reviewers fault the grit as short-lived."
+   ],
+   "highlights": [
+    {
+     "text": "aggressive players with a compact swing",
+     "tone": "pos"
+    },
+    {
+     "text": "fault the grit as short-lived",
+     "tone": "neg"
+    }
+   ]
+  },
+  "selkirk-labs-project-007": {
+   "paras": [
+    "Reviewers suit it to experienced, hard-hitting players, and both positive takes prefer the 10 mm Epic for control and faster hands. All three mixed takes center on a small, unforgiving sweet spot, and two reviewers call the face jarring, with one telling players prone to tennis elbow to pass. Pickleball Studio does not think it is worth $333 for most players."
+   ],
+   "highlights": [
+    {
+     "text": "prefer the 10 mm Epic",
+     "tone": "pos"
+    },
+    {
+     "text": "small, unforgiving sweet spot",
+     "tone": "neg"
+    }
+   ]
+  },
+  "selkirk-labs-project-boomstik-elongated": {
+   "paras": [
+    "Reviewers recommend it for players who want maximum power with a forgiving sweet spot, and one says it has the most power and pop of any paddle they have tested. Both mixed takes find the feel stiff and dislike the permanent MOI weights, and both say the cheaper SLK Era is easier to handle. Loose edge guards are reported in several takes."
+   ],
+   "highlights": [
+    {
+     "text": "most power and pop",
+     "tone": "pos"
+    },
+    {
+     "text": "Loose edge guards are reported",
+     "tone": "neg"
+    }
+   ]
+  },
+  "spartus-olympus": {
+   "paras": [
+    "Reviewers describe a dense, vibration-free foam filled feel, with no core crush reported by All Drive No Drop. Two reviewers place its power at the bottom of the power category, though one of them, Tickle My Pickleball, still calls it the best power paddle on the market right now. Johnkew, the one mixed take, finds the sweet spot feels small and suggests it for 4.5 players and above."
+   ],
+   "highlights": [
+    {
+     "text": "best power paddle on the market right now",
+     "tone": "pos"
+    },
+    {
+     "text": "sweet spot feels small",
+     "tone": "neg"
+    }
+   ]
+  },
+  "spartus-spitfire-elongated": {
+   "paras": [
+    "Reviewers pitch it as a budget power paddle with elite spin, and several call it a value standout. Both mixed takes are about the soft game: bepickleballer says drops, resets and dinks were not where it won them over, and a control player found the Enhance MPP Turbo easier to reset. Two lab wear tests showed spin losses of 13 to 15 percent."
+   ],
+   "highlights": [
+    {
+     "text": "elite spin",
+     "tone": "pos"
+    },
+    {
+     "text": "not where it won them over",
+     "tone": "neg"
+    }
+   ]
+  },
+  "vatic-pro-v-sol-tour": {
+   "paras": [
+    "Reviewers like it as a $100 foam paddle with durable-style grit, and Matthew K calls it an easy recommend. The mixed takes center on grit: Pickleball Studio measured spin falling nearly 29 percent after about 30 games, and Johnkew's wear test passed only narrowly. Pickleball Pursuit calls it a solid release that will not wow in any category, and Farmer Lanky warns players below 4.0 about control."
+   ],
+   "highlights": [
+    {
+     "text": "an easy recommend",
+     "tone": "pos"
+    },
+    {
+     "text": "spin falling nearly 29 percent",
+     "tone": "neg"
+    }
+   ]
   }
  }
 }
