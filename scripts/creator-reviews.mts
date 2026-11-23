@@ -64,19 +64,23 @@ async function loadInputs() {
   const need = (n: string) => { const v = flag(n); if (!v) throw new Error(`--${n} is required`); return v; };
   const dir = async (d: string | undefined) => d ? Promise.all((await readdir(d)).filter(f => f.endsWith(".json") && !f.startsWith("tokens"))
     .map(async f => JSON.parse(await readFile(join(d, f), "utf8")))) : [];
-  const staging = skinSite ? { paddles: [] } : JSON.parse(await readFile(need("staging"), "utf8"));
-  const verified = await dir(skinSite ? flag("verified") : need("verified"));
-  const tiktok = await dir(skinSite ? flag("tiktok") : need("tiktok"));
+  // --cards <file> alone (paddles 51-80, owner OK 2026-11-23): one later batch of checked cards, imported without the earlier
+  // sweeps, so rows already in the DB are not touched.
+  const cardsOnly = !skinSite && !!flag("cards");
+  const cards = flag("cards") ? JSON.parse(await readFile(flag("cards")!, "utf8")).paddles : [];
+  const staging = skinSite || cardsOnly ? { paddles: [] } : JSON.parse(await readFile(need("staging"), "utf8"));
+  const verified = await dir(skinSite || cardsOnly ? flag("verified") : need("verified"));
+  const tiktok = await dir(skinSite || cardsOnly ? flag("tiktok") : need("tiktok"));
   const skin = skinSite ? await dir(need("skin")) : [];
   const videoChannels: Record<string, string> = flag("video-channels") ? JSON.parse(await readFile(flag("video-channels")!, "utf8")) : {};
-  const prices = flag("prices") || !skinSite ? JSON.parse(await readFile(need("prices"), "utf8")) : { paddles: [], checked_date: null };
+  const prices = flag("prices") || !(skinSite || cardsOnly) ? JSON.parse(await readFile(need("prices"), "utf8")) : { paddles: [], checked_date: null };
   const fixture: Fixture | null = flag("fixture") ? JSON.parse(await readFile(flag("fixture")!, "utf8")) : null;
   // Glance-table key points (0040): out/batch-*.json files of { "<review id>": "<line>" }, written from the verified fields.
   const keyPoints: Record<string, string> = {};
   if (flag("key-points")) for (const f of (await readdir(flag("key-points")!)).filter(f => f.endsWith(".json")))
     Object.assign(keyPoints, JSON.parse(await readFile(join(flag("key-points")!, f), "utf8")));
   const channels: Record<string, string> = flag("channels") ? JSON.parse(await readFile(flag("channels")!, "utf8")) : {};
-  return { staging, verified, tiktok, prices, fixture, channels, keyPoints, skin, videoChannels };
+  return { staging, verified, tiktok, prices, fixture, channels, keyPoints, skin: [...skin, ...cards], videoChannels };
 }
 
 /** Every row the files describe, by product slug (resolved to racket ids later). */
@@ -141,11 +145,12 @@ function buildRows(inp: Awaited<ReturnType<typeof loadInputs>>, brandOf: (slug: 
       summary: r.summary, summary_more: r.summary_more ?? null, summary_short: null,
       highlights: (r.highlights ?? []).filter((h: string) => r.summary.includes(h)),
       stood_out: r.stood_out ?? null, trade_off: r.trade_off ?? null, compared_to: r.compared_to ?? null,
-      quote: r.quote ?? null, quote_at_s: secs(r.quote_at), chapters: chapters(r.chapters), attributes: attrs(r.attributes), tags: [],
-      score_value: sc?.value ?? null, score_scale: sc?.scale ?? null, score_label: sc?.label ?? null, score_hidden: false,
-      measured: r.skin_type ? { skin_type: r.skin_type } : {}, also_url: r.also_url ?? null, version: null, edition: null,
+      quote: fixQuote(r.quote), quote_at_s: secs(r.quote_at), chapters: chapters(r.chapters), attributes: attrs(r.attributes), tags: [],
+      score_value: sc?.value ?? null, score_scale: sc?.scale ?? null, score_label: sc?.label ?? null, score_hidden: !!sc && HIDE_SCORE.has(r.creator),
+      measured: r.skin_type ? { skin_type: r.skin_type } : r.measured ?? {}, also_url: r.also_url ?? null, version: r.version ?? null, edition: null,
       note: r.type === "long-term" ? "Long-term" : null, brand_tie: null, disclosure: r.disclosure ?? null,
-      evidence_note: r.evidence_note ?? null, check_result: "checked", status: "live", source: "skin-creator-reviews 2026-11-22",
+      evidence_note: r.evidence_note ?? null, check_result: "checked", status: "live",
+      source: niche.id === "skin" ? "skin-creator-reviews 2026-11-22" : "pb-creator-reviews-51-80 2026-11-23",
       key_point: kp ? (/[.!?]$/.test(kp) ? kp : `${kp}.`) : null, created_at: now, updated_at: now });
   }
   const TT_TYPE: Record<string, string> = { full_review: "review", short_update: "short_update", ranking_mention: "ranking_mention" };
