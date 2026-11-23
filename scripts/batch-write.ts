@@ -4,7 +4,8 @@
 //
 // Steps (each resumable; state lives in <stage>/state.json):
 //   NICHE=pickleball npx tsx --env-file=.env.local scripts/batch-write.ts inputs  --stage <dir> --slugs a,b,c --sources <grok out dir> \
-//        --pack <grok pack .md> --transcripts <dir>        # no LLM: link checks, video metadata, transcripts, blog text
+//        --pack <grok pack .md> --transcripts <dir> [--name "<product name>"]   # no LLM: links, metadata, transcripts, blog text;
+//        merges into the stage by URL (a URL keeps its id and results), so packs can be added and re-runs pick up new transcripts
 //   NICHE=pickleball npx tsx --env-file=.env.local scripts/batch-write.ts write   --stage <dir> [--max-usd 15]   # writer batch: submit
 //   NICHE=pickleball npx tsx --env-file=.env.local scripts/batch-write.ts check   --stage <dir> [--max-usd 15]   # checker batch: submit
 //   NICHE=pickleball npx tsx --env-file=.env.local scripts/batch-write.ts poll    --stage <dir> [--wait]         # poll + collect the open batch
@@ -100,14 +101,21 @@ async function inputs() {
   state.slugs = [...new Set([...state.slugs, ...slugs])]; // a stage can take several packs (e.g. 141-159 + 160-178)
   for (const slug of slugs) {
     const sec = pack.split(/\n(?=## )/).find(b => b.startsWith(`## ${slug}\n`)) ?? "";
-    state.packNotes[slug] = sec.trim();
+    if (sec.trim()) state.packNotes[slug] = [state.packNotes[slug], sec.trim()].filter(Boolean).filter((x, k, a) => a.indexOf(x) === k).join("\n\n");
     const page = await htmlText(`https://www.${niche.site.domain}/${niche.productPath}/${slug}`);
-    const paddle = page.title.replace(new RegExp(`\\s*review\\s*\\|\\s*${SITE}\\s*$`, "i"), "").trim() || slug;
+    const paddle = flag("name") ?? (page.title.replace(new RegExp(`\\s*review\\s*\\|\\s*${SITE}\\s*$`, "i"), "").trim() || slug);
     const grok = await readJson<{ sources: Record<string, string | null>[] }>(join(srcDir, `${slug}.json`));
-    const out: Source[] = [];
-    for (const [i, g] of grok.sources.entries()) {
+    // Merge with what this stage already has for the product (another pack, or a re-run once transcripts exist): a URL keeps
+    // its id, so its writer/checker results stay attached; new URLs get the next free id.
+    const inPath = join(STAGE, "inputs", `${slug}.json`);
+    const existing: Source[] = existsSync(inPath) ? await readJson<Source[]>(inPath) : [];
+    const byUrl = new Map(existing.map(s => [s.url, s]));
+    let next = existing.reduce((m, s) => Math.max(m, Number(s.id.split("__")[1]) + 1), 0);
+    const out: Source[] = existing.filter(s => !grok.sources.some(g => String(g.url) === s.url));
+    for (const g of grok.sources) {
       const url = String(g.url), v = vid(url);
-      const s: Source = { id: `${slug}__${String(i).padStart(2, "0")}`, slug, paddle, url, kind: v ? "youtube" : "blog",
+      const id = byUrl.get(url)?.id ?? `${slug}__${String(next++).padStart(2, "0")}`;
+      const s: Source = { id, slug, paddle, url, kind: v ? "youtube" : "blog",
         creator: String(g.creator ?? ""), grok_creator: String(g.creator ?? ""), language: (g.language as string) ?? null,
         date: (g.date as string) ?? null, duration_s: null, channel_url: null, video_id: v, chapters: [],
         starts_at: (g.starts_at as string) ?? null, description: "", text: null, link_check: {}, skip: null,
