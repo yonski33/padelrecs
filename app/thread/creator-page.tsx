@@ -130,7 +130,10 @@ export async function CreatorProductBody({ slug }: { slug: string }) {
   const low = lowestOffer(offers);
   const relOf = (aff: boolean) => aff ? "sponsored nofollow noopener" : "nofollow noopener";
   // The one filled Check price button (README rule) goes to a lowest in-stock shop; without prices, to the live page's link.
-  const cta = low ? { url: low.shops[0]!.url, rel: relOf(low.shops[0]!.affiliate) } : shop;
+  // On a tie for the lowest price the button goes to Amazon, or another affiliate link (owner 2026-11-23: until the other
+  // shops have affiliate codes); otherwise the first shop at that price.
+  const top = low ? low.shops.find(o => o.shop === "Amazon" || o.affiliate) ?? low.shops[0]! : null;
+  const cta = top ? { url: top.url, rel: relOf(top.affiliate || top.shop === "Amazon") } : shop;
   const how = howItPlays(rs), agree = agreeChips(rs);
   // The at-a-glance table (owner 2026-11-23): reviewer, take and the short key point only, in the reviews' own order.
   const glance = rs;
@@ -155,7 +158,10 @@ export async function CreatorProductBody({ slug }: { slug: string }) {
   // Up to 3 shops (SkinRecs 4, owner 2026-11-23: "show few stores") in the price box.
   const n = stanceCounts(rs), buy = offers.filter(o => o.inStock).slice(0, SKIN ? 4 : 3);
   // The button's own shop is left out of the list under it; "In stock at N shops" still counts it.
-  const listed = buy.filter(o => !(low && o.url === low.shops[0]!.url));
+  const listed = buy.filter(o => !(top && o.url === top.url));
+  // Amazon's price carries its "as of" time (Amazon's rule), from the daily price job.
+  const amzRow = buy.find(o => o.shop === "Amazon" && o.checkedAt);
+  const amazonAsOf = amzRow ? new Date(amzRow.checkedAt!).toLocaleString("en-US", { month: "short", day: "numeric", hour: "numeric", minute: "2-digit", timeZone: "UTC" }) : null;
   // Similar paddles mentioned: other catalogue paddles the reviews name, with their lowest stored price.
   const named = mentions(rs, allRows, r.id).map(m => ({ ...m, href: m.row.href, price: staged[m.row.slug]?.price ?? null }));
 
@@ -163,9 +169,12 @@ export async function CreatorProductBody({ slug }: { slug: string }) {
     <JsonLd data={ld}/>
     {/* The mock's third font (README tokens): JetBrains Mono for the small "check price ↗" links, this page only. */}
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500;700&display=swap" precedence="default"/>
+    {/* SkinRecs header 4a (owner handoff 2026-11-23): Inter 800 for the name, Barlow Condensed 800 for TL;DR and the price. */}
+    {SKIN && <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=Barlow+Condensed:wght@800&display=swap" precedence="default"/>}
     <div className="thc thc-v19">
       {/* Head (owner mock 2026-11-23): photo · name, tags, TL;DR with ✓ and ✗ points, the players' vote box · the price box. */}
-      <header className="thc-head thc-hd3">
+      {/* Header 4a (owner handoffs 2026-11-23, skin then pickleball): one outlined panel, photo / main / prices columns (creators.css .thc-hd4). */}
+      <header className="thc-head thc-hd3 thc-hd4">
         <div className="thc-photo">{pic ? <img src={pic} alt={name}/> : <span className="th-ph" aria-hidden="true"/>}</div>
         <div className="thc-head-m">
           <h1>{name}</h1>
@@ -173,14 +182,14 @@ export async function CreatorProductBody({ slug }: { slug: string }) {
           {(tldr || plus.length > 0 || minus) && <div className="thc-tldr">
             <span className="thc-tldr-h"><b>TL;DR</b><span>{`From ${plural(rs.length, "review")}`}</span></span>
             {tldr && <span className="thc-tldr-t">{tldr}</span>}
-            {(plus.length > 0 || minus) && <span className="thc-pts2">{plus.map(t => <span key={t} className="pos">{`✓ ${t}`}</span>)}{minus && <span className="neg">{`✗ ${minus}`}</span>}</span>}
+            {(plus.length > 0 || minus) && <span className="thc-pts2">{plus.map(t => <span key={t} className="pos">{`✓ ${t}`}</span>)}{minus && <span className="neg">{`✕ ${minus}`}</span>}</span>}
           </div>}
           {/* The site's own players (owner 2026-11-22, #651): the bar and shares, never the creator reviews. */}
           <div className="thc-vbox">
             <span className="thc-vbox-h"><strong>{`${votes.total.toLocaleString("en-US")} ${W.person} ${votes.total === 1 ? "vote" : "votes"}`}</strong><a href="#vote">Vote ↓</a></span>
             {votes.total > 0 ? <><span className="thc-vbar" aria-hidden="true">{KEYS.map(k => votes[k] > 0 && <i key={k} className={k} style={{ flex: votes[k] }}/>)}</span>
-              <span className="thc-vpct">{KEYS.map(k => { const p = Math.round(votes[k] / votes.total * 100);
-                return <span key={k} className={k}>{k === "pos" ? <b>{`${p}% loved it`}</b> : `${p}% ${k === "mix" ? "mixed" : "not for me"}`}</span>; })}</span></>
+              {/* 4a: raw counts with colour dots, so the three add up to the total. */}
+              <span className="thc-vcnt">{KEYS.map(k => <span key={k}><i className={k} aria-hidden="true"/>{`${votes[k].toLocaleString("en-US")} ${k === "pos" ? "loved" : k === "mix" ? "mixed" : "not for me"}`}</span>)}</span></>
               : <span className="thc-none">No votes yet. Be the first.</span>}
           </div>
         </div>
@@ -192,7 +201,7 @@ export async function CreatorProductBody({ slug }: { slug: string }) {
               <span className="thc-pbox-s">{/* The shops listed below (owner 2026-11-23), not every in-stock offer. */}{buy.length > 0 && `In stock at ${plural(buy.length, "shop")}`}</span></>}
             {/* With a price shown (owner 2026-11-23) the button names its shop: the lowest in-stock shop ("Desert Paddles ›",
                 its "(brand store)" note left off), or on SkinRecs "Amazon ›". */}
-            {cta && <a className="thc-cta wide" href={cta.url} target="_blank" rel={cta.rel}>{low ? `${shortShop(low.shops[0]!.shop)} ›` : SKIN && shop ? `${shop.where} ›` : "Check price ↗"}</a>}
+            {cta && <a className="thc-cta wide" href={cta.url} target="_blank" rel={cta.rel}>{top ? `${shortShop(top.shop)} ›` : SKIN && shop ? `${shop.where} ›` : "Check price ↗"}</a>}
             {/* The affiliate note under the shop button (owner 2026-11-23), linking to the site's disclosure page. */}
             {SKIN && !low && shop && <span className="thc-pbox-on">{shop.rel.includes("sponsored")
               ? <>{`Affiliate link: ${niche.site.name} may earn a small commission. `}<a href={th("/affiliate-disclosure")}>Learn more</a></> : `on ${shop.where}`}</span>}
@@ -201,7 +210,7 @@ export async function CreatorProductBody({ slug }: { slug: string }) {
             {listed.length > 0 && <div className="thc-pbox-list">{listed.map(o => <div key={o.shop} className="thc-shop2"><strong title={o.shop}>{shortShop(o.shop)}</strong>
               <span className="thc-price">{usd(o.price)}</span><a className="thc-mono" href={o.url} target="_blank" rel={relOf(o.affiliate)}>check ↗</a></div>)}</div>}
             {/* Back under the shops (owner 2026-11-23): the check date and, where any link is one, the affiliate note. */}
-            {page.prices && buy.length > 0 && <span className="thc-note">{`Checked ${shortDay(page.prices.checked)}.${buy.some(o => o.affiliate) ? " Some links are affiliate links." : ""}`}</span>}
+            {page.prices && buy.length > 0 && <span className="thc-note">{`Checked ${shortDay(page.prices.checked)}.${amazonAsOf ? ` Amazon price as of ${amazonAsOf} UTC.` : ""}${buy.some(o => o.affiliate || o.shop === "Amazon") ? " Some links are affiliate links." : ""}`}</span>}
           </section>
           {/* SkinRecs (owner mock 2026-11-23): the fit check sits under Check price, where one shop leaves room. */}
           {SKIN && !low && <SkinCompactFit id={r.id} wire={skinWire} links={skinLinks} side/>}

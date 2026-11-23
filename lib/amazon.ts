@@ -153,3 +153,15 @@ export async function findAmazonOffer(product: { name: string; brand: string }, 
   if (!price) log(`[amazon] ${product.name} matched ${match.asin} but Amazon lists no price for it`);
   return { asin: match.asin, title: item?.itemInfo?.title?.displayValue ?? match.itemInfo!.title!.displayValue!, price, url: amazonLink(match.asin, credentials.partnerTag, marketplace), image: item?.images?.primary?.large?.url ?? null };
 }
+
+/** One known ASIN's live offer (getItems with OffersV2), for the daily price job (scripts/amazon-prices.mts): no search,
+ *  so a saved or hand-checked ASIN is never swapped for a lookalike. Null when Amazon has no such item. */
+export async function amazonOfferByAsin(asin: string, settings: AmazonSettings, credentials: AmazonCredentials, fetcher: Fetch = fetch): Promise<AmazonOffer | null> {
+  const marketplace = settings.marketplace ?? DEFAULT_MARKETPLACE;
+  const details = await call("/catalog/v1/getItems", {
+    itemIds: [asin], resources: ["itemInfo.title", "offersV2.listings.price", "offersV2.listings.availability", "images.primary.large"],
+  }, credentials, marketplace, fetcher);
+  const item = details.itemsResult?.items?.find(i => i.asin === asin);
+  if (!item) return null;
+  return { asin, title: item.itemInfo?.title?.displayValue ?? "", price: listingPrice(item), url: amazonLink(asin, credentials.partnerTag, marketplace), image: item.images?.primary?.large?.url ?? null };
+}
