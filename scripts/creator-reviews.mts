@@ -153,6 +153,7 @@ function buildRows(inp: Awaited<ReturnType<typeof loadInputs>>, brandOf: (slug: 
       source: niche.id === "skin" ? "skin-creator-reviews 2026-11-22" : "pb-creator-reviews-51-80 2026-11-23",
       key_point: kp ? (/[.!?]$/.test(kp) ? kp : `${kp}.`) : null, created_at: now, updated_at: now });
   }
+  const EDITIONS = new Set(["original", "crystal_blue", "unknown"]);
   const TT_TYPE: Record<string, string> = { full_review: "review", short_update: "short_update", ranking_mention: "ranking_mention" };
   for (const f of inp.tiktok) for (const t of f.takes) {
     if (t.check === "drop" || t.check === "unverified") { skipped.push(`${f.slug}: TikTok ${t.handle} (${t.check})`); continue; }
@@ -162,7 +163,10 @@ function buildRows(inp: Awaited<ReturnType<typeof loadInputs>>, brandOf: (slug: 
       thumbnail_url: t.thumbnail_url ?? null, stance: STANCE[t.stance], summary: t.take, summary_more: null, summary_short: t.take,
       highlights: [], stood_out: null, trade_off: null, compared_to: null, quote: fixQuote(t.quote), quote_at_s: secs(t.quote_time),
       chapters: [], attributes: {}, tags: t.tags ?? [], score_value: null, score_scale: null, score_label: null, score_hidden: false,
-      measured: {}, also_url: null, version: null, edition: t.edition ?? null, note: null, brand_tie: null, disclosure: t.disclosure ?? null,
+      measured: {}, also_url: null,
+      // The edition column takes original / crystal_blue / unknown only; any other note ("16mm", "armorgrit") goes in version.
+      version: t.edition && !EDITIONS.has(t.edition) ? (t.edition === "armorgrit" ? "ArmorGrit" : t.edition) : null,
+      edition: t.edition && EDITIONS.has(t.edition) ? t.edition : null, note: null, brand_tie: null, disclosure: t.disclosure ?? null,
       evidence_note: [t.transcript_source, t.caption_source, t.fix_note].filter(Boolean).join("; ") || null, check_result: t.check,
       status: "live", source: "tiktok-check verified 2026-11-22", created_at: now, updated_at: now });
   }
