@@ -27,7 +27,6 @@
     "amazon:env": "tsx scripts/set-amazon-env.ts"
   },
   "dependencies": {
-    "@anthropic-ai/sdk": "^1.12.0",
     "@supabase/ssr": "^0.7.0",
     "@supabase/supabase-js": "^2.0.0",
     "@vercel/functions": "3.9.11",
@@ -41,6 +40,7 @@
     "zod": "^3.25.76"
   },
   "devDependencies": {
+    "@anthropic-ai/sdk": "^1.12.0",
     "@electric-sql/pglite": "^0.3.14",
     "@types/node": "22.19.19",
     "@types/pg": "8.23.1",
