@@ -550,53 +550,60 @@ body:has(.th-skin .thc) .th-skin .thc a.thc-g-row:hover { background: #f4ebe6; }
 .thc .thc-box-t { font-size: 16px; font-weight: 600; line-height: 1.4; color: var(--ink); }
 .th-skin .thc .thc-box.pos .thc-box-h span { color: oklch(0.45 0.11 145); } .th-skin .thc .thc-box.neg .thc-box-h span { color: oklch(0.5 0.14 30); }
 .th-skin .thc-pbox-on { font-size: 12.5px; line-height: 1.45; } .th-skin .thc-pbox-on a { color: inherit; text-decoration: underline; }
-/* SkinRecs header 4a (owner handoff 2026-11-23, skinrecs-header-4a): one outlined white panel with three columns, photo
+/* Product header 4a (owner handoffs 2026-11-23, skinrecs-header-4a and pickleballrecs-header-4a): one outlined white panel with three columns, photo
    200px on the page colour, main, prices 320px behind a soft divider; stacks below 1000px. Tokens from the handoff. */
-.th-skin .thc-v19 .thc-head.thc-hd4 { display: grid; grid-template-columns: 200px minmax(0, 1fr) 320px; gap: 0; padding: 0;
-  width: calc(100% - 48px); max-width: 1168px; margin: 24px auto 0; background: #fff; border: 2px solid #2A1F1F; border-radius: 22px;
-  overflow: hidden; align-items: stretch; color: #2A1F1F; }
-.th-skin .thc-hd4 .thc-photo { height: auto; border-radius: 0; background: #F6F1EC; padding: 24px; align-self: stretch; }
-.th-skin .thc-hd4 .thc-photo img { width: 170px; max-width: 100%; height: auto; max-height: none; }
-.th-skin .thc-hd4 .thc-head-m { padding: 26px 28px; gap: 14px; }
-.th-skin .thc-hd4 h1 { font-family: Inter, 'Barlow', system-ui, sans-serif !important; font-size: 40px; font-weight: 800; line-height: 1.05; letter-spacing: -.02em; }
-.th-skin .thc-hd4 .thc-tags > span { font-size: 13px; border-color: #2A1F1F; padding: 2px 11px; background: #fff; }
-.th-skin .thc-hd4 .thc-tags > span.on { background: #F5C6C6; }
-.th-skin .thc-hd4 .thc-tldr { background: #FFFCF8; border: 1.5px solid #E6D9D2; border-radius: 14px; padding: 16px 18px; gap: 10px; box-shadow: none; }
-.th-skin .thc-hd4 .thc-tldr-h { justify-content: space-between; align-items: baseline; }
-.th-skin .thc-hd4 .thc-tldr-h b { font: 800 22px/1 'Barlow Condensed', var(--bc, sans-serif); letter-spacing: 0; background: #F5C6C6;
-  border: 1.5px solid #2A1F1F; border-radius: 8px; padding: 2px 9px; }
-.th-skin .thc-hd4 .thc-tldr-h > span { font-size: 13.5px; color: #7A6E68; }
-.th-skin .thc-hd4 .thc-tldr-t { font-size: 18px; line-height: 1.4; }
-.th-skin .thc-hd4 .thc-pts2 { font-size: 15px; gap: 6px 20px; margin-top: 0; } .th-skin .thc-hd4 .thc-pts2 .neg { color: #B3261E; }
-.th-skin .thc-hd4 .thc-vbox { border: 0; border-radius: 0; padding: 0; background: none; gap: 9px; margin-top: 0; }
-.th-skin .thc-hd4 .thc-vbox-h strong { font-size: 15px; }
-.th-skin .thc-hd4 .thc-vbar { height: 10px; border-color: #2A1F1F; }
-.th-skin .thc-hd4 .thc-vbar i.pos, .th-skin .thc-vcnt i.pos { background: #62C878; }
-.th-skin .thc-hd4 .thc-vbar i.mix, .th-skin .thc-vcnt i.mix { background: #F0D16B; }
-.th-skin .thc-hd4 .thc-vbar i.neg, .th-skin .thc-vcnt i.neg { background: #F0796A; }
-.thc-vcnt { display: flex; flex-wrap: wrap; gap: 4px 18px; font-size: 14.5px; font-weight: 700; }
-.thc-vcnt > span { display: inline-flex; align-items: center; gap: 6px; white-space: nowrap; }
-.thc-vcnt i { width: 10px; height: 10px; border-radius: 50%; border: 1.5px solid #2A1F1F; box-sizing: border-box; }
-.th-skin .thc-v19 .thc-hd4 .thc-head-r { display: flex; flex-direction: column; gap: 16px; padding: 26px 24px; border-left: 2px solid #E6D9D2; align-self: stretch; }
-.th-skin .thc-hd4 .thc-head-r > #buy { border: 0; border-radius: 0; background: none; box-shadow: none; padding: 0; gap: 12px; flex: 0 0 auto; }
-.th-skin .thc-hd4 .thc-head-r > :not(#buy) { border: 0; border-top: 1.5px solid #E6D9D2; border-radius: 0; background: none; box-shadow: none; padding: 16px 0 0; }
-.th-skin .thc-hd4 .thc-pbox-l { font-size: 13px; color: #7A6E68; }
-.th-skin .thc-hd4 .thc-pbox-p { font-size: 40px; font-weight: 800; }
-.th-skin .thc-hd4 .thc-pbox-s { font-size: 13.5px; margin-top: -6px; }
-body:has(.th-skin .thc) .th-skin .thc .thc-hd4 .thc-pbox a.thc-cta.wide { background: #F5C6C6; border: 2px solid #2A1F1F; font-size: 17px; font-weight: 800;
+.thc-v19 .thc-head.thc-hd4 { display: grid; grid-template-columns: 200px minmax(0, 1fr) 320px; gap: 0; padding: 0;
+  width: calc(100% - 48px); max-width: 1168px; margin: 24px auto 0; background: #fff; border: 2px solid var(--h4-ink); border-radius: 22px;
+  overflow: hidden; align-items: stretch; color: var(--h4-ink); }
+.thc-v19 .thc-hd4 .thc-photo { height: auto; border-radius: 0; background: var(--h4-photo); padding: 24px; align-self: stretch; }
+.thc-v19 .thc-hd4 .thc-photo img { width: 170px; max-width: 100%; height: auto; max-height: none; }
+.thc-v19 .thc-hd4 .thc-head-m { padding: 26px 28px; gap: 14px; }
+.thc-v19 .thc-hd4 h1 { font-family: var(--h4-name-font) !important; font-size: var(--h4-name-size); font-weight: 800; line-height: 1.05; letter-spacing: var(--h4-name-ls); }
+.thc-v19 .thc-hd4 .thc-tags > span { font-size: 13px; border-color: var(--h4-ink); padding: 2px 11px; background: #fff; }
+.thc-v19 .thc-hd4 .thc-tags > span.on { background: var(--h4-acc); }
+.thc-v19 .thc-hd4 .thc-tldr { background: var(--h4-soft); border: 1.5px solid var(--h4-line); border-radius: 14px; padding: 16px 18px; gap: 10px; box-shadow: none; }
+.thc-v19 .thc-hd4 .thc-tldr-h { justify-content: space-between; align-items: baseline; }
+.thc-v19 .thc-hd4 .thc-tldr-h b { font: 800 22px/1 'Barlow Condensed', var(--bc, sans-serif); letter-spacing: 0; background: var(--h4-acc);
+  border: 1.5px solid var(--h4-ink); border-radius: 8px; padding: 2px 9px; }
+.thc-v19 .thc-hd4 .thc-tldr-h > span { font-size: 13.5px; color: var(--h4-muted); }
+.thc-v19 .thc-hd4 .thc-tldr-t { font-size: 18px; line-height: 1.4; }
+.thc-v19 .thc-hd4 .thc-pts2 { font-size: 15px; gap: 6px 20px; margin-top: 0; } .thc-v19 .thc-hd4 .thc-pts2 .neg { color: #B3261E; }
+.thc-v19 .thc-hd4 .thc-vbox { border: 0; border-radius: 0; padding: 0; background: none; gap: 9px; margin-top: 0; }
+.thc-v19 .thc-hd4 .thc-vbox-h strong { font-size: 15px; }
+.thc-v19 .thc-hd4 .thc-vbar { height: 10px; border-color: var(--h4-ink); }
+.thc-v19 .thc-hd4 .thc-vbar i.pos, .thc-v19 .thc-hd4 .thc-vcnt i.pos { background: #62C878; }
+.thc-v19 .thc-hd4 .thc-vbar i.mix, .thc-v19 .thc-hd4 .thc-vcnt i.mix { background: #F0D16B; }
+.thc-v19 .thc-hd4 .thc-vbar i.neg, .thc-v19 .thc-hd4 .thc-vcnt i.neg { background: #F0796A; }
+.thc-v19 .thc-hd4 .thc-vcnt { display: flex; flex-wrap: wrap; gap: 4px 18px; font-size: 14.5px; font-weight: 700; }
+.thc-v19 .thc-hd4 .thc-vcnt > span { display: inline-flex; align-items: center; gap: 6px; white-space: nowrap; }
+.thc-v19 .thc-hd4 .thc-vcnt i { width: 10px; height: 10px; border-radius: 50%; border: 1.5px solid var(--h4-ink); box-sizing: border-box; }
+.thc-v19 .thc-hd4 .thc-head-r { display: flex; flex-direction: column; gap: 16px; padding: 26px 24px; border-left: 2px solid var(--h4-line); align-self: stretch; }
+.thc-v19 .thc-hd4 .thc-head-r > #buy { border: 0; border-radius: 0; background: none; box-shadow: none; padding: 0; gap: 12px; }
+.thc-v19 .thc-hd4 .thc-head-r > :not(#buy) { border: 0; border-top: 1.5px solid var(--h4-line); border-radius: 0; background: none; box-shadow: none; padding: 16px 0 0; }
+.thc-v19 .thc-hd4 .thc-pbox-l { font-size: 13px; color: var(--h4-muted); }
+.thc-v19 .thc-hd4 .thc-pbox-p { font-size: 40px; font-weight: 800; }
+.thc-v19 .thc-hd4 .thc-pbox-s { font-size: 13.5px; margin-top: -6px; }
+body:has(.thc) .thc-v19 .thc-hd4 .thc-pbox a.thc-cta.wide { background: var(--h4-acc); border: 2px solid var(--h4-ink); font-size: 17px; font-weight: 800;
   padding: 11px 22px; margin: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-.th-skin .thc-hd4 .thc-pbox-list { border-top: 0; }
-.th-skin .thc-hd4 .thc-pbox-list .thc-shop2 { border-bottom: 0; border-top: 1.5px solid #E6D9D2; padding: 9px 0; font-size: 14.5px; gap: 10px; }
-.th-skin .thc-hd4 .thc-shop2 > strong { font-weight: 600; } .th-skin .thc-hd4 .thc-shop2 .thc-price { font-weight: 800; }
-.th-skin .thc-hd4 .thc-shop2 .thc-mono { font: 600 12px 'JetBrains Mono', ui-monospace, monospace; }
-.th-skin .thc-hd4 .thc-note { font-size: 12px; color: #7A6E68; margin-top: 0; }
+.thc-v19 .thc-hd4 .thc-pbox-list { border-top: 0; }
+.thc-v19 .thc-hd4 .thc-pbox-list .thc-shop2 { border-bottom: 0; border-top: 1.5px solid var(--h4-line); padding: 9px 0; font-size: 14.5px; gap: 10px; }
+.thc-v19 .thc-hd4 .thc-shop2 > strong { font-weight: 600; } .thc-v19 .thc-hd4 .thc-shop2 .thc-price { font-weight: 800; }
+.thc-v19 .thc-hd4 .thc-shop2 .thc-mono { font: 600 12px 'JetBrains Mono', ui-monospace, monospace; }
+.thc-v19 .thc-hd4 .thc-note { font-size: 12px; color: var(--h4-muted); }
+.thc-v19 .thc-hd4 { --h4-ink: #17171A; --h4-photo: #FEFCF6; --h4-soft: #FFFDF4; --h4-line: #E9E4D2; --h4-acc: #F4EC6E; --h4-muted: #6E6A5E;
+  --h4-name-font: 'Barlow Condensed', var(--bc, sans-serif); --h4-name-size: 52px; --h4-name-ls: 0; }
+.th-skin .thc-v19 .thc-hd4 { --h4-ink: #2A1F1F; --h4-photo: #F6F1EC; --h4-soft: #FFFCF8; --h4-line: #E6D9D2; --h4-acc: #F5C6C6; --h4-muted: #7A6E68;
+  --h4-name-font: Inter, 'Barlow', system-ui, sans-serif; --h4-name-size: 40px; --h4-name-ls: -.02em; }
+/* PickleballRecs: "Checked <date>" pinned to the bottom of the prices column. */
+.thc-v19 .thc-hd4 .thc-head-r > #buy { flex: 1 1 auto !important; } .thc-v19 .thc-hd4 .thc-pbox .thc-note { margin-top: auto; }
+.th-skin .thc-v19 .thc-hd4 .thc-head-r > #buy { flex: 0 0 auto !important; } .th-skin .thc-v19 .thc-hd4 .thc-pbox .thc-note { margin-top: 0; }
 @media (max-width: 999px) {
-  .th-skin .thc-v19 .thc-head.thc-hd4 { grid-template-columns: minmax(0, 1fr); }
-  .th-skin .thc-hd4 .thc-photo { height: 240px; } .th-skin .thc-hd4 .thc-photo img { width: auto; max-height: 100%; }
-  .th-skin .thc-v19 .thc-hd4 .thc-head-r { border-left: 0; border-top: 2px solid #E6D9D2; }
+  .thc-v19 .thc-head.thc-hd4 { grid-template-columns: minmax(0, 1fr); }
+  .thc-v19 .thc-hd4 .thc-photo { height: 240px; } .thc-v19 .thc-hd4 .thc-photo img { width: auto; max-height: 100%; }
+  .thc-v19 .thc-hd4 .thc-head-r { border-left: 0; border-top: 2px solid var(--h4-line); }
 }
 @media (max-width: 600px) {
-  .th-skin .thc-v19 .thc-head.thc-hd4 { width: calc(100% - 32px); margin-top: 16px; }
-  .th-skin .thc-hd4 .thc-head-m { padding: 20px 18px; } .th-skin .thc-v19 .thc-hd4 .thc-head-r { padding: 20px 18px; }
-  .th-skin .thc-hd4 h1 { font-size: 32px; }
+  .thc-v19 .thc-head.thc-hd4 { width: calc(100% - 32px); margin-top: 16px; }
+  .thc-v19 .thc-hd4 .thc-head-m { padding: 20px 18px; } .thc-v19 .thc-hd4 .thc-head-r { padding: 20px 18px; }
+  .thc-v19 .thc-hd4 h1 { font-size: calc(var(--h4-name-size) * .8); }
 }
