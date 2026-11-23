@@ -18,7 +18,7 @@
 import Anthropic from "@anthropic-ai/sdk";
 import { createHash } from "node:crypto";
 import { existsSync } from "node:fs";
-import { mkdir, readFile, writeFile } from "node:fs/promises";
+import { mkdir, readdir, readFile, writeFile } from "node:fs/promises";
 import { join } from "node:path";
 
 const MODEL = "claude-sonnet-5-5";
@@ -26,6 +26,8 @@ const MODEL = "claude-sonnet-5-5";
 // cache reads $0.10, 5-minute cache writes 1.25x input.
 const PRICE = { input: 1.0, output: 5.0, cacheRead: 0.05, cacheWrite: 1.25 }; // $ per MTok, batch rate
 const DROP = new Set(["FORWRD", "Man vs Debt", "REDTACKLE", "PickleballCentral", "Pickleball Hustle"]);
+/** Channels the owner dropped for every paddle (2026-11-23: The Kitchen Pickle YouTube and TikTok, with its site). */
+const BLOCK_CREATORS = /^the kitchen( pickle(ball)?)?$/i;
 /** Sites the owner dropped for every paddle (2026-11-23: thekitchenpickle.com reads as AI content with no real testing). */
 const BLOCK_DOMAINS = ["thekitchenpickle.com"];
 const blocked = (u: string | null | undefined) => !!u && BLOCK_DOMAINS.some(d => new RegExp(`(^|[/.])${d.replace(/\./g, "\\.")}(/|$)`, "i").test(u.replace(/^https?:\/\//, "")));
@@ -89,7 +91,7 @@ async function inputs() {
   const srcDir = need("sources"), tDir = need("transcripts"), pack = await readFile(need("pack"), "utf8");
   await mkdir(join(STAGE, "inputs"), { recursive: true });
   const state = await loadState();
-  state.slugs = slugs;
+  state.slugs = [...new Set([...state.slugs, ...slugs])]; // a stage can take several packs (e.g. 141-159 + 160-178)
   for (const slug of slugs) {
     const sec = pack.split(/\n(?=## )/).find(b => b.startsWith(`## ${slug}\n`)) ?? "";
     state.packNotes[slug] = sec.trim();
@@ -128,7 +130,7 @@ async function inputs() {
           s.text = p.text;
         }
         if (DROP.has(s.creator)) s.skip = "source the owner dropped";
-        if (blocked(url)) s.skip = "site the owner dropped (blocklist)";
+        if (blocked(url) || BLOCK_CREATORS.test(s.creator) || BLOCK_CREATORS.test(s.grok_creator)) s.skip = "source the owner dropped (blocklist)";
       } catch (e) { s.skip = `fetch failed: ${(e as Error).message}`; }
       out.push(s);
       process.stdout.write(`${s.skip ? "skip" : "ok  "} ${s.id} ${s.kind} ${s.creator} ${s.text ? s.text.length : 0} chars${s.skip ? ` (${s.skip})` : ""}\n`);
@@ -174,7 +176,7 @@ First decide whether the source is usable. Set keep=false (with drop_reason) whe
 - it is not about the EXACT paddle named in the request. Shape (elongated, hybrid, widebody, standard), thickness (14mm, 16mm), face, edition and generation all matter; a sibling shape, thickness or generation is a different paddle. Keep it only if the source itself names or clearly shows this exact model; never infer the shape or thickness. If only a part of a multi-paddle video covers it, keep it and use only that part.
 - it is a shop or brand channel, an unboxing with no opinion, a sale post, a spec-only video or page, or has too little about this paddle to write an 80-word summary.
 - it is an article by a shop or retailer (sells paddles, buy links, store discount codes) that does not describe real hands-on testing of this paddle by a named person: sessions played, drills, matches, measurements or direct comparisons. Restated maker specs and generic praise are not testing.
-- it comes from ${BLOCK_DOMAINS.join(", ")} (dropped by the site owner for every paddle).
+- it comes from ${BLOCK_DOMAINS.join(", ")} or from The Kitchen Pickle / The Kitchen Pickleball channels (dropped by the site owner for every paddle).
 The notes from the link finder (Grok) are unverified hints, often wrong. The source text is the only authority.
 
 ${FIELDS}
@@ -232,6 +234,17 @@ const usd = (u: { input_tokens: number; output_tokens: number; cache_read_input_
   (u.input_tokens * PRICE.input + u.output_tokens * PRICE.output + (u.cache_read_input_tokens ?? 0) * PRICE.cacheRead +
     (u.cache_creation_input_tokens ?? 0) * PRICE.cacheWrite) / 1e6;
 const spent = (s: State) => Object.values(s.usage).reduce((a, u) => a + u.usd, 0);
+/** Spend across every stage folder next to this one (pb-batch-*), so --max-usd caps the whole run, not one stage. */
+async function runSpent(s: State) {
+  const parent = join(STAGE, "..");
+  let total = spent(s);
+  for (const d of await readdir(parent)) {
+    const f = join(parent, d, "state.json");
+    if (!d.startsWith("pb-batch-") || join(parent, d) === join(STAGE) || !existsSync(f)) continue;
+    total += spent(await readJson<State>(f));
+  }
+  return total;
+}
 // Rough pre-submit estimate: 1 token per 3.5 characters in, plus an output allowance per request (thinking included).
 const estimate = (chars: number, n: number, outPer: number) => (chars / 3.5 * PRICE.input + n * outPer * PRICE.output) / 1e6;
 
@@ -254,8 +267,9 @@ async function submit(step: "write" | "check") {
   }
   if (!items.length) throw new Error("Nothing to submit.");
   const est = estimate(items.reduce((a, i) => a + i.system.length + i.user.length, 0), items.length, 5000);
-  console.log(`${step}: ${items.length} requests, estimate $${est.toFixed(2)}; spent so far $${spent(state).toFixed(2)} of $${MAX_USD}`);
-  if (spent(state) + est > MAX_USD) throw new Error(`Stopping: the estimate would pass the $${MAX_USD} cap.`);
+  const total = await runSpent(state);
+  console.log(`${step}: ${items.length} requests, estimate $${est.toFixed(2)}; spent so far $${total.toFixed(2)} of $${MAX_USD} (all stages)`);
+  if (total + est > MAX_USD) throw new Error(`Stopping: the estimate would pass the $${MAX_USD} cap.`);
   if (has("dry")) return;
   const batch = await client().messages.batches.create({
     requests: items.map(i => ({ custom_id: `${step}__${i.id}`, params: {
@@ -325,7 +339,7 @@ function codeCheck(c: Card, s: Source): string[] {
   if (/\b(he|she|his|her|him|hers)\b/i.test(all)) p.push("gendered pronoun");
   for (const w of s.creator.split(/\W+/).filter(w => w.length > 3 && !/^(pickleball|pickle|paddle|paddles|review|reviews)$/i.test(w)))
     if (new RegExp(`\\b${w}\\b`).test(all)) p.push(`creator name? ${w}`);
-  if (blocked(s.url)) p.push("blocked site");
+  if (blocked(s.url) || BLOCK_CREATORS.test(s.creator)) p.push("blocked source");
   if (/pickleheads/i.test(s.creator) && (c.creator_score || /\b\d+(\.\d+)?\s*(out of|\/)\s*\d+/i.test(all))) p.push("Pickleheads score in text");
   if (c.quote && c.quote.split(/\s+/).length >= 15) p.push("quote 15+ words");
   if (c.quote && s.text && !norm(s.text).includes(norm(c.quote))) p.push("quote not in source");
