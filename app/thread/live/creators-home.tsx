@@ -14,7 +14,7 @@ import { LEVEL_OPTS, type Level, type Style } from "./picks";
 import { countsLine, opinionsLabel, siteSentiment } from "../../../lib/thread/site-sentiment";
 import { W } from "../../../lib/thread/words";
 
-const FIRST = 6;
+const FIRST = 6, STEP = 10;
 const STYLES: [Style, string][] = [["control", "Control"], ["balance", "Balance"], ["power", "Power"]];
 const LEVEL_WORD: Record<Level, string> = { beginner: "Beginner", intermediate: "Intermediate", advanced: "Advanced" };
 export const LEVEL_ICON: Record<Level, ReactNode> = {
@@ -34,8 +34,9 @@ export function CreatorsHomeTop({ rows, extra, curated, added, total, brands, af
   /** "247 reviews summarised". */ total: string; brands: string[]; after: ReactNode; side: ReactNode;
 }) {
   const l = useRacketList({ rows, curated, added }), { list, pcts, mine, picks, setPicks, f, toggle, chips, clearAll, pool, pass, test } = l;
-  const [ft, setFt] = useState(false), [all, setAll] = useState(false), [sortOpen, setSortOpen] = useState(false), [moreBrands, setMoreBrands] = useState(false);
-  const shown = all ? list : list.slice(0, FIRST);
+  const [ft, setFt] = useState(false), [count, setCount] = useState(FIRST), [sortOpen, setSortOpen] = useState(false), [moreBrands, setMoreBrands] = useState(false);
+  // The list grows 10 at a time (owner 2026-11-23), then "Show fewer" folds it back to the first six.
+  const shown = list.slice(0, count), left = list.length - shown.length;
   const groups = useMemo(() => ([["shape", "Shape", SHAPES], ["feel", "Feel", FEELS], ["brand", "Brand", brands]] as [Key, string, string[]][]).map(([k, title, vals]) => {
     const opts = vals.map(v => ({ v, n: pool.filter(r => pass(r, k) && test(r, k, v)).length, on: !!f[k]?.includes(v) })).filter(o => k !== "shape" || o.n > 0 || o.on);
     return { k, title, opts: k === "brand" && !moreBrands ? opts.filter((o, i) => i < TOP_BRANDS || o.on) : opts, more: k === "brand" && opts.length > TOP_BRANDS ? opts.length - TOP_BRANDS : 0 };
@@ -108,7 +109,7 @@ export function CreatorsHomeTop({ rows, extra, curated, added, total, brands, af
               </div>
             </div>; })}
           {list.length === 0 && <div className="tch-none">No paddles match. <button type="button" onClick={clearAll}>Clear all</button></div>}
-          {list.length > FIRST && <div className="tch-more"><button type="button" onClick={() => setAll(a => !a)}>{all ? "Show fewer" : `Show ${list.length - FIRST} more paddles`}</button></div>}
+          {list.length > FIRST && <div className="tch-more"><button type="button" onClick={() => setCount(c => left > 0 ? c + STEP : FIRST)}>{left > 0 ? `Show ${Math.min(STEP, left)} more ${Math.min(STEP, left) === 1 ? "paddle" : "paddles"}` : "Show fewer"}</button></div>}
         </section>
         {after}
       </div>
