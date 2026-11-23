@@ -1,13 +1,14 @@
-// Creator review cards through the Claude API Message Batches endpoint (PickleballRecs paddles 81+), so bulk card writing
+// Creator review cards through the Claude API Message Batches endpoint (any niche via NICHE; first used for PickleballRecs
+// paddles 81+), so bulk card writing
 // is billed to the API account instead of the Claude Code allowance. Staging files only: no DB reads or writes.
 //
 // Steps (each resumable; state lives in <stage>/state.json):
-//   npx tsx --env-file=.env.local scripts/batch-write.ts inputs  --stage <dir> --slugs a,b,c --sources <grok out dir> \
+//   NICHE=pickleball npx tsx --env-file=.env.local scripts/batch-write.ts inputs  --stage <dir> --slugs a,b,c --sources <grok out dir> \
 //        --pack <grok pack .md> --transcripts <dir>        # no LLM: link checks, video metadata, transcripts, blog text
-//   npx tsx --env-file=.env.local scripts/batch-write.ts write   --stage <dir> [--max-usd 15]   # writer batch: submit
-//   npx tsx --env-file=.env.local scripts/batch-write.ts check   --stage <dir> [--max-usd 15]   # checker batch: submit
-//   npx tsx --env-file=.env.local scripts/batch-write.ts poll    --stage <dir> [--wait]         # poll + collect the open batch
-//   npx tsx --env-file=.env.local scripts/batch-write.ts build   --stage <dir>                  # staging JSON + report
+//   NICHE=pickleball npx tsx --env-file=.env.local scripts/batch-write.ts write   --stage <dir> [--max-usd 15]   # writer batch: submit
+//   NICHE=pickleball npx tsx --env-file=.env.local scripts/batch-write.ts check   --stage <dir> [--max-usd 15]   # checker batch: submit
+//   NICHE=pickleball npx tsx --env-file=.env.local scripts/batch-write.ts poll    --stage <dir> [--wait]         # poll + collect the open batch
+//   NICHE=pickleball npx tsx --env-file=.env.local scripts/batch-write.ts build   --stage <dir>                  # staging JSON + report
 //
 // Writer and checker follow the brief used for paddles 1-80 (READER-BRIEF.md / SUMMARY-PROMPT.md / CHECK-BRIEF.md in the
 // shared notes): exact model only, creator scores only with a stated scale, words not invented numbers, copy rules (no em or
@@ -16,12 +17,17 @@
 // word in the source with its caption time) before it is staged. The run stops before submitting a batch whose estimated
 // cost would take the stage's total over --max-usd.
 import Anthropic from "@anthropic-ai/sdk";
+import { niche } from "../lib/niche";
 import { createHash } from "node:crypto";
 import { existsSync } from "node:fs";
 import { mkdir, readdir, readFile, writeFile } from "node:fs/promises";
 import { join } from "node:path";
 
 const MODEL = "claude-sonnet-5-5";
+// Niche from NICHE (required): site name, domain, product word and page path come from lib/niche. The attribute names,
+// shape/thickness wording and the blocklists below were written for pickleball; review them before running another niche.
+if (!process.env.NICHE) throw new Error("Set NICHE (e.g. NICHE=pickleball): the niche config defaults to padel otherwise.");
+const SITE = niche.site.name, ITEM = niche.words.one, SPORT_ITEM = `${niche.id} ${niche.words.one}`;
 // Message Batches bill at 50% of the standard rate. Claude Sonnet 5.5 standard: $2 / MTok in, $10 / MTok out,
 // cache reads $0.10, 5-minute cache writes 1.25x input.
 const PRICE = { input: 1.0, output: 5.0, cacheRead: 0.05, cacheWrite: 1.25 }; // $ per MTok, batch rate
@@ -95,8 +101,8 @@ async function inputs() {
   for (const slug of slugs) {
     const sec = pack.split(/\n(?=## )/).find(b => b.startsWith(`## ${slug}\n`)) ?? "";
     state.packNotes[slug] = sec.trim();
-    const page = await htmlText(`https://www.pickleballrecs.com/paddles/${slug}`);
-    const paddle = page.title.replace(/\s*review\s*\|\s*PickleballRecs\s*$/i, "").trim() || slug;
+    const page = await htmlText(`https://www.${niche.site.domain}/${niche.productPath}/${slug}`);
+    const paddle = page.title.replace(new RegExp(`\\s*review\\s*\\|\\s*${SITE}\\s*$`, "i"), "").trim() || slug;
     const grok = await readJson<{ sources: Record<string, string | null>[] }>(join(srcDir, `${slug}.json`));
     const out: Source[] = [];
     for (const [i, g] of grok.sources.entries()) {
@@ -143,40 +149,40 @@ async function inputs() {
 // ---------------------------------------------------------------- prompts and schemas
 const COPY_RULES = `Copy rules for every text field:
 - Start every sentence of summary and summary_more with a verb, no subject: "Tests it over three weeks...", "Finds the sweet spot...". Never "This reviewer", "The creator", "He", "She" or "They" as the first word.
-- Never name the channel, the creator or the site in any text field. Other paddles by name are fine.
+- Never name the channel, the creator or the site in any text field. Other ${niche.words.many} by name are fine.
 - Refer to the creator only as "they/them". Never "he", "she", "his", "her".
 - No em dashes or en dashes anywhere. Use commas, colons or full stops.
 - Never use the word "verdict". Write "players", not "owners". Never "we", "us" or "our". Say "reviewers", never "creators".
-- Never write that the site or anyone at the site tested the paddle.
+- Never write that the site or anyone at the site tested the ${ITEM}.
 - Never repeat a review site's own star, category or overall ratings in the text (Pickleheads scores are hidden until their scale is confirmed). Describe them in words instead.
 - Plain, dry English. No hype words unless inside the exact quote.
-- Facts only from the source. Report opinions as theirs ("Finds", "Calls", "Rates"). When captions garble a number or a paddle name, leave it out rather than guess. Spell paddle and brand names correctly even if captions misspell them; if a garbled name cannot be pinned down, write "another paddle".`;
+- Facts only from the source. Report opinions as theirs ("Finds", "Calls", "Rates"). When captions garble a number or a ${ITEM} name, leave it out rather than guess. Spell paddle and brand names correctly even if captions misspell them; if a garbled name cannot be pinned down, write "another ${ITEM}".`;
 
 const FIELDS = `Card fields:
 - type: "review", "comparison" (a real part compares it head to head) or "long-term" (weeks or months of use stated).
 - version: the shape/thickness/edition the source covers, as stated (e.g. "Widebody, 16mm"), or null.
-- starts_at: "m:ss" where the part about this paddle starts in a multi-paddle video, else null.
+- starts_at: "m:ss" where the part about this ${ITEM} starts in a multi-${ITEM} video, else null.
 - creator_score: only if the source publishes its own overall score with a stated scale (e.g. 8.5 out of 10). Otherwise null. Never turn words into a number. Per-trait scores without an overall do not count.
-- measured: only numbers the source states for this paddle (swing weight, twist weight, static weight, RPM, mph, balance point, price), as {name, value} with the unit in value.
+- measured: only numbers the source states for this ${ITEM} (swing weight, twist weight, static weight, RPM, mph, balance point, price), as {name, value} with the unit in value.
 - attributes: only those the source discusses, each one word from Excellent, Great, Good, Okay, Weak. Names: power, control, spin, pop, forgiveness (sweet spot), comfort (feel, vibration, arm), durability, value. In doubt go one lower.
 - stance: "Loved it", "Mixed" or "Not for me".
 - summary: ONE paragraph of 80 to 120 words with real substance: what they tested and how (drills, matches, hours, weeks, comparisons, pre-production unit), concrete findings (power, control, spin, pop, sweet spot, feel, weight, durability or grit wear) with the source's own numbers, and who they say it suits and who it doesn't.
 - summary_more: a second paragraph of 60 to 100 words for "Read more" (comparisons, long-term notes, setup tips like lead tape or grip). null if the source does not go deeper; never pad.
 - highlights: 3 to 5 phrases of 2 to 7 words, copied character for character from summary.
-- key_point: ONE sentence, 6 to 12 words, at most 70 characters, ends with a full stop, NOT verb-first, concrete, e.g. "Best defensive paddle in the line this year." No names, no dashes.
+- key_point: ONE sentence, 6 to 12 words, at most 70 characters, ends with a full stop, NOT verb-first, concrete, e.g. "Best defensive ${ITEM} in the line this year." No names, no dashes.
 - stood_out: one short line (at most 15 words): what they liked most.
 - trade_off: one short line (at most 15 words): the main weakness or who it is not for, or null.
-- compared_to: names of the other paddles they compare it with (correct spelling), or [].
-- quote: one sentence they actually said or wrote about THIS paddle, copied word for word from the source text, 4 to 14 words. Fix nothing inside it. null if no good line. Never make one up.
-- disclosure: any brand tie the source states (paddle sent by the brand, paid testing, affiliate or discount code, sells it), in plain words, or null.`;
+- compared_to: names of the other ${niche.words.many} they compare it with (correct spelling), or [].
+- quote: one sentence they actually said or wrote about THIS ${ITEM}, copied word for word from the source text, 4 to 14 words. Fix nothing inside it. null if no good line. Never make one up.
+- disclosure: any brand tie the source states (${ITEM} sent by the brand, paid testing, affiliate or discount code, sells it), in plain words, or null.`;
 
-const WRITER_SYSTEM = `You write creator review cards for PickleballRecs, a site that collects what YouTube and blog reviewers said about each pickleball paddle. One request = one source (a video transcript or an article) for one paddle.
+const WRITER_SYSTEM = `You write creator review cards for ${SITE}, a site that collects what YouTube and blog reviewers said about each ${SPORT_ITEM}. One request = one source (a video transcript or an article) for one ${ITEM}.
 
 First decide whether the source is usable. Set keep=false (with drop_reason) when:
-- it is not about the EXACT paddle named in the request. Shape (elongated, hybrid, widebody, standard), thickness (14mm, 16mm), face, edition and generation all matter; a sibling shape, thickness or generation is a different paddle. Keep it only if the source itself names or clearly shows this exact model; never infer the shape or thickness. If only a part of a multi-paddle video covers it, keep it and use only that part.
-- it is a shop or brand channel, an unboxing with no opinion, a sale post, a spec-only video or page, or has too little about this paddle to write an 80-word summary.
-- it is an article by a shop or retailer (sells paddles, buy links, store discount codes) that does not describe real hands-on testing of this paddle by a named person: sessions played, drills, matches, measurements or direct comparisons. Restated maker specs and generic praise are not testing.
-- it comes from ${BLOCK_DOMAINS.join(", ")} or from The Kitchen Pickle / The Kitchen Pickleball channels (dropped by the site owner for every paddle).
+- it is not about the EXACT ${ITEM} named in the request. Shape (elongated, hybrid, widebody, standard), thickness (14mm, 16mm), face, edition and generation all matter; a sibling shape, thickness or generation is a different ${ITEM}. Keep it only if the source itself names or clearly shows this exact model; never infer the shape or thickness. If only a part of a multi-paddle video covers it, keep it and use only that part.
+- it is a shop or brand channel, an unboxing with no opinion, a sale post, a spec-only video or page, or has too little about this ${ITEM} to write an 80-word summary.
+- it is an article by a shop or retailer (sells ${niche.words.many}, buy links, store discount codes) that does not describe real hands-on testing of this ${ITEM} by a named person: sessions played, drills, matches, measurements or direct comparisons. Restated maker specs and generic praise are not testing.
+- it comes from ${BLOCK_DOMAINS.join(", ")} or from The Kitchen Pickle / The Kitchen Pickleball channels (dropped by the site owner for every ${ITEM}).
 The notes from the link finder (Grok) are unverified hints, often wrong. The source text is the only authority.
 
 ${FIELDS}
@@ -185,14 +191,14 @@ ${COPY_RULES}
 
 Before answering, check: summary 80-120 words, summary_more 60-100 words or null, every highlight appears exactly in summary, key_point at most 70 characters ending with a full stop, every number appears in the source, the quote appears word for word in the source.`;
 
-const CHECKER_SYSTEM = `You fact-check one creator review card for PickleballRecs against its source (a video transcript or an article). A different writer produced the card. Read the whole source, then go through summary, summary_more, key_point, stood_out, trade_off, compared_to, measured, creator_score, attributes, stance, quote and disclosure claim by claim.
+const CHECKER_SYSTEM = `You fact-check one creator review card for ${SITE} against its source (a video transcript or an article). A different writer produced the card. Read the whole source, then go through summary, summary_more, key_point, stood_out, trade_off, compared_to, measured, creator_score, attributes, stance, quote and disclosure claim by claim.
 
-A claim is supported only if the source says it about THIS exact paddle (or as a direct comparison with it). Numbers must match what is said. Watch for: claims about a sibling shape, thickness or another paddle in a multi-paddle video; invented test details (hours, weeks, matches, levels); hedges dropped ("probably", "I think"); opinions turned into facts; garbled caption names written as if certain; a quote that is not word for word in the source; a creator_score without a stated scale; a disclosure that does not match what the source says.
+A claim is supported only if the source says it about THIS exact ${ITEM} (or as a direct comparison with it). Numbers must match what is said. Watch for: claims about a sibling shape, thickness or another ${ITEM} in a multi-${ITEM} video; invented test details (hours, weeks, matches, levels); hedges dropped ("probably", "I think"); opinions turned into facts; garbled caption names written as if certain; a quote that is not word for word in the source; a creator_score without a stated scale; a disclosure that does not match what the source says.
 
 Decide:
 - "pass": everything supported and the copy rules are met.
 - "fixed": some claims were unsupported or wrong, or copy rules were broken; you corrected them with the smallest edits. Return the full corrected card.
-- "reject": the card is mostly wrong, the source is not about this exact paddle, or it cannot support an 80-word summary.
+- "reject": the card is mostly wrong, the source is not about this exact ${ITEM}, or it cannot support an 80-word summary.
 List every problem you found in problems (empty for pass).
 
 ${FIELDS}
@@ -221,9 +227,9 @@ type Card = { type: string; version: string | null; starts_at: string | null; cr
   compared_to: string[]; quote: string | null; disclosure: string | null };
 
 function sourceBlock(s: Source, notes: string) {
-  return [`Paddle: ${s.paddle} (page slug: ${s.slug})`, `Source: ${s.kind === "youtube" ? "YouTube video" : "article"} ${s.url}`,
-    s.date && `Published: ${s.date}`, s.duration_s && `Length: ${fmtT(s.duration_s)}`, s.starts_at && `Part about this paddle starts near (per Grok): ${s.starts_at}`,
-    s.grok_note && `Link finder note: ${s.grok_note}`, notes && `Link finder notes for this paddle (unverified):\n${notes.slice(0, 4000)}`,
+  return [`${niche.words.One}: ${s.paddle} (page slug: ${s.slug})`, `Source: ${s.kind === "youtube" ? "YouTube video" : "article"} ${s.url}`,
+    s.date && `Published: ${s.date}`, s.duration_s && `Length: ${fmtT(s.duration_s)}`, s.starts_at && `Part about this ${ITEM} starts near (per Grok): ${s.starts_at}`,
+    s.grok_note && `Link finder note: ${s.grok_note}`, notes && `Link finder notes for this ${ITEM} (unverified):\n${notes.slice(0, 4000)}`,
     s.chapters.length ? `Chapters (from the description):\n${s.chapters.map(c => `${c.t} ${c.title}`).join("\n")}` : "",
     s.kind === "youtube" && s.description ? `Video description (for disclosures and specs only):\n${s.description.slice(0, 3000)}` : "",
     `${s.kind === "youtube" ? "Transcript (auto-captions)" : "Article text"}:\n"""\n${s.text}\n"""`].filter(Boolean).join("\n\n");
@@ -338,7 +344,7 @@ function codeCheck(c: Card, s: Source): string[] {
   if (/[—–]/.test(all)) p.push("dash");
   if (/verdict|\b(we|us|our|owners?|creators?)\b/i.test(all.replace(/\bU\.?S\.?\b/g, ""))) p.push("banned word");
   if (/\b(he|she|his|her|him|hers)\b/i.test(all)) p.push("gendered pronoun");
-  for (const w of s.creator.split(/\W+/).filter(w => w.length > 3 && !/^(pickleball|pickle|paddle|paddles|review|reviews)$/i.test(w)))
+  for (const w of s.creator.split(/\W+/).filter(w => w.length > 3 && !/^(pickleball|pickle|paddle|paddles|padel|racket|rackets|review|reviews)$/i.test(w)))
     if (new RegExp(`\\b${w}\\b`).test(all)) p.push(`creator name? ${w}`);
   if (blocked(s.url) || BLOCK_CREATORS.test(s.creator)) p.push("blocked source");
   if (/pickleheads/i.test(s.creator) && (c.creator_score || /\b\d+(\.\d+)?\s*(out of|\/)\s*\d+/i.test(all))) p.push("Pickleheads score in text");
