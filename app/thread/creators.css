@@ -483,3 +483,6 @@ body:has(.thc) .thc .thc-chap a { grid-template-columns: 44px minmax(0, 1fr); fo
 /* Quick match "Better for you" paddles look like links (owner 2026-11-23, as on PadelRecs): bold and underlined. */
 body:has(.thc) .thc a.thc-fit-alt { font-weight: 700; color: var(--ink); text-decoration: underline; text-underline-offset: 3px; text-decoration-thickness: 1.5px; }
 .thc-pbox .thc-note { margin-top: auto; }
+/* Key point one size down (owner 2026-11-23). */
+.thc-g-row .kp { font-size: 15.5px; }
+@media (max-width: 600px) { .thc-g-row .kp { font-size: 14.5px; } }
