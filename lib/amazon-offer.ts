@@ -16,18 +16,16 @@ const cachedOffer = unstable_cache(
     const settings = niche.amazon, credentials = amazonCredentials();
     if (!settings || !credentials) return null;
     // No per-lookup log lines: they were most of the site's log events (owner 2026-11-16, Vercel cost).
-    const offer = await findAmazonOffer({ name, brand }, settings, credentials, fetch, () => {});
-    // When the price was read (Amazon's terms: a shown price carries its "as of" time and is under 24 hours old).
-    return offer ? { ...offer, checkedAt: new Date().toISOString() } : null;
+    return findAmazonOffer({ name, brand }, settings, credentials, fetch, () => {});
   },
-  // v3: stricter matching (lib/amazon-match.ts), so lookups cached under the old rules are not reused. v4: checkedAt.
-  ["amazon-offer-v4", niche.id],
+  // v3: stricter matching (lib/amazon-match.ts), so lookups cached under the old rules are not reused.
+  ["amazon-offer-v3", niche.id],
   { revalidate: 12 * 60 * 60, tags: ["amazon-offers"] },
 );
 
 /** `image`: Amazon's own image address, on niches with amazon.photos. Amazon's terms: served from Amazon, the address kept
  *  under 24 hours (the 12-hour cache above), not altered beyond resizing, and it links to the Amazon product page. List pages link theirs to our product page instead (owner's decision, 2026-11-07; see lib/amazon-photos.ts). */
-export type AmazonButton = { url: string; price: string | null; image?: string | null; asin?: string; /** When Amazon gave the price (ISO). */ checkedAt?: string | null };
+export type AmazonButton = { url: string; price: string | null; image?: string | null; asin?: string };
 
 /**
  * Whether this site shows Amazon links: its niche config has `amazon` and the deployment has a tag for links
@@ -69,7 +67,7 @@ export async function amazonButton(product: { name: string; brand: string | unde
     let timer: ReturnType<typeof setTimeout> | undefined;
     const offer = await Promise.race([lookup, new Promise<"slow">(done => { timer = setTimeout(() => done("slow"), LOOKUP_MS); })]).finally(() => clearTimeout(timer));
     if (offer === "slow") return search;
-    return offer ? { url: amazonLink(offer.asin, tag, marketplace), price: offer.price, image: niche.amazon.photos ? offer.image ?? null : null, asin: offer.asin, checkedAt: offer.checkedAt ?? null } : search;
+    return offer ? { url: amazonLink(offer.asin, tag, marketplace), price: offer.price, image: niche.amazon.photos ? offer.image ?? null : null, asin: offer.asin } : search;
   } catch (error) {
     // Once per product per instance: a failing API otherwise logs on every page render.
     if (!failedOnce.has(product.name)) { failedOnce.add(product.name); console.error(`[amazon] Lookup failed for ${product.name}: ${error instanceof Error ? error.message : error}`); }

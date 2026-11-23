@@ -541,7 +541,6 @@ body:has(.th-skin .thc) .th-skin .thc a.thc-g-row:hover { background: #f4ebe6; }
 .th-skin .thc-skinside-t strong { color: var(--ink); }
 /* The Where to buy box keeps its own size; the fit card sits below it. */
 @media (min-width: 1081px) { .th-skin .thc-v19 .thc-head-r { align-self: flex-start; } .th-skin .thc-v19 .thc-head-r > #buy { flex: 0 0 auto; } }
-.th-skin .thc-amz-when { order: 9; text-align: center; }
 /* Stood out / The trade-off / Compared to (owner mock 2026-11-23, pickleball and skin): a small coloured capital label over
    the line itself in larger dark type, in roomier soft boxes, so each reads at a glance. */
 .thc .thc-boxes { gap: 12px; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); }

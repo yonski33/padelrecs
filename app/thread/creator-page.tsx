@@ -33,7 +33,6 @@ import { Comments } from "./live/comments";
 import { th } from "../../lib/thread/look";
 import { PollCard } from "./live/racket-v7b";
 import { CompactFit } from "./live/creator-fit";
-import { AmazonPrice } from "./live/amazon-price";
 import { SkinCompactFit } from "./live/skin-match";
 import { playersWord } from "../../lib/thread/web-sources";
 import { StickyCol } from "./live/sticky-col";
@@ -132,8 +131,6 @@ export async function CreatorProductBody({ slug }: { slug: string }) {
   const relOf = (aff: boolean) => aff ? "sponsored nofollow noopener" : "nofollow noopener";
   // The one filled Check price button (README rule) goes to a lowest in-stock shop; without prices, to the live page's link.
   const cta = low ? { url: low.shops[0]!.url, rel: relOf(low.shops[0]!.affiliate) } : shop;
-  // SkinRecs: no stored shop prices, so the live Amazon lookup's own price when it has one ("as of" its lookup time).
-  const amzPrice = SKIN && amazon && "price" in amazon && amazon.price ? { price: amazon.price, checkedAt: amazon.checkedAt ?? null } : null;
   const how = howItPlays(rs), agree = agreeChips(rs);
   // The at-a-glance table (owner 2026-11-23): reviewer, take and the short key point only, in the reviews' own order.
   const glance = rs;
@@ -189,15 +186,13 @@ export async function CreatorProductBody({ slug }: { slug: string }) {
         {(buy.length > 0 || cta) && <div className="thc-head-r">
           {/* The price box: the lowest in-stock price, the page's one filled Check price button, the shops as quiet links. */}
           <section id="buy" className={`thc-box1 thc-pbox${SKIN && !low && !buy.length ? " empty" : ""}`}>
-            {/* The live Amazon price (owner 2026-11-23), with its "as of" time as Amazon's terms ask, hidden once over 24 hours old. */}
-            {SKIN && !low && amzPrice && <AmazonPrice price={amzPrice.price} checkedAt={amzPrice.checkedAt}/>}
             {/* SkinRecs has no shop prices yet (owner 2026-11-23: prices later): a small Where to buy box, the shop link only. */}
             {low && <><span className="thc-pbox-l">Lowest price today</span><strong className="thc-pbox-p">{usd(low.price)}</strong>
               <span className="thc-pbox-s">{/* The shops listed below (owner 2026-11-23), not every in-stock offer. */}{buy.length > 0 && `In stock at ${plural(buy.length, "shop")}`}</span></>}
             {/* With a price shown (owner 2026-11-23) the button names its shop: the lowest in-stock shop ("Desert Paddles ›",
                 its "(brand store)" note left off), or on SkinRecs "Amazon ›". */}
             {cta && <a className="thc-cta wide" href={cta.url} target="_blank" rel={cta.rel}>{low ? `${low.shops[0]!.shop.replace(/\s*\([^)]*\)\s*$/, "")} ›` : SKIN && shop ? `${shop.where} ›` : "Check price ↗"}</a>}
-            {SKIN && !low && shop && !amzPrice && <span className="thc-pbox-on">{`on ${shop.where}`}</span>}
+            {SKIN && !low && shop && <span className="thc-pbox-on">{`on ${shop.where}`}</span>}
 
             {/* The button's own shop is not listed again below it (owner 2026-11-23). */}
             {listed.length > 0 && <div className="thc-pbox-list">{listed.map(o => <div key={o.shop} className="thc-shop2"><strong>{o.shop}</strong>
