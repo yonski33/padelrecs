@@ -205,8 +205,9 @@ export async function CreatorProductBody({ slug }: { slug: string }) {
 
         {/* The short version: the reviews' own takes as count cards (no reviewer bar, owner choice), then likes and concerns. */}
         <section id="sentiment" className="thc-box1 thc-sent">
-          {/* With a written wrap-up (pilot): no headers, the text first, then the count boxes and tags (owner 2026-11-23). */}
-          {wrap ? <Wrap w={wrap} n={rs.length}/> : <div className="thc-h"><strong>The short version</strong><span>{plural(rs.length, "review")}</span></div>}
+          <div className="thc-h"><strong>The short version</strong><span>{plural(rs.length, "review")}</span></div>
+          {/* With a written wrap-up (pilot): the text first, then the count boxes and tags (owner 2026-11-23). */}
+          {wrap && <Wrap w={wrap} n={rs.length}/>}
           <div className="thc-sent-g">{KEYS.map(k => <div key={k}>
             <span className="thc-sent-h"><span><span className={`thc-dot ${k}`}>●</span>{STANCE_LABEL[k]}</span><strong>{n[k]}</strong></span>
             <span className="thc-sent-x">{n[k] ? page.groups[k] || stanceLine(rs, k) : "None of the reviews."}</span></div>)}</div>
@@ -279,7 +280,7 @@ function Wrap({ w, n }: { w: Wrapup; n: number }) {
       const h = w.highlights[hi];
       out.push(rest.slice(0, best), <mark key={k++} className={h.tone}>{h.text}</mark>);
       rest = rest.slice(best + h.text.length); } };
-  // Opens The short version box (owner 2026-11-23: one section, no headers), above the count boxes and tags.
+  // Under The short version title (owner 2026-11-23: one section), above the count boxes and tags.
   return <div className="thc-wrap">
     {w.paras.map((p, i) => <p key={i}>{mark(p)}</p>)}
     <a className="thc-wrap-all" href="#reviews">{`Read all ${n} summaries ↓`}</a>
