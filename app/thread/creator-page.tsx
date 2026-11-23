@@ -152,7 +152,8 @@ export async function CreatorProductBody({ slug }: { slug: string }) {
     : [style ? STYLE_WORD[style] : null, row?.feel ? `${row.feel} feel` : null, level ? `${level[0]!.toUpperCase()}${level.slice(1)}` : null]).filter((x): x is string => !!x);
   // Two + points and one - point (owner 2026-11-22), the likes and concerns backed by 2+ reviews.
   const plus = agree.likes.slice(0, 2), minus = agree.concerns[0] ?? null;
-  const n = stanceCounts(rs), buy = offers.filter(o => o.inStock).slice(0, 3);
+  // Up to 3 shops (SkinRecs 4, owner 2026-11-23: "show few stores") in the price box.
+  const n = stanceCounts(rs), buy = offers.filter(o => o.inStock).slice(0, SKIN ? 4 : 3);
   // The button's own shop is left out of the list under it; "In stock at N shops" still counts it.
   const listed = buy.filter(o => !(low && o.url === low.shops[0]!.url));
   // Similar paddles mentioned: other catalogue paddles the reviews name, with their lowest stored price.
@@ -203,11 +204,14 @@ export async function CreatorProductBody({ slug }: { slug: string }) {
             {page.prices && buy.length > 0 && <span className="thc-note">{`Checked ${shortDay(page.prices.checked)}.${buy.some(o => o.affiliate) ? " Some links are affiliate links." : ""}`}</span>}
           </section>
           {/* SkinRecs (owner mock 2026-11-23): the fit check sits under Check price, where one shop leaves room. */}
-          {SKIN && <SkinCompactFit id={r.id} wire={skinWire} links={skinLinks} side/>}
+          {SKIN && !low && <SkinCompactFit id={r.id} wire={skinWire} links={skinLinks} side/>}
         </div>}
       </header>
       {/* Is this paddle right for me? as one row under the head (owner mock 2026-11-23). */}
-      {!SKIN && <div className="thc-fitrow"><CompactFit id={r.id} title={`Is this ${niche.words.one} right for me?`} sub="Pick your level and style" bar/></div>}
+      {/* SkinRecs with store prices (owner 2026-11-23): the price list fills the right column, so its fit check moves to
+          this full-width row, as on PickleballRecs; Amazon-only products keep it under the button. */}
+      {SKIN ? low && <div className="thc-fitrow"><SkinCompactFit id={r.id} wire={skinWire} links={skinLinks}/></div>
+        : <div className="thc-fitrow"><CompactFit id={r.id} title={`Is this ${niche.words.one} right for me?`} sub="Pick your level and style" bar/></div>}
       <div className="thc-rule"/>
 
       <main className="thc-body">
