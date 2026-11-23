@@ -524,3 +524,7 @@ body:has(.th-skin .thc) .th-skin .thc a.thc-g-row:hover { background: #f4ebe6; }
 /* The skin fit check (live/skin-match.tsx SkinFitCheck) as the row under the head. */
 .th-skin .thc-skinfit { padding: 16px 20px; }
 .th-skin .thc-skinfit .th-fit { border: 0; padding: 0; margin: 0; background: none; }
+/* Soft card lines, as on skin's own product page (no hard black frames). */
+.th-skin .thc-box1 { border: 1.5px solid #ddcfc8; }
+/* No prices yet: the Where to buy box stays its own size instead of filling the head's height. */
+@media (min-width: 1081px) { .th-skin .thc-v19 .thc-head-r > #buy.empty { flex: 0 0 auto; } .th-skin .thc-v19 .thc-head-r:has(#buy.empty) { align-self: flex-start; } }

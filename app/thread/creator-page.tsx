@@ -183,7 +183,9 @@ export async function CreatorProductBody({ slug }: { slug: string }) {
         </div>
         {(buy.length > 0 || cta) && <div className="thc-head-r">
           {/* The price box: the lowest in-stock price, the page's one filled Check price button, the shops as quiet links. */}
-          <section id="buy" className="thc-box1 thc-pbox">
+          <section id="buy" className={`thc-box1 thc-pbox${SKIN && !low && !buy.length ? " empty" : ""}`}>
+            {/* SkinRecs has no shop prices yet (owner 2026-11-23: prices later): a small Where to buy box, the shop link only. */}
+            {SKIN && !low && <span className="thc-pbox-l">{shop ? `Where to buy · ${shop.where}` : "Where to buy"}</span>}
             {low && <><span className="thc-pbox-l">Lowest price today</span><strong className="thc-pbox-p">{usd(low.price)}</strong>
               <span className="thc-pbox-s">{/* The shops listed below (owner 2026-11-23), not every in-stock offer. */}{buy.length > 0 && `In stock at ${plural(buy.length, "shop")}`}</span></>}
             {cta && <a className="thc-cta wide" href={cta.url} target="_blank" rel={cta.rel}>Check price ↗</a>}
