@@ -259,6 +259,18 @@ async function main() {
     // One row per (product, url): a duplicate inside the files is a data problem, reported and the first kept.
     const seen = new Set<string>(), dups: string[] = [];
     built.reviews = built.reviews.filter(r => { const k = `${r.racket_id}|${r.url}`; if (seen.has(k)) { dups.push(`${r.slug} ${r.creator} ${r.url}`); return false; } seen.add(k); return true; });
+    // --drop-url <url,...>: takes the owner left out (2026-11-23: three Ronbus/Pakle TikToks).
+    const dropUrls = new Set((flag("drop-url") ?? "").split(",").map(u => u.trim()).filter(Boolean));
+    if (dropUrls.size) { const before = built.reviews.length; built.reviews = built.reviews.filter(r => !dropUrls.has(r.url)); console.log(`Dropped by --drop-url: ${before - built.reviews.length}`); }
+    // --insert-only (owner 2026-11-23): rows and pages already in the DB are left exactly as they are.
+    if (has("insert-only")) {
+      const curIds = new Set((await client.unsafe(`select id from "${S}"."creator_reviews"`)).map(r => r.id as string));
+      const curPages = new Set((await client.unsafe(`select racket_id from "${S}"."creator_pages"`)).map(r => r.racket_id as string));
+      const before = built.reviews.length;
+      built.reviews = built.reviews.filter(r => !curIds.has(r.id as string));
+      built.pages = built.pages.filter(p => !curPages.has(p.racket_id as string) && built.reviews.some(r => r.racket_id === p.racket_id));
+      console.log(`--insert-only: ${before - built.reviews.length} already in the DB, left alone`);
+    }
     const problems = copyProblems([...built.reviews, ...built.pages]);
     if (withKp) {
       const missingKp = built.reviews.filter(r => !r.key_point);
