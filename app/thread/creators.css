@@ -526,3 +526,18 @@ body:has(.th-skin .thc) .th-skin .thc a.thc-g-row:hover { background: #f4ebe6; }
 .th-skin .thc :is(.thc-card, .thc-vbox, .thc-sim-c, .thc-specs, .thc-comments .th-card) { border-color: #ddcfc8; }
 /* Phones: the fit bar's chips wrap, so its divider would sit alone at a line end. */
 @media (max-width: 600px) { .th-skin .thc-fit-sep { display: none; } }
+/* SkinRecs head, right column (owner mock 2026-11-23): Check price with "on Amazon" under it, then "Right for my skin?". */
+.th-skin .thc-pbox-on { text-align: center; font-size: 14px; color: var(--muted); }
+.th-skin .thc-skinside { gap: 10px; padding: 18px 20px; }
+.th-skin .thc-skinside h2 { margin: 0; font: 800 24px/1.1 var(--bc), 'Bricolage Grotesque', sans-serif; }
+.th-skin .thc-skinside-l { font-size: 15px; }
+.th-skin .thc-skinside-chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.th-skin .thc-skinside-chips .thc-chip { border: 1.5px solid #ddcfc8; border-radius: 999px; padding: 6px 16px; background: #fff; font-weight: 600; }
+.th-skin .thc-skinside-chips .thc-chip[aria-pressed="true"] { background: var(--acc); border-color: var(--ink); }
+.th-skin .thc-skinside-out { display: flex; align-items: center; gap: 14px; border-top: 1.5px solid #e2d3cc; padding-top: 14px; margin-top: 2px; }
+.th-skin .thc-skinside-out .thc-fit-pct { flex: 0 0 auto; white-space: nowrap; }
+.th-skin .thc-skinside-out .thc-fit-pct.none { border: 1.5px dashed #c9b8b0; background: none; color: var(--muted); }
+.th-skin .thc-skinside-t { font-size: 14.5px; line-height: 1.45; color: var(--muted); }
+.th-skin .thc-skinside-t strong { color: var(--ink); }
+/* The Where to buy box keeps its own size; the fit card sits below it. */
+@media (min-width: 1081px) { .th-skin .thc-v19 .thc-head-r { align-self: flex-start; } .th-skin .thc-v19 .thc-head-r > #buy { flex: 0 0 auto; } }

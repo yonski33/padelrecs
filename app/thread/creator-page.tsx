@@ -185,20 +185,21 @@ export async function CreatorProductBody({ slug }: { slug: string }) {
           {/* The price box: the lowest in-stock price, the page's one filled Check price button, the shops as quiet links. */}
           <section id="buy" className={`thc-box1 thc-pbox${SKIN && !low && !buy.length ? " empty" : ""}`}>
             {/* SkinRecs has no shop prices yet (owner 2026-11-23: prices later): a small Where to buy box, the shop link only. */}
-            {SKIN && !low && <span className="thc-pbox-l">{shop ? `Where to buy · ${shop.where}` : "Where to buy"}</span>}
             {low && <><span className="thc-pbox-l">Lowest price today</span><strong className="thc-pbox-p">{usd(low.price)}</strong>
               <span className="thc-pbox-s">{/* The shops listed below (owner 2026-11-23), not every in-stock offer. */}{buy.length > 0 && `In stock at ${plural(buy.length, "shop")}`}</span></>}
             {cta && <a className="thc-cta wide" href={cta.url} target="_blank" rel={cta.rel}>Check price ↗</a>}
+            {SKIN && !low && shop && <span className="thc-pbox-on">{`on ${shop.where}`}</span>}
             {buy.length > 0 && <div className="thc-pbox-list">{buy.map(o => <div key={o.shop} className="thc-shop2"><strong>{o.shop}</strong>
               <span className="thc-price">{usd(o.price)}</span><a className="thc-mono" href={o.url} target="_blank" rel={relOf(o.affiliate)}>check ↗</a></div>)}</div>}
             {/* Back under the shops (owner 2026-11-23): the check date and, where any link is one, the affiliate note. */}
             {page.prices && buy.length > 0 && <span className="thc-note">{`Checked ${shortDay(page.prices.checked)}.${buy.some(o => o.affiliate) ? " Some links are affiliate links." : ""}`}</span>}
           </section>
+          {/* SkinRecs (owner mock 2026-11-23): the fit check sits under Check price, where one shop leaves room. */}
+          {SKIN && <SkinCompactFit id={r.id} wire={skinWire} links={skinLinks} side/>}
         </div>}
       </header>
       {/* Is this paddle right for me? as one row under the head (owner mock 2026-11-23). */}
-      <div className="thc-fitrow">{SKIN ? <SkinCompactFit id={r.id} wire={skinWire} links={skinLinks}/>
-        : <CompactFit id={r.id} title={`Is this ${niche.words.one} right for me?`} sub="Pick your level and style" bar/>}</div>
+      {!SKIN && <div className="thc-fitrow"><CompactFit id={r.id} title={`Is this ${niche.words.one} right for me?`} sub="Pick your level and style" bar/></div>}
       <div className="thc-rule"/>
 
       <main className="thc-body">

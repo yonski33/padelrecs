@@ -265,7 +265,8 @@ export function SkinRankMatch({ rows, wire }: { rows: V5Row[]; wire: SkinWire[] 
 /** The creator page's skin fit check (owner 2026-11-23: "style this the same like on pickleball"): the compact one-row bar
  *  of live/creator-fit.tsx CompactFit (bold title, "My skin" and "Help with" chips in one line with a divider, Sensitive skin
  *  as the check), then the match pill, one bold line, the reason, better fits and Reset. Same picks and engine as SkinFitCheck. */
-export function SkinCompactFit({ id, wire, links }: { id: string; wire: SkinWire[]; links: Record<string, { name: string; href: string }> }) {
+export function SkinCompactFit({ id, wire, links, side = false }: { id: string; wire: SkinWire[]; links: Record<string, { name: string; href: string }>;
+  /** The head's right column under Check price (owner mock 2026-11-23): "My skin is" chips, a rule, the match pill and one line. */ side?: boolean }) {
   const [picks, set] = useSkinPicks();
   const ctx = useCtx(wire);
   const res = useMemo(() => {
@@ -280,6 +281,17 @@ export function SkinCompactFit({ id, wire, links }: { id: string; wire: SkinWire
   const tone = res?.m.pct == null ? "" : res.m.pct >= 85 ? " g" : res.m.pct >= 70 ? " y" : " r";
   const chip = (on: boolean, label: string, onClick: () => void) =>
     <button key={label} type="button" className="thc-chip" aria-pressed={on} onClick={onClick}>{label}</button>;
+  if (side) return <section className="thc-box1 thc-skinside">
+    <h2>Right for my skin?</h2>
+    <b className="thc-skinside-l">My skin is</b>
+    <div className="thc-skinside-chips">{(["dry", "normal", "oily", "combination"] as const).map(v => SKIN_OPTS.find(o => o[0] === v)!).map(([v, l]) => chip(picks.skin === v, l, () => set({ skin: picks.skin === v ? null : v })))}</div>
+    <div className="thc-skinside-out" aria-live="polite">
+      <span className={`thc-fit-pct${res?.m.pct != null ? tone : " none"}`}>{res?.m.pct != null ? `${res.m.pct}% match` : "?% match"}</span>
+      <span className="thc-skinside-t">{!res ? "Pick your skin type to see how reviews rate it for you."
+        : <><strong>{FIT_HEAD[verdict ?? "thin"]}</strong>{res.reason && ` ${res.reason[0]!.toUpperCase()}${res.reason.slice(1)}.`}
+          {res.better.length > 0 && <>{" Better for you: "}{res.better.map((b, i) => <span key={b.r.id}>{i > 0 && " or "}<a className="thc-fit-alt" href={th(links[b.r.id]!.href)}>{links[b.r.id]!.name}</a></span>)}.</>}</>}</span>
+    </div>
+  </section>;
   return <section className="thc-box1 thc-fit bar">
     <h2>{W.fitTitle}</h2>
     <div className="thc-fit-line">
