@@ -27,8 +27,11 @@ import { creatorPage, creatorSlugs, creatorHome } from "../../lib/thread/creator
 import { threadTitle } from "../../lib/thread/web-sources";
 import roundups from "../../db/creators/reddit-roundups.json";
 import wrapups from "../../db/creators/reviewer-wrapups.json";
+import compareLines from "../../db/creators/compare-lines.json";
 import { creatorPageFor, CREATOR_VIEW, CREATOR_MIN_REVIEWS, creatorPageOn } from "../../lib/thread/sites";
 import { Avatar, CreatorReviews } from "./live/creator-reviews";
+import { MentionsProvider, type MentionTarget } from "./live/mention-links";
+import { mentionIndex, namedIds } from "../../lib/thread/mention-links";
 import { Comments } from "./live/comments";
 import { th } from "../../lib/thread/look";
 import { PollCard } from "./live/racket-v7b";
@@ -163,7 +166,19 @@ export async function CreatorProductBody({ slug }: { slug: string }) {
   const amzRow = buy.find(o => o.shop === "Amazon" && o.checkedAt);
   const amazonAsOf = amzRow ? new Date(amzRow.checkedAt!).toLocaleString("en-US", { month: "short", day: "numeric", hour: "numeric", minute: "2-digit", timeZone: "UTC" }) : null;
   // Similar paddles mentioned: other catalogue paddles the reviews name, with their lowest stored price.
-  const named = mentions(rs, allRows, r.id).map(m => ({ ...m, href: m.row.href, price: staged[m.row.slug]?.price ?? null }));
+  // Each one's line compares it with this paddle, from its own side (owner 2026-11-23, db/creators/compare-lines.json: written
+  // from the review sentences that name both, checked by a second reader); with no real comparison, its usual one-liner.
+  const cmp = (compareLines as Record<string, Record<string, Record<string, { line: string; n: number }>>>)[niche.id]?.[slug] ?? {};
+  const named = mentions(rs, allRows, r.id).map(m => ({ ...m, href: m.row.href, price: staged[m.row.slug]?.price ?? null, vs: cmp[m.row.slug]?.line ?? null, vsN: cmp[m.row.slug]?.n ?? 0 }));
+
+  // Paddle mentions as links in the review cards (owner 2026-11-23): the catalogue's unique names, only the ones these
+  // reviews use (and this paddle's own, which claims its text but never links) go to the browser.
+  const mxAll = mentionIndex(allRows), mxIds = namedIds(feed.flatMap(x => [x.summary, x.more, x.compared]), mxAll, r.id);
+  const mxIndex = mxAll.filter(k => k.id === r.id || mxIds.includes(k.id));
+  const mxTargets: Record<string, MentionTarget> = Object.fromEntries(mxIds.flatMap(id => { const x = allRows.find(y => y.id === id); if (!x) return [];
+    const votes = x.pos + x.mix + x.neg;
+    return [[id, { id, slug: x.slug, name: withoutYear(x.name), href: th(x.href), pic: x.pic ?? null, loved: votes ? Math.round(100 * x.pos / votes) : null, votes,
+      price: staged[x.slug]?.price?.usd ?? null }]]; }));
 
   return <Shell active="rackets">
     <JsonLd data={ld}/>
@@ -276,13 +291,15 @@ export async function CreatorProductBody({ slug }: { slug: string }) {
               <div className="thc-h rule"><strong>{`Similar ${niche.words.many} mentioned`}</strong><span>In these reviews</span></div>
               {named.map(m => <a key={m.row.id} className="thc-men" href={th(m.href)}>
                 <span className="thc-men-ph">{m.row.pic ? <img src={m.row.pic} alt="" loading="lazy"/> : null}</span>
-                <span><strong>{withoutYear(m.row.name)}</strong>{m.row.line && <span>{m.row.line}</span>}
-                  <small>{`Mentioned in ${plural(m.n, "review")}${m.price ? ` · from ${usd(m.price.usd)}` : ""}`}</small></span></a>)}
+                <span><strong>{withoutYear(m.row.name)}</strong>{(m.vs ?? m.row.line) && <span>{m.vs ?? m.row.line}</span>}
+                  <small>{`${m.vs ? `Compared in ${plural(m.vsN || m.n, "review")}` : `Mentioned in ${plural(m.n, "review")}`}${m.price ? ` · from ${usd(m.price.usd)}` : ""}`}</small></span></a>)}
             </section>}
           </StickyCol>
         </div>
 
-        <CreatorReviews reviews={feed} count={rs.length} roundup={null}/>
+        <MentionsProvider index={mxIndex} targets={mxTargets} selfId={r.id} selfSlug={slug} unit={W.people} noun={niche.words.one}>
+          <CreatorReviews reviews={feed} count={rs.length} roundup={null}/>
+        </MentionsProvider>
 
         {/* Comments (the mock's section 7): the site's own discussion for this paddle, the same thread as its product page. */}
         <section className="thc-sec2 thc-comments"><Comments page={`racket:${r.id}`} title="Discussion" avatars nicknames={niche.form.quickVote?.nicknames ?? []}/></section>
