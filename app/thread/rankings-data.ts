@@ -100,7 +100,9 @@ export const threadRankings = cache(async (): Promise<ThreadRanking[]> => {
     ids: rankHome(payload!.items, RANK_SETUP, NEGATIVE_TAGS, p.choice, false, SIZE).rows.map(r => r.id) }));
   const shapes = SHAPES.map(([k]) => ({ slug: `best-${k}-${LIST}`, href: `/rankings/best-${k}-${LIST}`, label: `Best ${k} ${niche.words.many}`, title: `Best ${k} ${niche.id} ${niche.words.many} ${YEAR()}`,
     blurb: BLURB[k], own: false, group: "By shape",
-    ids: all.filter(r => r.score != null && r.current && r.n >= MIN_REVIEWS && (PICKLEBALL ? !!r.shape && new RegExp(`\\b${k}\\b`, "i").test(r.shape) : r.shape?.toLowerCase() === k)).sort((a, b) => b.score! - a.score! || b.n - a.n).slice(0, SIZE).map(r => r.id) }));
+    // A shape list set to "loved" (lib/thread/vote-order.ts, PickleballRecs) goes by the loved count within the shape.
+    ids: all.filter(r => r.score != null && r.current && r.n >= MIN_REVIEWS && (PICKLEBALL ? !!r.shape && new RegExp(`\\b${k}\\b`, "i").test(r.shape) : r.shape?.toLowerCase() === k))
+      .sort(listOrder(niche.id, `best-${k}-${LIST}`)?.order === "loved" ? (a, b) => b.pos - a.pos || b.n - a.n : (a, b) => b.score! - a.score! || b.n - a.n).slice(0, SIZE).map(r => r.id) }));
   // The site's own lists keep their live rule (5+); a Thread-only list is a new page, so it needs a full 10 (owner 2026-11-19).
   const skin = SKIN ? await skinLists(ctx, new Set(all.filter(r => r.current).map(r => r.id))) : [];
   // DiscGolfRecs' "Best overall" (its hub mock): the highest thrower scores, current discs with 10+ reviews.
@@ -123,10 +125,10 @@ export const threadRankings = cache(async (): Promise<ThreadRanking[]> => {
 async function votesFor(lists: Awaited<ReturnType<typeof threadLists>>, all: Awaited<ReturnType<typeof threadRows>>["all"], ctx: Awaited<ReturnType<typeof threadRows>>["ctx"]) {
   const out = new Map<string, string[]>(), listed = new Map(ctx.data.listed.map(p => [p.id, p]));
   // "loved" (Best overall): the row's loved count, this season's models only.
-  for (const l of lists) { if (listOrder(niche.id, l.slug)?.order !== "loved") continue;
-    const cfg = niche.topLists?.find(x => x.slug === l.slug);
-    const ids = lovedOrder(all.flatMap(r => { const p = listed.get(r.id); return p ? [{ id: r.id, name: r.name, family: modelFamily(p), year: r.year, reviews: r.n,
-      loved: r.pos, mixed: r.mix, notForMe: r.neg }] : []; }), YEAR(), { ...LOVED_ORDER, minReviews: cfg?.minReviews ?? LOVED_ORDER.minReviews });
+  for (const l of lists) { const lo = listOrder(niche.id, l.slug); if (lo?.order !== "loved") continue;
+    const cfg = niche.topLists?.find(x => x.slug === l.slug), cur = lo.years === "current";
+    const ids = lovedOrder(all.flatMap(r => { const p = listed.get(r.id); return p && (!cur || r.current !== false) ? [{ id: r.id, name: r.name, family: modelFamily(p), year: r.year, reviews: r.n,
+      loved: r.pos, mixed: r.mix, notForMe: r.neg }] : []; }), cur ? null : YEAR(), { ...LOVED_ORDER, minReviews: cfg?.minReviews ?? LOVED_ORDER.minReviews });
     if (ids.length >= 5) out.set(l.slug, ids); }
   const wanted = lists.flatMap(l => { const o = listOrder(niche.id, l.slug); return o?.order === "votes" && o.option ? [{ l, o }] : []; });
   if (!wanted.length) return out;
@@ -135,7 +137,7 @@ async function votesFor(lists: Awaited<ReturnType<typeof threadLists>>, all: Awa
     const cfg = niche.topLists?.find(x => x.slug === l.slug), oldest = cfg?.maxAgeYears === undefined ? -Infinity : YEAR() - cfg.maxAgeYears;
     const pool = o.pool === "curated" ? l.ids.slice(0, SIZE).flatMap(id => all.filter(r => r.id === id)) : all.filter(r => r.year >= oldest);
     const ids = voteOrder(pool.flatMap(r => { const p = listed.get(r.id); return p ? [{ id: r.id, name: r.name, family: modelFamily(p), year: r.year, reviews: r.n,
-      group: traitGroup(t, r.id, VOTE_ORDER.trait) }] : []; }), o.option!, { ...VOTE_ORDER, minReviews: cfg?.minReviews ?? VOTE_ORDER.minReviews });
+      group: traitGroup(t, r.id, o.trait ?? VOTE_ORDER.trait) }] : []; }), o.option!, { ...VOTE_ORDER, minReviews: cfg?.minReviews ?? VOTE_ORDER.minReviews });
     if (ids.length >= 5) out.set(l.slug, ids);
   }
   return out;
