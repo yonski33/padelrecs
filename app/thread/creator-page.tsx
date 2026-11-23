@@ -33,7 +33,7 @@ import { Comments } from "./live/comments";
 import { th } from "../../lib/thread/look";
 import { PollCard } from "./live/racket-v7b";
 import { CompactFit } from "./live/creator-fit";
-import { SkinFitCheck } from "./live/skin-match";
+import { SkinCompactFit } from "./live/skin-match";
 import { playersWord } from "../../lib/thread/web-sources";
 import { StickyCol } from "./live/sticky-col";
 import { TraitVotes } from "./live/trait-votes";
@@ -197,7 +197,7 @@ export async function CreatorProductBody({ slug }: { slug: string }) {
         </div>}
       </header>
       {/* Is this paddle right for me? as one row under the head (owner mock 2026-11-23). */}
-      <div className="thc-fitrow">{SKIN ? <section className="thc-box1 thc-skinfit"><SkinFitCheck id={r.id} wire={skinWire} links={skinLinks}/></section>
+      <div className="thc-fitrow">{SKIN ? <SkinCompactFit id={r.id} wire={skinWire} links={skinLinks}/>
         : <CompactFit id={r.id} title={`Is this ${niche.words.one} right for me?`} sub="Pick your level and style" bar/>}</div>
       <div className="thc-rule"/>
 

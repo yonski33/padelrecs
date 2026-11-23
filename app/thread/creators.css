@@ -521,9 +521,6 @@ body:has(.th-skin .thc) .th-skin .thc a.thc-name { font-family: var(--bc), 'Bric
 .th-skin .thc-wrap mark.pos { background: oklch(0.93 0.05 20); }
 body:has(.th-skin .thc) .th-skin .thc a.thc-g-row:hover { background: #f4ebe6; }
 .th-skin .thc-rd { background: #fffaf7; }
-/* The skin fit check (live/skin-match.tsx SkinFitCheck) as the row under the head. */
-.th-skin .thc-skinfit { padding: 16px 20px; }
-.th-skin .thc-skinfit .th-fit { border: 0; padding: 0; margin: 0; background: none; }
 /* Soft card lines, as on skin's own product page (no hard black frames). */
 .th-skin .thc-box1 { border: 1.5px solid #ddcfc8; }
 /* No prices yet: the Where to buy box stays its own size instead of filling the head's height. */

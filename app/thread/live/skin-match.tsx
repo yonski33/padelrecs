@@ -261,3 +261,41 @@ export function SkinRankMatch({ rows, wire }: { rows: V5Row[]; wire: SkinWire[] 
     </div>}
   </section>;
 }
+
+/** The creator page's skin fit check (owner 2026-11-23: "style this the same like on pickleball"): the compact one-row bar
+ *  of live/creator-fit.tsx CompactFit (bold title, "My skin" and "Help with" chips in one line with a divider, Sensitive skin
+ *  as the check), then the match pill, one bold line, the reason, better fits and Reset. Same picks and engine as SkinFitCheck. */
+export function SkinCompactFit({ id, wire, links }: { id: string; wire: SkinWire[]; links: Record<string, { name: string; href: string }> }) {
+  const [picks, set] = useSkinPicks();
+  const ctx = useCtx(wire);
+  const res = useMemo(() => {
+    if (!ctx || !skinPickedAny(picks)) return null;
+    const choice = skinChoiceOf(picks, false), m = skinMatch(ctx, id, choice);
+    const shape = wire.find(w => w.id === id)?.shape ?? null;
+    const better = m.pct != null && m.pct < 80 ? rankSkin(ctx, choice, r => r.shape === shape && r.id !== id)
+      .filter(x => x.pct != null && x.pct >= m.pct! + 10 && links[x.r.id]).slice(0, m.pct < 60 ? 2 : 1) : [];
+    return { m, reason: reasonOf(ctx, m), better };
+  }, [ctx, picks, id, wire, links]);
+  const verdict = res ? verdictOf(res.m.pct) : null;
+  const tone = res?.m.pct == null ? "" : res.m.pct >= 85 ? " g" : res.m.pct >= 70 ? " y" : " r";
+  const chip = (on: boolean, label: string, onClick: () => void) =>
+    <button key={label} type="button" className="thc-chip" aria-pressed={on} onClick={onClick}>{label}</button>;
+  return <section className="thc-box1 thc-fit bar">
+    <h2>{W.fitTitle}</h2>
+    <div className="thc-fit-line">
+      <b>My skin</b>{SKIN_OPTS.map(([v, l]) => chip(picks.skin === v, l, () => set({ skin: picks.skin === v ? null : v })))}
+      <span className="thc-fit-sep" aria-hidden="true"/>
+      <b>Help with</b>{GOAL_OPTS.map(([v, l]) => chip(picks.goal === v, l, () => set({ goal: picks.goal === v ? null : v })))}
+      <label className="thc-arm"><input type="checkbox" checked={picks.sens} onChange={() => set({ sens: !picks.sens })}/><span>Sensitive skin</span></label>
+    </div>
+    {skinPickedAny(picks) && <div className="thc-fit-out" aria-live="polite">
+      {!res ? <span className="thc-fit-note">Working out your match…</span> : <>
+        {res.m.pct != null && <span className={`thc-fit-pct${tone}`}>{`${res.m.pct}% your match`}</span>}
+        <strong>{FIT_HEAD[verdict ?? "thin"]}</strong>
+        {res.reason && <span className="thc-fit-why">{`${res.reason[0]!.toUpperCase()}${res.reason.slice(1)}.`}</span>}
+        {res.better.length > 0 && <span className="thc-fit-why">{"Better for you: "}{res.better.map((b, i) => <span key={b.r.id}>{i > 0 && " or "}<a className="thc-fit-alt" href={th(links[b.r.id]!.href)}>{links[b.r.id]!.name}</a>{` (${b.pct}%)`}</span>)}.</span>}
+      </>}
+      <button type="button" className="thc-fit-reset" onClick={() => clearPicks(set)}>Reset</button>
+    </div>}
+  </section>;
+}
