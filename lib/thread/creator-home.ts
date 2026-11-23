@@ -33,16 +33,16 @@ export const usd = (n: number) => `$${Number.isInteger(n) ? n : n.toFixed(2)}`;
 /** The home's data from the creator pages themselves (the database path): the same counts as each page (one per reviewer,
  *  TikTok channels once), the most praised attribute, every attribute's Excellent-or-Great count, the lowest in-stock price,
  *  and the newest YouTube summaries. */
-const PRAISE: Record<AttrKey, string> = { power: "power", control: "control", spin: "spin", pop: "pop", sweet: "its sweet spot", comfort: "arm comfort", durability: "durability" };
+const PRAISE: Partial<Record<AttrKey, string>> = { power: "power", control: "control", spin: "spin", pop: "pop", sweet: "its sweet spot", comfort: "arm comfort", durability: "durability" };
 /** One product's home summary from its creator page: counts one per reviewer, every attribute's Excellent-or-Great count, the
  *  most praised one (2+ reviews), the lowest in-stock price. The paddle page's praise line uses it too. */
 export function homePaddle(page: CreatorPage): HomePaddle {
   const { counted } = reviewLists(page);
   const high = Object.fromEntries(ATTRS.map(([k]) => [k, counted.filter(r => r.attrs[k] === "Excellent" || r.attrs[k] === "Great").length])) as Record<AttrKey, number>;
-  const top = ATTRS.map(([k]) => k).reduce((a, k) => high[k] > high[a] ? k : a, "power" as AttrKey);
+  const top = ATTRS.map(([k]) => k).reduce((a, k) => high[k] > high[a] ? k : a, ATTRS[0]![0]);
   const low = page.prices ? lowestOffer(page.prices.offers) : null, shop = low?.shops[0];
   return { ...stanceCounts(counted), reviews: counted.length, high,
-    praise: high[top] >= 2 ? { key: top, words: PRAISE[top], n: high[top] } : null,
+    praise: high[top] >= 2 ? { key: top, words: PRAISE[top] ?? (ATTRS.find(a => a[0] === top)?.[1] ?? top).toLowerCase(), n: high[top] } : null,
     price: low && shop ? { usd: low.price, shop: shop.shop, url: shop.url, affiliate: shop.affiliate } : null };
 }
 /** The home list's extras per row (owner 2026-11-22): the rows keep the site's own vote counts and order; a product with

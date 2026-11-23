@@ -80,7 +80,7 @@ function Card({ x, lit }: { x: ReviewEntry; lit: boolean }) {
       {x.quote && <h3 className="thc-q">{x.quoteAt != null && x.kind === "youtube"
         ? <a href={atSecond(x.url, x.quoteAt)} {...OUT} aria-label={`Watch from ${clock(x.quoteAt)}`}>{`“${x.quote}”`}</a> : `“${x.quote}”`}</h3>}
       {boxes.length > 0 && <div className="thc-boxes">{boxes.map(([i, h, t, k]) => <div key={h} className={`thc-box ${k}`}>
-        <span className="thc-box-h"><b aria-hidden="true">{i}</b><span>{h}</span></span><span>{t}</span></div>)}</div>}
+        <span className="thc-box-h"><b aria-hidden="true">{i}</b><span>{h}</span></span><span className="thc-box-t">{t}</span></div>)}</div>}
       <p className={`thc-sum${vid ? " vid" : ""}`}>{marks(lead, hl).map((m, i) => m.on ? <mark key={i}>{m.t}</mark> : m.t)}
         {more && !open && <>{" "}{toggle}</>}</p>
       {open && rest && <p className={`thc-sum${vid ? " vid" : ""}`}>{marks(rest, hl.filter(h => !lead.includes(h))).map((m, i) => m.on ? <mark key={i}>{m.t}</mark> : m.t)}</p>}
@@ -141,7 +141,7 @@ export function CreatorReviews({ reviews, count, roundup }: { reviews: ReviewEnt
   return <VideoProvider><section id="reviews" className="thc-reviews">
     <div className="thc-rv-h">
       <h2>Reviews <span>{`· ${count}`}</span></h2>
-      <span className="thc-rv-sub">Summaries from YouTube, blogs and TikTok. Watch or read the original review for the full details.</span>
+      <span className="thc-rv-sub">{`Summaries from ${sourcesOf(reviews)}. Watch or read the original review for the full details.`}</span>
       <label className="thc-sort"><span>Sort:</span><select value={by} onChange={e => setBy(e.target.value as "stance" | "newest")}>
         <option value="stance">Most relevant</option><option value="newest">Newest</option></select></label>
     </div>
@@ -162,4 +162,11 @@ function leadSentences(t: string, n: number): [string, string] {
   // text is ever dropped: the two parts always join back into the summary.
   const parts = t.split(/(?<=[.!?]["”’)]*)\s+(?=\S)/).filter(Boolean);
   return parts.length <= n ? [t, ""] : [parts.slice(0, n).join(" "), parts.slice(n).join(" ")];
+}
+
+/** "YouTube, blogs and TikTok": only the sources these reviews come from (SkinRecs has no TikTok takes yet). */
+function sourcesOf(rs: { kind: string }[]) {
+  const k = new Set(rs.map(r => r.kind));
+  const l = [k.has("youtube") && "YouTube", k.has("blog") && "blogs", k.has("tiktok") && "TikTok"].filter((x): x is string => !!x);
+  return l.length > 1 ? `${l.slice(0, -1).join(", ")} and ${l.at(-1)}` : l[0] ?? "reviews";
 }

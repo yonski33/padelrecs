@@ -10,6 +10,9 @@ export const CREATOR_VOTE_KEYS: Record<string, string[]> = {
   // The Hybrid v19 mockup's six boxes (Control or power, Level, Sweet spot, Arm comfort, Feel, Best on), with Spin, one of
   // pickleball's ranking lists, in place of padel's court side. Covers all four ranking groups.
   pickleball: ["plays_like", "level", "sweet_spot", "arm", "feel", "spin"],
+  // SkinRecs (owner "Yes, Skin next" 2026-11-23): six of its own nine groups (lib/thread/traits.ts SKIN_TRAIT_GROUPS); the
+  // would-you-buy-it-again poll above them covers repurchase.
+  skin: ["skin_type", "texture", "finish", "irritation", "makeup", "value"],
 };
 /** The groups the creator page asks, in ranking order; only keys the site's vote API accepts. */
 export function creatorVoteGroups(nicheId: string): TraitGroup[] {

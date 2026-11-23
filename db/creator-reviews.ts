@@ -6,7 +6,7 @@
 import { sql } from "drizzle-orm";
 import type { getDb } from "./index";
 import type { AttrKey, CreatorPage, CreatorReview, Offer, Stance, TikTokTake, Word } from "../lib/thread/creators";
-import { WORDS } from "../lib/thread/creators";
+import { ATTRS, WORDS } from "../lib/thread/creators";
 
 type Database = ReturnType<typeof getDb>;
 const SCHEMA = /^[a-z_][a-z0-9_]*$/;
@@ -15,7 +15,8 @@ const str = (v: unknown) => v == null ? null : String(v);
 const num = (v: unknown) => v == null || v === "" ? null : Number(v);
 const json = <T>(v: unknown, fallback: T): T => { if (v == null) return fallback; if (typeof v === "string") { try { return JSON.parse(v) as T; } catch { return fallback; } } return v as T; };
 const list = (v: unknown): string[] => Array.isArray(v) ? v.map(String) : typeof v === "string" && v.startsWith("{") ? v.slice(1, -1).split(",").filter(Boolean).map(x => x.replace(/^"|"$/g, "")) : [];
-const ATTR_KEYS: AttrKey[] = ["power", "control", "spin", "pop", "sweet", "comfort", "durability"];
+/** The site's own attribute keys (lib/thread/creators.ts ATTRS: pickleball's seven, or SkinRecs' words). */
+const ATTR_KEYS: AttrKey[] = ATTRS.map(([k]) => k);
 
 /** One creator_reviews row (YouTube or blog) as the page's review. */
 export function reviewFromRow(r: Record<string, unknown>): CreatorReview {
