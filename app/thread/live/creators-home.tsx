@@ -33,7 +33,7 @@ export function CreatorsHomeTop({ rows, extra, curated, added, total, brands, af
   rows: ThreadRow[]; extra: Record<string, HomeExtra>; curated: string[]; added: Record<string, string>;
   /** "247 reviews summarised". */ total: string; brands: string[]; after: ReactNode; side: ReactNode;
 }) {
-  const l = useRacketList({ rows, curated, added }), { list, pcts, mine, picks, setPicks, f, toggle, chips, clearAll, pool, pass, test } = l;
+  const l = useRacketList({ rows, curated, added, home: true }), { list, pcts, mine, picks, setPicks, f, toggle, chips, clearAll, pool, pass, test } = l;
   const [ft, setFt] = useState(false), [count, setCount] = useState(FIRST), [sortOpen, setSortOpen] = useState(false), [moreBrands, setMoreBrands] = useState(false);
   // The list grows 10 at a time (owner 2026-11-23), then "Show fewer" folds it back to the first six.
   const shown = list.slice(0, count), left = list.length - shown.length;
