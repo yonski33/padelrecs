@@ -13,6 +13,7 @@ import type { QuickChoice } from "../../lib/quick-match";
 import { niche } from "../../lib/niche";
 import { listOrder, voteOrder, VOTE_ORDER, lovedOrder, LOVED_ORDER } from "../../lib/thread/vote-order";
 import { modelFamily } from "../../lib/compare-pairs";
+import { inShape } from "../../lib/thread/primary-shape";
 
 export type ThreadRanking = { slug: string; href: string; label: string; title: string; blurb: string; group: string; ids: string[]; own: boolean;
   /** The hub card's title inside its group ("Moisturizers" under "For sensitive skin"); else the label. */ short?: string;
@@ -101,7 +102,7 @@ export const threadRankings = cache(async (): Promise<ThreadRanking[]> => {
   const shapes = SHAPES.map(([k]) => ({ slug: `best-${k}-${LIST}`, href: `/rankings/best-${k}-${LIST}`, label: `Best ${k} ${niche.words.many}`, title: `Best ${k} ${niche.id} ${niche.words.many} ${YEAR()}`,
     blurb: BLURB[k], own: false, group: "By shape",
     // A shape list set to "loved" (lib/thread/vote-order.ts, PickleballRecs) goes by the loved count within the shape.
-    ids: all.filter(r => r.score != null && r.current && r.n >= MIN_REVIEWS && (PICKLEBALL ? !!r.shape && new RegExp(`\\b${k}\\b`, "i").test(r.shape) : r.shape?.toLowerCase() === k))
+    ids: all.filter(r => r.score != null && r.current && r.n >= MIN_REVIEWS && (PICKLEBALL ? inShape(niche.id, r.id, r.shape, k) : r.shape?.toLowerCase() === k))
       .sort(listOrder(niche.id, `best-${k}-${LIST}`)?.order === "loved" ? (a, b) => b.pos - a.pos || b.n - a.n : (a, b) => b.score! - a.score! || b.n - a.n).slice(0, SIZE).map(r => r.id) }));
   // The site's own lists keep their live rule (5+); a Thread-only list is a new page, so it needs a full 10 (owner 2026-11-19).
   const skin = SKIN ? await skinLists(ctx, new Set(all.filter(r => r.current).map(r => r.id))) : [];
