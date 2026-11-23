@@ -1,0 +1,91 @@
+{
+ "pickleball": {
+  "bread-butter-loco-hybrid": {
+   "paras": [
+    "Every review is positive, and most describe a balanced, power-leaning hybrid, with two placing it just below the Selkirk Boomstick for power. Reviewers disagree on control: one found the pop hard to control until weight was added, while another calls it the most forgiving paddle in a four-way comparison, though with less spin than grittier options. Testing ran from a few days to about two months."
+   ],
+   "highlights": [
+    {
+     "text": "hard to control",
+     "tone": "neg"
+    },
+    {
+     "text": "most forgiving paddle",
+     "tone": "pos"
+    }
+   ]
+  },
+  "honolulu-j2cr": {
+   "paras": [
+    "Reviewers describe a mid-to-high power hybrid that suits intermediate and advanced players, most often measured against the 11SIX24 Power 2 or its elongated sibling, the J6CR. They disagree on control: some call it easy to keep in play, while one mixed take finds the pop tricky to control, needing a week or two and added weight to settle. Another mixed take dislikes the short handle and throat taper, and one reviewer's first unit arrived with weak grit, a problem another says others have reported."
+   ],
+   "highlights": [
+    {
+     "text": "suits intermediate and advanced players",
+     "tone": "pos"
+    },
+    {
+     "text": "tricky to control",
+     "tone": "neg"
+    },
+    {
+     "text": "arrived with weak grit",
+     "tone": "neg"
+    }
+   ]
+  },
+  "six-zero-coral-pro-16mm": {
+   "paras": [
+    "Many reviewers treat it as an upgrade on the original Coral, with a little more power and spin but a crisper, firmer feel, and several note it is UPA approved only. It suits all-court and control-first players, roughly 3.0 to 4.5 by one reviewer. Two of the three mixed takes say it is too low on power and unstable off-center for singles or top-level play (Rackets & Runners), or plays as a power paddle with little dwell that lower-level players may not enjoy (SupaSenpai)."
+   ],
+   "highlights": [
+    {
+     "text": "upgrade on the original Coral",
+     "tone": "pos"
+    },
+    {
+     "text": "too low on power",
+     "tone": "neg"
+    },
+    {
+     "text": "little dwell",
+     "tone": "neg"
+    }
+   ]
+  },
+  "spartus-p1-hybrid": {
+   "paras": [
+    "Most note it runs heavy for a hybrid, and reviewers mostly compare it with the Bread & Butter Loco, with several saying it pops less. The one mixed review, from Pickleball3en, found volley rolls at the kitchen popped too much, so pop is where they disagree. The five who checked found little grit wear."
+   ],
+   "highlights": [
+    {
+     "text": "runs heavy for a hybrid",
+     "tone": "neg"
+    },
+    {
+     "text": "popped too much",
+     "tone": "neg"
+    },
+    {
+     "text": "little grit wear",
+     "tone": "pos"
+    }
+   ]
+  },
+  "vatic-pro-prism-flash": {
+   "paras": [
+    "No review is negative, and many pitch the paddle at beginners, newer players and anyone who struggles with control, often as a strong value under $100. The usual caveat is that power and pop are modest, and several say it cannot match thermoformed paddles. Reviewers split on the thin 14mm version, with two rejecting it and two praising it, and the Hyperion is the most common comparison."
+   ],
+   "highlights": [
+    {
+     "text": "beginners, newer players",
+     "tone": "pos"
+    },
+    {
+     "text": "power and pop are modest",
+     "tone": "neg"
+    }
+   ]
+  }
+ }
+}
