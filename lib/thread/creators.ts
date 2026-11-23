@@ -57,6 +57,14 @@ export function tiktokStances(takes: TikTokTake[]) {
 export type Offer = { shop: string; url: string; price: number; inStock: boolean; edition: string | null; affiliate: boolean };
 
 /** "$110", "$159.99". */
+/** A shop's name short enough for the price box (owner 2026-11-23): no "(brand store)" / "(sold by …)" note, no trailing
+ *  "Co", "Company", "Inc" or "LLC" ("Honolulu Pickleball Co (brand store)" → "Honolulu Pickleball"). */
+export function shortShop(name: string): string {
+  const bare = name.replace(/\s*\([^)]*\)/g, "").trim();
+  // The suffix only goes when two words are left ("Pickle Co" stays).
+  const cut = bare.replace(/[,\s]+(co|company|inc|llc)\.?$/i, "");
+  return (cut.split(/\s+/).length >= 2 ? cut : bare) || name;
+}
 export const usd = (n: number) => `$${Number.isInteger(n) ? n : n.toFixed(2)}`;
 /** The lowest in-stock price and the shops at it ("Lowest today" goes on each); sold-out rows never count. */
 export function lowestOffer(offers: Offer[]) {
