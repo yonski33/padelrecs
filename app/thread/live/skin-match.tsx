@@ -277,7 +277,7 @@ export function SkinCompactFit({ id, wire, links, side = false }: { id: string; 
       .filter(x => x.pct != null && x.pct >= m.pct! + 10 && links[x.r.id]).slice(0, m.pct < 60 ? 2 : 1) : [];
     return { m, reason: reasonOf(ctx, m), better };
   }, [ctx, picks, id, wire, links]);
-  const verdict = res ? verdictOf(res.m.pct) : null;
+  const fitKind = res ? verdictOf(res.m.pct) : null;
   const tone = res?.m.pct == null ? "" : res.m.pct >= 85 ? " g" : res.m.pct >= 70 ? " y" : " r";
   const chip = (on: boolean, label: string, onClick: () => void) =>
     <button key={label} type="button" className="thc-chip" aria-pressed={on} onClick={onClick}>{label}</button>;
@@ -288,7 +288,7 @@ export function SkinCompactFit({ id, wire, links, side = false }: { id: string; 
     <div className="thc-skinside-out" aria-live="polite">
       <span className={`thc-fit-pct${res?.m.pct != null ? tone : " none"}`}>{res?.m.pct != null ? `${res.m.pct}% match` : "?% match"}</span>
       <span className="thc-skinside-t">{!res ? "Pick your skin type to see how reviews rate it for you."
-        : <><strong>{FIT_HEAD[verdict ?? "thin"]}</strong>{res.reason && ` ${res.reason[0]!.toUpperCase()}${res.reason.slice(1)}.`}
+        : <><strong>{FIT_HEAD[fitKind ?? "thin"]}</strong>{res.reason && ` ${res.reason[0]!.toUpperCase()}${res.reason.slice(1)}.`}
           {res.better.length > 0 && <>{" Better for you: "}{res.better.map((b, i) => <span key={b.r.id}>{i > 0 && " or "}<a className="thc-fit-alt" href={th(links[b.r.id]!.href)}>{links[b.r.id]!.name}</a></span>)}.</>}</>}</span>
     </div>
   </section>;
@@ -303,7 +303,7 @@ export function SkinCompactFit({ id, wire, links, side = false }: { id: string; 
     {skinPickedAny(picks) && <div className="thc-fit-out" aria-live="polite">
       {!res ? <span className="thc-fit-note">Working out your match…</span> : <>
         {res.m.pct != null && <span className={`thc-fit-pct${tone}`}>{`${res.m.pct}% your match`}</span>}
-        <strong>{FIT_HEAD[verdict ?? "thin"]}</strong>
+        <strong>{FIT_HEAD[fitKind ?? "thin"]}</strong>
         {res.reason && <span className="thc-fit-why">{`${res.reason[0]!.toUpperCase()}${res.reason.slice(1)}.`}</span>}
         {res.better.length > 0 && <span className="thc-fit-why">{"Better for you: "}{res.better.map((b, i) => <span key={b.r.id}>{i > 0 && " or "}<a className="thc-fit-alt" href={th(links[b.r.id]!.href)}>{links[b.r.id]!.name}</a>{` (${b.pct}%)`}</span>)}.</span>}
       </>}
