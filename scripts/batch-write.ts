@@ -270,7 +270,8 @@ async function submit(step: "write" | "check") {
   // Re-runs only send sources without a good result yet (e.g. videos whose transcript arrived later).
   const prev = existsSync(join(STAGE, `${step}-results.json`)) ? await readJson<Record<string, { error?: string }>>(join(STAGE, `${step}-results.json`)) : {};
   const sources = (await loadSources(state)).filter(s => !s.skip && s.text && (!prev[s.id] || prev[s.id].error) &&
-    !blocked(s.url) && !BLOCK_CREATORS.test(s.creator) && !BLOCK_CREATORS.test(s.grok_creator));
+    !blocked(s.url) && !BLOCK_CREATORS.test(s.creator) && !BLOCK_CREATORS.test(s.grok_creator) &&
+    (!flag("slugs") || flag("slugs")!.split(",").includes(s.slug))); // --slugs: submit only these products (e.g. pages already live)
   let items: { id: string; system: string; user: string; schema: object }[];
   if (step === "write") {
     items = sources.map(s => ({ id: s.id, system: WRITER_SYSTEM, schema: WRITER_SCHEMA,
