@@ -526,3 +526,5 @@ body:has(.th-skin .thc) .th-skin .thc a.thc-g-row:hover { background: #f4ebe6; }
 /* No prices yet: the Where to buy box stays its own size instead of filling the head's height. */
 @media (min-width: 1081px) { .th-skin .thc-v19 .thc-head-r > #buy.empty { flex: 0 0 auto; } .th-skin .thc-v19 .thc-head-r:has(#buy.empty) { align-self: flex-start; } }
 .th-skin .thc :is(.thc-card, .thc-vbox, .thc-sim-c, .thc-specs, .thc-comments .th-card) { border-color: #ddcfc8; }
+/* Phones: the fit bar's chips wrap, so its divider would sit alone at a line end. */
+@media (max-width: 600px) { .th-skin .thc-fit-sep { display: none; } }
