@@ -8,6 +8,7 @@
 // Data: db/creators/<site>.json (lib/thread/creator-data.ts), a static demo fixture; the photo, specs and shop link are the
 // product's own (racketData). Words, never invented scores; a number only where the creator published one; no prices
 // (none are stored yet); no Reddit card (no Reddit data staged for these paddles yet).
+import type { ReactNode } from "react";
 import { Shell } from "./shell";
 import { racketData } from "./racket-data";
 import { threadRows } from "./data";
@@ -24,6 +25,8 @@ import { STANCE_LABEL, lowestOffer, usd, reviewLists, agreeChips, stanceLine, st
   wordTone, type CreatorReview } from "../../lib/thread/creators";
 import { creatorPage, creatorSlugs, creatorHome } from "../../lib/thread/creator-data";
 import { threadTitle } from "../../lib/thread/web-sources";
+import roundups from "../../db/creators/reddit-roundups.json";
+import wrapups from "../../db/creators/reviewer-wrapups.json";
 import { creatorPageFor, CREATOR_VIEW, CREATOR_MIN_REVIEWS, creatorPageOn } from "../../lib/thread/sites";
 import { Avatar, CreatorReviews } from "./live/creator-reviews";
 import { Comments } from "./live/comments";
@@ -96,6 +99,9 @@ export async function CreatorProductBody({ slug }: { slug: string }) {
   // "Players on Reddit and forums" (the mock's roundup card): the live page's Reddit summaries for this paddle, as one card in
   // the feed. Never counted as a review (not in N reviews, the table or the sentiment bar). Real short quotes only.
   const reddit = cards.filter(c => c.kind === "reddit").slice(0, 6);
+  // The written roundup of ALL the paddle's Reddit posts (pilot 2026-11-23, db/creators/reddit-roundups.json), where one exists.
+  const wrap = (wrapups as Record<string, Record<string, Wrapup>>)[niche.id]?.[slug] ?? null;
+  const rd = (roundups as Record<string, Record<string, Roundup>>)[niche.id]?.[slug] ?? null;
   const name = withoutYear(row?.name ?? r.name);
   // The live page's buy link, the same logic (app/thread/rackets/[slug]/page.tsx): the Amazon lookup, the saved listing when
   // the two disagree, else the product's own site. No prices: none are stored yet.
@@ -178,7 +184,7 @@ export async function CreatorProductBody({ slug }: { slug: string }) {
       <main className="thc-body">
         {/* Side by side (owner choice): players on Reddit and forums, and the site's own vote. */}
         <div className={`thc-duo${reddit.length ? "" : " one"}`}>
-          {reddit.length > 0 && <RedditRoundup items={reddit}/>}
+          {rd ? <RedditBox rd={rd}/> : reddit.length > 0 && <RedditRoundup items={reddit}/>}
           {/* Played it? Vote and rate it: the would-you-buy-it-again bars and six vote boxes (lib/thread/creator-votes.ts),
               the stored votes loading live, one tap, no account. */}
           <section id="vote" className="thc-box1 thc-vote">
@@ -206,6 +212,7 @@ export async function CreatorProductBody({ slug }: { slug: string }) {
               : <span className="thc-none">No concern came up in 2 or more reviews.</span>}</span></div>
           </div>}
         </section>
+        {wrap && <Wrap w={wrap} n={rs.length}/>}
 
         <div className="thc-row">
           <div className="thc-row-l">
@@ -254,6 +261,57 @@ export async function CreatorProductBody({ slug }: { slug: string }) {
       </main>
     </div>
   </Shell>;
+}
+
+type Wrapup = { paras: string[]; highlights: { text: string; tone: "pos" | "neg" }[] };
+
+/** "In more detail" (pilot, owner OK 2026-11-23): 2-3 sentences on what the counts and tags can't show (who it suits, where
+ *  the mixed takes come from, what it's compared with), written from all the reviews and checked by a second reader. */
+function Wrap({ w, n }: { w: Wrapup; n: number }) {
+  const mark = (t: string) => { const out: ReactNode[] = []; let rest = t, k = 0;
+    for (;;) { let best = -1, hi = -1;
+      w.highlights.forEach((h, i) => { const at = rest.indexOf(h.text); if (at >= 0 && (best < 0 || at < best)) { best = at; hi = i; } });
+      if (hi < 0) { out.push(rest); return out; }
+      const h = w.highlights[hi];
+      out.push(rest.slice(0, best), <mark key={k++} className={h.tone}>{h.text}</mark>);
+      rest = rest.slice(best + h.text.length); } };
+  return <section className="thc-box1 thc-wrap">
+    <span className="thc-kick">In more detail</span>
+    {w.paras.map((p, i) => <p key={i}>{mark(p)}</p>)}
+    <a className="thc-wrap-all" href="#reviews">{`Read all ${n} summaries ↓`}</a>
+  </section>;
+}
+
+type Roundup = { posts: number; threads: number; at: string | null; headline: string; tags: { tone: "pos" | "neg"; text: string; n: number }[];
+  paras: string[]; highlights: { text: string; url: string }[] };
+
+/** "Players on Reddit and forums", written from ALL the paddle's stored Reddit posts (pilot, owner OK 2026-11-23): a
+ *  one-line headline, +/- tags each backed by 2+ posts, two short paragraphs (what players agree on, then what they raise
+ *  that reviews don't), and 2-4 short real phrases marked with a numbered link to their post. Checked by a second reader. */
+function RedditBox({ rd }: { rd: Roundup }) {
+  const day = rd.at ? new Date(rd.at).toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric", timeZone: "UTC" }) : null;
+  // Mark each highlight where it sits in the paragraph, with its source number after it.
+  const mark = (t: string) => { const out: ReactNode[] = []; let rest = t, k = 0;
+    for (;;) { let best = -1, hi = -1;
+      rd.highlights.forEach((h, i) => { const at = rest.indexOf(h.text); if (at >= 0 && (best < 0 || at < best)) { best = at; hi = i; } });
+      if (hi < 0) { out.push(rest); return out; }
+      const h = rd.highlights[hi];
+      out.push(rest.slice(0, best), <mark key={k++}>{h.text}</mark>, <b key={k++} className="thc-num">{hi + 1}</b>);
+      rest = rest.slice(best + h.text.length); } };
+  return <article className="thc-card thc-rd">
+    <div className="thc-card-b">
+      <div className="thc-card-top"><span className="thc-av thc-rd-av" aria-hidden="true">r/</span>
+        <span className="thc-name">Players on Reddit and forums</span></div>
+      <span className="thc-meta">{`${niche.site.name} summary of ${plural(rd.posts, `${W.person} post`)} in ${plural(rd.threads, "thread")}${day ? ` · ${day}` : ""}`}</span>
+      <h3 className="thc-rd-h">{rd.headline}</h3>
+      <div className="thc-rd-tags">{rd.tags.map(t => <span key={t.text} className={`thc-rd-tag ${t.tone}`}>
+        <i aria-hidden="true">{t.tone === "pos" ? "+" : "−"}</i>{t.text}</span>)}</div>
+      {rd.paras.map((p, i) => <p key={i} className="thc-sum">{mark(p)}</p>)}
+      <div className="thc-rd-src">{rd.highlights.map((h, i) => <a key={h.url + i} href={h.url} target="_blank" rel="noopener nofollow">
+        <strong>{`[${i + 1}]`}</strong><span>{`${threadTitle(h.url) ?? "View the thread"} ↗`}</span></a>)}</div>
+      <span className="thc-note">Not counted as a review.</span>
+    </div>
+  </article>;
 }
 
 /** "Players on Reddit and forums" (Hybrid v19 mockup, owner 2026-11-22: fill the box like the mock). Real data only: the
