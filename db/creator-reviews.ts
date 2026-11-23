@@ -6,7 +6,7 @@
 import { sql } from "drizzle-orm";
 import type { getDb } from "./index";
 import type { AttrKey, CreatorPage, CreatorReview, Offer, Stance, TikTokTake, Word } from "../lib/thread/creators";
-import { WORDS } from "../lib/thread/creators";
+import { ATTRS, WORDS } from "../lib/thread/creators";
 
 type Database = ReturnType<typeof getDb>;
 const SCHEMA = /^[a-z_][a-z0-9_]*$/;
@@ -15,7 +15,8 @@ const str = (v: unknown) => v == null ? null : String(v);
 const num = (v: unknown) => v == null || v === "" ? null : Number(v);
 const json = <T>(v: unknown, fallback: T): T => { if (v == null) return fallback; if (typeof v === "string") { try { return JSON.parse(v) as T; } catch { return fallback; } } return v as T; };
 const list = (v: unknown): string[] => Array.isArray(v) ? v.map(String) : typeof v === "string" && v.startsWith("{") ? v.slice(1, -1).split(",").filter(Boolean).map(x => x.replace(/^"|"$/g, "")) : [];
-const ATTR_KEYS: AttrKey[] = ["power", "control", "spin", "pop", "sweet", "comfort", "durability"];
+/** The site's own attribute keys (lib/thread/creators.ts ATTRS: pickleball's seven, or SkinRecs' words). */
+const ATTR_KEYS: AttrKey[] = ATTRS.map(([k]) => k);
 
 /** One creator_reviews row (YouTube or blog) as the page's review. */
 export function reviewFromRow(r: Record<string, unknown>): CreatorReview {
@@ -45,9 +46,14 @@ export function takeFromRow(r: Record<string, unknown>): TikTokTake {
     tags: list(r.tags).slice(0, 3), disclosure: "", url: String(r.url), keyPoint: str(r.key_point) };
 }
 /** creator_prices rows as offers, in stock first then cheapest, and the newest check date. */
-export function offersFromRows(rows: Record<string, unknown>[]): { checked: string; offers: Offer[] } | null {
+/** Amazon's rule for shown prices (owner 2026-11-23, scripts/amazon-prices.mts): an Amazon row counts only while its price is
+ *  under 24 hours old; after that the page shows Amazon as a plain link again. Other shops keep their weekly checks. */
+const AMAZON_MAX_AGE_MS = 24 * 60 * 60 * 1000;
+const freshEnough = (r: Record<string, unknown>, now: number) => String(r.shop) !== "Amazon" || now - Date.parse(String(r.checked_at)) < AMAZON_MAX_AGE_MS;
+export function offersFromRows(rows: Record<string, unknown>[], now = Date.now()): { checked: string; offers: Offer[] } | null {
+  rows = rows.filter(r => freshEnough(r, now));
   const offers = rows.filter(r => (str(r.currency) ?? "USD") === "USD").map(r => ({ shop: String(r.shop), url: String(r.url), price: Number(r.price),
-    inStock: r.in_stock === true || r.in_stock === "t", edition: str(r.edition), affiliate: r.affiliate === true || r.affiliate === "t" }))
+    inStock: r.in_stock === true || r.in_stock === "t", edition: str(r.edition), affiliate: r.affiliate === true || r.affiliate === "t", checkedAt: str(r.checked_at) }))
     .sort((a, b) => Number(b.inStock) - Number(a.inStock) || a.price - b.price);
   if (!offers.length) return null;
   const checked = rows.map(r => str(r.checked_at) ?? "").sort().pop()!.slice(0, 10);

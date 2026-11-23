@@ -499,3 +499,111 @@ body:has(.thc) .thc a.thc-fit-alt { font-weight: 700; color: var(--ink); text-de
 /* Key point one size down (owner 2026-11-23). */
 .thc-g-row .kp { font-size: 15.5px; }
 @media (max-width: 600px) { .thc-g-row .kp { font-size: 14.5px; } }
+
+/* SkinRecs (owner "Yes, Skin next" 2026-11-23): the same creator page in skin's own soft look, not pickleball's cream and
+   yellow. Its .th-skin tokens (thread.css: warm paper, espresso ink, rose accent, Bricolage display, Barlow body); status
+   colours stay green / amber / red in skin's shades. Scoped to .th-skin, so PickleballRecs is untouched. */
+body:has(.th-skin .thc), body:has(.th-skin .thc) .th { background: #f6f1ec; }
+.th-skin .thc { --ink: #2b2221; --rule: #e2d3cc; --muted: #7a6a65; --faint: #8f807a; --text: #3a2f2d; --body2: #5e504c; --para: #2b2221;
+  --card: #fff; --sand: #f4ebe6; --acc: oklch(0.86 0.06 20); --acc-soft: oklch(0.95 0.025 20);
+  --pos: oklch(0.72 0.15 145); --mix: oklch(0.85 0.14 90); --neg: oklch(0.7 0.15 30);
+  font-family: 'Barlow', 'Atkinson Hyperlegible', system-ui, sans-serif; }
+.th-skin .thc :is(.thc-bc, .thc-head h1, .thc-tldr > strong, .thc-h > strong, .thc-rv-h h2, .thc-sec2-h h2, .thc-rd .thc-name, h2, h3),
+body:has(.th-skin .thc) .th-skin .thc a.thc-name { font-family: var(--bc), 'Bricolage Grotesque', 'Arial Narrow', sans-serif; letter-spacing: -0.01em; }
+.th-skin .thc-head h1 { font-weight: 800; }
+/* Word and take chips: skin's soft green, amber and rose instead of the pickleball lime. */
+.th-skin .thc-w.w1, .th-skin .thc-w.w2, .th-skin .thc-take.pos { background: oklch(0.93 0.08 145); color: oklch(0.42 0.1 145); }
+.th-skin .thc-w.w3 { background: #f4ebe6; color: #3a2f2d; }
+.th-skin .thc-w.w4, .th-skin .thc-take.mix { background: oklch(0.95 0.08 95); color: oklch(0.45 0.09 75); }
+.th-skin .thc-w.w5, .th-skin .thc-take.neg { background: oklch(0.93 0.05 35); color: oklch(0.48 0.13 30); }
+/* Highlights keep pickleball's yellow marker (owner 2026-11-23). */
+body:has(.th-skin .thc) .th-skin .thc a.thc-g-row:hover { background: #f4ebe6; }
+.th-skin .thc-rd { background: #fffaf7; }
+/* Soft card lines, as on skin's own product page (no hard black frames). */
+.th-skin .thc-box1 { border: 1.5px solid #ddcfc8; }
+/* No prices yet: the Where to buy box stays its own size instead of filling the head's height. */
+@media (min-width: 1081px) { .th-skin .thc-v19 .thc-head-r > #buy.empty { flex: 0 0 auto; } .th-skin .thc-v19 .thc-head-r:has(#buy.empty) { align-self: flex-start; } }
+.th-skin .thc :is(.thc-card, .thc-vbox, .thc-sim-c, .thc-specs, .thc-comments .th-card) { border-color: #ddcfc8; }
+/* Phones: the fit bar's chips wrap, so its divider would sit alone at a line end. */
+@media (max-width: 600px) { .th-skin .thc-fit-sep { display: none; } }
+/* SkinRecs head, right column (owner mock 2026-11-23): Check price with "on Amazon" under it, then "Right for my skin?". */
+.th-skin .thc-pbox-on { text-align: center; font-size: 14px; color: var(--muted); }
+.th-skin .thc-skinside { gap: 10px; padding: 18px 20px; }
+.th-skin .thc-skinside h2 { margin: 0; font: 800 24px/1.1 var(--bc), 'Bricolage Grotesque', sans-serif; }
+.th-skin .thc-skinside-l { font-size: 15px; }
+.th-skin .thc-skinside-chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.th-skin .thc-skinside-chips .thc-chip { border: 1.5px solid #ddcfc8; border-radius: 999px; padding: 6px 16px; background: #fff; font-weight: 600; }
+.th-skin .thc-skinside-chips .thc-chip[aria-pressed="true"] { background: var(--acc); border-color: var(--ink); }
+.th-skin .thc-skinside-out { display: flex; align-items: center; gap: 14px; border-top: 1.5px solid #e2d3cc; padding-top: 14px; margin-top: 2px; }
+.th-skin .thc-skinside-out .thc-fit-pct { flex: 0 0 auto; white-space: nowrap; }
+.th-skin .thc-skinside-out .thc-fit-pct.none { border: 1.5px dashed #c9b8b0; background: none; color: var(--muted); }
+.th-skin .thc-skinside-t { font-size: 14.5px; line-height: 1.45; color: var(--muted); }
+.th-skin .thc-skinside-t strong { color: var(--ink); }
+/* The Where to buy box keeps its own size; the fit card sits below it. */
+@media (min-width: 1081px) { .th-skin .thc-v19 .thc-head-r { align-self: flex-start; } .th-skin .thc-v19 .thc-head-r > #buy { flex: 0 0 auto; } }
+/* Stood out / The trade-off / Compared to (owner mock 2026-11-23, pickleball and skin): a small coloured capital label over
+   the line itself in larger dark type, in roomier soft boxes, so each reads at a glance. */
+.thc .thc-boxes { gap: 12px; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); }
+.thc .thc-box { gap: 8px; border-radius: 14px; padding: 16px 18px; }
+.thc .thc-box-h { gap: 8px; font-size: 13px; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; }
+.thc .thc-box-h b { font-size: 16px; }
+.thc .thc-box-t { font-size: 16px; font-weight: 600; line-height: 1.4; color: var(--ink); }
+.th-skin .thc .thc-box.pos .thc-box-h span { color: oklch(0.45 0.11 145); } .th-skin .thc .thc-box.neg .thc-box-h span { color: oklch(0.5 0.14 30); }
+.th-skin .thc-pbox-on { font-size: 12.5px; line-height: 1.45; } .th-skin .thc-pbox-on a { color: inherit; text-decoration: underline; }
+/* Product header 4a (owner handoffs 2026-11-23, skinrecs-header-4a and pickleballrecs-header-4a): one outlined white panel with three columns, photo
+   200px on the page colour, main, prices 320px behind a soft divider; stacks below 1000px. Tokens from the handoff. */
+.thc-v19 .thc-head.thc-hd4 { display: grid; grid-template-columns: 200px minmax(0, 1fr) 320px; gap: 0; padding: 0;
+  width: calc(100% - 48px); max-width: 1168px; margin: 24px auto 0; background: #fff; border: 2px solid var(--h4-ink); border-radius: 22px;
+  overflow: hidden; align-items: stretch; color: var(--h4-ink); }
+.thc-v19 .thc-hd4 .thc-photo { height: auto; border-radius: 0; background: var(--h4-photo); padding: 24px; align-self: stretch; }
+.thc-v19 .thc-hd4 .thc-photo img { width: 170px; max-width: 100%; height: auto; max-height: none; }
+.thc-v19 .thc-hd4 .thc-head-m { padding: 26px 28px; gap: 14px; }
+.thc-v19 .thc-hd4 h1 { font-family: var(--h4-name-font) !important; font-size: var(--h4-name-size); font-weight: 800; line-height: 1.05; letter-spacing: var(--h4-name-ls); }
+.thc-v19 .thc-hd4 .thc-tags > span { font-size: 13px; border-color: var(--h4-ink); padding: 2px 11px; background: #fff; }
+.thc-v19 .thc-hd4 .thc-tags > span.on { background: var(--h4-acc); }
+.thc-v19 .thc-hd4 .thc-tldr { background: var(--h4-soft); border: 1.5px solid var(--h4-line); border-radius: 14px; padding: 16px 18px; gap: 10px; box-shadow: none; }
+.thc-v19 .thc-hd4 .thc-tldr-h { justify-content: space-between; align-items: baseline; }
+.thc-v19 .thc-hd4 .thc-tldr-h b { font: 800 22px/1 'Barlow Condensed', var(--bc, sans-serif); letter-spacing: 0; background: var(--h4-acc);
+  border: 1.5px solid var(--h4-ink); border-radius: 8px; padding: 2px 9px; }
+.thc-v19 .thc-hd4 .thc-tldr-h > span { font-size: 13.5px; color: var(--h4-muted); }
+.thc-v19 .thc-hd4 .thc-tldr-t { font-size: 18px; line-height: 1.4; }
+.thc-v19 .thc-hd4 .thc-pts2 { font-size: 15px; gap: 6px 20px; margin-top: 0; } .thc-v19 .thc-hd4 .thc-pts2 .neg { color: #B3261E; }
+.thc-v19 .thc-hd4 .thc-vbox { border: 0; border-radius: 0; padding: 0; background: none; gap: 9px; margin-top: 0; }
+.thc-v19 .thc-hd4 .thc-vbox-h strong { font-size: 15px; }
+.thc-v19 .thc-hd4 .thc-vbar { height: 10px; border-color: var(--h4-ink); }
+.thc-v19 .thc-hd4 .thc-vbar i.pos, .thc-v19 .thc-hd4 .thc-vcnt i.pos { background: #62C878; }
+.thc-v19 .thc-hd4 .thc-vbar i.mix, .thc-v19 .thc-hd4 .thc-vcnt i.mix { background: #F0D16B; }
+.thc-v19 .thc-hd4 .thc-vbar i.neg, .thc-v19 .thc-hd4 .thc-vcnt i.neg { background: #F0796A; }
+.thc-v19 .thc-hd4 .thc-vcnt { display: flex; flex-wrap: wrap; gap: 4px 18px; font-size: 14.5px; font-weight: 700; }
+.thc-v19 .thc-hd4 .thc-vcnt > span { display: inline-flex; align-items: center; gap: 6px; white-space: nowrap; }
+.thc-v19 .thc-hd4 .thc-vcnt i { width: 10px; height: 10px; border-radius: 50%; border: 1.5px solid var(--h4-ink); box-sizing: border-box; }
+.thc-v19 .thc-hd4 .thc-head-r { display: flex; flex-direction: column; gap: 16px; padding: 26px 24px; border-left: 2px solid var(--h4-line); align-self: stretch; }
+.thc-v19 .thc-hd4 .thc-head-r > #buy { border: 0; border-radius: 0; background: none; box-shadow: none; padding: 0; gap: 12px; }
+.thc-v19 .thc-hd4 .thc-head-r > :not(#buy) { border: 0; border-top: 1.5px solid var(--h4-line); border-radius: 0; background: none; box-shadow: none; padding: 16px 0 0; }
+.thc-v19 .thc-hd4 .thc-pbox-l { font-size: 13px; color: var(--h4-muted); }
+.thc-v19 .thc-hd4 .thc-pbox-p { font-size: 40px; font-weight: 800; }
+.thc-v19 .thc-hd4 .thc-pbox-s { font-size: 13.5px; margin-top: -6px; }
+body:has(.thc) .thc-v19 .thc-hd4 .thc-pbox a.thc-cta.wide { background: var(--h4-acc); border: 2px solid var(--h4-ink); font-size: 17px; font-weight: 800;
+  padding: 11px 22px; margin: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.thc-v19 .thc-hd4 .thc-pbox-list { border-top: 0; }
+.thc-v19 .thc-hd4 .thc-pbox-list .thc-shop2 { border-bottom: 0; border-top: 1.5px solid var(--h4-line); padding: 9px 0; font-size: 14.5px; gap: 10px; }
+.thc-v19 .thc-hd4 .thc-shop2 > strong { font-weight: 600; } .thc-v19 .thc-hd4 .thc-shop2 .thc-price { font-weight: 800; }
+.thc-v19 .thc-hd4 .thc-shop2 .thc-mono { font: 600 12px 'JetBrains Mono', ui-monospace, monospace; }
+.thc-v19 .thc-hd4 .thc-note { font-size: 12px; color: var(--h4-muted); }
+.thc-v19 .thc-hd4 { --h4-ink: #17171A; --h4-photo: #FEFCF6; --h4-soft: #FFFDF4; --h4-line: #E9E4D2; --h4-acc: #F4EC6E; --h4-muted: #6E6A5E;
+  --h4-name-font: 'Barlow Condensed', var(--bc, sans-serif); --h4-name-size: 52px; --h4-name-ls: 0; }
+.th-skin .thc-v19 .thc-hd4 { --h4-ink: #2A1F1F; --h4-photo: #F6F1EC; --h4-soft: #FFFCF8; --h4-line: #E6D9D2; --h4-acc: #F5C6C6; --h4-muted: #7A6E68;
+  --h4-name-font: Inter, 'Barlow', system-ui, sans-serif; --h4-name-size: 40px; --h4-name-ls: -.02em; }
+/* PickleballRecs: "Checked <date>" pinned to the bottom of the prices column. */
+.thc-v19 .thc-hd4 .thc-head-r > #buy { flex: 1 1 auto !important; } .thc-v19 .thc-hd4 .thc-pbox .thc-note { margin-top: auto; }
+.th-skin .thc-v19 .thc-hd4 .thc-head-r > #buy { flex: 0 0 auto !important; } .th-skin .thc-v19 .thc-hd4 .thc-pbox .thc-note { margin-top: 0; }
+@media (max-width: 999px) {
+  .thc-v19 .thc-head.thc-hd4 { grid-template-columns: minmax(0, 1fr); }
+  .thc-v19 .thc-hd4 .thc-photo { height: 240px; } .thc-v19 .thc-hd4 .thc-photo img { width: auto; max-height: 100%; }
+  .thc-v19 .thc-hd4 .thc-head-r { border-left: 0; border-top: 2px solid var(--h4-line); }
+}
+@media (max-width: 600px) {
+  .thc-v19 .thc-head.thc-hd4 { width: calc(100% - 32px); margin-top: 16px; }
+  .thc-v19 .thc-hd4 .thc-head-m { padding: 20px 18px; } .thc-v19 .thc-hd4 .thc-head-r { padding: 20px 18px; }
+  .thc-v19 .thc-hd4 h1 { font-size: calc(var(--h4-name-size) * .8); }
+}

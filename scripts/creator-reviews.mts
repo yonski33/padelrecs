@@ -14,8 +14,8 @@ import { connect } from "./connection";
 import { niche } from "../lib/niche";
 import { forSchema } from "../db/migrations";
 
-const SITES = new Set(["pickleball"]);
-if (!SITES.has(niche.id)) throw new Error(`Creator reviews are PickleballRecs only for now: run with NICHE=pickleball (got ${niche.id}).`);
+const SITES = new Set(["pickleball", "skin"]);
+if (!SITES.has(niche.id)) throw new Error(`Creator reviews are on PickleballRecs and SkinRecs only: run with NICHE=pickleball or skin (got ${niche.id}).`);
 const S = niche.schema;
 const args = process.argv.slice(2), cmd = args[0];
 const flag = (name: string) => { const i = args.indexOf(`--${name}`); return i >= 0 ? args[i + 1] : undefined; };
@@ -29,8 +29,12 @@ const DROP = new Set(["FORWRD", "Man vs Debt", "REDTACKLE", "PickleballCentral",
 const HIDE_SCORE = new Set(["Pickleheads"]);
 /** Plain auto-caption spelling typos in quotes. */
 const TYPOS: [RegExp, string][] = [[/\ballcourt\b/g, "all-court"], [/\bpadle\b/g, "paddle"], [/\bpadles\b/g, "paddles"]];
-const ATTR: Record<string, string> = { power: "power", control: "control", spin: "spin", pop: "pop", forgiveness: "sweet",
+const PICKLEBALL_ATTR: Record<string, string> = { power: "power", control: "control", spin: "spin", pop: "pop", forgiveness: "sweet",
   comfort: "comfort", durability: "durability", value: "value" };
+/** SkinRecs' attribute words (the skin sweep's reader brief), keys as stored (spaces become underscores). */
+const SKIN_ATTR: Record<string, string> = Object.fromEntries(["texture", "hydration", "finish", "results", "irritation", "absorption",
+  "scent", "value", "packaging", "white cast", "sun protection", "adhesion"].map(k => [k, k.replace(/ /g, "_")]));
+const ATTR = niche.id === "skin" ? SKIN_ATTR : PICKLEBALL_ATTR;
 const WORDS = new Set(["Excellent", "Great", "Good", "Okay", "Weak"]);
 const STANCE: Record<string, "pos" | "mix" | "neg"> = { "Loved it": "pos", Mixed: "mix", "Not for me": "neg" };
 /** Chapters that say nothing about the paddle. */
@@ -55,21 +59,28 @@ function score(sc: unknown): { value: number; scale: number; label: string | nul
 type Fixture = { paddles: Record<string, { tldr: string; groups: Record<string, string>; reviews: { creator: string; url: string; short: string; stood: string | null; trade: string | null; compared: string | null; version: string | null; note: string | null }[] }> };
 
 async function loadInputs() {
+  // Each site's own inputs: PickleballRecs the three paddle sweeps, TikTok and prices; SkinRecs one file per product (--skin).
+  const skinSite = niche.id === "skin";
   const need = (n: string) => { const v = flag(n); if (!v) throw new Error(`--${n} is required`); return v; };
-  const staging = JSON.parse(await readFile(need("staging"), "utf8"));
-  const verifiedDir = need("verified"), tiktokDir = need("tiktok");
-  const verified = await Promise.all((await readdir(verifiedDir)).filter(f => f.endsWith(".json") && !f.startsWith("tokens"))
-    .map(async f => JSON.parse(await readFile(join(verifiedDir, f), "utf8"))));
-  const tiktok = await Promise.all((await readdir(tiktokDir)).filter(f => f.endsWith(".json"))
-    .map(async f => JSON.parse(await readFile(join(tiktokDir, f), "utf8"))));
-  const prices = JSON.parse(await readFile(need("prices"), "utf8"));
+  const dir = async (d: string | undefined) => d ? Promise.all((await readdir(d)).filter(f => f.endsWith(".json") && !f.startsWith("tokens"))
+    .map(async f => JSON.parse(await readFile(join(d, f), "utf8")))) : [];
+  // --cards <file> alone (paddles 51-80, owner OK 2026-11-23): one later batch of checked cards, imported without the earlier
+  // sweeps, so rows already in the DB are not touched.
+  const cardsOnly = !skinSite && !!flag("cards");
+  const cards = flag("cards") ? JSON.parse(await readFile(flag("cards")!, "utf8")).paddles : [];
+  const staging = skinSite || cardsOnly ? { paddles: [] } : JSON.parse(await readFile(need("staging"), "utf8"));
+  const verified = await dir(skinSite || cardsOnly ? flag("verified") : need("verified"));
+  const tiktok = await dir(skinSite || cardsOnly ? flag("tiktok") : need("tiktok"));
+  const skin = skinSite ? await dir(need("skin")) : [];
+  const videoChannels: Record<string, string> = flag("video-channels") ? JSON.parse(await readFile(flag("video-channels")!, "utf8")) : {};
+  const prices = flag("prices") || !(skinSite || cardsOnly) ? JSON.parse(await readFile(need("prices"), "utf8")) : { paddles: [], checked_date: null };
   const fixture: Fixture | null = flag("fixture") ? JSON.parse(await readFile(flag("fixture")!, "utf8")) : null;
   // Glance-table key points (0040): out/batch-*.json files of { "<review id>": "<line>" }, written from the verified fields.
   const keyPoints: Record<string, string> = {};
   if (flag("key-points")) for (const f of (await readdir(flag("key-points")!)).filter(f => f.endsWith(".json")))
     Object.assign(keyPoints, JSON.parse(await readFile(join(flag("key-points")!, f), "utf8")));
   const channels: Record<string, string> = flag("channels") ? JSON.parse(await readFile(flag("channels")!, "utf8")) : {};
-  return { staging, verified, tiktok, prices, fixture, channels, keyPoints };
+  return { staging, verified, tiktok, prices, fixture, channels, keyPoints, skin: [...skin, ...cards], videoChannels };
 }
 
 /** Every row the files describe, by product slug (resolved to racket ids later). */
@@ -122,6 +133,25 @@ function buildRows(inp: Awaited<ReturnType<typeof loadInputs>>, brandOf: (slug: 
       note: r.type === "long-term" ? "Long-term" : null, brand_tie: null, disclosure: r.brand_tie ?? null,
       evidence_note: r.evidence_note ?? null, check_result: r.result ?? null, status: "live", source: "pb-creator-reviews-21-50 verified 2026-11-22",
       created_at: now, updated_at: now });
+  }
+  // SkinRecs (owner "Yes, Skin next" 2026-11-23): the checked skin sweep, one file per product slug. Its key points are
+  // written with the reviews (a final period added where missing); the reviewer's skin type rides in `measured`.
+  for (const v of inp.skin) for (const r of v.reviews) {
+    const sc = score(r.creator_score), kp = (r.key_point ?? "").trim();
+    reviews.push({ ...base(v.slug, r), platform: r.kind, review_type: r.type, creator: r.creator,
+      channel_url: r.channel_url ?? (r.kind === "blog" ? new URL(r.url).origin : inp.videoChannels[r.video_id] ?? null),
+      handle: null, same_channel_as: null, language: (r.language || "en").toLowerCase(), published_on: r.date ?? null,
+      duration_s: r.duration_s ?? secs(r.duration), video_id: r.video_id ?? null, thumbnail_url: null, stance: STANCE[r.stance],
+      summary: r.summary, summary_more: r.summary_more ?? null, summary_short: null,
+      highlights: (r.highlights ?? []).filter((h: string) => r.summary.includes(h)),
+      stood_out: r.stood_out ?? null, trade_off: r.trade_off ?? null, compared_to: r.compared_to ?? null,
+      quote: fixQuote(r.quote), quote_at_s: secs(r.quote_at), chapters: chapters(r.chapters), attributes: attrs(r.attributes), tags: [],
+      score_value: sc?.value ?? null, score_scale: sc?.scale ?? null, score_label: sc?.label ?? null, score_hidden: !!sc && HIDE_SCORE.has(r.creator),
+      measured: r.skin_type ? { skin_type: r.skin_type } : r.measured ?? {}, also_url: r.also_url ?? null, version: r.version ?? null, edition: null,
+      note: r.type === "long-term" ? "Long-term" : null, brand_tie: null, disclosure: r.disclosure ?? null,
+      evidence_note: r.evidence_note ?? null, check_result: "checked", status: "live",
+      source: niche.id === "skin" ? "skin-creator-reviews 2026-11-22" : "pb-creator-reviews-51-80 2026-11-23",
+      key_point: kp ? (/[.!?]$/.test(kp) ? kp : `${kp}.`) : null, created_at: now, updated_at: now });
   }
   const TT_TYPE: Record<string, string> = { full_review: "review", short_update: "short_update", ranking_mention: "ranking_mention" };
   for (const f of inp.tiktok) for (const t of f.takes) {
@@ -222,8 +252,9 @@ async function main() {
     if (missing.length) throw new Error(`Slugs not in ${S}.rackets: ${missing.join(", ")}`);
     for (const r of [...built.reviews, ...built.prices, ...built.pages]) r.racket_id = bySlug.get(r.slug)!.id;
     for (const r of built.reviews) r.id = id("cr", r.racket_id, r.url);
-    const withKp = Object.keys(inp.keyPoints).length > 0;
-    if (withKp) for (const r of built.reviews) r.key_point = inp.keyPoints[r.id as string] ?? null;
+    // Key points from --key-points (pickleball) or written with the reviews (skin).
+    const withKp = Object.keys(inp.keyPoints).length > 0 || built.reviews.some(r => r.key_point);
+    if (Object.keys(inp.keyPoints).length) for (const r of built.reviews) r.key_point = inp.keyPoints[r.id as string] ?? null;
     for (const r of built.prices) r.id = id("cp", r.racket_id, r.url);
     // One row per (product, url): a duplicate inside the files is a data problem, reported and the first kept.
     const seen = new Set<string>(), dups: string[] = [];

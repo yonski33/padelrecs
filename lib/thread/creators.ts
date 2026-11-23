@@ -7,9 +7,16 @@
 export const WORDS = ["Excellent", "Great", "Good", "Okay", "Weak"] as const;
 export type Word = (typeof WORDS)[number];
 /** The attributes the page shows, in order, with their labels (forgiveness is shown as "Sweet spot"). */
-export const ATTRS = [["power", "Power"], ["control", "Control"], ["spin", "Spin"], ["pop", "Pop"], ["sweet", "Sweet spot"],
+const PICKLEBALL_ATTRS = [["power", "Power"], ["control", "Control"], ["spin", "Spin"], ["pop", "Pop"], ["sweet", "Sweet spot"],
   ["comfort", "Comfort"], ["durability", "Durability"]] as const;
-export type AttrKey = (typeof ATTRS)[number][0];
+/** SkinRecs' words (the skin sweep, 2026-11-23): each word rates how well the product does on it, so "Great" on irritation
+ *  means gentle and on white cast means little or none; the labels say it that way round. */
+const SKIN_ATTRS = [["hydration", "Hydration"], ["texture", "Texture"], ["finish", "Finish"], ["absorption", "Absorbs"],
+  ["irritation", "Gentleness"], ["results", "Results"], ["scent", "Scent"], ["white_cast", "No white cast"],
+  ["sun_protection", "Sun protection"], ["adhesion", "Stays on"], ["packaging", "Packaging"], ["value", "Value"]] as const;
+export type AttrKey = (typeof PICKLEBALL_ATTRS)[number][0] | (typeof SKIN_ATTRS)[number][0];
+/** The site's own set: NICHE is inlined at build (next.config env), so the browser cards get the same list. */
+export const ATTRS: readonly (readonly [AttrKey, string])[] = process.env.NICHE === "skin" ? SKIN_ATTRS : PICKLEBALL_ATTRS;
 export type Stance = "pos" | "mix" | "neg";
 export const STANCE_LABEL: Record<Stance, string> = { pos: "Loved it", mix: "Mixed", neg: "Not for me" };
 
@@ -54,9 +61,18 @@ export function tiktokStances(takes: TikTokTake[]) {
   for (const t of takes) { const x = latest.get(t.handle); if (!x || t.date > x.date) latest.set(t.handle, t); }
   return stanceCounts([...latest.values()]);
 }
-export type Offer = { shop: string; url: string; price: number; inStock: boolean; edition: string | null; affiliate: boolean };
+export type Offer = { shop: string; url: string; price: number; inStock: boolean; edition: string | null; affiliate: boolean;
+  /** When the price was read (ISO); the page shows it for Amazon's price, as Amazon asks. */ checkedAt?: string | null };
 
 /** "$110", "$159.99". */
+/** A shop's name short enough for the price box (owner 2026-11-23): no "(brand store)" / "(sold by …)" note, no trailing
+ *  "Co", "Company", "Inc" or "LLC" ("Honolulu Pickleball Co (brand store)" → "Honolulu Pickleball"). */
+export function shortShop(name: string): string {
+  const bare = name.replace(/\s*\([^)]*\)/g, "").trim();
+  // The suffix only goes when two words are left ("Pickle Co" stays).
+  const cut = bare.replace(/[,\s]+(co|company|inc|llc)\.?$/i, "");
+  return (cut.split(/\s+/).length >= 2 ? cut : bare) || name;
+}
 export const usd = (n: number) => `$${Number.isInteger(n) ? n : n.toFixed(2)}`;
 /** The lowest in-stock price and the shops at it ("Lowest today" goes on each); sold-out rows never count. */
 export function lowestOffer(offers: Offer[]) {
@@ -214,9 +230,16 @@ export function reviewLists(page: CreatorPage) {
  *  the attribute Excellent or Great (likes) or Okay or Weak (concerns). Most backed first, up to 3 a side. A like needs more
  *  reviews for it than against it. */
 const LIKE: Record<AttrKey, string> = { power: "Strong power", control: "Strong control", spin: "Strong spin", pop: "Lively pop",
-  sweet: "Forgiving sweet spot", comfort: "Easy on the arm", durability: "Grit that lasts" };
+  sweet: "Forgiving sweet spot", comfort: "Easy on the arm", durability: "Grit that lasts",
+  hydration: "Hydrating", texture: "Pleasant texture", finish: "Nice finish", absorption: "Absorbs fast", irritation: "Gentle on skin",
+  results: "Visible results", scent: "Pleasant or no scent", white_cast: "No white cast", sun_protection: "Solid sun protection",
+  adhesion: "Stays on well", packaging: "Handy packaging", value: "Good value" };
 const CONCERN: Record<AttrKey, string> = { power: "Low on power for some", control: "Harder to control for some", spin: "Less spin than some rivals",
-  pop: "Muted pop for some", sweet: "Smaller sweet spot for some", comfort: "Firm on the arm for some", durability: "Durability doubts" };
+  pop: "Muted pop for some", sweet: "Smaller sweet spot for some", comfort: "Firm on the arm for some", durability: "Durability doubts",
+  hydration: "Not hydrating enough for some", texture: "Texture not for everyone", finish: "Finish not for everyone",
+  absorption: "Slow to absorb for some", irritation: "Irritated some skin", results: "Little change for some", scent: "Scent bothered some",
+  white_cast: "Some white cast", sun_protection: "Protection doubts", adhesion: "Comes off for some", packaging: "Packaging gripes",
+  value: "Pricey for some" };
 export function agreeChips(rs: Pick<CreatorReview, "attrs">[], max = 3) {
   const rows = ATTRS.map(([k]) => ({ k, hi: rs.filter(r => r.attrs[k] && HIGH.includes(r.attrs[k]!)).length, lo: rs.filter(r => r.attrs[k] && LOW.includes(r.attrs[k]!)).length }));
   const likes = rows.filter(x => x.hi >= 2 && x.hi > x.lo).sort((a, b) => b.hi - a.hi).slice(0, max).map(x => LIKE[x.k]);
