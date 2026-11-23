@@ -156,6 +156,8 @@ export async function CreatorProductBody({ slug }: { slug: string }) {
   // Two + points and one - point (owner 2026-11-22), the likes and concerns backed by 2+ reviews.
   const plus = agree.likes.slice(0, 2), minus = agree.concerns[0] ?? null;
   const n = stanceCounts(rs), buy = offers.filter(o => o.inStock).slice(0, 3);
+  // The button's own shop is left out of the list under it; "In stock at N shops" still counts it.
+  const listed = buy.filter(o => !(low && o.url === low.shops[0]!.url));
   // Similar paddles mentioned: other catalogue paddles the reviews name, with their lowest stored price.
   const named = mentions(rs, allRows, r.id).map(m => ({ ...m, href: m.row.href, price: staged[m.row.slug]?.price ?? null }));
 
@@ -197,7 +199,8 @@ export async function CreatorProductBody({ slug }: { slug: string }) {
             {cta && <a className="thc-cta wide" href={cta.url} target="_blank" rel={cta.rel}>{low ? `${low.shops[0]!.shop.replace(/\s*\([^)]*\)\s*$/, "")} ›` : SKIN && shop ? `${shop.where} ›` : "Check price ↗"}</a>}
             {SKIN && !low && shop && !amzPrice && <span className="thc-pbox-on">{`on ${shop.where}`}</span>}
 
-            {buy.length > 0 && <div className="thc-pbox-list">{buy.map(o => <div key={o.shop} className="thc-shop2"><strong>{o.shop}</strong>
+            {/* The button's own shop is not listed again below it (owner 2026-11-23). */}
+            {listed.length > 0 && <div className="thc-pbox-list">{listed.map(o => <div key={o.shop} className="thc-shop2"><strong>{o.shop}</strong>
               <span className="thc-price">{usd(o.price)}</span><a className="thc-mono" href={o.url} target="_blank" rel={relOf(o.affiliate)}>check ↗</a></div>)}</div>}
             {/* Back under the shops (owner 2026-11-23): the check date and, where any link is one, the affiliate note. */}
             {page.prices && buy.length > 0 && <span className="thc-note">{`Checked ${shortDay(page.prices.checked)}.${buy.some(o => o.affiliate) ? " Some links are affiliate links." : ""}`}</span>}
