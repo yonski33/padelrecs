@@ -33,12 +33,30 @@ function rawKeys(r: MentionRow): string[][] {
   return [full, ...(distinctive(model) ? [model] : []), ...(sized && distinctive(sized) ? [sized] : [])].filter(k => k.length > 0);
 }
 
-/** Every product's unique keys. A key two products share links to neither. */
+const GEN_WORD = /^(\d+|ii|iii|iv|vi|gen\d*|pro|max|plus)$/;
+/** True when `key` sits inside another product's name with more name after it ("Alpha Pro" inside "Vapor Alpha Pro Power"
+ *  is that paddle); before a generation ("Vapor Power" in "Vapor Power 2") GEN already tells them apart. */
+export function inside(key: string[], name: string[]): boolean {
+  for (let i = 0; i + key.length <= name.length; i++) {
+    if (!key.every((w, j) => name[i + j] === w)) continue;
+    const next = name[i + key.length];
+    // At the end of that name or before its generation: a shared key (counted) or a different generation (GEN), not this.
+    if (next === undefined || GEN_WORD.test(next)) continue;
+    return true;
+  }
+  return false;
+}
+
+/** Every product's unique keys. A key two products share links to neither, nor does a key that is part of another
+ *  product's longer name. */
 export function mentionIndex(rows: MentionRow[]): MentionKeys[] {
-  const all = rows.map(r => ({ id: r.id, keys: rawKeys(r).map(k => k.join(" ")) }));
+  const all = rows.map(r => ({ id: r.id, full: rawKeys(r)[0] ?? [], keys: rawKeys(r).map(k => k.join(" ")) }));
   const count = new Map<string, number>();
   for (const a of all) for (const k of new Set(a.keys)) count.set(k, (count.get(k) ?? 0) + 1);
-  return all.map(a => ({ id: a.id, keys: [...new Set(a.keys)].filter(k => count.get(k) === 1).map(k => source(k.split(" "))) }))
+  // Other products' names, without their brand too ("vapor alpha pro power"), so a model key can't hide inside them.
+  const names = all.flatMap(a => rawKeys(rows.find(r => r.id === a.id)!).map(k => ({ id: a.id, w: k })));
+  return all.map(a => ({ id: a.id, keys: [...new Set(a.keys)].filter(k => count.get(k) === 1
+      && !names.some(n => n.id !== a.id && inside(k.split(" "), n.w))).map(k => source(k.split(" "))) }))
     .filter(a => a.keys.length > 0);
 }
 

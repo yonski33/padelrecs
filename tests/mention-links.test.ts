@@ -11,6 +11,8 @@ const rows = [
   { id: "cp16", name: "Six Zero Coral Pro 16mm", brand: "Six Zero" },
   { id: "h1", name: "Brand X Hybrid", brand: "Brand X" },
   { id: "h2", name: "Brand Y Hybrid", brand: "Brand Y" },
+  { id: "eap", name: "Engage Alpha Pro", brand: "Engage" },
+  { id: "vapp", name: "11SIX24 Vapor Alpha Pro Power", brand: "11SIX24" },
 ];
 const idx = mentionIndex(rows);
 const links = (t: string, self = "none") => splitMentions(t, idx, self, new Set()).filter(s => s.id).map(s => `${s.t}=${s.id}`);
@@ -39,4 +41,8 @@ test("namedIds lists the other paddles a page names", () => {
 });
 test("a letter-digit model matches with a space inside", () => {
   assert.deepEqual(links("the J2 CR and the j2cr"), ["J2 CR=j2"]);
+});
+test("a short name inside another paddle's longer name stays plain", () => {
+  assert.deepEqual(links("the 11SIX24 Alpha Pro Power and the Alpha Pro"), []);
+  assert.deepEqual(links("the Engage Alpha Pro"), ["Engage Alpha Pro=eap"]);
 });
