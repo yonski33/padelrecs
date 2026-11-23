@@ -27,6 +27,7 @@
     "amazon:env": "tsx scripts/set-amazon-env.ts"
   },
   "dependencies": {
+    "@anthropic-ai/sdk": "^1.12.0",
     "@supabase/ssr": "^0.7.0",
     "@supabase/supabase-js": "^2.0.0",
     "@vercel/functions": "3.9.11",
