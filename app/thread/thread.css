@@ -624,9 +624,10 @@ body:has(.th) .th .th-pick-list li.first a:hover { color: var(--ink); text-decor
    fonts change; every layout and behaviour rule above is shared with padel. Scoped to .th-pb (app/thread/shell.tsx adds it on
    NICHE=pickleball), so padel's pages are untouched. Where the site already has a token (lib/niche/pickleball.ts theme, on
    <html>), it is used, with the README value as the fallback. */
-body:has(.th-pb) { background: #f1f2ec; }
+/* Owner 2026-11-23: every PickleballRecs page on the paddle page's cream (the Hybrid v19 tokens), not the grey. */
+body:has(.th-pb) { background: #FEFAF4; }
 .th.th-pb {
-  --ink: var(--site-ink, #17203a); --bg: #f1f2ec; --card: #fff; --soft: #fbfaf6; --frame: #eceee6;
+  --ink: var(--site-ink, #17203a); --bg: #FEFAF4; --card: #FFFCF8; --soft: #FBF6EE; --frame: #F6F0E6;
   --ink2: var(--site-soft, #4a5068); --body: var(--site-text, #2a3150); --muted: #5d6380;
   --div: #e6e7ec; --line: #dfe1e8; --chip: #c5c9d4; --box: #d6d9cf;
   --lime: var(--site-acc, oklch(0.92 0.17 105)); --lime-box: var(--site-top, oklch(0.975 0.05 105));
@@ -2194,7 +2195,7 @@ body:has(.th) .th a.thq-all { align-self: flex-start; font-size: 14px; font-weig
 .th.th-pb :is(.rk5-row .pic, .tc-ph, .tc-new-ph, .th-photo, .th-bigphoto, .th-ar-pic),
 body:has(.th) .th.th-pb .cp3-card a.pic { background: transparent; border-color: transparent; }
 .th.th-pb :is(.rk5-row .pic, .tc-ph, .tc-new-ph, .th-photo, .th-bigphoto, .th-ar-pic, .cp3-card .pic) img { mix-blend-mode: multiply; }
-.th.th-pb .rkh { --rh-card: #fff; --rh-ink: var(--ink); --rh-ink2: var(--ink2); --rh-line: var(--line); --rh-pos: var(--s-pos); --rh-mix: var(--s-mix); --rh-neg: var(--s-neg); }
+.th.th-pb .rkh { --rh-card: #FFFCF8; --rh-ink: var(--ink); --rh-ink2: var(--ink2); --rh-line: var(--line); --rh-pos: var(--s-pos); --rh-mix: var(--s-mix); --rh-neg: var(--s-neg); }
 .th.th-pb .rk5 { --r5-soft: var(--lime-box); --r5-chip: var(--lime-chip); --r5-pos: var(--s-pos); --r5-mix: var(--s-mix); --r5-neg: var(--s-neg); }
 .th.th-pb .cp3 { --c3-soft: var(--lime-box); --c3-pos: var(--s-pos); --c3-mix: var(--s-mix); --c3-neg: var(--s-neg); }
 body:has(.th) .th.th-pb .rk5-box h3 { background: none; color: var(--ink); border-bottom: 1.5px solid var(--line); }
