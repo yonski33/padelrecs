@@ -488,7 +488,7 @@ body:has(.thc) .thc .thc-chap a { grid-template-columns: 44px minmax(0, 1fr); fo
 .thc-rd-tag.pos { color: #1F6B3A; border-color: #9CCDA9; background: #EEF8F0; }
 .thc-rd-tag.neg { color: #9A3412; border-color: #F1B99B; background: #FDF1EA; }
 /* "In more detail" reviewer wrap-up (pilot 2026-11-23): yellow marks positives, pink marks negatives. */
-.thc-wrap { display: flex; flex-direction: column; gap: 10px; margin-top: 22px; padding-top: 20px; border-top: 1px solid #EFE4D6; }
+.thc-wrap { display: flex; flex-direction: column; gap: 10px; margin-bottom: 18px; }
 .thc-wrap p { margin: 0; font-size: 17px; line-height: 1.65; color: var(--para); max-width: 75ch; }
 .thc-wrap mark.pos { background: #FFF1A8; color: inherit; padding: 0 2px; }
 .thc-wrap mark.neg { background: #FFD9E2; color: inherit; padding: 0 2px; }

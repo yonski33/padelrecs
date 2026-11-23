@@ -205,7 +205,8 @@ export async function CreatorProductBody({ slug }: { slug: string }) {
 
         {/* The short version: the reviews' own takes as count cards (no reviewer bar, owner choice), then likes and concerns. */}
         <section id="sentiment" className="thc-box1 thc-sent">
-          <div className="thc-h"><strong>The short version</strong><span>{plural(rs.length, "review")}</span></div>
+          {/* With a written wrap-up (pilot): no headers, the text first, then the count boxes and tags (owner 2026-11-23). */}
+          {wrap ? <Wrap w={wrap} n={rs.length}/> : <div className="thc-h"><strong>The short version</strong><span>{plural(rs.length, "review")}</span></div>}
           <div className="thc-sent-g">{KEYS.map(k => <div key={k}>
             <span className="thc-sent-h"><span><span className={`thc-dot ${k}`}>●</span>{STANCE_LABEL[k]}</span><strong>{n[k]}</strong></span>
             <span className="thc-sent-x">{n[k] ? page.groups[k] || stanceLine(rs, k) : "None of the reviews."}</span></div>)}</div>
@@ -215,7 +216,6 @@ export async function CreatorProductBody({ slug }: { slug: string }) {
             <div><strong className="neg">Common concerns</strong><span className="thc-chips">{agree.concerns.length ? agree.concerns.map(t => <span key={t} className="thc-pm neg lg">{`− ${t}`}</span>)
               : <span className="thc-none">No concern came up in 2 or more reviews.</span>}</span></div>
           </div>}
-          {wrap && <Wrap w={wrap} n={rs.length}/>}
         </section>
 
         <div className="thc-row">
@@ -279,9 +279,8 @@ function Wrap({ w, n }: { w: Wrapup; n: number }) {
       const h = w.highlights[hi];
       out.push(rest.slice(0, best), <mark key={k++} className={h.tone}>{h.text}</mark>);
       rest = rest.slice(best + h.text.length); } };
-  // Inside The short version box (owner 2026-11-23: one section, not two), under the likes and concerns.
+  // Opens The short version box (owner 2026-11-23: one section, no headers), above the count boxes and tags.
   return <div className="thc-wrap">
-    <span className="thc-kick">In more detail</span>
     {w.paras.map((p, i) => <p key={i}>{mark(p)}</p>)}
     <a className="thc-wrap-all" href="#reviews">{`Read all ${n} summaries ↓`}</a>
   </div>;
