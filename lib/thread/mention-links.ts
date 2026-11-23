@@ -7,7 +7,9 @@
 // ("Pro IV" = "Pro 4"). Pure and shared: the server builds the index for the names a page's reviews use, the browser splits
 // each text with it (live/mention-links.tsx). SkinRecs can pass its own rows.
 
-export type MentionRow = { id: string; name: string; brand: string };
+export type MentionRow = { id: string; name: string; brand: string; slug?: string };
+/** Short names reviewers use (db/creators/aliases.json): per slug, plus base-model defaults allowed inside variant names. */
+export type MentionAliases = { aliases?: Record<string, string[]>; defaults?: Record<string, string> };
 /** One product's match keys as regex sources (case-insensitive, separators loose). */
 export type MentionKeys = { id: string; keys: string[] };
 export type Seg = { t: string; id?: string };
@@ -49,14 +51,19 @@ export function inside(key: string[], name: string[]): boolean {
 
 /** Every product's unique keys. A key two products share links to neither, nor does a key that is part of another
  *  product's longer name. */
-export function mentionIndex(rows: MentionRow[]): MentionKeys[] {
-  const all = rows.map(r => ({ id: r.id, full: rawKeys(r)[0] ?? [], keys: rawKeys(r).map(k => k.join(" ")) }));
+export function mentionIndex(rows: MentionRow[], extra: MentionAliases = {}): MentionKeys[] {
+  const bySlug = new Map(rows.map(r => [r.slug, r.id]));
+  const own = (r: MentionRow) => [...rawKeys(r).map(k => k.join(" ")), ...((r.slug ? extra.aliases?.[r.slug] : undefined) ?? []).map(a => words(a).join(" "))];
+  const all = rows.map(r => ({ id: r.id, full: rawKeys(r)[0] ?? [], keys: own(r) }));
+  // Base-model defaults ("Coral" = the original Coral 16mm) may sit inside a variant's name; they still need to be unique.
+  const dflt = new Map(Object.entries(extra.defaults ?? {}).map(([a, slug]) => [words(a).join(" "), bySlug.get(slug)]).filter((x): x is [string, string] => !!x[1]));
+  for (const [k, id] of dflt) all.find(a => a.id === id)?.keys.push(k);
   const count = new Map<string, number>();
   for (const a of all) for (const k of new Set(a.keys)) count.set(k, (count.get(k) ?? 0) + 1);
   // Other products' names, without their brand too ("vapor alpha pro power"), so a model key can't hide inside them.
   const names = all.flatMap(a => rawKeys(rows.find(r => r.id === a.id)!).map(k => ({ id: a.id, w: k })));
-  return all.map(a => ({ id: a.id, keys: [...new Set(a.keys)].filter(k => count.get(k) === 1
-      && !names.some(n => n.id !== a.id && inside(k.split(" "), n.w))).map(k => source(k.split(" "))) }))
+  return all.map(a => ({ id: a.id, keys: [...new Set(a.keys)].filter(k => k && count.get(k) === 1
+      && (dflt.get(k) === a.id || !names.some(n => n.id !== a.id && inside(k.split(" "), n.w)))).map(k => source(k.split(" "))) }))
     .filter(a => a.keys.length > 0);
 }
 

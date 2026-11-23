@@ -5,7 +5,8 @@
 // products as small chips with a thumbnail, and a "Compare side by side" link where the compare page has both.
 // Shared: wrap a list in <MentionsProvider> with the index and targets the server built for the page.
 import "./mention-links.css";
-import { createContext, useCallback, useContext, useEffect, useRef, useState, type ReactNode } from "react";
+import { createContext, useCallback, useContext, useEffect, useRef, useState, type CSSProperties, type ReactNode } from "react";
+import { createPortal } from "react-dom";
 import { splitMentions, type MentionKeys } from "../../../lib/thread/mention-links";
 
 export type MentionTarget = { id: string; slug: string; name: string; href: string; pic: string | null;
@@ -15,6 +16,10 @@ type Ctx = { index: MentionKeys[]; targets: Record<string, MentionTarget>; selfI
 const C = createContext<Ctx | null>(null);
 export const useMentions = () => useContext(C);
 
+// The hover card's box (matches mention-links.css): used to keep it inside the viewport.
+const CARD_W = 280, CARD_H = 140;
+// Inline so no page rule can make it see-through or push it under the content (owner bug 2026-11-23).
+const CARD_STYLE: CSSProperties = { position: "fixed", zIndex: 2147483000, background: "#fff", opacity: 1, isolation: "isolate" };
 const usd = (n: number) => `$${Number.isInteger(n) ? n : n.toFixed(2)}`;
 
 export function MentionsProvider({ index, targets, selfId, selfSlug, unit = "players", noun = "paddle", compare = true, children }: {
@@ -26,8 +31,10 @@ export function MentionsProvider({ index, targets, selfId, selfSlug, unit = "pla
   const show = useCallback((id: string, el: HTMLElement) => {
     if (!fine.current || !targets[id]) return;
     if (timer.current) clearTimeout(timer.current);
-    const r = el.getBoundingClientRect(), up = r.bottom + 220 > window.innerHeight;
-    setCard({ id, x: Math.min(Math.max(8, r.left), window.innerWidth - 288), y: up ? r.top - 8 : r.bottom + 8, up });
+    // The visible width (clientWidth, without the scrollbar) keeps the whole card on screen near the right edge.
+    const r = el.getBoundingClientRect(), vw = document.documentElement.clientWidth, vh = document.documentElement.clientHeight;
+    const up = r.bottom + 8 + CARD_H > vh && r.top - 8 - CARD_H > 0;
+    setCard({ id, x: Math.max(8, Math.min(r.left, vw - CARD_W - 8)), y: up ? r.top - 8 : r.bottom + 8, up });
   }, [targets]);
   const hide = useCallback(() => { if (timer.current) clearTimeout(timer.current); timer.current = setTimeout(() => setCard(null), 160); }, []);
   const keep = () => { if (timer.current) clearTimeout(timer.current); };
@@ -36,7 +43,8 @@ export function MentionsProvider({ index, targets, selfId, selfSlug, unit = "pla
   const compareHref = compare ? (a: string, b: string) => `/compare?ids=${encodeURIComponent(a)},${encodeURIComponent(b)}` : undefined;
   return <C.Provider value={{ index, targets, selfId, selfSlug, unit, noun, compareHref, show, hide }}>
     {children}
-    {card && t && <a className={`mxc${card.up ? " up" : ""}`} href={t.href} style={{ left: card.x, top: card.y }} onMouseEnter={keep} onMouseLeave={hide}>
+    {/* In a portal on <body>: no parent's transform, overflow or stacking context can clip it or put text over it. */}
+    {card && t && typeof document !== "undefined" && createPortal(<a className={`mxc${card.up ? " up" : ""}`} href={t.href} style={{ ...CARD_STYLE, left: card.x, top: card.y }} onMouseEnter={keep} onMouseLeave={hide}>
       {t.pic ? <img src={t.pic} alt="" width={56} height={76} loading="lazy"/> : <span className="mxc-ph" aria-hidden="true"/>}
       <span className="mxc-b">
         <strong>{t.name}</strong>
@@ -45,7 +53,7 @@ export function MentionsProvider({ index, targets, selfId, selfSlug, unit = "pla
         {t.price != null && <span className="mxc-m">{`from ${usd(t.price)}`}</span>}
         <span className="mxc-go">{`View ${noun} →`}</span>
       </span>
-    </a>}
+    </a>, document.body)}
   </C.Provider>;
 }
 
