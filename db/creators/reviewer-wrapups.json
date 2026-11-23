@@ -108,9 +108,13 @@
   },
   "11six24-pegasus-power-2": {
    "paras": [
-    "Drill More Pickleball, the one negative take, found the wide body too poppy at the kitchen, rates it B tier and prefers the Ultre. Pickleball Tech Dude, one of the three mixed takes, reports the area above the corners is a dead zone. Pickle Bill recommends it for doubles and Matthew K Pickleball for control lovers, while Pickleball Adventure warns of pop ups when touch is off."
+    "Pickle Bill, Matthew K Pickleball and Pickleball Effect praise its forgiving sweet spot, and the first two add that control is its strength, with Matthew K recommending it to learners and control lovers. Drill More Pickleball, the one negative take, found the wide body too poppy at the kitchen and prefers the Ultre, and Pickleball Tech Dude calls the area above the corners a dead zone."
    ],
    "highlights": [
+    {
+     "text": "praise its forgiving sweet spot",
+     "tone": "pos"
+    },
     {
      "text": "too poppy at the kitchen",
      "tone": "neg"
@@ -118,21 +122,17 @@
     {
      "text": "dead zone",
      "tone": "neg"
-    },
-    {
-     "text": "pop ups when touch is off",
-     "tone": "neg"
     }
    ]
   },
   "11six24-ultre-power-2": {
    "paras": [
-    "Four takes are mixed. West Side Pickleball picks the Loco 2 by a narrow edge, and PBVinny's TikTok prefers the J2CR feel. Pickleball On Call rated control 3.5 out of 10 and found the sweet spot hit or miss, and Matt's Pickleball says sloppy shots float and suggests it for bangers."
+    "Several reviewers praise a large, consistent sweet spot and strong spin, and Matthew K Pickleball calls it the favorite of the Power 2 line. West Side Pickleball picks the Loco 2 by a narrow edge, Pickleball On Call rated control 3.5 out of 10 and found the sweet spot hit or miss, and Matt's Pickleball says sloppy shots float and suggests it for bangers."
    ],
    "highlights": [
     {
-     "text": "prefers the J2CR feel",
-     "tone": "neg"
+     "text": "large, consistent sweet spot",
+     "tone": "pos"
     },
     {
      "text": "sweet spot hit or miss",
@@ -146,9 +146,13 @@
   },
   "11six24-vapor-power-2": {
    "paras": [
-    "Eight reviewers flag that it is not USAP approved. Of the three mixed takes, Famous by Friday Pickleball saw occasional flyers, Pickle Li needed added weight for good spin and called it possibly overhyped for spin, and Paddle Review Hub found the feel good but not exceptional. Pickleheads says it suits 3.5 and up players who use spin or added weight."
+    "Many reviewers praise spin and grit that hold up over long play, and Pickleheads says it suits 3.5 and up players who use spin or added weight. Famous by Friday Pickleball saw occasional flyers, Pickle Li needed added weight for good spin and called it possibly overhyped for spin, and Paddle Review Hub found the feel good but not exceptional."
    ],
    "highlights": [
+    {
+     "text": "spin and grit that hold up",
+     "tone": "pos"
+    },
     {
      "text": "occasional flyers",
      "tone": "neg"
@@ -156,18 +160,18 @@
     {
      "text": "possibly overhyped for spin",
      "tone": "neg"
-    },
-    {
-     "text": "good but not exceptional",
-     "tone": "neg"
     }
    ]
   },
   "honolulu-j6cr": {
    "paras": [
-    "Salt N Pepper Pickleball, one of the two mixed takes, popped balls up at the kitchen and steers beginners and inconsistent players toward the J2 line. The other, Ignatowich HQ, found power one step below the Loco and resets never fully comfortable. Pickleheads rates it for players around 4.0 to 4.5, and Pickleball Playbook for 4.25 and above."
+    "Many reviewers praise a large sweet spot and high power, and Pickleheads rates it for players around 4.0 to 4.5. Salt N Pepper Pickleball, one of the two mixed takes, popped balls up at the kitchen and steers beginners and inconsistent players toward the J2 line, while Ignatowich HQ found power one step below the Loco and resets never fully comfortable."
    ],
    "highlights": [
+    {
+     "text": "a large sweet spot",
+     "tone": "pos"
+    },
     {
      "text": "popped balls up at the kitchen",
      "tone": "neg"
@@ -175,28 +179,24 @@
     {
      "text": "one step below the Loco",
      "tone": "neg"
-    },
-    {
-     "text": "resets never fully comfortable",
-     "tone": "neg"
     }
    ]
   },
   "joola-perseus-pro-iv": {
    "paras": [
-    "Three takes are mixed. Pickleball Willy worries a honeycomb core at $280 will lose its life quickly, Pickleball Studio calls the update minor and warns it is a poor fit when popups and soft game problems exist, and Matt's Pickleball's TikTok finds it firmer with less spin than the RPM Friction Pro. Pickleball Studio, Pickleball Effect and Johnkew Pickleball all point to the cheaper 11SIX24 Power series."
+    "Many reviewers praise strong power that lands close to the Perseus 3S, with several finding it controllable for a power paddle. Pickleball Willy worries a honeycomb core at $280 will lose its life quickly, Pickleball Studio calls the update minor and a poor fit when popups and soft game problems exist, and Matt's Pickleball finds it firmer with less spin than the RPM Friction Pro."
    ],
    "highlights": [
+    {
+     "text": "strong power",
+     "tone": "pos"
+    },
     {
      "text": "lose its life quickly",
      "tone": "neg"
     },
     {
      "text": "a poor fit",
-     "tone": "neg"
-    },
-    {
-     "text": "less spin than the RPM",
      "tone": "neg"
     }
    ]
@@ -222,9 +222,13 @@
   },
   "six-zero-black-opal-14mm": {
    "paras": [
-    "Several reviewers limit it to advanced or aggressive players: Ignatowich HQ, Matt's Pickleball, Pickleball Effect and West Side Pickleball, which sets 4.0 to 4.5 as the minimum. The two negative takes, a West Side video and a Pickleball Paddle Reviews TikTok, call it high risk or very hard to control, and the TikTok calls the newer Boulder Opal an upgrade with a bigger sweet spot."
+    "Many reviewers praise its power, with Pickleball Blast putting it level with or above the Selkirk Boomstick. Several limit it to advanced or aggressive players: Ignatowich HQ, Matt's Pickleball, Pickleball Effect and West Side Pickleball, which sets 4.0 to 4.5 as the minimum. The two negative takes, a West Side video and a Pickleball Paddle Reviews TikTok, call it high risk or very hard to control."
    ],
    "highlights": [
+    {
+     "text": "praise its power",
+     "tone": "pos"
+    },
     {
      "text": "high risk",
      "tone": "neg"
@@ -232,24 +236,20 @@
     {
      "text": "very hard to control",
      "tone": "neg"
-    },
-    {
-     "text": "bigger sweet spot",
-     "tone": "pos"
     }
    ]
   },
   "six-zero-coral-16mm": {
    "paras": [
-    "Smash Pickleball and Pickleball_Ace, two of the three mixed takes, both rate its power below the Loco, and Smash found it too soft to calibrate dinks. West Side Pickleball, the third, felt off on drops. Pickleheads and The Kitchen Pickleball point power seekers to the Black Opal, and Matt's Pickleball says banger style players will not enjoy it."
+    "Womack Pickleball, Pickleheads and Pickleball_Ace praise its large, forgiving sweet spot, and several reviewers call it a user-friendly all-court paddle. Smash Pickleball and Pickleball_Ace both rate its power below the Loco, and Smash found it too soft to calibrate dinks. Matt's Pickleball says banger style players will not enjoy it."
    ],
    "highlights": [
     {
-     "text": "too soft to calibrate dinks",
-     "tone": "neg"
+     "text": "large, forgiving sweet spot",
+     "tone": "pos"
     },
     {
-     "text": "felt off on drops",
+     "text": "too soft to calibrate dinks",
      "tone": "neg"
     },
     {
@@ -279,34 +279,34 @@
   },
   "six-zero-ruby-pro-14mm": {
    "paras": [
-    "Womack Pickleball, the one negative review, found a small sweet spot with a significant drop in pop and power off center and calls it hard to recommend at $200. Of the three mixed takes, Pickleball Tech Dude says it needs a lot of weight modification, West Side Pickleball calls the sweet spot small and limited to the center, and The Pickleball Pirates notes power drops on off-center hits. Famous by Friday says it is begging for weight."
+    "Many reviewers praise its spin and control. Womack Pickleball, the one negative review, found a small sweet spot with a significant drop in pop and power off center and finds it hard to recommend at $200. Pickleball Tech Dude says the sweet spot needs a lot of weight modification, and Famous by Friday Pickleball says it is begging for weight."
    ],
    "highlights": [
+    {
+     "text": "praise its spin and control",
+     "tone": "pos"
+    },
     {
      "text": "hard to recommend at $200",
      "tone": "neg"
     },
     {
-     "text": "limited to the center",
-     "tone": "neg"
-    },
-    {
-     "text": "power drops on off-center hits",
+     "text": "begging for weight",
      "tone": "neg"
     }
    ]
   },
   "six-zero-ruby": {
    "paras": [
-    "Pickleball Pursuit, one of the two mixed takes, saw the grit lose spin after about 3 to 4 hours and prefers the J2K. The other, Pickleball Effect, still controls the Double Black Diamond better and needed a few sessions to adjust to the pop. Pickleball Studio and Dash Pickleball say Double Black Diamond owners need not upgrade."
+    "Many reviewers praise its spin, with several measuring over 2,000 RPM. Pickleball Pursuit, one of the two mixed takes, saw the grit lose spin after about 3 to 4 hours and prefers the J2K, and the other, Pickleball Effect, still controls the Double Black Diamond better. Pickleball Studio and Dash Pickleball say Double Black Diamond owners need not upgrade."
    ],
    "highlights": [
     {
-     "text": "grit lose spin",
-     "tone": "neg"
+     "text": "praise its spin",
+     "tone": "pos"
     },
     {
-     "text": "controls the Double Black Diamond better",
+     "text": "grit lose spin",
      "tone": "neg"
     },
     {
@@ -336,19 +336,19 @@
   },
   "vatic-pro-saga": {
    "paras": [
-    "Four takes are mixed. UnforcedErrorsPB, in both a review and a TikTok, found the Flash head heavy and sluggish at the kitchen, Pickle Techie found it slow there with little pop, and Pickleheads rated control below the Prism Flash. Six reviewers frame it as an upgrade for Prism players."
+    "Many reviewers praise a plush, soft feel and strong spin, and Jordan Plays Pickle named the 16 mm Flash their favorite paddle of the year. UnforcedErrorsPB, in both a review and a TikTok, found the Flash head heavy and sluggish at the kitchen, Pickle Techie found it slow there with little pop, and Pickleheads rated control below the Prism Flash."
    ],
    "highlights": [
+    {
+     "text": "a plush, soft feel and strong spin",
+     "tone": "pos"
+    },
     {
      "text": "sluggish at the kitchen",
      "tone": "neg"
     },
     {
      "text": "little pop",
-     "tone": "neg"
-    },
-    {
-     "text": "control below the Prism Flash",
      "tone": "neg"
     }
    ]
