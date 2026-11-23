@@ -26,6 +26,9 @@ const MODEL = "claude-sonnet-5-5";
 // cache reads $0.10, 5-minute cache writes 1.25x input.
 const PRICE = { input: 1.0, output: 5.0, cacheRead: 0.05, cacheWrite: 1.25 }; // $ per MTok, batch rate
 const DROP = new Set(["FORWRD", "Man vs Debt", "REDTACKLE", "PickleballCentral", "Pickleball Hustle"]);
+/** Sites the owner dropped for every paddle (2026-11-23: thekitchenpickle.com reads as AI content with no real testing). */
+const BLOCK_DOMAINS = ["thekitchenpickle.com"];
+const blocked = (u: string | null | undefined) => !!u && BLOCK_DOMAINS.some(d => new RegExp(`(^|[/.])${d.replace(/\./g, "\\.")}(/|$)`, "i").test(u.replace(/^https?:\/\//, "")));
 const ATTR_NAMES = ["power", "control", "spin", "pop", "forgiveness", "comfort", "durability", "value"] as const;
 const WORDS = ["Excellent", "Great", "Good", "Okay", "Weak"] as const;
 const STANCES = ["Loved it", "Mixed", "Not for me"] as const;
@@ -125,6 +128,7 @@ async function inputs() {
           s.text = p.text;
         }
         if (DROP.has(s.creator)) s.skip = "source the owner dropped";
+        if (blocked(url)) s.skip = "site the owner dropped (blocklist)";
       } catch (e) { s.skip = `fetch failed: ${(e as Error).message}`; }
       out.push(s);
       process.stdout.write(`${s.skip ? "skip" : "ok  "} ${s.id} ${s.kind} ${s.creator} ${s.text ? s.text.length : 0} chars${s.skip ? ` (${s.skip})` : ""}\n`);
@@ -169,6 +173,8 @@ const WRITER_SYSTEM = `You write creator review cards for PickleballRecs, a site
 First decide whether the source is usable. Set keep=false (with drop_reason) when:
 - it is not about the EXACT paddle named in the request. Shape (elongated, hybrid, widebody, standard), thickness (14mm, 16mm), face, edition and generation all matter; a sibling shape, thickness or generation is a different paddle. Keep it only if the source itself names or clearly shows this exact model; never infer the shape or thickness. If only a part of a multi-paddle video covers it, keep it and use only that part.
 - it is a shop or brand channel, an unboxing with no opinion, a sale post, a spec-only video or page, or has too little about this paddle to write an 80-word summary.
+- it is an article by a shop or retailer (sells paddles, buy links, store discount codes) that does not describe real hands-on testing of this paddle by a named person: sessions played, drills, matches, measurements or direct comparisons. Restated maker specs and generic praise are not testing.
+- it comes from ${BLOCK_DOMAINS.join(", ")} (dropped by the site owner for every paddle).
 The notes from the link finder (Grok) are unverified hints, often wrong. The source text is the only authority.
 
 ${FIELDS}
@@ -319,6 +325,7 @@ function codeCheck(c: Card, s: Source): string[] {
   if (/\b(he|she|his|her|him|hers)\b/i.test(all)) p.push("gendered pronoun");
   for (const w of s.creator.split(/\W+/).filter(w => w.length > 3 && !/^(pickleball|pickle|paddle|paddles|review|reviews)$/i.test(w)))
     if (new RegExp(`\\b${w}\\b`).test(all)) p.push(`creator name? ${w}`);
+  if (blocked(s.url)) p.push("blocked site");
   if (/pickleheads/i.test(s.creator) && (c.creator_score || /\b\d+(\.\d+)?\s*(out of|\/)\s*\d+/i.test(all))) p.push("Pickleheads score in text");
   if (c.quote && c.quote.split(/\s+/).length >= 15) p.push("quote 15+ words");
   if (c.quote && s.text && !norm(s.text).includes(norm(c.quote))) p.push("quote not in source");
@@ -365,7 +372,7 @@ async function build() {
     for (const r of reviews.sort((a, b) => (a.kind === "youtube" ? 0 : 1) - (b.kind === "youtube" ? 0 : 1))) {
       const key = r.creator.toLowerCase().replace(/[^a-z0-9]/g, "");
       const first = byCreator.get(key);
-      if (first) { first.also_url = r.url; skipped.push({ url: r.url, why: "same creator, kept as also_url" }); } else byCreator.set(key, r);
+      if (first) { if (blocked(r.url)) continue; first.also_url = r.url; skipped.push({ url: r.url, why: "same creator, kept as also_url" }); } else byCreator.set(key, r);
     }
     const kept = [...byCreator.values()];
     tally.staged += kept.length;
