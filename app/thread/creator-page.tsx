@@ -215,8 +215,8 @@ export async function CreatorProductBody({ slug }: { slug: string }) {
             <div><strong className="neg">Common concerns</strong><span className="thc-chips">{agree.concerns.length ? agree.concerns.map(t => <span key={t} className="thc-pm neg lg">{`− ${t}`}</span>)
               : <span className="thc-none">No concern came up in 2 or more reviews.</span>}</span></div>
           </div>}
+          {wrap && <Wrap w={wrap} n={rs.length}/>}
         </section>
-        {wrap && <Wrap w={wrap} n={rs.length}/>}
 
         <div className="thc-row">
           <div className="thc-row-l">
@@ -279,11 +279,12 @@ function Wrap({ w, n }: { w: Wrapup; n: number }) {
       const h = w.highlights[hi];
       out.push(rest.slice(0, best), <mark key={k++} className={h.tone}>{h.text}</mark>);
       rest = rest.slice(best + h.text.length); } };
-  return <section className="thc-box1 thc-wrap">
+  // Inside The short version box (owner 2026-11-23: one section, not two), under the likes and concerns.
+  return <div className="thc-wrap">
     <span className="thc-kick">In more detail</span>
     {w.paras.map((p, i) => <p key={i}>{mark(p)}</p>)}
     <a className="thc-wrap-all" href="#reviews">{`Read all ${n} summaries ↓`}</a>
-  </section>;
+  </div>;
 }
 
 type Roundup = { posts: number; threads: number; at: string | null; headline: string; tags: { tone: "pos" | "neg"; text: string; n: number }[];
