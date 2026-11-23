@@ -27,6 +27,7 @@ import { creatorPage, creatorSlugs, creatorHome } from "../../lib/thread/creator
 import { threadTitle } from "../../lib/thread/web-sources";
 import roundups from "../../db/creators/reddit-roundups.json";
 import wrapups from "../../db/creators/reviewer-wrapups.json";
+import tldrs from "../../db/creators/tldrs.json";
 import { creatorPageFor, CREATOR_VIEW, CREATOR_MIN_REVIEWS, creatorPageOn } from "../../lib/thread/sites";
 import { Avatar, CreatorReviews } from "./live/creator-reviews";
 import { Comments } from "./live/comments";
@@ -84,7 +85,8 @@ export async function CreatorProductBody({ slug }: { slug: string }) {
   const { r, row, brand, style, sim, cards } = d;
   // The TL;DR sentence (owner 2026-11-23): the creator page's own line where it has one, else the same line the usual
   // product page shows (racketData: the written "In short" summary, the page content's tagline, the short or list line).
-  const tldr = page.tldr || (SKIN && d.lead ? playersWord(d.lead, "reviewer") : d.lead) || null;
+  // A written TL;DR for products whose creator import came without one (db/creators/tldrs.json, 2026-11-23).
+  const tldr = page.tldr || (tldrs as Record<string, Record<string, string>>)[niche.id]?.[slug] || (SKIN && d.lead ? playersWord(d.lead, "reviewer") : d.lead) || null;
   // The bar and its counts are the site's own players (lib/thread/site-sentiment.ts, owner 2026-11-22); the creator reviews
   // keep their cards and a praise line ("Praised for spin in 13 reviews").
   const votes = siteSentiment(row);
