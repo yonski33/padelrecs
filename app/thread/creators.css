@@ -516,9 +516,7 @@ body:has(.th-skin .thc) .th-skin .thc a.thc-name { font-family: var(--bc), 'Bric
 .th-skin .thc-w.w3 { background: #f4ebe6; color: #3a2f2d; }
 .th-skin .thc-w.w4, .th-skin .thc-take.mix { background: oklch(0.95 0.08 95); color: oklch(0.45 0.09 75); }
 .th-skin .thc-w.w5, .th-skin .thc-take.neg { background: oklch(0.93 0.05 35); color: oklch(0.48 0.13 30); }
-/* The summary marker and wrap-up marks in soft rose, not yellow. */
-.th-skin .thc-sum mark { background: linear-gradient(transparent 50%, oklch(0.9 0.06 20) 50%, oklch(0.9 0.06 20) 92%, transparent 92%); }
-.th-skin .thc-wrap mark.pos { background: oklch(0.93 0.05 20); }
+/* Highlights keep pickleball's yellow marker (owner 2026-11-23). */
 body:has(.th-skin .thc) .th-skin .thc a.thc-g-row:hover { background: #f4ebe6; }
 .th-skin .thc-rd { background: #fffaf7; }
 /* Soft card lines, as on skin's own product page (no hard black frames). */
