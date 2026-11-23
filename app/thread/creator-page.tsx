@@ -192,8 +192,9 @@ export async function CreatorProductBody({ slug }: { slug: string }) {
             {/* SkinRecs has no shop prices yet (owner 2026-11-23: prices later): a small Where to buy box, the shop link only. */}
             {low && <><span className="thc-pbox-l">Lowest price today</span><strong className="thc-pbox-p">{usd(low.price)}</strong>
               <span className="thc-pbox-s">{/* The shops listed below (owner 2026-11-23), not every in-stock offer. */}{buy.length > 0 && `In stock at ${plural(buy.length, "shop")}`}</span></>}
-            {/* SkinRecs with the Amazon price shown (owner 2026-11-23): the button just names the shop, "Amazon ›". */}
-            {cta && <a className="thc-cta wide" href={cta.url} target="_blank" rel={cta.rel}>{SKIN && !low && shop ? `${shop.where} ›` : "Check price ↗"}</a>}
+            {/* With a price shown (owner 2026-11-23) the button names its shop: the lowest in-stock shop ("Desert Paddles ›",
+                its "(brand store)" note left off), or on SkinRecs "Amazon ›". */}
+            {cta && <a className="thc-cta wide" href={cta.url} target="_blank" rel={cta.rel}>{low ? `${low.shops[0]!.shop.replace(/\s*\([^)]*\)\s*$/, "")} ›` : SKIN && shop ? `${shop.where} ›` : "Check price ↗"}</a>}
             {SKIN && !low && shop && !amzPrice && <span className="thc-pbox-on">{`on ${shop.where}`}</span>}
 
             {buy.length > 0 && <div className="thc-pbox-list">{buy.map(o => <div key={o.shop} className="thc-shop2"><strong>{o.shop}</strong>
