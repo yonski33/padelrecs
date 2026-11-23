@@ -169,9 +169,12 @@ export async function CreatorProductBody({ slug }: { slug: string }) {
     <JsonLd data={ld}/>
     {/* The mock's third font (README tokens): JetBrains Mono for the small "check price ↗" links, this page only. */}
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500;700&display=swap" precedence="default"/>
+    {/* SkinRecs header 4a (owner handoff 2026-11-23): Inter 800 for the name, Barlow Condensed 800 for TL;DR and the price. */}
+    {SKIN && <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=Barlow+Condensed:wght@800&display=swap" precedence="default"/>}
     <div className="thc thc-v19">
       {/* Head (owner mock 2026-11-23): photo · name, tags, TL;DR with ✓ and ✗ points, the players' vote box · the price box. */}
-      <header className="thc-head thc-hd3">
+      {/* SkinRecs header 4a (owner handoff 2026-11-23): one outlined panel, photo / main / prices columns (creators.css .thc-hd4). */}
+      <header className={`thc-head thc-hd3${SKIN ? " thc-hd4" : ""}`}>
         <div className="thc-photo">{pic ? <img src={pic} alt={name}/> : <span className="th-ph" aria-hidden="true"/>}</div>
         <div className="thc-head-m">
           <h1>{name}</h1>
@@ -179,14 +182,16 @@ export async function CreatorProductBody({ slug }: { slug: string }) {
           {(tldr || plus.length > 0 || minus) && <div className="thc-tldr">
             <span className="thc-tldr-h"><b>TL;DR</b><span>{`From ${plural(rs.length, "review")}`}</span></span>
             {tldr && <span className="thc-tldr-t">{tldr}</span>}
-            {(plus.length > 0 || minus) && <span className="thc-pts2">{plus.map(t => <span key={t} className="pos">{`✓ ${t}`}</span>)}{minus && <span className="neg">{`✗ ${minus}`}</span>}</span>}
+            {(plus.length > 0 || minus) && <span className="thc-pts2">{plus.map(t => <span key={t} className="pos">{`✓ ${t}`}</span>)}{minus && <span className="neg">{`${SKIN ? "✕" : "✗"} ${minus}`}</span>}</span>}
           </div>}
           {/* The site's own players (owner 2026-11-22, #651): the bar and shares, never the creator reviews. */}
           <div className="thc-vbox">
             <span className="thc-vbox-h"><strong>{`${votes.total.toLocaleString("en-US")} ${W.person} ${votes.total === 1 ? "vote" : "votes"}`}</strong><a href="#vote">Vote ↓</a></span>
             {votes.total > 0 ? <><span className="thc-vbar" aria-hidden="true">{KEYS.map(k => votes[k] > 0 && <i key={k} className={k} style={{ flex: votes[k] }}/>)}</span>
-              <span className="thc-vpct">{KEYS.map(k => { const p = Math.round(votes[k] / votes.total * 100);
-                return <span key={k} className={k}>{k === "pos" ? <b>{`${p}% loved it`}</b> : `${p}% ${k === "mix" ? "mixed" : "not for me"}`}</span>; })}</span></>
+              {/* SkinRecs 4a: raw counts with colour dots, so the three add up to the total. */}
+              {SKIN ? <span className="thc-vcnt">{KEYS.map(k => <span key={k}><i className={k} aria-hidden="true"/>{`${votes[k].toLocaleString("en-US")} ${k === "pos" ? "loved" : k === "mix" ? "mixed" : "not for me"}`}</span>)}</span>
+              : <span className="thc-vpct">{KEYS.map(k => { const p = Math.round(votes[k] / votes.total * 100);
+                return <span key={k} className={k}>{k === "pos" ? <b>{`${p}% loved it`}</b> : `${p}% ${k === "mix" ? "mixed" : "not for me"}`}</span>; })}</span>}</>
               : <span className="thc-none">No votes yet. Be the first.</span>}
           </div>
         </div>
