@@ -21,13 +21,15 @@ test("the hero has the site's own line under the title and the page has one squi
 
 test("the catalogue starts on PadelRecs picks, the home on Most loved (season pool), Top picks say votes, no score", () => {
   assert.match(list, /\["picks", `\$\{niche\.site\.name\} picks`\]/);  // "PadelRecs picks" on padel
-  assert.match(list, /const base: Sort = season \? "loved" : BASE_SORT/);
+  assert.match(list, /const base: Sort = season \|\| home \? "loved" : BASE_SORT/);
   assert.match(list, /useState<Sort>\(base\)/);
   assert.match(home, /const audio = useAudioListMatch\(wire\), skinMatch = useSkinListMatch\(skin\);/);
   assert.match(home, /useRacketList\(\{ rows, curated, added, season, match: audio \?\? skinMatch \}\)/);
   // The home's menu has no "PadelRecs picks" (owner: read as random there).
   assert.match(list, /HOME_SORTS: \[Sort, string\]\[\] = \[\["loved", "Most loved"\], \["opinions", "Most opinions"\], \["match", "By your match"\]\]/);
-  assert.match(list, /const sorts = season \? HOME_SORTS : SORTS/);
+  assert.match(list, /home \? \[\.\.\.HOME_SORTS, .*: season \? HOME_SORTS : SORTS/);
+  // The PickleballRecs creators home also starts on Most loved, with the curated picks last in its menu (owner 2026-11-23).
+  assert.match(readFileSync("app/thread/live/creators-home.tsx", "utf8"), /useRacketList\(\{ rows, curated, added, home: true \}\)/);
   // PadelRecs' catalogue starts on "picks"; AudioRecs (no curated lists) on "loved" (V3-ROLLOUT-BRIEF).
   assert.match(list, /const BASE_SORT: Sort = SORTS\[0\]\[0\]/);
   assert.match(page, /unit=\{\["vote", "votes"\]\}/);

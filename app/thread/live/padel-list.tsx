@@ -55,8 +55,9 @@ export const plural = (n: number, one: string, many = `${one}s`) => `${n.toLocal
 /** The list's state: picks, fine-tune, search, sort and the sorted, filtered rows. `search`: the catalogue's search box.
  *  `season` (the home, lib/thread/home-order.ts): only these ids, "Most loved" by default, and "By your match" in 10-point
  *  bands with the most loved first inside each. `match`: AudioRecs' own quick match (live/audio-match.tsx). */
-export function useRacketList({ rows, curated, added, search = false, season, match }: { rows: ThreadRow[]; curated: string[]; added: Record<string, string>; search?: boolean; season?: string[]; match?: ListMatch }) {
-  const base: Sort = season ? "loved" : BASE_SORT;
+export function useRacketList({ rows, curated, added, search = false, season, match, home = false }: { rows: ThreadRow[]; curated: string[]; added: Record<string, string>; search?: boolean; season?: string[]; match?: ListMatch;
+  /** A home list (the PickleballRecs creators home, owner 2026-11-23): Most loved first and the home menu, as with `season`. */ home?: boolean }) {
+  const base: Sort = season || home ? "loved" : BASE_SORT;
   const [q, setQ] = useState(""), [f, setF] = useState<Filters>({}), [sort, setSort] = useState<Sort>(base), [ftReady, setFtReady] = useState(false), [older, setOlder] = useState(false);
   const [picks, setPicks] = usePicks(); const padelMine = !match && !!(picks.level || picks.style || picks.budget), payload = usePayload(padelMine);
   const padelPcts = useMemo(() => padelMine && payload ? pctsFor(payload, picks) : null, [padelMine, payload, picks]);
@@ -93,7 +94,8 @@ export function useRacketList({ rows, curated, added, search = false, season, ma
     : (pick.get(a.id) ?? 1e6) - (pick.get(b.id) ?? 1e6) || b.pos - a.pos),
   // eslint-disable-next-line react-hooks/exhaustive-deps
   [pool, f, q, by, pcts, pick, added, only]);
-  const sorts = season ? HOME_SORTS : SORTS;
+  // The PickleballRecs home keeps the curated order as the last menu option (owner 2026-11-23).
+  const sorts: [Sort, string][] = home ? [...HOME_SORTS, ...(curated.length ? [["picks", `${niche.site.name} picks`] as [Sort, string]] : [])] : season ? HOME_SORTS : SORTS;
   return { q, setQ, f, toggle, chips, clearAll, picks, setPicks, mine, pcts, sort: by, setSort, sorts, list, pool, pass, test, older, setOlder, olderN, words, match };
 }
 export type RacketList = ReturnType<typeof useRacketList>;
