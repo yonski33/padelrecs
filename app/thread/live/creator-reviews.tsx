@@ -10,6 +10,7 @@
 // page's ISR cache is untouched.
 import { Fragment, useEffect, useMemo, useState, type ReactNode } from "react";
 import { atSecond, clock } from "../../../lib/thread/video-meta";
+import { VideoProvider, clipOf, playClick, usePlay } from "./video-overlay";
 import { dayLabel, thumbOf } from "../../../lib/thread/web-sources";
 import { SOURCE_COLOR, STANCE_LABEL, cardChips, initials, langCode, marks, measuredLine, platform, scoreText, sortReviews, mixTikToks,
   stanceCounts, type CreatorReview, type ReviewEntry, type Stance } from "../../../lib/thread/creators";
@@ -46,18 +47,20 @@ function Card({ x, lit }: { x: ReviewEntry; lit: boolean }) {
   const chips = tt ? (x.tags ?? []).map(t => ({ tone: /^[-−]/.test(t) ? "neg" as const : "pos" as const, text: t.replace(/^[+\-−]\s*/, "") }))
     : cardChips(x.attrs);
   const day = dayLabel(x.date);
+  // The thumbnail, the TikTok tile and each chapter play in the page (live/video-overlay.tsx); the Watch on links stay.
+  const play = usePlay(), clip = clipOf(x);
   return <article id={`cr-${x.id}`} className={`thc-card${tt ? " thc-tt-c" : ""}${lit ? " lit" : ""}`}>
     {thumb && <div className="thc-media">
-      <a className="thc-thumb" href={x.url} {...OUT} aria-label={`Watch on YouTube: ${x.creator}`}>
+      <a className="thc-thumb" href={x.url} {...OUT} onClick={playClick(play, clip)} aria-label={`Play ${x.creator}'s video`}>
         <img src={thumb} alt="" loading="lazy" width={320} height={200}/><span className="play" aria-hidden="true"/>
         {x.len ? <span className="len">{clock(x.len)}</span> : null}</a>
       {x.chapters.length > 0 && <div className={`thc-chap${chOpen ? " open" : ""}`}>
         <button type="button" className="thc-chap-t" aria-expanded={chOpen} onClick={() => setChOpen(o => !o)}>{`${chOpen ? "▾" : "▸"} ${x.chapters.length} chapter${x.chapters.length === 1 ? "" : "s"}`}</button>
-        {chOpen && x.chapters.map(([s, t]) => <a key={s} href={atSecond(x.url, s)} {...OUT} title={t}><strong>{clock(s)}</strong><span>{t}</span></a>)}</div>}
+        {chOpen && x.chapters.map(([s, t]) => <a key={s} href={atSecond(x.url, s)} {...OUT} title={t} onClick={playClick(play, clipOf(x, s))}><strong>{clock(s)}</strong><span>{t}</span></a>)}</div>}
     </div>}
     {/* TikTok: a plain 9:16 tile (TikTok's oEmbed gives no cover) where the thumbnail sits. */}
     {tt && <div className="thc-media thc-tt-m">
-      <a className={`thc-tt-cover${x.cover ? " pic" : ""}`} href={x.url} {...OUT} aria-label={`Watch on TikTok: ${x.creator}`}>
+      <a className={`thc-tt-cover${x.cover ? " pic" : ""}`} href={x.url} {...OUT} onClick={playClick(play, clip)} aria-label={`Play ${x.creator}'s TikTok`}>
         {x.cover && <img src={x.cover} alt="" loading="lazy"/>}
         <span className="logo">TikTok</span><span className="play" aria-hidden="true"/>{x.len ? <span className="len">{clock(x.len)}</span> : null}</a>
     </div>}
@@ -135,7 +138,7 @@ export function CreatorReviews({ reviews, count, roundup }: { reviews: ReviewEnt
     setLit(goTo); setGoTo(null);
   }, [goTo, shown]);
   useEffect(() => { if (!lit) return; const t = setTimeout(() => setLit(null), 2600); return () => clearTimeout(t); }, [lit]);
-  return <section id="reviews" className="thc-reviews">
+  return <VideoProvider><section id="reviews" className="thc-reviews">
     <div className="thc-rv-h">
       <h2>Reviews <span>{`· ${count}`}</span></h2>
       <span className="thc-rv-sub">Summaries from YouTube, blogs and TikTok. Watch or read the original review for the full details.</span>
@@ -149,7 +152,7 @@ export function CreatorReviews({ reviews, count, roundup }: { reviews: ReviewEnt
       {sources.length > 1 && sources.map(([k, l, c]) => <button key={k} type="button" aria-pressed={src === k} onClick={() => setSrc(src === k ? null : k)}>
         {`${l} (${c})`}</button>)}</div>
     {shown.map((x, i) => <Fragment key={x.id}><Card x={x} lit={lit === x.id}/>{roundup && i === Math.min(2, shown.length - 1) && only === "all" && !src && roundup}</Fragment>)}
-  </section>;
+  </section></VideoProvider>;
 }
 
 /** The first `n` sentences of a summary and the rest ("No. 1" style abbreviations aside, a sentence ends at . ! or ? before
