@@ -2422,29 +2422,6 @@
     }
    ]
   },
-  "neonic-neogrit-flx-swift": {
-   "paras": [
-    "Reviewers liked this elongated paddle as a light base for players who plan to add weight, with Matt's Pickleball measuring 2,480 RPM and vonEgypt Pickleball finding it very maneuverable. Reviewers describe stock power as low, and Matt's Pickleball found blocks get pushed around until weight is added, while Farmer Lanky Pickleball found control very good for 3.5 players and up. Farmer Lanky Pickleball also says the peel ply grit is not durable, and the sweet spot is described as respectable by one reviewer and average by another."
-   ],
-   "highlights": [
-    {
-     "text": "very maneuverable",
-     "tone": "pos"
-    },
-    {
-     "text": "control very good",
-     "tone": "pos"
-    },
-    {
-     "text": "blocks get pushed around",
-     "tone": "neg"
-    },
-    {
-     "text": "peel ply grit is not durable",
-     "tone": "neg"
-    }
-   ]
-  },
   "vanwin-alpha-power": {
    "paras": [
     "Salt N Pepper Pickleball and CarpeDink'em Pickleball both rated it highly for a soft, plush feel and a large sweet spot that stays consistent on off-center hits. Power is where takes differ: Salt N Pepper Pickleball called it power first for players who swing fully, while CarpeDink'em Pickleball put it at the bottom of the power range and not too poppy. TGu was mixed, finding stock stability lacking on return of serve, adding weight at 3:00 and 9:00 to help, and still would not play it in a tournament."
@@ -2716,6 +2693,29 @@
     },
     {
      "text": "too muted",
+     "tone": "neg"
+    }
+   ]
+  },
+  "neonic-swift-flx": {
+   "paras": [
+    "Reviewers liked this elongated paddle as a light base for players who plan to add weight, with Matt's Pickleball measuring 2,480 RPM and vonEgypt Pickleball finding it very maneuverable. Reviewers describe stock power as low, and Matt's Pickleball found blocks get pushed around until weight is added, while Farmer Lanky Pickleball found control very good for 3.5 players and up. Farmer Lanky Pickleball also says the peel ply grit is not durable, and the sweet spot is described as respectable by one reviewer and average by another."
+   ],
+   "highlights": [
+    {
+     "text": "very maneuverable",
+     "tone": "pos"
+    },
+    {
+     "text": "control very good",
+     "tone": "pos"
+    },
+    {
+     "text": "blocks get pushed around",
+     "tone": "neg"
+    },
+    {
+     "text": "peel ply grit is not durable",
      "tone": "neg"
     }
    ]
