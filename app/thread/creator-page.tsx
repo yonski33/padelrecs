@@ -29,6 +29,8 @@ import roundups from "../../db/creators/reddit-roundups.json";
 import wrapups from "../../db/creators/reviewer-wrapups.json";
 import { creatorPageFor, CREATOR_VIEW, CREATOR_MIN_REVIEWS, creatorPageOn } from "../../lib/thread/sites";
 import { Avatar, CreatorReviews } from "./live/creator-reviews";
+import { MentionsProvider, type MentionTarget } from "./live/mention-links";
+import { mentionIndex, namedIds } from "../../lib/thread/mention-links";
 import { Comments } from "./live/comments";
 import { th } from "../../lib/thread/look";
 import { PollCard } from "./live/racket-v7b";
@@ -143,6 +145,15 @@ export async function CreatorProductBody({ slug }: { slug: string }) {
   // Similar paddles mentioned: other catalogue paddles the reviews name, with their lowest stored price.
   const named = mentions(rs, allRows, r.id).map(m => ({ ...m, href: m.row.href, price: staged[m.row.slug]?.price ?? null }));
 
+  // Paddle mentions as links in the review cards (owner 2026-11-23): the catalogue's unique names, only the ones these
+  // reviews use (and this paddle's own, which claims its text but never links) go to the browser.
+  const mxAll = mentionIndex(allRows), mxIds = namedIds(feed.flatMap(x => [x.summary, x.more, x.compared]), mxAll, r.id);
+  const mxIndex = mxAll.filter(k => k.id === r.id || mxIds.includes(k.id));
+  const mxTargets: Record<string, MentionTarget> = Object.fromEntries(mxIds.flatMap(id => { const x = allRows.find(y => y.id === id); if (!x) return [];
+    const votes = x.pos + x.mix + x.neg;
+    return [[id, { id, slug: x.slug, name: withoutYear(x.name), href: th(x.href), pic: x.pic ?? null, loved: votes ? Math.round(100 * x.pos / votes) : null, votes,
+      price: staged[x.slug]?.price?.usd ?? null }]]; }));
+
   return <Shell active="rackets">
     <JsonLd data={ld}/>
     {/* The mock's third font (README tokens): JetBrains Mono for the small "check price ↗" links, this page only. */}
@@ -244,7 +255,9 @@ export async function CreatorProductBody({ slug }: { slug: string }) {
           </StickyCol>
         </div>
 
-        <CreatorReviews reviews={feed} count={rs.length} roundup={null}/>
+        <MentionsProvider index={mxIndex} targets={mxTargets} selfId={r.id} selfSlug={slug} unit={W.people}>
+          <CreatorReviews reviews={feed} count={rs.length} roundup={null}/>
+        </MentionsProvider>
 
         {/* Comments (the mock's section 7): the site's own discussion for this paddle, the same thread as its product page. */}
         <section className="thc-sec2 thc-comments"><Comments page={`racket:${r.id}`} title="Discussion" avatars nicknames={niche.form.quickVote?.nicknames ?? []}/></section>

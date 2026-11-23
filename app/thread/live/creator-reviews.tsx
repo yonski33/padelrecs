@@ -11,6 +11,7 @@
 import { Fragment, useEffect, useMemo, useState, type ReactNode } from "react";
 import { atSecond, clock } from "../../../lib/thread/video-meta";
 import { VideoProvider, clipOf, playClick, usePlay } from "./video-overlay";
+import { MentionChips, mentionNodes, useMentions } from "./mention-links";
 import { dayLabel, thumbOf } from "../../../lib/thread/web-sources";
 import { SOURCE_COLOR, STANCE_LABEL, cardChips, initials, langCode, marks, measuredLine, platform, scoreText, sortReviews, mixTikToks,
   stanceCounts, type CreatorReview, type ReviewEntry, type Stance } from "../../../lib/thread/creators";
@@ -49,6 +50,8 @@ function Card({ x, lit }: { x: ReviewEntry; lit: boolean }) {
   const day = dayLabel(x.date);
   // The thumbnail, the TikTok tile and each chapter play in the page (live/video-overlay.tsx); the Watch on links stay.
   const play = usePlay(), clip = clipOf(x);
+  // Other products the summary names link to their pages, the first mention in this card only (live/mention-links.tsx).
+  const mx = useMentions(), seen = new Set<string>(), link = (t: string) => mentionNodes(mx, t, seen);
   return <article id={`cr-${x.id}`} className={`thc-card${tt ? " thc-tt-c" : ""}${lit ? " lit" : ""}`}>
     {thumb && <div className="thc-media">
       <a className="thc-thumb" href={x.url} {...OUT} onClick={playClick(play, clip)} aria-label={`Play ${x.creator}'s video`}>
@@ -80,11 +83,12 @@ function Card({ x, lit }: { x: ReviewEntry; lit: boolean }) {
       {x.quote && <h3 className="thc-q">{x.quoteAt != null && x.kind === "youtube"
         ? <a href={atSecond(x.url, x.quoteAt)} {...OUT} aria-label={`Watch from ${clock(x.quoteAt)}`}>{`“${x.quote}”`}</a> : `“${x.quote}”`}</h3>}
       {boxes.length > 0 && <div className="thc-boxes">{boxes.map(([i, h, t, k]) => <div key={h} className={`thc-box ${k}`}>
-        <span className="thc-box-h"><b aria-hidden="true">{i}</b><span>{h}</span></span><span>{t}</span></div>)}</div>}
-      <p className={`thc-sum${vid ? " vid" : ""}`}>{marks(lead, hl).map((m, i) => m.on ? <mark key={i}>{m.t}</mark> : m.t)}
+        <span className="thc-box-h"><b aria-hidden="true">{i}</b><span>{h}</span></span><span>{t}</span>
+        {k === "cmp" && <MentionChips text={t}/>}</div>)}</div>}
+      <p className={`thc-sum${vid ? " vid" : ""}`}>{marks(lead, hl).map((m, i) => m.on ? <mark key={i}>{link(m.t)}</mark> : <Fragment key={i}>{link(m.t)}</Fragment>)}
         {more && !open && <>{" "}{toggle}</>}</p>
-      {open && rest && <p className={`thc-sum${vid ? " vid" : ""}`}>{marks(rest, hl.filter(h => !lead.includes(h))).map((m, i) => m.on ? <mark key={i}>{m.t}</mark> : m.t)}</p>}
-      {open && x.more && <p className={`thc-sum${vid ? " vid" : ""}`}>{x.more}</p>}
+      {open && rest && <p className={`thc-sum${vid ? " vid" : ""}`}>{marks(rest, hl.filter(h => !lead.includes(h))).map((m, i) => m.on ? <mark key={i}>{link(m.t)}</mark> : <Fragment key={i}>{link(m.t)}</Fragment>)}</p>}
+      {open && x.more && <p className={`thc-sum${vid ? " vid" : ""}`}>{link(x.more)}</p>}
       {open && measured && <p className="thc-sum sm">{`Measured by the reviewer: ${measured}.`}</p>}
       {open && <p className="thc-sum">{toggle}</p>}
       {chips.length > 0 && <div className="thc-tags">{chips.map(c => <span key={c.text} className={`thc-pm ${c.tone}`}>{`${c.tone === "pos" ? "+" : "−"} ${c.text}`}</span>)}</div>}
