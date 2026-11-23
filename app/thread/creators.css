@@ -499,3 +499,28 @@ body:has(.thc) .thc a.thc-fit-alt { font-weight: 700; color: var(--ink); text-de
 /* Key point one size down (owner 2026-11-23). */
 .thc-g-row .kp { font-size: 15.5px; }
 @media (max-width: 600px) { .thc-g-row .kp { font-size: 14.5px; } }
+
+/* SkinRecs (owner "Yes, Skin next" 2026-11-23): the same creator page in skin's own soft look, not pickleball's cream and
+   yellow. Its .th-skin tokens (thread.css: warm paper, espresso ink, rose accent, Bricolage display, Barlow body); status
+   colours stay green / amber / red in skin's shades. Scoped to .th-skin, so PickleballRecs is untouched. */
+body:has(.th-skin .thc), body:has(.th-skin .thc) .th { background: #f6f1ec; }
+.th-skin .thc { --ink: #2b2221; --rule: #e2d3cc; --muted: #7a6a65; --faint: #8f807a; --text: #3a2f2d; --body2: #5e504c; --para: #2b2221;
+  --card: #fff; --sand: #f4ebe6; --acc: oklch(0.86 0.06 20); --acc-soft: oklch(0.95 0.025 20);
+  --pos: oklch(0.72 0.15 145); --mix: oklch(0.85 0.14 90); --neg: oklch(0.7 0.15 30);
+  font-family: 'Barlow', 'Atkinson Hyperlegible', system-ui, sans-serif; }
+.th-skin .thc :is(.thc-bc, .thc-head h1, .thc-tldr > strong, .thc-h > strong, .thc-rv-h h2, .thc-sec2-h h2, .thc-rd .thc-name, h2, h3),
+body:has(.th-skin .thc) .th-skin .thc a.thc-name { font-family: var(--bc), 'Bricolage Grotesque', 'Arial Narrow', sans-serif; letter-spacing: -0.01em; }
+.th-skin .thc-head h1 { font-weight: 800; }
+/* Word and take chips: skin's soft green, amber and rose instead of the pickleball lime. */
+.th-skin .thc-w.w1, .th-skin .thc-w.w2, .th-skin .thc-take.pos { background: oklch(0.93 0.08 145); color: oklch(0.42 0.1 145); }
+.th-skin .thc-w.w3 { background: #f4ebe6; color: #3a2f2d; }
+.th-skin .thc-w.w4, .th-skin .thc-take.mix { background: oklch(0.95 0.08 95); color: oklch(0.45 0.09 75); }
+.th-skin .thc-w.w5, .th-skin .thc-take.neg { background: oklch(0.93 0.05 35); color: oklch(0.48 0.13 30); }
+/* The summary marker and wrap-up marks in soft rose, not yellow. */
+.th-skin .thc-sum mark { background: linear-gradient(transparent 50%, oklch(0.9 0.06 20) 50%, oklch(0.9 0.06 20) 92%, transparent 92%); }
+.th-skin .thc-wrap mark.pos { background: oklch(0.93 0.05 20); }
+body:has(.th-skin .thc) .th-skin .thc a.thc-g-row:hover { background: #f4ebe6; }
+.th-skin .thc-rd { background: #fffaf7; }
+/* The skin fit check (live/skin-match.tsx SkinFitCheck) as the row under the head. */
+.th-skin .thc-skinfit { padding: 16px 20px; }
+.th-skin .thc-skinfit .th-fit { border: 0; padding: 0; margin: 0; background: none; }

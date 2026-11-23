@@ -11,7 +11,7 @@
 import type { ReactNode } from "react";
 import { Shell } from "./shell";
 import { racketData } from "./racket-data";
-import { threadRows } from "./data";
+import { threadRows, skinOf } from "./data";
 import { plural } from "./ui";
 import { niche } from "../../lib/niche";
 import { withoutYear } from "../../lib/brand-name";
@@ -33,6 +33,8 @@ import { Comments } from "./live/comments";
 import { th } from "../../lib/thread/look";
 import { PollCard } from "./live/racket-v7b";
 import { CompactFit } from "./live/creator-fit";
+import { SkinFitCheck } from "./live/skin-match";
+import { playersWord } from "../../lib/thread/web-sources";
 import { StickyCol } from "./live/sticky-col";
 import { TraitVotes } from "./live/trait-votes";
 import { traitSeed } from "../../lib/thread/trait-seed";
@@ -63,6 +65,9 @@ function keyPoint(x: { keyPoint?: string | null; short: string }): string {
 const shortDay = (iso: string) => new Date(`${iso.slice(0, 10)}T12:00:00Z`).toLocaleDateString("en-US", { month: "short", day: "numeric", timeZone: "UTC" });
 const STYLE_WORD = { control: "Control", power: "Power", balance: "All-round" } as const;
 const KEYS = ["pos", "mix", "neg"] as const;
+/** SkinRecs (owner "Yes, Skin next" 2026-11-23): the same page in its own soft look (creators.css .th-skin block), its own
+ *  tags, fit check (the skin engine, as on its product page) and vote groups (lib/thread/creator-votes.ts). */
+const SKIN = niche.id === "skin";
 
 function Word({ w }: { w: CreatorReview["attrs"][keyof CreatorReview["attrs"]] }) {
   return w ? <span className={`thc-w ${wordTone(w)}`}>{w}</span> : <span className="thc-w none" aria-label="Not covered">–</span>;
@@ -79,7 +84,7 @@ export async function CreatorProductBody({ slug }: { slug: string }) {
   const { r, row, brand, style, sim, cards } = d;
   // The TL;DR sentence (owner 2026-11-23): the creator page's own line where it has one, else the same line the usual
   // product page shows (racketData: the written "In short" summary, the page content's tagline, the short or list line).
-  const tldr = page.tldr || d.lead || null;
+  const tldr = page.tldr || (SKIN && d.lead ? playersWord(d.lead, "reviewer") : d.lead) || null;
   // The bar and its counts are the site's own players (lib/thread/site-sentiment.ts, owner 2026-11-22); the creator reviews
   // keep their cards and a praise line ("Praised for spin in 13 reviews").
   const votes = siteSentiment(row);
@@ -87,7 +92,14 @@ export async function CreatorProductBody({ slug }: { slug: string }) {
   // Similar paddles (the mock's section 8): the product page's similar list, current models only, filled up to four from the
   // other staged paddles (same shape first). A staged paddle shows its reviews' takes and its lowest price; others their votes.
   const home = await creatorHome(niche.id), staged = home?.paddles ?? {};
-  const { all: allRows } = await threadRows();
+  const { all: allRows, rows: rowMap, ctx } = await threadRows();
+  // SkinRecs' fit check and tags from its engine, the same inputs as its product page: this product's type only.
+  const sk = SKIN ? skinOf(ctx) : null;
+  const skinSame = sk ? sk.data.listed.filter(x => x.shape === r.shape && (x.id === r.id || rowMap.get(x.id)?.current)) : [];
+  const skinWire = sk ? (await import("../skin/payload")).wireOf(sk, skinSame) : [];
+  const skinLinks = Object.fromEntries(skinSame.flatMap(x => { const t = rowMap.get(x.id); return t ? [[x.id, { name: t.name, href: t.href }]] : []; }));
+  const skinAttrs = sk?.attrs.get(r.id), tex = skinAttrs?.scores.texture;
+  const skinTex = tex && tex.n >= 3 ? (tex.score >= 62 ? "Rich" : tex.score <= 38 ? "Light" : null) : null;
   const bySlug = new Map(allRows.map(x => [x.slug, x]));
   const sims = sim.filter(x => x.id !== r.id && x.current !== false);
   for (const s of Object.keys(staged).sort((a, b) => Number(bySlug.get(b)?.shape === r.shape) - Number(bySlug.get(a)?.shape === r.shape))) {
@@ -136,7 +148,8 @@ export async function CreatorProductBody({ slug }: { slug: string }) {
   // pill, the site's own vote bar; the fit check and a small Where to buy on the right.
   // The level tag from the catalogue's "best for" line: its first part, "intermediate → advanced" as "Intermediate to advanced".
   const level = row?.best?.split(",")[0]?.replace(/\s*(→|->)\s*/g, " to ").trim() ?? null;
-  const tags = [style ? STYLE_WORD[style] : null, row?.feel ? `${row.feel} feel` : null, level ? `${level[0]!.toUpperCase()}${level.slice(1)}` : null].filter((x): x is string => !!x);
+  const tags = (SKIN ? [r.shape, skinAttrs?.facts.fragrance_free === "free" ? "Fragrance free" : null, skinTex ? `${skinTex} texture` : null]
+    : [style ? STYLE_WORD[style] : null, row?.feel ? `${row.feel} feel` : null, level ? `${level[0]!.toUpperCase()}${level.slice(1)}` : null]).filter((x): x is string => !!x);
   // Two + points and one - point (owner 2026-11-22), the likes and concerns backed by 2+ reviews.
   const plus = agree.likes.slice(0, 2), minus = agree.concerns[0] ?? null;
   const n = stanceCounts(rs), buy = offers.filter(o => o.inStock).slice(0, 3);
@@ -153,7 +166,7 @@ export async function CreatorProductBody({ slug }: { slug: string }) {
         <div className="thc-photo">{pic ? <img src={pic} alt={name}/> : <span className="th-ph" aria-hidden="true"/>}</div>
         <div className="thc-head-m">
           <h1>{name}</h1>
-          {tags.length > 0 && <span className="thc-tags">{tags.map((t, k) => <span key={t} className={k === 0 && style ? "on" : undefined}>{t}</span>)}</span>}
+          {tags.length > 0 && <span className="thc-tags">{tags.map((t, k) => <span key={t} className={k === 0 && (style || SKIN) ? "on" : undefined}>{t}</span>)}</span>}
           {(tldr || plus.length > 0 || minus) && <div className="thc-tldr">
             <span className="thc-tldr-h"><b>TL;DR</b><span>{`From ${plural(rs.length, "review")}`}</span></span>
             {tldr && <span className="thc-tldr-t">{tldr}</span>}
@@ -182,7 +195,8 @@ export async function CreatorProductBody({ slug }: { slug: string }) {
         </div>}
       </header>
       {/* Is this paddle right for me? as one row under the head (owner mock 2026-11-23). */}
-      <div className="thc-fitrow"><CompactFit id={r.id} title={`Is this ${niche.words.one} right for me?`} sub="Pick your level and style" bar/></div>
+      <div className="thc-fitrow">{SKIN ? <section className="thc-box1 thc-skinfit"><SkinFitCheck id={r.id} wire={skinWire} links={skinLinks}/></section>
+        : <CompactFit id={r.id} title={`Is this ${niche.words.one} right for me?`} sub="Pick your level and style" bar/>}</div>
       <div className="thc-rule"/>
 
       <main className="thc-body">
@@ -192,8 +206,8 @@ export async function CreatorProductBody({ slug }: { slug: string }) {
           {/* Played it? Vote and rate it: the would-you-buy-it-again bars and six vote boxes (lib/thread/creator-votes.ts),
               the stored votes loading live, one tap, no account. */}
           <section id="vote" className="thc-box1 thc-vote">
-            <PollCard id={r.id} reviews={{ positive: row?.pos ?? 0, mixed: row?.mix ?? 0, negative: row?.neg ?? 0 }} question="Played it? Vote and rate it." countLine/>
-            {voteGroups.length > 0 && <TraitVotes id={r.id} seed={traitSeed(niche.id, r.id)} groups={voteGroups} title={W.traitsTitle} tieNone/>}
+            <PollCard id={r.id} reviews={{ positive: row?.pos ?? 0, mixed: row?.mix ?? 0, negative: row?.neg ?? 0 }} question={SKIN ? "Tried it? Vote and rate it." : "Played it? Vote and rate it."} countLine/>
+            {voteGroups.length > 0 && <TraitVotes id={r.id} seed={traitSeed(niche.id, r.id)} groups={voteGroups} title={W.traitsTitle} tieNone {...(SKIN ? { of: d.judged } : {})}/>}
           </section>
         </div>
 
@@ -231,7 +245,7 @@ export async function CreatorProductBody({ slug }: { slug: string }) {
           </div>
           <StickyCol className="thc-row-r">
             {how.length > 0 && <section className="thc-box1 flush">
-              <div className="thc-h rule"><strong>How it plays</strong><span>{`From all ${rs.length} reviews`}</span></div>
+              <div className="thc-h rule"><strong>{SKIN ? "How it works" : "How it plays"}</strong><span>{`From all ${rs.length} reviews`}</span></div>
               {how.map(h => <div key={h.k} className="thc-grade"><span><strong>{h.label}</strong><Word w={h.word}/></span><span>{h.line}</span></div>)}
             </section>}
             {named.length > 0 && <section className="thc-box1 flush">
@@ -260,7 +274,7 @@ export async function CreatorProductBody({ slug }: { slug: string }) {
               {t > 0 && <span className="thc-sim-s"><span className="thc-sim-bar" aria-hidden="true"><i className="pos" style={{ flex: pos }}/><i className="mix" style={{ flex: mix }}/><i className="neg" style={{ flex: neg }}/></span>
                 <span>{`${pos} of ${t} ${unit} loved it`}</span></span>}
               <span className="thc-sim-f">{price ? <a className="thc-mono" href={price.url} target="_blank" rel={price.rel}>{price.label}</a>
-                : <a href={th(href)}>See the paddle →</a>}</span>
+                : <a href={th(href)}>{`See the ${niche.words.one} →`}</a>}</span>
             </div>; })}</div>
         </section>}
       </main>
@@ -306,7 +320,7 @@ function RedditBox({ rd }: { rd: Roundup }) {
   return <article className="thc-card thc-rd">
     <div className="thc-card-b">
       <div className="thc-card-top"><span className="thc-av thc-rd-av" aria-hidden="true">r/</span>
-        <span className="thc-name">Players on Reddit and forums</span></div>
+        <span className="thc-name">{`${W.People} on Reddit and forums`}</span></div>
       <span className="thc-meta">{`${niche.site.name} summary of ${plural(rd.posts, `${W.person} post`)} in ${plural(rd.threads, "thread")}${day ? ` · ${day}` : ""}`}</span>
       <h3 className="thc-rd-h">{rd.headline}</h3>
       <div className="thc-rd-tags">{rd.tags.map(t => <span key={t.text} className={`thc-rd-tag ${t.tone}`}>
@@ -335,7 +349,7 @@ function RedditRoundup({ items }: { items: import("./racket-data").RvCard[] }) {
   return <article className="thc-card thc-rd">
     <div className="thc-card-b">
       <div className="thc-card-top"><span className="thc-av thc-rd-av" aria-hidden="true">r/</span>
-        <span className="thc-name">Players on Reddit and forums</span></div>
+        <span className="thc-name">{`${W.People} on Reddit and forums`}</span></div>
       <span className="thc-meta">{`${niche.site.name} summary of ${plural(items.length, `${W.person} post`)} in ${plural(threads, "thread")}${day ? ` · ${day}` : ""}`}</span>
       <h3 className="thc-rd-h">{head}</h3>
       {paras.map((ps, k) => <p key={k} className="thc-sum">{ps.map(c => { const n = items.indexOf(c) + 1;
