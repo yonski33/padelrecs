@@ -19,7 +19,7 @@ import { StoryActions } from "../../live/stories-v2";
 import { profileLine } from "../../../../lib/thread/display-name";
 import { niche } from "../../../../lib/niche";
 
-export const revalidate = 3600;
+export const revalidate = 21600;
 type P = { params: Promise<{ slug: string }> };
 const day = (at: string) => new Date(at).toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric", timeZone: "UTC" });
 const first = (name: string) => name.trim().split(/\s+/)[0] || name;

@@ -12,7 +12,7 @@ import { niche } from "../../../lib/niche";
 import { ago } from "../ui";
 import { StoryList, type StoryItem } from "../live/stories-v2";
 
-export const revalidate = 3600;
+export const revalidate = 21600;
 const TITLE = "Player stories", INTRO = "First-hand stories from padel players about the game, the gear and everything around it.";
 export const metadata: Metadata = { title: { absolute: `${TITLE} | ${niche.site.name}` }, description: INTRO, alternates: { canonical: "/stories" },
   openGraph: { title: TITLE, description: INTRO, url: "/stories", type: "website" } };
