@@ -542,3 +542,11 @@ body:has(.th-skin .thc) .th-skin .thc a.thc-g-row:hover { background: #f4ebe6; }
 /* The Where to buy box keeps its own size; the fit card sits below it. */
 @media (min-width: 1081px) { .th-skin .thc-v19 .thc-head-r { align-self: flex-start; } .th-skin .thc-v19 .thc-head-r > #buy { flex: 0 0 auto; } }
 .th-skin .thc-amz-when { order: 9; text-align: center; }
+/* Stood out / The trade-off / Compared to (owner mock 2026-11-23, pickleball and skin): a small coloured capital label over
+   the line itself in larger dark type, in roomier soft boxes, so each reads at a glance. */
+.thc .thc-boxes { gap: 12px; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); }
+.thc .thc-box { gap: 8px; border-radius: 14px; padding: 16px 18px; }
+.thc .thc-box-h { gap: 8px; font-size: 13px; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; }
+.thc .thc-box-h b { font-size: 16px; }
+.thc .thc-box-t { font-size: 16px; font-weight: 600; line-height: 1.4; color: var(--ink); }
+.th-skin .thc .thc-box.pos .thc-box-h span { color: oklch(0.45 0.11 145); } .th-skin .thc .thc-box.neg .thc-box-h span { color: oklch(0.5 0.14 30); }
