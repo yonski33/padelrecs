@@ -42,6 +42,8 @@ export function CreatorsHomeTop({ rows, extra, curated, added, total, brands, af
     return { k, title, opts: k === "brand" && !moreBrands ? opts.filter((o, i) => i < TOP_BRANDS || o.on) : opts, more: k === "brand" && opts.length > TOP_BRANDS ? opts.length - TOP_BRANDS : 0 };
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }), [pool, f, brands, moreBrands]);
+  // The list title says what it holds once filters or a quick match are on (owner 2026-11-23): "Top Widebody, Medium paddles (8)".
+  const listTitle = chips.length ? `Top ${chips.map(c => c.v).join(", ")} paddles` : mine || picks.arm ? "Your best matches" : "Top paddles right now";
   const sortLabel = l.sorts.find(([k]) => k === l.sort)?.[1] ?? l.sorts[0][1];
   return <>
     <section className="tch-hero">
@@ -83,7 +85,7 @@ export function CreatorsHomeTop({ rows, extra, curated, added, total, brands, af
       <div className="tch-main">
         <section className="tch-card tch-top">
           <div className="tch-top-h">
-            <h2><svg width="28" height="28" viewBox="0 0 30 30" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" aria-hidden="true"><ellipse cx="17" cy="12" rx="9" ry="10" transform="rotate(30 17 12)"/><path d="M11 20L4 28"/><g fill="currentColor" stroke="none"><circle cx="15" cy="9" r="1.2"/><circle cx="19" cy="9" r="1.2"/><circle cx="14" cy="13" r="1.2"/><circle cx="18" cy="13" r="1.2"/><circle cx="21" cy="12" r="1.2"/></g></svg>Top paddles right now</h2>
+            <h2><svg width="28" height="28" viewBox="0 0 30 30" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" aria-hidden="true"><ellipse cx="17" cy="12" rx="9" ry="10" transform="rotate(30 17 12)"/><path d="M11 20L4 28"/><g fill="currentColor" stroke="none"><circle cx="15" cy="9" r="1.2"/><circle cx="19" cy="9" r="1.2"/><circle cx="14" cy="13" r="1.2"/><circle cx="18" cy="13" r="1.2"/><circle cx="21" cy="12" r="1.2"/></g></svg>{listTitle}{(chips.length > 0 || mine || picks.arm) && <small className="tch-top-n">{` (${list.length})`}</small>}</h2>
             <span className="tch-sort"><span>Sort:</span>
               <button type="button" aria-haspopup="listbox" aria-expanded={sortOpen} onClick={() => setSortOpen(o => !o)}>{sortLabel}<small aria-hidden="true">▼</small></button>
               {sortOpen && <span className="tch-sort-m" role="listbox" aria-label="Sort paddles">{l.sorts.filter(([k]) => k !== "match" || pcts).map(([k, t]) =>

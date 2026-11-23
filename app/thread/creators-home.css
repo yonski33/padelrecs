@@ -176,3 +176,4 @@ body:has(.tch) .tch a.tch-ytag:hover { background: #E0322B; color: #fff; }
   .tch-new-g { grid-template-columns: minmax(0, 1fr); }
 }
 @media (max-width: 559px) { .tch-boards { grid-template-columns: minmax(0, 1fr); } }
+.tch-top-n { font-size: .6em; font-weight: 600; color: var(--muted); margin-left: 4px; }
