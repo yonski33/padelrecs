@@ -61,7 +61,8 @@ export function tiktokStances(takes: TikTokTake[]) {
   for (const t of takes) { const x = latest.get(t.handle); if (!x || t.date > x.date) latest.set(t.handle, t); }
   return stanceCounts([...latest.values()]);
 }
-export type Offer = { shop: string; url: string; price: number; inStock: boolean; edition: string | null; affiliate: boolean };
+export type Offer = { shop: string; url: string; price: number; inStock: boolean; edition: string | null; affiliate: boolean;
+  /** When the price was read (ISO); the page shows it for Amazon's price, as Amazon asks. */ checkedAt?: string | null };
 
 /** "$110", "$159.99". */
 /** A shop's name short enough for the price box (owner 2026-11-23): no "(brand store)" / "(sold by …)" note, no trailing

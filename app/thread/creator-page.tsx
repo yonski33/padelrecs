@@ -130,7 +130,10 @@ export async function CreatorProductBody({ slug }: { slug: string }) {
   const low = lowestOffer(offers);
   const relOf = (aff: boolean) => aff ? "sponsored nofollow noopener" : "nofollow noopener";
   // The one filled Check price button (README rule) goes to a lowest in-stock shop; without prices, to the live page's link.
-  const cta = low ? { url: low.shops[0]!.url, rel: relOf(low.shops[0]!.affiliate) } : shop;
+  // On a tie for the lowest price the button goes to Amazon, or another affiliate link (owner 2026-11-23: until the other
+  // shops have affiliate codes); otherwise the first shop at that price.
+  const top = low ? low.shops.find(o => o.shop === "Amazon" || o.affiliate) ?? low.shops[0]! : null;
+  const cta = top ? { url: top.url, rel: relOf(top.affiliate || top.shop === "Amazon") } : shop;
   const how = howItPlays(rs), agree = agreeChips(rs);
   // The at-a-glance table (owner 2026-11-23): reviewer, take and the short key point only, in the reviews' own order.
   const glance = rs;
@@ -155,7 +158,10 @@ export async function CreatorProductBody({ slug }: { slug: string }) {
   // Up to 3 shops (SkinRecs 4, owner 2026-11-23: "show few stores") in the price box.
   const n = stanceCounts(rs), buy = offers.filter(o => o.inStock).slice(0, SKIN ? 4 : 3);
   // The button's own shop is left out of the list under it; "In stock at N shops" still counts it.
-  const listed = buy.filter(o => !(low && o.url === low.shops[0]!.url));
+  const listed = buy.filter(o => !(top && o.url === top.url));
+  // Amazon's price carries its "as of" time (Amazon's rule), from the daily price job.
+  const amzRow = buy.find(o => o.shop === "Amazon" && o.checkedAt);
+  const amazonAsOf = amzRow ? new Date(amzRow.checkedAt!).toLocaleString("en-US", { month: "short", day: "numeric", hour: "numeric", minute: "2-digit", timeZone: "UTC" }) : null;
   // Similar paddles mentioned: other catalogue paddles the reviews name, with their lowest stored price.
   const named = mentions(rs, allRows, r.id).map(m => ({ ...m, href: m.row.href, price: staged[m.row.slug]?.price ?? null }));
 
@@ -192,7 +198,7 @@ export async function CreatorProductBody({ slug }: { slug: string }) {
               <span className="thc-pbox-s">{/* The shops listed below (owner 2026-11-23), not every in-stock offer. */}{buy.length > 0 && `In stock at ${plural(buy.length, "shop")}`}</span></>}
             {/* With a price shown (owner 2026-11-23) the button names its shop: the lowest in-stock shop ("Desert Paddles ›",
                 its "(brand store)" note left off), or on SkinRecs "Amazon ›". */}
-            {cta && <a className="thc-cta wide" href={cta.url} target="_blank" rel={cta.rel}>{low ? `${shortShop(low.shops[0]!.shop)} ›` : SKIN && shop ? `${shop.where} ›` : "Check price ↗"}</a>}
+            {cta && <a className="thc-cta wide" href={cta.url} target="_blank" rel={cta.rel}>{top ? `${shortShop(top.shop)} ›` : SKIN && shop ? `${shop.where} ›` : "Check price ↗"}</a>}
             {/* The affiliate note under the shop button (owner 2026-11-23), linking to the site's disclosure page. */}
             {SKIN && !low && shop && <span className="thc-pbox-on">{shop.rel.includes("sponsored")
               ? <>{`Affiliate link: ${niche.site.name} may earn a small commission. `}<a href={th("/affiliate-disclosure")}>Learn more</a></> : `on ${shop.where}`}</span>}
@@ -201,7 +207,7 @@ export async function CreatorProductBody({ slug }: { slug: string }) {
             {listed.length > 0 && <div className="thc-pbox-list">{listed.map(o => <div key={o.shop} className="thc-shop2"><strong title={o.shop}>{shortShop(o.shop)}</strong>
               <span className="thc-price">{usd(o.price)}</span><a className="thc-mono" href={o.url} target="_blank" rel={relOf(o.affiliate)}>check ↗</a></div>)}</div>}
             {/* Back under the shops (owner 2026-11-23): the check date and, where any link is one, the affiliate note. */}
-            {page.prices && buy.length > 0 && <span className="thc-note">{`Checked ${shortDay(page.prices.checked)}.${buy.some(o => o.affiliate) ? " Some links are affiliate links." : ""}`}</span>}
+            {page.prices && buy.length > 0 && <span className="thc-note">{`Checked ${shortDay(page.prices.checked)}.${amazonAsOf ? ` Amazon price as of ${amazonAsOf} UTC.` : ""}${buy.some(o => o.affiliate || o.shop === "Amazon") ? " Some links are affiliate links." : ""}`}</span>}
           </section>
           {/* SkinRecs (owner mock 2026-11-23): the fit check sits under Check price, where one shop leaves room. */}
           {SKIN && !low && <SkinCompactFit id={r.id} wire={skinWire} links={skinLinks} side/>}

@@ -46,9 +46,14 @@ export function takeFromRow(r: Record<string, unknown>): TikTokTake {
     tags: list(r.tags).slice(0, 3), disclosure: "", url: String(r.url), keyPoint: str(r.key_point) };
 }
 /** creator_prices rows as offers, in stock first then cheapest, and the newest check date. */
-export function offersFromRows(rows: Record<string, unknown>[]): { checked: string; offers: Offer[] } | null {
+/** Amazon's rule for shown prices (owner 2026-11-23, scripts/amazon-prices.mts): an Amazon row counts only while its price is
+ *  under 24 hours old; after that the page shows Amazon as a plain link again. Other shops keep their weekly checks. */
+const AMAZON_MAX_AGE_MS = 24 * 60 * 60 * 1000;
+const freshEnough = (r: Record<string, unknown>, now: number) => String(r.shop) !== "Amazon" || now - Date.parse(String(r.checked_at)) < AMAZON_MAX_AGE_MS;
+export function offersFromRows(rows: Record<string, unknown>[], now = Date.now()): { checked: string; offers: Offer[] } | null {
+  rows = rows.filter(r => freshEnough(r, now));
   const offers = rows.filter(r => (str(r.currency) ?? "USD") === "USD").map(r => ({ shop: String(r.shop), url: String(r.url), price: Number(r.price),
-    inStock: r.in_stock === true || r.in_stock === "t", edition: str(r.edition), affiliate: r.affiliate === true || r.affiliate === "t" }))
+    inStock: r.in_stock === true || r.in_stock === "t", edition: str(r.edition), affiliate: r.affiliate === true || r.affiliate === "t", checkedAt: str(r.checked_at) }))
     .sort((a, b) => Number(b.inStock) - Number(a.inStock) || a.price - b.price);
   if (!offers.length) return null;
   const checked = rows.map(r => str(r.checked_at) ?? "").sort().pop()!.slice(0, 10);
