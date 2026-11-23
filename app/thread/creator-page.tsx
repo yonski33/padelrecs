@@ -29,6 +29,7 @@ import roundups from "../../db/creators/reddit-roundups.json";
 import wrapups from "../../db/creators/reviewer-wrapups.json";
 import compareLines from "../../db/creators/compare-lines.json";
 import aliases from "../../db/creators/aliases.json";
+import bestFor from "../../db/creators/best-for.json";
 import { creatorPageFor, CREATOR_VIEW, CREATOR_MIN_REVIEWS, creatorPageOn } from "../../lib/thread/sites";
 import { Avatar, CreatorReviews } from "./live/creator-reviews";
 import { MentionsProvider, type MentionTarget } from "./live/mention-links";
@@ -82,7 +83,10 @@ export async function CreatorProductBody({ slug }: { slug: string }) {
   const [page, d] = await Promise.all([creatorPage(niche.id, slug), racketData(slug)]);
   if (!page || !d) return null;
   // Reviews include the TikTok takes (owner 2026-11-22): `rs` counts one per reviewer, `feed` holds every card.
-  const { feed, counted: rs } = reviewLists(page);
+  const { feed: feed0, counted: rs } = reviewLists(page);
+  // Best for, per review (db/creators/best-for.json): written from what each reviewer says the paddle suits.
+  const bf = (bestFor as Record<string, Record<string, { who: string; why: string }>>)[niche.id] ?? {};
+  const feed = feed0.map(x => bf[x.id] ? { ...x, bestFor: bf[x.id] } : x);
   // Under CREATOR_MIN_REVIEWS reviews the product keeps its usual page.
   if (rs.length < CREATOR_MIN_REVIEWS) return null;
   const { r, row, brand, style, sim, cards } = d;

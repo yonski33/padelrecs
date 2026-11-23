@@ -617,3 +617,6 @@ body:has(.thc) .thc a.thc-men-by { color: var(--ink); font-weight: 700; text-dec
 .thc-pbox-on { display: block; text-align: center; font-size: 12.5px; line-height: 1.45; color: var(--muted); }
 body:has(.thc) .thc .thc-pbox-on a, body:has(.thc) .thc .thc-sim-aff a { color: inherit; text-decoration: underline; }
 .thc-sim-aff { display: block; margin-top: 12px; font-size: 12.5px; color: var(--muted); }
+/* Best for (owner 2026-11-23): the reviewer's reason under who it suits. */
+.thc-box.best b, .thc-box.best .thc-box-h span { color: var(--ink); }
+.thc .thc-box-s { font-size: 14px; line-height: 1.45; color: var(--body2, var(--muted)); }

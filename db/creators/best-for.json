@@ -1,0 +1,2804 @@
+{
+ "pickleball": {
+  "cr_f4e59a9b7ed4daaf": {
+   "who": "Advanced, very aggressive players",
+   "why": "Fits those who hit the sweet spot every time."
+  },
+  "cr_5f7b403e8bb96d99": {
+   "who": "Players who like flexy, heavy play",
+   "why": "Rated 9 of 10 for fast play, only 4 or 5 for soft."
+  },
+  "cr_de20d34df645f097": {
+   "who": "Higher level singles players",
+   "why": "Likes the Gen 3 feel without durability worries."
+  },
+  "cr_e90c19bbbf3c86c9": {
+   "who": "Compact swingers who dink with push",
+   "why": "Also fits players who attack shots at the net."
+  },
+  "cr_42eea38a4436754e": {
+   "who": "Very advanced players, 4.0 to 4.5+",
+   "why": "High risk, high reward, and it punishes every mistake."
+  },
+  "cr_cac78f2afa755965": {
+   "who": "Power players who want control",
+   "why": "Also for those who like new paddle innovation."
+  },
+  "cr_79df163fb886ec99": {
+   "who": "Advanced compact swingers",
+   "why": "Best for players who play loose, as nerves get punished."
+  },
+  "cr_50bf0cfd399a0669": {
+   "who": "Offense minded power players",
+   "why": "Strong topspin on drives and dip on third shots."
+  },
+  "cr_2ea0e22b45feacfc": {
+   "who": "Singles and drive first players",
+   "why": "Fine for those who accept the added weight."
+  },
+  "cr_fd7317fd31d9ae2f": {
+   "who": "Intermediate to advanced players",
+   "why": "Suits those wanting an aggressive hybrid, not beginners."
+  },
+  "cr_77cbcb30b875a079": {
+   "who": "Players who want control",
+   "why": "Called a no-brainer for control seekers."
+  },
+  "cr_2468c38b17f4d501": {
+   "who": "Players wanting spin and sweet spot",
+   "why": "Gets the Forza's spin and sweet spot with a bit more power."
+  },
+  "cr_433ca262916e8cae": {
+   "who": "Stiff, low swing weight fans",
+   "why": "Also good for those who like to customize."
+  },
+  "cr_86115ccb0f7ec19d": {
+   "who": "Hand speed and hand battle players",
+   "why": "Described as having a massive sweet spot."
+  },
+  "cr_0d5a95985d430f2d": {
+   "who": "All court players wanting spin and pop",
+   "why": "Offers elite spin and stability, though not a power paddle."
+  },
+  "cr_d9662540393b1096": {
+   "who": "Players who like a longer handle",
+   "why": "Picks the CRBN 1 for handle length, the CRBN 3 for weight."
+  },
+  "cr_6129f50ce0e552d0": {
+   "who": "All court players wanting one paddle",
+   "why": "Heavy stock, and the muted feel may not suit lively paddle fans."
+  },
+  "cr_4b38b9147acc2d64": {
+   "who": "Players who adjust to a muted feel",
+   "why": "Not for those wanting effortless power or ultra fast hands."
+  },
+  "cr_d104703165efc31f": {
+   "who": "Players who pop up drops and resets",
+   "why": "Gives control without losing power."
+  },
+  "cr_9ebcfd8b9ba5a19d": {
+   "who": "Players wanting light power and spin",
+   "why": "Not called a great value."
+  },
+  "cr_1aeb81975f20985e": {
+   "who": "Placement and spin players",
+   "why": "Lacks firepower for awkward putaways."
+  },
+  "cr_7ebee2cc006e93d3": {
+   "who": "Spin players",
+   "why": "Not for fans of stiff, fast power paddles."
+  },
+  "cr_1c4b8109a225149c": {
+   "who": "Players wanting a specific feel",
+   "why": "Best with budget room and a liking for the shape options."
+  },
+  "cr_8f27f9aebd05816b": {
+   "who": "Aggressive doubles and pace singles",
+   "why": "Too much power for beginners."
+  },
+  "cr_b22aefe8787a250f": {
+   "who": "Lower intermediate to advanced players",
+   "why": "May be too much for brand new players."
+  },
+  "cr_cf57ba436f82bad6": {
+   "who": "Players who found the original stiff",
+   "why": "Fewer pop ups and a better soft game than the original."
+  },
+  "cr_82b0ac6b72e02f45": {
+   "who": "Players without the Power series",
+   "why": "A variation, not an upgrade, for current owners."
+  },
+  "cr_1f6e146d3e236254": {
+   "who": "Players who find resets harder",
+   "why": "Helps the reset game."
+  },
+  "cr_ac7a011e6f375bfb": {
+   "who": "All court players wanting more reach",
+   "why": "More reach than the Pegasus without going elongated."
+  },
+  "cr_ab7885435164489b": {
+   "who": "Budget power players with a soft game",
+   "why": "Not for players who cannot control poppy paddles."
+  },
+  "cr_d4fbfaa431219861": {
+   "who": "Spin and power players on a budget",
+   "why": "Not for control players or those wanting the biggest sweet spot."
+  },
+  "cr_3967b283d43db537": {
+   "who": "Budget players wanting forgiving power",
+   "why": "Not for those wanting long term spin durability."
+  },
+  "cr_4db78c9298ce783b": {
+   "who": "Budget spin players",
+   "why": "Not for anyone wanting explosive pop."
+  },
+  "cr_22999b98a03bc07f": {
+   "who": "Players wanting predictable control",
+   "why": "Not for those wanting a smooth, dense, soft feel."
+  },
+  "cr_28c4d3f91674c4aa": {
+   "who": "Intermediate players upgrading",
+   "why": "Gives control, spin and consistency, but not max pop."
+  },
+  "cr_cdce7a5b1e9d9132": {
+   "who": "Players who mostly dink at the net",
+   "why": "Slight edge for kitchen dinking."
+  },
+  "cr_d92de6798a653323": {
+   "who": "Casual players on their first paddle",
+   "why": "Good control and fast hands in kitchen hand battles."
+  },
+  "cr_01b9f57411fb91df": {
+   "who": "Beginners",
+   "why": "Worth more than cheaper 30 or 40 dollar paddles."
+  },
+  "cr_0799983664ae88cf": {
+   "who": "Newer players struggling with control",
+   "why": "The Pro suits those wanting extra pop."
+  },
+  "cr_0595a37f508663ea": {
+   "who": "Beginners and upgrading intermediates",
+   "why": "Better players get less from it than beginners do."
+  },
+  "cr_7b7b990df2c0005a": {
+   "who": "Touch and control players",
+   "why": "Not for those used to thermoform spin and power."
+  },
+  "cr_23c17403df5f07db": {
+   "who": "Control focused all court players",
+   "why": "Less suited to those wanting a lighter, quicker paddle."
+  },
+  "cr_c6fc5d629142c41f": {
+   "who": "Doubles players on a budget",
+   "why": "Singles players might prefer the thermoformed Flash."
+  },
+  "cr_a44470b2153df9e3": {
+   "who": "Players with tennis elbow",
+   "why": "The heavier V7 is too much for most people."
+  },
+  "cr_c5b3df95c844c269": {
+   "who": "Players who dislike foam edge paddles",
+   "why": "Wants more pop than gen 1 raw carbon gives."
+  },
+  "cr_cf5a292ef31d0cae": {
+   "who": "Newer players, poppy paddle skeptics",
+   "why": "Weight can be added but not removed."
+  },
+  "cr_fae7bafe9ada4487": {
+   "who": "Most players unsure of their style",
+   "why": "Good as one paddle before choosing power or control."
+  },
+  "cr_fbdb5faebc2537e2": {
+   "who": "Kitchen players wanting steady drops",
+   "why": "Also for those who find the Perseus too powerful."
+  },
+  "cr_f7de35cd92c57871": {
+   "who": "Elongated fans wanting quick hands",
+   "why": "Compared with a Perseus main paddle."
+  },
+  "cr_007f1e34c9ef8884": {
+   "who": "Aggressive intermediate to advanced",
+   "why": "Beginners may struggle with the pop."
+  },
+  "cr_4b809536a77483bb": {
+   "who": "Hard hitting doubles players",
+   "why": "Helps them dial it back while keeping the Joola feel."
+  },
+  "cr_894f95958d3b2e5b": {
+   "who": "Upper intermediate+ power players",
+   "why": "Pass if softness, control or spin matter more."
+  },
+  "cr_e36a22770344b5fd": {
+   "who": "Players who reset and defend a lot",
+   "why": "Tested on court with baseline and hands battle drills."
+  },
+  "cr_4341e53a1407a02c": {
+   "who": "Beginners up to about 4.5 or 5.0",
+   "why": "Not for those wanting a lot more pop."
+  },
+  "cr_32136c4ca96b6d42": {
+   "who": "Aggressive doubles players",
+   "why": "Suits fast counters and confident putaways."
+  },
+  "cr_e7900286bc32f9bf": {
+   "who": "Players wanting power with control",
+   "why": "Gave it 9 out of 10 on first impressions."
+  },
+  "cr_b0dcdc36de515ee8": {
+   "who": "Players wanting a safe daily driver",
+   "why": "Needs little management but will not bail anyone out."
+  },
+  "cr_9e0c64530fc80716": {
+   "who": "Players who can handle elite power",
+   "why": "Not for those who struggle to control the pop."
+  },
+  "cr_de2244e07e42e95b": {
+   "who": "Power players on the elongated",
+   "why": "The hybrid or standard suits finesse players."
+  },
+  "cr_4f1b6ef9a2728ae2": {
+   "who": "Players who like heavier paddles",
+   "why": "Also fits those who add lead tape at the top."
+  },
+  "cr_cd6fb6e01026b6b6": {
+   "who": "Beginner to intermediate upgraders",
+   "why": "Good value at around $140 with a code."
+  },
+  "cr_4325f87669b94653": {
+   "who": "Intermediate to advanced players",
+   "why": "Softer and more forgiving than the Joola Hyperion."
+  },
+  "cr_d572e21552801e8d": {
+   "who": "Prism fans who make their own power",
+   "why": "Very low pop, so not for strictly power players."
+  },
+  "cr_fb779c407da49cb8": {
+   "who": "Prism players ready for a step up",
+   "why": "Seen as a Prism 2.0 before moving to other brands."
+  },
+  "cr_65424fc2a867fdfe": {
+   "who": "Intermediate control paddle fans",
+   "why": "Gives more help on drives and putaways."
+  },
+  "cr_3a1fbad6547ebae9": {
+   "who": "Entry level players wanting firepower",
+   "why": "Not for fans of a stiff, responsive feel."
+  },
+  "cr_a5d3273ccbca04ae": {
+   "who": "Players who generate their own power",
+   "why": "Not for those wanting high pop or a fast paddle."
+  },
+  "cr_818e8003593899be": {
+   "who": "Prism players wanting more power",
+   "why": "Seen as an upgrade over the Prism."
+  },
+  "cr_6ad8e808bc7acf67": {
+   "who": "Serious intermediate and pro players",
+   "why": "Calls the price high but worth it."
+  },
+  "cr_2f2141b81dc550ce": {
+   "who": "Serious or professional players",
+   "why": "Cheaper paddles give most of the power for less."
+  },
+  "cr_c930d9f744e58d43": {
+   "who": "Advanced players",
+   "why": "Easy to overhit, so not for everyone."
+  },
+  "cr_cfe4fa72e46e298d": {
+   "who": "Aggressive intermediate to advanced",
+   "why": "Pop can send drives long, so not for beginners."
+  },
+  "cr_e6f78302be0ef2f8": {
+   "who": "Players moving off a Mod TA15",
+   "why": "Closest feeling paddle to a Mod."
+  },
+  "cr_282d2843fe8cf82d": {
+   "who": "Players with a developed soft game",
+   "why": "Less developed soft games may lose control."
+  },
+  "cr_825e2baaf98ce3aa": {
+   "who": "Players who can control a poppy paddle",
+   "why": "The 14 mm may be too poppy for others."
+  },
+  "cr_d77ceedb69ed4010": {
+   "who": "Older, advanced and casual blasters",
+   "why": "Not for anyone seeking control."
+  },
+  "cr_a1a57ed37846d2bf": {
+   "who": "Budget players wanting a power paddle",
+   "why": "Poppier than most Gen 3 options at this price."
+  },
+  "cr_88664cef2b00e1a1": {
+   "who": "Intermediate to advanced players",
+   "why": "Control players new to elongated shapes should look elsewhere."
+  },
+  "cr_7bf9066fb1d4b9e1": {
+   "who": "Former tennis players, all levels",
+   "why": "Elongated shape and heavier head feel like a racket."
+  },
+  "cr_e612bf9538fb18b5": {
+   "who": "Players who want command and topspin",
+   "why": "Better serves and returns than their previous paddle."
+  },
+  "cr_7e2d56e198c87459": {
+   "who": "Players who guide rather than muscle",
+   "why": "Some hand speed is lost against lighter paddles."
+  },
+  "cr_f8c2376bd905b891": {
+   "who": "Budget Gen 3 buyers under $100",
+   "why": "Offers quick warranty replacement."
+  },
+  "cr_9b313d705f31cc60": {
+   "who": "Budget Gen 3 power seekers",
+   "why": "Competes with paddles costing $150 more."
+  },
+  "cr_c97039afa4e26123": {
+   "who": "Players wanting power and spin cheap",
+   "why": "Plays like a Perseus Pro 4 at $92."
+  },
+  "cr_14c151f6d4e82c5f": {
+   "who": "Budget power seekers, 4.0 to 5.0",
+   "why": "Few beginners use it for lack of forgiveness."
+  },
+  "cr_7fa3c956c55a6249": {
+   "who": "Aggressive power players",
+   "why": "Also suits players entering pro qualifiers."
+  },
+  "cr_3dc080498263d345": {
+   "who": "Advanced intermediate+ net attackers",
+   "why": "Too much paddle for new players."
+  },
+  "cr_07923253ae7f3b0f": {
+   "who": "Any level, singles or doubles",
+   "why": "Used by a top ranked men's singles pro."
+  },
+  "cr_cf4426175aef7336": {
+   "who": "Aggressive 4.0+ players",
+   "why": "Beginners may find the pop too much."
+  },
+  "cr_44e258a0b852c9ad": {
+   "who": "Intermediate+ players new to foam",
+   "why": "Players at 3.5 or below should wait to improve."
+  },
+  "cr_48fa7ef41ac047a2": {
+   "who": "Players wanting an arm friendly paddle",
+   "why": "Stock works well, with little gained from weight."
+  },
+  "cr_c00666d814cfe05f": {
+   "who": "Intermediate to advanced players",
+   "why": "Stiff at first, so not for beginners."
+  },
+  "cr_87deea7bcc6c6c75": {
+   "who": "Players wanting mid to high tier power",
+   "why": "Newer players may find more controllable options."
+  },
+  "cr_9c29f89d076705d0": {
+   "who": "Anyone, including new players",
+   "why": "Described as a mini Boomstick for less money."
+  },
+  "cr_0c9164bdc435b2a4": {
+   "who": "Intermediate players moving into foam",
+   "why": "A Gen 3 player can pick it up with few changes."
+  },
+  "cr_162074f5f5dca233": {
+   "who": "Players who cannot get a Boomstick",
+   "why": "About $100 cheaper than the Boomstick."
+  },
+  "cr_6688c73417eb5850": {
+   "who": "Players wanting controllable power",
+   "why": "Not for those who want untamed power."
+  },
+  "cr_4dbfb4aa0929418d": {
+   "who": "Control players who value spin",
+   "why": "The standard shape is the most maneuverable and forgiving."
+  },
+  "cr_e923149e5457a94b": {
+   "who": "Control and big sweet spot seekers",
+   "why": "Has the most of both in the three shapes."
+  },
+  "cr_b327af2c7d52a0b3": {
+   "who": "Intermediate+ players, big budget",
+   "why": "Off-center shots can feel dead at times."
+  },
+  "cr_b5ef31e285d92d14": {
+   "who": "Counter hitters who like to customize",
+   "why": "Add weight near the throat for more control."
+  },
+  "cr_cdc8f8029caaf94e": {
+   "who": "Budget competitive players who tinker",
+   "why": "Stock it is average, so skip it if unwilling to add weight."
+  },
+  "cr_07b8aa1d631c1206": {
+   "who": "Starter and intermediate players",
+   "why": "Hits hard for a budget paddle once weighted."
+  },
+  "cr_8798eac38cd070fd": {
+   "who": "Players prone to tennis elbow",
+   "why": "The damping could help, and it is a budget pick."
+  },
+  "cr_45000f62809ad1fb": {
+   "who": "Tinkerers wanting budget power",
+   "why": "Not for plug and play buyers."
+  },
+  "cr_69d6194c9efbf648": {
+   "who": "Beginners and all court players",
+   "why": "Good for dinking and speedups at the kitchen line."
+  },
+  "cr_166627a4a51908ab": {
+   "who": "Beginner to intermediate all courters",
+   "why": "Good upgrade from a roughly $50 starter paddle."
+  },
+  "cr_86abf788272b7e1c": {
+   "who": "Players wanting a well rounded paddle",
+   "why": "Standard shape felt defensive for an aggressive style."
+  },
+  "cr_f82cda0c500305ed": {
+   "who": "Balanced all court players",
+   "why": "Not aggressive enough for ultra power seekers."
+  },
+  "cr_b524d5b851f15342": {
+   "who": "Players wanting an easy paddle",
+   "why": "Predictable and comfortable."
+  },
+  "cr_de44b1af5102c000": {
+   "who": "Kitchen players wanting fast hands",
+   "why": "The standard shape is fastest and most forgiving."
+  },
+  "cr_f19b777c5e4b63e3": {
+   "who": "Players wanting a light, easy paddle",
+   "why": "Otherwise prefers cheaper control paddles."
+  },
+  "cr_8ad65d2af1b5ec30": {
+   "who": "Experienced players, clear needs",
+   "why": "Gave it 9 out of 10, liking the longer handle."
+  },
+  "cr_906b3fe2a974af00": {
+   "who": "Intermediate+ hand battle players",
+   "why": "Sweet spot is smaller, so not beginner friendly."
+  },
+  "cr_a27a8d1b831f47ec": {
+   "who": "Players at 4.5 and above",
+   "why": "Hot spot makes the sweet spot feel small."
+  },
+  "cr_f0628f3b78df90b9": {
+   "who": "Aggressive net players who customize",
+   "why": "Throat is tight for large hands on two-handers."
+  },
+  "cr_98f3fc91e5488a67": {
+   "who": "Players prone to tennis elbow",
+   "why": "Did not cause elbow pain like other power paddles."
+  },
+  "cr_f199e52eda00da35": {
+   "who": "Hybrid shape fans and Loco 1 owners",
+   "why": "Worth the upgrade for Loco 1 players."
+  },
+  "cr_56a54f60e71f2292": {
+   "who": "Aggressive drivers and counter players",
+   "why": "Suits speed-ups and counters."
+  },
+  "cr_8f8f0259cd9767f6": {
+   "who": "Higher level shotmaking players",
+   "why": "Sees a case for the hybrid or widebody shape."
+  },
+  "cr_8d35739d7838934a": {
+   "who": "Players who want a CRBN foam paddle",
+   "why": "Fine if the high price is not a concern."
+  },
+  "cr_a5e9f844b4fe0126": {
+   "who": "Consistent sweet spot hitters",
+   "why": "Suits those who like a muted feel with more drive power."
+  },
+  "cr_76d283752dd2c842": {
+   "who": "Baseline and singles power players",
+   "why": "Extra reach and leverage for two-handed backhands."
+  },
+  "cr_aea741c1871a4bbd": {
+   "who": "Singles and former tennis players",
+   "why": "The E is niche but suits that group."
+  },
+  "cr_599eeb9eb8e742bd": {
+   "who": "Consistency seekers who customize",
+   "why": "A tennis player wanted more power from the series."
+  },
+  "cr_da8f48b0d1e047fc": {
+   "who": "Players wanting controllable power",
+   "why": "Like a Paddletek but with a better sweet spot."
+  },
+  "cr_06ad49262ba27767": {
+   "who": "Intermediate and advanced players",
+   "why": "Beginners should pick a cheaper pure control paddle."
+  },
+  "cr_3a4dfccfc84b5f16": {
+   "who": "Players not hungry for pop and power",
+   "why": "Forgiveness and sweet spot size go under the radar."
+  },
+  "cr_b22e64595514059d": {
+   "who": "Mixed and men's doubles players",
+   "why": "Named it their main paddle and favorite of the year."
+  },
+  "cr_a43f590b25ede258": {
+   "who": "Players comfortable with Gen 2 control",
+   "why": "Not for those already struggling with Gen 2 control."
+  },
+  "cr_07ccf3ec76c664c4": {
+   "who": "All court players with their own power",
+   "why": "Has more than enough power for them."
+  },
+  "cr_484db24bdcf4f89e": {
+   "who": "Players seeking high performance",
+   "why": "Easy resets and a big, stable sweet spot at the net."
+  },
+  "cr_90a379c32d20ecb2": {
+   "who": "Players wanting offense and finesse",
+   "why": "Resets and drops take practice for a 3.0 player."
+  },
+  "cr_127bef85d52a7eb5": {
+   "who": "Counter and hands battle players",
+   "why": "Resets were hard at first, with a very good sweet spot."
+  },
+  "cr_05d6eade01b6f399": {
+   "who": "Players who lack their own power",
+   "why": "Too much power for those wanting full control."
+  },
+  "cr_c6e6033f586d5df4": {
+   "who": "Advanced 4.5+ with a dialed soft game",
+   "why": "Dampened feel made resets harder for them."
+  },
+  "cr_dcd43ca5c6408282": {
+   "who": "Players wanting controllable power",
+   "why": "Shape does every shot, though power needs some adjusting."
+  },
+  "cr_b04c4de1118f34ac": {
+   "who": "Elite power seekers, big sweet spot",
+   "why": "Prefers the hybrid shape over the elongated."
+  },
+  "cr_ed87bdde5392dc4d": {
+   "who": "Experienced players who adapt quickly",
+   "why": "Not for beginners or slow adapters to a new paddle."
+  },
+  "cr_4109cd669054e115": {
+   "who": "Players who accept a long break-in",
+   "why": "Not for those wanting value or a head light paddle."
+  },
+  "cr_02f6f809fc9f7e7d": {
+   "who": "Offense seekers who dislike stiff feel",
+   "why": "More stable side to side than the elongated version."
+  },
+  "cr_d814f4248e583d3c": {
+   "who": "Beginner and intermediate players",
+   "why": "Good first premium paddle for players who add their own power."
+  },
+  "cr_5981cfcb16662cd0": {
+   "who": "Beginners and most players",
+   "why": "Most beginner friendly of the $100 widebodies."
+  },
+  "cr_cd742eca43c6ee17": {
+   "who": "Elongated players wanting pace",
+   "why": "Pass if resets and blocks must stay low."
+  },
+  "cr_8cf691cde58c86f9": {
+   "who": "Singles and attacking players",
+   "why": "The Aura suits beginners, lower intermediates and touch players."
+  },
+  "cr_57a02e998ef2d661": {
+   "who": "Players with arm problems",
+   "why": "Feels mega plush with a lot of dwell."
+  },
+  "cr_612a2d78e6d5bd1c": {
+   "who": "Beginners, budget players, improvers",
+   "why": "Dwell is better than their main paddle at a close level."
+  },
+  "cr_16c763a36b473709": {
+   "who": "Aggressive players on a budget",
+   "why": "Power without fully losing control and feel."
+  },
+  "cr_6259c55b308d8c14": {
+   "who": "Players wanting immediate pop",
+   "why": "Not for those wanting maximum dwell and easy resets."
+  },
+  "cr_04fc9c3c311adff4": {
+   "who": "All out power players",
+   "why": "Little help in the soft game."
+  },
+  "cr_f25d305a7946f0b9": {
+   "who": "Advanced, aggressive players",
+   "why": "Not for beginners or intermediates."
+  },
+  "cr_7a532850fe664898": {
+   "who": "Hybrid leaning all court players",
+   "why": "Not for those wanting max power, spin or widebodies."
+  },
+  "cr_ec41da0d04cd8943": {
+   "who": "Players who speed up first and slice",
+   "why": "Rocket in close hands battles and singles."
+  },
+  "cr_6c8c70706a5a945c": {
+   "who": "Players who are not advanced",
+   "why": "Comfortable to use, with the new surface meant to fix spin."
+  },
+  "cr_162220f8abfe9167": {
+   "who": "Control players wanting lasting spin",
+   "why": "Offers a quiet feel, but is not a pure power paddle."
+  },
+  "cr_9676f18e9e7d6b63": {
+   "who": "Elongated power paddle fans",
+   "why": "Slightly more control oriented than the Perseus Pro 4."
+  },
+  "cr_cb9cc93b69beb8cd": {
+   "who": "Intermediate+ attackers, ex-tennis",
+   "why": "Not for beginners or soft paddle fans."
+  },
+  "cr_8a1e3d824ec51956": {
+   "who": "Aggressive players with tennis roots",
+   "why": "Suits those who reach for shots."
+  },
+  "cr_53ec5177938ae01b": {
+   "who": "Intermediate and advanced players",
+   "why": "The 14 mm has less power and is easier to control."
+  },
+  "cr_3dc5dbcd03ada42d": {
+   "who": "Players who found Perseus head heavy",
+   "why": "Foam at the elbows helps stability."
+  },
+  "cr_240ce03b4932a90d": {
+   "who": "Aggressive and former tennis players",
+   "why": "Slightly more dwell helps third shot drops."
+  },
+  "cr_7228010e75016d0a": {
+   "who": "Tennis style players with a good drive",
+   "why": "Bigger drives feel safer."
+  },
+  "cr_8a3143bf33750287": {
+   "who": "Players who hit higher on the face",
+   "why": "Its sweet spot sits slightly higher than the Perseus."
+  },
+  "cr_03c9e335474829f7": {
+   "who": "Players who found the Perseus too much",
+   "why": "Advises a demo first."
+  },
+  "cr_a8e1d168e344d47d": {
+   "who": "Advanced and rising intermediates",
+   "why": "Not for beginners or soft paddle fans."
+  },
+  "cr_75af9ec37d510589": {
+   "who": "Players who attack and end points",
+   "why": "Not for patient dinking and reset play."
+  },
+  "cr_702c192668bf1f43": {
+   "who": "Power players, 14.3 for more control",
+   "why": "The 12.7 suits those who need less forgiveness."
+  },
+  "cr_1b857bf4efc5ee06": {
+   "who": "Advanced (12.7), intermediate (14.3)",
+   "why": "Resets and dinks need more skill."
+  },
+  "cr_958c3e0139db6843": {
+   "who": "Aggressive players",
+   "why": "The 14.3 is the most player friendly option."
+  },
+  "cr_135235b44c62cc6c": {
+   "who": "Standard shape power seekers",
+   "why": "Offers a big sweet spot and a lifetime warranty."
+  },
+  "cr_851c3a94432fc0e2": {
+   "who": "Power and pop players",
+   "why": "Not for control seekers or tight budgets."
+  },
+  "cr_381e171256e0bddc": {
+   "who": "Players who found the Ripple too poppy",
+   "why": "Do not want to drop to Gen 2."
+  },
+  "cr_89f66f59f7762624": {
+   "who": "Most players",
+   "why": "More accessible than the CFS due to weight and price."
+  },
+  "cr_bf1077e2a62a3814": {
+   "who": "Players wary of head heavy weight",
+   "why": "The CAS 16 adds control with a bit more power."
+  },
+  "cr_dca047bfec7ad37c": {
+   "who": "Players wanting steady put away power",
+   "why": "A very hard grip may cause control problems."
+  },
+  "cr_b01b2e96eead1a1b": {
+   "who": "Stiff, head heavy paddle fans",
+   "why": "Hard to control below 4.0."
+  },
+  "cr_71f9b0850a4c6d60": {
+   "who": "Elongated players wanting spin, touch",
+   "why": "Not for those who prefer lighter paddles."
+  },
+  "cr_47ed851b35689349": {
+   "who": "Players wanting spin, pop, soft feel",
+   "why": "Offers more offense than the Coral Pro."
+  },
+  "cr_31bd5cd29928d443": {
+   "who": "Fast players who finish points",
+   "why": "Not for anyone who struggles with dinks and resets."
+  },
+  "cr_a893fe8ec56f32ae": {
+   "who": "Aggressive stiff paddle fans",
+   "why": "Good for hands battles and put aways."
+  },
+  "cr_f6a9dcb9977335a6": {
+   "who": "Control players wanting ample output",
+   "why": "Holds the ball longer and is easier to redirect."
+  },
+  "cr_a4b6170aa7a668c1": {
+   "who": "Pro IV fans wanting a bit more control",
+   "why": "Slight variation, not a clear upgrade."
+  },
+  "cr_28888114d27697e4": {
+   "who": "Advanced players with own power",
+   "why": "Probably not for players below about 5.0."
+  },
+  "cr_6f7a60a9ca57496c": {
+   "who": "Pro IV fans wanting a hybrid",
+   "why": "Softer feel with a little more control."
+  },
+  "cr_f032eac4da1d378b": {
+   "who": "Players wanting easier drops, resets",
+   "why": "Not for those who love explosive paddles."
+  },
+  "cr_e24c131a9b6793c4": {
+   "who": "Doubles players who value hand speed",
+   "why": "The Perseus suits singles and 4.0 to 4.5+ elongated fans."
+  },
+  "cr_05560332d22d2f11": {
+   "who": "Singles and ground stroke players",
+   "why": "Foam edges and throat foam add stability."
+  },
+  "cr_19dabdff955b6588": {
+   "who": "Beginners and advanced light pop fans",
+   "why": "One of the best budget options at about $126 with a code."
+  },
+  "cr_3923fc47e555c5dd": {
+   "who": "Quick hands and budget customizers",
+   "why": "Plush feel with good touch for the price."
+  },
+  "cr_5a3cc83528ac844e": {
+   "who": "Widebody fans wanting more power",
+   "why": "Fine for poppy paddle fans willing to adjust."
+  },
+  "cr_7c3600b29ef3e606": {
+   "who": "Most amateurs on a budget",
+   "why": "Full swing power matches the ESQ at about half the price."
+  },
+  "cr_a12a450e2868a1c1": {
+   "who": "Players new to power with control",
+   "why": "Handle can be built up to 5.75 inches."
+  },
+  "cr_66ad77d7ed521fbe": {
+   "who": "Poppy paddle and stock setup fans",
+   "why": "Less suited to those used to plush, forgiving paddles."
+  },
+  "cr_642e048ed5f842a0": {
+   "who": "Players who handle a tight sweet spot",
+   "why": "Shape may be more useful for players over 40."
+  },
+  "cr_ca571090816b65c4": {
+   "who": "All court Bantam line fans",
+   "why": "The 14.3 mm is the better fit for them."
+  },
+  "cr_ebf8b9bf513250d2": {
+   "who": "Firepower and durability seekers",
+   "why": "Gives up sweet spot size for it."
+  },
+  "cr_e48715bbaf3dad90": {
+   "who": "Higher level center hitters",
+   "why": "Sweet spot is tight with a dead spot at the top."
+  },
+  "cr_713e5d76c20718f0": {
+   "who": "Power players who love driving",
+   "why": "Drops and transition play felt fantastic."
+  },
+  "cr_480311317f23f030": {
+   "who": "Aggressive and older players",
+   "why": "Extra whip for overheads and singles passes."
+  },
+  "cr_ec6003b7c8b45ca8": {
+   "who": "Intermediate+ all court power players",
+   "why": "More forgiving than the Gearbox Pro Power Elongated."
+  },
+  "cr_2f14022a671ec9f7": {
+   "who": "Control players wanting more power",
+   "why": "Hard hitters use it too."
+  },
+  "cr_f34d0b4fd9dc0898": {
+   "who": "Fans of 16 mm or 13 to 14 mm feel",
+   "why": "Choose the 14.3 for 16 mm fans, the 12.7 for thinner."
+  },
+  "cr_b4f74f3afd5774f9": {
+   "who": "Singles and aggressive doubles bangers",
+   "why": "The 14.3 balances pop and power without losing the soft game."
+  },
+  "cr_f834ea0c68dda64d": {
+   "who": "Power seekers wanting a simple build",
+   "why": "Soft game takes more skill than on foam paddles."
+  },
+  "cr_bcd99e81f7843b1a": {
+   "who": "Aggressive players who commit to it",
+   "why": "Players who dink and play soft should skip it."
+  },
+  "cr_db55133a83b41690": {
+   "who": "4.0+ control and forgiveness seekers",
+   "why": "Also for existing Paddletek fans, but not beginners."
+  },
+  "cr_06989fa0af513176": {
+   "who": "Elongated full foam fans",
+   "why": "Hard to recommend at $250."
+  },
+  "cr_135718014a3de97c": {
+   "who": "Soft paddle fans wanting more pop",
+   "why": "Called probably the brand's best."
+  },
+  "cr_aea79861ea4a115c": {
+   "who": "Higher level players only",
+   "why": "Hard to recommend at $250."
+  },
+  "cr_d9e357cded08ac9e": {
+   "who": "Power generators who prioritize spin",
+   "why": "Arm friendly, with a vibration free feel."
+  },
+  "cr_e73f4b90dd12a69d": {
+   "who": "Advanced, aggressive power players",
+   "why": "Hard to recommend at $250, but fine at $150 to $200."
+  },
+  "cr_853389a7f9f4eaa2": {
+   "who": "Small hands and tennis elbow players",
+   "why": "Long serves and drives need little arm swing."
+  },
+  "cr_20a708074504b4b1": {
+   "who": "Soft handed or no soft game players",
+   "why": "Polarizing, so a demo is advised first."
+  },
+  "cr_c033816d4dd72301": {
+   "who": "Bangers",
+   "why": "Easy resets and blocks, but the R1 is heavy."
+  },
+  "cr_fe073d776d3c4460": {
+   "who": "Advanced and former tennis players",
+   "why": "Wants as much power and pop as possible."
+  },
+  "cr_e9cfe95fe712dfc3": {
+   "who": "Higher level players who control power",
+   "why": "Not for beginners at $280."
+  },
+  "cr_839055a744e00d1f": {
+   "who": "Aggressive players who attack early",
+   "why": "Values the reinforced build and USAP approval."
+  },
+  "cr_e9c3260ae1160b25": {
+   "who": "Gearbox power fans wanting forgiveness",
+   "why": "Feels closer to a true 16 mm Gen 2 paddle."
+  },
+  "cr_50bcdcaec2a32446": {
+   "who": "Intermediate+ players who practice",
+   "why": "Not for newer players."
+  },
+  "cr_5d14c7430a8ef630": {
+   "who": "Intermediate+ spin, fast hands players",
+   "why": "Caused much less tennis elbow than Gearbox paddles."
+  },
+  "cr_04ce7b832cdb330c": {
+   "who": "Flicky players with their own power",
+   "why": "Frustrating for slow swingers."
+  },
+  "cr_c273029e1586ed23": {
+   "who": "Proton Series 2 fans wanting power",
+   "why": "Elongated face makes dinks easy near the kitchen."
+  },
+  "cr_75e22d7f8bc70a39": {
+   "who": "Aggressive advanced players",
+   "why": "Not for those wanting light paddles or top spin."
+  },
+  "cr_6e8f9c09efb4de42": {
+   "who": "Tennis players with good mechanics",
+   "why": "Not for lower level players."
+  },
+  "cr_68a6392261e7ab2a": {
+   "who": "Advanced and ex-tennis power seekers",
+   "why": "The Pro 4 was preferred for its larger sweet spot."
+  },
+  "cr_167a82ee86412c80": {
+   "who": "Full swing players with deep serves",
+   "why": "Not for winning hand battles."
+  },
+  "cr_d9d2b4445e77123f": {
+   "who": "Players with smooth, fluid swings",
+   "why": "Hard to control for jerky, stiff swings."
+  },
+  "cr_5c047f6b3ee1d065": {
+   "who": "Skilled players who hit centered",
+   "why": "Compared to a blade iron in golf."
+  },
+  "cr_b8a1bae7a046cabf": {
+   "who": "Players wanting controllable power",
+   "why": "Also suits those without much upper body strength."
+  },
+  "cr_70323084cabdb3c4": {
+   "who": "Pace players with soft hands",
+   "why": "Rely on pace and already have touch."
+  },
+  "cr_0b67abbe189b715c": {
+   "who": "High intermediate+ compact swingers",
+   "why": "Balls fly long on full swings, so not for control players."
+  },
+  "cr_2f7d9bf56fe348ad": {
+   "who": "Players who liked the Boomstik",
+   "why": "Plays almost identically at a much lower price."
+  },
+  "cr_fd5cba4930678be5": {
+   "who": "Gen 3 feel in a Gen 4 foam paddle",
+   "why": "Plays like a Gen 3 paddle."
+  },
+  "cr_98802086fc279d02": {
+   "who": "Widebody players wanting high power",
+   "why": "Not for those who struggle to keep shots in."
+  },
+  "cr_0a5efc7c2cbb177f": {
+   "who": "Power seekers",
+   "why": "No reason to switch to the OMNI if already loved."
+  },
+  "cr_4c45819f2a39ea23": {
+   "who": "Max power seekers",
+   "why": "Hard to control for those uneasy with the slow game."
+  },
+  "cr_e06e3c6f8bfa3c74": {
+   "who": "Players at about 4.5 and above",
+   "why": "Not for budget buyers or weak soft games."
+  },
+  "cr_6d10718f8cf145a5": {
+   "who": "Players wanting max legal power",
+   "why": "Honolulu full foam is cheaper for those not needing it."
+  },
+  "cr_5909dcc434040a79": {
+   "who": "Lower to mid level players",
+   "why": "Hitting hard makes it worse."
+  },
+  "cr_e7b425f925045b2f": {
+   "who": "Beginner to intermediate upgraders",
+   "why": "Upgrading from a $100 or Amazon paddle."
+  },
+  "cr_06af36159bac22ea": {
+   "who": "Beginner to intermediate players",
+   "why": "Wider shape suits players who need the sweet spot."
+  },
+  "cr_7482201ada156a97": {
+   "who": "Players wanting a Selkirk foam control",
+   "why": "Almost half the price of a 008."
+  },
+  "cr_3ab92f3212846bfb": {
+   "who": "High power players wanting control",
+   "why": "Softer and more muted than the Pro 4."
+  },
+  "cr_863f3ff264f8275a": {
+   "who": "Players wanting forgiving power",
+   "why": "The 16 mm suits stability, the 14 mm fast hands."
+  },
+  "cr_97059be8ffe05e1e": {
+   "who": "Singles players",
+   "why": "Feels like a Boomstik without the weights."
+  },
+  "cr_0a8494cd0d9d2b8c": {
+   "who": "Power players with a soft touch",
+   "why": "Not for beginners or those relying on a soft game."
+  },
+  "cr_05157d697193a611": {
+   "who": "Aggressive, offensive players",
+   "why": "Works for hybrid players who play soft."
+  },
+  "cr_ee39a05a492b5a7a": {
+   "who": "High intermediate+ compact swingers",
+   "why": "Not for control oriented or crafty players."
+  },
+  "cr_4020ffa5fa1ed463": {
+   "who": "Tinkerers wanting spicy counters",
+   "why": "The Boomstik is easier for non tinkerers."
+  },
+  "cr_fdfc6a630dcbd147": {
+   "who": "Tennis players learning pickleball",
+   "why": "Plenty of power for both drives and the soft game."
+  },
+  "cr_8800120bce8e4326": {
+   "who": "Players wanting spin and arm comfort",
+   "why": "Fast hands and an easy feel on the wrist and elbow."
+  },
+  "cr_13ec901abfce1b25": {
+   "who": "Players at 4.5 and below",
+   "why": "They expect most to prefer it stock."
+  },
+  "cr_0f329822b79538d1": {
+   "who": "Players who can handle extra weight",
+   "why": "Suggests a setup with more weight on top."
+  },
+  "cr_7a245608bafa27fb": {
+   "who": "Black Opal fans wanting more control",
+   "why": "Keeps the power and feel with more forgiveness."
+  },
+  "cr_3c2a2b27fa079404": {
+   "who": "Intermediate and advanced players",
+   "why": "Easy for intermediates, balanced all around for advanced."
+  },
+  "cr_21c957ad9ea03899": {
+   "who": "Aggressive baseline players",
+   "why": "Likely to disappoint those wanting forgiveness without setup."
+  },
+  "cr_7266fbef5931f101": {
+   "who": "Players coming off Boomsticks",
+   "why": "Power and pop stay manageable and worth the price."
+  },
+  "cr_3a36b02825db3327": {
+   "who": "Players with tennis elbow",
+   "why": "Suggests the wide body shape for them."
+  },
+  "cr_6bbcdfb4a6a7a381": {
+   "who": "Spin and all-court balance players",
+   "why": "Less suited to newer players."
+  },
+  "cr_d4397ea12b2eaccc": {
+   "who": "3.0 to 4.5 players staying offensive",
+   "why": "Easier control while still being offensive."
+  },
+  "cr_b0ce073eedff31fd": {
+   "who": "Players rated 3.0 and above",
+   "why": "UPA only, so not for USAPA sanctioned play."
+  },
+  "cr_10d6ff8f48a7037f": {
+   "who": "Players wanting durable high spin",
+   "why": "Worth the extra $20 if USAPA certification is not needed."
+  },
+  "cr_379bc27d7015c3df": {
+   "who": "Control, spin and durability seekers",
+   "why": "Gets them without moving into the power category."
+  },
+  "cr_4873602570808e05": {
+   "who": "Soft game players",
+   "why": "Wide body for most; a poor fit for raw power."
+  },
+  "cr_fe378d1d2c0dd1d4": {
+   "who": "Players 4.0 and below",
+   "why": "A strong paddle without spending $200."
+  },
+  "cr_c7c3f8c4b2af2c3a": {
+   "who": "Players moving into power paddles",
+   "why": "A mix of control and power without losing control."
+  },
+  "cr_235e5ee8e878d97b": {
+   "who": "Players moving up from an older paddle",
+   "why": "Could be a significant step up; improves with more hours."
+  },
+  "cr_5ba045253a9a831a": {
+   "who": "3.0 to 4.5 players",
+   "why": "Beginners may find the inconsistency off-putting."
+  },
+  "cr_9d61477918fd6718": {
+   "who": "Budget buyers who like elongated",
+   "why": "Faster in the hand with less weight and foam."
+  },
+  "cr_1e6f20e8384eea5f": {
+   "who": "Players willing to tinker",
+   "why": "Needs added weight, then plays like a pricier Loco."
+  },
+  "cr_1d7993318b2eb5ae": {
+   "who": "Players buying a single all-rounder",
+   "why": "Pinpoint control, reliable spin and enough pop."
+  },
+  "cr_b36847d4f37dbdfc": {
+   "who": "Budget players avoiding added weight",
+   "why": "Plays better out of the box than the Quanta."
+  },
+  "cr_82c6b663ab3b3674": {
+   "who": "Players wanting forgiveness",
+   "why": "Points them to the Hyper shape for its twist weight."
+  },
+  "cr_a18d41d1e7b8aad5": {
+   "who": "Players undecided between shapes",
+   "why": "Picks the elongated, but current widebody users should stay."
+  },
+  "cr_4f907bc08b83d08e": {
+   "who": "Hard hitters going pro",
+   "why": "A fairly good pick, though other paddles give more value."
+  },
+  "cr_a4c20ac376a256e7": {
+   "who": "Intermediate to advanced players",
+   "why": "Best with a tennis background; not for beginners or budget buyers."
+  },
+  "cr_083ef39dfcb155fa": {
+   "who": "Singles players",
+   "why": "Great singles paddle, or doubles for disciplined ex tennis players."
+  },
+  "cr_9512861211cebc7a": {
+   "who": "Control-first players who like spin",
+   "why": "Full foam absorbs vibration, which helps a sensitive arm."
+  },
+  "cr_e461bce966c26fb8": {
+   "who": "Players wanting soft, spinny and light",
+   "why": "Not for maximum firepower or the easiest sweet spot."
+  },
+  "cr_09975ea1d41c4e14": {
+   "who": "Players at 3.5 and up",
+   "why": "They can control it without worrying about pop."
+  },
+  "cr_dd18ecc092d1c70a": {
+   "who": "Aggressive all-court spin players",
+   "why": "Not for those wanting a heavier stock paddle or high pop."
+  },
+  "cr_ea9fee819d5c6dee": {
+   "who": "Players who attack first",
+   "why": "Also suits older players and beginners needing power."
+  },
+  "cr_a94c0229571869c0": {
+   "who": "Baseline drivers who use dwell",
+   "why": "More aggressive than the Jelly Bean."
+  },
+  "cr_66fd64b220ef3144": {
+   "who": "Players wanting touch, stability, spin",
+   "why": "Soft game is easy with no long adjustment."
+  },
+  "cr_f529a5f55881397d": {
+   "who": "Players finding Power 2 too poppy",
+   "why": "Also suits those who found the Jellybean 2 too soft."
+  },
+  "cr_7ba37d2cd44fd74e": {
+   "who": "Players who dislike power paddles",
+   "why": "Consistent and control oriented, with solid resets and easy spin."
+  },
+  "cr_507e2381b8c1b0b0": {
+   "who": "Players moving into Gen 3",
+   "why": "Power is approachable and linear; not for maximum power."
+  },
+  "cr_b61c9d0d091da0d9": {
+   "who": "Players wanting mid-tier power and pop",
+   "why": "Muted feel, and no need to modify the paddle."
+  },
+  "cr_a5716700f35954bf": {
+   "who": "Power players accepting premium price",
+   "why": "Priced at a premium for a power paddle."
+  },
+  "cr_54e726f4d8d77d69": {
+   "who": "Newer competitive players",
+   "why": "The width gives more grace and a slightly bigger sweet spot."
+  },
+  "cr_036c83618c77337a": {
+   "who": "First control paddle for doubles",
+   "why": "Wide, forgiving face with soft, precise dinks and resets."
+  },
+  "cr_b0e08221ce5da6a8": {
+   "who": "Beginners and intermediates",
+   "why": "A lightweight upgrade, also for lead tape tinkerers."
+  },
+  "cr_8abe9b6c96ff1694": {
+   "who": "Aggressive, spin heavy players",
+   "why": "Narrow, higher sweet spot is less forgiving for newer players."
+  },
+  "cr_e65671f9ccab2374": {
+   "who": "Players happy to add weight",
+   "why": "Plush, arm friendly feel, but light at 7.6 ounces."
+  },
+  "cr_502b63662a7523c7": {
+   "who": "Aggressive players, 14mm version",
+   "why": "The 16mm suits players wanting less power and aggression."
+  },
+  "cr_9c6e8048d2e06380": {
+   "who": "Badminton and tennis players",
+   "why": "They want power and quick softness; less so ping pong players."
+  },
+  "cr_5825d926fb1c7b9e": {
+   "who": "Players who finish points quickly",
+   "why": "Keeps hand speed; not for a soft, quiet paddle."
+  },
+  "cr_437ae48bf8e7ceba": {
+   "who": "Players wanting activated power",
+   "why": "Not always-on pop; best with 2.5 g of tungsten tape."
+  },
+  "cr_ef72d218976b011b": {
+   "who": "Intermediate to advanced players",
+   "why": "Less pop, so not for beginners or seniors."
+  },
+  "cr_71a965a0b06e0c1b": {
+   "who": "Higher intermediate to advanced",
+   "why": "Delivers power with control."
+  },
+  "cr_d71a79eb8adb50c8": {
+   "who": "Players who do not push every shot",
+   "why": "Light weight suits them; closest budget Boomstick they found."
+  },
+  "cr_3dd6cbee386f3d67": {
+   "who": "Players wanting easy power",
+   "why": "Fast feel in the hand, almost a lighter Inferno."
+  },
+  "cr_7cab4dc08bcdb572": {
+   "who": "4.5 players moving from the J2 CR",
+   "why": "One now kills more while keeping touch."
+  },
+  "cr_1d225df104f84203": {
+   "who": "Players who add weight and control pop",
+   "why": "Much better value at $120, or $99 with a code."
+  },
+  "cr_981033c55537fec5": {
+   "who": "Tinkerers and budget players",
+   "why": "Big value once weighted, with a very low swing weight."
+  },
+  "cr_b75b4a1340e806de": {
+   "who": "Beginners buying a first paddle",
+   "why": "Very high control and a large sweet spot."
+  },
+  "cr_405e6346377f3156": {
+   "who": "Beginners and control-minded doubles",
+   "why": "Tops the Vatic Prism Flash as the best $100 paddle."
+  },
+  "cr_89e6607a01ee2043": {
+   "who": "First-time players wanting forgiveness",
+   "why": "Also anyone wanting a control paddle with a big sweet spot."
+  },
+  "cr_04c31cb7497cc76f": {
+   "who": "Balanced players on a budget",
+   "why": "Very large, stable sweet spot and strong value under $100."
+  },
+  "cr_f4230e95ece5bba7": {
+   "who": "Players wanting reach and plow through",
+   "why": "The 16 mm needs acceptance of a heavier swinging paddle."
+  },
+  "cr_c9c353a650c2a121": {
+   "who": "Players wanting a JOOLA hybrid shape",
+   "why": "Also die-hard Pro 4 fans who wished it were softer."
+  },
+  "cr_46b3fff500b8f627": {
+   "who": "Players who love the JOOLA brand",
+   "why": "Some pay $300 for the JOOLA name and look in tournaments."
+  },
+  "cr_b39ef7d5dfc13222": {
+   "who": "Most players below roughly 5.0",
+   "why": "Includes beginners and tennis converts learning touch."
+  },
+  "cr_8ef2c5a4155df4d6": {
+   "who": "Advanced and ex-tennis players",
+   "why": "Suits those who like head-heavy paddles."
+  },
+  "cr_c4e9f69fe2f65572": {
+   "who": "All-court players wanting power",
+   "why": "Heavy weight may feel demanding if used to lighter paddles."
+  },
+  "cr_5e6dfc5595d998c3": {
+   "who": "Forgiveness and durability seekers",
+   "why": "High power, if they accept paying $280."
+  },
+  "cr_91984d15f39739cf": {
+   "who": "Players fine with high swing weight",
+   "why": "Top three power widebody, with lots of pop for the shape."
+  },
+  "cr_597cd28b9ef65962": {
+   "who": "Players who like XL shapes",
+   "why": "A long widebody that is huge, with almost no mistakes."
+  },
+  "cr_03162ffa0551d1e1": {
+   "who": "Power players wanting quickness",
+   "why": "Most versatile shape, but quiet so sound cues are lost."
+  },
+  "cr_6f67b7a198e35643": {
+   "who": "Customizers wanting arm friendly feel",
+   "why": "Dampened feel, though they wish it were a true hybrid."
+  },
+  "cr_97e52a6e3e74a304": {
+   "who": "Fans of a quiet, dampened feel",
+   "why": "Plush, springy face with almost no vibration."
+  },
+  "cr_fdfca2812e84ca56": {
+   "who": "Balanced all-court players",
+   "why": "Head-heavy balance can strain wrist and elbow, and price is high."
+  },
+  "cr_4db06826925d4518": {
+   "who": "Players never needing PPA or MLP",
+   "why": "Picks the Enhance MPP Turbo hybrid for them."
+  },
+  "cr_2be586e27c559904": {
+   "who": "Aggressive, offense-first players",
+   "why": "Power on a budget at $119, but a weak soft game pops balls up."
+  },
+  "cr_94d2118425087764": {
+   "who": "Step-up players to pros",
+   "why": "Reliability probably beats maxed out power for doubles players."
+  },
+  "cr_dc44fdf1e1e41a48": {
+   "who": "All-court players on a budget",
+   "why": "All-court performance at $119, but not stable out of the box."
+  },
+  "cr_e41a038a02df3e62": {
+   "who": "All-court players wanting hybrid reach",
+   "why": "Light and quick, without a heavy feel."
+  },
+  "cr_2b2c7f3d0dd9d33d": {
+   "who": "Intermediate to advanced players",
+   "why": "Beginners who can dial in the power may manage at $119."
+  },
+  "cr_1b8a98a39795c0f7": {
+   "who": "Players new to the Glider",
+   "why": "Definite buy as a hybrid; minimal upgrade over the 2024."
+  },
+  "cr_1a0cf628458bb91a": {
+   "who": "3.5 plus players with their own pace",
+   "why": "They want easier aim, not head mass."
+  },
+  "cr_0d9ad2c8cb298f34": {
+   "who": "2.0 to 5.0 players on a budget",
+   "why": "Budget Gen 3 at $119 with control on dinks, resets and drops."
+  },
+  "cr_468e4770a4281085": {
+   "who": "Cannon fans wanting a hybrid shape",
+   "why": "Better grit for about $100, only $9 more than the Cannon."
+  },
+  "cr_d4a8f17964a68e16": {
+   "who": "Players wanting more power",
+   "why": "Definitely powerful, but the extra power demands control."
+  },
+  "cr_f9d5500c6558c5af": {
+   "who": "Players needing quiet and power",
+   "why": "Includes older players wanting assistance."
+  },
+  "cr_02c69d21a9e825ce": {
+   "who": "Players in noise-restricted areas",
+   "why": "Easy on the arm; the best certified quiet option for comfort."
+  },
+  "cr_ed87d6e6d2325b60": {
+   "who": "Players needing a quiet paddle",
+   "why": "Also helps with power, but not USAP approved for most tournaments."
+  },
+  "cr_0e1c8e412f94deae": {
+   "who": "Players in noise-restricted areas",
+   "why": "Not for sanctioned tournaments."
+  },
+  "cr_9bdd81d2228e5fc1": {
+   "who": "Older or weaker players",
+   "why": "Fun but too powerful for standard competition."
+  },
+  "cr_fa3402ad27a7886e": {
+   "who": "Pro Power fans wanting more control",
+   "why": "Bigger sweet spot and better control with plenty of power kept."
+  },
+  "cr_ec46d588a5db3707": {
+   "who": "Players who found Pro Power too poppy",
+   "why": "Extra dwell time, though it feels sluggish in hand."
+  },
+  "cr_375ab7d95c784887": {
+   "who": "Pro Power fans wanting less wildness",
+   "why": "Added control and fewer wild shots while keeping the power."
+  },
+  "cr_ec8613b9273a73e3": {
+   "who": "Big hitters who handle heavier paddles",
+   "why": "More forgiving than the Pro Power, with power not far behind."
+  },
+  "cr_dc808e70191a8ff3": {
+   "who": "Pro Power elongated players",
+   "why": "Want power without losing much control, at $275."
+  },
+  "cr_98fd147e703e1a9b": {
+   "who": "Players wanting control on a budget",
+   "why": "Plenty of control at 15mm, with good resets and dinks."
+  },
+  "cr_a0d50f0b9f50f617": {
+   "who": "Beginners and early intermediates",
+   "why": "Strong on control and spin but short on power."
+  },
+  "cr_9f172f2f9ecb3499": {
+   "who": "First paddle or first upgrade buyers",
+   "why": "Not the best budget paddle."
+  },
+  "cr_702bcd4233fcd68d": {
+   "who": "First paddle or upgrade buyers",
+   "why": "Very control oriented, but pop and power suffer."
+  },
+  "cr_53fec22485d37de2": {
+   "who": "Beginner and intermediate players",
+   "why": "Control under $100, not for drive power."
+  },
+  "cr_ce209437db4feca1": {
+   "who": "11SIX24 shape fans",
+   "why": "Also suits those who found the Vapor too short."
+  },
+  "cr_d8ea0badc09a8a05": {
+   "who": "Defensive right side players",
+   "why": "A huge upgrade for their style."
+  },
+  "cr_cca4d91ce4970e78": {
+   "who": "Two-handed backhand players",
+   "why": "Prefers the longer 6 inch grip; smaller hands may like the shorter."
+  },
+  "cr_8c4f04bcf3700633": {
+   "who": "Players wanting most power and reach",
+   "why": "Power and reach are the reasons given."
+  },
+  "cr_105a032b64dd5dc9": {
+   "who": "Players used to the 11SIX24 shape",
+   "why": "Also for players coming from earlier 11SIX24 models."
+  },
+  "cr_9e6d30819971020f": {
+   "who": "Aggressive singles players",
+   "why": "Want reach and a longer handle for two-handed backhands."
+  },
+  "cr_d43c1fe603ed5939": {
+   "who": "Players wanting reach and leverage",
+   "why": "Plow-through on drives, if they have the mechanics for the length."
+  },
+  "cr_75426d8d2587b714": {
+   "who": "Advanced bangers who use topspin",
+   "why": "Very stiff, so the soft game suffers."
+  },
+  "cr_d8938140c863cc83": {
+   "who": "Players coming from power paddles",
+   "why": "Expect an easy switch, though drops and resets are harder."
+  },
+  "cr_33dbe047fb065496": {
+   "who": "Players coming off big power paddles",
+   "why": "Stiff, hard feel took a solid week for the soft game."
+  },
+  "cr_d012f64d337e9333": {
+   "who": "Fast-handed all-court players",
+   "why": "Plush touch, less so for pure drivers."
+  },
+  "cr_820c3f410d81badd": {
+   "who": "Intermediate to advanced players",
+   "why": "Fits doubles players who want to win hands battles at the net."
+  },
+  "cr_b24650fe78c0a144": {
+   "who": "Foam fans who found Genesis too heavy",
+   "why": "Not for those wanting the most power."
+  },
+  "cr_d9a39a2d5c48d05b": {
+   "who": "First-time TruFoam Genesis buyers",
+   "why": "No reason for owners of a 1, 2 or 3 to switch."
+  },
+  "cr_8c928f6b5a577c00": {
+   "who": "Fans of the first three shapes",
+   "why": "Want a revamp; owners of a one through three shape gain little."
+  },
+  "cr_e25caa6b7439860b": {
+   "who": "Spin and pop players who customize",
+   "why": "Light and maneuverable; less so for a big stock sweet spot."
+  },
+  "cr_ce2d19062baf3ab9": {
+   "who": "TFG feel fans wanting a hybrid shape",
+   "why": "Faster hands and a dense plush feel good for resets."
+  },
+  "cr_289343ca3275da55": {
+   "who": "TruFoam feel in a hybrid shape",
+   "why": "Steep $252 price, but one of the few worth it for brand fans."
+  },
+  "cr_401fb1cb095bf565": {
+   "who": "Players wanting kitchen speed and spin",
+   "why": "Spins more and swings lighter than the EPP Turbo, worth $60 more."
+  },
+  "cr_d56ff42514c40cf3": {
+   "who": "Aggressive, not overpowered players",
+   "why": "Spin is average and power is mid-tier."
+  },
+  "cr_5307800b73c8b534": {
+   "who": "Semi-western grip topspin players",
+   "why": "Especially former tennis players."
+  },
+  "cr_2b4cdbe93caa02d0": {
+   "who": "Strong intermediate to advanced",
+   "why": "Not for tight budgets at $279.99 or featherlight setups."
+  },
+  "cr_723a13701426f237": {
+   "who": "Players who choke up",
+   "why": "Most buyers are better fitted by the 1 or 2."
+  },
+  "cr_e989364abafe59ba": {
+   "who": "Power, spin and durability seekers",
+   "why": "Trusts the durability more than most paddles."
+  },
+  "cr_907a02205fbdb86f": {
+   "who": "Players with bad tennis elbow",
+   "why": "Light weight and less vibration, though about $250 is a lot."
+  },
+  "cr_62366b07903cb274": {
+   "who": "Value seekers",
+   "why": "Strong price to performance at $180 with their code."
+  },
+  "cr_b9d7fb807a79ef1e": {
+   "who": "Tennis or table tennis players",
+   "why": "Handles an elongated shape and topspin drives well."
+  },
+  "cr_0ceb8ce423783716": {
+   "who": "Intermediate to advanced players",
+   "why": "They want reach, stability and a premium feel."
+  },
+  "cr_dcc1e4a922ab4eac": {
+   "who": "Less experienced players",
+   "why": "Plays very close to the Pro 4 for almost $100 less."
+  },
+  "cr_549b3b4014beeb51": {
+   "who": "Coral Pro fans wanting more pop",
+   "why": "Also doubles players wanting a forgiving face."
+  },
+  "cr_b39fb64d02c351a8": {
+   "who": "Players who win with drops and dinks",
+   "why": "They bring their own pace; not for free power on putaways."
+  },
+  "cr_70935a6aba2d3e07": {
+   "who": "Hybrid fans who create their own pace",
+   "why": "Control-first with excellent spin from the HexGrit surface."
+  },
+  "cr_037be0522d6fc8d4": {
+   "who": "Players wanting soft drops and resets",
+   "why": "They will add weight; not for those chasing raw pop."
+  },
+  "cr_18b0f02b4b82449b": {
+   "who": "Big swingers who finish points",
+   "why": "An advanced paddle, hard to control and reset with."
+  },
+  "cr_6ddb7603ab4a7192": {
+   "who": "Control oriented players",
+   "why": "Help with resets and drops at about $100."
+  },
+  "cr_eca287d726ff72b7": {
+   "who": "Control and customization seekers",
+   "why": "The elongated still suits those chasing outright power."
+  },
+  "cr_b18e91ddf6538d31": {
+   "who": "Power players needing kitchen speed",
+   "why": "Gets power without slowing down, at $119."
+  },
+  "cr_fb2a4df26d540820": {
+   "who": "Control-first players valuing touch",
+   "why": "Not for those who want to finish points with pace."
+  },
+  "cr_c889217d357a9595": {
+   "who": "Aggressive players with a soft game",
+   "why": "Wins with drives and counters; low control hurts dinks."
+  },
+  "cr_f798fd8f1b7cd701": {
+   "who": "Beginners and 4.5 players",
+   "why": "Punishes drops and resets, a poor fit for 3.5 to 4.0 players."
+  },
+  "cr_f55ac78a3b7026b6": {
+   "who": "Players who choose when to attack",
+   "why": "Also those who like fast hands at the kitchen."
+  },
+  "cr_cd09c8e95cb47785": {
+   "who": "Players wanting nimble elongated power",
+   "why": "Pop similar to the Loco lineup; hot resets need adjustment."
+  },
+  "cr_1736e76ad9767b61": {
+   "who": "Players who like a thin paddle",
+   "why": "Control and playability are the draw."
+  },
+  "cr_7c634d7bab09dd8b": {
+   "who": "Intermediates wanting a power upgrade",
+   "why": "Controllable pop with an easy soft game; less for spin seekers."
+  },
+  "cr_2736e60b23f5a116": {
+   "who": "Higher level beginners to pros",
+   "why": "Less poppy than most 13mm and 14mm paddles, which is a plus."
+  },
+  "cr_3f0fd2ab4dddea0b": {
+   "who": "Two-handed and tennis players",
+   "why": "Suits 2.0 beginners upward, not seekers of much more pop."
+  },
+  "cr_bd07615aec94a4be": {
+   "who": "Players wanting spin under $150",
+   "why": "Great deal at $140 and a good spin option."
+  },
+  "cr_65b390dd876a4c9c": {
+   "who": "Upgraders from sub $100 paddles",
+   "why": "Added throat lead tape for a solid, forgiving feel."
+  },
+  "cr_30a44c5baad00968": {
+   "who": "Players who win with tempo",
+   "why": "Likes a firm, dense feel; not for those wanting mishit help."
+  },
+  "cr_1acbc17107806f68": {
+   "who": "Quick-handed attacking players",
+   "why": "The 4 is spicier; the 2 is easier to recommend to most."
+  },
+  "cr_b66d5174d16e2fca": {
+   "who": "Players at 4.0 and above",
+   "why": "Not for beginners; needs lead tape and costs $280."
+  },
+  "cr_bfcf286c8b8bfb13": {
+   "who": "Players wanting a plush, muted feel",
+   "why": "Not for those chasing maximum power."
+  },
+  "cr_4dcccfff2502108d": {
+   "who": "Aggressive all-court players",
+   "why": "Those who can find the center, with precise shots."
+  },
+  "cr_e71b6a1bbb08f23c": {
+   "who": "Advanced 4.0 to 5.0 players",
+   "why": "Wants pace and accepts a small sweet spot."
+  },
+  "cr_11789c63c8558c53": {
+   "who": "Players wanting spin with forgiveness",
+   "why": "Not worth $280 for most, and edges drop off hard."
+  },
+  "cr_5ae11685c6c8f98c": {
+   "who": "Players wanting a firm, quick paddle",
+   "why": "Not for those wanting a thicker, softer paddle's forgiveness."
+  },
+  "cr_bc5069b74b5c711e": {
+   "who": "Those who found Perseus 16 head heavy",
+   "why": "Plays essentially the same as the Agassi Pro."
+  },
+  "cr_338d7bb39a77ca58": {
+   "who": "Players hesitant about Gen 3",
+   "why": "A great deal at $160 with the promo code."
+  },
+  "cr_99c4e66e8f941040": {
+   "who": "Higher-level and singles players",
+   "why": "Better for singles, since pop-ups matter less there."
+  },
+  "cr_0cd624a2ea921eaa": {
+   "who": "Doubles players wanting power",
+   "why": "Power without losing lateral forgiveness, at a clear discount."
+  },
+  "cr_bb26afcfc692c4f4": {
+   "who": "Players moving up from control paddles",
+   "why": "Also those wanting a small bump in offense."
+  },
+  "cr_a7a3594197edec21": {
+   "who": "Doubles soft game players",
+   "why": "Ultimate soft game paddle, but not for singles."
+  },
+  "cr_3b2a007ded41d66a": {
+   "who": "Players at 4.5 and below",
+   "why": "One tester recommends it; easy to maneuver in hands battles."
+  },
+  "cr_e4459691cf5d3991": {
+   "who": "Players wanting durable spin, control",
+   "why": "Not for those wanting maximum firepower."
+  },
+  "cr_8b8cd8b4df288b8f": {
+   "who": "Players who found J2CR too poppy",
+   "why": "They want to work on resets and placement at the kitchen."
+  },
+  "cr_b183e9d112fc2a43": {
+   "who": "Control seekers wanting durable spin",
+   "why": "Quick hands; not for those coming from power paddles."
+  },
+  "cr_4b00a1f518d72140": {
+   "who": "High skill players wanting max offense",
+   "why": "Can handle a demanding paddle; better spin than the Perseus."
+  },
+  "cr_a0e3c0de41f802aa": {
+   "who": "Players who win with touch",
+   "why": "Not for those who end points with speed-ups."
+  },
+  "cr_e042774a591bcc2d": {
+   "who": "Developing players",
+   "why": "The one they trust most in a tournament."
+  },
+  "cr_6ca2df8d9aef9052": {
+   "who": "Players who supply their own power",
+   "why": "Want control, not reliance on pop; top for spin."
+  },
+  "cr_fc2bdc976ed041d3": {
+   "who": "Players who generate their own pace",
+   "why": "Wanting a soft, planted hybrid, not free power."
+  },
+  "cr_f8bd0cd023cfa973": {
+   "who": "Players wanting an easy kitchen game",
+   "why": "Not for those who need face feedback; $169.99 is fair."
+  },
+  "cr_2c2023a8d4b8a87c": {
+   "who": "Control and consistency first players",
+   "why": "Soft, dense, muted feel that suits resets and the soft game."
+  },
+  "cr_c9e3adfa99cbf180": {
+   "who": "All-court players wanting lasting grit",
+   "why": "Not for players who need power; soft, dense feel."
+  },
+  "cr_fd4b5ded60f58211": {
+   "who": "Beginners wanting a control paddle",
+   "why": "Fair price, though they would pay $200 for the Power 2."
+  },
+  "cr_e0c43a75aea3b976": {
+   "who": "Control players and two-handers",
+   "why": "Quick at the net; pure offense players need added weight."
+  },
+  "cr_2fa7b3c2e19bd542": {
+   "who": "Beginners and self-powered players",
+   "why": "Good pop and grab, but baseline drives and sweet spot lack."
+  },
+  "cr_989f8217f752882c": {
+   "who": "Spin focused players wanting 14 mm",
+   "why": "Gen 2 polypropylene build with a diamond tough texture."
+  },
+  "cr_d98eb8604c300967": {
+   "who": "Soft hands players wanting extra punch",
+   "why": "Less dwell than newer foam paddles, so resets need dialing in."
+  },
+  "cr_1e7bee283d5076a9": {
+   "who": "Extreme lasting spin seekers",
+   "why": "Fairly priced under $200, but feedback is harsher."
+  },
+  "cr_2df26f708369ceb7": {
+   "who": "Doubles players needing quickness",
+   "why": "Drop any bias against the wide body; the Ultre is a singles paddle."
+  },
+  "cr_c3a3a3c6ad8cbca3": {
+   "who": "Learning players and control lovers",
+   "why": "Control paddle with a massive sweet spot, at $199.99 with a code."
+  },
+  "cr_00aeca93923ddfa7": {
+   "who": "Beginners who cannot spin the ball",
+   "why": "Spin lets them swing freely and still get the ball to drop."
+  },
+  "cr_581956a852b78dd3": {
+   "who": "Players choosing full foam over Gen 3",
+   "why": "Better in almost every way than the Gen 3 Alpha Pro Power."
+  },
+  "cr_9532ab7858ec44d2": {
+   "who": "Hand speed and stability seekers",
+   "why": "At $199 with a code."
+  },
+  "cr_3cf780142de22d88": {
+   "who": "Intermediate players and above",
+   "why": "Not for newcomers; no arm fatigue in long sessions."
+  },
+  "cr_099fc02d6baa5e19": {
+   "who": "Players who make their own power",
+   "why": "Power comes from the player, not the paddle."
+  },
+  "cr_a9414455dba9d53f": {
+   "who": "Players moving up from Gen 2",
+   "why": "Linear single foam ring build and a great handle for two-handers."
+  },
+  "cr_5a36e5edf0f7b211": {
+   "who": "Players who find the center often",
+   "why": "Firmest, most direct of the series; buy it when the savings are real."
+  },
+  "cr_19adb2a12076feaa": {
+   "who": "Players wanting power and sweet spot",
+   "why": "Soft game is not a strength, but not a major weakness."
+  },
+  "cr_b728a45a88f1708d": {
+   "who": "Players moving from control paddles",
+   "why": "Good sweet spot for an elongated shape with a higher power ceiling."
+  },
+  "cr_44c6e404347b6735": {
+   "who": "Budget-minded players",
+   "why": "Tied second for spin, at $175.50 after a discount."
+  },
+  "cr_23bc124cc556023c": {
+   "who": "Most players wanting durable grit",
+   "why": "Performs very well in doubles despite being a power paddle."
+  },
+  "cr_fa96015facc2ade5": {
+   "who": "Intermediate to advanced players",
+   "why": "Around 4.25 and above, with compact swings."
+  },
+  "cr_cee4dce3b45773cb": {
+   "who": "Players with solid fundamentals",
+   "why": "They like spin; beginners should look elsewhere."
+  },
+  "cr_96d3e5bead957ade": {
+   "who": "Fast, aggressive 4.0 to 4.5 players",
+   "why": "Hits as hard as the Boomstick, and cheaper than the JOOLA Pro V."
+  },
+  "cr_d83be6297c0ea005": {
+   "who": "Intermediate to advanced players",
+   "why": "Good swing weight for an elongated paddle; weight can be added."
+  },
+  "cr_c77c47d03554ccc6": {
+   "who": "Fast, stable offensive paddle seekers",
+   "why": "Responsive face; not for those wanting a plush, muted feel."
+  },
+  "cr_a0ddbcb2657f5ccb": {
+   "who": "Mid to higher level players",
+   "why": "Want power in an elongated foam paddle and like to tune."
+  },
+  "cr_da71887c544eae69": {
+   "who": "Players who enjoy dialing in gear",
+   "why": "Manageable high power."
+  },
+  "cr_5a64727b4c784844": {
+   "who": "Controllable full foam seekers",
+   "why": "Easier to keep serves in than the Boomstick; a mild recommend."
+  },
+  "cr_d54b55080b5b8d69": {
+   "who": "Players with a $70 ceiling",
+   "why": "A safe pick, but power is lacking against intermediates."
+  },
+  "cr_0e8562704ec4776b": {
+   "who": "Tennis players",
+   "why": "Pro level paddle that delivers; they weight it up to 8.5 oz."
+  },
+  "cr_0d598da0e160ad1b": {
+   "who": "4.0 players on the 12.7 mm",
+   "why": "A top pick for power at $207 after a code."
+  },
+  "cr_12ac2778ffd60805": {
+   "who": "Players needing the long handle",
+   "why": "Prefers the TKO C for faster hands and more lead options."
+  },
+  "cr_154c03caf83a1f1b": {
+   "who": "Players who like upper face contact",
+   "why": "Also big aggressive swingers; slower to reset at the kitchen."
+  },
+  "cr_af43c4cff9c35d0a": {
+   "who": "Spin-first players",
+   "why": "They want controllable pop."
+  },
+  "cr_54684a1a6331ad09": {
+   "who": "Baseline topspin players",
+   "why": "Heavy topspin from the back puts pressure on opponents."
+  },
+  "cr_e861849f88abeb65": {
+   "who": "Players wanting more forgiveness",
+   "why": "A bigger sweet spot."
+  },
+  "cr_036f64406ae89865": {
+   "who": "Players wanting durability over power",
+   "why": "Not for USAP approval needs; longer-lasting grit seems realistic."
+  },
+  "cr_34f5f591e3bd6cb7": {
+   "who": "Doubles players wanting steady power",
+   "why": "Big sweet spot; not for those who dislike modding."
+  },
+  "cr_261da3583e5708c2": {
+   "who": "New or intermediate players",
+   "why": "Also those who customize; more forgiving than the Pro IV."
+  },
+  "cr_cb208d202289da4d": {
+   "who": "Players wanting lasting grit",
+   "why": "Also a maneuverable hybrid; UPA only, which some events do not allow."
+  },
+  "cr_1f902420186c6988": {
+   "who": "Durable elite spin seekers",
+   "why": "Not for players who need USAP approval or a soft control paddle."
+  },
+  "cr_c6e1fa1bcab70f2b": {
+   "who": "Players who put spin first",
+   "why": "Recommended first for spin above everything else."
+  },
+  "cr_3c07631837b01b80": {
+   "who": "Fans of quick, tunable paddles",
+   "why": "Elite spin; not for max forgiveness without tuning or USAP."
+  },
+  "cr_3efea6e130bc030e": {
+   "who": "Elongated players who like roll dinks",
+   "why": "Already plays weighted paddles; the Perma Grit is the best part."
+  },
+  "cr_90777cd3cc22dcc7": {
+   "who": "Players who like a springy feel",
+   "why": "Value at $130; less so for those wanting pure touch."
+  },
+  "cr_8802fb0aea9706f0": {
+   "who": "Players wanting defensive comfort",
+   "why": "Shot shaping without losing offense; not the crispest response."
+  },
+  "cr_8f8f37520f56363b": {
+   "who": "Players wanting a balanced paddle",
+   "why": "Forgiving on miss-hits with a twistweight that steadied 3.0 players."
+  },
+  "cr_ef47ba8a324d04c4": {
+   "who": "Players wanting power and forgiveness",
+   "why": "Not for those who want a soft, muted control paddle."
+  },
+  "cr_2b33ad7683596b5c": {
+   "who": "Spin-focused 4.0+ players",
+   "why": "Wins on spin at any price and became their go-to for curve balls."
+  },
+  "cr_b254ab343f922753": {
+   "who": "Net-first players wanting hand speed",
+   "why": "Often plays well without lead tape."
+  },
+  "cr_175247a18cc8a945": {
+   "who": "Players wanting measured power",
+   "why": "Quick hands, though they found it dense and muted."
+  },
+  "cr_adb1b74ea3b40e49": {
+   "who": "Players wanting controlled power",
+   "why": "Direct and predictable on dinks and resets when contact is accurate."
+  },
+  "cr_a0fd240cb2fe0b90": {
+   "who": "Players who like a stiff Gen 2 feel",
+   "why": "Not for those wanting a pocketing Gen 4 feel."
+  },
+  "cr_59ab19e1924fe987": {
+   "who": "Touch players who still attack",
+   "why": "Low power and an average sweet spot at $280."
+  },
+  "cr_a252818ce364f746": {
+   "who": "Confident singles players",
+   "why": "Adds reach and leverage on drives and overheads."
+  },
+  "cr_c073ff9c1436a55f": {
+   "who": "Players with tennis elbow",
+   "why": "Throat foam takes out vibration without feeling muted."
+  },
+  "cr_4e0ebdb2b9b0d3c3": {
+   "who": "Budget players trying durable grit",
+   "why": "A low cost way in at $100 with a bit more pop than the V-Sol Pro."
+  },
+  "cr_07dfa6a90e1c09b5": {
+   "who": "Gen 3 players who already have power",
+   "why": "Great in doubles, but they doubted the power for singles."
+  },
+  "cr_c613f69b06b833f4": {
+   "who": "Budget players, early adopters",
+   "why": "Also fits V-Sol Pro owners wanting a hollower, livelier feel."
+  },
+  "cr_3e2347462ce1744f": {
+   "who": "Aggressive players at 4.0 and above",
+   "why": "Players below 4.0 may struggle with control."
+  },
+  "cr_834f2532df55740b": {
+   "who": "Bangers wanting controllable power",
+   "why": "Players who dislike stiff or hollow paddles may not like it at first."
+  },
+  "cr_38044e23fbc857a5": {
+   "who": "Budget power players with a soft game",
+   "why": "Not for weak soft games or fans of quiet paddles."
+  },
+  "cr_4cecbe67b13b3edc": {
+   "who": "Gen 3 players who dislike the EPP feel",
+   "why": "Works as a bridge to foam."
+  },
+  "cr_c3c316f3a884631f": {
+   "who": "Budget players wanting foam power",
+   "why": "Good value at $100 with a code."
+  },
+  "cr_8291f435fa76669b": {
+   "who": "Players wanting reach and power",
+   "why": "Less suited to quick, jumpy net play."
+  },
+  "cr_c3af30152632715c": {
+   "who": "Players willing to add weight",
+   "why": "Among the best foam values once weighted, at $99.99 with a code."
+  },
+  "cr_dac59eddcc7a1f65": {
+   "who": "Players wanting a solid paddle stock",
+   "why": "Wins on control, maneuverability and price over the Flik F1."
+  },
+  "cr_434f20c0ef3fb294": {
+   "who": "Players prone to tennis elbow",
+   "why": "TPE inserts in the lower corners dampen vibration."
+  },
+  "cr_db6562eeb026d394": {
+   "who": "Players at 3.5 and under",
+   "why": "Fits a first paddle or a step up from an Amazon paddle."
+  },
+  "cr_d3f031c9a55f9daf": {
+   "who": "Entry level players",
+   "why": "Forgiving with good volleys, but power feels muted."
+  },
+  "cr_52b00a2a72b529e0": {
+   "who": "Players wanting an arm friendly feel",
+   "why": "Soft feel and quick hands at the net, but pricey at $279."
+  },
+  "cr_222d856afd0f7c36": {
+   "who": "Players who do not need power help",
+   "why": "Worth the extra $20 for an aramid fiber face."
+  },
+  "cr_e3eb66e432f9ff37": {
+   "who": "Mach Forza fans wanting some Kevlar",
+   "why": "Same family with an aramid face."
+  },
+  "cr_536223dd00c85890": {
+   "who": "Players coming from Gen 2 paddles",
+   "why": "Could work as a tournament main paddle."
+  },
+  "cr_1c86070d4bd5f2af": {
+   "who": "Intermediate and rec players, seniors",
+   "why": "Good value at about $175 after code."
+  },
+  "cr_9ec25258e7300c20": {
+   "who": "NF fans wanting more power",
+   "why": "Adds power and pop over the NF with a dense, stiff feel."
+  },
+  "cr_359413e06f793a1e": {
+   "who": "Intermediate to advanced players",
+   "why": "Gives aggressive power with touch."
+  },
+  "cr_a8310d9be663b650": {
+   "who": "Power-first players who like bounce",
+   "why": "Clear winner on power, but the least predictable."
+  },
+  "cr_f51732542c71fd46": {
+   "who": "Hybrid players wanting spin and speed",
+   "why": "Punch volleys feel immediate."
+  },
+  "cr_325e8a1426af73f2": {
+   "who": "Players wanting one balanced paddle",
+   "why": "Balances spin, power and control at a good price."
+  },
+  "cr_6086bc4231b0be01": {
+   "who": "Players who build offense with shape",
+   "why": "Stays manageable in the soft game despite the power."
+  },
+  "cr_574d296b8442781a": {
+   "who": "Players wanting aggressive offense",
+   "why": "Pairs with the Power 2 Vapor for more controlled power."
+  },
+  "cr_7ac40d2dbf4d9549": {
+   "who": "Players from 4.0 up to 5.5 plus",
+   "why": "Standout spin and long lasting grit at a lower price."
+  },
+  "cr_14da45f526b736f4": {
+   "who": "Hybrid players wanting power and spin",
+   "why": "Also forgiving for a hybrid."
+  },
+  "cr_7f2b21f41ad56ae9": {
+   "who": "Intermediate to advanced touch players",
+   "why": "Easier to manage than the Pro and great for drops and dinks."
+  },
+  "cr_05b7cbb3dfcb187e": {
+   "who": "Players wanting a dense, quiet feel",
+   "why": "Better touch around the kitchen."
+  },
+  "cr_97d3a8b17410d9f2": {
+   "who": "Players wanting a dense, shaped feel",
+   "why": "Long lasting texture, but not for those wanting huge pop."
+  },
+  "cr_7bb8f84937b3e3e7": {
+   "who": "Players who can manage extra weight",
+   "why": "Power tier with a little extra control, and grit that lasts."
+  },
+  "cr_603a924cede51387": {
+   "who": "All-court players liking polymer feel",
+   "why": "Balanced power and control at a fair $200."
+  },
+  "cr_110923d678bb3f8b": {
+   "who": "Heavy hitters and singles players",
+   "why": "Players still working on drops and resets need time to adjust."
+  },
+  "cr_a8fce5f854cf14ad": {
+   "who": "Players who do not customize",
+   "why": "Good out of the box with soft game control and counter pop."
+  },
+  "cr_413b36adef8c7f47": {
+   "who": "Players of all levels",
+   "why": "Plow-through power with a cushioned, arm friendly feel."
+  },
+  "cr_62a5a19bf913eaa1": {
+   "who": "Competitive players wanting power",
+   "why": "Drives hard in singles with a solid, sturdy feel."
+  },
+  "cr_f4344029f4a878a1": {
+   "who": "Players wanting power below $280",
+   "why": "Large, forgiving sweet spot on the widebody."
+  },
+  "cr_1579d3aa2b527119": {
+   "who": "Players wanting easy power on a budget",
+   "why": "Very large sweet spot, but not for top tier spin."
+  },
+  "cr_6c12190995919414": {
+   "who": "Players wanting Gen 3 near $200",
+   "why": "Face uses woven fiberglass and two carbon layers."
+  },
+  "cr_b9fb23ad26cc816e": {
+   "who": "Versatile intermediate+ players",
+   "why": "Needs no tuning, but not for elite spin or raw power."
+  },
+  "cr_5c1291abf1ca26ff": {
+   "who": "Players stepping up to a power paddle",
+   "why": "Needs an adjustment period and is not ideal for a softer feel."
+  },
+  "cr_f1295b4494ff4167": {
+   "who": "Players wanting power with forgiveness",
+   "why": "Needs a week or two of adjustment, not for strict control players."
+  },
+  "cr_e6b4972d0e073ce3": {
+   "who": "Accurate players who hit the middle",
+   "why": "Punishing for most players, with more dinks into the net."
+  },
+  "cr_78eb7a8faa7621b9": {
+   "who": "Players wanting a light control paddle",
+   "why": "For more power they point to the CRBN 1X or Vatic Pro V7."
+  },
+  "cr_d07c8ccd78a02990": {
+   "who": "Advanced players wanting balance",
+   "why": "Gives up no single trait, but not for heavy spin reliance."
+  },
+  "cr_d2f20005d5d2193d": {
+   "who": "Players for whom price is no factor",
+   "why": "Budget players should look at the Warrior Edge instead."
+  },
+  "cr_8befb56f049b91d3": {
+   "who": "Aggressive players who drive and poach",
+   "why": "They see the Vatic Pro as the better buy at $250."
+  },
+  "cr_7a6374246f12083b": {
+   "who": "3.5 to 4.0 players learning topspin",
+   "why": "Probably not for beginners."
+  },
+  "cr_8c8fcf23a0030c88": {
+   "who": "Spin lovers and smooth swingers",
+   "why": "Soft, plush ride, very different from the harsher Pro line."
+  },
+  "cr_ebb0b5c2d3703e92": {
+   "who": "Players valuing control over raw pace",
+   "why": "Restrained power may feel underpowered stock for low effort players."
+  },
+  "cr_2161499db185888f": {
+   "who": "Players wanting control over firepower",
+   "why": "Less suited to those chasing power."
+  },
+  "cr_188dec0dfaa67968": {
+   "who": "Players wanting control over power",
+   "why": "One to consider for sure if control is the goal."
+  },
+  "cr_0df1de35eb41ec9f": {
+   "who": "All-court players",
+   "why": "A tougher sell for players chasing power."
+  },
+  "cr_7827b81c5b1ebbe0": {
+   "who": "Players wanting control and stiff feel",
+   "why": "Recommended for control focused players."
+  },
+  "cr_fa1b790c265640e1": {
+   "who": "Ex-tennis players with a banger style",
+   "why": "Rewarding on the sweet spot but unforgiving elsewhere."
+  },
+  "cr_55490e5deb118c69": {
+   "who": "High level players and tennis converts",
+   "why": "Textured face keeps the ball in for players who spin it."
+  },
+  "cr_228515f74c33675d": {
+   "who": "Players who like a rigid MPP feel",
+   "why": "Also for those who found the Jade short on explosive power."
+  },
+  "cr_cdca5697442533d3": {
+   "who": "Players wanting strong pace",
+   "why": "Not for those put off by a stiff, hollow feel."
+  },
+  "cr_29a76e275db405d1": {
+   "who": "Players wanting reach and strong pace",
+   "why": "Light 7.7 oz start with clear feedback at contact."
+  },
+  "cr_9324d94d00ec9ef4": {
+   "who": "Budget players wanting durable grit",
+   "why": "First budget paddle with long-lasting grit at about $101."
+  },
+  "cr_c73cee1f604cc8ff": {
+   "who": "Advanced players wanting power cheaply",
+   "why": "Elite power at about $92 with a promo code."
+  },
+  "cr_31ebea039bab54b3": {
+   "who": "Aggressive drive-heavy players, 3.5+",
+   "why": "Unbeatable value, but not for kitchen touch players."
+  },
+  "cr_5830b766cd3f92b9": {
+   "who": "Aggressive baseline players",
+   "why": "New durable grit is the big upgrade for Loco 1 owners."
+  },
+  "cr_9de7a75d416f3135": {
+   "who": "Players who like stiff, poppy paddles",
+   "why": "Not for soft touch players."
+  },
+  "cr_c06f37726ce01171": {
+   "who": "Advanced players wanting reach",
+   "why": "Worth the upgrade if grit life matters."
+  },
+  "cr_9ed08db0799c2bb5": {
+   "who": "Players who liked the original Loco",
+   "why": "Adds lighter weight and lasting grit."
+  },
+  "cr_bed611fc518b035a": {
+   "who": "Players who liked the original Loco",
+   "why": "Same paddle with better spin and longer lasting grit."
+  },
+  "cr_e15a37165746e756": {
+   "who": "Intermediate players wanting power",
+   "why": "Beginners should steer clear unless they want more power."
+  },
+  "cr_eca1cd06437117b8": {
+   "who": "Players who liked the original core",
+   "why": "Wanted better grit."
+  },
+  "cr_1042bfa1594329dc": {
+   "who": "Players who loved the original Loco",
+   "why": "Adds durable spin, but not for a soft, dense feel."
+  },
+  "cr_6b5d012bda1566dd": {
+   "who": "Anyone who liked the first Loco",
+   "why": "Costs $20 more than the Loco 1."
+  },
+  "cr_10b92a3afa700db8": {
+   "who": "Players wanting reach and full swings",
+   "why": "Plays like the previous foam Loco with better grit."
+  },
+  "cr_b5103b94ae1abb36": {
+   "who": "Budget and value minded players",
+   "why": "Control and a wide sweet spot with no dead spots."
+  },
+  "cr_7417d36da6726a76": {
+   "who": "Beginners and intermediates",
+   "why": "Control matters more than power against better opponents."
+  },
+  "cr_bdb7ab88e490e391": {
+   "who": "Beginners and big-swing tennis players",
+   "why": "A good first paddle that keeps the ball in play."
+  },
+  "cr_99547f69543a4e09": {
+   "who": "Singles players and aggressive drivers",
+   "why": "May frustrate control-first players at the kitchen line."
+  },
+  "cr_69e4fcf4565280b5": {
+   "who": "Singles players and topspin drivers",
+   "why": "Not for control players."
+  },
+  "cr_efdc215ac5b840ca": {
+   "who": "Advanced power players",
+   "why": "Expects more from added weight."
+  },
+  "cr_3ce68de278175d46": {
+   "who": "Players who bang points out",
+   "why": "Not for those wanting dwell time or avoiding warranty risk."
+  },
+  "cr_8334bb0fc697b301": {
+   "who": "Intermediate players, tennis strokes",
+   "why": "Beginners may prefer a 16mm paddle."
+  },
+  "cr_ded8edacd4e774bb": {
+   "who": "First paddle buyers, defensive players",
+   "why": "Also fits players wanting more power at $140."
+  },
+  "cr_89ee87e3c5e440ac": {
+   "who": "Spin and control players",
+   "why": "Also for widebody fans whose paddles lack power."
+  },
+  "cr_4b153b1e5b355eb2": {
+   "who": "Fast hand exchange players",
+   "why": "Crisp standard shape, but expect to tune the setup."
+  },
+  "cr_7d1f72338f9ea08e": {
+   "who": "Budget players wanting power, resets",
+   "why": "Flat drives suit it better than topspin drives."
+  },
+  "cr_67a1e9b8607a46a2": {
+   "who": "3.5 to 3.75 players off hot paddles",
+   "why": "Forgiving in doubles and at the net, weaker in singles."
+  },
+  "cr_a2d583557ab50062": {
+   "who": "Intermediate and advanced players",
+   "why": "One shape that does almost everything with reach and forgiveness."
+  },
+  "cr_3aeec5a954c2f3d5": {
+   "who": "Players shopping for a power paddle",
+   "why": "Not for those who dislike power paddles."
+  },
+  "cr_1292475c9bd75133": {
+   "who": "Aggressive players needing power help",
+   "why": "Not as hard to control as other power paddles."
+  },
+  "cr_7eeba9e51c210fef": {
+   "who": "Intermediate to advanced all-courters",
+   "why": "Softer touch makes drops, resets and dinks more forgiving."
+  },
+  "cr_29715b133322921f": {
+   "who": "Players from beginner to advanced",
+   "why": "Recommended across the whole range."
+  },
+  "cr_1b0622a6bde1d43b": {
+   "who": "Players who like a stiff Gen 2 feel",
+   "why": "Very stiff out of the box, so not for a soft feel."
+  },
+  "cr_b6d26406a9918ff3": {
+   "who": "Foam fans who dislike hollow feel",
+   "why": "Not for those wanting max power and put away speed."
+  },
+  "cr_4053a32440e98552": {
+   "who": "Players at 3.0 or higher",
+   "why": "Especially good for those who want to play it stock."
+  },
+  "cr_7317163705563dd3": {
+   "who": "Intermediate to advanced full swingers",
+   "why": "Pure control players may find it too honest on mishits."
+  },
+  "cr_040fe82a6ef36878": {
+   "who": "Budget players lacking their own power",
+   "why": "Also for anyone who misses the Gen 3 feel."
+  },
+  "cr_e25f535471261cf4": {
+   "who": "Players wanting easy to control power",
+   "why": "Good price of $155 for a floating EP core."
+  },
+  "cr_47503b3ce413af1c": {
+   "who": "Players stepping into power paddles",
+   "why": "Great stability for an elongated paddle at about $155."
+  },
+  "cr_dbd50afbaaae373d": {
+   "who": "Competitive intermediate to advanced",
+   "why": "Less ideal for defenders needing a big sweet spot."
+  },
+  "cr_f7da9b3c1e9f0824": {
+   "who": "Aggressive players wanting control",
+   "why": "Strong stock stability, dwell and soft game."
+  },
+  "cr_f2a66f4a5be74f78": {
+   "who": "Players who swing with time to prepare",
+   "why": "Fits a full, prepared swing."
+  },
+  "cr_a9fc2a082a91e887": {
+   "who": "Players wanting a lighter paddle",
+   "why": "Needs a little added weight."
+  },
+  "cr_5131bc942ba4a384": {
+   "who": "Players who put balls away",
+   "why": "Not for those relying on quick hands at the kitchen."
+  },
+  "cr_d8bd0f0b99433aec": {
+   "who": "Avid players wanting the top build",
+   "why": "Gen 3 paddles can break down, and $280 is top of the range."
+  },
+  "cr_0b4b921f2f6b971f": {
+   "who": "Widebody players",
+   "why": "Kept as a backup as the best for widebody fans."
+  },
+  "cr_6a70d7f958923606": {
+   "who": "Serious and tournament widebody fans",
+   "why": "Premium power with control, worth $279.95 for serious players."
+  },
+  "cr_3afb34386655f988": {
+   "who": "Players wanting a power widebody",
+   "why": "Recommended for widebody power."
+  },
+  "cr_7940b01fe5266a9b": {
+   "who": "Aggressive players who rip winners",
+   "why": "Not for touch players still dialing down power."
+  },
+  "cr_78da5eeeee9eaa2f": {
+   "who": "4.5+ players with soft hands",
+   "why": "Not for those wanting an easy paddle."
+  },
+  "cr_8a80dd120382e768": {
+   "who": "Players who like square stock handles",
+   "why": "Better in doubles than singles, with a premium build."
+  },
+  "cr_1b31199f42425995": {
+   "who": "Players who can handle firepower",
+   "why": "Fits those who like a hollow Gen 3 feel."
+  },
+  "cr_066dc03c84993ccf": {
+   "who": "All-court players wanting spin",
+   "why": "Players chasing maximum power should look elsewhere."
+  },
+  "cr_7545e57a01868137": {
+   "who": "Players wanting easy attacking power",
+   "why": "Wider, more forgiving shape, but pop needs watching on blocks."
+  },
+  "cr_22c2b21acf84cfcd": {
+   "who": "Power players wanting forgiveness",
+   "why": "Less for spin seekers or those wanting lasting grit."
+  },
+  "cr_50daee976d93c1c0": {
+   "who": "Power players around 4.5 and up",
+   "why": "Not for budget buyers or players who struggle with dinks."
+  },
+  "cr_6717b373553025c1": {
+   "who": "4.0+ attackers and counter punchers",
+   "why": "Not for soft game players or 3.0 to 3.5 learners."
+  },
+  "cr_5e4d81686b8207b9": {
+   "who": "Advanced to elite players",
+   "why": "Not for beginners, and pop-ups are a risk."
+  },
+  "cr_b0d32f6311a78246": {
+   "who": "Players wanting power with spin",
+   "why": "Less for anyone wanting soft-game control out of the box."
+  },
+  "cr_6981e08b8693cc96": {
+   "who": "Aggressive players wanting stability",
+   "why": "They cannot recommend it at $333 when similar power costs less."
+  },
+  "cr_7650594bada839e3": {
+   "who": "Intermediate to advanced players, 4.0+",
+   "why": "Not for beginners, and stock resets leave a little to be desired."
+  },
+  "cr_4e9010083df65e28": {
+   "who": "Singles players",
+   "why": "One of the best singles paddles out of the box."
+  },
+  "cr_b47fff15d0059394": {
+   "who": "Players wanting lasting elite spin",
+   "why": "Poppy when new, so Power 2 doubters may struggle."
+  },
+  "cr_a3ab775ccc26604e": {
+   "who": "Players wanting kitchen firepower",
+   "why": "Crisp and quick with a very good twist weight."
+  },
+  "cr_e4f07c8833de03e2": {
+   "who": "Bangers and players wanting more speed",
+   "why": "Hits big, but they personally reach for a more controlled paddle."
+  },
+  "cr_2bd150858e1b67c5": {
+   "who": "Newer players who do not customize",
+   "why": "Easy to use stock."
+  },
+  "cr_4511f18873f6c0fb": {
+   "who": "Aggressive intermediate+ players",
+   "why": "Suits those who want spin and pop."
+  },
+  "cr_f1de5a6910986595": {
+   "who": "Players of other Power 2 shapes",
+   "why": "Best shape to date after adding 5 g weighted clips."
+  },
+  "cr_264173b3663be54c": {
+   "who": "Players above 4.0",
+   "why": "Controllable after a week or two, with durable grit at $198."
+  },
+  "cr_0b1e9ff850744ab4": {
+   "who": "Players wanting an ultra light paddle",
+   "why": "Still a Gen 3 that will eventually core crush."
+  },
+  "cr_76b3632399b5d642": {
+   "who": "Players wanting a quick spin paddle",
+   "why": "Fits those who will tune it."
+  },
+  "cr_d8b57fa6bf1af7b8": {
+   "who": "Defensive and mixed doubles players",
+   "why": "The 14mm is the most well-rounded for most players."
+  },
+  "cr_46d2beef6a8765bb": {
+   "who": "Players wanting power, control, spin",
+   "why": "Still a true all court paddle at $199 though no longer top dog."
+  },
+  "cr_3712ebbfd1ff58bb": {
+   "who": "Intermediate and up wanting spin",
+   "why": "Not for beginners, and no clear upgrade over the DBD."
+  },
+  "cr_9d436294c4d04a1b": {
+   "who": "Players who can give up pop",
+   "why": "Fits those who prioritize control."
+  },
+  "cr_31535b967d8dbc42": {
+   "who": "Players who liked the older paddle",
+   "why": "A slightly more refined version."
+  },
+  "cr_a2e99f6fc58b21ca": {
+   "who": "Players who swing heavier",
+   "why": "Add lead above the bottom corners if wanted."
+  },
+  "cr_f475108a14e6142e": {
+   "who": "Double Black Diamond owners",
+   "why": "Adds baseline power and fewer pop-ups, though subtly."
+  },
+  "cr_05772e2239ccdecc": {
+   "who": "Players with a complete game",
+   "why": "Excellent dinking and comfortable enough for tournaments."
+  },
+  "cr_0ff3c5410225ebe4": {
+   "who": "Raw carbon fans wanting more power",
+   "why": "Not for players who struggle with resets."
+  },
+  "cr_2aa9139dbbc76432": {
+   "who": "Average rec doubles players",
+   "why": "Control over power, but doubtful for singles."
+  },
+  "cr_62cf1a85a6bd3ccf": {
+   "who": "Intermediate players",
+   "why": "Widebody sits at the low end of power paddles with weight added."
+  },
+  "cr_c0df34179a05cfc3": {
+   "who": "Power fans wanting less firepower",
+   "why": "Less firepower than a Boomstik."
+  },
+  "cr_90089e0c9f000e98": {
+   "who": "Players who found Boomstick too hot",
+   "why": "No reason to switch for those who love Boomstick pop."
+  },
+  "cr_d2aa8e95917576ba": {
+   "who": "Players who found Boomstick too hot",
+   "why": "Less for those who loved its explosiveness."
+  },
+  "cr_f399ee31a972f1c7": {
+   "who": "Bangers and firefight players",
+   "why": "Not for anyone who is not a banger."
+  },
+  "cr_5e31740ceb8adbcb": {
+   "who": "Offense-first players",
+   "why": "Pop punishes a weak soft game, and it only comes elongated."
+  },
+  "cr_4a1a2fc8a1e38348": {
+   "who": "Singles and two-hand backhand players",
+   "why": "Elite power that is still easy to control for novices."
+  },
+  "cr_32f770046d59d762": {
+   "who": "Players wanting power and a soft feel",
+   "why": "Very high pop with minimal effort in defense and the soft game."
+  },
+  "cr_cad900da26d0ae74": {
+   "who": "Players wanting solid, moderate power",
+   "why": "Newer paddles do the job better."
+  },
+  "cr_fd798025b5baabb7": {
+   "who": "Beginners through advanced players",
+   "why": "Not for high level players chasing maximum power."
+  },
+  "cr_4fe127b15040f89b": {
+   "who": "Players valuing control slightly more",
+   "why": "The J2NF fits great control players wanting drives."
+  },
+  "cr_f922ef09bfb570b1": {
+   "who": "Former tennis players",
+   "why": "They tend to like it."
+  },
+  "cr_529905c416949a20": {
+   "who": "Players valuing touch and stability",
+   "why": "Needs no lead tape."
+  },
+  "cr_acb8e076e84dbb39": {
+   "who": "Players wanting durable grit",
+   "why": "Break-in of 15 to 25 plus games for less aggressive players."
+  },
+  "cr_37aede851a81f488": {
+   "who": "Players set on a Boomstik",
+   "why": "Not for players who live on resets."
+  },
+  "cr_f877d33b67138a4f": {
+   "who": "Players who already like the original",
+   "why": "Less clear as a first power paddle."
+  },
+  "cr_94b29a244a96838f": {
+   "who": "Players wanting power and spin",
+   "why": "Asks for a warm-up."
+  },
+  "cr_0649e07061e15495": {
+   "who": "Players wanting controllable power",
+   "why": "Much better grit and easier control than the original."
+  },
+  "cr_9d32b7d46dd8ddcf": {
+   "who": "Spin players who accept a break-in",
+   "why": "Power and control trade-off like tennis strings."
+  },
+  "cr_bab36f48809d246c": {
+   "who": "Players favoring power over control",
+   "why": "A large power gain for a slight loss of control."
+  },
+  "cr_55c2d2b62a6c45a3": {
+   "who": "Players who add weight and want reach",
+   "why": "Not for those wanting a heavy hitter."
+  },
+  "cr_df85950c0a4d9a98": {
+   "who": "Players who customize a light paddle",
+   "why": "Fits tinkerers."
+  },
+  "cr_bcc354009b55983b": {
+   "who": "3.5+ players who swap paddles often",
+   "why": "Very good control, but the grit is not durable."
+  },
+  "cr_f827a8772f6b81aa": {
+   "who": "Aggressive players making own power",
+   "why": "Rewards a full swing and extra reach."
+  },
+  "cr_f137e0f9ffd79912": {
+   "who": "Intermediate players wanting foam",
+   "why": "Not for tournaments, since return of serve was weak."
+  },
+  "cr_0853f694139b89ca": {
+   "who": "Budget buyers wanting a calmer paddle",
+   "why": "Low pop keeps counter speedups in, but elongated only."
+  },
+  "cr_9a18ffcb8b5b57ca": {
+   "who": "Aggressive intermediate+ all-courters",
+   "why": "Soft, responsive dinks, drops and resets with few pop-ups."
+  },
+  "cr_78836e0773fa6ed5": {
+   "who": "Players whose power builds with swing",
+   "why": "Not for easy pop or players who rely on the paddle to dink."
+  },
+  "cr_2ff5159ec707b17a": {
+   "who": "Players who swing through the ball",
+   "why": "Less for those wanting pop that does the work."
+  },
+  "cr_c51accf0a231cdc1": {
+   "who": "Budget buyers wanting Boomstik feel",
+   "why": "Probably the closest budget Boomstik tested, at $180 with code."
+  },
+  "cr_f6f9101bee5464ec": {
+   "who": "Slow game players and maybe singles",
+   "why": "Not very threatening at the kitchen for aggressive net players."
+  },
+  "cr_e732499614d9b00b": {
+   "who": "Players wanting a softer MPP paddle",
+   "why": "Not for those chasing explosive power."
+  },
+  "cr_967cdf74dce56810": {
+   "who": "Offense minded players",
+   "why": "Thin core responds faster than 16 mm paddles."
+  },
+  "cr_a4eb5cd482ca4556": {
+   "who": "Offensive, budget-conscious players",
+   "why": "Widebody is the most well-rounded option."
+  },
+  "cr_082d5a276538a864": {
+   "who": "4.0+ players and drilling 3.5 players",
+   "why": "Casual 3.5 players should stay clear."
+  },
+  "cr_7a200cfc452e6f87": {
+   "who": "Intermediate players wanting power",
+   "why": "Power paddle with an all court feel."
+  },
+  "cr_50068a6e093f6d8f": {
+   "who": "Players wanting to try all foam",
+   "why": "Drives and serves are where it shines."
+  },
+  "cr_ddf57289d8da33d4": {
+   "who": "Intermediate to advanced players",
+   "why": "Beginners may find it frustrating."
+  },
+  "cr_f8ccd6e242b23d7f": {
+   "who": "Players who can handle control demands",
+   "why": "Real step up in power over the previous J2K."
+  },
+  "cr_27208c20685df49c": {
+   "who": "Players wanting power with touch",
+   "why": "Not for those wanting a stiff, crispy feel or control only."
+  },
+  "cr_f11977489b6f711b": {
+   "who": "Budget players wanting full foam",
+   "why": "Controllable power and a huge sweet spot at about $130."
+  },
+  "cr_3d82e5ad2670f208": {
+   "who": "Players wanting help in transition",
+   "why": "Likes the loud, thuddy feel, and $125 after code is fair."
+  },
+  "cr_1b98ff1b8e7b4d06": {
+   "who": "Beginners through high-level players",
+   "why": "Ripping drives and quick speed-ups, though loud."
+  },
+  "cr_426eaaf883869095": {
+   "who": "Players wanting a dense Gen 4 feel",
+   "why": "Extra pop, but not as wild as a Boomstick."
+  },
+  "cr_f73780fc161c9420": {
+   "who": "Standard shape players upgrading",
+   "why": "Needed no added tape, unlike the Quanta."
+  },
+  "cr_08fae8dbbddb3230": {
+   "who": "Players who adapt to a shorter face",
+   "why": "Takes adjusting for those used to elongated paddles."
+  },
+  "cr_3b421d5ddbb0ecb0": {
+   "who": "Players who like widebodies",
+   "why": "Same $195 price as the long-handled J2NF."
+  },
+  "cr_8bbaf976a5dd421d": {
+   "who": "Offensive widebody players",
+   "why": "Less suited to players who dislike pop."
+  },
+  "cr_c296cc0ea31329ed": {
+   "who": "Players wanting a stable paddle",
+   "why": "Could be the best option in hand battles."
+  },
+  "cr_de55e3daaa8eb0ae": {
+   "who": "First paddle buyers and spare seekers",
+   "why": "Easy control and a very low price near $99."
+  },
+  "cr_756d047266f76a7d": {
+   "who": "Budget intermediate all-court players",
+   "why": "Spin, control and value at around $99."
+  },
+  "cr_d937c8bf22dc34a2": {
+   "who": "Players wanting a softer feel",
+   "why": "Controlled power at a discount, with a 6-month warranty."
+  },
+  "cr_f03b7500f28137af": {
+   "who": "Players wanting a muted feel",
+   "why": "May feel too muted coming from Gen 2 or bouncier Gen 3."
+  },
+  "cr_b0c3cc6b115e1a93": {
+   "who": "Players wanting touch and some power",
+   "why": "Plays well stock."
+  },
+  "cr_48b4ff12b3fd08eb": {
+   "who": "Seniors and value minded players",
+   "why": "Even a beginner could live with it, at about $175."
+  },
+  "cr_7449d4c5eb411018": {
+   "who": "Control players wanting pop at the net",
+   "why": "Consistent in the soft game, but no durable grit."
+  },
+  "cr_474f4bcec47c0f95": {
+   "who": "Players who hit the center of the face",
+   "why": "Any of the line would suit a tournament."
+  },
+  "cr_7393e815affe6cee": {
+   "who": "Aggressive players wanting forgiveness",
+   "why": "Excellent value at about $135 after code."
+  },
+  "cr_c3d96dcfd4c99547": {
+   "who": "Two-handed players",
+   "why": "Long handle and solid build for the price."
+  },
+  "cr_d22c02eeb74e1af6": {
+   "who": "Players wanting soft feel with power",
+   "why": "Solid value at $149.99."
+  },
+  "cr_6ccb451253f9bec6": {
+   "who": "Players wanting a powerful widebody",
+   "why": "Not for those wanting a very light, maneuverable paddle."
+  },
+  "cr_453bacfa7fe81470": {
+   "who": "Players wanting hand speed and resets",
+   "why": "Big sweet spot and low swing weight at $150."
+  },
+  "cr_61285ee30f658448": {
+   "who": "Two-handed backhand players",
+   "why": "Long handle gives room for both hands."
+  },
+  "cr_1714f0e697c8a510": {
+   "who": "Players with elbow or joint pain",
+   "why": "Polyester weave gives a plush, dampened feel."
+  },
+  "cr_091ad6ca305915dc": {
+   "who": "Players with a solid soft game",
+   "why": "Prefers the MPP Turbo for most players."
+  },
+  "cr_f649365e508960fc": {
+   "who": "Players wanting a firm, direct feel",
+   "why": "Grit is strong out of the box but fades."
+  },
+  "cr_cf85c43d8d063d2e": {
+   "who": "3.5+ players who like the Loco",
+   "why": "Loco with training wheels, less springy and more controlled."
+  },
+  "cr_a68799ec39dc8d06": {
+   "who": "Budget firepower seekers",
+   "why": "Trade off is occasional pop-ups and long balls."
+  },
+  "cr_86a37d2a87e2d4ce": {
+   "who": "Players wanting a $100 paddle",
+   "why": "Must accept the unusual hybrid shape."
+  },
+  "cr_b17436682ee1367d": {
+   "who": "Players from beginner to pro",
+   "why": "Called the best Six Zero paddle."
+  },
+  "cr_9efb25a94dbc84b3": {
+   "who": "Free wheeling players",
+   "why": "Too soft for their own preference."
+  },
+  "cr_08d403468c4855ce": {
+   "who": "Players wanting a soft, dense feel",
+   "why": "Meaningful upgrade over the Double Black Diamond."
+  },
+  "cr_57d27237194f4e12": {
+   "who": "First serious paddle buyers",
+   "why": "Black Opal suits more advanced players."
+  },
+  "cr_8692e6500d181423": {
+   "who": "Most players",
+   "why": "Not for elongated shape fans or Boomstick-level power seekers."
+  },
+  "cr_4e5001a4135917a2": {
+   "who": "Intermediate players around 3.5 to 4.0",
+   "why": "Reliable control and a large sweet spot, but lacks power."
+  },
+  "cr_23a35fd0daddb62b": {
+   "who": "Intermediate+ placement players",
+   "why": "Banger style players probably will not enjoy it."
+  },
+  "cr_cd2eb43847c1eabb": {
+   "who": "Players wanting an arm friendly feel",
+   "why": "Soft, plush feel with spin that holds up."
+  },
+  "cr_b50c2f8dca03f013": {
+   "who": "Players who make their own pace",
+   "why": "Wants touch, not effortless pop."
+  },
+  "cr_8d819b421f5155b1": {
+   "who": "Players wanting Gen 4 control and spin",
+   "why": "Not for those chasing maximum power."
+  },
+  "cr_a57f96bf7eed1daa": {
+   "who": "Players of all levels with elbow pain",
+   "why": "No elbow pain since the core does not crush."
+  },
+  "cr_e3c266a46c16c97d": {
+   "who": "Players wanting a plusher power paddle",
+   "why": "Better control than typical power paddles."
+  },
+  "cr_477319578b874c97": {
+   "who": "Players who prefer control over power",
+   "why": "Probably not for those wanting loud Boomstick pop."
+  },
+  "cr_a54d1c890c3c3d41": {
+   "who": "Players whose hands get outpaced",
+   "why": "Also for those who want a thinner grip."
+  }
+ }
+}

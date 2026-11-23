@@ -11,7 +11,7 @@
 import { Fragment, useEffect, useMemo, useState, type ReactNode } from "react";
 import { atSecond, clock } from "../../../lib/thread/video-meta";
 import { VideoProvider, clipOf, playClick, usePlay } from "./video-overlay";
-import { MentionChips, mentionNodes, useMentions } from "./mention-links";
+import { mentionNodes, useMentions } from "./mention-links";
 import { dayLabel, thumbOf } from "../../../lib/thread/web-sources";
 import { SOURCE_COLOR, STANCE_LABEL, cardChips, initials, langCode, marks, measuredLine, platform, scoreText, sortReviews, mixTikToks,
   stanceCounts, type CreatorReview, type ReviewEntry, type Stance } from "../../../lib/thread/creators";
@@ -42,8 +42,10 @@ function Card({ x, lit }: { x: ReviewEntry; lit: boolean }) {
   const more = !!rest || !!x.more || !!measured || !!x.alsoUrl;
   const toggle = <button type="button" className="thc-more" aria-expanded={open} onClick={() => setOpen(!open)}>{open ? "Show less" : "Read more"}</button>;
   const tags = [TYPE_TAG[x.type], x.note, x.version].filter((t): t is string => !!t);
-  const boxes = ([["+", "Stood out", x.stood, "pos"], ["−", "The trade-off", x.trade, "neg"], ["⇄", "Compared to", x.compared, "cmp"]] as
-    [string, string, string | null, string][]).filter((b): b is [string, string, string, string] => !!b[2]);
+  // Stood out, The trade-off, then Best for (owner 2026-11-23: in place of "Compared to", which only listed names): who this
+  // reviewer says the paddle suits, and their reason. No Best for: just the first two boxes.
+  const boxes = ([["+", "Stood out", x.stood, "pos", null], ["−", "The trade-off", x.trade, "neg", null], ["◎", "Best for", x.bestFor?.who ?? null, "best", x.bestFor?.why ?? null]] as
+    [string, string, string | null, string, string | null][]).filter((b): b is [string, string, string, string, string | null] => !!b[2]);
   // A TikTok take shows its own tags; a review shows its attribute words as +/- chips.
   const chips = tt ? (x.tags ?? []).map(t => ({ tone: /^[-−]/.test(t) ? "neg" as const : "pos" as const, text: t.replace(/^[+\-−]\s*/, "") }))
     : cardChips(x.attrs);
@@ -82,9 +84,9 @@ function Card({ x, lit }: { x: ReviewEntry; lit: boolean }) {
       </div>}
       {x.quote && <h3 className="thc-q">{x.quoteAt != null && x.kind === "youtube"
         ? <a href={atSecond(x.url, x.quoteAt)} {...OUT} aria-label={`Watch from ${clock(x.quoteAt)}`}>{`“${x.quote}”`}</a> : `“${x.quote}”`}</h3>}
-      {boxes.length > 0 && <div className="thc-boxes">{boxes.map(([i, h, t, k]) => <div key={h} className={`thc-box ${k}`}>
+      {boxes.length > 0 && <div className="thc-boxes">{boxes.map(([i, h, t, k, sub]) => <div key={h} className={`thc-box ${k}`}>
         <span className="thc-box-h"><b aria-hidden="true">{i}</b><span>{h}</span></span><span className="thc-box-t">{t}</span>
-        {k === "cmp" && <MentionChips text={t}/>}</div>)}</div>}
+        {sub && <span className="thc-box-s">{sub}</span>}</div>)}</div>}
       <p className={`thc-sum${vid ? " vid" : ""}`}>{marks(lead, hl).map((m, i) => m.on ? <mark key={i}>{link(m.t)}</mark> : <Fragment key={i}>{link(m.t)}</Fragment>)}
         {more && !open && <>{" "}{toggle}</>}</p>
       {open && rest && <p className={`thc-sum${vid ? " vid" : ""}`}>{marks(rest, hl.filter(h => !lead.includes(h))).map((m, i) => m.on ? <mark key={i}>{link(m.t)}</mark> : <Fragment key={i}>{link(m.t)}</Fragment>)}</p>}
