@@ -67,18 +67,22 @@ async function inputs() {
       if (!r) { console.log(`skip ${slug}: not in the catalog`); continue; }
       let reviews: Review[], tiktok: string[] = [], source: Input["source"];
       const st = staged.get(slug);
+      const rows = await client`select platform, creator, stance, summary, summary_more, stood_out, trade_off, compared_to, version, disclosure
+        from ${client(S)}.creator_reviews where racket_id = ${r.id} and status = 'live' order by published_on desc nulls last`;
+      const live: Review[] = rows.filter(x => x.platform !== "tiktok").map(x => ({ creator: x.creator, kind: x.platform, stance: STANCE[x.stance] ?? x.stance,
+        summary: x.summary, summary_more: x.summary_more, stood_out: x.stood_out, trade_off: x.trade_off,
+        compared_to: Array.isArray(x.compared_to) ? x.compared_to : [], version: x.version, disclosure: x.disclosure }));
+      tiktok = rows.filter(x => x.platform === "tiktok").map(x => `${x.creator}: ${x.summary}`);
       if (st) {
+        // Staged cards plus any live card from a creator the staging file does not cover (the page shows both once imported).
         source = "staging";
         reviews = st.reviews.map(x => ({ creator: x.creator, kind: x.kind, stance: x.stance, summary: x.summary, summary_more: x.summary_more ?? null,
           stood_out: x.stood_out ?? null, trade_off: x.trade_off ?? null, compared_to: x.compared_to ?? [], version: x.version ?? null, disclosure: x.disclosure ?? null }));
+        const have = new Set(reviews.map(x => x.creator.toLowerCase()));
+        reviews.push(...live.filter(x => !have.has(x.creator.toLowerCase())));
       } else {
         source = "db";
-        const rows = await client`select platform, creator, stance, summary, summary_more, stood_out, trade_off, compared_to, version, disclosure
-          from ${client(S)}.creator_reviews where racket_id = ${r.id} and status = 'live' order by published_on desc nulls last`;
-        reviews = rows.filter(x => x.platform !== "tiktok").map(x => ({ creator: x.creator, kind: x.platform, stance: STANCE[x.stance] ?? x.stance,
-          summary: x.summary, summary_more: x.summary_more, stood_out: x.stood_out, trade_off: x.trade_off,
-          compared_to: Array.isArray(x.compared_to) ? x.compared_to : [], version: x.version, disclosure: x.disclosure }));
-        tiktok = rows.filter(x => x.platform === "tiktok").map(x => `${x.creator}: ${x.summary}`);
+        reviews = live;
       }
       if (reviews.length < 3) { console.log(`skip ${slug}: ${reviews.length} reviews (creator page needs 3+)`); continue; }
       const posts = (await client`select id, source_url, source_date, coalesce(excerpt, summary) as text from ${client(S)}.external_reviews
