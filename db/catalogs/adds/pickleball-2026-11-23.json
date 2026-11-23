@@ -1,0 +1,320 @@
+{
+ "about": "PickleballRecs popular-paddle adds (owner OK via PM 2026-11-23): 21 of Grok's 29 missing paddles; 3 thin ones skipped, 5 already in the DB. Values read on each maker page 2026-11-23; blank = not published there. Honolulu Sword & Shield and MARK rows come from db/catalogs/pickleball.json (checked earlier, never imported).",
+ "checked": "2026-11-23",
+ "brands": [
+  {
+   "id": "mark",
+   "name": "MARK"
+  },
+  {
+   "id": "chorus",
+   "name": "Chorus"
+  },
+  {
+   "id": "vanwin",
+   "name": "Vanwin"
+  },
+  {
+   "id": "speedup",
+   "name": "SpeedUp"
+  },
+  {
+   "id": "element-6",
+   "name": "Element 6"
+  },
+  {
+   "id": "gherkin",
+   "name": "Gherkin"
+  },
+  {
+   "id": "warping-point",
+   "name": "Warping Point"
+  },
+  {
+   "id": "mehau",
+   "name": "Mehau"
+  }
+ ],
+ "products": [
+  {
+   "brand": "selkirk",
+   "name": "Selkirk OMNI",
+   "year": 2026,
+   "shape": "Elongated or Widebody",
+   "weight": "7.9–8.2 oz",
+   "core": "16 mm",
+   "surface": "InfiniGrit surface, Multistrata face",
+   "swingWeight": "112–118",
+   "sources": [
+    "https://selkirk.com/products/selkirk-omni-pickleball-paddle"
+   ]
+  },
+  {
+   "brand": "mark",
+   "name": "MARK unMARKed",
+   "year": 2026,
+   "shape": "Elongated",
+   "weight": "7.8–8.0 oz",
+   "core": "16 mm",
+   "surface": "T700 / fiberglass mid-layer",
+   "swingWeight": "112–115",
+   "sources": [
+    "https://markpickleball.com/products/unmarked-2026"
+   ]
+  },
+  {
+   "brand": "honolulu",
+   "name": "Honolulu J2NF",
+   "year": 2025,
+   "shape": "Hybrid",
+   "weight": "8.0–8.3 oz",
+   "core": "16 mm",
+   "surface": "Carbon fiber / fiberglass / carbon fiber (CFC)",
+   "swingWeight": "110–114",
+   "sources": [
+    "https://808pickle.com/products/sword-shield-j2fc-beta-pre-order-copy",
+    "https://pickleballcentral.com/honolulu-sword-shield-j2nf-pickleball-paddle/"
+   ]
+  },
+  {
+   "brand": "honolulu",
+   "name": "Honolulu J2FC+",
+   "year": 2025,
+   "shape": "Hybrid",
+   "weight": "8.0–8.3 oz",
+   "core": "16 mm",
+   "surface": "Carbon fiber",
+   "swingWeight": "110–114",
+   "sources": [
+    "https://808pickle.com/products/sword-shield-j2fc-plus",
+    "https://pickleballcentral.com/honolulu-sword-shield-j2fc-pickleball-paddle/"
+   ],
+   "slug": "honolulu-j2fc-plus"
+  },
+  {
+   "brand": "gearbox",
+   "name": "Gearbox Pressure X 8E",
+   "year": 2026,
+   "shape": "Elongated",
+   "weight": "8.0 oz",
+   "core": "16 mm",
+   "surface": "Layered carbon fiber face, SpinLock surface",
+   "swingWeight": null,
+   "sources": [
+    "https://gearboxsports.com/products/pressurex-8e-pickleball-paddle"
+   ]
+  },
+  {
+   "brand": "chorus",
+   "name": "Chorus Coda",
+   "year": 2026,
+   "shape": "Elongated",
+   "weight": "7.7–8.1 oz",
+   "core": "16 mm",
+   "surface": "Soft carbon / fiberglass / soft carbon",
+   "swingWeight": "114–118",
+   "sources": [
+    "https://choruspickleball.com/products/coda-all-foam-power-elongated-e"
+   ]
+  },
+  {
+   "brand": "selkirk",
+   "name": "Selkirk Boomstik ST",
+   "year": 2026,
+   "shape": "Elongated or Widebody",
+   "weight": "8.0–8.2 oz",
+   "core": "16 mm",
+   "surface": "InfiniGrit Ultra surface, Sharktooth grooves",
+   "swingWeight": "110–115",
+   "sources": [
+    "https://selkirk.com/products/boomstik-st"
+   ]
+  },
+  {
+   "brand": "honolulu",
+   "name": "Honolulu J2Ti+",
+   "year": 2025,
+   "shape": "Hybrid",
+   "weight": "8.0–8.4 oz",
+   "core": "16 mm",
+   "surface": "Carbon fiber & PET electroplated fiber ('titanium')",
+   "swingWeight": "113–117",
+   "slug": "honolulu-j2ti-plus",
+   "sources": [
+    "https://808pickle.com/products/sword-shield-j2ti-copy",
+    "https://web.archive.org/web/20250208011227/https://808pickle.com/products/sword-shield-j2ti-copy"
+   ]
+  },
+  {
+   "brand": "neonic",
+   "name": "Neonic NeoGrit FLX Swift",
+   "year": 2026,
+   "shape": "Elongated",
+   "weight": "7.5–7.7 oz",
+   "core": null,
+   "surface": "NeoGrit surface",
+   "swingWeight": "108–110",
+   "sources": [
+    "https://neonicpickleball.com/products/neogrit-flx-swift"
+   ]
+  },
+  {
+   "brand": "vanwin",
+   "name": "Vanwin Alpha Power",
+   "year": 2026,
+   "shape": "Elongated",
+   "weight": null,
+   "core": "16 mm",
+   "surface": "Carbon fiber, carborundum texture",
+   "swingWeight": null,
+   "sources": [
+    "https://vanwinsports.com/products/alpha-power-carbon-fiber-pickleball-paddle"
+   ]
+  },
+  {
+   "brand": "pickleball-apes",
+   "name": "Pickleball Apes Zen S+",
+   "year": 2026,
+   "shape": "Hybrid",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "swingWeight": null,
+   "slug": "pickleball-apes-zen-s-plus",
+   "sources": [
+    "https://pickleballapes.com/products/zen-new-paddle"
+   ]
+  },
+  {
+   "brand": "honolulu",
+   "name": "Honolulu J6CR M105",
+   "year": 2026,
+   "shape": "Elongated",
+   "weight": "8.0–8.2 oz",
+   "core": "16 mm",
+   "surface": "Crystal Blue Endurance Surface (Blue Grit)",
+   "swingWeight": "111–116",
+   "sources": [
+    "https://808pickle.com/products/j6cr-m-105-crystal-blue%E2%84%A2-endurance-surface%E2%84%A2-pre-order"
+   ]
+  },
+  {
+   "brand": "speedup",
+   "name": "SpeedUp Tide 14",
+   "year": 2026,
+   "shape": "Standard, Hybrid or Elongated",
+   "weight": "8.0 oz",
+   "core": "14 mm",
+   "surface": "FlexGrid face, 3 layers of T700 carbon fiber",
+   "swingWeight": "106–120",
+   "sources": [
+    "https://speeduppickle.com/products/speedup-tide-14mm-all-shapes"
+   ]
+  },
+  {
+   "brand": "engage",
+   "name": "Engage X2 Elongated",
+   "year": 2026,
+   "shape": "Elongated",
+   "weight": null,
+   "core": "16 mm",
+   "surface": "Micro-weave carbon fiber",
+   "swingWeight": null,
+   "sources": [
+    "https://engagepickleball.com/products/engage-x2-pickleball-paddle"
+   ]
+  },
+  {
+   "brand": "honolulu",
+   "name": "Honolulu J2K+",
+   "year": 2025,
+   "shape": "Hybrid",
+   "weight": "8.0–8.4 oz",
+   "core": "16 mm",
+   "surface": "100% aramid fiber (DuPont Kevlar), control weave",
+   "swingWeight": "113–118",
+   "slug": "honolulu-j2k-plus",
+   "sources": [
+    "https://808pickle.com/products/sword-shield-j2k-1"
+   ]
+  },
+  {
+   "brand": "element-6",
+   "name": "Element 6 Ignis",
+   "year": 2026,
+   "shape": "Elongated",
+   "weight": "7.75 oz",
+   "core": "16 mm",
+   "surface": null,
+   "swingWeight": "114",
+   "sources": [
+    "https://e6pickleball.com/product/pro-series-16mm-ignis/"
+   ]
+  },
+  {
+   "brand": "gherkin",
+   "name": "Gherkin Draco Hybrid",
+   "year": 2026,
+   "shape": "Hybrid",
+   "weight": "7.9 oz",
+   "core": "16 mm",
+   "surface": "Carbon fiber / fiberglass / carbon fiber (CFC)",
+   "swingWeight": "111",
+   "sources": [
+    "https://www.gherkinusa.com/products/draco"
+   ]
+  },
+  {
+   "brand": "honolulu",
+   "name": "Honolulu J3NF",
+   "year": 2025,
+   "shape": "Standard",
+   "weight": "7.9–8.3 oz",
+   "core": "16 mm",
+   "surface": "Carbon fiber / fiberglass / carbon fiber (CFC)",
+   "swingWeight": "108–113",
+   "sources": [
+    "https://808pickle.com/products/sword-shield-j3nf-pre-order"
+   ]
+  },
+  {
+   "brand": "warping-point",
+   "name": "Warping Point Neon Gen 3",
+   "year": 2025,
+   "shape": "Hybrid",
+   "weight": null,
+   "core": "16 mm",
+   "surface": "Raw T700 carbon fiber",
+   "swingWeight": "113",
+   "sources": [
+    "https://warpingpoint.com/products/16mm-dual-tone-pickleball-paddle"
+   ]
+  },
+  {
+   "brand": "honolulu",
+   "name": "Honolulu J2NFT",
+   "year": 2025,
+   "shape": "Hybrid",
+   "weight": "8.0–8.3 oz",
+   "core": "16 mm",
+   "surface": "Carbon fiber & PET electroplated fiber ('titanium')",
+   "swingWeight": "110–114",
+   "sources": [
+    "https://808pickle.com/products/sword-shield-j2nft-pre-order"
+   ]
+  },
+  {
+   "brand": "mehau",
+   "name": "Mehau S5 Airpoom",
+   "year": 2026,
+   "shape": "Elongated",
+   "weight": "7.7 oz (219 g)",
+   "core": "16 mm",
+   "surface": "Carbon fiber",
+   "swingWeight": null,
+   "sources": [
+    "https://mehaupickleball.com/products/mehau-s5-airpoom-aerodynamic-pickleball-paddle"
+   ]
+  }
+ ]
+}
