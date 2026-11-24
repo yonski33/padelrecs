@@ -27,6 +27,9 @@ const input = z.discriminatedUnion("action", [
     confirm: z.literal("yes").optional(), withReplies: z.literal("yes").optional(), ...back }),
 ]);
 const FAILED = ["invalid", "confirm", "stale", "failed", "none"];
+/** The words a JSON caller shows for a failure (the admin's quick edit, app/funtimes/quick-edit.tsx). */
+const ERROR_TEXT: Record<string, string> = { invalid: "A name needs 2 to 24 characters with no links, and a comment 2 to 2,000.", confirm: "Confirm the delete first.",
+  stale: "That comment no longer exists.", failed: "Saving failed. Try again.", none: "Tick at least one comment first." };
 
 /** The public pages behind these comment page keys: a racket's own pages, a ranking, a guide or a story. */
 async function refreshCommentPages(db: Awaited<ReturnType<typeof database>>, pages: string[]) {
@@ -53,7 +56,7 @@ export async function POST(request: Request) {
     parsed = input.safeParse({ action: "status", ...form });
   } catch { parsed = null; }
   const to = (result: string, n?: number) => {
-    if (wantsJson(request)) return adminJson(request, { result, ...(n != null ? { count: n } : {}) }, FAILED.includes(result) ? 400 : 200);
+    if (wantsJson(request)) return adminJson(request, { result, ...(n != null ? { count: n } : {}), ...(ERROR_TEXT[result] ? { error: ERROR_TEXT[result] } : {}) }, FAILED.includes(result) ? 400 : 200);
     const b = String(form.back ?? "all"), keep: Partial<CommentsQuery> = { status: (["pending", "approved", "rejected"].includes(b) ? b : "all") as CommentsQuery["status"],
       q: String(form.q ?? "").slice(0, 200), racket: String(form.racket ?? "").slice(0, 100), page: Math.max(1, parseInt(String(form.p ?? "1"), 10) || 1) };
     const query = new URL(commentsHref(keep), "http://x").searchParams; query.set("result", result); if (n != null) query.set("n", String(n));
