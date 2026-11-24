@@ -3419,8 +3419,8 @@
     ]
    },
    {
-    "title": "Forgiving face",
-    "t": "A generous sweet spot ==keeps mishits playable==, more so with added weight.",
+    "title": "Holds up on mishits",
+    "t": "Off-centre hits ==stay usable for an elongated==, more so with added weight.",
     "for": [
      "intermediate"
     ],
@@ -4190,7 +4190,7 @@
   ]
  },
  "luzz-pro-4-inferno": {
-  "tagline": "A big foam power paddle with a big sweet spot. The catch: some faces go dead early.",
+  "tagline": "A big foam power paddle, fairly forgiving for an elongated. The catch: some faces go dead early.",
   "bottom": "A heavy hitter for advanced players who want easy pace. Beginners and touch players should wait.",
   "yes": [
    {
@@ -4830,8 +4830,8 @@
     ]
    },
    {
-    "title": "Large sweet spot",
-    "t": "A generous face for an elongated ==keeps off-centre hits playable==.",
+    "title": "Fair sweet spot",
+    "t": "For an elongated, the face ==keeps off-centre hits playable==.",
     "for": [
      "intermediate"
     ],
@@ -5275,7 +5275,7 @@
    },
    {
     "title": "Forgiving across the face",
-    "t": "Off-centre hits ==stay playable== on the larger sweet spot.",
+    "t": "Off-centre hits ==stay playable== for an elongated shape.",
     "for": [
      "beginner",
      "intermediate"
@@ -9168,7 +9168,7 @@
    },
    {
     "title": "Concentrated sweet spot",
-    "t": "Its best hitting zone ==is tighter than a widebody suggests==.",
+    "t": "Its ==best contact area is tighter== than a widebody suggests.",
     "for": [
      "advanced"
     ],
