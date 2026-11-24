@@ -292,14 +292,22 @@ export const audioOf = (ctx: Ctx) => (ctx as unknown as { audio?: AudioThreadCtx
  *  catalogue, the owner scores (app/signals.ts) and the quick-take hooks, as AudioRecs' do; its quick match runs on its own
  *  inputs (lib/laptop-wire.ts). Current: the newest generation of each model with enough reviews. */
 async function laptopRows(): Promise<Rows> {
-  const [{ catalog }, { productSignals }, { quickTakeHooks }] = await Promise.all([import("../../db/data"), import("../signals"), import("../../db/quick-take")]);
+  const [{ catalog }, { productSignals }, { quickTakeHooks }, { laptopLines }, { laptopReadiness }] = await Promise.all([import("../../db/data"), import("../signals"),
+    import("../../db/quick-take"), import("../../lib/thread/laptop-lines"), import("../../lib/thread/laptop-ready")]);
   const [data, sigs, takes] = await Promise.all([catalog(), productSignals(), quickTakeHooks()]);
-  const ctx = { data, sigs, takes, facts: () => ({ reports: 0, tags: {} }), traits: () => ({}), expertLine: () => null } as unknown as Ctx;
   const brand = new Map(data.brands.map(b => [b.id, b.name])), reports = new Map<string, number>();
   for (const x of [...data.reviews, ...data.external]) reports.set(x.racketId, (reports.get(x.racketId) ?? 0) + 1);
-  const current = familyRowIds(data.listed, x => (reports.get(x.id) ?? 0) >= MIN_FIT_REPORTS);
+  // Current = its line's 2026 model, or its 2025 model while the line has no 2026 successor; 2024 and older never list
+  // (owner 2026-11-24, lib/thread/laptop-lines.ts). Older models keep their pages and link to the newest.
+  // Every visible laptop, not only the reviewed ones (`listed`); only READY pages take a line's slot or get linked
+  // (lib/thread/laptop-lines.ts LAPTOP_READY: creator reviews or a TL;DR, plus owner votes).
+  const votes = (id: string) => { const c = score(data, id); return c.positive + c.mixed + c.negative; };
+  const { ready } = await laptopReadiness(data.rackets, votes);
+  const lines = laptopLines(data.rackets.map(r => ({ id: r.id, slug: r.slug, ready: ready.has(r.id) })));
+  const current = lines.current;
+  const ctx = { data, sigs, takes, laptop: { newer: lines.newer, standIns: lines.standIns, ready }, facts: () => ({ reports: 0, tags: {} }), traits: () => ({}), expertLine: () => null } as unknown as Ctx;
   const rows = new Map<string, ThreadRow>();
-  for (const r of data.listed) {
+  for (const r of data.rackets) {
     const c = score(data, r.id), b = brand.get(r.brandId) ?? "";
     rows.set(r.id, { id: r.id, slug: r.slug, name: displayName(r.name, b), href: productHref(r), pic: photoHidden(r) ? null : shopPhoto(r) ?? amazonPhoto(r)?.image ?? null,
       shape: r.shape, line: rowLine(r, takes.get(r.id)?.hook), best: null, n: reports.get(r.id) ?? 0, pos: c.positive, mix: c.mixed, neg: c.negative,
@@ -307,6 +315,11 @@ async function laptopRows(): Promise<Rows> {
   }
   return { ctx, rows, all: [...rows.values()], bySlug: new Map([...rows.values()].map(x => [x.slug, x])) };
 }
+/** LaptopRecs' line data on the rows' context (laptopRows): each older model's newest version (slug -> slug) and the lines a
+ *  2025 model stands in for (no 2026 successor yet). */
+export type LaptopThreadCtx = { newer: Map<string, string>; standIns: { line: string; slug: string }[];
+  /** The ids whose pages are ready to list and link (lib/thread/laptop-ready.ts). */ ready: Set<string> };
+export const laptopOf = (ctx: Ctx) => (ctx as unknown as { laptop?: LaptopThreadCtx }).laptop ?? null;
 /** "Owners mostly rate…" → "Listeners mostly rate…" (V3-ROLLOUT-BRIEF: never "owners"). */
 const listenerLine = (t: string | null) => t ? t.replace(/(?<![\w-])([Oo])wner(s?)\b/g, (_, o: string, x: string) => `${o === "O" ? "L" : "l"}istener${x}`) : t;
 async function audioRows(): Promise<Rows> {

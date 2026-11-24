@@ -2355,3 +2355,12 @@ body:has(.th) .th a.th-wv-chip { display: inline-flex; align-items: baseline; ga
 body:has(.th) .th a.th-wv-chip:hover { border-color: var(--chip); }
 .th-wv-chip b { font: 600 14px/1.3 ui-monospace, SFMono-Regular, Menlo, monospace; color: #B3261E; }
 @media (max-width: 620px) { body:has(.th) .th a.th-wv-chip { font-size: 13.5px; padding: 5px 10px; } }
+
+/* LaptopRecs (owner 2026-11-24): the quiet "Newer version: X" line on an older generation's page, and the brand page's
+   collapsed "Older models" list. */
+.th-newer, .thc .thc-newer { margin: 4px 0 0; font-size: 13.5px; color: var(--ink2, #555); }
+.th-newer a, .thc .thc-newer a { color: inherit; text-decoration: underline; text-underline-offset: 2px; }
+.th-older { max-width: 1180px; margin: 8px auto 28px; padding: 0 16px; font-size: 14px; color: var(--ink2, #555); }
+.th-older summary { cursor: pointer; font-weight: 600; }
+.th-older ul { margin: 8px 0 0; padding-left: 18px; columns: 2; }
+@media (max-width: 600px) { .th-older ul { columns: 1; } }
