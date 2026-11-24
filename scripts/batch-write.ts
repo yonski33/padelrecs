@@ -24,6 +24,17 @@ import { existsSync } from "node:fs";
 import { mkdir, readdir, readFile, writeFile } from "node:fs/promises";
 import { join } from "node:path";
 
+// Out of API credit (owner 2026-11-24: the promo credit runs out; stop at once with a clear note, the key gets swapped).
+const BILLING = /credit balance|billing|payment required|insufficient|quota|spend limit/i;
+function stopIfBilling(e: unknown): never {
+  const msg = String((e as { message?: string })?.message ?? e);
+  if (BILLING.test(msg) || (e as { status?: number })?.status === 402) {
+    console.error("\nSTOP: the Anthropic API account is out of credit (\"credit balance too low\" or a billing error).\n" +
+      "Swap ANTHROPIC_API_KEY in .env.local, then re-run the same step: the stage state is kept and nothing is lost.\n");
+    process.exit(3);
+  }
+  throw e;
+}
 const MODEL = "claude-sonnet-5-5";
 // Niche from NICHE (required): site name, domain, product word and page path come from lib/niche. The attribute names,
 // shape/thickness wording and the blocklists below were written for pickleball; review them before running another niche.
@@ -297,7 +308,7 @@ async function submit(step: "write" | "check") {
       messages: [{ role: "user", content: i.user }],
       output_config: { effort: "high", format: { type: "json_schema", schema: i.schema as Record<string, unknown> } },
     } })),
-  });
+  }).catch(stopIfBilling);
   state.batches.push({ step, id: batch.id, submitted: new Date().toISOString(), requests: items.length, estimate_usd: est, collected: false });
   await saveState(state);
   console.log(`Submitted ${step} batch ${batch.id}`);
@@ -309,7 +320,7 @@ async function poll() {
   if (!open) { console.log("No open batch."); return; }
   const c = client();
   for (;;) {
-    const b = await c.messages.batches.retrieve(open.id);
+    const b = await c.messages.batches.retrieve(open.id).catch(stopIfBilling);
     console.log(`${open.step} ${open.id}: ${b.processing_status} ${JSON.stringify(b.request_counts)}`);
     if (b.processing_status === "ended") break;
     if (!has("wait")) return;
@@ -317,8 +328,9 @@ async function poll() {
   }
   const file = join(STAGE, `${open.step}-results.json`);
   const results: Record<string, unknown> = existsSync(file) ? await readJson(file) : {};
-  for await (const r of await c.messages.batches.results(open.id)) {
+  for await (const r of await c.messages.batches.results(open.id).catch(stopIfBilling)) {
     const id = r.custom_id.replace(/^(write|check)__/, "");
+    if (r.result.type === "errored" && BILLING.test(JSON.stringify(r.result))) stopIfBilling(new Error(JSON.stringify(r.result)));
     if (r.result.type !== "succeeded") { results[id] = { error: r.result.type }; continue; }
     const m = r.result.message;
     const u = m.usage;

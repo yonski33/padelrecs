@@ -18,6 +18,17 @@ import { niche } from "../lib/niche";
 import { connect } from "./connection";
 
 if (!process.env.NICHE) throw new Error("Set NICHE (e.g. NICHE=pickleball): the niche config defaults to padel otherwise.");
+// Out of API credit (owner 2026-11-24: the promo credit runs out; stop at once with a clear note, the key gets swapped).
+const BILLING = /credit balance|billing|payment required|insufficient|quota|spend limit/i;
+function stopIfBilling(e: unknown): never {
+  const msg = String((e as { message?: string })?.message ?? e);
+  if (BILLING.test(msg) || (e as { status?: number })?.status === 402) {
+    console.error("\nSTOP: the Anthropic API account is out of credit (\"credit balance too low\" or a billing error).\n" +
+      "Swap ANTHROPIC_API_KEY in .env.local, then re-run the same step: the stage state is kept and nothing is lost.\n");
+    process.exit(3);
+  }
+  throw e;
+}
 const MODEL = "claude-sonnet-5-5";
 const PRICE = { input: 1.0, output: 5.0, cacheRead: 0.05, cacheWrite: 1.25 }; // $ per MTok, Message Batches (50%) Sonnet 5.5
 const SITE = niche.site.name, ITEM = niche.words.one, ITEMS = niche.words.many;
@@ -178,7 +189,7 @@ async function submit(step: "write" | "check") {
   const batch = await new Anthropic().messages.batches.create({ requests: items.map(i => ({ custom_id: i.id, params: {
     model: MODEL, max_tokens: 16000, system: [{ type: "text", text: i.system, cache_control: { type: "ephemeral" } }],
     messages: [{ role: "user", content: i.user }],
-    output_config: { effort: "high", format: { type: "json_schema", schema: i.schema as Record<string, unknown> } } } })) });
+    output_config: { effort: "high", format: { type: "json_schema", schema: i.schema as Record<string, unknown> } } } })) }).catch(stopIfBilling);
   state.batches.push({ step, id: batch.id, requests: items.length, collected: false });
   await saveState(state);
   console.log(`Submitted ${step} batch ${batch.id}`);
@@ -188,7 +199,7 @@ async function poll() {
   if (!open) { console.log("No open batch."); return; }
   const c = new Anthropic();
   for (;;) {
-    const b = await c.messages.batches.retrieve(open.id);
+    const b = await c.messages.batches.retrieve(open.id).catch(stopIfBilling);
     console.log(`${open.step} ${open.id}: ${b.processing_status} ${JSON.stringify(b.request_counts)}`);
     if (b.processing_status === "ended") break;
     if (!has("wait")) return;
@@ -196,7 +207,8 @@ async function poll() {
   }
   const file = join(STAGE, `${open.step}-results.json`);
   const out: Record<string, unknown> = existsSync(file) ? await readJson(file) : {};
-  for await (const r of await c.messages.batches.results(open.id)) {
+  for await (const r of await c.messages.batches.results(open.id).catch(stopIfBilling)) {
+    if (r.result.type === "errored" && BILLING.test(JSON.stringify(r.result))) stopIfBilling(new Error(JSON.stringify(r.result)));
     if (r.result.type !== "succeeded") { out[r.custom_id] = { error: r.result.type }; continue; }
     const m = r.result.message, u = m.usage;
     state.usage[`${open.step}:${r.custom_id}`] = { input: u.input_tokens, output: u.output_tokens, cacheRead: u.cache_read_input_tokens ?? 0,
