@@ -60,3 +60,22 @@ test("model families: CRBN shapes and Black Ace thicknesses are separate paddles
   assert.notEqual(f("ProKennex Black Ace LG"), f("ProKennex Black Ace LG 14"));
   assert.equal(f("11SIX24 Pegasus Power"), f("11SIX24 Pegasus Power 2"));
 });
+
+test("PickleballRecs About and affiliate: no score wording, honest review-check line (owner 2026-11-24)", async () => {
+  const { PADEL_COPY } = await import("../lib/thread/copy");
+  const { pickleballInfo, PB_INFO_SWAPS, PB_INFO_DROP, toPickleball } = await import("../lib/thread/copy-pickleball");
+  const before = PADEL_COPY.INFO.filter(c => c.key === "about" || c.key === "affiliate").map(c => toPickleball([...c.intro, ...c.sections.flatMap(s => s.body)].join("\n"))).join("\n");
+  for (const [from] of PB_INFO_SWAPS) assert.ok(before.includes(from), from);
+  const out = pickleballInfo(PADEL_COPY.INFO).filter(c => c.key === "about" || c.key === "affiliate");
+  const text = out.map(c => [...c.intro, ...c.sections.flatMap(s => s.title + "\n" + s.body.join("\n"))].join("\n")).join("\n");
+  assert.doesNotMatch(text, /\bscores?\b|0 to 100|checked by a real person/i);
+  assert.match(text, /written with AI and checked by a second pass/);
+  assert.ok(!out.find(c => c.key === "about")!.sections.some(s => PB_INFO_DROP.includes(s.title)));
+});
+
+test("brand intro: the most loved paddle by its loved count, no score", async () => {
+  const { brandIntro } = await import("../lib/thread/brand-intro");
+  assert.equal(brandIntro("Six Zero", 14, 592, { name: "Coral Pro 16mm", score: 92 }, "paddle", { name: "Coral Pro 16mm", pos: 266 }),
+    "Six Zero: 14 current paddles, 592 player reviews. Most loved: the Coral Pro 16mm, loved by 266 players.");
+  assert.match(brandIntro("Six Zero", 14, 592, { name: "Coral Pro 16mm", score: 92 }, "paddle"), /Top player score: 92/);
+});

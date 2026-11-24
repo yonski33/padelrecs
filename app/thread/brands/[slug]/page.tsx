@@ -33,7 +33,10 @@ export default async function ThreadBrand({ params }: { params: Promise<{ slug: 
   const current = rows.filter(r => r.current !== false);
   const top = current.filter(r => r.score != null).sort((a, b) => b.score! - a.score! || b.n - a.n)[0];
   const short = (n: string) => n.replace(new RegExp(`^${brand.name}\\s+`, "i"), "");
-  const lead = brandIntro(brand.name, current.length, rows.reduce((n, r) => n + r.n, 0), top ? { name: short(top.name), score: top.score! } : null, niche.words.one);
+  // PickleballRecs (owner 2026-11-24, Grok audit #99): no score wording; the most loved paddle by its loved count.
+  const loved = niche.id === "pickleball" ? [...current].sort((a, b) => b.pos - a.pos || b.n - a.n)[0] ?? null : undefined;
+  const lead = brandIntro(brand.name, current.length, rows.reduce((n, r) => n + r.n, 0), top ? { name: short(top.name), score: top.score! } : null, niche.words.one,
+    loved === undefined ? undefined : loved && { name: short(loved.name), pos: loved.pos });
   const ld = listJsonLd([{ name: "Brands", path: "/brands" }, { name: brand.name, path: `/brands/${brand.slug}` }], ctx.data.listed.filter(r => r.brandId === brand.id).map(r => ({ name: all.find(x => x.id === r.id)?.name ?? r.name, href: all.find(x => x.id === r.id)?.href ?? `${catalogPath}/${r.slug}` })));
   return <Shell>
     <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: ld }}/>

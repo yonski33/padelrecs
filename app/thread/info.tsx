@@ -9,8 +9,10 @@ import { amazonLinksOn } from "../../lib/amazon-offer";
 import { niche } from "../../lib/niche";
 import { infoV3 } from "../../lib/thread/info-v3";
 
-const HREF: Record<InfoCopy["key"], string> = { about: "/about", score: "/how-we-make-these", affiliate: "/affiliate-disclosure", contact: "/contact" };
-const MORE = INFO.map((x, i) => ({ label: INFO_UI.moreLinks[i] ?? x.title, href: HREF[x.key] }));
+// PickleballRecs (owner 2026-11-24, Grok audit #99): no score page; the link goes to How rankings work.
+const PB = niche.id === "pickleball";
+const HREF: Record<InfoCopy["key"], string> = { about: "/about", score: PB ? "/how-rankings-work" : "/how-we-make-these", affiliate: "/affiliate-disclosure", contact: "/contact" };
+const MORE = INFO.map((x, i) => ({ label: PB && x.key === "score" ? "How rankings work" : INFO_UI.moreLinks[i] ?? x.title, href: HREF[x.key] }));
 const more = () => MORE.filter(l => l.href !== "/affiliate-disclosure" || amazonLinksOn());
 /** "{contactLink}" in the copy becomes a link to the contact form (no address is shown). */
 const withLink = (t: string): ReactNode => t.includes("{contactLink}")

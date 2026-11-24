@@ -156,4 +156,24 @@ const SWAPS: [RegExp, string][] = [[/PadelRecs/g, "PickleballRecs"], [/\bpadel\b
 export const toPickleball = (t: string) => SWAPS.reduce((s, [re, to]) => s.replace(re, to), t);
 const swapDeep = <T,>(v: T): T => (typeof v === "string" ? toPickleball(v) : Array.isArray(v) ? v.map(swapDeep)
   : v && typeof v === "object" ? Object.fromEntries(Object.entries(v).map(([k, x]) => [toPickleball(k), swapDeep(x)])) : v) as T;
-export const pickleballInfo = (padel: InfoCopy[]): InfoCopy[] => swapDeep(padel);
+/** Owner "Yes, both" 2026-11-24 (Grok audit #99, #100): no score wording on the About and affiliate pages (paddles show counts),
+ *  and an honest line on how reviews are checked. Exact sentences, each must match (tests/pickleball-audit-1124.test.ts). */
+export const PB_INFO_SWAPS: [string, string][] = [
+  ["Every paddle gets one player score, so you can see at a glance what people actually think.",
+    "Every paddle shows how many players loved it, were mixed or say not for me, so you can see at a glance what people actually think."],
+  ["Scores come only from players, and every review on the site is checked by a real person before it counts.",
+    "Rankings come only from players. Player reviews are checked before they show; summaries of YouTube, blog and Reddit reviews are written with AI and checked by a second pass."],
+  ["If a paddle is bad, the score says so.", "If a paddle is bad, the counts say so."],
+  ["It never changes a score or a ranking.", "It never changes a ranking or a review."],
+  ["never changes a score, a ranking or a review.", "never changes a ranking, a review or a vote count."],
+  ["Scores, rankings and reviews come only from players.", "Rankings, reviews and vote counts come only from players."],
+];
+/** The About section that explained the 0 to 100 score: gone with the score. */
+export const PB_INFO_DROP = ["How the score works"];
+const noScore = (c: InfoCopy): InfoCopy => {
+  const sw = (t: string) => PB_INFO_SWAPS.reduce((x, [a, b]) => x.replace(a, b), t);
+  const links = (c.extra?.sectionLinks ?? null) as Record<string, unknown> | null;
+  return { ...c, intro: c.intro.map(sw), sections: c.sections.filter(x => !PB_INFO_DROP.includes(x.title)).map(x => ({ ...x, body: x.body.map(sw) })),
+    ...(links ? { extra: { ...c.extra, sectionLinks: Object.fromEntries(Object.entries(links).filter(([k]) => !PB_INFO_DROP.includes(k))) } } : {}) };
+};
+export const pickleballInfo = (padel: InfoCopy[]): InfoCopy[] => swapDeep(padel).map(c => c.key === "about" || c.key === "affiliate" ? noScore(c) : c);

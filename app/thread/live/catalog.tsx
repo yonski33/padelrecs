@@ -13,6 +13,8 @@ const SKIN = niche.id === "skin", DG = niche.id === "discgolf", SR = niche.id ==
 /** PadelRecs (owner 2026-11-21): "Your match" (level, style, Arm comfort; the same picks as the home quick match) re-orders the
  *  list by match % once a level or style is picked and never hides a racket; "Filter" (Shape, Feel, Brand) narrows it. */
 const PADEL = niche.id === "padel";
+/** PickleballRecs (owner 2026-11-24, Grok audit #99): no score wording; the default sort is "Most loved" (the loved count). */
+const PB = niche.id === "pickleball";
 /** DiscGolfRecs: a disc's stability from its flight numbers, for the filter (lib/niche/discgolf-guide.ts stabilityOfFlight's
  *  rule, inlined so other sites' catalogue code stays as it is). */
 const stabOf = (r: ThreadRow) => { if (!r.flight) return null; const [, , turn, fade] = r.flight;
@@ -60,11 +62,11 @@ export function Catalog({ rows, brands, title = SKIN ? "All skincare products" :
   useEffect(() => { if (PADEL) setSort(mine ? "match" : "score"); }, [mine]);
   const by = sort === "match" && !pcts ? "score" : sort;
   const list = useMemo(() => pool.filter(r => pass(r)).sort((a, b) => by === "reviews" ? b.n - a.n : by === "new" ? b.year - a.year || (b.score ?? -1) - (a.score ?? -1)
-    : by === "match" ? (pcts!.get(b.id) ?? -1) - (pcts!.get(a.id) ?? -1) : (b.score ?? -1) - (a.score ?? -1) || b.n - a.n),
+    : by === "match" ? (pcts!.get(b.id) ?? -1) - (pcts!.get(a.id) ?? -1) : PB ? b.pos - a.pos || b.n - a.n : (b.score ?? -1) - (a.score ?? -1) || b.n - a.n),
   // eslint-disable-next-line react-hooks/exhaustive-deps
   [pool, f, q, by, pcts]);
   const topId = pcts ? topMatch(list.map(r => ({ id: r.id, pct: pcts.get(r.id) }))) : null;
-  const SORTS = [["score", `By ${W.score}`], ["reviews", "Most reviewed"], ["new", SKIN || DG || SR ? "Newest" : "Newest models"], ...(pcts ? [["match", "By your match"]] : [])] as [typeof sort, string][];
+  const SORTS = [["score", PB ? "Most loved" : `By ${W.score}`], ["reviews", "Most reviewed"], ["new", SKIN || DG || SR ? "Newest" : "Newest models"], ...(pcts ? [["match", "By your match"]] : [])] as [typeof sort, string][];
   // A group shows only the options some racket here has (or that are picked), and no group label with nothing under it.
   const match = PADEL && <div className="th-fgroup th-cmatch"><span className="th-cmatch-h">Your match</span>
     <small className="th-cmatch-note">Re-orders the list for you. Nothing is hidden.</small>
