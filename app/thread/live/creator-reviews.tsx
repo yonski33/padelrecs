@@ -25,6 +25,9 @@ const SOURCES: [CreatorReview["kind"], string][] = [["youtube", "YouTube"], ["bl
 type Src = CreatorReview["kind"] | null;
 
 /** The creator's initials on their source's colour (the mock: YouTube coral, blog blue; TikTok black). */
+/** A heart for Loved it only (Grok audit 2026-11-24: "♡ Not for me" read oddly); a neutral and a cross mark for the others. */
+const STANCE_MARK = { pos: "♡", mix: "~", neg: "×" } as const;
+
 export function Avatar({ name, kind, size }: { name: string; kind: CreatorReview["kind"]; size?: "sm" }) {
   return <span className={`thc-av${size ? ` ${size}` : ""}`} style={{ background: SOURCE_COLOR[kind] }} aria-hidden="true">{initials(name)}</span>;
 }
@@ -79,7 +82,7 @@ function Card({ x, lit, configs }: { x: ReviewEntry; lit: boolean; configs?: boo
         <a className="thc-name" href={x.channel} {...OUT}>{x.creator}</a>
         <span className="thc-meta">{`· ${platform(x)}${x.handle ? ` · ${x.handle}` : ""}${day ? ` · ${day}` : ""}`}</span>
         {!tt && <span className="thc-lang">{langCode(x.lang)}</span>}
-        <span className={`thc-take ${x.stance}`}>{`♡ ${STANCE_LABEL[x.stance]}`}</span>
+        <span className={`thc-take ${x.stance}`}>{`${STANCE_MARK[x.stance]} ${STANCE_LABEL[x.stance]}`}</span>
       </div>
       {configs && <span className="thc-cfg">{configLine(x.config)}</span>}
       {/* No "Works with [brand]" note (owner 2026-11-22: no disclosure lines; `tie` stays in the data). */}

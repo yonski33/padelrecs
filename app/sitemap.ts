@@ -77,11 +77,14 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 }
 
 async function threadExtras(base: string, updated: Date | undefined): Promise<MetadataRoute.Sitemap> {
-  if (niche.id !== "padel" || !threadSite(niche.id) || !THREAD_DEFAULT) return [];
+  // PickleballRecs (Grok audit 2026-11-24): its shape rankings (Best elongated, Best hybrid) and four guides were live and
+  // linked but not listed. It has no /guides hub page.
+  const PB = niche.id === "pickleball";
+  if (!PB && (niche.id !== "padel" || !threadSite(niche.id) || !THREAD_DEFAULT)) return [];
   const { threadRankings } = await import("./thread/rankings-data");
   const extra = (await threadRankings()).filter(l => !l.own);
   return [
-    { url: `${base}/guides`, lastModified: updated, changeFrequency: "monthly" as const, priority: 0.6 },
+    ...(PB ? [] : [{ url: `${base}/guides`, lastModified: updated, changeFrequency: "monthly" as const, priority: 0.6 }]),
     ...GUIDE_KEYS.filter(k => k !== "racket").map(k => ({ url: `${base}${GUIDE_PATHS[k]}`, lastModified: updated, changeFrequency: "monthly" as const, priority: 0.6 })),
     ...extra.map(l => ({ url: `${base}${l.href}`, lastModified: updated, changeFrequency: "weekly" as const, priority: 0.7 })),
   ];

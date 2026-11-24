@@ -1,6 +1,7 @@
 // The Thread racket page's data, from what the live racket page already reads (app/rackets/[slug]/racket-fit.tsx builds the
 // same review cards): own reviews, one YouTube summary per channel, one blog per site, the Reddit summaries (lib/reddit-cards),
 // the page's own TL;DR words (lib/racket-page), the trait bars (expert How it plays first), similar rackets and the line.
+import { catalogSpelling } from "../../lib/thread/creator-text";
 import { reviewerInfo, typedName } from "../../lib/thread/display-name";
 import { sideWord } from "../../lib/byline";
 import { niche } from "../../lib/niche";
@@ -114,7 +115,9 @@ export async function racketData(slug: string) {
     ...reviews.flatMap(x => x.variant ? [[`p-${x.id}`, x.variant] as [string, string]] : []),
     ...ctx.data.external.flatMap(e => (e as { variant?: string | null }).variant ? [[`w-${e.id}`, (e as { variant?: string | null }).variant!] as [string, string]] : []),
   ]) : null;
-  const cards: RvCard[] = plastic ? base.map(c => plastic.has(c.id) ? { ...c, version: plastic.get(c.id)! } : c) : base;
+  // The catalogue's spelling in every card (Grok audit 2026-11-24: "Boomstick" on 45 pickleball pages).
+  const spelled = base.map(c => /boomstick/i.test(c.text) ? { ...c, text: catalogSpelling(c.text) } : c);
+  const cards: RvCard[] = plastic ? spelled.map(c => plastic.has(c.id) ? { ...c, version: plastic.get(c.id)! } : c) : spelled;
 
   // TL;DR: the page's own checked words where it has them (lib/racket-page.ts), else the most-mentioned praise and catch.
   const pc = pageContent(r.slug), sum = summary(ctx.data, r.id);

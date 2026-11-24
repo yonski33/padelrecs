@@ -103,8 +103,11 @@ export const threadRankings = cache(async (): Promise<ThreadRanking[]> => {
   if (!hasDb()) return [];
   // The racket engine's payload only where Thread-only pick lists use it (padel); skin ranks with its own engine below.
   const [lists, { all, ctx }, payload] = await Promise.all([threadLists(), threadRows(), PICKS.length ? homePayload() : null]);
-  const byVotes = await votesFor(lists, all, ctx);
-  const own = lists.map(l => ({ slug: l.slug, href: l.href, label: AUDIO ? AUDIO_LABEL[l.slug] ?? l.label : l.label, title: l.title, blurb: BLURB[l.slug] ?? l.description ?? "", own: true, ids: byVotes.get(l.slug) ?? l.ids.slice(0, SIZE),
+  // PickleballRecs (Grok audit 2026-11-24): the curated lists showed previous models and paddles without a photo, though the
+  // method says current paddles only. Those drop out and the next ranked paddle moves up (the lists hold more than 10).
+  const live = new Set(all.filter(r => r.current !== false).map(r => r.id)), keep = (id: string) => !PICKLEBALL || live.has(id);
+  const byVotes = await votesFor(lists.map(l => ({ ...l, ids: l.ids.filter(keep) })), all, ctx);
+  const own = lists.map(l => ({ slug: l.slug, href: l.href, label: AUDIO ? AUDIO_LABEL[l.slug] ?? l.label : l.label, title: l.title, blurb: BLURB[l.slug] ?? l.description ?? "", own: true, ids: byVotes.get(l.slug) ?? l.ids.filter(keep).slice(0, SIZE),
     group: LT ? (/battery|budget/.test(l.slug) ? "By what matters" : "By type") : AUDIO ? (/noise-cancelling/.test(l.slug) ? "Most popular" : "By type") : SKIN ? (SKIN_NEEDS.some(n => n.hub === l.slug) ? HUBS : "By product type") : DG ? "By how you throw" : SR ? (/force-feedback/.test(l.slug) ? "Most popular" : "By gear") : /power|control|spin/.test(l.slug) ? "By how you play" : "Most popular" }));
   const picks = PICKS.map(p => ({ slug: p.slug, href: `/rankings/${p.slug}`, label: p.label, title: `${p.title} ${YEAR()}`, blurb: BLURB[p.key], own: false, group: p.group ?? "Most popular",
     ids: rankHome(payload!.items, RANK_SETUP, NEGATIVE_TAGS, p.choice, false, SIZE).rows.map(r => r.id) }));
@@ -140,7 +143,7 @@ async function votesFor(lists: Awaited<ReturnType<typeof threadLists>>, all: Awa
     const cfg = niche.topLists?.find(x => x.slug === l.slug), cur = lo.years === "current";
     // LaptopRecs: a category list ranks only its own category (the list's shape filter, lib/niche/laptop.ts topLists).
     const only = LT ? cfg?.filters?.find(f => f.column === "shape")?.include ?? null : null;
-    const ids = lovedOrder(all.flatMap(r => { const p = listed.get(r.id); return p && (!cur || r.current !== false) && (!only || only.includes(r.shape ?? "")) ? [{ id: r.id, name: r.name, family: modelFamily(p), year: r.year, reviews: r.n,
+    const ids = lovedOrder(all.flatMap(r => { const p = listed.get(r.id); return p && (!cur || r.current !== false) && (!PICKLEBALL || r.current !== false) && (!only || only.includes(r.shape ?? "")) ? [{ id: r.id, name: r.name, family: modelFamily(p), year: r.year, reviews: r.n,
       loved: r.pos, mixed: r.mix, notForMe: r.neg }] : []; }), cur ? null : YEAR(), { ...LOVED_ORDER, minReviews: cfg?.minReviews ?? LOVED_ORDER.minReviews });
     if (ids.length >= 5) out.set(l.slug, ids); }
   const wanted = lists.flatMap(l => { const o = listOrder(niche.id, l.slug); return o?.order === "votes" && o.option ? [{ l, o }] : []; });
@@ -148,7 +151,7 @@ async function votesFor(lists: Awaited<ReturnType<typeof threadLists>>, all: Awa
   const t = await traitCounts();
   for (const { l, o } of wanted) {
     const cfg = niche.topLists?.find(x => x.slug === l.slug), oldest = cfg?.maxAgeYears === undefined ? -Infinity : YEAR() - cfg.maxAgeYears;
-    const pool = o.pool === "curated" ? l.ids.slice(0, SIZE).flatMap(id => all.filter(r => r.id === id)) : all.filter(r => r.year >= oldest);
+    const pool = o.pool === "curated" ? l.ids.slice(0, SIZE).flatMap(id => all.filter(r => r.id === id)) : all.filter(r => r.year >= oldest && (!PICKLEBALL || r.current !== false));
     const ids = voteOrder(pool.flatMap(r => { const p = listed.get(r.id); return p ? [{ id: r.id, name: r.name, family: modelFamily(p), year: r.year, reviews: r.n,
       group: traitGroup(t, r.id, o.trait ?? VOTE_ORDER.trait) }] : []; }), o.option!, { ...VOTE_ORDER, minReviews: cfg?.minReviews ?? VOTE_ORDER.minReviews });
     if (ids.length >= 5) out.set(l.slug, ids);

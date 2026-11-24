@@ -11,7 +11,8 @@
 import { Fragment, type ReactNode } from "react";
 import { Shell } from "./shell";
 import { racketData } from "./racket-data";
-import { threadRows, skinOf } from "./data";
+import { threadRows, skinOf, traitCounts, traitGroup } from "./data";
+import { styleTag, reviewerLean, voteLean, levelTag } from "../../lib/thread/style-tag";
 import { plural } from "./ui";
 import { niche } from "../../lib/niche";
 import { withoutYear } from "../../lib/brand-name";
@@ -22,7 +23,7 @@ import { websiteButton } from "../../lib/product-links";
 import { JsonLd, crumbs } from "./seo";
 import { catalogLabel, catalogPath, productHref } from "../../lib/niche";
 import { STANCE_LABEL, lowestOffer, shortShop, usd, reviewLists, agreeChips, stanceLine, stanceCounts, howItPlays, langCode, platform, scoreText, takeaway,
-  wordTone, howTitleFor, type CreatorReview } from "../../lib/thread/creators";
+  wordTone, howTitleFor, attrSummary, type AttrKey, type CreatorReview } from "../../lib/thread/creators";
 import { LaptopFitCard } from "./live/laptop-match";
 import { padelListData } from "./padel-list-data";
 import { configAxisFor, configCell, configSite, textSlugs } from "../../lib/thread/creator-config";
@@ -81,6 +82,8 @@ function keyPoint(x: { keyPoint?: string | null; short: string }): string {
 const shortDay = (iso: string) => new Date(`${iso.slice(0, 10)}T12:00:00Z`).toLocaleDateString("en-US", { month: "short", day: "numeric", timeZone: "UTC" });
 const STYLE_WORD = { control: "Control", power: "Power", balance: "All-round" } as const;
 const KEYS = ["pos", "mix", "neg"] as const;
+/** The fewest stored Reddit posts a paddle needs before either Reddit box shows (owner via PM 2026-11-24: "about 5"). */
+export const REDDIT_MIN_POSTS = 5;
 /** SkinRecs (owner "Yes, Skin next" 2026-11-23): the same page in its own soft look (creators.css .th-skin block), its own
  *  tags, fit check (the skin engine, as on its product page) and vote groups (lib/thread/creator-votes.ts). */
 const SKIN = niche.id === "skin";
@@ -140,7 +143,8 @@ export async function CreatorProductBody({ slug }: { slug: string }) {
   const sims = sim.filter(x => x.id !== r.id && x.current !== false);
   for (const s of Object.keys(staged).sort((a, b) => Number(bySlug.get(b)?.shape === r.shape) - Number(bySlug.get(a)?.shape === r.shape))) {
     if (sims.length >= 4) break;
-    const x = bySlug.get(s); if (x && x.id !== r.id && !sims.some(y => y.id === x.id)) sims.push(x);
+    // Current models only here too (Grok audit 2026-11-24: older models came in through the staged fill).
+    const x = bySlug.get(s); if (x && x.id !== r.id && x.current !== false && !sims.some(y => y.id === x.id)) sims.push(x);
   }
   const similar = sims.slice(0, 4).map(x => { const p = staged[x.slug];
     return { x, href: !creatorPageOn(niche.id) && creatorPageFor(niche.id, x.slug) ? `${x.href}?view=${CREATOR_VIEW}` : x.href,
@@ -148,11 +152,15 @@ export async function CreatorProductBody({ slug }: { slug: string }) {
       price: p?.price ? { label: `from ${usd(p.price.usd)} · check price ↗`, url: p.price.url, rel: p.price.affiliate ? "sponsored nofollow noopener" : "nofollow noopener" } : null }; });
   // "Players on Reddit and forums" (the mock's roundup card): the live page's Reddit summaries for this paddle, as one card in
   // the feed. Never counted as a review (not in N reviews, the table or the sentiment bar). Real short quotes only.
-  const reddit = cards.filter(c => c.kind === "reddit").slice(0, 6);
+  // Either Reddit box only from REDDIT_MIN_POSTS or more stored posts (Grok audit 2026-11-24: a box built from one post read
+  // "Players are split on it", and that one post was about another paddle).
+  const redditPosts = ctx ? ctx.data.external.filter(e => e.racketId === r.id && e.sourcePlatform === "Reddit").length : 0;
+  const enoughReddit = redditPosts >= REDDIT_MIN_POSTS;
+  const reddit = enoughReddit ? cards.filter(c => c.kind === "reddit").slice(0, 6) : [];
   // The written roundup of ALL the paddle's Reddit posts (pilot 2026-11-23, db/creators/reddit-roundups.json), where one exists.
   const siteWraps = (wrapups as Record<string, Record<string, Wrapup>>)[niche.id];
   const wrap = textKeys.map(k => siteWraps?.[k]).find(Boolean) ?? null;
-  const rd = (roundups as Record<string, Record<string, Roundup>>)[niche.id]?.[slug] ?? null;
+  const rd = enoughReddit ? (roundups as Record<string, Record<string, Roundup>>)[niche.id]?.[slug] ?? null : null;
   const name = withoutYear(row?.name ?? r.name);
   // The live page's buy link, the same logic (app/thread/rackets/[slug]/page.tsx): the Amazon lookup, the saved listing when
   // the two disagree, else the product's own site. No prices: none are stored yet.
@@ -188,10 +196,15 @@ export async function CreatorProductBody({ slug }: { slug: string }) {
   // The Hybrid v19 head (owner "exactly this mockup", 2026-11-22): tags, the TL;DR with one + and one - point, the praise
   // pill, the site's own vote bar; the fit check and a small Where to buy on the right.
   // The level tag from the catalogue's "best for" line: its first part, "intermediate → advanced" as "Intermediate to advanced".
-  const level = row?.best?.split(",")[0]?.replace(/\s*(→|->)\s*/g, " to ").trim() ?? null;
+  // PickleballRecs (Grok audit 2026-11-24): the style tag agrees with this page's creator reviews or is left out
+  // (lib/thread/style-tag.ts), and the level tag shows a level only, never "Control players".
+  const PB = niche.id === "pickleball";
+  const shownStyle = PB ? styleTag(style, reviewerLean(attrSummary(rs, "power" as AttrKey), attrSummary(rs, "control" as AttrKey)),
+    voteLean(traitGroup(await traitCounts(), r.id, "plays_like"))) : style;
+  const level = PB ? levelTag(row?.best) : row?.best?.split(",")[0]?.replace(/\s*(→|->)\s*/g, " to ").trim() ?? null;
   const tags = (SKIN ? [r.shape, skinAttrs?.facts.fragrance_free === "free" ? "Fragrance free" : null, skinTex ? `${skinTex} texture` : null]
     : PLAIN || LT ? [r.shape]
-    : [style ? STYLE_WORD[style] : null, row?.feel ? `${row.feel} feel` : null, level ? `${level[0]!.toUpperCase()}${level.slice(1)}` : null]).filter((x): x is string => !!x);
+    : [shownStyle ? STYLE_WORD[shownStyle] : null, row?.feel ? `${row.feel} feel` : null, level ? `${level[0]!.toUpperCase()}${level.slice(1)}` : null]).filter((x): x is string => !!x);
   // The catalogue's specs as a plain grey line under the tags (owner 2026-11-24, padel and pickleball).
   const specs = specPills(niche.id, r);
   // Two + points and one - point (owner 2026-11-22), the likes and concerns backed by 2+ reviews.
@@ -242,9 +255,11 @@ export async function CreatorProductBody({ slug }: { slug: string }) {
         <div className="thc-photo">{pic ? <img src={pic} alt={name}/> : <span className="th-ph" aria-hidden="true"/>}</div>
         <div className="thc-head-m">
           <h1>{name}</h1>
-          {tags.length > 0 && <span className="thc-tags">{tags.map((t, k) => <span key={t} className={k === 0 && (style || SKIN) ? "on" : undefined}>{t}</span>)}</span>}
+          {tags.length > 0 && <span className="thc-tags">{tags.map((t, k) => <span key={t} className={k === 0 && (shownStyle || SKIN) ? "on" : undefined}>{t}</span>)}</span>}
           {/* The catalogue's specs as one plain grey line under the tags (owner 2026-11-24: pills were too busy). */}
           {specs.length > 0 && <span className="thc-specline">{specs.join(" · ")}</span>}
+          {/* A previous model says so and links the one that replaced it (Grok audit 2026-11-24, PickleballRecs). */}
+          {row?.newer && <span className="thc-specline">{"Previous model. Replaced by the "}<a href={th(row.newer.href)}>{withoutYear(row.newer.name)}</a>{"."}</span>}
           {(tldr || plus.length > 0 || minus) && <div className="thc-tldr">
             <span className="thc-tldr-h"><b>TL;DR</b><span>{`From ${plural(rs.length, "review")}`}</span></span>
             {tldr && <span className="thc-tldr-t">{yc ? <MentionsProvider {...mxProps}><MentionText text={tldr}/></MentionsProvider> : tldr}</span>}
@@ -309,7 +324,9 @@ export async function CreatorProductBody({ slug }: { slug: string }) {
         <div className="thc-web">
           <span className="thc-kick">From around the web</span>
           <h2>What reviewers are saying</h2>
-          <p>{`The votes above are from ${niche.site.name} ${W.people}. Below is a summary of ${plural(rs.length, "review")} from ${sourceList(rs)}.`}</p>
+          <p>{`The votes above are from ${niche.site.name} ${W.people}. Below is a summary of ${plural(rs.length, "review")} from ${sourceList(rs)}.`}
+            {/* Grok audit 2026-11-24 read "From 14 reviews" over 15 cards as stale: a TikTok creator with several takes counts once. */}
+            {feed.length > rs.length && ` A TikTok creator with several takes counts once, so ${feed.length} cards make ${plural(rs.length, "review")}.`}</p>
         </div>
 
         {/* The short version: the reviews' own takes as count cards (no reviewer bar, owner choice), then likes and concerns. */}
@@ -377,7 +394,7 @@ export async function CreatorProductBody({ slug }: { slug: string }) {
             {brand && <a href={th(`/brands/${brand.slug}`)}>{`All ${brand.name} ${niche.words.many} →`}</a>}</div>
           <div className="thc-sim">{similar.map(({ x, href, pos, mix, neg, unit, price }) => { const t = pos + mix + neg;
             return <div key={x.id} className="thc-sim-c">
-              <a className="thc-sim-ph" href={th(href)} tabIndex={-1} aria-hidden="true">{x.pic ? <img src={x.pic} alt="" loading="lazy"/> : null}</a>
+              <a className="thc-sim-ph" href={th(href)} tabIndex={-1} aria-hidden="true">{x.pic ? <img src={x.pic} alt={x.name} loading="lazy"/> : null}</a>
               <a className="thc-sim-n" href={th(href)}>{withoutYear(x.name)}</a>
               {(x.line || x.best) && <span className="thc-sim-l">{x.line ?? `Best for ${x.best}.`}</span>}
               {t > 0 && <span className="thc-sim-s"><span className="thc-sim-bar" aria-hidden="true"><i className="pos" style={{ flex: pos }}/><i className="mix" style={{ flex: mix }}/><i className="neg" style={{ flex: neg }}/></span>

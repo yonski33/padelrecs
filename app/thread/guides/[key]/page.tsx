@@ -1,5 +1,6 @@
 // Thread guides (Racket, Beginner tips, Shape, Side, Elbow): title, TL;DR, numbered steps, the racket picks from the live
 // rankings, and the sidebar with On this page and More guides. proxy.ts serves /guide and /guides/<x>.
+import { inShape } from "../../../../lib/thread/primary-shape";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { Shell } from "../../shell";
@@ -46,7 +47,9 @@ async function picksFor(key: GuideKey): Promise<{ title?: string; rows: ThreadRo
   const [{ all, rows }, lists] = await Promise.all([threadRows(), threadRankings()]);
   // PickleballRecs: a paddle stored with several shapes ("Hybrid, Widebody, or Elongated") counts for each, as in the
   // catalogue, but shows once, current models only. Padel keeps its rule.
-  const isShape = (r: ThreadRow, shape: string) => PICKLEBALL ? !!r.shape && new RegExp(`\\b${shape}\\b`, "i").test(r.shape) : r.shape?.toLowerCase() === shape;
+  // Since the shape lists' primary shapes (owner 2026-11-23) a multi-shape paddle counts for its primary shape only, as on the
+  // shape rankings (Grok audit 2026-11-24: "Hybrid, Widebody, or Elongated" paddles stood as several shapes' favourite).
+  const isShape = (r: ThreadRow, shape: string) => PICKLEBALL ? inShape(niche.id, r.id, r.shape, shape) : r.shape?.toLowerCase() === shape;
   if (SR) {
     // SimRacingRecs: each gear type's live ranking by exact slug, and the best scored wheelbase of each drive type.
     const top = (slug: string, n: number) => (lists.find(l => l.slug === slug)?.ids ?? []).slice(0, n).map(id => rows.get(id)).filter((x): x is ThreadRow => !!x);

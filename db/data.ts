@@ -10,6 +10,8 @@ import { editStamp, bumpEditStamp } from "./edit-stamp";
 import { sql } from "drizzle-orm";
 import { niche } from "../lib/niche";
 import { creatorPageOn } from "../lib/thread/sites";
+import { shopPhoto } from "../lib/shop-photos";
+import { amazonPhoto } from "../lib/amazon-photos";
 export async function database() { return getDb(); }
 
 type RacketRef = { id: string; brandId: string; createdAt: string };
@@ -35,6 +37,8 @@ const kept_ = kept(() => loadCatalog(), Date.now, editStamp);
  *  admin publish or edit: app/funtimes/auth.ts), and marks the edit for every other instance (db/edit-stamp.ts). */
 export function forgetCatalog() { forgetKept(); bumpEditStamp(); }
 // Cached per request too: the layout reads it for the header's rankings menu, and so does the page.
+/** Sites where a product needs a photo to be listed (catalogue, sitemap, brand pages, rankings, similar lists). */
+const PHOTO_TO_LIST = new Set(["pickleball"]);
 export const catalog = cache(async function catalog(connection?:ReturnType<typeof getDb>) {
  return connection ? loadCatalog(connection) : kept_.get();
 });
@@ -53,9 +57,13 @@ async function loadCatalog(connection?:ReturnType<typeof getDb>) {
  // On creator-page sites a live creator page also lists the product: PickleballRecs' 26 popular paddles
  // came in with creator reviews only and were missing from the sitemap, catalogue, brand pages and search (2026-11-24).
  const reviewed = new Set([...publicReviews.map(r => r.racketId), ...external.map(e => e.racketId), ...creatorIds]);
- const listed = visible.rackets.filter(r => reviewed.has(r.id));
+ // PickleballRecs (owner rule, Grok audit 2026-11-24: "publish with a photo, or keep them out of the sitemap, rankings and
+ // similar lists"; never noindex): a paddle without a photo is not listed. Its page still works and it lists itself once a
+ // photo is saved.
+ const photoOk = (r: typeof allRackets[number]) => !PHOTO_TO_LIST.has(niche.id) || !!(shopPhoto(r) ?? amazonPhoto(r)?.image);
+ const listed = visible.rackets.filter(r => reviewed.has(r.id) && photoOk(r));
  const listedBrands = visible.brands.filter(b => listed.some(r => r.brandId === b.id));
- return { brands: visible.brands, rackets: visible.rackets, listed, listedBrands,
+ return { brands: visible.brands, rackets: visible.rackets, listed, listedBrands, creatorIds,
   reviews: publicReviews.map(r => ({ ...r, helpful: votes.get(`player:${r.id}`) ?? 0 })),
   external: external.map(e => ({ ...e, helpful: votes.get(`web:${e.id}`) ?? 0 })) };
 }

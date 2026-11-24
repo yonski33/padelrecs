@@ -66,12 +66,14 @@ export const TN_HOW: { title: string; body: string[] }[] = [
 export const PB_HOW: { title: string; body: string[] }[] = [
   { title: "What counts", body: ["Reviews and votes left on PickleballRecs, plus summaries of Reddit threads, YouTube reviews and blogs. Summaries are labelled and kept apart from votes cast here."] },
   { title: "How the order is set", body: [
-    "Best overall and the lists for power, control, spin, tennis elbow and beginners are ordered by player reviews, from current paddles with enough reviews to count.",
-    "The shape lists (standard, elongated and hybrid) are ordered the same way, within each shape.",
+    "Best overall and the shape lists (elongated and hybrid) go by how many players loved each paddle.",
+    "Power, control, spin and tennis elbow go by how many players pick each paddle for that answer, the number on each row.",
+    "Beginners: PickleballRecs sets the order and checks it against what players report. The number on each row is how many players call it a good paddle for beginners.",
+    "Every list shows current paddles only, with enough reviews to count. Older models and paddles without a photo are left out.",
   ] },
-  { title: "The pill on each row", body: ["A row shows a pill when one answer to \"How does it play?\" leads, with 5 or more players behind it. Otherwise the row shows no pill."] },
+  { title: "On each row", body: ["The paddle's shape, and the count the list goes by."] },
   { title: "Opinions", body: ["Each row counts the opinions on a paddle: loved it, mixed or not for me. Counts only, never a score."] },
-  { title: "What is not used", body: ["Brand payments, affiliate commission and price. The order is the same for every visitor; your match picks only change the order on the home and catalogue pages."] },
+  { title: "What is not used", body: ["Brand payments, affiliate commission and price. The order is the same for every visitor; your match picks only change the order on the home and catalog pages."] },
   { title: "How often it updates", body: ["Review counts, opinions and pills on each row refresh every few hours."] },
 ];
 
