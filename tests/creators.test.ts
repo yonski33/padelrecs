@@ -236,6 +236,13 @@ test("mixTikToks: three others first, TikToks spread evenly, stance groups kept"
   assert.deepEqual(mixTikToks(g, "stance").map(x => x.id), ["a", "b", "c"]);
 });
 
+test("the measured line never shows a price (owner 2026-11-24)", async () => {
+  const { measuredLine, PRICE_TEXT } = await import("../lib/thread/creators");
+  const line = measuredLine({ Weight: "3.5 pounds", Price: "$1,299", "Price with discount code": "$135", Width: "8 in" } as never, "laptop");
+  assert.equal(line, "Weight: 3.5 pounds · Width: 8 in");
+  assert.ok(PRICE_TEXT.test("question the 390 euro list price") && PRICE_TEXT.test("at $92 with a code") && !PRICE_TEXT.test("pricey for what it offers"));
+});
+
 test("padel's creator page asks its ranking groups plus Best on, Sweet spot and Trampoline", () => {
   assert.deepEqual(creatorVoteGroups("padel").map(g => g.key), ["plays_like", "arm", "level", "side", "sweet_spot", "trampoline"]);
   assert.deepEqual(creatorVoteGroups("padel").find(g => g.key === "side")?.options.map(o => o[1]), ["Right side", "Left side", "Both sides"]);
