@@ -7,7 +7,8 @@
 //     --verified <dir> --tiktok <dir> --prices <file> [--fixture <db/creators/pickleball.json>] [--channels <file>]
 // LaptopRecs (2026-11-24): migrate applies 0039, 0040 and 0041 (the tested config) together; import reads the staged laptop
 // card files ({ laptops: [{ slug, laptop, reviews }] }), one or more, comma-separated or repeated:
-//   NICHE=laptop npx tsx --env-file=.env.local scripts/creator-reviews.mts import --dry --laptop <staging.json>[,<staging.json>...]
+//   NICHE=laptop npx tsx --env-file=.env.local scripts/creator-reviews.mts import --dry --laptop <staging.json>[,<staging.json>...] \
+//     --adds db/catalogs/adds/laptop-2026-11-24.json
 // --dry reads only (the laptop catalogue's slugs, and the creator tables when they exist) and reports counts and slug matches,
 // listing unmatched slugs instead of stopping; it can't be combined with --apply.
 // 0039 is applied as plain statements with no drizzle tracking row (like 0038), so unrun earlier entries are not skipped
@@ -18,6 +19,7 @@ import { join } from "node:path";
 import { connect } from "./connection";
 import { niche } from "../lib/niche";
 import { forSchema } from "../db/migrations";
+import { slugify } from "../lib/slug";
 
 const SITES = new Set(["pickleball", "skin", "laptop"]);
 if (!SITES.has(niche.id)) throw new Error(`Creator reviews are on PickleballRecs, SkinRecs and LaptopRecs only: run with NICHE=pickleball, skin or laptop (got ${niche.id}).`);
@@ -297,11 +299,24 @@ async function main() {
     const bySlug = new Map<string, { id: string; brand: string }>(rk.map(r => [r.slug, { id: r.id, brand: r.brand }]));
     for (const r of redirects) if (!bySlug.has(r.slug)) { const x = rk.find(k => k.id === r.racket_id); if (x) bySlug.set(r.slug, { id: x.id, brand: x.brand }); }
     const built = buildRows(inp, slug => bySlug.get(slug)?.brand ?? null);
+    // LaptopRecs: staged slugs of products the catalogue already has under another slug (db/creators/laptop-slug-aliases.json)
+    // take the catalogue's slug; products waiting in a catalog adds file (--adds <file>, inserted by
+    // scripts/add-catalog-products.mts after the owner's OK) count as matched in --dry and stop --apply until they are in.
+    const aliases: Record<string, string> = LAPTOP ? JSON.parse(await readFile("db/creators/laptop-slug-aliases.json", "utf8")) : {};
+    const aliased = new Set<string>();
+    for (const r of [...built.reviews, ...built.prices, ...built.pages]) if (aliases[r.slug]) { aliased.add(aliases[r.slug]!); r.slug = aliases[r.slug]!; }
+    built.pages = built.pages.filter((p, i, a) => a.findIndex(x => x.slug === p.slug) === i);
+    const pending = new Set<string>();
+    for (const f of flags("adds")) for (const p of JSON.parse(await readFile(f, "utf8")).products ?? []) pending.add(p.slug ?? slugify(p.name));
+    const pendingHere = new Set(built.pages.map(p => p.slug).filter(s => !bySlug.has(s) && pending.has(s)));
+    if (pendingHere.size && !dry) throw new Error(`Products waiting in the adds file, not in ${S}.rackets yet (run scripts/add-catalog-products.mts --apply first): ${[...pendingHere].join(", ")}`);
+    for (const s of pendingHere) bySlug.set(s, { id: `pending:${s}`, brand: "" });
     const missing = [...new Set([...built.reviews, ...built.prices, ...built.pages].map(r => r.slug).filter(s => !bySlug.has(s)))];
     // --dry: the slug matches are part of the report; unmatched products are listed and left out of the counts below.
     if (dry) {
       const all = new Set(built.pages.map(p => p.slug));
-      console.log(`\nSlug matches against ${S}.rackets: ${all.size - missing.length} of ${all.size} products matched${missing.length ? `; not in the catalogue (left out below): ${missing.join(", ")}` : ""}`);
+      const direct = [...all].filter(s => !aliased.has(s) && !pendingHere.has(s) && !missing.includes(s)).length;
+      console.log(`\nSlug matches against ${S}.rackets: ${all.size - missing.length} of ${all.size} products matched (${direct} by slug, ${[...aliased].filter(s => all.has(s)).length} by alias, ${pendingHere.size} pending catalog add${pendingHere.size === 1 ? "" : "s"}${pendingHere.size ? `: ${[...pendingHere].join(", ")}` : ""})${missing.length ? `; not in the catalogue (left out below): ${missing.join(", ")}` : ""}`);
       const gone = new Set(missing);
       built.reviews = built.reviews.filter(r => !gone.has(r.slug)); built.prices = built.prices.filter(r => !gone.has(r.slug)); built.pages = built.pages.filter(r => !gone.has(r.slug));
     } else if (missing.length) throw new Error(`Slugs not in ${S}.rackets: ${missing.join(", ")}`);

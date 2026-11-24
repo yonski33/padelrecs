@@ -5,6 +5,7 @@
 // per group, matched against the review's own config words; a hand-set config_group (drizzle/0041) wins. Pure and small, so
 // the browser cards filter by group with no request (the instant-filters rule: public pages are cached, never per visitor).
 import laptopAxes from "../../db/creators/laptop-config-axes.json";
+import laptopAliases from "../../db/creators/laptop-slug-aliases.json";
 import type { ReviewConfig } from "./creators";
 
 export type ConfigAxis = { axis: string; field: string; groups: { label: string; match: string }[] };
@@ -42,3 +43,9 @@ export function configGroups(rs: { config?: ReviewConfig | null }[], axis: Confi
   const out = [...axis.groups.map(g => g.label), OTHER_GROUP].filter(l => n.get(l)).map(label => ({ label, n: n.get(label)! }));
   return out.length >= 2 ? out : [];
 }
+
+/** Staged slugs that are catalogue products under another slug (db/creators/laptop-slug-aliases.json: staged -> catalogue).
+ *  The page text files (tldrs.json, reviewer-wrapups.json) are keyed by the staged slug, copied as written. */
+const ALIASES: Record<string, Record<string, string>> = { laptop: laptopAliases as Record<string, string> };
+/** The keys a product's page text may sit under: its own slug first, then the staged slugs that point to it. */
+export const textSlugs = (site: string, slug: string) => [slug, ...Object.entries(ALIASES[site] ?? {}).filter(([, to]) => to === slug).map(([from]) => from)];

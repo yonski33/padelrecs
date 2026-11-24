@@ -1,6 +1,7 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { configAxisFor, configCell, configGroupOf, configGroups, configLine, configSite, OTHER_GROUP } from "../lib/thread/creator-config";
+import { configAxisFor, configCell, configGroupOf, configGroups, configLine, configSite, OTHER_GROUP, textSlugs } from "../lib/thread/creator-config";
+import aliases from "../db/creators/laptop-slug-aliases.json";
 import { attrsFor, howTitleFor, measuredLine, type ReviewConfig } from "../lib/thread/creators";
 import { reviewFromRow, configFromRow } from "../db/creator-reviews";
 import { creatorPlainSite, creatorPageOn } from "../lib/thread/sites";
@@ -78,8 +79,14 @@ test("laptop creator rows: the 0041 config columns become the card's config; oth
 test("laptop page text: TL;DRs and wrap-ups cover most listed products and keep the copy rules", () => {
   const t = (tldrs as Record<string, Record<string, string>>).laptop!, w = (wrapups as Record<string, Record<string, unknown>>).laptop!;
   assert.ok(Object.keys(t).length >= 80 && Object.keys(w).length >= 80);
-  // A few written pages are for models not in the catalogue yet (2026 models); they wait for the catalogue.
-  assert.ok((laptopPages as string[]).filter(slug => t[slug]).length >= 75);
+  // Every written page belongs to a listed product, under its own slug or a staged slug that points to it.
+  for (const slug of [...Object.keys(t), ...Object.keys(w)]) {
+    const to = (aliases as Record<string, string>)[slug] ?? slug;
+    assert.ok((laptopPages as string[]).includes(to), slug);
+    assert.ok(textSlugs("laptop", to).includes(slug), slug);
+  }
+  assert.deepEqual(textSlugs("laptop", "apple-macbook-neo"), ["apple-macbook-neo", "apple-macbook-neo-2026"]);
+  assert.deepEqual(textSlugs("pickleball", "apple-macbook-neo"), ["apple-macbook-neo"]);
   const text = JSON.stringify([t, w]);
   assert.doesNotMatch(text, /[—–]/);
   assert.doesNotMatch(text, /\bverdict\b/i);

@@ -23,7 +23,7 @@ import { JsonLd, crumbs } from "./seo";
 import { catalogLabel, catalogPath, productHref } from "../../lib/niche";
 import { STANCE_LABEL, lowestOffer, shortShop, usd, reviewLists, agreeChips, stanceLine, stanceCounts, howItPlays, langCode, platform, scoreText, takeaway,
   wordTone, howTitleFor, type CreatorReview } from "../../lib/thread/creators";
-import { configAxisFor, configCell, configSite } from "../../lib/thread/creator-config";
+import { configAxisFor, configCell, configSite, textSlugs } from "../../lib/thread/creator-config";
 import { creatorPage, creatorSlugs, creatorHome } from "../../lib/thread/creator-data";
 import { threadTitle } from "../../lib/thread/web-sources";
 import roundups from "../../db/creators/reddit-roundups.json";
@@ -100,7 +100,9 @@ export async function CreatorProductBody({ slug }: { slug: string }) {
   // The TL;DR sentence (owner 2026-11-23): the creator page's own line where it has one, else the same line the usual
   // product page shows (racketData: the written "In short" summary, the page content's tagline, the short or list line).
   // A written TL;DR for products whose creator import came without one (db/creators/tldrs.json, 2026-11-23).
-  const tldr = page.tldr || (tldrs as Record<string, Record<string, string>>)[niche.id]?.[slug] || (SKIN && d.lead ? playersWord(d.lead, "reviewer") : d.lead) || null;
+  // A laptop staged under another slug keeps its text under that slug (lib/thread/creator-config.ts textSlugs).
+  const textKeys = textSlugs(niche.id, slug), siteTldrs = (tldrs as Record<string, Record<string, string>>)[niche.id];
+  const tldr = page.tldr || textKeys.map(k => siteTldrs?.[k]).find(Boolean) || (SKIN && d.lead ? playersWord(d.lead, "reviewer") : d.lead) || null;
   // The bar and its counts are the site's own players (lib/thread/site-sentiment.ts, owner 2026-11-22); the creator reviews
   // keep their cards and a praise line ("Praised for spin in 13 reviews").
   const votes = siteSentiment(row);
@@ -130,7 +132,8 @@ export async function CreatorProductBody({ slug }: { slug: string }) {
   // the feed. Never counted as a review (not in N reviews, the table or the sentiment bar). Real short quotes only.
   const reddit = cards.filter(c => c.kind === "reddit").slice(0, 6);
   // The written roundup of ALL the paddle's Reddit posts (pilot 2026-11-23, db/creators/reddit-roundups.json), where one exists.
-  const wrap = (wrapups as Record<string, Record<string, Wrapup>>)[niche.id]?.[slug] ?? null;
+  const siteWraps = (wrapups as Record<string, Record<string, Wrapup>>)[niche.id];
+  const wrap = textKeys.map(k => siteWraps?.[k]).find(Boolean) ?? null;
   const rd = (roundups as Record<string, Record<string, Roundup>>)[niche.id]?.[slug] ?? null;
   const name = withoutYear(row?.name ?? r.name);
   // The live page's buy link, the same logic (app/thread/rackets/[slug]/page.tsx): the Amazon lookup, the saved listing when

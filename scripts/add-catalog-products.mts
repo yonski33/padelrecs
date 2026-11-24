@@ -2,13 +2,18 @@
 // shaped like db/catalogs/<niche>.json. Never updates or deletes: a brand or product already in the DB is listed and skipped.
 // Dry run by default; --apply writes in one transaction. Back up first (scripts/creator-reviews.mts backup <dir>).
 //   NICHE=pickleball npx tsx --env-file=.env.local scripts/add-catalog-products.mts db/catalogs/adds/pickleball-2026-11-23.json [--apply]
+//   NICHE=laptop npx tsx --env-file=.env.local scripts/add-catalog-products.mts db/catalogs/adds/laptop-2026-11-24.json [--apply]
+// LaptopRecs rows use the catalogue's laptop columns as db/catalogs/laptop.json does (balance = CPU, core = GPU, surface =
+// screen), and its product ids are the bare slug, as its catalogue import made them (apple-macbook-neo).
 import { readFile } from "node:fs/promises";
 import { connect } from "./connection";
 import { niche } from "../lib/niche";
 import { slugify } from "../lib/slug";
 
 type Product = { brand: string; name: string; year: number; shape: string | null; weight: string | null; core: string | null;
-  surface: string | null; swingWeight: string | null; slug?: string; sources: string[] };
+  surface: string | null; swingWeight: string | null; balance?: string | null; slug?: string; sources: string[] };
+/** Sites whose product ids are the slug with no year (LaptopRecs). */
+const SLUG_IDS = new Set(["laptop"]);
 const file = process.argv[2], apply = process.argv.includes("--apply");
 if (!file) throw new Error("Usage: add-catalog-products.mts <adds.json> [--apply]");
 const adds = JSON.parse(await readFile(file, "utf8")) as { brands: { id: string; name: string }[]; products: Product[] };
@@ -23,14 +28,14 @@ try {
   const newBrands = adds.brands.filter(b => !brandsNow.has(b.id)).map(b => ({ id: b.id, name: b.name, slug: slugify(b.name) }));
   const problems: string[] = [], rows: Record<string, unknown>[] = [], skipped: string[] = [], seen = new Set<string>();
   for (const p of adds.products) {
-    const slug = p.slug ?? slugify(p.name), id = `${slug}-${p.year}`;
+    const slug = p.slug ?? slugify(p.name), id = SLUG_IDS.has(niche.id) ? slug : `${slug}-${p.year}`;
     if (!brandsNow.has(p.brand) && !newBrands.some(b => b.id === p.brand)) problems.push(`${p.name}: brand ${p.brand} not in DB or file`);
     if (ids.has(id) || slugs.has(slug)) { skipped.push(`${slug} (already in the DB)`); continue; }
     if (redirects.has(slug)) problems.push(`${slug}: an old URL of another product redirects here`);
     if (seen.has(slug)) problems.push(`${slug}: twice in the file`); seen.add(slug);
     for (const [k, v] of Object.entries(p)) if (typeof v === "string" && /[—–]\s|\bverdict\b/i.test(v) && k !== "weight" && k !== "swingWeight") problems.push(`${slug} ${k}: dash or banned word`);
     rows.push({ id, brand_id: p.brand, name: p.name, slug, year: p.year, image_url: null, shape: p.shape, weight: p.weight,
-      balance: p.swingWeight, surface: p.surface, core: p.core, description: null, created_at: created });
+      balance: p.balance ?? p.swingWeight, surface: p.surface, core: p.core, description: null, created_at: created });
   }
   console.log(`${apply ? "APPLY" : "DRY RUN"} on ${S}: ${rows.length} products to insert, ${newBrands.length} new brands, ${skipped.length} skipped`);
   for (const b of newBrands) console.log(`  + brand ${b.id} "${b.name}" (/${b.slug})`);
