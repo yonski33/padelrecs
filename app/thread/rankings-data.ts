@@ -13,16 +13,26 @@ import type { QuickChoice } from "../../lib/quick-match";
 import { niche } from "../../lib/niche";
 import { listOrder, voteOrder, VOTE_ORDER, lovedOrder, LOVED_ORDER } from "../../lib/thread/vote-order";
 import { modelFamily } from "../../lib/compare-pairs";
+import { inShape } from "../../lib/thread/primary-shape";
 
 export type ThreadRanking = { slug: string; href: string; label: string; title: string; blurb: string; group: string; ids: string[]; own: boolean;
   /** The hub card's title inside its group ("Moisturizers" under "For sensitive skin"); else the label. */ short?: string;
   /** A skin need's hub page (owner 2026-11-21): the slugs of its per-type lists, shown instead of one mixed list. */ kids?: string[] };
 const YEAR = () => new Date().getUTCFullYear();
-const SIZE = 10, MIN_REVIEWS = 10;
+const SIZE = 10, MIN_REVIEWS = 10, LT_MIN_REVIEWS = 5;
 
 const PICKLEBALL = niche.id === "pickleball", SKIN = niche.id === "skin", DG = niche.id === "discgolf", AUDIO = niche.id === "audio", SR = niche.id === "simracing", TN = niche.id === "tennis";
+/** LaptopRecs (owner 2026-11-24, PickleballRecs as the template): its live lists by category and by what matters, plus a
+ *  Thread-only "Best laptops" by most loved, as disc golf's Best overall. */
+const LT = niche.id === "laptop";
 /** The hub's blurbs (Rankings Hub Thread copy), by list. */
-const BLURB: Record<string, string> = SR ? {
+const BLURB: Record<string, string> = LT ? {
+  "best-laptops": "The most loved laptops right now.", "best-ultrabooks": "Thin, light and easy to live with.",
+  "best-gaming-laptops": "Frame rates without the jet engine.", "best-business-laptops": "Keyboards, ports and support for work.",
+  "best-creator-laptops": "Colour-accurate screens and power for big files.", "best-2-in-1-laptops": "Touch and pen without giving up the keyboard.",
+  "best-chromebooks": "Simple, fast and cheap to own.", "best-macbooks": "Which MacBook owners are happiest with.",
+  "best-battery-life-laptops": "All day away from the charger.", "best-budget-laptops": "The most laptop for the money.",
+} : SR ? {
   // SimRacingRecs' Rankings Hub mock, on its live lists by gear type plus the Thread-only lists below.
   "best-sim-racing-gear": "The most loved gear this year.", "best-sim-racing-gear-for-beginners": "Easy to set up, great to learn on.",
   "best-force-feedback-sim-racing-wheelbases": "The most detail through long corners.", "best-sim-racing-wheelbases": "The best-reviewed wheelbases.",
@@ -80,7 +90,7 @@ const PICKS: { key: string; slug: string; label: string; title: string; choice: 
 ] : TN ? [
   // TennisRecs has a live arm-friendly list already, so only beginners here.
   { key: "beginners", slug: "best-tennis-rackets-for-beginners", label: "Best for beginners", title: "Best tennis rackets for beginners", choice: { style: "any", level: "beginner", arm: false } },
-] : PICKLEBALL || SKIN || AUDIO ? [] : [
+] : PICKLEBALL || SKIN || AUDIO || LT ? [] : [
   { key: "beginners", slug: "best-padel-rackets-for-beginners", label: "Best for beginners", title: "Best padel rackets for beginners", choice: { style: "any", level: "beginner", arm: false } },
   // Named for tennis elbow (owner 2026-11-19); the old /rankings/best-padel-rackets-for-sore-arms 301s here (THREAD_MOVED).
   { key: "sore-arms", slug: ELBOW_SLUG, label: "Best for tennis elbow", title: "Best padel rackets for tennis elbow", choice: { style: "any", arm: true } },
@@ -95,22 +105,25 @@ export const threadRankings = cache(async (): Promise<ThreadRanking[]> => {
   const [lists, { all, ctx }, payload] = await Promise.all([threadLists(), threadRows(), PICKS.length ? homePayload() : null]);
   const byVotes = await votesFor(lists, all, ctx);
   const own = lists.map(l => ({ slug: l.slug, href: l.href, label: AUDIO ? AUDIO_LABEL[l.slug] ?? l.label : l.label, title: l.title, blurb: BLURB[l.slug] ?? l.description ?? "", own: true, ids: byVotes.get(l.slug) ?? l.ids.slice(0, SIZE),
-    group: AUDIO ? (/noise-cancelling/.test(l.slug) ? "Most popular" : "By type") : SKIN ? (SKIN_NEEDS.some(n => n.hub === l.slug) ? HUBS : "By product type") : DG ? "By how you throw" : SR ? (/force-feedback/.test(l.slug) ? "Most popular" : "By gear") : /power|control|spin/.test(l.slug) ? "By how you play" : "Most popular" }));
+    group: LT ? (/battery|budget/.test(l.slug) ? "By what matters" : "By type") : AUDIO ? (/noise-cancelling/.test(l.slug) ? "Most popular" : "By type") : SKIN ? (SKIN_NEEDS.some(n => n.hub === l.slug) ? HUBS : "By product type") : DG ? "By how you throw" : SR ? (/force-feedback/.test(l.slug) ? "Most popular" : "By gear") : /power|control|spin/.test(l.slug) ? "By how you play" : "Most popular" }));
   const picks = PICKS.map(p => ({ slug: p.slug, href: `/rankings/${p.slug}`, label: p.label, title: `${p.title} ${YEAR()}`, blurb: BLURB[p.key], own: false, group: p.group ?? "Most popular",
     ids: rankHome(payload!.items, RANK_SETUP, NEGATIVE_TAGS, p.choice, false, SIZE).rows.map(r => r.id) }));
   const shapes = SHAPES.map(([k]) => ({ slug: `best-${k}-${LIST}`, href: `/rankings/best-${k}-${LIST}`, label: `Best ${k} ${niche.words.many}`, title: `Best ${k} ${niche.id} ${niche.words.many} ${YEAR()}`,
     blurb: BLURB[k], own: false, group: "By shape",
-    ids: all.filter(r => r.score != null && r.current && r.n >= MIN_REVIEWS && (PICKLEBALL ? !!r.shape && new RegExp(`\\b${k}\\b`, "i").test(r.shape) : r.shape?.toLowerCase() === k)).sort((a, b) => b.score! - a.score! || b.n - a.n).slice(0, SIZE).map(r => r.id) }));
+    // A shape list set to "loved" (lib/thread/vote-order.ts, PickleballRecs) goes by the loved count within the shape.
+    ids: all.filter(r => r.score != null && r.current && r.n >= MIN_REVIEWS && (PICKLEBALL ? inShape(niche.id, r.id, r.shape, k) : r.shape?.toLowerCase() === k))
+      .sort(listOrder(niche.id, `best-${k}-${LIST}`)?.order === "loved" ? (a, b) => b.pos - a.pos || b.n - a.n : (a, b) => b.score! - a.score! || b.n - a.n).slice(0, SIZE).map(r => r.id) }));
   // The site's own lists keep their live rule (5+); a Thread-only list is a new page, so it needs a full 10 (owner 2026-11-19).
   const skin = SKIN ? await skinLists(ctx, new Set(all.filter(r => r.current).map(r => r.id))) : [];
   // DiscGolfRecs' "Best overall" (its hub mock): the highest thrower scores, current discs with 10+ reviews.
-  const [oSlug, oTitle] = SR ? ["best-sim-racing-gear", "Best sim racing gear"] : ["best-disc-golf-discs", "Best disc golf discs"];
-  const overall = DG || SR ? [{ slug: oSlug, href: `/rankings/${oSlug}`, label: "Best overall", title: `${oTitle} ${YEAR()}`,
+  const [oSlug, oTitle] = SR ? ["best-sim-racing-gear", "Best sim racing gear"] : LT ? ["best-laptops", "Best laptops"] : ["best-disc-golf-discs", "Best disc golf discs"];
+  const overall = DG || SR || LT ? [{ slug: oSlug, href: `/rankings/${oSlug}`, label: "Best overall", title: `${oTitle} ${YEAR()}`,
     blurb: BLURB[oSlug], own: false, group: "Most popular",
     // DiscGolfRecs on v3 (no score): by how many players loved each disc, as padel's Best overall (#600).
-    ids: all.filter(r => r.score != null && r.current && r.n >= MIN_REVIEWS).sort((a, b) => (DG ? b.pos - a.pos : b.score! - a.score!) || b.n - a.n).slice(0, SIZE).map(r => r.id) }] : [];
+    // LaptopRecs: the same, with its own lists' review floor (5; its reviews are spread over many generations).
+    ids: all.filter(r => r.score != null && r.current && r.n >= (LT ? LT_MIN_REVIEWS : MIN_REVIEWS)).sort((a, b) => (DG || LT ? b.pos - a.pos : b.score! - a.score!) || b.n - a.n).slice(0, SIZE).map(r => r.id) }] : [];
   if (AUDIO) return audioLists(own, all, ctx);
-  const out = (DG || SR ? [...overall, ...picks, ...own] : [...own, ...picks, ...shapes, ...skin]).filter(l => l.ids.length >= (l.own ? 5 : 10));
+  const out = (DG || SR || LT ? [...overall, ...picks, ...own] : [...own, ...picks, ...shapes, ...skin]).filter(l => l.ids.length >= (l.own || LT ? 5 : 10));
   // A skin need's hub lists the per-type lists that made it (a full 10 each).
   if (!SKIN) return out;
   const shown = new Set(out.map(l => l.slug));
@@ -123,10 +136,12 @@ export const threadRankings = cache(async (): Promise<ThreadRanking[]> => {
 async function votesFor(lists: Awaited<ReturnType<typeof threadLists>>, all: Awaited<ReturnType<typeof threadRows>>["all"], ctx: Awaited<ReturnType<typeof threadRows>>["ctx"]) {
   const out = new Map<string, string[]>(), listed = new Map(ctx.data.listed.map(p => [p.id, p]));
   // "loved" (Best overall): the row's loved count, this season's models only.
-  for (const l of lists) { if (listOrder(niche.id, l.slug)?.order !== "loved") continue;
-    const cfg = niche.topLists?.find(x => x.slug === l.slug);
-    const ids = lovedOrder(all.flatMap(r => { const p = listed.get(r.id); return p ? [{ id: r.id, name: r.name, family: modelFamily(p), year: r.year, reviews: r.n,
-      loved: r.pos, mixed: r.mix, notForMe: r.neg }] : []; }), YEAR(), { ...LOVED_ORDER, minReviews: cfg?.minReviews ?? LOVED_ORDER.minReviews });
+  for (const l of lists) { const lo = listOrder(niche.id, l.slug); if (lo?.order !== "loved") continue;
+    const cfg = niche.topLists?.find(x => x.slug === l.slug), cur = lo.years === "current";
+    // LaptopRecs: a category list ranks only its own category (the list's shape filter, lib/niche/laptop.ts topLists).
+    const only = LT ? cfg?.filters?.find(f => f.column === "shape")?.include ?? null : null;
+    const ids = lovedOrder(all.flatMap(r => { const p = listed.get(r.id); return p && (!cur || r.current !== false) && (!only || only.includes(r.shape ?? "")) ? [{ id: r.id, name: r.name, family: modelFamily(p), year: r.year, reviews: r.n,
+      loved: r.pos, mixed: r.mix, notForMe: r.neg }] : []; }), cur ? null : YEAR(), { ...LOVED_ORDER, minReviews: cfg?.minReviews ?? LOVED_ORDER.minReviews });
     if (ids.length >= 5) out.set(l.slug, ids); }
   const wanted = lists.flatMap(l => { const o = listOrder(niche.id, l.slug); return o?.order === "votes" && o.option ? [{ l, o }] : []; });
   if (!wanted.length) return out;
@@ -135,14 +150,14 @@ async function votesFor(lists: Awaited<ReturnType<typeof threadLists>>, all: Awa
     const cfg = niche.topLists?.find(x => x.slug === l.slug), oldest = cfg?.maxAgeYears === undefined ? -Infinity : YEAR() - cfg.maxAgeYears;
     const pool = o.pool === "curated" ? l.ids.slice(0, SIZE).flatMap(id => all.filter(r => r.id === id)) : all.filter(r => r.year >= oldest);
     const ids = voteOrder(pool.flatMap(r => { const p = listed.get(r.id); return p ? [{ id: r.id, name: r.name, family: modelFamily(p), year: r.year, reviews: r.n,
-      group: traitGroup(t, r.id, VOTE_ORDER.trait) }] : []; }), o.option!, { ...VOTE_ORDER, minReviews: cfg?.minReviews ?? VOTE_ORDER.minReviews });
+      group: traitGroup(t, r.id, o.trait ?? VOTE_ORDER.trait) }] : []; }), o.option!, { ...VOTE_ORDER, minReviews: cfg?.minReviews ?? VOTE_ORDER.minReviews });
     if (ids.length >= 5) out.set(l.slug, ids);
   }
   return out;
 }
 /** SkinRecs' need hubs: pages of their own, not cards on the rankings hub (each need's heading links to its hub). */
 export const HUBS = "Skin needs";
-export const GROUPS = AUDIO ? ["Most popular", "By type", "By use"] : SR ? ["Most popular", "By gear", "By budget and platform"] : SKIN ? [...SKIN_NEEDS.map(n => n.group), "By product type"] : DG ? ["Most popular", "By how you throw"] : ["Most popular", "By how you play", "By shape"];
+export const GROUPS = LT ? ["Most popular", "By type", "By what matters"] : AUDIO ? ["Most popular", "By type", "By use"] : SR ? ["Most popular", "By gear", "By budget and platform"] : SKIN ? [...SKIN_NEEDS.map(n => n.group), "By product type"] : DG ? ["Most popular", "By how you throw"] : ["Most popular", "By how you play", "By shape"];
 
 /** SkinRecs' Thread-only lists (its Rankings Hub mock, split by product type owner 2026-11-21): the skin engine's own match for
  *  that pick (app/skin/rank.ts rankSkin, as the live home ranks it), current products with a match only, a full 10 needed.

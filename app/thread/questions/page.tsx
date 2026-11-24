@@ -11,7 +11,7 @@ import { askRackets } from "../latest-questions";
 import { AskQuestion } from "../live/ask-question";
 import { QuestionList } from "../live/question-list";
 
-export const revalidate = 3600;
+export const revalidate = 21600;
 const QW = questionWords(niche.id);
 const TITLE = "Questions from the community", INTRO = `Anyone can ask, ${W.people} answer. Questions about ${QW.many} from every ${QW.page} page.`;
 export const metadata: Metadata = { title: { absolute: `${TITLE} | ${niche.site.name}` }, description: INTRO, alternates: { canonical: "/questions" },

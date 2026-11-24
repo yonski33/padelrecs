@@ -29,7 +29,7 @@ test("the catalogue starts on PadelRecs picks, the home on Most loved (season po
   assert.match(list, /HOME_SORTS: \[Sort, string\]\[\] = \[\["loved", "Most loved"\], \["opinions", "Most opinions"\], \["match", "By your match"\]\]/);
   assert.match(list, /home \? \[\.\.\.HOME_SORTS, .*: season \? HOME_SORTS : SORTS/);
   // The PickleballRecs creators home also starts on Most loved, with the curated picks last in its menu (owner 2026-11-23).
-  assert.match(readFileSync("app/thread/live/creators-home.tsx", "utf8"), /useRacketList\(\{ rows, curated, added, home: true \}\)/);
+  assert.match(readFileSync("app/thread/live/creators-home.tsx", "utf8"), /useRacketList\(\{ rows, curated, added, home: true, match \}\)/);
   // PadelRecs' catalogue starts on "picks"; AudioRecs (no curated lists) on "loved" (V3-ROLLOUT-BRIEF).
   assert.match(list, /const BASE_SORT: Sort = SORTS\[0\]\[0\]/);
   assert.match(page, /unit=\{\["vote", "votes"\]\}/);

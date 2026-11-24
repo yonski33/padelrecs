@@ -1,0 +1,22 @@
+/* Product mentions as links (live/mention-links.tsx). Selectors carry html body and a doubled class so the pages' own link
+   rules (body:has(.thc) .thc a and the like) never restyle them. */
+html body a.mx.mx { color: inherit; text-decoration: underline dotted; text-decoration-thickness: 1.5px; text-underline-offset: 3px; text-decoration-color: color-mix(in srgb, currentColor 55%, transparent); }
+html body a.mx.mx:hover, html body a.mx.mx:focus-visible { color: inherit; text-decoration-style: solid; text-decoration-color: currentColor; }
+/* Hover card: desktop pointers only (the provider never opens it on touch). */
+html body a.mxc.mxc { position: fixed; z-index: 900; width: 280px; display: flex; gap: 12px; padding: 12px; background: #fff; color: #171717; border: 1.5px solid #171717;
+  border-radius: 12px; box-shadow: 0 10px 28px rgba(0, 0, 0, .16); text-decoration: none; font-size: 13.5px; line-height: 1.35; }
+html body a.mxc.mxc.up { transform: translateY(-100%); }
+html body a.mxc.mxc img, .mxc-ph { width: 56px; height: 76px; object-fit: contain; flex: none; border-radius: 6px; background: #F6F0E6; }
+.mxc-b { display: flex; flex-direction: column; gap: 5px; min-width: 0; }
+.mxc-b strong { font-size: 15px; line-height: 1.2; }
+.mxc-bar { display: block; height: 6px; border-radius: 999px; background: #EFE4D6; overflow: hidden; }
+.mxc-bar i { display: block; height: 100%; background: #62C878; }
+.mxc-m { color: #5B5B5B; }
+.mxc-go { font-weight: 700; text-decoration: underline; text-underline-offset: 3px; margin-top: 2px; }
+/* "Compared to" chips. */
+.mx-chips { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; }
+html body a.mx-chip.mx-chip { display: inline-flex; align-items: center; gap: 6px; padding: 3px 10px 3px 4px; border: 1.5px solid #E3D9CB; border-radius: 999px; background: #fff;
+  color: inherit; text-decoration: none; font-size: 13px; font-weight: 600; }
+html body a.mx-chip.mx-chip img { width: 18px; height: 24px; object-fit: contain; }
+html body a.mx-chip.mx-chip:hover { border-color: #171717; }
+html body a.mx-cmp.mx-cmp { font-size: 13px; font-weight: 700; color: inherit; text-decoration: underline; text-underline-offset: 3px; align-self: center; }

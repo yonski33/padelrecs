@@ -1,11 +1,11 @@
-// Creator reviews from the database (drizzle/0039_creator_reviews.sql, PickleballRecs only; see the creator-db session's
+// Creator reviews from the database (drizzle/0039_creator_reviews.sql, PickleballRecs, SkinRecs; LaptopRecs adds 0041's config; see the creator-db session's
 // CREATOR-DB-SCHEMA.md): creator_pages, creator_reviews, creator_prices. Read only, with plain SQL in the niche's own
 // schema (the tables are not in db/schema.ts on purpose). The row mappers are pure, so the tests check them without a DB.
 // Owner rules kept here: TikTok rows become short takes (counted once per channel by lib/thread/creators.ts), a hidden
 // score never leaves this file, the disclosure and internal notes are never read.
 import { sql } from "drizzle-orm";
 import type { getDb } from "./index";
-import type { AttrKey, CreatorPage, CreatorReview, Offer, Stance, TikTokTake, Word } from "../lib/thread/creators";
+import type { AttrKey, CreatorPage, CreatorReview, Offer, ReviewConfig, Stance, TikTokTake, Word } from "../lib/thread/creators";
 import { ATTRS, WORDS } from "../lib/thread/creators";
 
 type Database = ReturnType<typeof getDb>;
@@ -37,7 +37,15 @@ export function reviewFromRow(r: Record<string, unknown>): CreatorReview {
     score: !hidden && sv != null && ss != null ? { value: sv, scale: ss, label: str(r.score_label) } : null,
     measured: json<Record<string, number | string>>(r.measured, {}), alsoUrl: str(r.also_url), version: str(r.version),
     note: str(r.note), tie: str(r.brand_tie), stood: str(r.stood_out), trade: str(r.trade_off), compared: str(r.compared_to),
+    // The tested config (drizzle/0041, LaptopRecs): only on schemas that have the columns.
+    ...("config_label" in r || "config" in r ? { config: configFromRow(r) } : {}),
   };
+}
+/** The config columns (drizzle/0041) as the card's config: the source's own words per field, nulls kept out. */
+export function configFromRow(r: Record<string, unknown>): ReviewConfig {
+  const f = json<Record<string, unknown>>(r.config, {});
+  const fields = Object.fromEntries(Object.entries(f).filter(([, v]) => v != null && String(v).trim()).map(([k, v]) => [k, String(v)]));
+  return { label: str(r.config_label), note: str(r.config_note), group: str(r.config_group), fields };
 }
 /** One TikTok creator_reviews row as a short take (its summary is the take). */
 export function takeFromRow(r: Record<string, unknown>): TikTokTake {
@@ -46,9 +54,14 @@ export function takeFromRow(r: Record<string, unknown>): TikTokTake {
     tags: list(r.tags).slice(0, 3), disclosure: "", url: String(r.url), keyPoint: str(r.key_point) };
 }
 /** creator_prices rows as offers, in stock first then cheapest, and the newest check date. */
-export function offersFromRows(rows: Record<string, unknown>[]): { checked: string; offers: Offer[] } | null {
+/** Amazon's rule for shown prices (owner 2026-11-23, scripts/amazon-prices.mts): an Amazon row counts only while its price is
+ *  under 24 hours old; after that the page shows Amazon as a plain link again. Other shops keep their weekly checks. */
+const AMAZON_MAX_AGE_MS = 24 * 60 * 60 * 1000;
+const freshEnough = (r: Record<string, unknown>, now: number) => String(r.shop) !== "Amazon" || now - Date.parse(String(r.checked_at)) < AMAZON_MAX_AGE_MS;
+export function offersFromRows(rows: Record<string, unknown>[], now = Date.now()): { checked: string; offers: Offer[] } | null {
+  rows = rows.filter(r => freshEnough(r, now));
   const offers = rows.filter(r => (str(r.currency) ?? "USD") === "USD").map(r => ({ shop: String(r.shop), url: String(r.url), price: Number(r.price),
-    inStock: r.in_stock === true || r.in_stock === "t", edition: str(r.edition), affiliate: r.affiliate === true || r.affiliate === "t" }))
+    inStock: r.in_stock === true || r.in_stock === "t", edition: str(r.edition), affiliate: r.affiliate === true || r.affiliate === "t", checkedAt: str(r.checked_at) }))
     .sort((a, b) => Number(b.inStock) - Number(a.inStock) || a.price - b.price);
   if (!offers.length) return null;
   const checked = rows.map(r => str(r.checked_at) ?? "").sort().pop()!.slice(0, 10);

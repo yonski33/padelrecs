@@ -105,7 +105,18 @@ const TENNIS_CATS: PickCat[] = [
   { key: "net", title: "Quickest at the net", trait: "maneuver", choice: "very", href: "/rankings/best-tennis-rackets" },
   { key: "beginner", title: "Best for beginners", trait: "level", choice: "beginner", href: "/rackets?level=Beginner" },
 ];
-export const pickCatsFor = (nicheId: string) => nicheId === "pickleball" ? PICKLEBALL_CATS : nicheId === "skin" ? SKIN_CATS
+/** LaptopRecs' lists ("How owners vote them"), linking to its live rankings and type pages. */
+const LAPTOP_CATS: PickCat[] = [
+  { key: "battery", title: "Best battery life", trait: "battery", choice: "all_day", href: "/rankings/best-battery-life-laptops" },
+  { key: "cool", title: "Coolest and quietest", trait: "thermals", choice: "cool", href: "/rankings/best-ultrabooks" },
+  { key: "screen", title: "Best screen", trait: "screen", choice: "great", href: "/rankings/best-creator-laptops" },
+  { key: "keyboard", title: "Best keyboard", trait: "keyboard", choice: "great", href: "/rankings/best-business-laptops" },
+  { key: "carry", title: "Easiest to carry", trait: "portability", choice: "very", href: "/rankings/best-ultrabooks" },
+  { key: "value", title: "Best value", trait: "value", choice: "worth_it", href: "/rankings/best-budget-laptops" },
+  { key: "fast", title: "Fastest", trait: "performance", choice: "fast", href: "/rankings/best-gaming-laptops" },
+  { key: "build", title: "Best build", trait: "build", choice: "solid", href: "/rankings/best-business-laptops" },
+];
+export const pickCatsFor = (nicheId: string) => nicheId === "laptop" ? LAPTOP_CATS : nicheId === "pickleball" ? PICKLEBALL_CATS : nicheId === "skin" ? SKIN_CATS
   : nicheId === "discgolf" ? DISCGOLF_CATS : nicheId === "audio" ? AUDIO_CATS : nicheId === "simracing" ? SIMRACING_CATS : nicheId === "tennis" ? TENNIS_CATS : PADEL_CATS;
 /** The running site's lists. */
 export const PICK_CATS = pickCatsFor(niche.id);

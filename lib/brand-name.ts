@@ -11,8 +11,10 @@ export function displayName(name: string, brand: string | null | undefined) {
  *  Not for sites whose brands are lowercase on purpose (monday.com). NICHE is inlined at build time (next.config.ts). */
 const TIDY_CASE = ["padel"].includes(process.env.NICHE ?? "");
 const YEAR_PARENS = ["padel"].includes(process.env.NICHE ?? ""), YEAR_TAIL = /\s+\(?((?:19|20)\d\d)\)?$/;
-/** A display name without its year, in either form ("… 2026" or "… (2026)"). */
-export const withoutYear = (name: string) => name.replace(YEAR_TAIL, "");
+/** Sites whose year in the name is the generation, not a model year ("ASUS ROG Zephyrus G14 2025", LaptopRecs): kept. */
+const YEAR_IS_GENERATION = ["laptop"].includes(process.env.NICHE ?? "");
+/** A display name without its year, in either form ("… 2026" or "… (2026)"); LaptopRecs keeps it (its generation). */
+export const withoutYear = (name: string) => YEAR_IS_GENERATION ? name : name.replace(YEAR_TAIL, "");
 export function tidyCase(name: string) {
   return name.split(/(\s+)/).map(w => /^[a-z][a-z]+$/.test(w) ? w[0].toUpperCase() + w.slice(1) : w.replace(/^(\d+)k$/, "$1K")).join("");
 }
@@ -24,7 +26,8 @@ const words = (s: string) => s.toLowerCase().replace(/[^\p{L}\p{N}]+/gu, " ").tr
  * - the name is the brand or starts with it: "Mullvad" / "Mullvad VPN";
  * - its first word is one of the brand's words: "Charles Schwab" / "Schwab One", "Otter.ai" / "Otter", "monday.com" / "monday work management";
  * - its first word is a short form of the brand: "Tempur-Pedic" / "TEMPUR-Adapt", "WinkBeds" / "WinkBed Plus";
- * - its first word is the brand's initials: "Tuft & Needle" / "T&N Mint", "Amazon Web Services" / "AWS Amplify".
+ * - its first word is the brand's initials: "Tuft & Needle" / "T&N Mint", "Amazon Web Services" / "AWS Amplify";
+ * - its first word is the brand with a superscript number: "CRBN" / "CRBN¹ TruFoam Genesis".
  */
 export function repeatsBrand(name: string, brand: string) {
   const n = words(name), b = words(brand);
@@ -32,6 +35,8 @@ export function repeatsBrand(name: string, brand: string) {
   if (n === b || n.startsWith(b + " ")) return true;
   const first = n.split(" ")[0], bw = b.split(" ");
   if (first.length >= 3 && bw.includes(first)) return true;
+  // The brand with a superscript model number: "CRBN" / "CRBN¹ TruFoam Genesis" (PickleballRecs, 2026-11-24).
+  if (first.replace(/\p{No}+$/u, "") === b) return true;
   if (first.length >= 5 && bw[0].startsWith(first)) return true;
   const initials = bw.length > 1 ? bw.map(w => w[0]).join("") : "";
   return !!initials && name.split(/\s+/)[0].toLowerCase().replace(/[^\p{L}\p{N}]/gu, "") === initials;

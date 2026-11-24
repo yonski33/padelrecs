@@ -27,6 +27,8 @@ SITE_FONTS.simracing = SITE_FONTS.padel;
 SITE_FONTS.tennis = SITE_FONTS.padel;
 /** PickleballRecs too (owner 2026-11-22: padel's fonts, its own colours). */
 SITE_FONTS.pickleball = SITE_FONTS.padel;
+/** LaptopRecs on PickleballRecs' look (owner 2026-11-24: pickleball is the default copy for every site). */
+SITE_FONTS.laptop = SITE_FONTS.padel;
 
 export default function ThreadLayout({ children }: { children: ReactNode }) {
   return <>

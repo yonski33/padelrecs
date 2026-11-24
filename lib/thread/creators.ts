@@ -14,9 +14,23 @@ const PICKLEBALL_ATTRS = [["power", "Power"], ["control", "Control"], ["spin", "
 const SKIN_ATTRS = [["hydration", "Hydration"], ["texture", "Texture"], ["finish", "Finish"], ["absorption", "Absorbs"],
   ["irritation", "Gentleness"], ["results", "Results"], ["scent", "Scent"], ["white_cast", "No white cast"],
   ["sun_protection", "Sun protection"], ["adhesion", "Stays on"], ["packaging", "Packaging"], ["value", "Value"]] as const;
-export type AttrKey = (typeof PICKLEBALL_ATTRS)[number][0] | (typeof SKIN_ATTRS)[number][0];
-/** The site's own set: NICHE is inlined at build (next.config env), so the browser cards get the same list. */
-export const ATTRS: readonly (readonly [AttrKey, string])[] = process.env.NICHE === "skin" ? SKIN_ATTRS : PICKLEBALL_ATTRS;
+/** PadelRecs' words (the padel sweep, 2026-11-23, the reader brief's padel attribute words). */
+const PADEL_ATTRS = [["power", "Power"], ["control", "Control"], ["sweet", "Sweet spot"], ["comfort", "Arm comfort"],
+  ["maneuver", "Maneuverability"], ["spin", "Spin"], ["durability", "Durability"]] as const;
+/** LaptopRecs' words (the laptop reader brief, 2026-11-24): how the reviewer rated each part of the laptop. */
+const LAPTOP_ATTRS = [["performance", "Performance"], ["thermals", "Thermals"], ["battery", "Battery"], ["display", "Display"],
+  ["keyboard", "Keyboard"], ["build", "Build"], ["portability", "Portability"], ["value", "Value"]] as const;
+export type AttrKey = (typeof PICKLEBALL_ATTRS)[number][0] | (typeof SKIN_ATTRS)[number][0] | (typeof PADEL_ATTRS)[number][0]
+  | (typeof LAPTOP_ATTRS)[number][0];
+/** Each site's attribute set (pickleball's paddle words unless a site has its own). */
+const SITE_ATTRS: Record<string, readonly (readonly [AttrKey, string])[]> = { skin: SKIN_ATTRS, padel: PADEL_ATTRS, laptop: LAPTOP_ATTRS };
+export const attrsFor = (site: string): readonly (readonly [AttrKey, string])[] => SITE_ATTRS[site] ?? PICKLEBALL_ATTRS;
+/** The site's own set: NICHE is inlined at build (next.config env), so the browser cards get the same list (padel when unset,
+ *  the niche default). */
+export const ATTRS: readonly (readonly [AttrKey, string])[] = attrsFor(process.env.NICHE || "padel");
+/** The heading over the per-attribute words ("How it plays"), per site. */
+const HOW_TITLE: Record<string, string> = { skin: "How it works", laptop: "How it holds up" };
+export const howTitleFor = (site: string) => HOW_TITLE[site] ?? "How it plays";
 export type Stance = "pos" | "mix" | "neg";
 export const STANCE_LABEL: Record<Stance, string> = { pos: "Loved it", mix: "Mixed", neg: "Not for me" };
 
@@ -39,7 +53,11 @@ export type CreatorReview = {
   /** "Long-term" or "First impressions", or null. */ note: string | null;
   /** A disclosed tie with this product's brand: "Works with <tie>". */ tie: string | null;
   stood: string | null; trade: string | null; compared: string | null;
+  /** The config the reviewer tested (LaptopRecs, drizzle/0041): the short label, a note when the source covers two configs,
+   *  the source's own words per field and a hand-set group; null on sites without configs. */
+  config?: ReviewConfig | null;
 };
+export type ReviewConfig = { label: string | null; note: string | null; group: string | null; fields: Record<string, string | null> };
 export type CreatorPage = { paddle: string; tldr: string;
   /** One line per take for the sentiment boxes (written from the reviews' own summaries; "" when none). */
   groups: Record<Stance, string>;
@@ -61,7 +79,8 @@ export function tiktokStances(takes: TikTokTake[]) {
   for (const t of takes) { const x = latest.get(t.handle); if (!x || t.date > x.date) latest.set(t.handle, t); }
   return stanceCounts([...latest.values()]);
 }
-export type Offer = { shop: string; url: string; price: number; inStock: boolean; edition: string | null; affiliate: boolean };
+export type Offer = { shop: string; url: string; price: number; inStock: boolean; edition: string | null; affiliate: boolean;
+  /** When the price was read (ISO); the page shows it for Amazon's price, as Amazon asks. */ checkedAt?: string | null };
 
 /** "$110", "$159.99". */
 /** A shop's name short enough for the price box (owner 2026-11-23): no "(brand store)" / "(sold by …)" note, no trailing
@@ -119,8 +138,14 @@ export const scoreText = (s: NonNullable<CreatorReview["score"]>) => `${s.value}
 
 /** Measured numbers the creator gave (lab-style, not scores): "Swing weight 111 · Twist weight 6.57". */
 const MEASURED: Record<string, string> = { spin_rpm: "Spin", swing_weight: "Swing weight", twist_weight: "Twist weight" };
-export const measuredLine = (m: CreatorReview["measured"]) => Object.entries(m).filter(([k]) => MEASURED[k])
-  .map(([k, v]) => `${MEASURED[k]} ${v}${k === "spin_rpm" ? " rpm" : ""}`).join(" · ");
+/** LaptopRecs' measurements keep the reviewer's own label ("Battery, looped movie at 200 nits: almost 19 hours"). */
+const FREE_MEASURED = new Set(["laptop"]);
+/** No prices in review text (owner 2026-11-24: quoted prices go stale; live prices live in the price box only). */
+export const PRICE_TEXT = /[€$£]\s?\d|\d[\d.,]*\s?(€|euros?\b|eur\b|dollars?\b|usd\b|bucks\b|gbp\b)|\blist price\b|\bmsrp\b|\bretails? (for|at)\b|\bcosts? (about |around |roughly )?[€$£]?\d/i;
+const priceEntry = ([k, v]: [string, unknown]) => /price|cost|msrp|discount|code|deal/i.test(k) || PRICE_TEXT.test(String(v));
+export const measuredLine = (m: CreatorReview["measured"], site = process.env.NICHE ?? "") => FREE_MEASURED.has(site)
+  ? Object.entries(m).filter(([k, v]) => k.trim() && String(v).trim() && !priceEntry([k, v])).map(([k, v]) => `${k}: ${v}`).join(" · ")
+  : Object.entries(m).filter(([k]) => MEASURED[k]).map(([k, v]) => `${MEASURED[k]} ${v}${k === "spin_rpm" ? " rpm" : ""}`).join(" · ");
 
 /** Initials for the creator's avatar ("Pickleball Studio" → "PS"). */
 export const initials = (name: string) => name.replace(/[^A-Za-z0-9 ]/g, " ").split(/\s+/).filter(Boolean).slice(0, 2)
@@ -210,7 +235,8 @@ export function marks(text: string, hs: string[]): { t: string; on: boolean }[] 
  *  quote, its take as the summary, its own tags, no Stood out / Trade-off / Compared to, no chapters, no attribute words).
  *  `handle` and `tags` ride along for the card. UNVERIFIED like the takes themselves (page.tiktok.unverified). */
 export type ReviewEntry = CreatorReview & { handle?: string; tags?: string[]; cover?: string | null;
-  /** The maker turned embedding off: the thumbnail opens the original in a new tab (live/video-overlay.tsx). */ noEmbed?: boolean };
+  /** The maker turned embedding off: the thumbnail opens the original in a new tab (live/video-overlay.tsx). */ noEmbed?: boolean;
+  /** Who this reviewer says the paddle suits, and why (db/creators/best-for.json, 2026-11-23). */ bestFor?: { who: string; why: string } | null };
 export const takeAsReview = (t: TikTokTake): ReviewEntry => ({
   id: `tt-${t.id}`, creator: t.creator, kind: "tiktok", type: "review", url: t.url, channel: `https://www.tiktok.com/${t.handle}`,
   lang: "en", date: t.date, video: null, len: t.len, chapters: [], quote: t.quote, quoteAt: null, stance: t.stance,
@@ -229,16 +255,20 @@ export function reviewLists(page: CreatorPage) {
  *  the attribute Excellent or Great (likes) or Okay or Weak (concerns). Most backed first, up to 3 a side. A like needs more
  *  reviews for it than against it. */
 const LIKE: Record<AttrKey, string> = { power: "Strong power", control: "Strong control", spin: "Strong spin", pop: "Lively pop",
-  sweet: "Forgiving sweet spot", comfort: "Easy on the arm", durability: "Grit that lasts",
+  sweet: "Forgiving sweet spot", comfort: "Easy on the arm", durability: "Grit that lasts", maneuver: "Quick and manoeuvrable",
   hydration: "Hydrating", texture: "Pleasant texture", finish: "Nice finish", absorption: "Absorbs fast", irritation: "Gentle on skin",
   results: "Visible results", scent: "Pleasant or no scent", white_cast: "No white cast", sun_protection: "Solid sun protection",
-  adhesion: "Stays on well", packaging: "Handy packaging", value: "Good value" };
+  adhesion: "Stays on well", packaging: "Handy packaging", value: "Good value",
+  performance: "Fast for its class", thermals: "Runs cool and quiet", battery: "Long battery life", display: "A good screen",
+  keyboard: "A good keyboard", build: "Solid build", portability: "Easy to carry" };
 const CONCERN: Record<AttrKey, string> = { power: "Low on power for some", control: "Harder to control for some", spin: "Less spin than some rivals",
   pop: "Muted pop for some", sweet: "Smaller sweet spot for some", comfort: "Firm on the arm for some", durability: "Durability doubts",
+  maneuver: "Heavy or slow to move for some",
   hydration: "Not hydrating enough for some", texture: "Texture not for everyone", finish: "Finish not for everyone",
   absorption: "Slow to absorb for some", irritation: "Irritated some skin", results: "Little change for some", scent: "Scent bothered some",
   white_cast: "Some white cast", sun_protection: "Protection doubts", adhesion: "Comes off for some", packaging: "Packaging gripes",
-  value: "Pricey for some" };
+  value: "Pricey for some", performance: "Slower than rivals for some", thermals: "Hot or loud for some", battery: "Short battery life for some",
+  display: "Screen gripes", keyboard: "Keyboard gripes", build: "Build doubts", portability: "Heavy for some" };
 export function agreeChips(rs: Pick<CreatorReview, "attrs">[], max = 3) {
   const rows = ATTRS.map(([k]) => ({ k, hi: rs.filter(r => r.attrs[k] && HIGH.includes(r.attrs[k]!)).length, lo: rs.filter(r => r.attrs[k] && LOW.includes(r.attrs[k]!)).length }));
   const likes = rows.filter(x => x.hi >= 2 && x.hi > x.lo).sort((a, b) => b.hi - a.hi).slice(0, max).map(x => LIKE[x.k]);

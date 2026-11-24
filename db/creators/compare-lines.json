@@ -1,0 +1,2493 @@
+{
+ "pickleball": {
+  "six-zero-black-opal-14mm": {
+   "bread-butter-loco-hybrid": {
+    "line": "Smaller sweet spot and slower hands than the Black Opal 14mm",
+    "n": 1,
+    "by": [
+     "cr_fd7317fd31d9ae2f"
+    ]
+   },
+   "honolulu-j6cr": {
+    "line": "More forgiving and ranked above the Black Opal 14mm",
+    "n": 1,
+    "by": [
+     "cr_f4e59a9b7ed4daaf"
+    ]
+   }
+  },
+  "spartus-apollo": {
+   "six-zero-ruby": {
+    "line": "Softer and more muted, with less pop than the Apollo",
+    "n": 1,
+    "by": [
+     "cr_0d5a95985d430f2d"
+    ]
+   }
+  },
+  "crbn1-trufoam-genesis": {
+   "pickleball-apes-pulse": {
+    "line": "Less powerful than the CRBN1",
+    "n": 1,
+    "by": [
+     "cr_d8663a5e50b3a4e5"
+    ]
+   }
+  },
+  "rpm-jade-elongated": {
+   "honolulu-j2cr": {
+    "line": "Harder hitting than the Jade, with shots going short against it",
+    "n": 1,
+    "by": [
+     "cr_d104703165efc31f"
+    ]
+   }
+  },
+  "spartus-spitfire-elongated": {
+   "honolulu-j6cr": {
+    "line": "Stiffer, hollower and slightly poppier than the Spitfire",
+    "n": 1,
+    "by": [
+     "cr_4db78c9298ce783b"
+    ]
+   },
+   "enhance-mpp-turbo": {
+    "line": "Softer than the Spitfire, with easier resets and angles",
+    "n": 1,
+    "by": [
+     "tt-cr_d089b0e4d6c5d1ed"
+    ]
+   },
+   "11six24-hurache-x-power-2": {
+    "line": "Pop about the same as the Spitfire",
+    "n": 1,
+    "by": [
+     "cr_0be60ca31af497a5"
+    ]
+   },
+   "spartus-p1-hybrid": {
+    "line": "Less explosive, with less spin when new than the Spitfire",
+    "n": 1,
+    "by": [
+     "cr_3967b283d43db537"
+    ]
+   }
+  },
+  "joola-hyperion-pro-iv": {
+   "joola-agassi-pro": {
+    "line": "Spins a little more than the Hyperion Pro IV",
+    "n": 1,
+    "by": [
+     "cr_007f1e34c9ef8884"
+    ]
+   },
+   "joola-perseus-pro-iv": {
+    "line": "Slightly slower than the Hyperion Pro IV",
+    "n": 1,
+    "by": [
+     "cr_007f1e34c9ef8884"
+    ]
+   },
+   "joola-scorpeus-pro-iv": {
+    "line": "Rated higher for spin than the Hyperion Pro IV",
+    "n": 1,
+    "by": [
+     "cr_007f1e34c9ef8884"
+    ]
+   }
+  },
+  "vatic-pro-saga": {
+   "spartus-olympus": {
+    "line": "More pop than the Saga, with power close or a touch higher",
+    "n": 2,
+    "by": [
+     "cr_3a1fbad6547ebae9",
+     "cr_f849c259482815c9"
+    ]
+   },
+   "vatic-pro-prism-flash": {
+    "line": "Similar power and spin, with better control and forgiveness than the Saga",
+    "n": 1,
+    "by": [
+     "cr_cd6fb6e01026b6b6"
+    ]
+   }
+  },
+  "joola-perseus-pro-iv": {
+   "joola-agassi-pro": {
+    "line": "Thicker handle than the Perseus Pro IV",
+    "n": 1,
+    "by": [
+     "cr_cb03f4fce75188ee"
+    ]
+   },
+   "paddletek-bantam-esq-c": {
+    "line": "More spin and more control than the Perseus Pro IV",
+    "n": 1,
+    "by": [
+     "cr_cfe4fa72e46e298d"
+    ]
+   },
+   "vatic-pro-saga": {
+    "line": "Plusher than the Perseus Pro IV, which was hard to control at first",
+    "n": 1,
+    "by": [
+     "cr_6360d8b05fe850d2"
+    ]
+   }
+  },
+  "luzz-cannon": {
+   "six-zero-double-black-diamond-control": {
+    "line": "Better power and control balance than the Cannon, but pricier",
+    "n": 1,
+    "by": [
+     "cr_14c151f6d4e82c5f"
+    ]
+   }
+  },
+  "luzz-pro-4-inferno": {
+   "enhance-mpp-turbo": {
+    "line": "Tentatively more powerful than the Inferno",
+    "n": 1,
+    "by": [
+     "tt-cr_97b8492b2537d935"
+    ]
+   },
+   "luzz-cannon": {
+    "line": "Same power, smoother foam delivery and more spin than the Inferno",
+    "n": 1,
+    "by": [
+     "cr_9aea4909ecd9e9c2"
+    ]
+   }
+  },
+  "crbn2-trufoam-genesis": {
+   "paddletek-bantam-esq-c": {
+    "line": "Liked a little more than the CRBN2, and cheaper",
+    "n": 1,
+    "by": [
+     "cr_b327af2c7d52a0b3"
+    ]
+   },
+   "pickleball-apes-pulse": {
+    "line": "Less powerful than the CRBN2",
+    "n": 1,
+    "by": [
+     "cr_17ec53d67b176b3f"
+    ]
+   }
+  },
+  "spartus-olympus": {
+   "spartus-apollo": {
+    "line": "Top tier spin, like the Olympus",
+    "n": 1,
+    "by": [
+     "cr_d8f631923e9f7961"
+    ]
+   }
+  },
+  "pickleball-apes-pulse": {
+   "spartus-olympus": {
+    "line": "Rated below the Pulse S",
+    "n": 1,
+    "by": [
+     "cr_599eeb9eb8e742bd"
+    ]
+   },
+   "vatic-pro-prism-flash": {
+    "line": "Cheaper pure control pick for beginners than the Pulse",
+    "n": 1,
+    "by": [
+     "cr_06ad49262ba27767"
+    ]
+   }
+  },
+  "friday-aura-pro-elongated": {
+   "friday-aura-elongated": {
+    "line": "Preferred for defense and resets over the Aura Pro Elongated",
+    "n": 1,
+    "by": [
+     "cr_6259c55b308d8c14"
+    ]
+   },
+   "honolulu-j6cr": {
+    "line": "About the same power but more pop than the Aura Pro Elongated",
+    "n": 1,
+    "by": [
+     "cr_612a2d78e6d5bd1c"
+    ]
+   }
+  },
+  "joola-agassi-pro": {
+   "joola-perseus-pro-iv": {
+    "line": "A bit more power and slightly less dwell than the Agassi Pro",
+    "n": 1,
+    "by": [
+     "cr_240ce03b4932a90d"
+    ]
+   },
+   "paddletek-bantam-esq-c": {
+    "line": "Feels like a non-elongated version of the Agassi Pro",
+    "n": 1,
+    "by": [
+     "cr_240ce03b4932a90d"
+    ]
+   },
+   "paddletek-bantam-tko-c": {
+    "line": "A bit more power than the Agassi Pro",
+    "n": 1,
+    "by": [
+     "cr_240ce03b4932a90d"
+    ]
+   }
+  },
+  "rpm-q2-elongated": {
+   "honolulu-j6cr": {
+    "line": "Cheaper pick for beginners than the Q2 Elongated",
+    "n": 1,
+    "by": [
+     "cr_0a8494cd0d9d2b8c"
+    ]
+   }
+  },
+  "six-zero-coral-pro-16mm": {
+   "11six24-vapor-power-2": {
+    "line": "Faster drives than the Coral Pro 16mm",
+    "n": 1,
+    "by": [
+     "cr_5cb1dceb1255ea1c"
+    ]
+   },
+   "honolulu-j2cr": {
+    "line": "A rival with durable grit to the Coral Pro 16mm",
+    "n": 1,
+    "by": [
+     "cr_6bbcdfb4a6a7a381"
+    ]
+   }
+  },
+  "vatic-pro-v-sol-pro": {
+   "11six24-vapor-power-2": {
+    "line": "More powerful than the V-Sol Pro, for advanced players",
+    "n": 1,
+    "by": [
+     "cr_fe378d1d2c0dd1d4"
+    ]
+   },
+   "vatic-pro-prism-flash": {
+    "line": "Older design; its 14 mm is quickest at the net next to the V-Sol Pro",
+    "n": 1,
+    "by": [
+     "cr_1d7993318b2eb5ae"
+    ]
+   }
+  },
+  "joola-perseus-pro-v": {
+   "honolulu-j6cr": {
+    "line": "Slightly more power and spin than the Perseus Pro V, at near half the price",
+    "n": 1,
+    "by": [
+     "cr_46b3fff500b8f627"
+    ]
+   }
+  },
+  "11six24-hurache-x-power-2": {
+   "enhance-mpp-turbo": {
+    "line": "Plays on par with the Hurache-X Power 2; neither is an upgrade",
+    "n": 1,
+    "by": [
+     "tt-cr_aab7851df8ae4d17"
+    ]
+   },
+   "luzz-cannon": {
+    "line": "Cheaper, with more power, pop and a stiffer face than the Hurache-X",
+    "n": 1,
+    "by": [
+     "cr_10942bd4b994f94e"
+    ]
+   }
+  },
+  "11six24-pegasus-jelly-bean-2": {
+   "honolulu-j2cr": {
+    "line": "Clearly stronger drives than the Jelly Bean 2",
+    "n": 1,
+    "by": [
+     "cr_8b8cd8b4df288b8f"
+    ]
+   }
+  },
+  "honolulu-j6cr": {
+   "honolulu-j2cr": {
+    "line": "Largely identical ball feel and quicker hands than the J6CR",
+    "n": 1,
+    "by": [
+     "cr_3e195fd8bae9c358"
+    ]
+   },
+   "enhance-duo": {
+    "line": "Softer, more muted feel than the J6CR",
+    "n": 1,
+    "by": [
+     "cr_c77c47d03554ccc6"
+    ]
+   }
+  },
+  "11six24-vapor-power-2": {
+   "11six24-hurache-x-power-2": {
+    "line": "Less forgiving than the Vapor Power 2",
+    "n": 1,
+    "by": [
+     "cr_e861849f88abeb65"
+    ]
+   },
+   "honolulu-j2cr": {
+    "line": "Just ahead of the Vapor Power 2 overall",
+    "n": 1,
+    "by": [
+     "tt-cr_30f45a5e1b5b07cf"
+    ]
+   },
+   "volair-cmd-hyb": {
+    "line": "Swing weight near 111, close to the Vapor Power 2's",
+    "n": 1,
+    "by": [
+     "cr_740b9dd47b3aa807"
+    ]
+   }
+  },
+  "vatic-pro-v-sol-tour": {
+   "honolulu-j6cr": {
+    "line": "Elite shot shaping that the V-Sol Tour comes close to",
+    "n": 1,
+    "by": [
+     "cr_27dff1c45e7c4995"
+    ]
+   }
+  },
+  "enhance-mpp-turbo": {
+   "11six24-vapor-power-2": {
+    "line": "More elite spin than the MPP Turbo",
+    "n": 1,
+    "by": [
+     "cr_4cecbe67b13b3edc"
+    ]
+   },
+   "enhance-epp-turbo": {
+    "line": "Picked over the MPP Turbo for a better fit with their game",
+    "n": 1,
+    "by": [
+     "cr_38044e23fbc857a5"
+    ]
+   }
+  },
+  "honolulu-j2cr": {
+   "honolulu-j6cr": {
+    "line": "Hits harder than the J2CR",
+    "n": 3,
+    "by": [
+     "cr_978d958670c8175d",
+     "cr_7ac40d2dbf4d9549",
+     "cr_14da45f526b736f4"
+    ]
+   },
+   "11six24-vapor-power-2": {
+    "line": "More control but less spin and power than the J2CR",
+    "n": 1,
+    "by": [
+     "cr_7ac40d2dbf4d9549"
+    ]
+   },
+   "honolulu-j3cr": {
+    "line": "Heavier, more muted and harder on mishits than the J2CR",
+    "n": 1,
+    "by": [
+     "cr_978d958670c8175d"
+    ]
+   },
+   "11six24-hurache-x-power-2": {
+    "line": "Hard to tell apart from the J2CR on serve dip",
+    "n": 1,
+    "by": [
+     "tt-cr_00db06a8fdc11334"
+    ]
+   }
+  },
+  "enhance-duo": {
+   "bread-butter-loco-elongated": {
+    "line": "A little more pop and power than the Duo, but less maneuverable",
+    "n": 1,
+    "by": [
+     "cr_f7da9b3c1e9f0824"
+    ]
+   },
+   "enhance-mpp-turbo": {
+    "line": "More explosive, with livelier pop and a lower price than the Duo",
+    "n": 1,
+    "by": [
+     "cr_f2a66f4a5be74f78"
+    ]
+   },
+   "luzz-pro-4-inferno": {
+    "line": "More hollow and less connected than the Duo",
+    "n": 1,
+    "by": [
+     "cr_67bc422e979769e5"
+    ]
+   }
+  },
+  "11six24-ultre-power-2": {
+   "11six24-vapor-power-2": {
+    "line": "Plays nearly identically to the Ultre, but is slightly less preferred",
+    "n": 2,
+    "by": [
+     "cr_03f5fae4faf64a83",
+     "cr_747776e747a75110"
+    ]
+   },
+   "honolulu-j2cr": {
+    "line": "Quicker to swing than the Ultre",
+    "n": 1,
+    "by": [
+     "cr_e4f07c8833de03e2"
+    ]
+   }
+  },
+  "six-zero-ruby": {
+   "six-zero-double-black-diamond-control": {
+    "line": "Less pop, slightly more power and more control than the Ruby",
+    "n": 1,
+    "by": [
+     "cr_3712ebbfd1ff58bb"
+    ]
+   }
+  },
+  "six-zero-double-black-diamond-control": {
+   "six-zero-black-diamond-power": {
+    "line": "Behaves almost the same as the Control",
+    "n": 1,
+    "by": [
+     "cr_d46dfab0179413a6"
+    ]
+   }
+  },
+  "six-zero-coral-16mm": {
+   "pickleball-apes-charm": {
+    "line": "Power in the same range as the Coral",
+    "n": 2,
+    "by": [
+     "cr_b17436682ee1367d",
+     "cr_8692e6500d181423"
+    ]
+   },
+   "honolulu-j6cr": {
+    "line": "More power on serves and drives than the Coral 16mm",
+    "n": 1,
+    "by": [
+     "cr_9efb25a94dbc84b3"
+    ]
+   },
+   "selkirk-slk-era-power": {
+    "line": "In the same ballpark as the Coral 16mm",
+    "n": 1,
+    "by": [
+     "cr_4e5001a4135917a2"
+    ]
+   }
+  },
+  "gearbox-gbx-power-elongated": {
+   "honolulu-j6cr": {
+    "line": "About as fast as the GBX Power Elongated",
+    "n": 1,
+    "by": [
+     "cr_894f95958d3b2e5b"
+    ]
+   }
+  },
+  "gearbox-pro-ultimate-power-elongated-14mm": {
+   "paddletek-bantam-tko-c": {
+    "line": "Less pop and slower at the kitchen than the Pro Ultimate Elongated",
+    "n": 1,
+    "by": [
+     "cr_f25d305a7946f0b9"
+    ]
+   }
+  },
+  "holbrook-fuze-vantagrit": {
+   "enhance-mpp-turbo": {
+    "line": "Softer, more hollow feel than the Fuze VantaGrit",
+    "n": 1,
+    "by": [
+     "cr_7a532850fe664898"
+    ]
+   },
+   "honolulu-j2cr": {
+    "line": "More forgiving sweet spot, less controlled feel than the Fuze",
+    "n": 1,
+    "by": [
+     "cr_162220f8abfe9167"
+    ]
+   },
+   "pakle-fuse-hybrid-w": {
+    "line": "Softer, more hollow feel than the Fuze VantaGrit",
+    "n": 1,
+    "by": [
+     "cr_7a532850fe664898"
+    ]
+   }
+  },
+  "luzz-cannon-xpp-m1": {
+   "honolulu-j6cr": {
+    "line": "Less powerful out of the box than the Cannon XPP M1, with similar spin",
+    "n": 1,
+    "by": [
+     "cr_71f9b0850a4c6d60"
+    ]
+   }
+  },
+  "paddletek-the-reserve-honeyfoam": {
+   "crbn4-trufoam-barrage": {
+    "line": "More power than the Reserve Honeyfoam, at a higher price",
+    "n": 1,
+    "by": [
+     "cr_db55133a83b41690"
+    ]
+   },
+   "enhance-duo": {
+    "line": "Similar to the Reserve Honeyfoam",
+    "n": 1,
+    "by": [
+     "cr_749e39c5018ca365"
+    ]
+   }
+  },
+  "prokennex-black-ace-pro": {
+   "six-zero-ruby": {
+    "line": "Slower hands and midcourt volleys, but more spin than the Black Ace Pro",
+    "n": 1,
+    "by": [
+     "cr_853389a7f9f4eaa2"
+    ]
+   }
+  },
+  "volair-shift-el": {
+   "bread-butter-loco-elongated": {
+    "line": "Notably lower swing weight than the Shift EL, which brings strain",
+    "n": 1,
+    "by": [
+     "cr_020421b86717bacd"
+    ]
+   }
+  },
+  "pakle-fuse-elongated": {
+   "bread-butter-loco-elongated": {
+    "line": "Matches the Fuse Elongated on control, one point higher on power",
+    "n": 1,
+    "by": [
+     "cr_cdca5697442533d3"
+    ]
+   }
+  }
+ },
+ "padel": {
+  "wilson-bela-lt-v2-5-2024": {
+   "head-extreme-motion-2026": {
+    "line": "Similar in versatile intermediate character to the Bela LT V2.5",
+    "n": 1,
+    "by": [
+     "cr_ef772f7120656d9b"
+    ]
+   },
+   "head-speed-motion-2025": {
+    "line": "Similar versatile intermediate type of racket as the Bela LT V2.5",
+    "n": 1,
+    "by": [
+     "cr_ef772f7120656d9b"
+    ]
+   },
+   "oxdog-ultimate-tour-2025": {
+    "line": "Similar intermediate versatility to the Bela LT V2.5",
+    "n": 1,
+    "by": [
+     "cr_ef772f7120656d9b"
+    ]
+   }
+  },
+  "babolat-air-viper-2025": {
+   "babolat-technical-viper-2025": {
+    "line": "Heavier, more head heavy and less manoeuvrable, built more for power smashes than the Air Viper",
+    "n": 3,
+    "by": [
+     "cr_7b52d7bcf7370b6f",
+     "cr_e952db3b5b516404",
+     "cr_c22e7d6f4ac26d2c"
+    ]
+   }
+  },
+  "nox-at10-genius-12k-alum-xtrem-2026": {
+   "nox-at10-genius-18k-2026": {
+    "line": "Softer and more forgiving, with a slightly wider sweet spot but less push at pace",
+    "n": 5,
+    "by": [
+     "cr_949b1107501a4810",
+     "cr_482bcdda26a61417",
+     "cr_a684bd9e9b8025d0",
+     "cr_f861486374640f5f",
+     "cr_7740303d4feb6b1b"
+    ]
+   },
+   "adidas-metalbone-3-5-2026": {
+    "line": "Similar feel at the net to the Alum Xtrem",
+    "n": 1,
+    "by": [
+     "cr_7740303d4feb6b1b"
+    ]
+   },
+   "starvie-raptor-plus-2026": {
+    "line": "A bit more feel and activity at slow pace than the Alum Xtrem",
+    "n": 1,
+    "by": [
+     "cr_71ee6402550bbfa5"
+    ]
+   }
+  },
+  "adidas-metalbone-3-4-2025": {
+   "head-extreme-pro-2026": {
+    "line": "Shoots harder than the Metalbone 3.4 while feeling about as heavy in hand",
+    "n": 1,
+    "by": [
+     "cr_ae524259ea92262a"
+    ]
+   }
+  },
+  "adidas-metalbone-ctrl-2026": {
+   "adidas-metalbone-3-5-2026": {
+    "line": "More powerful and more explosive on attack, with a smaller sweet spot than the Metalbone CTRL",
+    "n": 2,
+    "by": [
+     "cr_6fafa5ee60ef79f0",
+     "cr_f95455e4783714f1"
+    ]
+   }
+  },
+  "babolat-air-viper-2026": {
+   "oxdog-ultimate-pro-light-2026": {
+    "line": "Less ball exit and perhaps a slightly smaller sweet spot than the Air Viper",
+    "n": 1,
+    "by": [
+     "cr_5b5c8ba09f7960b1"
+    ]
+   }
+  },
+  "babolat-counter-viper-2025": {
+   "babolat-air-viper-2026": {
+    "line": "Faster to move than the Counter Viper",
+    "n": 1,
+    "by": [
+     "cr_13098b1cbcc78138"
+    ]
+   }
+  },
+  "oxdog-ultimate-pro-plus-2025": {
+   "oxdog-ultimate-pro-2026": {
+    "line": "Easier and more versatile, with a wider sweet spot, though less powerful than the Pro Plus",
+    "n": 2,
+    "by": [
+     "cr_7eeb83e330c22cdc",
+     "cr_55b54af235a908c3"
+    ]
+   },
+   "oxdog-ultimate-pro-light-2026": {
+    "line": "Lighter and easier to speed up than the Pro Plus",
+    "n": 1,
+    "by": [
+     "cr_55b54af235a908c3"
+    ]
+   },
+   "oxdog-ultimate-tour-2025": {
+    "line": "Easier for players below top level than the Pro Plus",
+    "n": 1,
+    "by": [
+     "cr_55b54af235a908c3"
+    ]
+   }
+  },
+  "oxdog-ultimate-tour-x-2026": {
+   "oxdog-ultimate-pro-2026": {
+    "line": "Firmer, with a heavier flat smash and better high pace blocks than the Tour X",
+    "n": 2,
+    "by": [
+     "cr_38c14e658862cdec",
+     "cr_19718ce696b1457a"
+    ]
+   },
+   "oxdog-ultimate-pro-plus-2025": {
+    "line": "Heavier ball on flat smashes and more vibora control, but harder to move than the Tour X",
+    "n": 3,
+    "by": [
+     "cr_38c14e658862cdec",
+     "cr_19718ce696b1457a",
+     "cr_3c5537c00262e039"
+    ]
+   },
+   "babolat-air-viper-2026": {
+    "line": "Firmer and more explosive, where the Tour X is calmer and more forgiving",
+    "n": 1,
+    "by": [
+     "cr_38c14e658862cdec"
+    ]
+   }
+  },
+  "wilson-defy-v1-2025": {
+   "wilson-defy-pro-v1-2025": {
+    "line": "Heavier and harder than the Defy V1, and aimed at more advanced players",
+    "n": 3,
+    "by": [
+     "cr_e8d0f15ce010cfd6",
+     "cr_006c6e0f28bb7f7a",
+     "cr_e44d6d46e2cfc7e9"
+    ]
+   }
+  },
+  "kuikma-hybrid-pro-2026": {
+   "adidas-metalbone-3-5-2026": {
+    "line": "Bouncier and harder to control than the Hybrid Pro",
+    "n": 1,
+    "by": [
+     "cr_32b480acf32ee565"
+    ]
+   },
+   "bullpadel-neuron-02-2027": {
+    "line": "Less rebound than the Hybrid Pro, but better for adding weight on firm downward swings",
+    "n": 1,
+    "by": [
+     "cr_32b480acf32ee565"
+    ]
+   }
+  },
+  "siux-fenix-pro-6-2026": {
+   "head-coello-pro-2026": {
+    "line": "Less dry than the Fenix Pro, though similarly demanding from the baseline",
+    "n": 2,
+    "by": [
+     "cr_3a0d367cce651aa0",
+     "cr_2750ed7567d0478e"
+    ]
+   },
+   "adidas-metalbone-hrd-plus-3-5-2026": {
+    "line": "Harder than the Fenix Pro, with similarly generous power",
+    "n": 1,
+    "by": [
+     "cr_f91b054751ad9942"
+    ]
+   }
+  },
+  "bullpadel-neuron-02-edge-2027": {
+   "bullpadel-neuron-02-2027": {
+    "line": "Softer, lighter in the head and quicker on volleys than the Neuron 02 Edge",
+    "n": 2,
+    "by": [
+     "cr_3c0b04fd7e190683",
+     "cr_1301c0ad35f10641"
+    ]
+   },
+   "bullpadel-hack-05-2027": {
+    "line": "Harder and more powerful than the Neuron 02 Edge, and more precise on fast volleys",
+    "n": 2,
+    "by": [
+     "cr_3c0b04fd7e190683",
+     "cr_6de05e0b0dbfa3b9"
+    ]
+   },
+   "bullpadel-vertex-05-2027": {
+    "line": "More free power and a bigger sweet spot than the Neuron 02 Edge",
+    "n": 1,
+    "by": [
+     "cr_1fb7c4b7b70a6aaa"
+    ]
+   },
+   "bullpadel-xplo-2026": {
+    "line": "Harder and more powerful than the Neuron 02 Edge, but less free moving",
+    "n": 3,
+    "by": [
+     "cr_3c0b04fd7e190683",
+     "cr_6de05e0b0dbfa3b9",
+     "cr_1301c0ad35f10641"
+    ]
+   }
+  },
+  "nox-at10-genius-12k-2025": {
+   "nox-at10-genius-18k-2026": {
+    "line": "Softer and slightly better for control in defence than the 12K, with a little less power",
+    "n": 2,
+    "by": [
+     "cr_ac14523f98e02d87",
+     "cr_58fd6c873cd8edb5"
+    ]
+   }
+  },
+  "siux-electra-pro-st4-2025": {
+   "babolat-counter-viper-2026": {
+    "line": "Heavier in the head and more communicative than the ST4, which is handier and drier",
+    "n": 2,
+    "by": [
+     "cr_2aaaca9a5c371382",
+     "cr_5845c1e40abc8935"
+    ]
+   },
+   "adidas-metalbone-3-5-2026": {
+    "line": "Bouncier, with a more extreme rebound than the ST4",
+    "n": 1,
+    "by": [
+     "cr_d7f6650c1125c51b"
+    ]
+   },
+   "head-coello-pro-2026": {
+    "line": "Stiffer in feel than the ST4",
+    "n": 1,
+    "by": [
+     "cr_a9f97fb2b54502a6"
+    ]
+   }
+  },
+  "adidas-arrow-hit-2026": {
+   "adidas-metalbone-3-5-2026": {
+    "line": "Feels slightly less hollow than the Arrow Hit",
+    "n": 1,
+    "by": [
+     "cr_7f429c32ac3cfb0a"
+    ]
+   }
+  },
+  "head-coello-pro-2026": {
+   "head-coello-motion-2026": {
+    "line": "Lighter and lower balanced than the Coello Pro, so easier to time and better in defence",
+    "n": 3,
+    "by": [
+     "cr_82ac8a98a133f76c",
+     "cr_61ec46a13726c3c8",
+     "cr_a1a6085a3a67a6f2"
+    ]
+   },
+   "adidas-metalbone-3-5-2026": {
+    "line": "Plays at a similar fast pace to the Coello Pro",
+    "n": 1,
+    "by": [
+     "cr_82ac8a98a133f76c"
+    ]
+   },
+   "head-coello-team-2026": {
+    "line": "Easier to play than the Coello Pro, though with a trampoline effect",
+    "n": 1,
+    "by": [
+     "cr_82ac8a98a133f76c"
+    ]
+   },
+   "head-extreme-pro-2026": {
+    "line": "Drier than the Coello Pro, so more of the power has to come from the player",
+    "n": 1,
+    "by": [
+     "cr_61ec46a13726c3c8"
+    ]
+   }
+  },
+  "wilson-endure-pro-v1-2026": {
+   "adidas-metalbone-hrd-plus-3-5-2026": {
+    "line": "More powerful than the Endure Pro, which is the strongest round racket otherwise",
+    "n": 1,
+    "by": [
+     "cr_9ff1bb45727088e5"
+    ]
+   },
+   "siux-electra-pro-st5-2026": {
+    "line": "Polyvalent with a little extra power, much like the Endure Pro",
+    "n": 1,
+    "by": [
+     "cr_9ff1bb45727088e5"
+    ]
+   },
+   "wilson-bela-v3-2025": {
+    "line": "Less precise and harder to move, but more ball output than the Endure Pro",
+    "n": 1,
+    "by": [
+     "cr_e70b63026231e48c"
+    ]
+   }
+  },
+  "head-extreme-motion-2026": {
+   "head-extreme-pro-2026": {
+    "line": "Heavier by about 10 g and harder to handle than the Extreme Motion",
+    "n": 2,
+    "by": [
+     "cr_ec50d3a65f5d7de4",
+     "cr_3fe17a12d88700d3"
+    ]
+   },
+   "adidas-metalbone-3-5-2026": {
+    "line": "Firmer in feel than the Extreme Motion, which is medium or slightly softer",
+    "n": 1,
+    "by": [
+     "cr_913f7899ce019479"
+    ]
+   }
+  },
+  "nox-at10-genius-18k-2026": {
+   "nox-at10-genius-12k-alum-xtrem-2026": {
+    "line": "Drier and more aggressive, with more smash power, but less forgiving than the 18K",
+    "n": 5,
+    "by": [
+     "cr_4b76896353b51170",
+     "cr_1efbe8ca5327f9fe",
+     "cr_9d757b683435395c",
+     "cr_35d5980931fbc5b6",
+     "cr_a39823a2564e7501"
+    ]
+   }
+  },
+  "head-radical-pro-2026": {
+   "head-extreme-pro-2026": {
+    "line": "As hard or softer in touch than the Radical Pro",
+    "n": 1,
+    "by": [
+     "cr_0a41880a982edbfc"
+    ]
+   }
+  },
+  "wilson-bela-pro-v3-2025": {
+   "wilson-bela-ls-v3-2025": {
+    "line": "Lighter, softer and more helpful than the Pro V3, but less powerful",
+    "n": 4,
+    "by": [
+     "cr_1059a44d16d1eff5",
+     "cr_064074f5d6bfeb4f",
+     "cr_c19f931d32cf99fa",
+     "cr_5b8687a2ccca2e9d"
+    ]
+   },
+   "wilson-bela-v3-2025": {
+    "line": "Softer, more forgiving and less powerful than the Pro V3, with balance nearer the hand",
+    "n": 2,
+    "by": [
+     "cr_c19f931d32cf99fa",
+     "cr_5b8687a2ccca2e9d"
+    ]
+   }
+  },
+  "bullpadel-neuron-02-2026": {
+   "bullpadel-neuron-02-edge-2027": {
+    "line": "More powerful and attacking, but less controllable than the Neuron 02",
+    "n": 7,
+    "by": [
+     "cr_c6d0d9c8c296b2a7",
+     "cr_507461fadf904500",
+     "cr_1b2a8669c4451dd7",
+     "cr_470757024dbfa348",
+     "cr_46e025641426c289",
+     "cr_9f7a4782e80028b4",
+     "cr_4041fdae20df5724"
+    ]
+   },
+   "babolat-counter-viper-2026": {
+    "line": "Heavier, higher balanced and more complete for attack than the Neuron 02",
+    "n": 1,
+    "by": [
+     "cr_483e85809618ba08"
+    ]
+   }
+  },
+  "adidas-metalbone-ctrl-3-4-2025": {
+   "adidas-metalbone-3-5-2026": {
+    "line": "Firmer and less forgiving, with much more flat smash power than the CTRL 3.4",
+    "n": 1,
+    "by": [
+     "cr_f9700d429ed684f7"
+    ]
+   },
+   "adidas-metalbone-carbon-3-5-2026": {
+    "line": "Better control at a fast pace than the CTRL 3.4",
+    "n": 1,
+    "by": [
+     "cr_f9700d429ed684f7"
+    ]
+   },
+   "babolat-counter-viper-2026": {
+    "line": "More spin and head mass, but less manoeuvrable than the CTRL 3.4",
+    "n": 1,
+    "by": [
+     "cr_c6d9826733563754"
+    ]
+   }
+  },
+  "bullpadel-vertex-05-geo-2026": {
+   "bullpadel-vertex-05-2027": {
+    "line": "Less powerful and less aggressive than the Vertex 05 Geo",
+    "n": 5,
+    "by": [
+     "cr_852fe467871d9423",
+     "cr_748bf35a25f5c089",
+     "cr_fdbb31b990e9c427",
+     "cr_4edaf5ca11972534",
+     "cr_f6155945dc0c1c54"
+    ]
+   },
+   "adidas-metalbone-3-5-2026": {
+    "line": "More of a cannon than the Vertex 05 Geo",
+    "n": 1,
+    "by": [
+     "cr_fb79d0141f74a35d"
+    ]
+   },
+   "babolat-counter-viper-2026": {
+    "line": "Easier ball output than the Vertex 05 Geo, but less power up high",
+    "n": 1,
+    "by": [
+     "cr_748bf35a25f5c089"
+    ]
+   },
+   "bullpadel-neuron-02-2027": {
+    "line": "More powerful than the Vertex 05 Geo",
+    "n": 1,
+    "by": [
+     "cr_fdbb31b990e9c427"
+    ]
+   }
+  },
+  "siux-diablo-pro-2026": {
+   "adidas-metalbone-3-5-2026": {
+    "line": "Easier to lift smashes with than the Diablo Pro",
+    "n": 1,
+    "by": [
+     "cr_40458ceb711cda40"
+    ]
+   },
+   "babolat-air-viper-2026": {
+    "line": "Less stable and less direct than the Diablo Pro",
+    "n": 1,
+    "by": [
+     "cr_4bed1330a47c098c"
+    ]
+   },
+   "bullpadel-vertex-05-geo-2027": {
+    "line": "More raw punch, less stable off centre, less consistent in depth than the Diablo Pro",
+    "n": 1,
+    "by": [
+     "cr_4bed1330a47c098c"
+    ]
+   }
+  },
+  "adidas-metalbone-hrd-plus-3-5-2026": {
+   "adidas-metalbone-3-5-2026": {
+    "line": "Softer, more forgiving and more versatile than the HRD+, with a larger sweet spot",
+    "n": 6,
+    "by": [
+     "cr_3991a14d74375ed9",
+     "cr_5d0e7486f4aff352",
+     "cr_01c5b7d3d8d9550c",
+     "cr_539fbce1fbe82b46",
+     "cr_e3c6d38bc635cf47",
+     "cr_3e4a5bde45de96bd"
+    ]
+   }
+  },
+  "adidas-metalbone-carbon-ctrl-3-4-2025": {
+   "adidas-metalbone-3-5-2026": {
+    "line": "More leverage but less control at fast pace than the CTRL 3.4",
+    "n": 1,
+    "by": [
+     "cr_e3cd63ac58a15f7f"
+    ]
+   },
+   "adidas-metalbone-carbon-3-5-2026": {
+    "line": "Better suited to backhand players, while the CTRL 3.4 suits forehand players",
+    "n": 1,
+    "by": [
+     "cr_e3cd63ac58a15f7f"
+    ]
+   },
+   "adidas-metalbone-ctrl-2026": {
+    "line": "Larger sweet spot and better on bandeja and smash, but holds the ball less in defence",
+    "n": 1,
+    "by": [
+     "cr_b436608fb8ce26f7"
+    ]
+   }
+  },
+  "siux-fenix-pro-5-2025": {
+   "head-coello-pro-2026": {
+    "line": "Similar in hardness to the Fenix Pro 5",
+    "n": 1,
+    "by": [
+     "cr_a6330152e83a29d1"
+    ]
+   }
+  },
+  "siux-pegasus-pro-2026": {
+   "siux-electra-pro-st5-2026": {
+    "line": "Harder to control and slightly more demanding than the Pegasus Pro",
+    "n": 2,
+    "by": [
+     "cr_f786aa123eab8dd1",
+     "cr_3e14c176742ebdef"
+    ]
+   },
+   "siux-fenix-pro-6-2026": {
+    "line": "More power oriented than the Pegasus Pro, which sits between power and control",
+    "n": 1,
+    "by": [
+     "cr_f786aa123eab8dd1"
+    ]
+   }
+  },
+  "head-coello-motion-2026": {
+   "head-coello-pro-2026": {
+    "line": "Heavier, harder and less manageable than the Motion, though more powerful on flat smashes",
+    "n": 6,
+    "by": [
+     "cr_3dc15f2be382fbde",
+     "cr_63d83390b751b92a",
+     "cr_e683b7c0fc1e1886",
+     "cr_5a2d25f134e423b1",
+     "cr_ea6f75a5a4d553f6",
+     "cr_f43a3cb267062c80"
+    ]
+   },
+   "head-coello-team-2026": {
+    "line": "Lighter, softer and more forgiving than the Motion, with less power and a smaller sweet spot",
+    "n": 3,
+    "by": [
+     "cr_3dc15f2be382fbde",
+     "cr_a18b49f75a8aa3a6",
+     "cr_f43a3cb267062c80"
+    ]
+   },
+   "bullpadel-neuron-02-2027": {
+    "line": "Bigger sweet spot and easier to move than the Motion, but with less pop and power",
+    "n": 2,
+    "by": [
+     "cr_3dc15f2be382fbde",
+     "cr_e683b7c0fc1e1886"
+    ]
+   },
+   "head-extreme-motion-2026": {
+    "line": "Slightly less reactive but harder than the Motion, and seen as a better buy",
+    "n": 2,
+    "by": [
+     "cr_5a2d25f134e423b1",
+     "cr_1920d209ebeb88d8"
+    ]
+   }
+  },
+  "bullpadel-vertex-05-2026": {
+   "bullpadel-vertex-05-geo-2027": {
+    "line": "More power on overheads than the Vertex 05, but less manageable",
+    "n": 4,
+    "by": [
+     "cr_1deccb7bd23a9c69",
+     "cr_f2fdaf5da870d71c",
+     "cr_b24b41b4a30927b7",
+     "cr_31803277f3f8cf67"
+    ]
+   },
+   "adidas-metalbone-hrd-plus-3-5-2026": {
+    "line": "Closest of the Metalbone range to the Vertex 05, but with a higher balance",
+    "n": 1,
+    "by": [
+     "cr_b24b41b4a30927b7"
+    ]
+   }
+  },
+  "babolat-technical-viper-2025": {
+   "babolat-counter-viper-2026": {
+    "line": "Less offensive and less powerful than the Technical Viper, with a bigger sweet spot",
+    "n": 2,
+    "by": [
+     "cr_963d65fd16acc72a",
+     "cr_1bb12b3df87fa862"
+    ]
+   },
+   "babolat-air-viper-2026": {
+    "line": "More playable and less offensive than the Technical Viper, with a bigger sweet spot",
+    "n": 3,
+    "by": [
+     "cr_963d65fd16acc72a",
+     "cr_1bb12b3df87fa862",
+     "cr_bd169568a5a2dcb3"
+    ]
+   },
+   "adidas-metalbone-hrd-plus-3-5-2026": {
+    "line": "A touch softer than the Technical Viper, though close in hardness",
+    "n": 1,
+    "by": [
+     "cr_f3d8ad4e249cfb44"
+    ]
+   }
+  },
+  "babolat-counter-viper-2026": {
+   "babolat-air-viper-2026": {
+    "line": "Faster in transitions and nicer for touch, but less generous and stable than the Counter Viper",
+    "n": 2,
+    "by": [
+     "cr_08b962c50776a25c",
+     "cr_80b75e9ce73e1b1f"
+    ]
+   },
+   "babolat-counter-veron-2026": {
+    "line": "Softer and easier at low pace, with the same weight and balance as the Counter Viper",
+    "n": 1,
+    "by": [
+     "cr_08b962c50776a25c"
+    ]
+   },
+   "babolat-technical-viper-2025": {
+    "line": "Better for flat smashes and feel, but heavier up top and harder than the Counter Viper",
+    "n": 3,
+    "by": [
+     "cr_08b962c50776a25c",
+     "cr_80b75e9ce73e1b1f",
+     "cr_5404129745705c76"
+    ]
+   },
+   "bullpadel-neuron-02-2027": {
+    "line": "Easier to move over a long match, but less firm under pace than the Counter Viper",
+    "n": 1,
+    "by": [
+     "cr_08b962c50776a25c"
+    ]
+   }
+  },
+  "siux-electra-pro-st5-2026": {
+   "adidas-metalbone-3-5-2026": {
+    "line": "More smash power than the Electra Pro, which is not in that power class",
+    "n": 1,
+    "by": [
+     "cr_8e233f2608af17cd"
+    ]
+   },
+   "head-speed-pro-2025": {
+    "line": "More smash power than the Electra Pro, which is not in that power class",
+    "n": 1,
+    "by": [
+     "cr_8e233f2608af17cd"
+    ]
+   },
+   "bullpadel-neuron-02-2027": {
+    "line": "Slightly stiffer than the Electra Pro",
+    "n": 1,
+    "by": [
+     "cr_cb22dea41db530b0"
+    ]
+   },
+   "siux-diablo-pro-2026": {
+    "line": "Demands more swing and gives less free speed than the Electra Pro",
+    "n": 1,
+    "by": [
+     "cr_d2c72b24765c2c83"
+    ]
+   }
+  },
+  "bullpadel-neuron-02-edge-2026": {
+   "bullpadel-neuron-02-2027": {
+    "line": "More controllable and manoeuvrable but less powerful than the Neuron 02 Edge",
+    "n": 5,
+    "by": [
+     "cr_1ac026e24a0ba65c",
+     "cr_41370da7e5492577",
+     "cr_7af778337f880783",
+     "cr_59282737afeab5bd",
+     "cr_18f8e50623251662"
+    ]
+   },
+   "bullpadel-vertex-05-geo-2027": {
+    "line": "Slightly bigger sweet spot than the Neuron 02 Edge",
+    "n": 1,
+    "by": [
+     "cr_91a4af0c0cd93719"
+    ]
+   }
+  },
+  "head-extreme-pro-2026": {
+   "head-extreme-motion-2026": {
+    "line": "Lighter, easier in defense and better suited to less advanced players than the Extreme Pro",
+    "n": 2,
+    "by": [
+     "cr_9bc003f3df7b3bfd",
+     "cr_250f673e553eff09"
+    ]
+   },
+   "head-coello-pro-2026": {
+    "line": "Slightly more powerful and bouncier, but heavier and harder to manage than the Extreme Pro",
+    "n": 2,
+    "by": [
+     "cr_2fbd35855f9b69c3",
+     "cr_250f673e553eff09"
+    ]
+   }
+  },
+  "siux-fenix-elite-6-2026": {
+   "siux-fenix-pro-6-2026": {
+    "line": "Harder feel, a step more full power and less reactive than the Fenix Elite 6",
+    "n": 1,
+    "by": [
+     "cr_86c4e45f1cb57b59"
+    ]
+   },
+   "adidas-metalbone-hrd-plus-3-5-2026": {
+    "line": "Poorer ball exit from the back, a step more full power than the Elite 6",
+    "n": 1,
+    "by": [
+     "cr_86c4e45f1cb57b59"
+    ]
+   },
+   "head-coello-motion-2026": {
+    "line": "Slightly softer in feel than the Fenix Elite 6",
+    "n": 1,
+    "by": [
+     "cr_86c4e45f1cb57b59"
+    ]
+   }
+  },
+  "babolat-viper-soft-juan-lebron-3-1-2027": {
+   "adidas-metalbone-3-5-2026": {
+    "line": "More rebound than the Viper Soft, in its Hard version",
+    "n": 1,
+    "by": [
+     "cr_7234590bf6f8cef0"
+    ]
+   }
+  },
+  "bullpadel-xplo-2026": {
+   "bullpadel-neuron-02-2027": {
+    "line": "More solid and holds hard shots better than the Xplo, but carries the ball less",
+    "n": 1,
+    "by": [
+     "cr_c8970d00ab2de75d"
+    ]
+   },
+   "bullpadel-vertex-05-2027": {
+    "line": "More solid than the Xplo with a similar drum feel, and less aggressive",
+    "n": 2,
+    "by": [
+     "cr_c8970d00ab2de75d",
+     "cr_74d0bb56d05b6775"
+    ]
+   },
+   "bullpadel-vertex-05-geo-2027": {
+    "line": "Softer and more forgiving than the Xplo, though a touch more aggressive",
+    "n": 2,
+    "by": [
+     "cr_d9c4161e753ad35c",
+     "cr_74d0bb56d05b6775"
+    ]
+   }
+  },
+  "bullpadel-hack-04-2025": {
+   "adidas-metalbone-3-5-2026": {
+    "line": "Gives far more ball output than the Hack 04 in the three point smash",
+    "n": 1,
+    "by": [
+     "cr_ae4cc2983c498f71"
+    ]
+   },
+   "bullpadel-xplo-2026": {
+    "line": "Easier to move than the Hack 04, but with less spin and less weight on volleys",
+    "n": 1,
+    "by": [
+     "cr_46bf88b19d30c417"
+    ]
+   },
+   "head-coello-pro-2026": {
+    "line": "Heavier and more head heavy than the Hack 04",
+    "n": 1,
+    "by": [
+     "cr_ae4cc2983c498f71"
+    ]
+   }
+  },
+  "wilson-defy-pro-v1-2025": {
+   "wilson-defy-v1-2025": {
+    "line": "Less powerful, less hard and more homogeneous than the Defy Pro V1, with easier lob feel",
+    "n": 3,
+    "by": [
+     "cr_698509ee715c3841",
+     "cr_50e2b2163cd96946",
+     "cr_6a825ff6b57be86c"
+    ]
+   }
+  },
+  "nox-at10-genius-attack-18k-2026": {
+   "nox-at10-genius-18k-alum-2027": {
+    "line": "Lower balance and less attacking profile than the Attack 18K, with nearly the same materials",
+    "n": 1,
+    "by": [
+     "cr_190811d7f01d9a6f"
+    ]
+   }
+  },
+  "starvie-astrum-plus-2026": {
+   "starvie-drax-plus-2026": {
+    "line": "Faster, with less ball feel and more forgiveness off the sweet spot than the Astrum+",
+    "n": 1,
+    "by": [
+     "cr_8f8975c16449a2cd"
+    ]
+   }
+  },
+  "adidas-metalbone-3-5-2026": {
+   "adidas-metalbone-hrd-plus-3-5-2026": {
+    "line": "Stiffer, less forgiving and harder to control than the Metalbone",
+    "n": 2,
+    "by": [
+     "cr_589bd61f59be6452",
+     "cr_f16aa5acada540a2"
+    ]
+   },
+   "adidas-metalbone-carbon-3-5-2026": {
+    "line": "More controlled in attack, with less rebound and a healthier balance than the Metalbone",
+    "n": 2,
+    "by": [
+     "cr_a0b6c6d0589e96d2",
+     "cr_d3f6321b0b0c3f2d"
+    ]
+   },
+   "adidas-metalbone-team-3-5-2026": {
+    "line": "Softer and more forgiving, with a fiberglass face and no weight system, unlike the Metalbone",
+    "n": 1,
+    "by": [
+     "cr_586f1efc1dd7aeb9"
+    ]
+   }
+  },
+  "bullpadel-xplo-02-2027": {
+   "bullpadel-neuron-02-2027": {
+    "line": "More forgiving than the Xplo 02 but less powerful on the smash",
+    "n": 1,
+    "by": [
+     "cr_cf8de819221e1521"
+    ]
+   },
+   "head-coello-pro-2026": {
+    "line": "Harder to move around than the lighter Xplo 02",
+    "n": 1,
+    "by": [
+     "cr_07d0012fd93570d4"
+    ]
+   }
+  },
+  "babolat-viper-juan-lebron-3-0-2026": {
+   "babolat-technical-viper-2025": {
+    "line": "Rounder in shape and easier to handle and defend with than the Viper Juan Lebron 3.0",
+    "n": 1,
+    "by": [
+     "cr_81ad5c3f5e4be453"
+    ]
+   },
+   "babolat-counter-viper-2026": {
+    "line": "A better fit than the Viper Juan Lebron 3.0 for one tester's own game",
+    "n": 1,
+    "by": [
+     "cr_81ad5c3f5e4be453"
+    ]
+   }
+  },
+  "nox-ea10-ventus-hybrid-12k-2026": {
+   "nox-at10-genius-18k-2026": {
+    "line": "More reactive and bouncier, and easier to lift on smashes than the Ventus Hybrid",
+    "n": 1,
+    "by": [
+     "cr_0888a67b740fe98a"
+    ]
+   }
+  },
+  "oxdog-ultimate-pro-light-2026": {
+   "oxdog-ultimate-pro-2026": {
+    "line": "Heavier at 365 g, with less hand speed than the Pro Light",
+    "n": 1,
+    "by": [
+     "cr_3550b660ce576b7b"
+    ]
+   },
+   "oxdog-ultimate-pro-plus-2025": {
+    "line": "Harder and more powerful than the Pro Light, especially on flat smashes",
+    "n": 2,
+    "by": [
+     "cr_e9c2f1105c38f024",
+     "cr_d1bf834d6cae23a1"
+    ]
+   },
+   "babolat-air-viper-2026": {
+    "line": "Slightly less direct, controllable and maneuverable than the Pro Light, with a touch more ball exit",
+    "n": 2,
+    "by": [
+     "cr_e9c2f1105c38f024",
+     "cr_d1bf834d6cae23a1"
+    ]
+   },
+   "oxdog-ultimate-pro-smash-2026": {
+    "line": "Harder and does more than the Pro Light",
+    "n": 1,
+    "by": [
+     "cr_d1bf834d6cae23a1"
+    ]
+   }
+  },
+  "head-coello-motion-2025": {
+   "head-coello-pro-2026": {
+    "line": "Close to the Motion but a bit heavier, with a slightly higher balance",
+    "n": 2,
+    "by": [
+     "cr_8f2fe9280b020031",
+     "cr_a7b0a792b3ba6d06"
+    ]
+   },
+   "head-extreme-motion-2026": {
+    "line": "Less adaptable than the Motion, more confined to the left side of the court",
+    "n": 1,
+    "by": [
+     "cr_8f2fe9280b020031"
+    ]
+   }
+  },
+  "head-speed-motion-2025": {
+   "head-speed-pro-2025": {
+    "line": "Less maneuverable than the Speed Motion, with a similarly versatile power and control profile",
+    "n": 1,
+    "by": [
+     "cr_319b49bba1d394c1"
+    ]
+   },
+   "head-speed-team-2025": {
+    "line": "A lesser pick than the Speed Motion, which blends it with the Pro",
+    "n": 1,
+    "by": [
+     "cr_319b49bba1d394c1"
+    ]
+   }
+  },
+  "bullpadel-vertex-05-women-2026": {
+   "bullpadel-pearl-2027": {
+    "line": "More powerful than the Vertex 05 W, which is more of an all-rounder",
+    "n": 1,
+    "by": [
+     "cr_7b6735c71d2682e6"
+    ]
+   },
+   "bullpadel-wonder-2027": {
+    "line": "More precise and controlled than the Vertex 05 W, which is more of an all-rounder",
+    "n": 1,
+    "by": [
+     "cr_7b6735c71d2682e6"
+    ]
+   }
+  },
+  "babolat-viper-soft-juan-lebron-3-0-2026": {
+   "adidas-metalbone-3-5-2026": {
+    "line": "Bouncier than the Viper Soft 3.0, which gives power with less rebound",
+    "n": 1,
+    "by": [
+     "cr_b6b04e9036a31595"
+    ]
+   },
+   "babolat-technical-viper-2025": {
+    "line": "Harder and less forgiving than the Viper Soft 3.0, though the gap is small",
+    "n": 3,
+    "by": [
+     "cr_81196caa8a869fcb",
+     "cr_d7f635b10cb86f71",
+     "cr_23c0ef74ac7391e6"
+    ]
+   }
+  }
+ },
+ "discgolf": {
+  "axiom-crave": {
+   "axiom-bokeh": {
+    "line": "Goes slightly farther than the Crave, which is almost neck and neck with it",
+    "n": 1,
+    "by": [
+     "cr_fee78989553aeae6"
+    ]
+   },
+   "discraft-cicada": {
+    "line": "Turns a little more than the Crave and glides more, with a similar flip-up",
+    "n": 2,
+    "by": [
+     "cr_b85476188a6bb16e",
+     "cr_00ebafb2c29be8b2"
+    ]
+   },
+   "discmania-fd": {
+    "line": "Flips up from a hyzer and flies similarly to the Crave",
+    "n": 1,
+    "by": [
+     "cr_b85476188a6bb16e"
+    ]
+   },
+   "innova-cheetah": {
+    "line": "Less stable than the Crave in Plasma, but more controllable",
+    "n": 1,
+    "by": [
+     "cr_00ebafb2c29be8b2"
+    ]
+   }
+  },
+  "innova-wraith": {
+   "innova-destroyer": {
+    "line": "Faster and more stable than the Wraith, with a slightly stronger fade and less turn",
+    "n": 4,
+    "by": [
+     "cr_c658562ce835dbbf",
+     "cr_6838af4ba571eaf7",
+     "cr_89e8f4b63b022f8a",
+     "cr_73c2a5d086789b04"
+    ]
+   },
+   "innova-racer": {
+    "line": "Outdrove the Halo Wraith by a good 80, maybe 90 ft, at similar strength",
+    "n": 1,
+    "by": [
+     "cr_02a09556107f6d5b"
+    ]
+   },
+   "discraft-zeus": {
+    "line": "Flies quite similarly to the Wraith but a little more understable",
+    "n": 1,
+    "by": [
+     "cr_73c2a5d086789b04"
+    ]
+   },
+   "mvp-trail": {
+    "line": "Plays the same beat-in role out of the box that the I-Blend Wraith does",
+    "n": 1,
+    "by": [
+     "cr_054f9c07ba5f3b2f"
+    ]
+   }
+  },
+  "westside-harp": {
+   "discraft-zone": {
+    "line": "Flies almost the same as the Harp, with a shallower dish and flat plate",
+    "n": 3,
+    "by": [
+     "cr_1681b84c13aeef56",
+     "cr_7b29ec1ea792fbb6",
+     "cr_ed3c1a0e8cbc1d9b"
+    ]
+   },
+   "discmania-tactic": {
+    "line": "Less overstable than its numbers suggest and beadless, a fair alternative to the Harp",
+    "n": 1,
+    "by": [
+     "cr_52bf5b7e8288051c"
+    ]
+   },
+   "innova-pig": {
+    "line": "Blockier, heavier rim than the Harp and more overstable with more fade",
+    "n": 1,
+    "by": [
+     "cr_52bf5b7e8288051c"
+    ]
+   },
+   "kastaplast-jarn": {
+    "line": "Suggested for players who like the Harp's groove but not its depth",
+    "n": 1,
+    "by": [
+     "cr_1681b84c13aeef56"
+    ]
+   },
+   "dynamic-discs-justice": {
+    "line": "Beat-in one just ducked at the end where the Harp fades slowly",
+    "n": 1,
+    "by": [
+     "cr_9aab181e460c9c45"
+    ]
+   },
+   "dynamic-discs-suspect": {
+    "line": "Looks and feels very similar to the Harp, which probably replaces it at the same distance",
+    "n": 2,
+    "by": [
+     "cr_30ed29a5b4151492",
+     "cr_cdb527fb93038844"
+    ]
+   },
+   "westside-swan-1-reborn": {
+    "line": "Releases a little like the Harp",
+    "n": 1,
+    "by": [
+     "cr_cdb527fb93038844"
+    ]
+   }
+  },
+  "kastaplast-berg": {
+   "innova-pig": {
+    "line": "Holds the fade better on big hyzer approaches than the Berg",
+    "n": 2,
+    "by": [
+     "cr_766cb26a9eac7ba9",
+     "cr_fbfb53d884ad63db"
+    ]
+   },
+   "discraft-zone": {
+    "line": "More overstable than the Berg, and skips further on hyzer approaches",
+    "n": 3,
+    "by": [
+     "cr_fbfb53d884ad63db",
+     "cr_7d9670e2aa5b5866",
+     "cr_5df659b65cb7c655"
+    ]
+   },
+   "westside-harp": {
+    "line": "Faster, with more fade, and less sensitive to off-axis torque than the Berg",
+    "n": 2,
+    "by": [
+     "cr_5e0bc127d12b8cb5",
+     "cr_44ab8ce2f2649873"
+    ]
+   },
+   "innova-rhyno": {
+    "line": "Goes farther, glides more and has more fight at the end than the Berg",
+    "n": 2,
+    "by": [
+     "cr_a5bbbc43fdcff298",
+     "cr_5df659b65cb7c655"
+    ]
+   },
+   "axiom-envy": {
+    "line": "Used less than the Berg for unobstructed upshots at 20 to 60 meters",
+    "n": 1,
+    "by": [
+     "cr_b09fc624106e4a5b"
+    ]
+   },
+   "gateway-wizard": {
+    "line": "Flies much like a K2 Berg, holding its line before a hard fade",
+    "n": 1,
+    "by": [
+     "cr_563f720b75188063"
+    ]
+   },
+   "discraft-luna": {
+    "line": "Glidier; may suit players who like touchy approaches better than the Berg",
+    "n": 1,
+    "by": [
+     "cr_fbfb53d884ad63db"
+    ]
+   },
+   "latitude-64-pure": {
+    "line": "Glidier; may suit players who like touchy approaches better than the Berg",
+    "n": 1,
+    "by": [
+     "cr_fbfb53d884ad63db"
+    ]
+   },
+   "innova-nova": {
+    "line": "Glidier; may suit players who like touchy approaches better than the Berg",
+    "n": 1,
+    "by": [
+     "cr_fbfb53d884ad63db"
+    ]
+   }
+  },
+  "innova-mako3": {
+   "innova-roc": {
+    "line": "Fades more at the end than the Mako3",
+    "n": 1,
+    "by": [
+     "cr_1bf17af1d5e4a050"
+    ]
+   },
+   "mvp-detour": {
+    "line": "Flips a little more than the Mako3, which fades more in a tailwind",
+    "n": 1,
+    "by": [
+     "cr_c3c662853930e0cb"
+    ]
+   },
+   "axiom-hex": {
+    "line": "Not flippy enough yet, compared with the Mako3 that flips to flat",
+    "n": 1,
+    "by": [
+     "cr_48da3a2758cc8a4b"
+    ]
+   },
+   "innova-destroyer": {
+    "line": "Needs more speed and power than the Mako3 to get its flight",
+    "n": 1,
+    "by": [
+     "cr_1c248bb0ea537f88"
+    ]
+   }
+  },
+  "axiom-hex": {
+   "discraft-buzzz": {
+    "line": "Flies almost the same, with maybe a touch less stability and a deeper profile",
+    "n": 5,
+    "by": [
+     "cr_d68ab23092b0787c",
+     "cr_612e5d8b12cf359d",
+     "cr_9272e25d823f14a3",
+     "cr_6ed2e0ef289e7153",
+     "cr_ec291fdb40a41b90"
+    ]
+   },
+   "mvp-reactor": {
+    "line": "Has much more fade than the Hex, flying as a different disc",
+    "n": 2,
+    "by": [
+     "cr_d1e013ba3ba3649d",
+     "cr_c0b7d2aa76974f04"
+    ]
+   },
+   "dynamic-discs-emac-truth": {
+    "line": "About as shallow as the Hex in the rim",
+    "n": 1,
+    "by": [
+     "cr_4013e3952ad6372a"
+    ]
+   },
+   "streamline-echo": {
+    "line": "A little more understable, flying a similar line with less power",
+    "n": 1,
+    "by": [
+     "cr_6ed2e0ef289e7153"
+    ]
+   },
+   "mvp-matrix": {
+    "line": "More overstable than the Hex, with a stronger, earlier fade",
+    "n": 1,
+    "by": [
+     "cr_6ed2e0ef289e7153"
+    ]
+   },
+   "innova-mako3": {
+    "line": "Feels similar in the hand to the Hex, which can complement or replace it",
+    "n": 1,
+    "by": [
+     "cr_d68ab23092b0787c"
+    ]
+   }
+  },
+  "innova-destroyer": {
+   "innova-wraith": {
+    "line": "Less dependable than the Destroyer molds, according to one reviewer.",
+    "n": 1,
+    "by": [
+     "cr_9c8070266db30ed1"
+    ]
+   }
+  },
+  "discraft-buzzz": {
+   "axiom-hex": {
+    "line": "Glidier and a little less overstable than the Buzzz, so it gets more distance",
+    "n": 1,
+    "by": [
+     "cr_6e006eed4a90d47e"
+    ]
+   },
+   "innova-mako3": {
+    "line": "Glidier and holds anhyzer lines better, but less stable than the ESP Buzzz",
+    "n": 2,
+    "by": [
+     "cr_c8de4d2423313453",
+     "cr_2787d3575434ef06"
+    ]
+   },
+   "discraft-wasp": {
+    "line": "Faster and more overstable than the Buzzz",
+    "n": 1,
+    "by": [
+     "cr_8483a29dbf506296"
+    ]
+   },
+   "dynamic-discs-truth": {
+    "line": "Faster and fades more than the Buzzz",
+    "n": 1,
+    "by": [
+     "cr_8483a29dbf506296"
+    ]
+   },
+   "latitude-64-claymore": {
+    "line": "Slightly longer than the Buzzz",
+    "n": 1,
+    "by": [
+     "cr_8483a29dbf506296"
+    ]
+   }
+  },
+  "axiom-envy": {
+   "latitude-64-pure": {
+    "line": "Flippier and glidier than the Envy, which is flatter on top",
+    "n": 1,
+    "by": [
+     "cr_5ee1352cda609f14"
+    ]
+   },
+   "axiom-tempo": {
+    "line": "More stable than the Envy, better for flat sidearm throws",
+    "n": 1,
+    "by": [
+     "cr_4ce1edc00c6df438"
+    ]
+   },
+   "discraft-luna": {
+    "line": "Rounder, higher and deeper in the rim, needing a flatter throw than the Envy",
+    "n": 1,
+    "by": [
+     "cr_bbc01b2123bec330"
+    ]
+   },
+   "mvp-ion": {
+    "line": "Straighter putting with a deeper rim, preferred over the Envy on the green",
+    "n": 1,
+    "by": [
+     "cr_7de4fd3d6f92e450"
+    ]
+   },
+   "discraft-zone": {
+    "line": "More overstable than the Envy, which glides further",
+    "n": 2,
+    "by": [
+     "cr_8d3f1617e529d7b4",
+     "cr_3996df7fc68bb833"
+    ]
+   },
+   "dynamic-discs-deputy": {
+    "line": "More understable than the Envy, which sits between it and an overstable putter",
+    "n": 1,
+    "by": [
+     "cr_3996df7fc68bb833"
+    ]
+   },
+   "dynamic-discs-judge": {
+    "line": "Controls less well than the Envy",
+    "n": 1,
+    "by": [
+     "cr_1c36713a31f208f1"
+    ]
+   },
+   "discraft-challenger": {
+    "line": "Flies similar to the Envy, though the Envy's low-profile design feels better in hand",
+    "n": 1,
+    "by": [
+     "cr_1c36713a31f208f1"
+    ]
+   },
+   "gateway-wizard": {
+    "line": "Flies similar to the Envy, though the Envy's low-profile design feels better in hand",
+    "n": 1,
+    "by": [
+     "cr_1c36713a31f208f1"
+    ]
+   },
+   "discraft-buzzz": {
+    "line": "Longer than the Envy, which many players call a shorter version of it",
+    "n": 1,
+    "by": [
+     "cr_5c3615d69cdefad4"
+    ]
+   }
+  },
+  "discraft-zone": {
+   "innova-pig": {
+    "line": "Flies much like the soft Zone, stopping quickly with an overstable approach flight",
+    "n": 1,
+    "by": [
+     "cr_8e2a8d9749e9445d"
+    ]
+   },
+   "westside-harp": {
+    "line": "Shaped similarly to the Zone and held the overstable putter slot before it",
+    "n": 2,
+    "by": [
+     "cr_38b4ba0b34d4ac69",
+     "cr_1f434eed7232b1b1"
+    ]
+   },
+   "axiom-tempo": {
+    "line": "Flies straight like the gummy Zone, which is compared to it for straightness",
+    "n": 1,
+    "by": [
+     "cr_aa7752dde4484189"
+    ]
+   },
+   "innova-aviar3": {
+    "line": "Has less glide than the Zone, which glides higher",
+    "n": 1,
+    "by": [
+     "cr_1f434eed7232b1b1"
+    ]
+   }
+  },
+  "latitude-64-pure": {
+   "discraft-luna": {
+    "line": "Rounder, bullet-like rim than the Pure, and dumps out before the basket on long putts",
+    "n": 1,
+    "by": [
+     "cr_d6a4d998ac004a47"
+    ]
+   },
+   "discraft-challenger-ss": {
+    "line": "Fully rounded edge that feels less grippy and tacky than the Pure's indented edge",
+    "n": 1,
+    "by": [
+     "cr_e8b3d651de393b8d"
+    ]
+   },
+   "latitude-64-keystone": {
+    "line": "Feels slightly worse in hand than the Pure, with the same turn and fade",
+    "n": 1,
+    "by": [
+     "cr_5ebc8134168236f5"
+    ]
+   },
+   "axiom-envy": {
+    "line": "Finishes harder and flies shorter than the Pure on flat throws",
+    "n": 1,
+    "by": [
+     "cr_4194b54077a1bbe2"
+    ]
+   },
+   "gateway-wizard": {
+    "line": "More stable and glidier than the Pure, which drops earlier",
+    "n": 1,
+    "by": [
+     "cr_7b3d4b490fca4ca5"
+    ]
+   },
+   "mvp-atom": {
+    "line": "Another putter that can be thrown incredibly straight, like the Pure",
+    "n": 1,
+    "by": [
+     "cr_7b3d4b490fca4ca5"
+    ]
+   }
+  },
+  "mvp-trail": {
+   "innova-gorgon": {
+    "line": "Has more turn and a little more fade than the Trail, and is more understable",
+    "n": 2,
+    "by": [
+     "cr_f9b253ce3d0ddda3",
+     "cr_dab9fa9647fed327"
+    ]
+   },
+   "axiom-insanity": {
+    "line": "Has less fade and is more understable than the Trail",
+    "n": 1,
+    "by": [
+     "cr_dab9fa9647fed327"
+    ]
+   },
+   "mvp-tesla": {
+    "line": "More overstable than the Trail among 10-speeds",
+    "n": 1,
+    "by": [
+     "cr_f9b253ce3d0ddda3"
+    ]
+   },
+   "discmania-pd": {
+    "line": "More overstable than the Trail among 10-speeds",
+    "n": 1,
+    "by": [
+     "cr_f9b253ce3d0ddda3"
+    ]
+   },
+   "mvp-catalyst": {
+    "line": "Lost to the Trail by about 10 to 15 ft in one round",
+    "n": 1,
+    "by": [
+     "cr_717bfbccd7a45a68"
+    ]
+   },
+   "axiom-mayhem": {
+    "line": "Won one round against the Trail and stays in the bag for hitting a line",
+    "n": 1,
+    "by": [
+     "cr_717bfbccd7a45a68"
+    ]
+   }
+  },
+  "mvp-wave": {
+   "mvp-photon": {
+    "line": "Expected to be more overstable than the Wave, though a pre-flight one flew almost identical lines.",
+    "n": 2,
+    "by": [
+     "cr_dc2a6e64decbe542",
+     "cr_e03e5e81dd86d369"
+    ]
+   },
+   "innova-wraith": {
+    "line": "More stable than the Wave out of the box, though Eclipse Waves fly close to it.",
+    "n": 2,
+    "by": [
+     "cr_1100bc0abd6e3e52",
+     "cr_d07f061fe4ff0a10"
+    ]
+   },
+   "mvp-inertia": {
+    "line": "Gets more distance than the Wave, which has a wider rim and lower profile.",
+    "n": 1,
+    "by": [
+     "cr_dc2a6e64decbe542"
+    ]
+   },
+   "mvp-trail": {
+    "line": "Flips up to a dead straight line where the Wave fades harder",
+    "n": 1,
+    "by": [
+     "cr_d07f061fe4ff0a10"
+    ]
+   },
+   "dynamic-discs-trespass": {
+    "line": "More stable than the Wave, which is more understable out of the box",
+    "n": 1,
+    "by": [
+     "cr_1100bc0abd6e3e52"
+    ]
+   }
+  },
+  "latitude-64-river": {
+   "westside-stag": {
+    "line": "Fades left sooner as it slows, on a similar line to the River",
+    "n": 1,
+    "by": [
+     "cr_a916f2bf765b0188"
+    ]
+   },
+   "innova-leopard": {
+    "line": "Easier to get up to speed and quicker to turn over, with a milder fade",
+    "n": 1,
+    "by": [
+     "cr_c312d7966eb06be9"
+    ]
+   },
+   "discmania-essence": {
+    "line": "Slightly more stable than the River, with a similar wing shape and a bit less distance",
+    "n": 2,
+    "by": [
+     "cr_ab772d236b52ad4d",
+     "cr_f1c8d27192fa688b"
+    ]
+   },
+   "axiom-crave": {
+    "line": "A little more stable, with a lower dome and a more repeatable flight",
+    "n": 1,
+    "by": [
+     "cr_f1c8d27192fa688b"
+    ]
+   },
+   "latitude-64-diamond": {
+    "line": "Easier to throw than the River for slower arms",
+    "n": 1,
+    "by": [
+     "cr_67379430aac9964e"
+    ]
+   },
+   "latitude-64-jade": {
+    "line": "Easier to throw than the River for slower arms",
+    "n": 1,
+    "by": [
+     "cr_67379430aac9964e"
+    ]
+   },
+   "latitude-64-maul": {
+    "line": "Covers the long understable shot that a slightly stable River does not",
+    "n": 1,
+    "by": [
+     "cr_cf69eb97edcc8288"
+    ]
+   }
+  },
+  "innova-teebird3": {
+   "innova-teebird": {
+    "line": "Slower, with more glide and less stability than the TeeBird3, which flies a little farther.",
+    "n": 4,
+    "by": [
+     "cr_a496b16015828f7c",
+     "cr_7e541eb7f991b698",
+     "cr_b6247a16cdeb2aeb",
+     "cr_12e447aac7bd4e3f"
+    ]
+   },
+   "innova-thunderbird": {
+    "line": "Close in overstability to the TeeBird3, but needs more arm speed and likely gets more distance.",
+    "n": 2,
+    "by": [
+     "cr_49de93358056a786",
+     "cr_b6247a16cdeb2aeb"
+    ]
+   },
+   "dynamic-discs-getaway": {
+    "line": "A little faster with more turn than the TeeBird3, with a similar fade.",
+    "n": 1,
+    "by": [
+     "cr_49de93358056a786"
+    ]
+   },
+   "dynamic-discs-evader": {
+    "line": "Less overstable and less wind-resistant than the TeeBird3 on hyzer and flat throws.",
+    "n": 1,
+    "by": [
+     "cr_fa08a9871735b1e2"
+    ]
+   },
+   "innova-tl3": {
+    "line": "Smoother rim and maybe a bit less straight than the TeeBird3, in similar wind-handling.",
+    "n": 1,
+    "by": [
+     "cr_946074c338a72072"
+    ]
+   },
+   "innova-leopard3": {
+    "line": "Turns over more and gets knocked around in wind compared with the TeeBird3.",
+    "n": 1,
+    "by": [
+     "cr_946074c338a72072"
+    ]
+   },
+   "innova-eagle": {
+    "line": "More stable than the TeeBird3, which is straighter and a bit longer.",
+    "n": 1,
+    "by": [
+     "cr_799181232cc811fa"
+    ]
+   }
+  },
+  "mvp-detour": {
+   "axiom-hex": {
+    "line": "More stable than the Detour, with a bit more fade and less turn",
+    "n": 8,
+    "by": [
+     "cr_8511665d0a39f166",
+     "cr_82eb0fc011f96890",
+     "cr_5617d6fd0d07f8ba",
+     "cr_62b6e62a073a2d31",
+     "cr_0bb5da00ee29e06b",
+     "cr_92e74763fe923ba1",
+     "cr_643b6d99bc986615",
+     "cr_decd0d438bc2df24"
+    ]
+   },
+   "mvp-uplink": {
+    "line": "More understable than the Detour, and touchier when the wind picks up",
+    "n": 3,
+    "by": [
+     "cr_8511665d0a39f166",
+     "cr_25f6b7d9c384f53e",
+     "cr_5617d6fd0d07f8ba"
+    ]
+   },
+   "thought-space-athletics-mana": {
+    "line": "Replaced by the Detour as one reviewer's bagged mid-range",
+    "n": 1,
+    "by": [
+     "cr_82eb0fc011f96890"
+    ]
+   },
+   "discraft-meteor": {
+    "line": "A bit flippier than the Detour, with a little less fade",
+    "n": 1,
+    "by": [
+     "cr_02c08480d12210e6"
+    ]
+   },
+   "innova-mako3": {
+    "line": "Nearly swapped for the Detour by one reviewer as the best woods mid-range",
+    "n": 1,
+    "by": [
+     "cr_643b6d99bc986615"
+    ]
+   },
+   "discmania-origin": {
+    "line": "Named as the closest disc in flight to the Detour",
+    "n": 1,
+    "by": [
+     "cr_02c08480d12210e6"
+    ]
+   },
+   "mvp-reactor": {
+    "line": "Less comfortable in the hand for backhand than the Detour",
+    "n": 1,
+    "by": [
+     "cr_decd0d438bc2df24"
+    ]
+   }
+  },
+  "streamline-pilot": {
+   "mvp-atom": {
+    "line": "Similar straight flight to the Pilot but with much less glide",
+    "n": 1,
+    "by": [
+     "cr_0e127be4551810d2"
+    ]
+   },
+   "axiom-proxy": {
+    "line": "Needs a hyzer flip to fly straight and glides less than the Pilot",
+    "n": 3,
+    "by": [
+     "cr_0e127be4551810d2",
+     "cr_ce5d7e215396876e",
+     "cr_991146838be926c4"
+    ]
+   },
+   "axiom-envy": {
+    "line": "Flies similar to the Pilot but glides less and is a bit more stable",
+    "n": 3,
+    "by": [
+     "cr_463881d871f011e4",
+     "cr_ce5d7e215396876e",
+     "cr_991146838be926c4"
+    ]
+   },
+   "dynamic-discs-judge": {
+    "line": "Has a bigger bead, deeper rim and more glide than the Pilot",
+    "n": 1,
+    "by": [
+     "cr_3f35d89580d9b403"
+    ]
+   },
+   "dynamic-discs-marshal": {
+    "line": "Feels and flies off the tee much like the Pilot",
+    "n": 1,
+    "by": [
+     "cr_3f35d89580d9b403"
+    ]
+   },
+   "gateway-wizard": {
+    "line": "Has a bigger bead and more glide, with a similar anhyzer approach",
+    "n": 1,
+    "by": [
+     "cr_3f35d89580d9b403"
+    ]
+   },
+   "westside-shield": {
+    "line": "A little less stable than the Pilot",
+    "n": 1,
+    "by": [
+     "cr_5ef3e40140acf5a5"
+    ]
+   }
+  },
+  "innova-teebird": {
+   "discraft-athena": {
+    "line": "Holds less turn on anhyzer lines than the TeeBird, though its plastic feels better",
+    "n": 1,
+    "by": [
+     "cr_f421515b59a5f300"
+    ]
+   },
+   "innova-teebird3": {
+    "line": "Feels more controllable and more trustworthy in wind than the TeeBird",
+    "n": 1,
+    "by": [
+     "cr_34cdd7f754af88ea"
+    ]
+   }
+  },
+  "mvp-tesla": {
+   "dynamic-discs-getaway": {
+    "line": "Very comparable to a Fission Tesla when thrown side by side",
+    "n": 1,
+    "by": [
+     "cr_582d2386b37e5525"
+    ]
+   },
+   "innova-thunderbird": {
+    "line": "Holds its hyzer where the Tesla flips out slightly; a Fission Tesla may fly similarly",
+    "n": 2,
+    "by": [
+     "cr_74b32bb6c332fa2d",
+     "cr_582d2386b37e5525"
+    ]
+   },
+   "mvp-volt": {
+    "line": "Slower than the Tesla, with a different enough flight that some still bag both",
+    "n": 1,
+    "by": [
+     "cr_a18bbaafea3ca5e1"
+    ]
+   },
+   "mvp-inertia": {
+    "line": "Turns a little more than the Tesla, which flies a bit straighter",
+    "n": 1,
+    "by": [
+     "cr_a18bbaafea3ca5e1"
+    ]
+   },
+   "axiom-virus": {
+    "line": "Flies about as far as the Tesla but on a different line, less reliably",
+    "n": 1,
+    "by": [
+     "cr_3f63f2541aa4cf3c"
+    ]
+   },
+   "axiom-insanity": {
+    "line": "Far more overstable than the Tesla",
+    "n": 1,
+    "by": [
+     "cr_3f63f2541aa4cf3c"
+    ]
+   },
+   "discmania-pd": {
+    "line": "Close to Neutron Tesla stability, a slot beaten-in Teslas could challenge",
+    "n": 2,
+    "by": [
+     "cr_582d2386b37e5525",
+     "cr_1d8d66dd28d2b057"
+    ]
+   },
+   "axiom-crave": {
+    "line": "Shorter than a well-used Tesla, which may start flying like it",
+    "n": 1,
+    "by": [
+     "cr_1d8d66dd28d2b057"
+    ]
+   },
+   "dynamic-discs-trespass": {
+    "line": "Overlaps with the Tesla for light to moderate headwinds and stable shots",
+    "n": 1,
+    "by": [
+     "cr_6ffa916c395a637e"
+    ]
+   }
+  },
+  "mvp-reactor": {
+   "axiom-pyro": {
+    "line": "Dumpier fade than the Reactor, which flexes out later and less abruptly",
+    "n": 1,
+    "by": [
+     "cr_37fbd622cbefac3f"
+    ]
+   },
+   "axiom-hex": {
+    "line": "Slightly less stable than the Reactor, with a similarly comfortable feel in hand",
+    "n": 2,
+    "by": [
+     "cr_04b2c98ebe9b6e5a",
+     "cr_2610292e9d3e1b41"
+    ]
+   },
+   "discraft-buzzz": {
+    "line": "Very similar flight and feel to the Reactor, but less forehand stable",
+    "n": 3,
+    "by": [
+     "cr_1c33a958aefd4a81",
+     "cr_2610292e9d3e1b41",
+     "cr_89a4479a7152574e"
+    ]
+   },
+   "mvp-matrix": {
+    "line": "Closest in the lineup to the Reactor, with more S curve and faster beat in",
+    "n": 1,
+    "by": [
+     "cr_1c33a958aefd4a81"
+    ]
+   },
+   "dynamic-discs-emac-truth": {
+    "line": "Holds up to a forehand less well than the Reactor",
+    "n": 1,
+    "by": [
+     "cr_2610292e9d3e1b41"
+    ]
+   }
+  }
+ }
+}

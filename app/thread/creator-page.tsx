@@ -8,7 +8,7 @@
 // Data: db/creators/<site>.json (lib/thread/creator-data.ts), a static demo fixture; the photo, specs and shop link are the
 // product's own (racketData). Words, never invented scores; a number only where the creator published one; no prices
 // (none are stored yet); no Reddit card (no Reddit data staged for these paddles yet).
-import type { ReactNode } from "react";
+import { Fragment, type ReactNode } from "react";
 import { Shell } from "./shell";
 import { racketData } from "./racket-data";
 import { threadRows, skinOf } from "./data";
@@ -22,13 +22,24 @@ import { websiteButton } from "../../lib/product-links";
 import { JsonLd, crumbs } from "./seo";
 import { catalogLabel, catalogPath, productHref } from "../../lib/niche";
 import { STANCE_LABEL, lowestOffer, shortShop, usd, reviewLists, agreeChips, stanceLine, stanceCounts, howItPlays, langCode, platform, scoreText, takeaway,
-  wordTone, type CreatorReview } from "../../lib/thread/creators";
+  wordTone, howTitleFor, type CreatorReview } from "../../lib/thread/creators";
+import { LaptopFitCard } from "./live/laptop-match";
+import { padelListData } from "./padel-list-data";
+import { configAxisFor, configCell, configSite, textSlugs } from "../../lib/thread/creator-config";
 import { creatorPage, creatorSlugs, creatorHome } from "../../lib/thread/creator-data";
 import { threadTitle } from "../../lib/thread/web-sources";
 import roundups from "../../db/creators/reddit-roundups.json";
 import wrapups from "../../db/creators/reviewer-wrapups.json";
-import { creatorPageFor, CREATOR_VIEW, CREATOR_MIN_REVIEWS, creatorPageOn } from "../../lib/thread/sites";
+import tldrs from "../../db/creators/tldrs.json";
+import compareLines from "../../db/creators/compare-lines.json";
+import aliases from "../../db/creators/aliases.json";
+import bestFor from "../../db/creators/best-for.json";
+import { creatorPageFor, CREATOR_VIEW, CREATOR_MIN_REVIEWS, creatorPageOn, creatorPlainSite } from "../../lib/thread/sites";
 import { Avatar, CreatorReviews } from "./live/creator-reviews";
+import { MentionsProvider, MentionText, type MentionTarget } from "./live/mention-links";
+import padelMentions from "../../db/creators/padel-mentions.json";
+import { selfFamily, yearContext, type MentionYears } from "../../lib/thread/mention-years";
+import { mentionIndex, namedIds, selfRefKeys, type MentionAliases } from "../../lib/thread/mention-links";
 import { Comments } from "./live/comments";
 import { th } from "../../lib/thread/look";
 import { PollCard } from "./live/racket-v7b";
@@ -42,6 +53,11 @@ import { creatorVoteGroups } from "../../lib/thread/creator-votes";
 import { siteSentiment } from "../../lib/thread/site-sentiment";
 import { W } from "../../lib/thread/words";
 import { mentions } from "../../lib/thread/mentions";
+import { padelOffers, newestCheck, type ShopOffer } from "../../lib/padel-offers";
+import { followSite, storiesSite } from "../../lib/thread/sites";
+import { FollowButton } from "./live/follow-button";
+import { racketStories } from "./stories-data";
+import { MemberMark } from "./live/member-mark";
 import "./creators.css";
 
 
@@ -68,6 +84,16 @@ const KEYS = ["pos", "mix", "neg"] as const;
 /** SkinRecs (owner "Yes, Skin next" 2026-11-23): the same page in its own soft look (creators.css .th-skin block), its own
  *  tags, fit check (the skin engine, as on its product page) and vote groups (lib/thread/creator-votes.ts). */
 const SKIN = niche.id === "skin";
+/** LaptopRecs (2026-11-24): the creator page on a site that is not a Thread site, so without the Thread-only parts (the fit
+ *  check runs on the padel-style engine, the vote boxes and the discussion on Thread tables). Its reviews carry the config
+ *  each reviewer tested (lib/thread/creator-config.ts): a "Reviewed: ..." line per card, config chips, a Config column. */
+const PLAIN = creatorPlainSite(niche.id);
+/** LaptopRecs on the Thread pages (2026-11-24): its own fit check (live/laptop-match.tsx) in place of the padel-style one. */
+const LT = niche.id === "laptop";
+const CONFIGS = configSite(niche.id);
+/** PadelRecs (2026-11-24, onto this page from its v7b racket page): the padel shops' own prices in the price box (lib/padel-offers.ts,
+ *  db/shop/padel-offers.json), the Follow button in the head and the member stories that name the racket. */
+const PADEL = niche.id === "padel";
 
 function Word({ w }: { w: CreatorReview["attrs"][keyof CreatorReview["attrs"]] }) {
   return w ? <span className={`thc-w ${wordTone(w)}`}>{w}</span> : <span className="thc-w none" aria-label="Not covered">–</span>;
@@ -78,13 +104,20 @@ export async function CreatorProductBody({ slug }: { slug: string }) {
   const [page, d] = await Promise.all([creatorPage(niche.id, slug), racketData(slug)]);
   if (!page || !d) return null;
   // Reviews include the TikTok takes (owner 2026-11-22): `rs` counts one per reviewer, `feed` holds every card.
-  const { feed, counted: rs } = reviewLists(page);
+  const { feed: feed0, counted: rs } = reviewLists(page);
+  // Best for, per review (db/creators/best-for.json): written from what each reviewer says the paddle suits.
+  const bf = (bestFor as Record<string, Record<string, { who: string; why: string }>>)[niche.id] ?? {};
+  const feed = feed0.map(x => bf[x.id] ? { ...x, bestFor: bf[x.id] } : x);
   // Under CREATOR_MIN_REVIEWS reviews the product keeps its usual page.
   if (rs.length < CREATOR_MIN_REVIEWS) return null;
   const { r, row, brand, style, sim, cards } = d;
+  const [tales, shops] = await Promise.all([storiesSite(niche.id) ? racketStories(r.id) : [], PADEL ? padelOffers(slug) : []]);
   // The TL;DR sentence (owner 2026-11-23): the creator page's own line where it has one, else the same line the usual
   // product page shows (racketData: the written "In short" summary, the page content's tagline, the short or list line).
-  const tldr = page.tldr || (SKIN && d.lead ? playersWord(d.lead, "reviewer") : d.lead) || null;
+  // A written TL;DR for products whose creator import came without one (db/creators/tldrs.json, 2026-11-23).
+  // A laptop staged under another slug keeps its text under that slug (lib/thread/creator-config.ts textSlugs).
+  const textKeys = textSlugs(niche.id, slug), siteTldrs = (tldrs as Record<string, Record<string, string>>)[niche.id];
+  const tldr = page.tldr || textKeys.map(k => siteTldrs?.[k]).find(Boolean) || (SKIN && d.lead ? playersWord(d.lead, "reviewer") : d.lead) || null;
   // The bar and its counts are the site's own players (lib/thread/site-sentiment.ts, owner 2026-11-22); the creator reviews
   // keep their cards and a praise line ("Praised for spin in 13 reviews").
   const votes = siteSentiment(row);
@@ -101,6 +134,9 @@ export async function CreatorProductBody({ slug }: { slug: string }) {
   const skinAttrs = sk?.attrs.get(r.id), tex = skinAttrs?.scores.texture;
   const skinTex = tex && tex.n >= 3 ? (tex.score >= 62 ? "Rich" : tex.score <= 38 ? "Light" : null) : null;
   const bySlug = new Map(allRows.map(x => [x.slug, x]));
+  // LaptopRecs' fit check: the laptops of this one's category (padelListData's quick match inputs).
+  const ltWire = LT ? ((await padelListData()).laptop ?? []).filter(w => w.category === r.shape && (w.id === r.id || rowMap.get(w.id)?.current !== false)) : [];
+  const ltLinks = Object.fromEntries(ltWire.flatMap(w => { const t = rowMap.get(w.id); return t ? [[w.id, { name: t.name, href: t.href }]] : []; }));
   const sims = sim.filter(x => x.id !== r.id && x.current !== false);
   for (const s of Object.keys(staged).sort((a, b) => Number(bySlug.get(b)?.shape === r.shape) - Number(bySlug.get(a)?.shape === r.shape))) {
     if (sims.length >= 4) break;
@@ -114,7 +150,8 @@ export async function CreatorProductBody({ slug }: { slug: string }) {
   // the feed. Never counted as a review (not in N reviews, the table or the sentiment bar). Real short quotes only.
   const reddit = cards.filter(c => c.kind === "reddit").slice(0, 6);
   // The written roundup of ALL the paddle's Reddit posts (pilot 2026-11-23, db/creators/reddit-roundups.json), where one exists.
-  const wrap = (wrapups as Record<string, Record<string, Wrapup>>)[niche.id]?.[slug] ?? null;
+  const siteWraps = (wrapups as Record<string, Record<string, Wrapup>>)[niche.id];
+  const wrap = textKeys.map(k => siteWraps?.[k]).find(Boolean) ?? null;
   const rd = (roundups as Record<string, Record<string, Roundup>>)[niche.id]?.[slug] ?? null;
   const name = withoutYear(row?.name ?? r.name);
   // The live page's buy link, the same logic (app/thread/rackets/[slug]/page.tsx): the Amazon lookup, the saved listing when
@@ -130,14 +167,18 @@ export async function CreatorProductBody({ slug }: { slug: string }) {
   const low = lowestOffer(offers);
   const relOf = (aff: boolean) => aff ? "sponsored nofollow noopener" : "nofollow noopener";
   // The one filled Check price button (README rule) goes to a lowest in-stock shop; without prices, to the live page's link.
-  const cta = low ? { url: low.shops[0]!.url, rel: relOf(low.shops[0]!.affiliate) } : shop;
+  // On a tie for the lowest price the button goes to Amazon, or another affiliate link (owner 2026-11-23: until the other
+  // shops have affiliate codes); otherwise the first shop at that price.
+  const top = low ? low.shops.find(o => o.shop === "Amazon" || o.affiliate) ?? low.shops[0]! : null;
+  const cta = top ? { url: top.url, rel: relOf(top.affiliate || top.shop === "Amazon") } : shop;
   const how = howItPlays(rs), agree = agreeChips(rs);
   // The at-a-glance table (owner 2026-11-23): reviewer, take and the short key point only, in the reviews' own order.
   const glance = rs;
-  const gRow = (x: (typeof rs)[number]) => <a key={x.id} className="thc-g-row" href={`#cr-${x.id}`}>
+  const gRow = (x: (typeof rs)[number]) => <a key={x.id} className={`thc-g-row${CONFIGS ? " cfg" : ""}`} href={`#cr-${x.id}`}>
     <span className="thc-g-who"><Avatar name={x.creator} kind={x.kind} size="sm"/><span><strong>{x.creator}</strong>
       <span>{`${platform(x)} · ${langCode(x.lang)}`}{x.score && ` · ${scoreText(x.score)}`}</span></span></span>
     <span className={`thc-take sm ${x.stance}`}>{STANCE_LABEL[x.stance]}</span>
+    {CONFIGS && <span className="cfg-l">{configCell(x.config)}</span>}
     <span className="kp">{keyPoint(x)}</span>
   </a>;
   const ld = { "@context": "https://schema.org", "@graph": [crumbs([{ name: catalogLabel, path: catalogPath },
@@ -149,42 +190,74 @@ export async function CreatorProductBody({ slug }: { slug: string }) {
   // The level tag from the catalogue's "best for" line: its first part, "intermediate → advanced" as "Intermediate to advanced".
   const level = row?.best?.split(",")[0]?.replace(/\s*(→|->)\s*/g, " to ").trim() ?? null;
   const tags = (SKIN ? [r.shape, skinAttrs?.facts.fragrance_free === "free" ? "Fragrance free" : null, skinTex ? `${skinTex} texture` : null]
+    : PLAIN || LT ? [r.shape]
     : [style ? STYLE_WORD[style] : null, row?.feel ? `${row.feel} feel` : null, level ? `${level[0]!.toUpperCase()}${level.slice(1)}` : null]).filter((x): x is string => !!x);
   // Two + points and one - point (owner 2026-11-22), the likes and concerns backed by 2+ reviews.
   const plus = agree.likes.slice(0, 2), minus = agree.concerns[0] ?? null;
   // Up to 3 shops (SkinRecs 4, owner 2026-11-23: "show few stores") in the price box.
   const n = stanceCounts(rs), buy = offers.filter(o => o.inStock).slice(0, SKIN ? 4 : 3);
   // The button's own shop is left out of the list under it; "In stock at N shops" still counts it.
-  const listed = buy.filter(o => !(low && o.url === low.shops[0]!.url));
+  const listed = buy.filter(o => !(top && o.url === top.url));
+  // Amazon's price carries its "as of" time (Amazon's rule), from the daily price job.
+  const amzRow = buy.find(o => o.shop === "Amazon" && o.checkedAt);
+  const amazonAsOf = amzRow ? new Date(amzRow.checkedAt!).toLocaleString("en-US", { month: "short", day: "numeric", hour: "numeric", minute: "2-digit", timeZone: "UTC" }) : null;
   // Similar paddles mentioned: other catalogue paddles the reviews name, with their lowest stored price.
-  const named = mentions(rs, allRows, r.id).map(m => ({ ...m, href: m.row.href, price: staged[m.row.slug]?.price ?? null }));
+  // Each one's line compares it with this paddle, from its own side (owner 2026-11-23, db/creators/compare-lines.json: written
+  // from the review sentences that name both, checked by a second reader); with no real comparison, its usual one-liner.
+  const cmp = (compareLines as Record<string, Record<string, Record<string, { line: string; n: number; by?: string[] }>>>)[niche.id]?.[slug] ?? {};
+  // The reviewers behind each line, named and linked to their card on this page (owner 2026-11-23: "per PickleballStudio").
+  const byId = new Map(feed.map(x => [x.id, x.creator]));
+  const named = mentions(rs, allRows, r.id).map(m => { const c = cmp[m.row.slug];
+    const by = (c?.by ?? []).filter(id => byId.has(id)).map(id => ({ id, name: byId.get(id)! })).filter((b, i, a) => a.findIndex(y => y.name === b.name) === i);
+    return { ...m, href: m.row.href, price: staged[m.row.slug]?.price ?? null, vs: c?.line ?? null, vsN: c?.n ?? 0, by }; });
+  // Paddles compared first; ones the reviews only name go under "Also mentioned" at the bottom (owner 2026-11-23).
+  const namedVs = named.filter(m => m.vs), namedAlso = named.filter(m => !m.vs);
+
+  // Paddle mentions as links in the review cards (owner 2026-11-23): the catalogue's unique names, only the ones these
+  // reviews use (and this paddle's own, which claims its text but never links) go to the browser.
+  // PadelRecs (owner 2026-11-24): one catalogue row per model year, so names resolve by this racket's season first
+  // (lib/thread/mention-years.ts, db/creators/padel-mentions.json); the TL;DR and In more detail link too.
+  const yc = PADEL ? yearContext(allRows, slug, r.year ?? new Date().getUTCFullYear(), padelMentions as unknown as MentionYears) : null;
+  const mxAll = yc ? [...mentionIndex(yc.rows, yc.extra, allRows), ...selfRefKeys(allRows.find(x => x.slug === slug)!, selfFamily(allRows, slug, padelMentions as unknown as MentionYears))] : mentionIndex(allRows, (aliases as unknown as Record<string, MentionAliases>)[niche.id] ?? {});
+  const mxIds = namedIds([...feed.flatMap(x => [x.summary, x.more, x.compared]), ...(yc ? [tldr, ...(wrap?.paras ?? [])] : [])], mxAll, r.id);
+  const mxIndex = mxAll.filter(k => k.id === r.id || mxIds.includes(k.id));
+  const mxTargets: Record<string, MentionTarget> = Object.fromEntries(mxIds.flatMap(id => { const x = allRows.find(y => y.id === id); if (!x) return [];
+    const votes = x.pos + x.mix + x.neg;
+    return [[id, { id, slug: x.slug, name: withoutYear(x.name), href: th(x.href), pic: x.pic ?? null, loved: votes ? Math.round(100 * x.pos / votes) : null, votes,
+      price: staged[x.slug]?.price?.usd ?? null }]]; }));
+  const mxProps = { index: mxIndex, targets: mxTargets, selfId: r.id, selfSlug: slug, unit: W.people, noun: niche.words.one };
 
   return <Shell active="rackets">
     <JsonLd data={ld}/>
     {/* The mock's third font (README tokens): JetBrains Mono for the small "check price ↗" links, this page only. */}
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500;700&display=swap" precedence="default"/>
+    {/* SkinRecs header 4a (owner handoff 2026-11-23): Inter 800 for the name, Barlow Condensed 800 for TL;DR and the price. */}
+    {SKIN && <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=Barlow+Condensed:wght@800&display=swap" precedence="default"/>}
     <div className="thc thc-v19">
       {/* Head (owner mock 2026-11-23): photo · name, tags, TL;DR with ✓ and ✗ points, the players' vote box · the price box. */}
-      <header className="thc-head thc-hd3">
+      {/* Header 4a (owner handoffs 2026-11-23, skin then pickleball): one outlined panel, photo / main / prices columns (creators.css .thc-hd4). */}
+      <header className="thc-head thc-hd3 thc-hd4">
         <div className="thc-photo">{pic ? <img src={pic} alt={name}/> : <span className="th-ph" aria-hidden="true"/>}</div>
         <div className="thc-head-m">
           <h1>{name}</h1>
           {tags.length > 0 && <span className="thc-tags">{tags.map((t, k) => <span key={t} className={k === 0 && (style || SKIN) ? "on" : undefined}>{t}</span>)}</span>}
+          {followSite(niche.id) && <span className="thc-follow"><FollowButton id={r.id} name={name} place="hero"/></span>}
           {(tldr || plus.length > 0 || minus) && <div className="thc-tldr">
             <span className="thc-tldr-h"><b>TL;DR</b><span>{`From ${plural(rs.length, "review")}`}</span></span>
-            {tldr && <span className="thc-tldr-t">{tldr}</span>}
-            {(plus.length > 0 || minus) && <span className="thc-pts2">{plus.map(t => <span key={t} className="pos">{`✓ ${t}`}</span>)}{minus && <span className="neg">{`✗ ${minus}`}</span>}</span>}
+            {tldr && <span className="thc-tldr-t">{yc ? <MentionsProvider {...mxProps}><MentionText text={tldr}/></MentionsProvider> : tldr}</span>}
+            {(plus.length > 0 || minus) && <span className="thc-pts2">{plus.map(t => <span key={t} className="pos">{`✓ ${t}`}</span>)}{minus && <span className="neg">{`✕ ${minus}`}</span>}</span>}
           </div>}
           {/* The site's own players (owner 2026-11-22, #651): the bar and shares, never the creator reviews. */}
           <div className="thc-vbox">
-            <span className="thc-vbox-h"><strong>{`${votes.total.toLocaleString("en-US")} ${W.person} ${votes.total === 1 ? "vote" : "votes"}`}</strong><a href="#vote">Vote ↓</a></span>
+            <span className="thc-vbox-h"><strong>{`${votes.total.toLocaleString("en-US")} ${W.person} ${votes.total === 1 ? "vote" : "votes"}`}</strong>{!PLAIN && <a href="#vote">Vote ↓</a>}</span>
             {votes.total > 0 ? <><span className="thc-vbar" aria-hidden="true">{KEYS.map(k => votes[k] > 0 && <i key={k} className={k} style={{ flex: votes[k] }}/>)}</span>
-              <span className="thc-vpct">{KEYS.map(k => { const p = Math.round(votes[k] / votes.total * 100);
-                return <span key={k} className={k}>{k === "pos" ? <b>{`${p}% loved it`}</b> : `${p}% ${k === "mix" ? "mixed" : "not for me"}`}</span>; })}</span></>
-              : <span className="thc-none">No votes yet. Be the first.</span>}
+              {/* 4a: raw counts with colour dots, so the three add up to the total. */}
+              <span className="thc-vcnt">{KEYS.map(k => <span key={k}><i className={k} aria-hidden="true"/>{`${votes[k].toLocaleString("en-US")} ${k === "pos" ? "loved" : k === "mix" ? "mixed" : "not for me"}`}</span>)}</span></>
+              : <span className="thc-none">{PLAIN ? "No votes yet." : "No votes yet. Be the first."}</span>}
           </div>
         </div>
-        {(buy.length > 0 || cta) && <div className="thc-head-r">
+        {shops.length > 0 ? <div className="thc-head-r"><ShopBox offers={shops}/></div>
+          : (buy.length > 0 || cta) && <div className="thc-head-r">
           {/* The price box: the lowest in-stock price, the page's one filled Check price button, the shops as quiet links. */}
           <section id="buy" className={`thc-box1 thc-pbox${SKIN && !low && !buy.length ? " empty" : ""}`}>
             {/* SkinRecs has no shop prices yet (owner 2026-11-23: prices later): a small Where to buy box, the shop link only. */}
@@ -192,16 +265,17 @@ export async function CreatorProductBody({ slug }: { slug: string }) {
               <span className="thc-pbox-s">{/* The shops listed below (owner 2026-11-23), not every in-stock offer. */}{buy.length > 0 && `In stock at ${plural(buy.length, "shop")}`}</span></>}
             {/* With a price shown (owner 2026-11-23) the button names its shop: the lowest in-stock shop ("Desert Paddles ›",
                 its "(brand store)" note left off), or on SkinRecs "Amazon ›". */}
-            {cta && <a className="thc-cta wide" href={cta.url} target="_blank" rel={cta.rel}>{low ? `${shortShop(low.shops[0]!.shop)} ›` : SKIN && shop ? `${shop.where} ›` : "Check price ↗"}</a>}
+            {cta && <a className="thc-cta wide" href={cta.url} target="_blank" rel={cta.rel}>{top ? `${shortShop(top.shop)} ›` : SKIN && shop ? `${shop.where} ›` : "Check price ↗"}</a>}
             {/* The affiliate note under the shop button (owner 2026-11-23), linking to the site's disclosure page. */}
-            {SKIN && !low && shop && <span className="thc-pbox-on">{shop.rel.includes("sponsored")
+            {/* Every site (owner 2026-11-23: "place affiliate note below any amazon link"); skin also names the shop otherwise. */}
+            {!low && shop && (SKIN || shop.rel.includes("sponsored")) && <span className="thc-pbox-on">{shop.rel.includes("sponsored")
               ? <>{`Affiliate link: ${niche.site.name} may earn a small commission. `}<a href={th("/affiliate-disclosure")}>Learn more</a></> : `on ${shop.where}`}</span>}
 
             {/* The button's own shop is not listed again below it (owner 2026-11-23). */}
             {listed.length > 0 && <div className="thc-pbox-list">{listed.map(o => <div key={o.shop} className="thc-shop2"><strong title={o.shop}>{shortShop(o.shop)}</strong>
               <span className="thc-price">{usd(o.price)}</span><a className="thc-mono" href={o.url} target="_blank" rel={relOf(o.affiliate)}>check ↗</a></div>)}</div>}
             {/* Back under the shops (owner 2026-11-23): the check date and, where any link is one, the affiliate note. */}
-            {page.prices && buy.length > 0 && <span className="thc-note">{`Checked ${shortDay(page.prices.checked)}.${buy.some(o => o.affiliate) ? " Some links are affiliate links." : ""}`}</span>}
+            {page.prices && buy.length > 0 && <span className="thc-note">{`Checked ${shortDay(page.prices.checked)}.${amazonAsOf ? ` Amazon price as of ${amazonAsOf} UTC.` : ""}${buy.some(o => o.affiliate || o.shop === "Amazon") ? " Some links are affiliate links." : ""}`}</span>}
           </section>
           {/* SkinRecs (owner mock 2026-11-23): the fit check sits under Check price, where one shop leaves room. */}
           {SKIN && !low && <SkinCompactFit id={r.id} wire={skinWire} links={skinLinks} side/>}
@@ -211,20 +285,23 @@ export async function CreatorProductBody({ slug }: { slug: string }) {
       {/* SkinRecs with store prices (owner 2026-11-23): the price list fills the right column, so its fit check moves to
           this full-width row, as on PickleballRecs; Amazon-only products keep it under the button. */}
       {SKIN ? low && <div className="thc-fitrow"><SkinCompactFit id={r.id} wire={skinWire} links={skinLinks}/></div>
+        : PLAIN ? null : LT ? ltWire.length > 0 && <div className="thc-fitrow"><LaptopFitCard id={r.id} wire={ltWire} links={ltLinks} compact/></div>
         : <div className="thc-fitrow"><CompactFit id={r.id} title={`Is this ${niche.words.one} right for me?`} sub="Pick your level and style" bar/></div>}
       <div className="thc-rule"/>
 
       <main className="thc-body">
         {/* Side by side (owner choice): players on Reddit and forums, and the site's own vote. */}
-        <div className={`thc-duo${reddit.length ? "" : " one"}`}>
+        {/* LaptopRecs: the Reddit card alone, when there is one (no vote boxes there). */}
+        {PLAIN ? (rd || reddit.length > 0) && <div className="thc-duo one">{rd ? <RedditBox rd={rd}/> : <RedditRoundup items={reddit}/>}</div>
+        : <div className={`thc-duo${reddit.length ? "" : " one"}`}>
           {rd ? <RedditBox rd={rd}/> : reddit.length > 0 && <RedditRoundup items={reddit}/>}
           {/* Played it? Vote and rate it: the would-you-buy-it-again bars and six vote boxes (lib/thread/creator-votes.ts),
               the stored votes loading live, one tap, no account. */}
           <section id="vote" className="thc-box1 thc-vote">
-            <PollCard id={r.id} reviews={{ positive: row?.pos ?? 0, mixed: row?.mix ?? 0, negative: row?.neg ?? 0 }} question={SKIN ? "Tried it? Vote and rate it." : "Played it? Vote and rate it."} countLine/>
+            <PollCard id={r.id} reviews={{ positive: row?.pos ?? 0, mixed: row?.mix ?? 0, negative: row?.neg ?? 0 }} question={SKIN ? "Tried it? Vote and rate it." : LT ? `${W.usedIt} Vote and rate it.` : "Played it? Vote and rate it."} countLine/>
             {voteGroups.length > 0 && <TraitVotes id={r.id} seed={traitSeed(niche.id, r.id)} groups={voteGroups} title={W.traitsTitle} tieNone {...(SKIN ? { of: d.judged } : {})}/>}
           </section>
-        </div>
+        </div>}
 
         <div className="thc-web">
           <span className="thc-kick">From around the web</span>
@@ -236,7 +313,7 @@ export async function CreatorProductBody({ slug }: { slug: string }) {
         <section id="sentiment" className="thc-box1 thc-sent">
           <div className="thc-h"><strong>The short version</strong><span>{plural(rs.length, "review")}</span></div>
           {/* With a written wrap-up (pilot): the text first, then the count boxes and tags (owner 2026-11-23). */}
-          {wrap && <Wrap w={wrap} n={rs.length}/>}
+          {wrap && (yc ? <MentionsProvider {...mxProps}><Wrap w={wrap} n={rs.length} links/></MentionsProvider> : <Wrap w={wrap} n={rs.length}/>)}
           <div className="thc-sent-g">{KEYS.map(k => <div key={k}>
             <span className="thc-sent-h"><span><span className={`thc-dot ${k}`}>●</span>{STANCE_LABEL[k]}</span><strong>{n[k]}</strong></span>
             <span className="thc-sent-x">{n[k] ? page.groups[k] || stanceLine(rs, k) : "None of the reviews."}</span></div>)}</div>
@@ -252,7 +329,7 @@ export async function CreatorProductBody({ slug }: { slug: string }) {
           <div className="thc-row-l">
             <section id="creators" className="thc-box1 flush thc-glance">
               <div className="thc-h rule"><strong>{`All ${rs.length} reviews at a glance`}</strong><span>Tap a row to jump to the full summary</span></div>
-              <div className="thc-g-row thc-g-head"><span>Reviewer</span><span>Take</span><span className="kp">Key point</span></div>
+              <div className={`thc-g-row thc-g-head${CONFIGS ? " cfg" : ""}`}><span>Reviewer</span><span>Take</span>{CONFIGS && <span className="cfg-l">Config</span>}<span className="kp">Key point</span></div>
               {/* Graded rows first (owner 2026-11-22), 15 shown, the rest behind "Show all N reviews" (no script: a details box). */}
               {glance.slice(0, GLANCE).map(gRow)}
               {glance.length > GLANCE && <details className="thc-g-more"><summary>{`Show all ${rs.length} reviews`}</summary>{glance.slice(GLANCE).map(gRow)}</details>}
@@ -260,23 +337,37 @@ export async function CreatorProductBody({ slug }: { slug: string }) {
           </div>
           <StickyCol className="thc-row-r">
             {how.length > 0 && <section className="thc-box1 flush">
-              <div className="thc-h rule"><strong>{SKIN ? "How it works" : "How it plays"}</strong><span>{`From all ${rs.length} reviews`}</span></div>
+              <div className="thc-h rule"><strong>{howTitleFor(niche.id)}</strong><span>{`From all ${rs.length} reviews`}</span></div>
               {how.map(h => <div key={h.k} className="thc-grade"><span><strong>{h.label}</strong><Word w={h.word}/></span><span>{h.line}</span></div>)}
             </section>}
             {named.length > 0 && <section className="thc-box1 flush">
               <div className="thc-h rule"><strong>{`Similar ${niche.words.many} mentioned`}</strong><span>In these reviews</span></div>
-              {named.map(m => <a key={m.row.id} className="thc-men" href={th(m.href)}>
-                <span className="thc-men-ph">{m.row.pic ? <img src={m.row.pic} alt="" loading="lazy"/> : null}</span>
-                <span><strong>{withoutYear(m.row.name)}</strong>{m.row.line && <span>{m.row.line}</span>}
-                  <small>{`Mentioned in ${plural(m.n, "review")}${m.price ? ` · from ${usd(m.price.usd)}` : ""}`}</small></span></a>)}
+              {/* A row: the photo and name link to the paddle; the reviewers' names link to their cards here. */}
+              {[...namedVs, ...namedAlso].map((m, i) => <Fragment key={m.row.id}>
+                {i === namedVs.length && namedVs.length > 0 && <div className="thc-men-also">Also mentioned</div>}
+                <div className="thc-men">
+                  <a className="thc-men-ph" href={th(m.href)} aria-hidden="true" tabIndex={-1}>{m.row.pic ? <img src={m.row.pic} alt="" loading="lazy"/> : null}</a>
+                  <span><a className="thc-men-n" href={th(m.href)}><strong>{withoutYear(m.row.name)}</strong></a>
+                    {m.vs ? <span>{m.vs}{m.by.length > 0 && <>{", per "}{m.by.map((b, j) => <Fragment key={b.id}>{j > 0 && (j === m.by.length - 1 ? " and " : ", ")}<a className="thc-men-by" href={`#cr-${b.id}`}>{b.name}</a></Fragment>)}{" ↓"}</>}</span>
+                      : m.row.line && <span>{m.row.line}</span>}
+                    <small>{`${m.vs ? `Compared in ${plural(m.by.length || m.vsN || m.n, "review")}` : `Mentioned in ${plural(m.n, "review")}`}${m.price ? ` · from ${usd(m.price.usd)}` : ""}`}</small></span>
+                </div></Fragment>)}
             </section>}
           </StickyCol>
         </div>
 
-        <CreatorReviews reviews={feed} count={rs.length} roundup={null}/>
+        <MentionsProvider {...mxProps}>
+          <CreatorReviews reviews={feed} count={rs.length} roundup={null} {...(CONFIGS ? { configs: true, axis: configAxisFor(niche.id, slug) } : {})}/>
+        </MentionsProvider>
 
+        {/* PadelRecs' member stories that name this racket (the pilot), as on its v7b racket page. */}
+        {tales.length > 0 && <section className="thc-sec2">
+          <div className="thc-sec2-h"><h2>{`Stories with the ${name}`}</h2><a href={th("/stories")}>All stories →</a></div>
+          <ul className="th-stories sm">{tales.map(t => <li key={t.id}><a className="th-story-t" href={th(`/stories/${t.slug}`)}>{t.title}</a>
+            <span className="th-story-by"><strong>{t.author.name}</strong><MemberMark/></span></li>)}</ul>
+        </section>}
         {/* Comments (the mock's section 7): the site's own discussion for this paddle, the same thread as its product page. */}
-        <section className="thc-sec2 thc-comments"><Comments page={`racket:${r.id}`} title="Discussion" avatars nicknames={niche.form.quickVote?.nicknames ?? []}/></section>
+        {!PLAIN && <section className="thc-sec2 thc-comments"><Comments page={`racket:${r.id}`} title="Discussion" avatars nicknames={niche.form.quickVote?.nicknames ?? []}/></section>}
 
         {similar.length > 0 && <section className="thc-sec2">
           <div className="thc-sec2-h"><h2>{`Similar ${niche.words.many}`}</h2>
@@ -291,23 +382,47 @@ export async function CreatorProductBody({ slug }: { slug: string }) {
               <span className="thc-sim-f">{price ? <a className="thc-mono" href={price.url} target="_blank" rel={price.rel}>{price.label}</a>
                 : <a href={th(href)}>{`See the ${niche.words.one} →`}</a>}</span>
             </div>; })}</div>
+          {/* Under any affiliate price link here too (owner 2026-11-23). */}
+          {similar.some(x => x.price?.rel.includes("sponsored")) && <span className="thc-note thc-sim-aff">{`Some price links are affiliate links: ${niche.site.name} may earn a small commission. `}<a href={th("/affiliate-disclosure")}>Learn more</a></span>}
         </section>}
       </main>
     </div>
   </Shell>;
 }
 
+/** PadelRecs' price box: the padel shops (#679 data), in stock and cheapest first. The first in-stock shop is the one filled
+ *  button with its own price and currency above it; up to 3 more shops sit under it as quiet links, the rest under "All N
+ *  shops". Prices are never converted, so the box says "From" and never "Lowest". Server-rendered, no client code. */
+const SHOP_ROWS = 3;
+function ShopBox({ offers }: { offers: ShopOffer[] }) {
+  const inStock = offers.filter(o => o.inStock), top = inStock[0] ?? null;
+  const rest = offers.filter(o => o !== top), listed = rest.slice(0, SHOP_ROWS), more = rest.slice(SHOP_ROWS), day = newestCheck(offers);
+  const row = (o: ShopOffer) => <div key={o.href} className="thc-shop2"><strong title={o.shop}>{o.short}</strong>
+    <span className="thc-price">{o.inStock ? o.price : "Sold out"}</span><a className="thc-mono" href={o.href} target="_blank" rel={o.rel}>check ↗</a></div>;
+  return <section id="buy" className="thc-box1 thc-pbox">
+    {top && <><span className="thc-pbox-l">From</span><strong className="thc-pbox-p">{top.price}</strong>
+      <span className="thc-pbox-s">{`In stock at ${plural(inStock.length, "shop")}`}</span>
+      <a className="thc-cta wide" href={top.href} target="_blank" rel={top.rel}>{`${top.short} ›`}</a></>}
+    {!top && <span className="thc-pbox-l">Sold out at every shop listed</span>}
+    {listed.length > 0 && <div className="thc-pbox-list">{listed.map(row)}</div>}
+    {more.length > 0 && <details className="thc-pbox-more"><summary>{`All ${offers.length} shops`}</summary><div className="thc-pbox-list">{more.map(row)}</div></details>}
+    <span className="thc-note">{`${day ? `Checked ${day}. ` : ""}Each shop's own price and currency; shipping varies.${offers.some(o => o.affiliate) ? " Some links are affiliate links." : ""}`}</span>
+  </section>;
+}
+
 type Wrapup = { paras: string[]; highlights: { text: string; tone: "pos" | "neg" }[] };
 
 /** "In more detail" (pilot, owner OK 2026-11-23): 2-3 sentences on what the counts and tags can't show (who it suits, where
  *  the mixed takes come from, what it's compared with), written from all the reviews and checked by a second reader. */
-function Wrap({ w, n }: { w: Wrapup; n: number }) {
+function Wrap({ w, n, links = false }: { w: Wrapup; n: number; /** PadelRecs: racket names in the plain text link. */ links?: boolean }) {
+  let pk = 0;
+  const plain = (t: string): ReactNode => links && t ? <MentionText key={`t${pk++}`} text={t}/> : t;
   const mark = (t: string) => { const out: ReactNode[] = []; let rest = t, k = 0;
     for (;;) { let best = -1, hi = -1;
       w.highlights.forEach((h, i) => { const at = rest.indexOf(h.text); if (at >= 0 && (best < 0 || at < best)) { best = at; hi = i; } });
-      if (hi < 0) { out.push(rest); return out; }
+      if (hi < 0) { out.push(plain(rest)); return out; }
       const h = w.highlights[hi];
-      out.push(rest.slice(0, best), <mark key={k++} className={h.tone}>{h.text}</mark>);
+      out.push(plain(rest.slice(0, best)), <mark key={k++} className={h.tone}>{h.text}</mark>);
       rest = rest.slice(best + h.text.length); } };
   // Under The short version title (owner 2026-11-23: one section), above the count boxes and tags.
   return <div className="thc-wrap">
@@ -316,7 +431,8 @@ function Wrap({ w, n }: { w: Wrapup; n: number }) {
   </div>;
 }
 
-type Roundup = { posts: number; threads: number; at: string | null; headline: string; tags: { tone: "pos" | "neg"; text: string; n: number }[];
+// No post or thread counts (owner 2026-11-24, every site): the box says "summary of player posts", never how many.
+type Roundup = { at: string | null; headline: string; tags: { tone: "pos" | "neg"; text: string; n?: number }[];
   paras: string[]; highlights: { text: string; url: string }[] };
 
 /** "Players on Reddit and forums", written from ALL the paddle's stored Reddit posts (pilot, owner OK 2026-11-23): a
@@ -336,7 +452,7 @@ function RedditBox({ rd }: { rd: Roundup }) {
     <div className="thc-card-b">
       <div className="thc-card-top"><span className="thc-av thc-rd-av" aria-hidden="true">r/</span>
         <span className="thc-name">{`${W.People} on Reddit and forums`}</span></div>
-      <span className="thc-meta">{`${niche.site.name} summary of ${plural(rd.posts, `${W.person} post`)} in ${plural(rd.threads, "thread")}${day ? ` · ${day}` : ""}`}</span>
+      <span className="thc-meta">{`${niche.site.name} summary of ${W.person} posts${day ? ` · ${day}` : ""}`}</span>
       <h3 className="thc-rd-h">{rd.headline}</h3>
       <div className="thc-rd-tags">{rd.tags.map(t => <span key={t.text} className={`thc-rd-tag ${t.tone}`}>
         <i aria-hidden="true">{t.tone === "pos" ? "+" : "−"}</i>{t.text}</span>)}</div>
@@ -351,7 +467,6 @@ function RedditBox({ rd }: { rd: Roundup }) {
  *  paddle's Reddit summaries (PickleballRecs summaries of each post). A headline from the posts' own takes, each summary in
  *  full with its short real quote marked and a numbered source chip, then the numbered thread links. Never counted as a review. */
 function RedditRoundup({ items }: { items: import("./racket-data").RvCard[] }) {
-  const threads = new Set(items.map(c => c.url?.match(/\/comments\/([a-z0-9]+)/i)?.[1] ?? c.id)).size;
   const pos = items.filter(c => c.verdict === "positive").length, neg = items.filter(c => c.verdict === "negative").length;
   const head = pos * 2 > items.length ? `${W.People} mostly like it.` : neg * 2 > items.length ? `${W.People} mostly have doubts.` : `${W.People} are split on it.`;
   const newest = items.map(c => c.at).filter(Boolean).sort().pop();
@@ -365,7 +480,7 @@ function RedditRoundup({ items }: { items: import("./racket-data").RvCard[] }) {
     <div className="thc-card-b">
       <div className="thc-card-top"><span className="thc-av thc-rd-av" aria-hidden="true">r/</span>
         <span className="thc-name">{`${W.People} on Reddit and forums`}</span></div>
-      <span className="thc-meta">{`${niche.site.name} summary of ${plural(items.length, `${W.person} post`)} in ${plural(threads, "thread")}${day ? ` · ${day}` : ""}`}</span>
+      <span className="thc-meta">{`${niche.site.name} summary of ${W.person} posts${day ? ` · ${day}` : ""}`}</span>
       <h3 className="thc-rd-h">{head}</h3>
       {paras.map((ps, k) => <p key={k} className="thc-sum">{ps.map(c => { const n = items.indexOf(c) + 1;
         return <span key={c.id}>{marked(c)}<b className="thc-num">{n}</b>{" "}</span>; })}</p>)}

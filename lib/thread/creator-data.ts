@@ -3,6 +3,7 @@
 // <site>-home.json), so the preview keeps working. Server only: the browser never gets the whole file.
 import covers from "../../db/creators/covers.json";
 import { cache } from "react";
+import padel from "../../db/creators/padel.json";
 import pickleball from "../../db/creators/pickleball.json";
 import pickleballHome from "../../db/creators/pickleball-home.json";
 import type { CreatorPage } from "./creators";
@@ -10,7 +11,7 @@ import { homeFromPages, type CreatorHome } from "./creator-home";
 import { niche } from "../niche";
 
 type Fixture = { paddles: Record<string, CreatorPage> };
-const FIXTURES: Record<string, Fixture> = { pickleball: pickleball as unknown as Fixture };
+const FIXTURES: Record<string, Fixture> = { pickleball: pickleball as unknown as Fixture, padel: padel as unknown as Fixture };
 const HOMES: Record<string, CreatorHome> = { pickleball: pickleballHome as unknown as CreatorHome };
 /** The demo fixtures, as they were (tests, and the fallback below). */
 export const fixturePage = (site: string, slug: string): CreatorPage | null => FIXTURES[site]?.paddles[slug] ?? null;
@@ -48,6 +49,11 @@ function withCovers(site: string, page: CreatorPage | null): CreatorPage | null 
 export async function creatorSlugs(site: string): Promise<string[]> {
   const r = await withDb(site, (db, m) => m.readCreatorSlugs(db, niche.schema));
   return r ? r.v : fixtureSlugs(site);
+}
+/** Every product's creator page from the database, by slug, or null before the import (LaptopRecs' quick match inputs). */
+export async function creatorPagesAll(site: string): Promise<Map<string, CreatorPage> | null> {
+  const r = await allPages(site);
+  return r ? r.v : null;
 }
 /** The creators home's data, or null. */
 export async function creatorHome(site: string): Promise<CreatorHome | null> {

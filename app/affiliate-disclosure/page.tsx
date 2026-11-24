@@ -6,7 +6,7 @@ import AffiliateV2 from "./affiliate-v2";
 import { attrProfileFor } from "../../lib/attr-profile";
 
 // Static (no database read of its own); refreshed hourly so the header menu the layout bakes in stays current.
-export const revalidate = 3600;
+export const revalidate = 21600;
 
 // Only sites showing Amazon links (amazonLinksOn: niche config plus the associate tag) have affiliate links to disclose;
 // elsewhere this address is a 404.
