@@ -102,8 +102,9 @@ export const creatorPageFor = (nicheId: string, slug: string) => CREATOR_PAGE_SI
 export const CREATOR_PAGE: Record<string, boolean> = { pickleball: true, skin: true, padel: true, laptop: true };
 export const creatorPageOn = (nicheId: string) => CREATOR_PAGE[nicheId] ?? false;
 /** The creators home at "/" (app/thread/creators-home-body.tsx), apart from the product page switch: SkinRecs (owner "Yes,
- *  Skin next" 2026-11-23) moves its product pages first and keeps its own home for now. */
-export const CREATOR_HOME: Record<string, boolean> = { pickleball: true };
+ *  Skin next" 2026-11-23) moves its product pages first and keeps its own home for now. PadelRecs (owner 2026-11-24: "we can
+ *  use pickleball from now on as the default copy for the sites"): false brings back padel's v3 home. */
+export const CREATOR_HOME: Record<string, boolean> = { pickleball: true, padel: true };
 export const creatorHomeOn = (nicheId: string) => creatorPageOn(nicheId) && (CREATOR_HOME[nicheId] ?? false);
 export const CREATOR_MIN_REVIEWS = 3;
 /** Creator pages on a site that is not a Thread site (LaptopRecs, 2026-11-24): proxy.ts serves its product addresses for the

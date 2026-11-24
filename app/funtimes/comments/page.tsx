@@ -1,6 +1,7 @@
 // Latest comments (owner 2026-11-24): every comment on this site, newest first, 50 a page, by status and by words, with
-// moderation on each row (approve, reject to hide, hold as pending, edit the text, rename, delete) and in bulk for the
-// ticked rows. Server-drawn plain forms to /api/funtimes/comments; the filters live in the address (?status=&q=&p=&racket=).
+// moderation on each row (approve, reject to hide, hold as pending, delete) and in bulk for the ticked rows. The name and
+// the text edit in place like the review queue's (quick-edit.tsx, kind="comment", owner 2026-11-24): click, edit, save
+// without a reload. Server-drawn plain forms to /api/funtimes/comments; the filters live in the address (?status=&q=&p=&racket=).
 // Reads one page of rows (comments_queue_idx for a status) plus three small reads keyed by the listed ids.
 import type { Metadata } from "next";
 import { database } from "../../../db/data";
@@ -9,6 +10,7 @@ import { adminComments, commentExtras, REMOVED } from "../../../db/comments";
 import { isAdmin } from "../auth";
 import { AdminNav } from "../admin-nav";
 import { SelectAll } from "./select-all";
+import { QuickEdit } from "../quick-edit";
 import { getCurrentUser } from "../../../lib/supabase/auth";
 import { niche, productHref } from "../../../lib/niche";
 import { GUIDE_PATHS, th, threadSite, type GuideKey } from "../../../lib/thread/look";
@@ -49,7 +51,7 @@ export default async function LatestComments({ searchParams }: { searchParams: P
   const keep = { back: query.status, q: query.q, racket: pageKey ? query.racket : "", p: String(query.page) };
   const all = Object.values(totals).reduce((a, b) => a + (b ?? 0), 0);
   const message = MESSAGES[result]?.replace("{n}", n);
-  return <main><div className="page-title"><h1>Latest comments</h1><p className="muted">Every comment on this site, newest first. Edit, rename, approve, hide or delete them here.</p></div>
+  return <main><div className="page-title"><h1>Latest comments</h1><p className="muted">Every comment on this site, newest first. Click a name or a text to edit it in place; approve, hide or delete below it.</p></div>
     <AdminNav current="comments"/>
     {message && <p role="status" className={ERRORS.includes(result) ? "form-error" : "admin-notice"}>{message}</p>}
     <div className="admin-filters" aria-label="Comment status">{(["all", ...COMMENT_STATUSES] as const).map(s =>
@@ -73,22 +75,14 @@ export default async function LatestComments({ searchParams }: { searchParams: P
       return <article className="review" key={c.id}>
         <div className="review-top" style={{ gap: 10, alignItems: "center" }}>
           <input type="checkbox" name="ids" value={c.id} form="bulk" aria-label={`Select the comment by ${c.alias}`}/>
-          <strong>{c.alias}</strong><span className="admin-status">{c.status}</span><span className="muted">{when(c.at)}</span></div>
+          {c.alias === REMOVED ? <strong>{c.alias}</strong> : <QuickEdit kind="comment" id={c.id} field="alias" value={c.alias}/>}<span className="admin-status">{c.status}</span><span className="muted">{when(c.at)}</span></div>
         <h3>{where.href ? <a href={where.href}>{where.label}</a> : where.label}</h3>
         <p className="muted small">{[x?.replyTo ? `Reply to ${x.replyTo}` : null, `Score ${x?.votes ?? 0}${x?.shown != null ? ` (shown as ${x.shown}, set by hand)` : ""}`,
           x?.replies ? `${x.replies} ${x.replies === 1 ? "reply" : "replies"}` : null, c.spamScore > 0 ? `Spam check ${c.spamScore}` : null].filter(Boolean).join(" · ")}</p>
-        <p className="review-text">{c.body}</p>
+        <QuickEdit kind="comment" id={c.id} field="text" value={c.body}/>
         <div className="admin-actions" style={{ display: "flex", gap: 8, flexWrap: "wrap", alignItems: "flex-start" }}>
           {COMMENT_STATUSES.filter(s => s !== c.status).map(s => <form key={s} method="post" action="/api/funtimes/comments"><Hidden v={{ action: "status", id: c.id, status: s, ...keep }}/>
             <button className={s === "approved" ? "button" : "button ghost"}>{LABEL[s]}</button></form>)}
-          <details><summary className="button ghost">Edit text</summary>
-            <form method="post" action="/api/funtimes/comments" style={col}><Hidden v={{ action: "edit", id: c.id, ...keep }}/>
-              <textarea name="body" defaultValue={c.body} rows={4} minLength={2} maxLength={2000} required aria-label="Comment text"/>
-              <span className="muted small">Same name, time and votes. No edited mark shows on the page.</span><button className="button">Save text</button></form></details>
-          <details><summary className="button ghost">Rename</summary>
-            <form method="post" action="/api/funtimes/comments" style={col}><Hidden v={{ action: "edit", id: c.id, ...keep }}/>
-              <label className="muted" style={{ display: "flex", flexDirection: "column", gap: 2 }}>Name shown<input name="alias" defaultValue={c.alias === REMOVED ? "" : c.alias} minLength={2} maxLength={24} required aria-label="Commenter name"/></label>
-              <span className="muted small">Changes only this comment's name, not a member's account name.</span><button className="button">Save name</button></form></details>
           <details><summary className="button ghost">Delete</summary>
             <form method="post" action="/api/funtimes/comments" style={col}><Hidden v={{ action: "delete", id: c.id, ...keep }}/>
               <label style={{ display: "flex", gap: 6, alignItems: "center" }}><input type="checkbox" name="confirm" value="yes" required/>Yes, delete it and its votes</label>

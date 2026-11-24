@@ -49,6 +49,11 @@ import { creatorVoteGroups } from "../../lib/thread/creator-votes";
 import { siteSentiment } from "../../lib/thread/site-sentiment";
 import { W } from "../../lib/thread/words";
 import { mentions } from "../../lib/thread/mentions";
+import { padelOffers, newestCheck, type ShopOffer } from "../../lib/padel-offers";
+import { followSite, storiesSite } from "../../lib/thread/sites";
+import { FollowButton } from "./live/follow-button";
+import { racketStories } from "./stories-data";
+import { MemberMark } from "./live/member-mark";
 import "./creators.css";
 
 
@@ -80,6 +85,9 @@ const SKIN = niche.id === "skin";
  *  each reviewer tested (lib/thread/creator-config.ts): a "Reviewed: ..." line per card, config chips, a Config column. */
 const PLAIN = creatorPlainSite(niche.id);
 const CONFIGS = configSite(niche.id);
+/** PadelRecs (2026-11-24, onto this page from its v7b racket page): the padel shops' own prices in the price box (lib/padel-offers.ts,
+ *  db/shop/padel-offers.json), the Follow button in the head and the member stories that name the racket. */
+const PADEL = niche.id === "padel";
 
 function Word({ w }: { w: CreatorReview["attrs"][keyof CreatorReview["attrs"]] }) {
   return w ? <span className={`thc-w ${wordTone(w)}`}>{w}</span> : <span className="thc-w none" aria-label="Not covered">–</span>;
@@ -97,6 +105,7 @@ export async function CreatorProductBody({ slug }: { slug: string }) {
   // Under CREATOR_MIN_REVIEWS reviews the product keeps its usual page.
   if (rs.length < CREATOR_MIN_REVIEWS) return null;
   const { r, row, brand, style, sim, cards } = d;
+  const [tales, shops] = await Promise.all([storiesSite(niche.id) ? racketStories(r.id) : [], PADEL ? padelOffers(slug) : []]);
   // The TL;DR sentence (owner 2026-11-23): the creator page's own line where it has one, else the same line the usual
   // product page shows (racketData: the written "In short" summary, the page content's tagline, the short or list line).
   // A written TL;DR for products whose creator import came without one (db/creators/tldrs.json, 2026-11-23).
@@ -218,6 +227,7 @@ export async function CreatorProductBody({ slug }: { slug: string }) {
         <div className="thc-head-m">
           <h1>{name}</h1>
           {tags.length > 0 && <span className="thc-tags">{tags.map((t, k) => <span key={t} className={k === 0 && (style || SKIN) ? "on" : undefined}>{t}</span>)}</span>}
+          {followSite(niche.id) && <span className="thc-follow"><FollowButton id={r.id} name={name} place="hero"/></span>}
           {(tldr || plus.length > 0 || minus) && <div className="thc-tldr">
             <span className="thc-tldr-h"><b>TL;DR</b><span>{`From ${plural(rs.length, "review")}`}</span></span>
             {tldr && <span className="thc-tldr-t">{tldr}</span>}
@@ -232,7 +242,8 @@ export async function CreatorProductBody({ slug }: { slug: string }) {
               : <span className="thc-none">{PLAIN ? "No votes yet." : "No votes yet. Be the first."}</span>}
           </div>
         </div>
-        {(buy.length > 0 || cta) && <div className="thc-head-r">
+        {shops.length > 0 ? <div className="thc-head-r"><ShopBox offers={shops}/></div>
+          : (buy.length > 0 || cta) && <div className="thc-head-r">
           {/* The price box: the lowest in-stock price, the page's one filled Check price button, the shops as quiet links. */}
           <section id="buy" className={`thc-box1 thc-pbox${SKIN && !low && !buy.length ? " empty" : ""}`}>
             {/* SkinRecs has no shop prices yet (owner 2026-11-23: prices later): a small Where to buy box, the shop link only. */}
@@ -334,6 +345,12 @@ export async function CreatorProductBody({ slug }: { slug: string }) {
           <CreatorReviews reviews={feed} count={rs.length} roundup={null} {...(CONFIGS ? { configs: true, axis: configAxisFor(niche.id, slug) } : {})}/>
         </MentionsProvider>
 
+        {/* PadelRecs' member stories that name this racket (the pilot), as on its v7b racket page. */}
+        {tales.length > 0 && <section className="thc-sec2">
+          <div className="thc-sec2-h"><h2>{`Stories with the ${name}`}</h2><a href={th("/stories")}>All stories →</a></div>
+          <ul className="th-stories sm">{tales.map(t => <li key={t.id}><a className="th-story-t" href={th(`/stories/${t.slug}`)}>{t.title}</a>
+            <span className="th-story-by"><strong>{t.author.name}</strong><MemberMark/></span></li>)}</ul>
+        </section>}
         {/* Comments (the mock's section 7): the site's own discussion for this paddle, the same thread as its product page. */}
         {!PLAIN && <section className="thc-sec2 thc-comments"><Comments page={`racket:${r.id}`} title="Discussion" avatars nicknames={niche.form.quickVote?.nicknames ?? []}/></section>}
 
@@ -356,6 +373,26 @@ export async function CreatorProductBody({ slug }: { slug: string }) {
       </main>
     </div>
   </Shell>;
+}
+
+/** PadelRecs' price box: the padel shops (#679 data), in stock and cheapest first. The first in-stock shop is the one filled
+ *  button with its own price and currency above it; up to 3 more shops sit under it as quiet links, the rest under "All N
+ *  shops". Prices are never converted, so the box says "From" and never "Lowest". Server-rendered, no client code. */
+const SHOP_ROWS = 3;
+function ShopBox({ offers }: { offers: ShopOffer[] }) {
+  const inStock = offers.filter(o => o.inStock), top = inStock[0] ?? null;
+  const rest = offers.filter(o => o !== top), listed = rest.slice(0, SHOP_ROWS), more = rest.slice(SHOP_ROWS), day = newestCheck(offers);
+  const row = (o: ShopOffer) => <div key={o.href} className="thc-shop2"><strong title={o.shop}>{o.short}</strong>
+    <span className="thc-price">{o.inStock ? o.price : "Sold out"}</span><a className="thc-mono" href={o.href} target="_blank" rel={o.rel}>check ↗</a></div>;
+  return <section id="buy" className="thc-box1 thc-pbox">
+    {top && <><span className="thc-pbox-l">From</span><strong className="thc-pbox-p">{top.price}</strong>
+      <span className="thc-pbox-s">{`In stock at ${plural(inStock.length, "shop")}`}</span>
+      <a className="thc-cta wide" href={top.href} target="_blank" rel={top.rel}>{`${top.short} ›`}</a></>}
+    {!top && <span className="thc-pbox-l">Sold out at every shop listed</span>}
+    {listed.length > 0 && <div className="thc-pbox-list">{listed.map(row)}</div>}
+    {more.length > 0 && <details className="thc-pbox-more"><summary>{`All ${offers.length} shops`}</summary><div className="thc-pbox-list">{more.map(row)}</div></details>}
+    <span className="thc-note">{`${day ? `Checked ${day}. ` : ""}Each shop's own price and currency; shipping varies.${offers.some(o => o.affiliate) ? " Some links are affiliate links." : ""}`}</span>
+  </section>;
 }
 
 type Wrapup = { paras: string[]; highlights: { text: string; tone: "pos" | "neg" }[] };

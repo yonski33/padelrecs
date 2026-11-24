@@ -76,3 +76,12 @@ test("list extras, paging, and delete with replies", async () => {
     assert.equal(left.rows[0].n, 0);
   } finally { await engine.close(); }
 });
+
+test("quick edit: a comment's name and text go to the comments route's edit action; reviews keep review-quick", async () => {
+  const { quickEditRequest } = await import("../lib/review-quick");
+  const name = quickEditRequest("comment", "c1", "alias", "Marta G.");
+  assert.equal(name.url, "/api/funtimes/comments"); assert.equal(name.body.toString(), "action=edit&id=c1&alias=Marta+G.");
+  assert.equal(quickEditRequest("comment", "c1", "text", "Soft core").body.toString(), "action=edit&id=c1&body=Soft+core");
+  const review = quickEditRequest("review", "r1", "date", "2026-11-01");
+  assert.equal(review.url, "/api/funtimes/review-quick"); assert.equal(review.body.toString(), "id=r1&field=date&value=2026-11-01");
+});

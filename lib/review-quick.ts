@@ -14,3 +14,13 @@ export const quickEditInput = z.discriminatedUnion("field", [
 export type QuickEdit = z.infer<typeof quickEditInput>;
 /** The new created_at for a date edit: the picked day, the review's own time of day kept. */
 export const withDate = (createdAt: string, day: string) => `${day}${createdAt.length > 10 ? createdAt.slice(10) : "T12:00:00.000Z"}`;
+
+/** The admin's inline edit box (app/funtimes/quick-edit.tsx): a player review's name, date or text, or (owner 2026-11-24,
+ *  admin Latest comments) a comment's name or text through the comments route's "edit" action. Where one edit goes and what
+ *  it sends. */
+export type QuickField = "alias" | "date" | "text";
+export type QuickKind = "review" | "comment";
+export function quickEditRequest(kind: QuickKind, id: string, field: QuickField, value: string) {
+  return kind === "comment" ? { url: "/api/funtimes/comments", body: new URLSearchParams({ action: "edit", id, [field === "alias" ? "alias" : "body"]: value }) }
+    : { url: "/api/funtimes/review-quick", body: new URLSearchParams({ id, field, value }) };
+}
