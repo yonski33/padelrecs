@@ -1,5 +1,5 @@
-// The product header's spec pills (owner 2026-11-24, PadelRecs and PickleballRecs): after the style, feel and level tags, the
-// catalogue's own specs as quieter outline pills. Catalogue fields only: an empty field, a field that lists several options
+// The product header's spec line (owner 2026-11-24, PadelRecs and PickleballRecs): under the style, feel and level tags, the
+// catalogue's own specs as one grey line, joined by middle dots. Catalogue fields only: an empty field, a field that lists several options
 // ("Hybrid, Widebody, or Elongated") or one too long for a pill is skipped, never guessed. A note in brackets is dropped
 // ("MLD Black EVA (multilayer)" → "MLD Black EVA"). Pure, so tests feed plain rows.
 //   - Padel: shape, core, surface, weight, model year.
@@ -13,7 +13,7 @@ const clean = (v: string | null | undefined) => { const t = (v ?? "").replace(/\
 
 export function specPills(site: string, r: SpecRow): string[] {
   const shape = clean(oneShape(r.shape ?? null));
-  if (site === "padel") return [shape, clean(r.core), clean(r.surface), clean(r.weight), r.year ? `${r.year} model` : null].filter((x): x is string => !!x);
+  if (site === "padel") return [shape, clean(r.core), clean(r.surface), clean(r.weight), r.year ? String(r.year) : null].filter((x): x is string => !!x);
   if (site === "pickleball") { const core = clean(r.core);
     return [shape, core ? (/\bmm\b/.test(core) ? `${core} core` : core) : null, clean(r.surface)].filter((x): x is string => !!x); }
   return [];

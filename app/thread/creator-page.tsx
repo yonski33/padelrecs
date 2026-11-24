@@ -192,7 +192,7 @@ export async function CreatorProductBody({ slug }: { slug: string }) {
   const tags = (SKIN ? [r.shape, skinAttrs?.facts.fragrance_free === "free" ? "Fragrance free" : null, skinTex ? `${skinTex} texture` : null]
     : PLAIN || LT ? [r.shape]
     : [style ? STYLE_WORD[style] : null, row?.feel ? `${row.feel} feel` : null, level ? `${level[0]!.toUpperCase()}${level.slice(1)}` : null]).filter((x): x is string => !!x);
-  // The catalogue's specs as quieter outline pills after the tags (owner 2026-11-24, padel and pickleball).
+  // The catalogue's specs as a plain grey line under the tags (owner 2026-11-24, padel and pickleball).
   const specs = specPills(niche.id, r);
   // Two + points and one - point (owner 2026-11-22), the likes and concerns backed by 2+ reviews.
   const plus = agree.likes.slice(0, 2), minus = agree.concerns[0] ?? null;
@@ -242,8 +242,9 @@ export async function CreatorProductBody({ slug }: { slug: string }) {
         <div className="thc-photo">{pic ? <img src={pic} alt={name}/> : <span className="th-ph" aria-hidden="true"/>}</div>
         <div className="thc-head-m">
           <h1>{name}</h1>
-          {(tags.length > 0 || specs.length > 0) && <span className="thc-tags">{tags.map((t, k) => <span key={t} className={k === 0 && (style || SKIN) ? "on" : undefined}>{t}</span>)}
-            {specs.map(t => <span key={`s:${t}`} className="spec">{t}</span>)}</span>}
+          {tags.length > 0 && <span className="thc-tags">{tags.map((t, k) => <span key={t} className={k === 0 && (style || SKIN) ? "on" : undefined}>{t}</span>)}</span>}
+          {/* The catalogue's specs as one plain grey line under the tags (owner 2026-11-24: pills were too busy). */}
+          {specs.length > 0 && <span className="thc-specline">{specs.join(" · ")}</span>}
           {(tldr || plus.length > 0 || minus) && <div className="thc-tldr">
             <span className="thc-tldr-h"><b>TL;DR</b><span>{`From ${plural(rs.length, "review")}`}</span></span>
             {tldr && <span className="thc-tldr-t">{yc ? <MentionsProvider {...mxProps}><MentionText text={tldr}/></MentionsProvider> : tldr}</span>}

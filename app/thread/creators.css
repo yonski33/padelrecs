@@ -632,5 +632,5 @@ body:has(.thc) .thc .thc-pbox-on a, body:has(.thc) .thc .thc-sim-aff a { color: 
 .thc-pbox-more summary { cursor: pointer; font-size: 13.5px; font-weight: 600; padding: 6px 0 2px; color: var(--muted); }
 /* Padel's longest attribute word ("Maneuverability") breaks with a hyphen instead of running into the line beside it. */
 .thc-grade strong { min-width: 0; overflow-wrap: anywhere; hyphens: auto; }
-/* Spec pills (owner 2026-11-24): after the tags, quieter: thin muted outline, regular weight, no fill. */
-.thc-tags > span.spec, .thc-v19 .thc-hd4 .thc-tags > span.spec { font-weight: 500; border-width: 1px; border-color: color-mix(in oklch, currentColor 30%, transparent); background: transparent; color: var(--muted, #5b5b5b); }
+/* The spec line (owner 2026-11-24): plain small grey text under the tags, wrapping as text. */
+.thc-specline { display: block; font-size: 13px; line-height: 1.45; color: var(--h4-muted, var(--muted, #5b5b5b)); margin-top: -2px; }
