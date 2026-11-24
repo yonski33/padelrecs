@@ -90,7 +90,7 @@ test("laptop page text: TL;DRs and wrap-ups cover most listed products and keep 
   const text = JSON.stringify([t, w]);
   assert.doesNotMatch(text, /[—–]/);
   assert.doesNotMatch(text, /\bverdict\b/i);
-  assert.doesNotMatch(text, /\b(we|us|our)\b/i);
+  assert.doesNotMatch(text, /\b(we|us|our|We|Our)\b/); // "US" (the country) is fine
   // The other sites' entries are untouched by the laptop ones.
   assert.ok(Object.keys((tldrs as Record<string, unknown>).pickleball as object).length > 0);
 });
