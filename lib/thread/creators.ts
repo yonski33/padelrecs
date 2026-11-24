@@ -211,7 +211,8 @@ export function marks(text: string, hs: string[]): { t: string; on: boolean }[] 
  *  quote, its take as the summary, its own tags, no Stood out / Trade-off / Compared to, no chapters, no attribute words).
  *  `handle` and `tags` ride along for the card. UNVERIFIED like the takes themselves (page.tiktok.unverified). */
 export type ReviewEntry = CreatorReview & { handle?: string; tags?: string[]; cover?: string | null;
-  /** The maker turned embedding off: the thumbnail opens the original in a new tab (live/video-overlay.tsx). */ noEmbed?: boolean };
+  /** The maker turned embedding off: the thumbnail opens the original in a new tab (live/video-overlay.tsx). */ noEmbed?: boolean;
+  /** Who this reviewer says the paddle suits, and why (db/creators/best-for.json, 2026-11-23). */ bestFor?: { who: string; why: string } | null };
 export const takeAsReview = (t: TikTokTake): ReviewEntry => ({
   id: `tt-${t.id}`, creator: t.creator, kind: "tiktok", type: "review", url: t.url, channel: `https://www.tiktok.com/${t.handle}`,
   lang: "en", date: t.date, video: null, len: t.len, chapters: [], quote: t.quote, quoteAt: null, stance: t.stance,

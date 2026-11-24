@@ -607,3 +607,16 @@ body:has(.thc) .thc-v19 .thc-hd4 .thc-pbox a.thc-cta.wide { background: var(--h4
   .thc-v19 .thc-hd4 .thc-head-m { padding: 20px 18px; } .thc-v19 .thc-hd4 .thc-head-r { padding: 20px 18px; }
   .thc-v19 .thc-hd4 h1 { font-size: calc(var(--h4-name-size) * .8); }
 }
+/* Similar paddles mentioned (owner 2026-11-23): reviewer names link to their cards; mention-only paddles under "Also mentioned". */
+body:has(.thc) .thc a.thc-men-n, body:has(.thc) .thc a.thc-men-ph { text-decoration: none; color: inherit; }
+body:has(.thc) .thc a.thc-men-n:hover strong { text-decoration: underline; }
+body:has(.thc) .thc a.thc-men-by { color: var(--ink); font-weight: 700; text-decoration: underline; text-underline-offset: 2px; }
+.thc-men-also { padding: 10px 16px 4px; border-top: 1px solid var(--rule); font-size: 11px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); }
+.thc-men-also + .thc-men { border-top: 0; }
+/* The affiliate note under an affiliate shop button or price link, every site (owner 2026-11-23). */
+.thc-pbox-on { display: block; text-align: center; font-size: 12.5px; line-height: 1.45; color: var(--muted); }
+body:has(.thc) .thc .thc-pbox-on a, body:has(.thc) .thc .thc-sim-aff a { color: inherit; text-decoration: underline; }
+.thc-sim-aff { display: block; margin-top: 12px; font-size: 12.5px; color: var(--muted); }
+/* Best for (owner 2026-11-23): the reviewer's reason under who it suits. */
+.thc-box.best b, .thc-box.best .thc-box-h span { color: var(--ink); }
+.thc .thc-box-s { font-size: 14px; line-height: 1.45; color: var(--body2, var(--muted)); }

@@ -4,15 +4,32 @@
 // word here). Lists not named here keep their own rule. Pure, so tests feed plain inputs.
 
 export type ListOrder = {
-  order: "votes" | "loved" | "curated";
-  /** The "How does it play?" answer this list counts (plays_like: power, control). */ option?: string;
+  /** "keep": the list keeps its own order and only its row tag follows the list (PickleballRecs beginners). */
+  order: "votes" | "loved" | "curated" | "keep";
+  /** The vote group this list counts (default plays_like) and the answer in it (power, control, lots, very, beginner). */ trait?: string; option?: string;
+  /** The row tag's words: "Most picked for <word> · N players" (default: the plays_like words). */ word?: string;
   /** "all": every racket that passes the floors below; "curated": the curated top 10, reordered. */ pool?: "all" | "curated";
+  /** "loved" lists: "season" (default) is this year's models only; "current" is each model's current year (PickleballRecs:
+   *  its catalogue mixes 2024-2026 models). */ years?: "season" | "current";
 };
 export const LIST_ORDER: Record<string, Record<string, ListOrder>> = {
   padel: {
     "best-power-padel-rackets": { order: "votes", option: "power", pool: "all" },
     "best-control-padel-rackets": { order: "votes", option: "control", pool: "all" },
     "best-padel-rackets": { order: "loved" },
+  },
+  // PickleballRecs (owner 2026-11-23, "do the same like we did on padel"): each list by the votes for its own answer, and
+  // each row tagged with that list's count, never another trait ("Lots of spin" sat on every list). Beginner votes are too
+  // thin to rank by (4 paddles have more beginner than advanced votes), so that list keeps its order with a beginner tag.
+  pickleball: {
+    "best-power-pickleball-paddles": { order: "votes", trait: "plays_like", option: "power", word: "power", pool: "all" },
+    "best-control-pickleball-paddles": { order: "votes", trait: "plays_like", option: "control", word: "control", pool: "all" },
+    "best-spin-pickleball-paddles": { order: "votes", trait: "spin", option: "lots", word: "spin", pool: "all" },
+    "best-pickleball-paddles-for-tennis-elbow": { order: "votes", trait: "arm", option: "very", word: "arm comfort", pool: "all" },
+    "best-pickleball-paddles-for-beginners": { order: "keep", trait: "level", option: "beginner", word: "beginners" },
+    "best-pickleball-paddles": { order: "loved", years: "current" },
+    "best-elongated-pickleball-paddles": { order: "loved", years: "current" },
+    "best-hybrid-pickleball-paddles": { order: "loved", years: "current" },
   },
   // SimRacingRecs (v3 rollout 2026-11-21): Best overall by most loved, like padel; the rest keep their order.
   simracing: { "best-sim-racing-gear": { order: "loved" } },
@@ -47,10 +64,25 @@ export function voteOrder(xs: VoteCandidate[], option: string, cfg = VOTE_ORDER)
 
 export type LovedCandidate = { id: string; name: string; family: string; year: number; reviews: number; loved: number; mixed: number; notForMe: number };
 /** The list's ids by "loved" count: the season's year only, the review floor, one row per model, then the order above. */
-export function lovedOrder(xs: LovedCandidate[], year: number, cfg = LOVED_ORDER): string[] {
+export function lovedOrder(xs: LovedCandidate[], year: number | null, cfg = LOVED_ORDER): string[] {
   const share = (x: LovedCandidate) => { const t = x.loved + x.mixed + x.notForMe; return t ? x.loved / t : 0; };
   const best = new Map<string, LovedCandidate>();
-  for (const x of xs) if (x.year === year && x.reviews >= cfg.minReviews) { const b = best.get(x.family); if (!b || x.loved > b.loved) best.set(x.family, x); }
+  for (const x of xs) if ((year === null || x.year === year) && x.reviews >= cfg.minReviews) { const b = best.get(x.family); if (!b || x.loved > b.loved) best.set(x.family, x); }
   return [...best.values()].sort((a, b) => b.loved - a.loved || share(b) - share(a) || b.reviews - a.reviews || a.name.localeCompare(b.name))
     .slice(0, cfg.size).map(x => x.id);
+}
+
+/** The row tag a list gives each row, from that list's own count (PickleballRecs, owner 2026-11-23):
+ *  - "votes": "Most picked for spin · 157 players" where the answer leads the paddle's group with 5+ (the pill rule).
+ *  - "keep": "Picked for beginners · 81 players" with 5+ (the answer need not lead).
+ *  - "loved": "Loved by 266 players".
+ *  Null: no tag (never another trait's). Undefined: the list has no rule here, so the site's usual pill stays. */
+export function listPill(o: ListOrder | null, groups: Record<string, Record<string, number>>, loved: number, people = "players"): string | null | undefined {
+  if (!o || o.order === "curated") return undefined;
+  const n = (k: number) => `${k} ${k === 1 ? people.replace(/s$/, "") : people}`;
+  if (o.order === "loved") return loved > 0 ? `Loved by ${n(loved)}` : null;
+  const g = groups[o.trait ?? VOTE_ORDER.trait] ?? {}, v = g[o.option ?? ""] ?? 0, word = o.word ?? o.option;
+  if (v < 5) return null;
+  if (o.order === "keep") return `Picked for ${word} · ${n(v)}`;
+  return Object.entries(g).every(([k, x]) => k === o.option || v > x) ? `Most picked for ${word} · ${n(v)}` : null;
 }

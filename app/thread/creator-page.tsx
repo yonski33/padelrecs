@@ -8,7 +8,7 @@
 // Data: db/creators/<site>.json (lib/thread/creator-data.ts), a static demo fixture; the photo, specs and shop link are the
 // product's own (racketData). Words, never invented scores; a number only where the creator published one; no prices
 // (none are stored yet); no Reddit card (no Reddit data staged for these paddles yet).
-import type { ReactNode } from "react";
+import { Fragment, type ReactNode } from "react";
 import { Shell } from "./shell";
 import { racketData } from "./racket-data";
 import { threadRows, skinOf } from "./data";
@@ -28,8 +28,13 @@ import { threadTitle } from "../../lib/thread/web-sources";
 import roundups from "../../db/creators/reddit-roundups.json";
 import wrapups from "../../db/creators/reviewer-wrapups.json";
 import tldrs from "../../db/creators/tldrs.json";
+import compareLines from "../../db/creators/compare-lines.json";
+import aliases from "../../db/creators/aliases.json";
+import bestFor from "../../db/creators/best-for.json";
 import { creatorPageFor, CREATOR_VIEW, CREATOR_MIN_REVIEWS, creatorPageOn } from "../../lib/thread/sites";
 import { Avatar, CreatorReviews } from "./live/creator-reviews";
+import { MentionsProvider, type MentionTarget } from "./live/mention-links";
+import { mentionIndex, namedIds, type MentionAliases } from "../../lib/thread/mention-links";
 import { Comments } from "./live/comments";
 import { th } from "../../lib/thread/look";
 import { PollCard } from "./live/racket-v7b";
@@ -79,7 +84,10 @@ export async function CreatorProductBody({ slug }: { slug: string }) {
   const [page, d] = await Promise.all([creatorPage(niche.id, slug), racketData(slug)]);
   if (!page || !d) return null;
   // Reviews include the TikTok takes (owner 2026-11-22): `rs` counts one per reviewer, `feed` holds every card.
-  const { feed, counted: rs } = reviewLists(page);
+  const { feed: feed0, counted: rs } = reviewLists(page);
+  // Best for, per review (db/creators/best-for.json): written from what each reviewer says the paddle suits.
+  const bf = (bestFor as Record<string, Record<string, { who: string; why: string }>>)[niche.id] ?? {};
+  const feed = feed0.map(x => bf[x.id] ? { ...x, bestFor: bf[x.id] } : x);
   // Under CREATOR_MIN_REVIEWS reviews the product keeps its usual page.
   if (rs.length < CREATOR_MIN_REVIEWS) return null;
   const { r, row, brand, style, sim, cards } = d;
@@ -165,7 +173,25 @@ export async function CreatorProductBody({ slug }: { slug: string }) {
   const amzRow = buy.find(o => o.shop === "Amazon" && o.checkedAt);
   const amazonAsOf = amzRow ? new Date(amzRow.checkedAt!).toLocaleString("en-US", { month: "short", day: "numeric", hour: "numeric", minute: "2-digit", timeZone: "UTC" }) : null;
   // Similar paddles mentioned: other catalogue paddles the reviews name, with their lowest stored price.
-  const named = mentions(rs, allRows, r.id).map(m => ({ ...m, href: m.row.href, price: staged[m.row.slug]?.price ?? null }));
+  // Each one's line compares it with this paddle, from its own side (owner 2026-11-23, db/creators/compare-lines.json: written
+  // from the review sentences that name both, checked by a second reader); with no real comparison, its usual one-liner.
+  const cmp = (compareLines as Record<string, Record<string, Record<string, { line: string; n: number; by?: string[] }>>>)[niche.id]?.[slug] ?? {};
+  // The reviewers behind each line, named and linked to their card on this page (owner 2026-11-23: "per PickleballStudio").
+  const byId = new Map(feed.map(x => [x.id, x.creator]));
+  const named = mentions(rs, allRows, r.id).map(m => { const c = cmp[m.row.slug];
+    const by = (c?.by ?? []).filter(id => byId.has(id)).map(id => ({ id, name: byId.get(id)! })).filter((b, i, a) => a.findIndex(y => y.name === b.name) === i);
+    return { ...m, href: m.row.href, price: staged[m.row.slug]?.price ?? null, vs: c?.line ?? null, vsN: c?.n ?? 0, by }; });
+  // Paddles compared first; ones the reviews only name go under "Also mentioned" at the bottom (owner 2026-11-23).
+  const namedVs = named.filter(m => m.vs), namedAlso = named.filter(m => !m.vs);
+
+  // Paddle mentions as links in the review cards (owner 2026-11-23): the catalogue's unique names, only the ones these
+  // reviews use (and this paddle's own, which claims its text but never links) go to the browser.
+  const mxAll = mentionIndex(allRows, (aliases as unknown as Record<string, MentionAliases>)[niche.id] ?? {}), mxIds = namedIds(feed.flatMap(x => [x.summary, x.more, x.compared]), mxAll, r.id);
+  const mxIndex = mxAll.filter(k => k.id === r.id || mxIds.includes(k.id));
+  const mxTargets: Record<string, MentionTarget> = Object.fromEntries(mxIds.flatMap(id => { const x = allRows.find(y => y.id === id); if (!x) return [];
+    const votes = x.pos + x.mix + x.neg;
+    return [[id, { id, slug: x.slug, name: withoutYear(x.name), href: th(x.href), pic: x.pic ?? null, loved: votes ? Math.round(100 * x.pos / votes) : null, votes,
+      price: staged[x.slug]?.price?.usd ?? null }]]; }));
 
   return <Shell active="rackets">
     <JsonLd data={ld}/>
@@ -205,7 +231,8 @@ export async function CreatorProductBody({ slug }: { slug: string }) {
                 its "(brand store)" note left off), or on SkinRecs "Amazon ›". */}
             {cta && <a className="thc-cta wide" href={cta.url} target="_blank" rel={cta.rel}>{top ? `${shortShop(top.shop)} ›` : SKIN && shop ? `${shop.where} ›` : "Check price ↗"}</a>}
             {/* The affiliate note under the shop button (owner 2026-11-23), linking to the site's disclosure page. */}
-            {SKIN && !low && shop && <span className="thc-pbox-on">{shop.rel.includes("sponsored")
+            {/* Every site (owner 2026-11-23: "place affiliate note below any amazon link"); skin also names the shop otherwise. */}
+            {!low && shop && (SKIN || shop.rel.includes("sponsored")) && <span className="thc-pbox-on">{shop.rel.includes("sponsored")
               ? <>{`Affiliate link: ${niche.site.name} may earn a small commission. `}<a href={th("/affiliate-disclosure")}>Learn more</a></> : `on ${shop.where}`}</span>}
 
             {/* The button's own shop is not listed again below it (owner 2026-11-23). */}
@@ -276,15 +303,23 @@ export async function CreatorProductBody({ slug }: { slug: string }) {
             </section>}
             {named.length > 0 && <section className="thc-box1 flush">
               <div className="thc-h rule"><strong>{`Similar ${niche.words.many} mentioned`}</strong><span>In these reviews</span></div>
-              {named.map(m => <a key={m.row.id} className="thc-men" href={th(m.href)}>
-                <span className="thc-men-ph">{m.row.pic ? <img src={m.row.pic} alt="" loading="lazy"/> : null}</span>
-                <span><strong>{withoutYear(m.row.name)}</strong>{m.row.line && <span>{m.row.line}</span>}
-                  <small>{`Mentioned in ${plural(m.n, "review")}${m.price ? ` · from ${usd(m.price.usd)}` : ""}`}</small></span></a>)}
+              {/* A row: the photo and name link to the paddle; the reviewers' names link to their cards here. */}
+              {[...namedVs, ...namedAlso].map((m, i) => <Fragment key={m.row.id}>
+                {i === namedVs.length && namedVs.length > 0 && <div className="thc-men-also">Also mentioned</div>}
+                <div className="thc-men">
+                  <a className="thc-men-ph" href={th(m.href)} aria-hidden="true" tabIndex={-1}>{m.row.pic ? <img src={m.row.pic} alt="" loading="lazy"/> : null}</a>
+                  <span><a className="thc-men-n" href={th(m.href)}><strong>{withoutYear(m.row.name)}</strong></a>
+                    {m.vs ? <span>{m.vs}{m.by.length > 0 && <>{", per "}{m.by.map((b, j) => <Fragment key={b.id}>{j > 0 && (j === m.by.length - 1 ? " and " : ", ")}<a className="thc-men-by" href={`#cr-${b.id}`}>{b.name}</a></Fragment>)}{" ↓"}</>}</span>
+                      : m.row.line && <span>{m.row.line}</span>}
+                    <small>{`${m.vs ? `Compared in ${plural(m.by.length || m.vsN || m.n, "review")}` : `Mentioned in ${plural(m.n, "review")}`}${m.price ? ` · from ${usd(m.price.usd)}` : ""}`}</small></span>
+                </div></Fragment>)}
             </section>}
           </StickyCol>
         </div>
 
-        <CreatorReviews reviews={feed} count={rs.length} roundup={null}/>
+        <MentionsProvider index={mxIndex} targets={mxTargets} selfId={r.id} selfSlug={slug} unit={W.people} noun={niche.words.one}>
+          <CreatorReviews reviews={feed} count={rs.length} roundup={null}/>
+        </MentionsProvider>
 
         {/* Comments (the mock's section 7): the site's own discussion for this paddle, the same thread as its product page. */}
         <section className="thc-sec2 thc-comments"><Comments page={`racket:${r.id}`} title="Discussion" avatars nicknames={niche.form.quickVote?.nicknames ?? []}/></section>
@@ -302,6 +337,8 @@ export async function CreatorProductBody({ slug }: { slug: string }) {
               <span className="thc-sim-f">{price ? <a className="thc-mono" href={price.url} target="_blank" rel={price.rel}>{price.label}</a>
                 : <a href={th(href)}>{`See the ${niche.words.one} →`}</a>}</span>
             </div>; })}</div>
+          {/* Under any affiliate price link here too (owner 2026-11-23). */}
+          {similar.some(x => x.price?.rel.includes("sponsored")) && <span className="thc-note thc-sim-aff">{`Some price links are affiliate links: ${niche.site.name} may earn a small commission. `}<a href={th("/affiliate-disclosure")}>Learn more</a></span>}
         </section>}
       </main>
     </div>
