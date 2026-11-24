@@ -7,6 +7,8 @@
 # StackRecs (owner 2026-11-19): previews on request ([preview stackrecs]); on the merge builds since launch (owner OK 2026-11-20).
 # AudioRecs (owner design handoff 2026-11-21, its Thread switch): previews and merge builds again. Its Vercel project needs
 # Git reconnected first (it was disconnected with the frozen sites on 2026-11-16).
+# LaptopRecs (owner 2026-11-24, onto the PickleballRecs template, #683): previews and merge builds again. Its Vercel project
+# needs Git reconnected first, as AudioRecs' did.
 # Previews (owner 2026-11-16, Vercel cost): only on request, padel included: a branch named preview/… or a commit message
 # with [preview] builds PadelRecs' preview, "[preview tennis skin]" those kept sites' too; every other push to a pull request
 # builds nothing.
@@ -16,12 +18,12 @@ if [ "$VERCEL_ENV" = "preview" ]; then
   case "$VERCEL_GIT_COMMIT_MESSAGE" in *"[preview]"*) asked=1;; esac
   # Other kept sites on request too: "[preview tennis simracing]" builds those sites' previews (and padel's).
   extra=$(printf '%s' "$VERCEL_GIT_COMMIT_MESSAGE" | sed -n 's/.*\[preview \([a-z ]*\)\].*/\1/p')
-  case " $extra " in *" $NICHE "*) case " padel pickleball tennis simracing discgolf skin coffee stackrecs audio " in *" $NICHE "*) asked=1; named=1;; esac;; esac
+  case " $extra " in *" $NICHE "*) case " padel pickleball tennis simracing discgolf skin coffee stackrecs audio laptop " in *" $NICHE "*) asked=1; named=1;; esac;; esac
   if [ -z "$asked" ]; then echo "Preview not requested (branch preview/… or [preview] in the commit message); skipping $NICHE."; exit 0; fi
   if [ "$NICHE" != "padel" ] && [ -z "$named" ]; then echo "Preview builds run on padelrecs only unless named ([preview $NICHE]); skipping $NICHE."; exit 0; fi
   exit 1
 fi
-case " padel pickleball tennis simracing discgolf skin coffee stackrecs audio " in *" $NICHE "*) ;; *)
+case " padel pickleball tennis simracing discgolf skin coffee stackrecs audio laptop " in *" $NICHE "*) ;; *)
   echo "Frozen site: skipping $NICHE (active sites only, owner 2026-11-15)."; exit 0;; esac
 
 # Production merges (owner 2026-11-23, Vercel cost: ~50 merges a day x 9 sites): build only the sites a merge can change.
@@ -42,7 +44,7 @@ files=$(git diff --name-only "$prev" "$cur" 2>/dev/null) || exit 1
 if [ -z "$files" ]; then exit 1; fi
 tok() { # print the active site a path belongs to, "many" for two or more, nothing for shared
   hit=""
-  for n in padel pickleball tennis simracing discgolf skin coffee stackrecs audio; do
+  for n in padel pickleball tennis simracing discgolf skin coffee stackrecs audio laptop; do
     case "$n" in simracing) re='simracing|sim';; skin) re='skin|skinrecs';; *) re="$n|${n}recs";; esac
     if printf '%s' "$1" | grep -Eq "(^|[/._-])($re)([/._-]|$)"; then [ -n "$hit" ] && { echo many; return; }; hit=$n; fi
   done
