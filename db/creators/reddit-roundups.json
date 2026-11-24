@@ -6145,5 +6145,895 @@
     }
    ]
   }
+ },
+ "discgolf": {
+  "axiom-crave": {
+   "posts": 333,
+   "threads": 136,
+   "at": "2026-11-10",
+   "headline": "Players like the straight, far-flying Crave, but flippiness and run variation frustrate some",
+   "tags": [
+    {
+     "tone": "pos",
+     "text": "Straight and holds lines",
+     "n": 4
+    },
+    {
+     "tone": "pos",
+     "text": "Flies farther than 6.5 speed",
+     "n": 3
+    },
+    {
+     "tone": "pos",
+     "text": "Good for forehand",
+     "n": 3
+    },
+    {
+     "tone": "neg",
+     "text": "Gets flippy as it beats in",
+     "n": 3
+    },
+    {
+     "tone": "neg",
+     "text": "Varies by run and weight",
+     "n": 3
+    }
+   ],
+   "paras": [
+    "Players mostly like the Crave for holding straight lines, easy hyzer flips, a usable forehand and distance well beyond its 6.5 speed. They disagree on stability: some say it gets flippier as it beats in, others find it stable, and opinions on which plastic is more understable conflict. Many also note that runs and weights differ a lot.",
+    "One player says the 6.5 speed is misleading because \"craves fly silly far\". Another says Craves \"beat in too fast and get too flippy\". Another calls it a go-to disc that will \"hold any line I put it\". One player compares two weights and finds the heavier one \"much straighter and more torque-resistant\" than the lighter one."
+   ],
+   "highlights": [
+    {
+     "text": "craves fly silly far",
+     "url": "https://www.reddit.com/r/discgolf/comments/y1ntcs/fullon_convert_bag_building_has_slowly_started/iryu598/"
+    },
+    {
+     "text": "beat in too fast and get too flippy",
+     "url": "https://www.reddit.com/r/discgolf/comments/1xi09dv/most_disliked_discs/19rzyf7e0o94y/"
+    },
+    {
+     "text": "hold any line I put it",
+     "url": "https://www.reddit.com/r/discgolf/comments/10l44vh/whats_a_disc_that_upon_acquiring_went_directly_in/j5ulwua/"
+    },
+    {
+     "text": "much straighter and more torque-resistant",
+     "url": "https://www.reddit.com/r/discgolf/comments/z4re3v/new_pick_ups_probs_lack_the_arm_speedstrength_to/ixt7ba1/"
+    }
+   ]
+  },
+  "innova-wraith": {
+   "posts": 317,
+   "threads": 176,
+   "at": "2026-11-11",
+   "headline": "Reliable distance driver for many, but stability swings widely by plastic and wear",
+   "tags": [
+    {
+     "tone": "pos",
+     "text": "Beats in to flip with tree hits",
+     "n": 3
+    },
+    {
+     "tone": "pos",
+     "text": "Halo is dependable in wind",
+     "n": 2
+    },
+    {
+     "tone": "neg",
+     "text": "Stability varies by plastic and disc",
+     "n": 3
+    },
+    {
+     "tone": "neg",
+     "text": "Too flippy for some",
+     "n": 3
+    }
+   ],
+   "paras": [
+    "Players mostly treat it as a favorite distance and forehand driver that flips more as it beats in. Pro, DX, GStar and I-Blend discs run flippy, while Star, Champion and Halo discs run stable, with Halo often kept for wind. Players split on stability: some find the mold too flippy, and others find individual discs too stable, and many bag several in different plastics to cover the range.",
+    "One player says every Wraith they have had flies differently than the last, and another bags a Halo and a GStar for different stability. One player calls their pop top Halo Wraith the most dependable disc in the wind that they have thrown, and another keeps a Halo for strong headwinds because it is very hard to flip. On the other side, one player finds Wraiths all just wayyyy too flippy, and another found the I-Blend flippy almost uselessly fast after starting as a bomber."
+   ],
+   "highlights": [
+    {
+     "text": "flies differently than the last",
+     "url": "https://www.reddit.com/r/discgolf/comments/1iavd8r/what_do_you_look_for_in_a_wraith/m9dmeif/"
+    },
+    {
+     "text": "the most dependable disc in the wind",
+     "url": "https://www.reddit.com/r/discgolf/comments/1iavd8r/what_do_you_look_for_in_a_wraith/m9dip8h/"
+    },
+    {
+     "text": "all just wayyyy too flippy",
+     "url": "https://www.reddit.com/r/discgolf/comments/1w9f6hu/everyone_suggests_star_wraiths_as_easier/p89zvag/"
+    }
+   ]
+  },
+  "westside-harp": {
+   "posts": 284,
+   "threads": 116,
+   "at": "2026-10-29",
+   "headline": "Players trust it as an approach disc, deep rim and quick beat-in divide them",
+   "tags": [
+    {
+     "tone": "pos",
+     "text": "Reliable approach disc",
+     "n": 3
+    },
+    {
+     "tone": "pos",
+     "text": "Flies like a Zone",
+     "n": 3
+    },
+    {
+     "tone": "pos",
+     "text": "Soft plastics land and stick",
+     "n": 2
+    },
+    {
+     "tone": "neg",
+     "text": "Deep rim hurts some releases",
+     "n": 3
+    },
+    {
+     "tone": "neg",
+     "text": "BT plastics beat in quickly",
+     "n": 3
+    }
+   ],
+   "paras": [
+    "Players mostly agree the Harp is a dependable overstable approach disc, and many compare it with the Discraft Zone, calling the flight close to the same. Plastics are where opinions split: soft BT versions stick where they land, while BT plastics in general beat in fairly quickly and turn straighter. The deep rim is the other divider, loved by some and a problem for others.",
+    "One player calls it the main approach disc for forehand and backhand and has carried it since the first rounds of play. Another gets a very straight flight with a light fade once beaten in. A third likes the soft versions because they stick like a magnet. On the other side, one player says the deep rim \"made me have release point issues numerous times\", and another found a BT Soft beat in quickly, saying it didn't take long to beat the OS out of it."
+   ],
+   "highlights": [
+    {
+     "text": "stick like a magnet",
+     "url": "https://www.reddit.com/r/discgolf/comments/p9hcjn/harp_plastics/h9xrujr/"
+    },
+    {
+     "text": "made me have release point issues numerous times",
+     "url": "https://www.reddit.com/r/discgolf/comments/zohs8b/just_picked_up_a_dd_culprit_proto_to_replace_my/"
+    },
+    {
+     "text": "beat the OS out of it",
+     "url": "https://www.reddit.com/r/discgolf/comments/5tqjiu/is_there_a_understable_putter_that_feels_like_a/ddoe09p/"
+    }
+   ]
+  },
+  "kastaplast-berg": {
+   "posts": 234,
+   "threads": 112,
+   "at": "2026-10-21",
+   "headline": "Players like it for straight, sit-down approaches and wind; many dislike the hand feel",
+   "tags": [
+    {
+     "tone": "pos",
+     "text": "Sits down near the basket",
+     "n": 3
+    },
+    {
+     "tone": "pos",
+     "text": "Good in wind",
+     "n": 3
+    },
+    {
+     "tone": "neg",
+     "text": "Hand feel puts some off",
+     "n": 4
+    },
+    {
+     "tone": "neg",
+     "text": "Short on distance",
+     "n": 3
+    }
+   ],
+   "paras": [
+    "Players mostly agree the Berg flies straight, has almost no glide and sits down where it lands, which makes it a go-to for approaches, short forehands and windy days. The split is over feel and distance: some cannot stand the hand feel, and others find it goes too short unless thrown hard, while some treat the short range as the point.",
+    "One player says \"the Berg is king\" when it is really windy, and another says \"the berg getting no distance is a feature, not a bug.\" A newer player calls a K1 Soft one a \"legit cheat code\" for forehand. Another says \"I just hate how it feels in my hand.\" One player compares a 9 speed disc thrown up to 310 feet with the Berg going about 160 feet."
+   ],
+   "highlights": [
+    {
+     "text": "the Berg is king",
+     "url": "https://www.reddit.com/r/discgolf/comments/1x5d87w/anyone_else_kind_of_hate_the_berg/pgmsol6/"
+    },
+    {
+     "text": "the berg getting no distance is a feature, not a bug",
+     "url": "https://www.reddit.com/r/discgolf/comments/1oiqlah/best_approach_discs_that_will_die/nlxyi6t/"
+    },
+    {
+     "text": "legit cheat code",
+     "url": "https://www.reddit.com/r/discgolf/comments/1und0qd/forehand_approach/ovjs1bl/"
+    },
+    {
+     "text": "I just hate how it feels in my hand",
+     "url": "https://www.reddit.com/r/discgolf/comments/vxayjk/what_is_the_most_disliked_disc_from_each/ifvf7d1/"
+    }
+   ]
+  },
+  "innova-mako3": {
+   "posts": 221,
+   "threads": 136,
+   "at": "2026-11-07",
+   "headline": "Players call it a straight, honest mid for learning, but it punishes bad angles",
+   "tags": [
+    {
+     "tone": "pos",
+     "text": "Holds the line you throw",
+     "n": 3
+    },
+    {
+     "tone": "pos",
+     "text": "Good for learning form",
+     "n": 2
+    },
+    {
+     "tone": "neg",
+     "text": "No reliable fade",
+     "n": 2
+    }
+   ],
+   "paras": [
+    "Players mostly agree it flies dead straight when thrown flat and holds whatever angle it is released on. Some use it to learn angle control, and some say that same trait is a weakness because it gives no reliable fade and punishes bad angles.",
+    "One player says it is a perfect disc to learn throwing technique, angle manipulation and nose angle because of the instant feedback. Another knows it will always turn right when they put some strength behind it, and eases off the power to keep it straight."
+   ],
+   "highlights": [
+    {
+     "text": "flies dead straight",
+     "url": "https://www.reddit.com/r/discgolf/comments/1ogu424/midrange_disc_suggestion_for_a_beginner/nlji530/"
+    },
+    {
+     "text": "it will always turn right",
+     "url": "https://www.reddit.com/r/discgolf/comments/15cm3es/mako3_frustration/jtxkiuw/"
+    }
+   ]
+  },
+  "axiom-hex": {
+   "posts": 187,
+   "threads": 101,
+   "at": "2026-10-29",
+   "headline": "Players love the straight, comfortable Hex; stability varies by plastic and run",
+   "tags": [
+    {
+     "tone": "pos",
+     "text": "Straight and reliable",
+     "n": 3
+    },
+    {
+     "tone": "pos",
+     "text": "Comfortable shallow rim",
+     "n": 2
+    },
+    {
+     "tone": "neg",
+     "text": "Stability varies by plastic and run",
+     "n": 4
+    },
+    {
+     "tone": "neg",
+     "text": "More fade than expected",
+     "n": 2
+    }
+   ],
+   "paras": [
+    "Players mostly agree the Hex is a straight, shallow, comfortable mid, often compared with the Buzzz, and several prefer it for feel. Takes split on stability: some find it borderline overstable, others find one run super understable, and glow plastics and different runs are often reported as more overstable than Neutron. Some find it beats in straighter over time, and a few say it has more fade than the reputation suggests.",
+    "One player calls a Neutron Hex an extremely reliable straight flyer and now bags three different Hexes. Another says their Hex has a lot of fade despite everyone calling it straight. One player finds their fission hex goes true to the flight numbers while an Eclipse fades hard. Another switched back to a Buzzz because the Hex felt too shallow."
+   ],
+   "highlights": [
+    {
+     "text": "extremely reliable straight flyer",
+     "url": "https://www.reddit.com/r/discgolf/comments/1wxl2ln/1_whats_the_latest_disc_to_have_earned_a_spot_in/pduv7ra/"
+    },
+    {
+     "text": "fission hex goes true to the flight numbers",
+     "url": "https://www.reddit.com/r/discgolf/comments/18eheuu/slightly_os_mid/kcpl6j3/"
+    }
+   ]
+  },
+  "innova-destroyer": {
+   "posts": 184,
+   "threads": 119,
+   "at": "2026-11-11",
+   "headline": "Players like it for forehand and wind, but stability varies widely disc to disc",
+   "tags": [
+    {
+     "tone": "pos",
+     "text": "Forehand driver",
+     "n": 3
+    },
+    {
+     "tone": "neg",
+     "text": "Stability varies a lot",
+     "n": 3
+    },
+    {
+     "tone": "neg",
+     "text": "Too overstable for some",
+     "n": 2
+    }
+   ],
+   "paras": [
+    "Players mostly agree the Destroyer is a strong forehand and wind driver, with Star and Champion plastics seen as overstable. Plastic, weight and wear change it a lot: Echo Star and Blizzard Champion copies are described as flippy, while newer ones can be too stable.",
+    "One player calls a GStar Destroyer a sleeper that behaves like a faster, longer MVP Trail. Another uses a Star one only in a super strong headwind or on left doglegs. One bought a used Echo Star that is so understable it always tries to roll. Another gave up on newer ones as too stable."
+   ],
+   "highlights": []
+  },
+  "discraft-buzzz": {
+   "posts": 180,
+   "threads": 122,
+   "at": "2026-11-07",
+   "headline": "Players like its controllable, line-holding flight, but some never click with the feel",
+   "tags": [
+    {
+     "tone": "pos",
+     "text": "Holds whatever line you throw",
+     "n": 2
+    },
+    {
+     "tone": "pos",
+     "text": "Good for learning and form",
+     "n": 3
+    },
+    {
+     "tone": "neg",
+     "text": "Hand feel does not suit some",
+     "n": 3
+    },
+    {
+     "tone": "neg",
+     "text": "Turns over with arm speed or wear",
+     "n": 3
+    }
+   ],
+   "paras": [
+    "Players mostly agree the Buzzz is a neutral, controllable mid-range that holds its line and teaches a clean release. The split is over feel and stability: some never get comfortable with it in the hand, and others find it flips over as arm speed rises or as the disc beats in. Some also say it is not really a straight flyer, or only once it is worn in.",
+    "One player says the Buzzz \"holds pretty much whatever line I throw it\", and another says a slightly beat-in one \"shows me all my mistakes\". Another hands a lighter Buzzz to beginners, who average around a bogey a hole. On the other side, one player says it became \"a flip machine\" once their arm sped up, another finds \"Throw to hard and it just burns over\", and a third says it \"just feels wrong in my hands\". A heavily beat-in one turns right after about 30 yards for one player and works as a super understable disc for short lefty shots for another."
+   ],
+   "highlights": [
+    {
+     "text": "holds pretty much whatever line I throw it",
+     "url": "https://www.reddit.com/r/discgolf/comments/1oomgjx/best_straight_midrange/nn6son0/"
+    },
+    {
+     "text": "shows me all my mistakes",
+     "url": "https://www.reddit.com/r/discgolf/comments/sq5h76/what_discs_were_your_best_teachers/hwjjhsa/"
+    },
+    {
+     "text": "Throw to hard and it just burns over",
+     "url": "https://www.reddit.com/r/discgolf/comments/1od3hka/buzzz_ss_vs_malita/nkrhsm8/"
+    },
+    {
+     "text": "just feels wrong in my hands",
+     "url": "https://www.reddit.com/r/discgolf/comments/1u5su64/most_general_discs/orp3bwc/"
+    }
+   ]
+  },
+  "axiom-envy": {
+   "posts": 165,
+   "threads": 98,
+   "at": "2026-11-03",
+   "headline": "Players rate it a straight throwing putter, but stability shifts with plastic and wear",
+   "tags": [
+    {
+     "tone": "pos",
+     "text": "Straight throwing putter",
+     "n": 3
+    },
+    {
+     "tone": "neg",
+     "text": "Electron gets flippy with wear",
+     "n": 2
+    },
+    {
+     "tone": "neg",
+     "text": "A bit stable for putting",
+     "n": 2
+    }
+   ],
+   "paras": [
+    "Players mostly agree the Envy is a reliable straight throwing putter with a dependable fade. Plastic matters: Electron beats in fast and turns flippy, while Neutron and Proton stay more stable. Some find it a bit stable to putt with.",
+    "One player throws Electrons that go straight with a reliable fade and hold on hyzer. Another has a beat-in Electron that turned into a flip-dog, while a beat-in Neutron is a laser beam. One player says the soft Electron flightplate got bent really quickly after a few tree hits."
+   ],
+   "highlights": [
+    {
+     "text": "go straight with a reliable fade",
+     "url": "https://www.reddit.com/r/discgolf/comments/1l80022/aviarx3_and_axiom_envy/mx19rhw/"
+    },
+    {
+     "text": "flightplate got bent really quickly after a few tree hits",
+     "url": "https://www.reddit.com/r/discgolf/comments/ho0khb/slowly_wanting_to_convert_to_the_axiommvp_family/fxesf43/"
+    }
+   ]
+  },
+  "discraft-zone": {
+   "posts": 165,
+   "threads": 109,
+   "at": "2026-11-11",
+   "headline": "Players love it as a reliable overstable approach disc; some dislike the feel",
+   "tags": [
+    {
+     "tone": "pos",
+     "text": "Reliable overstable approach disc",
+     "n": 2
+    },
+    {
+     "tone": "pos",
+     "text": "Good in wind",
+     "n": 2
+    },
+    {
+     "tone": "neg",
+     "text": "Hand feel does not suit everyone",
+     "n": 2
+    },
+    {
+     "tone": "neg",
+     "text": "Jawbreaker and recycled ESP lose stability",
+     "n": 2
+    }
+   ],
+   "paras": [
+    "Players mostly agree the Zone is a dependable overstable approach disc that sits where it lands, handles wind and works on forehand and backhand. Plastic matters: Jawbreaker and recycled ESP beat in toward straight or flippy, while Ti and ESP stay more overstable. A group never gets on with the feel or the rim.",
+    "One player throws it on almost every upshot and most holes under 240 feet, and another uses a Jawbreaker as a go-to for forehand upshots. Another says their Jawbreaker has slowly started to lose its extreme over stability. One forehand player finds it awful in the hand, while another says it handles any headwind."
+   ],
+   "highlights": [
+    {
+     "text": "slowly started to lose its extreme over stability",
+     "url": "https://www.reddit.com/r/discgolf/comments/16scd2j/finished_my_first_full_bag/k2aqwws/"
+    },
+    {
+     "text": "it handles any headwind",
+     "url": "https://www.reddit.com/r/discgolf/comments/wb31us/stableoverstable_mid/ii4mjsx/"
+    }
+   ]
+  },
+  "latitude-64-pure": {
+   "posts": 159,
+   "threads": 91,
+   "at": "2026-11-03",
+   "headline": "Players like a straight, line-holding putter; it can turn over thrown hard",
+   "tags": [
+    {
+     "tone": "pos",
+     "text": "Holds any line",
+     "n": 4
+    },
+    {
+     "tone": "pos",
+     "text": "Great Opto throwing putter",
+     "n": 4
+    },
+    {
+     "tone": "pos",
+     "text": "Zero Medium for putting",
+     "n": 3
+    },
+    {
+     "tone": "neg",
+     "text": "Turns over when thrown hard",
+     "n": 2
+    }
+   ],
+   "paras": [
+    "Players agree the Pure is a straight putter that holds the line it is thrown on, with Opto favored for throwing and Zero Medium for putting. Takes split on stability: some find it turns over when thrown hard or gets wobbly, one finds it fades suddenly late on long putts, and one avoids it in headwinds.",
+    "One player calls Gold dead straight and says it is \"nuts how straight the gold pure flies\". Another says it will \"fly dead straight for at least 200'\" at 50 to 60 percent power but turns over thrown hard. Another putts with Zero Medium and throws a Gold and an Opto. One finds it fades aggressively as it loses speed on long putts."
+   ],
+   "highlights": [
+    {
+     "text": "nuts how straight the gold pure flies",
+     "url": "https://www.reddit.com/r/discgolf/comments/15rvnpb/pure_vs_popcorn/jwbb88b/"
+    },
+    {
+     "text": "fly dead straight for at least 200'",
+     "url": "https://www.reddit.com/r/discgolf/comments/15rvnpb/pure_vs_popcorn/jwbbs7a/"
+    }
+   ]
+  },
+  "mvp-trail": {
+   "posts": 152,
+   "threads": 68,
+   "at": "2026-11-10",
+   "headline": "Players like the easy distance, but flippiness varies a lot by weight and run",
+   "tags": [
+    {
+     "tone": "pos",
+     "text": "Easy long distance",
+     "n": 4
+    },
+    {
+     "tone": "neg",
+     "text": "Light weights and Fission get flippy",
+     "n": 3
+    },
+    {
+     "tone": "neg",
+     "text": "Inconsistent from run to run",
+     "n": 4
+    },
+    {
+     "tone": "pos",
+     "text": "Proton is more stable than Neutron",
+     "n": 2
+    }
+   ],
+   "paras": [
+    "Players mostly agree the Trail gives easy distance with a comfortable rim, even for slower arms. They disagree on stability. Light weights and Fission plastic are often described as flippy, Proton as more stable than Neutron, and players report copies in the same plastic flying differently.",
+    "One player calls it the \"easiest 370/380 ever\", and another says it \"added 50 effortless feet to my drives\". A player with a noodle arm cannot throw a Fission one but likes a Neutron, and another says a lighter 168 g copy was \"borderline unusably flippy\" next to a heavier 174 g one. One player finds a Proton \"much more stable/OS than my neutron\", while another has thrown three Trails that ranged from slightly overstable to wildly flippy."
+   ],
+   "highlights": [
+    {
+     "text": "easiest 370/380 ever",
+     "url": "https://www.reddit.com/r/discgolf/comments/1xb0xk5/lets_talk_in_the_bag/19reeude3h4xw/"
+    },
+    {
+     "text": "added 50 effortless feet to my drives",
+     "url": "https://www.reddit.com/r/discgolf/comments/1fbluvf/mvp_fans/lm1s4uu/"
+    },
+    {
+     "text": "borderline unusably flippy",
+     "url": "https://www.reddit.com/r/discgolf/comments/1gsc06u/mvp_trail_stability/lxgrfc8/"
+    },
+    {
+     "text": "much more stable/OS than my neutron",
+     "url": "https://www.reddit.com/r/discgolf/comments/1qeykjg/what_mvp_plastic_to_chose/o017mpx/"
+    }
+   ]
+  },
+  "mvp-wave": {
+   "posts": 151,
+   "threads": 83,
+   "at": "2026-10-20",
+   "headline": "Easy distance for slower arms, but many players find it too flippy",
+   "tags": [
+    {
+     "tone": "pos",
+     "text": "Easy distance for slower arms",
+     "n": 4
+    },
+    {
+     "tone": "neg",
+     "text": "Often too flippy",
+     "n": 6
+    },
+    {
+     "tone": "neg",
+     "text": "Stability varies by plastic",
+     "n": 3
+    }
+   ],
+   "paras": [
+    "Players mostly agree the Wave is a distance driver that gives slower arms extra reach, with several saying it suits people without a big arm. The common complaint is that it turns over too easily: some call it touchy or too flippy even in the mid 160s, and one says Fission beats in to too flippy quickly. Plastic changes the flight, with one ranking Neutron as most stable, then Plasma, then Fission, while another finds Proton a tick more stable than Neutron.",
+    "One player with a slower arm says the Wave is like a free 25-50ft extension to drives. Another got a 173 g Fission Wave that added probably 30 to 40 feet without changing form. A player throwing around 500 feet uses a 166 g Fission mostly for rollers because it is so flippy. Another finds their Wave super flippy and has to throw it perfect to get a max, and one calls their Fission Wave stupid flippy."
+   ],
+   "highlights": [
+    {
+     "text": "a free 25-50ft extension to drives",
+     "url": "https://www.reddit.com/r/discgolf/comments/t5iuke/can_we_talk_mvp_discs/hz7e3z1/"
+    },
+    {
+     "text": "super flippy",
+     "url": "https://www.reddit.com/r/discgolf/comments/bwplhf/prodigy_d3_and_mvp_wave_comparison/epzdu0p/"
+    },
+    {
+     "text": "stupid flippy",
+     "url": "https://www.reddit.com/r/discgolf/comments/128wuxh/whats_between_a_wave_and_a_grace/jel5zpr/"
+    }
+   ]
+  },
+  "latitude-64-river": {
+   "posts": 154,
+   "threads": 93,
+   "at": "2026-11-10",
+   "headline": "Players love the glide and easy distance, but it flips and fights wind",
+   "tags": [
+    {
+     "tone": "pos",
+     "text": "Lots of glide",
+     "n": 4
+    },
+    {
+     "tone": "pos",
+     "text": "Forgiving for developing arms",
+     "n": 4
+    },
+    {
+     "tone": "neg",
+     "text": "Can turn over too easily",
+     "n": 4
+    },
+    {
+     "tone": "neg",
+     "text": "Sensitive to wind",
+     "n": 3
+    }
+   ],
+   "paras": [
+    "Players mostly agree the River is a very glidey, easy-distance fairway driver that suits newer players and developing arm speed. The main complaints are stability related: it can turn over too easily, and the heavy glide makes it a poor choice in wind. Some say it turns over on them easily, while others call it straight.",
+    "One player calls the River a cheat code compared with what they threw before, since it goes straight and glides well. Another says the 7 glide gives full driver distance from a medium-strength throw. One player found it flippier as it beat in and their arm speed rose, and another says their 125 g River is a strictly tailwind bomber. A further player says it has glide for days but found it unpredictable, and another notes it can be a bit flippy in a headwind."
+   ],
+   "highlights": [
+    {
+     "text": "a cheat code",
+     "url": "https://www.reddit.com/r/discgolf/comments/1d1910a/tips_for_beginners/l5tgtjx/"
+    },
+    {
+     "text": "strictly tailwind bomber",
+     "url": "https://www.reddit.com/r/discgolf/comments/1snj7u0/lighter_discs/ogm52rk/"
+    },
+    {
+     "text": "glide for days",
+     "url": "https://www.reddit.com/r/discgolf/comments/4whl1v/need_a_new_fairway_driver_teebird_river/d67144f/"
+    },
+    {
+     "text": "can be a bit flippy in a headwind",
+     "url": "https://www.reddit.com/r/discgolf/comments/1va09o3/need_help_choosing_my_next_disc/p0hzmgq/"
+    }
+   ]
+  },
+  "innova-teebird3": {
+   "posts": 148,
+   "threads": 72,
+   "at": "2026-10-28",
+   "headline": "Players call it a dependable, torque-resistant fairway driver, but fresh ones can be too overstable",
+   "tags": [
+    {
+     "tone": "pos",
+     "text": "Dependable straight flight with fade",
+     "n": 4
+    },
+    {
+     "tone": "pos",
+     "text": "Torque resistant, good forehand",
+     "n": 3
+    },
+    {
+     "tone": "neg",
+     "text": "Too overstable for beginners",
+     "n": 2
+    }
+   ],
+   "paras": [
+    "Players mostly agree it is a reliable fairway driver that flies close to its numbers once beat in, with a straight line and a modest fade. Many like it forehand and in wind. Takes split on stability by plastic: Metal Flake Champion and Halo run the most overstable, and fresh copies can be too much for newer players.",
+    "One player throws a champ one for 330 to 350 feet with tiny turn and a reliable fade. Another says a Metal Flake one is gummy and stiff and not a beginner disc, though good for hyzers. A lighter-armed player calls it a great control forehand driver. Another bagged one that started overstable and has beat into a perfect straight flyer."
+   ],
+   "highlights": [
+    {
+     "text": "gummy and stiff",
+     "url": "https://www.reddit.com/r/discgolf/comments/1i9sp0e/rate_this_starter_pack_110/m9aaw1k/"
+    },
+    {
+     "text": "great control forehand driver",
+     "url": "https://www.reddit.com/r/discgolf/comments/s8p536/curious_about_experience_with_halo_teebird3/hti5rci/"
+    },
+    {
+     "text": "beat into a perfect straight flyer",
+     "url": "https://www.reddit.com/r/discgolf/comments/1oz1s53/beat_in_champ_thunderbird/npbjdeg/"
+    }
+   ]
+  },
+  "mvp-detour": {
+   "posts": 136,
+   "threads": 62,
+   "at": "2026-10-29",
+   "headline": "Players like it for hyzer flips and the woods, though some find it flippy",
+   "tags": [
+    {
+     "tone": "pos",
+     "text": "Easy hyzer flips",
+     "n": 2
+    },
+    {
+     "tone": "pos",
+     "text": "Great in the woods",
+     "n": 2
+    },
+    {
+     "tone": "pos",
+     "text": "Flies far for a mid",
+     "n": 2
+    },
+    {
+     "tone": "neg",
+     "text": "Can burn over or get flippy",
+     "n": 2
+    }
+   ],
+   "paras": [
+    "Players put it as less stable than the Axiom Hex, flipping up from a hyzer and holding a straight line with little fade, and some note it flies far for a mid. The woods and forehand hyzer flips come up often. Complaints are that it can burn over or get too flippy, especially when thrown hard or after beat-in. Plastics draw mixed reports: some find Neutron and Eclipse fly alike, others describe the Eclipse as turning over with a long, pushing turn.",
+    "One player says it holds a line with a slight fade at the end and flies consistently at sea level and at elevation. Another hated how quickly the detour just wanted to burn over, while another calls it almost inconveniently straight, which is what it does best. One player calls it the go-to disc in the woods and puts it high on a one disc round list, while another says it goes sailing right if they hammer down on it. Another was hoping the Eclipse would be a stable Detour but found it flies like the Neutron."
+   ],
+   "highlights": [
+    {
+     "text": "hated how quickly the detour just wanted to burn over",
+     "url": "https://www.reddit.com/r/discgolf/comments/1x3gi2v/whats_a_disc_that_you_have_bagged_recently_that/pfbk2qn/"
+    },
+    {
+     "text": "go-to disc in the woods",
+     "url": "https://www.reddit.com/r/discgolf/comments/1eivcdm/i_feel_like_the_detour_is_a_do_anything_disc/lg9mf3g/"
+    },
+    {
+     "text": "flies consistently at sea level and at elevation",
+     "url": "https://www.reddit.com/r/discgolf/comments/1x2b5ih/best_understable_fairway/pf2ejjq/"
+    }
+   ]
+  },
+  "streamline-pilot": {
+   "posts": 136,
+   "threads": 77,
+   "at": "2026-10-26",
+   "headline": "Players like the flat, small-bead feel and glide, but some find it too glidey",
+   "tags": [
+    {
+     "tone": "pos",
+     "text": "Flat top, small bead feel",
+     "n": 4
+    },
+    {
+     "tone": "pos",
+     "text": "Straight flight with lots of glide",
+     "n": 3
+    },
+    {
+     "tone": "neg",
+     "text": "Too glidey for some putters",
+     "n": 4
+    },
+    {
+     "tone": "neg",
+     "text": "Stability varies a lot by plastic",
+     "n": 4
+    }
+   ],
+   "paras": [
+    "Players mostly agree the Pilot is a flat-topped, small-bead putter that flies straight and glides well, and many use it for both putting and throwing. Takes split on glide: some find it too glidey for putting, while others say it is not the 5 glide the rating suggests. Plastic matters most, with Electron the least stable and the Cosmic Neutron and Proton the most overstable, and one player mentions Neutron feeling slick in humid weather.",
+    "One player loves the tiniest bead and a flat top that can be pushed, spun or turboed. Another finds it a little too glidey as a putting putter, and a third stopped throwing it as a throwing putter because it got them into trouble. One player bags five and ranks stability from Electron up to Proton, while another prefers a Proton one for touchy upshots and finds the Cosmic Neutron ones more overstable."
+   ],
+   "highlights": []
+  },
+  "innova-teebird": {
+   "posts": 142,
+   "threads": 95,
+   "at": "2026-11-11",
+   "headline": "Players find it straight and reliable, but plastic swings it from flippy to overstable",
+   "tags": [
+    {
+     "tone": "pos",
+     "text": "Straight with reliable fade",
+     "n": 4
+    },
+    {
+     "tone": "pos",
+     "text": "Beats in into a workhorse",
+     "n": 2
+    },
+    {
+     "tone": "neg",
+     "text": "DX can turn over",
+     "n": 3
+    },
+    {
+     "tone": "neg",
+     "text": "Champion too overstable for some",
+     "n": 2
+    }
+   ],
+   "paras": [
+    "Players mostly agree the TeeBird is a straight, predictable fairway driver with a reliable fade, and that it improves as it beats in. Plastic is where they split. DX is described as less stable and good for hyzer flips, with some saying it turns over too easily, while Champion starts more overstable and some find it too much at first.",
+    "One player says the TeeBird \"goes dead straight with dependable fade every\" time after years of throwing it. Another loves a DX one once it beat in, calling it a workhorse. A different player reports that \"DX sucks, they always turned over on me\", while another bought a Champion that \"was so overstable I never really warmed up to it\"."
+   ],
+   "highlights": [
+    {
+     "text": "goes dead straight with dependable fade every",
+     "url": "https://www.reddit.com/r/discgolf/comments/zivgdr/are_there_any_fairway_drivers_in_the_mvp_glow/j0bp5cc/"
+    },
+    {
+     "text": "DX sucks, they always turned over on me",
+     "url": "https://www.reddit.com/r/discgolf/comments/xfbrpy/teebird_whats_all_the_hype_about_bought_it_to_try/ionbnm1/"
+    },
+    {
+     "text": "was so overstable I never really warmed up to it",
+     "url": "https://www.reddit.com/r/discgolf/comments/1bwepoh/valk_love/ky5wg87/"
+    }
+   ]
+  },
+  "mvp-tesla": {
+   "posts": 121,
+   "threads": 58,
+   "at": "2026-11-04",
+   "headline": "Players like straight flight with reliable fade, but find it overstable for slower arms",
+   "tags": [
+    {
+     "tone": "pos",
+     "text": "Straight flight, reliable fade",
+     "n": 3
+    },
+    {
+     "tone": "pos",
+     "text": "Favorite forehand driver",
+     "n": 3
+    },
+    {
+     "tone": "neg",
+     "text": "More overstable than the numbers",
+     "n": 3
+    },
+    {
+     "tone": "neg",
+     "text": "Too much for slower arms",
+     "n": 2
+    },
+    {
+     "tone": "neg",
+     "text": "Flight varies by plastic and wear",
+     "n": 3
+    }
+   ],
+   "paras": [
+    "Players mostly describe a straight flight with a reliable fade at the end, and several say the disc is \"more over stable than the numbers MVP lists\". Plastics differ: a Fission flips up and fades less than a Proton, while a Neutron tends to hook earlier. Some find it a favorite forehand driver, while players with slower arms find it too much disc.",
+    "One player describes a \"Super straight flight and then a hard fade\". Another found a Neutron copy \"Brand new it was a complete meat-hook for me\" before heavy tree hits turned it straighter. A 160 gram Fission started stable but now flies like a laser thrown flat, while a 173 gram Neutron hooks earlier. One player who throws about 300 feet calls it \"too beefy for my old man noodle arm\", and another says they lack the arm speed for it."
+   ],
+   "highlights": [
+    {
+     "text": "Super straight flight and then a hard fade",
+     "url": "https://www.reddit.com/r/discgolf/comments/1ke33rm/mvp_tesla/mqg5hwr/"
+    },
+    {
+     "text": "Brand new it was a complete meat-hook for me",
+     "url": "https://www.reddit.com/r/discgolf/comments/1eklu46/bought_a_mvp_tesla_after_watching_simon_tossing/lgmrlqj/"
+    },
+    {
+     "text": "too beefy for my old man noodle arm",
+     "url": "https://www.reddit.com/r/discgolf/comments/13948mo/mvp_disc_between_a_175g_fission_wave_and_a_165g/"
+    }
+   ]
+  },
+  "mvp-reactor": {
+   "posts": 120,
+   "threads": 69,
+   "at": "2026-11-04",
+   "headline": "Players like a torque resistant straight mid, but stability swings by plastic",
+   "tags": [
+    {
+     "tone": "pos",
+     "text": "Torque resistant on forehands",
+     "n": 3
+    },
+    {
+     "tone": "pos",
+     "text": "Straight with a reliable fade",
+     "n": 3
+    },
+    {
+     "tone": "neg",
+     "text": "Stability varies a lot by plastic",
+     "n": 3
+    },
+    {
+     "tone": "neg",
+     "text": "Can fly more overstable than expected",
+     "n": 3
+    }
+   ],
+   "paras": [
+    "Players mostly agree it is a straight to slightly overstable mid-range that resists torque, fades reliably and works on both backhand and forehand. The main split is plastic: Eclipse and glow copies run more stable, while Fission and beaten-in Neutron copies fly straighter. Some find it more overstable than the numbers suggest.",
+    "One player bags a Reactor instead of a Hex because the Reactor just handles torque better. Another has both a Neutron and an Eclipse and says the eclipse is way more stable. A third threw an Eclipse and was not expecting how overstable it was. Another got a max weight Neutron that was damn near a meathook."
+   ],
+   "highlights": [
+    {
+     "text": "the Reactor just handles torque better",
+     "url": "https://www.reddit.com/r/discgolf/comments/1x3qm5z/mvp_reactor_vs_hex/pfdnse2/"
+    },
+    {
+     "text": "the eclipse is way more stable",
+     "url": "https://www.reddit.com/r/discgolf/comments/1x3qm5z/mvp_reactor_vs_hex/pffpp9i/"
+    },
+    {
+     "text": "was not expecting how overstable it was",
+     "url": "https://www.reddit.com/r/discgolf/comments/q7ku5g/hex_more_stable_than_glow_reactor_anyone_else/hgji1nm/"
+    },
+    {
+     "text": "damn near a meathook",
+     "url": "https://www.reddit.com/r/discgolf/comments/pkeabz/time_required_to_season_an_mvp_reactor/hc3itni/"
+    }
+   ]
+  }
  }
 }

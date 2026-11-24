@@ -1596,5 +1596,898 @@
     ]
    }
   }
+ },
+ "discgolf": {
+  "axiom-crave": {
+   "axiom-bokeh": {
+    "line": "Goes slightly farther than the Crave, which is almost neck and neck with it",
+    "n": 1,
+    "by": [
+     "cr_fee78989553aeae6"
+    ]
+   },
+   "discraft-cicada": {
+    "line": "Turns a little more than the Crave and glides more, with a similar flip-up",
+    "n": 2,
+    "by": [
+     "cr_b85476188a6bb16e",
+     "cr_00ebafb2c29be8b2"
+    ]
+   },
+   "discmania-fd": {
+    "line": "Flips up from a hyzer and flies similarly to the Crave",
+    "n": 1,
+    "by": [
+     "cr_b85476188a6bb16e"
+    ]
+   },
+   "innova-cheetah": {
+    "line": "Less stable than the Crave in Plasma, but more controllable",
+    "n": 1,
+    "by": [
+     "cr_00ebafb2c29be8b2"
+    ]
+   }
+  },
+  "innova-wraith": {
+   "innova-destroyer": {
+    "line": "Faster and more stable than the Wraith, with a slightly stronger fade and less turn",
+    "n": 4,
+    "by": [
+     "cr_c658562ce835dbbf",
+     "cr_6838af4ba571eaf7",
+     "cr_89e8f4b63b022f8a",
+     "cr_73c2a5d086789b04"
+    ]
+   },
+   "innova-racer": {
+    "line": "Outdrove the Halo Wraith by a good 80, maybe 90 ft, at similar strength",
+    "n": 1,
+    "by": [
+     "cr_02a09556107f6d5b"
+    ]
+   },
+   "discraft-zeus": {
+    "line": "Flies quite similarly to the Wraith but a little more understable",
+    "n": 1,
+    "by": [
+     "cr_73c2a5d086789b04"
+    ]
+   },
+   "mvp-trail": {
+    "line": "Plays the same beat-in role out of the box that the I-Blend Wraith does",
+    "n": 1,
+    "by": [
+     "cr_054f9c07ba5f3b2f"
+    ]
+   }
+  },
+  "westside-harp": {
+   "discraft-zone": {
+    "line": "Flies almost the same as the Harp, with a shallower dish and flat plate",
+    "n": 3,
+    "by": [
+     "cr_1681b84c13aeef56",
+     "cr_7b29ec1ea792fbb6",
+     "cr_ed3c1a0e8cbc1d9b"
+    ]
+   },
+   "discmania-tactic": {
+    "line": "Less overstable than its numbers suggest and beadless, a fair alternative to the Harp",
+    "n": 1,
+    "by": [
+     "cr_52bf5b7e8288051c"
+    ]
+   },
+   "innova-pig": {
+    "line": "Blockier, heavier rim than the Harp and more overstable with more fade",
+    "n": 1,
+    "by": [
+     "cr_52bf5b7e8288051c"
+    ]
+   },
+   "kastaplast-jarn": {
+    "line": "Suggested for players who like the Harp's groove but not its depth",
+    "n": 1,
+    "by": [
+     "cr_1681b84c13aeef56"
+    ]
+   },
+   "dynamic-discs-justice": {
+    "line": "Beat-in one just ducked at the end where the Harp fades slowly",
+    "n": 1,
+    "by": [
+     "cr_9aab181e460c9c45"
+    ]
+   },
+   "dynamic-discs-suspect": {
+    "line": "Looks and feels very similar to the Harp, which probably replaces it at the same distance",
+    "n": 2,
+    "by": [
+     "cr_30ed29a5b4151492",
+     "cr_cdb527fb93038844"
+    ]
+   },
+   "westside-swan-1-reborn": {
+    "line": "Releases a little like the Harp",
+    "n": 1,
+    "by": [
+     "cr_cdb527fb93038844"
+    ]
+   }
+  },
+  "kastaplast-berg": {
+   "innova-pig": {
+    "line": "Holds the fade better on big hyzer approaches than the Berg",
+    "n": 2,
+    "by": [
+     "cr_766cb26a9eac7ba9",
+     "cr_fbfb53d884ad63db"
+    ]
+   },
+   "discraft-zone": {
+    "line": "More overstable than the Berg, and skips further on hyzer approaches",
+    "n": 3,
+    "by": [
+     "cr_fbfb53d884ad63db",
+     "cr_7d9670e2aa5b5866",
+     "cr_5df659b65cb7c655"
+    ]
+   },
+   "westside-harp": {
+    "line": "Faster, with more fade, and less sensitive to off-axis torque than the Berg",
+    "n": 2,
+    "by": [
+     "cr_5e0bc127d12b8cb5",
+     "cr_44ab8ce2f2649873"
+    ]
+   },
+   "innova-rhyno": {
+    "line": "Goes farther, glides more and has more fight at the end than the Berg",
+    "n": 2,
+    "by": [
+     "cr_a5bbbc43fdcff298",
+     "cr_5df659b65cb7c655"
+    ]
+   },
+   "axiom-envy": {
+    "line": "Used less than the Berg for unobstructed upshots at 20 to 60 meters",
+    "n": 1,
+    "by": [
+     "cr_b09fc624106e4a5b"
+    ]
+   },
+   "gateway-wizard": {
+    "line": "Flies much like a K2 Berg, holding its line before a hard fade",
+    "n": 1,
+    "by": [
+     "cr_563f720b75188063"
+    ]
+   },
+   "discraft-luna": {
+    "line": "Glidier; may suit players who like touchy approaches better than the Berg",
+    "n": 1,
+    "by": [
+     "cr_fbfb53d884ad63db"
+    ]
+   },
+   "latitude-64-pure": {
+    "line": "Glidier; may suit players who like touchy approaches better than the Berg",
+    "n": 1,
+    "by": [
+     "cr_fbfb53d884ad63db"
+    ]
+   },
+   "innova-nova": {
+    "line": "Glidier; may suit players who like touchy approaches better than the Berg",
+    "n": 1,
+    "by": [
+     "cr_fbfb53d884ad63db"
+    ]
+   }
+  },
+  "innova-mako3": {
+   "innova-roc": {
+    "line": "Fades more at the end than the Mako3",
+    "n": 1,
+    "by": [
+     "cr_1bf17af1d5e4a050"
+    ]
+   },
+   "mvp-detour": {
+    "line": "Flips a little more than the Mako3, which fades more in a tailwind",
+    "n": 1,
+    "by": [
+     "cr_c3c662853930e0cb"
+    ]
+   },
+   "axiom-hex": {
+    "line": "Not flippy enough yet, compared with the Mako3 that flips to flat",
+    "n": 1,
+    "by": [
+     "cr_48da3a2758cc8a4b"
+    ]
+   },
+   "innova-destroyer": {
+    "line": "Needs more speed and power than the Mako3 to get its flight",
+    "n": 1,
+    "by": [
+     "cr_1c248bb0ea537f88"
+    ]
+   }
+  },
+  "axiom-hex": {
+   "discraft-buzzz": {
+    "line": "Flies almost the same, with maybe a touch less stability and a deeper profile",
+    "n": 5,
+    "by": [
+     "cr_d68ab23092b0787c",
+     "cr_612e5d8b12cf359d",
+     "cr_9272e25d823f14a3",
+     "cr_6ed2e0ef289e7153",
+     "cr_ec291fdb40a41b90"
+    ]
+   },
+   "mvp-reactor": {
+    "line": "Has much more fade than the Hex, flying as a different disc",
+    "n": 2,
+    "by": [
+     "cr_d1e013ba3ba3649d",
+     "cr_c0b7d2aa76974f04"
+    ]
+   },
+   "dynamic-discs-emac-truth": {
+    "line": "About as shallow as the Hex in the rim",
+    "n": 1,
+    "by": [
+     "cr_4013e3952ad6372a"
+    ]
+   },
+   "streamline-echo": {
+    "line": "A little more understable, flying a similar line with less power",
+    "n": 1,
+    "by": [
+     "cr_6ed2e0ef289e7153"
+    ]
+   },
+   "mvp-matrix": {
+    "line": "More overstable than the Hex, with a stronger, earlier fade",
+    "n": 1,
+    "by": [
+     "cr_6ed2e0ef289e7153"
+    ]
+   },
+   "innova-mako3": {
+    "line": "Feels similar in the hand to the Hex, which can complement or replace it",
+    "n": 1,
+    "by": [
+     "cr_d68ab23092b0787c"
+    ]
+   }
+  },
+  "innova-destroyer": {
+   "innova-wraith": {
+    "line": "Less dependable than the Destroyer molds, according to one reviewer.",
+    "n": 1,
+    "by": [
+     "cr_9c8070266db30ed1"
+    ]
+   }
+  },
+  "discraft-buzzz": {
+   "axiom-hex": {
+    "line": "Glidier and a little less overstable than the Buzzz, so it gets more distance",
+    "n": 1,
+    "by": [
+     "cr_6e006eed4a90d47e"
+    ]
+   },
+   "innova-mako3": {
+    "line": "Glidier and holds anhyzer lines better, but less stable than the ESP Buzzz",
+    "n": 2,
+    "by": [
+     "cr_c8de4d2423313453",
+     "cr_2787d3575434ef06"
+    ]
+   },
+   "discraft-wasp": {
+    "line": "Faster and more overstable than the Buzzz",
+    "n": 1,
+    "by": [
+     "cr_8483a29dbf506296"
+    ]
+   },
+   "dynamic-discs-truth": {
+    "line": "Faster and fades more than the Buzzz",
+    "n": 1,
+    "by": [
+     "cr_8483a29dbf506296"
+    ]
+   },
+   "latitude-64-claymore": {
+    "line": "Slightly longer than the Buzzz",
+    "n": 1,
+    "by": [
+     "cr_8483a29dbf506296"
+    ]
+   }
+  },
+  "axiom-envy": {
+   "latitude-64-pure": {
+    "line": "Flippier and glidier than the Envy, which is flatter on top",
+    "n": 1,
+    "by": [
+     "cr_5ee1352cda609f14"
+    ]
+   },
+   "axiom-tempo": {
+    "line": "More stable than the Envy, better for flat sidearm throws",
+    "n": 1,
+    "by": [
+     "cr_4ce1edc00c6df438"
+    ]
+   },
+   "discraft-luna": {
+    "line": "Rounder, higher and deeper in the rim, needing a flatter throw than the Envy",
+    "n": 1,
+    "by": [
+     "cr_bbc01b2123bec330"
+    ]
+   },
+   "mvp-ion": {
+    "line": "Straighter putting with a deeper rim, preferred over the Envy on the green",
+    "n": 1,
+    "by": [
+     "cr_7de4fd3d6f92e450"
+    ]
+   },
+   "discraft-zone": {
+    "line": "More overstable than the Envy, which glides further",
+    "n": 2,
+    "by": [
+     "cr_8d3f1617e529d7b4",
+     "cr_3996df7fc68bb833"
+    ]
+   },
+   "dynamic-discs-deputy": {
+    "line": "More understable than the Envy, which sits between it and an overstable putter",
+    "n": 1,
+    "by": [
+     "cr_3996df7fc68bb833"
+    ]
+   },
+   "dynamic-discs-judge": {
+    "line": "Controls less well than the Envy",
+    "n": 1,
+    "by": [
+     "cr_1c36713a31f208f1"
+    ]
+   },
+   "discraft-challenger": {
+    "line": "Flies similar to the Envy, though the Envy's low-profile design feels better in hand",
+    "n": 1,
+    "by": [
+     "cr_1c36713a31f208f1"
+    ]
+   },
+   "gateway-wizard": {
+    "line": "Flies similar to the Envy, though the Envy's low-profile design feels better in hand",
+    "n": 1,
+    "by": [
+     "cr_1c36713a31f208f1"
+    ]
+   },
+   "discraft-buzzz": {
+    "line": "Longer than the Envy, which many players call a shorter version of it",
+    "n": 1,
+    "by": [
+     "cr_5c3615d69cdefad4"
+    ]
+   }
+  },
+  "discraft-zone": {
+   "innova-pig": {
+    "line": "Flies much like the soft Zone, stopping quickly with an overstable approach flight",
+    "n": 1,
+    "by": [
+     "cr_8e2a8d9749e9445d"
+    ]
+   },
+   "westside-harp": {
+    "line": "Shaped similarly to the Zone and held the overstable putter slot before it",
+    "n": 2,
+    "by": [
+     "cr_38b4ba0b34d4ac69",
+     "cr_1f434eed7232b1b1"
+    ]
+   },
+   "axiom-tempo": {
+    "line": "Flies straight like the gummy Zone, which is compared to it for straightness",
+    "n": 1,
+    "by": [
+     "cr_aa7752dde4484189"
+    ]
+   },
+   "innova-aviar3": {
+    "line": "Has less glide than the Zone, which glides higher",
+    "n": 1,
+    "by": [
+     "cr_1f434eed7232b1b1"
+    ]
+   }
+  },
+  "latitude-64-pure": {
+   "discraft-luna": {
+    "line": "Rounder, bullet-like rim than the Pure, and dumps out before the basket on long putts",
+    "n": 1,
+    "by": [
+     "cr_d6a4d998ac004a47"
+    ]
+   },
+   "discraft-challenger-ss": {
+    "line": "Fully rounded edge that feels less grippy and tacky than the Pure's indented edge",
+    "n": 1,
+    "by": [
+     "cr_e8b3d651de393b8d"
+    ]
+   },
+   "latitude-64-keystone": {
+    "line": "Feels slightly worse in hand than the Pure, with the same turn and fade",
+    "n": 1,
+    "by": [
+     "cr_5ebc8134168236f5"
+    ]
+   },
+   "axiom-envy": {
+    "line": "Finishes harder and flies shorter than the Pure on flat throws",
+    "n": 1,
+    "by": [
+     "cr_4194b54077a1bbe2"
+    ]
+   },
+   "gateway-wizard": {
+    "line": "More stable and glidier than the Pure, which drops earlier",
+    "n": 1,
+    "by": [
+     "cr_7b3d4b490fca4ca5"
+    ]
+   },
+   "mvp-atom": {
+    "line": "Another putter that can be thrown incredibly straight, like the Pure",
+    "n": 1,
+    "by": [
+     "cr_7b3d4b490fca4ca5"
+    ]
+   }
+  },
+  "mvp-trail": {
+   "innova-gorgon": {
+    "line": "Has more turn and a little more fade than the Trail, and is more understable",
+    "n": 2,
+    "by": [
+     "cr_f9b253ce3d0ddda3",
+     "cr_dab9fa9647fed327"
+    ]
+   },
+   "axiom-insanity": {
+    "line": "Has less fade and is more understable than the Trail",
+    "n": 1,
+    "by": [
+     "cr_dab9fa9647fed327"
+    ]
+   },
+   "mvp-tesla": {
+    "line": "More overstable than the Trail among 10-speeds",
+    "n": 1,
+    "by": [
+     "cr_f9b253ce3d0ddda3"
+    ]
+   },
+   "discmania-pd": {
+    "line": "More overstable than the Trail among 10-speeds",
+    "n": 1,
+    "by": [
+     "cr_f9b253ce3d0ddda3"
+    ]
+   },
+   "mvp-catalyst": {
+    "line": "Lost to the Trail by about 10 to 15 ft in one round",
+    "n": 1,
+    "by": [
+     "cr_717bfbccd7a45a68"
+    ]
+   },
+   "axiom-mayhem": {
+    "line": "Won one round against the Trail and stays in the bag for hitting a line",
+    "n": 1,
+    "by": [
+     "cr_717bfbccd7a45a68"
+    ]
+   }
+  },
+  "mvp-wave": {
+   "mvp-photon": {
+    "line": "Expected to be more overstable than the Wave, though a pre-flight one flew almost identical lines.",
+    "n": 2,
+    "by": [
+     "cr_dc2a6e64decbe542",
+     "cr_e03e5e81dd86d369"
+    ]
+   },
+   "innova-wraith": {
+    "line": "More stable than the Wave out of the box, though Eclipse Waves fly close to it.",
+    "n": 2,
+    "by": [
+     "cr_1100bc0abd6e3e52",
+     "cr_d07f061fe4ff0a10"
+    ]
+   },
+   "mvp-inertia": {
+    "line": "Gets more distance than the Wave, which has a wider rim and lower profile.",
+    "n": 1,
+    "by": [
+     "cr_dc2a6e64decbe542"
+    ]
+   },
+   "mvp-trail": {
+    "line": "Flips up to a dead straight line where the Wave fades harder",
+    "n": 1,
+    "by": [
+     "cr_d07f061fe4ff0a10"
+    ]
+   },
+   "dynamic-discs-trespass": {
+    "line": "More stable than the Wave, which is more understable out of the box",
+    "n": 1,
+    "by": [
+     "cr_1100bc0abd6e3e52"
+    ]
+   }
+  },
+  "latitude-64-river": {
+   "westside-stag": {
+    "line": "Fades left sooner as it slows, on a similar line to the River",
+    "n": 1,
+    "by": [
+     "cr_a916f2bf765b0188"
+    ]
+   },
+   "innova-leopard": {
+    "line": "Easier to get up to speed and quicker to turn over, with a milder fade",
+    "n": 1,
+    "by": [
+     "cr_c312d7966eb06be9"
+    ]
+   },
+   "discmania-essence": {
+    "line": "Slightly more stable than the River, with a similar wing shape and a bit less distance",
+    "n": 2,
+    "by": [
+     "cr_ab772d236b52ad4d",
+     "cr_f1c8d27192fa688b"
+    ]
+   },
+   "axiom-crave": {
+    "line": "A little more stable, with a lower dome and a more repeatable flight",
+    "n": 1,
+    "by": [
+     "cr_f1c8d27192fa688b"
+    ]
+   },
+   "latitude-64-diamond": {
+    "line": "Easier to throw than the River for slower arms",
+    "n": 1,
+    "by": [
+     "cr_67379430aac9964e"
+    ]
+   },
+   "latitude-64-jade": {
+    "line": "Easier to throw than the River for slower arms",
+    "n": 1,
+    "by": [
+     "cr_67379430aac9964e"
+    ]
+   },
+   "latitude-64-maul": {
+    "line": "Covers the long understable shot that a slightly stable River does not",
+    "n": 1,
+    "by": [
+     "cr_cf69eb97edcc8288"
+    ]
+   }
+  },
+  "innova-teebird3": {
+   "innova-teebird": {
+    "line": "Slower, with more glide and less stability than the TeeBird3, which flies a little farther.",
+    "n": 4,
+    "by": [
+     "cr_a496b16015828f7c",
+     "cr_7e541eb7f991b698",
+     "cr_b6247a16cdeb2aeb",
+     "cr_12e447aac7bd4e3f"
+    ]
+   },
+   "innova-thunderbird": {
+    "line": "Close in overstability to the TeeBird3, but needs more arm speed and likely gets more distance.",
+    "n": 2,
+    "by": [
+     "cr_49de93358056a786",
+     "cr_b6247a16cdeb2aeb"
+    ]
+   },
+   "dynamic-discs-getaway": {
+    "line": "A little faster with more turn than the TeeBird3, with a similar fade.",
+    "n": 1,
+    "by": [
+     "cr_49de93358056a786"
+    ]
+   },
+   "dynamic-discs-evader": {
+    "line": "Less overstable and less wind-resistant than the TeeBird3 on hyzer and flat throws.",
+    "n": 1,
+    "by": [
+     "cr_fa08a9871735b1e2"
+    ]
+   },
+   "innova-tl3": {
+    "line": "Smoother rim and maybe a bit less straight than the TeeBird3, in similar wind-handling.",
+    "n": 1,
+    "by": [
+     "cr_946074c338a72072"
+    ]
+   },
+   "innova-leopard3": {
+    "line": "Turns over more and gets knocked around in wind compared with the TeeBird3.",
+    "n": 1,
+    "by": [
+     "cr_946074c338a72072"
+    ]
+   },
+   "innova-eagle": {
+    "line": "More stable than the TeeBird3, which is straighter and a bit longer.",
+    "n": 1,
+    "by": [
+     "cr_799181232cc811fa"
+    ]
+   }
+  },
+  "mvp-detour": {
+   "axiom-hex": {
+    "line": "More stable than the Detour, with a bit more fade and less turn",
+    "n": 8,
+    "by": [
+     "cr_8511665d0a39f166",
+     "cr_82eb0fc011f96890",
+     "cr_5617d6fd0d07f8ba",
+     "cr_62b6e62a073a2d31",
+     "cr_0bb5da00ee29e06b",
+     "cr_92e74763fe923ba1",
+     "cr_643b6d99bc986615",
+     "cr_decd0d438bc2df24"
+    ]
+   },
+   "mvp-uplink": {
+    "line": "More understable than the Detour, and touchier when the wind picks up",
+    "n": 3,
+    "by": [
+     "cr_8511665d0a39f166",
+     "cr_25f6b7d9c384f53e",
+     "cr_5617d6fd0d07f8ba"
+    ]
+   },
+   "thought-space-athletics-mana": {
+    "line": "Replaced by the Detour as one reviewer's bagged mid-range",
+    "n": 1,
+    "by": [
+     "cr_82eb0fc011f96890"
+    ]
+   },
+   "discraft-meteor": {
+    "line": "A bit flippier than the Detour, with a little less fade",
+    "n": 1,
+    "by": [
+     "cr_02c08480d12210e6"
+    ]
+   },
+   "innova-mako3": {
+    "line": "Nearly swapped for the Detour by one reviewer as the best woods mid-range",
+    "n": 1,
+    "by": [
+     "cr_643b6d99bc986615"
+    ]
+   },
+   "discmania-origin": {
+    "line": "Named as the closest disc in flight to the Detour",
+    "n": 1,
+    "by": [
+     "cr_02c08480d12210e6"
+    ]
+   },
+   "mvp-reactor": {
+    "line": "Less comfortable in the hand for backhand than the Detour",
+    "n": 1,
+    "by": [
+     "cr_decd0d438bc2df24"
+    ]
+   }
+  },
+  "streamline-pilot": {
+   "mvp-atom": {
+    "line": "Similar straight flight to the Pilot but with much less glide",
+    "n": 1,
+    "by": [
+     "cr_0e127be4551810d2"
+    ]
+   },
+   "axiom-proxy": {
+    "line": "Needs a hyzer flip to fly straight and glides less than the Pilot",
+    "n": 3,
+    "by": [
+     "cr_0e127be4551810d2",
+     "cr_ce5d7e215396876e",
+     "cr_991146838be926c4"
+    ]
+   },
+   "axiom-envy": {
+    "line": "Flies similar to the Pilot but glides less and is a bit more stable",
+    "n": 3,
+    "by": [
+     "cr_463881d871f011e4",
+     "cr_ce5d7e215396876e",
+     "cr_991146838be926c4"
+    ]
+   },
+   "dynamic-discs-judge": {
+    "line": "Has a bigger bead, deeper rim and more glide than the Pilot",
+    "n": 1,
+    "by": [
+     "cr_3f35d89580d9b403"
+    ]
+   },
+   "dynamic-discs-marshal": {
+    "line": "Feels and flies off the tee much like the Pilot",
+    "n": 1,
+    "by": [
+     "cr_3f35d89580d9b403"
+    ]
+   },
+   "gateway-wizard": {
+    "line": "Has a bigger bead and more glide, with a similar anhyzer approach",
+    "n": 1,
+    "by": [
+     "cr_3f35d89580d9b403"
+    ]
+   },
+   "westside-shield": {
+    "line": "A little less stable than the Pilot",
+    "n": 1,
+    "by": [
+     "cr_5ef3e40140acf5a5"
+    ]
+   }
+  },
+  "innova-teebird": {
+   "discraft-athena": {
+    "line": "Holds less turn on anhyzer lines than the TeeBird, though its plastic feels better",
+    "n": 1,
+    "by": [
+     "cr_f421515b59a5f300"
+    ]
+   },
+   "innova-teebird3": {
+    "line": "Feels more controllable and more trustworthy in wind than the TeeBird",
+    "n": 1,
+    "by": [
+     "cr_34cdd7f754af88ea"
+    ]
+   }
+  },
+  "mvp-tesla": {
+   "dynamic-discs-getaway": {
+    "line": "Very comparable to a Fission Tesla when thrown side by side",
+    "n": 1,
+    "by": [
+     "cr_582d2386b37e5525"
+    ]
+   },
+   "innova-thunderbird": {
+    "line": "Holds its hyzer where the Tesla flips out slightly; a Fission Tesla may fly similarly",
+    "n": 2,
+    "by": [
+     "cr_74b32bb6c332fa2d",
+     "cr_582d2386b37e5525"
+    ]
+   },
+   "mvp-volt": {
+    "line": "Slower than the Tesla, with a different enough flight that some still bag both",
+    "n": 1,
+    "by": [
+     "cr_a18bbaafea3ca5e1"
+    ]
+   },
+   "mvp-inertia": {
+    "line": "Turns a little more than the Tesla, which flies a bit straighter",
+    "n": 1,
+    "by": [
+     "cr_a18bbaafea3ca5e1"
+    ]
+   },
+   "axiom-virus": {
+    "line": "Flies about as far as the Tesla but on a different line, less reliably",
+    "n": 1,
+    "by": [
+     "cr_3f63f2541aa4cf3c"
+    ]
+   },
+   "axiom-insanity": {
+    "line": "Far more overstable than the Tesla",
+    "n": 1,
+    "by": [
+     "cr_3f63f2541aa4cf3c"
+    ]
+   },
+   "discmania-pd": {
+    "line": "Close to Neutron Tesla stability, a slot beaten-in Teslas could challenge",
+    "n": 2,
+    "by": [
+     "cr_582d2386b37e5525",
+     "cr_1d8d66dd28d2b057"
+    ]
+   },
+   "axiom-crave": {
+    "line": "Shorter than a well-used Tesla, which may start flying like it",
+    "n": 1,
+    "by": [
+     "cr_1d8d66dd28d2b057"
+    ]
+   },
+   "dynamic-discs-trespass": {
+    "line": "Overlaps with the Tesla for light to moderate headwinds and stable shots",
+    "n": 1,
+    "by": [
+     "cr_6ffa916c395a637e"
+    ]
+   }
+  },
+  "mvp-reactor": {
+   "axiom-pyro": {
+    "line": "Dumpier fade than the Reactor, which flexes out later and less abruptly",
+    "n": 1,
+    "by": [
+     "cr_37fbd622cbefac3f"
+    ]
+   },
+   "axiom-hex": {
+    "line": "Slightly less stable than the Reactor, with a similarly comfortable feel in hand",
+    "n": 2,
+    "by": [
+     "cr_04b2c98ebe9b6e5a",
+     "cr_2610292e9d3e1b41"
+    ]
+   },
+   "discraft-buzzz": {
+    "line": "Very similar flight and feel to the Reactor, but less forehand stable",
+    "n": 3,
+    "by": [
+     "cr_1c33a958aefd4a81",
+     "cr_2610292e9d3e1b41",
+     "cr_89a4479a7152574e"
+    ]
+   },
+   "mvp-matrix": {
+    "line": "Closest in the lineup to the Reactor, with more S curve and faster beat in",
+    "n": 1,
+    "by": [
+     "cr_1c33a958aefd4a81"
+    ]
+   },
+   "dynamic-discs-emac-truth": {
+    "line": "Holds up to a forehand less well than the Reactor",
+    "n": 1,
+    "by": [
+     "cr_2610292e9d3e1b41"
+    ]
+   }
+  }
  }
 }

@@ -6841,5 +6841,399 @@
     }
    ]
   }
+ },
+ "discgolf": {
+  "axiom-crave": {
+   "paras": [
+    "Reviewers praise the Crave as a comfortable, low-profile fairway driver that flips up from a hyzer, rides straight and goes farther than its 6.5 speed suggests, especially for beginners, slower arms and woods shots. Takes split on stability: Flippy James Disc Golf finds the Neutron the most overstable of its Neutron, Fission and Proton Craves and the Proton the most understable, while Cheating Lefty Disc Golf finds the Plasma the most overstable and the Fission in between. Part Time Disc Golf thinks weight may explain the flip more than plastic, with the lighter Craves flipping more. Pete Collins Disc Golf finds the Crave and Axiom Bokeh almost neck and neck, with the Bokeh slightly farther, and Nick Carroll Disc Golf finds the Plasma Crave more stable than the Innova Cheetah and a touch more stable than the Discraft Cicada."
+   ],
+   "highlights": [
+    {
+     "text": "comfortable, low-profile fairway driver that flips up from a hyzer",
+     "tone": "pos"
+    },
+    {
+     "text": "goes farther than its 6.5 speed suggests",
+     "tone": "pos"
+    },
+    {
+     "text": "Takes split on stability",
+     "tone": "neg"
+    }
+   ]
+  },
+  "innova-wraith": {
+   "paras": [
+    "Reviewers praise it as a slower, more controllable alternative to the Innova Destroyer that gives average and intermediate arms real distance. Takes split on plastic: IceBerg TV finds Pro the most flippy and Star by far the most stable, while Inside the Circle DG found DX and Pro turned over easily as arm strength grew and Champion hard to turn over. Bodanza Disc Golf finds the I-Blend flippier and glidier than a stock Star Wraith, and Part Time Disc Golf finds the Halo version holds an anhyzer longer than Star. Part Time Disc Golf also notes the Innova Racer outdrove the Halo Wraith by a good 80, maybe 90 ft, at about the same strength."
+   ],
+   "highlights": [
+    {
+     "text": "slower, more controllable alternative to the Innova Destroyer",
+     "tone": "pos"
+    },
+    {
+     "text": "DX and Pro turned over easily as arm strength grew",
+     "tone": "neg"
+    },
+    {
+     "text": "Champion hard to turn over",
+     "tone": "neg"
+    },
+    {
+     "text": "flippier and glidier than a stock Star Wraith",
+     "tone": "pos"
+    }
+   ]
+  },
+  "westside-harp": {
+   "paras": [
+    "Reviewers praise it as a reliable overstable approach disc that handles forehand torque and holds a line. Flippy James Disc Golf, Bradley Martin and Chains on Tap all find it flies very close to the Discraft Zone, so feel in the hand and the plastic decide between them. Plastic matters: Beaver Branch Disc Golf Adventures finds the Moonshine most stable and the VIP and Origio least stable, while No Budget Disc Golf Videos finds a newer BT Medium a lot more stable than an older, beat-up disc. Disc Golf Puttheads finds even short putts dump left quickly, so it is poor for turbo putting."
+   ],
+   "highlights": [
+    {
+     "text": "reliable overstable approach disc",
+     "tone": "pos"
+    },
+    {
+     "text": "flies very close to the Discraft Zone",
+     "tone": "pos"
+    },
+    {
+     "text": "even short putts dump left quickly",
+     "tone": "neg"
+    }
+   ]
+  },
+  "kastaplast-berg": {
+   "paras": [
+    "Reviewers praise how the Berg holds a hyzer, flat or anhyzer line and then drops with little skip or run, which makes it a reliable approach and short forehand disc. Takes split on putting and feel, since some find it a weak putter with an odd rim, while others like the grip and thumb track. Plastic differences are small: JustDisc finds K1 Soft almost identical to K1 and K3 a touch more overstable, while Disc Golf Examiner finds K1 Soft slightly more stable than K1 and K3 the most understable. Disc Golf Nerd finds the Westside Harp faster, longer carrying and with more fade, and Daddy Delp Disc Golf finds the Berg more sensitive to off-axis torque on forehand than the Westside Harp."
+   ],
+   "highlights": [
+    {
+     "text": "holds a hyzer, flat or anhyzer line and then drops with little skip or run",
+     "tone": "pos"
+    },
+    {
+     "text": "others like the grip and thumb track",
+     "tone": "pos"
+    },
+    {
+     "text": "some find it a weak putter with an odd rim",
+     "tone": "neg"
+    }
+   ]
+  },
+  "innova-mako3": {
+   "paras": [
+    "Reviewers praise it as a comfortable, straight mid for beginners and for tight woods and gap shots, and several say it shows angle and form errors right away. Takes split on stability by plastic: Cheating Lefty Disc Golf finds the GStar the most understable, the Champion very straight and the Halo the most overstable at the finish, while Kona Montgomery finds a new Star starts very straight and beats in to understable. Some reviewers say it turns over on forehand throws and is not torque resistant, and Magnus Hedegaard finds it too straight when a shot needs fade. On comparisons, Know Your Discs finds less fade than an Innova Roc, and IceBerg TV finds less flip than the MVP Detour."
+   ],
+   "highlights": [
+    {
+     "text": "comfortable, straight mid for beginners and for tight woods and gap shots",
+     "tone": "pos"
+    },
+    {
+     "text": "turns over on forehand throws and is not torque resistant",
+     "tone": "neg"
+    },
+    {
+     "text": "Kona Montgomery finds a new Star starts very straight and beats in to understable",
+     "tone": "pos"
+    }
+   ]
+  },
+  "axiom-hex": {
+   "paras": [
+    "Reviewers who loved it praise a straight, torque resistant mid with a shallow rim that feels comfortable, and several call the grip a highlight. Two reviewers find it more stable than expected, and one points beginners to a less stable disc. Plastic differences split opinion: Cheating Lefty Disc Golf calls Neutron one of the more understable versions, Eclipse harsher at the finish and Total Eclipse the most overstable, while Peachy Disc Golf and Discsmith Disc Golf find most plastics fly very alike, apart from a Proton Soft with extra late fade for Discsmith Disc Golf; Luce Disc Golf finds a lighter Fission more stable than a max weight Eclipse. On comparisons, 900 Rated finds it nearly identical to the Discraft Buzzz, maybe a touch more stable, and not a replacement, while Matt Hester Disc Golf calls it the most similar disc to a Discraft Buzzz seen so far."
+   ],
+   "highlights": [
+    {
+     "text": "a straight, torque resistant mid with a shallow rim that feels comfortable",
+     "tone": "pos"
+    },
+    {
+     "text": "Two reviewers find it more stable than expected",
+     "tone": "neg"
+    },
+    {
+     "text": "Luce Disc Golf finds a lighter Fission more stable than a max weight Eclipse",
+     "tone": "neg"
+    }
+   ]
+  },
+  "innova-destroyer": {
+   "paras": [
+    "Reviewers praise the Destroyer as a dependable fade driver, with some calling the Star one stable enough to throw hard without flipping and good for hyzer and forehand shots. Takes split on stability, since the same mold flies very differently by plastic, weight and wear. Cheating Lefty Disc Golf finds Halo and heavy Star very overstable, the 143 g Star understable and DX neutral, while Rippin Discs finds a new Star pretty overstable and expects a very beaten Pro to flip up on a hyzer. Myles of Discs finds the Destroyers dump at the end of the flight and swaps them for Emperors, calling the Destroyer molds more dependable than the Innova Wraith."
+   ],
+   "highlights": [
+    {
+     "text": "dependable fade driver",
+     "tone": "pos"
+    },
+    {
+     "text": "flies very differently by plastic, weight and wear",
+     "tone": "neg"
+    },
+    {
+     "text": "dump at the end of the flight",
+     "tone": "neg"
+    }
+   ]
+  },
+  "discraft-buzzz": {
+   "paras": [
+    "Reviewers praise a straight, predictable mid-range that holds its line under torque and suits players of all skill levels and arm speeds. Takes split on plastic: Cheating Lefty Disc Golf calls Z Flex the straightest premium plastic out of the box and says Crystal, Glow Flex, Titanium and Big Z fly more overstable, while Ace Run Productions found the slick ESP gave less glide than other Buzzz plastics. Bodanza Disc Golf finds it less glidy than the Innova Mako3 and weaker on anhyzer lines, and Peachy Disc Golf finds it a little more overstable and less glidy than the Axiom Hex."
+   ],
+   "highlights": [
+    {
+     "text": "holds its line under torque",
+     "tone": "pos"
+    },
+    {
+     "text": "suits players of all skill levels and arm speeds",
+     "tone": "pos"
+    },
+    {
+     "text": "the slick ESP gave less glide than other Buzzz plastics",
+     "tone": "neg"
+    },
+    {
+     "text": "weaker on anhyzer lines",
+     "tone": "neg"
+    }
+   ]
+  },
+  "axiom-envy": {
+   "paras": [
+    "Reviewers praise the Axiom Envy as a long-gliding, line-holding throwing putter that works for drives, approaches and some putting. Takes split on stability: Electron is the slightly understable, quick-to-break-in plastic, while Proton, Plasma and Eclipse hold straighter and fade more, and some reviewers find it a little stable for putting. Inside the Circle finds the Envy not near as overstable as the Discraft Zone, while Calculated Disc Golf places the Eagle McMahon run between the Discraft Zone and a normal stable Envy. Part Time Disc Golf finds the Axiom Tempo more stable and suggests it for flat sidearm throws, since the Envy can turn over."
+   ],
+   "highlights": [
+    {
+     "text": "long-gliding, line-holding throwing putter",
+     "tone": "pos"
+    },
+    {
+     "text": "Electron is the slightly understable, quick-to-break-in plastic",
+     "tone": "pos"
+    },
+    {
+     "text": "some reviewers find it a little stable for putting",
+     "tone": "neg"
+    },
+    {
+     "text": "the Envy can turn over",
+     "tone": "neg"
+    }
+   ]
+  },
+  "discraft-zone": {
+   "paras": [
+    "Reviewers praise it as a dependable overstable approach and utility putter for forehand flex lines, headwind putts and spike hyzers. Takes differ by plastic: Z is the most overstable but can feel slick and skip, the Jawbreaker is less stable and turns over once beaten in, and a beaten-in ESP can turn over too. Bodanza Disc Golf finds the swirly soft Zone flies like the Innova Pig, while Cheating Lefty Disc Golf says it fills the overstable slot the Westside Harp held before. Disc Golf Puttheads finds higher glide than the Innova Aviar3 and a harder fade than similar overstable putters."
+   ],
+   "highlights": [
+    {
+     "text": "dependable overstable approach and utility putter",
+     "tone": "pos"
+    },
+    {
+     "text": "can feel slick and skip",
+     "tone": "neg"
+    },
+    {
+     "text": "the Jawbreaker is less stable and turns over once beaten in",
+     "tone": "neg"
+    }
+   ]
+  },
+  "latitude-64-pure": {
+   "paras": [
+    "Reviewers praise the Pure as a straight, shallow-rimmed putter that holds the line it is thrown on, for both putting and throwing. Takes split on how stable it is: Beaver Branch Disc Golf Adventures finds it straight and slightly understable, Cheating Lefty Disc Golf calls it very neutral with little fade, and Chain Raider Disc Golf finds it turns over in a headwind. Plastics differ: Beaver Branch Disc Golf Adventures finds Zero Medium straightens out more easily than Opto, while Disc Golf Nerd finds Eco Zero straight to understable and Opto more neutral. Kyle Eberdt - Disc Golf switches from the Discraft Luna to the Pure for putting, and ICrank Disc Golf throws an Opto Pure about 265 feet against about 244 for the Axiom Envy on flat shots."
+   ],
+   "highlights": [
+    {
+     "text": "straight, shallow-rimmed putter that holds the line it is thrown on",
+     "tone": "pos"
+    },
+    {
+     "text": "Chain Raider Disc Golf finds it turns over in a headwind",
+     "tone": "neg"
+    },
+    {
+     "text": "Cheating Lefty Disc Golf calls it very neutral with little fade",
+     "tone": "pos"
+    }
+   ]
+  },
+  "mvp-trail": {
+   "paras": [
+    "Reviewers praise the Trail for easy distance, a comfortable rim and a flight that stays near straight with a slight turn and slight fade. Takes split on stability by plastic: TK Disc Golf calls the Fission version less stable than the Neutron, with more high-speed turn and extra glide, while TBH Disc Golf finds the Proton more stable than the Neutron in a headwind. Bodanza Disc Golf finds only the Innova Gorgon more understable than the Trail, and Cheating Lefty Disc Golf finds the Trail the straightest and slightly most overstable of the three against the Innova Gorgon and the Axiom Insanity. Wind and height can change the flight, as one reviewer saw the Proton turned over in a tailwind when thrown with height, and another would not pull the Fission out in a headwind."
+   ],
+   "highlights": [
+    {
+     "text": "easy distance",
+     "tone": "pos"
+    },
+    {
+     "text": "a comfortable rim",
+     "tone": "pos"
+    },
+    {
+     "text": "less stable than the Neutron",
+     "tone": "neg"
+    }
+   ]
+  },
+  "mvp-wave": {
+   "paras": [
+    "Reviewers praise the Wave as a distance driver for slower or moderate arms that flips up from a hyzer and finishes with a small fade, and some like the hand feel and glide. Opinions split on stability: two find it flips over hard with power and hyzers out when powered down, while another finds it stabled up and not very flippy. Plastic matters: Cheating Lefty Disc Golf finds the Proton the most overstable and the Fission the one with the most turn, and IceBerg TV finds Eclipse far more stable than Proton or Neutron. Gladiator Disc Golf finds the Wave more understable than the Innova Wraith or Dynamic Discs Trespass, while Shea Stevens says the Fission flew almost identical lines to a pre-flight MVP Photon."
+   ],
+   "highlights": [
+    {
+     "text": "flips up from a hyzer and finishes with a small fade",
+     "tone": "pos"
+    },
+    {
+     "text": "flips over hard with power and hyzers out when powered down",
+     "tone": "neg"
+    }
+   ]
+  },
+  "latitude-64-river": {
+   "paras": [
+    "Reviewers praise the glide and the friendly feel for slower arms, with several finding it goes a long way once thrown with some snap. Takes split on stability by plastic and run: Disc Respect Disc Golf calls the Opto a lot more understable and flippier than the Gold Ice, while Flying Fajita Disc Golf found one Opto Ice Splash run a little more overstable than expected. DiscGolf Justice finds it flippier and a little less stable than the Discmania Essence and picks the Essence for the bag, and Brook Arnold finds the Axiom Crave a little more stable and more repeatable, though the River sometimes goes as far."
+   ],
+   "highlights": [
+    {
+     "text": "praise the glide and the friendly feel for slower arms",
+     "tone": "pos"
+    },
+    {
+     "text": "flippier and a little less stable than the Discmania Essence",
+     "tone": "neg"
+    },
+    {
+     "text": "the River sometimes goes as far",
+     "tone": "pos"
+    }
+   ]
+  },
+  "innova-teebird3": {
+   "paras": [
+    "Reviewers praise it as a wind-resistant fairway driver for players wanting the Innova TeeBird hand feel with a sturdier finish. Takes split on how overstable it is: Disc Golf Nerd finds the Champion Ricky Wysocki edition much more overstable than expected, while Robert Eich finds the Tour Series run straighter and less stable than the Innova TeeBird or Innova Eagle. Plastic matters too: IceBerg TV finds an older Metal Flake Champion very stable, and Robert Eich finds Halo and Champion hold a straight line while Star and Color Glow flip over a little. Hucking Aces finds almost no glide, and GoHamDiscGolf gets about 40 feet more than the Innova TeeBird."
+   ],
+   "highlights": [
+    {
+     "text": "praise it as a wind-resistant fairway driver",
+     "tone": "pos"
+    },
+    {
+     "text": "finds almost no glide",
+     "tone": "neg"
+    },
+    {
+     "text": "gets about 40 feet more than the Innova TeeBird",
+     "tone": "pos"
+    }
+   ]
+  },
+  "mvp-detour": {
+   "paras": [
+    "Reviewers praise it as a point and shoot, understable mid that flips up from a hyzer and holds a line, with several naming low arm speed players and the woods as its best fit. Takes split on how flippy it is: Henry Disc Golf finds it burns over quickly when thrown hard, Macktown Disc Golf found it touchy at high speed and flipped one all the way over, while Daddy Delp Disc Golf finds it much less flippy than the MVP Uplink and more controllable than expected. Zach Turpin Disc Golf says it flies like a beat up Axiom Hex out of the box, and Flippy James Disc Golf finds it turns more than the Hex but comes back instead of holding the turn. Andrew calls it the regular person's Axiom Hex, and Cheating Lefty Disc Golf sees Discmania Origin as the closest disc and Discraft Meteor as a bit flippier with a little less fade."
+   ],
+   "highlights": [
+    {
+     "text": "point and shoot, understable mid that flips up from a hyzer and holds a line",
+     "tone": "pos"
+    },
+    {
+     "text": "burns over quickly when thrown hard",
+     "tone": "neg"
+    },
+    {
+     "text": "touchy at high speed",
+     "tone": "neg"
+    },
+    {
+     "text": "much less flippy than the MVP Uplink and more controllable than expected",
+     "tone": "pos"
+    }
+   ]
+  },
+  "streamline-pilot": {
+   "paras": [
+    "Reviewers praise a straight, glidey putter that holds hyzer and anhyzer lines and works for putting, approaches and throwing from the tee. Takes split on plastic: Disc Golf Jedi finds the beat-in Electron Firm flattest and straightest, while the Neutron, Cosmic Neutron and Proton fly more overstable, and Jake from Disc Golf finds the premium plastics a bit more overstable than the Electron. TK Disc Golf finds the Pilot goes dead straight thrown flat where the Axiom Proxy needs a hyzer flip, while RayzorJay DG finds it glides more than the Axiom Proxy or Axiom Envy. Disc Golf Nerd finds the flight quite similar to a soft Axiom Envy, but expects a new max weight Axiom Envy to be more stable."
+   ],
+   "highlights": [
+    {
+     "text": "a straight, glidey putter that holds hyzer and anhyzer lines",
+     "tone": "pos"
+    },
+    {
+     "text": "fly more overstable",
+     "tone": "neg"
+    },
+    {
+     "text": "glides more than the Axiom Proxy or Axiom Envy",
+     "tone": "pos"
+    }
+   ]
+  },
+  "innova-teebird": {
+   "paras": [
+    "Reviewers praise it as a forgiving, straight-flying fairway driver that suits average arms and learners, with a fade that shows up as it slows down. Takes split on plastic: ChasinChains finds the DX very understable and flippy while the Champion is straight and stable, and Myles of Discs finds I-blend close to Star but slightly flippier. Cole Bordis finds the TeeBird holds an anhyzer turn line longer than the Discraft Athena but calls newer Star and Champion plastic flimsy. Myles of Discs says the Innova TeeBird3 feels more controllable and more trustworthy in wind."
+   ],
+   "highlights": [
+    {
+     "text": "forgiving, straight-flying fairway driver",
+     "tone": "pos"
+    },
+    {
+     "text": "finds the DX very understable and flippy",
+     "tone": "neg"
+    },
+    {
+     "text": "calls newer Star and Champion plastic flimsy",
+     "tone": "neg"
+    }
+   ]
+  },
+  "mvp-tesla": {
+   "paras": [
+    "Reviewers praise it as a control fairway driver that holds its line, then finishes left, useful in headwinds and for hyzer or flex shots. Takes split on how stable it is: some copies fade hard and short, while others turn a little when light or beat in. Chris Goodrich finds the Fission flippier than the Neutron, which fades harder and sooner, and calls the Fission very comparable to the Dynamic Discs Getaway. Bodanza Disc Golf finds a Proton flat and flippy, closer to a Discmania PD than its listed numbers, and suggests rerating it nearer 9/5/0/2."
+   ],
+   "highlights": [
+    {
+     "text": "praise it as a control fairway driver that holds its line, then finishes left",
+     "tone": "pos"
+    },
+    {
+     "text": "some copies fade hard and short",
+     "tone": "neg"
+    }
+   ]
+  },
+  "mvp-reactor": {
+   "paras": [
+    "Reviewers praise how it holds hard hyzers, handles torque on forehands and fades out late and predictably. Opinions split on plastics: Part Time Disc Golf finds the 147 g Fission goes straighter and further than the 178 g Eclipse but is affected more by wind, while Jake from Disc Golf finds the flight pretty much identical across plastics, with only the feel differing. Jake from Disc Golf and IceBerg TV both liken it to the Discraft Buzzz, and Sam Estes Disc Golf finds it holds up to a forehand better than the Discraft Buzzz without being super overstable. Three reviewers find little turn when new, so it is hard to turn over."
+   ],
+   "highlights": [
+    {
+     "text": "holds hard hyzers",
+     "tone": "pos"
+    },
+    {
+     "text": "handles torque on forehands",
+     "tone": "pos"
+    },
+    {
+     "text": "Three reviewers find little turn when new",
+     "tone": "neg"
+    },
+    {
+     "text": "it is hard to turn over",
+     "tone": "neg"
+    }
+   ]
+  }
  }
 }
