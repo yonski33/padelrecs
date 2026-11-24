@@ -29,6 +29,10 @@ import { W } from "../../lib/thread/words";
 import { creatorHome } from "../../lib/thread/creator-data";
 import { creatorPageFor, creatorPageOn, CREATOR_VIEW } from "../../lib/thread/sites";
 import { CreatorsHomeTop, type HomeExtra } from "./live/creators-home";
+import { storiesSite } from "../../lib/thread/sites";
+import { threadStories } from "./stories-data";
+import { MemberMark } from "./live/member-mark";
+import { padelOffers } from "../../lib/padel-offers";
 import "./creators-home.css";
 
 
@@ -41,21 +45,31 @@ const ICON = {
   shield: <svg width="17" height="19" viewBox="0 0 18 20" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinejoin="round" aria-hidden="true"><path d="M9 1l7 3v5c0 5-3 8-7 10-4-2-7-5-7-10V4z"/><path d="M6 10l2 2 4-4"/></svg>,
 } as const;
 /** Each vote board's icon (lib/thread/top-picks.ts keys). */
-const BOARD_ICON: Record<string, keyof typeof ICON> = { sweet: "target", arm: "arm", control: "ctrl", power: "bolt", spin: "spin", beginner: "target", pop: "bolt", soft: "shield" };
+const BOARD_ICON: Record<string, keyof typeof ICON> = { sweet: "target", arm: "arm", control: "ctrl", power: "bolt", spin: "spin", beginner: "target", pop: "bolt", soft: "shield",
+  // PadelRecs' boards (lib/thread/top-picks.ts PADEL_CATS).
+  net: "ctrl", intermediate: "target", defence: "shield", trampoline: "spin" };
 const PILL_BG = { pos: "oklch(0.93 0.08 145)", mix: "oklch(0.95 0.08 95)", neg: "oklch(0.93 0.05 35)" } as const;
-const TYPE_BG: Record<string, string> = { Widebody: "oklch(0.94 0.06 125)", Standard: "oklch(0.94 0.04 250)", Elongated: "oklch(0.93 0.05 35)", Hybrid: "oklch(0.94 0.04 250)" };
+const TYPE_BG: Record<string, string> = { Widebody: "oklch(0.94 0.06 125)", Standard: "oklch(0.94 0.04 250)", Elongated: "oklch(0.93 0.05 35)", Hybrid: "oklch(0.94 0.04 250)",
+  // PadelRecs' shapes.
+  Round: "oklch(0.94 0.06 125)", Teardrop: "oklch(0.94 0.04 250)", Diamond: "oklch(0.93 0.05 35)" };
+/** PadelRecs (2026-11-24): a row's price is its cheapest in-stock padel shop (lib/padel-offers.ts, the racket page's Where to
+ *  buy box), in that shop's own currency; the creator data holds no padel prices. */
+const PADEL = niche.id === "padel";
 
 /** The creators home (the owner's Home Thread v6 handoff). */
 export async function CreatorsHomeBody() {
   const home = await creatorHome(niche.id);
-  const [{ all, rows: byId, ctx }, d, side, lists, feed, picks] = await Promise.all([threadRows(), padelListData(), threadHomeSide(), threadRankings(), threadFeed(), threadTopPicks()]);
+  const [{ all, rows: byId, ctx }, d, side, lists, feed, picks, tales] = await Promise.all([threadRows(), padelListData(), threadHomeSide(), threadRankings(), threadFeed(), threadTopPicks(),
+    storiesSite(niche.id) ? threadStories(3) : []]);
   const bySlug = new Map(all.map(r => [r.slug, r]));
   // With CREATOR_PAGE on, the normal address is the creator page; the ?view= preview link only while it is off.
   const hrefOf = (slug: string, href: string) => !creatorPageOn(niche.id) && creatorPageFor(niche.id, slug) ? `${href}?view=${CREATOR_VIEW}` : href;
   // Ranked by the site's own players (owner 2026-11-22, after #649 went live): the same rows, votes, curated order and filters
   // as the catalogue list (padelListData, PR #600). Creator reviews add a praise line and a price, never the order or counts.
   const rows = d.rows, curated = d.curated, brands = d.brands;
-  const extra: Record<string, HomeExtra> = rowExtras(rows, home?.paddles ?? {}, d.pills ?? {}, hrefOf);
+  const extra0: Record<string, HomeExtra> = rowExtras(rows, home?.paddles ?? {}, d.pills ?? {}, hrefOf);
+  const extra: Record<string, HomeExtra> = PADEL ? Object.fromEntries(rows.map(r => { const x = extra0[r.id]!, o = padelOffers(r.slug).find(y => y.inStock);
+    return [r.id, o ? { ...x, price: { label: `from ${o.price} · check price ↗`, url: o.href, rel: o.rel } } : x]; })) : extra0;
   const now = Date.now();
   const total = home ? `${home.total.toLocaleString("en-US")} reviews summarised` : "";
   const name = (slug: string) => { const r = bySlug.get(slug); return r ? withoutYear(r.name) : slug; };
@@ -89,7 +103,7 @@ export async function CreatorsHomeBody() {
           </section>}
 
           {fresh.length > 0 && <section key="ji" className="tch-card tch-sec">
-            <div className="tch-sec-h"><h2><span className="tch-new">NEW</span>2027 paddles just in</h2><a className="tch-all" href={th(catalogPath)}>All new paddles →</a></div>
+            <div className="tch-sec-h"><h2><span className="tch-new">NEW</span>{`2027 ${niche.words.many} just in`}</h2><a className="tch-all" href={th(catalogPath)}>{`All new ${niche.words.many} →`}</a></div>
             <div className="tch-new-g">{fresh.map(r => { const t = r.pos + r.mix + r.neg, at = added[r.id], shape = oneShape(r.shape);
               return <a key={r.id} className="tch-new-c" href={th(r.href)}>
                 <span className="tch-new-ph">{at && <span className="tch-when"><Ago at={at} initial={ago(at, now)}/></span>}{r.pic ? <img src={r.pic} alt="" loading="lazy"/> : <span className="tch-noimg"/>}</span>
@@ -125,6 +139,12 @@ export async function CreatorsHomeBody() {
           {rankLinks.length > 0 && <section key="rk" className="tch-rank-box">
             <div>Rankings</div>
             <nav>{rankLinks.map(k => <a key={k.href} href={th(k.href)}><span>{k.label}</span><span aria-hidden="true">→</span></a>)}</nav>
+          </section>}
+          {/* PadelRecs' member stories (the pilot): the latest 3, under Rankings as on its earlier home. */}
+          {tales.length > 0 && <section key="st" className="tch-card tch-sbox">
+            <h3>Stories</h3>
+            {tales.map(t => <a key={t.id} href={th(`/stories/${t.slug}`)}><span className="tch-sm"><strong>{t.author.name}</strong><MemberMark/></span><b>{t.title}</b></a>)}
+            <a className="tch-all" href={th("/stories")}>All stories →</a>
           </section>}
           {web.length > 0 && <section key="wb" className="tch-card tch-sbox">
             <h3>New from around the web</h3>

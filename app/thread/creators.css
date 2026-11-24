@@ -620,3 +620,8 @@ body:has(.thc) .thc .thc-pbox-on a, body:has(.thc) .thc .thc-sim-aff a { color: 
 /* Best for (owner 2026-11-23): the reviewer's reason under who it suits. */
 .thc-box.best b, .thc-box.best .thc-box-h span { color: var(--ink); }
 .thc .thc-box-s { font-size: 14px; line-height: 1.45; color: var(--body2, var(--muted)); }
+/* PadelRecs on the creator page (2026-11-24): the Follow button under the tags, and the shop list's "All N shops". */
+.thc-follow { display: flex; margin: 2px 0 4px; }
+.thc-pbox-more summary { cursor: pointer; font-size: 13.5px; font-weight: 600; padding: 6px 0 2px; color: var(--muted); }
+/* Padel's longest attribute word ("Maneuverability") breaks with a hyphen instead of running into the line beside it. */
+.thc-grade strong { min-width: 0; overflow-wrap: anywhere; hyphens: auto; }
