@@ -217,7 +217,7 @@ function codeCheck(c: Content, i: Input): string[] {
   if (/verdict|\b(we|us|our|owners?|creators?)\b/i.test(texts.replace(/\bU\.?S\.?A?\b/g, ""))) p.push("banned word");
   if (/\b(he|she|his|her|him|hers)\b/i.test(texts)) p.push("gendered pronoun");
   if (!/The catch:/.test(c.tldr) || words(c.tldr) < 12 || words(c.tldr) > 40) p.push(`tldr shape (${words(c.tldr)} words)`);
-  const wp = c.wrapup.paras.join(" "), sentences = wp.split(/(?<=[.!?])\s+/).filter(Boolean).length;
+  const wp = c.wrapup.paras.join(" "), sentences = wp.replace(/\b(Dr|Mr|Mrs|Ms|St|Jr|Sr|vs|No|Gen|approx|e\.g|i\.e)\./gi, "$1").split(/(?<=[.!?])\s+/).filter(Boolean).length; // "Dr. Christy Price" is one sentence
   if (c.wrapup.paras.length !== 1 || sentences < 2 || sentences > 3) p.push(`wrapup ${c.wrapup.paras.length} paras / ${sentences} sentences`);
   if (!c.wrapup.highlights.some(h => h.tone === "pos")) p.push("wrapup has no pos highlight");
   for (const h of c.wrapup.highlights) if (!wp.includes(h.text)) p.push(`wrapup highlight not in text: ${h.text}`);
