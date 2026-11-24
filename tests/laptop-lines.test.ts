@@ -1,27 +1,37 @@
 // LaptopRecs' model lines (lib/thread/laptop-lines.ts, db/catalogs/laptop-lines.json, owner 2026-11-24): lists show a line's
-// 2026 model, a 2025 model only when the line has no 2026 successor, never 2024 or older; older models link to the newest.
+// newest READY 2026 model, else its ready 2025 one, never 2024 or older; older models link only to a ready current model.
 import test from "node:test";
 import assert from "node:assert/strict";
-import { laptopLines, LAPTOP_LINES, type LineTable } from "../lib/thread/laptop-lines";
+import { laptopLines, laptopReady, LAPTOP_LINES, LAPTOP_READY, type LineTable } from "../lib/thread/laptop-lines";
 
 const T: LineTable = {
   "air-m1": ["Air 13", 1, 2020], "air-m4": ["Air 13", 4, 2025], "air-m5": ["Air 13", 5, 2026],
-  "t14-6": ["T14", 6, 2025], "g14-24": ["G14", 2024, 2024], "old-only": ["Old", 1, 2023],
+  "t14-6": ["T14", 6, 2025], "t14-7": ["T14", 7, 2026], "g14-24": ["G14", 2024, 2024], "zb": ["ZBook Ultra", 1, 2025],
   "xps-9440": ["XPS 14", 1, 2024], "dell-14-premium": ["XPS 14", 2, 2025], "xps-da": ["XPS 14", 3, 2026],
 };
-const it = (slug: string) => ({ id: slug, slug });
+const it = (slug: string, ready = true) => ({ id: slug, slug, ready });
 
-test("2026 takes the line, reviews or not; a 2025 model stands in only without a 2026 successor; 2024 and older never list", () => {
-  const r = laptopLines(["air-m1", "air-m4", "air-m5", "t14-6", "g14-24", "old-only"].map(it), T);
-  assert.deepEqual([...r.current].sort(), ["air-m5", "t14-6"]);
-  assert.deepEqual(r.standIns, [{ line: "T14", slug: "t14-6" }]);
-  assert.equal(r.newer.get("air-m1"), "air-m5");
-  assert.equal(r.newer.get("air-m4"), "air-m5");
+test("ready: creator reviews or a TL;DR, plus owner votes (the config threshold)", () => {
+  assert.deepEqual(LAPTOP_READY, { creatorReviews: 3, votes: 3 });
+  assert.equal(laptopReady({ creator: 9, tldr: true, votes: 0 }), false); // content but no votes
+  assert.equal(laptopReady({ creator: 3, tldr: false, votes: 3 }), true);
+  assert.equal(laptopReady({ creator: 0, tldr: true, votes: 5 }), true);
+  assert.equal(laptopReady({ creator: 2, tldr: false, votes: 40 }), false); // votes but no written content
+});
+
+test("the slot goes to the newest READY model: 2026 if ready, else 2025; 2024 and older never; not-ready never", () => {
+  const r = laptopLines([it("air-m1"), it("air-m4"), it("air-m5", false), it("t14-6"), it("t14-7"), it("g14-24"), it("zb", false)], T);
+  assert.deepEqual([...r.current].sort(), ["air-m4", "t14-7"]);
+  assert.deepEqual(r.standIns, [{ line: "Air 13", slug: "air-m4" }]);
+  // Older pages link to the ready current model; nothing links to the not-ready M5.
+  assert.equal(r.newer.get("air-m1"), "air-m4");
+  assert.equal(r.newer.get("t14-6"), "t14-7");
+  assert.ok(![...r.newer.values()].includes("air-m5"));
   assert.equal(r.newer.has("air-m5"), false);
 });
 
 test("a renamed successor shares its predecessor's line (XPS 14 -> Dell 14 Premium -> XPS 14 DA14260)", () => {
-  const r = laptopLines(["xps-9440", "dell-14-premium", "xps-da"].map(it), T);
+  const r = laptopLines([it("xps-9440"), it("dell-14-premium"), it("xps-da")], T);
   assert.deepEqual([...r.current], ["xps-da"]);
   assert.equal(r.newer.get("dell-14-premium"), "xps-da");
 });

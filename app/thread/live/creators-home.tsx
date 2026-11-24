@@ -54,8 +54,6 @@ const LAPTOP_HOME: HomeSite = { title: "Every laptop review, summed up", one: "l
   rowIcon: <svg width="28" height="28" viewBox="0 0 30 30" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><rect x="5" y="6" width="20" height="14" rx="1.5"/><path d="M2 24h26l-2 3H4z"/></svg> };
 const HOME_SITES: Record<string, HomeSite> = { pickleball: PICKLEBALL_HOME, padel: PADEL_HOME, laptop: LAPTOP_HOME };
 const HS = HOME_SITES[niche.id] ?? PICKLEBALL_HOME;
-/** LaptopRecs lists every current model, reviewed or not (lib/thread/laptop-lines.ts): new ones say "New, reviews coming". */
-const NEW_NOTE = niche.id === "laptop";
 
 /** One row's extra data from the server: its praise pill, where it links, its lowest price (lib/thread/creator-home.ts). The
  *  bar and counts are the row's own site votes (owner 2026-11-22). */
@@ -138,12 +136,10 @@ export function CreatorsHomeTop({ rows, extra, curated, added, total, brands, af
                 {x?.pill && <span className="tch-pill">{x.pill}</span>}
               </div>
               <div className="tch-stat">
-                {/* LaptopRecs: a current model with no opinions yet says so in place of the vote bar (owner 2026-11-24). */}
-                {NEW_NOTE && t === 0 && !(mine && m != null) ? <span className="tch-n th-new-note">New, reviews coming</span> : <>
                 {mine && m != null ? <span className={`tch-match ${m >= 85 ? "g" : m >= 70 ? "y" : ""}`}>{`${m}% your match`}</span>
                   : <span className="tch-n">{opinionsLabel(t, W.person)}</span>}
                 <span className="tch-bar" aria-hidden="true"><i className="p" style={{ flex: r.pos }}/><i className="m" style={{ flex: r.mix }}/><i className="n" style={{ flex: r.neg }}/></span>
-                <span className="tch-counts">{countsLine(siteSentiment(r))}</span></>}
+                <span className="tch-counts">{countsLine(siteSentiment(r))}</span>
                 <span className="tch-links"><a className="tch-go" href={th(x?.href ?? r.href)}>See reviews ›</a>
                   {x?.price && <a className="tch-price" href={x.price.url} target="_blank" rel={x.price.rel}>{x.price.label}</a>}</span>
               </div>

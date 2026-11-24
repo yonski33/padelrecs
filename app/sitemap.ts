@@ -1,11 +1,12 @@
 import type { MetadataRoute } from "next";
 import { v3Site } from "../lib/thread/sites";
-import { catalog } from "../db/data";
+import { catalog, score } from "../db/data";
 import { catalogPath, niche, productHref } from "../lib/niche";
 import { amazonLinksOn } from "../lib/amazon-offer";
 import { threadStories } from "./thread/stories-data";
 import { comparePairs, pairHref } from "../lib/compare-pairs";
 import { laptopLines } from "../lib/thread/laptop-lines";
+import { laptopReadiness } from "../lib/thread/laptop-ready";
 import { threadSite, THREAD_DEFAULT, GUIDE_PATHS, GUIDE_KEYS } from "../lib/thread/look";
 import { rankList, listTotals, RANKINGS_PATH, rankingHref, withNicheWindow, withModelYears, MIN_LIST_ENTRIES } from "../lib/top-lists";
 
@@ -25,7 +26,11 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   // Pages that moved to another Recs site 301 there (GamingRecs monitors), so they are left out even while their rows remain.
   const moved = new Set((niche.movedAway ?? []).filter(m => !m.query).map(m => m.source));
   const listed = data.listed.filter(r => !moved.has(`${catalogPath}/${r.slug}`));
-  const laptopCurrent = niche.id === "laptop" ? laptopLines(listed.map(r => ({ id: r.id, slug: r.slug }))).current : null;
+  // LaptopRecs (owner 2026-11-24): only pages ready to list (lib/thread/laptop-lines.ts LAPTOP_READY) go in the sitemap;
+  // older ready generations stay as reference pages at a lower priority.
+  const ltReady = niche.id === "laptop" ? (await laptopReadiness(data.rackets, id => { const c = score(data, id); return c.positive + c.mixed + c.negative; })).ready : null;
+  const laptopCurrent = ltReady ? laptopLines(data.rackets.map(r => ({ id: r.id, slug: r.slug, ready: ltReady.has(r.id) }))).current : null;
+  const pagesListed = ltReady ? listed.filter(r => ltReady.has(r.id)) : listed;
   const listedBrands = data.listedBrands.filter(b => !moved.has(`/brands/${b.slug}`));
   const lists = withModelYears(withNicheWindow(niche.topLists ?? [], niche.recentMonths)).map(list => ({ list, entries: rankList(list, data, niche.tags) })).filter(x => x.entries.length >= MIN_LIST_ENTRIES).map(x => ({ list: x.list, ...listTotals(x.entries) })).filter(x => x.updated);
 
@@ -50,7 +55,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       changeFrequency: "weekly" as const,
       priority: 0.8,
     })),
-    ...listed.map(r => ({
+    ...pagesListed.map(r => ({
       url: `${base}${productHref(r)}`,
       lastModified: latest([r.createdAt, ...notesFor(r.id)]),
       changeFrequency: "weekly" as const,
@@ -64,7 +69,8 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       priority: 0.6,
     })),
     // Curated "X vs Y" pages only (lib/compare-pairs); other mixes of products are not indexed.
-    ...comparePairs(data).pairs.filter(p => !moved.has(`${catalogPath}/${p.a.slug}`) && !moved.has(`${catalogPath}/${p.b.slug}`)).map(p => ({
+    ...comparePairs(data).pairs.filter(p => !moved.has(`${catalogPath}/${p.a.slug}`) && !moved.has(`${catalogPath}/${p.b.slug}`)
+      && (!ltReady || (ltReady.has(p.a.id) && ltReady.has(p.b.id)))).map(p => ({
       url: `${base}${pairHref(p.a.slug, p.b.slug)}`,
       lastModified: latest([p.a.createdAt, p.b.createdAt, ...notesFor(p.a.id), ...notesFor(p.b.id)]),
       changeFrequency: "weekly" as const,
