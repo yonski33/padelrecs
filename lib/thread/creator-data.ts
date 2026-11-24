@@ -50,6 +50,11 @@ export async function creatorSlugs(site: string): Promise<string[]> {
   const r = await withDb(site, (db, m) => m.readCreatorSlugs(db, niche.schema));
   return r ? r.v : fixtureSlugs(site);
 }
+/** Every product's creator page from the database, by slug, or null before the import (LaptopRecs' quick match inputs). */
+export async function creatorPagesAll(site: string): Promise<Map<string, CreatorPage> | null> {
+  const r = await allPages(site);
+  return r ? r.v : null;
+}
 /** The creators home's data, or null. */
 export async function creatorHome(site: string): Promise<CreatorHome | null> {
   const r = await allPages(site);

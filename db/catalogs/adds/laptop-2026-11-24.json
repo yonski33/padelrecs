@@ -1,0 +1,23 @@
+{
+ "about": "LaptopRecs creator-review adds (2026-11-24, PR #678): staged laptops with 3+ reviewer cards (distinct reviewers) that are not in laptoprecs.rackets. Of the 8 staged slugs the dry run could not match, 7 are already in the catalogue under another slug (db/creators/laptop-slug-aliases.json maps them), so only the HP OmniBook Ultra 14 Snapdragon X2 Elite model is new. Name in the catalogue's style for its siblings (14-fd0000, 14-kd0000); the maker page (HP Ireland, read 2026-11-24) names the SKU 'HP OmniBook Ultra Laptop Next Gen AI 14-kg0500nax'. Values read on that page; blank = not published there. Insert only after the owner's OK.",
+ "checked": "2026-11-24",
+ "brands": [],
+ "products": [
+  {
+   "brand": "hp",
+   "name": "HP OmniBook Ultra 14 (14-kg0000)",
+   "slug": "hp-omnibook-ultra-14-snapdragon-x2-elite-2026",
+   "year": 2026,
+   "shape": "Ultrabook",
+   "weight": null,
+   "balance": "Qualcomm Snapdragon X2 Elite X2E-84-100 (12 cores, up to 4.7 GHz)",
+   "core": "Qualcomm Adreno",
+   "surface": "14\" 3K OLED touch",
+   "swingWeight": null,
+   "sources": [
+    "https://www.hp.com/ie-en/products/laptops/product-details/2103846538"
+   ],
+   "reviewers": 7
+  }
+ ]
+}

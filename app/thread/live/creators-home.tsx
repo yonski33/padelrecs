@@ -14,6 +14,9 @@ import { LEVEL_OPTS, type Level, type Style } from "./picks";
 import { countsLine, opinionsLabel, siteSentiment } from "../../../lib/thread/site-sentiment";
 import { W } from "../../../lib/thread/words";
 import { niche } from "../../../lib/niche";
+import { LAPTOP_CATEGORIES } from "../../../lib/niche/laptop";
+import { useLaptopListMatch } from "./laptop-match";
+import type { LaptopWire } from "../../../lib/laptop-match";
 
 const FIRST = 6, STEP = 10;
 const STYLES: [Style, string][] = [["control", "Control"], ["balance", "Balance"], ["power", "Power"]];
@@ -26,7 +29,7 @@ export const LEVEL_ICON: Record<Level, ReactNode> = {
 const SHAPES = ["Widebody", "Standard", "Elongated", "Hybrid"], FEELS = ["Soft", "Medium", "Hard"], TOP_BRANDS = 6;
 /** The home's words and drawings per site (PickleballRecs is the template, owner 2026-11-24). `groups`: the fine-tune groups
  *  other than Brand, as [row key, title, values]. `line`: the hero's line, when it differs from pickleball's. Same shape as
- *  LaptopRecs' #683 (HOME_SITES), so the two merge as one table. */
+ *  LaptopRecs' (#683), merged as one table. */
 type HomeSite = { title: string; one: string; many: string; groups: [Key, string, string[]][]; art: ReactNode; rowIcon: ReactNode; line?: string };
 const PICKLEBALL_HOME: HomeSite = { title: "Every pickleball paddle review, summed up", one: "paddle", many: "paddles", groups: [["shape", "Shape", SHAPES], ["feel", "Feel", FEELS]],
   art: <svg className="tch-art" width="74" height="80" viewBox="0 0 74 80" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
@@ -43,7 +46,13 @@ const PADEL_HOME: HomeSite = { title: "Every padel racket review, summed up", on
     <g fill="currentColor" stroke="none">{[[27, 18], [35, 17], [23, 26], [31, 25], [39, 24], [27, 33], [35, 32], [31, 40]].map(([x, y]) => <circle key={`${x}-${y}`} cx={x} cy={y} r="2"/>)}</g>
     <path d="M24 49 L28 54 L20 74"/><path d="M57 7 l3 -5 M63 15 l6 -3 M65 25 l6 1"/></svg>,
   rowIcon: <svg width="28" height="28" viewBox="0 0 30 30" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" aria-hidden="true"><ellipse cx="17" cy="11" rx="9" ry="9.5"/><path d="M14 20l-1 2-7 6"/><g fill="currentColor" stroke="none"><circle cx="14" cy="8" r="1.2"/><circle cx="19" cy="8" r="1.2"/><circle cx="14" cy="13" r="1.2"/><circle cx="19" cy="13" r="1.2"/></g></svg> };
-const HOME_SITES: Record<string, HomeSite> = { pickleball: PICKLEBALL_HOME, padel: PADEL_HOME };
+/** LaptopRecs: an open laptop in the same line style; Category in place of Shape, no Feel. */
+const LAPTOP_HOME: HomeSite = { title: "Every laptop review, summed up", one: "laptop", many: "laptops", groups: [["shape", "Category", LAPTOP_CATEGORIES]],
+  art: <svg className="tch-art" width="84" height="70" viewBox="0 0 84 70" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+    <rect x="14" y="8" width="56" height="38" rx="4" fill="#fff"/><path d="M21 16h20M21 23h30M21 30h14"/><path d="M4 52h76l-5 8H9z" fill="#fff"/><path d="M36 56h12"/>
+    <path d="M74 4 l3 -4 M78 12 l5 -2"/></svg>,
+  rowIcon: <svg width="28" height="28" viewBox="0 0 30 30" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><rect x="5" y="6" width="20" height="14" rx="1.5"/><path d="M2 24h26l-2 3H4z"/></svg> };
+const HOME_SITES: Record<string, HomeSite> = { pickleball: PICKLEBALL_HOME, padel: PADEL_HOME, laptop: LAPTOP_HOME };
 const HS = HOME_SITES[niche.id] ?? PICKLEBALL_HOME;
 
 /** One row's extra data from the server: its praise pill, where it links, its lowest price (lib/thread/creator-home.ts). The
@@ -51,11 +60,15 @@ const HS = HOME_SITES[niche.id] ?? PICKLEBALL_HOME;
 import type { RowExtra as HomeExtra } from "../../../lib/thread/creator-home";
 export type { HomeExtra };
 
-export function CreatorsHomeTop({ rows, extra, curated, added, total, brands, after, side }: {
+export function CreatorsHomeTop({ rows, extra, curated, added, total, brands, after, side, laptop }: {
   rows: ThreadRow[]; extra: Record<string, HomeExtra>; curated: string[]; added: Record<string, string>;
   /** "247 reviews summarised". */ total: string; brands: string[]; after: ReactNode; side: ReactNode;
+  /** LaptopRecs: its quick match inputs (live/laptop-match.tsx); the bar is its own. */ laptop?: LaptopWire[];
 }) {
-  const l = useRacketList({ rows, curated, added, home: true }), { list, pcts, mine, picks, setPicks, f, toggle, chips, clearAll, pool, pass, test } = l;
+  const match = useLaptopListMatch(laptop);
+  const l = useRacketList({ rows, curated, added, home: true, match }), { list, pcts, mine, picks, setPicks, f, toggle, chips, clearAll, pool, pass, test } = l;
+  // A site's own match has no arm box (the padel-style picks are not shown there).
+  const arm = !match && picks.arm;
   const [ft, setFt] = useState(false), [count, setCount] = useState(FIRST), [sortOpen, setSortOpen] = useState(false), [moreBrands, setMoreBrands] = useState(false);
   // The list grows 10 at a time (owner 2026-11-23), then "Show fewer" folds it back to the first six.
   const shown = list.slice(0, count), left = list.length - shown.length;
@@ -65,7 +78,7 @@ export function CreatorsHomeTop({ rows, extra, curated, added, total, brands, af
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }), [pool, f, brands, moreBrands]);
   // The list title says what it holds once filters or a quick match are on (owner 2026-11-23): "Top Widebody, Medium paddles (8)".
-  const listTitle = chips.length ? `Top ${chips.map(c => c.v).join(", ")} ${HS.many}` : mine || picks.arm ? "Your best matches" : `Top ${HS.many} right now`;
+  const listTitle = chips.length ? `Top ${chips.map(c => c.v).join(", ")} ${HS.many}` : mine || arm ? "Your best matches" : `Top ${HS.many} right now`;
   const sortLabel = l.sorts.find(([k]) => k === l.sort)?.[1] ?? l.sorts[0][1];
   return <>
     <section className="tch-hero">
@@ -77,9 +90,11 @@ export function CreatorsHomeTop({ rows, extra, curated, added, total, brands, af
             <span>{HS.line ?? "Reviews from YouTube, blogs and Reddit, read and summed up so you don't have to."}</span>
           </div>
         </div>
-        <span className="tch-count"><i aria-hidden="true"/>{total}</span>
+        {total && <span className="tch-count"><i aria-hidden="true"/>{total}</span>}
       </div>
-      <div className="tch-qm" role="group" aria-label="Quick match">
+      {match?.bar ? match.bar({ ft, setFt, home: true, after: <span className="tch-sticker" aria-hidden="true"><svg width="58" height="26" viewBox="0 0 58 26" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"><path d="M55 20C44 24 30 23 20 16 15 12.5 11 10 5 10"/><path d="M11 4.5L4.5 10l6.5 5"/></svg>
+          <span>{mine ? "your match" : "quick match"}</span></span> })
+      : <div className="tch-qm" role="group" aria-label="Quick match">
         <span className="tch-qm-l">{"I'm"}</span>
         {LEVEL_OPTS.map(v => <button key={v} type="button" className="tch-chip" aria-pressed={picks.level === v} onClick={() => setPicks({ level: picks.level === v ? null : v })}>{LEVEL_ICON[v]}{LEVEL_WORD[v]}</button>)}
         <span className="tch-qm-sep" aria-hidden="true"/>
@@ -90,7 +105,7 @@ export function CreatorsHomeTop({ rows, extra, curated, added, total, brands, af
           <span>{mine ? "your match" : "quick match"}</span></span>
         {(mine || picks.arm) && <button type="button" className="tch-reset" onClick={() => setPicks({ level: null, style: null, arm: false })}>Reset</button>}
         <button type="button" className="tch-ft" aria-expanded={ft} onClick={() => setFt(!ft)}>Not sure yet? <u>fine-tune</u> {ft ? "▴" : "▾"}</button>
-      </div>
+      </div>}
       {ft && <div className="tch-panel"><strong>Only show:</strong>
         {groups.map(g => <div key={g.k} className="tch-fg"><span className="tch-fg-h">{g.title}</span>
           {g.opts.map(o => <button key={o.v} type="button" className="tch-fchip" aria-pressed={o.on} style={{ opacity: o.n || o.on ? 1 : 0.4 }} onClick={() => toggle(g.k, o.v)}>{o.v}<small>{o.n}</small></button>)}
@@ -104,7 +119,7 @@ export function CreatorsHomeTop({ rows, extra, curated, added, total, brands, af
       <div className="tch-main">
         <section className="tch-card tch-top">
           <div className="tch-top-h">
-            <h2>{HS.rowIcon}{listTitle}{(chips.length > 0 || mine || picks.arm) && <small className="tch-top-n">{` (${list.length})`}</small>}</h2>
+            <h2>{HS.rowIcon}{listTitle}{(chips.length > 0 || mine || arm) && <small className="tch-top-n">{` (${list.length})`}</small>}</h2>
             <span className="tch-sort"><span>Sort:</span>
               <button type="button" aria-haspopup="listbox" aria-expanded={sortOpen} onClick={() => setSortOpen(o => !o)}>{sortLabel}<small aria-hidden="true">▼</small></button>
               {sortOpen && <span className="tch-sort-m" role="listbox" aria-label={`Sort ${HS.many}`}>{l.sorts.filter(([k]) => k !== "match" || pcts).map(([k, t]) =>

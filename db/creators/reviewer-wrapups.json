@@ -2760,6 +2760,25 @@
      "tone": "neg"
     }
    ]
+  },
+  "neonic-swift-flx": {
+   "paras": [
+    "Reviewers praise the light, maneuverable elongated build and soft feel, and Pickleball Pursuit calls it the most maneuverable elongated paddle they have played and tested. Comparisons differ on spin: Pickleball Pursuit finds more spin than the Joola Pro 5, WhiskyDink says it spins less than the 11SIX24 Power 2, and vonEgypt Pickleball finds it a bit grittier than the Enhance MPP Turbo. Power is on the low side at the stock swing weight of about 108, so vonEgypt Pickleball plans to add weight, Pickleball Pursuit says players will need perimeter weight, and Farmer Lanky Pickleball says the improved peel ply grit is not a durable grit."
+   ],
+   "highlights": [
+    {
+     "text": "most maneuverable elongated paddle",
+     "tone": "pos"
+    },
+    {
+     "text": "spins less than the 11SIX24 Power 2",
+     "tone": "neg"
+    },
+    {
+     "text": "Power is on the low side",
+     "tone": "neg"
+    }
+   ]
   }
  },
  "padel": {
@@ -4143,6 +4162,2723 @@
     },
     {
      "text": "more powerful",
+     "tone": "neg"
+    }
+   ]
+  }
+ },
+ "laptop": {
+  "asus-zenbook-14-oled-um3406": {
+   "paras": [
+    "Reviewers mostly praise the long battery life and low price of this light OLED laptop, from almost 19 hours at 200 nits on the Ryzen 7 350 model (Just Josh) to about 10 hours on the Ryzen AI 7 350 with 32GB (Ryan's Tech Garage). Mixed takes come from speed, since the Ryzen AI 7 350 version has CPU results below last year's Ryzen 7 8840HS and the Intel version (Notebookcheck), while the older Ryzen 7 8840HS model performs almost identically and is the one to buy on sale (Just Josh). The 60Hz screen was a common criticism, with the Ryzen AI 7 350 unit's 1200p panel called dim at about 360 nits and a harder sell than the MacBook Air M4 at the expected $1,100 (Hardware Canucks)."
+   ],
+   "highlights": [
+    {
+     "text": "almost 19 hours at 200 nits",
+     "tone": "pos"
+    },
+    {
+     "text": "below last year's Ryzen 7 8840HS",
+     "tone": "neg"
+    },
+    {
+     "text": "dim at about 360 nits",
+     "tone": "neg"
+    }
+   ]
+  },
+  "lenovo-thinkpad-t14s-gen-6": {
+   "paras": [
+    "Reviewers praise the ThinkPad keyboard and long battery life, with the Snapdragon X Elite version running roughly 20 hours or more in several light-use tests, and see it as an office laptop. Takes split by config: the Snapdragon model trails the MacBook Pro M3 in Cinebench (Andrew Marc David) and has app and driver gaps, the Ryzen AI 7 Pro 360 version kept its speed under sustained load where the Snapdragon throttled a bit (Notebookcheck), and the Core Ultra 5 228V version ran quieter and cooler but trails AMD and Snapdragon in multi-core (NotebookcheckReviews). The Ryzen 7 Zen 5 version ran extremely hot and loud under load at a $1,700 price that Just Josh called outrageous, and the 60Hz 1200p screen draws criticism from several reviewers."
+   ],
+   "highlights": [
+    {
+     "text": "long battery life",
+     "tone": "pos"
+    },
+    {
+     "text": "app and driver gaps",
+     "tone": "neg"
+    },
+    {
+     "text": "extremely hot and loud under load",
+     "tone": "neg"
+    }
+   ]
+  },
+  "apple-macbook-air-13-m4": {
+   "paras": [
+    "Reviewers mostly recommend the base 16GB model for its speed, light fanless body and $999 starting price, with single-core scores about 21 percent above the M3 Air (Max Tech, Tom's Guide). Takes split on heat and upgrades: Snazzy Labs and Max Tech saw the fanless chassis throttle under sustained load, while 9to5Mac reported no throttling in eight months of everyday use, and Hardware Canucks and Tom's Guide point M1 Air users toward upgrading while M2 or M3 users wait. The 256GB base storage and two ports draw the most criticism (The Verge, 9to5Mac), and Created Tech found the Air a better default than the M4 MacBook Pro at $999 against $1599."
+   ],
+   "highlights": [
+    {
+     "text": "light fanless body",
+     "tone": "pos"
+    },
+    {
+     "text": "throttle under sustained load",
+     "tone": "neg"
+    },
+    {
+     "text": "256GB base storage",
+     "tone": "neg"
+    }
+   ]
+  },
+  "asus-rog-zephyrus-g14-2025": {
+   "paras": [
+    "It suits gamers and creators who want a light, premium 14-inch machine and can live with fan noise and heat, with reviewers praising the OLED screen, speakers and aluminum build. Opinions split on value and comparisons: the 2023 G14 with RTX 4090 stays just ahead of the RTX 5080 version in most tests (Notebookcheck), the 2025 model is almost identical to the 2024 G14, which costs almost $2,000 less (Crimson Tech), and the Razer Blade 14 is nicer and quieter (PC Gamer). Several reviewers favor the RTX 5070 Ti version over the RTX 5080 version (Josh Craves Tech, PC Gamer, Matthew Moniz), and battery results vary from 10h 27min of web surfing at 150 nits on the RTX 5080 model (Notebookcheck) to 5-6 hours of general use on the RTX 5080 model (Tom's Guide)."
+   ],
+   "highlights": [
+    {
+     "text": "OLED screen, speakers and aluminum build",
+     "tone": "pos"
+    },
+    {
+     "text": "fan noise and heat",
+     "tone": "neg"
+    }
+   ]
+  },
+  "lenovo-thinkpad-x1-carbon-gen-13": {
+   "paras": [
+    "Reviewers mostly praise the body under 1 kg, the keyboard and the OLED, and on the Core Ultra 7 258V version with 32GB several measured longer battery life than the Gen 12 (Notebookcheck, Tom's Hardware). Mixed takes come from price and speed: PCWorld said it trails AMD chips and called the $2,519 price incredibly expensive, while Laptop Mag found multicore speed a letdown and noted the MacBook Pro 14 M4 lasted 18:32 against 11:28 here. Results on that same configuration still vary, from 16 hours 37 minutes in PCMark 10 (Andrew Marc David) to about 11 hours of web browsing, and Lunar Lake caps RAM at 32GB."
+   ],
+   "highlights": [
+    {
+     "text": "longer battery life than the Gen 12",
+     "tone": "pos"
+    },
+    {
+     "text": "incredibly expensive",
+     "tone": "neg"
+    },
+    {
+     "text": "multicore speed a letdown",
+     "tone": "neg"
+    }
+   ]
+  },
+  "alienware-18-area-51": {
+   "paras": [
+    "Reviewers mostly praise it as a desk-bound RTX 5090 laptop with strong performance, cool surfaces and an optional Cherry MX keyboard, and Trusted Reviews called it the most powerful gaming laptop they had tested. Mixed takes come from the screen and rivals: the MSI Raider 18 HX AI has a better mini-LED screen (PCMag UK), the Medion Erazer Beast 16 X1 Ultimate is nearly £1000 cheaper with better battery life (Trusted Reviews), and the HP Omen Max 16 came out marginally ahead in most gaming tests (PC Gamer). Battery was short on the RTX 5090 units, such as 1h 58min of web browsing in Notebookcheck's test, and PC Gamer found it cannot run at full power unplugged."
+   ],
+   "highlights": [
+    {
+     "text": "most powerful gaming laptop they had tested",
+     "tone": "pos"
+    },
+    {
+     "text": "Battery was short",
+     "tone": "neg"
+    },
+    {
+     "text": "cannot run at full power unplugged",
+     "tone": "neg"
+    }
+   ]
+  },
+  "apple-macbook-air-13-m1": {
+   "paras": [
+    "Reviewers mostly praise it as a quiet, fast everyday laptop, with the 16GB, 8-core GPU model beating the Dell XPS 13 in Geekbench (Laptop Mag) and lasting 14 hours 41 minutes on a web browsing test. Mixed takes come from heavy work, where Tech Radiator found the 8GB, 256GB model very hot and frustrating for video editing, and Max Tech saw about a 15% Cinebench drop on the 7-core GPU model once it heated up, though it still exported faster than the Intel Air (Max Tech). Against newer chips, everyday speed felt indistinguishable from the M3 or M4 (Created Tech), but the M1 scored 361 in Solar Bay Extreme against 2400 for the M4 Air (Luke Miani)."
+   ],
+   "highlights": [
+    {
+     "text": "quiet, fast everyday laptop",
+     "tone": "pos"
+    },
+    {
+     "text": "very hot and frustrating for video editing",
+     "tone": "neg"
+    },
+    {
+     "text": "about a 15% Cinebench drop",
+     "tone": "neg"
+    }
+   ]
+  },
+  "apple-macbook-air-15-m4": {
+   "paras": [
+    "Reviewers mostly recommend it to students, commuters and moderate video editors who want a bigger screen in a light, quiet body, with Beebom measuring 13 to 14 hours on its M4 16GB unit and Tom's Guide 15 hours 14 minutes in a web test on its 16GB and 256GB unit. Opinions split on sustained load: Kevin Ferrandiz found the top and keyboard uncomfortably hot in a programming benchmark, though less than on the 13-inch M4 (Kevin Ferrandiz), while The Verge saw throttling in Photoshop and Lightroom Classic and Macwelt measured the M4 MacBook Pro six percent ahead in a stress test thanks to active cooling (Macwelt). Some reviewers see little reason to upgrade from the M3 (Beebom, Tom's Guide, Macwelt), and Tom's Guide calls the 13-inch M4 Air the pick for most people, with this as second choice (Tom's Guide)."
+   ],
+   "highlights": [
+    {
+     "text": "13 to 14 hours",
+     "tone": "pos"
+    },
+    {
+     "text": "uncomfortably hot",
+     "tone": "neg"
+    },
+    {
+     "text": "throttling in Photoshop and Lightroom Classic",
+     "tone": "neg"
+    }
+   ]
+  },
+  "apple-macbook-air-15-m5": {
+   "paras": [
+    "Reviewers praise the 15-inch M5 Air as a silent, fast machine with a roomy screen and long battery life, suited to browser-heavy work, multitasking and light creative jobs. Mixed takes come mostly from price and the cheaper MacBook Neo: casual buyers are pointed to the Neo (The Verge, 6 Months Later, Noah Herman), M4 Air buyers are told to expect modest gains (Tom's Guide) or to skip it (The Verge), and heavy creative work still suits a MacBook Pro (Noah Herman). Battery results vary by test, from 13 to 14 hours of mixed use on the 16GB model with 1TB (The Verge) to 17 hours 12 minutes of browsing at 150 nits on the 32GB, 2TB unit (Notebookcheck), while Adam Talks Tech notes the fanless body throttles 15 to 20% under long heavy loads."
+   ],
+   "highlights": [
+    {
+     "text": "silent, fast machine",
+     "tone": "pos"
+    },
+    {
+     "text": "long battery life",
+     "tone": "pos"
+    },
+    {
+     "text": "throttles 15 to 20%",
+     "tone": "neg"
+    }
+   ]
+  },
+  "apple-macbook-pro-14-m4-pro-max": {
+   "paras": [
+    "Reviewers mostly praise it as a fast, quiet laptop with a bright display, and Intel Mac users are the clearest upgraders (Ryan Gehret, HardwareZone Singapore). The main split is chip choice: the M4 Pro CPU beat the M3 Max (MobileTechReview), the M4 Pro matched the M4 Max in single core but trailed it in graphics and export (Max Tech), and the 14-inch M4 Max landed within 1% of the 16-inch (Matt Talks Tech), yet SoulOfTech called the Max unnecessary for most buyers. Steep upgrade pricing draws criticism (Notebookcheck, HardwareZone Singapore), and Alex Blogoodf, using an M4 Pro, got migraines from PWM flicker, while Notebookcheck called the PWM rate on its M4 Pro high enough for most users."
+   ],
+   "highlights": [
+    {
+     "text": "fast, quiet laptop with a bright display",
+     "tone": "pos"
+    },
+    {
+     "text": "Intel Mac users are the clearest upgraders",
+     "tone": "pos"
+    },
+    {
+     "text": "migraines from PWM flicker",
+     "tone": "neg"
+    },
+    {
+     "text": "Steep upgrade pricing draws criticism",
+     "tone": "neg"
+    }
+   ]
+  },
+  "apple-macbook-pro-14-m4": {
+   "paras": [
+    "Reviewers who tested the base M4 with 16GB praise its fast everyday performance, long battery life, speakers and keyboard, and often suggest it for people stepping up from a MacBook Air (The Verge, TechRadar). Opinion splits on the $150 nano-texture screen: it cut glare clearly against a glossy MacBook Pro 16-inch M4 Pro (Laptop Mag), while Just Josh, on an M4 Pro 12-core model, noticed grain and a screen door effect, and Macworld found less vibrant colors. The base model's single fan is the other sore point, with Notebookcheck measuring 45.9 dB(A) under sustained load, louder than the M4 Pro at 44.5 dB(A) (Notebookcheck)."
+   ],
+   "highlights": [
+    {
+     "text": "fast everyday performance",
+     "tone": "pos"
+    },
+    {
+     "text": "long battery life",
+     "tone": "pos"
+    },
+    {
+     "text": "grain and a screen door effect",
+     "tone": "neg"
+    },
+    {
+     "text": "single fan",
+     "tone": "neg"
+    }
+   ]
+  },
+  "apple-macbook-pro-14-m5": {
+   "paras": [
+    "Reviewers praise the base M5 14-inch for its bright screen, long battery life and much faster SSD, and it suits video editors and developers who do not need a Pro chip, as well as upgraders from older Macs. Value is where takes split: the MacBook Air M4 is cheaper and close in performance for light work (André Creates, Brandon Butch), the M4 Pro is faster for heavy 3D, music and code work (SPACE DESIGN WAREHOUSE), and the M5 is a less compelling step for M4 users (The Verge, PCMag Australia). The single fan is a recurring complaint, with Max Tech measuring chip temps near 100°C in a 10 minute Cinebench run on the 16GB model and Notebookcheck logging 48 dB(A) under full load on the 32GB unit."
+   ],
+   "highlights": [
+    {
+     "text": "bright screen",
+     "tone": "pos"
+    },
+    {
+     "text": "much faster SSD",
+     "tone": "pos"
+    },
+    {
+     "text": "single fan is a recurring complaint",
+     "tone": "neg"
+    },
+    {
+     "text": "less compelling step for M4 users",
+     "tone": "neg"
+    }
+   ]
+  },
+  "apple-macbook-pro-16-m4-pro-max": {
+   "paras": [
+    "Reviewers mostly praise it for video and other creative work, with the display, speakers and ports liked on both the M4 Pro and M4 Max versions. Upgrade advice depends on what is being replaced: the M4 Max gives little reason to leave an M3 Max (The Tech Chap), while the base M4 Pro cut a 4K render from about 5 minutes to about 4 minutes against an M1 Pro (Dave on Tech). Noise and heat reports differ: the M4 Pro 16-inch stayed far quieter than a 14-inch M4 Pro in a Cinebench stress test (Mark's Tech), while the M4 Max ran hotter and louder in high performance mode (The Tech Chap), though some other M4 Max reviewers found the fans quiet."
+   ],
+   "highlights": [
+    {
+     "text": "video and other creative work",
+     "tone": "pos"
+    },
+    {
+     "text": "little reason to leave an M3 Max",
+     "tone": "neg"
+    },
+    {
+     "text": "ran hotter and louder",
+     "tone": "neg"
+    }
+   ]
+  },
+  "apple-macbook-pro-16-m5-pro-max": {
+   "paras": [
+    "Reviewers praise the speed and efficiency for heavy video, development and local AI work, with the M5 Max about 8% ahead of the M4 Max in multi-core (Hardware Canucks) and 12 percent ahead (Macworld). Takes split on whether the Max is needed: the 18-core M5 Pro is the developer sweet spot (Alex Ziskind), while the Max suits those who want 128GB for very large models (ZXTech), and M4 Max users can skip it unless disk-heavy work matters (Macworld). Noise and heat vary, with coil whine on M5 Max units (Hardware Canucks, ZXTech) and a chassis too hot for the lap (ZXTech), yet Just Josh found the fans quiet on the Pro and Max they tested."
+   ],
+   "highlights": [
+    {
+     "text": "developer sweet spot",
+     "tone": "pos"
+    },
+    {
+     "text": "coil whine on M5 Max units",
+     "tone": "neg"
+    },
+    {
+     "text": "a chassis too hot for the lap",
+     "tone": "neg"
+    }
+   ]
+  },
+  "asus-proart-px13-hn7306": {
+   "paras": [
+    "Reviewers mostly praise it as a fast, light creator convertible with an accurate OLED and a keyboard with 1.7 mm travel, though many flag the 60Hz panel and loud fans under load. Battery is where takes split: the RTX 4050 version managed about 8 hours of light use, roughly 5 hours less than a Snapdragon Surface Laptop (MobileTechReview), the RTX 4050 model reached 9:28 of web surfing at 150 nits, well behind the MacBook Air M3 and Surface Pro 11 (Tom's Guide), and the RTX 4070 version drew 60 to 80 W against about 20 W for a MacBook Pro M4 Pro (Tech Notice). Drawing is also mixed: Brad Colbow, on the RTX 4060 version, found the stylus and palm rejection weak, while Teoh on Tech, on the RTX 4050 version, found pen drawing better than on a Surface Pro (Teoh on Tech) but saw wobble on slow diagonal lines."
+   ],
+   "highlights": [
+    {
+     "text": "fast, light creator convertible",
+     "tone": "pos"
+    },
+    {
+     "text": "accurate OLED",
+     "tone": "pos"
+    },
+    {
+     "text": "60Hz panel",
+     "tone": "neg"
+    },
+    {
+     "text": "stylus and palm rejection weak",
+     "tone": "neg"
+    }
+   ]
+  },
+  "asus-rog-flow-z13-2025": {
+   "paras": [
+    "Reviewers praise the integrated graphics in a sturdy 13.4-inch tablet, with the Radeon 8060S rated near an RTX 4060 laptop (The Verge) and level with an RTX 4070 Laptop (Notebookcheck). Mixed takes come from price and battery: a Zephyrus G14 with an RTX 5070 costs the same or less and performs better (Engadget), a ROG Ally plus a MacBook Air costs less (ryanOC), and the Max+ 395 and 32GB model manages about an hour of demanding games on battery (UFD Tech, Retro Game Corps). Battery for lighter work varies by mode, from about 7 hours in eco mode (MobileTechReview) to 10 hours in a rundown (The Verge) on the tested 32GB units."
+   ],
+   "highlights": [
+    {
+     "text": "sturdy 13.4-inch tablet",
+     "tone": "pos"
+    },
+    {
+     "text": "costs the same or less",
+     "tone": "neg"
+    },
+    {
+     "text": "about an hour of demanding games",
+     "tone": "neg"
+    }
+   ]
+  },
+  "asus-rog-strix-g16-2025": {
+   "paras": [
+    "Reviewers praise it as a fast, cool-running gaming laptop with easy RAM and SSD access, suited to gamers who want a desktop replacement more than a portable. The Ryzen 9 9955HX3D and RTX 5070 Ti unit was called a worthy, slightly cheaper rival to the Lenovo Legion Pro 7i Gen 10 (PCWorld), the Core Ultra 9 275HX and RTX 5070 Ti model scored lower in Cinebench R23 than a Legion Pro 7 or Asus G18 (Binosha Tech), and a $1700 Legion with an OLED screen was pointed to as an alternative after the price was called too high (Jarrod'sTech). Digit's take was mixed, over the price and 8GB of VRAM on the RTX 5070 model, and battery results vary by use on Core Ultra 9 275HX models, from about 1 hour 20 minutes of intense gaming (Digit) to about one full day of browsing and movies (Roberto Jorge Tech)."
+   ],
+   "highlights": [
+    {
+     "text": "fast, cool-running gaming laptop",
+     "tone": "pos"
+    },
+    {
+     "text": "easy RAM and SSD access",
+     "tone": "pos"
+    },
+    {
+     "text": "price and 8GB of VRAM",
+     "tone": "neg"
+    }
+   ]
+  },
+  "asus-rog-strix-g18-2025": {
+   "paras": [
+    "Reviewers who tested the RTX 5080 version mostly praise it as a fast desk machine with a tool-free bottom panel, and say it is too heavy at about 3.2 kg to travel with. Opinions split on how it stacks up: it outscored the HP Omen Max 16 with an RTX 5090 in benchmarks (Laptop Mag), while it ran about 5% fewer frames than other 5080 laptops such as the HP Omen 16 (Dan's Tech House), and the Strix G16 is called lighter with almost the same performance (Binosha Tech). Battery results also vary, from 4 hours 34 minutes of YouTube playback (Crimson Tech) to 7 hours 45 minutes in a non-gaming test (Laptop Mag), and CPU heat of 103°C (Crimson Tech) and a loud Turbo mode (THE ROCO) were the main complaints."
+   ],
+   "highlights": [
+    {
+     "text": "tool-free bottom panel",
+     "tone": "pos"
+    },
+    {
+     "text": "outscored the HP Omen Max 16",
+     "tone": "pos"
+    },
+    {
+     "text": "too heavy at about 3.2 kg",
+     "tone": "neg"
+    },
+    {
+     "text": "CPU heat of 103°C",
+     "tone": "neg"
+    }
+   ]
+  },
+  "asus-rog-strix-scar-18-2025": {
+   "paras": [
+    "Reviewers who tested it praise it for people who want desktop-level gaming power, with a very bright mini-LED screen and a base panel that opens without tools for RAM and SSD upgrades. Mixed takes come from value: the RTX 5080 version matched the cheaper Strix G18 in Cinebench and Time Spy (Crimson Tech), the RTX 5070 Ti version was picked over the RTX 5080 for $800 less (Tom's Honest Tips), and the smaller Scar 16 was pointed to for similar performance in a lighter body (Jarrod'sTech). Battery life is short, from about two hours unplugged on the RTX 5080 loaner (MobileTechReview) to 5 h 32 min of WLAN use on the RTX 5090 model (Notebookcheck), which also saw only a small lead over the old RTX 4090 Laptop at native resolution (Notebookcheck)."
+   ],
+   "highlights": [
+    {
+     "text": "very bright mini-LED screen",
+     "tone": "pos"
+    },
+    {
+     "text": "matched the cheaper Strix G18",
+     "tone": "neg"
+    },
+    {
+     "text": "Battery life is short",
+     "tone": "neg"
+    }
+   ]
+  },
+  "asus-rog-zephyrus-g14-2026": {
+   "paras": [
+    "Reviewers who tested the RTX 5070 Ti Intel versions praise the brighter OLED, keyboard and speakers, and see high-end gaming in a 14-inch body for people who can afford it. Price drives most of the mixed takes, with last year's AMD G14 called the more sensible buy (The Verge), the $2599 2025 model suggested for buyers skipping HDR gaming (Notebookcheck), and last year's model preferred over the $3,600 start (Crimson Tech), though Jarrod'sTech says the new model is worth the extra if budget allows. Battery results depend on the test, from over 15 hours of light use (Crimson Tech) and over 17 hours in a rundown (The Verge) to 8:32 of web surfing (Tom's Guide), and a cheaper M5 MacBook Pro 14 beats it or comes close in CPU tasks (The Verge)."
+   ],
+   "highlights": [
+    {
+     "text": "brighter OLED",
+     "tone": "pos"
+    },
+    {
+     "text": "keyboard and speakers",
+     "tone": "pos"
+    },
+    {
+     "text": "more sensible buy",
+     "tone": "neg"
+    },
+    {
+     "text": "8:32 of web surfing",
+     "tone": "neg"
+    }
+   ]
+  },
+  "asus-rog-zephyrus-g16-2025": {
+   "paras": [
+    "Reviewers praise the OLED screen, speakers and aluminum build in a thin, light body, and it suits buyers who want portability more than top gaming speed. Mixed takes mostly come from power limits: the 120 W RTX 5080 model lags higher-wattage rivals, and a similarly priced Razer Blade 16 is preferred (PC Gamer), while Just Josh advises the RTX 5070 Ti over the 5080 and 5090 configs and Josh Craves Tech expects 5070 Ti buyers to be happiest. Battery and noise depend on the config and mode, with Just Josh recording over 10 hours of light use on the RTX 5080 version, Crimson Tech getting a little over 6 hours of YouTube playback on the RTX 5070 Ti model, and several reviewers calling turbo mode loud."
+   ],
+   "highlights": [
+    {
+     "text": "OLED screen, speakers and aluminum build",
+     "tone": "pos"
+    },
+    {
+     "text": "lags higher-wattage rivals",
+     "tone": "neg"
+    },
+    {
+     "text": "turbo mode loud",
+     "tone": "neg"
+    }
+   ]
+  },
+  "asus-tuf-gaming-a14-2025": {
+   "paras": [
+    "Reviewers mostly praise a light 14-inch body, cool running and long battery life in light use, with almost 9 to 10 hours in power saving mode on the Ryzen 7 / RTX 5050 model (IRob.) and 9 hours 46 minutes in silent mode on the Ryzen AI 7 350 / RTX 5060 unit (Duy Luân Dễ Thương). Mixed takes come from the CPU and price: the Ryzen AI 7 350 is a small step down from last year's Ryzen AI 9 HX 370 model, and the $1,699 price, up $200, is hard to justify (Tom's Guide), while last year's Ryzen 9 model for about $300 less is called the smarter buy (Grobal Tech). Gaming on battery is short, at 1:45 on the RTX 5060 / 16GB model (Tom's Guide) and 1 hour 21 minutes on the RTX 5060 / 32GB model (Dream Seed)."
+   ],
+   "highlights": [
+    {
+     "text": "light 14-inch body",
+     "tone": "pos"
+    },
+    {
+     "text": "cool running",
+     "tone": "pos"
+    },
+    {
+     "text": "small step down",
+     "tone": "neg"
+    },
+    {
+     "text": "hard to justify",
+     "tone": "neg"
+    }
+   ]
+  },
+  "asus-tuf-gaming-a16-2025": {
+   "paras": [
+    "Reviewers mostly recommend it to budget-minded gamers, praising strong frame rates and cooling, with Binosha Tech calling cooling excellent on the Ryzen 7 260 version and citytel finding temperatures among the best they had seen on the RTX 5070 model. Mixed takes come from noise and price: Notebookcheck found Turbo mode very loud at 57.1 dB(A) on its RTX 5070 unit, TechRadar called the fans a cacophony on the RTX 5050 unit, and the XMG Core 16 with the same RTX 5070 is about 300 euros cheaper (Notebookcheck), while the Acer Nitro 16 AMD is a cheaper option (TechRadar). Crimson Tech found the RTX 5070 model not much faster than the RTX 5060 one, so called the 5060 the better value."
+   ],
+   "highlights": [
+    {
+     "text": "strong frame rates",
+     "tone": "pos"
+    },
+    {
+     "text": "cooling excellent",
+     "tone": "pos"
+    },
+    {
+     "text": "Turbo mode very loud",
+     "tone": "neg"
+    },
+    {
+     "text": "a cacophony",
+     "tone": "neg"
+    }
+   ]
+  },
+  "asus-vivobook-s-14-oled-s5406": {
+   "paras": [
+    "Reviewers mostly praise it for portable everyday use, with long battery life, a light metal body and a good port selection. Battery results depend on the config: the Core Ultra 5 226V/16GB model ran 22h 10min of local video playback (Jagat Review) and 17h 10min in a Wi-Fi test (Notebookcheck), while the Core Ultra 7 258V/32GB model reached 13h 35min in a Premiere Pro loop (TheHikaku) and about 14 hours (Binosha Tech). Opinions split on price and screen: the AMD version runs hotter and louder than this Intel model (Notebookcheck), the older Core Ultra 7 155H Vivobook S 14 is the cheaper pick on a tight budget (Nerd Reviews ID), and the OLED panel trails the MacBook Air and Yoga Slim 7i screens (Binosha Tech), while several reviewers found the 60Hz panel glossy and reflective."
+   ],
+   "highlights": [
+    {
+     "text": "long battery life",
+     "tone": "pos"
+    },
+    {
+     "text": "glossy and reflective",
+     "tone": "neg"
+    }
+   ]
+  },
+  "asus-zenbook-a14-ux3407": {
+   "paras": [
+    "Reviewers mostly praise the weight of about 1 kg or less and battery life that lasts a full day or more on the Snapdragon X and X Plus models, and see it fitting students, travelers and office users rather than gamers or heavy video editors. Mixed takes come from price and build: Just Josh calls $1,100 overpriced and the body cheap feeling, PCWorld calls the entry chip a $600 laptop part in a $1,200 machine, while Max Tech calls it one of the best value laptops at $900 to $1,100. On comparisons, it is lighter than a MacBook Air by about 300 g (Jon Valiagas) and outlasted a MacBook Air 13 with M3 in a streaming test (The Tech Chap), though the MacBook Air M3 needs 11 watts for a similar Cinebench score against 25 watts for the Snapdragon X model (Just Josh)."
+   ],
+   "highlights": [
+    {
+     "text": "weight of about 1 kg or less",
+     "tone": "pos"
+    },
+    {
+     "text": "battery life that lasts a full day or more",
+     "tone": "pos"
+    },
+    {
+     "text": "cheap feeling",
+     "tone": "neg"
+    },
+    {
+     "text": "$600 laptop part in a $1,200 machine",
+     "tone": "neg"
+    }
+   ]
+  },
+  "asus-zenbook-duo-2025": {
+   "paras": [
+    "Reviewers mostly praise the two OLED screens and detachable keyboard as a useful built-in second display for multitasking and editing on the Core Ultra 9 version. Battery with both screens on is the main split, from 5 to 5.5 hours (Hassan Govani) to a little over 8 hours on the Full HD panel model (NotebookcheckReviews), and PCWorld called it heavy and pricey. On comparisons, one reviewer found the Yoga Book 9i thinner and more premium but costlier (TechniQualities), and another found it better than a Surface Pro 11 for multitasking but less efficient (Spencer Ryan)."
+   ],
+   "highlights": [
+    {
+     "text": "useful built-in second display",
+     "tone": "pos"
+    },
+    {
+     "text": "5 to 5.5 hours",
+     "tone": "neg"
+    },
+    {
+     "text": "heavy and pricey",
+     "tone": "neg"
+    }
+   ]
+  },
+  "asus-zenbook-s-14-ux5406": {
+   "paras": [
+    "Reviewers mostly praise the long battery life, quiet fans and 120Hz OLED in a body of about 2.65 lb, with the Core Ultra 7 258V version reaching 21 hours of video in PCWorld's test and nearly 19 hours in Just Josh's. Mixed takes come from price and rivals: the Lenovo Slim 7i Aura Edition is the better buy for most people (Just Josh), the Ryzen-based Zenbook S 16 is faster at the same price (UFD Tech), and the Vivobook S14 with Ryzen AI 9 HX 370 has more than twice the multicore performance for $200 to $300 less (Hubwood). Multi-core speed is the common complaint, with the 258V model settling near 17 watts and losing around 30 percent of multi-core performance under constant load (Notebookcheck)."
+   ],
+   "highlights": [
+    {
+     "text": "long battery life",
+     "tone": "pos"
+    },
+    {
+     "text": "quiet fans",
+     "tone": "pos"
+    },
+    {
+     "text": "Multi-core speed is the common complaint",
+     "tone": "neg"
+    }
+   ]
+  },
+  "hp-elitebook-x-g1i": {
+   "paras": [
+    "Reviewers praise the light aluminium body, and Notebookcheck measured 18.5 hours of WiFi web surfing on the Core Ultra 7 268V unit with the 68 Wh battery, which costs extra. Reviewers agree on CPU speed: Notebookcheck calls CPU speed modest and far behind the EliteBook X G1a 14 in Cinebench (Notebookcheck), while パソコンガイド and Pasokon Guide rate multi-core speed as low but find the graphics good enough for light editing. Heat is the other catch on the Core Ultra 7 units, with パソコンガイド recording 50.4°C at the surface under full load and Pasokon Guide noting 47.2 degrees on the bottom, which they call hot on the lap."
+   ],
+   "highlights": [
+    {
+     "text": "light aluminium body",
+     "tone": "pos"
+    },
+    {
+     "text": "18.5 hours of WiFi web surfing",
+     "tone": "pos"
+    },
+    {
+     "text": "CPU speed modest",
+     "tone": "neg"
+    },
+    {
+     "text": "hot on the lap",
+     "tone": "neg"
+    }
+   ]
+  },
+  "lenovo-legion-5-gen-10": {
+   "paras": [
+    "Reviewers praise the 15-inch Legion 5 Gen 10 as a light gaming laptop with a bright 165Hz OLED screen and a good keyboard, suited to gamers who also edit. Battery life is where takes split: the Ryzen 7 260 and RTX 5060 version reached more than 9 and a half hours of Wi-Fi use (NotebookcheckReviews), while the Core Ultra 7 and RTX 5070 version managed a little over 3 hours (ThinkView). On GPU choice, Tech Guy Beau advises the Ryzen 7 260 with an RTX 5050 or 5060 over the RTX 5070, GamesRadar+ names the RTX 5070 as the sweet spot, and Notebookcheck (DE) found the RTX 5060 only 7% behind the 115 W RTX 5070 in the Razer Blade 14 2025."
+   ],
+   "highlights": [
+    {
+     "text": "bright 165Hz OLED screen",
+     "tone": "pos"
+    },
+    {
+     "text": "a little over 3 hours",
+     "tone": "neg"
+    }
+   ]
+  },
+  "lenovo-legion-5i-gen-10": {
+   "paras": [
+    "Reviewers praise the 15.1-inch OLED panel, the keyboard and the performance for about $1,200 to $1,400, and it suits buyers who want a compact OLED gaming laptop. Comparisons mostly favor it: the RTX 5060 UK model scored ahead of the Asus TUF Gaming A14 in Time Spy (Tom's Guide), it beats a ThinkPad P14s on performance but loses on battery life (Slap Tech), and the Gigabyte Aero X16 is lighter to carry but has a weaker GPU and display (Just Josh). Takes split on noise and battery: the Arrow Lake HX RTX 5060 model had the quietest fans in its group and about 8 hours with the dedicated GPU disabled (Just Josh), while the RTX 5070 model lasted a little over 3 hours (ThinkView) and the Core i7-13650HX UK model's fans were about twice as loud as the TUF Gaming A14's in Cyberpunk (Tom's Guide)."
+   ],
+   "highlights": [
+    {
+     "text": "15.1-inch OLED panel",
+     "tone": "pos"
+    },
+    {
+     "text": "quietest fans in its group",
+     "tone": "pos"
+    },
+    {
+     "text": "a little over 3 hours",
+     "tone": "neg"
+    }
+   ]
+  },
+  "lenovo-legion-pro-7i-gen-10": {
+   "paras": [
+    "Reviewers mostly praise it as a plugged-in gaming machine, with RTX 5080 performance, a bright 240 Hz OLED at around 500 nits and a good keyboard singled out. Opinions differ on how far ahead it is: one reviewer rated the RTX 5080 version the most performant RTX 5080 laptop tested but would still pick the Razer Blade 16 as a personal go-to (PC Gamer), while default mode trailed the Asus ROG Strix Scar 16 and Gigabyte Aorus Master 16 until performance mode was turned on (Tom's Hardware), and the RTX 5090 pre-production unit gained at most 20% over the 2024 RTX 4090 model (Hardware Canucks). Battery life is the common complaint, about 4.5 to 5.5 hours of light use on the RTX 5080 version, along with the heavy 400 W charger, side-mounted ports and loud fans in performance mode."
+   ],
+   "highlights": [
+    {
+     "text": "bright 240 Hz OLED",
+     "tone": "pos"
+    },
+    {
+     "text": "most performant RTX 5080 laptop",
+     "tone": "pos"
+    },
+    {
+     "text": "Battery life is the common complaint",
+     "tone": "neg"
+    },
+    {
+     "text": "loud fans in performance mode",
+     "tone": "neg"
+    }
+   ]
+  },
+  "lenovo-loq-15ahp10": {
+   "paras": [
+    "Reviewers who tested the RTX 5060 version mostly see a solid 1080p gaming laptop with a strong keyboard and easy RAM and SSD upgrades. Alternatives differ by reviewer: the Legion 5 is suggested for roughly 200 more in Germany (NotebookcheckReviews), the Asus TUF A16 is preferred at the same price (Crimson Tech), and the Gigabyte Aero 16 with an RTX 5060 is pointed to for $150 less (Matthew Moniz). Battery results depend on the config, with well over 6 hours on the RTX 5060 version (Matthew Moniz), 4.5 hours of Wi-Fi browsing on another RTX 5060 unit (Notebookcheck) and about 2 hours of mixed use on the RTX 5050 model (The Silicon Foxx)."
+   ],
+   "highlights": [
+    {
+     "text": "strong keyboard",
+     "tone": "pos"
+    },
+    {
+     "text": "easy RAM and SSD upgrades",
+     "tone": "pos"
+    },
+    {
+     "text": "about 2 hours of mixed use",
+     "tone": "neg"
+    }
+   ]
+  },
+  "lenovo-thinkpad-e14-gen-7": {
+   "paras": [
+    "Reviewers mostly praise the keyboard, the aluminum lid and the room to upgrade RAM and SSDs, and point it at office work and students rather than gaming. Mixed takes come from the configuration: the Ryzen 7 250 model was clearly ahead of the E14 Gen 6 but behind the Core Ultra 7 255H version (Notebookcheck), which that site calls the better buy, while TuttoTech found its 32GB Core Ultra 7 258V config costly because it pairs with the basic 60Hz screen, and the 2.8K 120Hz panel adds only 10 euro. Single-channel memory held back graphics on the 8GB Core Ultra 5 225H unit (Hendrik Widarmawan) and on the 16GB single-stick Core Ultra 5 225H unit (TheHikaku), so a second module matters."
+   ],
+   "highlights": [
+    {
+     "text": "room to upgrade RAM and SSDs",
+     "tone": "pos"
+    },
+    {
+     "text": "the basic 60Hz screen",
+     "tone": "neg"
+    },
+    {
+     "text": "Single-channel memory held back graphics",
+     "tone": "neg"
+    }
+   ]
+  },
+  "lenovo-thinkpad-p1-gen-8": {
+   "paras": [
+    "Reviewers mostly praise the keyboard, the bright tandem OLED and the light 16-inch build, and StorageReview calls it the pick for engineers and creatives who travel. Battery results on Core Ultra 7 OLED models range widely, from 16 hours of video playback (PCMag UK) to 5 hours 28 minutes of Wi-Fi browsing (Notebookcheck), and AICvideo got 4 to 5 hours at default settings. On speed, the 16-inch MacBook Pro with M4 Max is faster and more efficient in benchmarks (Andrew Marc David), while AICvideo measured performance only 10 to 12% above the ThinkPad P1 Gen 7 and Notebookcheck measured CPU multi-thread speed 15 to 20 percent above it."
+   ],
+   "highlights": [
+    {
+     "text": "bright tandem OLED",
+     "tone": "pos"
+    },
+    {
+     "text": "pick for engineers and creatives who travel",
+     "tone": "pos"
+    },
+    {
+     "text": "5 hours 28 minutes of Wi-Fi browsing",
+     "tone": "neg"
+    }
+   ]
+  },
+  "lenovo-thinkpad-t14-gen-6": {
+   "paras": [
+    "Reviewers mostly like it as a business typing machine, with PCMag Australia calling the keyboard the gold standard and Rodrigo Vieira - RSSV calling it the best for long typing in months. Battery life depends on the config: the Core Ultra 7 258V model lasted 19h 22min in a web surfing test (Notebookcheck) and the Core Ultra 5 225U model managed 19 hours 9 minutes of video playback (PCMag Australia), while Tech Guy Beau estimated eight or nine hours in light use on the AMD 350 model. Takes are mixed on screens and rivals, as LongRhino rated the Full HD 60Hz screen basic on the Core Ultra 7 255U model, and the ThinkPad T14s felt denser and had a better webcam than the AMD 350 T14 (Tech Guy Beau)."
+   ],
+   "highlights": [
+    {
+     "text": "the gold standard",
+     "tone": "pos"
+    },
+    {
+     "text": "19h 22min in a web surfing test",
+     "tone": "pos"
+    },
+    {
+     "text": "Full HD 60Hz screen basic",
+     "tone": "neg"
+    }
+   ]
+  },
+  "lenovo-thinkpad-x1-2-in-1-gen-10": {
+   "paras": [
+    "Reviewers praise this ThinkPad convertible for its keyboard, metal build and long battery life on the Core Ultra 7 258V models, and it suits office and business buyers more than power users. Battery results depend on the panel: Notebookcheck logged 21h 58min of web browsing on the IPS model, Trusted Reviews logged 14 hours 13 minutes in PCMark 10 on the OLED model with the Dell Pro 14 Premium lasting several hours longer (Trusted Reviews), and Riccardo Palombo puts the IPS 60Hz panel at about 3 hours more than OLED. Heat and clocks draw the mixed takes, with the CPU reaching 96°C and cutting frequency (Riccardo Palombo) and Slap Tech advising against modern PC gaming after power dropped to 8 watts."
+   ],
+   "highlights": [
+    {
+     "text": "keyboard, metal build and long battery life",
+     "tone": "pos"
+    },
+    {
+     "text": "reaching 96°C and cutting frequency",
+     "tone": "neg"
+    },
+    {
+     "text": "advising against modern PC gaming",
+     "tone": "neg"
+    }
+   ]
+  },
+  "lenovo-yoga-slim-7i-aura-edition": {
+   "paras": [
+    "Reviewers mostly praise the long battery life, cool and quiet running and the keyboard, though runtimes depend on the unit: the Core Ultra 7 256V 16GB model lasted 14:10 in Tom's Guide's battery test and 16 hours 45 minutes in PCWorld's video loop, while the 14-inch OLED Core 7 model managed 7 to 8 hours (The Wolf of Williamsburg). Complaints centre on multi-core speed, where the Yoga Slim 7x offers stronger performance for similar money (Laptop Mag), and on the IPS panel instead of OLED, which Tom's Guide and PCWorld both marked down. Mash IT chose the 32GB Core Ultra 7 258V Yoga over the 15-inch MacBook Air M3 for costing £300 less, though the Air lasted longer in their streaming test (Mash IT)."
+   ],
+   "highlights": [
+    {
+     "text": "long battery life",
+     "tone": "pos"
+    },
+    {
+     "text": "cool and quiet running",
+     "tone": "pos"
+    },
+    {
+     "text": "multi-core speed",
+     "tone": "neg"
+    },
+    {
+     "text": "IPS panel instead of OLED",
+     "tone": "neg"
+    }
+   ]
+  },
+  "microsoft-surface-pro-11-13": {
+   "paras": [
+    "Reviewers praise it as a full Windows tablet for office work and travel, with battery life around 12 hours in several tests, including the Snapdragon X Elite OLED model (Tom's Guide) and the X Plus LCD model (ETA PRIME). Opinions split on value and the alternatives: Max Tech would buy it over the M4 iPad Pro for full Windows apps (Max Tech), Tom's Guide points to that iPad as a cheaper option for people who dislike Windows, and UFD Tech says a MacBook Air can match its battery life and performance in many cases (UFD Tech). Price and Arm support draw the criticism, with one reviewer setting the base model with keyboard at about $2,000 against about $1,500 for an M3 MacBook Air (Spixel), and The Verge advising a wait of about six months to see how Arm compatibility settles."
+   ],
+   "highlights": [
+    {
+     "text": "full Windows tablet",
+     "tone": "pos"
+    },
+    {
+     "text": "battery life around 12 hours",
+     "tone": "pos"
+    },
+    {
+     "text": "Price and Arm support draw the criticism",
+     "tone": "neg"
+    }
+   ]
+  },
+  "msi-vector-16-hx-ai-a2xw": {
+   "paras": [
+    "Reviewers mostly praise the RTX 5070 Ti and RTX 5080 versions for gaming performance per dollar, with two Thunderbolt 5 ports and a sturdy build, and it suits plugged-in use better than carrying around. Mixed takes come from noise and the screen: the top performance or extreme modes are very loud, balanced mode loses little frame rate (Mash IT, Hubwood), and three reviewers advise skipping the 1080p panel option (Jarrod'sTech, GizmoSlipTech, Tech Guy Beau). Against other laptops, the 5070 Ti version's Time Spy score sits 5% behind a 175W RTX 4080 laptop (Mash IT), the Alienware 16 Area-51's RTX 5080 is around 20% faster (Notebookcheck), and the Schenker XMG Pro 16 lasts about nine hours in a Wi-Fi test against about 7 hours for the Core Ultra 7 5070 Ti Vector (Notebookcheck)."
+   ],
+   "highlights": [
+    {
+     "text": "gaming performance per dollar",
+     "tone": "pos"
+    },
+    {
+     "text": "two Thunderbolt 5 ports",
+     "tone": "pos"
+    },
+    {
+     "text": "very loud",
+     "tone": "neg"
+    },
+    {
+     "text": "advise skipping the 1080p panel option",
+     "tone": "neg"
+    }
+   ]
+  },
+  "razer-blade-14-2025": {
+   "paras": [
+    "Reviewers mostly praise the aluminum build, the 120Hz OLED and the gaming performance in a body of about 3.5 to 3.6 lb, and it suits buyers who want portability over raw power. Mixed takes come from price and GPU headroom: Jarrod'sTech would buy the Zephyrus G14 with an RTX 5070 Ti at the same price, while Notebookcheck found that version about 14% faster in synthetic GPU tests but about 1000 Euros more, with a small gap at 1080p. Battery results differ by test and config, with PCMag UK recording 11:37 of video playback on the RTX 5070 model and TechRadar 5 hours 1 minute of web surfing in Performance mode on the same GPU."
+   ],
+   "highlights": [
+    {
+     "text": "aluminum build",
+     "tone": "pos"
+    },
+    {
+     "text": "120Hz OLED",
+     "tone": "pos"
+    },
+    {
+     "text": "price and GPU headroom",
+     "tone": "neg"
+    }
+   ]
+  },
+  "apple-macbook-air-13-m2": {
+   "paras": [
+    "Reviewers mostly like it for office, browsing and light editing, praising the thin fanless body, MagSafe, the 1080p webcam and the speakers. Mixed takes come from sustained load and price: the fanless chassis throttles in long renders (Marques Brownlee), though Snazzy Labs calls the throttling mild, and the M1 Air is the cheaper pick for most buyers (CNET, Tom's Hardware), while professionals are pointed to the 14-inch MacBook Pro (Jon Valiagas, Arthur Winer). The base 256GB model draws the sharpest criticism, since its single NAND chip makes the SSD slower, with Macworld measuring read speeds 47.9 percent below the 1TB model and recommending the upgraded configuration or an M1 Air (Macworld)."
+   ],
+   "highlights": [
+    {
+     "text": "thin fanless body",
+     "tone": "pos"
+    },
+    {
+     "text": "throttles in long renders",
+     "tone": "neg"
+    },
+    {
+     "text": "single NAND chip",
+     "tone": "neg"
+    }
+   ]
+  },
+  "apple-macbook-air-13-m3": {
+   "paras": [
+    "Reviewers praise the 13-inch M3 Air as a light, silent, fanless laptop with long battery life, suited to students, travelers and light creative users, with several recommending the 16GB version for editing. Battery figures depend on use: web surfing ran about 15 hours on the 8GB base model (Tom's Guide) and on the 16GB, 10-core GPU model (Notebookcheck), while the 16GB version dropped to 4 to 5 hours of video editing (Leo Does Tech). On the upgrade question, it beats the M2 Air in benchmarks (Tom's Guide), yet an M2 Air is described as nearly as capable and cheaper (Byte Review), and the M3 MacBook Pro is preferred for heavy editing because of its extra ports and ProMotion display (6 Months Later)."
+   ],
+   "highlights": [
+    {
+     "text": "light, silent, fanless laptop",
+     "tone": "pos"
+    },
+    {
+     "text": "long battery life",
+     "tone": "pos"
+    },
+    {
+     "text": "4 to 5 hours of video editing",
+     "tone": "neg"
+    }
+   ]
+  },
+  "apple-macbook-air-15-m3": {
+   "paras": [
+    "Reviewers praise the fanless 15-inch Air as a big, quiet everyday laptop, with Notebookcheck measuring 16 hours 56 minutes of web surfing on the 16GB, 512GB model and Tom's Guide 15 hours 3 minutes on its 16GB, 512GB unit. Mixed takes come mostly from memory and cooling: the 8GB model stuttered under heavy multitasking for Zanzebek, while Melih Gungor - MTG saw no lag in Final Cut Pro on 8GB, and the MacBook Pro 14 finished a 4K transcode nearly a minute faster (Tom's Guide) while costing only about $100 more at matched specs (Matthew Moniz). Some reviewers point buyers who skip heavy work to the cheaper MacBook Air 15 M2 (Wylsacom) and advise M2 users not to upgrade (Notebookcheck)."
+   ],
+   "highlights": [
+    {
+     "text": "big, quiet everyday laptop",
+     "tone": "pos"
+    },
+    {
+     "text": "16 hours 56 minutes of web surfing",
+     "tone": "pos"
+    },
+    {
+     "text": "stuttered under heavy multitasking",
+     "tone": "neg"
+    }
+   ]
+  },
+  "apple-macbook-pro-13-m2": {
+   "paras": [
+    "Reviewers see it suiting buyers who want the Touch Bar, a fan and very long battery life, with a clear speed gain over the M1 in benchmarks such as Cinebench (ShortCircuit). Most still point to other laptops: the MacBook Air M2 as the better deal (Tom's Guide, The Verge) and the 14-inch MacBook Pro for serious work (Engadget, Karl Conrad). Config matters, since the base 256GB SSD is slower than the M1 version (Max Tech) and the 8GB model ran out of memory in a game and Premiere Pro (Matthew Moniz), while 18 hours 20 minutes of web surfing came from the 16GB and 1TB unit (Tom's Guide)."
+   ],
+   "highlights": [
+    {
+     "text": "very long battery life",
+     "tone": "pos"
+    },
+    {
+     "text": "clear speed gain over the M1",
+     "tone": "pos"
+    },
+    {
+     "text": "256GB SSD is slower than the M1",
+     "tone": "neg"
+    }
+   ]
+  },
+  "apple-macbook-pro-14-m1-pro-max": {
+   "paras": [
+    "Reviewers mostly praise it for video editing and daily work, with the mini-LED screen, speakers and returning ports as regular highlights. Mixed takes start with the M1 Max GPU, which landed closer to an RTX 3050 Ti than an RTX 3080 outside video work (Linus Tech Tips) and lost Redshift to an ASUS Zephyrus M16 (Linus Tech Tips), while the 10-core M1 Pro was rated ahead of the Dell XPS 13 and Razer Blade 14 on performance, display and battery life, though both cost less (Tom's Guide). Noise and battery depend on the config, with a fair amount of fan noise in intense benchmarks on the 10-core 32GB M1 Pro (PCMag UK) against near silence and about 6 hours of battery under heavy load on an M1 Pro (Arthur Winer)."
+   ],
+   "highlights": [
+    {
+     "text": "mini-LED screen, speakers and returning ports",
+     "tone": "pos"
+    },
+    {
+     "text": "a fair amount of fan noise",
+     "tone": "neg"
+    }
+   ]
+  },
+  "apple-macbook-pro-14-m5-pro-max": {
+   "paras": [
+    "Reviewers praise the CPU speed, sturdy build, speakers and mini LED screen, with battery runs of 17 hours 58 minutes on the M5 Max with 128GB (Tom's Hardware) and 9 hours 18 minutes on the M5 Pro with 24GB (ShortCircuit). Heat is where takes split: the 14-inch M5 Max with 64GB went past 100°C in full benchmarks and scored slightly below the 16-inch M5 Max (Mark's Tech), while the 128GB M5 Max saw performance drop 24% in a stress test (Notebookcheck). Some also question the Max, since the extra $900 over the Pro buys little in video editing (Luke Miani) and the M5 Pro 15 core is the pick for most buyers (Just Josh)."
+   ],
+   "highlights": [
+    {
+     "text": "sturdy build, speakers and mini LED screen",
+     "tone": "pos"
+    },
+    {
+     "text": "went past 100°C in full benchmarks",
+     "tone": "neg"
+    },
+    {
+     "text": "performance drop 24% in a stress test",
+     "tone": "neg"
+    }
+   ]
+  },
+  "apple-macbook-pro-16-m1-pro-max": {
+   "paras": [
+    "Reviewers mostly praise it for video and photo editing, the mini LED screen and the speakers, and several found the M1 Pro model already fast enough, while Tom's Guide found the 14-inch M1 Pro nearly as fast as the M1 Max (Tom's Guide). Mixed takes come from the M1 Max: Dayo Aworunse reproduced a MagSafe charging fault with the 140W adapter on a shut down 16-inch, and The Everyday Dad hit slow monitor and drive detection on Monterey, suggesting an M1 Mac mini may end up as fast for docked work (The Everyday Dad). Lee's Tech Down Under, using the M1 Pro, advises against upgrading from an M1 MacBook Air without spare cash (Lee's Tech Down Under)."
+   ],
+   "highlights": [
+    {
+     "text": "mini LED screen",
+     "tone": "pos"
+    },
+    {
+     "text": "MagSafe charging fault",
+     "tone": "neg"
+    },
+    {
+     "text": "slow monitor and drive detection",
+     "tone": "neg"
+    }
+   ]
+  },
+  "apple-macbook-pro-16-m2-pro-max": {
+   "paras": [
+    "Reviewers mostly praise the mini-LED screen, video export speed and battery life, and say it suits creative pros and people coming from Intel or older machines. Most tell M1 Pro and M1 Max users to skip it, with the M2 Max about 20 percent faster in multi-core than the M1 Max (The Verge) and the M2 Pro about 20 percent ahead of the M1 Pro in most tests (Macworld), though the base M2 Pro ran hotter than the 2021 M1 Pro (Max Tech). Battery results depend on the config, from about 12 hours of mixed use on an M2 Max with 64GB (Terafied) to 18 hours 56 minutes of web surfing on a maxed-out M2 Max (Tom's Guide), and refurbished 2021 models are suggested over it on price (The Tech Chap)."
+   ],
+   "highlights": [
+    {
+     "text": "mini-LED screen",
+     "tone": "pos"
+    },
+    {
+     "text": "battery life",
+     "tone": "pos"
+    },
+    {
+     "text": "ran hotter",
+     "tone": "neg"
+    },
+    {
+     "text": "skip it",
+     "tone": "neg"
+    }
+   ]
+  },
+  "asus-proart-p16-h7606": {
+   "paras": [
+    "Reviewers mostly praise it as a light creator laptop with fast editing, an accurate OLED screen, a good keyboard and a touchpad dial, suited to video and photo editors who can live without a higher refresh rate. Takes split on noise and heat: Notebookcheck measured fans up to 53.2 dB(A) on the RTX 4070 and 64GB model, while Ben G Kaiser measured 35 to 40 dB in whisper mode on a 32GB unit, at the cost of a 4 minutes 42 seconds export against 2 minutes 29 seconds plugged in. On GPU power and battery, the ROG Zephyrus G16 2024 has a much faster RTX 4080 (Notebookcheck), and Andres Vidoza found the 16-inch MacBook Pro M3 Max better for battery and sustained power unplugged (Andres Vidoza), though the tested config costs almost $2,000 Canadian less."
+   ],
+   "highlights": [
+    {
+     "text": "fast editing",
+     "tone": "pos"
+    },
+    {
+     "text": "accurate OLED screen",
+     "tone": "pos"
+    },
+    {
+     "text": "fans up to 53.2 dB(A)",
+     "tone": "neg"
+    },
+    {
+     "text": "much faster RTX 4080",
+     "tone": "neg"
+    }
+   ]
+  },
+  "asus-rog-strix-scar-16-2025": {
+   "paras": [
+    "Reviewers praise the bright mini-LED screen, the keyboard and tool-free RAM and SSD access, and most see it as a desktop replacement because the chassis is heavy and the charger is large. Alternatives raised include the Lenovo Legion Pro 7i for its OLED display (PCWorld), the HP Omen Max 16 as a serious contender (Matthew Moniz), and the ROG Zephyrus G14 for carrying around (Jon Valiagas). Battery results vary widely, for example 8 hours 23 minutes of local video playback (PCMag Middle East) against about 2.5 hours in iGPU mode (TechHook), both on the RTX 5080 version."
+   ],
+   "highlights": [
+    {
+     "text": "bright mini-LED screen",
+     "tone": "pos"
+    },
+    {
+     "text": "tool-free RAM and SSD access",
+     "tone": "pos"
+    },
+    {
+     "text": "heavy and the charger is large",
+     "tone": "neg"
+    },
+    {
+     "text": "about 2.5 hours in iGPU mode",
+     "tone": "neg"
+    }
+   ]
+  },
+  "asus-rog-strix-scar-18-2024": {
+   "paras": [
+    "It suits gamers who want a big screen and desktop-class power, and reviewers such as MobileTechReview and PC Gamer single out the bright mini-LED panel as the high point. Comparisons are mixed: the RTX 4090 version trails the MSI Titan 18 HX by 7 to 10% in games but costs far less (GizmoSlipTech), it reaches more than 7 and a half hours in a Wi-Fi test against little over 4 hours for the Titan (Notebookcheck), and last year's Scar 18 is the better buy unless the brighter screen matters (Jarrod'sTech). Battery life varies a lot by test, with about 3.5 hours at 200 nits on the RTX 4080 model (MobileTechReview), and criticism centres on the plastic build and a high price for modest gains."
+   ],
+   "highlights": [
+    {
+     "text": "bright mini-LED panel",
+     "tone": "pos"
+    },
+    {
+     "text": "costs far less",
+     "tone": "pos"
+    },
+    {
+     "text": "plastic build",
+     "tone": "neg"
+    },
+    {
+     "text": "high price for modest gains",
+     "tone": "neg"
+    }
+   ]
+  },
+  "asus-rog-strix-scar-18-2026": {
+   "paras": [
+    "Reviewers who liked it point to the 4K mini-LED screen, cooling that holds full power in the RTX 5090 models, and the toolless bottom panel, and see it as a desktop replacement for buyers with a deep budget. Mixed takes come from price and rivals: last year's SCAR 18 gives about 95% of the experience for buyers who skip ELMB, at a lower price (Matthew Moniz), the Lenovo Legion 9i is the better 18-inch pick because it costs less (Jarrod'sTech), and it trailed the Razer Blade 18 by close to 10% at 4K in several games (Tom's Hardware). Battery on RTX 5090 versions ran from about four hours (Notebookcheck) to just under six in a video loop (PCMag UK), and the weight is high enough that reviewers keep it on a desk."
+   ],
+   "highlights": [
+    {
+     "text": "4K mini-LED screen",
+     "tone": "pos"
+    },
+    {
+     "text": "toolless bottom panel",
+     "tone": "pos"
+    },
+    {
+     "text": "trailed the Razer Blade 18",
+     "tone": "neg"
+    },
+    {
+     "text": "about four hours",
+     "tone": "neg"
+    }
+   ]
+  },
+  "asus-rog-zephyrus-g14-2024": {
+   "paras": [
+    "Reviewers mostly praise the OLED screen, aluminum build and speakers, and see it suiting buyers who want a light 14-inch laptop for gaming and creative work. Opinions split on speed and battery: the 90W RTX 4070 version performs like an RTX 4060 laptop (Tom's Hardware) and sits just behind the Razer Blade 14 in Cyberpunk 2077 (Engadget), while battery varies, with 6 hours 45 minutes on the RTX 4070 model (Tom's Hardware) and nearly 10 hours on the RTX 4070 32GB model (ShortCircuit). It is rated ahead of the MacBook Pro 14 for gaming, keyboard, speakers and value, though behind it for HDR work and runtimes (Notebookcheck), and several reviewers flag soldered RAM, which Notebookcheck calls the main weakness."
+   ],
+   "highlights": [
+    {
+     "text": "OLED screen, aluminum build and speakers",
+     "tone": "pos"
+    },
+    {
+     "text": "soldered RAM",
+     "tone": "neg"
+    }
+   ]
+  },
+  "asus-rog-zephyrus-g16-2024": {
+   "paras": [
+    "Reviewers praise the thin aluminium body, the 240Hz OLED screen and the speakers, and it suits buyers who want a light 16-inch machine more than top frame rates. Fan noise splits opinions: Just Josh found that none of the units tested were quiet, including the RTX 4070 version, while TechOdyssey found the fans not too loud on the Ryzen AI 9 HX 370 and RTX 4070 model. Lenovo's Legion 7i is seen as the main rival because its memory is upgradeable (Jarrod'sTech), and Hardware Canucks advises the Ryzen AI 9 version over the Intel one."
+   ],
+   "highlights": [
+    {
+     "text": "thin aluminium body",
+     "tone": "pos"
+    },
+    {
+     "text": "240Hz OLED screen",
+     "tone": "pos"
+    },
+    {
+     "text": "none of the units tested were quiet",
+     "tone": "neg"
+    }
+   ]
+  },
+  "asus-rog-zephyrus-g16-2026": {
+   "paras": [
+    "Reviewers praise the bright OLED and speakers and the much longer battery life on RTX 5080 versions, so it suits buyers who put portability first and can afford it. Value is where takes split: the Razer Blade 16 is faster (Notebookcheck and NotebookcheckReviews) and costs $400 less in RTX 5080 trim (PC Gamer), while last year's G16 is suggested as the cheaper route (Jarrod'sTech and Matthew Moniz). Turbo mode is loud, and Manual mode at 160W runs hotter for little gain over Turbo (Dan's Tech House and PC Gamer)."
+   ],
+   "highlights": [
+    {
+     "text": "bright OLED and speakers",
+     "tone": "pos"
+    },
+    {
+     "text": "much longer battery life",
+     "tone": "pos"
+    },
+    {
+     "text": "Turbo mode is loud",
+     "tone": "neg"
+    },
+    {
+     "text": "little gain over Turbo",
+     "tone": "neg"
+    }
+   ]
+  },
+  "asus-tuf-gaming-a16-2024": {
+   "paras": [
+    "Reviewers who tested the Ryzen 9 versions praised the CPU power, gaming frame rates and 165Hz screen for the price, and the RTX 4060 model with the Ryzen 9 7845HX came out ahead of the ROG Zephyrus G16 in a 4K render, 11 minutes against about 14 (Roberto Jorge Tech), and was picked over the TUF F15 for budget gaming (Haviq Tech). Takes were mixed on the Ryzen 7 7445HS and RTX 4050 model, which had the weakest CPU of the three and lost on value to the Lenovo LOQ (Geeky Piyush). Battery life varied, at 2 to 4 hours on the RTX 4070 version (GizmoSlipTech) and 2 to 3 hours on the RTX 4060 version (Hashan De Zoysa), against a 6 to 7 hour YouTube estimate on the Ryzen 9 7845HX model (Roberto Jorge Tech)."
+   ],
+   "highlights": [
+    {
+     "text": "praised the CPU power",
+     "tone": "pos"
+    },
+    {
+     "text": "ahead of the ROG Zephyrus G16",
+     "tone": "pos"
+    },
+    {
+     "text": "weakest CPU of the three",
+     "tone": "neg"
+    },
+    {
+     "text": "2 to 4 hours",
+     "tone": "neg"
+    }
+   ]
+  },
+  "asus-zenbook-14-oled-ux3405": {
+   "paras": [
+    "Reviewers mostly suit it to work and travel, praising the light aluminum body, the 120Hz OLED touchscreen and the keyboard, with 14 hours 18 minutes in a modern office battery test on the Core Ultra 7 155H / 32GB unit (Andrew Marc David). Speed is where takes split: the Core Ultra 7 155H is a bit ahead of an Apple M3 in Geekbench and Cinebench but well behind in graphics (PCWorld), gains over last year's 13th gen chip are small (Andrew Marc David), and the 8GB Core Ultra 5 model could not load Red Dead Redemption 2 (Lon.TV). Battery also depends on load, with three and a half hours under high load at full brightness on the Core Ultra 7 155H / 32GB model (PCWorld), and fans get loud in performance modes, reaching 49 dB on that same chip and RAM combination (Andrew Marc David)."
+   ],
+   "highlights": [
+    {
+     "text": "120Hz OLED touchscreen",
+     "tone": "pos"
+    },
+    {
+     "text": "well behind in graphics",
+     "tone": "neg"
+    },
+    {
+     "text": "fans get loud in performance modes",
+     "tone": "neg"
+    }
+   ]
+  },
+  "asus-zenbook-s-16-um5606": {
+   "paras": [
+    "Reviewers praise the 1.5 kg body, the 3K 120Hz OLED and integrated graphics that beat Snapdragon X Elite laptops in games (Max Tech, The Verge), though the HX 370 model's screen measured a dim 357 nits (Tom's Hardware) and Tech Guy Beau calls the screen door effect a deal breaker. Battery is where takes split: the HX 370 version with 32GB lasted 11 hours 35 minutes in a browsing test and trailed Arm laptops (Tom's Hardware), and drained about twice as fast as a MacBook Air 15 M2 in heavy editing (Ben G Kaiser), while the Ryzen AI 9 365 model logged 11 hours 52 minutes in office use (Andrew Marc David). Warmth under load also comes up, including on the 365 model (Danny Winget, MistaCat_)."
+   ],
+   "highlights": [
+    {
+     "text": "1.5 kg body",
+     "tone": "pos"
+    },
+    {
+     "text": "3K 120Hz OLED",
+     "tone": "pos"
+    },
+    {
+     "text": "screen door effect",
+     "tone": "neg"
+    },
+    {
+     "text": "trailed Arm laptops",
+     "tone": "neg"
+    }
+   ]
+  },
+  "hp-omnibook-ultra-14-snapdragon-x2-elite-2026": {
+   "paras": [
+    "Reviewers who like it, including Tom's Hardware, Techaeris and GregglesTV, praise the thin aluminum build, the OLED and the battery life, which reached 13 hours 27 minutes in Tom's Hardware's test of the 64GB Snapdragon X2 Elite model, though Just Josh measured around 10 hours at 300 nits. Mixed takes come from heat, ports and price: Just Josh measured 40° C near the top of the keyboard in light use and found it burning hot under pure CPU load, while Tom's Hardware called the $2,879.99 price of its review unit excessive and Tom's Guide called its unit's price egregious. On comparisons, the Intel Panther Lake version is the pick for gaming and legacy x86 software (Techaeris), the Lenovo Yoga Slim 7x has a better keyboard and cooler feel (Just Josh), and the MacBook Air is cheaper and still recommended for anyone undecided between macOS and Windows (WIRED)."
+   ],
+   "highlights": [
+    {
+     "text": "thin aluminum build",
+     "tone": "pos"
+    },
+    {
+     "text": "burning hot under pure CPU load",
+     "tone": "neg"
+    },
+    {
+     "text": "called the $2,879.99 price",
+     "tone": "neg"
+    }
+   ]
+  },
+  "lenovo-chromebook-plus-14-gen-10": {
+   "paras": [
+    "Reviewers mostly praise the silent fanless build, the bright OLED screen and the keyboard, and it suits people content to stay on ChromeOS. Battery results on the Kompanio Ultra 910 16GB models range from about 8 hours in MergeDroid's estimate to over 15 hours in Notebookcheck's Wi-Fi test, and the limited ports, with no HDMI, draw repeated complaints. Price is where reviewers hesitate, with Tom's Guide calling $649 steep and noting that a similarly priced Lenovo IdeaPad Slim 3x runs full Windows but has a much worse display (Tom's Guide), while TechRadar finds the Dell Inspiron 14 Plus 7441 sharper and more versatile (TechRadar)."
+   ],
+   "highlights": [
+    {
+     "text": "silent fanless build",
+     "tone": "pos"
+    },
+    {
+     "text": "bright OLED screen",
+     "tone": "pos"
+    },
+    {
+     "text": "limited ports",
+     "tone": "neg"
+    },
+    {
+     "text": "calling $649 steep",
+     "tone": "neg"
+    }
+   ]
+  },
+  "lenovo-legion-5i-gen-9": {
+   "paras": [
+    "Reviewers mostly suit it to gamers who want strong performance at mid-range money, praising the keyboard and the cooling, while Lon.TV and Notebookcheck note there is no Thunderbolt. Battery results split by config: the Core i7-14650HX and RTX 4060 model with a 240Hz panel lasted 7 hours 24 minutes of web browsing (Notebookcheck), but the Core i9-14900HX and RTX 4060 model managed 3 hours 36 minutes (Laptop Mag). The two mixed reviews are about price, with Jarrod'sTech finding it hard to justify against 2023 models and pointing to the Legion 7i for a thinner build (Jarrod'sTech), and Tom's Hardware FR calling it overpriced at 1949 euros and pointing to the Legion Pro 5i with RTX 4070 (Tom's Hardware FR)."
+   ],
+   "highlights": [
+    {
+     "text": "strong performance at mid-range money",
+     "tone": "pos"
+    },
+    {
+     "text": "no Thunderbolt",
+     "tone": "neg"
+    },
+    {
+     "text": "3 hours 36 minutes",
+     "tone": "neg"
+    }
+   ]
+  },
+  "lenovo-legion-7i-gen-9": {
+   "paras": [
+    "Reviewers who tested the Core i9-14900HX and RTX 4070 version mostly praise its gaming and CPU speed, upgradeable RAM and bright 240Hz screen. Comparisons split on speed: it led the ROG Zephyrus G16 2024 in Cinebench and games (Jarrod'sTech), but gaming came out about the same as that laptop because of the 4070 power cap (Josh Craves Tech), and it trailed the MSI Vector 17 HX in every game test (PC Gamer). Battery is the clearest complaint, from under 2 hours unplugged (Mark Guim) to under 3 hours of playback (Technic-Ali), though Notebookcheck measured 7h 13min of Wi-Fi browsing on its 3.2K model."
+   ],
+   "highlights": [
+    {
+     "text": "upgradeable RAM",
+     "tone": "pos"
+    },
+    {
+     "text": "bright 240Hz screen",
+     "tone": "pos"
+    },
+    {
+     "text": "under 2 hours unplugged",
+     "tone": "neg"
+    }
+   ]
+  },
+  "lenovo-legion-pro-5i-gen-10": {
+   "paras": [
+    "Reviewers praise the keyboard, the OLED screen and the speed of the RTX 5070 Ti versions, which suit gamers who also edit video. Opinions split on the RTX 5070 with 8GB of VRAM, which Tech Guy Beau says to skip because of ray tracing limits, while Jon Rettinger found the RTX 5070 model quiet and capable for creative work and games. Against the AMD Legion Pro 5, the Intel chip peaks 5 to 10% higher in Cinebench but draws 30 to 40% more watts and runs louder (Tech Guy Beau), and Notebookcheck found Performance mode loud on the RTX 5070 Ti model."
+   ],
+   "highlights": [
+    {
+     "text": "speed of the RTX 5070 Ti versions",
+     "tone": "pos"
+    },
+    {
+     "text": "draws 30 to 40% more watts",
+     "tone": "neg"
+    },
+    {
+     "text": "found Performance mode loud",
+     "tone": "neg"
+    }
+   ]
+  },
+  "lenovo-legion-pro-7i-gen-9": {
+   "paras": [
+    "Reviewers mostly suit it to gamers and creators who want top performance at a desk, praising the keyboard, the 240Hz screen and cooling that helps it hold speed. Mixed takes come from weight and battery, where the RTX 4080 version lasted about 2.75 hours at 240Hz in OWNorDisown's test and gave 45 minutes to an hour of heavy gaming for Mark Linsangan, while the RTX 4090 version managed about 6 hours of video playback in battery saver mode (Hardware Voyage). On comparisons, it was faster in every game than the Zephyrus G16 with a 115W RTX 4090 (Mark Linsangan) and beat the Asus ROG Strix Scar 16 in 1080p game runs (GamesRadar+), though Just Josh would pick the Alienware x16 R2 for its keyboard and cooler feel in gaming."
+   ],
+   "highlights": [
+    {
+     "text": "cooling that helps it hold speed",
+     "tone": "pos"
+    },
+    {
+     "text": "about 2.75 hours at 240Hz",
+     "tone": "neg"
+    },
+    {
+     "text": "45 minutes to an hour of heavy gaming",
+     "tone": "neg"
+    }
+   ]
+  },
+  "lenovo-loq-15ahp9": {
+   "paras": [
+    "Reviewers who tested the Ryzen 7 8845HS and RTX 4060 version praise it as a low-priced gaming laptop with easy upgrades and Lenovo Vantage modes. Weight is close to the Legion 5 Slim and lighter than the Legion 5 Pro (Tech Guy Beau), the styling resembles the Legion 5 15 without looking cheap (Onur Binay), and the Intel LOQ 15IRX9 was cheaper at writing time while only the AMD model offers the 2560x1440 panel (TheHikaku). Mixed takes come from noise and memory: fans measured 54 dB in performance mode (Onur Binay) and 53 dB (TheHikaku), so Tech Guy Beau and TheHikaku prefer balanced mode, and TheHikaku found the single 16GB stick made a Premiere 4K export take 5 minutes 56 seconds against 3 minutes 47 seconds with a second stick."
+   ],
+   "highlights": [
+    {
+     "text": "low-priced gaming laptop",
+     "tone": "pos"
+    },
+    {
+     "text": "easy upgrades",
+     "tone": "pos"
+    },
+    {
+     "text": "54 dB in performance mode",
+     "tone": "neg"
+    },
+    {
+     "text": "single 16GB stick",
+     "tone": "neg"
+    }
+   ]
+  },
+  "lenovo-loq-15irx10": {
+   "paras": [
+    "Reviewers who liked it call it a cheap gaming laptop with a good keyboard, such as AdminPong, who saw about 140 fps with DLSS and frame generation on the RTX 5050 version, while Digit praised the speed of the Core i7-14700HX and RTX 5060 model but found the price hard to justify. Mixed takes come from price and the 100W GPU limit: Binosha Tech and Binosha - بینوشا both put the RTX 5060 version 10 to 15% below rival RTX 5060 laptops, with one pointing to a Legion 5 with RTX 4060 at almost the same price (Binosha Tech) and the other to the ASUS TUF (Binosha - بینوشا). Battery is the common complaint, with NotebookSPEC measuring 2 hours 16 minutes on the RTX 5050 model and suggesting the Ryzen 7 260 LOQ for longer runtime (NotebookSPEC)."
+   ],
+   "highlights": [
+    {
+     "text": "cheap gaming laptop with a good keyboard",
+     "tone": "pos"
+    },
+    {
+     "text": "10 to 15% below rival RTX 5060 laptops",
+     "tone": "neg"
+    },
+    {
+     "text": "2 hours 16 minutes on the RTX 5050 model",
+     "tone": "neg"
+    }
+   ]
+  },
+  "lenovo-thinkpad-e14-gen-6": {
+   "paras": [
+    "Reviewers mostly like it as a cheap, sturdy ThinkPad with a comfortable keyboard and room to upgrade RAM and SSDs, suited to office, school and budget buyers, though the screens measured show weak colour coverage. Battery results vary by config and test: the Core Ultra 7 155U model managed 9h 26min of WiFi browsing (Notebookcheck) but only 5 hours 36 minutes in the PCMark 10 battery test (XDA Developers), while the Ryzen 5 7535HS version ran nearly 19 hours of video and browsing but cut its CPU power after 30 to 45 minutes (TECHSETTER). Against its siblings, the Intel model is preferred over the AMD version this year because the AMD one uses a previous generation CPU (Tech Guy Beau), while the Ryzen 7 7735HS model's Radeon 680M scored almost 86 percent higher in 3DMark than the E14 Gen 5 AMD (Notebookcheck, German review)."
+   ],
+   "highlights": [
+    {
+     "text": "sturdy ThinkPad",
+     "tone": "pos"
+    },
+    {
+     "text": "room to upgrade RAM and SSDs",
+     "tone": "pos"
+    },
+    {
+     "text": "weak colour coverage",
+     "tone": "neg"
+    },
+    {
+     "text": "only 5 hours 36 minutes",
+     "tone": "neg"
+    }
+   ]
+  },
+  "lenovo-thinkpad-e16-gen-1": {
+   "paras": [
+    "Reviewers mostly pitch it as an office laptop and praise the keyboard, with Tech Guy Beau calling it a superb typing experience. The screen splits opinion by config: Tech Guy Beau liked the 1600p panel and Notebookcheck measured 410 nits on the WQHD option, while PCMag Australia called the 1920 by 1200 Intel model's screen dim and bland, and TechRadar measured 54% sRGB on its Ryzen 5 7530U unit. Battery runs from about 3.5 hours of general use on the Core i5-1335U model (How-To Geek) to over 11 hours on the Ryzen 7 7730U WQHD model (Notebookcheck), and the Acer TravelMate P4 TMP416-51-55KN offers similar performance with more modern ports (Notebookcheck)."
+   ],
+   "highlights": [
+    {
+     "text": "superb typing experience",
+     "tone": "pos"
+    },
+    {
+     "text": "dim and bland",
+     "tone": "neg"
+    },
+    {
+     "text": "over 11 hours",
+     "tone": "pos"
+    }
+   ]
+  },
+  "lenovo-thinkpad-l14-gen-5": {
+   "paras": [
+    "It suits office and web work, with reviewers praising the keyboard and the port selection, including Ethernet, HDMI and a fast USB port. The screen is where takes split: Tech Guy Beau liked the optional 100% sRGB 1200p panel on the Ryzen 7 7735U model, while Notebookcheck measured 56.1% sRGB on the Ryzen 5 7535U unit and Saverio Cirillo cited 45% NTSC on the Core i5 125U one. The HP ProBook 445 G10 is cheaper and lighter but lacks USB4 and WWAN (Notebookcheck), and the Ryzen 5 7535U unit managed 12h 28min of web surfing, slightly less than the L14 Gen 4 (Notebookcheck)."
+   ],
+   "highlights": [
+    {
+     "text": "praising the keyboard and the port selection",
+     "tone": "pos"
+    },
+    {
+     "text": "optional 100% sRGB 1200p panel",
+     "tone": "pos"
+    },
+    {
+     "text": "measured 56.1% sRGB",
+     "tone": "neg"
+    }
+   ]
+  },
+  "lenovo-thinkpad-p1-gen-7": {
+   "paras": [
+    "Reviewers mostly suit it to editors, developers and other professionals who want a portable workstation, praising the keyboard and speakers, and Laptop Mag recorded 17 hours 23 minutes of web surfing on the Core Ultra 7 165H, RTX 1000 Ada IPS model. Performance is where takes split, as the RTX 4060 version holds about 60W in games against 80W on the Gen 6 (Mash IT) and runs hot and loud, while the 4060 model also drops the Gen 6's high-end GPU options (Notebookcheck). Many reviewers liked the haptic trackpad, but LongRhino disliked it, HAMY LABS found it oversensitive, and several reviewers called the price high."
+   ],
+   "highlights": [
+    {
+     "text": "keyboard and speakers",
+     "tone": "pos"
+    },
+    {
+     "text": "17 hours 23 minutes",
+     "tone": "pos"
+    },
+    {
+     "text": "runs hot and loud",
+     "tone": "neg"
+    }
+   ]
+  },
+  "lenovo-thinkpad-p14s-gen-5": {
+   "paras": [
+    "Reviewers like the keyboard, the 120Hz screen and the two SO-DIMM slots, and Slap Tech and Tech Guy Beau both loved it, the former at about $1,500 for the Core Ultra 7 155H and RTX 500 version. Takes are mixed at Notebookcheck, which measured 46.8 dB(A) fan noise and about 60 W of sustained cooling on the Intel model, and 50.8 dB(A) plus 6h 11min of Wi-Fi battery life on the Ryzen 7 Pro 8840HS OLED model, where the T14 Gen 5 AMD is the better choice for most users (Notebookcheck). Slap Tech says the 2022 Asus Zephyrus G14 wins on gaming and ghosting but runs hotter than the ThinkPad (Slap Tech), while Tech Guy Beau found the AMD model scoring about 14,000 in Cinebench against about 12,000 for the Gen 4 (Tech Guy Beau)."
+   ],
+   "highlights": [
+    {
+     "text": "keyboard, the 120Hz screen",
+     "tone": "pos"
+    },
+    {
+     "text": "two SO-DIMM slots",
+     "tone": "pos"
+    },
+    {
+     "text": "50.8 dB(A) plus 6h 11min",
+     "tone": "neg"
+    },
+    {
+     "text": "runs hotter than the ThinkPad",
+     "tone": "neg"
+    }
+   ]
+  },
+  "lenovo-thinkpad-t14-gen-5": {
+   "paras": [
+    "It suits office users, students and ThinkPad fans who want a light, repairable machine, with the keyboard praised by reviewers including XDA Developers and Notebookcheck. Mixed takes come mostly from battery life, which depends on the config: the Core Ultra 7 155U model with 16GB ran 10 hours 48 minutes in a PCMark 10 test (XDA Developers) but 7:27 to 8:44 in a web-surfing test (Laptop Mag), and the Ryzen models ranged from 6 hours 20 minutes of YouTube streaming (Mash IT) to 10 hours 15 minutes in a Wi-Fi test (Notebookcheck). On comparisons, the Ryzen 7 8840U version was faster than the Intel T14 Gen 5 in CPU and graphics (Notebookcheck), and the Acer Swift 14 AI and MacBook Pro 14-inch last longer (Laptop Mag)."
+   ],
+   "highlights": [
+    {
+     "text": "light, repairable machine",
+     "tone": "pos"
+    },
+    {
+     "text": "keyboard praised by reviewers",
+     "tone": "pos"
+    },
+    {
+     "text": "6 hours 20 minutes of YouTube streaming",
+     "tone": "neg"
+    }
+   ]
+  },
+  "lenovo-thinkpad-t14s-gen-5": {
+   "paras": [
+    "Reviewers see it as a business laptop: ThinkView says it suits business users and managers, Notebookcheck points to corporate buyers who want a cool, long-lasting machine, and Ed Tittel calls it a nifty little business laptop with fast sign-in and strong SSD speeds. Battery results depend on the config, with nearly 7 hours at 250 nits on the Core Ultra 155U Full HD IPS model (ThinkView) against 11h 52min in the Wi-Fi test at 150 nits on the Core Ultra 5 125U model with the low-power panel (Notebookcheck). Performance trails AMD rivals, with the HP EliteBook 845 G10's Radeon 780M about 20 per cent faster (Notebookcheck), the Snapdragon X version is recalled as a little faster (Ed Tittel), and it weighs more than the ThinkPad X1 Carbon Gen 12 (ThinkView)."
+   ],
+   "highlights": [
+    {
+     "text": "nifty little business laptop",
+     "tone": "pos"
+    },
+    {
+     "text": "cool, long-lasting machine",
+     "tone": "pos"
+    },
+    {
+     "text": "Performance trails AMD rivals",
+     "tone": "neg"
+    },
+    {
+     "text": "weighs more than",
+     "tone": "neg"
+    }
+   ]
+  },
+  "lenovo-thinkpad-x1-2-in-1-gen-9": {
+   "paras": [
+    "Reviewers mostly recommend it to business users who want a light ThinkPad convertible, praising the keyboard, ports and build. Mixed takes come from performance and price: the Core Ultra 7 155U IPS model trails Snapdragon X, Ryzen AI 9 and Apple M3 laptops (Digital Trends), the Ryzen-powered Dell Inspiron 14 2-in-1 beat it in five of six productivity tests (PCMag UK), and the HP Spectre x360 14 is better value at a similar price (Laptop Mag). Battery results depend on config, from 18 hours 43 minutes in PCMark 10 Modern Office on the Core Ultra 7 155U model (StorageReview) to 8 hours 29 minutes of WiFi browsing on the Core Ultra 7 165U OLED model (Notebookcheck)."
+   ],
+   "highlights": [
+    {
+     "text": "light ThinkPad convertible",
+     "tone": "pos"
+    },
+    {
+     "text": "trails Snapdragon X, Ryzen AI 9",
+     "tone": "neg"
+    },
+    {
+     "text": "better value at a similar price",
+     "tone": "neg"
+    }
+   ]
+  },
+  "lenovo-thinkpad-x1-carbon-gen-12": {
+   "paras": [
+    "Reviewers praise the keyboard, the light body of about 2.4 lb and the OLED screen, and the laptop suits business users and frequent travellers. Battery results vary by config and test, from 4 hours 8 minutes in a workday test on the Core Ultra 7 165U with 64GB (Decoding Labs) to 13 hours 2 minutes in PCMark Modern Office on the Core Ultra 7 165U with 32GB (Engadget), while the Core Ultra 7 155H OLED model lasted 9 hours 14 minutes on a Wi-Fi test (Tom's Hardware). The price draws repeated criticism, with the Zenbook 14 OLED called cheaper and faster (Engadget) and the Gen 11 suggested as a cheaper pick (Tom's Hardware, PCMag UK)."
+   ],
+   "highlights": [
+    {
+     "text": "light body of about 2.4 lb",
+     "tone": "pos"
+    },
+    {
+     "text": "price draws repeated criticism",
+     "tone": "neg"
+    }
+   ]
+  },
+  "lenovo-yoga-9i-2-in-1-gen-9": {
+   "paras": [
+    "Reviewers mostly praise the OLED screen and speakers, and suit it to students, office users and media use rather than demanding games or editing. Battery results vary with the config: Venom's Tech got 6 to 7 hours of basic use on the 32GB 2.8K model, while PCMag UK recorded 17:52 of local video playback on the 16GB 120Hz unit. Speed and heat split opinion too: TechZonical found the 32GB model hot and loud in Filmora editing and pointed to the MacBook Air M5 at similar money (TechZonical), while PCMag UK found the HP Spectre x360 14 edges it in CPU and Photoshop tests (PCMag UK)."
+   ],
+   "highlights": [
+    {
+     "text": "OLED screen and speakers",
+     "tone": "pos"
+    },
+    {
+     "text": "17:52 of local video playback",
+     "tone": "pos"
+    },
+    {
+     "text": "hot and loud",
+     "tone": "neg"
+    }
+   ]
+  },
+  "lenovo-yoga-pro-9i-gen-9": {
+   "paras": [
+    "Reviewers praise the 165Hz mini-LED screen and six-speaker audio, and it suits creators and occasional gamers who want strong CPU and GPU power. It beat the Dell XPS 16 9640 on performance (Notebookcheck) and costs $1,295 less than the XPS 16 in the RTX 4060 configuration (Digital Trends), though the MacBook Pro 16 with M3 Max is much faster (Digital Trends). Battery is where takes split: the RTX 4050 model reached 8 hours 33 minutes in an office test (Andrew Marc David), while the RTX 4060 model gave 4 to 5 hours of normal work (Ben G Kaiser) and the RTX 4070 model managed 4:30 hours at full brightness (Notebookcheck)."
+   ],
+   "highlights": [
+    {
+     "text": "165Hz mini-LED screen",
+     "tone": "pos"
+    },
+    {
+     "text": "six-speaker audio",
+     "tone": "pos"
+    },
+    {
+     "text": "4 to 5 hours of normal work",
+     "tone": "neg"
+    }
+   ]
+  },
+  "microsoft-surface-laptop-7-15": {
+   "paras": [
+    "Reviewers praise the long battery life and premium build of the Snapdragon X Elite version, and it suits productivity more than gaming or heavy graphics work. Opinions turn mixed on compatibility and price, with Alex Kidman finding some apps fail on ARM and the price hard to justify, and Notebookcheck finding emulated apps slow and the cores hot under load. On speed, the 32GB model beat the MacBook Air 15-inch (M3) on multi-core but trailed it on single-core and graphics (Live Science), and its Geekbench 6 multicore score of 14,400 was ahead of a Dell XPS 14 at 11,920 (Engadget)."
+   ],
+   "highlights": [
+    {
+     "text": "long battery life",
+     "tone": "pos"
+    },
+    {
+     "text": "premium build",
+     "tone": "pos"
+    },
+    {
+     "text": "hard to justify",
+     "tone": "neg"
+    },
+    {
+     "text": "hot under load",
+     "tone": "neg"
+    }
+   ]
+  },
+  "msi-raider-18-hx-ai-a2xw": {
+   "paras": [
+    "Reviewers who liked it praise the bright 4K mini-LED screen and desktop-class speed, with the RTX 5080 version exporting a 12 minute DaVinci Resolve project in 1 minute 52 seconds against 2 minutes 7 seconds on an i9 14900KS and RTX 5070 desktop (Fenson Lin | Gadgetsu). Mixed takes come from price and screen quirks: the RTX 5080 version showed heavy bloom and tearing without G-Sync, and the MSI Vector A18 HX was rated better value at about a thousand less (GizmoSlipTech), the Gigabyte Aorus Master 16 was suggested for similar performance for less (Laptop Mag), and the 4K panel and $5,000-plus price on RTX 5090 models felt like overkill (Tom's Guide). Battery life swings by test, from 2 hours 33 minutes of web surfing (Laptop Mag) to 8 hours 33 minutes in a slideshow loop (Noteforum), both on the RTX 5080 version, while most reviewers call the fans loud under load."
+   ],
+   "highlights": [
+    {
+     "text": "bright 4K mini-LED screen",
+     "tone": "pos"
+    },
+    {
+     "text": "desktop-class speed",
+     "tone": "pos"
+    },
+    {
+     "text": "heavy bloom and tearing",
+     "tone": "neg"
+    }
+   ]
+  },
+  "razer-blade-14-2024": {
+   "paras": [
+    "Reviewers who tested the RTX 4070 version praise its 140W GPU, which is faster than the 2024 Zephyrus G14 at 1080p (PC Gamer), along with the stiff metal build and upgradeable RAM. Mixed takes come from price, since the Blade costs up to $700 more than the OLED G14, so the G14 comes out as the better buy (PC Gamer, The Verge), while Tom's Hardware calls the Blade the best-performing 14-inch gaming laptop but very expensive next to cheaper OLED rivals (Tom's Hardware). Battery life also splits on the same config, with The Verge finding up to four hours and ShortCircuit logging 6 hours 55 minutes."
+   ],
+   "highlights": [
+    {
+     "text": "140W GPU",
+     "tone": "pos"
+    },
+    {
+     "text": "upgradeable RAM",
+     "tone": "pos"
+    },
+    {
+     "text": "up to $700 more",
+     "tone": "neg"
+    }
+   ]
+  },
+  "razer-blade-16-2025": {
+   "paras": [
+    "Reviewers who tested the RTX 5090 versions mostly praise the thin aluminum body and 240Hz OLED (PC Gamer, The Verge), and say it suits buyers with money to spare. Mixed takes come from gaming gains over the 2024 RTX 4090 Blade 16, which The Tech Chap measured at 32% in Cyberpunk at matched 160W with DLSS and ray tracing but only single digits to 18% in other games. Battery also varies: Notebookcheck got 7h 55min of Wi-Fi browsing on an RTX 5090 model, Robeytech got 4 hours 6 minutes of Office Productivity on another, and NotebookcheckReviews found about an hour less battery than the Zephyrus G16 (NotebookcheckReviews)."
+   ],
+   "highlights": [
+    {
+     "text": "240Hz OLED",
+     "tone": "pos"
+    },
+    {
+     "text": "single digits to 18% in other games",
+     "tone": "neg"
+    },
+    {
+     "text": "4 hours 6 minutes of Office Productivity",
+     "tone": "neg"
+    }
+   ]
+  },
+  "apple-macbook-air-15-m2": {
+   "paras": [
+    "Reviewers praise the big screen in a thin, light fanless body, with the six speakers called a step up from the 13-inch Air (Tom's Guide, Notebookcheck) and a larger trackpad. Mixed takes come from sustained load: ShortCircuit saw Shadow of the Tomb Raider drop from 46 fps to 39 fps on the second run on the 24GB M2, and on the 16GB and 1TB unit Notebookcheck saw GPU output fell about 25 percent, while Engadget never really noticed warmth on its 16GB and 512GB unit. On price, Snazzy Labs says a sensible configuration costs as much as the 14-inch M2 Pro MacBook Pro, and Hardware Canucks points to a refurbished 14-inch M2 Pro instead."
+   ],
+   "highlights": [
+    {
+     "text": "thin, light fanless body",
+     "tone": "pos"
+    },
+    {
+     "text": "six speakers called a step up",
+     "tone": "pos"
+    },
+    {
+     "text": "GPU output fell about 25 percent",
+     "tone": "neg"
+    }
+   ]
+  },
+  "apple-macbook-pro-13-m1": {
+   "paras": [
+    "Reviewers mostly praise the long battery life, smooth everyday speed and quiet fan, and suit it to students, writers and light editors, with the 16GB version holding up better under heavy multitasking (ThisIsE). The main disagreement is price: the M1 MacBook Air gives the same everyday speed for less (Notebookcheck), and the Pro's fan adds roughly 10 to 20% in long renders for about $300 more (Created Tech), while the 14-inch MacBook Pro is judged better value (Tech Gear Talk). Battery results vary by config, with over 20 hours of Wi-Fi browsing on the 8GB base model (Notebookcheck) against about nine hours of Final Cut Pro editing on the 16GB model (Tech Spurt), and many reviewers criticise the two ports."
+   ],
+   "highlights": [
+    {
+     "text": "long battery life",
+     "tone": "pos"
+    },
+    {
+     "text": "quiet fan",
+     "tone": "pos"
+    },
+    {
+     "text": "the two ports",
+     "tone": "neg"
+    }
+   ]
+  },
+  "apple-macbook-pro-14-m2-pro-max": {
+   "paras": [
+    "Reviewers praise it for creative work, with smooth 4K editing in Final Cut Pro, a bright mini-LED display and a port set that includes HDMI 2.1 and an SD card slot, and several found the fans quiet on M2 Pro models. Most call it a minor step over the M1 Pro and point to a discounted M1 Pro instead (Max Tech, AppleInsider, Engadget), while Justin Tse advises against moving from last year's M1 Max to the M2 Max (Justin Tse), and Max Tech measured 9 to 10 hours of mixed battery on the M2 Pro against 7 to 9 for the M1 Pro (Max Tech). The base 512GB SSD is slower than the M1 Pro's (Max Tech, Kyle Erickson), and Tom's Guide recorded 14 hours 2 minutes of web battery on the M2 Pro versus 12 hours 51 minutes on the M2 Max (Tom's Guide)."
+   ],
+   "highlights": [
+    {
+     "text": "smooth 4K editing in Final Cut Pro",
+     "tone": "pos"
+    },
+    {
+     "text": "a bright mini-LED display",
+     "tone": "pos"
+    },
+    {
+     "text": "minor step over the M1 Pro",
+     "tone": "neg"
+    },
+    {
+     "text": "base 512GB SSD is slower",
+     "tone": "neg"
+    }
+   ]
+  },
+  "apple-macbook-pro-14-m3-pro-max": {
+   "paras": [
+    "Reviewers mostly praise the M3 Pro with 18GB for smooth 4K editing and long battery life, and it suits Intel Mac users or anyone coming from a base chip (Notebookcheck, Jimmy Tries World). Mixed takes come from upgrade value: the base chip is only about 17% faster in multi-core than the 10-core M2 Pro and ties it in GPU (GregsGadgets), exports took about 10 minutes, the same as an M1 Pro (Cole Caccamise), and the cheaper M3 model is only slightly slower for $400 less (Tom's Guide). Max Tech found it beats a 16-inch M1 Max in Geekbench 6, while Arthur Winer points serious video editors to the M3 Max."
+   ],
+   "highlights": [
+    {
+     "text": "smooth 4K editing",
+     "tone": "pos"
+    },
+    {
+     "text": "long battery life",
+     "tone": "pos"
+    },
+    {
+     "text": "only about 17% faster",
+     "tone": "neg"
+    },
+    {
+     "text": "the same as an M1 Pro",
+     "tone": "neg"
+    }
+   ]
+  },
+  "apple-macbook-pro-14-m3": {
+   "paras": [
+    "Reviewers praise the keyboard, six speakers, bright 120Hz display and long battery life, with web surfing runs of 17 hours 16 minutes on the 8GB model (Laptop Mag) and 15 hours 51 minutes on the 16GB version (Notebookcheck). Mixed takes center on memory: Brandon Butch found the 8GB model handled heavy creative work, while Max Tech saw it slow down under multitasking and Alex Ziskind struggled with a Windows virtual machine and froze running Android and Xcode together. On value, some point elsewhere, such as the older MacBook Pro 14 M2 Pro (Notebookcheck), a 15-inch MacBook Air with 8GB (Max Tech), or the M3 Pro (Brandon Butch), which costs the same as a base M3 upgraded to 16GB."
+   ],
+   "highlights": [
+    {
+     "text": "long battery life",
+     "tone": "pos"
+    },
+    {
+     "text": "six speakers",
+     "tone": "pos"
+    },
+    {
+     "text": "slow down under multitasking",
+     "tone": "neg"
+    }
+   ]
+  },
+  "apple-macbook-pro-16-m3-pro-max": {
+   "paras": [
+    "Reviewers mostly praise it for video editors and travelers who need power, with the display, speakers and keyboard drawing repeated praise. Upgrade value splits them: the 48GB M3 Max showed no video rendering gain over an M2 Max (Just Josh), while the 128GB model measured 63 % ahead of the M2 Max in Cinebench R23 multi-core (Notebookcheck). Battery depends on config, from 18 hours 5 minutes on the 48GB M3 Max web test (Laptop Mag) to about 6.5 hours of mixed work on the 128GB model (Duy Luân Dễ Thương), and several reviewers call it heavy and costly."
+   ],
+   "highlights": [
+    {
+     "text": "display, speakers and keyboard",
+     "tone": "pos"
+    },
+    {
+     "text": "no video rendering gain",
+     "tone": "neg"
+    },
+    {
+     "text": "about 6.5 hours of mixed work",
+     "tone": "neg"
+    }
+   ]
+  },
+  "asus-chromebook-plus-cm34-flip-cm3401": {
+   "paras": [
+    "Reviewers mostly praise it as a sturdy, long-lasting everyday Chromebook Plus for students and general users who do not carry it all day. Battery results vary by config: 15.8 hours on the Ryzen 3 7320C with 8GB (The Non-Techie Tech Show), 19 hours on the Ryzen 3 7320C with 16GB (PCWorld), and just over 11 hours of web browsing on the Ryzen 5 7520C with 16GB (CHIP), while HelenTech's own work estimate was six to seven hours on the Ryzen 3. Comparisons split on weight and speed: the ASUS Chromebook Plus CX34 is preferred for frequent carrying (HelenTech), the Lenovo IdeaPad Flex 5 Chrome 14IAU7 is lighter at 1.6 kg (CHIP), and the Acer Chromebook Spin 514 scored higher in Speedometer (PCWorld)."
+   ],
+   "highlights": [
+    {
+     "text": "sturdy, long-lasting",
+     "tone": "pos"
+    },
+    {
+     "text": "six to seven hours",
+     "tone": "neg"
+    },
+    {
+     "text": "preferred for frequent carrying",
+     "tone": "neg"
+    }
+   ]
+  },
+  "asus-rog-strix-g16-2024": {
+   "paras": [
+    "Reviewers praise strong gaming performance and the 240Hz screen, and it suits buyers who want a 16-inch gaming machine and do not need something light. Battery life is where results split: the RTX 4060 version lasted around 4 to 5 hours (Binosha Tech), the RTX 4080 version got about 5.5 hours of productivity and under an hour of gaming (SoulOfTech), and the RTX 4070 version passed 6 hours in an office test (Robeytech). For travel, Robeytech points to the ROG Zephyrus G16 as a lighter option, while Binosha Tech suggests the 2023 model at $1,300 if the newer screen and RAM speed do not matter."
+   ],
+   "highlights": [
+    {
+     "text": "strong gaming performance",
+     "tone": "pos"
+    },
+    {
+     "text": "the 240Hz screen",
+     "tone": "pos"
+    },
+    {
+     "text": "around 4 to 5 hours",
+     "tone": "neg"
+    },
+    {
+     "text": "under an hour of gaming",
+     "tone": "neg"
+    }
+   ]
+  },
+  "asus-rog-strix-scar-16-2024": {
+   "paras": [
+    "Reviewers pitch the RTX 4080 version at gamers, streamers and 3D renderers who want power over light weight (UnderDesktop), and they praise the mini-LED display. Junkyard Summit found performance ahead of other gaming laptops it had tested and of last year's Strix G16 (Junkyard Summit), while Notebookcheck found it level with other Core i9-14900HX and RTX 4080 laptops, with the Lenovo Legion Pro 7 16IRX9H slimmer (Notebookcheck) and the MSI Vector 16 HX A14V somewhat cheaper (Notebookcheck). On that same hardware, battery lasts about 4 hours in the performance preset (Junkyard Summit), up to about 2.5 hours in power saving mode (UnderDesktop) and 57 minutes playing The Witcher 3 (Notebookcheck)."
+   ],
+   "highlights": [
+    {
+     "text": "praise the mini-LED display",
+     "tone": "pos"
+    },
+    {
+     "text": "ahead of other gaming laptops",
+     "tone": "pos"
+    },
+    {
+     "text": "57 minutes playing The Witcher 3",
+     "tone": "neg"
+    }
+   ]
+  },
+  "asus-rog-zephyrus-g14-2023": {
+   "paras": [
+    "Reviewers mostly praise it as a light 14-inch gaming laptop, with the mini-LED panel on the RTX 4090 version called one of the best on a laptop (TechteamGB) and the IPS screen on the RTX 4060 version rated highly (Tech Guy Beau). Opinions split on value and speed: the RTX 4090 version was barely faster than thicker gaming laptops at £3,600 (TechteamGB), while the same RTX 4090 version was ahead of the Razer Blade 14 and Alienware x14 R2 in every listed game (Tom's Guide). Heat and noise are the common complaint, with Turbo mode throttling and getting loud on the RTX 4060 version (Tech Guy Beau), and the 16GB single-channel RTX 4060 setup was slow in creator work, still not beating the 2022 model after a second stick was added (Ben G Kaiser)."
+   ],
+   "highlights": [
+    {
+     "text": "one of the best on a laptop",
+     "tone": "pos"
+    },
+    {
+     "text": "barely faster than thicker gaming laptops",
+     "tone": "neg"
+    },
+    {
+     "text": "throttling and getting loud",
+     "tone": "neg"
+    }
+   ]
+  },
+  "asus-tuf-gaming-a14-2024": {
+   "paras": [
+    "Reviewers mostly praise the light body and long battery life outside games, such as 10 hours 14 minutes in a 150 nits test on the Ryzen 7 8845HS model (Tom's Hardware). Mixed takes come from price against the ROG Zephyrus G14: it is about $200 cheaper with the base RTX 4060 (Hardware Canucks), yet one reviewer prefers the G14 at only $100 more (Jarrod'sTech) and another finds the TUF hard to recommend while the G14 is on sale for $1250 (Matthew Moniz). Fan noise also splits, with the Ryzen AI 9 HX 370 and 16GB version at 50.6 dB(A) in Turbo mode (Notebookcheck) while the 12-core Zen 5 and 32GB version was among the quietest 14-inch laptops tested (Jarrod'sTech), and weak speakers come up repeatedly."
+   ],
+   "highlights": [
+    {
+     "text": "light body and long battery life",
+     "tone": "pos"
+    },
+    {
+     "text": "about $200 cheaper",
+     "tone": "pos"
+    },
+    {
+     "text": "50.6 dB(A) in Turbo mode",
+     "tone": "neg"
+    },
+    {
+     "text": "weak speakers",
+     "tone": "neg"
+    }
+   ]
+  },
+  "asus-tuf-gaming-a15-2024": {
+   "paras": [
+    "Reviewers mostly praise the RTX 4060 versions for pairing gaming power with long battery life in light use, with Notebookcheck measuring 11 hours 42 minutes of web browsing in the Quiet profile and Nextren getting 9 hours 25 minutes of video playback in Eco mode. Battery results split by mode and workload: Nextren saw 4 hours 11 minutes in Ultimate mode, and the比較 got 3 hours 31 minutes in a light Premiere Pro preview loop on a single-channel 16GB unit, where a 4K export also took 4 minutes 27 seconds against 3 minutes 40 seconds with dual-channel memory. One comparison puts it against the Lenovo LOQ 15IRX9, which has slightly less computing power and much worse battery life (Notebookcheck), while Laptophia found the fans somewhat loud under load."
+   ],
+   "highlights": [
+    {
+     "text": "11 hours 42 minutes of web browsing",
+     "tone": "pos"
+    },
+    {
+     "text": "9 hours 25 minutes of video playback",
+     "tone": "pos"
+    },
+    {
+     "text": "3 hours 31 minutes",
+     "tone": "neg"
+    },
+    {
+     "text": "fans somewhat loud under load",
+     "tone": "neg"
+    }
+   ]
+  },
+  "asus-tuf-gaming-f15-2023": {
+   "paras": [
+    "Reviewers mostly praise the RTX 4050 versions for gaming speed at the price, with the Core i7-12700H model beating an older RTX 3060 laptop (Binosha Tech) and the 13620H model getting quieter fans than the Nitro V16 (SH TECH). Mixed takes come from the screen and battery: Người Chơi Đồ calls the 250 nit Full HD panel a weak point and measured roughly an hour of battery in performance mode on the 13620H model, while SH TECH rates the 291 nit panel great for the price on that same chip and Binosha Tech got about five hours on the 12700H model. Heat is the shared complaint, with CPU peaks reaching 101°C on the 12700H model (Arabhardware) and ThinkView also finding temperatures rise significantly."
+   ],
+   "highlights": [
+    {
+     "text": "beating an older RTX 3060 laptop",
+     "tone": "pos"
+    },
+    {
+     "text": "a weak point",
+     "tone": "neg"
+    },
+    {
+     "text": "CPU peaks reaching 101°C",
+     "tone": "neg"
+    }
+   ]
+  },
+  "asus-tuf-gaming-f16-2025": {
+   "paras": [
+    "Reviewers point to gamers and coders who want strong frame rates on a sturdy body, with The Honest Tech Show and Tech Optimus also suggesting the RTX 5060 version for photo and video editing. Value is where takes split: the Lenovo Legion 5 is named as the better choice for its 2.5K screen and better cooling (ThinkView) and for a better screen, quieter fans and more battery life (Jarrod'sTech), while the RTX 5050 model was judged to lose to the Acer Nitro V 16S AI, the better buy for $100 more (Tom's Hardware). Battery results vary widely between tests, from about 2.5 hours in light to mixed use on the RTX 5060 model (ThinkView) to 6 hours 57 minutes at 150 nits on the RTX 5050 model (Tom's Hardware)."
+   ],
+   "highlights": [
+    {
+     "text": "strong frame rates on a sturdy body",
+     "tone": "pos"
+    },
+    {
+     "text": "quieter fans and more battery life",
+     "tone": "neg"
+    },
+    {
+     "text": "2.5 hours in light to mixed use",
+     "tone": "neg"
+    }
+   ]
+  },
+  "asus-vivobook-s-16-oled-m5606": {
+   "paras": [
+    "Reviewers praise the 3.2K OLED screen, the 1.5 kg weight and the keyboard, and the Ryzen AI 9 HX 370 version scored well, with a DaVinci render 2.5 times faster than the Core Ultra 7 258V (パソコンガイド). Battery is where the numbers split: about 8 hours in battery saver on the Ryzen 7 8845HS model (KLGadgetTV), about 5 hours estimated on the Ryzen AI 9 365 model (MeTube GLVZ), and about 6.5 hours on the HX 370 version, which trails a Snapdragon X Elite laptop on efficiency (NL Tech). On graphics, the HX 370 version's GPU sits close to an RTX 3050 laptop but not on par (Ribby Trivia), and the build is more refined than the older Vivobook S 15 OLED (KLGadgetTV)."
+   ],
+   "highlights": [
+    {
+     "text": "3.2K OLED screen",
+     "tone": "pos"
+    },
+    {
+     "text": "2.5 times faster",
+     "tone": "pos"
+    },
+    {
+     "text": "about 5 hours estimated",
+     "tone": "neg"
+    },
+    {
+     "text": "about 6.5 hours",
+     "tone": "neg"
+    }
+   ]
+  },
+  "asus-zenbook-duo-2024": {
+   "paras": [
+    "Reviewers mostly recommend it to people who want a portable multi-monitor setup, praising the dual OLED screens and the detachable keyboard, though the on-screen keyboard is called useless for typing by PCMag UK. Battery results vary: with both screens on, TechTablets measured 5 to 6 hours on the Core Ultra 9 185H / 32GB model and Engadget measured 10:17 on the base Core Ultra 7 155H / 16GB model, while TKI Tech, using a Core i9 / 32GB unit after two years, does not get comfortably more than 3-4 hours per charge. On comparisons, the Lenovo Yoga Book 9i lasts longer on battery (Tom's Guide), though this model is preferred over it for its stowable keyboard and built-in kickstand (HardwareZone Singapore)."
+   ],
+   "highlights": [
+    {
+     "text": "dual OLED screens",
+     "tone": "pos"
+    },
+    {
+     "text": "detachable keyboard",
+     "tone": "pos"
+    },
+    {
+     "text": "useless for typing",
+     "tone": "neg"
+    },
+    {
+     "text": "not get comfortably more than 3-4 hours",
+     "tone": "neg"
+    }
+   ]
+  },
+  "framework-laptop-13-amd-ryzen-7040-series": {
+   "paras": [
+    "Reviewers mostly suit it to enthusiasts and Linux users who want repairable, upgradeable hardware, and the Ryzen 7 7840U versions drew praise for battery life, with 13h 55m in PCMark 10 (TechRadar) and almost 12 hours in a Wi-Fi test (NotebookcheckReviews). Against the Intel Framework 13, takes are mixed: battery life was level at 11:38 versus 11:39 (Tom's Hardware), performance was on par with faster multi-core but slower single-core (NotebookcheckReviews), and one reviewer preferred the AMD board for quieter fans and better battery life (Matthew Moniz). Criticism centers on the screen, with ghosting in games on the Ryzen 5 7640U (SpiceVader) and a slow 30ms panel on a 7840U (Elevated Systems), while fans turned noisy under load (Tom's Hardware)."
+   ],
+   "highlights": [
+    {
+     "text": "repairable, upgradeable hardware",
+     "tone": "pos"
+    },
+    {
+     "text": "13h 55m in PCMark 10",
+     "tone": "pos"
+    },
+    {
+     "text": "ghosting in games",
+     "tone": "neg"
+    },
+    {
+     "text": "noisy under load",
+     "tone": "neg"
+    }
+   ]
+  },
+  "hp-spectre-x360-14-14-eu0000": {
+   "paras": [
+    "Reviewers praise it as a premium convertible with a vivid OLED display, a comfortable keyboard and a haptic touchpad, and most found it cool and quiet. Battery life is the biggest split on the Core Ultra 7 155H versions: Andrew Marc David (32GB) measured 13 hours 24 minutes and BsianTech 13 hours 30 minutes in PCMark 10 Modern Office, while Engadget (32GB) got five hours ten minutes in the same test and sunnydayz (32GB) about six hours in a browsing, streaming and office test. On comparisons, it offers a better keyboard, quieter fans and longer battery life than the Lenovo Yoga 9i Gen 8 (Tom's Hardware), while the MacBook Pro 14 with M3 Pro was rated better overall but not $1,400 better (Just Josh)."
+   ],
+   "highlights": [
+    {
+     "text": "vivid OLED display",
+     "tone": "pos"
+    },
+    {
+     "text": "five hours ten minutes",
+     "tone": "neg"
+    },
+    {
+     "text": "about six hours",
+     "tone": "neg"
+    }
+   ]
+  },
+  "lenovo-ideapad-pro-5i-gen-9-16imh9": {
+   "paras": [
+    "Reviewers mostly suit it to office work, editing and light gaming, praising quiet, cool running and a metal body, and the Core Ultra 9 version posted the top multi-core Cinebench result against the Dell Inspiron 16 Plus, Lenovo Slim Pro 9i, HP Spectre x360 16 and MSI Prestige 16 AI Evo (PCMag UK). Battery life depends on the config: SoulOfTech measured 13 hours of productivity use on the Core Ultra 5 IPS model, while PCMag UK got 9 hours 16 minutes of video playback on the Core Ultra 9 OLED model, the worst in its group. The Core Ultra 9 and RTX 4050 model scored slightly ahead of the pricier Yoga Pro 9i in DaVinci Resolve (Andrew Marc David), Just Josh would pick the AMD IdeaPad Pro 5 16 over Intel unless apps favour Intel, and Deal Unboxing did not recommend the $1,500 OLED model because of glare."
+   ],
+   "highlights": [
+    {
+     "text": "quiet, cool running",
+     "tone": "pos"
+    },
+    {
+     "text": "the worst in its group",
+     "tone": "neg"
+    },
+    {
+     "text": "did not recommend",
+     "tone": "neg"
+    }
+   ]
+  },
+  "lenovo-legion-pro-5i-gen-8": {
+   "paras": [
+    "Reviewers mostly suit this to buyers wanting mid-range gaming under about $1,500, with Tom's Hardware and Laptop Mag both pointing to it at that price for the RTX 4060 model. Mixed takes come from value and build: the RTX 4070 version is hard to recommend over last year's cheaper RTX 3070 Ti model (Jarrod'sTech), the RTX 4060 only edges cheaper RTX 4050 laptops (PCMag Australia), and Matthew Moniz found the plastic build and missing Thunderbolt 4 hard to square with the Pro name, while the RTX 4070 measured 35 to 45 percent faster than a 2021 Legion 5 Pro with an RTX 3070 (ARogan Tech). Battery is the common weak point, with the Core i7 and RTX 4060 model lasting 4 hours 54 minutes in one test, well short of the Gen 7 (Tom's Hardware), and only 48 minutes of gaming in another (Laptop Mag)."
+   ],
+   "highlights": [
+    {
+     "text": "mid-range gaming under about $1,500",
+     "tone": "pos"
+    },
+    {
+     "text": "35 to 45 percent faster",
+     "tone": "pos"
+    },
+    {
+     "text": "hard to recommend over last year's",
+     "tone": "neg"
+    },
+    {
+     "text": "48 minutes of gaming",
+     "tone": "neg"
+    }
+   ]
+  },
+  "lenovo-legion-pro-5i-gen-9": {
+   "paras": [
+    "Reviewers mostly praise the keyboard and gaming speed, with the Core i7 and RTX 4060 version often matching RTX 4070 laptops (Tom's Hardware). Mixed takes come from the older generation, since this model shows little change from the 2023 model (Notebookcheck, Matthew Moniz), so both suggest checking 2023 prices first. Battery results vary by config and test, as Laptop Mag measured 3 hours 43 minutes of browsing on its Core i9 and RTX 4070 unit, while PCMag UK recorded 8:18 of video playback on the Core i7 and RTX 4060 version."
+   ],
+   "highlights": [
+    {
+     "text": "often matching RTX 4070 laptops",
+     "tone": "pos"
+    },
+    {
+     "text": "little change from the 2023 model",
+     "tone": "neg"
+    },
+    {
+     "text": "3 hours 43 minutes of browsing",
+     "tone": "neg"
+    }
+   ]
+  },
+  "lenovo-legion-pro-7i-gen-8": {
+   "paras": [
+    "It suits gamers who want a 16-inch machine with a bright 240Hz screen, and the RTX 4080 model's gaming scores came within spitting distance of the RTX 4090 Strix Scar 18 and MSI Titan GT77 (PCMag UK). Complaints centre on noise and battery: on the RTX 4080 version, Notebookcheck measured 49 to 55 dB(A) in games and about 5 hours of Wi-Fi browsing, and found the Razer Blade 16 quieter, cooler and longer lasting (Notebookcheck). The Mixed rating came from Jarrod'sTech, who liked the RTX 4080 version's sustained 175 watts but noted cuts from last year's Legion 7i such as the fingerprint scanner and 2.5 gigabit ethernet (Jarrod'sTech)."
+   ],
+   "highlights": [
+    {
+     "text": "bright 240Hz screen",
+     "tone": "pos"
+    },
+    {
+     "text": "within spitting distance",
+     "tone": "pos"
+    },
+    {
+     "text": "quieter, cooler and longer lasting",
+     "tone": "neg"
+    },
+    {
+     "text": "cuts from last year's Legion 7i",
+     "tone": "neg"
+    }
+   ]
+  },
+  "lenovo-legion-slim-5-gen-9": {
+   "paras": [
+    "Reviewers praise the Ryzen 7 8845HS Slim 5 as a strong-value 16-inch gaming laptop, with Hunter calling the cooling surprisingly quiet and techknowlux liking the clean 165Hz panel. Battery is where takes split: Tech Guy Beau got about 12 hours 40 minutes of document editing on the RTX 4070 model at 60Hz, while techknowlux estimates 3 to 5 hours of mixed use on that same GPU and Hunter 2 to 4 hours of gaming. Tech Guy Beau advises it for buyers upgrading from a 2022 or older laptop, not from the 2023 Slim 5 (Tech Guy Beau), and a cheaper RTX 4060 sibling at about $1,300 before sales is mentioned (Hunter)."
+   ],
+   "highlights": [
+    {
+     "text": "strong-value 16-inch gaming laptop",
+     "tone": "pos"
+    },
+    {
+     "text": "cooling surprisingly quiet",
+     "tone": "pos"
+    },
+    {
+     "text": "3 to 5 hours of mixed use",
+     "tone": "neg"
+    },
+    {
+     "text": "2 to 4 hours of gaming",
+     "tone": "neg"
+    }
+   ]
+  },
+  "lenovo-loq-15irx9": {
+   "paras": [
+    "Reviewers mostly praise it as a budget 1080p gaming laptop with a good keyboard and easy RAM and SSD upgrades, and it suits buyers who stay near a charger. Takes are mixed on noise and battery: Notebookcheck measured 48 dB(A) in balanced mode and 5 hours 20 minutes of web surfing on the Core i5 and RTX 4060 version, while Reinald called the fans very loud on the same Core i5 and RTX 4060 pairing, and ExtraDroid saw about 50 minutes under demanding work on the Core i7 and RTX 4060 model. For a slightly stronger CPU and better runtimes, Notebookcheck points to an alternative in the Gigabyte G6X 9KG (2024) (Notebookcheck)."
+   ],
+   "highlights": [
+    {
+     "text": "good keyboard",
+     "tone": "pos"
+    },
+    {
+     "text": "easy RAM and SSD upgrades",
+     "tone": "pos"
+    },
+    {
+     "text": "the fans very loud",
+     "tone": "neg"
+    },
+    {
+     "text": "about 50 minutes under demanding work",
+     "tone": "neg"
+    }
+   ]
+  },
+  "lenovo-thinkpad-e14-gen-5": {
+   "paras": [
+    "Reviewers recommend it for office work, students and budget buyers, praising the keyboard with TrackPoint and battery life, with the Ryzen 5 7530U model lasting about 10 hours 25 minutes in a video loop (ウチヤマチカラ\\うっしーならいふ). The 2.2K panel is liked on the Ryzen 7 7730U models (Notebookcheck, the比較), while the base 1920x1200 screen is called weak on colour (Tech Guy Beau) and the ports are called weaker than on the Intel E14 Gen 5 (ウチヤマチカラ\\うっしーならいふ). Mixed takes come mainly from Notebookcheck, which criticizes the shallow 1.5 mm key travel and a 41.2 dB(A) fan on its Ryzen 7 7730U / 24GB unit, and points to the HP EliteBook 845 G10 as the better option (Notebookcheck)."
+   ],
+   "highlights": [
+    {
+     "text": "keyboard with TrackPoint",
+     "tone": "pos"
+    },
+    {
+     "text": "about 10 hours 25 minutes",
+     "tone": "pos"
+    },
+    {
+     "text": "weak on colour",
+     "tone": "neg"
+    },
+    {
+     "text": "a 41.2 dB(A) fan",
+     "tone": "neg"
+    }
+   ]
+  },
+  "lenovo-thinkpad-p1-gen-6": {
+   "paras": [
+    "Reviewers mostly praise the carbon fiber and magnesium build, the ThinkPad keyboard and the OLED screen, and suit it to professionals who want a fairly light 16-inch workstation. Takes on speed split by config: the RTX 4080 model with a Core i7 trailed Core i9 rivals in most tests while trading graphics wins with the Dell Precision 5680 (PCMag Australia), and it beat the M2 Max MacBook Pro 16 in 3DMark but lost in Premiere (TechRadar), while the RTX A1000 version throttled in maximum performance mode (Den-PL). Battery results vary by config and test, from about 4 hours in PCMark 10 office on the RTX 4060 IPS model (BsianTech) to 9 hours 27 minutes of web surfing on the Core i9 IPS unit (Notebookcheck), and price is a recurring complaint."
+   ],
+   "highlights": [
+    {
+     "text": "carbon fiber and magnesium build",
+     "tone": "pos"
+    },
+    {
+     "text": "throttled in maximum performance mode",
+     "tone": "neg"
+    },
+    {
+     "text": "price is a recurring complaint",
+     "tone": "neg"
+    }
+   ]
+  },
+  "lenovo-thinkpad-p14s-gen-4": {
+   "paras": [
+    "Reviewers praise it as a compact workstation with a strong CPU, quiet fans and a good OLED option, while the soldered RAM draws criticism. Battery results depend on the config: Tech Guy Beau measured 3 to 3.5 hours of YouTube on the Core i7 OLED model, NBReview.de saw 5 to 7 hours of office use on the Ryzen 64GB OLED model, and Notebookcheck measured 11 hours 25 minutes of web surfing on the Ryzen 16GB IPS model. Alternatives named are the ThinkPad T14 G4 for portability (Notebookcheck), the HP ZBook Power 15 G10 for more graphics power (Notebookcheck), and the ThinkPad T14 Gen 4 AMD for buyers who do not need 64GB (NBReview.de)."
+   ],
+   "highlights": [
+    {
+     "text": "strong CPU",
+     "tone": "pos"
+    },
+    {
+     "text": "quiet fans",
+     "tone": "pos"
+    },
+    {
+     "text": "soldered RAM draws criticism",
+     "tone": "neg"
+    },
+    {
+     "text": "3 to 3.5 hours of YouTube",
+     "tone": "neg"
+    }
+   ]
+  },
+  "lenovo-thinkpad-t14-gen-1": {
+   "paras": [
+    "Reviewers suit it to people who type a lot and want a sturdy, upgradeable office machine, with the keyboard praised by BsianTech, PCMag Israel and Unbox.ph. Mixed takes come from the screen, which Z2K Retro Gaming calls mediocre and Komame measured at 272 nits on the Ryzen 7 PRO 4750U model, and from Thunderbolt 3, which Notebookcheck, PCMag Israel and Komame say the AMD versions lack. Battery depends on config, from 8h 22min in a Wi-Fi test on the Ryzen 5 Pro 4650U (Notebookcheck) to 2 hours at full load on the Core i5-10310U (BsianTech), and the T14 is bulkier than the T14s Gen 1 (Leon Anavi)."
+   ],
+   "highlights": [
+    {
+     "text": "sturdy, upgradeable office machine",
+     "tone": "pos"
+    },
+    {
+     "text": "calls mediocre",
+     "tone": "neg"
+    },
+    {
+     "text": "measured at 272 nits",
+     "tone": "neg"
+    }
+   ]
+  },
+  "lenovo-thinkpad-t14-gen-2": {
+   "paras": [
+    "Reviewers mostly praise the 1.8 mm keyboard and the port selection, and it suits business users who want upgradeable RAM and a dockable 14-inch laptop. Heat and battery are where takes differ: MobileTechReview saw cores near 99 centigrade and about seven hours on an Intel model with an unstated config, while Andrew Marc David got 9 hours 17 minutes of web surfing on the Core i7-1145G7 and heard no loud fan noise. On comparisons, MobileTechReview notes the ThinkPad X1 Carbon starts $150 higher and is lighter, and Notebookcheck finds a clear step up from the T14 Gen 1 on the Core i7-1165G7 and MX450 version, though the Ryzen 5 PRO 4650U T14 stays ahead in multi-core."
+   ],
+   "highlights": [
+    {
+     "text": "1.8 mm keyboard",
+     "tone": "pos"
+    },
+    {
+     "text": "port selection",
+     "tone": "pos"
+    },
+    {
+     "text": "near 99 centigrade",
+     "tone": "neg"
+    }
+   ]
+  },
+  "lenovo-thinkpad-t14-gen-3": {
+   "paras": [
+    "Reviewers praised the quiet fans and sturdy build, and the Ryzen 7 versions lasted over 12 hours in tests by Mash IT and Notebookcheck. The base 300 nit screen drew complaints from several reviewers, and the keyboard split opinion, with SoulOfTech calling it the best on any laptop while dcfbf found the key travel shallow on their Ryzen 7 unit. The AMD version is rated well ahead of the Intel version (Notebookcheck) and preferred unless Thunderbolt matters (Mash IT), while the ThinkPad T14s Gen 3 is the pick for Thunderbolt 4 (Abe's Reviews)."
+   ],
+   "highlights": [
+    {
+     "text": "quiet fans and sturdy build",
+     "tone": "pos"
+    },
+    {
+     "text": "the best on any laptop",
+     "tone": "pos"
+    },
+    {
+     "text": "base 300 nit screen",
+     "tone": "neg"
+    },
+    {
+     "text": "the key travel shallow",
+     "tone": "neg"
+    }
+   ]
+  },
+  "lenovo-thinkpad-t14-gen-4": {
+   "paras": [
+    "Reviewers praise the keyboard and see the T14 Gen 4 as a business laptop with plenty of ports, with LongRhino and Notebookcheck both rating the Ryzen 7 PRO 7840U versions as fast. Against Intel, the 13th gen model scored roughly 25% lower than the AMD one (LongRhino), and the Intel T14 Gen 4 hit 8993 in Cinebench R23 multi core against 12929 for the Ryzen 7 PRO 7840U version (Notebookcheck); the HP EliteBook 845 G10 has better speakers and chassis but no replaceable keyboard or RJ45 (Notebookcheck). Battery and noise depend on the config: the Ryzen IPS model lasted 12h 9min in Notebookcheck's WiFi test at 150 cd/m², while nbreview.de expects no more than eight hours from the Core i5-1335U model and called the fan, which runs almost constantly, the main flaw."
+   ],
+   "highlights": [
+    {
+     "text": "praise the keyboard",
+     "tone": "pos"
+    },
+    {
+     "text": "12h 9min",
+     "tone": "pos"
+    },
+    {
+     "text": "no more than eight hours",
+     "tone": "neg"
+    },
+    {
+     "text": "runs almost constantly",
+     "tone": "neg"
+    }
+   ]
+  },
+  "lenovo-thinkpad-t14s-gen-4": {
+   "paras": [
+    "Reviewers praise it as a light, sturdy business ThinkPad with strong AMD performance for office work, though soldered RAM draws criticism. Battery results depend on the config: Notebookcheck measured 13h 13min in a web test on the Ryzen 7 7840U with 32GB, Senni's Ride and Tech reported about 9 hours of typical use on the Ryzen 5 Pro 7540U, and TechRadar measured around 6 hours on the Ryzen 7 PRO 7840U. On comparisons, the HP EliteBook 845 G10 stays slightly ahead overall for its upgradeable RAM and lower price (Notebookcheck), while the ThinkPad was the one reached for over the HP EliteBook 845 G11 (TechRadar), and it feels more premium than the ThinkPad E14 Gen 5 (Win And I net)."
+   ],
+   "highlights": [
+    {
+     "text": "light, sturdy business ThinkPad",
+     "tone": "pos"
+    },
+    {
+     "text": "13h 13min in a web test",
+     "tone": "pos"
+    },
+    {
+     "text": "soldered RAM draws criticism",
+     "tone": "neg"
+    },
+    {
+     "text": "around 6 hours",
+     "tone": "neg"
+    }
+   ]
+  },
+  "lenovo-thinkpad-t480": {
+   "paras": [
+    "Reviewers praise the keyboard, the sturdy build and the easy upgrades, and it suits students, office workers and budget buyers. Battery life depends on the pack: the Core i5-8350U model with the 72 Wh battery lasted 17 hours 19 minutes of web surfing against 8 hours 7 minutes on the default three-cell (Laptop Mag), while a used unit with worn small batteries managed only a few hours (aChair Leg). Screens get mixed marks, and the X1 Carbon has a better keyboard, a more colorful display and weighs more than a pound less (Laptop Mag), while the T480s trails the MX150 model by about 20% in 3DMark (Notebookcheck)."
+   ],
+   "highlights": [
+    {
+     "text": "easy upgrades",
+     "tone": "pos"
+    },
+    {
+     "text": "17 hours 19 minutes",
+     "tone": "pos"
+    },
+    {
+     "text": "Screens get mixed marks",
+     "tone": "neg"
+    }
+   ]
+  },
+  "lenovo-thinkpad-t495": {
+   "paras": [
+    "Notebookcheck and nbreview.de both praise the bright FHD panel and the battery life of the Ryzen 5 Pro 3500U model with 16GB, and both point to the lack of Thunderbolt. Fan opinions split, with the fan called quiet at 31.4 dB(A) under load (Notebookcheck) but loud under full load (nbreview.de), and CPU results land slightly behind the Intel ThinkPad T490 in Cinebench R15 (Notebookcheck) while matching the ThinkPad T490s at about 1330 points in Cinebench R20 (nbreview.de). AICvideo, using a used unit with 8GB soldered, saw CPU Mark rise about 10 percent after adding a 16GB module and fresh thermal paste, though that unit arrived with a damaged corner."
+   ],
+   "highlights": [
+    {
+     "text": "bright FHD panel",
+     "tone": "pos"
+    },
+    {
+     "text": "loud under full load",
+     "tone": "neg"
+    },
+    {
+     "text": "lack of Thunderbolt",
+     "tone": "neg"
+    }
+   ]
+  },
+  "lenovo-thinkpad-x1-carbon-5th-gen": {
+   "paras": [
+    "Reviewers praise the keyboard, the light rigid body and the port selection, and see it as a fit for business users who can pay the high price. Battery results depend on the unit: the Core i7-7600U with 16GB got 12 hours 21 minutes of web surfing at 100 nits (Laptop Mag) but six to seven hours of mixed use (MobileTechReview), while the Core i7-7500U with 8GB lasted about ten hours (ZDNET). Laptop Mag found the Dell XPS 13 lasts longer and has a less impressive keyboard, and Notebookcheck saw the Core i7-7500U with 16GB throttle and run an audible fan under load, a noise MobileTechReview also reported on the Core i7-7600U."
+   ],
+   "highlights": [
+    {
+     "text": "light rigid body",
+     "tone": "pos"
+    },
+    {
+     "text": "high price",
+     "tone": "neg"
+    },
+    {
+     "text": "audible fan under load",
+     "tone": "neg"
+    }
+   ]
+  },
+  "lenovo-thinkpad-x1-carbon-6th-gen": {
+   "paras": [
+    "Reviewers describe it as a business ultraportable of about 2.5 pounds, with praise for the keyboard and the build, and the HDR 1440p panel drawing the strongest display comments, while the integrated graphics rule out serious gaming. Comparisons point to the Dell XPS 13 as a cheaper alternative with an optional 4K display (Andrew Marc David), and to the Dell XPS 13 9370 as lasting 2 hours longer than the Core i5 base model (Laptop Mag), though the Core i7 HDR unit ran slightly ahead of the XPS 13 9370 with the 4K display in a mixed productivity and streaming test (MobileTechReview). Battery results depend on the config: 10 hours 35 minutes of web surfing on the Core i7-8650U Dolby Vision unit (Andrew Marc David), 6 to 7 hours on the Core i7 8550U with a 1440p matte screen (sunnydayz), and just over seven hours on the Core i5 touch model, where the reviewer also found confusing screen options (The Verge)."
+   ],
+   "highlights": [
+    {
+     "text": "praise for the keyboard and the build",
+     "tone": "pos"
+    },
+    {
+     "text": "integrated graphics rule out serious gaming",
+     "tone": "neg"
+    },
+    {
+     "text": "confusing screen options",
+     "tone": "neg"
+    }
+   ]
+  },
+  "lenovo-thinkpad-x1-carbon-gen-11": {
+   "paras": [
+    "Reviewers praise the keyboard and sturdy build, and the laptop suits office users and commuters who want a light 14-inch machine with plenty of ports. Battery life depends on the screen: the Core i7-1365U Full HD IPS unit lasted about 14 hours in Notebookcheck's Wi-Fi test, while the Core i7-1355U OLED unit reached up to eight hours of normal use at low brightness (Tech Princess). Speed is the weaker point, with the Core i7-1365U only slightly ahead of the Gen 10 (Notebookcheck) and the Gen 10 with a 28W P-series chip faster in CPU tests than the Core i7-1355U model (PCMag UK)."
+   ],
+   "highlights": [
+    {
+     "text": "keyboard and sturdy build",
+     "tone": "pos"
+    },
+    {
+     "text": "about 14 hours",
+     "tone": "pos"
+    },
+    {
+     "text": "only slightly ahead of the Gen 10",
+     "tone": "neg"
+    }
+   ]
+  },
+  "lenovo-thinkpad-x13-gen-5": {
+   "paras": [
+    "Reviewers praise the keyboard, and the light weight suits people who carry a laptop often (SIMPC, 寺田部チャンネル). The price picture depends on the build: the Core Ultra 7 155H model with LTE came to 246,532 yen, and a similarly configured Dell XPS 13 was 281,880 yen (寺田部チャンネル), while the Core Ultra 5 125U entry model was 160,182 yen and felt quick in daily use (Win And I net). That entry model has integrated graphics only and a 60Hz 300 nit panel, and its fan reached about 39dB at most, whereas the Core Ultra 7 155H unit sat just under 20 dB (Win And I net, 寺田部チャンネル)."
+   ],
+   "highlights": [
+    {
+     "text": "praise the keyboard",
+     "tone": "pos"
+    },
+    {
+     "text": "quick in daily use",
+     "tone": "pos"
+    },
+    {
+     "text": "integrated graphics only",
+     "tone": "neg"
+    },
+    {
+     "text": "60Hz 300 nit panel",
+     "tone": "neg"
+    }
+   ]
+  },
+  "lenovo-yoga-7-2-in-1-gen-9-14ahp9": {
+   "paras": [
+    "Reviewers who liked it praise the fast Ryzen 7 8840HS and the aluminum body for office and everyday work, and PicelTekno found the OLED screen accurate. Mixed takes center on the screen and battery, since Notebookcheck measured only 56 percent sRGB on the Ryzen 7 IPS model, while Laptop Mag got 8 hours 2 minutes of browsing on its Ryzen 7 unit and advised most buyers to pay more for the Intel Yoga 7i 2-in-1 Gen 9 (Laptop Mag). Notebookcheck put runtimes on its Ryzen 7 IPS model a couple of hours below the Intel Yoga 7 2-in-1 14IML9 (Notebookcheck), and diki septerian pointed buyers with more budget to the Yoga 7 Pro with RTX 3050 (diki septerian)."
+   ],
+   "highlights": [
+    {
+     "text": "fast Ryzen 7 8840HS",
+     "tone": "pos"
+    },
+    {
+     "text": "only 56 percent sRGB",
+     "tone": "neg"
+    }
+   ]
+  },
+  "lenovo-yoga-slim-7x-gen-9": {
+   "paras": [
+    "Reviewers who tested the Snapdragon X Elite model mostly praise the OLED screen, the long battery life and the light aluminium build, and suit it to office, web and everyday work. Battery comparisons vary: Dave2D called it the longest seen on a 14-inch laptop, while Just Josh found a MacBook Air M3 lasted longer (Just Josh) and Laptop Mag measured 14 hours 14 minutes, behind the Surface Laptop 7 and MacBook Air M3 (Laptop Mag). Constant Geekery found multicore comfortably ahead of the M3 MacBook Air but graphics and single core behind it (Constant Geekery), and several reviewers advise checking Windows on Arm app support before buying, with gaming weak."
+   ],
+   "highlights": [
+    {
+     "text": "OLED screen",
+     "tone": "pos"
+    },
+    {
+     "text": "long battery life",
+     "tone": "pos"
+    },
+    {
+     "text": "checking Windows on Arm app support",
+     "tone": "neg"
+    },
+    {
+     "text": "gaming weak",
+     "tone": "neg"
+    }
+   ]
+  },
+  "microsoft-surface-laptop-studio-2": {
+   "paras": [
+    "Reviewers such as Engadget and Tom's Hardware like it for artists and editors who want the pull-forward hinge, an excellent keyboard and pen support. Mixed takes come mostly from price and speed: a MacBook Pro 14 gives better battery, display and performance at $3,300 (Matthew Moniz), and the Lenovo Legion Slim 5 14 is faster for much less (Notebookcheck). Battery results also split on the RTX 4060 64GB versions, from 11 hours 15 minutes of video at 150 nits (Notebookcheck) to about 1.5 hours of gaming (Rozetked)."
+   ],
+   "highlights": [
+    {
+     "text": "pull-forward hinge",
+     "tone": "pos"
+    },
+    {
+     "text": "excellent keyboard",
+     "tone": "pos"
+    },
+    {
+     "text": "better battery, display and performance",
+     "tone": "neg"
+    },
+    {
+     "text": "faster for much less",
+     "tone": "neg"
+    }
+   ]
+  },
+  "msi-cyborg-15-a13v": {
+   "paras": [
+    "Reviewers mostly see a budget 1080p 144Hz gaming laptop, one that suits students and casual players (Tally Ho Tech), with a keyboard they like and playable frame rates, including about 120 FPS in Apex Legends on the RTX 4060 16GB version (Eddie's DL). Mixed takes come from value and speed: the RTX 4050 16GB version was last in several games and judged a poor deal next to the Dell G16 7630 (Tom's Hardware), and it trails some older RTX 3060 laptops (PCMag UK). Battery life splits too, with 4 hours 43 minutes at 150 nits on the RTX 4050 16GB model (Tom's Hardware), four or five hours on the RTX 4050 8GB model (Tally Ho Tech) and 7:16 in a video loop on the RTX 4050 16GB model (PCMag UK)."
+   ],
+   "highlights": [
+    {
+     "text": "keyboard they like",
+     "tone": "pos"
+    },
+    {
+     "text": "playable frame rates",
+     "tone": "pos"
+    },
+    {
+     "text": "last in several games",
+     "tone": "neg"
+    },
+    {
+     "text": "poor deal",
+     "tone": "neg"
+    }
+   ]
+  },
+  "msi-katana-15-hx-b14w": {
+   "paras": [
+    "Reviewers mostly praise strong 1080p and 1440p gaming for the money, though many call the screen dim. Price splits opinion: the UK £1,299 is called solid but the US $1,799 absurd, with the Lenovo Legion 5 and its OLED screen cheaper in the US (PC Gamer), while the i9 and RTX 5060 model left Binosha Tech recommending the Legion 5, ASUS TUF F16, Acer Nitro V16 or HP Victus instead (Binosha Tech). Battery depends on use: the Core i7 and RTX 5060 model lasted 71 minutes in a gaming test against 112 for the TUF Gaming A16 (PC Gamer), but reached 6 hours 10 minutes of video and browsing (PC Guide)."
+   ],
+   "highlights": [
+    {
+     "text": "strong 1080p and 1440p gaming",
+     "tone": "pos"
+    },
+    {
+     "text": "US $1,799 absurd",
+     "tone": "neg"
+    },
+    {
+     "text": "lasted 71 minutes",
+     "tone": "neg"
+    }
+   ]
+  },
+  "samsung-galaxy-chromebook-plus": {
+   "paras": [
+    "Reviewers praise the thin, light metal body, the bright AMOLED screen and the large trackpad, and suit it to students, travellers and everyday web users. Battery life is where takes split: on the Core 3 100U model with 8GB, Laptop Mag measured 11 hours 12 minutes in a web test, while Android Central reported four to five hours on most days and Notebookcheck saw about five hours in everyday use with the keyboard backlight on. Several reviewers call the price high for a non-touch Chromebook, and buyers who want a touchscreen are pointed to the Acer Chromebook Plus Spin 714 (PCWorld)."
+   ],
+   "highlights": [
+    {
+     "text": "thin, light metal body",
+     "tone": "pos"
+    },
+    {
+     "text": "bright AMOLED screen",
+     "tone": "pos"
+    },
+    {
+     "text": "four to five hours on most days",
+     "tone": "neg"
+    }
+   ]
+  },
+  "lenovo-thinkpad-t16-gen-3": {
+   "paras": [
+    "Reviewers see an office ThinkPad with a pleasant keyboard, upgradeable RAM and a matte screen, and stevenswall found it boots and opens Excel faster than a 2012 ThinkPad W530 (stevenswall). Mixed takes come from performance and battery: Notebookcheck rates it a step below the ThinkPad T14 Gen 5 (Notebookcheck) and measured 13h 40min in a Wi-Fi test on the Core Ultra 5 125U model, while Thurrott recorded about 5.5 hours of real-world use on the Core Ultra 7 155U model. Thurrott suggests most buyers pick a newer Lunar Lake, Snapdragon X or Zen 5 laptop (Thurrott), and Notebookcheck found the fan reached 46.2 dB(A) under load on its Core Ultra 5 125U unit."
+   ],
+   "highlights": [
+    {
+     "text": "pleasant keyboard",
+     "tone": "pos"
+    },
+    {
+     "text": "upgradeable RAM",
+     "tone": "pos"
+    },
+    {
+     "text": "about 5.5 hours",
+     "tone": "neg"
+    },
+    {
+     "text": "46.2 dB(A) under load",
+     "tone": "neg"
+    }
+   ]
+  },
+  "alienware-16-area-51": {
+   "paras": [
+    "Reviewers who tested the Core Ultra 9 275HX and RTX 5080 version mostly describe a desk-bound desktop replacement, praising the rigid build, the Cherry MX keyboard, three M.2 slots and Thunderbolt 5, while criticizing battery life, a weight over 7 lbs and the missing Ethernet port. Takes split on rivals: the laptop beat the Legion Pro 7i in lab game runs (Tom's Guide), but an identical Legion Pro 7i came out slightly faster (XDA Developers) and about 3 to 4% ahead and quieter (Technic-Ali), and the Legion also won on OLED, weight and built-in Ethernet (Laptop Buying Guide). Heat is also disputed, with the cooling called quiet (Notebookcheck) while the CPU hit 105C in Cinebench and the Alienware 18, Legion Pro 7i or Razer Blade 16 were suggested instead (Mash IT)."
+   ],
+   "highlights": [
+    {
+     "text": "rigid build",
+     "tone": "pos"
+    },
+    {
+     "text": "Cherry MX keyboard",
+     "tone": "pos"
+    },
+    {
+     "text": "three M.2 slots",
+     "tone": "pos"
+    },
+    {
+     "text": "weight over 7 lbs",
+     "tone": "neg"
+    }
+   ]
+  },
+  "apple-macbook-air-13-m5": {
+   "paras": [
+    "Reviewers praise the M5 MacBook Air as a light, silent, fanless laptop with battery that lasts well past a workday and a keyboard and trackpad many rate highly, and say it suits most people. Gains over the M4 Air are small in daily use (Engadget), M4 users are told to stay put (TechRadar), and it ranks above the MacBook Neo for multitasking (Tom's Hardware). Mixed takes center on the 60Hz screen, a minor quibble on the 16GB, 1TB unit (Engadget) but dated for the price on the 10-core GPU model (Macworld), and on sustained load, where the 10-core GPU, 1TB unit throttled in a stress test (Tom's Hardware)."
+   ],
+   "highlights": [
+    {
+     "text": "light, silent, fanless laptop",
+     "tone": "pos"
+    },
+    {
+     "text": "battery that lasts well past a workday",
+     "tone": "pos"
+    },
+    {
+     "text": "dated for the price",
+     "tone": "neg"
+    },
+    {
+     "text": "throttled in a stress test",
+     "tone": "neg"
+    }
+   ]
+  },
+  "apple-macbook-neo": {
+   "paras": [
+    "Reviewers praise the aluminum build, keyboard and trackpad for students, light users and first-time Mac buyers, with battery life reported at about 7 to 8 hours of mixed use (GregsGadgets) and 13 hours 28 minutes in a streaming and browsing test (Tom's Hardware). Takes on the 8GB of RAM differ: it held up with about 20 Chrome tabs and a Lightroom export (Hardware Canucks), while 21 tabs and 12 programs pushed memory pressure to yellow (Switch and Click). Next to the M5 MacBook Air, the Neo has about half the multi-core speed and a slower SSD (Max Tech), and the Air is called the better all-round pick for anyone needing more features or able to pay more (The Guardian)."
+   ],
+   "highlights": [
+    {
+     "text": "aluminum build, keyboard and trackpad",
+     "tone": "pos"
+    },
+    {
+     "text": "21 tabs and 12 programs",
+     "tone": "neg"
+    },
+    {
+     "text": "about half the multi-core speed",
+     "tone": "neg"
+    }
+   ]
+  },
+  "dell-xps-14-da14260": {
+   "paras": [
+    "Reviewers mostly praise the aluminum build, the tandem OLED and the haptic trackpad, with the Core Ultra X7 358H version favoured for its Arc B390 graphics and the IPS versions for battery, such as 43 hours of web browsing on the Core Ultra 7 355 (Hardware Canucks). Mixed takes come from power and price: Dell caps the X7 near 27 watts, leaving it about 16% behind a Lenovo Slim 7i Ultra in Cinebench R26 multi-core (Matthew Moniz), and a cheaper M5 MacBook Air outruns the entry XPS (The Verge). The keyboard also splits opinion, with typing errors reported by Engadget and Tom's Hardware but praise from Zip Tie Tech."
+   ],
+   "highlights": [
+    {
+     "text": "aluminum build",
+     "tone": "pos"
+    },
+    {
+     "text": "43 hours of web browsing",
+     "tone": "pos"
+    },
+    {
+     "text": "about 16% behind",
+     "tone": "neg"
+    },
+    {
+     "text": "typing errors",
+     "tone": "neg"
+    }
+   ]
+  },
+  "dell-xps-16-da16260": {
+   "paras": [
+    "Reviewers mostly praise the tandem OLED screen, slim aluminum body and webcam, and the Core Ultra X7 versions handled photo and video editing, with playable games on integrated graphics. Battery results on the Core Ultra X7 versions vary widely, from 18 hours 31 minutes in PCMark 10 Modern Office (BsianTech) to 11:53 in Modern Office (Engadget) and 10 hours 26 minutes of mixed use, behind the ASUS ExpertBook Ultra and MacBook Pro M5 (01net). The keyboard divides opinion, with TECHAERIS loving it while Engadget calls shallow travel the weak spot, and the integrated graphics trail RTX 5070 laptops (PCMag)."
+   ],
+   "highlights": [
+    {
+     "text": "slim aluminum body",
+     "tone": "pos"
+    },
+    {
+     "text": "vary widely",
+     "tone": "neg"
+    },
+    {
+     "text": "the weak spot",
+     "tone": "neg"
+    }
+   ]
+  },
+  "microsoft-surface-laptop-13-1st-edition": {
+   "paras": [
+    "Reviewers who liked it point to long battery life and a quiet, cool aluminum chassis, and Notebookcheck measured 16:41 hours of web surfing at 150 nits on the Snapdragon X Plus unit. Mixed takes come from the 60Hz screen and from sibling comparisons, with the 13.8-inch model called the better buy at similar prices (Notebookcheck) and worth about $100 more (This Is), and the Surface Laptop 7 rated better on screen, trackpad and speakers (Bytes & Bets). The M4 MacBook Air costs $100 more and beats all the Surfaces in many tests (The Verge), while Windows on Arm app gaps still limit photo editors and gamers."
+   ],
+   "highlights": [
+    {
+     "text": "long battery life",
+     "tone": "pos"
+    },
+    {
+     "text": "quiet, cool aluminum chassis",
+     "tone": "pos"
+    },
+    {
+     "text": "60Hz screen",
+     "tone": "neg"
+    },
+    {
+     "text": "Windows on Arm app gaps",
+     "tone": "neg"
+    }
+   ]
+  },
+  "samsung-galaxy-book5-pro": {
+   "paras": [
+    "Reviewers mostly praise the 120Hz AMOLED screen, the light aluminum body and the Galaxy phone features, and it suits Samsung phone users who want a slim Windows laptop (XDA Developers). Mixed takes come from performance and battery: the Core Ultra 5 226V model took 3 minutes 15 seconds on a DaVinci Resolve 4K render against 1 minute 35 seconds on a 13-inch M4 MacBook Air (Digit), and the MacBook Air also wins on performance and battery life (Notebookcheck), while the Core Ultra 7 256V unit lasted 15 hours 28 minutes in PCMark 10 (Trusted Reviews) against about 10 hours of browsing on the 226V model (Notebookcheck). Common complaints are shallow key travel, weaker speakers than a MacBook (Digit, Naseem Speach) and PWM flicker (Notebookcheck)."
+   ],
+   "highlights": [
+    {
+     "text": "120Hz AMOLED screen",
+     "tone": "pos"
+    },
+    {
+     "text": "light aluminum body",
+     "tone": "pos"
+    },
+    {
+     "text": "shallow key travel",
+     "tone": "neg"
+    },
+    {
+     "text": "PWM flicker",
      "tone": "neg"
     }
    ]

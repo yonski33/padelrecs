@@ -37,6 +37,10 @@ export const LIST_ORDER: Record<string, Record<string, ListOrder>> = {
   },
   // SimRacingRecs (v3 rollout 2026-11-21): Best overall by most loved, like padel; the rest keep their order.
   simracing: { "best-sim-racing-gear": { order: "loved" } },
+  // LaptopRecs (owner 2026-11-24, as pickleball): each category list by most loved, current generations (its names carry the
+  // generation, no model years), each row tagged "Loved by N owners". Battery life and Budget keep their tag-based order.
+  laptop: Object.fromEntries(["best-ultrabooks", "best-gaming-laptops", "best-business-laptops", "best-creator-laptops", "best-2-in-1-laptops",
+    "best-chromebooks", "best-macbooks"].map(slug => [slug, { order: "loved", years: "current" } as ListOrder])),
   // DiscGolfRecs (wave 2): Best overall by most loved (app/thread/rankings-data.ts orders it so).
   discgolf: { "best-disc-golf-discs": { order: "loved" } },
 };

@@ -43,6 +43,20 @@ const asTennis = (r: ThreadRow, ra: string | null | undefined): ThreadRow => ({ 
  *  skin engine's ranking inputs (app/skin/payload.ts wireOf) for its quick match. */
 const SKIN = niche.id === "skin";
 const asSkin = (r: ThreadRow): ThreadRow => ({ ...r, feel: (r.facets?.texture ?? null) as ThreadRow["feel"] });
+/** LaptopRecs (owner 2026-11-24): its category as the row's tag and Category filter (`shape`, already so), no Feel, no curated
+ *  order, no model years, and its quick match inputs (lib/laptop-wire.ts) from tags, creator words and spec weights. */
+const LT = niche.id === "laptop";
+async function laptopWires(ctx: NonNullable<Awaited<ReturnType<typeof threadRows>>["ctx"]>, ids: Set<string>) {
+  const [{ laptopWire }, { creatorPagesAll }] = await Promise.all([import("../../lib/laptop-wire"), import("../../lib/thread/creator-data")]);
+  const pages = await creatorPagesAll(niche.id), ops = new Map<string, { tags: string[]; sentiment: "positive" | "mixed" | "negative" | null }[]>();
+  for (const x of [...ctx.data.reviews, ...ctx.data.external] as { racketId: string; tags?: string[] | null; sentiment?: string | null; rating?: number }[]) {
+    const sentiment = x.sentiment === "positive" || x.sentiment === "mixed" || x.sentiment === "negative" ? x.sentiment
+      : x.rating != null ? (x.rating >= 4 ? "positive" : x.rating === 3 ? "mixed" : "negative") : null;
+    const list = ops.get(x.racketId) ?? []; list.push({ tags: x.tags ?? [], sentiment }); ops.set(x.racketId, list);
+  }
+  return ctx.data.listed.filter(r => ids.has(r.id)).map(r => laptopWire({ id: r.id, category: r.shape, weight: r.weight, opinions: ops.get(r.id) ?? [],
+    creators: (pages?.get(r.slug)?.reviews ?? []).map(c => ({ attrs: c.attrs as Record<string, string>, stance: c.stance })) }));
+}
 const asAudio = (r: ThreadRow): ThreadRow => ({ ...r, shape: r.audio?.kind ?? r.shape, feel: (r.audio?.sound[0] ?? null) as ThreadRow["feel"] });
 export const padelListData = cache(async () => {
   const { all: rowsAll, ctx } = await threadRows();
@@ -56,14 +70,15 @@ export const padelListData = cache(async () => {
   const pills = Object.fromEntries(rows.flatMap(r => { const p = tc ? votePill(Object.fromEntries(TRAIT_GROUPS.map(g => [g.key, traitGroup(tc, r.id, g.key)])), W.people, AUDIO ? AUDIO_PILL_LABELS : SR ? SIMRACING_PILL_WORDS : TN ? TENNIS_PILL_WORDS : PB ? PICKLEBALL_PILL_WORDS : DG ? DISCGOLF_PILL_LABELS : SKIN ? SKIN_PILL_WORDS : PILL_WORDS, AUDIO ? AUDIO_PILL_LABELS : SR ? SIMRACING_PILL_LABELS : TN ? TENNIS_PILL_LABELS : PB ? PICKLEBALL_PILL_LABELS : DG ? DISCGOLF_PILL_LABELS : SKIN ? SKIN_PILL_LABELS : PILL_LABELS) : null; return p ? [[r.id, p]] : []; }));
   const listed = new Map((ctx?.data.listed ?? []).map(x => [x.id, x]));
   const added = Object.fromEntries(rows.map(r => [r.id, listed.get(r.id)?.createdAt ?? ""]));
-  const bySlug = new Map(rows.map(r => [r.slug, r.id])), curated = AUDIO || SR || TN || DG || SKIN ? [] : curatedOrder().flatMap(s => bySlug.get(s) ?? []);
+  const bySlug = new Map(rows.map(r => [r.slug, r.id])), curated = AUDIO || SR || TN || DG || SKIN || LT ? [] : curatedOrder().flatMap(s => bySlug.get(s) ?? []);
   // The home's pool (lib/thread/home-order.ts): this season's models with 10+ opinions, one per model.
   // AudioRecs has no model years (niche.productYears false), so its home lists every pair with reviews.
-  const season = AUDIO || DG || SKIN ? undefined : seasonIds(rows.flatMap(r => { const p = listed.get(r.id); return p ? [{ id: r.id, family: modelFamily(p), year: r.year, opinions: r.pos + r.mix + r.neg }] : []; }),
+  const season = AUDIO || DG || SKIN || LT ? undefined : seasonIds(rows.flatMap(r => { const p = listed.get(r.id); return p ? [{ id: r.id, family: modelFamily(p), year: r.year, opinions: r.pos + r.mix + r.neg }] : []; }),
     new Date().getUTCFullYear());
   const au = AUDIO && ctx ? audioOf(ctx) : null;
   const wire = au ? rows.flatMap(r => au.wire.get(r.id) ?? []) : undefined;
   const sk = SKIN && ctx ? skinOf(ctx) : null, ids = new Set(rows.map(r => r.id));
   const skin = sk ? (await import("../skin/payload")).wireOf(sk, sk.data.listed.filter(r => ids.has(r.id))) : undefined;
-  return { rows, brands, pills, added, curated, season, ...(wire ? { wire } : {}), ...(skin ? { skin } : {}) };
+  const laptop = LT ? ctx ? await laptopWires(ctx, ids) : [] : undefined;
+  return { rows, brands, pills, added, curated, season, ...(wire ? { wire } : {}), ...(skin ? { skin } : {}), ...(laptop ? { laptop } : {}) };
 });

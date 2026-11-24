@@ -28,18 +28,22 @@ const TN = niche.id === "tennis";
 /** SkinRecs (v3 rollout): no curated lists; Type and Texture (its rows carry the texture people report as `feel`,
  *  app/thread/padel-list-data.ts); its own quick match (skin type · goal · sensitive, live/skin-match.tsx). */
 const SKIN = niche.id === "skin";
-export const SORTS: [Sort, string][] = AUDIO || SR || TN || DG || SKIN ? [["loved", "Most loved"], ["new", "Newest"], ["match", "By your match"]]
+/** LaptopRecs (owner 2026-11-24): no curated lists; Category in place of Shape and no Feel (its rows carry the category as
+ *  `shape`); its own quick match (use · want · quiet fans, live/laptop-match.tsx). */
+const LT = niche.id === "laptop";
+export const SORTS: [Sort, string][] = AUDIO || SR || TN || DG || SKIN || LT ? [["loved", "Most loved"], ["new", "Newest"], ["match", "By your match"]]
   : [["picks", `${niche.site.name} picks`], ["loved", "Most loved"], ["new", "Newest"], ["match", "By your match"]];
 const BASE_SORT: Sort = SORTS[0][0];
 /** The home's menu (owner 2026-11-21: "PadelRecs picks" read as random there): Most loved (default), Most opinions, and By
  *  your match once a pick is set. The catalogue keeps SORTS. */
 export const HOME_SORTS: [Sort, string][] = [["loved", "Most loved"], ["opinions", "Most opinions"], ["match", "By your match"]];
-const FEELS = AUDIO ? ["Warm", "Balanced", "Bright"] : DG ? ["Understable", "Stable", "Overstable"] : SR ? ["Direct drive", "Belt", "Gear"] : TN ? ["Soft", "Medium", "Crisp"] : SKIN ? ["Light", "Medium", "Rich"] : ["Soft", "Medium", "Hard"];
-const GROUP_TITLES: Record<Key, string> = AUDIO ? { shape: "Type", feel: "Sound", brand: "Brand" } : DG ? { shape: "Type", feel: "Stability", brand: "Brand" } : SR ? { shape: "Type", feel: "Drive", brand: "Brand" } : TN ? { shape: "Head size", feel: "Feel", brand: "Brand" } : SKIN ? { shape: "Type", feel: "Texture", brand: "Brand" } : { shape: "Shape", feel: "Feel", brand: "Brand" };
+const FEELS = LT ? [] : AUDIO ? ["Warm", "Balanced", "Bright"] : DG ? ["Understable", "Stable", "Overstable"] : SR ? ["Direct drive", "Belt", "Gear"] : TN ? ["Soft", "Medium", "Crisp"] : SKIN ? ["Light", "Medium", "Rich"] : ["Soft", "Medium", "Hard"];
+const GROUP_TITLES: Record<Key, string> = LT ? { shape: "Category", feel: "Feel", brand: "Brand" } : AUDIO ? { shape: "Type", feel: "Sound", brand: "Brand" } : DG ? { shape: "Type", feel: "Stability", brand: "Brand" } : SR ? { shape: "Type", feel: "Drive", brand: "Brand" } : TN ? { shape: "Head size", feel: "Feel", brand: "Brand" } : SKIN ? { shape: "Type", feel: "Texture", brand: "Brand" } : { shape: "Shape", feel: "Feel", brand: "Brand" };
 /** AudioRecs' match (lib/audio-match.ts), worked out by the page's own hook (live/audio-match.tsx) and handed to the list. */
 export type ListMatch = { mine: boolean; pcts: Map<string, number | null> | null; picks: AudioPicks; set: (p: Partial<AudioPicks>) => void; bar?: undefined }
   /** A site's own match bar in the same classes (SkinRecs, live/skin-match.tsx). */
-  | { mine: boolean; pcts: Map<string, number | null> | null; bar: (o: { tag?: string; after?: ReactNode; ft: boolean; setFt: (x: boolean) => void }) => ReactNode };
+  | { mine: boolean; pcts: Map<string, number | null> | null; bar: (o: { tag?: string; after?: ReactNode; ft: boolean; setFt: (x: boolean) => void;
+    /** The creators home's classes (tch-), LaptopRecs. */ home?: boolean }) => ReactNode };
 const TOP_BRANDS = 6;
 /** Fine-tune filters kept in this browser (handoff README: "padelrecs-ft"), the same on the home and the catalogue. */
 export const FT_KEY = "padelrecs-ft";
@@ -137,7 +141,7 @@ export function MatchBar({ l, ft, setFt, tag, icons, after }: { l: RacketList; f
 /** "Only show:" Shape, Feel and Brand pills with live counts (top 6 brands + more), then the active chips with × and Clear all. */
 export function FineTune({ l, ft, brands }: { l: RacketList; ft: boolean; brands: string[] }) {
   const { pool, pass, test, f, toggle, chips, clearAll } = l, [allBrands, setAllBrands] = useState(false);
-  const shapes = useMemo(() => [...new Set(pool.map(r => oneShape(r.shape)).filter((x): x is string => !!x))].sort((a, b) => pool.filter(r => r.shape === b).length - pool.filter(r => r.shape === a).length).slice(0, 5), [pool]);
+  const shapes = useMemo(() => [...new Set(pool.map(r => oneShape(r.shape)).filter((x): x is string => !!x))].sort((a, b) => pool.filter(r => r.shape === b).length - pool.filter(r => r.shape === a).length).slice(0, LT ? 7 : 5), [pool]);
   const group = (k: Key, title: string, vals: string[], more?: boolean) => {
     const opts = vals.map(v => ({ v, c: pool.filter(r => pass(r, k) && test(r, k, v)).length, sel: !!f[k]?.includes(v) })).filter(o => o.c > 0 || o.sel);
     const shown = !more || allBrands ? opts : opts.filter((o, i) => i < TOP_BRANDS || o.sel);

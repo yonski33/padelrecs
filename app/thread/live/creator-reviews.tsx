@@ -15,6 +15,7 @@ import { mentionNodes, useMentions } from "./mention-links";
 import { dayLabel, thumbOf } from "../../../lib/thread/web-sources";
 import { SOURCE_COLOR, STANCE_LABEL, cardChips, initials, langCode, marks, measuredLine, platform, scoreText, sortReviews, mixTikToks,
   stanceCounts, type CreatorReview, type ReviewEntry, type Stance } from "../../../lib/thread/creators";
+import { configGroupOf, configGroups, configLine, type ConfigAxis } from "../../../lib/thread/creator-config";
 
 const OUT = { target: "_blank", rel: "noopener nofollow" } as const;
 
@@ -28,7 +29,8 @@ export function Avatar({ name, kind, size }: { name: string; kind: CreatorReview
   return <span className={`thc-av${size ? ` ${size}` : ""}`} style={{ background: SOURCE_COLOR[kind] }} aria-hidden="true">{initials(name)}</span>;
 }
 
-function Card({ x, lit }: { x: ReviewEntry; lit: boolean }) {
+/** `configs`: the site's reviews carry the config they tested (LaptopRecs), shown as a "Reviewed: ..." line. */
+function Card({ x, lit, configs }: { x: ReviewEntry; lit: boolean; configs?: boolean }) {
   const [open, setOpen] = useState(false);
   const tt = x.kind === "tiktok", measured = measuredLine(x.measured);
   const thumb = x.kind === "youtube" ? thumbOf(x.url) : null;
@@ -39,7 +41,9 @@ function Card({ x, lit }: { x: ReviewEntry; lit: boolean }) {
   const vid = true;
   const [lead, rest] = vid ? leadSentences(x.summary, 3) : [x.summary, ""];
   const hl = vid ? x.highlights.slice(0, 2) : x.highlights;
-  const more = !!rest || !!x.more || !!measured || !!x.alsoUrl;
+  // The config's extra lines (LaptopRecs): the source's note on a second config and the price as tested, in the open card only.
+  const cfgMore = configs ? [x.config?.note, x.config?.fields.price_as_tested ? `Price as tested: ${x.config.fields.price_as_tested}.` : null].filter((t): t is string => !!t) : [];
+  const more = !!rest || !!x.more || !!measured || !!x.alsoUrl || cfgMore.length > 0;
   const toggle = <button type="button" className="thc-more" aria-expanded={open} onClick={() => setOpen(!open)}>{open ? "Show less" : "Read more"}</button>;
   const tags = [TYPE_TAG[x.type], x.note, x.version].filter((t): t is string => !!t);
   // Stood out, The trade-off, then Best for (owner 2026-11-23: in place of "Compared to", which only listed names): who this
@@ -77,6 +81,7 @@ function Card({ x, lit }: { x: ReviewEntry; lit: boolean }) {
         {!tt && <span className="thc-lang">{langCode(x.lang)}</span>}
         <span className={`thc-take ${x.stance}`}>{`♡ ${STANCE_LABEL[x.stance]}`}</span>
       </div>
+      {configs && <span className="thc-cfg">{configLine(x.config)}</span>}
       {/* No "Works with [brand]" note (owner 2026-11-22: no disclosure lines; `tie` stays in the data). */}
       {(tags.length > 0 || x.score) && <div className="thc-tags">
         {tags.map(t => <span key={t} className="thc-tag">{t}</span>)}
@@ -92,6 +97,7 @@ function Card({ x, lit }: { x: ReviewEntry; lit: boolean }) {
       {open && rest && <p className={`thc-sum${vid ? " vid" : ""}`}>{marks(rest, hl.filter(h => !lead.includes(h))).map((m, i) => m.on ? <mark key={i}>{link(m.t)}</mark> : <Fragment key={i}>{link(m.t)}</Fragment>)}</p>}
       {open && x.more && <p className={`thc-sum${vid ? " vid" : ""}`}>{link(x.more)}</p>}
       {open && measured && <p className="thc-sum sm">{`Measured by the reviewer: ${measured}.`}</p>}
+      {open && cfgMore.map(t => <p key={t} className="thc-sum sm">{t}</p>)}
       {open && <p className="thc-sum">{toggle}</p>}
       {chips.length > 0 && <div className="thc-tags">{chips.map(c => <span key={c.text} className={`thc-pm ${c.tone}`}>{`${c.tone === "pos" ? "+" : "−"} ${c.text}`}</span>)}</div>}
       <div className="thc-links">
@@ -106,13 +112,18 @@ function Card({ x, lit }: { x: ReviewEntry; lit: boolean }) {
 
 /** `count`: the reviews counted (one per reviewer; a TikTok channel with two videos counts once). */
 /** `roundup`: the "Players on Reddit and forums" card, placed after the third card under All (never counted). */
-export function CreatorReviews({ reviews, count, roundup }: { reviews: ReviewEntry[]; count: number; roundup?: ReactNode }) {
+/** `configs` and `axis` (LaptopRecs): each card's "Reviewed: ..." line, and the model's config axis for the "All (n) · <group>
+ *  (n)" chips, shown only when 2 or more groups have cards; the chips filter in the browser like the other pills. */
+export function CreatorReviews({ reviews, count, roundup, configs, axis }: { reviews: ReviewEntry[]; count: number; roundup?: ReactNode;
+  configs?: boolean; axis?: ConfigAxis | null }) {
   const [only, setOnly] = useState<Stance | "all">("all"), [src, setSrc] = useState<Src>(null), [by, setBy] = useState<"stance" | "newest">("stance");
+  const [grp, setGrp] = useState<string | null>(null);
+  const groups = useMemo(() => configs ? configGroups(reviews, axis ?? null) : [], [reviews, configs, axis]);
   const [lit, setLit] = useState<string | null>(null), [goTo, setGoTo] = useState<string | null>(null);
   const n = stanceCounts(reviews);
   // Under All sources, TikToks are mixed in between the others (owner 2026-11-22), never several in a row.
-  const list = useMemo(() => { const l = sortReviews(reviews.filter(r => (only === "all" || r.stance === only) && (!src || r.kind === src)), by);
-    return src ? l : mixTikToks(l, by); }, [reviews, only, src, by]);
+  const list = useMemo(() => { const l = sortReviews(reviews.filter(r => (only === "all" || r.stance === only) && (!src || r.kind === src) && (!grp || configGroupOf(r.config, axis ?? null) === grp)), by);
+    return src ? l : mixTikToks(l, by); }, [reviews, only, src, by, grp, axis]);
   // Every review shows at once (owner 2026-11-22: little else follows on the page, so no reason to limit them).
   const shown = list;
   const pills = ([["all", "All", reviews.length], ...(["pos", "mix", "neg"] as const).map(k => [k, STANCE_LABEL[k], n[k]] as const)] as const)
@@ -130,11 +141,12 @@ export function CreatorReviews({ reviews, count, roundup }: { reviews: ReviewEnt
       const r = reviews.find(x => x.id === id)!;
       if (only !== "all" && r.stance !== only) setOnly("all");
       if (src && r.kind !== src) setSrc(null);
+      if (grp && configGroupOf(r.config, axis ?? null) !== grp) setGrp(null);
       setGoTo(id);
     };
     document.addEventListener("click", onClick);
     return () => document.removeEventListener("click", onClick);
-  }, [reviews, only, src]);
+  }, [reviews, only, src, grp, axis]);
   useEffect(() => {
     if (!goTo) return;
     const el = document.getElementById(`cr-${goTo}`);
@@ -157,7 +169,11 @@ export function CreatorReviews({ reviews, count, roundup }: { reviews: ReviewEnt
       {sources.length > 1 && <span className="thc-pills-sep" aria-hidden="true"/>}
       {sources.length > 1 && sources.map(([k, l, c]) => <button key={k} type="button" aria-pressed={src === k} onClick={() => setSrc(src === k ? null : k)}>
         {`${l} (${c})`}</button>)}</div>
-    {shown.map((x, i) => <Fragment key={x.id}><Card x={x} lit={lit === x.id}/>{roundup && i === Math.min(2, shown.length - 1) && only === "all" && !src && roundup}</Fragment>)}
+    {/* The config chips (LaptopRecs): "All (n) · Snapdragon (6) · AMD (4)", only with 2 or more groups. */}
+    {groups.length > 0 && <div className="thc-pills thc-cfg-chips" role="group" aria-label={`Filter by ${axis!.axis}`}>
+      <button type="button" aria-pressed={!grp} onClick={() => setGrp(null)}>{`All (${reviews.length})`}</button>
+      {groups.map(g => <button key={g.label} type="button" aria-pressed={grp === g.label} onClick={() => setGrp(grp === g.label ? null : g.label)}>{`${g.label} (${g.n})`}</button>)}</div>}
+    {shown.map((x, i) => <Fragment key={x.id}><Card x={x} lit={lit === x.id} configs={configs}/>{roundup && i === Math.min(2, shown.length - 1) && only === "all" && !src && !grp && roundup}</Fragment>)}
   </section></VideoProvider>;
 }
 
