@@ -25,7 +25,11 @@ export default async function ThreadBrand({ params }: { params: Promise<{ slug: 
   const [{ slug }, { ctx, all }] = await Promise.all([params, threadRows()]);
   const brand = ctx?.data.brands.find(b => b.slug === slug);
   if (!brand) notFound();
-  const rows = all.filter(r => r.brand === brand.name && r.n > 0);
+  // LaptopRecs (owner 2026-11-24): current models only, reviewed or not (lib/thread/laptop-lines.ts); older generations sit
+  // in a collapsed "Older models" list at the bottom, as reference pages.
+  const LT = niche.id === "laptop";
+  const rows = all.filter(r => r.brand === brand.name && (LT ? r.current : r.n > 0));
+  const older = LT ? all.filter(r => r.brand === brand.name && !r.current).sort((a, b) => a.name.localeCompare(b.name)) : [];
   const current = rows.filter(r => r.current !== false);
   const top = current.filter(r => r.score != null).sort((a, b) => b.score! - a.score! || b.n - a.n)[0];
   const short = (n: string) => n.replace(new RegExp(`^${brand.name}\\s+`, "i"), "");
@@ -35,5 +39,7 @@ export default async function ThreadBrand({ params }: { params: Promise<{ slug: 
     <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: ld }}/>
     <Catalog rows={rows} brands={[]} title={niche.id === "skin" ? `${brand.name} skincare` : niche.id === "discgolf" ? `${brand.name} discs` : niche.id === "simracing" ? `${brand.name} sim racing gear` : `${brand.name} ${niche.id} ${niche.words.many}`} lead={lead}
       crumbs={<div key="crumbs" className="th-crumbs"><a href={th("/brands")}>Brands</a><span>/</span><span>{brand.name}</span></div>}/>
+    {older.length > 0 && <details className="th-older"><summary>{`Older models (${older.length})`}</summary>
+      <ul>{older.map(r => <li key={r.id}><a href={th(r.href)}>{r.name}</a></li>)}</ul></details>}
   </Shell>;
 }

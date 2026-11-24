@@ -141,7 +141,7 @@ export async function CreatorProductBody({ slug }: { slug: string }) {
   const sims = sim.filter(x => x.id !== r.id && x.current !== false);
   for (const s of Object.keys(staged).sort((a, b) => Number(bySlug.get(b)?.shape === r.shape) - Number(bySlug.get(a)?.shape === r.shape))) {
     if (sims.length >= 4) break;
-    const x = bySlug.get(s); if (x && x.id !== r.id && !sims.some(y => y.id === x.id)) sims.push(x);
+    const x = bySlug.get(s); if (x && x.id !== r.id && !sims.some(y => y.id === x.id) && (!LT || x.current)) sims.push(x);
   }
   const similar = sims.slice(0, 4).map(x => { const p = staged[x.slug];
     return { x, href: !creatorPageOn(niche.id) && creatorPageFor(niche.id, x.slug) ? `${x.href}?view=${CREATOR_VIEW}` : x.href,
@@ -210,7 +210,9 @@ export async function CreatorProductBody({ slug }: { slug: string }) {
   const cmp = (compareLines as Record<string, Record<string, Record<string, { line: string; n: number; by?: string[] }>>>)[niche.id]?.[slug] ?? {};
   // The reviewers behind each line, named and linked to their card on this page (owner 2026-11-23: "per PickleballStudio").
   const byId = new Map(feed.map(x => [x.id, x.creator]));
-  const named = mentions(rs, allRows, r.id).map(m => { const c = cmp[m.row.slug];
+  // LaptopRecs: only current models are named or linked (older generations never list, lib/thread/laptop-lines.ts).
+  const listRows = LT ? allRows.filter(x => x.current) : allRows;
+  const named = mentions(rs, listRows, r.id).map(m => { const c = cmp[m.row.slug];
     const by = (c?.by ?? []).filter(id => byId.has(id)).map(id => ({ id, name: byId.get(id)! })).filter((b, i, a) => a.findIndex(y => y.name === b.name) === i);
     return { ...m, href: m.row.href, price: staged[m.row.slug]?.price ?? null, vs: c?.line ?? null, vsN: c?.n ?? 0, by }; });
   // Paddles compared first; ones the reviews only name go under "Also mentioned" at the bottom (owner 2026-11-23).
@@ -221,7 +223,7 @@ export async function CreatorProductBody({ slug }: { slug: string }) {
   // PadelRecs (owner 2026-11-24): one catalogue row per model year, so names resolve by this racket's season first
   // (lib/thread/mention-years.ts, db/creators/padel-mentions.json); the TL;DR and In more detail link too.
   const yc = PADEL ? yearContext(allRows, slug, r.year ?? new Date().getUTCFullYear(), padelMentions as unknown as MentionYears) : null;
-  const mxAll = yc ? [...mentionIndex(yc.rows, yc.extra, allRows), ...selfRefKeys(allRows.find(x => x.slug === slug)!, selfFamily(allRows, slug, padelMentions as unknown as MentionYears))] : mentionIndex(allRows, (aliases as unknown as Record<string, MentionAliases>)[niche.id] ?? {});
+  const mxAll = yc ? [...mentionIndex(yc.rows, yc.extra, allRows), ...selfRefKeys(allRows.find(x => x.slug === slug)!, selfFamily(allRows, slug, padelMentions as unknown as MentionYears))] : mentionIndex(listRows, (aliases as unknown as Record<string, MentionAliases>)[niche.id] ?? {});
   const mxIds = namedIds([...feed.flatMap(x => [x.summary, x.more, x.compared]), ...(yc ? [tldr, ...(wrap?.paras ?? [])] : [])], mxAll, r.id);
   const mxIndex = mxAll.filter(k => k.id === r.id || mxIds.includes(k.id));
   const mxTargets: Record<string, MentionTarget> = Object.fromEntries(mxIds.flatMap(id => { const x = allRows.find(y => y.id === id); if (!x) return [];

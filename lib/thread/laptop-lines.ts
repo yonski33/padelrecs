@@ -1,32 +1,31 @@
-// LaptopRecs' model lines (owner 2026-11-24: "show only the latest generation of each line"). Every laptop has a line and a
-// generation order (db/catalogs/laptop-lines.json: slug -> [line, generation], read from names and slugs; renames across
-// names are not guessed). The home and the rankings show the newest model of each line that can show yet; older models
-// keep their pages, with a "Newer version" link. Pure, so tests feed plain inputs.
+// LaptopRecs' model lines (owner 2026-11-24). Every laptop has a line, a generation order and a release year
+// (db/catalogs/laptop-lines.json: slug -> [line, generation, year]; renamed successors such as XPS 14 -> Dell 14 Premium share
+// their predecessor's line). Lists show current models only:
+//   - a line's 2026 model (the newest generation of 2026, reviews or not);
+//   - a 2025 model only when its line has no 2026 successor yet;
+//   - nothing from 2024 or older, even when the line has nothing newer.
+// Older models keep their pages as reference, with a "Newer version" link. Pure, so tests feed plain inputs.
 import table from "../../db/catalogs/laptop-lines.json";
 
-export type LineTable = Record<string, [string, number]>;
+export type LineTable = Record<string, [string, number, number]>;
 export const LAPTOP_LINES = table as unknown as LineTable;
-/** A model can stand for its line once it has a creator page (3+ creator reviews) or 3+ owner and web opinions. */
-export const MIN_TO_SHOW = 3;
+/** The year lists show, and the one year before it that may stand in for a line with nothing newer. */
+export const CURRENT_YEAR = 2026;
 
-export type LineItem = { id: string; slug: string; opinions: number; creator: number };
-const showable = (x: LineItem) => x.creator >= MIN_TO_SHOW || x.opinions >= MIN_TO_SHOW;
-
-/** Per line: the newest model (`newest`) and the one the lists show (`shown`: the newest that can show, else none).
- *  `current`: the shown model's id per line; `newer`: an older model's slug -> the newest model's slug in its line;
- *  `fallback`: lines whose newest model can't show yet, with the one shown instead. A laptop missing from the table is a
- *  line of its own. */
-export function laptopLines(items: LineItem[], lines: LineTable = LAPTOP_LINES) {
-  const by = new Map<string, { x: LineItem; gen: number }[]>();
-  for (const x of items) { const [line, gen] = lines[x.slug] ?? [`slug:${x.slug}`, 0]; const l = by.get(line) ?? []; l.push({ x, gen }); by.set(line, l); }
-  const current = new Set<string>(), newer = new Map<string, string>(), fallback: { line: string; newest: string; shown: string | null }[] = [];
+export type LineItem = { id: string; slug: string };
+/** `current`: the id that stands for each line in every list; `newer`: an older model's slug -> its line's current slug;
+ *  `standIns`: lines shown by a model from the year before (no CURRENT_YEAR successor yet). A laptop missing from the table
+ *  is a line of its own with no known year, so it never lists until it is added. */
+export function laptopLines(items: LineItem[], lines: LineTable = LAPTOP_LINES, year = CURRENT_YEAR) {
+  const by = new Map<string, { x: LineItem; gen: number; year: number }[]>();
+  for (const x of items) { const e = lines[x.slug]; if (!e) continue; const l = by.get(e[0]) ?? []; l.push({ x, gen: e[1], year: e[2] }); by.set(e[0], l); }
+  const current = new Set<string>(), newer = new Map<string, string>(), standIns: { line: string; slug: string }[] = [];
   for (const [line, l] of by) {
-    // Newest first; a tie on generation keeps the catalogue order.
-    const sorted = [...l].sort((a, b) => b.gen - a.gen), newest = sorted[0];
-    const shown = sorted.find(e => showable(e.x)) ?? null;
-    if (shown) current.add(shown.x.id);
-    if (shown !== newest && l.length > 1) fallback.push({ line, newest: newest.x.slug, shown: shown?.x.slug ?? null });
-    for (const e of sorted) if (e.gen < newest.gen) newer.set(e.x.slug, newest.x.slug);
+    // Newest first: release year, then generation.
+    const sorted = [...l].sort((a, b) => b.year - a.year || b.gen - a.gen), top = sorted[0];
+    const pick = top.year >= year ? top : top.year === year - 1 ? top : null;
+    if (pick) { current.add(pick.x.id); if (pick.year < year) standIns.push({ line, slug: pick.x.slug }); }
+    for (const e of sorted) if (e !== top) newer.set(e.x.slug, top.x.slug);
   }
-  return { current, newer, fallback };
+  return { current, newer, standIns };
 }

@@ -180,7 +180,7 @@ export function RacketRow({ r, pill, match, isNew, rank, link }: { r: ThreadRow;
       {pill && <span className="tc-vote"><span aria-hidden="true"/>{pill}</span>}
     </span>
     <span className="tc-stat">
-      {match != null ? <span className="tc-match">{`${match}% your match`}</span> : <span className="tc-n">{plural(o, "opinion")}</span>}
+      {match != null ? <span className="tc-match">{`${match}% your match`}</span> : LT && o === 0 ? <span className="tc-n th-new-note">New, reviews coming</span> : <span className="tc-n">{plural(o, "opinion")}</span>}
       {o > 0 && <><span className="tc-bar" aria-hidden="true"><i style={{ flex: r.pos }}/><i style={{ flex: r.mix }}/><i style={{ flex: r.neg }}/></span>
         <small>{`${r.pos} loved · ${r.mix} mixed · ${r.neg} not for me`}</small></>}
       {link && <span className="tc-go">See reviews ›</span>}

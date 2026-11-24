@@ -18,9 +18,7 @@ import { LAPTOP_LINES } from "../../lib/thread/laptop-lines";
 
 export type ThreadRanking = { slug: string; href: string; label: string; title: string; blurb: string; group: string; ids: string[]; own: boolean;
   /** The hub card's title inside its group ("Moisturizers" under "For sensitive skin"); else the label. */ short?: string;
-  /** A skin need's hub page (owner 2026-11-21): the slugs of its per-type lists, shown instead of one mixed list. */ kids?: string[];
-  /** LaptopRecs (owner 2026-11-24): the same list with older generations in, for the page's "Include older models" toggle;
-   *  `ids` holds current models only (lib/thread/laptop-lines.ts). */ older?: string[] };
+  /** A skin need's hub page (owner 2026-11-21): the slugs of its per-type lists, shown instead of one mixed list. */ kids?: string[] };
 const YEAR = () => new Date().getUTCFullYear();
 const SIZE = 10, MIN_REVIEWS = 10, LT_MIN_REVIEWS = 5;
 
@@ -106,10 +104,10 @@ export const threadRankings = cache(async (): Promise<ThreadRanking[]> => {
   if (!hasDb()) return [];
   // The racket engine's payload only where Thread-only pick lists use it (padel); skin ranks with its own engine below.
   const [lists, { all, ctx }, payload] = await Promise.all([threadLists(), threadRows(), PICKS.length ? homePayload() : null]);
-  const byVotes = await votesFor(lists, all, ctx), olderBy = LT ? lovedWithOlder(lists, all, ctx) : null;
-  // LaptopRecs' lists that keep the live order (battery life, budget): current models only, older ones behind the toggle.
-  const isCur = new Set(all.filter(r => r.current !== false).map(r => r.id));
-  const own = lists.map(l => ({ ...(LT ? { older: olderBy?.get(l.slug) ?? l.ids.slice(0, SIZE) } : {}), slug: l.slug, href: l.href, label: AUDIO ? AUDIO_LABEL[l.slug] ?? l.label : l.label, title: l.title, blurb: BLURB[l.slug] ?? l.description ?? "", own: true, ids: byVotes.get(l.slug) ?? (LT ? l.ids.filter(id => isCur.has(id)) : l.ids).slice(0, SIZE),
+  const byVotes = await votesFor(lists, all, ctx);
+  // LaptopRecs' lists that keep the live order (battery life, budget): current models only (lib/thread/laptop-lines.ts).
+  const isCur = new Set(all.filter(r => r.current).map(r => r.id));
+  const own = lists.map(l => ({ slug: l.slug, href: l.href, label: AUDIO ? AUDIO_LABEL[l.slug] ?? l.label : l.label, title: l.title, blurb: BLURB[l.slug] ?? l.description ?? "", own: true, ids: byVotes.get(l.slug) ?? (LT ? l.ids.filter(id => isCur.has(id)) : l.ids).slice(0, SIZE),
     group: LT ? (/battery|budget/.test(l.slug) ? "By what matters" : "By type") : AUDIO ? (/noise-cancelling/.test(l.slug) ? "Most popular" : "By type") : SKIN ? (SKIN_NEEDS.some(n => n.hub === l.slug) ? HUBS : "By product type") : DG ? "By how you throw" : SR ? (/force-feedback/.test(l.slug) ? "Most popular" : "By gear") : /power|control|spin/.test(l.slug) ? "By how you play" : "Most popular" }));
   const picks = PICKS.map(p => ({ slug: p.slug, href: `/rankings/${p.slug}`, label: p.label, title: `${p.title} ${YEAR()}`, blurb: BLURB[p.key], own: false, group: p.group ?? "Most popular",
     ids: rankHome(payload!.items, RANK_SETUP, NEGATIVE_TAGS, p.choice, false, SIZE).rows.map(r => r.id) }));
@@ -126,10 +124,9 @@ export const threadRankings = cache(async (): Promise<ThreadRanking[]> => {
     blurb: BLURB[oSlug], own: false, group: "Most popular",
     // DiscGolfRecs on v3 (no score): by how many players loved each disc, as padel's Best overall (#600).
     // LaptopRecs: the same, with its own lists' review floor (5; its reviews are spread over many generations).
-    ids: all.filter(r => r.score != null && r.current && r.n >= (LT ? LT_MIN_REVIEWS : MIN_REVIEWS)).sort((a, b) => (DG || LT ? b.pos - a.pos : b.score! - a.score!) || b.n - a.n).slice(0, SIZE).map(r => r.id),
-    ...(LT ? { older: all.filter(r => r.score != null && r.n >= LT_MIN_REVIEWS).sort((a, b) => b.pos - a.pos || b.n - a.n).slice(0, SIZE).map(r => r.id) } : {}) }] : [];
+    ids: all.filter(r => r.score != null && r.current && r.n >= (LT ? LT_MIN_REVIEWS : MIN_REVIEWS)).sort((a, b) => (DG || LT ? b.pos - a.pos : b.score! - a.score!) || b.n - a.n).slice(0, SIZE).map(r => r.id) }] : [];
   if (AUDIO) return audioLists(own, all, ctx);
-  const out = (DG || SR || LT ? [...overall, ...picks, ...own] : [...own, ...picks, ...shapes, ...skin]).filter(l => (LT ? Math.max(l.ids.length, (l as { older?: string[] }).older?.length ?? 0) : l.ids.length) >= (l.own || LT ? 5 : 10));
+  const out = (DG || SR || LT ? [...overall, ...picks, ...own] : [...own, ...picks, ...shapes, ...skin]).filter(l => l.ids.length >= (LT ? 1 : l.own ? 5 : 10));
   // A skin need's hub lists the per-type lists that made it (a full 10 each).
   if (!SKIN) return out;
   const shown = new Set(out.map(l => l.slug));
@@ -139,16 +136,6 @@ export const threadRankings = cache(async (): Promise<ThreadRanking[]> => {
 /** The lists set to "votes" or "loved" in lib/thread/vote-order.ts (owner test 2026-11-21): "votes" by the "Most picked for"
  *  count, from the curated top 10 ("curated" pool) or every racket in the list's model-year window ("all"); "loved" by the
  *  loved count, this season's models. Other lists: none. */
-/** LaptopRecs' "loved" lists with older generations in (the toggle): every generation, one row each, same floors and order. */
-function lovedWithOlder(lists: Awaited<ReturnType<typeof threadLists>>, all: Awaited<ReturnType<typeof threadRows>>["all"], ctx: Awaited<ReturnType<typeof threadRows>>["ctx"]) {
-  const out = new Map<string, string[]>(), listed = new Set(ctx.data.listed.map(p => p.id));
-  for (const l of lists) { if (listOrder(niche.id, l.slug)?.order !== "loved") continue;
-    const cfg = niche.topLists?.find(x => x.slug === l.slug), only = cfg?.filters?.find(f => f.column === "shape")?.include ?? null;
-    const ids = lovedOrder(all.flatMap(r => listed.has(r.id) && (!only || only.includes(r.shape ?? "")) ? [{ id: r.id, name: r.name, family: r.id, year: r.year, reviews: r.n,
-      loved: r.pos, mixed: r.mix, notForMe: r.neg }] : []), null, { ...LOVED_ORDER, minReviews: cfg?.minReviews ?? LOVED_ORDER.minReviews });
-    if (ids.length >= 5) out.set(l.slug, ids); }
-  return out;
-}
 async function votesFor(lists: Awaited<ReturnType<typeof threadLists>>, all: Awaited<ReturnType<typeof threadRows>>["all"], ctx: Awaited<ReturnType<typeof threadRows>>["ctx"]) {
   const out = new Map<string, string[]>(), listed = new Map(ctx.data.listed.map(p => [p.id, p]));
   // "loved" (Best overall): the row's loved count, this season's models only.
@@ -158,7 +145,7 @@ async function votesFor(lists: Awaited<ReturnType<typeof threadLists>>, all: Awa
     const only = LT ? cfg?.filters?.find(f => f.column === "shape")?.include ?? null : null;
     const ids = lovedOrder(all.flatMap(r => { const p = listed.get(r.id); return p && (!cur || r.current !== false) && (!only || only.includes(r.shape ?? "")) ? [{ id: r.id, name: r.name, family: LT ? LAPTOP_LINES[r.slug]?.[0] ?? r.slug : modelFamily(p), year: r.year, reviews: r.n,
       loved: r.pos, mixed: r.mix, notForMe: r.neg }] : []; }), cur ? null : YEAR(), { ...LOVED_ORDER, minReviews: cfg?.minReviews ?? LOVED_ORDER.minReviews });
-    // LaptopRecs keeps its loved order even when few current models qualify (the toggle shows the older ones).
+    // LaptopRecs keeps its loved order even when few current models qualify (older generations never list).
     if (ids.length >= (LT ? 1 : 5)) out.set(l.slug, ids); }
   const wanted = lists.flatMap(l => { const o = listOrder(niche.id, l.slug); return o?.order === "votes" && o.option ? [{ l, o }] : []; });
   if (!wanted.length) return out;

@@ -292,19 +292,19 @@ export const audioOf = (ctx: Ctx) => (ctx as unknown as { audio?: AudioThreadCtx
  *  catalogue, the owner scores (app/signals.ts) and the quick-take hooks, as AudioRecs' do; its quick match runs on its own
  *  inputs (lib/laptop-wire.ts). Current: the newest generation of each model with enough reviews. */
 async function laptopRows(): Promise<Rows> {
-  const [{ catalog }, { productSignals }, { quickTakeHooks }, { creatorPagesAll }, { laptopLines }] = await Promise.all([import("../../db/data"), import("../signals"),
-    import("../../db/quick-take"), import("../../lib/thread/creator-data"), import("../../lib/thread/laptop-lines")]);
-  const [data, sigs, takes, pages] = await Promise.all([catalog(), productSignals(), quickTakeHooks(), creatorPagesAll(niche.id)]);
+  const [{ catalog }, { productSignals }, { quickTakeHooks }, { laptopLines }] = await Promise.all([import("../../db/data"), import("../signals"),
+    import("../../db/quick-take"), import("../../lib/thread/laptop-lines")]);
+  const [data, sigs, takes] = await Promise.all([catalog(), productSignals(), quickTakeHooks()]);
   const brand = new Map(data.brands.map(b => [b.id, b.name])), reports = new Map<string, number>();
   for (const x of [...data.reviews, ...data.external]) reports.set(x.racketId, (reports.get(x.racketId) ?? 0) + 1);
-  // Current = the newest model of its line that can show yet (owner 2026-11-24, lib/thread/laptop-lines.ts), from owner and web
-  // opinions and creator reviews; older models keep their pages and link to the newest.
-  const creator = new Map(data.listed.map(r => [r.id, pages?.get(r.slug)?.reviews.length ?? 0]));
-  const lines = laptopLines(data.listed.map(r => ({ id: r.id, slug: r.slug, opinions: reports.get(r.id) ?? 0, creator: creator.get(r.id) ?? 0 })));
+  // Current = its line's 2026 model, or its 2025 model while the line has no 2026 successor; 2024 and older never list
+  // (owner 2026-11-24, lib/thread/laptop-lines.ts). Older models keep their pages and link to the newest.
+  // Every visible laptop, not only the reviewed ones (`listed`): a 2026 model with no reviews yet still takes its line's slot.
+  const lines = laptopLines(data.rackets.map(r => ({ id: r.id, slug: r.slug })));
   const current = lines.current;
-  const ctx = { data, sigs, takes, laptop: { creator, newer: lines.newer, fallback: lines.fallback }, facts: () => ({ reports: 0, tags: {} }), traits: () => ({}), expertLine: () => null } as unknown as Ctx;
+  const ctx = { data, sigs, takes, laptop: { newer: lines.newer, standIns: lines.standIns }, facts: () => ({ reports: 0, tags: {} }), traits: () => ({}), expertLine: () => null } as unknown as Ctx;
   const rows = new Map<string, ThreadRow>();
-  for (const r of data.listed) {
+  for (const r of data.rackets) {
     const c = score(data, r.id), b = brand.get(r.brandId) ?? "";
     rows.set(r.id, { id: r.id, slug: r.slug, name: displayName(r.name, b), href: productHref(r), pic: photoHidden(r) ? null : shopPhoto(r) ?? amazonPhoto(r)?.image ?? null,
       shape: r.shape, line: rowLine(r, takes.get(r.id)?.hook), best: null, n: reports.get(r.id) ?? 0, pos: c.positive, mix: c.mixed, neg: c.negative,
@@ -312,9 +312,9 @@ async function laptopRows(): Promise<Rows> {
   }
   return { ctx, rows, all: [...rows.values()], bySlug: new Map([...rows.values()].map(x => [x.slug, x])) };
 }
-/** LaptopRecs' line data on the rows' context (laptopRows): creator reviews per product id, each older model's newest
- *  version (slug -> slug) and the lines that fall back to an older model. */
-export type LaptopThreadCtx = { creator: Map<string, number>; newer: Map<string, string>; fallback: { line: string; newest: string; shown: string | null }[] };
+/** LaptopRecs' line data on the rows' context (laptopRows): each older model's newest version (slug -> slug) and the lines a
+ *  2025 model stands in for (no 2026 successor yet). */
+export type LaptopThreadCtx = { newer: Map<string, string>; standIns: { line: string; slug: string }[] };
 export const laptopOf = (ctx: Ctx) => (ctx as unknown as { laptop?: LaptopThreadCtx }).laptop ?? null;
 /** "Owners mostly rate…" → "Listeners mostly rate…" (V3-ROLLOUT-BRIEF: never "owners"). */
 const listenerLine = (t: string | null) => t ? t.replace(/(?<![\w-])([Oo])wner(s?)\b/g, (_, o: string, x: string) => `${o === "O" ? "L" : "l"}istener${x}`) : t;

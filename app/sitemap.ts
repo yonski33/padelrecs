@@ -5,6 +5,7 @@ import { catalogPath, niche, productHref } from "../lib/niche";
 import { amazonLinksOn } from "../lib/amazon-offer";
 import { threadStories } from "./thread/stories-data";
 import { comparePairs, pairHref } from "../lib/compare-pairs";
+import { laptopLines } from "../lib/thread/laptop-lines";
 import { threadSite, THREAD_DEFAULT, GUIDE_PATHS, GUIDE_KEYS } from "../lib/thread/look";
 import { rankList, listTotals, RANKINGS_PATH, rankingHref, withNicheWindow, withModelYears, MIN_LIST_ENTRIES } from "../lib/top-lists";
 
@@ -24,6 +25,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   // Pages that moved to another Recs site 301 there (GamingRecs monitors), so they are left out even while their rows remain.
   const moved = new Set((niche.movedAway ?? []).filter(m => !m.query).map(m => m.source));
   const listed = data.listed.filter(r => !moved.has(`${catalogPath}/${r.slug}`));
+  const laptopCurrent = niche.id === "laptop" ? laptopLines(listed.map(r => ({ id: r.id, slug: r.slug }))).current : null;
   const listedBrands = data.listedBrands.filter(b => !moved.has(`/brands/${b.slug}`));
   const lists = withModelYears(withNicheWindow(niche.topLists ?? [], niche.recentMonths)).map(list => ({ list, entries: rankList(list, data, niche.tags) })).filter(x => x.entries.length >= MIN_LIST_ENTRIES).map(x => ({ list: x.list, ...listTotals(x.entries) })).filter(x => x.updated);
 
@@ -52,7 +54,8 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       url: `${base}${productHref(r)}`,
       lastModified: latest([r.createdAt, ...notesFor(r.id)]),
       changeFrequency: "weekly" as const,
-      priority: 0.9,
+      // LaptopRecs (owner 2026-11-24): older generations stay listed as reference pages, at a lower priority.
+      priority: laptopCurrent && !laptopCurrent.has(r.id) ? 0.3 : 0.9,
     })),
     ...listedBrands.map(b => ({
       url: `${base}/brands/${b.slug}`,
