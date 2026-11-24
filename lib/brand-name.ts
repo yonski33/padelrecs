@@ -11,8 +11,10 @@ export function displayName(name: string, brand: string | null | undefined) {
  *  Not for sites whose brands are lowercase on purpose (monday.com). NICHE is inlined at build time (next.config.ts). */
 const TIDY_CASE = ["padel"].includes(process.env.NICHE ?? "");
 const YEAR_PARENS = ["padel"].includes(process.env.NICHE ?? ""), YEAR_TAIL = /\s+\(?((?:19|20)\d\d)\)?$/;
-/** A display name without its year, in either form ("… 2026" or "… (2026)"). */
-export const withoutYear = (name: string) => name.replace(YEAR_TAIL, "");
+/** Sites whose year in the name is the generation, not a model year ("ASUS ROG Zephyrus G14 2025", LaptopRecs): kept. */
+const YEAR_IS_GENERATION = ["laptop"].includes(process.env.NICHE ?? "");
+/** A display name without its year, in either form ("… 2026" or "… (2026)"); LaptopRecs keeps it (its generation). */
+export const withoutYear = (name: string) => YEAR_IS_GENERATION ? name : name.replace(YEAR_TAIL, "");
 export function tidyCase(name: string) {
   return name.split(/(\s+)/).map(w => /^[a-z][a-z]+$/.test(w) ? w[0].toUpperCase() + w.slice(1) : w.replace(/^(\d+)k$/, "$1K")).join("");
 }

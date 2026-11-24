@@ -23,6 +23,8 @@ import { JsonLd, crumbs } from "./seo";
 import { catalogLabel, catalogPath, productHref } from "../../lib/niche";
 import { STANCE_LABEL, lowestOffer, shortShop, usd, reviewLists, agreeChips, stanceLine, stanceCounts, howItPlays, langCode, platform, scoreText, takeaway,
   wordTone, howTitleFor, type CreatorReview } from "../../lib/thread/creators";
+import { LaptopFitCard } from "./live/laptop-match";
+import { padelListData } from "./padel-list-data";
 import { configAxisFor, configCell, configSite, textSlugs } from "../../lib/thread/creator-config";
 import { creatorPage, creatorSlugs, creatorHome } from "../../lib/thread/creator-data";
 import { threadTitle } from "../../lib/thread/web-sources";
@@ -79,6 +81,8 @@ const SKIN = niche.id === "skin";
  *  check runs on the padel-style engine, the vote boxes and the discussion on Thread tables). Its reviews carry the config
  *  each reviewer tested (lib/thread/creator-config.ts): a "Reviewed: ..." line per card, config chips, a Config column. */
 const PLAIN = creatorPlainSite(niche.id);
+/** LaptopRecs on the Thread pages (2026-11-24): its own fit check (live/laptop-match.tsx) in place of the padel-style one. */
+const LT = niche.id === "laptop";
 const CONFIGS = configSite(niche.id);
 
 function Word({ w }: { w: CreatorReview["attrs"][keyof CreatorReview["attrs"]] }) {
@@ -119,6 +123,9 @@ export async function CreatorProductBody({ slug }: { slug: string }) {
   const skinAttrs = sk?.attrs.get(r.id), tex = skinAttrs?.scores.texture;
   const skinTex = tex && tex.n >= 3 ? (tex.score >= 62 ? "Rich" : tex.score <= 38 ? "Light" : null) : null;
   const bySlug = new Map(allRows.map(x => [x.slug, x]));
+  // LaptopRecs' fit check: the laptops of this one's category (padelListData's quick match inputs).
+  const ltWire = LT ? ((await padelListData()).laptop ?? []).filter(w => w.category === r.shape && (w.id === r.id || rowMap.get(w.id)?.current !== false)) : [];
+  const ltLinks = Object.fromEntries(ltWire.flatMap(w => { const t = rowMap.get(w.id); return t ? [[w.id, { name: t.name, href: t.href }]] : []; }));
   const sims = sim.filter(x => x.id !== r.id && x.current !== false);
   for (const s of Object.keys(staged).sort((a, b) => Number(bySlug.get(b)?.shape === r.shape) - Number(bySlug.get(a)?.shape === r.shape))) {
     if (sims.length >= 4) break;
@@ -172,7 +179,7 @@ export async function CreatorProductBody({ slug }: { slug: string }) {
   // The level tag from the catalogue's "best for" line: its first part, "intermediate → advanced" as "Intermediate to advanced".
   const level = row?.best?.split(",")[0]?.replace(/\s*(→|->)\s*/g, " to ").trim() ?? null;
   const tags = (SKIN ? [r.shape, skinAttrs?.facts.fragrance_free === "free" ? "Fragrance free" : null, skinTex ? `${skinTex} texture` : null]
-    : PLAIN ? [r.shape]
+    : PLAIN || LT ? [r.shape]
     : [style ? STYLE_WORD[style] : null, row?.feel ? `${row.feel} feel` : null, level ? `${level[0]!.toUpperCase()}${level.slice(1)}` : null]).filter((x): x is string => !!x);
   // Two + points and one - point (owner 2026-11-22), the likes and concerns backed by 2+ reviews.
   const plus = agree.likes.slice(0, 2), minus = agree.concerns[0] ?? null;
@@ -260,7 +267,8 @@ export async function CreatorProductBody({ slug }: { slug: string }) {
       {/* SkinRecs with store prices (owner 2026-11-23): the price list fills the right column, so its fit check moves to
           this full-width row, as on PickleballRecs; Amazon-only products keep it under the button. */}
       {SKIN ? low && <div className="thc-fitrow"><SkinCompactFit id={r.id} wire={skinWire} links={skinLinks}/></div>
-        : PLAIN ? null : <div className="thc-fitrow"><CompactFit id={r.id} title={`Is this ${niche.words.one} right for me?`} sub="Pick your level and style" bar/></div>}
+        : PLAIN ? null : LT ? ltWire.length > 0 && <div className="thc-fitrow"><LaptopFitCard id={r.id} wire={ltWire} links={ltLinks} compact/></div>
+        : <div className="thc-fitrow"><CompactFit id={r.id} title={`Is this ${niche.words.one} right for me?`} sub="Pick your level and style" bar/></div>}
       <div className="thc-rule"/>
 
       <main className="thc-body">
@@ -272,7 +280,7 @@ export async function CreatorProductBody({ slug }: { slug: string }) {
           {/* Played it? Vote and rate it: the would-you-buy-it-again bars and six vote boxes (lib/thread/creator-votes.ts),
               the stored votes loading live, one tap, no account. */}
           <section id="vote" className="thc-box1 thc-vote">
-            <PollCard id={r.id} reviews={{ positive: row?.pos ?? 0, mixed: row?.mix ?? 0, negative: row?.neg ?? 0 }} question={SKIN ? "Tried it? Vote and rate it." : "Played it? Vote and rate it."} countLine/>
+            <PollCard id={r.id} reviews={{ positive: row?.pos ?? 0, mixed: row?.mix ?? 0, negative: row?.neg ?? 0 }} question={SKIN ? "Tried it? Vote and rate it." : LT ? `${W.usedIt} Vote and rate it.` : "Played it? Vote and rate it."} countLine/>
             {voteGroups.length > 0 && <TraitVotes id={r.id} seed={traitSeed(niche.id, r.id)} groups={voteGroups} title={W.traitsTitle} tieNone {...(SKIN ? { of: d.judged } : {})}/>}
           </section>
         </div>}

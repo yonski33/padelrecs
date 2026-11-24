@@ -52,6 +52,19 @@ export const SKIN_TRAIT_GROUPS: TraitGroup[] = [
   { key: "value", title: "Value", options: [["worth_it", "Worth it"], ["ok", "OK"], ["overpriced", "Overpriced"]] },
   { key: "best_used", title: "Best used", options: [["night", "Night"], ["both", "Morning and night"], ["morning", "Morning"]] },
 ];
+/** LaptopRecs' nine ("How does it hold up?", owner 2026-11-24: battery, screen, keyboard, thermals, build and performance,
+ *  plus what it suits, portability and value). Its own schema (needs drizzle/0024 there). */
+export const LAPTOP_TRAIT_GROUPS: TraitGroup[] = [
+  { key: "best_for", title: "Best for", options: [["gaming", "Gaming"], ["work", "Work and school"], ["creative", "Creative work"]] },
+  { key: "performance", title: "Performance", options: [["fast", "Fast"], ["fine", "Fine"], ["slow", "Slow"]] },
+  { key: "battery", title: "Battery life", options: [["all_day", "All day"], ["most_of_day", "Most of a day"], ["short", "Short"]] },
+  { key: "thermals", title: "Heat and fans", options: [["cool", "Cool and quiet"], ["warm", "Warm"], ["hot", "Hot or loud"]] },
+  { key: "screen", title: "Screen", options: [["great", "Great"], ["good", "Good"], ["meh", "Meh"]] },
+  { key: "keyboard", title: "Keyboard", options: [["great", "Great"], ["fine", "Fine"], ["poor", "Poor"]] },
+  { key: "build", title: "Build", options: [["solid", "Solid"], ["average", "Average"], ["flimsy", "Flimsy"]] },
+  { key: "portability", title: "Easy to carry", options: [["very", "Very"], ["somewhat", "Somewhat"], ["not_really", "Not really"]] },
+  { key: "value", title: "Value", options: [["worth_it", "Worth it"], ["ok", "OK"], ["overpriced", "Overpriced"]] },
+];
 /** StackRecs' Build and Grow sets together, as its API and admin accept them (one "Best for" key with both sides' options;
  *  a tool page shows only its own side, lib/stack/traits.ts). */
 const STACK_TRAIT_GROUPS: TraitGroup[] = (() => {
@@ -172,6 +185,7 @@ export function traitGroupsFor(nicheId: string): TraitGroup[] {
   if (nicheId === "stackrecs") return STACK_TRAIT_GROUPS;
   if (nicheId === "skin") return SKIN_TRAIT_GROUPS;
   if (nicheId === "audio") return AUDIO_TRAIT_GROUPS;
+  if (nicheId === "laptop") return LAPTOP_TRAIT_GROUPS;
   return PADEL_TRAIT_GROUPS;
 }
 /** The running site's groups. */
@@ -222,6 +236,12 @@ const SIMRACING_BOARDS: VoteBoard[] = [
   { title: "Best brake feel", trait: "brake_feel", choice: "realistic" }, { title: "Least flex", trait: "flex", choice: "none" },
   { title: "Best for beginners", trait: "level", choice: "beginner" }, { title: "Quietest", trait: "noise", choice: "quiet" },
 ];
-export const voteBoardsFor = (nicheId: string) => nicheId === "pickleball" ? PICKLEBALL_BOARDS : nicheId === "skin" ? SKIN_BOARDS
+/** LaptopRecs' ("How owners vote them"). */
+const LAPTOP_BOARDS: VoteBoard[] = [
+  { title: "Best battery life", trait: "battery", choice: "all_day" }, { title: "Coolest and quietest", trait: "thermals", choice: "cool" },
+  { title: "Best screen", trait: "screen", choice: "great" }, { title: "Best keyboard", trait: "keyboard", choice: "great" },
+  { title: "Easiest to carry", trait: "portability", choice: "very" }, { title: "Best value", trait: "value", choice: "worth_it" },
+];
+export const voteBoardsFor = (nicheId: string) => nicheId === "laptop" ? LAPTOP_BOARDS : nicheId === "pickleball" ? PICKLEBALL_BOARDS : nicheId === "skin" ? SKIN_BOARDS
   : nicheId === "discgolf" ? DISCGOLF_BOARDS : nicheId === "audio" ? AUDIO_BOARDS : nicheId === "simracing" ? SIMRACING_BOARDS : nicheId === "tennis" ? TENNIS_BOARDS : PADEL_BOARDS;
 export const VOTE_BOARDS = voteBoardsFor(niche.id);

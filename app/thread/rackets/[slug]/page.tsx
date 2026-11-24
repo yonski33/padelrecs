@@ -6,6 +6,8 @@ import { Shell } from "../../shell";
 import { racketData } from "../../racket-data";
 import { playersWord } from "../../../../lib/thread/web-sources";
 import { AudioFitCard } from "../../live/audio-match";
+import { LaptopFitCard } from "../../live/laptop-match";
+import { padelListData } from "../../padel-list-data";
 import { audioGroupsFor } from "../../../../lib/thread/traits";
 import { AUDIO_PILL_LABELS, SIMRACING_PILL_WORDS, SIMRACING_PILL_LABELS, TENNIS_PILL_WORDS, TENNIS_PILL_LABELS, PICKLEBALL_PILL_WORDS, PICKLEBALL_PILL_LABELS, DISCGOLF_PILL_LABELS, SKIN_PILL_WORDS, SKIN_PILL_LABELS } from "../../../../lib/thread/vote-pill";
 import { FitCard } from "../../live/racket-v7b";
@@ -70,6 +72,9 @@ type P = { params: Promise<{ slug: string }> };
 export const generateMetadata = ({ params }: P): Promise<Metadata> => liveMetadata({ params, searchParams: Promise.resolve({}) });
 
 const SKIN = niche.id === "skin", DG = niche.id === "discgolf", AUDIO = niche.id === "audio", SR = niche.id === "simracing", TN = niche.id === "tennis", PB = niche.id === "pickleball";
+/** LaptopRecs (owner 2026-11-24, PickleballRecs as the template): the v3 page under its category, its specs, tag-based TL;DR
+ *  lines, its nine vote groups and its own fit card (live/laptop-match.tsx). No score. */
+const LT = niche.id === "laptop";
 /** The v3 sites show no score (owner 2026-11-22 sweep): an AudioRecs product with no audio-match data still gets this page, so
  *  its score badges hide here too. */
 const V3 = v3Site(niche.id);
@@ -79,6 +84,16 @@ const AUDIO_SAYS: Record<string, string> = { "great noise cancelling": "praise t
   "wide soundstage": "praise the wide soundstage", "great mic": "praise the mic", "build quality issues": "report build problems",
   uncomfortable: "find them uncomfortable", overpriced: "find them overpriced", "harsh treble": "find the treble harsh",
   "connection issues": "report connection drops", muddy: "find the sound muddy" };
+/** LaptopRecs' TL;DR words per tag (lib/niche/laptop.ts tags), as AudioRecs' above. */
+const LAPTOP_SAYS: Record<string, string> = { fast: "call it fast", "cool and quiet": "say it runs cool and quiet", "great battery life": "praise the battery life",
+  "great display": "praise the screen", "great keyboard": "praise the keyboard", "great trackpad": "praise the trackpad", "great speakers": "praise the speakers",
+  "solid build": "praise the solid build", "light and portable": "find it light and easy to carry", "Linux friendly": "say it runs Linux well",
+  upgradeable: "like that it is easy to upgrade", repairable: "like that it is easy to repair", "great value": "call it good value",
+  "runs hot": "say it runs hot", "loud fans": "find the fans loud", "short battery life": "find the battery life short", throttling: "report it slowing down when hot",
+  "coil whine": "report coil whine", "screen issues": "report screen problems", "PWM flicker": "notice screen flicker", "hinge issues": "report hinge problems",
+  "keyboard issues": "report keyboard problems", "trackpad issues": "report trackpad problems", "build quality issues": "report build problems",
+  "driver or software issues": "report driver or software problems", bloatware: "complain about preinstalled software", "poor support": "report poor support",
+  "died early": "report it failing early", overpriced: "find it overpriced", heavy: "find it heavy", "weak webcam": "find the webcam weak" };
 /** AudioRecs' sound tag: where 3+ listeners put the tuning (warm … bright). */
 const tuningWord = (t: [number, number] | undefined) => !t || t[1] < 3 ? null : t[0] <= 38 ? "Warm sound" : t[0] >= 62 ? "Bright sound" : "Balanced sound";
 /** SkinRecs' SPF spec row: the SPF the product's name gives ("SPF 50+" → "50+"); no PA rating is stored anywhere yet. */
@@ -129,7 +144,7 @@ export default async function ThreadRacket({ params }: P) {
   const skinAttrs = sk?.attrs.get(r.id), tex = skinAttrs?.scores.texture, fin = skinAttrs?.scores.finish;
   const skinTex = tex && tex.n >= 3 ? (tex.score >= 62 ? "Rich" : tex.score <= 38 ? "Light" : null) : null;
   const skinFin = fin && fin.n >= 3 ? (fin.score >= 62 ? "Dewy" : fin.score <= 38 ? "Matte" : null) : null;
-  const skinType = (SKIN || DG || AUDIO || SR) && r.shape ? (niche.typePages ?? []).find(t => t.shape === r.shape) ?? null : null;
+  const skinType = (SKIN || DG || AUDIO || SR || LT) && r.shape ? (niche.typePages ?? []).find(t => t.shape === r.shape) ?? null : null;
   // DiscGolfRecs (its disc mock): the flight numbers as pills, the stability they give, and the engine's stability in its words.
   const flight = DG ? flightOf(r.weight) : null, stab = flight ? stabilityOfFlight(flight) : null;
   const dgStyle = DG && style ? SITE_FIT.styleLabels[style] : null;
@@ -166,7 +181,7 @@ export default async function ThreadRacket({ params }: P) {
   const specsBox = specs.length > 0 && <section className="th-card th-specs th-only-m">{specs.map(([k, v]) => <span key={k} className="th-kv"><span>{k}</span><strong>{v}</strong></span>)}</section>;
   // The live page's structured data: its breadcrumbs (the catalogue, the brand, the racket).
   const ld = { "@context": "https://schema.org", "@graph": [crumbs([{ name: catalogLabel, path: catalogPath }, ...(brand ? [{ name: brand.name, path: `/brands/${brand.slug}` }] : []), { name: r.name, path: productHref(r) }])] };
-  const crumbsEl = <div className="th-crumbs"><a href={th(catalogPath)}>{catalogLabel}</a>{SKIN || DG || AUDIO || SR ? skinType && <><span>/</span><a href={th(`/${skinType.slug}`)}>{AUDIO ? audioOf(ctx)?.wire.get(r.id)?.kind ?? skinType.label : skinType.label}</a></> : style && <><span>/</span><a href={th(STYLE_HREF[style])}>{STYLE_WORD[style]}</a></>}{brand && <><span>/</span><a href={`/brands/${brand.slug}`}>{brand.name}</a></>}</div>;
+  const crumbsEl = <div className="th-crumbs"><a href={th(catalogPath)}>{catalogLabel}</a>{SKIN || DG || AUDIO || SR || LT ? skinType && <><span>/</span><a href={th(`/${skinType.slug}`)}>{AUDIO ? audioOf(ctx)?.wire.get(r.id)?.kind ?? skinType.label : skinType.label}</a></> : style && <><span>/</span><a href={th(STYLE_HREF[style])}>{STYLE_WORD[style]}</a></>}{brand && <><span>/</span><a href={`/brands/${brand.slug}`}>{brand.name}</a></>}</div>;
   const lineEl = line.length >= 2 && brand ? <section className="th-card th-sec">
           <div className="th-head-row"><h2 className="th-h2">{`More from ${brand.name}`}</h2><a className="th-link-b" href={`/brands/${brand.slug}`}>{`All ${brand.name} ${niche.words.many} →`}</a></div>
           <div className="th-also">{line.map(x => <Mini key={x.id} x={x} small/>)}</div>
@@ -183,20 +198,23 @@ export default async function ThreadRacket({ params }: P) {
   // DiscGolfRecs (V3-ROLLOUT-BRIEF wave 2): the same v3 page with its specs, stability and flight numbers as tags, its plastic
   // chips over the feed and "Slower arm" in the fit card. No score.
   // SkinRecs (v3 rollout): its own specs, tags, the skin fit card, its nine vote groups and pills. No score.
-  if (niche.id === "padel" || (au && aw) || SR || TN || PB || DG || SKIN) {
+  // LaptopRecs: its fit card compares with the laptops of the same category (padelListData's quick match inputs).
+  const lw = LT ? (await padelListData()).laptop ?? [] : [], ltSame = lw.filter(w => w.category === r.shape && (w.id === r.id || rows.get(w.id)?.current !== false));
+  const ltLinks = Object.fromEntries(ltSame.flatMap(w => { const t = rows.get(w.id); return t ? [[w.id, { name: t.name, href: t.href }]] : []; }));
+  if (niche.id === "padel" || (au && aw) || SR || TN || PB || DG || SKIN || LT) {
     // "Released": the year in the name ("Head Radical MP 2023"), else the year field, except on TennisRecs and SimRacingRecs,
     // whose year field is a placeholder (2026 on every product, owner report 2026-11-22): there the row is left out.
     const released = r.name.match(/\b(20\d\d)\b/)?.[1] ?? (SR || (TN && !tennisYearKnown(r.slug)) ? null : r.year ? String(r.year) : null);
-    const v7Specs = (DG || SKIN ? specs : SR || TN || PB ? [...niche.specs.map(s => [s.label, r[s.column]]), ["Released", released]] : aw ? [["Type", r.balance], ["Connection", r.weight], ["Driver", r.core], ["Noise cancelling", aw.anc ? "Yes" : aw.wireless ? "No" : null], ["Notes", r.surface]] : [["Weight", r.weight], ["Shape", r.shape], ["Balance", r.balance], ["Feel", row?.feel ?? null], ["Face", r.surface], ["Released", r.year ? String(r.year) : null],
+    const v7Specs = (DG || SKIN ? specs : LT ? niche.specs.map(s => [s.label, r[s.column]]) : SR || TN || PB ? [...niche.specs.map(s => [s.label, r[s.column]]), ["Released", released]] : aw ? [["Type", r.balance], ["Connection", r.weight], ["Driver", r.core], ["Noise cancelling", aw.anc ? "Yes" : aw.wireless ? "No" : null], ["Notes", r.surface]] : [["Weight", r.weight], ["Shape", r.shape], ["Balance", r.balance], ["Feel", row?.feel ?? null], ["Face", r.surface], ["Released", r.year ? String(r.year) : null],
       ...(((specNotes as unknown as Record<string, Record<string, [string, string][]>>)[niche.id] ?? {})[r.slug] ?? [])] as [string, string | null][]).filter((x): x is [string, string] => !!x[1]);
     // TL;DR with no counts (owner 2026-11-21): the written one as is; else the page's own lines without "N players mention
     // it", else the most-mentioned tags as "Players often say…". Claims still need 5+ reviews behind them (as before).
     const plain = (t: string) => marked(t).map(x => x.text).join("").trim();
     const pc = writtenTldr(r.reviewSummary) ? null : pageContent(r.slug), sum = pc || writtenTldr(r.reviewSummary) || !ctx ? null : summary(ctx.data, r.id);
-    const says = (t: string) => AUDIO && AUDIO_SAYS[t] ? `${W.People} often ${AUDIO_SAYS[t]}.` : `${W.People} often ${tagSays(t)}.`;
+    const says = (t: string) => AUDIO && AUDIO_SAYS[t] ? `${W.People} often ${AUDIO_SAYS[t]}.` : LT && LAPTOP_SAYS[t] ? `${W.People} often ${LAPTOP_SAYS[t]}.` : `${W.People} often ${tagSays(t)}.`;
     // AudioRecs: the tags every review carries, all time (its 12-month window leaves most pages under the 5-review rule).
     // SkinRecs the same (its old page counted every opinion's tags too), with no counts in the lines.
-    const audioTags = (au || SKIN) && !pc && !writtenTldr(r.reviewSummary) && ctx ? (() => {
+    const audioTags = (au || SKIN || LT) && !pc && !writtenTldr(r.reviewSummary) && ctx ? (() => {
       const n = new Map<string, number>();
       for (const x of [...ctx.data.reviews.filter(v => v.racketId === r.id), ...ctx.data.external.filter(e => e.racketId === r.id)]) for (const t of new Set(x.tags ?? [])) n.set(t, (n.get(t) ?? 0) + 1);
       const top = (tone: "pos" | "neg") => [...n].filter(([t, c]) => c >= 5 && tagTone(t) === tone).sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0])).map(([t]) => t);
@@ -226,9 +244,9 @@ export default async function ThreadRacket({ params }: P) {
     })() : null;
     return <Shell active="rackets">
       <JsonLd data={ld}/>
-      <RacketV7b id={r.id} title={r.year && bare !== name ? `${bare} (${r.year})` : name} model={model} crumbs={crumbsEl} tags={aw ? audioTagsOf(aw, r.weight) : DG && flight ? [...tags, `${flight.speed} | ${flight.glide} | ${flight.turn} | ${flight.fade}`] : tags} lime={aw ? aw.anc : !!style} row={row} judged={judged} {...(aw && au ? audioPageProps(r.id, aw, au, rows, ctx) : SR ? srPageProps(r.id, r.shape) : SKIN ? { fit: <SkinFitCard id={r.id} wire={skinWire} links={skinLinks}/> } : DG ? dgPageProps(r.id, cards) : fitCore ? { fit: fitCore } : {})}
+      <RacketV7b id={r.id} title={r.year && bare !== name ? `${bare} (${r.year})` : name} model={model} crumbs={crumbsEl} tags={aw ? audioTagsOf(aw, r.weight) : DG && flight ? [...tags, `${flight.speed} | ${flight.glide} | ${flight.turn} | ${flight.fade}`] : tags} lime={aw ? aw.anc : !!style} row={row} judged={judged} {...(aw && au ? audioPageProps(r.id, aw, au, rows, ctx) : SR ? srPageProps(r.id, r.shape) : SKIN ? { fit: <SkinFitCard id={r.id} wire={skinWire} links={skinLinks}/> } : LT ? { fit: <LaptopFitCard id={r.id} wire={ltSame} links={ltLinks}/> } : DG ? dgPageProps(r.id, cards) : fitCore ? { fit: fitCore } : {})}
         lead={aw && lead ? lead.replace(/(?<![\w-])([Oo])wner(s?)\b/g, (_, o: string, x: string) => `${o === "O" ? "L" : "l"}istener${x}`) : DG && lead ? playersWord(lead, W.person) : SKIN && lead ? playersWord(lead, "reviewer") : SR && lead ? lead.replace(/(?<![\w-])([Oo])wner(s?)\b/g, (_, o: string, x: string) => `${o === "O" ? "R" : "r"}acer${x}`) : TN && lead ? lead.replace(/(?<![\w-])([Oo])wner(s?)\b/g, (_, o: string, x: string) => `${o === "O" ? "P" : "p"}layer${x}`) : lead} bullets={v7Bullets} specs={v7Specs} shop={shop} cards={cards} also={also} brand={brand ? { name: brand.name, slug: brand.slug } : null}
-        sim={simSelf ? pickSimilar(simSelf, simSpecs, new Set(compared.map(c => c.row.id))).flatMap(id => rows.get(id) ?? []) : aw || SR || DG || SKIN ? sim.filter(x => !compared.some(c => c.row.id === x.id)) : []} pill={pill} week={weekLine(cm.opinions, cm.posts)} latest={cm.latest} who={who} compared={compared} stories={tales}/>
+        sim={simSelf ? pickSimilar(simSelf, simSpecs, new Set(compared.map(c => c.row.id))).flatMap(id => rows.get(id) ?? []) : aw || SR || DG || SKIN || LT ? sim.filter(x => !compared.some(c => c.row.id === x.id)) : []} pill={pill} week={weekLine(cm.opinions, cm.posts)} latest={cm.latest} who={who} compared={compared} stories={tales}/>
     </Shell>;
   }
   return <Shell active="rackets">

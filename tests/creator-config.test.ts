@@ -63,7 +63,8 @@ test("laptop creator page: its own trait words, not paddle words", () => {
   assert.equal(measuredLine({ "Battery, looped movie at 200 nits": "almost 19 hours", "Sustained power draw": "32 W" }, "laptop"),
     "Battery, looped movie at 200 nits: almost 19 hours · Sustained power draw: 32 W");
   assert.equal(measuredLine({ "Battery, looped movie at 200 nits": "almost 19 hours", swing_weight: 111 }, "pickleball"), "Swing weight 111");
-  assert.ok(creatorPlainSite("laptop") && creatorPageOn("laptop") && !creatorPlainSite("pickleball") && !creatorPlainSite("skin"));
+  // LaptopRecs moved onto the Thread pages (2026-11-24): its creator pages come from the Thread product page, like pickleball's.
+  assert.ok(!creatorPlainSite("laptop") && creatorPageOn("laptop") && !creatorPlainSite("pickleball") && !creatorPlainSite("skin"));
 });
 
 test("laptop creator rows: the 0041 config columns become the card's config; other rows have none", () => {

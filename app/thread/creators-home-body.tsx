@@ -27,7 +27,7 @@ import { opinionsLabel } from "../../lib/thread/site-sentiment";
 import { SHOWN } from "../../lib/thread/top-picks";
 import { W } from "../../lib/thread/words";
 import { creatorHome } from "../../lib/thread/creator-data";
-import { creatorPageFor, creatorPageOn, CREATOR_VIEW } from "../../lib/thread/sites";
+import { creatorPageFor, creatorPageOn, CREATOR_VIEW, justInSite } from "../../lib/thread/sites";
 import { CreatorsHomeTop, type HomeExtra } from "./live/creators-home";
 import "./creators-home.css";
 
@@ -41,7 +41,9 @@ const ICON = {
   shield: <svg width="17" height="19" viewBox="0 0 18 20" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinejoin="round" aria-hidden="true"><path d="M9 1l7 3v5c0 5-3 8-7 10-4-2-7-5-7-10V4z"/><path d="M6 10l2 2 4-4"/></svg>,
 } as const;
 /** Each vote board's icon (lib/thread/top-picks.ts keys). */
-const BOARD_ICON: Record<string, keyof typeof ICON> = { sweet: "target", arm: "arm", control: "ctrl", power: "bolt", spin: "spin", beginner: "target", pop: "bolt", soft: "shield" };
+const BOARD_ICON: Record<string, keyof typeof ICON> = { sweet: "target", arm: "arm", control: "ctrl", power: "bolt", spin: "spin", beginner: "target", pop: "bolt", soft: "shield",
+  // LaptopRecs' boards (lib/thread/top-picks.ts LAPTOP_CATS).
+  battery: "bolt", fast: "bolt", screen: "target", keyboard: "ctrl" };
 const PILL_BG = { pos: "oklch(0.93 0.08 145)", mix: "oklch(0.95 0.08 95)", neg: "oklch(0.93 0.05 35)" } as const;
 const TYPE_BG: Record<string, string> = { Widebody: "oklch(0.94 0.06 125)", Standard: "oklch(0.94 0.04 250)", Elongated: "oklch(0.93 0.05 35)", Hybrid: "oklch(0.94 0.04 250)" };
 
@@ -65,7 +67,7 @@ export async function CreatorsHomeBody() {
   // 2027 paddles just in: real 2027 models only (the catalogue's just-in rule); hidden otherwise.
   const listed = new Map((ctx?.data.listed ?? []).map(x => [x.id, x]));
   const added = Object.fromEntries(all.map(r => [r.id, listed.get(r.id)?.createdAt ?? ""]));
-  const ji = ctx ? justIn(all.filter(r => listed.has(r.id)), added) : null, fresh = ji && ji.year === 2027 ? ji.rows : [];
+  const ji = ctx && justInSite(niche.id) ? justIn(all.filter(r => listed.has(r.id)), added) : null, fresh = ji && ji.year === 2027 ? ji.rows : [];
   // The sidebar, from the site's own data: newest comments, the rankings, Reddit summaries.
   const said = side.filter(x => x.kind === "comment").slice(0, 3);
   const rankLinks = lists.slice(0, 7).map(l => ({ label: l.label, href: l.href }));
@@ -74,7 +76,7 @@ export async function CreatorsHomeBody() {
 
   return <Shell>
     <main className="tch">
-      <CreatorsHomeTop rows={rows} extra={extra} curated={curated} added={d.added} total={total} brands={brands}
+      <CreatorsHomeTop rows={rows} extra={extra} curated={curated} added={d.added} total={total} brands={brands} {...(d.laptop ? { laptop: d.laptop } : {})}
         after={<>
           {bd.length > 0 && <section key="tp" className="tch-card tch-sec">
             <div className="tch-sec-h"><h2><svg width="28" height="26" viewBox="0 0 30 28" fill="none" stroke="currentColor" strokeWidth="2" strokeLinejoin="round" aria-hidden="true"><path d="M15 3C8 3 3 7.3 3 12.5c0 2.6 1.3 5 3.4 6.7L5 25l6.3-3.2c1.2.3 2.4.5 3.7.5 7 0 12-4.3 12-9.8S22 3 15 3z"/><g fill="currentColor" stroke="none"><circle cx="10" cy="12.5" r="1.5"/><circle cx="15" cy="12.5" r="1.5"/><circle cx="20" cy="12.5" r="1.5"/></g></svg>{`Top picks by ${W.people}`}

@@ -13,6 +13,8 @@ export const CREATOR_VOTE_KEYS: Record<string, string[]> = {
   // SkinRecs (owner "Yes, Skin next" 2026-11-23): six of its own nine groups (lib/thread/traits.ts SKIN_TRAIT_GROUPS); the
   // would-you-buy-it-again poll above them covers repurchase.
   skin: ["skin_type", "texture", "finish", "irritation", "makeup", "value"],
+  // LaptopRecs (owner 2026-11-24): six of its nine (lib/thread/traits.ts LAPTOP_TRAIT_GROUPS), the parts reviewers rate.
+  laptop: ["performance", "battery", "thermals", "screen", "keyboard", "build"],
 };
 /** The groups the creator page asks, in ranking order; only keys the site's vote API accepts. */
 export function creatorVoteGroups(nicheId: string): TraitGroup[] {

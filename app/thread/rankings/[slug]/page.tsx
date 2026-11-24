@@ -42,7 +42,7 @@ const cap = (s: string) => s ? s[0].toUpperCase() + s.slice(1) : s;
 const short = (label: string) => label.replace(/^Best (for )?/, "").replace(/^./, c => c.toUpperCase());
 
 const { one: ONE, many: MANY } = niche.words;
-const PICKLEBALL = niche.id === "pickleball", DG = niche.id === "discgolf", SKIN = niche.id === "skin", SR = niche.id === "simracing";
+const PICKLEBALL = niche.id === "pickleball", DG = niche.id === "discgolf", SKIN = niche.id === "skin", SR = niche.id === "simracing", LT = niche.id === "laptop";
 /** The sidebar's "See how you match": the site's own quick match, the one its home shows, or no card (lib/thread/sites.ts). */
 const QM = quickMatchFor(niche.id);
 /** Sites whose product pages use the v7b Discussion (PadelRecs, #565) use it here too, so the two never disagree; the rest
@@ -51,7 +51,9 @@ const V7B_DISCUSSION = niche.id === "padel";
 /** The arm and shape FAQ lines, the site's own (PickleballRecs: its Rankings and Elbow Guide mocks). */
 const ARM_TIP = PICKLEBALL ? "A soft core, a lighter paddle and a relaxed grip help most." : niche.id === "tennis" ? "A flexible frame, a bit more weight and soft strings help most." : "A soft core, a lower balance and a lighter racket help most.";
 // SkinRecs has no shape question (it showed padel's until 2026-11-21).
-const SHAPE_FAQ = SKIN ? null : SR
+const SHAPE_FAQ = SKIN ? null : niche.id === "laptop"
+  ? { q: "Ultrabook or gaming laptop?", a: "An ultrabook is light, quiet and lasts a work day on battery. A gaming laptop is faster with a stronger graphics chip, but heavier, louder and shorter on battery. Not sure? Ultrabook." }
+  : SR
   ? { q: "Direct drive, belt or gear?", a: "Direct drive gives the most detail and the smoothest feel. Belt drive is a solid budget step. Gear driven wheels are fine to start but feel notchy." }
   : niche.id === "audio"
   ? { q: "Open-back or closed-back?", a: "Open-back sounds more spacious and natural, but leaks sound and lets noise in. Closed-back blocks noise and keeps your music private. Not sure? Closed-back." }
@@ -104,6 +106,7 @@ export default async function ThreadRanking({ params }: P) {
       : { q: "What if I have tennis elbow?", a: `Players with sore arms speak best of ${names(arm)}. ${ARM_TIP}` }] : []),
     ...(SHAPE_FAQ ? [SHAPE_FAQ] : []),
     niche.id === "audio" ? { q: "How often does this ranking change?", a: `The counts update as new reviews come in, so ${W.items} can move up or down. A pair joins once it has 10 or more reviews.` }
+      : niche.id === "laptop" ? { q: "How often does this ranking change?", a: `The counts update as new reviews come in, so ${W.items} can move up or down. A ${W.item} joins once it has 5 or more reviews.` }
       : V3 && SKIN ? { q: "How often does this ranking change?", a: "The lists refresh as new reviews come in, so products can move up or down. A product joins once enough people have reviewed it." }
       : { q: "How often does this ranking change?", a: `Scores update as new reviews come in, so ${MANY} can move up or down any day. A ${ONE} joins once it has enough reviews to score fairly.` },
   ];
@@ -244,11 +247,12 @@ async function RankingV5({ l, lists, list, rated, label, faqs, ld, picOf }: { l:
   // PickleballRecs (owner 2026-11-23): each row's tag is this list's own count (lib/thread/vote-order.ts listPill), never another
   // trait's; a list without a rule there keeps the usual quality-first pill.
   const pbPill = (r: import("../../ui").ThreadRow) => { const groups = Object.fromEntries(TRAIT_GROUPS.map(g => [g.key, traitGroup(t, r.id, g.key)]));
-    const own = listPill(vo, groups, r.pos, W.people); return own === undefined ? votePill(groups, W.people, PICKLEBALL_PILL_WORDS, PICKLEBALL_PILL_LABELS) : own; };
+    // LaptopRecs: the same list tags ("Loved by 12 owners"); no vote pill words yet, so lists without a rule show none.
+    const own = listPill(vo, groups, r.pos, W.people); return own === undefined ? LT ? null : votePill(groups, W.people, PICKLEBALL_PILL_WORDS, PICKLEBALL_PILL_LABELS) : own; };
   const rows: V5Row[] = list.map((r, i) => ({ id: r.id, rank: i + 1, name: r.name, href: r.href, pic: r.pic, shape: oneShape(r.shape) ? r.shape![0].toUpperCase() + r.shape!.slice(1) : null,
     line: r.line, pos: r.pos, mix: r.mix, neg: r.neg, rating: rated?.[r.id] != null ? (rated[r.id] / 10).toFixed(1) : null,
     picked: au ? votePill(Object.fromEntries(TRAIT_GROUPS.map(g => [g.key, traitGroup(t, r.id, g.key)])), W.people, AUDIO_PILL_LABELS, AUDIO_PILL_LABELS)
-      : PICKLEBALL ? pbPill(r)
+      : PICKLEBALL || LT ? pbPill(r)
       : SR ? votePill(Object.fromEntries(traitGroupsForType(niche.id, r.shape, r.id).map(g => [g.key, traitGroup(t, r.id, g.key)])), W.people, SIMRACING_PILL_WORDS, SIMRACING_PILL_LABELS)
       : DG ? votePill(Object.fromEntries(TRAIT_GROUPS.map(g => [g.key, traitGroup(t, r.id, g.key)])), W.people, DISCGOLF_PILL_LABELS, DISCGOLF_PILL_LABELS)
       : SKIN ? votePill(Object.fromEntries(TRAIT_GROUPS.map(g => [g.key, traitGroup(t, r.id, g.key)])), W.people, SKIN_PILL_WORDS, SKIN_PILL_LABELS)
@@ -264,6 +268,7 @@ async function RankingV5({ l, lists, list, rated, label, faqs, ld, picOf }: { l:
   const mine = rows.map(r => r.id);
   const explore = [SKIN ? { tag: "Guide", title: GUIDE_LINK_LABELS.racket, desc: "Skin type, texture and what to look for, in plain words.", cta: "Read guide", href: GUIDE_PATHS.racket, imgs: pics(mine, 1), tone: "dark" }
       : AUDIO ? { tag: "Guide", title: GUIDE_LINK_LABELS.racket, desc: "Where you listen, fit and sound, in plain words.", cta: "Read guide", href: GUIDE_PATHS.racket, imgs: pics(mine, 1), tone: "dark" }
+      : LT ? { tag: "Guide", title: GUIDE_LINK_LABELS.racket, desc: "Chip, screen, battery and weight, in plain words.", cta: "Read guide", href: GUIDE_PATHS.racket, imgs: pics(mine, 1), tone: "dark" }
       : PICKLEBALL ? { tag: "Guide", title: GUIDE_LINK_LABELS.racket, desc: "Shape, weight, core and face, in plain words.", cta: "Read guide", href: GUIDE_PATHS.racket, imgs: pics(mine, 1), tone: "dark" }
       : DG ? { tag: "Guide", title: GUIDE_LINK_LABELS.racket, desc: "Disc type, flight numbers and stability, in plain words.", cta: "Read guide", href: GUIDE_PATHS.racket, imgs: pics(mine, 1), tone: "dark" }
       : SR ? { tag: "Guide", title: GUIDE_LINK_LABELS.racket, desc: "Base, wheel, pedals and rig, in plain words.", cta: "Read guide", href: GUIDE_PATHS.racket, imgs: pics(mine, 1), tone: "dark" }
@@ -271,12 +276,13 @@ async function RankingV5({ l, lists, list, rated, label, faqs, ld, picOf }: { l:
       : { tag: "Guide", title: "How to choose a padel racket", desc: "Shape, weight, balance and feel, in plain words.", cta: "Read guide", href: GUIDE_PATHS.racket, imgs: pics(mine, 1), tone: "dark" },
     SKIN ? { tag: "Guide", title: GUIDE_LINK_LABELS.shape, desc: "Which texture suits which skin, and when.", cta: "Read guide", href: GUIDE_PATHS.shape, imgs: pics(mine.slice(1), 3), tone: "sand" }
       : AUDIO ? { tag: "Guide", title: GUIDE_LINK_LABELS.shape, desc: "Open or closed, and who each suits.", cta: "Read guide", href: GUIDE_PATHS.shape, imgs: pics(mine.slice(1), 3), tone: "sand" }
+      : LT ? { tag: "Guide", title: GUIDE_LINK_LABELS.shape, desc: "Ultrabook, gaming, business or 2-in-1, and who each suits.", cta: "Read guide", href: GUIDE_PATHS.shape, imgs: pics(mine.slice(1), 3), tone: "sand" }
       : PICKLEBALL ? { tag: "Guide", title: GUIDE_LINK_LABELS.shape, desc: "Standard, hybrid or elongated, and who each suits.", cta: "Read guide", href: GUIDE_PATHS.shape, imgs: pics(mine.slice(1), 3), tone: "sand" }
       : DG ? { tag: "Guide", title: GUIDE_LINK_LABELS.shape, desc: "Putter, midrange or driver, and who each suits.", cta: "Read guide", href: GUIDE_PATHS.shape, imgs: pics(mine.slice(1), 3), tone: "sand" }
       : SR ? { tag: "Guide", title: GUIDE_LINK_LABELS.shape, desc: "What each drive feels like, and who each suits.", cta: "Read guide", href: GUIDE_PATHS.shape, imgs: pics(mine.slice(1), 3), tone: "sand" }
       : niche.id === "tennis" ? { tag: "Guide", title: GUIDE_LINK_LABELS.shape, desc: "97, 100 or oversize, and who each suits.", cta: "Read guide", href: GUIDE_PATHS.shape, imgs: pics(mine.slice(1), 3), tone: "sand" }
       : { tag: "Guide", title: "Padel racket shapes explained", desc: "Round, teardrop or diamond, and who each suits.", cta: "Read guide", href: GUIDE_PATHS.shape, imgs: pics(mine.slice(1), 3), tone: "sand" },
-    ...others.filter(x => x.slug !== (SR ? "best-sim-racing-gear" : niche.id === "tennis" ? "best-tennis-rackets" : PICKLEBALL ? "best-pickleball-paddles" : DG ? "best-disc-golf-discs" : "best-padel-rackets")).slice(0, 2).map((x, i) => ({ tag: "Ranking", title: x.label, desc: x.blurb, cta: "View ranking", href: x.href,
+    ...others.filter(x => x.slug !== (SR ? "best-sim-racing-gear" : niche.id === "tennis" ? "best-tennis-rackets" : PICKLEBALL ? "best-pickleball-paddles" : LT ? "best-laptops" : DG ? "best-disc-golf-discs" : "best-padel-rackets")).slice(0, 2).map((x, i) => ({ tag: "Ranking", title: x.label, desc: x.blurb, cta: "View ranking", href: x.href,
       imgs: pics(x.ids, 2), tone: i ? "lime" : "sand" }))];
   return <Shell active="rankings">
     <JsonLd data={ld}/>
@@ -292,20 +298,21 @@ async function RankingV5({ l, lists, list, rated, label, faqs, ld, picOf }: { l:
           </section>
           <section className="th-card rk5-list">
             <div className="rk5-list-head"><h2 className="th-h2">{l.label}</h2>
-              <span>{`${AUDIO || SR || PICKLEBALL || DG || SKIN ? plural(rows.length, W.item, W.items) : plural(rows.length, ONE, MANY)}  ·  ${plural(said, opinions[0], opinions[1])}`}</span></div>
+              <span>{`${AUDIO || SR || PICKLEBALL || DG || SKIN || LT ? plural(rows.length, W.item, W.items) : plural(rows.length, ONE, MANY)}  ·  ${plural(said, opinions[0], opinions[1])}`}</span></div>
             {skinWire ? <SkinRankRows rows={rows} ratingLabel={label} opinions={opinions} markLoved={loved} wire={skinWire}/>
               : <RankRows rows={rows} ratingLabel={label} opinions={opinions} markLoved={loved} {...(wire ? { wire } : {})}/>}
           </section>
         </div>
         <aside className="rk5-side">
-          {skinWire ? <SkinRankMatch rows={rows} wire={skinWire}/> : <QuickMatch rows={rows} {...(wire ? { wire } : {})}/>}
+          {/* LaptopRecs: no side quick match yet (its match lives on the home, catalogue and product pages). */}
+          {skinWire ? <SkinRankMatch rows={rows} wire={skinWire}/> : LT ? null : <QuickMatch rows={rows} {...(wire ? { wire } : {})}/>}
           <section className="th-card rk5-box"><h3>About these rankings</h3>
             <div className="about">
               <span className="item"><svg className="ic" width="30" height="28" viewBox="0 0 30 28" aria-hidden="true" fill="currentColor"><circle cx="15" cy="9" r="4.5"/><circle cx="6" cy="11" r="3.5"/><circle cx="24" cy="11" r="3.5"/><path d="M7 24c0-4.5 3.6-8 8-8s8 3.5 8 8zM0 23c0-3.3 2.4-6 5.5-6 1.2 0 2.2.3 3 .9C7 19.4 6 21.3 6 23.5zM30 23c0-3.3-2.4-6-5.5-6-1.2 0-2.2.3-3 .9 1.5 1.5 2.5 3.4 2.5 5.6z"/></svg><span><strong>{`Based on ${W.person} feedback`}</strong><span>Reviews and votes on {niche.site.name}, plus summaries of Reddit threads, YouTube reviews and blogs.</span></span></span>
               <span className="item"><svg className="ic" width="30" height="28" viewBox="0 0 30 28" aria-hidden="true" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinejoin="round"><path d="M15 3L26 9 15 15 4 9z"/><path d="M4 14l11 6 11-6M4 19l11 6 11-6"/></svg><span>{SKIN ? <><strong>{l.own ? "Ordered by reviews" : "Ordered by the skin match"}</strong><span>{l.own
                   ? `Products go by how consistently ${W.people} are happy with them, from products with enough reviews.`
                   : `The ${niche.site.name} match for this skin need, from what ${W.people} with that skin report. Products with a match only.`}</span></>
-                : loved ? <><strong>Ordered by most loved</strong><span>{AUDIO || DG ? `${cap(W.items)} go by how many ${W.people} loved them, the count on each row. Current models with 10+ reviews.` : SR ? `${cap(W.items)} go by how many ${W.people} loved them, the count on each row. ${new Date().getUTCFullYear()} models with 10+ reviews.` : PICKLEBALL ? `${cap(W.items)} go by how many ${W.people} loved them, the count on each row. Current models with 10+ reviews.` : `Rackets go by how many players loved them, the count on each row. ${new Date().getUTCFullYear()} models with 10+ reviews.`}</span></>
+                : loved ? <><strong>Ordered by most loved</strong><span>{AUDIO || DG ? `${cap(W.items)} go by how many ${W.people} loved them, the count on each row. Current models with 10+ reviews.` : SR ? `${cap(W.items)} go by how many ${W.people} loved them, the count on each row. ${new Date().getUTCFullYear()} models with 10+ reviews.` : PICKLEBALL ? `${cap(W.items)} go by how many ${W.people} loved them, the count on each row. Current models with 10+ reviews.` : LT ? `${cap(W.items)} go by how many ${W.people} loved them, the count on each row. Current generations with 5+ reviews.` : `Rackets go by how many players loved them, the count on each row. ${new Date().getUTCFullYear()} models with 10+ reviews.`}</span></>
                 : votes ? <><strong>Ordered by player votes</strong><span>{`${PICKLEBALL ? cap(W.items) : "Rackets"} go by how many ${W.people} pick them for ${votes}, the number on each row. Needs ${PICKLEBALL ? 10 : 12}+ reviews and 10+ ${W.people}.${label ? ` The number on each pick is a ${niche.site.name} rating from 0 to 10.` : ""}`}</span></> : <><strong>Picked, then checked</strong><span>{label ? `${niche.site.name} sets the order and checks it against what ${W.people} report. The number on each pick is a ${niche.site.name} rating from 0 to 10.`
                 : `${niche.site.name} sets the order and checks it against what ${W.people} report, not brand claims.`}</span></>}</span></span>
               <span className="item"><svg className="ic" width="30" height="28" viewBox="0 0 30 28" aria-hidden="true" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round"><circle cx="15" cy="14" r="11"/><path d="M15 8v6l4 3"/></svg><span><strong>Updated as new feedback arrives</strong><span>The counts change as new reviews come in.</span></span></span>
