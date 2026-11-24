@@ -235,3 +235,8 @@ test("mixTikToks: three others first, TikToks spread evenly, stance groups kept"
   const g = [r("a", "youtube"), r("b", "tiktok"), r("c", "youtube", "mix" as "pos")];
   assert.deepEqual(mixTikToks(g, "stance").map(x => x.id), ["a", "b", "c"]);
 });
+
+test("padel's creator page asks its ranking groups plus Best on, Sweet spot and Trampoline", () => {
+  assert.deepEqual(creatorVoteGroups("padel").map(g => g.key), ["plays_like", "arm", "level", "side", "sweet_spot", "trampoline"]);
+  assert.deepEqual(creatorVoteGroups("padel").find(g => g.key === "side")?.options.map(o => o[1]), ["Right side", "Left side", "Both sides"]);
+});
