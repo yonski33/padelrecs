@@ -5,9 +5,7 @@
 // Pure, so tests feed plain inputs.
 
 export const PRIMARY_SHAPE: Record<string, Record<string, string>> = {
-  // From each maker's own product data (the first shape option it lists), 2026-11-23. Six Zero Double Black Diamond Control is
-  // left out on purpose: its page offers thicknesses (14mm / 15mm Elongated / 16mm) and never says "Hybrid", so it stays in
-  // every shape its text names until the owner picks one.
+  // From each maker's own product data (the first shape option it lists), 2026-11-23.
   pickleball: {
     "vatic-pro-saga-2024": "Hybrid", // Flash (Vatic's hybrid) is the first option
     "pickleball-apes-pulse-2024": "Widebody", // V (Widebody) first; sold out at the time, X (Elongated) in stock
@@ -23,6 +21,9 @@ export const PRIMARY_SHAPE: Record<string, Record<string, string>> = {
     "six-zero-coral-16mm-2025": "Hybrid",
     "pickleball-apes-charm-2025": "Hybrid", // S (Hybrid) first
     "six-zero-coral-16mm-lightweight-2026": "Hybrid",
+    // Owner 2026-11-24 ("Yes, merge", the shape Six Zero lists first): 14mm and 16mm come first and are the hybrid; the 15mm
+    // Elongated has its own catalog row.
+    "six-zero-double-black-diamond-control-2024": "Hybrid",
   },
 };
 
