@@ -620,3 +620,11 @@ body:has(.thc) .thc .thc-pbox-on a, body:has(.thc) .thc .thc-sim-aff a { color: 
 /* Best for (owner 2026-11-23): the reviewer's reason under who it suits. */
 .thc-box.best b, .thc-box.best .thc-box-h span { color: var(--ink); }
 .thc .thc-box-s { font-size: 14px; line-height: 1.45; color: var(--body2, var(--muted)); }
+/* LaptopRecs (2026-11-24): the config each reviewer tested. A small grey line under the name, a Config column in the table,
+   and the config chips above the cards (the stance pills' look). */
+.thc .thc-cfg { display: block; margin-top: -4px; font-size: 13px; color: var(--muted); }
+.thc-g-row.cfg { grid-template-columns: minmax(170px, 1.1fr) 100px minmax(0, 1fr) minmax(0, 2fr); }
+.thc-g-row .cfg-l { font-size: 13px; line-height: 1.35; color: var(--muted); }
+.thc-g-head .cfg-l { font-size: 11px; font-weight: 700; color: var(--faint); }
+.thc .thc-cfg-chips { margin-top: 0; }
+@media (max-width: 719px) { .thc-g-row.cfg { grid-template-columns: minmax(0, 1fr) auto; } .thc-g-row .cfg-l { grid-column: 1 / -1; } }

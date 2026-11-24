@@ -97,10 +97,17 @@ export const creatorPageFor = (nicheId: string, slug: string) => CREATOR_PAGE_SI
  *  more creator reviews (one per reviewer, TikTok channels once) gets the creator page (app/thread/creator-page.tsx) at its
  *  normal address, and "/" gets the creators home (app/thread/creators-home-body.tsx). Every other product keeps today's
  *  page. Set a site to false to switch it all off at once. */
-export const CREATOR_PAGE: Record<string, boolean> = { pickleball: true, skin: true };
+export const CREATOR_PAGE: Record<string, boolean> = { pickleball: true, skin: true, laptop: true };
 export const creatorPageOn = (nicheId: string) => CREATOR_PAGE[nicheId] ?? false;
 /** The creators home at "/" (app/thread/creators-home-body.tsx), apart from the product page switch: SkinRecs (owner "Yes,
  *  Skin next" 2026-11-23) moves its product pages first and keeps its own home for now. */
 export const CREATOR_HOME: Record<string, boolean> = { pickleball: true };
 export const creatorHomeOn = (nicheId: string) => creatorPageOn(nicheId) && (CREATOR_HOME[nicheId] ?? false);
 export const CREATOR_MIN_REVIEWS = 3;
+/** Creator pages on a site that is not a Thread site (LaptopRecs, 2026-11-24): proxy.ts serves its product addresses for the
+ *  products in db/creators/<site>-pages.json from app/thread/creator-product/[slug], which shows the creator page when the
+ *  product has CREATOR_MIN_REVIEWS or more reviews in the database (drizzle/0039-0041) and today's product page otherwise.
+ *  Thread links (lib/thread/look.ts th) stay plain addresses there, and the page leaves out the Thread-only parts (the fit
+ *  check, the vote boxes, the discussion). Set CREATOR_PAGE to false for the site to switch it off. */
+export const CREATOR_PLAIN_SITES = ["laptop"];
+export const creatorPlainSite = (nicheId: string) => CREATOR_PLAIN_SITES.includes(nicheId);

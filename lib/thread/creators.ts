@@ -14,9 +14,18 @@ const PICKLEBALL_ATTRS = [["power", "Power"], ["control", "Control"], ["spin", "
 const SKIN_ATTRS = [["hydration", "Hydration"], ["texture", "Texture"], ["finish", "Finish"], ["absorption", "Absorbs"],
   ["irritation", "Gentleness"], ["results", "Results"], ["scent", "Scent"], ["white_cast", "No white cast"],
   ["sun_protection", "Sun protection"], ["adhesion", "Stays on"], ["packaging", "Packaging"], ["value", "Value"]] as const;
-export type AttrKey = (typeof PICKLEBALL_ATTRS)[number][0] | (typeof SKIN_ATTRS)[number][0];
+/** LaptopRecs' words (the laptop reader brief, 2026-11-24): how the reviewer rated each part of the laptop. */
+const LAPTOP_ATTRS = [["performance", "Performance"], ["thermals", "Thermals"], ["battery", "Battery"], ["display", "Display"],
+  ["keyboard", "Keyboard"], ["build", "Build"], ["portability", "Portability"], ["value", "Value"]] as const;
+export type AttrKey = (typeof PICKLEBALL_ATTRS)[number][0] | (typeof SKIN_ATTRS)[number][0] | (typeof LAPTOP_ATTRS)[number][0];
+/** Each site's attribute set (pickleball's paddle words unless a site has its own). */
+const SITE_ATTRS: Record<string, readonly (readonly [AttrKey, string])[]> = { skin: SKIN_ATTRS, laptop: LAPTOP_ATTRS };
+export const attrsFor = (site: string): readonly (readonly [AttrKey, string])[] => SITE_ATTRS[site] ?? PICKLEBALL_ATTRS;
 /** The site's own set: NICHE is inlined at build (next.config env), so the browser cards get the same list. */
-export const ATTRS: readonly (readonly [AttrKey, string])[] = process.env.NICHE === "skin" ? SKIN_ATTRS : PICKLEBALL_ATTRS;
+export const ATTRS: readonly (readonly [AttrKey, string])[] = attrsFor(process.env.NICHE ?? "");
+/** The heading over the per-attribute words ("How it plays"), per site. */
+const HOW_TITLE: Record<string, string> = { skin: "How it works", laptop: "How it holds up" };
+export const howTitleFor = (site: string) => HOW_TITLE[site] ?? "How it plays";
 export type Stance = "pos" | "mix" | "neg";
 export const STANCE_LABEL: Record<Stance, string> = { pos: "Loved it", mix: "Mixed", neg: "Not for me" };
 
@@ -39,7 +48,11 @@ export type CreatorReview = {
   /** "Long-term" or "First impressions", or null. */ note: string | null;
   /** A disclosed tie with this product's brand: "Works with <tie>". */ tie: string | null;
   stood: string | null; trade: string | null; compared: string | null;
+  /** The config the reviewer tested (LaptopRecs, drizzle/0041): the short label, a note when the source covers two configs,
+   *  the source's own words per field and a hand-set group; null on sites without configs. */
+  config?: ReviewConfig | null;
 };
+export type ReviewConfig = { label: string | null; note: string | null; group: string | null; fields: Record<string, string | null> };
 export type CreatorPage = { paddle: string; tldr: string;
   /** One line per take for the sentiment boxes (written from the reviews' own summaries; "" when none). */
   groups: Record<Stance, string>;
@@ -120,8 +133,11 @@ export const scoreText = (s: NonNullable<CreatorReview["score"]>) => `${s.value}
 
 /** Measured numbers the creator gave (lab-style, not scores): "Swing weight 111 · Twist weight 6.57". */
 const MEASURED: Record<string, string> = { spin_rpm: "Spin", swing_weight: "Swing weight", twist_weight: "Twist weight" };
-export const measuredLine = (m: CreatorReview["measured"]) => Object.entries(m).filter(([k]) => MEASURED[k])
-  .map(([k, v]) => `${MEASURED[k]} ${v}${k === "spin_rpm" ? " rpm" : ""}`).join(" · ");
+/** LaptopRecs' measurements keep the reviewer's own label ("Battery, looped movie at 200 nits: almost 19 hours"). */
+const FREE_MEASURED = new Set(["laptop"]);
+export const measuredLine = (m: CreatorReview["measured"], site = process.env.NICHE ?? "") => FREE_MEASURED.has(site)
+  ? Object.entries(m).filter(([k, v]) => k.trim() && String(v).trim()).map(([k, v]) => `${k}: ${v}`).join(" · ")
+  : Object.entries(m).filter(([k]) => MEASURED[k]).map(([k, v]) => `${MEASURED[k]} ${v}${k === "spin_rpm" ? " rpm" : ""}`).join(" · ");
 
 /** Initials for the creator's avatar ("Pickleball Studio" → "PS"). */
 export const initials = (name: string) => name.replace(/[^A-Za-z0-9 ]/g, " ").split(/\s+/).filter(Boolean).slice(0, 2)
@@ -234,13 +250,16 @@ const LIKE: Record<AttrKey, string> = { power: "Strong power", control: "Strong 
   sweet: "Forgiving sweet spot", comfort: "Easy on the arm", durability: "Grit that lasts",
   hydration: "Hydrating", texture: "Pleasant texture", finish: "Nice finish", absorption: "Absorbs fast", irritation: "Gentle on skin",
   results: "Visible results", scent: "Pleasant or no scent", white_cast: "No white cast", sun_protection: "Solid sun protection",
-  adhesion: "Stays on well", packaging: "Handy packaging", value: "Good value" };
+  adhesion: "Stays on well", packaging: "Handy packaging", value: "Good value",
+  performance: "Fast for its class", thermals: "Runs cool and quiet", battery: "Long battery life", display: "A good screen",
+  keyboard: "A good keyboard", build: "Solid build", portability: "Easy to carry" };
 const CONCERN: Record<AttrKey, string> = { power: "Low on power for some", control: "Harder to control for some", spin: "Less spin than some rivals",
   pop: "Muted pop for some", sweet: "Smaller sweet spot for some", comfort: "Firm on the arm for some", durability: "Durability doubts",
   hydration: "Not hydrating enough for some", texture: "Texture not for everyone", finish: "Finish not for everyone",
   absorption: "Slow to absorb for some", irritation: "Irritated some skin", results: "Little change for some", scent: "Scent bothered some",
   white_cast: "Some white cast", sun_protection: "Protection doubts", adhesion: "Comes off for some", packaging: "Packaging gripes",
-  value: "Pricey for some" };
+  value: "Pricey for some", performance: "Slower than rivals for some", thermals: "Hot or loud for some", battery: "Short battery life for some",
+  display: "Screen gripes", keyboard: "Keyboard gripes", build: "Build doubts", portability: "Heavy for some" };
 export function agreeChips(rs: Pick<CreatorReview, "attrs">[], max = 3) {
   const rows = ATTRS.map(([k]) => ({ k, hi: rs.filter(r => r.attrs[k] && HIGH.includes(r.attrs[k]!)).length, lo: rs.filter(r => r.attrs[k] && LOW.includes(r.attrs[k]!)).length }));
   const likes = rows.filter(x => x.hi >= 2 && x.hi > x.lo).sort((a, b) => b.hi - a.hi).slice(0, max).map(x => LIKE[x.k]);

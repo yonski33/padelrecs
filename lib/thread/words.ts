@@ -51,5 +51,10 @@ const SITES: Record<string, Words> = {
     tagline: "Real racer opinions, votes, and comments on the top sim racing gear." },
   // TennisRecs: padel's words ("players", "Played with it?"), its own community line.
   tennis: { ...PADEL, community: "The tennis racket community", tagline: "Real player opinions, votes, and comments on the top tennis rackets." },
+  // LaptopRecs (creator pages only, 2026-11-24): SkinRecs' plain words ("community votes", "people"), its laptops.
+  laptop: { person: "community", people: "people", People: "People", Person: "Community", owner: "reviewer", score: "user score", Score: "User score",
+    reviews: "reviews", Reviews: "Reviews", traitsTitle: "How does it hold up?", fitTitle: "Is it right for me?", opinions: "opinions", lovers: "People",
+    triedIt: "Used it?", played: "used", item: "laptop", items: "laptops", usedIt: "Used it?", community: "The laptop community",
+    tagline: "Real opinions and votes on popular laptops." },
 };
 export const W: Readonly<Words> = SITES[niche.id] ?? PADEL;

@@ -5,7 +5,7 @@
 // PickleballRecs (plans/PICKLEBALL-THREAD-PLAN.md) runs the same pages, previewed with ?look=thread until its flag is on.
 import { niche, catalogPath } from "../niche";
 
-import { threadDefaultFor, ELBOW_SLUG, storiesSite, v3Site, questionsSite } from "./sites";
+import { threadDefaultFor, ELBOW_SLUG, storiesSite, v3Site, questionsSite, creatorPlainSite } from "./sites";
 export { THREAD_DEFAULTS, threadDefaultFor, threadSite, THREAD_MOVED, ELBOW_SLUG } from "./sites";
 /** The running site's flag. */
 export const THREAD_DEFAULT = threadDefaultFor(niche.id);
@@ -159,7 +159,8 @@ export function threadPath(pathname: string, catalog = catalogPath, nicheId = ni
 /** A Thread link. While Thread is the default it is the plain address; in preview mode it carries ?look=thread (kept ahead
  *  of any #hash) so the next page is a Thread page too. Unpreviewed addresses and outside links are left as they are. */
 export function th(href: string, catalog = catalogPath, preview = !THREAD_DEFAULT): string {
-  if (!preview) return href;
+  // LaptopRecs' creator pages sit on its own addresses (lib/thread/sites.ts CREATOR_PLAIN_SITES): plain links there.
+  if (!preview || creatorPlainSite(niche.id)) return href;
   if (!href.startsWith("/") || href.startsWith("//")) return href;
   const [rest, hash = ""] = href.split("#", 2);
   const [path, query = ""] = rest.split("?", 2);

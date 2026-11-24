@@ -11,7 +11,8 @@ import { viewKey, readViewKey, viewQuery, CATALOG_VIEW, RANKING_VIEW, RACKET_VIE
 import { catalogPath } from "./lib/niche";
 import { specGroups } from "./lib/guide";
 import { threadPath, threadSite, THREAD_LOOK, THREAD_DEFAULT, CLASSIC_LOOK } from "./lib/thread/look";
-import { creatorPageFor, CREATOR_VIEW, CREATOR_PAGE_SITES } from "./lib/thread/sites";
+import { creatorPageFor, CREATOR_VIEW, CREATOR_PAGE_SITES, creatorPageOn, creatorPlainSite } from "./lib/thread/sites";
+import laptopCreatorPages from "./db/creators/laptop-pages.json";
 // The catalogue's cached views also hold the niche's spec filters (its guide config: padel balance and face).
 const CATALOG_Q = [...CATALOG_VIEW, ...specGroups(niche.guide).map(g => g.key)];
 
@@ -104,6 +105,19 @@ export async function threadRedirect(request:NextRequest, lookup:()=>Promise<Map
  return NextResponse.redirect(url,301);
 }
 
+/** Creator pages on a site that is not a Thread site (LaptopRecs, lib/thread/sites.ts CREATOR_PLAIN_SITES): the product
+ *  address of a product in db/creators/<site>-pages.json is served by app/thread/creator-product/[slug], which falls back to
+ *  today's product page when the product has no creator data. The query rides along; every other address routes as before. */
+const CREATOR_PLAIN_PAGES:Record<string,Set<string>>={laptop:new Set(laptopCreatorPages)};
+export function creatorProduct(request:NextRequest){
+ if(!creatorPlainSite(niche.id)||!creatorPageOn(niche.id))return null;
+ const seg=request.nextUrl.pathname.split("/").slice(1);
+ const slug=seg.length!==2?null:niche.categoryPaths?(TYPE_SLUGS.has(seg[0])?seg[1]:null):(`/${seg[0]}`===catalogPath?seg[1]:null);
+ if(!slug||!CREATOR_PLAIN_PAGES[niche.id]?.has(slug))return null;
+ const url=request.nextUrl.clone();url.pathname=`/thread/creator-product/${slug}`;
+ return NextResponse.rewrite(url);
+}
+
 export async function proxy(request:NextRequest) {
  const moved=await threadRedirect(request,async()=>(await import("./lib/product-lookup")).productLookup());
  if(moved)return moved;
@@ -124,6 +138,8 @@ async function liveProxy(request:NextRequest) {
   const moved=await productMove(request,niche,async()=>(await import("./lib/product-lookup")).productLookup());
   if(moved)return moved;
  }
+ const creator=creatorProduct(request);
+ if(creator)return creator;
  // The quick-match home (batch D): "/" and its picks are served from one cached page per combination (app/quick/[key]).
  // Other home views (?home=, ?type=, ?feed=, ?q=) stay with app/page.tsx. /quick/<key> itself is only ever a rewrite target.
  // SkinRecs (an attribute profile, lib/attr-profile.ts) has its own quick match on app/page.tsx (app/skin/home-skin.tsx).

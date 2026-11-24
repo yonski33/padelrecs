@@ -5,6 +5,11 @@
 //   NICHE=pickleball npx tsx --env-file=.env.local scripts/creator-reviews.mts migrate --owner-ok      (0039 only, plain SQL)
 //   NICHE=pickleball npx tsx --env-file=.env.local scripts/creator-reviews.mts import [--apply] --staging <file> \
 //     --verified <dir> --tiktok <dir> --prices <file> [--fixture <db/creators/pickleball.json>] [--channels <file>]
+// LaptopRecs (2026-11-24): migrate applies 0039, 0040 and 0041 (the tested config) together; import reads the staged laptop
+// card files ({ laptops: [{ slug, laptop, reviews }] }), one or more, comma-separated or repeated:
+//   NICHE=laptop npx tsx --env-file=.env.local scripts/creator-reviews.mts import --dry --laptop <staging.json>[,<staging.json>...]
+// --dry reads only (the laptop catalogue's slugs, and the creator tables when they exist) and reports counts and slug matches,
+// listing unmatched slugs instead of stopping; it can't be combined with --apply.
 // 0039 is applied as plain statements with no drizzle tracking row (like 0038), so unrun earlier entries are not skipped
 // later; every statement in it is safe to run twice.
 import { createHash } from "node:crypto";
@@ -14,12 +19,15 @@ import { connect } from "./connection";
 import { niche } from "../lib/niche";
 import { forSchema } from "../db/migrations";
 
-const SITES = new Set(["pickleball", "skin"]);
-if (!SITES.has(niche.id)) throw new Error(`Creator reviews are on PickleballRecs and SkinRecs only: run with NICHE=pickleball or skin (got ${niche.id}).`);
+const SITES = new Set(["pickleball", "skin", "laptop"]);
+if (!SITES.has(niche.id)) throw new Error(`Creator reviews are on PickleballRecs, SkinRecs and LaptopRecs only: run with NICHE=pickleball, skin or laptop (got ${niche.id}).`);
+const LAPTOP = niche.id === "laptop";
 const S = niche.schema;
 const args = process.argv.slice(2), cmd = args[0];
 const flag = (name: string) => { const i = args.indexOf(`--${name}`); return i >= 0 ? args[i + 1] : undefined; };
 const has = (name: string) => args.includes(`--${name}`);
+/** Every value of a flag given more than once or comma-separated. */
+const flags = (name: string) => args.flatMap((a, i) => a === `--${name}` && args[i + 1] ? args[i + 1]!.split(",") : []).map(x => x.trim()).filter(Boolean);
 const TABLES = ["creator_pages", "creator_reviews", "creator_prices"] as const;
 
 // ---- Owner decisions (2026-11-22), as in the #649 fixture builder ----
@@ -34,7 +42,10 @@ const PICKLEBALL_ATTR: Record<string, string> = { power: "power", control: "cont
 /** SkinRecs' attribute words (the skin sweep's reader brief), keys as stored (spaces become underscores). */
 const SKIN_ATTR: Record<string, string> = Object.fromEntries(["texture", "hydration", "finish", "results", "irritation", "absorption",
   "scent", "value", "packaging", "white cast", "sun protection", "adhesion"].map(k => [k, k.replace(/ /g, "_")]));
-const ATTR = niche.id === "skin" ? SKIN_ATTR : PICKLEBALL_ATTR;
+/** LaptopRecs' attribute words (the laptop reader brief), stored under the same keys. */
+const LAPTOP_ATTR: Record<string, string> = Object.fromEntries(["performance", "thermals", "battery", "display", "keyboard", "build",
+  "portability", "value"].map(k => [k, k]));
+const ATTR = niche.id === "skin" ? SKIN_ATTR : LAPTOP ? LAPTOP_ATTR : PICKLEBALL_ATTR;
 const WORDS = new Set(["Excellent", "Great", "Good", "Okay", "Weak"]);
 const STANCE: Record<string, "pos" | "mix" | "neg"> = { "Loved it": "pos", Mixed: "mix", "Not for me": "neg" };
 /** Chapters that say nothing about the paddle. */
@@ -60,7 +71,8 @@ type Fixture = { paddles: Record<string, { tldr: string; groups: Record<string, 
 
 async function loadInputs() {
   // Each site's own inputs: PickleballRecs the three paddle sweeps, TikTok and prices; SkinRecs one file per product (--skin).
-  const skinSite = niche.id === "skin";
+  // LaptopRecs reads only its staged card files (--laptop); the other inputs belong to the pickleball sweeps.
+  const skinSite = niche.id === "skin" || LAPTOP;
   const need = (n: string) => { const v = flag(n); if (!v) throw new Error(`--${n} is required`); return v; };
   const dir = async (d: string | undefined) => d ? Promise.all((await readdir(d)).filter(f => f.endsWith(".json") && !f.startsWith("tokens"))
     .map(async f => JSON.parse(await readFile(join(d, f), "utf8")))) : [];
@@ -71,7 +83,7 @@ async function loadInputs() {
   const staging = skinSite || cardsOnly ? { paddles: [] } : JSON.parse(await readFile(need("staging"), "utf8"));
   const verified = await dir(skinSite || cardsOnly ? flag("verified") : need("verified"));
   const tiktok = await dir(skinSite || cardsOnly ? flag("tiktok") : need("tiktok"));
-  const skin = skinSite ? await dir(need("skin")) : [];
+  const skin = niche.id === "skin" ? await dir(need("skin")) : [];
   const videoChannels: Record<string, string> = flag("video-channels") ? JSON.parse(await readFile(flag("video-channels")!, "utf8")) : {};
   const prices = flag("prices") || !(skinSite || cardsOnly) ? JSON.parse(await readFile(need("prices"), "utf8")) : { paddles: [], checked_date: null };
   const fixture: Fixture | null = flag("fixture") ? JSON.parse(await readFile(flag("fixture")!, "utf8")) : null;
@@ -80,7 +92,11 @@ async function loadInputs() {
   if (flag("key-points")) for (const f of (await readdir(flag("key-points")!)).filter(f => f.endsWith(".json")))
     Object.assign(keyPoints, JSON.parse(await readFile(join(flag("key-points")!, f), "utf8")));
   const channels: Record<string, string> = flag("channels") ? JSON.parse(await readFile(flag("channels")!, "utf8")) : {};
-  return { staging, verified, tiktok, prices, fixture, channels, keyPoints, skin: [...skin, ...cards], videoChannels };
+  const laptopFiles = LAPTOP ? flags("laptop") : [];
+  if (LAPTOP && !laptopFiles.length) throw new Error("--laptop <staging.json>[,<staging.json>...] is required on LaptopRecs");
+  const laptops: { slug: string; laptop: string; reviews: Record<string, any>[]; file: string }[] = [];
+  for (const f of laptopFiles) for (const l of JSON.parse(await readFile(f, "utf8")).laptops ?? []) laptops.push({ ...l, file: f });
+  return { staging, verified, tiktok, prices, fixture, channels, keyPoints, skin: [...skin, ...cards], videoChannels, laptops };
 }
 
 /** Every row the files describe, by product slug (resolved to racket ids later). */
@@ -153,6 +169,28 @@ function buildRows(inp: Awaited<ReturnType<typeof loadInputs>>, brandOf: (slug: 
       source: niche.id === "skin" ? "skin-creator-reviews 2026-11-22" : "pb-creator-reviews-51-80 2026-11-23",
       key_point: kp ? (/[.!?]$/.test(kp) ? kp : `${kp}.`) : null, created_at: now, updated_at: now });
   }
+  // LaptopRecs (2026-11-24): the staged laptop cards, each with the config the reviewer tested (drizzle/0041). Its key points
+  // are written with the cards; a card's config group is left to the page (db/creators/laptop-config-axes.json).
+  for (const l of inp.laptops) for (const r of l.reviews) {
+    const sc = score(r.creator_score), kp = (r.key_point ?? "").trim(), cfg = r.config ?? {};
+    const batch = l.file.split("/").slice(-2, -1)[0] ?? "staging";
+    reviews.push({ ...base(l.slug, r), platform: r.kind, review_type: r.type, creator: r.creator,
+      channel_url: r.channel_url ?? (r.kind === "blog" ? new URL(r.url).origin : null),
+      handle: null, same_channel_as: null, language: (r.language || "en").toLowerCase(), published_on: r.date ?? null,
+      duration_s: r.duration_s ?? secs(r.duration), video_id: r.video_id ?? null, thumbnail_url: null, stance: STANCE[r.stance],
+      summary: r.summary, summary_more: r.summary_more ?? null, summary_short: null,
+      highlights: (r.highlights ?? []).filter((h: string) => r.summary.includes(h)),
+      stood_out: r.stood_out ?? null, trade_off: r.trade_off ?? null, compared_to: r.compared_to ?? null,
+      quote: fixQuote(r.quote), quote_at_s: secs(r.quote_at), chapters: chapters(r.chapters), attributes: attrs(r.attributes), tags: [],
+      score_value: sc?.value ?? null, score_scale: sc?.scale ?? null, score_label: sc?.label ?? null, score_hidden: false,
+      measured: r.measured ?? {}, also_url: r.also_url ?? null, version: null, edition: null,
+      note: r.type === "long-term" ? "Long-term" : null, brand_tie: null, disclosure: r.disclosure ?? null,
+      evidence_note: r.evidence_note ?? null, check_result: r.check?.result ?? null, status: "live",
+      source: `laptop-creator-cards ${batch}`, key_point: kp ? (/[.!?]$/.test(kp) ? kp : `${kp}.`) : null,
+      config: Object.fromEntries(["cpu", "gpu", "ram", "storage", "screen", "price_as_tested"].map(k => [k, cfg[k] ?? null])),
+      config_label: r.config_label?.trim() || null, config_note: r.config_note?.trim() || null, config_group: null,
+      created_at: now, updated_at: now });
+  }
   const EDITIONS = new Set(["original", "crystal_blue", "unknown"]);
   const TT_TYPE: Record<string, string> = { full_review: "review", short_update: "short_update", ranking_mention: "ranking_mention" };
   for (const f of inp.tiktok) for (const t of f.takes) {
@@ -183,7 +221,8 @@ function buildRows(inp: Awaited<ReturnType<typeof loadInputs>>, brandOf: (slug: 
 
 /** Copy checks on everything a visitor can read. */
 function copyProblems(rows: Row[]) {
-  const shown = ["summary", "summary_more", "summary_short", "stood_out", "trade_off", "compared_to", "quote", "tldr", "group_pos", "group_mix", "group_neg"];
+  const shown = ["summary", "summary_more", "summary_short", "stood_out", "trade_off", "compared_to", "quote", "tldr", "group_pos", "group_mix", "group_neg",
+    "config_label", "config_note"];
   const out: string[] = [];
   for (const r of rows) for (const k of shown) {
     const v = r[k];
@@ -209,12 +248,15 @@ export function keyPointProblems(line: string) {
   if (/[—–]/.test(line)) out.push("dash");
   if (/\bverdict\b/i.test(line)) out.push("verdict");
   if (/\b(we|us|our|I|he|she|his|her)\b/.test(line)) out.push("pronoun");
-  if (/\b(owners?|creators?)\b/i.test(line)) out.push("owners/creators");
+  // LaptopRecs: "creator laptop" is a laptop type there, so only "owners" is flagged.
+  if (niche.id === "laptop" ? /\bowners?\b/i.test(line) : /\b(owners?|creators?)\b/i.test(line)) out.push(niche.id === "laptop" ? "owners" : "owners/creators");
   return out;
 }
 const PRICE_COLS = ["id", "racket_id", "shop", "url", "price", "currency", "in_stock", "edition", "listing_title", "affiliate", "affiliate_note",
   "source", "checked_at", "status"];
 const PAGE_COLS = ["racket_id", "tldr", "group_pos", "group_mix", "group_neg", "status", "updated_at"];
+/** A product gets the creator page from this many reviews (lib/thread/sites.ts CREATOR_MIN_REVIEWS). */
+const CREATOR_MIN = 3;
 
 async function main() {
   const { client } = connect();
@@ -237,15 +279,18 @@ async function main() {
     }
     if (cmd === "migrate") {
       if (!has("owner-ok")) throw new Error("migrate needs --owner-ok (the owner's typed OK in the session, after a backup).");
-      const file = flag("file") ?? "drizzle/0039_creator_reviews.sql";
-      const sql = forSchema(await readFile(file, "utf8"), S);
-      await client.begin(async tx => { for (const st of sql.split("--> statement-breakpoint")) if (st.trim()) await tx.unsafe(st); });
+      // LaptopRecs needs the tables, the key point and the config columns: 0039, 0040 and 0041 in one transaction.
+      const files = flags("file").length ? flags("file") : LAPTOP
+        ? ["drizzle/0039_creator_reviews.sql", "drizzle/0040_creator_key_point.sql", "drizzle/0041_creator_review_config.sql"] : ["drizzle/0039_creator_reviews.sql"];
+      const sqls = await Promise.all(files.map(async f => forSchema(await readFile(f, "utf8"), S)));
+      await client.begin(async tx => { for (const sql of sqls) for (const st of sql.split("--> statement-breakpoint")) if (st.trim()) await tx.unsafe(st); });
       const t = await client`select table_name from information_schema.tables where table_schema = ${S} and table_name like 'creator_%' order by 1`;
-      console.log(`${file} applied to ${S}:`, t.map(x => x.table_name).join(", "));
+      console.log(`${files.join(", ")} applied to ${S}:`, t.map(x => x.table_name).join(", "));
       return;
     }
     if (cmd !== "import") throw new Error("Usage: backup <dir> | migrate --owner-ok | import [--apply] ...");
-    const apply = has("apply");
+    const apply = has("apply"), dry = has("dry");
+    if (apply && dry) throw new Error("--dry and --apply can't be combined.");
     const inp = await loadInputs();
     const rk = await client.unsafe(`select r.id, r.slug, b.name as brand from "${S}"."rackets" r join "${S}"."brands" b on b.id = r.brand_id`);
     const redirects = await client.unsafe(`select slug, racket_id from "${S}"."racket_slug_redirects"`).catch(() => []);
@@ -253,7 +298,13 @@ async function main() {
     for (const r of redirects) if (!bySlug.has(r.slug)) { const x = rk.find(k => k.id === r.racket_id); if (x) bySlug.set(r.slug, { id: x.id, brand: x.brand }); }
     const built = buildRows(inp, slug => bySlug.get(slug)?.brand ?? null);
     const missing = [...new Set([...built.reviews, ...built.prices, ...built.pages].map(r => r.slug).filter(s => !bySlug.has(s)))];
-    if (missing.length) throw new Error(`Slugs not in ${S}.rackets: ${missing.join(", ")}`);
+    // --dry: the slug matches are part of the report; unmatched products are listed and left out of the counts below.
+    if (dry) {
+      const all = new Set(built.pages.map(p => p.slug));
+      console.log(`\nSlug matches against ${S}.rackets: ${all.size - missing.length} of ${all.size} products matched${missing.length ? `; not in the catalogue (left out below): ${missing.join(", ")}` : ""}`);
+      const gone = new Set(missing);
+      built.reviews = built.reviews.filter(r => !gone.has(r.slug)); built.prices = built.prices.filter(r => !gone.has(r.slug)); built.pages = built.pages.filter(r => !gone.has(r.slug));
+    } else if (missing.length) throw new Error(`Slugs not in ${S}.rackets: ${missing.join(", ")}`);
     for (const r of [...built.reviews, ...built.prices, ...built.pages]) r.racket_id = bySlug.get(r.slug)!.id;
     for (const r of built.reviews) r.id = id("cr", r.racket_id, r.url);
     // Key points from --key-points (pickleball) or written with the reviews (skin).
@@ -288,7 +339,7 @@ async function main() {
 
     // Per-paddle table.
     const slugs = [...new Set(built.pages.map(p => p.slug))].sort();
-    console.log(`\n${apply ? "APPLY" : "DRY RUN"} on ${S}: ${slugs.length} paddles\n`);
+    console.log(`\n${apply ? "APPLY" : "DRY RUN"} on ${S}: ${slugs.length} ${LAPTOP ? "laptops" : "paddles"}\n`);
     console.log("paddle".padEnd(42), "yt  blog tt  | counted | pos mix neg | prices");
     const totals = { yt: 0, blog: 0, tt: 0, counted: 0, prices: 0 };
     for (const s of slugs) {
@@ -303,6 +354,7 @@ async function main() {
     }
     console.log("TOTAL".padEnd(42), String(totals.yt).padStart(3), String(totals.blog).padStart(4), String(totals.tt).padStart(3), " |", String(totals.counted).padStart(7), " |", "".padStart(11), " |", String(totals.prices).padStart(6));
     console.log(`\nRows: creator_pages ${built.pages.length}, creator_reviews ${built.reviews.length}, creator_prices ${built.prices.length}`);
+    if (LAPTOP) console.log(`Config labels: ${built.reviews.filter(r => r.config_label).length} of ${built.reviews.length}; config notes ${built.reviews.filter(r => r.config_note).length}; products with ${CREATOR_MIN}+ reviews (a creator page): ${[...new Set(built.reviews.map(r => r.slug))].filter(s => built.reviews.filter(r => r.slug === s).length >= CREATOR_MIN).length}`);
     console.log(`Pages with tldr: ${built.pages.filter(p => (p as Row).tldr).length}; scores shown ${built.reviews.filter(r => r.score_value != null && !r.score_hidden).length}, hidden ${built.reviews.filter(r => r.score_hidden).length}; brand ties ${built.reviews.filter(r => r.brand_tie).length}; editions ${built.reviews.filter(r => r.edition).length}`);
     console.log(`Skipped from files: ${built.skipped.length}`); for (const s of built.skipped) console.log("  -", s);
     if (dups.length) { console.log(`Duplicates in files (first kept): ${dups.length}`); for (const d of dups) console.log("  -", d); }
@@ -330,7 +382,7 @@ async function main() {
       console.log("\nSAMPLE price", JSON.stringify(built.prices[0], null, 1));
     }
     if (problems.length && apply) throw new Error("Copy problems: fix the files first.");
-    if (!apply) { console.log("\nDry run only: nothing written. Re-run with --apply after the owner's OK."); return; }
+    if (!apply) { console.log(`\nDry run only: nothing written.${dry ? "" : " Re-run with --apply after the owner's OK."}`); return; }
     if (!exists) throw new Error("Run migrate first.");
 
     await client.begin(async tx => {
@@ -345,7 +397,7 @@ async function main() {
       };
       // Page lines written later by hand are never cleared by a re-import (null in the files keeps the DB value).
       await up("creator_pages", PAGE_COLS, ["racket_id"], built.pages, [], true);
-      const REVIEW_COLS = withKp ? [...REVIEW_COLS_BASE, "key_point"] : REVIEW_COLS_BASE;
+      const REVIEW_COLS = [...REVIEW_COLS_BASE, ...(withKp ? ["key_point"] : []), ...(LAPTOP ? ["config", "config_label", "config_note", "config_group"] : [])];
       await up("creator_reviews", REVIEW_COLS, ["racket_id", "url"], built.reviews, ["id", "created_at"]);
       await up("creator_prices", PRICE_COLS, ["racket_id", "url"], built.prices, ["id"]);
     });
