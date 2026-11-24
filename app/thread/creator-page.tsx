@@ -54,8 +54,8 @@ import { siteSentiment } from "../../lib/thread/site-sentiment";
 import { W } from "../../lib/thread/words";
 import { mentions } from "../../lib/thread/mentions";
 import { padelOffers, newestCheck, type ShopOffer } from "../../lib/padel-offers";
-import { followSite, storiesSite } from "../../lib/thread/sites";
-import { FollowButton } from "./live/follow-button";
+import { storiesSite } from "../../lib/thread/sites";
+import { specPills } from "../../lib/thread/spec-pills";
 import { racketStories } from "./stories-data";
 import { MemberMark } from "./live/member-mark";
 import "./creators.css";
@@ -192,6 +192,8 @@ export async function CreatorProductBody({ slug }: { slug: string }) {
   const tags = (SKIN ? [r.shape, skinAttrs?.facts.fragrance_free === "free" ? "Fragrance free" : null, skinTex ? `${skinTex} texture` : null]
     : PLAIN || LT ? [r.shape]
     : [style ? STYLE_WORD[style] : null, row?.feel ? `${row.feel} feel` : null, level ? `${level[0]!.toUpperCase()}${level.slice(1)}` : null]).filter((x): x is string => !!x);
+  // The catalogue's specs as a plain grey line under the tags (owner 2026-11-24, padel and pickleball).
+  const specs = specPills(niche.id, r);
   // Two + points and one - point (owner 2026-11-22), the likes and concerns backed by 2+ reviews.
   const plus = agree.likes.slice(0, 2), minus = agree.concerns[0] ?? null;
   // Up to 3 shops (SkinRecs 4, owner 2026-11-23: "show few stores") in the price box.
@@ -241,7 +243,8 @@ export async function CreatorProductBody({ slug }: { slug: string }) {
         <div className="thc-head-m">
           <h1>{name}</h1>
           {tags.length > 0 && <span className="thc-tags">{tags.map((t, k) => <span key={t} className={k === 0 && (style || SKIN) ? "on" : undefined}>{t}</span>)}</span>}
-          {followSite(niche.id) && <span className="thc-follow"><FollowButton id={r.id} name={name} place="hero"/></span>}
+          {/* The catalogue's specs as one plain grey line under the tags (owner 2026-11-24: pills were too busy). */}
+          {specs.length > 0 && <span className="thc-specline">{specs.join(" · ")}</span>}
           {(tldr || plus.length > 0 || minus) && <div className="thc-tldr">
             <span className="thc-tldr-h"><b>TL;DR</b><span>{`From ${plural(rs.length, "review")}`}</span></span>
             {tldr && <span className="thc-tldr-t">{yc ? <MentionsProvider {...mxProps}><MentionText text={tldr}/></MentionsProvider> : tldr}</span>}
