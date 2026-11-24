@@ -31,7 +31,7 @@ import { threadFeed } from "../../data";
 import { ELBOW_SLUG, GUIDE_PATHS } from "../../../../lib/thread/look";
 import { RankRows, QuickMatch, type V5Row } from "../../live/ranking-v5";
 import { traitCounts, traitGroup } from "../../data";
-import { listOrder } from "../../../../lib/thread/vote-order";
+import { listOrder, listPill } from "../../../../lib/thread/vote-order";
 import { oneShape } from "../../../../lib/thread/shape";
 /** PadelRecs (owner 2026-11-21): no "Ranked by player score…" line, the lists as one dropdown, and phone rows with the rank
  *  inline (th-hp, as on the home page). */
@@ -234,17 +234,21 @@ async function RankingV5({ l, lists, list, rated, label, faqs, ld, picOf }: { l:
   rated: Record<string, number> | null; label: string | null; faqs: { q: string; a: string }[]; ld: object; picOf: (id: string) => string | null }) {
   const t = await traitCounts();
   // A list ordered by votes (lib/thread/vote-order.ts) says so in About these rankings, with the answer it counts.
-  const vo = listOrder(niche.id, l.slug), votes = vo?.order === "votes" ? PLAYS[vo.option ?? ""] ?? null : null; const loved = vo?.order === "loved";
+  const vo = listOrder(niche.id, l.slug), votes = vo?.order === "votes" ? vo.word ?? PLAYS[vo.option ?? ""] ?? null : null; const loved = vo?.order === "loved";
   // AudioRecs: each row's quality-first vote pill ("Great noise cancelling · 13 listeners", lib/thread/vote-pill.ts) and its
   // match inputs for the quick match box; padel keeps "Most picked for …".
   const au = AUDIO ? audioOf((await threadRows()).ctx) : null, wire = au ? list.flatMap(r => au.wire.get(r.id) ?? []) : undefined;
   // SkinRecs: its pills, and the skin engine's inputs for this list's rows (its quick match names the best fit, never reorders).
   const sk = SKIN ? skinOf((await threadRows()).ctx) : null, ids = new Set(list.map(r => r.id));
   const skinWire = sk ? (await import("../../../skin/payload")).wireOf(sk, sk.data.listed.filter(r => ids.has(r.id))) : null;
+  // PickleballRecs (owner 2026-11-23): each row's tag is this list's own count (lib/thread/vote-order.ts listPill), never another
+  // trait's; a list without a rule there keeps the usual quality-first pill.
+  const pbPill = (r: import("../../ui").ThreadRow) => { const groups = Object.fromEntries(TRAIT_GROUPS.map(g => [g.key, traitGroup(t, r.id, g.key)]));
+    const own = listPill(vo, groups, r.pos, W.people); return own === undefined ? votePill(groups, W.people, PICKLEBALL_PILL_WORDS, PICKLEBALL_PILL_LABELS) : own; };
   const rows: V5Row[] = list.map((r, i) => ({ id: r.id, rank: i + 1, name: r.name, href: r.href, pic: r.pic, shape: oneShape(r.shape) ? r.shape![0].toUpperCase() + r.shape!.slice(1) : null,
     line: r.line, pos: r.pos, mix: r.mix, neg: r.neg, rating: rated?.[r.id] != null ? (rated[r.id] / 10).toFixed(1) : null,
     picked: au ? votePill(Object.fromEntries(TRAIT_GROUPS.map(g => [g.key, traitGroup(t, r.id, g.key)])), W.people, AUDIO_PILL_LABELS, AUDIO_PILL_LABELS)
-      : PICKLEBALL ? votePill(Object.fromEntries(TRAIT_GROUPS.map(g => [g.key, traitGroup(t, r.id, g.key)])), W.people, PICKLEBALL_PILL_WORDS, PICKLEBALL_PILL_LABELS)
+      : PICKLEBALL ? pbPill(r)
       : SR ? votePill(Object.fromEntries(traitGroupsForType(niche.id, r.shape, r.id).map(g => [g.key, traitGroup(t, r.id, g.key)])), W.people, SIMRACING_PILL_WORDS, SIMRACING_PILL_LABELS)
       : DG ? votePill(Object.fromEntries(TRAIT_GROUPS.map(g => [g.key, traitGroup(t, r.id, g.key)])), W.people, DISCGOLF_PILL_LABELS, DISCGOLF_PILL_LABELS)
       : SKIN ? votePill(Object.fromEntries(TRAIT_GROUPS.map(g => [g.key, traitGroup(t, r.id, g.key)])), W.people, SKIN_PILL_WORDS, SKIN_PILL_LABELS)
@@ -301,8 +305,8 @@ async function RankingV5({ l, lists, list, rated, label, faqs, ld, picOf }: { l:
               <span className="item"><svg className="ic" width="30" height="28" viewBox="0 0 30 28" aria-hidden="true" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinejoin="round"><path d="M15 3L26 9 15 15 4 9z"/><path d="M4 14l11 6 11-6M4 19l11 6 11-6"/></svg><span>{SKIN ? <><strong>{l.own ? "Ordered by reviews" : "Ordered by the skin match"}</strong><span>{l.own
                   ? `Products go by how consistently ${W.people} are happy with them, from products with enough reviews.`
                   : `The ${niche.site.name} match for this skin need, from what ${W.people} with that skin report. Products with a match only.`}</span></>
-                : loved ? <><strong>Ordered by most loved</strong><span>{AUDIO || DG ? `${cap(W.items)} go by how many ${W.people} loved them, the count on each row. Current models with 10+ reviews.` : SR ? `${cap(W.items)} go by how many ${W.people} loved them, the count on each row. ${new Date().getUTCFullYear()} models with 10+ reviews.` : `Rackets go by how many players loved them, the count on each row. ${new Date().getUTCFullYear()} models with 10+ reviews.`}</span></>
-                : votes ? <><strong>Ordered by player votes</strong><span>{`Rackets go by how many players pick them for ${votes}, the number on each row. Needs 12+ reviews and 10+ players.${label ? ` The number on each pick is a ${niche.site.name} rating from 0 to 10.` : ""}`}</span></> : <><strong>Picked, then checked</strong><span>{label ? `${niche.site.name} sets the order and checks it against what ${W.people} report. The number on each pick is a ${niche.site.name} rating from 0 to 10.`
+                : loved ? <><strong>Ordered by most loved</strong><span>{AUDIO || DG ? `${cap(W.items)} go by how many ${W.people} loved them, the count on each row. Current models with 10+ reviews.` : SR ? `${cap(W.items)} go by how many ${W.people} loved them, the count on each row. ${new Date().getUTCFullYear()} models with 10+ reviews.` : PICKLEBALL ? `${cap(W.items)} go by how many ${W.people} loved them, the count on each row. Current models with 10+ reviews.` : `Rackets go by how many players loved them, the count on each row. ${new Date().getUTCFullYear()} models with 10+ reviews.`}</span></>
+                : votes ? <><strong>Ordered by player votes</strong><span>{`${PICKLEBALL ? cap(W.items) : "Rackets"} go by how many ${W.people} pick them for ${votes}, the number on each row. Needs ${PICKLEBALL ? 10 : 12}+ reviews and 10+ ${W.people}.${label ? ` The number on each pick is a ${niche.site.name} rating from 0 to 10.` : ""}`}</span></> : <><strong>Picked, then checked</strong><span>{label ? `${niche.site.name} sets the order and checks it against what ${W.people} report. The number on each pick is a ${niche.site.name} rating from 0 to 10.`
                 : `${niche.site.name} sets the order and checks it against what ${W.people} report, not brand claims.`}</span></>}</span></span>
               <span className="item"><svg className="ic" width="30" height="28" viewBox="0 0 30 28" aria-hidden="true" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round"><circle cx="15" cy="14" r="11"/><path d="M15 8v6l4 3"/></svg><span><strong>Updated as new feedback arrives</strong><span>The counts change as new reviews come in.</span></span></span>
               <a className="more" href={th("/how-rankings-work")}>How rankings work →</a>

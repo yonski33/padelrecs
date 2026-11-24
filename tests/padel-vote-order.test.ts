@@ -1,6 +1,6 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { voteOrder, lovedOrder, listOrder, votesOrdered, lovedOrdered, VOTE_ORDER, type VoteCandidate, type LovedCandidate } from "../lib/thread/vote-order";
+import { voteOrder, lovedOrder, listOrder, listPill, votesOrdered, lovedOrdered, VOTE_ORDER, type VoteCandidate, type LovedCandidate } from "../lib/thread/vote-order";
 
 const c = (id: string, power: number, control: number, extra: Partial<VoteCandidate> = {}): VoteCandidate =>
   ({ id, name: id, family: id, year: 2026, reviews: 30, group: { power, control, all_round: 5 }, ...extra });
@@ -11,7 +11,7 @@ test("power and control are vote-ordered, Best overall by loved; other lists kee
   assert.equal(lovedOrdered("padel", "best-padel-rackets"), true);
   for (const slug of ["best-padel-rackets-2025", "best-padel-rackets-for-tennis-elbow", "best-teardrop-padel-rackets", "best-diamond-padel-rackets"])
     assert.equal(listOrder("padel", slug), null);
-  assert.equal(listOrder("pickleball", "best-power-pickleball-paddles"), null);
+  assert.equal(listOrder("audio", "best-power-pickleball-paddles"), null);
 });
 
 test("the pill's count leads, the share breaks ties", () => {
@@ -36,4 +36,20 @@ test("loved: the count leads, this season only, the review floor, one row per mo
   const ids = lovedOrder([lv("a", 80), lv("b", 142), lv("c", 80, { mixed: 5 }), lv("old", 200, { year: 2025 }), lv("new", 150, { year: 2027 }),
     lv("thin", 90, { reviews: 4 }), lv("fam-1", 60, { family: "f" }), lv("fam-2", 70, { family: "f" })], 2026);
   assert.deepEqual(ids, ["b", "c", "a", "fam-2"]);
+});
+
+test("PickleballRecs: each list counts its own answer and tags rows with it, never another trait", () => {
+  const power = listOrder("pickleball", "best-power-pickleball-paddles"), spin = listOrder("pickleball", "best-spin-pickleball-paddles");
+  assert.deepEqual([power?.trait, power?.option, spin?.trait, spin?.option], ["plays_like", "power", "spin", "lots"]);
+  const groups = { plays_like: { power: 112, control: 20, all_round: 30 }, spin: { lots: 157, some: 20 }, arm: { very: 4, somewhat: 30 }, level: { beginner: 81, advanced: 39, intermediate: 90 } };
+  assert.equal(listPill(power, groups, 200), "Most picked for power · 112 players");
+  assert.equal(listPill(spin, groups, 200), "Most picked for spin · 157 players");
+  assert.equal(listPill(listOrder("pickleball", "best-pickleball-paddles-for-tennis-elbow"), groups, 200), null, "arm comfort doesn't lead: no tag, not another trait's");
+  assert.equal(listPill(listOrder("pickleball", "best-pickleball-paddles-for-beginners"), groups, 200), "Picked for beginners · 81 players");
+  assert.equal(listPill(listOrder("pickleball", "best-pickleball-paddles"), groups, 266), "Loved by 266 players");
+  assert.equal(listPill(listOrder("pickleball", "best-elongated-pickleball-paddles"), groups, 263), "Loved by 263 players");
+  assert.equal(listPill(null, groups, 1), undefined, "no rule: the site's usual pill");
+  // "current" loved lists keep every year (pickleball's catalogue mixes 2024-2026).
+  assert.deepEqual(lovedOrder([{ id: "a", name: "a", family: "a", year: 2025, reviews: 20, loved: 90, mixed: 5, notForMe: 5 },
+    { id: "b", name: "b", family: "b", year: 2026, reviews: 20, loved: 80, mixed: 5, notForMe: 5 }], null), ["a", "b"]);
 });
