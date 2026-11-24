@@ -38,8 +38,8 @@ import { creatorPageFor, CREATOR_VIEW, CREATOR_MIN_REVIEWS, creatorPageOn, creat
 import { Avatar, CreatorReviews } from "./live/creator-reviews";
 import { MentionsProvider, MentionText, type MentionTarget } from "./live/mention-links";
 import padelMentions from "../../db/creators/padel-mentions.json";
-import { yearContext, type MentionYears } from "../../lib/thread/mention-years";
-import { mentionIndex, namedIds, type MentionAliases } from "../../lib/thread/mention-links";
+import { selfFamily, yearContext, type MentionYears } from "../../lib/thread/mention-years";
+import { mentionIndex, namedIds, selfRefKeys, type MentionAliases } from "../../lib/thread/mention-links";
 import { Comments } from "./live/comments";
 import { th } from "../../lib/thread/look";
 import { PollCard } from "./live/racket-v7b";
@@ -218,7 +218,7 @@ export async function CreatorProductBody({ slug }: { slug: string }) {
   // PadelRecs (owner 2026-11-24): one catalogue row per model year, so names resolve by this racket's season first
   // (lib/thread/mention-years.ts, db/creators/padel-mentions.json); the TL;DR and In more detail link too.
   const yc = PADEL ? yearContext(allRows, slug, r.year ?? new Date().getUTCFullYear(), padelMentions as unknown as MentionYears) : null;
-  const mxAll = yc ? mentionIndex(yc.rows, yc.extra, allRows) : mentionIndex(allRows, (aliases as unknown as Record<string, MentionAliases>)[niche.id] ?? {});
+  const mxAll = yc ? [...mentionIndex(yc.rows, yc.extra, allRows), ...selfRefKeys(allRows.find(x => x.slug === slug)!, selfFamily(allRows, slug, padelMentions as unknown as MentionYears))] : mentionIndex(allRows, (aliases as unknown as Record<string, MentionAliases>)[niche.id] ?? {});
   const mxIds = namedIds([...feed.flatMap(x => [x.summary, x.more, x.compared]), ...(yc ? [tldr, ...(wrap?.paras ?? [])] : [])], mxAll, r.id);
   const mxIndex = mxAll.filter(k => k.id === r.id || mxIds.includes(k.id));
   const mxTargets: Record<string, MentionTarget> = Object.fromEntries(mxIds.flatMap(id => { const x = allRows.find(y => y.id === id); if (!x) return [];

@@ -12,7 +12,7 @@ export type MentionRow = { id: string; name: string; brand: string; slug?: strin
 export type MentionAliases = { aliases?: Record<string, string[]>; defaults?: Record<string, string> };
 /** One product's match keys as regex sources (case-insensitive, separators loose). */
 /** `year`: the product's model year, when the catalogue keeps one row per year (a year the text names must match it). */
-export type MentionKeys = { id: string; keys: string[]; year?: number };
+export type MentionKeys = { id: string; keys: string[]; year?: number; selfRef?: boolean };
 export type Seg = { t: string; id?: string };
 
 const ROMAN: Record<string, string> = { ii: "2", iii: "3", iv: "4", "2": "ii", "3": "iii", "4": "iv" };
@@ -31,6 +31,23 @@ const yearOf = (r: MentionRow): number | null => r.year ?? (Number(r.name.match(
 /** The year-bound forms of a name: "<name> 2026", "<name> (2026)" and "2026 <name>" mean that year's row only. */
 const body = (ws: string[]) => ws.map(tok).join("[^a-z0-9]+");
 const yearSources = (ws: string[], y: number) => [`(?<![a-z0-9])${body(ws)}(?![a-z0-9])\\s*\\(?${y}(?![0-9])\\)?`, `(?<![a-z0-9,])${y}\\s+${body(ws)}(?![a-z0-9])${GEN}`];
+
+/** Self-references on a racket page (owner 2026-11-24): "the previous version", "last year's model", "its predecessor" mean the
+ *  generation before this racket in its family; "the 2025 version" means that year's row of the family. They link to that row
+ *  when the catalogue has it and never otherwise (no previous row: no link). The page's own year only claims its text.
+ *  `family`: this racket's rows of other years (lib/thread/mention-years.ts selfFamily). */
+export function selfRefKeys(self: MentionRow, family: MentionRow[]): MentionKeys[] {
+  const sy = yearOf(self);
+  if (!sy) return [];
+  const fam = family.filter(r => r.id !== self.id).flatMap(r => { const y = yearOf(r); return y ? [{ r, y }] : []; });
+  const prev = fam.filter(x => x.y < sy).sort((a, b) => b.y - a.y)[0]?.r;
+  const NOUN = "(?:version|model|one|edition|racket|iteration|release|generation)", B = "(?<![a-z0-9])", E = "(?![a-z0-9])";
+  const out: MentionKeys[] = [];
+  if (prev) out.push({ id: prev.id, selfRef: true, keys: [
+    `${B}(?:the|its) (?:previous|older|earlier|prior|old) ${NOUN}${E}`, `${B}last year['\u2019]s(?: ${NOUN})?${E}`, `${B}(?:the|its) predecessor${E}`] });
+  for (const { r, y } of [...fam, { r: self, y: sy }]) out.push({ id: r.id, selfRef: true, keys: [`${B}(?:(?:the|its) )?${y} ${NOUN}${E}`] });
+  return out;
+}
 
 /** The keys of each product (words), before the uniqueness check. */
 function rawKeys(r: MentionRow): string[][] {
