@@ -9,8 +9,13 @@ test("power and control are vote-ordered, Best overall by loved; other lists kee
   assert.equal(votesOrdered("padel", "best-power-padel-rackets"), true);
   assert.equal(votesOrdered("padel", "best-control-padel-rackets"), true);
   assert.equal(lovedOrdered("padel", "best-padel-rackets"), true);
-  for (const slug of ["best-padel-rackets-2025", "best-padel-rackets-for-tennis-elbow", "best-teardrop-padel-rackets", "best-diamond-padel-rackets"])
+  for (const slug of ["best-padel-rackets-2025", "best-teardrop-padel-rackets", "best-diamond-padel-rackets"])
     assert.equal(listOrder("padel", slug), null);
+  // Tennis elbow and beginners keep their own order; only the row tag follows the list (2026-11-24).
+  for (const slug of ["best-padel-rackets-for-tennis-elbow", "best-padel-rackets-for-beginners"]) {
+    assert.equal(listOrder("padel", slug)?.order, "keep");
+    assert.equal(votesOrdered("padel", slug) || lovedOrdered("padel", slug), false);
+  }
   assert.equal(listOrder("audio", "best-power-pickleball-paddles"), null);
 });
 
@@ -52,4 +57,13 @@ test("PickleballRecs: each list counts its own answer and tags rows with it, nev
   // "current" loved lists keep every year (pickleball's catalogue mixes 2024-2026).
   assert.deepEqual(lovedOrder([{ id: "a", name: "a", family: "a", year: 2025, reviews: 20, loved: 90, mixed: 5, notForMe: 5 },
     { id: "b", name: "b", family: "b", year: 2026, reviews: 20, loved: 80, mixed: 5, notForMe: 5 }], null), ["a", "b"]);
+});
+
+test("padel rows are tagged by their own list (pickleball's rule)", () => {
+  const groups = { plays_like: { power: 30, control: 8 }, arm: { very: 12, somewhat: 3 }, level: { beginner: 6, advanced: 20 } };
+  assert.equal(listPill(listOrder("padel", "best-padel-rackets"), groups, 41), "Loved by 41 players");
+  assert.equal(listPill(listOrder("padel", "best-power-padel-rackets"), groups, 41), "Most picked for power · 30 players");
+  assert.equal(listPill(listOrder("padel", "best-padel-rackets-for-tennis-elbow"), groups, 41), "Picked for arm comfort · 12 players");
+  assert.equal(listPill(listOrder("padel", "best-padel-rackets-for-beginners"), groups, 41), "Picked for beginners · 6 players");
+  assert.equal(listPill(listOrder("padel", "best-diamond-padel-rackets"), groups, 41), undefined, "no rule: padel's usual line");
 });

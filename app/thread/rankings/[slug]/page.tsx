@@ -245,6 +245,10 @@ async function RankingV5({ l, lists, list, rated, label, faqs, ld, picOf }: { l:
   // trait's; a list without a rule there keeps the usual quality-first pill.
   const pbPill = (r: import("../../ui").ThreadRow) => { const groups = Object.fromEntries(TRAIT_GROUPS.map(g => [g.key, traitGroup(t, r.id, g.key)]));
     const own = listPill(vo, groups, r.pos, W.people); return own === undefined ? votePill(groups, W.people, PICKLEBALL_PILL_WORDS, PICKLEBALL_PILL_LABELS) : own; };
+  // PadelRecs (2026-11-24, onto the pickleball template): the same list-matched tags; a list with no rule there keeps padel's
+  // "Most picked for …" line.
+  const padelPill = (r: import("../../ui").ThreadRow) => { const own = listPill(vo, Object.fromEntries(TRAIT_GROUPS.map(g => [g.key, traitGroup(t, r.id, g.key)])), r.pos, W.people);
+    return own === undefined ? pickedLine(traitGroup(t, r.id, "plays_like")) : own; };
   const rows: V5Row[] = list.map((r, i) => ({ id: r.id, rank: i + 1, name: r.name, href: r.href, pic: r.pic, shape: oneShape(r.shape) ? r.shape![0].toUpperCase() + r.shape!.slice(1) : null,
     line: r.line, pos: r.pos, mix: r.mix, neg: r.neg, rating: rated?.[r.id] != null ? (rated[r.id] / 10).toFixed(1) : null,
     picked: au ? votePill(Object.fromEntries(TRAIT_GROUPS.map(g => [g.key, traitGroup(t, r.id, g.key)])), W.people, AUDIO_PILL_LABELS, AUDIO_PILL_LABELS)
@@ -252,7 +256,7 @@ async function RankingV5({ l, lists, list, rated, label, faqs, ld, picOf }: { l:
       : SR ? votePill(Object.fromEntries(traitGroupsForType(niche.id, r.shape, r.id).map(g => [g.key, traitGroup(t, r.id, g.key)])), W.people, SIMRACING_PILL_WORDS, SIMRACING_PILL_LABELS)
       : DG ? votePill(Object.fromEntries(TRAIT_GROUPS.map(g => [g.key, traitGroup(t, r.id, g.key)])), W.people, DISCGOLF_PILL_LABELS, DISCGOLF_PILL_LABELS)
       : SKIN ? votePill(Object.fromEntries(TRAIT_GROUPS.map(g => [g.key, traitGroup(t, r.id, g.key)])), W.people, SKIN_PILL_WORDS, SKIN_PILL_LABELS)
-      : pickedLine(traitGroup(t, r.id, "plays_like")), arm: !!r.arm, ...(au && r.audio?.kind ? { shape: r.audio.kind } : {}) }));
+      : niche.id === "padel" ? padelPill(r) : pickedLine(traitGroup(t, r.id, "plays_like")), arm: !!r.arm, ...(au && r.audio?.kind ? { shape: r.audio.kind } : {}) }));
   const opinions: [string, string] = [W.opinions.replace(/s$/, ""), W.opinions];
   const said = rows.reduce((a, r) => a + r.pos + r.mix + r.neg, 0);
   // SkinRecs has ~30 lists: its pills and More rankings are the skin needs, this list's need and the product types (moreFor).
