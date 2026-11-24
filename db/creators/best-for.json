@@ -2788,5 +2788,555 @@
    "who": "Players whose hands get outpaced",
    "why": "Lighter build is faster in the hand for kitchen counters and switches."
   }
+ },
+ "discgolf": {
+  "cr_c945c37fcc653b27": {
+   "who": "Beginners and slower arms",
+   "why": "A speed 6.5 is easier to get up to speed and keeps control without losing much distance."
+  },
+  "cr_b85476188a6bb16e": {
+   "who": "Smaller arms wanting a straight fairway",
+   "why": "It flips from a hyzer without much power, glides and stays torque resistant."
+  },
+  "cr_c835248b8a9434da": {
+   "who": "Beginners and lower arm speeds",
+   "why": "A reliable driver for learning angles that holds turnovers and anhyzers to the ground."
+  },
+  "cr_f40792cc0ad037bb": {
+   "who": "Slower arms hitting tight gaps",
+   "why": "It flies like its numbers when thrown slower, which helps on tight wooded fairways."
+  },
+  "cr_f71b947280bcae25": {
+   "who": "All levels, including slower arms",
+   "why": "Distance comes easily for a 6.5 speed disc and it works for controlled flicks in the woods."
+  },
+  "cr_00ebafb2c29be8b2": {
+   "who": "Players learning forehand",
+   "why": "The flat, aerodynamic profile is less affected by wind and makes a good training fairway driver."
+  },
+  "cr_c658562ce835dbbf": {
+   "who": "Players wanting more control than Innova Destroyer",
+   "why": "One speed less gives more accurate, controlled shots and an easier full flight."
+  },
+  "cr_6838af4ba571eaf7": {
+   "who": "Innova Destroyer throwers finding them too stable",
+   "why": "Flies with quite a bit more turn than the Innova Destroyer at similar speed."
+  },
+  "cr_94b3ae85a9776ddc": {
+   "who": "Seasoned players or slower, newer arms",
+   "why": "Sits in the understable to downwind slot, drifty for veterans and a first driver for others."
+  },
+  "cr_054f9c07ba5f3b2f": {
+   "who": "Slower arms wanting a forgiving bomber",
+   "why": "Slower arms get a bomber distance driver that forgives some flex."
+  },
+  "cr_89e8f4b63b022f8a": {
+   "who": "Arms that suit an 11 speed",
+   "why": "The 11 speed fits their arm better than an Innova Destroyer and holds forehand lines."
+  },
+  "cr_02a09556107f6d5b": {
+   "who": "Windy days and Halo plastic fans",
+   "why": "Expects Halo plastic to fly more stable than the printed numbers, which suits wind."
+  },
+  "cr_73c2a5d086789b04": {
+   "who": "Average arms wanting a less stable partner",
+   "why": "Flies as far as a faster disc, slower and less stable than the Innova Destroyer."
+  },
+  "cr_4a736b661324a8c0": {
+   "who": "Wide open distance throwers",
+   "why": "Gets good results at about 70 percent power on open holes."
+  },
+  "cr_d6f53845e51556f6": {
+   "who": "Intermediate arms chasing max distance",
+   "why": "Finds the speed 11 manageable for intermediate arms trying max distance."
+  },
+  "cr_52bf5b7e8288051c": {
+   "who": "Forehand approach throwers who fight torque",
+   "why": "Handles forehand torque, will not flip and suits short chips up to the basket."
+  },
+  "cr_9aab181e460c9c45": {
+   "who": "Anyone wanting a dependable green-side disc",
+   "why": "Fades just enough to the basket and gets up and down every time."
+  },
+  "cr_ce64c4882bb9909c": {
+   "who": "Players worried about going too deep",
+   "why": "A great approach disc once speed control is worked out, with plastics to pick between."
+  },
+  "cr_7b29ec1ea792fbb6": {
+   "who": "Players with an all Westside or Trilogy bag",
+   "why": "Flies the same as the Discraft Zone, so brand of the rest of the bag decides it."
+  },
+  "cr_47d5af74eef671f8": {
+   "who": "Players wanting a grippy approach disc inside 300 feet",
+   "why": "Reliable, stable and grippy for almost any shot inside 300 feet, especially the softer plastic in winter."
+  },
+  "cr_30ed29a5b4151492": {
+   "who": "Players needing to get around obstacles",
+   "why": "Really overstable, holds a flex line or comes back from a wide hyzer."
+  },
+  "cr_3ca634d03a02c613": {
+   "who": "Sidearm-dominant players, juniors through open",
+   "why": "The thin, flat profile feels much better on sidearm approaches and flies straight with a gentle finish."
+  },
+  "cr_cdb527fb93038844": {
+   "who": "Players wanting putter feel and soft landings",
+   "why": "Upshots fade left and land softly with minimal skip, with a flat top and comfortable grip."
+  },
+  "cr_7915c73b3648a16c": {
+   "who": "Beginners wanting a teaching disc",
+   "why": "Sees it as a teacher for beginners because it holds the line it is put on."
+  },
+  "cr_b09fc624106e4a5b": {
+   "who": "Established players with good power control",
+   "why": "Calls it a brick that needs real power, so it suits players who already have that."
+  },
+  "cr_1d84142f45f3483f": {
+   "who": "Beginners and players needing control inside 200 feet",
+   "why": "Finds it goes where it is pointed and does not fly past the target."
+  },
+  "cr_5df659b65cb7c655": {
+   "who": "Players lacking approach distance control",
+   "why": "Says anyone whose approach game lacks distance control probably has no better disc."
+  },
+  "cr_1fdbe64cf6206abb": {
+   "who": "Players wanting dead straight approaches under 250 feet",
+   "why": "Finds it shines when a little fade or a dead straight approach is wanted."
+  },
+  "cr_f74c6017b00cf062": {
+   "who": "Newer players learning hyzer flips",
+   "why": "The GStar version is understable and flips to flat, while the Champion suits slower arms."
+  },
+  "cr_48da3a2758cc8a4b": {
+   "who": "Beginners and woods players wanting flip to flat",
+   "why": "Flips to flat and flies straight through trees and tunnels, so it fits a beginner bag."
+  },
+  "cr_464ca2570064b06c": {
+   "who": "Players who throw straight shots well",
+   "why": "It does not correct a slightly off release, so it suits clean straight throws."
+  },
+  "cr_1c248bb0ea537f88": {
+   "who": "Beginners and pros doing field work",
+   "why": "The easy 5 speed shows form and angle problems, so it works well for field work."
+  },
+  "cr_1bf17af1d5e4a050": {
+   "who": "Short backhands on tight woods lines",
+   "why": "It stays on a tight line at low power and flips to flat."
+  },
+  "cr_7ef999bb19deb2f4": {
+   "who": "Woods and gap shots with good backhand form",
+   "why": "It holds whatever angle it is released on but exposes wobble and forehand torque."
+  },
+  "cr_82f9ad4627382c9a": {
+   "who": "Beginners wanting a straight disc",
+   "why": "It is not too understable and shows the angle thrown."
+  },
+  "cr_f56b1b9e4936901d": {
+   "who": "Any arm speed, picking plastic for stability",
+   "why": "Slower arms get point and shoot, faster arms can shape it, and plastics fit different players."
+  },
+  "cr_d1e013ba3ba3649d": {
+   "who": "Beginners wanting a not-too-stable mid",
+   "why": "Most plastics turn at the start and fade a little at the end, not super stable."
+  },
+  "cr_7674a00714db5e1f": {
+   "who": "Anyone wanting a straight mid",
+   "why": "Flight is very straight and torque resistant, and suits a wide range of arm speeds."
+  },
+  "cr_ec291fdb40a41b90": {
+   "who": "Players wanting a neutral mid for any line",
+   "why": "Holds flat, hyzer and anhyzer lines without flipping too much or being too stable."
+  },
+  "cr_d9067158a5d937ae": {
+   "who": "Players flipping shots down wooded tunnels",
+   "why": "Sees it as a good fit for a Heiser flip down a wooded straight tunnel."
+  },
+  "cr_d13fc0f747f91d44": {
+   "who": "Amateurs with higher arm speed",
+   "why": "Finds it reliably stable with lots of glide, though big arms may want more overstable."
+  },
+  "cr_a8e2f8f4093004e2": {
+   "who": "Weaker arms using lighter weights",
+   "why": "Finds lighter versions easier to control and handle with a weak arm."
+  },
+  "cr_7453d0b127c437ee": {
+   "who": "Average players without a huge arm",
+   "why": "Finds it throwable without a huge arm, and best for smooth hyzer shots and flat throws."
+  },
+  "cr_007a2e515037ea84": {
+   "who": "Players wanting a short reliable skip shot",
+   "why": "Calls it the pick for a short, reliable skip shot with big bite."
+  },
+  "cr_efcb38eb85b3fdd2": {
+   "who": "Players curving shots around obstacles",
+   "why": "Uses the fade to curve around obstacles and onto baskets that need a curve."
+  },
+  "cr_6d01abb6af076ef8": {
+   "who": "Players of any skill or arm speed",
+   "why": "Holds its line under torque, and the plastic chosen sets how overstable or understable it flies."
+  },
+  "cr_771fd783aa015fcb": {
+   "who": "Players learning a mid-range",
+   "why": "Remembers the Elite Z as a good solid mid-range for learning to throw."
+  },
+  "cr_e7d64185b43b2a23": {
+   "who": "Players checking their form",
+   "why": "Goes where it is told, so a good release shows up clearly."
+  },
+  "cr_ea1fb537ff003573": {
+   "who": "Players with little arm speed",
+   "why": "The Jawbreaker is the straightest Buzzz out of the box, a possible fit for slow arms."
+  },
+  "cr_8483a29dbf506296": {
+   "who": "Newer throwers building a clean release",
+   "why": "Will not hide a poor release, and holds almost any line it is put on."
+  },
+  "cr_bddbcaa3431b1ac1": {
+   "who": "Players who like ESP plastic",
+   "why": "Holds a true line into a headwind, but the slick plastic did not suit them."
+  },
+  "cr_24ed2db38233f506": {
+   "who": "Slower arms wanting straight to understable lines",
+   "why": "Electron is slightly understable and glides far, while Plasma and Eclipse suit wind and bigger arms."
+  },
+  "cr_5c3615d69cdefad4": {
+   "who": "Players wanting a short driver and approach putter",
+   "why": "Neutron Soft works for short tee shots and 30 to 60 metre up shots, then putting."
+  },
+  "cr_4ce1edc00c6df438": {
+   "who": "Backhand throwers wanting a straight throwing putter",
+   "why": "It flies nearly dead straight with a reliable fade, but sidearm throws need a hyzer."
+  },
+  "cr_bbc01b2123bec330": {
+   "who": "Throwers who like a hyzer-flip shot shape",
+   "why": "A hyzer release flips up and lets the disc do the work."
+  },
+  "cr_7de4fd3d6f92e450": {
+   "who": "Players wanting an anhyzer shot in the woods",
+   "why": "It holds a left-to-right turn nearly to the ground on anhyzers, if thrown with commitment."
+  },
+  "cr_a8ac625f8fe8881e": {
+   "who": "Driving putter fans, especially firm putters",
+   "why": "The flight is extremely straight with long glide, and Electron breaks in faster than Neutron."
+  },
+  "cr_08f3523f3456bc0a": {
+   "who": "Point and shoot throwers wanting torque resistance",
+   "why": "Anhyzer and hyzer lines hold, with straight flights at 325 to 350 feet."
+  },
+  "cr_8d3f1617e529d7b4": {
+   "who": "Players wanting fade across hyzer angles",
+   "why": "The Eagle McMahon run does not flip up when thrown hard and fades out late."
+  },
+  "cr_1c36713a31f208f1": {
+   "who": "Approach players inside 200 feet, wet-weather players",
+   "why": "Reliable inside 200 feet, and Electron gives much more grip in wet weather."
+  },
+  "cr_3996df7fc68bb833": {
+   "who": "Approach putter users wanting a straight, versatile option",
+   "why": "It holds any line, glides far, and sits between an overstable and an understable putter."
+  },
+  "cr_8e2a8d9749e9445d": {
+   "who": "Players wanting an overstable Discraft approach",
+   "why": "The soft plastic stops quickly and flies like an Innova Pig, for an overstable approach slot."
+  },
+  "cr_38b4ba0b34d4ac69": {
+   "who": "Beginners to pros in wind",
+   "why": "Useful on windy days and headwind putts, and fills the overstable putter slot."
+  },
+  "cr_1f434eed7232b1b1": {
+   "who": "Advanced players wanting a hyzer putter",
+   "why": "Safe and reliable inside 50 feet and fights wind, but needs power to fly straight."
+  },
+  "cr_59adb31336a941b5": {
+   "who": "Beginners through advanced approach players",
+   "why": "Holds its flight, has glide for an overstable disc and flexes through woods."
+  },
+  "cr_c658097962a9d868": {
+   "who": "Forehand flick players",
+   "why": "Handles a lot of snap and stays controllable in strong wind."
+  },
+  "cr_d6a4d998ac004a47": {
+   "who": "Luna putters wanting better finger grip",
+   "why": "Flatter bottom rim lets the index finger sit, giving more spin and smoother putts."
+  },
+  "cr_7f3fb79a22e889bc": {
+   "who": "Players who like power grip on shallow rims",
+   "why": "Shallow rim suits a clean power grip, though some may find it too shallow for putting."
+  },
+  "cr_826b89b5182ecef6": {
+   "who": "Players wanting a straight driving putter",
+   "why": "Flies straight with mid-range glide and goes as far as their mid-ranges."
+  },
+  "cr_5ebc8134168236f5": {
+   "who": "Main putters wanting a neutral point-and-shoot flight",
+   "why": "Holds the angle on shorter putts and feels slightly better than the Latitude 64 Keystone."
+  },
+  "cr_e5acd7da350cdf88": {
+   "who": "Throwing putter users in calm or tailwind conditions",
+   "why": "Flies straight with decent glide, but turns over in a headwind, so fade is unreliable."
+  },
+  "cr_4865068709217875": {
+   "who": "Players wanting a straight approach putter",
+   "why": "Flew dead straight on a 400 ft uphill hole into a headwind, dialed in on approaches."
+  },
+  "cr_434099fd20f9efc0": {
+   "who": "Short up shots and touch shots",
+   "why": "Holds whatever line it is put on at short range, with enough grip in Zero Medium."
+  },
+  "cr_7b3d4b490fca4ca5": {
+   "who": "Players wanting a stall putter and upshot disc",
+   "why": "Handles putts inside 75 feet and holds almost any line on 150 to 200 foot upshots."
+  },
+  "cr_dab9fa9647fed327": {
+   "who": "Amateurs and players of all skill levels",
+   "why": "Flies nearly the same forehand and backhand, and is straight and slightly overstable."
+  },
+  "cr_97d3bf7456d5c068": {
+   "who": "Higher arm speeds in woods, or tired slower arms",
+   "why": "Flies dead straight flat and flips up on hyzer, so no 11 or 12-speed needed."
+  },
+  "cr_122c950f9259bc01": {
+   "who": "Tight woods lines and long hyzer flips",
+   "why": "Flips up to flat quickly off hyzer and reaches long distances, though not in a headwind."
+  },
+  "cr_3d2d1d48e81c91e8": {
+   "who": "Faster arms wanting a neutral flight in wind",
+   "why": "Slower arms may see it fly closer to a Discmania PD, faster arms get neutral flight."
+  },
+  "cr_622a82a160070e07": {
+   "who": "Amateurs wanting reliable distance, pros wanting turnovers",
+   "why": "Flies as a straight driver with slight turn and fade, good for tunnel shots."
+  },
+  "cr_5884e02c75772f9e": {
+   "who": "Players wanting a versatile, forgiving driver",
+   "why": "Holds many angles and forgives imperfect release angles, though not ideal for true beginners."
+  },
+  "cr_447b27951bb56bf7": {
+   "who": "Slower arms wanting long distance",
+   "why": "Calls it a versatile, long distance mold for a slower arm that flies straight."
+  },
+  "cr_dc2a6e64decbe542": {
+   "who": "Players with below average power",
+   "why": "Says it probably suits players with below average power; bigger arms may only use it for tailwinds."
+  },
+  "cr_6f7627604a19c423": {
+   "who": "Moderate to high arm speed forehanders",
+   "why": "Finds it suited to cheater forehands, long turnovers and rollers, but not for overstable forehand fans."
+  },
+  "cr_e03e5e81dd86d369": {
+   "who": "Players developing into distance drivers",
+   "why": "Gets a lot of distance without much effort, and it works well in woods and rain."
+  },
+  "cr_1100bc0abd6e3e52": {
+   "who": "All levels, from beginners to strong arms",
+   "why": "Finds it a roller disc for beginners and a hyzer flip disc for strong arms."
+  },
+  "cr_83488a0140977ff0": {
+   "who": "Slower arms wanting hyzer flips",
+   "why": "Finds it flips up flat on a slight hyzer and suits controlled turnovers and forehands."
+  },
+  "cr_d07f061fe4ff0a10": {
+   "who": "Forehand and flex throwers wanting Innova Wraith flight",
+   "why": "Finds the Eclipse very useful as a driver, with a flight close to an Innova Wraith."
+  },
+  "cr_8f68e33e46a8a9d8": {
+   "who": "Lower arm speeds throwing woods turnovers",
+   "why": "Says it suits lower arm speeds, turnovers and hyzer flips in the woods."
+  },
+  "cr_29e903d3fb049c27": {
+   "who": "Most players under about 400 feet",
+   "why": "Gets max distance lines from a hyzer flip, working best under about 400 feet."
+  },
+  "cr_a84f00e31157bbc3": {
+   "who": "Controlled throwers, not new backhand learners",
+   "why": "Says a Wave suits a more controlled thrower rather than someone just learning backhand."
+  },
+  "cr_a916f2bf765b0188": {
+   "who": "Beginners, slower arms and experienced players",
+   "why": "Straightens with the right angle and flies straight a good while, useful for anhyzer shots."
+  },
+  "cr_c312d7966eb06be9": {
+   "who": "Beginners moving up to intermediate",
+   "why": "Builds a go-to forehand once the arm gets stronger, but is not a new player's disc."
+  },
+  "cr_67379430aac9964e": {
+   "who": "Players with some arm speed and good snap",
+   "why": "Goes a long way when thrown properly, but is not for brand new players."
+  },
+  "cr_77ae9649c7959546": {
+   "who": "Any arm speed, and players without a forehand",
+   "why": "A hyzer flip that finishes right makes it a friendly, universal disc."
+  },
+  "cr_cf69eb97edcc8288": {
+   "who": "Slower arms wanting a slightly stable speed 7",
+   "why": "Flies like a 0/1 for a slow arm, filling that slot."
+  },
+  "cr_7e541eb7f991b698": {
+   "who": "Long-time Innova TeeBird throwers with extra power",
+   "why": "Flies close to the Innova TeeBird but a tad faster, so it needs some arm."
+  },
+  "cr_49de93358056a786": {
+   "who": "Higher arm speed players wanting a strong finish",
+   "why": "Hard grippy fade and overstable flight reward a flat, strong throw."
+  },
+  "cr_b6247a16cdeb2aeb": {
+   "who": "Players wanting Innova Thunderbird-like flight",
+   "why": "Keeps the Innova TeeBird hand feel with Innova Thunderbird-like flight on less arm speed."
+  },
+  "cr_799181232cc811fa": {
+   "who": "Amateurs wanting a straight to stable fairway",
+   "why": "Flies straighter and a bit longer than the Innova TeeBird, about 360 feet comfortably."
+  },
+  "cr_12e447aac7bd4e3f": {
+   "who": "Players finding Innova TeeBird not enough disc",
+   "why": "Wider and more concave, so it works as a step up in stability."
+  },
+  "cr_8511665d0a39f166": {
+   "who": "Short holes or low ceilings",
+   "why": "Pictures it on 300 to 330 foot holes or low ceilings a putter cannot reach."
+  },
+  "cr_82eb0fc011f96890": {
+   "who": "New and seasoned players wanting flat shots",
+   "why": "Calls it a really good disc for getting a flat shot without much power."
+  },
+  "cr_25f6b7d9c384f53e": {
+   "who": "Players on wooded courses",
+   "why": "Sees it as a disc for the woods rather than an open shot."
+  },
+  "cr_5617d6fd0d07f8ba": {
+   "who": "Any level, especially tight woods lines",
+   "why": "Says it suits players of any level, especially on tight woods lines."
+  },
+  "cr_62b6e62a073a2d31": {
+   "who": "Lower arm speed players wanting understable control",
+   "why": "Finds a lower arm speed player can throw it flat, calling it very controllable."
+  },
+  "cr_92e74763fe923ba1": {
+   "who": "Slower arm speeds finding Axiom Hex too stable",
+   "why": "Suits slower arm speeds or players who find the Axiom Hex a little too stable."
+  },
+  "cr_9d23646d7e52a130": {
+   "who": "Lower arm speed players wanting straight flight",
+   "why": "Says it holds a hyzer line for lower arm speed players wanting something pretty straight."
+  },
+  "cr_02c08480d12210e6": {
+   "who": "All skill levels, tunnels and gaps",
+   "why": "Calls it a tunnel and gap hitting machine once the angle is learned."
+  },
+  "cr_643b6d99bc986615": {
+   "who": "Woods players of all arm speeds",
+   "why": "Calls it a great mid-range for all arm speeds, and nearly the best for the woods."
+  },
+  "cr_decd0d438bc2df24": {
+   "who": "Beginners wanting an easy straight mid",
+   "why": "Calls it the regular person's Axiom Hex, a little easier to get straight, suiting beginners."
+  },
+  "cr_b2c921e39c61bc30": {
+   "who": "Beginners and hyzer flip throwers",
+   "why": "Says it should work for beginners and players who throw many hyzer flips."
+  },
+  "cr_0e127be4551810d2": {
+   "who": "Throwers wanting glide with a straight flight",
+   "why": "Goes dead straight thrown flat and holds anhyzer lines with more glide than other putters."
+  },
+  "cr_3f35d89580d9b403": {
+   "who": "Push putters wanting a small bead",
+   "why": "Putts cleanly with a push putt and flies straight for putts, approaches and drives."
+  },
+  "cr_463881d871f011e4": {
+   "who": "Players who dislike Axiom Envy plastic",
+   "why": "Gives a similar straight flight with little distance lost and a baseline feel."
+  },
+  "cr_5ef3e40140acf5a5": {
+   "who": "Spin putters and forehand throwers",
+   "why": "Glides well and works as a forehand at moderate power, but smush putters may find it stable."
+  },
+  "cr_ce5d7e215396876e": {
+   "who": "Upshot players wanting extra glide",
+   "why": "Glides more than their other approach putters and could fill the upshot role."
+  },
+  "cr_f340dc981b90e652": {
+   "who": "Throwers dialing power off a mid range",
+   "why": "Bridges putters and mid ranges with a lot of glide and stable flight in wind."
+  },
+  "cr_991146838be926c4": {
+   "who": "Medium arm players wanting an upshot putter",
+   "why": "Glides to circle two with little effort and settles standstill upshots close to the basket."
+  },
+  "cr_e48cf24e948054fc": {
+   "who": "Point and shoot players",
+   "why": "Stays straight and stable, holds lines through trees and keeps its flight after tree hits."
+  },
+  "cr_e7247c711de4a544": {
+   "who": "Average arms learning the game",
+   "why": "Calls it forgiving and says it shows what went wrong on a bad throw."
+  },
+  "cr_c40c16356170105c": {
+   "who": "Players who like to beat in and cycle discs",
+   "why": "Finds DX plastic beats in quickly but gives terrific flights and good distance."
+  },
+  "cr_d953e88429b3c57b": {
+   "who": "Players bagging several plastics for weather",
+   "why": "Suggests carrying three or four TeeBirds in different plastics for different wind and temperature."
+  },
+  "cr_0e7808141d967b5a": {
+   "who": "Beginners in DX, bigger arms in Champion",
+   "why": "Got the best beginner results from DX, while a bigger arm needs the stable Champion."
+  },
+  "cr_34cdd7f754af88ea": {
+   "who": "Players wanting a straight to slightly overstable fairway",
+   "why": "Finds the flight straight with a subtle fade, with slower arms maybe getting more fade."
+  },
+  "cr_6ffa916c395a637e": {
+   "who": "Bigger arms needing to avoid accidental flips",
+   "why": "Very stable and controllable, so it suits more snap and flex shots."
+  },
+  "cr_1a724325456ed9a1": {
+   "who": "Throwers wanting a reliable hook after straight flight",
+   "why": "Holds a hyzer line, goes straight a long way on flat, then finishes left."
+  },
+  "cr_20d87eae7729a827": {
+   "who": "Medium arms needing a headwind fairway driver",
+   "why": "Flies fairly straight, fades hard, and works when the disc must not turn over."
+  },
+  "cr_74b32bb6c332fa2d": {
+   "who": "Wanting less stability than Innova Thunderbird",
+   "why": "Flipped out the tiniest bit and stayed straight at the same angle."
+  },
+  "cr_582d2386b37e5525": {
+   "who": "Control drivers for throws under 400 feet",
+   "why": "Fission flexes around corners, while the Neutron fades harder and sooner."
+  },
+  "cr_3f63f2541aa4cf3c": {
+   "who": "Players with some arm speed wanting woods reliability",
+   "why": "Turn resistant and comfortable, usable in the woods or open on slightly windy days."
+  },
+  "cr_d8b8b0d4a4eac92c": {
+   "who": "Forehand and flex backhand throwers",
+   "why": "Faded straight out on a slight hyzer, with a great sidearm finish."
+  },
+  "cr_37fbd622cbefac3f": {
+   "who": "Shots needing a late, clean fade",
+   "why": "Holds hard hyzers without a pop up and fades out late, less dumpy than the Axiom Pyro."
+  },
+  "cr_1c33a958aefd4a81": {
+   "who": "Low ceiling drives, forehands and spike hyzers",
+   "why": "Uses it as the most used mid-range, with stability that lasts a long time."
+  },
+  "cr_4cffe37941a9a384": {
+   "who": "Players covering many shots with a few copies",
+   "why": "Three copies at different wear levels cover pretty much every shot around 300 feet."
+  },
+  "cr_bd30777794f89283": {
+   "who": "Beginners wanting a stable mid-range",
+   "why": "Holds its line when ripped and saves beginner mistakes, though it may feel a little overstable."
+  },
+  "cr_6c06bc17c74b389e": {
+   "who": "Low arm speeds, or fast arms in headwinds",
+   "why": "Holds an overstable line into a headwind, or stays straight for faster arms."
+  },
+  "cr_89a4479a7152574e": {
+   "who": "Backhand and forehand mid-range throwers",
+   "why": "Holds a dependable forehand line with a dump back to the right, and enjoyed on both sides."
+  }
  }
 }
