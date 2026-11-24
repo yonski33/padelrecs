@@ -36,7 +36,9 @@ import aliases from "../../db/creators/aliases.json";
 import bestFor from "../../db/creators/best-for.json";
 import { creatorPageFor, CREATOR_VIEW, CREATOR_MIN_REVIEWS, creatorPageOn, creatorPlainSite } from "../../lib/thread/sites";
 import { Avatar, CreatorReviews } from "./live/creator-reviews";
-import { MentionsProvider, type MentionTarget } from "./live/mention-links";
+import { MentionsProvider, MentionText, type MentionTarget } from "./live/mention-links";
+import padelMentions from "../../db/creators/padel-mentions.json";
+import { yearContext, type MentionYears } from "../../lib/thread/mention-years";
 import { mentionIndex, namedIds, type MentionAliases } from "../../lib/thread/mention-links";
 import { Comments } from "./live/comments";
 import { th } from "../../lib/thread/look";
@@ -213,12 +215,17 @@ export async function CreatorProductBody({ slug }: { slug: string }) {
 
   // Paddle mentions as links in the review cards (owner 2026-11-23): the catalogue's unique names, only the ones these
   // reviews use (and this paddle's own, which claims its text but never links) go to the browser.
-  const mxAll = mentionIndex(allRows, (aliases as unknown as Record<string, MentionAliases>)[niche.id] ?? {}), mxIds = namedIds(feed.flatMap(x => [x.summary, x.more, x.compared]), mxAll, r.id);
+  // PadelRecs (owner 2026-11-24): one catalogue row per model year, so names resolve by this racket's season first
+  // (lib/thread/mention-years.ts, db/creators/padel-mentions.json); the TL;DR and In more detail link too.
+  const yc = PADEL ? yearContext(allRows, slug, r.year ?? new Date().getUTCFullYear(), padelMentions as unknown as MentionYears) : null;
+  const mxAll = yc ? mentionIndex(yc.rows, yc.extra) : mentionIndex(allRows, (aliases as unknown as Record<string, MentionAliases>)[niche.id] ?? {});
+  const mxIds = namedIds([...feed.flatMap(x => [x.summary, x.more, x.compared]), ...(yc ? [tldr, ...(wrap?.paras ?? [])] : [])], mxAll, r.id);
   const mxIndex = mxAll.filter(k => k.id === r.id || mxIds.includes(k.id));
   const mxTargets: Record<string, MentionTarget> = Object.fromEntries(mxIds.flatMap(id => { const x = allRows.find(y => y.id === id); if (!x) return [];
     const votes = x.pos + x.mix + x.neg;
     return [[id, { id, slug: x.slug, name: withoutYear(x.name), href: th(x.href), pic: x.pic ?? null, loved: votes ? Math.round(100 * x.pos / votes) : null, votes,
       price: staged[x.slug]?.price?.usd ?? null }]]; }));
+  const mxProps = { index: mxIndex, targets: mxTargets, selfId: r.id, selfSlug: slug, unit: W.people, noun: niche.words.one };
 
   return <Shell active="rackets">
     <JsonLd data={ld}/>
@@ -237,7 +244,7 @@ export async function CreatorProductBody({ slug }: { slug: string }) {
           {followSite(niche.id) && <span className="thc-follow"><FollowButton id={r.id} name={name} place="hero"/></span>}
           {(tldr || plus.length > 0 || minus) && <div className="thc-tldr">
             <span className="thc-tldr-h"><b>TL;DR</b><span>{`From ${plural(rs.length, "review")}`}</span></span>
-            {tldr && <span className="thc-tldr-t">{tldr}</span>}
+            {tldr && <span className="thc-tldr-t">{yc ? <MentionsProvider {...mxProps}><MentionText text={tldr}/></MentionsProvider> : tldr}</span>}
             {(plus.length > 0 || minus) && <span className="thc-pts2">{plus.map(t => <span key={t} className="pos">{`✓ ${t}`}</span>)}{minus && <span className="neg">{`✕ ${minus}`}</span>}</span>}
           </div>}
           {/* The site's own players (owner 2026-11-22, #651): the bar and shares, never the creator reviews. */}
@@ -306,7 +313,7 @@ export async function CreatorProductBody({ slug }: { slug: string }) {
         <section id="sentiment" className="thc-box1 thc-sent">
           <div className="thc-h"><strong>The short version</strong><span>{plural(rs.length, "review")}</span></div>
           {/* With a written wrap-up (pilot): the text first, then the count boxes and tags (owner 2026-11-23). */}
-          {wrap && <Wrap w={wrap} n={rs.length}/>}
+          {wrap && (yc ? <MentionsProvider {...mxProps}><Wrap w={wrap} n={rs.length} links/></MentionsProvider> : <Wrap w={wrap} n={rs.length}/>)}
           <div className="thc-sent-g">{KEYS.map(k => <div key={k}>
             <span className="thc-sent-h"><span><span className={`thc-dot ${k}`}>●</span>{STANCE_LABEL[k]}</span><strong>{n[k]}</strong></span>
             <span className="thc-sent-x">{n[k] ? page.groups[k] || stanceLine(rs, k) : "None of the reviews."}</span></div>)}</div>
@@ -349,7 +356,7 @@ export async function CreatorProductBody({ slug }: { slug: string }) {
           </StickyCol>
         </div>
 
-        <MentionsProvider index={mxIndex} targets={mxTargets} selfId={r.id} selfSlug={slug} unit={W.people} noun={niche.words.one}>
+        <MentionsProvider {...mxProps}>
           <CreatorReviews reviews={feed} count={rs.length} roundup={null} {...(CONFIGS ? { configs: true, axis: configAxisFor(niche.id, slug) } : {})}/>
         </MentionsProvider>
 
@@ -407,13 +414,15 @@ type Wrapup = { paras: string[]; highlights: { text: string; tone: "pos" | "neg"
 
 /** "In more detail" (pilot, owner OK 2026-11-23): 2-3 sentences on what the counts and tags can't show (who it suits, where
  *  the mixed takes come from, what it's compared with), written from all the reviews and checked by a second reader. */
-function Wrap({ w, n }: { w: Wrapup; n: number }) {
+function Wrap({ w, n, links = false }: { w: Wrapup; n: number; /** PadelRecs: racket names in the plain text link. */ links?: boolean }) {
+  let pk = 0;
+  const plain = (t: string): ReactNode => links && t ? <MentionText key={`t${pk++}`} text={t}/> : t;
   const mark = (t: string) => { const out: ReactNode[] = []; let rest = t, k = 0;
     for (;;) { let best = -1, hi = -1;
       w.highlights.forEach((h, i) => { const at = rest.indexOf(h.text); if (at >= 0 && (best < 0 || at < best)) { best = at; hi = i; } });
-      if (hi < 0) { out.push(rest); return out; }
+      if (hi < 0) { out.push(plain(rest)); return out; }
       const h = w.highlights[hi];
-      out.push(rest.slice(0, best), <mark key={k++} className={h.tone}>{h.text}</mark>);
+      out.push(plain(rest.slice(0, best)), <mark key={k++} className={h.tone}>{h.text}</mark>);
       rest = rest.slice(best + h.text.length); } };
   // Under The short version title (owner 2026-11-23: one section), above the count boxes and tags.
   return <div className="thc-wrap">
