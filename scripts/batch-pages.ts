@@ -115,7 +115,7 @@ const RULES = `Copy rules for every field:
 - Spell every product name exactly as the site catalog does. Transcripts often mishear names (Fenix as "Phoenix", AT10 as "AT", Xplo as "Explo", Vertex as "Vortex"); correct them to the catalog spelling, and if a name cannot be pinned down, write "another ${ITEM}". (Owner 2026-11-24.)
 - No em dashes or en dashes. Never the word "verdict". Never "we", "us", "our". Write "players" for Reddit and forum people and "reviewers" for YouTube and blog reviewers, never "owners" or "creators". Refer to any person as they/them.
 - Plain, dry English, no hype. Never claim that ${SITE} or anyone at the site tested the ${ITEM}.
-- Facts only from the material given. Every claim in the TL;DR needs 2+ reviews behind it. Counts must be exact ("two players", "one reviewer"); when unsure, say "some" rather than inflate. Never state the total number of reviews or posts except in "Early signal from N posts."
+- Facts only from the material given. Every claim in the TL;DR needs 2+ reviews behind it. Counts must be exact ("two players", "one reviewer"); when unsure, say "some" rather than inflate. Never state the total number of reviews or posts. In the Reddit box never give ANY exact count of players, posts, comments or threads (see the reddit rules).
 - Keep sibling versions apart: a claim about another shape, thickness, generation or edition is not about this ${ITEM}. Leave it out or label it as that version.
 - Highlights are short phrases (2 to 7 words) copied character for character from your own text.`;
 
@@ -129,12 +129,13 @@ const SPEC = `Write three things for the ${ITEM} page of {NAME}:
 - used_post_ids: ids of the posts you used (only posts about this ${ITEM}).
 - headline: one line, 6 to 14 words, what players agree on and the main drawback.
 - tags: 2 to 5 short tags (2 to 6 words), tone "pos" or "neg", each with post_ids of the 2 or more posts that back it.
-- paras: exactly two short paragraphs. First: what players agree on. Second: durability, weight, comparisons and complaints. If fewer than 10 posts are used, end the second paragraph with exactly "Early signal from N posts." where N is the number of used posts.
+- paras: exactly two short paragraphs. First: what players agree on. Second: durability, weight, comparisons and complaints. If fewer than 10 posts are used, end the second paragraph with exactly "Early signal from a small number of posts."
+- NO exact counts of players, posts, comments or threads anywhere in the box (owner rule 2026-11-24: exact numbers make it look like an automated sweep of Reddit). Use vague amounts on this scale: "most players" (about two thirds or more), "many players", "some players", "a few players" (3 to 5), "a couple of players" (2), "one player" (1, kept for single examples). Never write "24 players", "three players", "five posts", "half of the 24" or "N% of players". Numbers that are not counts of people (grams, 12K, 16mm, years, a score a player gave) are fine.
 - highlights: 2 to 4, each a short phrase from your paragraphs that also appears word for word in the one post it points to (post_id).`;
 
 const WRITER_SYSTEM = `You write page content for ${SITE}, a site that collects what reviewers and players say about each ${niche.id} ${ITEM}.\n\n${RULES}`;
 const CHECKER_SYSTEM = `You fact-check page content for ${SITE} against the reviews and posts it was written from. A different writer produced it.
-Check every claim and count: the TL;DR (each point backed by 2+ reviews), the wrap-up (attributions correct, counts exact, nothing borrowed from a sibling version or another ${ITEM}), and the Reddit box (only posts about this exact ${ITEM}, tag counts match the posts listed, each highlight word for word in its post, "Early signal from N posts." when fewer than 10 posts).
+Check every claim and count: the TL;DR (each point backed by 2+ reviews), the wrap-up (attributions correct, counts exact, nothing borrowed from a sibling version or another ${ITEM}), and the Reddit box (only posts about this exact ${ITEM}, tag counts match the posts listed, each highlight word for word in its post, "Early signal from a small number of posts." when fewer than 10 posts, and NO exact count of players, posts, comments or threads anywhere in it: replace any with a vague amount).
 Return result "pass" (no change needed), "fixed" (you corrected it with the smallest edits; return the full corrected content) or "reject" (too wrong to fix). List every problem.\n\n${RULES}`;
 
 const nul = (t: object) => ({ anyOf: [t, { type: "null" }] });
@@ -225,6 +226,9 @@ async function poll() {
 // ---------------------------------------------------------------- code checks + build
 const norm = (s: string) => s.toLowerCase().replace(/[’‘]/g, "'").replace(/[^a-z0-9' ]+/g, " ").replace(/\s+/g, " ").trim();
 const words = (s: string) => s.trim().split(/\s+/).length;
+const CNUM = "(?:\\d{1,3}(?!\\d)|two|three|four|five|six|seven|eight|nine|ten|eleven|twelve|thirteen|fourteen|fifteen|sixteen|seventeen|eighteen|nineteen|twenty|thirty|forty|fifty|dozen|dozens|hundred|hundreds)";
+const CWHO = "(?:players?|posts?|comments?|threads?|people|users?|reviewers?|redditors?|voices|replies|mentions?|reports?|takes|accounts?)";
+const NO_COUNT = new RegExp(`\\b${CNUM}(?:\\s+(?:of(?:\\s+the)?|out\\s+of)\\s+\\w+)?(?:\\s+(?!issues|things|points|problems|complaints|reasons|ways|tags|times|weeks|months|days|sessions|games)\\w+){0,1}?\\s+${CWHO}\\b|\\b(?:of|out of)\\s+the\\s+${CNUM}\\b|\\b${CNUM}\\s+(?:of|out of)\\s+(?:the\\s+)?${CNUM}\\b`, "i");
 function codeCheck(c: Content, i: Input): string[] {
   const p: string[] = [];
   const texts = [c.tldr, ...c.wrapup.paras, ...(c.reddit ? [c.reddit.headline, ...c.reddit.paras, ...c.reddit.tags.map(t => t.text)] : [])].join(" ");
@@ -252,7 +256,11 @@ function codeCheck(c: Content, i: Input): string[] {
       const post = byId.get(h.post_id);
       if (!post || !used.has(h.post_id) || !norm(post.text).includes(norm(h.text))) p.push(`reddit highlight not in its post: ${h.text}`);
     }
-    if (used.size < 10 && !rd.paras[1]?.trim().endsWith(`Early signal from ${used.size} posts.`)) p.push("reddit: missing 'Early signal from N posts.'");
+    if (used.size < 10 && !rd.paras[1]?.trim().endsWith("Early signal from a small number of posts.")) p.push("reddit: missing 'Early signal from a small number of posts.'");
+    // Owner rule 2026-11-24: no exact player or post counts in a Reddit box ("one player" stays allowed).
+    const rt = [rd.headline, ...rd.paras, ...rd.tags.map(t => t.text)].join(" ").replace(/\b[Oo]ne players?\b/g, "someone");
+    const hit = rt.match(NO_COUNT) ?? rt.match(/\d+\s*(?:%|percent)\s+of\s+(?:the\s+)?(?:players|posts|comments|people)|\b(?:two|three) thirds?\b|\b(?:half|a third|a quarter) of the (?:players|posts|comments|people)\b/i);
+    if (hit) p.push(`reddit: exact count: ${hit[0]}`);
   }
   return p;
 }
