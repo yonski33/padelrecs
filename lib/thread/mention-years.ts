@@ -60,3 +60,13 @@ export function yearContext<R extends YearRow>(rows: R[], selfSlug: string, at: 
   for (const { name, pick } of named) if (pick && keptSlugs.has(pick.slug)) defaults[name] = pick.slug;
   return { rows: kept, extra: { aliases, defaults } };
 }
+
+/** This racket's family for self-references ("the 2025 version"): the rows of its brand with the same name without the year,
+ *  and the rows that share one of the `lines` with it ("AT Genius 18K" = the 2025 AT10 18K and the 2026 AT10 Genius 18K). */
+export function selfFamily<R extends YearRow>(rows: R[], selfSlug: string, extra: MentionYears = {}): R[] {
+  const self = rows.find(r => r.slug === selfSlug);
+  if (!self) return [];
+  const lines = Object.values(extra.lines ?? {}).filter(l => l.includes(selfSlug) && l.length <= 4);
+  const inLine = new Set(lines.flat());
+  return rows.filter(r => r.slug !== selfSlug && r.brand === self.brand && (base(r.name) === base(self.name) || inLine.has(r.slug)));
+}
