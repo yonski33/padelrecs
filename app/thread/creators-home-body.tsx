@@ -86,9 +86,11 @@ export async function CreatorsHomeBody() {
   const said = side.filter(x => x.kind === "comment").slice(0, 3);
   // PickleballRecs has 8 lists (Grok audit 2026-11-24: Best hybrid was cut off the home list while Best elongated showed).
   const rankLinks = lists.slice(0, niche.id === "pickleball" ? 8 : 7).map(l => ({ label: l.label, href: l.href }));
-  const web = feed.filter(f => f.kind === "reddit" && byId.has(f.racketId)).slice(0, 2);
-  // Latest YouTube summaries of listed paddles only, four (Grok audit 2026-11-24: two linked unlisted pages without a photo).
-  const latestYt = (home?.latest ?? []).filter(c => bySlug.has(c.slug)).slice(0, 4);
+  // LaptopRecs: older generations never list (lib/thread/laptop-lines.ts), here or in the YouTube summaries below.
+  const LT = niche.id === "laptop";
+  const web = feed.filter(f => f.kind === "reddit" && byId.has(f.racketId) && (!LT || byId.get(f.racketId)!.current)).slice(0, 2);
+  // Listed paddles only, four (Grok audit 2026-11-24: two linked unlisted pages without a photo); LaptopRecs: current only.
+  const latest = (home?.latest ?? []).filter(c => bySlug.has(c.slug) && (!LT || bySlug.get(c.slug)?.current)).slice(0, 4);
   const cut = (t: string, n: number) => t.length > n ? `${t.slice(0, t.lastIndexOf(" ", n - 3))}...` : t;
 
   return <Shell>
@@ -120,9 +122,9 @@ export async function CreatorsHomeBody() {
               </a>; })}</div>
           </section>}
 
-          {latestYt.length > 0 && <section key="yt" id="reviews" className="tch-card tch-sec tch-yt">
+          {home && latest.length > 0 && <section key="yt" id="reviews" className="tch-card tch-sec tch-yt">
             <div className="tch-sec-h"><h2><svg width="28" height="26" viewBox="0 0 30 28" fill="none" stroke="currentColor" strokeWidth="2" strokeLinejoin="round" aria-hidden="true"><path d="M15 3C8 3 3 7.3 3 12.5c0 2.6 1.3 5 3.4 6.7L5 25l6.3-3.2c1.2.3 2.4.5 3.7.5 7 0 12-4.3 12-9.8S22 3 15 3z"/><g fill="currentColor" stroke="none"><circle cx="10" cy="12.5" r="1.5"/><circle cx="15" cy="12.5" r="1.5"/><circle cx="20" cy="12.5" r="1.5"/></g></svg>Latest YouTube review summaries</h2></div>
-            {latestYt.map(c => { const r = bySlug.get(c.slug), href = r ? hrefOf(c.slug, r.href) : catalogPath;
+            {latest.map(c => { const r = bySlug.get(c.slug), href = r ? hrefOf(c.slug, r.href) : catalogPath;
               return <article key={`${c.slug}:${c.creator}`}>
                 <a className="tch-yt-p" href={th(href)}><span>{r?.pic ? <img src={r.pic} alt="" loading="lazy"/> : <span className="tch-noimg"/>}</span><b>{name(c.slug)}</b></a>
                 <span className="tch-yt-m"><strong>{c.creator}</strong><span className="tch-take" style={{ background: PILL_BG[c.stance] }}>{STANCE_LABEL[c.stance]}</span>
