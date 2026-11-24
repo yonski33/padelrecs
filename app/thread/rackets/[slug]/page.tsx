@@ -62,11 +62,11 @@ import { creatorPageOn } from "../../../../lib/thread/sites";
 import { CreatorProductBody } from "../../creator-page";
 
 export const revalidate = 86400;
-// Every listed racket's page is built with the site, as the live racket pages are (app/v/racket); none without a database (CI).
-export async function generateStaticParams() {
-  if (!hasDb()) return [];
-  return (await threadRows()).all.map(r => ({ slug: r.slug }));
-}
+export const dynamicParams = true;
+// Built on first visit, not with the site (2026-11-24: prerendering ~800 product pages ran the build workers out of memory
+// and sent one Amazon lookup per product during the build). The ISR revalidate above keeps each page cached once visited;
+// scripts/warm.mjs visits the top pages after a deploy.
+export function generateStaticParams() { return []; }
 
 type P = { params: Promise<{ slug: string }> };
 // The live racket page's title, description, canonical and share image (app/rackets/[slug]/page.tsx).

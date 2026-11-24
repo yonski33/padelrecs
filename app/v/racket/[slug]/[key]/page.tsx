@@ -6,19 +6,17 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import RacketPage, { generateMetadata as racketMetadata } from "../../../../rackets/[slug]/page";
 import { readViewKey, RACKET_VIEW, SKIN_PRODUCT_VIEW } from "../../../../../lib/view-key";
-import { niche, isV2 } from "../../../../../lib/niche";
-import { catalog } from "../../../../../db/data";
+import { niche } from "../../../../../lib/niche";
 import { attrProfileFor } from "../../../../../lib/attr-profile";
 
 // 24 hours (product pages are most of the pages) (owner 2026-11-16, Vercel cost: 5-minute refreshes were most of the CPU and 2M ISR writes); new data shows at once
 // through on-demand refresh (admin writes: app/funtimes/auth.ts; imports and publishes: /api/refresh, scripts/refresh-sites.mjs).
 export const revalidate = 86400;
-// Every listed product's plain page is built with the site on v2 sites (owner 2026-11-16: racket pages took 5–14 s on a first
-// visit, and every deploy starts with an empty cache); pages with picks on first visit. None without a database (CI).
-export async function generateStaticParams() {
-  if (!process.env.DATABASE_URL || !isV2) return [];
-  return (await catalog()).listed.map(r => ({ slug: r.slug, key: "-" }));
-}
+export const dynamicParams = true;
+// Built on first visit, not with the site (2026-11-24: prerendering ~800 product pages ran the build workers out of memory
+// and sent one Amazon lookup per product during the build). The ISR revalidate above keeps each page cached once visited;
+// scripts/warm.mjs visits the top pages after a deploy.
+export function generateStaticParams() { return []; }
 
 type P = { params: Promise<{ slug: string; key: string }> };
 const read = async (params: P["params"]) => { const { slug, key } = await params; const q = readViewKey(key, attrProfileFor(niche) ? SKIN_PRODUCT_VIEW : RACKET_VIEW); if (!q) notFound(); return { slug, q }; };
