@@ -6,6 +6,8 @@ test("a name repeats its brand when it is the brand or starts with it, ignoring 
   assert(repeatsBrand("Monarch", "Monarch"));
   assert(repeatsBrand("YNAB", "ynab"));
   assert(repeatsBrand("Mullvad VPN", "Mullvad"));
+  assert(repeatsBrand("CRBN¹ TruFoam Genesis", "CRBN"));
+  assert(!repeatsBrand("CRBNX Pro", "CRBN"));
   assert(repeatsBrand("Wise", "Wise."));
   assert(repeatsBrand("1Password 8", "1Password"));
   assert(repeatsBrand("Bells-of-Steel Rack", "Bells of Steel"));

@@ -143,7 +143,7 @@ export default async function LatestReviewsV2({ search }: { search: Search }) {
           <div className="lr2-own"><p className="t">{skinSite ? "Used something? Share how your skin took it." : `Own a ${niche.words.one}? Add your review.`}</p><p>Two minutes, no account. It shows up here and moves the rankings.</p><a href="/add-review">+ add a review</a></div>
           {hot.length > 0 && <div><h3>Most reviewed this week</h3>
             <ol className="lr2-hot">{hot.map(([id, n], i) => <li key={id}><a href={productHref(byId.get(id)!)}><span>{i + 1}</span><b>{nameOf(id)}</b><small>{`+${n}`}</small></a></li>)}</ol></div>}
-          <div className="lr2-note"><p className="lr2-k">{skinSite ? "about the youtube bits" : "// about the youtube bits"}</p>We watch the review, pull out what the reviewer actually concluded, and link the video. Creators get the views.</div>
+          <div className="lr2-note"><p className="lr2-k">{skinSite ? "about the youtube bits" : "// about the youtube bits"}</p>Each video is watched in full, summed up as what the reviewer actually concluded, and linked. Creators get the views.</div>
         </aside>
       </div>
     </main>
