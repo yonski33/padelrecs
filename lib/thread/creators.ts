@@ -14,9 +14,12 @@ const PICKLEBALL_ATTRS = [["power", "Power"], ["control", "Control"], ["spin", "
 const SKIN_ATTRS = [["hydration", "Hydration"], ["texture", "Texture"], ["finish", "Finish"], ["absorption", "Absorbs"],
   ["irritation", "Gentleness"], ["results", "Results"], ["scent", "Scent"], ["white_cast", "No white cast"],
   ["sun_protection", "Sun protection"], ["adhesion", "Stays on"], ["packaging", "Packaging"], ["value", "Value"]] as const;
-export type AttrKey = (typeof PICKLEBALL_ATTRS)[number][0] | (typeof SKIN_ATTRS)[number][0];
+/** PadelRecs' words (the padel sweep, 2026-11-23, the reader brief's padel attribute words). */
+const PADEL_ATTRS = [["power", "Power"], ["control", "Control"], ["sweet", "Sweet spot"], ["comfort", "Arm comfort"],
+  ["maneuver", "Maneuverability"], ["spin", "Spin"], ["durability", "Durability"]] as const;
+export type AttrKey = (typeof PICKLEBALL_ATTRS)[number][0] | (typeof SKIN_ATTRS)[number][0] | (typeof PADEL_ATTRS)[number][0];
 /** The site's own set: NICHE is inlined at build (next.config env), so the browser cards get the same list. */
-export const ATTRS: readonly (readonly [AttrKey, string])[] = process.env.NICHE === "skin" ? SKIN_ATTRS : PICKLEBALL_ATTRS;
+export const ATTRS: readonly (readonly [AttrKey, string])[] = process.env.NICHE === "skin" ? SKIN_ATTRS : process.env.NICHE === "pickleball" ? PICKLEBALL_ATTRS : PADEL_ATTRS;
 export type Stance = "pos" | "mix" | "neg";
 export const STANCE_LABEL: Record<Stance, string> = { pos: "Loved it", mix: "Mixed", neg: "Not for me" };
 
@@ -231,12 +234,13 @@ export function reviewLists(page: CreatorPage) {
  *  the attribute Excellent or Great (likes) or Okay or Weak (concerns). Most backed first, up to 3 a side. A like needs more
  *  reviews for it than against it. */
 const LIKE: Record<AttrKey, string> = { power: "Strong power", control: "Strong control", spin: "Strong spin", pop: "Lively pop",
-  sweet: "Forgiving sweet spot", comfort: "Easy on the arm", durability: "Grit that lasts",
+  sweet: "Forgiving sweet spot", comfort: "Easy on the arm", durability: "Grit that lasts", maneuver: "Quick and manoeuvrable",
   hydration: "Hydrating", texture: "Pleasant texture", finish: "Nice finish", absorption: "Absorbs fast", irritation: "Gentle on skin",
   results: "Visible results", scent: "Pleasant or no scent", white_cast: "No white cast", sun_protection: "Solid sun protection",
   adhesion: "Stays on well", packaging: "Handy packaging", value: "Good value" };
 const CONCERN: Record<AttrKey, string> = { power: "Low on power for some", control: "Harder to control for some", spin: "Less spin than some rivals",
   pop: "Muted pop for some", sweet: "Smaller sweet spot for some", comfort: "Firm on the arm for some", durability: "Durability doubts",
+  maneuver: "Heavy or slow to move for some",
   hydration: "Not hydrating enough for some", texture: "Texture not for everyone", finish: "Finish not for everyone",
   absorption: "Slow to absorb for some", irritation: "Irritated some skin", results: "Little change for some", scent: "Scent bothered some",
   white_cast: "Some white cast", sun_protection: "Protection doubts", adhesion: "Comes off for some", packaging: "Packaging gripes",

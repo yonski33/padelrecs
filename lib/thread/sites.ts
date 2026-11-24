@@ -87,8 +87,10 @@ export const webV2Site = (nicheId: string) => WEB_V2_SITES.includes(nicheId);
 /** The creator-centred product page (owner direction 2026-11-22, iemranking-style: what YouTube and blog creators said, as
  *  words), a preview for now: on these sites ?view=creators on a product page with creator data (CREATOR_PAGE_SLUGS, the
  *  demo fixture db/creators/<site>.json) shows app/thread/creators/[slug]; the live product pages are unchanged. */
-export const CREATOR_PAGE_SITES = ["pickleball"];
-export const CREATOR_PAGE_SLUGS: Record<string, string[]> = { pickleball: ["11six24-vapor-power-2", "six-zero-black-opal-14mm", "six-zero-coral-pro-16mm"] };
+export const CREATOR_PAGE_SITES = ["pickleball", "padel"];
+export const CREATOR_PAGE_SLUGS: Record<string, string[]> = { pickleball: ["11six24-vapor-power-2", "six-zero-black-opal-14mm", "six-zero-coral-pro-16mm"],
+  // PadelRecs: the 20 most-researched rackets (preview only: CREATOR_PAGE stays off for padel).
+  padel: ["bullpadel-vertex-05-2026", "nox-at10-genius-18k-2026", "wilson-endure-pro-v1-2026", "bullpadel-vertex-05-geo-2026", "nox-at10-genius-12k-alum-xtrem-2026", "bullpadel-neuron-02-edge-2026", "siux-electra-pro-st5-2026", "adidas-metalbone-3-5-2026", "head-coello-pro-2026", "bullpadel-xplo-2026", "bullpadel-neuron-02-2026", "adidas-metalbone-hrd-plus-3-5-2026", "wilson-defy-pro-v1-2025", "babolat-viper-soft-juan-lebron-3-0-2026", "babolat-viper-juan-lebron-3-0-2026", "nox-ea10-ventus-hybrid-12k-2026", "wilson-endure-v1-2026", "head-coello-motion-2026", "bullpadel-hack-04-2025", "wilson-bela-pro-v3-2025"] };
 export const CREATOR_VIEW = "creators";
 export const creatorPageFor = (nicheId: string, slug: string) => CREATOR_PAGE_SITES.includes(nicheId)
   && (CREATOR_PAGE_SLUGS[nicheId] ?? []).includes(slug);
