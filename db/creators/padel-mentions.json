@@ -1,0 +1,701 @@
+{
+ "_about": "PadelRecs mention links (lib/thread/mention-years.ts, then lib/thread/mention-links.ts). lines: names over several model years or generations, resolved per page to the page's season (same year, else newest before). aliases: extra names per slug (generations the 2026 Adidas names leave out, transcript spellings). scoped: names that only resolve on pages whose slug starts with the key. Built from the padel catalogue 2026-11-24 by scripts in the session notes; a name two rackets still share never links.",
+ "fullOnly": [
+  "head-extreme-one-2025",
+  "head-speed-one-2025",
+  "kuikma-control-pro-2025",
+  "kuikma-hybrid-carbon-2026",
+  "kuikma-hybrid-pro-2026",
+  "kuikma-power-pro-2025",
+  "oxdog-pure-court-2026",
+  "oxdog-ultimate-pro-2025",
+  "oxdog-ultimate-pro-2026",
+  "oxdog-ultimate-tour-2025"
+ ],
+ "lines": {
+  "AT Attack 18K": [
+   "nox-at10-genius-attack-18k-2025",
+   "nox-at10-genius-attack-18k-2026"
+  ],
+  "AT Genius 18K": [
+   "nox-at10-18k-2025",
+   "nox-at10-genius-18k-2026"
+  ],
+  "AT Genius Attack 18K": [
+   "nox-at10-genius-attack-18k-2025",
+   "nox-at10-genius-attack-18k-2026"
+  ],
+  "AT10 12K": [
+   "nox-at10-genius-12k-2025",
+   "nox-at10-genius-12k-alum-xtrem-2026",
+   "nox-at10-genius-12k-alum-xtrem-2027"
+  ],
+  "AT10 18K": [
+   "nox-at10-18k-2025",
+   "nox-at10-genius-18k-2026"
+  ],
+  "AT10 Attack 12K": [
+   "nox-at10-genius-attack-12k-alum-xtrem-2026",
+   "nox-at10-genius-attack-12k-alum-xtrem-2027"
+  ],
+  "AT10 Attack 18K": [
+   "nox-at10-genius-attack-18k-2025",
+   "nox-at10-genius-attack-18k-2026"
+  ],
+  "AT10 Genius 12K": [
+   "nox-at10-genius-12k-2025"
+  ],
+  "AT10 Genius 12K Alum XTREM": [
+   "nox-at10-genius-12k-alum-xtrem-2026",
+   "nox-at10-genius-12k-alum-xtrem-2027"
+  ],
+  "AT10 Genius 12K Alum XTREM Lite": [
+   "nox-at10-genius-12k-alum-xtrem-lite-2026",
+   "nox-at10-genius-12k-alum-xtrem-lite-2027"
+  ],
+  "AT10 Genius 18K": [
+   "nox-at10-18k-2025",
+   "nox-at10-genius-18k-2026"
+  ],
+  "AT10 Genius 18K Alum": [
+   "nox-at10-genius-18k-alum-2027"
+  ],
+  "AT10 Genius Attack 12K Alum XTREM": [
+   "nox-at10-genius-attack-12k-alum-xtrem-2026",
+   "nox-at10-genius-attack-12k-alum-xtrem-2027"
+  ],
+  "AT10 Genius Attack 18K": [
+   "nox-at10-genius-attack-18k-2025",
+   "nox-at10-genius-attack-18k-2026"
+  ],
+  "AT10 Genius Attack 18K Alum": [
+   "nox-at10-genius-attack-18k-alum-2027"
+  ],
+  "AT10 Pro Cup Hard": [
+   "nox-at10-pro-cup-hard-2026",
+   "nox-at10-pro-cup-hard-2027"
+  ],
+  "AT10 Pro Cup Soft": [
+   "nox-at10-pro-cup-soft-2026",
+   "nox-at10-pro-cup-soft-2027"
+  ],
+  "Adidas Metalbone": [
+   "adidas-metalbone-3-4-2025",
+   "adidas-metalbone-3-5-2026"
+  ],
+  "Adidas Metalbone CTRL": [
+   "adidas-metalbone-ctrl-3-4-2025",
+   "adidas-metalbone-ctrl-2026"
+  ],
+  "Adidas Metalbone Carbon": [
+   "adidas-metalbone-carbon-3-4-2025",
+   "adidas-metalbone-carbon-3-5-2026"
+  ],
+  "Adidas Metalbone Carbon CTRL": [
+   "adidas-metalbone-carbon-ctrl-3-4-2025",
+   "adidas-metalbone-carbon-ctrl-3-5-2026"
+  ],
+  "Adidas Metalbone HRD": [
+   "adidas-metalbone-hrd-plus-3-4-2025",
+   "adidas-metalbone-hrd-plus-3-5-2026"
+  ],
+  "Adidas Metalbone HRD+": [
+   "adidas-metalbone-hrd-plus-3-4-2025",
+   "adidas-metalbone-hrd-plus-3-5-2026"
+  ],
+  "Adipower Carbon CTRL 3.4": [
+   "adidas-adipower-carbon-ctrl-3-4-2025"
+  ],
+  "Adipower Carbon Light 3.4": [
+   "adidas-adipower-carbon-light-3-4-2025"
+  ],
+  "Air Origin": [
+   "babolat-air-origin-2025"
+  ],
+  "Air Veron": [
+   "babolat-air-veron-2026"
+  ],
+  "Air Veron 2.5": [
+   "babolat-air-veron-2025"
+  ],
+  "Air Vertuo": [
+   "babolat-air-vertuo-2026"
+  ],
+  "Air Viper": [
+   "babolat-air-viper-2025",
+   "babolat-air-viper-2026"
+  ],
+  "Arrow Hit": [
+   "adidas-arrow-hit-2026"
+  ],
+  "Arrow Hit Carbon": [
+   "adidas-arrow-hit-carbon-2026"
+  ],
+  "Arrow Hit Carbon CTRL": [
+   "adidas-arrow-hit-carbon-ctrl-2026"
+  ],
+  "Arrow Hit Light": [
+   "adidas-arrow-hit-light-2026"
+  ],
+  "Arrow Hit Pro Edition": [
+   "adidas-arrow-hit-pro-edt-2026"
+  ],
+  "Astra Control": [
+   "siux-astra-control-2026"
+  ],
+  "Astra Hybrid": [
+   "siux-astra-hybrid-2026"
+  ],
+  "Axe 4 Cybershape": [
+   "stiga-axe-4-cybershape-2026"
+  ],
+  "Axe 4 Hybrid": [
+   "stiga-axe-4-hybrid-2026"
+  ],
+  "Beat Play Control 3": [
+   "siux-beat-control-3-2026"
+  ],
+  "Beat Play Hybrid 3": [
+   "siux-beat-hybrid-3-2026"
+  ],
+  "Bela LS V3": [
+   "wilson-bela-ls-v3-2025"
+  ],
+  "Bela LT V2.5": [
+   "wilson-bela-lt-v2-5-2024"
+  ],
+  "Bela Pro V3": [
+   "wilson-bela-pro-v3-2025"
+  ],
+  "Black Titan": [
+   "starvie-black-titan-2026",
+   "starvie-black-titan-2027"
+  ],
+  "Blade Pro V3": [
+   "wilson-blade-pro-v3-2024"
+  ],
+  "Bullpadel Neuron": [
+   "bullpadel-neuron-2024",
+   "bullpadel-neuron-2025",
+   "bullpadel-neuron-02-2026",
+   "bullpadel-neuron-02-2027"
+  ],
+  "Bullpadel Xplo": [
+   "bullpadel-xplo-2025",
+   "bullpadel-xplo-2026",
+   "bullpadel-xplo-02-2027"
+  ],
+  "Coello Motion": [
+   "head-coello-motion-2025",
+   "head-coello-motion-2026"
+  ],
+  "Coello Pro": [
+   "head-coello-pro-2025",
+   "head-coello-pro-2026"
+  ],
+  "Coello Team": [
+   "head-coello-team-2025",
+   "head-coello-team-2026"
+  ],
+  "Counter Origin": [
+   "babolat-counter-origin-2025"
+  ],
+  "Counter Veron": [
+   "babolat-counter-veron-2026"
+  ],
+  "Counter Vertuo": [
+   "babolat-counter-vertuo-2026"
+  ],
+  "Counter Viper": [
+   "babolat-counter-viper-2025",
+   "babolat-counter-viper-2026"
+  ],
+  "Cross It 3.4": [
+   "adidas-cross-it-3-4-2025"
+  ],
+  "Cross It CTRL": [
+   "adidas-cross-it-ctrl-3-5-2026"
+  ],
+  "Cross It CTRL 3.4": [
+   "adidas-cross-it-ctrl-3-4-2025"
+  ],
+  "Cross It Carbon": [
+   "adidas-cross-it-carbon-2025",
+   "adidas-cross-it-carbon-3-5-2026"
+  ],
+  "Cross It Carbon CTRL": [
+   "adidas-cross-it-carbon-ctrl-3-5-2026"
+  ],
+  "Cross It Light": [
+   "adidas-cross-it-light-3-5-2026"
+  ],
+  "Cross It Light 3.4": [
+   "adidas-cross-it-light-3-4-2025"
+  ],
+  "Cross It Light Pro Edition": [
+   "adidas-cross-it-light-pro-edt-2026"
+  ],
+  "Cybershape 18K 2": [
+   "stiga-cybershape-18k-2-2026"
+  ],
+  "Cybershape 18K Hard 2": [
+   "stiga-cybershape-18k-hard-2-2026"
+  ],
+  "Cybershape 18K LW 2": [
+   "stiga-cybershape-18k-lw-2-2026"
+  ],
+  "Cybershape 18K X Hard": [
+   "stiga-cybershape-18k-x-hard-2026"
+  ],
+  "Cybershape 2 3K": [
+   "stiga-cybershape-2-3k-2026"
+  ],
+  "Defy Pro V1": [
+   "wilson-defy-pro-v1-2025"
+  ],
+  "Diablo Elite 6": [
+   "siux-diablo-elite-6-2026"
+  ],
+  "Diablo Pro": [
+   "siux-diablo-pro-2026"
+  ],
+  "Diablo Pro 4": [
+   "siux-diablo-pro-4-2025"
+  ],
+  "EA10 Ventus Attack 12K XTREM": [
+   "nox-ea10-ventus-attack-12k-xtrem-2026"
+  ],
+  "EA10 Ventus Hybrid 12K": [
+   "nox-ea10-ventus-hybrid-12k-2026"
+  ],
+  "EA10 Ventus Hybrid 12K XTREM": [
+   "nox-ea10-ventus-hybrid-12k-xtrem-2027"
+  ],
+  "Electra Elite 6": [
+   "siux-electra-elite-6-2026"
+  ],
+  "Electra Pro": [
+   "siux-electra-pro-st4-2025",
+   "siux-electra-pro-st5-2026"
+  ],
+  "Electra Pro ST4": [
+   "siux-electra-pro-st4-2025"
+  ],
+  "Endure Pro V1": [
+   "wilson-endure-pro-v1-2026"
+  ],
+  "Endure V1": [
+   "wilson-endure-v1-2026"
+  ],
+  "Equation Hard Advanced": [
+   "nox-equation-hard-advanced-2026",
+   "nox-equation-hard-advanced-2027"
+  ],
+  "Equation Soft Advanced": [
+   "nox-equation-soft-advanced-2026",
+   "nox-equation-soft-advanced-2027"
+  ],
+  "Evo Extreme": [
+   "head-evo-extreme-2025"
+  ],
+  "Evo Speed": [
+   "head-evo-speed-2025"
+  ],
+  "Extreme Motion": [
+   "head-extreme-motion-2026"
+  ],
+  "Extreme Pro": [
+   "head-extreme-pro-2025",
+   "head-extreme-pro-2026"
+  ],
+  "Fenix Elite 6": [
+   "siux-fenix-elite-6-2026"
+  ],
+  "Fenix Pro": [
+   "siux-fenix-pro-5-2025",
+   "siux-fenix-pro-6-2026"
+  ],
+  "Fenix Pro 5": [
+   "siux-fenix-pro-5-2025"
+  ],
+  "Gravity Motion": [
+   "head-gravity-motion-2024"
+  ],
+  "HRD Plus": [
+   "adidas-metalbone-hrd-plus-3-4-2025",
+   "adidas-metalbone-hrd-plus-3-5-2026"
+  ],
+  "HRD+": [
+   "adidas-metalbone-hrd-plus-3-4-2025",
+   "adidas-metalbone-hrd-plus-3-5-2026"
+  ],
+  "Hack 04 Comfort": [
+   "bullpadel-hack-04-comfort-2026"
+  ],
+  "Hack 04 Hybrid": [
+   "bullpadel-hack-04-hybrid-2025",
+   "bullpadel-hack-04-hybrid-2026"
+  ],
+  "Hack 05 Comfort": [
+   "bullpadel-hack-05-comfort-2027"
+  ],
+  "Hack 05 Hybrid": [
+   "bullpadel-hack-05-hybrid-2027"
+  ],
+  "Hack Advance": [
+   "bullpadel-hack-advance-2026"
+  ],
+  "Hyper Pro 2.0": [
+   "oxdog-hyper-pro-2-0-2026"
+  ],
+  "Hyper Pro+ 2.0": [
+   "oxdog-hyper-pro-plus-2-0-2025",
+   "oxdog-hyper-pro-plus-2-0-2026"
+  ],
+  "Hyper Tour 2.0": [
+   "oxdog-hyper-tour-2-0-2025"
+  ],
+  "Hyper Tour X 2.0": [
+   "oxdog-hyper-tour-x-2-0-2026"
+  ],
+  "ML10 Pro Cup": [
+   "nox-ml10-pro-cup-2025"
+  ],
+  "ML10 Pro Cup Coorp": [
+   "nox-ml10-pro-cup-coorp-2025"
+  ],
+  "ML10 Pro Cup Silver": [
+   "nox-ml10-pro-cup-silver-2025",
+   "nox-ml10-pro-cup-silver-2027"
+  ],
+  "ML10 Ventus Control 3K": [
+   "nox-ml10-ventus-control-3k-2026",
+   "nox-ml10-ventus-control-3k-2027"
+  ],
+  "Metalbone 3.4": [
+   "adidas-metalbone-3-4-2025"
+  ],
+  "Metalbone CTRL": [
+   "adidas-metalbone-ctrl-3-4-2025",
+   "adidas-metalbone-ctrl-2026"
+  ],
+  "Metalbone CTRL 3.4": [
+   "adidas-metalbone-ctrl-3-4-2025"
+  ],
+  "Metalbone Carbon": [
+   "adidas-metalbone-carbon-3-4-2025",
+   "adidas-metalbone-carbon-3-5-2026"
+  ],
+  "Metalbone Carbon 3.4": [
+   "adidas-metalbone-carbon-3-4-2025"
+  ],
+  "Metalbone Carbon CTRL": [
+   "adidas-metalbone-carbon-ctrl-3-4-2025",
+   "adidas-metalbone-carbon-ctrl-3-5-2026"
+  ],
+  "Metalbone Carbon CTRL 3.4": [
+   "adidas-metalbone-carbon-ctrl-3-4-2025"
+  ],
+  "Metalbone HRD": [
+   "adidas-metalbone-hrd-plus-3-4-2025",
+   "adidas-metalbone-hrd-plus-3-5-2026"
+  ],
+  "Metalbone HRD Plus": [
+   "adidas-metalbone-hrd-plus-3-4-2025",
+   "adidas-metalbone-hrd-plus-3-5-2026"
+  ],
+  "Metalbone HRD+": [
+   "adidas-metalbone-hrd-plus-3-4-2025",
+   "adidas-metalbone-hrd-plus-3-5-2026"
+  ],
+  "Metalbone HRD+ 3.4": [
+   "adidas-metalbone-hrd-plus-3-4-2025"
+  ],
+  "Metalbone Pro Edition": [
+   "adidas-metalbone-pro-edt-2025",
+   "adidas-metalbone-pro-edt-2026"
+  ],
+  "Metalbone Superlight": [
+   "adidas-metalbone-superlight-2026"
+  ],
+  "Metalbone Team": [
+   "adidas-metalbone-team-3-5-2026"
+  ],
+  "Metalbone Team Light": [
+   "adidas-metalbone-team-light-3-5-2026"
+  ],
+  "Metalbone ZZ Carbon": [
+   "adidas-metalbone-zz-carbon-2026"
+  ],
+  "Neuron": [
+   "bullpadel-neuron-2024",
+   "bullpadel-neuron-2025",
+   "bullpadel-neuron-02-2026",
+   "bullpadel-neuron-02-2027"
+  ],
+  "Neuron 02": [
+   "bullpadel-neuron-02-2026",
+   "bullpadel-neuron-02-2027"
+  ],
+  "Neuron 02 Edge": [
+   "bullpadel-neuron-02-edge-2026",
+   "bullpadel-neuron-02-edge-2027"
+  ],
+  "Neuron 02 Edge Comfort": [
+   "bullpadel-neuron-02-comfort-2027"
+  ],
+  "Nox AT Attack 18K": [
+   "nox-at10-genius-attack-18k-2025",
+   "nox-at10-genius-attack-18k-2026"
+  ],
+  "Nox AT10 18K": [
+   "nox-at10-18k-2025",
+   "nox-at10-genius-18k-2026"
+  ],
+  "Nox AT10 Attack 18K": [
+   "nox-at10-genius-attack-18k-2025",
+   "nox-at10-genius-attack-18k-2026"
+  ],
+  "Obsidian Elite": [
+   "siux-obsidian-elite-2027"
+  ],
+  "Obsidian Pro": [
+   "siux-obsidian-pro-2027"
+  ],
+  "One Ultralight": [
+   "head-one-ultralight-2024"
+  ],
+  "Optix V2 Lite": [
+   "wilson-optix-v2-lite-2026"
+  ],
+  "Optix V2 Power": [
+   "wilson-optix-v2-power-2026"
+  ],
+  "Pegasus Elite 4": [
+   "siux-pegasus-elite-4-2026"
+  ],
+  "Pegasus Pro": [
+   "siux-pegasus-pro-2026"
+  ],
+  "Pure Tour X": [
+   "oxdog-pure-tour-x-2026"
+  ],
+  "Radical Motion": [
+   "head-radical-motion-2026"
+  ],
+  "Radical Pro": [
+   "head-radical-pro-2026"
+  ],
+  "Radical Team": [
+   "head-radical-team-2026"
+  ],
+  "Radical Team Light": [
+   "head-radical-team-light-2026"
+  ],
+  "Siux Electra Pro": [
+   "siux-electra-pro-st4-2025",
+   "siux-electra-pro-st5-2026"
+  ],
+  "Siux Fenix Pro": [
+   "siux-fenix-pro-5-2025",
+   "siux-fenix-pro-6-2026"
+  ],
+  "Speed Motion": [
+   "head-speed-motion-2025"
+  ],
+  "Speed Pro": [
+   "head-speed-pro-2025"
+  ],
+  "Speed Team": [
+   "head-speed-team-2025"
+  ],
+  "Technical Origin+": [
+   "babolat-technical-origin-2026"
+  ],
+  "Technical Veron": [
+   "babolat-technical-veron-2025"
+  ],
+  "Technical Vertuo": [
+   "babolat-technical-vertuo-2025"
+  ],
+  "Technical Viper": [
+   "babolat-technical-viper-2025"
+  ],
+  "Trilogy 6 Pro": [
+   "siux-trilogy-pro-2026"
+  ],
+  "Trilogy Elite 6": [
+   "siux-trilogy-elite-6-2026"
+  ],
+  "Trilogy Pro 5": [
+   "siux-trilogy-pro-5-2025"
+  ],
+  "Triton Balance+": [
+   "starvie-triton-balance-plus-2027"
+  ],
+  "Triton Power+": [
+   "starvie-triton-power-plus-2027"
+  ],
+  "Triton+ Balance": [
+   "starvie-triton-plus-balance-2026"
+  ],
+  "Triton+ Power": [
+   "starvie-triton-plus-power-2026"
+  ],
+  "Ultimate NXT-GEN": [
+   "oxdog-ultimate-nxt-gen-2026"
+  ],
+  "Ultimate Pro Light": [
+   "oxdog-ultimate-pro-light-2026"
+  ],
+  "Ultimate Pro Smash": [
+   "oxdog-ultimate-pro-smash-2025",
+   "oxdog-ultimate-pro-smash-2026"
+  ],
+  "Ultimate Pro+": [
+   "oxdog-ultimate-pro-plus-2025",
+   "oxdog-ultimate-pro-plus-2026"
+  ],
+  "Ultimate Tour X": [
+   "oxdog-ultimate-tour-x-2026"
+  ],
+  "VK10 Ventus Control 12K": [
+   "nox-vk10-ventus-control-12k-2026",
+   "nox-vk10-ventus-control-12k-2027"
+  ],
+  "Valkiria Pro": [
+   "siux-valkiria-pro-2026"
+  ],
+  "Ventus Hybrid 12K Lite": [
+   "nox-ventus-hybrid-12k-lite-2026"
+  ],
+  "Veron Juan Lebrón 3.0": [
+   "babolat-veron-juan-lebron-3-0-2026"
+  ],
+  "Veron Juan Lebrón 3.1": [
+   "babolat-veron-juan-lebron-3-1-2027"
+  ],
+  "Vertex 04": [
+   "bullpadel-vertex-04-2024",
+   "bullpadel-vertex-04-2025"
+  ],
+  "Vertex 04 Hybrid": [
+   "bullpadel-vertex-04-hybrid-2025"
+  ],
+  "Vertex 05": [
+   "bullpadel-vertex-05-2026",
+   "bullpadel-vertex-05-2027"
+  ],
+  "Vertex 05 Comfort": [
+   "bullpadel-vertex-05-comfort-2026"
+  ],
+  "Vertex 05 Geo": [
+   "bullpadel-vertex-05-geo-2026",
+   "bullpadel-vertex-05-geo-2027"
+  ],
+  "Vertex 05 Hybrid": [
+   "bullpadel-vertex-05-hybrid-2026",
+   "bullpadel-vertex-05-hybrid-2027"
+  ],
+  "Vertex 05 W": [
+   "bullpadel-vertex-05-women-2026",
+   "bullpadel-vertex-05-women-2027"
+  ],
+  "Vertex Advance": [
+   "bullpadel-vertex-advance-2026"
+  ],
+  "Viper Juan Lebrón 3.0": [
+   "babolat-viper-juan-lebron-3-0-2026"
+  ],
+  "Viper Juan Lebrón 3.1": [
+   "babolat-viper-juan-lebron-3-1-2027"
+  ],
+  "Viper Soft Juan Lebrón 3.0": [
+   "babolat-viper-soft-juan-lebron-3-0-2026"
+  ],
+  "Viper Soft Juan Lebrón 3.1": [
+   "babolat-viper-soft-juan-lebron-3-1-2027"
+  ],
+  "Xplo": [
+   "bullpadel-xplo-2025",
+   "bullpadel-xplo-2026",
+   "bullpadel-xplo-02-2027"
+  ],
+  "Xplo 02 Comfort": [
+   "bullpadel-xplo-02-comfort-2027"
+  ]
+ },
+ "aliases": {
+  "adidas-metalbone-3-5-2026": [
+   "Metalbone 3.5",
+   "Adidas Metalbone 3.5"
+  ],
+  "adidas-metalbone-carbon-3-5-2026": [
+   "Metalbone Carbon 3.5",
+   "Carbon 3.5"
+  ],
+  "adidas-metalbone-carbon-ctrl-3-5-2026": [
+   "Metalbone Carbon CTRL 3.5",
+   "Carbon CTRL 3.5"
+  ],
+  "adidas-metalbone-ctrl-2026": [
+   "Metalbone CTRL 3.5",
+   "CTRL 3.5"
+  ],
+  "adidas-metalbone-hrd-plus-3-5-2026": [
+   "HRD+ 3.5",
+   "Metalbone HRD 3.5",
+   "HRD 3.5"
+  ],
+  "adidas-metalbone-hrd-plus-3-4-2025": [
+   "HRD+ 3.4",
+   "Metalbone HRD 3.4",
+   "HRD 3.4"
+  ],
+  "adidas-metalbone-carbon-3-4-2025": [
+   "Carbon 3.4"
+  ],
+  "adidas-metalbone-carbon-ctrl-3-4-2025": [
+   "Carbon CTRL 3.4"
+  ],
+  "adidas-metalbone-ctrl-3-4-2025": [
+   "CTRL 3.4"
+  ],
+  "adidas-metalbone-team-3-5-2026": [
+   "Metalbone Team 3.5"
+  ],
+  "siux-fenix-pro-5-2025": [
+   "Phoenix Pro 5",
+   "Siux Phoenix Pro 5"
+  ],
+  "siux-fenix-pro-6-2026": [
+   "Fenix Pro 6",
+   "Phoenix Pro 6",
+   "Siux Phoenix Pro 6",
+   "Siux Fenix Pro 6"
+  ],
+  "siux-fenix-elite-6-2026": [
+   "Phoenix Elite 6",
+   "Siux Phoenix Elite 6"
+  ],
+  "siux-electra-pro-st5-2026": [
+   "Electra Pro ST5",
+   "Electra ST5",
+   "Siux Electra ST5"
+  ],
+  "siux-electra-pro-st4-2025": [
+   "Electra ST4",
+   "Siux Electra ST4"
+  ]
+ },
+ "scoped": {
+  "adidas-metalbone": {
+   "3.4": [
+    "adidas-metalbone-3-4-2025"
+   ],
+   "3.5": [
+    "adidas-metalbone-3-5-2026"
+   ]
+  }
+ }
+}
