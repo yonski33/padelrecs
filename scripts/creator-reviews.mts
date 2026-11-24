@@ -24,10 +24,11 @@ const TABLES = ["creator_pages", "creator_reviews", "creator_prices"] as const;
 
 // ---- Owner decisions (2026-11-22), as in the #649 fixture builder ----
 /** Weak sources the owner dropped. */
-const DROP = new Set(["FORWRD", "Man vs Debt", "REDTACKLE", "PickleballCentral", "Pickleball Hustle"]);
+const DROP = new Set(["FORWRD", "Man vs Debt", "REDTACKLE", "PickleballCentral", "Pickleball Hustle", "Max Streltcoff / padel.how", "padel.how", "Pickleball3"]);
 /** Removed site-wide by the owner on 2026-11-23 (13 rows deleted after a backup): The Kitchen Pickle site and channels. */
 const BLOCKED_CREATORS = /^the kitchen( pickle(ball)?)?$/i;
-const BLOCKED_URLS = /(^|\/\/|\.)thekitchenpickle\.com\b|tiktok\.com\/@thekitchenpickleball\b/i;
+// Owner 2026-11-24: padel.how and pickleball3.com read as AI-generated (no real play, spec-sheet figures); never imported.
+const BLOCKED_URLS = /(^|\/\/|\.)(thekitchenpickle\.com|padel\.how|pickleball3\.com)\b|tiktok\.com\/@thekitchenpickleball\b/i;
 /** Scores kept in the data but hidden until the scale is confirmed. */
 const HIDE_SCORE = new Set(["Pickleheads"]);
 /** Plain auto-caption spelling typos in quotes. */
