@@ -242,3 +242,8 @@ test("the measured line never shows a price (owner 2026-11-24)", async () => {
   assert.equal(line, "Weight: 3.5 pounds · Width: 8 in");
   assert.ok(PRICE_TEXT.test("question the 390 euro list price") && PRICE_TEXT.test("at $92 with a code") && !PRICE_TEXT.test("pricey for what it offers"));
 });
+
+test("padel's creator page asks its ranking groups plus Best on, Sweet spot and Trampoline", () => {
+  assert.deepEqual(creatorVoteGroups("padel").map(g => g.key), ["plays_like", "arm", "level", "side", "sweet_spot", "trampoline"]);
+  assert.deepEqual(creatorVoteGroups("padel").find(g => g.key === "side")?.options.map(o => o[1]), ["Right side", "Left side", "Both sides"]);
+});

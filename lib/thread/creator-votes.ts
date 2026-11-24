@@ -15,6 +15,10 @@ export const CREATOR_VOTE_KEYS: Record<string, string[]> = {
   skin: ["skin_type", "texture", "finish", "irritation", "makeup", "value"],
   // LaptopRecs (owner 2026-11-24): six of its nine (lib/thread/traits.ts LAPTOP_TRAIT_GROUPS), the parts reviewers rate.
   laptop: ["performance", "battery", "thermals", "screen", "keyboard", "build"],
+  // PadelRecs (owner 2026-11-24: "add 3 more how does it play boxs on padel ... best on(sides), Sweet spot and Trampoline"):
+  // its three ranking groups first, then court side, sweet spot and trampoline. All six are padel's stored keys
+  // (lib/thread/traits.ts PADEL_TRAIT_GROUPS), so votes save to trait_votes as on the other racket pages; no new keys.
+  padel: ["plays_like", "arm", "level", "side", "sweet_spot", "trampoline"],
 };
 /** The groups the creator page asks, in ranking order; only keys the site's vote API accepts. */
 export function creatorVoteGroups(nicheId: string): TraitGroup[] {

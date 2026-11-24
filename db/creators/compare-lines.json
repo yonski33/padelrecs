@@ -587,5 +587,1014 @@
     ]
    }
   }
+ },
+ "padel": {
+  "wilson-bela-lt-v2-5-2024": {
+   "head-extreme-motion-2026": {
+    "line": "Similar in versatile intermediate character to the Bela LT V2.5",
+    "n": 1,
+    "by": [
+     "cr_ef772f7120656d9b"
+    ]
+   },
+   "head-speed-motion-2025": {
+    "line": "Similar versatile intermediate type of racket as the Bela LT V2.5",
+    "n": 1,
+    "by": [
+     "cr_ef772f7120656d9b"
+    ]
+   },
+   "oxdog-ultimate-tour-2025": {
+    "line": "Similar intermediate versatility to the Bela LT V2.5",
+    "n": 1,
+    "by": [
+     "cr_ef772f7120656d9b"
+    ]
+   }
+  },
+  "babolat-air-viper-2025": {
+   "babolat-technical-viper-2025": {
+    "line": "Heavier, more head heavy and less manoeuvrable, built more for power smashes than the Air Viper",
+    "n": 3,
+    "by": [
+     "cr_7b52d7bcf7370b6f",
+     "cr_e952db3b5b516404",
+     "cr_c22e7d6f4ac26d2c"
+    ]
+   }
+  },
+  "nox-at10-genius-12k-alum-xtrem-2026": {
+   "nox-at10-genius-18k-2026": {
+    "line": "Softer and more forgiving, with a slightly wider sweet spot but less push at pace",
+    "n": 5,
+    "by": [
+     "cr_949b1107501a4810",
+     "cr_482bcdda26a61417",
+     "cr_a684bd9e9b8025d0",
+     "cr_f861486374640f5f",
+     "cr_7740303d4feb6b1b"
+    ]
+   },
+   "adidas-metalbone-3-5-2026": {
+    "line": "Similar feel at the net to the Alum Xtrem",
+    "n": 1,
+    "by": [
+     "cr_7740303d4feb6b1b"
+    ]
+   },
+   "starvie-raptor-plus-2026": {
+    "line": "A bit more feel and activity at slow pace than the Alum Xtrem",
+    "n": 1,
+    "by": [
+     "cr_71ee6402550bbfa5"
+    ]
+   }
+  },
+  "adidas-metalbone-3-4-2025": {
+   "head-extreme-pro-2026": {
+    "line": "Shoots harder than the Metalbone 3.4 while feeling about as heavy in hand",
+    "n": 1,
+    "by": [
+     "cr_ae524259ea92262a"
+    ]
+   }
+  },
+  "adidas-metalbone-ctrl-2026": {
+   "adidas-metalbone-3-5-2026": {
+    "line": "More powerful and more explosive on attack, with a smaller sweet spot than the Metalbone CTRL",
+    "n": 2,
+    "by": [
+     "cr_6fafa5ee60ef79f0",
+     "cr_f95455e4783714f1"
+    ]
+   }
+  },
+  "babolat-air-viper-2026": {
+   "oxdog-ultimate-pro-light-2026": {
+    "line": "Less ball exit and perhaps a slightly smaller sweet spot than the Air Viper",
+    "n": 1,
+    "by": [
+     "cr_5b5c8ba09f7960b1"
+    ]
+   }
+  },
+  "babolat-counter-viper-2025": {
+   "babolat-air-viper-2026": {
+    "line": "Faster to move than the Counter Viper",
+    "n": 1,
+    "by": [
+     "cr_13098b1cbcc78138"
+    ]
+   }
+  },
+  "oxdog-ultimate-pro-plus-2025": {
+   "oxdog-ultimate-pro-2026": {
+    "line": "Easier and more versatile, with a wider sweet spot, though less powerful than the Pro Plus",
+    "n": 2,
+    "by": [
+     "cr_7eeb83e330c22cdc",
+     "cr_55b54af235a908c3"
+    ]
+   },
+   "oxdog-ultimate-pro-light-2026": {
+    "line": "Lighter and easier to speed up than the Pro Plus",
+    "n": 1,
+    "by": [
+     "cr_55b54af235a908c3"
+    ]
+   },
+   "oxdog-ultimate-tour-2025": {
+    "line": "Easier for players below top level than the Pro Plus",
+    "n": 1,
+    "by": [
+     "cr_55b54af235a908c3"
+    ]
+   }
+  },
+  "oxdog-ultimate-tour-x-2026": {
+   "oxdog-ultimate-pro-2026": {
+    "line": "Firmer, with a heavier flat smash and better high pace blocks than the Tour X",
+    "n": 2,
+    "by": [
+     "cr_38c14e658862cdec",
+     "cr_19718ce696b1457a"
+    ]
+   },
+   "oxdog-ultimate-pro-plus-2025": {
+    "line": "Heavier ball on flat smashes and more vibora control, but harder to move than the Tour X",
+    "n": 3,
+    "by": [
+     "cr_38c14e658862cdec",
+     "cr_19718ce696b1457a",
+     "cr_3c5537c00262e039"
+    ]
+   },
+   "babolat-air-viper-2026": {
+    "line": "Firmer and more explosive, where the Tour X is calmer and more forgiving",
+    "n": 1,
+    "by": [
+     "cr_38c14e658862cdec"
+    ]
+   }
+  },
+  "wilson-defy-v1-2025": {
+   "wilson-defy-pro-v1-2025": {
+    "line": "Heavier and harder than the Defy V1, and aimed at more advanced players",
+    "n": 3,
+    "by": [
+     "cr_e8d0f15ce010cfd6",
+     "cr_006c6e0f28bb7f7a",
+     "cr_e44d6d46e2cfc7e9"
+    ]
+   }
+  },
+  "kuikma-hybrid-pro-2026": {
+   "adidas-metalbone-3-5-2026": {
+    "line": "Bouncier and harder to control than the Hybrid Pro",
+    "n": 1,
+    "by": [
+     "cr_32b480acf32ee565"
+    ]
+   },
+   "bullpadel-neuron-02-2027": {
+    "line": "Less rebound than the Hybrid Pro, but better for adding weight on firm downward swings",
+    "n": 1,
+    "by": [
+     "cr_32b480acf32ee565"
+    ]
+   }
+  },
+  "siux-fenix-pro-6-2026": {
+   "head-coello-pro-2026": {
+    "line": "Less dry than the Fenix Pro, though similarly demanding from the baseline",
+    "n": 2,
+    "by": [
+     "cr_3a0d367cce651aa0",
+     "cr_2750ed7567d0478e"
+    ]
+   },
+   "adidas-metalbone-hrd-plus-3-5-2026": {
+    "line": "Harder than the Fenix Pro, with similarly generous power",
+    "n": 1,
+    "by": [
+     "cr_f91b054751ad9942"
+    ]
+   }
+  },
+  "bullpadel-neuron-02-edge-2027": {
+   "bullpadel-neuron-02-2027": {
+    "line": "Softer, lighter in the head and quicker on volleys than the Neuron 02 Edge",
+    "n": 2,
+    "by": [
+     "cr_3c0b04fd7e190683",
+     "cr_1301c0ad35f10641"
+    ]
+   },
+   "bullpadel-hack-05-2027": {
+    "line": "Harder and more powerful than the Neuron 02 Edge, and more precise on fast volleys",
+    "n": 2,
+    "by": [
+     "cr_3c0b04fd7e190683",
+     "cr_6de05e0b0dbfa3b9"
+    ]
+   },
+   "bullpadel-vertex-05-2027": {
+    "line": "More free power and a bigger sweet spot than the Neuron 02 Edge",
+    "n": 1,
+    "by": [
+     "cr_1fb7c4b7b70a6aaa"
+    ]
+   },
+   "bullpadel-xplo-2026": {
+    "line": "Harder and more powerful than the Neuron 02 Edge, but less free moving",
+    "n": 3,
+    "by": [
+     "cr_3c0b04fd7e190683",
+     "cr_6de05e0b0dbfa3b9",
+     "cr_1301c0ad35f10641"
+    ]
+   }
+  },
+  "nox-at10-genius-12k-2025": {
+   "nox-at10-genius-18k-2026": {
+    "line": "Softer and slightly better for control in defence than the 12K, with a little less power",
+    "n": 2,
+    "by": [
+     "cr_ac14523f98e02d87",
+     "cr_58fd6c873cd8edb5"
+    ]
+   }
+  },
+  "siux-electra-pro-st4-2025": {
+   "babolat-counter-viper-2026": {
+    "line": "Heavier in the head and more communicative than the ST4, which is handier and drier",
+    "n": 2,
+    "by": [
+     "cr_2aaaca9a5c371382",
+     "cr_5845c1e40abc8935"
+    ]
+   },
+   "adidas-metalbone-3-5-2026": {
+    "line": "Bouncier, with a more extreme rebound than the ST4",
+    "n": 1,
+    "by": [
+     "cr_d7f6650c1125c51b"
+    ]
+   },
+   "head-coello-pro-2026": {
+    "line": "Stiffer in feel than the ST4",
+    "n": 1,
+    "by": [
+     "cr_a9f97fb2b54502a6"
+    ]
+   }
+  },
+  "adidas-arrow-hit-2026": {
+   "adidas-metalbone-3-5-2026": {
+    "line": "Feels slightly less hollow than the Arrow Hit",
+    "n": 1,
+    "by": [
+     "cr_7f429c32ac3cfb0a"
+    ]
+   }
+  },
+  "head-coello-pro-2026": {
+   "head-coello-motion-2026": {
+    "line": "Lighter and lower balanced than the Coello Pro, so easier to time and better in defence",
+    "n": 3,
+    "by": [
+     "cr_82ac8a98a133f76c",
+     "cr_61ec46a13726c3c8",
+     "cr_a1a6085a3a67a6f2"
+    ]
+   },
+   "adidas-metalbone-3-5-2026": {
+    "line": "Plays at a similar fast pace to the Coello Pro",
+    "n": 1,
+    "by": [
+     "cr_82ac8a98a133f76c"
+    ]
+   },
+   "head-coello-team-2026": {
+    "line": "Easier to play than the Coello Pro, though with a trampoline effect",
+    "n": 1,
+    "by": [
+     "cr_82ac8a98a133f76c"
+    ]
+   },
+   "head-extreme-pro-2026": {
+    "line": "Drier than the Coello Pro, so more of the power has to come from the player",
+    "n": 1,
+    "by": [
+     "cr_61ec46a13726c3c8"
+    ]
+   }
+  },
+  "wilson-endure-pro-v1-2026": {
+   "adidas-metalbone-hrd-plus-3-5-2026": {
+    "line": "More powerful than the Endure Pro, which is the strongest round racket otherwise",
+    "n": 1,
+    "by": [
+     "cr_9ff1bb45727088e5"
+    ]
+   },
+   "siux-electra-pro-st5-2026": {
+    "line": "Polyvalent with a little extra power, much like the Endure Pro",
+    "n": 1,
+    "by": [
+     "cr_9ff1bb45727088e5"
+    ]
+   },
+   "wilson-bela-v3-2025": {
+    "line": "Less precise and harder to move, but more ball output than the Endure Pro",
+    "n": 1,
+    "by": [
+     "cr_e70b63026231e48c"
+    ]
+   }
+  },
+  "head-extreme-motion-2026": {
+   "head-extreme-pro-2026": {
+    "line": "Heavier by about 10 g and harder to handle than the Extreme Motion",
+    "n": 2,
+    "by": [
+     "cr_ec50d3a65f5d7de4",
+     "cr_3fe17a12d88700d3"
+    ]
+   },
+   "adidas-metalbone-3-5-2026": {
+    "line": "Firmer in feel than the Extreme Motion, which is medium or slightly softer",
+    "n": 1,
+    "by": [
+     "cr_913f7899ce019479"
+    ]
+   }
+  },
+  "nox-at10-genius-18k-2026": {
+   "nox-at10-genius-12k-alum-xtrem-2026": {
+    "line": "Drier and more aggressive, with more smash power, but less forgiving than the 18K",
+    "n": 5,
+    "by": [
+     "cr_4b76896353b51170",
+     "cr_1efbe8ca5327f9fe",
+     "cr_9d757b683435395c",
+     "cr_35d5980931fbc5b6",
+     "cr_a39823a2564e7501"
+    ]
+   }
+  },
+  "head-radical-pro-2026": {
+   "head-extreme-pro-2026": {
+    "line": "As hard or softer in touch than the Radical Pro",
+    "n": 1,
+    "by": [
+     "cr_0a41880a982edbfc"
+    ]
+   }
+  },
+  "wilson-bela-pro-v3-2025": {
+   "wilson-bela-ls-v3-2025": {
+    "line": "Lighter, softer and more helpful than the Pro V3, but less powerful",
+    "n": 4,
+    "by": [
+     "cr_1059a44d16d1eff5",
+     "cr_064074f5d6bfeb4f",
+     "cr_c19f931d32cf99fa",
+     "cr_5b8687a2ccca2e9d"
+    ]
+   },
+   "wilson-bela-v3-2025": {
+    "line": "Softer, more forgiving and less powerful than the Pro V3, with balance nearer the hand",
+    "n": 2,
+    "by": [
+     "cr_c19f931d32cf99fa",
+     "cr_5b8687a2ccca2e9d"
+    ]
+   }
+  },
+  "bullpadel-neuron-02-2026": {
+   "bullpadel-neuron-02-edge-2027": {
+    "line": "More powerful and attacking, but less controllable than the Neuron 02",
+    "n": 7,
+    "by": [
+     "cr_c6d0d9c8c296b2a7",
+     "cr_507461fadf904500",
+     "cr_1b2a8669c4451dd7",
+     "cr_470757024dbfa348",
+     "cr_46e025641426c289",
+     "cr_9f7a4782e80028b4",
+     "cr_4041fdae20df5724"
+    ]
+   },
+   "babolat-counter-viper-2026": {
+    "line": "Heavier, higher balanced and more complete for attack than the Neuron 02",
+    "n": 1,
+    "by": [
+     "cr_483e85809618ba08"
+    ]
+   }
+  },
+  "adidas-metalbone-ctrl-3-4-2025": {
+   "adidas-metalbone-3-5-2026": {
+    "line": "Firmer and less forgiving, with much more flat smash power than the CTRL 3.4",
+    "n": 1,
+    "by": [
+     "cr_f9700d429ed684f7"
+    ]
+   },
+   "adidas-metalbone-carbon-3-5-2026": {
+    "line": "Better control at a fast pace than the CTRL 3.4",
+    "n": 1,
+    "by": [
+     "cr_f9700d429ed684f7"
+    ]
+   },
+   "babolat-counter-viper-2026": {
+    "line": "More spin and head mass, but less manoeuvrable than the CTRL 3.4",
+    "n": 1,
+    "by": [
+     "cr_c6d9826733563754"
+    ]
+   }
+  },
+  "bullpadel-vertex-05-geo-2026": {
+   "bullpadel-vertex-05-2027": {
+    "line": "Less powerful and less aggressive than the Vertex 05 Geo",
+    "n": 5,
+    "by": [
+     "cr_852fe467871d9423",
+     "cr_748bf35a25f5c089",
+     "cr_fdbb31b990e9c427",
+     "cr_4edaf5ca11972534",
+     "cr_f6155945dc0c1c54"
+    ]
+   },
+   "adidas-metalbone-3-5-2026": {
+    "line": "More of a cannon than the Vertex 05 Geo",
+    "n": 1,
+    "by": [
+     "cr_fb79d0141f74a35d"
+    ]
+   },
+   "babolat-counter-viper-2026": {
+    "line": "Easier ball output than the Vertex 05 Geo, but less power up high",
+    "n": 1,
+    "by": [
+     "cr_748bf35a25f5c089"
+    ]
+   },
+   "bullpadel-neuron-02-2027": {
+    "line": "More powerful than the Vertex 05 Geo",
+    "n": 1,
+    "by": [
+     "cr_fdbb31b990e9c427"
+    ]
+   }
+  },
+  "siux-diablo-pro-2026": {
+   "adidas-metalbone-3-5-2026": {
+    "line": "Easier to lift smashes with than the Diablo Pro",
+    "n": 1,
+    "by": [
+     "cr_40458ceb711cda40"
+    ]
+   },
+   "babolat-air-viper-2026": {
+    "line": "Less stable and less direct than the Diablo Pro",
+    "n": 1,
+    "by": [
+     "cr_4bed1330a47c098c"
+    ]
+   },
+   "bullpadel-vertex-05-geo-2027": {
+    "line": "More raw punch, less stable off centre, less consistent in depth than the Diablo Pro",
+    "n": 1,
+    "by": [
+     "cr_4bed1330a47c098c"
+    ]
+   }
+  },
+  "adidas-metalbone-hrd-plus-3-5-2026": {
+   "adidas-metalbone-3-5-2026": {
+    "line": "Softer, more forgiving and more versatile than the HRD+, with a larger sweet spot",
+    "n": 6,
+    "by": [
+     "cr_3991a14d74375ed9",
+     "cr_5d0e7486f4aff352",
+     "cr_01c5b7d3d8d9550c",
+     "cr_539fbce1fbe82b46",
+     "cr_e3c6d38bc635cf47",
+     "cr_3e4a5bde45de96bd"
+    ]
+   }
+  },
+  "adidas-metalbone-carbon-ctrl-3-4-2025": {
+   "adidas-metalbone-3-5-2026": {
+    "line": "More leverage but less control at fast pace than the CTRL 3.4",
+    "n": 1,
+    "by": [
+     "cr_e3cd63ac58a15f7f"
+    ]
+   },
+   "adidas-metalbone-carbon-3-5-2026": {
+    "line": "Better suited to backhand players, while the CTRL 3.4 suits forehand players",
+    "n": 1,
+    "by": [
+     "cr_e3cd63ac58a15f7f"
+    ]
+   },
+   "adidas-metalbone-ctrl-2026": {
+    "line": "Larger sweet spot and better on bandeja and smash, but holds the ball less in defence",
+    "n": 1,
+    "by": [
+     "cr_b436608fb8ce26f7"
+    ]
+   }
+  },
+  "siux-fenix-pro-5-2025": {
+   "head-coello-pro-2026": {
+    "line": "Similar in hardness to the Fenix Pro 5",
+    "n": 1,
+    "by": [
+     "cr_a6330152e83a29d1"
+    ]
+   }
+  },
+  "siux-pegasus-pro-2026": {
+   "siux-electra-pro-st5-2026": {
+    "line": "Harder to control and slightly more demanding than the Pegasus Pro",
+    "n": 2,
+    "by": [
+     "cr_f786aa123eab8dd1",
+     "cr_3e14c176742ebdef"
+    ]
+   },
+   "siux-fenix-pro-6-2026": {
+    "line": "More power oriented than the Pegasus Pro, which sits between power and control",
+    "n": 1,
+    "by": [
+     "cr_f786aa123eab8dd1"
+    ]
+   }
+  },
+  "head-coello-motion-2026": {
+   "head-coello-pro-2026": {
+    "line": "Heavier, harder and less manageable than the Motion, though more powerful on flat smashes",
+    "n": 6,
+    "by": [
+     "cr_3dc15f2be382fbde",
+     "cr_63d83390b751b92a",
+     "cr_e683b7c0fc1e1886",
+     "cr_5a2d25f134e423b1",
+     "cr_ea6f75a5a4d553f6",
+     "cr_f43a3cb267062c80"
+    ]
+   },
+   "head-coello-team-2026": {
+    "line": "Lighter, softer and more forgiving than the Motion, with less power and a smaller sweet spot",
+    "n": 3,
+    "by": [
+     "cr_3dc15f2be382fbde",
+     "cr_a18b49f75a8aa3a6",
+     "cr_f43a3cb267062c80"
+    ]
+   },
+   "bullpadel-neuron-02-2027": {
+    "line": "Bigger sweet spot and easier to move than the Motion, but with less pop and power",
+    "n": 2,
+    "by": [
+     "cr_3dc15f2be382fbde",
+     "cr_e683b7c0fc1e1886"
+    ]
+   },
+   "head-extreme-motion-2026": {
+    "line": "Slightly less reactive but harder than the Motion, and seen as a better buy",
+    "n": 2,
+    "by": [
+     "cr_5a2d25f134e423b1",
+     "cr_1920d209ebeb88d8"
+    ]
+   }
+  },
+  "bullpadel-vertex-05-2026": {
+   "bullpadel-vertex-05-geo-2027": {
+    "line": "More power on overheads than the Vertex 05, but less manageable",
+    "n": 4,
+    "by": [
+     "cr_1deccb7bd23a9c69",
+     "cr_f2fdaf5da870d71c",
+     "cr_b24b41b4a30927b7",
+     "cr_31803277f3f8cf67"
+    ]
+   },
+   "adidas-metalbone-hrd-plus-3-5-2026": {
+    "line": "Closest of the Metalbone range to the Vertex 05, but with a higher balance",
+    "n": 1,
+    "by": [
+     "cr_b24b41b4a30927b7"
+    ]
+   }
+  },
+  "babolat-technical-viper-2025": {
+   "babolat-counter-viper-2026": {
+    "line": "Less offensive and less powerful than the Technical Viper, with a bigger sweet spot",
+    "n": 2,
+    "by": [
+     "cr_963d65fd16acc72a",
+     "cr_1bb12b3df87fa862"
+    ]
+   },
+   "babolat-air-viper-2026": {
+    "line": "More playable and less offensive than the Technical Viper, with a bigger sweet spot",
+    "n": 3,
+    "by": [
+     "cr_963d65fd16acc72a",
+     "cr_1bb12b3df87fa862",
+     "cr_bd169568a5a2dcb3"
+    ]
+   },
+   "adidas-metalbone-hrd-plus-3-5-2026": {
+    "line": "A touch softer than the Technical Viper, though close in hardness",
+    "n": 1,
+    "by": [
+     "cr_f3d8ad4e249cfb44"
+    ]
+   }
+  },
+  "babolat-counter-viper-2026": {
+   "babolat-air-viper-2026": {
+    "line": "Faster in transitions and nicer for touch, but less generous and stable than the Counter Viper",
+    "n": 2,
+    "by": [
+     "cr_08b962c50776a25c",
+     "cr_80b75e9ce73e1b1f"
+    ]
+   },
+   "babolat-counter-veron-2026": {
+    "line": "Softer and easier at low pace, with the same weight and balance as the Counter Viper",
+    "n": 1,
+    "by": [
+     "cr_08b962c50776a25c"
+    ]
+   },
+   "babolat-technical-viper-2025": {
+    "line": "Better for flat smashes and feel, but heavier up top and harder than the Counter Viper",
+    "n": 3,
+    "by": [
+     "cr_08b962c50776a25c",
+     "cr_80b75e9ce73e1b1f",
+     "cr_5404129745705c76"
+    ]
+   },
+   "bullpadel-neuron-02-2027": {
+    "line": "Easier to move over a long match, but less firm under pace than the Counter Viper",
+    "n": 1,
+    "by": [
+     "cr_08b962c50776a25c"
+    ]
+   }
+  },
+  "siux-electra-pro-st5-2026": {
+   "adidas-metalbone-3-5-2026": {
+    "line": "More smash power than the Electra Pro, which is not in that power class",
+    "n": 1,
+    "by": [
+     "cr_8e233f2608af17cd"
+    ]
+   },
+   "head-speed-pro-2025": {
+    "line": "More smash power than the Electra Pro, which is not in that power class",
+    "n": 1,
+    "by": [
+     "cr_8e233f2608af17cd"
+    ]
+   },
+   "bullpadel-neuron-02-2027": {
+    "line": "Slightly stiffer than the Electra Pro",
+    "n": 1,
+    "by": [
+     "cr_cb22dea41db530b0"
+    ]
+   },
+   "siux-diablo-pro-2026": {
+    "line": "Demands more swing and gives less free speed than the Electra Pro",
+    "n": 1,
+    "by": [
+     "cr_d2c72b24765c2c83"
+    ]
+   }
+  },
+  "bullpadel-neuron-02-edge-2026": {
+   "bullpadel-neuron-02-2027": {
+    "line": "More controllable and manoeuvrable but less powerful than the Neuron 02 Edge",
+    "n": 5,
+    "by": [
+     "cr_1ac026e24a0ba65c",
+     "cr_41370da7e5492577",
+     "cr_7af778337f880783",
+     "cr_59282737afeab5bd",
+     "cr_18f8e50623251662"
+    ]
+   },
+   "bullpadel-vertex-05-geo-2027": {
+    "line": "Slightly bigger sweet spot than the Neuron 02 Edge",
+    "n": 1,
+    "by": [
+     "cr_91a4af0c0cd93719"
+    ]
+   }
+  },
+  "head-extreme-pro-2026": {
+   "head-extreme-motion-2026": {
+    "line": "Lighter, easier in defense and better suited to less advanced players than the Extreme Pro",
+    "n": 2,
+    "by": [
+     "cr_9bc003f3df7b3bfd",
+     "cr_250f673e553eff09"
+    ]
+   },
+   "head-coello-pro-2026": {
+    "line": "Slightly more powerful and bouncier, but heavier and harder to manage than the Extreme Pro",
+    "n": 2,
+    "by": [
+     "cr_2fbd35855f9b69c3",
+     "cr_250f673e553eff09"
+    ]
+   }
+  },
+  "siux-fenix-elite-6-2026": {
+   "siux-fenix-pro-6-2026": {
+    "line": "Harder feel, a step more full power and less reactive than the Fenix Elite 6",
+    "n": 1,
+    "by": [
+     "cr_86c4e45f1cb57b59"
+    ]
+   },
+   "adidas-metalbone-hrd-plus-3-5-2026": {
+    "line": "Poorer ball exit from the back, a step more full power than the Elite 6",
+    "n": 1,
+    "by": [
+     "cr_86c4e45f1cb57b59"
+    ]
+   },
+   "head-coello-motion-2026": {
+    "line": "Slightly softer in feel than the Fenix Elite 6",
+    "n": 1,
+    "by": [
+     "cr_86c4e45f1cb57b59"
+    ]
+   }
+  },
+  "babolat-viper-soft-juan-lebron-3-1-2027": {
+   "adidas-metalbone-3-5-2026": {
+    "line": "More rebound than the Viper Soft, in its Hard version",
+    "n": 1,
+    "by": [
+     "cr_7234590bf6f8cef0"
+    ]
+   }
+  },
+  "bullpadel-xplo-2026": {
+   "bullpadel-neuron-02-2027": {
+    "line": "More solid and holds hard shots better than the Xplo, but carries the ball less",
+    "n": 1,
+    "by": [
+     "cr_c8970d00ab2de75d"
+    ]
+   },
+   "bullpadel-vertex-05-2027": {
+    "line": "More solid than the Xplo with a similar drum feel, and less aggressive",
+    "n": 2,
+    "by": [
+     "cr_c8970d00ab2de75d",
+     "cr_74d0bb56d05b6775"
+    ]
+   },
+   "bullpadel-vertex-05-geo-2027": {
+    "line": "Softer and more forgiving than the Xplo, though a touch more aggressive",
+    "n": 2,
+    "by": [
+     "cr_d9c4161e753ad35c",
+     "cr_74d0bb56d05b6775"
+    ]
+   }
+  },
+  "bullpadel-hack-04-2025": {
+   "adidas-metalbone-3-5-2026": {
+    "line": "Gives far more ball output than the Hack 04 in the three point smash",
+    "n": 1,
+    "by": [
+     "cr_ae4cc2983c498f71"
+    ]
+   },
+   "bullpadel-xplo-2026": {
+    "line": "Easier to move than the Hack 04, but with less spin and less weight on volleys",
+    "n": 1,
+    "by": [
+     "cr_46bf88b19d30c417"
+    ]
+   },
+   "head-coello-pro-2026": {
+    "line": "Heavier and more head heavy than the Hack 04",
+    "n": 1,
+    "by": [
+     "cr_ae4cc2983c498f71"
+    ]
+   }
+  },
+  "wilson-defy-pro-v1-2025": {
+   "wilson-defy-v1-2025": {
+    "line": "Less powerful, less hard and more homogeneous than the Defy Pro V1, with easier lob feel",
+    "n": 3,
+    "by": [
+     "cr_698509ee715c3841",
+     "cr_50e2b2163cd96946",
+     "cr_6a825ff6b57be86c"
+    ]
+   }
+  },
+  "nox-at10-genius-attack-18k-2026": {
+   "nox-at10-genius-18k-alum-2027": {
+    "line": "Lower balance and less attacking profile than the Attack 18K, with nearly the same materials",
+    "n": 1,
+    "by": [
+     "cr_190811d7f01d9a6f"
+    ]
+   }
+  },
+  "starvie-astrum-plus-2026": {
+   "starvie-drax-plus-2026": {
+    "line": "Faster, with less ball feel and more forgiveness off the sweet spot than the Astrum+",
+    "n": 1,
+    "by": [
+     "cr_8f8975c16449a2cd"
+    ]
+   }
+  },
+  "adidas-metalbone-3-5-2026": {
+   "adidas-metalbone-hrd-plus-3-5-2026": {
+    "line": "Stiffer, less forgiving and harder to control than the Metalbone",
+    "n": 2,
+    "by": [
+     "cr_589bd61f59be6452",
+     "cr_f16aa5acada540a2"
+    ]
+   },
+   "adidas-metalbone-carbon-3-5-2026": {
+    "line": "More controlled in attack, with less rebound and a healthier balance than the Metalbone",
+    "n": 2,
+    "by": [
+     "cr_a0b6c6d0589e96d2",
+     "cr_d3f6321b0b0c3f2d"
+    ]
+   },
+   "adidas-metalbone-team-3-5-2026": {
+    "line": "Softer and more forgiving, with a fiberglass face and no weight system, unlike the Metalbone",
+    "n": 1,
+    "by": [
+     "cr_586f1efc1dd7aeb9"
+    ]
+   }
+  },
+  "bullpadel-xplo-02-2027": {
+   "bullpadel-neuron-02-2027": {
+    "line": "More forgiving than the Xplo 02 but less powerful on the smash",
+    "n": 1,
+    "by": [
+     "cr_cf8de819221e1521"
+    ]
+   },
+   "head-coello-pro-2026": {
+    "line": "Harder to move around than the lighter Xplo 02",
+    "n": 1,
+    "by": [
+     "cr_07d0012fd93570d4"
+    ]
+   }
+  },
+  "babolat-viper-juan-lebron-3-0-2026": {
+   "babolat-technical-viper-2025": {
+    "line": "Rounder in shape and easier to handle and defend with than the Viper Juan Lebron 3.0",
+    "n": 1,
+    "by": [
+     "cr_81ad5c3f5e4be453"
+    ]
+   },
+   "babolat-counter-viper-2026": {
+    "line": "A better fit than the Viper Juan Lebron 3.0 for one tester's own game",
+    "n": 1,
+    "by": [
+     "cr_81ad5c3f5e4be453"
+    ]
+   }
+  },
+  "nox-ea10-ventus-hybrid-12k-2026": {
+   "nox-at10-genius-18k-2026": {
+    "line": "More reactive and bouncier, and easier to lift on smashes than the Ventus Hybrid",
+    "n": 1,
+    "by": [
+     "cr_0888a67b740fe98a"
+    ]
+   }
+  },
+  "oxdog-ultimate-pro-light-2026": {
+   "oxdog-ultimate-pro-2026": {
+    "line": "Heavier at 365 g, with less hand speed than the Pro Light",
+    "n": 1,
+    "by": [
+     "cr_3550b660ce576b7b"
+    ]
+   },
+   "oxdog-ultimate-pro-plus-2025": {
+    "line": "Harder and more powerful than the Pro Light, especially on flat smashes",
+    "n": 2,
+    "by": [
+     "cr_e9c2f1105c38f024",
+     "cr_d1bf834d6cae23a1"
+    ]
+   },
+   "babolat-air-viper-2026": {
+    "line": "Slightly less direct, controllable and maneuverable than the Pro Light, with a touch more ball exit",
+    "n": 2,
+    "by": [
+     "cr_e9c2f1105c38f024",
+     "cr_d1bf834d6cae23a1"
+    ]
+   },
+   "oxdog-ultimate-pro-smash-2026": {
+    "line": "Harder and does more than the Pro Light",
+    "n": 1,
+    "by": [
+     "cr_d1bf834d6cae23a1"
+    ]
+   }
+  },
+  "head-coello-motion-2025": {
+   "head-coello-pro-2026": {
+    "line": "Close to the Motion but a bit heavier, with a slightly higher balance",
+    "n": 2,
+    "by": [
+     "cr_8f2fe9280b020031",
+     "cr_a7b0a792b3ba6d06"
+    ]
+   },
+   "head-extreme-motion-2026": {
+    "line": "Less adaptable than the Motion, more confined to the left side of the court",
+    "n": 1,
+    "by": [
+     "cr_8f2fe9280b020031"
+    ]
+   }
+  },
+  "head-speed-motion-2025": {
+   "head-speed-pro-2025": {
+    "line": "Less maneuverable than the Speed Motion, with a similarly versatile power and control profile",
+    "n": 1,
+    "by": [
+     "cr_319b49bba1d394c1"
+    ]
+   },
+   "head-speed-team-2025": {
+    "line": "A lesser pick than the Speed Motion, which blends it with the Pro",
+    "n": 1,
+    "by": [
+     "cr_319b49bba1d394c1"
+    ]
+   }
+  },
+  "bullpadel-vertex-05-women-2026": {
+   "bullpadel-pearl-2027": {
+    "line": "More powerful than the Vertex 05 W, which is more of an all-rounder",
+    "n": 1,
+    "by": [
+     "cr_7b6735c71d2682e6"
+    ]
+   },
+   "bullpadel-wonder-2027": {
+    "line": "More precise and controlled than the Vertex 05 W, which is more of an all-rounder",
+    "n": 1,
+    "by": [
+     "cr_7b6735c71d2682e6"
+    ]
+   }
+  },
+  "babolat-viper-soft-juan-lebron-3-0-2026": {
+   "adidas-metalbone-3-5-2026": {
+    "line": "Bouncier than the Viper Soft 3.0, which gives power with less rebound",
+    "n": 1,
+    "by": [
+     "cr_b6b04e9036a31595"
+    ]
+   },
+   "babolat-technical-viper-2025": {
+    "line": "Harder and less forgiving than the Viper Soft 3.0, though the gap is small",
+    "n": 3,
+    "by": [
+     "cr_81196caa8a869fcb",
+     "cr_d7f635b10cb86f71",
+     "cr_23c0ef74ac7391e6"
+    ]
+   }
+  }
  }
 }

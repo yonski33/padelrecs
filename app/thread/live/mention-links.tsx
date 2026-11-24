@@ -66,6 +66,13 @@ export function mentionNodes(m: Ctx | null, text: string, seen: Set<string>): Re
     : <span key={i}>{s.t}</span>);
 }
 
+/** A block of text (a TL;DR, a paragraph) with its mentions linked, first mention per block. PadelRecs uses it outside the
+ *  review cards; with no provider around it, the text stays plain. */
+export function MentionText({ text }: { text: string }) {
+  const m = useMentions(), seen = new Set<string>();
+  return <>{mentionNodes(m, text, seen)}</>;
+}
+
 /** The products a "Compared to" text names, as small chips with a thumbnail, then a side-by-side link for the first one. */
 export function MentionChips({ text }: { text: string }) {
   const m = useMentions();
