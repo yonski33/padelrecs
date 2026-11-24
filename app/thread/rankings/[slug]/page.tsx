@@ -73,7 +73,16 @@ export async function generateMetadata({ params }: P): Promise<Metadata> {
   const { slug } = await params;
   const l = (await threadRankings()).find(x => x.slug === slug);
   if (!l) return { title: "Ranking not found", robots: { index: false } };
-  if (l.own) return liveMetadata({ params });
+  if (l.own && !LT) return liveMetadata({ params });
+  // LaptopRecs (2026-11-24): its lists are ordered by most loved (lib/thread/vote-order.ts), not the live list's order, so the
+  // live title's count ("Ranked by 58 Real Owner Reviews") was a different list's. Its own lists keep the live description
+  // and canonical, with the title counting the opinions behind the rows the page shows.
+  if (LT && l.own) {
+    const [live, { rows }] = await Promise.all([liveMetadata({ params }), threadRows()]);
+    const n = l.ids.reduce((a, id) => { const r = rows.get(id); return a + (r ? r.pos + r.mix + r.neg : 0); }, 0);
+    const t = `${l.title}, Ranked by ${n.toLocaleString("en-US")} Real ${W.Person} Opinions`;
+    return { ...live, title: { absolute: t }, openGraph: { ...live.openGraph, title: t } };
+  }
   const title = `${l.title}, ranked by real ${W.reviews}`;
   const description = l.kids ? `${l.blurb} The top picks by product type, from reviews by people who ${W.played} them.`
     : ratingCategory(l.slug, niche.id) ? `${l.blurb} The top ${l.ids.length}, from reviews by people who ${W.played} them.`
