@@ -59,6 +59,9 @@ export async function amazonButton(product: { name: string; brand: string | unde
     return search;
   }
   if (!product.brand || amazonSearchOnly(product.name)) return search;
+  // Never during `next build` (2026-11-24: one lookup per product page sent 429s and held build memory). A page built with
+  // the site gets the search link and picks up its offer on its first revalidation.
+  if (process.env.NEXT_PHASE === "phase-production-build") return search;
   try {
     // A slow or rate-limited Amazon (429s, 2026-11-16) must not hold the page: after LOOKUP_MS the button is the search
     // link, and the lookup still finishes and fills the cache for the next render.
