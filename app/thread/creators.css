@@ -628,8 +628,9 @@ body:has(.thc) .thc .thc-pbox-on a, body:has(.thc) .thc .thc-sim-aff a { color: 
 .thc-g-head .cfg-l { font-size: 11px; font-weight: 700; color: var(--faint); }
 .thc .thc-cfg-chips { margin-top: 0; }
 @media (max-width: 719px) { .thc-g-row.cfg { grid-template-columns: minmax(0, 1fr) auto; } .thc-g-row .cfg-l { grid-column: 1 / -1; } }
-/* PadelRecs on the creator page (2026-11-24): the Follow button under the tags, and the shop list's "All N shops". */
-.thc-follow { display: flex; margin: 2px 0 4px; }
+/* PadelRecs on the creator page (2026-11-24): the shop list's "All N shops". */
 .thc-pbox-more summary { cursor: pointer; font-size: 13.5px; font-weight: 600; padding: 6px 0 2px; color: var(--muted); }
 /* Padel's longest attribute word ("Maneuverability") breaks with a hyphen instead of running into the line beside it. */
 .thc-grade strong { min-width: 0; overflow-wrap: anywhere; hyphens: auto; }
+/* Spec pills (owner 2026-11-24): after the tags, quieter: thin muted outline, regular weight, no fill. */
+.thc-tags > span.spec, .thc-v19 .thc-hd4 .thc-tags > span.spec { font-weight: 500; border-width: 1px; border-color: color-mix(in oklch, currentColor 30%, transparent); background: transparent; color: var(--muted, #5b5b5b); }
