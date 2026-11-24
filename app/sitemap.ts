@@ -1,12 +1,12 @@
 import type { MetadataRoute } from "next";
+import { v3Site } from "../lib/thread/sites";
 import { catalog } from "../db/data";
-import { catalogPath, niche, productHref, isV2 } from "../lib/niche";
+import { catalogPath, niche, productHref } from "../lib/niche";
 import { amazonLinksOn } from "../lib/amazon-offer";
+import { threadStories } from "./thread/stories-data";
 import { comparePairs, pairHref } from "../lib/compare-pairs";
+import { threadSite, THREAD_DEFAULT, GUIDE_PATHS, GUIDE_KEYS } from "../lib/thread/look";
 import { rankList, listTotals, RANKINGS_PATH, rankingHref, withNicheWindow, withModelYears, MIN_LIST_ENTRIES } from "../lib/top-lists";
-import { INDEXABLE_CHOICES, choiceHref } from "../lib/quick-match";
-import { attrProfileFor } from "../lib/attr-profile";
-import { SKIN_TYPES } from "../lib/skin-choice";
 
 // When the about / contact / how-we-make / affiliate pages last changed (their copy is in code): bump with an edit there.
 const COPY_UPDATED = new Date("2026-11-15T00:00:00Z");
@@ -31,16 +31,17 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { url: `${base}/`, lastModified: latest(allNotes), changeFrequency: "daily", priority: 1 },
     { url: `${base}${catalogPath}`, lastModified: latest(listed.map(r => r.createdAt)), changeFrequency: "weekly", priority: 0.8 },
     { url: `${base}/brands`, lastModified: latest(listed.map(r => r.createdAt)), changeFrequency: "weekly", priority: 0.6 },
-    // Quick match pages (PadelRecs): every style × level × sore arm, the indexable ones (app/page.tsx canonical).
-    // SkinRecs: one page per product type × skin type (the indexable quick-match views), "&" written as &amp; (Next prints the
-    // URL into the XML as is); racket sites: their style × level × arm.
-    ...(isV2 && attrProfileFor(niche) ? (niche.typePages ?? []).flatMap(t => SKIN_TYPES.map(k => ({ url: `${base}/?type=${t.slug}&amp;skin=${k}`, lastModified: latest(allNotes), changeFrequency: "daily" as const, priority: 0.6 }))) : []),
-    ...(isV2 && niche.finder && !attrProfileFor(niche) ? INDEXABLE_CHOICES.map(c => ({ url: `${base}${choiceHref(c, "")}`, lastModified: latest(allNotes), changeFrequency: "daily" as const, priority: 0.7 })) : []),
+    // No quick-match views (?style= / ?level= / ?arm= / ?kind= / ?type= / ?skin= …): they are views of the home and canonical to
+    // it (Grok SEO audit, owner 2026-11-18), so only the plain home is listed.
     { url: `${base}/reviews`, lastModified: latest(allNotes), changeFrequency: "daily", priority: 0.7 },
     ...(niche.guide ? [{ url: `${base}/guide`, lastModified: latest(listed.map(r => r.createdAt)), changeFrequency: "weekly" as const, priority: 0.7 }] : []),
     ...(niche.finder ? [{ url: `${base}/finder`, lastModified: latest(allNotes), changeFrequency: "weekly" as const, priority: 0.8 }] : []),
     ...(lists.length ? [{ url: `${base}${RANKINGS_PATH}`, lastModified: latest(lists.map(x => x.updated)), changeFrequency: "weekly" as const, priority: 0.8 }] : []),
     ...lists.map(x => ({ url: `${base}${rankingHref(x.list.slug)}`, lastModified: new Date(x.updated), changeFrequency: "weekly" as const, priority: 0.8 })),
+    // PadelRecs on the Thread look (lib/thread/look.ts): its four new guides and its rankings that only Thread has.
+    ...(await threadExtras(base, latest(allNotes))),
+    // Member stories (PadelRecs pilot): the list and each live story, once one is live.
+    ...(await storyEntries(base)),
     ...(niche.typePages ?? []).map(t => ({
       url: `${base}/${t.slug}`,
       lastModified: latest(listed.filter(r => r.shape?.toLowerCase() === t.shape.toLowerCase()).flatMap(r => [r.createdAt, ...notesFor(r.id)])),
@@ -66,9 +67,30 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       changeFrequency: "weekly" as const,
       priority: 0.6,
     })),
-    { url: `${base}/how-we-make-these`, lastModified: COPY_UPDATED, changeFrequency: "monthly", priority: 0.4 },
+    // The v3 sites list "How rankings work"; their old score page 308s there (next.config.ts), so it isn't listed.
+    ...(v3Site(niche.id) ? [{ url: `${base}/how-rankings-work`, lastModified: COPY_UPDATED, changeFrequency: "monthly" as const, priority: 0.4 }]
+      : [{ url: `${base}/how-we-make-these`, lastModified: COPY_UPDATED, changeFrequency: "monthly" as const, priority: 0.4 }]),
     { url: `${base}/about`, lastModified: COPY_UPDATED, changeFrequency: "yearly", priority: 0.3 },
     { url: `${base}/contact`, lastModified: COPY_UPDATED, changeFrequency: "yearly", priority: 0.2 },
     ...(amazonLinksOn() ? [{ url: `${base}/affiliate-disclosure`, lastModified: COPY_UPDATED, changeFrequency: "yearly" as const, priority: 0.2 }] : []),
   ];
+}
+
+async function threadExtras(base: string, updated: Date | undefined): Promise<MetadataRoute.Sitemap> {
+  if (niche.id !== "padel" || !threadSite(niche.id) || !THREAD_DEFAULT) return [];
+  const { threadRankings } = await import("./thread/rankings-data");
+  const extra = (await threadRankings()).filter(l => !l.own);
+  return [
+    { url: `${base}/guides`, lastModified: updated, changeFrequency: "monthly" as const, priority: 0.6 },
+    ...GUIDE_KEYS.filter(k => k !== "racket").map(k => ({ url: `${base}${GUIDE_PATHS[k]}`, lastModified: updated, changeFrequency: "monthly" as const, priority: 0.6 })),
+    ...extra.map(l => ({ url: `${base}${l.href}`, lastModified: updated, changeFrequency: "weekly" as const, priority: 0.7 })),
+  ];
+}
+
+async function storyEntries(base: string): Promise<MetadataRoute.Sitemap> {
+  const list = await threadStories(1000);
+  if (!list.length) return [];
+  const newest = new Date(list.map(s => s.updatedAt).reduce((a, b) => a > b ? a : b));
+  return [{ url: `${base}/stories`, lastModified: newest, changeFrequency: "daily", priority: 0.6 },
+    ...list.map(s => ({ url: `${base}/stories/${s.slug}`, lastModified: new Date(s.updatedAt), changeFrequency: "monthly" as const, priority: 0.6 }))];
 }

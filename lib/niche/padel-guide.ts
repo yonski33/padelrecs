@@ -17,16 +17,16 @@ export const padelGuide: GuideConfig = {
   ],
   sections: [
     { id: "shape", title: "Shape", sub: "where the sweet spot sits", layout: "cards", filter: "shape", liked: "round", options: [
-      { value: "round", icon: "round", label: "Round", text: "Biggest sweet spot: control and forgiveness on every hit.", best: "beginners, defenders" },
+      { value: "round", icon: "round", label: "Round", text: "The biggest sweet spot, so even your off days stay on the court.", best: "beginners, defenders" },
       { value: "teardrop", icon: "teardrop", label: "Teardrop", text: "The all-rounder. A bit of power, a bit of control.", best: "most intermediates" },
       { value: "hybrid", icon: "hybrid", label: "Hybrid", text: "Between round and teardrop, with a forgiving feel.", best: "improvers stepping up" },
-      { value: "diamond", icon: "diamond", label: "Diamond", text: "Most power, smallest sweet spot. Rewards clean technique.", best: "advanced attackers" },
+      { value: "diamond", icon: "diamond", label: "Diamond", text: "Most power, smallest sweet spot. For advanced attackers (and the ones who've watched a lot of YouTube).", best: "advanced attackers" },
     ] },
     { id: "feel", title: "Feel", sub: "how soft the core is", layout: "scale", filter: "feel", liked: "soft",
       rule: "Sore arm or still learning? Go soft. Want precise volleys and you hit hard? Go hard.", options: [
       { value: "soft", label: "Soft", text: "Comfy and bouncy; easy power at slow speeds, kind to the arm." },
       { value: "medium", label: "Medium", text: "A bit of both; forgiving but still precise." },
-      { value: "firm", label: "Hard / dry", text: "Direct and precise; little bounce, you supply the power.", liked: "hard" },
+      { value: "firm", label: "Hard / dry", text: "Direct and precise, with little bounce. Swing gently and it just shrugs.", liked: "hard" },
     ] },
     { id: "balance", title: "Balance", sub: "where the weight sits", layout: "toggles", liked: "medium",
       spec: { key: "balance", label: "Balance", column: "balance", classify: balanceOf }, options: [
@@ -43,7 +43,7 @@ export const padelGuide: GuideConfig = {
     { id: "surface", title: "Surface", sub: "smooth or textured", layout: "split",
       textOnlyNote: "no counts here yet: maker specs rarely say how rough a face is", options: [
       { label: "Smooth", text: "Flatter, faster shots with less grip on the ball. Fine if you rarely add spin." },
-      { label: "Rough", text: "Textured face that bites the ball for extra spin on slices and kick serves.", accent: true },
+      { label: "Rough", text: "Textured face that bites the ball for extra spin on slices, víboras and kick smashes.", accent: true },
     ] },
     { id: "face", title: "Face", sub: "what it's made of", layout: "dark-split", liked: "carbon",
       spec: { key: "face", label: "Face", column: "surface", classify: faceOf }, options: [
@@ -68,5 +68,5 @@ export const padelGuide: GuideConfig = {
     lesson: "Buy for your game, not theirs.",
   },
   home: { section: "shape", title: "Browse by shape", link: "Feel, balance & weight explained → racket guide" },
-  cta: { title: "Skip the theory. Get matched.", text: "Tell us your level and style; we'll rank every racket for you.", button: "Find your racket →" },
+  cta: { title: "Skip the theory. Get matched.", text: "Pick your level and style to see every racket ranked for you.", button: "Find your racket →" },
 };

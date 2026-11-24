@@ -1,0 +1,111 @@
+"use client";
+// The Thread catalogue (Rackets Thread): search, the filter column (Shape, Level, Feel, Brand, Arm friendly; counts of 5+),
+// active chips, Clear all, sort and Load more, all in the browser on the rows the server sent.
+import { niche } from "../../../lib/niche";
+import { useEffect, useMemo, useState, type ReactNode } from "react";
+import { Row, cap, topMatch, type ThreadRow } from "../ui";
+import { usePicks, usePayload, complete, pctsFor, type Level } from "./picks";
+import { PickChips } from "./pick-chips";
+import { W } from "../../../lib/thread/words";
+
+type Key = "shape" | "level" | "feel" | "brand" | "arm" | "skin" | "texture" | "sens" | "stab" | "drive";
+const SKIN = niche.id === "skin", DG = niche.id === "discgolf", SR = niche.id === "simracing";
+/** PadelRecs (owner 2026-11-21): "Your match" (level, style, Arm comfort; the same picks as the home quick match) re-orders the
+ *  list by match % once a level or style is picked and never hides a racket; "Filter" (Shape, Feel, Brand) narrows it. */
+const PADEL = niche.id === "padel";
+/** DiscGolfRecs: a disc's stability from its flight numbers, for the filter (lib/niche/discgolf-guide.ts stabilityOfFlight's
+ *  rule, inlined so other sites' catalogue code stays as it is). */
+const stabOf = (r: ThreadRow) => { if (!r.flight) return null; const [, , turn, fade] = r.flight;
+  return turn + fade >= 3 ? "Overstable" : turn <= -2 || turn + fade <= -1 ? "Understable" : "Stable"; };
+type Filters = Partial<Record<Key, string[]>>;
+const STEP = 20;
+const OWN_SHAPES = niche.id === "pickleball" ? niche.shapeFilter ?? null : null;
+const hasShape = (shape: string | null, v: string) => !!shape && new RegExp(`\\b${v}\\b`, "i").test(shape);
+
+/** `title`, `lead` and `crumbs` change the hero (a brand page: app/thread/brands/[slug]); with no `brands` the Brand filter is left out. */
+export function Catalog({ rows, brands, title = SKIN ? "All skincare products" : DG ? "All discs" : SR ? "All sim racing gear" : `All ${niche.id} ${niche.words.many}`, lead = SKIN ? "Every product people have reviewed and voted on. Filter by skin type, then see what people say."
+  : DG ? "Every disc players have reviewed and voted on. Filter by how it flies, then see what people say."
+  : SR ? "Every product racers have reviewed and voted on. Filter by type and drive, then see what people say." : `Every ${niche.words.one} players have reviewed. Filter by how it plays, then see what people say.`, crumbs }:
+  { rows: ThreadRow[]; brands: string[]; title?: string; lead?: string; crumbs?: ReactNode }) {
+  const [q, setQ] = useState(""), [f, setF] = useState<Filters>({}), [sort, setSort] = useState<"score" | "reviews" | "new" | "match">("score");
+  const [open, setOpen] = useState(false), [panel, setPanel] = useState(false), [n, setN] = useState(STEP), [older, setOlder] = useState(false);
+  const [picks, setPicks] = usePicks(); const mine = PADEL && !!(picks.level || picks.style), on = complete(picks) || mine, payload = usePayload(on);
+  const pcts = useMemo(() => on && payload ? pctsFor(payload, picks) : null, [on, payload, picks]);
+  // The header search sends ?q=: read it once from the address (no useSearchParams: tests/instant-views.test.ts).
+  // ?q= from the header search, and ?level= / ?feel= / ?shape= from the home's "See all ›" links (owner 2026-11-19).
+  useEffect(() => { const u = new URLSearchParams(location.search), v = u.get("q"); if (v) setQ(v);
+    const pre: Filters = {}; for (const k of ["level", "feel", "shape"] as const) { const x = u.get(k); if (x) pre[k] = [x]; }
+    // PadelRecs has no Level filter: the home's "See all ›" level link sets the level pick instead.
+    if (PADEL && pre.level) { const lv = pre.level[0].toLowerCase(); delete pre.level; if (["beginner", "intermediate", "advanced"].includes(lv)) setPicks({ level: lv as Level }); }
+    if (Object.keys(pre).length) setF(pre); }, []);
+  // PickleballRecs: the site's own shapes (Standard, Elongated, Hybrid; its catalogue mock), matching a paddle that lists
+  // the shape among several ("Hybrid, Widebody, or Elongated"). Padel: the 5 most common shape values.
+  const shapes = useMemo(() => OWN_SHAPES ?? [...new Set(rows.map(r => r.shape).filter((x): x is string => !!x))].sort((a, b) => rows.filter(r => r.shape === b).length - rows.filter(r => r.shape === a).length).slice(0, 5), [rows]);
+  const GROUPS = (SR ? [["shape", "Type", niche.shapeFilter ?? shapes], ["level", "Level", ["Beginner", "Intermediate", "Advanced"]],
+    ["drive", "Drive", ["Direct drive", "Belt", "Gear"]], ["brand", "Brand", brands]] as [Key, string, string[]][] : DG ? [["shape", "Type", niche.shapeFilter ?? shapes], ["level", "Level", ["Beginner", "Intermediate", "Advanced"]], ["stab", "Stability", ["Understable", "Stable", "Overstable"]],
+    ["brand", "Brand", brands], ["arm", "Arm speed", ["Slow-arm friendly"]]] as [Key, string, string[]][] : SKIN ? [["shape", "Type", shapes], ["skin", "Skin type", ["Dry", "Oily", "Combination", "Normal"]], ["texture", "Texture", ["Rich", "Medium", "Light"]], ["brand", "Brand", brands], ["sens", "Sensitive skin", ["Gentle on sensitive skin"]]] as [Key, string, string[]][] : [["shape", "Shape", shapes], ["level", "Level", ["Beginner", "Intermediate", "Advanced"]], ["feel", "Feel", ["Soft", "Medium", "Hard"]], ["brand", "Brand", brands], ["arm", "Comfort", ["Arm friendly"]]] as [Key, string, string[]][]).filter(([k]) => !PADEL || (k !== "level" && k !== "arm")).filter(([, , v]) => v.length > 0);
+  const test = (r: ThreadRow, k: Key, v: string) => k === "drive" ? new RegExp(`\\b${v.split(" ")[0]}`, "i").test(r.drive ?? "") : k === "stab" ? stabOf(r) === v : k === "shape" ? (OWN_SHAPES ? hasShape(r.shape, v) : r.shape === v) : k === "level" ? r.levels.includes(v.toLowerCase() as ThreadRow["levels"][number]) : k === "feel" ? r.feel === v : k === "brand" ? r.brand === v : k === "skin" ? !!r.facets?.skin.includes(v) : k === "texture" ? r.facets?.texture === v : k === "sens" ? !!r.facets?.sensitive : r.arm;
+  const words = q.trim().toLowerCase().split(/\s+/).filter(Boolean);
+  // One row per model by default, its current year (the classic catalog's rule, ThreadRow.current); a search or "Show older
+  // models" brings the older years back. Their pages stay live either way.
+  const pool = useMemo(() => older || words.length ? rows : rows.filter(r => r.current !== false), [rows, older, words.length]);
+  const olderN = rows.length - rows.filter(r => r.current !== false).length;
+  // A search word can be in the name or the page address ("st5": siux-electra-pro-st5-2026, listed as "Siux Electra Pro").
+  const pass = (r: ThreadRow, skip?: Key) => words.every(w => `${r.name} ${r.slug.replace(/-/g, " ")}`.toLowerCase().includes(w)) && GROUPS.every(([k]) => k === skip || !f[k]?.length || f[k]!.some(v => test(r, k, v)));
+  const toggle = (k: Key, v: string) => { setN(STEP); setF(x => { const cur = x[k] ?? []; return { ...x, [k]: cur.includes(v) ? cur.filter(y => y !== v) : [...cur, v] }; }); };
+  const any = words.length > 0 || Object.values(f).some(v => v?.length);
+  const clear = () => { setF({}); setQ(""); setN(STEP); };
+  // PadelRecs: picking a level or style switches the sort to "By your match"; clearing them goes back to the player score.
+  // eslint-disable-next-line react-hooks/set-state-in-effect
+  useEffect(() => { if (PADEL) setSort(mine ? "match" : "score"); }, [mine]);
+  const by = sort === "match" && !pcts ? "score" : sort;
+  const list = useMemo(() => pool.filter(r => pass(r)).sort((a, b) => by === "reviews" ? b.n - a.n : by === "new" ? b.year - a.year || (b.score ?? -1) - (a.score ?? -1)
+    : by === "match" ? (pcts!.get(b.id) ?? -1) - (pcts!.get(a.id) ?? -1) : (b.score ?? -1) - (a.score ?? -1) || b.n - a.n),
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  [pool, f, q, by, pcts]);
+  const topId = pcts ? topMatch(list.map(r => ({ id: r.id, pct: pcts.get(r.id) }))) : null;
+  const SORTS = [["score", `By ${W.score}`], ["reviews", "Most reviewed"], ["new", SKIN || DG || SR ? "Newest" : "Newest models"], ...(pcts ? [["match", "By your match"]] : [])] as [typeof sort, string][];
+  // A group shows only the options some racket here has (or that are picked), and no group label with nothing under it.
+  const match = PADEL && <div className="th-fgroup th-cmatch"><span className="th-cmatch-h">Your match</span>
+    <small className="th-cmatch-note">Re-orders the list for you. Nothing is hidden.</small>
+    <div className="th-fit"><PickChips picks={picks} set={setPicks} small armLabel="Arm comfort"/></div>
+    {(picks.level || picks.style || picks.arm) && <button type="button" className="th-clear" style={{ alignSelf: "flex-start" }} onClick={() => setPicks({ level: null, style: null, arm: false })}>Clear picks</button>}
+  </div>;
+  const filterHead = PADEL && <span className="th-cmatch-h">Filter</span>;
+  const groups = <>{GROUPS.map(([k, label, vals]) => { const opts = vals.map(v => ({ v, c: pool.filter(r => pass(r, k) && test(r, k, v)).length, sel: !!f[k]?.includes(v) })).filter(o => o.c > 0 || o.sel);
+    return opts.length > 0 && <div key={k} className="th-fgroup"><span>{label}</span>
+    <div className="th-fopts">{opts.map(({ v, c, sel }) => <button key={v} type="button" className="th-fopt" aria-pressed={sel} onClick={() => toggle(k, v)}>{v}{c > 0 && <span>{c}</span>}</button>)}</div></div>; })}</>;
+  return <main className="th-main">
+    <aside className="th-filters"><section className="th-card th-fpanel">
+      {!PADEL && <span className="th-head-row" style={{ alignItems: "center" }}><span className="th-stitle">Filters</span>{any && <button type="button" className="th-clear" onClick={clear}>Clear all</button>}</span>}
+      {match}{PADEL && <span className="th-head-row" style={{ alignItems: "center" }}>{filterHead}{any && <button type="button" className="th-clear" onClick={clear}>Clear all</button>}</span>}{groups}
+    </section></aside>
+    <div className="th-col">
+      <section className="th-card th-hero">
+        {crumbs}
+        <h1 className="th-h1">{title}</h1>
+        <p className="th-lead">{lead}</p>
+        <label className="vh" htmlFor="th-cq">Search by name or brand</label>
+        <input id="th-cq" className="th-input" style={{ fontSize: 15, padding: "8px 12px" }} value={q} onChange={e => { setQ(e.target.value); setN(STEP); }} placeholder="Search by name or brand"/>
+        <button type="button" className="th-btn th-fbtn" style={{ alignSelf: "flex-start" }} aria-expanded={panel} onClick={() => setPanel(p => !p)}>
+          {`Filters${Object.values(f).flat().length ? ` (${Object.values(f).flat().length})` : ""}`}<small aria-hidden="true">{panel ? "▲" : "▼"}</small></button>
+        {panel && <div className="th-fpanel th-fbtn" style={{ padding: 0, flexDirection: "column" }}>{match}{filterHead}{groups}</div>}
+      </section>
+      <section className="th-card th-list">
+        <div className="th-active">
+          <span className="res">{`${list.length.toLocaleString("en-US")} ${list.length === 1 ? niche.words.one : niche.words.many}`}</span>
+          {(Object.entries(f) as [Key, string[]][]).flatMap(([k, vs]) => vs.map(v => <button key={k + v} type="button" className="th-achip" onClick={() => toggle(k, v)} aria-label={`Remove ${v}`}>{cap(v)}<span aria-hidden="true">×</span></button>))}
+          {any && <button type="button" className="th-clear" onClick={clear}>Clear all</button>}
+          <span className="th-sort th-push"><span className="lbl">Sort</span>
+            <span className="th-dd right"><button type="button" aria-haspopup="menu" aria-expanded={open} onClick={() => setOpen(o => !o)}>{SORTS.find(([k]) => k === by)?.[1]}<small aria-hidden="true">{open ? "▲" : "▼"}</small></button>
+              {open && <div className="th-dd-menu" role="menu">{SORTS.map(([k, l]) => <button key={k} type="button" role="menuitemradio" aria-checked={by === k} onClick={() => { setSort(k); setOpen(false); }}>{l}<span aria-hidden="true">{by === k ? "✓" : ""}</span></button>)}</div>}
+            </span></span>
+        </div>
+        {list.slice(0, n).map(r => <Row key={r.id} r={r} {...(pcts ? { badge: pcts.get(r.id) ?? null, badgeLabel: "your match", pct: true, top: r.id === topId } : {})}/>)}
+        {list.length === 0 && <p className="th-empty">{`No ${niche.words.many} match these filters. `}<button type="button" onClick={clear}>Clear all</button></p>}
+        {list.length > n && <button type="button" className="th-btn th-center" style={{ margin: "6px 0 10px" }} onClick={() => setN(x => x + STEP * 2)}>Load more</button>}
+        {!words.length && olderN > 0 && <button type="button" className="th-btn th-center" style={{ margin: "0 0 10px" }} aria-pressed={older} onClick={() => { setOlder(o => !o); setN(STEP); }}>{older ? "Hide older models" : `Show older models (${olderN})`}</button>}
+      </section>
+    </div>
+  </main>;
+}

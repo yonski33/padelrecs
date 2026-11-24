@@ -1,4 +1,4 @@
-import { pgSchema, text, integer, index, check, uniqueIndex } from "drizzle-orm/pg-core";
+import { pgSchema, text, integer, boolean, index, check, uniqueIndex, jsonb, primaryKey } from "drizzle-orm/pg-core";
 import { sql } from "drizzle-orm";
 import { niche } from "../lib/niche";
 // One Postgres schema per niche ("padelrecs", …) in the shared Supabase project. Not exposed through Supabase's
@@ -61,3 +61,107 @@ export const productPhotos = catalogSchema.table("product_photos", {
 export const contactMessages = catalogSchema.table("contact_messages", {
  id: text("id").primaryKey(), name: text("name").notNull(), email: text("email").notNull(), subject: text("subject").notNull(), message: text("message").notNull(), status: text("status", { enum: ["pending", "sent", "failed", "spam"] }).notNull().default("pending"), error: text("error"), createdAt: text("created_at").notNull()
 }, t => [index("contact_messages_created_idx").on(t.createdAt), check("contact_message_status", sql`${t.status} in ('pending','sent','failed','spam')`)]).enableRLS();
+
+// Thread redesign (owner OK 2026-11-19, drizzle/0024–0026; applied to PadelRecs only). rackets.model_line (0026) is not
+// mapped here: the other sites' schemas don't have it yet, so it is read with SQL on padel only.
+/** "How does it play?" votes: one per trait group per device (voter, the product_votes hash), changeable. */
+export const traitVotes = catalogSchema.table("trait_votes", {
+ racketId: text("racket_id").notNull().references(() => rackets.id, { onDelete: "cascade" }), voter: text("voter").notNull(), network: text("network").notNull(),
+ trait: text("trait").notNull(), choice: text("choice").notNull(), createdAt: text("created_at").notNull(), updatedAt: text("updated_at").notNull()
+}, t => [uniqueIndex("trait_votes_unique").on(t.racketId, t.voter, t.trait), index("trait_votes_racket_idx").on(t.racketId, t.trait, t.choice), index("trait_votes_network_idx").on(t.network, t.updatedAt),
+ check("trait_vote_trait", sql`${t.trait} ~ '^[a-z_]{2,20}$'`), check("trait_vote_choice", sql`${t.choice} ~ '^[a-z_]{2,20}$'`)]).enableRLS();
+/** Comments on racket, ranking and guide pages ("racket:<id>", "ranking:<slug>", "guide:<key>"), one level of replies, moderated like reviews. */
+export const comments = catalogSchema.table("comments", {
+ id: text("id").primaryKey(), page: text("page").notNull(), parentId: text("parent_id"), alias: text("alias").notNull(), body: text("body").notNull(),
+ isQuestion: boolean("is_question").notNull().default(false), status: text("status", { enum: ["pending", "approved", "rejected"] }).notNull().default("pending"),
+ spamScore: integer("spam_score").notNull().default(0), voter: text("voter").notNull(), network: text("network").notNull(), createdAt: text("created_at").notNull()
+}, t => [index("comments_page_idx").on(t.page, t.status, t.createdAt), index("comments_queue_idx").on(t.status, t.createdAt), index("comments_network_idx").on(t.network, t.createdAt)]).enableRLS();
+/** ▲▼ on comments: one per device, +1 or -1. */
+export const commentVotes = catalogSchema.table("comment_votes", {
+ commentId: text("comment_id").notNull().references(() => comments.id, { onDelete: "cascade" }), voter: text("voter").notNull(), value: integer("value").notNull(), updatedAt: text("updated_at").notNull()
+}, t => [uniqueIndex("comment_votes_unique").on(t.commentId, t.voter), check("comment_vote_value", sql`${t.value} in (-1, 1)`)]).enableRLS();
+/** Owner fixes to "How does it play?" (drizzle/0027, admin Traits tab): per racket and group, review counts that replace the
+ *  prefill file's (null = use the file) and a freeze that stops new votes. trait "_all" freezes the whole racket. */
+export const traitOverrides = catalogSchema.table("trait_overrides", {
+ racketId: text("racket_id").notNull().references(() => rackets.id, { onDelete: "cascade" }), trait: text("trait").notNull(),
+ reviewCounts: jsonb("review_counts").$type<Record<string, number>>(), frozen: boolean("frozen").notNull().default(false), updatedAt: text("updated_at").notNull()
+}, t => [primaryKey({ name: "trait_overrides_pk", columns: [t.racketId, t.trait] }), check("trait_override_trait", sql`${t.trait} ~ '^[a-z_]{2,20}$'`)]).enableRLS();
+/** Every Traits-tab change: what was done, to which racket and group, and what it removed or replaced (detail). Kept when a
+ *  racket is removed, so the record stays. */
+export const traitAdminLog = catalogSchema.table("trait_admin_log", {
+ id: text("id").primaryKey(), racketId: text("racket_id").notNull(), trait: text("trait"), action: text("action").notNull(), detail: jsonb("detail").$type<Record<string, unknown>>(), createdAt: text("created_at").notNull()
+}, t => [index("trait_admin_log_racket_idx").on(t.racketId, t.createdAt), check("trait_admin_log_action", sql`${t.action} ~ '^[a-z_]{2,30}$'`)]).enableRLS();
+// Optional player accounts (drizzle/0028, PadelRecs Thread): a Supabase Auth user (email magic link) who reserved a name.
+// The email stays in Supabase Auth; only the name, level and side live here. name_key (lib/thread/account-name.ts) makes
+// "Padel Pete" and "padelpete" the same name. Blocked accounts keep their name reserved but can't post.
+export const accounts = catalogSchema.table("accounts", {
+ id: text("id").primaryKey(), name: text("name").notNull(), nameKey: text("name_key").notNull(), level: text("level"), side: text("side"),
+ status: text("status", { enum: ["active", "blocked"] }).notNull().default("active"), createdAt: text("created_at").notNull(), updatedAt: text("updated_at").notNull(),
+ // Trusted members (drizzle/0030): "earned" (the owner approved one of their posts), "on" / "off" (set by hand in the admin),
+ // null (not decided: trusted once one of their reviews is approved). lib/thread/trust.ts reads it.
+ trust: text("trust", { enum: ["earned", "on", "off"] })
+}, t => [uniqueIndex("accounts_name_key_unique").on(t.nameKey), check("account_status", sql`${t.status} in ('active','blocked')`), check("account_trust", sql`${t.trust} is null or ${t.trust} in ('earned','on','off')`)]).enableRLS();
+/** Member stories (drizzle/0031, PadelRecs Thread pilot, owner 2026-11-20): short posts by signed-in members ("10 things I
+ *  learned in my first year"), with optional racket tags. They go through the review queue like comments; the owner's own
+ *  go live at once. Comments under a story use the comments table with page "story:<slug>". */
+export const stories = catalogSchema.table("stories", {
+ id: text("id").primaryKey(), slug: text("slug").notNull(), accountId: text("account_id").notNull().references(() => accounts.id, { onDelete: "cascade" }),
+ title: text("title").notNull(), body: text("body").notNull(), rackets: jsonb("rackets").$type<string[]>().notNull().default([]),
+ status: text("status", { enum: ["pending", "approved", "rejected"] }).notNull().default("pending"), spamScore: integer("spam_score").notNull().default(0),
+ network: text("network").notNull(), createdAt: text("created_at").notNull(), updatedAt: text("updated_at").notNull(),
+ /** A member's edit to a live story, waiting for the owner (drizzle/0032); the live text stays until it is approved. */
+ pendingEdit: jsonb("pending_edit").$type<{ title: string; body: string; rackets: string[]; at: string } | null>(),
+ /** When the live text last changed after it was first published ("edited <date>"). */ editedAt: text("edited_at"),
+ /** Addresses the story had before (clean slugs, owner 2026-11-20): they 301 to the current one. */
+ oldSlugs: jsonb("old_slugs").$type<string[]>().notNull().default([])
+}, t => [uniqueIndex("stories_slug_unique").on(t.slug), index("stories_list_idx").on(t.status, t.createdAt), index("stories_account_idx").on(t.accountId),
+ check("story_status", sql`${t.status} in ('pending','approved','rejected')`)]).enableRLS();
+/** ▲ on a member story (drizzle/0033, owner design 2026-11-21): one per signed-in account. The story's topic is a plain
+ *  column from the same migration, read and written in db/stories.ts with SQL so the code works before it is run. */
+export const storyLikes = catalogSchema.table("story_likes", {
+ storyId: text("story_id").notNull().references(() => stories.id, { onDelete: "cascade" }), accountId: text("account_id").notNull().references(() => accounts.id, { onDelete: "cascade" }),
+ createdAt: text("created_at").notNull()
+}, t => [primaryKey({ name: "story_likes_pk", columns: [t.storyId, t.accountId] }), index("story_likes_account_idx").on(t.accountId)]).enableRLS();
+/** Which reviews and comments belong to an account (their small "member" mark). Not a column on reviews/comments, so the
+ *  other sites' tables stay as they are. */
+export const accountPosts = catalogSchema.table("account_posts", {
+ kind: text("kind", { enum: ["review", "comment"] }).notNull(), postId: text("post_id").notNull(), accountId: text("account_id").notNull().references(() => accounts.id, { onDelete: "cascade" }), createdAt: text("created_at").notNull()
+}, t => [primaryKey({ name: "account_posts_pk", columns: [t.kind, t.postId] }), index("account_posts_account_idx").on(t.accountId)]).enableRLS();
+/** Devices (the "rv" cookie's keyed hash) an account signed in on, so their earlier guest posts are linked once. */
+export const accountDevices = catalogSchema.table("account_devices", {
+ accountId: text("account_id").notNull().references(() => accounts.id, { onDelete: "cascade" }), voter: text("voter").notNull(), linkedAt: text("linked_at").notNull()
+}, t => [primaryKey({ name: "account_devices_pk", columns: [t.accountId, t.voter] })]).enableRLS();
+/** The device a guest review came from (comments already keep theirs), so a later sign-in on that device can claim it. */
+export const reviewDevices = catalogSchema.table("review_devices", {
+ reviewId: text("review_id").primaryKey().references(() => reviews.id, { onDelete: "cascade" }), voter: text("voter").notNull()
+}, t => [index("review_devices_voter_idx").on(t.voter)]).enableRLS();
+/** Players following a racket page (drizzle/0034, PadelRecs first): a daily email lists new reviews, posts and stories on the
+ *  rackets they follow. Keyed by the Supabase Auth user (an account name isn't needed to follow). */
+export const racketFollows = catalogSchema.table("racket_follows", {
+ userId: text("user_id").notNull(), racketId: text("racket_id").notNull().references(() => rackets.id, { onDelete: "cascade" }),
+ createdAt: text("created_at").notNull(), lastNotifiedAt: text("last_notified_at")
+}, t => [primaryKey({ name: "racket_follows_pk", columns: [t.userId, t.racketId] }), index("racket_follows_racket_idx").on(t.racketId)]).enableRLS();
+/** What each follower's digest already listed, so a review approved days after it was written still goes out once. */
+export const followSent = catalogSchema.table("follow_sent", {
+ userId: text("user_id").notNull(), kind: text("kind", { enum: ["review", "comment", "story"] }).notNull(), postId: text("post_id").notNull(), sentAt: text("sent_at").notNull()
+}, t => [primaryKey({ name: "follow_sent_pk", columns: [t.userId, t.kind, t.postId] }), index("follow_sent_at_idx").on(t.sentAt),
+ check("follow_sent_kind", sql`${t.kind} in ('review','comment','story')`)]).enableRLS();
+/** A follower's email choice: the daily digest on (default) or paused, set on /account. */
+export const followSettings = catalogSchema.table("follow_settings", {
+ userId: text("user_id").primaryKey(), emails: boolean("emails").notNull().default(true), updatedAt: text("updated_at").notNull()
+}).enableRLS();
+/** The owner's "Helpful" override (drizzle/0036, vote abuse clean-up): the count shown, and the Top / helpful sort, use
+ *  `value` when a row is here. The real votes (review_votes, comment_votes) stay as they are. kind: "player" and "web"
+ *  (review_votes types) or "comment" (comment_votes ▲▼ total). */
+export const helpfulOverrides = catalogSchema.table("helpful_overrides", {
+ kind: text("kind", { enum: ["player", "web", "comment"] }).notNull(), postId: text("post_id").notNull(), value: integer("value").notNull(),
+ setBy: text("set_by").notNull(), setAt: text("set_at").notNull()
+}, t => [primaryKey({ name: "helpful_overrides_pk", columns: [t.kind, t.postId] }), check("helpful_override_kind", sql`${t.kind} in ('player','web','comment')`),
+ check("helpful_override_value", sql`${t.value} between -99999 and 99999`)]).enableRLS();
+/** Every Helpful change by an admin: who, when, from what to what, and the real count at the time. */
+export const helpfulAudit = catalogSchema.table("helpful_audit", {
+ id: text("id").primaryKey(), kind: text("kind").notNull(), postId: text("post_id").notNull(),
+ action: text("action", { enum: ["set", "reset", "remove-voter", "remove-voter-everywhere"] }).notNull(),
+ fromShown: integer("from_shown").notNull(), toShown: integer("to_shown").notNull(), realCount: integer("real_count").notNull(), voter: text("voter"),
+ by: text("by").notNull(), at: text("at").notNull()
+}, t => [index("helpful_audit_post_idx").on(t.kind, t.postId, t.at), check("helpful_audit_action", sql`${t.action} in ('set','reset','remove-voter','remove-voter-everywhere')`)]).enableRLS();

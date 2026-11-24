@@ -7,12 +7,18 @@ import { sql } from "drizzle-orm";
 import { catalog, database } from "../db/data";
 import { niche } from "../lib/niche";
 import { assertSchemaName } from "../db/migrations";
+import { withSafety } from "../lib/skin-safety";
 
 const TAG = "owner-strength-grok-v1";
-type Row = { id: string; strength: string | null; reason?: string; acid: string | null; acid_ingredients?: string[]; inci_url?: string; unsure?: boolean };
+type Row = { id: string; strength: string | null; reason?: string; acid: string | null; acid_ingredients?: string[]; inci_url?: string; unsure?: boolean; leave_on?: boolean };
+// Corrections from the 1-in-5 spot-check (2026-11-17): U.F.O. carries 1.5% salicylic acid as its labelled active, which the
+// INCI copy the reply used left out.
+const FIXES: Record<string, Partial<Row>> = { "sunday-riley-u-f-o-acne-treatment-face-oil": { acid: "bha", acid_ingredients: ["Salicylic Acid 1.5% (active)"] } };
 const files = process.argv.slice(2).filter(a => !a.startsWith("--"));
-const rows = files.flatMap(f => JSON.parse(readFileSync(f, "utf8")) as Row[]).filter(r => !r.unsure && r.strength && r.acid);
-const ids = new Set((await catalog()).rackets.map(r => r.id));
+// The match reads `acid` as a leave-on acid: a rinse-off cleanser or mask with an acid is stored as "none".
+const rows = files.flatMap(f => JSON.parse(readFileSync(f, "utf8")) as Row[]).map(r => ({ ...r, ...FIXES[r.id] }))
+  .filter(r => !r.unsure && r.strength && r.acid).map(r => r.leave_on === false && r.acid !== "none" ? { ...r, acid: "none", reason: `${r.reason ?? ""} (rinse-off ${r.acid})` } : r);
+const listed = (await catalog()).rackets, ids = new Set(listed.map(r => r.id));
 const facts = rows.flatMap(r => {
   if (!ids.has(r.id)) throw new Error(`unknown product ${r.id}`);
   return [{ id: r.id, attribute: "strength", valueText: r.strength!, ref: `${r.reason ?? ""} · ${r.inci_url ?? ""}` },
@@ -20,6 +26,14 @@ const facts = rows.flatMap(r => {
 });
 const count = (a: string, v: string) => facts.filter(f => f.attribute === a && f.valueText === v).length;
 console.log(`${rows.length} products: strong ${count("strength", "strong")}, moderate ${count("strength", "moderate")}, gentle ${count("strength", "gentle")}; acid ${facts.filter(f => f.attribute === "acid" && f.valueText !== "none").length}`);
+// Where the reply differs from the temporary name rule (lib/skin-safety.ts), for review.
+const byId = new Map(listed.map(r => [r.id, r]));
+for (const r of rows) {
+  const p = byId.get(r.id)!, rule = withSafety({ scores: {}, facts: {} }, p.name, p.shape, []).facts;
+  const ruleStrong = rule.strength === "strong", ruleAcid = !!rule.acid;
+  if (ruleStrong !== (r.strength === "strong") || ruleAcid !== (r.acid !== "none"))
+    console.log(`  ${p.name} [${p.shape}]: name rule ${ruleStrong ? "strong" : "-"}/${ruleAcid ? "acid" : "-"} → ${r.strength}/${r.acid} (${r.reason})`);
+}
 if (!process.argv.includes("--write")) { console.log("dry run: nothing written"); process.exit(0); }
 const db = await database(), schema = sql.identifier(assertSchemaName(niche.schema)), at = new Date().toISOString();
 await db.transaction(async tx => {

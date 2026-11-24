@@ -42,7 +42,7 @@ body:has(main.pg2) { background: #fbfaf6; }
   .pg2-belief span { font-size: 15px; text-wrap: pretty; }
   .pg2-belief.b0 { background: var(--mint); } .pg2-belief.b2 { background: oklch(0.97 0.03 60); }
   .pg2-note { border: 2px dashed var(--dash2); border-radius: 16px; padding: 16px 18px; display: flex; flex-direction: column; gap: 6px; }
-  .pg2-note .pg2-cap { font: 600 11px var(--mono); letter-spacing: 0.04em; text-transform: uppercase; color: var(--soft); }
+  .pg2-note .pg2-cap { font: 600 12px var(--mono); letter-spacing: 0.04em; text-transform: uppercase; color: var(--soft); }
   .pg2-note p { font-size: 14.5px !important; text-wrap: pretty; }
   .pg2-ctas { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 14px; }
   .pg2-ctas .pg2-card { gap: 8px; }

@@ -85,3 +85,32 @@ body:has(.hv2-top) :is(.ix-main h3 a, .lv-orig, .lr-main h3 a, .sig-pop summary,
 /* The site's own phone mock (lib/niche mockLook; PickleballRecs): only the logo and "+ add a review" on a phone; the links
    stay in the footer and on the pages. */
 @media (max-width: 760px) { .hv2-sh.hv2-sh-m .hv2-find, .hv2-sh.hv2-sh-m nav { display: none; } }
+
+/* Tap targets on phones (UX audit 2026-11-17): nav links and the rankings caret at least 36px tall. */
+@media (max-width: 760px) {
+  .hv2-top nav > a, .hv2-top nav .nav-menu > a { display: inline-flex; align-items: center; min-height: 36px; }
+  .hv2-top nav .nav-caret { min-height: 36px; min-width: 32px; justify-content: center; }
+}
+
+/* Phone menu (Grok audit 2026-11-18): on phones the bar is the logo, "+ add a review" and "menu"; the button opens the links
+   (products, rankings, guide, latest reviews, brands) and the search as a list under the bar. Desktop is unchanged. */
+.hv2-top .hv2-menub, .hv2-top nav .hv2-monly { display: none; }
+@media (max-width: 760px) {
+  .hv2-top .hv2-sh .hv2-shin { flex-wrap: wrap !important; }
+  .hv2-top .hv2-sh .hv2-add { order: 2; margin-left: auto; }
+  .hv2-top .hv2-menub { order: 3; display: inline-flex; align-items: center; gap: 6px; min-height: 36px; padding: 0 12px; border: 2px solid var(--ink);
+    border-radius: 8px; background: var(--paper); color: var(--ink); font: 700 14px var(--body); cursor: pointer; box-shadow: none; }
+  .hv2-top .hv2-menub svg { width: 16px; height: 12px; }
+  .hv2-top .hv2-sh nav, .hv2-top .hv2-sh .hv2-find { display: none !important; }
+  .hv2-top .hv2-sh.hv2-open .hv2-find { display: block !important; order: 4; flex: 1 1 100%; min-width: 0; }
+  .hv2-top .hv2-sh.hv2-open nav { display: flex !important; order: 5; flex: 1 1 100%; flex-direction: column; gap: 0; padding-bottom: 6px; }
+  .hv2-top .hv2-sh.hv2-open nav > a, .hv2-top .hv2-sh.hv2-open nav .nav-menu { display: flex; min-height: 44px; align-items: center; border-top: 1.5px dashed var(--ink); font-size: 16px; }
+  .hv2-top .hv2-sh.hv2-open nav .nav-menu > a { flex: 1; min-height: 44px; display: flex; align-items: center; }
+  .hv2-top .hv2-sh.hv2-open nav .hv2-monly { display: flex; }
+}
+@media (max-width: 760px) {
+  .hv2-top .hv2-sh .hv2-shin { gap: 10px 8px; padding-left: 16px; padding-right: 16px; }
+  .hv2-top .hv2-sh .hv2-add { margin-left: auto; }
+}
+/* Narrow phones: the logo, "+ add a review" and the menu icon fit on one row. */
+@media (max-width: 460px) { .hv2-top .hv2-mlabel { display: none; } .hv2-top .hv2-menub { padding: 0 9px; } }

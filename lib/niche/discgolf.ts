@@ -1,6 +1,7 @@
 import type { Niche } from "./types";
 import { discgolfV2Style } from "./discgolf-v2-style";
 import { discgolfGuide } from "./discgolf-guide";
+import { discgolfHome } from "./discgolf-home";
 
 // Rating icons: a disc seen at an angle, disc orange with a pine rim line and a lighter flight plate. Same tile sizes as the other niches (17×14 strip, 20×20 picker).
 const svg = (markup: string) => `url("data:image/svg+xml,${markup.replace(/</g, "%3C").replace(/>/g, "%3E").replace(/#/g, "%23")}")`;
@@ -22,13 +23,15 @@ export const discgolf: Niche = {
   // Design v2 (owner mock S8ZGdwXLf1VdGPcYrpeoQ1, 2026-11-16) on the shared shell, option A: lib/discgolf-fit.ts profile.
   design: "v2",
   guide: discgolfGuide,
+  homeMore: discgolfHome,
   v2style: discgolfV2Style, v2fonts: ["Familjen+Grotesk:wght@500;700"],
   v2copy: {
+    homeH1: ["Find your", "disc"],
     sport: "disc golf", emoji: "🥏", strip: "a free, ad-light side project · built by disc golfers",
     madeBy: "made by people with one disc too many in the bag 🥏", forum: "disc golf forum", blog: "disc golf blog",
     aboutStory: ["discgolfrecs started in a parking lot after a round. We'd bought discs off hype and flight numbers, found half of them flew nothing like the chart for our arms, and couldn't find a straight answer anywhere.",
       "So we built the thing we wanted: one place that brings player reviews, YouTube reviewers and disc golf forums together, counts it honestly, and tells you if a disc fits"],
-    example: "Innova Leopard3", use: "flies", tested: "real rounds", score: "thrower score", pillInline: true, venue: "course", tellUs: "Tell us how you throw", aboutLast: "your throw",
+    example: "Innova Leopard3", use: "flies", tested: "real rounds", score: "thrower score", pillInline: true, venue: "course", tellUs: "Pick how you throw", aboutLast: "throw",
   },
   schema: "discgolfrecs",
   site: {
@@ -42,6 +45,7 @@ export const discgolf: Niche = {
   },
   words: { one: "disc", many: "discs", One: "Disc", Many: "Discs" },
   people: { one: "player", many: "players", One: "Player", Many: "Players" },
+  reviewers: { one: "thrower", many: "throwers" },
   recentMonths: 36,
   // The fit check and quick match (lib/discgolf-fit.ts, PM 2026-11-16 option A). The engine's numbers are padel's (no disc golf
   // tuning; ENGINE-ALGO: other sites supply a profile and a yardstick); the maker words are "SS" / "OS" in a mold's name.
@@ -53,11 +57,14 @@ export const discgolf: Niche = {
     // reasons (−0.10, held at 54%, sorted last; lib/discgolf-hard.ts); "any" gets a stability window; display 40 + 50, max 95;
     // labels only as a whole last word ("Zone OS", never the mold "XS").
     levelGate: { beginner: 50, intermediate: 40, advanced: 40 },
-    engine: { m: 10, k: 6, ks: 12, E: 8, z: 1.5, wq: 0.37, wf: 0.55, wp: 0.08, minReports: 6, ax: 0.75,
+    // Site audit 2026-11-17: one stability per disc bounds the axis (lib/discgolf-hard.ts axisKey); a stability mismatch weighs
+    // more (ax 0.75 → 0.9); speed 9–10 step-up drivers and page warnings are a softer tier (warnPenalty).
+    engine: { m: 10, k: 6, ks: 12, E: 8, z: 1.5, wq: 0.37, wf: 0.55, wp: 0.08, minReports: 6, ax: 0.9, warnPenalty: 0.05, slowArmLift: 0.04, oppositeLeanLow: true,
+      shapeBounds: { "dg-under": [0, 0.4], "dg-stable": [0.43, 0.57], "dg-over": [0.6, 1] },
       controlLabels: ["ss"], powerLabels: ["os", "xs"], labelLastWord: true,
       labelBounds: [0.3, 0.72, 0.35, 0.65], cuts: { good: 75, maybe: 55 }, armShare: 0.4, fineShare: 0.2,
       levelShare: 0.2, hardCap: 54, hardPenalty: 0.10, anyOwnAnchors: true, tieByReports: true,
-      anyWindow: { share: 0.5, target: 0.5, lowTarget: 0.35 }, display: { base: 40, span: 50, max: 95 } } },
+      anyWindow: { share: 0.5, target: 0.5, lowTarget: 0.35 }, display: { base: 40, span: 46, max: 95 } } },
   // A disc is its mold (Destroyer, Buzzz, PA-3); makers don't use model years, and the plastic varies within a mold.
   productYears: false,
   productPath: "discs",
@@ -141,22 +148,22 @@ export const discgolf: Niche = {
   rowDetail: { column: "weight", suffix: "" },
   // Add new terms at the end; renaming or removing one orphans it on existing reviews.
   tags: [
-    { label: "long", tone: "pos" },
-    { label: "accurate", tone: "pos" },
-    { label: "lots of glide", tone: "pos" },
-    { label: "reliable fade", tone: "pos" },
-    { label: "holds lines", tone: "pos" },
-    { label: "great grip", tone: "pos" },
-    { label: "beginner-friendly", tone: "pos" },
-    { label: "good in wind", tone: "pos" },
-    { label: "good for forehands", tone: "pos" },
-    { label: "too flippy", tone: "neg" },
-    { label: "too overstable", tone: "neg" },
-    { label: "slippery", tone: "neg" },
-    { label: "beats in fast", tone: "neg" },
-    { label: "inconsistent between runs", tone: "neg" },
-    { label: "understable", tone: "neutral" },
-    { label: "overstable", tone: "neutral" },
+    { label: "long", tone: "pos", says: "say it flies far" },
+    { label: "accurate", tone: "pos", says: "say it is accurate" },
+    { label: "lots of glide", tone: "pos", says: "say it has lots of glide" },
+    { label: "reliable fade", tone: "pos", says: "say it has a reliable fade" },
+    { label: "holds lines", tone: "pos", says: "say it holds its line" },
+    { label: "great grip", tone: "pos", says: "say it has great grip" },
+    { label: "beginner-friendly", tone: "pos", says: "say it is beginner-friendly" },
+    { label: "good in wind", tone: "pos", says: "say it is good in wind" },
+    { label: "good for forehands", tone: "pos", says: "say it is good for forehands" },
+    { label: "too flippy", tone: "neg", says: "say it is too flippy" },
+    { label: "too overstable", tone: "neg", says: "say it is too overstable" },
+    { label: "slippery", tone: "neg", says: "say it is slippery" },
+    { label: "beats in fast", tone: "neg", says: "say it beats in fast" },
+    { label: "inconsistent between runs", tone: "neg", says: "say it varies from one run to the next" },
+    { label: "understable", tone: "neutral", says: "call it understable" },
+    { label: "overstable", tone: "neutral", says: "call it overstable" },
   ],
   finder: {
     title: "Disc Golf Disc Finder Quiz",

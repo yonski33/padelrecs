@@ -11,10 +11,16 @@ import { fineMismatches, type FineFacts } from "./fine-tune";
 export type Band = { from: number; to: number };
 /** Where a racket's level comes from (owner 2026-11-15, RACKET-FIT-PAGE.md "Racket level band: sources"): the brand's own
  *  product page, YouTube reviewers who state a level (2+ channels agreeing), and the players' reports (the quick-take band). */
-export type LevelSources = { maker?: Band & { words: string; url: string }; youtube?: Band & { channels: number; of: number }; players?: Band };
+export type LevelSources = { maker?: Band & { words: string; url: string }; youtube?: Band & { channels: number; of: number }; players?: Band;
+  /** The owner's own call where neither the brand nor reviewers state a level (DiscGolfRecs Ballista, owner OK 2026-11-20).
+   *  It counts toward the band but is never quoted as "the brand says". */ owner?: Band & { why: string } };
 export type FitFacts = {
   /** Every stored report on the racket. */
   reports: number;
+  /** The product's hard-filter facts (fit-config quick.factValues), for a main filter's check (SimRacingRecs: platform). */
+  ff?: Record<string, string[]>;
+  /** The site's reason per main-filter value the product lacks, keyed "key:value" (fit-config quick.missWhy, CoffeeRecs). */
+  ffWhy?: Record<string, { short: string; reason: string }>;
   /** Tag mentions: good tags counted from positive and mixed reports only (like the finder), the rest from all. */
   tags: Record<string, number>;
   /** Quick-take level band (from player reports), 0 beginner … 2 advanced. */
@@ -32,9 +38,15 @@ export type FitFacts = {
   styleWithin?: { rank: number; shape: string };
   /** Arm comfort dots (1–5, lib/trait-score.ts, an expert value wins), for the sore-arm check. */
   armDots?: number;
+  /** The Attack and Control bars (1–5) as the page shows them: the one style every page uses (owner audit 2026-11-17). */ styleDots?: { power: number; control: number; /** PickleballRecs' spin pick. */ spin?: number };
   /** A site's own hard rules (DiscGolfRecs match audit 2026-11-16, lib/discgolf-hard.ts): the reason it is wrong for a beginner
    *  or a slower arm (the page says skip it, or it is too fast). Each is a hard level / arm reason, so the engine caps it. */
   hard?: { beginner?: string; arm?: string };
+  /** A site's softer warnings (DiscGolfRecs: a speed 9–10 step-up driver, a page warning for newer or slower arms): the list
+   *  shows it after the rest, never at Strong fit, and the check says why. */
+  warn?: { beginner?: string; arm?: string };
+  /** A site's one stability for this product (DiscGolfRecs: from the flight numbers), read before the tag counts. */
+  lean?: "control" | "balance" | "power";
 };
 /** Within a picked shape: an all-round racket this high for the picked style counts as built for it, and a racket that
  *  leans the other way this high is only a soft conflict (owner 2026-11-15, the Electra Pro ST5 and the Nox 12K). */
@@ -52,6 +64,7 @@ const n = (f: FitFacts, tags: string[]) => tags.reduce((a, t) => a + (f.tags[t] 
 /** Where the racket sits: control, power or in between, from what players praise (and the rankings it's on). */
 export function styleLean(f: FitFacts, cfg: FitConfig = SITE_FIT): { lean: "control" | "power" | "balance" | null; control: number; power: number } {
   const control = n(f, cfg.axis.control.tags), power = n(f, cfg.axis.power.tags);
+  if (f.lean) return { lean: f.lean, control, power };
   if (control + power < 5) return { lean: f.places?.control && !f.places.power ? "control" : f.places?.power && !f.places.control ? "power" : null, control, power };
   const lean = control >= power * 1.5 ? "control" : power >= control * 1.5 ? "power" : "balance";
   return { lean, control, power };
@@ -128,21 +141,30 @@ export const SUITS_OK = 62, SUITS_LOW = 40;
 function levelCheck(choice: QuickChoice, f: FitFacts, cfg: FitConfig): Check {
   // No level picked yet: nothing to check (owner 2026-11-15).
   if (!choice.level) return { level: "unknown" };
-  if (choice.level === "beginner" && f.hard?.beginner) return { level: "hard", short: "Not a first disc", reason: f.hard.beginner };
+  if (choice.level === "beginner" && f.hard?.beginner) return { level: "hard", short: `Not a first ${niche.words.one}`, reason: f.hard.beginner };
+  if (choice.level === "beginner" && f.warn?.beginner) return { level: "soft", short: /step-up/i.test(f.warn.beginner) ? "Step-up driver" : "Not the easiest start", reason: f.warn.beginner };
   const c = choice as QuickChoice & { level: Level };
   const i = LEVELS.indexOf(c.level), who = c.level === "advanced" ? "advanced players" : `${c.level}s`;
   if (f.suits) {
-    const v = f.suits[c.level], backing = levelBacking(f), said = backing ? `Level: ${backing}.` : "";
+    // An expert level leads (owner 2026-11-17, Vertex 05 Hybrid: "the pro comes from the brand"): our call first, the brand's
+    // label after it as what it is, never in its place.
+    const ours = f.suits.basis.includes("expert") ? LEVELS.filter(l => f.suits![l] >= SUITS_OK) : [];
+    const backing = levelBacking(f), v = f.suits[c.level];
+    const brand = f.levels?.maker?.words.replace(/^(player\s+)?level( of play)?:?\s*/i, "").trim().toLowerCase();
+    const said = ours.length ? `Level: we rate it ${ours.length > 1 ? `${ours[0]} to ${ours[ours.length - 1]}` : ours[0]}${brand && brand.split(/\s+/).length <= 3 ? `; the brand says ${brand}` : ""}.`
+      : backing ? `Level: ${backing}.` : "";
     const backed = f.suits.basis.some(b => b !== "the brand");
     if (v >= SUITS_OK) return { level: "ok", short: "Suits your level", reason: `${said} Suits ${who}.`.trim() };
     // Why (lib/level-suits.ts caps): a pro line, or players and reviewers putting it at advanced; an expert level says it itself.
-    const why = f.suits.basis.includes("expert") ? `Not ${c.level === "intermediate" || c.level === "advanced" ? "an" : "a"} ${c.level} ${niche.words.one}.`
+    // The owner's intermediate+ tier (lib/level-tiers.ts) names both levels it suits.
+    const why = f.suits.basis.includes("our level call") ? `A ${niche.words.one} for intermediate and advanced players.`
+      : f.suits.basis.includes("expert") ? `Not ${c.level === "intermediate" || c.level === "advanced" ? "an" : "a"} ${c.level} ${niche.words.one}.`
       : f.suits.basis.includes("a pro line") ? `A pro line, built for advanced players.`
       : c.level === "beginner" && f.suits.basis.includes("its shape") ? cfg.quick?.beginnerShapeNote ?? `A diamond shape: few of them suit beginners.`
       : f.suits.basis.includes("advanced players") ? `A ${niche.words.one} for advanced players.` : `Not ${c.level === "intermediate" || c.level === "advanced" ? "an" : "a"} ${c.level} ${niche.words.one}.`;
     if (v < SUITS_LOW && backed) return { level: "hard", short: `Not aimed at ${who}`, reason: `${said} ${why}`.trim() };
     if (!backed && f.suits.basis.length === 0) return { level: "unknown" };
-    return { level: "soft", short: f.levelDisagree ? "Level opinions differ" : `Could suit ${who}`, reason: f.levelDisagree ?? `${said} Not clearly a ${c.level} ${niche.words.one}; ${cfg.quick ? "throw one first" : "demo it first"}.`.trim() };
+    return { level: "soft", short: f.levelDisagree ? "Level opinions differ" : `Could suit ${who}`, reason: f.levelDisagree ?? `${said} Not clearly ${/^[aeiou]/i.test(c.level) ? "an" : "a"} ${c.level} ${niche.words.one}; ${cfg.words?.tryFirst ?? (cfg.quick ? "throw one first" : "demo it first")}.`.trim() };
   }
   const src = levelSources(f);
   // Brands label most top-line rackets "Professional". Such a label says "not aimed at beginners", so it counts for a beginner;
@@ -167,7 +189,10 @@ function levelCheck(choice: QuickChoice, f: FitFacts, cfg: FitConfig): Check {
 
 function armCheck(c: QuickChoice, f: FitFacts, cfg: FitConfig): Check {
   if (!c.arm) return { level: "ok" };
-  if (f.hard?.arm) return { level: "hard", short: "Needs more arm speed", reason: f.hard.arm };
+  if (f.hard?.arm) return { level: "hard", short: cfg.words?.hardArmShort ?? "Needs more arm speed", reason: f.hard.arm };
+  // A hard-filter arm pick (SimRacingRecs: console): only a product without it is held back (its hard reason, above).
+  if (cfg.quick?.armFilter) return { level: "ok" };
+  if (f.warn?.arm) return { level: "soft", short: "Needs some arm speed", reason: f.warn.arm };
   // A type-picker site's arm pick is a slower arm (DiscGolfRecs): read from its arm dots (players, the flight numbers, the expert).
   if (cfg.quick) {
     const L = cfg.quick.arm[0].toUpperCase() + cfg.quick.arm.slice(1);
@@ -205,8 +230,16 @@ function fineCheck(c: QuickChoice, f: FitFacts): Check {
 
 /** With `as` (the match engine's word, lib/engine engineKind), the verdict says that word and picks its reasons for it; without,
  *  the checks decide it as before. */
-export function fitVerdict(c: QuickChoice, f: FitFacts, cfg: FitConfig = SITE_FIT, as?: FitVerdict["kind"]): FitVerdict {
-  const checks = [styleCheck(c, f, cfg), levelCheck(c, f, cfg), armCheck(c, f, cfg), fineCheck(c, f)];
+export function fitVerdict(c: QuickChoice, f: FitFacts, cfg: FitConfig = SITE_FIT, asKind?: FitVerdict["kind"]): FitVerdict {
+  // A hard-filter arm pick the product fails (SimRacingRecs: PC only, console picked) is "no" whatever the engine's % says
+  // (Grok audit 2026-11-17 #1: the fit check said "Strong fit" for PC-only gear with console ticked).
+  // A main filter's pick the product lacks (SimRacingRecs: PlayStation picked, an Xbox / PC base): "no", with the reason.
+  const mainMiss = cfg.quick?.filters?.find(q => q.main && c.ff?.[q.key] && f.ff && !f.ff[q.key]?.includes(c.ff[q.key]));
+  const as = (cfg.quick?.armFilter && c.arm && f.hard?.arm) || mainMiss ? (asKind === "thin" ? asKind : "no") : asKind;
+  const why = mainMiss ? f.ffWhy?.[`${mainMiss.key}:${c.ff![mainMiss.key]}`] : undefined;
+  const missCheck: Check | null = why ? { level: "hard", short: why.short, reason: why.reason } : mainMiss ? { level: "hard", short: `Not on ${mainMiss.options.find(([v]) => v === c.ff![mainMiss.key])?.[1] ?? c.ff![mainMiss.key]}`,
+    reason: `Not on ${mainMiss.options.find(([v]) => v === c.ff![mainMiss.key])?.[1] ?? c.ff![mainMiss.key]}: it works on ${mainMiss.options.filter(([v]) => f.ff![mainMiss.key]?.includes(v)).map(([, l]) => l).join(" and ") || "other platforms"}.` } : null;
+  const checks = [...(missCheck ? [missCheck] : []), styleCheck(c, f, cfg), levelCheck(c, f, cfg), armCheck(c, f, cfg), fineCheck(c, f)];
   const reasons = (pick: Check["level"][]) => checks.filter(x => pick.includes(x.level) && x.reason).map(x => x.reason!);
   const asked = [c.style !== "any", true, c.arm].filter(Boolean).length;
   const known = checks.filter((x, i) => [c.style !== "any", true, c.arm][i] && x.level !== "unknown").length;
@@ -221,14 +254,36 @@ export function fitVerdict(c: QuickChoice, f: FitFacts, cfg: FitConfig = SITE_FI
 }
 
 /** "Generally best for" chips when there are no picks: the band, the lean, arm comfort, only what the data supports. */
+/** The level band "Best for" says (indexes into LEVELS), or null. From the same scores the fit check uses (owner audit
+ *  2026-11-17: the page and the fit check never disagree); the sources' band only where there are no scores. A hard reason
+ *  for beginners (DiscGolfRecs: speed 11+, fade 3+, "not a first disc") keeps "beginner" out of it too. */
+export function levelBand(f: FitFacts): { from: number; to: number } | null {
+  const ok = f.suits ? LEVELS.map((l, i) => f.suits![l as keyof typeof f.suits] as number >= SUITS_OK && !(i === 0 && f.hard?.beginner) ? i : -1).filter(i => i >= 0) : [];
+  let band = ok.length ? { from: ok[0], to: ok[ok.length - 1] } : combinedBand(f);
+  if (band && band.from === 0 && f.hard?.beginner) band = { from: 1, to: Math.max(band.to, 1) };
+  return band ?? null;
+}
+/** A level list in words, the one formatter for a page's level tag and "Best for" and its catalogue card (DiscGolfRecs
+ *  audit 2026-11-20: the card said "intermediate" where the page said "Beginner to intermediate"): "beginner",
+ *  "beginner to intermediate". Lower case; the caller capitalises where it starts a line. */
+export const levelRange = (levels: readonly string[]) => levels.length ? (levels.length === 1 ? levels[0] : `${levels[0]} to ${levels[levels.length - 1]}`) : null;
 export function bestFor(f: FitFacts, cfg: FitConfig = SITE_FIT): string[] {
   const out: string[] = [];
-  const band = combinedBand(f);
-  if (band) out.push(band.from === band.to ? LEVELS[band.from] : `${LEVELS[band.from]} → ${LEVELS[band.to]}`);
-  const { lean } = styleLean(f, cfg);
+  const band = levelBand(f);
+  // A site with its own level words for people (SimRacingRecs: new / serious / all-in) says them.
+  const lw = (i: number) => (cfg.levelPeople && cfg.levelLabels?.[LEVELS[i] as keyof typeof cfg.levelLabels]) || LEVELS[i];
+  if (band) out.push(band.from === band.to ? lw(band.from) : `${lw(band.from)} → ${lw(band.to)}`);
+  const lean = styleOf(f, cfg);
   // A type-picker site says it in its own sport's terms (DiscGolfRecs: what the stability is good for).
   if (lean) out.push(cfg.quick ? (cfg.quick.leanFor?.[lean] ?? cfg.styleLabels[lean].toLowerCase()) : lean === "balance" ? "all-round players" : `${lean} players`);
   const kind = f.tags[cfg.arm.plus] ?? 0, harsh = cfg.arm.minus ? f.tags[cfg.arm.minus] ?? 0 : 0;
-  if (kind >= 5 && kind > 2 * harsh) out.push(cfg.quick ? "slower arms" : "sore arms");
+  // Sore arms only when the Arm comfort bar backs it (4+), not on the tag count alone (audit: the AT10 12K XTREM).
+  if (kind >= 5 && kind > 2 * harsh && (f.armDots === undefined || f.armDots >= 4) && !f.hard?.arm && !f.warn?.arm) { if (!cfg.quick?.armFilter && !cfg.quick?.filters?.some(q => q.main)) out.push(cfg.quick ? "slower arms" : "sore arms"); }
   return out;
+}
+/** One style per racket (owner audit 2026-11-17): from the Attack and Control bars the page shows (a clear lead of 1+ dots),
+ *  else the players' praise lean (lib/fit-verdict styleLean). */
+export function styleOf(f: FitFacts, cfg: FitConfig = SITE_FIT): "control" | "power" | "balance" | null {
+  if (f.styleDots && !cfg.quick) { const d = f.styleDots.power - f.styleDots.control; return d >= 1 ? "power" : d <= -1 ? "control" : "balance"; }
+  return styleLean(f, cfg).lean;
 }

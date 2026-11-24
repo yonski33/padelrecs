@@ -3,14 +3,16 @@
 // server for the address's picks; a tap here changes the picks in the browser and works out every row's match % from the
 // catalog items sent once with the page (lib/home-rank.ts matchPcts, the same function the server uses), then updates the
 // address, with no round trip. The list's order is always its own (Player score); picks only add the %.
+import { matchBox } from "../../../lib/score-tone";
 import { createContext, useContext, useMemo, type ReactNode } from "react";
 import { useInstantView } from "../../instant-view";
 import { matchPcts, type RankItem } from "../../../lib/home-rank";
 import { niche, mockLook } from "../../../lib/niche";
-import { LEVELS, STYLES, type QuickChoice, type Level } from "../../../lib/quick-match";
+import { fitConfigFor } from "../../../lib/fit-config";
+import { LEVELS, STYLES, ARM_SHORT, type QuickChoice, type Level } from "../../../lib/quick-match";
 import RankPicks from "./rank-picks";
 
-export const MATCH_NOTE = "How well it fits your picks, from player reports. Not a % of happy players.";
+export const MATCH_NOTE = `How well it fits your picks, from ${fitConfigFor(niche)?.words?.person ?? "player"} reports. Not a % of happy ${fitConfigFor(niche)?.words ? niche.people.many : "players"}.`;
 type Picked = QuickChoice & { level: Level };
 type State = { choice: Picked | null; showPct: boolean };
 const Ctx = createContext<{ s: State; set: (s: State) => void; pct: (id: string) => number | null; picks: string; href: string } | null>(null);
@@ -42,13 +44,13 @@ export function RowPct({ id }: { id: string }) {
   if (!s.choice || !s.showPct) return null;
   const p = pct(id);
   return p === null ? <span className="rl2-pct thin" title="Too few reports from players like you for a match %">match: few reports</span>
-    : <span className={`rl2-pct${p >= 80 ? " hi" : p >= 60 ? " mid" : ""}`} title={MATCH_NOTE}>{`${p}% match`}</span>;
+    : <span className={`rl2-pct${matchBox(p) ? ` ${matchBox(p)}` : ""}`} title={MATCH_NOTE}>{`${p}% match`}</span>;
 }
 
 /** The "your match" box: the picks, the show-% switch and the note. */
 export function MatchBox({ finder }: { finder?: string }) {
   const { s, set, href } = use(), c = s.choice;
-  const profileLine = c ? [c.level, c.style !== "any" ? c.style : null, c.arm ? "sore arm" : null].filter(Boolean).join(" · ") : "";
+  const profileLine = c ? [c.level, c.style !== "any" ? c.style : null, c.arm ? ARM_SHORT : null].filter(Boolean).join(" · ") : "";
   return <section className="rl2-match" aria-label="Your match">
     <input type="checkbox" id="rl2-edit" className="rl2-edit-t"/>
     {c ? <>

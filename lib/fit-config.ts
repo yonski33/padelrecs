@@ -5,6 +5,8 @@
 // quick-match, match-context and the racket fit page read it; a site without one keeps its old pages.
 import type { Niche } from "./niche/types";
 import { DISCGOLF_FIT } from "./discgolf-fit";
+import { SIMRACING_FIT } from "./simracing-fit";
+import { COFFEE_FIT } from "./coffee-fit";
 
 export type TraitDef = { key: string; label: string; plus: [string, number][]; minus: [string, number][]; noun: string;
   /** The quick-take row that writes this trait's line (padel's blocks), by row label, or "court.defence". */ qtRow?: string;
@@ -13,8 +15,15 @@ export type TraitDef = { key: string; label: string; plus: [string, number][]; m
    *  answers ("win points with smashes"). */ diff?: string; ifYou?: string;
   /** Kept for the engine (the style axis) but not shown as a row on the product page (type-picker sites). */ hidden?: boolean;
   /** The product page's note in the site's own words (lib/trait-note.ts Say): strong / middling / weak by the dots, and the two
-   *  sides of a real split. Unset: padel's words on padel, else a line from the label. */ say?: { hi: string; mid: string; lo: string; split: [string, string] } };
-export type Specs = { shape?: string | null; balance?: string | null; weight?: string | null; core?: string | null; surface?: string | null };
+   *  sides of a real split. Unset: padel's words on padel, else a line from the label. */ say?: { hi: string; mid: string; lo: string; split: [string, string] };
+  /** The product types (catalogue shapes) the trait is shown for (SimRacingRecs: FFB only on wheelbases); unset = all. */ appliesTo?: string[] };
+/** A hard filter a type-picker site offers under fine-tune (SimRacingRecs: drive type, budget, rim type): the product's
+ *  values come from quick.factValues; `kinds` limits it to some types (shown and applied only there). */
+export type QuickFilter = { key: string; label: string; options: [string, string][]; kinds?: string[];
+  /** Shown in the picker's main row, not under "fine-tune" (SimRacingRecs: the platform), and checked by the fit check: a product
+   *  without the picked value is "Probably not" with `notOn` ("Not on PlayStation"). */ main?: boolean };
+export type Specs = { shape?: string | null; balance?: string | null; weight?: string | null; core?: string | null; surface?: string | null;
+  /** The product's slug, for a site whose spec facts live outside the catalogue columns (CoffeeRecs: db/specs/coffee.json). */ slug?: string | null };
 /** Counts for the line under a bar: tag mentions, people with the verb, and the bar's own counts (with words read from text). */
 export type LineKit = { tc: (tag: string) => number; ppl: (n: number, verb: string) => string; plus: number | null; minus: number | null };
 export type FitConfig = {
@@ -28,6 +37,15 @@ export type FitConfig = {
    *  (pickleball's spin) is matched on that trait alone. */ styles?: ("control" | "balance" | "power" | "spin")[];
   /** How the level picks read (pickleball: the DUPR-style 2.5 / 3.5 / 4.5+); default the level word. */
   levelLabels?: { beginner: string; intermediate: string; advanced: string };
+  /** Who a level pick ranks for ("new racers"); default "<label> players" with levelLabels, else padel's words. */
+  levelPeople?: { beginner: string; intermediate: string; advanced: string };
+  /** A product fact that caps the levels it can suit (SimRacingRecs: a wheelbase's torque, Grok audit 2026-11-17 #14–#16):
+   *  the levels it returns false for stay under the level bar whatever the reports say. null: no cap. */
+  levelCap?: (r: { slug: string; shape: string | null; weight: string | null }, owner: Record<string, string | number | null>) => Partial<Record<"beginner" | "intermediate" | "advanced", boolean | "on">> | null;
+  /** A site's own words where the shared pages say "player", "throw one first", "how it plays" (SimRacingRecs, Grok audit
+   *  2026-11-17 #10 #11 #25 #27 #28). Unset: every page keeps its words. */
+  words?: { person: string; game: string; tryFirst: string; howIt: string; catalogPromo: string; guidePromo: string;
+    /** The console pick in a chip ("console") and the fit check's reason for a product without it. */ armShort: string; hardArm: string; hardArmShort: string };
   /** Sore arm: the tag that praises arm comfort and the one that faults it (if the site has one). */ arm: { trait: string; plus: string; minus?: string };
   /** The fit check's fallback level signal: forgiving against demanding tags (plus more for beginners). */ forgiving: { plus: string; minus: string[]; beginner: string[] };
   /** The specs' lean per trait in dots (each within ±1). */ specLean: (s: Specs) => Record<string, number>;
@@ -60,10 +78,36 @@ export type FitConfig = {
     /** The flight-number boxes' legend, shown once over the list (rows show the numbers from the weight column). */ flightLabel?: string;
     /** The arm chip ("slow-arm friendly") needs the specs to agree too (disc golf: speed 9 or less), not only the arm score. */ armSpecOk?: (s: Specs) => boolean;
     /** "Generally best for" words per stability (DiscGolfRecs: "turnovers and hyzer flips"), instead of "control players". */ leanFor?: Partial<Record<"control" | "balance" | "power", string>>;
-    /** The fit check's line for a type kept out of beginner lists (niche fit.beginnerShapesOut). */ beginnerShapeNote?: string };
+    /** The fit check's line for a type kept out of beginner lists (niche fit.beginnerShapesOut). */ beginnerShapeNote?: string;
+    /** The arm tick is a hard filter on a fact (SimRacingRecs: "I race on console" → con = yes), not the engine's arm score. */ armFilter?: { key: string; value: string };
+    /** A level pick also keeps only products with one of these fact values (SimRacingRecs: all-in = the $$$ price third). */
+    levelFilter?: Partial<Record<"beginner" | "intermediate" | "advanced", { key: string; values: string[] }>>;
+    /** A level pick also takes the engine's empty style slot (SimRacingRecs, PM 2026-11-16): "new" ranks by the control slot
+     *  (here: new racers' verdicts), "serious" / "all-in" by the power slot (upgraders'), so the level reorders, not only gates. */
+    levelStyle?: Partial<Record<"beginner" | "intermediate" | "advanced", "control" | "power">>;
+    /** The catalogue's lead filter groups (guide spec keys), the first before Level; default disc golf's ["disc", "stab"]. */ catalogLead?: string[];
+    /** Catalogue filter groups that pick one thing between them (SimRacingRecs: ["gear", "rig"]). */ catalogOneOf?: string[];
+    /** The compare card's "how it …" word (default "plays"; DiscGolfRecs, with flight numbers: "flies"). */ useWord?: string;
+    /** Fine-tune hard filters (?<key>=<value>), and the facts each product has for them. */
+    filters?: QuickFilter[]; /** The specs line's label per catalogue column, by product type (SimRacingRecs: "Torque", "Brake force"). */
+    specLabels?: (shape: string | null) => Partial<Record<"weight" | "balance" | "core" | "surface", string>>;
+    factValues?: (r: { shape: string | null; balance: string | null; core: string | null; surface?: string | null; name: string; slug?: string | null }, owner: Record<string, string | number | null>) => Record<string, string[]>;
+    /** Why a product lacks a main filter's pick, in the site's words (CoffeeRecs: "Not for espresso: built for filter, …");
+     *  null or unset: the platform wording ("Not on PlayStation: it works on …"). */
+    missWhy?: (r: { shape: string | null; balance: string | null; core: string | null; surface?: string | null; name: string; slug?: string | null }, key: string, value: string) => { short: string; reason: string } | null };
   /** A site whose evidence rows use its own attribute names (DiscGolfRecs' dg-*-v1): turns them into the rows the shared
    *  engine reads (app/match-context.ts), so lib/engine stays one for all sites. */
   evidenceAdapter?: (rows: import("./evidence").EvidenceRow[]) => import("./evidence").EvidenceRow[];
+  /** Expert values the engine reads for a trait under another stored key (SimRacingRecs: its control / power slots are the
+   *  expert's "first sim rig" and "upgrade" suits values). */
+  expertAlias?: Record<string, string>;
+  /** A site with no evidence table yet (CoffeeRecs, PM 2026-11-18): its reports' quick tags are read as evidence rows, as the
+   *  tags backfill would store them (lib/evidence.ts tagRows), so the engine, levels and dots run on them. Ignored once the
+   *  site has stored evidence. */
+  tagEvidence?: boolean;
+  /** The fit card's "Matched for …" in one person's words, with the filter picks after it (CoffeeRecs: "Matched for a new home
+   *  barista · milk drinks"); unset: the level and style words as before. */ levelOne?: { beginner: string; intermediate: string; advanced: string };
+  /** No style chip on the product page (CoffeeRecs: its hidden level slots aren't a style a product has). */ noLeanChip?: boolean;
 };
 
 const clamp = (o: Record<string, number>) => { for (const k of Object.keys(o)) o[k] = Math.max(-1, Math.min(1, o[k])); return o; };
@@ -122,14 +166,14 @@ const PICKLEBALL: FitConfig = {
   fineTune: true,
   styles: ["control", "balance", "power", "spin"],
   traits: [
-    { key: "power", label: "Power", plus: [["easy power", 1]], minus: [], noun: "the power", diff: "more power", ifYou: "win points with drives and put-aways" },
-    { key: "pop", label: "Pop", plus: [["great pop", 1]], minus: [], noun: "the pop", ev: [["praise the pop", "praises the pop"], ["find it low on pop", "finds it low on pop"]], diff: "more pop", ifYou: "want pop on speed-ups" },
-    { key: "control", label: "Control", plus: [["good control", 1], ["great for dinks", 1]], minus: [["hard to control", 1]], noun: "the control at the kitchen", diff: "more control", ifYou: "want soft, precise dinks and resets" },
-    { key: "spin", label: "Spin", plus: [["lots of spin", 1]], minus: [["low spin", 1]], noun: "the spin", ev: [["praise the spin", "praises the spin"], ["want more spin", "wants more spin"]], diff: "more spin", ifYou: "want spin on serves and rolls" },
-    { key: "forgiveness", label: "Forgiveness", plus: [["forgiving", 1]], minus: [["small sweet spot", 1], ["dead spots", 1]], noun: "the sweet spot",
+    { key: "power", say: { hi: "Good power on drives when you swing through.", mid: "Moderate power; put-aways need a full swing.", lo: "Little free power; you supply the pace.", split: ["powerful", "short on power"] }, label: "Power", plus: [["easy power", 1]], minus: [], noun: "the power", diff: "more power", ifYou: "win points with drives and put-aways" },
+    { key: "pop", say: { hi: "Lively pop on speed-ups and counters.", mid: "Some pop; speed-ups need a quick wrist.", lo: "Muted pop; the ball stays on your terms.", split: ["poppy", "dead"] }, label: "Pop", plus: [["great pop", 1]], minus: [], noun: "the pop", ev: [["praise the pop", "praises the pop"], ["find it low on pop", "finds it low on pop"]], diff: "more pop", ifYou: "want pop on speed-ups" },
+    { key: "control", say: { hi: "Precise at the kitchen; dinks and resets land where you aim.", mid: "Decent control at the kitchen.", lo: "Hard to keep dinks and resets low.", split: ["precise", "hard to control"] }, label: "Control", plus: [["good control", 1], ["great for dinks", 1]], minus: [["hard to control", 1]], noun: "the control at the kitchen", diff: "more control", ifYou: "want soft, precise dinks and resets" },
+    { key: "spin", say: { hi: "Strong spin on serves, rolls and drives.", mid: "Average spin.", lo: "Low spin; the face grips the ball less.", split: ["spinny", "low on spin"] }, label: "Spin", plus: [["lots of spin", 1]], minus: [["low spin", 1]], noun: "the spin", ev: [["praise the spin", "praises the spin"], ["want more spin", "wants more spin"]], diff: "more spin", ifYou: "want spin on serves and rolls" },
+    { key: "forgiveness", say: { hi: "Forgiving sweet spot; mishits stay in play.", mid: "An average sweet spot.", lo: "Small sweet spot; off-centre hits die.", split: ["forgiving", "demanding"] }, label: "Forgiveness", plus: [["forgiving", 1]], minus: [["small sweet spot", 1], ["dead spots", 1]], noun: "the sweet spot",
       ev: [["praise the sweet spot", "praises the sweet spot"], ["mention dead spots or a small sweet spot", "mentions dead spots or a small sweet spot"]], diff: "more forgiving", ifYou: "want margin for error" },
-    { key: "speed", label: "Hand speed", plus: [["fast hands", 1]], minus: [], noun: "the hand speed", diff: "quicker in the hands", ifYou: "want fast hands at the kitchen" },
-    { key: "arm", label: "Arm comfort", plus: [["arm-friendly", 1]], minus: [], noun: "how it treats the arm", diff: "easier on the arm", ifYou: "care about arm comfort" },
+    { key: "speed", say: { hi: "Fast in hand battles.", mid: "Average hand speed.", lo: "Slow in hand battles; it lags at the kitchen.", split: ["fast", "slow"] }, label: "Hand speed", plus: [["fast hands", 1]], minus: [], noun: "the hand speed", diff: "quicker in the hands", ifYou: "want fast hands at the kitchen" },
+    { key: "arm", say: { hi: "Kind to the arm.", mid: "Average on the arm.", lo: "Harsh on the arm on mishits.", split: ["comfortable", "harsh"] }, label: "Arm comfort", plus: [["arm-friendly", 1]], minus: [], noun: "how it treats the arm", diff: "easier on the arm", ifYou: "care about arm comfort" },
   ],
   // Only faults of the paddle itself drop to 2 (owner's floor rules); "hard to control" on a paddle usually means it is
   // poppy, not a fault.
@@ -217,19 +261,21 @@ export function tennisPtsHL(s: string): number {
   return Number.isFinite(at) ? Math.round((342.9 - at) / 3.175) : NaN;
 }
 const TENNIS: FitConfig = {
+  // Quick match's fine-tune (head size, weight, feel, bigger sweet spot; lib/fine-tune.ts tennis), read from the address too.
+  fineTune: true,
   traits: [
-    { key: "power", label: "Power", plus: [["easy power", 1], ["great on serve", 0.5]], minus: [["underpowered", 1]], noun: "the power",
+    { key: "power", say: { hi: "Easy depth and pace; the ball jumps off the strings.", mid: "Moderate power; deep balls need a full swing.", lo: "Little free power; you supply the pace.", split: ["powerful", "short on power"] }, label: "Power", plus: [["easy power", 1], ["great on serve", 0.5]], minus: [["underpowered", 1]], noun: "the power", diff: "more power", ifYou: "want free depth and pace",
       ev: [["praise the power", "praises the power"], ["find it underpowered", "finds it underpowered"]] },
-    { key: "control", label: "Control", plus: [["good control", 1]], minus: [], noun: "the control",
+    { key: "control", say: { hi: "Precise; you can swing out and the ball stays in.", mid: "Decent control on full swings.", lo: "Launchy; big swings can fly long.", split: ["precise", "launchy"] }, label: "Control", plus: [["good control", 1]], minus: [], noun: "the control", diff: "more control", ifYou: "want to swing out and keep it in",
       ev: [["praise the control", "praises the control"], ["find it hard to control", "finds it hard to control"]] },
-    { key: "spin", label: "Spin", plus: [["great spin", 1]], minus: [], noun: "the spin",
+    { key: "spin", say: { hi: "Easy spin; the ball dips and kicks.", mid: "Average spin.", lo: "Flatter ball; spin takes a fast swing.", split: ["spinny", "flat"] }, label: "Spin", plus: [["great spin", 1]], minus: [], noun: "the spin", diff: "more spin", ifYou: "hit with heavy topspin",
       ev: [["praise the spin", "praises the spin"], ["want more spin", "wants more spin"]] },
-    { key: "arm", label: "Arm comfort", plus: [["arm-friendly", 1], ["soft", 0.5]], minus: [["harsh on the arm", 1]], noun: "how it treats the arm" },
-    { key: "maneuverability", label: "Maneuverability", plus: [["maneuverable", 1]], minus: [["hard to swing", 1]], noun: "how quick it swings",
+    { key: "arm", say: { hi: "Kind to the arm.", mid: "Average on the arm.", lo: "Firm; harsh on a sore arm.", split: ["comfortable", "harsh"] }, label: "Arm comfort", plus: [["arm-friendly", 1], ["soft", 0.5]], minus: [["harsh on the arm", 1]], noun: "how it treats the arm", diff: "easier on the arm", ifYou: "care about arm comfort" },
+    { key: "maneuverability", say: { hi: "Quick through the air and at the net.", mid: "Average swing speed.", lo: "Slow to swing; it can feel late on fast balls.", split: ["quick", "sluggish"] }, label: "Maneuverability", plus: [["maneuverable", 1]], minus: [["hard to swing", 1]], noun: "how quick it swings", diff: "quicker to swing", ifYou: "want a fast swing and quick hands at net",
       ev: [["call it quick to swing", "calls it quick to swing"], ["find it hard to swing", "finds it hard to swing"]] },
-    { key: "stability", label: "Stability", plus: [["stable", 1]], minus: [["unstable vs heavy balls", 1]], noun: "the stability",
+    { key: "stability", say: { hi: "Solid against pace; it doesn't get pushed around.", mid: "Stable enough for most rallies.", lo: "Can twist against heavy balls.", split: ["solid", "unstable"] }, label: "Stability", plus: [["stable", 1]], minus: [["unstable vs heavy balls", 1]], noun: "the stability", diff: "more stable", ifYou: "face big hitters and heavy balls",
       ev: [["call it stable", "calls it stable"], ["find it unstable vs heavy balls", "finds it unstable vs heavy balls"]] },
-    { key: "forgiveness", label: "Forgiveness", plus: [["forgiving", 1]], minus: [["small sweet spot", 1]], noun: "the sweet spot",
+    { key: "forgiveness", say: { hi: "Forgiving sweet spot; mishits still go deep.", mid: "An average sweet spot.", lo: "Small sweet spot; off-centre hits fall short.", split: ["forgiving", "demanding"] }, label: "Forgiveness", plus: [["forgiving", 1]], minus: [["small sweet spot", 1]], noun: "the sweet spot", diff: "more forgiving", ifYou: "want margin for error",
       ev: [["call it forgiving", "calls it forgiving"], ["find the sweet spot small", "finds the sweet spot small"]] },
   ],
   complaint: ["arm", "forgiveness"],
@@ -284,7 +330,7 @@ const TENNIS: FitConfig = {
   lab: { metrics: { swing_weight: { trait: "maneuverability", sign: -1 } }, weight: 0.5, specWeight: 0.5, alone: 0.7 },
 };
 
-const CONFIGS: Record<string, FitConfig> = { padel: PADEL, pickleball: PICKLEBALL, tennis: TENNIS, discgolf: DISCGOLF_FIT };
+const CONFIGS: Record<string, FitConfig> = { padel: PADEL, pickleball: PICKLEBALL, tennis: TENNIS, discgolf: DISCGOLF_FIT, simracing: SIMRACING_FIT, coffee: COFFEE_FIT };
 /** The site's fit rules, or undefined for sites that keep the old pages. */
 export const fitConfigFor = (n: Pick<Niche, "id">): FitConfig | undefined => CONFIGS[n.id];
 /** The site's trait rows (padel's for a site without its own rules), for the admin area and the stored hand edits. */

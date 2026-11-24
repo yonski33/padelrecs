@@ -27,6 +27,10 @@ export function checkFormToken(token: unknown, now = Date.now(), key = secret())
  return "ok";
 }
 
+/** What a token check means for a review (owner 2026-11-18): "too-fast" is no proof of a bot, so the review goes to
+ *  moderation as pending; missing, invalid or expired tokens are rejected as before. */
+export const tokenRejects = (check: FormTokenCheck) => check !== "ok" && check !== "too-fast";
+
 // After the one-tap card posts a review, its optional details (level, side, style, time, tags) are added one tap at a
 // time (PATCH /api/reviews). The post returns the review's id and this signed token, so only that visitor can add them.
 const editSign = (id: string, key: string) => createHmac("sha256", key).update(`review-edit:${id}`).digest("base64url");

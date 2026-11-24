@@ -3,6 +3,7 @@
 // renders the address's picks (a cached page per set of picks, app/v/racket); a tap re-runs the page's answers
 // (app/skin/product-view.ts) on the data sent once with the page and updates the address with no request
 // (app/instant-view.ts). Links stay real links: a new tab, or no JavaScript, still gets the server's page.
+import { skinSuitsLine } from "../../lib/suits-line";
 import type { ReactNode } from "react";
 import { useInstantView, instantClick } from "../instant-view";
 import { productView, GOAL_LABEL, type ProductInput } from "./product-view";
@@ -15,6 +16,15 @@ import { SKIN_TYPES, GOALS, readSkinChoice, skinHref, type SkinChoice } from "..
 const PILL = { good: ["Strong fit", "oklch(0.9 0.05 155)"], maybe: ["Worth a try", "oklch(0.93 0.03 70)"], no: ["Probably not", "oklch(0.93 0.04 30)"] } as const;
 const reviewsWord = (n: number) => `${n} ${n === 1 ? "review" : "reviews"}`;
 const types = niche.typePages ?? [];
+
+/** "Matched for dry, sensitive skin, to hydrate": what the answer above was worked out for (owner 2026-11-17: a bare "Dry" read
+ *  out of context). */
+const GOAL_PHRASE: Record<string, string> = { hydrate: "to hydrate", calm: "to calm", clear: "for clearer skin" };
+function matchedFor(c: SkinChoice) {
+  const skin = [c.skin, c.concerns.includes("sensitive") ? "sensitive" : null, c.concerns.includes("acne") ? "acne-prone" : null].filter(Boolean).join(", ");
+  const goal = c.goal ? GOAL_PHRASE[c.goal] : undefined;
+  return `Matched for ${[skin ? `${skin} skin` : null, goal].filter(Boolean).join(", ")}`;
+}
 
 export function SkinProductLive({ input, choice: first, summary, photo, hero, reviews, specs, buy }: { input: ProductInput; choice: SkinChoice;
   summary: string | null; photo: string | null; /** The hero's product side, server-rendered. */ hero: ReactNode; reviews: ReactNode; specs: ReactNode;
@@ -41,13 +51,13 @@ export function SkinProductLive({ input, choice: first, summary, photo, hero, re
         {!v.answered ? <div className="bp-ask">
           <span className="bp-tag">✦ skin check</span>
           <div><div className="bp-q">Is this right for <em>your</em> skin?</div>
-            <div className="bp-sub">{`Two taps and we'll check it against ${reviewsWord(v.total)} from people with your skin.`}</div></div>
+            <div className="bp-sub">{`Two taps to check it against ${reviewsWord(v.total)} from people with your skin.`}</div></div>
           <div className="bp-steps">
             <div><span className="bp-sl">1. Your skin type</span><div className="bp-picks">{typesRow()}</div></div>
             <div><span className="bp-sl">2. What do you want it to do?</span><div className="bp-picks">{goalsRow()}</div></div>
             <a {...go(sensNext, "bp-sens", sensOn)}><i>{sensOn ? "✓" : ""}</i>My skin reacts easily <span>(optional)</span></a>
           </div>
-          {v.bestFor.length > 0 && <div className="bp-best"><strong>Generally best for</strong>{` ${v.bestFor.join(", ")}.`}</div>}
+          {skinSuitsLine(v.bestFor) && <div className="bp-best">{skinSuitsLine(v.bestFor)}</div>}
         </div> : <div className="bp-ans" aria-live="polite">
           <div className="bp-ansh"><span className="bp-tag">✦ your match</span>
             <span className="bp-verdict" style={{ background: kind && kind !== "thin" ? PILL[kind][1] : "#f4ede6" }}>{pct === null ? "— · not enough reports" : `${pct}% · ${PILL[kind as "good"][0]}`}</span></div>
@@ -55,7 +65,7 @@ export function SkinProductLive({ input, choice: first, summary, photo, hero, re
           {v.why && <div className="bp-why"><span>✓ Why it suits you</span><p>{v.why}</p></div>}
           {v.consider && <div className="bp-know"><span>◦ Worth knowing</span><p>{v.consider}{v.considerAlt && <> Try instead: <a href={v.considerAlt.href}>{v.considerAlt.name}</a>.</>}</p></div>}
           <input type="checkbox" id="bp-edit" className="bp-edit-t" aria-label="Edit your answers"/>
-          <div className="bp-foot"><span>{tags.map(t => t[0].toUpperCase() + t.slice(1)).join(" · ")}</span>
+          <div className="bp-foot"><span>{matchedFor(choice)}</span>
             <span><label htmlFor="bp-edit" className="bp-editl"><span className="o">edit</span><span className="c">done ✓</span></label><a href={input.here} onClick={instantClick(() => set(start))}>start over</a></span></div>
           <div className="bp-editp"><div className="bp-picks">{typesRow(true)}</div><div className="bp-picks">{goalsRow(true)}
             <a {...go(sensNext, "bp-sens sm", sensOn)}><i>{sensOn ? "✓" : ""}</i>reactive</a></div></div>

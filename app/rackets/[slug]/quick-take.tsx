@@ -11,7 +11,7 @@ import QuickTakeComposer, { QuickVoteLine } from "./quick-take-composer";
  *  Everything editorial comes from the stored block; the counts, dates, score, sources and community reviews are live. */
 
 export type QtReport = { id: string; platform: string; sourceName: string | null; url: string | null; date: string | null; sentiment: string | null; nickname?: string | null; level?: string | null };
-export type QtReview = { id: string; alias: string | null; playerLevel: string | null; createdAt: string; rating: number; reviewText: string; tags: string[]; highlights: string[] | null };
+export type QtReview = { id: string; alias: string | null; playerLevel: string | null; /** The writer's court side, when given. */ playingSide?: string | null; /** How long they have played it, when given. */ timeWithRacket?: string | null; createdAt: string; rating: number; reviewText: string; tags: string[]; highlights: string[] | null };
 export type QtProduct = { slug: string; name: string; href: string; photo: string | null };
 
 /** **bold** and ==marker== text. */
@@ -75,7 +75,7 @@ export default function QuickTakePage(props: Props) {
   const toc = shown.filter(k => k !== "spot").map((k, i) => ({ k, n: String(i + 1).padStart(2, "0"), label: SECTIONS[k].toc(ctx) }));
   return <main className={`qt ${props.fontClass}`}>
     <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(props.jsonLd).replace(/</g, "\\u003c") }}/>
-    <div className="qt-strip">{`${v2copy.strip} · `}<a href="#how-we-read">how we make these →</a></div>
+    <div className="qt-strip">{`${v2copy.strip} · `}<a href="#how-we-read">{v2copy.plain ? "how it works →" : "how we make these →"}</a></div>
     <div className="wrap">
       {props.crumbs}
       <Hero c={ctx}/>
@@ -234,7 +234,7 @@ const CommunityBody = ({ c }: { c: Ctx }) => <>
 </>;
 
 const SpotBody = ({ c }: { c: Ctx }) => <div className="spot"><h2>Spot something wrong?</h2>
-  <p>{`Played the ${c.shortName} and think we got something off? Tell us. We'll fix the page and credit you by name.`}</p>
+  <p>{`Played the ${c.shortName} and think something's off? Send a correction: the page gets fixed and you're credited by name.`}</p>
   <div className="act"><a className="btn ink" href="/contact">suggest a fix</a><small>corrections so far: none yet. Be the first to catch us out.</small></div></div>;
 
 /** The page footer (owner 2026-11-15: specs moved to the hero chips). */

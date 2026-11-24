@@ -183,6 +183,11 @@
       "name": "dogrecs",
       "id": "prj_TonSLKJlthPSelh2UdTwNDcKScmO",
       "domain": "www.dogrecs.com"
+    },
+    "stackrecs": {
+      "name": "stackrecs",
+      "id": "prj_fbkosIK65lP3DErNuGLCtHHOIxPg",
+      "domain": "www.stackrecs.com"
     }
   },
   "supabaseProjectName": "PadelRecs",
@@ -224,7 +229,8 @@
     "tv": "tvrecs",
     "tool": "toolrecs",
     "grill": "grillrecs",
-    "dog": "dogrecs"
+    "dog": "dogrecs",
+    "stackrecs": "stackrecs"
   },
   "previousSupabaseProjectRef": "pqkcxsqkhibcmrzrxuhx",
   "protectedExistingSupabaseProjectRefs": [

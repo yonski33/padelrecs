@@ -29,7 +29,8 @@
   .hv2-box { border-radius: 14px; }
   .hv2-list > li { border-bottom: 1.5px dashed var(--line); }
   .hv2-list > li:hover { background: oklch(0.975 0.04 105); }
-  .hv2-row.m { grid-template-columns: 28px 52px minmax(0, 1fr) max-content max-content max-content; gap: 14px; }
+  .hv2-row.m { grid-template-columns: 28px 52px minmax(0, 1fr) max-content max-content; gap: 14px; }
+  .hv2-row.m .hv2-buy { align-self: flex-start; }
   .hv2-row.m .hv2-rank { font-size: 21px; }
   .hv2-row.m .hv2-pic { width: 52px; height: 84px; }
   .hv2-row.m .hv2-line { color: var(--text); }
@@ -67,48 +68,10 @@
   .shr-m .w em { margin-top: auto; padding-top: 0; font: 600 13.5px var(--mono); font-style: normal; }
   .shr-m .shr-guide { align-self: flex-end; font: 600 14px var(--mono); }
 
-  /* Explore the rankings */
-  .hv2-rt { display: flex; flex-direction: column; gap: 12px; margin-top: 40px; }
-  .hv2-rthead { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; flex-wrap: wrap; }
-  .hv2-rthead h2 { margin: 0; font: 800 28px var(--display); letter-spacing: -0.02em; }
-  .hv2-rthead a { font: 13px var(--mono); }
-  .hv2-rtgrid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; }
-  .hv2-rtgrid a { text-decoration: none; border: 2px solid var(--ink); border-radius: 16px; background: var(--paper); box-shadow: 4px 4px 0 var(--shadow); padding: 14px 18px; display: flex; align-items: center; gap: 10px; height: 120px; box-sizing: border-box; transition: box-shadow .12s, transform .12s; }
-  .hv2-rtgrid a:hover { background: oklch(0.975 0.04 105); box-shadow: 6px 6px 0 var(--shadow); transform: translate(-2px, -2px); }
-  .hv2-rtgrid .t { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 6px; }
-  .hv2-rtgrid b { font: 800 20px/1.15 var(--display); }
-  .hv2-rtgrid em { font: 13px var(--mono); font-style: normal; color: var(--soft); }
-  .hv2-rtgrid .mini { flex: none; display: flex; align-items: flex-end; gap: 6px; height: 84px; }
-  .hv2-rtgrid .mini i { position: relative; display: flex; justify-content: center; }
-  .hv2-rtgrid .mini i::before { content: ""; width: 100%; height: 72%; border: 2px solid var(--ink); border-radius: 9px 9px 6px 6px; background: var(--f); box-sizing: border-box; }
-  .hv2-rtgrid .mini i::after { content: ""; position: absolute; bottom: 0; left: 50%; width: 7px; height: 30%; margin-left: -3.5px; border-radius: 0 0 3px 3px; background: var(--ink); }
-  .hv2-rtgrid .mini .p0 { width: 22px; height: 58px; } .hv2-rtgrid .mini .p1 { width: 26px; height: 70px; } .hv2-rtgrid .mini .p2 { width: 30px; height: 84px; }
-
-  /* How we score */
-  .hv2-steps { margin-top: 40px; border: 2px solid var(--ink); border-radius: 18px; background: oklch(0.95 0.035 235); box-shadow: 5px 5px 0 var(--ink); padding: 14px 18px; display: flex; flex-wrap: wrap; gap: 10px 18px; align-items: center; }
-  .hv2-steps .k { font: 600 12.5px var(--mono); border: 2px solid var(--ink); border-radius: 8px; padding: 1px 9px; background: var(--paper); }
-  .hv2-steps .s { display: inline-flex; align-items: center; gap: 8px; font-size: 15px; }
-  .hv2-steps .s i { width: 22px; height: 22px; border-radius: 50%; border: 2px solid var(--ink); background: var(--paper); display: inline-flex; align-items: center; justify-content: center; font: normal 800 12px var(--display); box-sizing: border-box; }
-  .hv2-steps b { font: 800 15px var(--display); }
-  .hv2-steps a { margin-left: auto; font: 600 12.5px var(--mono); }
-
-  /* Questions */
-  .hv2-faq { margin-top: 40px; display: flex; flex-direction: column; gap: 10px; max-width: 780px; }
-  .hv2-faq h2 { margin: 0; font: 800 28px var(--display); letter-spacing: -0.02em; }
-  .hv2-faq .box { border: 2px solid var(--ink); border-radius: 14px; background: var(--paper); overflow: hidden; }
-  .hv2-faq details { margin: 0; padding: 0; }
-  .hv2-faq details + details { border-top: 1.5px dashed var(--line); }
-  .hv2-faq summary { list-style: none; cursor: pointer; display: flex; justify-content: space-between; gap: 16px; margin: 0; padding: 11px 16px; font: 700 15.5px/1.5 var(--body); }
-  .hv2-faq summary::-webkit-details-marker { display: none; }
-  .hv2-faq summary i::before { content: "+"; font: normal 400 15px var(--mono); }
-  .hv2-faq details[open] summary i::before { content: "−"; }
-  .hv2-faq p { margin: 0; padding: 0 16px 12px; font-size: 15px; line-height: 1.5; color: var(--text); text-wrap: pretty; }
-  .hv2-faq p a { font-weight: 700; }
-
   .hv2-rk { display: none; }
   @media (max-width: 760px) {
     /* Phone mock: the photo on the left; "#1 name", the chip and the line; then the match box, reviews and check price. */
-    .hv2-row.m { grid-template-columns: 44px auto minmax(0, 1fr) auto; grid-template-areas: "pic body body body" "pic sc sent btn"; gap: 10px 12px; align-items: start; }
+    .hv2-row.m { grid-template-columns: 44px auto minmax(0, 1fr) auto; grid-template-areas: "pic body body body" "pic sc sent sent"; gap: 10px 12px; align-items: start; }
     .hv2-row.m .hv2-rank { display: none; }
     .hv2-row.m .hv2-pic { grid-area: pic; width: 44px; height: 64px; }
     .hv2-row.m .hv2-body { grid-area: body; }
@@ -119,14 +82,11 @@
     .hv2-row.m .hv2-sc { grid-area: sc; min-width: 0; flex-direction: row; align-self: center; }
     .hv2-row.m .hv2-sc small { display: none; }
     .hv2-row.m .hv2-sc b { font-size: 15px; padding: 2px 6px; }
-    .hv2-row.m .hv2-sent { grid-area: sent; display: flex; min-width: 0; align-self: center; align-items: flex-start; justify-self: start; font: 11px var(--mono); color: var(--soft); }
+    .hv2-row.m .hv2-sent { grid-area: sent; display: flex; min-width: 0; align-self: center; align-items: flex-start; justify-self: start; font: 12px var(--mono); color: var(--soft); }
     .hv2-row.m .hv2-sent .hv2-bar { display: none; }
     .hv2-row.m .hv2-btnc { grid-area: btn; display: block; align-self: center; }
     .hv2-row.m .hv2-btn { padding: 6px 12px; font-size: 13px; }
     .hv2-fine.m .hv2-fhint { display: none; }
-    .shr-m .shr-row, .hv2-rtgrid { grid-template-columns: minmax(0, 1fr); }
-    .hv2-rtgrid a { height: auto; min-height: 96px; }
-    .hv2-steps a { margin-left: 0; }
+    .shr-m .shr-row { grid-template-columns: minmax(0, 1fr); }
   }
-  @media (min-width: 761px) and (max-width: 1000px) { .hv2-rtgrid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 }

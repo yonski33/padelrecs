@@ -1,0 +1,706 @@
+{
+ "about": "StackRecs pilot catalog (plan PR #517, owner sign-off 2026-11-19): 24 Build and 15 Grow tools. Generated from lib/stack/catalog.ts.",
+ "checked": "2026-11-19",
+ "brands": [
+  {
+   "id": "anthropic",
+   "name": "Anthropic"
+  },
+  {
+   "id": "openai",
+   "name": "OpenAI"
+  },
+  {
+   "id": "anysphere",
+   "name": "Anysphere"
+  },
+  {
+   "id": "github",
+   "name": "GitHub"
+  },
+  {
+   "id": "cognition",
+   "name": "Cognition"
+  },
+  {
+   "id": "google",
+   "name": "Google"
+  },
+  {
+   "id": "cline",
+   "name": "Cline"
+  },
+  {
+   "id": "kilo-code",
+   "name": "Kilo Code"
+  },
+  {
+   "id": "aider",
+   "name": "Aider"
+  },
+  {
+   "id": "opencode",
+   "name": "OpenCode"
+  },
+  {
+   "id": "zed-industries",
+   "name": "Zed Industries"
+  },
+  {
+   "id": "jetbrains",
+   "name": "JetBrains"
+  },
+  {
+   "id": "amazon-web-services",
+   "name": "Amazon Web Services"
+  },
+  {
+   "id": "amp",
+   "name": "Amp"
+  },
+  {
+   "id": "warp",
+   "name": "Warp"
+  },
+  {
+   "id": "lovable",
+   "name": "Lovable"
+  },
+  {
+   "id": "replit",
+   "name": "Replit"
+  },
+  {
+   "id": "stackblitz",
+   "name": "StackBlitz"
+  },
+  {
+   "id": "vercel",
+   "name": "Vercel"
+  },
+  {
+   "id": "wix",
+   "name": "Wix"
+  },
+  {
+   "id": "framer",
+   "name": "Framer"
+  },
+  {
+   "id": "webflow",
+   "name": "Webflow"
+  },
+  {
+   "id": "hostinger",
+   "name": "Hostinger"
+  },
+  {
+   "id": "semrush",
+   "name": "Semrush"
+  },
+  {
+   "id": "ahrefs",
+   "name": "Ahrefs"
+  },
+  {
+   "id": "se-ranking",
+   "name": "SE Ranking"
+  },
+  {
+   "id": "moz",
+   "name": "Moz"
+  },
+  {
+   "id": "surfer",
+   "name": "Surfer"
+  },
+  {
+   "id": "clearscope",
+   "name": "Clearscope"
+  },
+  {
+   "id": "frase",
+   "name": "Frase"
+  },
+  {
+   "id": "neuronwriter",
+   "name": "NeuronWriter"
+  },
+  {
+   "id": "jasper",
+   "name": "Jasper"
+  },
+  {
+   "id": "writesonic",
+   "name": "Writesonic"
+  },
+  {
+   "id": "koala",
+   "name": "Koala"
+  },
+  {
+   "id": "screaming-frog",
+   "name": "Screaming Frog"
+  },
+  {
+   "id": "sitebulb",
+   "name": "Sitebulb"
+  },
+  {
+   "id": "otterly-ai",
+   "name": "Otterly.AI"
+  },
+  {
+   "id": "peec-ai",
+   "name": "Peec AI"
+  }
+ ],
+ "products": [
+  {
+   "id": "claude-code",
+   "slug": "claude-code",
+   "brand": "anthropic",
+   "name": "Claude Code",
+   "shape": "Coding agent",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "sources": [
+    "https://www.anthropic.com/claude-code"
+   ],
+   "website": "https://www.anthropic.com/claude-code"
+  },
+  {
+   "id": "openai-codex",
+   "slug": "openai-codex",
+   "brand": "openai",
+   "name": "OpenAI Codex",
+   "shape": "Coding agent",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "sources": [
+    "https://openai.com/codex"
+   ],
+   "website": "https://openai.com/codex"
+  },
+  {
+   "id": "cursor",
+   "slug": "cursor",
+   "brand": "anysphere",
+   "name": "Cursor",
+   "shape": "Coding agent",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "sources": [
+    "https://cursor.com"
+   ],
+   "website": "https://cursor.com"
+  },
+  {
+   "id": "github-copilot",
+   "slug": "github-copilot",
+   "brand": "github",
+   "name": "GitHub Copilot",
+   "shape": "Coding agent",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "sources": [
+    "https://github.com/features/copilot"
+   ],
+   "website": "https://github.com/features/copilot"
+  },
+  {
+   "id": "devin-desktop",
+   "slug": "devin-desktop",
+   "brand": "cognition",
+   "name": "Devin Desktop",
+   "shape": "Coding agent",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "sources": [
+    "https://devin.ai"
+   ],
+   "website": "https://devin.ai"
+  },
+  {
+   "id": "google-antigravity",
+   "slug": "google-antigravity",
+   "brand": "google",
+   "name": "Google Antigravity",
+   "shape": "Coding agent",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "sources": [
+    "https://antigravity.google"
+   ],
+   "website": "https://antigravity.google"
+  },
+  {
+   "id": "cline",
+   "slug": "cline",
+   "brand": "cline",
+   "name": "Cline",
+   "shape": "Coding agent",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "sources": [
+    "https://cline.bot"
+   ],
+   "website": "https://cline.bot"
+  },
+  {
+   "id": "kilo-code",
+   "slug": "kilo-code",
+   "brand": "kilo-code",
+   "name": "Kilo Code",
+   "shape": "Coding agent",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "sources": [
+    "https://kilocode.ai"
+   ],
+   "website": "https://kilocode.ai"
+  },
+  {
+   "id": "aider",
+   "slug": "aider",
+   "brand": "aider",
+   "name": "Aider",
+   "shape": "Coding agent",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "sources": [
+    "https://aider.chat"
+   ],
+   "website": "https://aider.chat"
+  },
+  {
+   "id": "opencode",
+   "slug": "opencode",
+   "brand": "opencode",
+   "name": "OpenCode",
+   "shape": "Coding agent",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "sources": [
+    "https://opencode.ai"
+   ],
+   "website": "https://opencode.ai"
+  },
+  {
+   "id": "zed",
+   "slug": "zed",
+   "brand": "zed-industries",
+   "name": "Zed",
+   "shape": "Coding agent",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "sources": [
+    "https://zed.dev"
+   ],
+   "website": "https://zed.dev"
+  },
+  {
+   "id": "jetbrains-ai",
+   "slug": "jetbrains-ai",
+   "brand": "jetbrains",
+   "name": "JetBrains AI",
+   "shape": "Coding agent",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "sources": [
+    "https://www.jetbrains.com/ai/"
+   ],
+   "website": "https://www.jetbrains.com/ai/"
+  },
+  {
+   "id": "kiro",
+   "slug": "kiro",
+   "brand": "amazon-web-services",
+   "name": "Kiro",
+   "shape": "Coding agent",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "sources": [
+    "https://kiro.dev"
+   ],
+   "website": "https://kiro.dev"
+  },
+  {
+   "id": "amp",
+   "slug": "amp",
+   "brand": "amp",
+   "name": "Amp",
+   "shape": "Coding agent",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "sources": [
+    "https://ampcode.com"
+   ],
+   "website": "https://ampcode.com"
+  },
+  {
+   "id": "warp",
+   "slug": "warp",
+   "brand": "warp",
+   "name": "Warp",
+   "shape": "Coding agent",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "sources": [
+    "https://www.warp.dev"
+   ],
+   "website": "https://www.warp.dev"
+  },
+  {
+   "id": "lovable",
+   "slug": "lovable",
+   "brand": "lovable",
+   "name": "Lovable",
+   "shape": "App builder",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "sources": [
+    "https://lovable.dev"
+   ],
+   "website": "https://lovable.dev"
+  },
+  {
+   "id": "replit-agent",
+   "slug": "replit-agent",
+   "brand": "replit",
+   "name": "Replit Agent",
+   "shape": "App builder",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "sources": [
+    "https://replit.com"
+   ],
+   "website": "https://replit.com"
+  },
+  {
+   "id": "bolt-new",
+   "slug": "bolt-new",
+   "brand": "stackblitz",
+   "name": "Bolt.new",
+   "shape": "App builder",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "sources": [
+    "https://bolt.new"
+   ],
+   "website": "https://bolt.new"
+  },
+  {
+   "id": "v0",
+   "slug": "v0",
+   "brand": "vercel",
+   "name": "v0",
+   "shape": "App builder",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "sources": [
+    "https://v0.app"
+   ],
+   "website": "https://v0.app"
+  },
+  {
+   "id": "base44",
+   "slug": "base44",
+   "brand": "wix",
+   "name": "Base44",
+   "shape": "App builder",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "sources": [
+    "https://base44.com"
+   ],
+   "website": "https://base44.com"
+  },
+  {
+   "id": "framer-ai",
+   "slug": "framer-ai",
+   "brand": "framer",
+   "name": "Framer AI",
+   "shape": "App builder",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "sources": [
+    "https://www.framer.com"
+   ],
+   "website": "https://www.framer.com"
+  },
+  {
+   "id": "webflow-ai",
+   "slug": "webflow-ai",
+   "brand": "webflow",
+   "name": "Webflow AI",
+   "shape": "App builder",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "sources": [
+    "https://webflow.com"
+   ],
+   "website": "https://webflow.com"
+  },
+  {
+   "id": "hostinger-horizons",
+   "slug": "hostinger-horizons",
+   "brand": "hostinger",
+   "name": "Hostinger Horizons",
+   "shape": "App builder",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "sources": [
+    "https://www.hostinger.com/horizons"
+   ],
+   "website": "https://www.hostinger.com/horizons"
+  },
+  {
+   "id": "google-ai-studio",
+   "slug": "google-ai-studio",
+   "brand": "google",
+   "name": "Google AI Studio",
+   "shape": "App builder",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "sources": [
+    "https://aistudio.google.com"
+   ],
+   "website": "https://aistudio.google.com"
+  },
+  {
+   "id": "semrush",
+   "slug": "semrush",
+   "brand": "semrush",
+   "name": "Semrush",
+   "shape": "SEO suite",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "sources": [
+    "https://www.semrush.com"
+   ],
+   "website": "https://www.semrush.com"
+  },
+  {
+   "id": "ahrefs",
+   "slug": "ahrefs",
+   "brand": "ahrefs",
+   "name": "Ahrefs",
+   "shape": "SEO suite",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "sources": [
+    "https://ahrefs.com"
+   ],
+   "website": "https://ahrefs.com"
+  },
+  {
+   "id": "se-ranking",
+   "slug": "se-ranking",
+   "brand": "se-ranking",
+   "name": "SE Ranking",
+   "shape": "SEO suite",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "sources": [
+    "https://seranking.com"
+   ],
+   "website": "https://seranking.com"
+  },
+  {
+   "id": "moz-pro",
+   "slug": "moz-pro",
+   "brand": "moz",
+   "name": "Moz Pro",
+   "shape": "SEO suite",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "sources": [
+    "https://moz.com/products/pro"
+   ],
+   "website": "https://moz.com/products/pro"
+  },
+  {
+   "id": "surfer",
+   "slug": "surfer",
+   "brand": "surfer",
+   "name": "Surfer",
+   "shape": "Content tool",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "sources": [
+    "https://surferseo.com"
+   ],
+   "website": "https://surferseo.com"
+  },
+  {
+   "id": "clearscope",
+   "slug": "clearscope",
+   "brand": "clearscope",
+   "name": "Clearscope",
+   "shape": "Content tool",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "sources": [
+    "https://www.clearscope.io"
+   ],
+   "website": "https://www.clearscope.io"
+  },
+  {
+   "id": "frase",
+   "slug": "frase",
+   "brand": "frase",
+   "name": "Frase",
+   "shape": "Content tool",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "sources": [
+    "https://www.frase.io"
+   ],
+   "website": "https://www.frase.io"
+  },
+  {
+   "id": "neuronwriter",
+   "slug": "neuronwriter",
+   "brand": "neuronwriter",
+   "name": "NeuronWriter",
+   "shape": "Content tool",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "sources": [
+    "https://neuronwriter.com"
+   ],
+   "website": "https://neuronwriter.com"
+  },
+  {
+   "id": "jasper",
+   "slug": "jasper",
+   "brand": "jasper",
+   "name": "Jasper",
+   "shape": "AI writer",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "sources": [
+    "https://www.jasper.ai"
+   ],
+   "website": "https://www.jasper.ai"
+  },
+  {
+   "id": "writesonic",
+   "slug": "writesonic",
+   "brand": "writesonic",
+   "name": "Writesonic",
+   "shape": "AI writer",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "sources": [
+    "https://writesonic.com"
+   ],
+   "website": "https://writesonic.com"
+  },
+  {
+   "id": "koala",
+   "slug": "koala",
+   "brand": "koala",
+   "name": "Koala",
+   "shape": "AI writer",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "sources": [
+    "https://koala.sh"
+   ],
+   "website": "https://koala.sh"
+  },
+  {
+   "id": "screaming-frog",
+   "slug": "screaming-frog",
+   "brand": "screaming-frog",
+   "name": "Screaming Frog",
+   "shape": "Technical SEO",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "sources": [
+    "https://www.screamingfrog.co.uk/seo-spider/"
+   ],
+   "website": "https://www.screamingfrog.co.uk/seo-spider/"
+  },
+  {
+   "id": "sitebulb",
+   "slug": "sitebulb",
+   "brand": "sitebulb",
+   "name": "Sitebulb",
+   "shape": "Technical SEO",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "sources": [
+    "https://sitebulb.com"
+   ],
+   "website": "https://sitebulb.com"
+  },
+  {
+   "id": "otterly-ai",
+   "slug": "otterly-ai",
+   "brand": "otterly-ai",
+   "name": "Otterly.AI",
+   "shape": "AI visibility",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "sources": [
+    "https://otterly.ai"
+   ],
+   "website": "https://otterly.ai"
+  },
+  {
+   "id": "peec-ai",
+   "slug": "peec-ai",
+   "brand": "peec-ai",
+   "name": "Peec AI",
+   "shape": "AI visibility",
+   "weight": null,
+   "core": null,
+   "surface": null,
+   "sources": [
+    "https://peec.ai"
+   ],
+   "website": "https://peec.ai"
+  }
+ ]
+}

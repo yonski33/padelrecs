@@ -1,0 +1,778 @@
+{
+ "_about": "PadelRecs curated top 10 per pick (owner 2026-11-17). Key: style/level/arm-off|arm-on. Final lists approved by the owner 2026-11-17 (grok/curated/curated-final.json): every entry is the owner's (\"owner\": true). A list shows first, in order, with its real match %; under 55% a row says why it is here.",
+ "lists": {
+  "control/beginner/arm-off": [
+   {
+    "slug": "adidas-metalbone-ctrl-2026",
+    "owner": true
+   },
+   {
+    "slug": "nox-ml10-pro-cup-2025",
+    "owner": true,
+    "exception": "no 2026 version"
+   },
+   {
+    "slug": "wilson-endure-v1-2026",
+    "owner": true
+   },
+   {
+    "slug": "adidas-metalbone-carbon-ctrl-3-5-2026",
+    "owner": true
+   },
+   {
+    "slug": "nox-at10-genius-12k-alum-xtrem-lite-2026",
+    "owner": true
+   },
+   {
+    "slug": "nox-at10-genius-12k-alum-xtrem-2026",
+    "owner": true
+   },
+   {
+    "slug": "nox-at10-genius-18k-2026",
+    "owner": true
+   },
+   {
+    "slug": "bullpadel-vertex-05-hybrid-2026",
+    "owner": true
+   },
+   {
+    "slug": "oxdog-hyper-pro-2-0-2026",
+    "owner": true
+   },
+   {
+    "slug": "babolat-air-viper-2026",
+    "owner": true
+   }
+  ],
+  "control/beginner/arm-on": [
+   {
+    "slug": "nox-ml10-pro-cup-2025",
+    "owner": true,
+    "exception": "no 2026 version"
+   },
+   {
+    "slug": "adidas-metalbone-ctrl-2026",
+    "owner": true
+   },
+   {
+    "slug": "wilson-endure-v1-2026",
+    "owner": true
+   },
+   {
+    "slug": "adidas-metalbone-carbon-ctrl-3-5-2026",
+    "owner": true
+   },
+   {
+    "slug": "nox-at10-genius-12k-alum-xtrem-2026",
+    "owner": true
+   },
+   {
+    "slug": "nox-at10-genius-18k-2026",
+    "owner": true
+   },
+   {
+    "slug": "bullpadel-vertex-05-hybrid-2026",
+    "owner": true
+   },
+   {
+    "slug": "oxdog-hyper-pro-2-0-2026",
+    "owner": true
+   },
+   {
+    "slug": "babolat-air-viper-2026",
+    "owner": true
+   },
+   {
+    "slug": "siux-electra-pro-st5-2026",
+    "owner": true
+   }
+  ],
+  "control/intermediate/arm-off": [
+   {
+    "slug": "adidas-metalbone-ctrl-2026",
+    "owner": true
+   },
+   {
+    "slug": "nox-at10-genius-18k-2026",
+    "owner": true
+   },
+   {
+    "slug": "bullpadel-vertex-05-hybrid-2026",
+    "owner": true
+   },
+   {
+    "slug": "nox-at10-genius-12k-alum-xtrem-lite-2026",
+    "owner": true
+   },
+   {
+    "slug": "bullpadel-neuron-02-2026",
+    "owner": true
+   },
+   {
+    "slug": "oxdog-ultimate-tour-x-2026",
+    "owner": true
+   },
+   {
+    "slug": "kuikma-hybrid-pro-2026",
+    "owner": true
+   },
+   {
+    "slug": "nox-at10-genius-12k-alum-xtrem-2026",
+    "owner": true
+   },
+   {
+    "slug": "nox-ea10-ventus-hybrid-12k-2026",
+    "owner": true
+   },
+   {
+    "slug": "wilson-endure-v1-2026",
+    "owner": true
+   }
+  ],
+  "control/intermediate/arm-on": [
+   {
+    "slug": "nox-at10-genius-12k-alum-xtrem-lite-2026",
+    "owner": true
+   },
+   {
+    "slug": "adidas-metalbone-ctrl-2026",
+    "owner": true
+   },
+   {
+    "slug": "bullpadel-vertex-05-hybrid-2026",
+    "owner": true
+   },
+   {
+    "slug": "nox-at10-genius-18k-2026",
+    "owner": true
+   },
+   {
+    "slug": "bullpadel-neuron-02-2026",
+    "owner": true
+   },
+   {
+    "slug": "oxdog-hyper-pro-2-0-2026",
+    "owner": true
+   },
+   {
+    "slug": "oxdog-ultimate-tour-x-2026",
+    "owner": true
+   },
+   {
+    "slug": "kuikma-hybrid-pro-2026",
+    "owner": true
+   },
+   {
+    "slug": "nox-at10-genius-12k-alum-xtrem-2026",
+    "owner": true
+   },
+   {
+    "slug": "babolat-air-viper-2026",
+    "owner": true
+   }
+  ],
+  "control/advanced/arm-off": [
+   {
+    "slug": "nox-at10-genius-12k-alum-xtrem-2026",
+    "owner": true
+   },
+   {
+    "slug": "oxdog-hyper-pro-2-0-2026",
+    "owner": true
+   },
+   {
+    "slug": "nox-at10-genius-18k-2026",
+    "owner": true
+   },
+   {
+    "slug": "bullpadel-neuron-02-2026",
+    "owner": true
+   },
+   {
+    "slug": "kuikma-hybrid-pro-2026",
+    "owner": true
+   },
+   {
+    "slug": "siux-diablo-pro-2026",
+    "owner": true
+   },
+   {
+    "slug": "bullpadel-vertex-05-hybrid-2026",
+    "owner": true
+   },
+   {
+    "slug": "oxdog-ultimate-tour-x-2026",
+    "owner": true
+   },
+   {
+    "slug": "nox-ea10-ventus-hybrid-12k-2026",
+    "owner": true
+   },
+   {
+    "slug": "babolat-counter-viper-2026",
+    "owner": true
+   }
+  ],
+  "control/advanced/arm-on": [
+   {
+    "slug": "nox-at10-genius-18k-2026",
+    "owner": true
+   },
+   {
+    "slug": "bullpadel-neuron-02-2026",
+    "owner": true
+   },
+   {
+    "slug": "adidas-metalbone-ctrl-2026",
+    "owner": true
+   },
+   {
+    "slug": "oxdog-hyper-pro-2-0-2026",
+    "owner": true
+   },
+   {
+    "slug": "nox-at10-genius-12k-alum-xtrem-lite-2026",
+    "owner": true
+   },
+   {
+    "slug": "oxdog-ultimate-tour-x-2026",
+    "owner": true
+   },
+   {
+    "slug": "kuikma-hybrid-pro-2026",
+    "owner": true
+   },
+   {
+    "slug": "wilson-endure-pro-v1-2026",
+    "owner": true
+   },
+   {
+    "slug": "nox-at10-genius-12k-alum-xtrem-2026",
+    "owner": true
+   },
+   {
+    "slug": "bullpadel-vertex-05-hybrid-2026",
+    "owner": true
+   }
+  ],
+  "balance/beginner/arm-off": [
+   {
+    "slug": "adidas-metalbone-ctrl-2026",
+    "owner": true
+   },
+   {
+    "slug": "wilson-endure-v1-2026",
+    "owner": true
+   },
+   {
+    "slug": "wilson-bela-lt-v2-5-2024",
+    "owner": true,
+    "exception": "owner pick"
+   },
+   {
+    "slug": "nox-ml10-pro-cup-2025",
+    "owner": true,
+    "exception": "no 2026 version"
+   },
+   {
+    "slug": "nox-at10-genius-12k-alum-xtrem-lite-2026",
+    "owner": true
+   },
+   {
+    "slug": "nox-at10-genius-12k-alum-xtrem-2026",
+    "owner": true
+   },
+   {
+    "slug": "nox-at10-genius-18k-2026",
+    "owner": true
+   },
+   {
+    "slug": "bullpadel-vertex-05-hybrid-2026",
+    "owner": true
+   },
+   {
+    "slug": "oxdog-hyper-pro-2-0-2026",
+    "owner": true
+   },
+   {
+    "slug": "babolat-air-viper-2026",
+    "owner": true
+   }
+  ],
+  "balance/beginner/arm-on": [
+   {
+    "slug": "adidas-metalbone-carbon-ctrl-3-5-2026",
+    "owner": true
+   },
+   {
+    "slug": "nox-ml10-pro-cup-2025",
+    "owner": true,
+    "exception": "no 2026 version"
+   },
+   {
+    "slug": "wilson-endure-v1-2026",
+    "owner": true
+   },
+   {
+    "slug": "adidas-metalbone-ctrl-2026",
+    "owner": true
+   },
+   {
+    "slug": "nox-at10-genius-12k-alum-xtrem-2026",
+    "owner": true
+   },
+   {
+    "slug": "oxdog-hyper-pro-2-0-2026",
+    "owner": true
+   },
+   {
+    "slug": "nox-at10-genius-18k-2026",
+    "owner": true
+   },
+   {
+    "slug": "bullpadel-vertex-05-hybrid-2026",
+    "owner": true
+   },
+   {
+    "slug": "babolat-air-viper-2026",
+    "owner": true
+   },
+   {
+    "slug": "siux-electra-pro-st5-2026",
+    "owner": true
+   }
+  ],
+  "balance/intermediate/arm-off": [
+   {
+    "slug": "adidas-metalbone-ctrl-2026",
+    "owner": true
+   },
+   {
+    "slug": "nox-at10-genius-18k-2026",
+    "owner": true
+   },
+   {
+    "slug": "bullpadel-vertex-05-hybrid-2026",
+    "owner": true
+   },
+   {
+    "slug": "kuikma-hybrid-pro-2026",
+    "owner": true
+   },
+   {
+    "slug": "oxdog-hyper-pro-2-0-2026",
+    "owner": true
+   },
+   {
+    "slug": "siux-diablo-pro-2026",
+    "owner": true
+   },
+   {
+    "slug": "nox-at10-genius-12k-alum-xtrem-2026",
+    "owner": true
+   },
+   {
+    "slug": "oxdog-ultimate-tour-x-2026",
+    "owner": true
+   },
+   {
+    "slug": "siux-electra-pro-st5-2026",
+    "owner": true
+   },
+   {
+    "slug": "babolat-air-viper-2026",
+    "owner": true
+   }
+  ],
+  "balance/intermediate/arm-on": [
+   {
+    "slug": "oxdog-hyper-pro-2-0-2026",
+    "owner": true
+   },
+   {
+    "slug": "bullpadel-neuron-02-2026",
+    "owner": true
+   },
+   {
+    "slug": "adidas-metalbone-carbon-ctrl-3-5-2026",
+    "owner": true
+   },
+   {
+    "slug": "oxdog-ultimate-tour-x-2026",
+    "owner": true
+   },
+   {
+    "slug": "nox-at10-genius-12k-alum-xtrem-lite-2026",
+    "owner": true
+   },
+   {
+    "slug": "adidas-metalbone-ctrl-2026",
+    "owner": true
+   },
+   {
+    "slug": "nox-at10-genius-18k-2026",
+    "owner": true
+   },
+   {
+    "slug": "nox-at10-genius-12k-alum-xtrem-2026",
+    "owner": true
+   },
+   {
+    "slug": "bullpadel-vertex-05-hybrid-2026",
+    "owner": true
+   },
+   {
+    "slug": "babolat-air-viper-2026",
+    "owner": true
+   }
+  ],
+  "balance/advanced/arm-off": [
+   {
+    "slug": "nox-at10-genius-12k-alum-xtrem-2026",
+    "owner": true
+   },
+   {
+    "slug": "nox-at10-genius-18k-2026",
+    "owner": true
+   },
+   {
+    "slug": "babolat-air-viper-2026",
+    "owner": true
+   },
+   {
+    "slug": "siux-diablo-pro-2026",
+    "owner": true
+   },
+   {
+    "slug": "bullpadel-vertex-05-2026",
+    "owner": true
+   },
+   {
+    "slug": "bullpadel-vertex-05-hybrid-2026",
+    "owner": true
+   },
+   {
+    "slug": "siux-electra-pro-st5-2026",
+    "owner": true
+   },
+   {
+    "slug": "oxdog-ultimate-tour-x-2026",
+    "owner": true
+   },
+   {
+    "slug": "oxdog-hyper-pro-2-0-2026",
+    "owner": true
+   },
+   {
+    "slug": "bullpadel-hack-04-hybrid-2026",
+    "owner": true
+   }
+  ],
+  "balance/advanced/arm-on": [
+   {
+    "slug": "oxdog-hyper-pro-2-0-2026",
+    "owner": true
+   },
+   {
+    "slug": "bullpadel-neuron-02-2026",
+    "owner": true
+   },
+   {
+    "slug": "nox-at10-genius-18k-2026",
+    "owner": true
+   },
+   {
+    "slug": "oxdog-ultimate-tour-x-2026",
+    "owner": true
+   },
+   {
+    "slug": "adidas-metalbone-ctrl-2026",
+    "owner": true
+   },
+   {
+    "slug": "nox-at10-genius-12k-alum-xtrem-lite-2026",
+    "owner": true
+   },
+   {
+    "slug": "adidas-metalbone-carbon-ctrl-3-5-2026",
+    "owner": true
+   },
+   {
+    "slug": "nox-at10-genius-12k-alum-xtrem-2026",
+    "owner": true
+   },
+   {
+    "slug": "bullpadel-vertex-05-hybrid-2026",
+    "owner": true
+   },
+   {
+    "slug": "bullpadel-vertex-05-2026",
+    "owner": true
+   }
+  ],
+  "power/beginner/arm-off": [
+   {
+    "slug": "adidas-metalbone-ctrl-2026",
+    "owner": true
+   },
+   {
+    "slug": "nox-at10-genius-12k-alum-xtrem-lite-2026",
+    "owner": true
+   },
+   {
+    "slug": "nox-ml10-pro-cup-2025",
+    "owner": true,
+    "exception": "no 2026 version"
+   },
+   {
+    "slug": "adidas-metalbone-carbon-ctrl-3-5-2026",
+    "owner": true
+   },
+   {
+    "slug": "wilson-endure-v1-2026",
+    "owner": true
+   },
+   {
+    "slug": "bullpadel-vertex-05-geo-2027",
+    "owner": true
+   },
+   {
+    "slug": "nox-at10-genius-12k-alum-xtrem-2026",
+    "owner": true
+   },
+   {
+    "slug": "oxdog-hyper-pro-2-0-2026",
+    "owner": true
+   },
+   {
+    "slug": "oxdog-ultimate-tour-x-2026",
+    "owner": true
+   },
+   {
+    "slug": "bullpadel-vertex-05-2026",
+    "owner": true
+   }
+  ],
+  "power/beginner/arm-on": [
+   {
+    "slug": "adidas-metalbone-ctrl-2026",
+    "owner": true
+   },
+   {
+    "slug": "adidas-metalbone-carbon-ctrl-3-5-2026",
+    "owner": true
+   },
+   {
+    "slug": "nox-ml10-pro-cup-2025",
+    "owner": true,
+    "exception": "no 2026 version"
+   },
+   {
+    "slug": "wilson-endure-v1-2026",
+    "owner": true
+   },
+   {
+    "slug": "nox-at10-genius-12k-alum-xtrem-2026",
+    "owner": true
+   },
+   {
+    "slug": "oxdog-hyper-pro-2-0-2026",
+    "owner": true
+   },
+   {
+    "slug": "oxdog-ultimate-tour-x-2026",
+    "owner": true
+   },
+   {
+    "slug": "bullpadel-vertex-05-2026",
+    "owner": true
+   },
+   {
+    "slug": "nox-at10-genius-18k-2026",
+    "owner": true
+   },
+   {
+    "slug": "bullpadel-vertex-05-hybrid-2026",
+    "owner": true
+   }
+  ],
+  "power/intermediate/arm-off": [
+   {
+    "slug": "bullpadel-vertex-05-2026",
+    "owner": true
+   },
+   {
+    "slug": "oxdog-ultimate-tour-x-2026",
+    "owner": true
+   },
+   {
+    "slug": "siux-electra-pro-st5-2026",
+    "owner": true
+   },
+   {
+    "slug": "oxdog-hyper-pro-2-0-2026",
+    "owner": true
+   },
+   {
+    "slug": "adidas-metalbone-ctrl-2026",
+    "owner": true
+   },
+   {
+    "slug": "nox-at10-genius-12k-alum-xtrem-2026",
+    "owner": true
+   },
+   {
+    "slug": "nox-at10-genius-18k-2026",
+    "owner": true
+   },
+   {
+    "slug": "bullpadel-vertex-05-hybrid-2026",
+    "owner": true
+   },
+   {
+    "slug": "babolat-air-viper-2026",
+    "owner": true
+   },
+   {
+    "slug": "siux-diablo-pro-2026",
+    "owner": true
+   }
+  ],
+  "power/intermediate/arm-on": [
+   {
+    "slug": "oxdog-hyper-pro-2-0-2026",
+    "owner": true
+   },
+   {
+    "slug": "oxdog-ultimate-tour-x-2026",
+    "owner": true
+   },
+   {
+    "slug": "nox-at10-genius-18k-2026",
+    "owner": true
+   },
+   {
+    "slug": "bullpadel-neuron-02-2026",
+    "owner": true
+   },
+   {
+    "slug": "adidas-metalbone-ctrl-2026",
+    "owner": true
+   },
+   {
+    "slug": "bullpadel-vertex-05-2026",
+    "owner": true
+   },
+   {
+    "slug": "nox-at10-genius-12k-alum-xtrem-2026",
+    "owner": true
+   },
+   {
+    "slug": "bullpadel-vertex-05-hybrid-2026",
+    "owner": true
+   },
+   {
+    "slug": "babolat-air-viper-2026",
+    "owner": true
+   },
+   {
+    "slug": "siux-electra-pro-st5-2026",
+    "owner": true
+   }
+  ],
+  "power/advanced/arm-off": [
+   {
+    "slug": "siux-fenix-pro-6-2026",
+    "owner": true
+   },
+   {
+    "slug": "adidas-metalbone-hrd-plus-3-5-2026",
+    "owner": true
+   },
+   {
+    "slug": "bullpadel-vertex-05-2026",
+    "owner": true
+   },
+   {
+    "slug": "babolat-viper-soft-juan-lebron-3-0-2026",
+    "owner": true
+   },
+   {
+    "slug": "adidas-metalbone-3-5-2026",
+    "owner": true
+   },
+   {
+    "slug": "bullpadel-vertex-05-geo-2026",
+    "owner": true
+   },
+   {
+    "slug": "head-coello-pro-2026",
+    "owner": true
+   },
+   {
+    "slug": "bullpadel-xplo-2026",
+    "owner": true
+   },
+   {
+    "slug": "head-coello-motion-2026",
+    "owner": true
+   },
+   {
+    "slug": "nox-at10-genius-12k-alum-xtrem-2026",
+    "owner": true
+   }
+  ],
+  "power/advanced/arm-on": [
+   {
+    "slug": "oxdog-hyper-pro-2-0-2026",
+    "owner": true
+   },
+   {
+    "slug": "head-coello-motion-2026",
+    "owner": true
+   },
+   {
+    "slug": "oxdog-ultimate-tour-x-2026",
+    "owner": true
+   },
+   {
+    "slug": "babolat-technical-viper-soft-3-0-2026",
+    "owner": true
+   },
+   {
+    "slug": "babolat-viper-soft-juan-lebron-3-0-2026",
+    "owner": true
+   },
+   {
+    "slug": "adidas-metalbone-3-5-2026",
+    "owner": true
+   },
+   {
+    "slug": "bullpadel-vertex-05-2026",
+    "owner": true
+   },
+   {
+    "slug": "nox-at10-genius-12k-alum-xtrem-2026",
+    "owner": true
+   },
+   {
+    "slug": "adidas-metalbone-ctrl-2026",
+    "owner": true
+   },
+   {
+    "slug": "nox-at10-genius-18k-2026",
+    "owner": true
+   }
+  ]
+ },
+ "rankings": {
+  "_about": "Which curated lists each /rankings page is built from (owner 2026-11-17). Several lists are interleaved by curated rank, repeats dropped, newest model of each kept. A page not listed here keeps its Player-score order.",
+  "best-power-padel-rackets": [
+   "power/advanced/arm-off"
+  ],
+  "best-control-padel-rackets": [
+   "control/intermediate/arm-off",
+   "control/advanced/arm-off"
+  ]
+ }
+}

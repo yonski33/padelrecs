@@ -2,6 +2,7 @@ import { createHmac } from "node:crypto";
 import { and, count, eq, gte } from "drizzle-orm";
 import type { getDb } from "./index";
 import { externalReviews, reviews, reviewVotes } from "./schema";
+import { helpfulOverrideMap } from "./helpful";
 
 type Database = ReturnType<typeof getDb>;
 export type VoteTarget = { type: "player" | "web"; id: string };
@@ -28,11 +29,15 @@ export async function setVote(db: Database, target: VoteTarget, voter: string, o
     await db.delete(reviewVotes).where(and(match, eq(reviewVotes.voter, voter)));
   }
   const [total] = await db.select({ n: count() }).from(reviewVotes).where(match);
-  return { status: "ok" as const, count: Number(total.n) };
+  // With the owner's override set (drizzle/0036) the vote still counts in the real total, but the shown number stays put.
+  const fixed = (await helpfulOverrideMap(db, [target.type], [target.id])).get(`${target.type}:${target.id}`);
+  return { status: "ok" as const, count: fixed ?? Number(total.n) };
 }
 
-/** Vote totals keyed "player:<id>" / "web:<id>". */
+/** Vote totals keyed "player:<id>" / "web:<id>": the real votes, or the owner's override (drizzle/0036) where one is set. */
 export async function voteCounts(db: Pick<Database, "select">) {
   const rows = await db.select({ type: reviewVotes.reviewType, id: reviewVotes.reviewId, n: count() }).from(reviewVotes).groupBy(reviewVotes.reviewType, reviewVotes.reviewId);
-  return new Map(rows.map(r => [`${r.type}:${r.id}`, Number(r.n)]));
+  const out = new Map(rows.map(r => [`${r.type}:${r.id}`, Number(r.n)]));
+  for (const [k, v] of await helpfulOverrideMap(db, ["player", "web"])) out.set(k, v);
+  return out;
 }

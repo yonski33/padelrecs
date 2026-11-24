@@ -19,9 +19,9 @@ export const pickleballGuide: GuideConfig = {
   sections: [
     { id: "shape", title: "Shape", sub: "where the sweet spot sits", layout: "cards", filter: "shape", liked: "standard", options: [
       { value: "standard", icon: "pb-standard", label: "Standard", text: "Widest sweet spot and quickest hands at the kitchen.", best: "beginners, kitchen players" },
-      { value: "elongated", icon: "pb-elongated", label: "Elongated", text: "More reach and power on drives and serves.", best: "singles, bangers" },
+      { value: "elongated", icon: "pb-elongated", label: "Elongated", text: "More reach and power on drives. Balls you used to wave goodbye to come back into play.", best: "singles, bangers" },
       { value: "hybrid", icon: "pb-hybrid", label: "Hybrid", text: "Between standard and elongated: a little reach, still forgiving.", best: "most intermediates" },
-      { value: "widebody", icon: "pb-widebody", label: "Widebody", text: "Extra-wide face, maximum forgiveness, least reach.", best: "beginners, doubles" },
+      { value: "widebody", icon: "pb-widebody", label: "Widebody", text: "The biggest sweet spot around. More face, fewer \"oops\" moments at the kitchen.", best: "beginners, doubles" },
     ] },
     { id: "feel", title: "Feel", sub: "how soft the core is", layout: "scale", filter: "feel", liked: "soft",
       rule: "Sore arm or still learning? Go soft. Want precise volleys and you hit hard? Go hard.", options: [
@@ -48,8 +48,9 @@ export const pickleballGuide: GuideConfig = {
     ] },
     { id: "face", title: "Face", sub: "what it's made of", layout: "dark-split", liked: "carbon",
       spec: { key: "face", label: "Face", column: "surface", classify: paddleFace2Of }, options: [
-      { value: "fiberglass", label: "Fiberglass", text: "Softer, more forgiving, cheaper." },
-      { value: "carbon", label: "Carbon", note: "T700", text: "Crisper, more power, more demanding.", accent: true },
+      // One story with the product pages' face cards (Grok audit 2026-11-17, #22): carbon = control and spin, fiberglass = pop.
+      { value: "fiberglass", label: "Fiberglass", text: "Softer and poppier, more forgiving, cheaper." },
+      { value: "carbon", label: "Carbon", note: "T700", text: "Crisper, with more control and spin. The grit grabs the ball, right up until it retires.", accent: true },
     ] },
     { id: "budget", title: "Budget", sub: "what you get for your money", layout: "numbers", liked: false,
       textOnlyNote: "no counts here yet: we don't have reliable prices for most paddles", options: [
@@ -59,10 +60,12 @@ export const pickleballGuide: GuideConfig = {
     ] },
   ],
   buys: { section: "shape", kicker: "// what players actually buy", tail: { unlessTop: "elongated", text: "Elongated is for players who already hit clean." } },
-  // The home's tiles keep the home mock's own words and paddle icons (three shapes, no widebody).
+  // The home's tiles keep the home mock's own words and paddle icons; widebody too, so the tiles add up to the catalogue
+  // (Grok audit 2026-11-18).
   home: { section: "shape", title: "Which shape is for you?", link: "Core, face & weight explained → paddle guide", tiles: {
     standard: { icon: "standard", text: "Widest sweet spot and quickest hands. The safe pick for most players." },
     elongated: { icon: "elongated", text: "More reach and power on drives and serves. Smaller sweet spot." },
-    hybrid: { icon: "hybrid-paddle", text: "A little extra reach without losing much forgiveness." } } },
-  cta: { title: "Skip the theory. Get matched.", text: "Tell us your level and style; we'll rank every paddle for you.", button: "Find your paddle →" },
+    hybrid: { icon: "hybrid-paddle", text: "A little extra reach without losing much forgiveness." },
+    widebody: { icon: "widebody", text: "Extra-wide face for the most forgiveness, with the least reach." } } },
+  cta: { title: "Skip the theory. Get matched.", text: "Pick your level and style to see every paddle ranked for you.", button: "Find your paddle →" },
 };

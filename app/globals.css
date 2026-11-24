@@ -3,6 +3,8 @@
 *, *::before, *::after { box-sizing: border-box; }
 
 :root {
+  /* Score and match colours on every site (owner 2026-11-17): green 85+, yellow 70–84, white below. Never a site's accent. */
+  --score-g: oklch(0.8 0.16 145); --score-y: oklch(0.88 0.15 95); --score-w: #fff;
   color-scheme: light;
   /* Colours and rating-icon images (--bg, --green, --lime, --score-on…) come from the niche theme,
      set on <html> by app/layout.tsx from lib/niche/<niche>.ts. */
@@ -69,7 +71,8 @@ h3 { font-size: 16px; line-height: 1.4; margin: 0; font-weight: 650; }
   cursor: pointer; white-space: nowrap; text-align: center;
   transition: background .15s, border-color .15s, transform .15s;
 }
-.button:hover, button:hover { background: var(--green-ink); border-color: var(--green-ink); color: #fff; }
+/* Thread pages (app/thread, .th) style their own hovers; :where keeps this rule's specificity for every other page. */
+.button:hover, button:hover:not(:where(.th *)) { background: var(--green-ink); border-color: var(--green-ink); color: #fff; }
 .button:active, button:active { transform: translateY(1px); }
 button:disabled { opacity: .6; cursor: progress; }
 .button svg, button svg { width: 14px; height: 14px; }
@@ -523,12 +526,28 @@ legend { padding: 0; font-size: 14.5px; font-weight: 600; margin-bottom: 8px; }
 .admin-filters { gap: 18px; margin-bottom: 0; padding-top: 0; }
 .admin-heading { margin: 22px 0 12px; }
 .admin-actions { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 15px; }
+/* Comments tab: an open Edit or Delete takes its own row; the finder sits on one line. */
+.admin-actions details[open] { flex-basis: 100%; }
+.admin-find input, .admin-find select { width: auto; flex: 1 1 220px; }
 .danger-button, .danger-button:hover { background: transparent; color: #b3261e; border-color: #b3261e; }
 .danger-button:hover { background: rgba(179, 38, 30, .08); }
 .admin-notice { padding: 12px 15px; background: var(--green-wash); border: 1px solid var(--green-line); border-radius: 10px; font-size: 14px; }
 .admin-status { text-transform: capitalize; font-size: 12px; color: var(--ink-3); }
 .admin-empty { padding: 25px 0; color: var(--ink-3); }
 .admin-queue { max-width: 760px; }
+/* In-place approve (owner 2026-11-17): a changed row dims and says what happened; an error stays on the row. */
+.admin-queue .review:has(.admin-done-note) { opacity: 0.45; transition: opacity .4s; }
+.admin-done-note { font-weight: 700; padding: 8px 0; }
+.admin-row-error { flex-basis: 100%; margin: 4px 0 0; color: #a3261b; font-weight: 600; }
+/* Inline quick edits (owner 2026-11-17): name, date and text, click to edit. */
+.qe-click { all: unset; cursor: text; border-bottom: 1px dashed currentColor; }
+p.qe-click { border-bottom: 0; outline: 1px dashed transparent; } p.qe-click:hover { outline-color: #999; }
+.qe-click:focus-visible { outline: 2px solid #4a7; }
+.qe-in { font: inherit; padding: 2px 6px; border: 1.5px solid #333; border-radius: 6px; }
+.qe-text { width: 100%; box-sizing: border-box; font: inherit; line-height: 1.5; padding: 8px 10px; border: 1.5px solid #333; border-radius: 8px; resize: none; overflow: hidden; }
+.qe-row { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-top: 6px; } .qe-row small { color: #666; }
+.qe-ok { color: #2f6b34; font-weight: 700; } .qe-err { color: #a3261b; font-weight: 600; }
+.admin-bulk { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; margin: 0 0 14px; }
 .admin-pagination { display: flex; justify-content: space-between; max-width: 760px; margin-top: 25px; font-size: 14px; }
 .admin-queue .review-text { white-space: pre-wrap; overflow-wrap: anywhere; }
 /* Find & fix (app/funtimes/finder.tsx): the search bar on every admin tab, and the found reviews with one-click sentiment. */
@@ -1032,3 +1051,8 @@ a.tag.on { box-shadow: 0 0 0 2px currentColor; }
 .expert-grid input { width: 100%; min-width: 70px; }
 .expert-grid tr.drift { background: #fff4d6; }
 .expert-grid .badge { color: #9a5a00; font-weight: 600; white-space: nowrap; }
+
+/* Score boxes on product pages (reviews header, "similar" cards) in the shared score colours on every site (owner 2026-11-17). */
+body :is(.rv-badge, .sp-badge) b.hi { background: var(--score-g) !important; }
+body :is(.rv-badge, .sp-badge) b.mid { background: var(--score-y) !important; }
+body :is(.rv-badge, .sp-badge) b.plain { background: var(--score-w) !important; }

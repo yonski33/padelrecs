@@ -55,7 +55,7 @@ export default async function FinderPage({ searchParams }: { searchParams: Promi
   const reviews = pool.reduce((a, p) => a + p.reviews, 0);
   return <main className={`top-page finder-page${light ? ` lt-page lf ${lightFont.className}` : ""}`}>
     <div className="page-title">
-      {light && <p className="lf-kicker">{`Matched against ${reviews.toLocaleString("en-US")} real ${people.one} reviews`}</p>}
+      {light && <p className="lf-kicker">{`Matched against ${reviews.toLocaleString("en-US")} ${people.one} reviews of the ${pool.length} ${w.many} it can suggest`}</p>}
       <h1>{finder.heading}</h1>
       <p>{finder.intro}</p>
     </div>
@@ -64,8 +64,8 @@ export default async function FinderPage({ searchParams }: { searchParams: Promi
       <h2>How the matching works</h2>
       <ul>
         <li>{`Your answers are matched against ${reviews.toLocaleString("en-US")} published reviews of ${pool.length} ${w.many}. A ${w.one} scores higher the more of its reviews describe what you asked for, compared with how many it has in total.`}</li>
-        <li>{`Only ${w.many} with at least ${Math.max(MIN_LIST_REVIEWS, finder.minReviews ?? MIN_LIST_REVIEWS)} reviews, at least ${Math.round((finder.minPositive ?? MIN_POSITIVE_SHARE) * 100)}% of them positive (mixed counting as half), can be suggested${finder.maxAgeYears === undefined ? "" : finder.maxAgeYears === 0 ? `, from this year's models` : `, from the last ${finder.maxAgeYears + 1} model years`}.`}</li>
-        {finder.questions.some(q => q.options.some(o => o.list)) && <li>{`Some answers sort ${w.many} into groups using our rankings: pick one and only ${w.many} on that ranking are suggested, in its order, even if that means fewer results.`}</li>}
+        <li>{`Only ${w.many} with at least ${Math.max(MIN_LIST_REVIEWS, finder.minReviews ?? MIN_LIST_REVIEWS)} reviews, at least ${Math.round((finder.minPositive ?? MIN_POSITIVE_SHARE) * 100)}% of them positive (mixed counting as half), can be suggested${finder.maxAgeYears === undefined ? "" : finder.maxAgeYears === 0 ? `, from this year's models` : `, from the last ${finder.maxAgeYears + 1} model years`}${niche.recentMonths ? `; reviews count from the last ${niche.recentMonths % 12 === 0 ? `${niche.recentMonths / 12} years` : `${niche.recentMonths} months`}, as on the rankings` : ""}.`}</li>
+        {finder.questions.some(q => q.options.some(o => o.list)) && <li>{`Some answers sort ${w.many} into groups using the rankings: pick one and only ${w.many} on that ranking are suggested, in its order, even if that means fewer results.`}</li>}
         {finder.notes?.map(n => <li key={n}>{n}</li>)}
         <li>{`These are matches from what ${people.many} report, not personal advice. There are no sponsored placements${affiliate ? ", and affiliate links never change the results" : ""}.`}</li>
       </ul>

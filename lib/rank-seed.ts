@@ -20,6 +20,8 @@ export function rankSeed(items: RankItem[], choice: QuickChoice, facts: FitFacts
 
 /** Same picks: the key a QuickChoice reads back as (field order and unset fields don't matter). */
 export const sameChoice = (a: QuickChoice, b: QuickChoice) => {
-  const k = (c: QuickChoice) => JSON.stringify([c.style, c.level ?? null, !!c.arm, c.kind ?? null, c.fine ? [c.fine.shape ?? null, c.fine.weight ?? null, c.fine.feel ?? null, !!c.fine.sweet, c.fine.core ?? null] : null]);
+  const k = (c: QuickChoice) => JSON.stringify([c.style, c.level ?? null, !!c.arm, c.kind ?? null, c.fine ? [c.fine.shape ?? null, c.fine.weight ?? null, c.fine.feel ?? null, !!c.fine.sweet, c.fine.core ?? null] : null,
+    // The fine-tune hard filters (SimRacingRecs: platform, drive, budget, rim): a tap on one is a new choice, not the seed's.
+    c.ff ? Object.entries(c.ff).sort(([x], [y]) => x.localeCompare(y)) : null]);
   return k(a) === k(b);
 };

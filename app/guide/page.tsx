@@ -1,4 +1,6 @@
+import { withoutYear } from "../../lib/brand-name";
 import type { Metadata } from "next";
+import { shareImage } from "../share-meta";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import "./guide.css";
@@ -25,10 +27,13 @@ export const dynamic = "force-dynamic";
 export async function generateMetadata(): Promise<Metadata> {
   const g = niche.guide;
   // SkinRecs: its own guide (app/skin/guide-beauty.tsx, owner's design 2026-11-16).
-  if (!g && attrProfileFor(niche)) return { title: "Skincare, decoded", description: "Skin type, texture, actives, fragrance, layering, sunscreen and budget, in plain words, with the products reviewers rate for each.", alternates: { canonical: "/guide" } };
+  const { images, twitter } = shareImage("guide");
+  if (!g && attrProfileFor(niche)) { const title = "Skincare, decoded", description = "Skin type, texture, actives, fragrance, layering, sunscreen and budget, in plain words, with the products reviewers rate for each.";
+    return { title, description, alternates: { canonical: "/guide" }, openGraph: { title, description, url: "/guide", type: "article", images }, twitter }; }
   if (!g) return {};
-  return { title: { absolute: g.title }, description: g.description, alternates: { canonical: "/guide" },
-    openGraph: { title: g.title, description: g.description, url: "/guide", type: "article" } };
+  // "| SiteName" as on the other pages (Grok audit 2026-11-18).
+  return { title: { absolute: `${g.title} | ${niche.site.name}` }, description: g.description, alternates: { canonical: "/guide" },
+    openGraph: { title: g.title, description: g.description, url: "/guide", type: "article", images }, twitter };
 }
 
 export default async function Guide() {
@@ -39,7 +44,7 @@ export default async function Guide() {
   const ctx = await matchContext(), data = ctx.data;
   const rows = catalogRows(data, ctx);
   const racket = (id: string) => data.rackets.find(r => r.id === id)!;
-  const nameOf = (id: string) => { const r = racket(id); return displayName(r.name, data.brands.find(b => b.id === r.brandId)?.name).replace(/\s+(19|20)\d\d$/, ""); };
+  const nameOf = (id: string) => { const r = racket(id); return withoutYear(displayName(r.name, data.brands.find(b => b.id === r.brandId)?.name)); };
   const spec = specGroups(g), specKeys = spec.map(x => x.key);
   const link = (s: GuideSection, o: GuideOption) => { const k = keyOf(s); return k && o.value ? catalogHref(catalogPath, { [k]: o.value }, {}, specKeys) : null; };
   const count = (s: GuideSection, o: GuideOption) => { const k = keyOf(s); return k && o.value ? optionCount(rows, k, o.value, SUITS_OK, spec) : null; };
@@ -114,7 +119,7 @@ export default async function Guide() {
           <p className="gd-kicker">{g.buys.kicker}</p>
           <p className="gd-claim">{"Players are happiest with a "}<mark>{word(happy.top[0])}</mark>{" or "}<mark>{word(happy.top[1])}</mark>{"."}
             {g.buys.tail && !happy.top.includes(g.buys.tail.unlessTop) && ` ${g.buys.tail.text}`}</p>
-          <p className="gd-from">{`highest share of positive reviews, from ${happy.reviews.toLocaleString("en-US")} player reviews`}</p>
+          <p className="gd-from">{`highest share of positive reviews, from the ${happy.reviews.toLocaleString("en-US")} ${niche.people.one} reviews of these ${niche.words.many}`}</p>
         </div>}
       </section>)}
 

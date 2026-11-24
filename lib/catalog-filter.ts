@@ -22,7 +22,9 @@ export const CATALOG_PAGE = 20;
 export type CatalogRow = {
   id: string;
   /** For the name tie-break. */ name: string;
-  /** What players praise most (lib/fit-verdict.ts styleLean). */ lean: "control" | "power" | "balance" | null;
+  /** The racket's one style, the same as every other page (lib/fit-verdict.ts styleOf: the Attack and Control bars). */ lean: "control" | "power" | "balance" | null;
+  /** The styles the filter puts it under (owner 2026-11-17): its own, plus control and balance for a beginner racket or one
+   *  the bars put one step from both; power only from the Attack bar. Missing = just `lean`. */ styles?: ("control" | "power" | "balance")[];
   /** 0–100 per level (lib/level-suits.ts); a level filter keeps rows at SUITS_OK or more. */ suits?: Record<(typeof CATALOG_LEVELS)[number], number>;
   shape: string | null; year: string;
   /** Arm-friendly mentions at the fit check's bar. */ arm: boolean;
@@ -36,7 +38,7 @@ export type CatalogRow = {
 
 export function catalogTests(suitsOk: number): Record<CatalogKey, (x: CatalogRow, v: string) => boolean> {
   return {
-    style: (x, v) => x.lean === v, level: (x, v) => (x.suits?.[v as (typeof CATALOG_LEVELS)[number]] ?? 0) >= suitsOk, shape: (x, v) => x.shape === v,
+    style: (x, v) => x.styles ? x.styles.includes(v as "control") : x.lean === v, level: (x, v) => (x.suits?.[v as (typeof CATALOG_LEVELS)[number]] ?? 0) >= suitsOk, shape: (x, v) => x.shape === v,
     year: (x, v) => x.year === v, weight: (x, v) => x.weight === v, feel: (x, v) => x.feel === v,
   };
 }

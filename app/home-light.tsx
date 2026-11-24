@@ -2,7 +2,7 @@
 // page, one soft accent. A pill bar of types and rankings, a small centred hero with the search, then a compact
 // leaderboard (rank, small photo, name, one grey line, a tiny meta line, the signal) with short #1–#5 lists beside it.
 // Shown with ?home=d until the owner picks a direction; every number is counted from published reviews.
-import { newThisWeek } from "../lib/new-this-week";
+import { newThisWeek, WEEK_SHORT } from "../lib/new-this-week";
 import { rowLine } from "../lib/row-line";
 import type { Catalog } from "../db/data";
 import { score } from "../db/data";
@@ -76,7 +76,7 @@ export function HomeLight({ data, f, signals, picks, now, keep = {} }: { data: C
       {/* Owner wording, 2026-11-14; the people word follows the site (players, owners, users…). The live pill sits on the
           subtitle's line on every site (owner 2026-11-16), as on the v2 homes: "N reviews · N new this week". */}
       <div className="lt-subrow"><p className="lt-sub">{`What real ${p.many} say on YouTube, blogs and forums, counted and ranked.`}</p>
-        <div className="lt-live"><span className="lt-dot" aria-hidden="true"/>{`${fmt(everything.length)} reviews${week ? ` · ${fmt(week)} new this week` : ""}`}</div></div>
+        <div className="lt-live"><span className="lt-dot" aria-hidden="true"/>{`${fmt(everything.length)} reviews${week ? ` · ${fmt(week)} ${WEEK_SHORT}` : ""}`}</div></div>
       {/* Filters the list as you type, without a reload (owner, 2026-11-13). */}
       <HomeSearch initial={f.q} placeholder={`Search a ${w.one} or brand`} label={`Search ${w.many}`}/>
     </section>

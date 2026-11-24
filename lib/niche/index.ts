@@ -28,7 +28,10 @@ export function productPathIn(n: Niche, product: { slug: string; shape?: string 
 export const categoryPill = (shape: string | null | undefined) => { const t = typePageFor(shape); return t ? { label: t.one ?? t.shape, href: `/${t.slug}` } : undefined; };
 /** The one name for the 0–99 score everywhere in the UI (owner 2026-11-15: "Player score", never "signal"): "Player score",
  *  "Sleeper score"… The code keeps calling it the signal (lib/signal.ts). */
-export const scoreLabel = `${niche.people.One} score`;
+export const scoreLabel = niche.v2copy?.score ? `${niche.v2copy.score[0].toUpperCase()}${niche.v2copy.score.slice(1)}` : `${niche.people.One} score`;
+/** A site's own score word in place of a literal one (DiscGolfRecs "thrower score", site audit 2026-11-17 #11), in the literal's
+ *  case; every other site keeps the literal as written. */
+export const ownScore = (literal: string) => !niche.v2copy?.score ? literal : literal[0] === literal[0].toUpperCase() ? scoreLabel : niche.v2copy.score;
 /** The site runs the 2026-11 design (niche.design). */
 export const isV2 = niche.design === "v2";
 /** An inline colour that follows the site's own v2 token (lib/niche theme --site-*) where it sets one, else padel's literal

@@ -1,8 +1,10 @@
 "use client";
+import { siteVoice } from "../../lib/site-voice";
 // The SkinRecs catalogue's filters and list in the browser (owner 2026-11-16: "changing filters … is slow"). The server
 // renders the address's filters (a cached page per view, app/v/…); a tap filters, counts and sorts the rows sent with the page
 // here, with the match % from the server's own functions (app/skin/rank.ts), and updates the address with no request
 // (app/instant-view.ts). Links stay real links: a new tab, or no JavaScript, still gets the server's page.
+import { matchBox } from "../../lib/score-tone";
 import { useMemo, useState } from "react";
 import { skinBestFor } from "../../lib/skin-best";
 import { useInstantView, instantClick } from "../instant-view";
@@ -11,6 +13,8 @@ import { unpack, type SkinPack } from "./pack";
 import { attrProfileFor } from "../../lib/attr-profile";
 import { niche } from "../../lib/niche";
 import { FEW_VOICES, type AttrChoice } from "../../lib/attr-score";
+import { scoreState } from "../../lib/score-view";
+import { NewPill } from "../score-tags";
 
 export const CATALOG_PAGE = 20;
 /** The filters an address holds (anything else in it is kept as it is: ?q=, ?look=). */
@@ -116,13 +120,13 @@ export function CatalogSkinBrowser({ pack, f: first, base, fixedType }: { pack: 
             <span className="bc-mt">{meta.map(m => <span key={m}>{m}</span>)}{card.shop && <a className="bc-buy" href={card.shop.url} target="_blank" rel={card.shop.rel}>check price ↗</a>}</span>
           </span>
           <span className="bc-score">
-            {matching ? <span className={`bc-sc pct ${pct === null ? "none" : pct >= 80 ? "hi" : pct >= 60 ? "mid" : "lo"}`} title="How well it fits your skin, from what people with your skin type said.">{pct === null ? "—" : `${pct}%`}</span>
-              : <span className={`bc-sc ${x.signal === null ? "none" : x.signal >= 88 ? "hi" : x.signal >= 82 ? "mid" : "lo"}`} title="User score: not a % of happy users. It blends how much people like it with how many have weighed in.">{x.signal ?? "—"}</span>}
+            {matching ? <span className={`bc-sc pct ${pct === null ? "none" : matchBox(pct) || "lo"}`} title="How well it fits your skin, from what people with your skin type said.">{pct === null ? "—" : `${pct}%`}</span>
+              : scoreState(card.pos + card.mix + card.neg) === "new" ? <NewPill n={card.pos + card.mix + card.neg}/> : <span className={`bc-sc ${x.signal === null ? "none" : x.signal >= 85 ? "hi" : x.signal >= 70 ? "mid" : "lo"}`} title="User score: not a % of happy users. It blends how much people like it with how many have weighed in.">{x.signal ?? "—"}</span>}
             {card.pos + card.mix + card.neg > 0 && <span className="bp-mood" aria-label={`${card.pos} positive, ${card.mix} mixed, ${card.neg} negative`}><i className="p" style={{ flex: card.pos }}/><i className="m" style={{ flex: card.mix }}/><i className="n" style={{ flex: card.neg }}/></span>}
             <small>{matching ? (pct === null ? "too few reports" : "match") : `${card.n.toLocaleString("en-US")} ${card.n === 1 ? "review" : "reviews"}`}</small>
           </span>
         </li>; })}</ol>
-      {shown.length === 0 && <div className="bc-empty"><b>Nothing matches all of that</b><a {...clearTo()}>clear filters</a></div>}
+      {shown.length === 0 && <div className="bc-empty"><b>{siteVoice()?.empty.filters ?? "Nothing matches all of that"}</b><a {...clearTo()}>clear filters</a></div>}
       {shown.length > show && <a className="bc-load" {...to({ show: String(show + CATALOG_PAGE) })}>{`load ${Math.min(CATALOG_PAGE, shown.length - show)} more ↓`}</a>}
     </section>
   </div>;

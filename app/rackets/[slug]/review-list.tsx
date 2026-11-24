@@ -1,6 +1,7 @@
 import { HighlightToggle } from "../../highlight-toggle";
 import { HIGHLIGHTS_ENABLED } from "../../../lib/highlights";
 import { Fragment } from "react";
+import { siteVoice } from "../../../lib/site-voice";
 import Link from "next/link";
 import type { ReactNode } from "react";
 import { niche } from "../../../lib/niche";
@@ -88,7 +89,7 @@ export default function ReviewList({ title = "Reviews", subtitle, href, addHref,
     {tag && <p className="tag-filter">Showing <b>{matching.length}</b> {matching.length === 1 ? "review" : "reviews"} mentioning <span className="tag">{tag}</span>{variant && ` in ${variant}`} <Link href={reviewsHref(href, { sort, variant })} scroll={false}>Show all</Link></p>}
     {/* One quiet row (owner, 2026-11-12): verdict tabs on products with 20+ reviews, the sort as a small menu on the right. */}
     {showTabs && showSort && <div className="review-controls">
-      <nav className="verdict-filter" aria-label="Filter by verdict">
+      <nav className="verdict-filter" aria-label="Filter by opinion">
         <Link href={reviewsHref(href, { sort, tag, variant })} scroll={false} aria-current={!verdict ? "page" : undefined}>All <span className="c">{inScope.length}</span></Link>
         {VERDICT_FILTERS.filter(v => verdictCount(v)).map(v => <Link key={v} href={reviewsHref(href, { sort, tag, variant, verdict: v })} scroll={false} aria-current={verdict === v ? "page" : undefined}>{v[0].toUpperCase() + v.slice(1)} <span className="c">{verdictCount(v)}</span></Link>)}
       </nav>
@@ -103,6 +104,6 @@ export default function ReviewList({ title = "Reviews", subtitle, href, addHref,
       <div className="more-hidden"><div className="voices">{hidden.map((i, n) => card(i, shown.length + n))}</div>{moreLink}</div>
       <div className="load-more first"><label htmlFor="more-reviews" className="button ghost">Show more reviews</label></div>
     </> : moreLink}
-    {items.length === 0 && <p className="empty-feed">{`No reviews yet. This ${niche.words.one} is waiting for its first one.`} <a href={addHref}>Write one →</a></p>}
+    {items.length === 0 && <p className="empty-feed">{siteVoice()?.empty.reviews ?? `No reviews yet. This ${niche.words.one} is waiting for its first one.`} <a href={addHref}>Write one →</a></p>}
   </section>;
 }

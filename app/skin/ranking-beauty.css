@@ -22,7 +22,7 @@
 .rb-line { font-size: 15.5px; color: var(--text); text-wrap: pretty; }
 .rb-best { font: 12.5px var(--mono); color: var(--mute); }
 .rb-sc { display: flex; align-items: center; justify-content: center; width: 44px; height: 44px; border-radius: 50%; border: 1.5px solid var(--ink); font: 24px/1 var(--serif); box-sizing: border-box; }
-.rb-sc.hi { background: oklch(0.86 0.07 155); } .rb-sc.mid { background: oklch(0.91 0.05 155); } .rb-sc.lo { background: oklch(0.95 0.03 155); }
+.rb-sc.hi { background: var(--score-g); } .rb-sc.mid { background: var(--score-y); } .rb-sc.lo { background: var(--score-w); }
 .rb-sc.big { width: 58px; height: 58px; border-width: 2px; font-size: 32px; }
 .rb-scw { display: flex; align-items: center; gap: 8px; } .rb-scw small { font: 11.5px/1.2 var(--mono); color: var(--text); }
 .rb-scw.col { flex-direction: column; gap: 3px; min-width: 64px; } .rb-scw.col small { font-size: 10.5px; color: var(--mute); white-space: nowrap; }

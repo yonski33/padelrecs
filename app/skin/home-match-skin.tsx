@@ -1,8 +1,10 @@
 "use client";
+import { siteVoice } from "../../lib/site-voice";
 // The SkinRecs home's quick match, list and texture links in the browser (owner 2026-11-16: "changing filters, categories,
 // skin picks … is slow"). The server renders the address's picks (a cached page per combination, app/v/home); a tap re-ranks
 // the products sent with the page with the server's own functions (app/skin/rank.ts) and updates the address, with no request
 // (app/instant-view.ts). Links stay real links: a new tab, or no JavaScript, still gets the server's page.
+import { matchBox } from "../../lib/score-tone";
 import { useMemo, type ReactNode } from "react";
 import { skinBestFor } from "../../lib/skin-best";
 import { useInstantView, instantClick } from "../instant-view";
@@ -12,6 +14,7 @@ import { unpack, type SkinPack } from "./pack";
 import { attrProfileFor } from "../../lib/attr-profile";
 import { niche, catalogPath } from "../../lib/niche";
 import { SKIN_TYPES, GOALS, TEXTURES, BUDGETS, readSkinChoice, skinHref, skinPicked, skinQuery, type SkinChoice } from "../../lib/skin-choice";
+import { scoreState, newLine } from "../../lib/score-view";
 
 const LIST_SIZE = 8;
 const GOAL_LABEL: Record<(typeof GOALS)[number], string> = { hydrate: "hydrate", calm: "calm", clear: "clear skin", daily: "just everyday" };
@@ -72,7 +75,7 @@ export function SkinHomeMatch({ pack, choice: first, counts, textures, children 
           {CATS.map(typeOf).filter(t => !!t).map(t => <span key={t.slug}>{pill(t.label.toLowerCase(), { ...choice, type: t.shape, typeSlug: t.slug }, choice.typeSlug === t.slug)}</span>)}
         </div>
         <div className="bh-box">
-          {rows.length === 0 && <p className="bh-empty">Nothing matches that yet. Try fewer filters.</p>}
+          {rows.length === 0 && <p className="bh-empty">{siteVoice()?.empty.filters ?? "Nothing matches that yet. Try fewer filters."}</p>}
           <ol className="bh-list">{rows.map((x, i) => {
             const r = x.r, card = cards[r.id];
             const top = i === 0 && picked && x.pct !== null && x.pct >= 75;
@@ -84,7 +87,7 @@ export function SkinHomeMatch({ pack, choice: first, counts, textures, children 
             ];
             // The user score until a pick, then the match % (owner 2026-11-16: as on padel), with the same colours.
             const sig = ctx.signal(r.id), best = skinBestFor(ctx.profile, ctx.attrs.get(r.id));
-            const pctCls = picked ? (x.pct === null ? "none" : x.pct >= 80 ? "hi" : x.pct >= 60 ? "mid" : "") : sig === null ? "none" : sig >= 85 ? "hi" : sig >= 75 ? "mid" : "";
+            const pctCls = picked ? (x.pct === null ? "none" : matchBox(x.pct)) : sig === null ? "none" : sig >= 85 ? "hi" : sig >= 70 ? "mid" : "";
             return <li key={r.id} className={top ? "top" : undefined}>
               <span className="bh-rank">{i + 1}</span>
               <span className="bh-pic">{card.pic && <img src={card.pic} alt="" width={112} height={140} decoding="async" loading={i < 3 ? "eager" : "lazy"}/>}</span>
@@ -94,14 +97,15 @@ export function SkinHomeMatch({ pack, choice: first, counts, textures, children 
                   {chips.map(ch => <span key={ch.t} className={`bh-chip ${ch.k}`}>{ch.t}</span>)}</span>
                 {card.line && <span className="bh-line">{card.line}</span>}
                 {best && <span className="bh-best">{`best for ${best}`}</span>}
+                {/* "check price" sits with the name and line, as on padel's rows (owner 2026-11-17). */}
+                {card.shop && <a className="bh-buy" href={card.shop.url} target="_blank" rel={card.shop.rel}>check price ↗</a>}
                 {picked && x.pct === null && x.m?.missing.length ? <span className="bh-thin">{`not enough reports yet from people with ${x.m.missing.join(" or ")}`}</span> : null}
               </span>
               <span className="bh-sent"><span>{`${card.n.toLocaleString("en-US")} ${card.n === 1 ? "review" : "reviews"}`}</span>
                 {card.pos + card.mix + card.neg > 0 && <span className="bp-mood" aria-label={`${card.pos} positive, ${card.mix} mixed, ${card.neg} negative`}><i className="p" style={{ flex: card.pos }}/><i className="m" style={{ flex: card.mix }}/><i className="n" style={{ flex: card.neg }}/></span>}</span>
-              {card.shop ? <a className="bh-buy" href={card.shop.url} target="_blank" rel={card.shop.rel}>check price ↗</a> : <span/>}
-              <span className={`bh-pct ${pctCls}`} title={MATCH_NOTE}><b>{picked ? (x.pct !== null ? `${x.pct}%` : "—") : sig ?? "—"}</b><small>{picked ? (x.pct === null ? "too few reports" : "your match") : "user score"}</small>
+              <span className={`bh-pct ${pctCls}`} title={MATCH_NOTE}><b>{picked ? (x.pct !== null ? `${x.pct}%` : "—") : scoreState(card.pos + card.mix + card.neg) === "new" ? "—" : sig ?? "—"}</b><small>{picked ? (x.pct === null ? "too few reports" : "your match") : scoreState(card.pos + card.mix + card.neg) === "new" ? newLine(card.pos + card.mix + card.neg) : "user score"}</small>
                 {/* With picks the match % is the star; the user score stays as a small neutral pill (owner 2026-11-16). */}
-                {picked && sig !== null && <span className={`bh-spill ${sig >= 85 ? "hi" : sig >= 75 ? "mid" : ""}`}><b>{sig}</b> user score</span>}</span>
+                {picked && sig !== null && <span className={`bh-spill ${sig >= 85 ? "hi" : sig >= 70 ? "mid" : ""}`}><b>{sig}</b> user score</span>}</span>
             </li>;
           })}</ol>
           <a className="bh-all" href={choice.typeSlug ? `/${choice.typeSlug}${pickQ}` : `${catalogPath}${pickQ}`}>{`see all ${allOfType} ${catWord === "skincare" ? niche.words.many : catWord} →`}</a>

@@ -4,13 +4,15 @@
 // from data sent once with the page (this racket's facts, the catalog's slim items: lib/fit-verdict.ts fitVerdict,
 // lib/home-rank.ts matchPcts and alternatives, the same functions the server uses), then updates the address with no round
 // trip. "What players said" comes in its four level views, worked out on the server.
+import { V11_HEADLINES } from "../../../lib/v11-words";
+import { ownScore } from "../../../lib/niche";
 import { createContext, useContext, useEffect, useState, type ReactNode } from "react";
 import { useInstantView, instantClick } from "../../instant-view";
 import { MIN_FIT_REPORTS, FEW_FIT_REPORTS, type FitFacts } from "../../../lib/fit-verdict";
 import { matchPcts, alternatives, verdictFor, type RankItem } from "../../../lib/home-rank";
 import { choiceHref, readChoice, isDefault, levelLabel, LEVELS, STYLES, STYLE_WORD, DEFAULT_CHOICE, type QuickChoice } from "../../../lib/quick-match";
 import { fineWords } from "../../../lib/fine-tune";
-import { niche } from "../../../lib/niche";
+import { niche, catalogPath, v2copy } from "../../../lib/niche";
 import { fitConfigFor, SITE_FIT } from "../../../lib/fit-config";
 import AskPicks, { RememberPicks } from "./ask-picks";
 import { cardLines, pickTags, wordCounts, type CardContent } from "../../../lib/fit-card";
@@ -23,7 +25,7 @@ import { forgetSavedPicks } from "../../../lib/saved-picks";
 /** A type-picker site (lib/fit-config.ts quick: DiscGolfRecs): its stability words, arm pick and compare words. Unset: padel's. */
 const CFG = fitConfigFor(niche), QUICK = CFG?.quick ? CFG : null;
 const styleWord = (s: QuickChoice["style"]) => QUICK && s !== "any" ? (QUICK.styleLabels[s] ?? STYLE_WORD[s]).toLowerCase() : STYLE_WORD[s];
-const ARM_WORD = QUICK?.quick?.arm ?? "sore arm", USE_WORD = QUICK ? "flies" : "plays";
+const ARM_WORD = QUICK?.quick?.arm ?? "sore arm", USE_WORD = QUICK?.quick?.useWord ?? (QUICK ? "flies" : "plays");
 const BAD = NEGATIVE_TAGS, SETUP = RANK_SETUP;
 const PICK_KEYS = ["style", "level", "arm"];
 
@@ -102,15 +104,15 @@ export function boldName(t: string, name: string): ReactNode {
   return <>{parts.slice(0, best[0]).join("")}<b>{bold}</b>{tail}{parts.slice(best[1] + 1).join("")}</>;
 }
 
-export function FitBox({ id, facts, hook, total, bestLine, levelDisagree, card, yesNo }: { id: string; facts: FitFacts;
-  hook: { good: string; catch: string } | null; total: number; bestLine: string | null; levelDisagree?: string; card?: FitCard | null;
+export function FitBox({ id, facts, hook, total, rated = total, yt = 0, bestLine, levelDisagree, card, yesNo }: { id: string; facts: FitFacts;
+  hook: { good: string; catch: string } | null; total: number; /** The page's "N players rated it" count, so the two agree (audit #27). */ rated?: number; /** v11c: YouTube's share of `rated`, named apart. */ yt?: number; bestLine: string | null; levelDisagree?: string; card?: FitCard | null;
   /** The page's Why yes / Why not items: the reason line's source and the "See why ↓" target. */ yesNo?: { yes: PageItem[]; no: PageItem[] } | null }) {
   const { set } = use(), to = useGo(), rank = useRank(id, facts), { choice, picked } = rank;
   const verdict = picked ? rank.verdict() : null;
   // The answer box (owner 2026-11-15, Claude Design tweak): the same match % as the home (lib/match-score.ts), a plain-words
   // headline, one "why it fits" and one "what to consider", from the fit check's reasons and the quick-take lines.
   const pct = verdict ? rank.pct() : null;
-  const verdictWord = verdict && verdict.kind !== "thin" ? { good: "Strong fit", maybe: "Decent fit", no: "Weak fit" }[verdict.kind] : null;
+  const verdictWord = verdict && verdict.kind !== "thin" ? { good: "Strong fit", maybe: "Worth a look", no: "Probably not" }[verdict.kind] : null;
   usePublish(verdict ? { kind: verdict.kind, pct, word: verdictWord } : null);
   // Fallback (no racket lines): the fit check's own reasons, with counts in words (owner: no player numbers).
   const why = verdict ? (verdict.fits?.slice(0, 2).map(wordCounts).join(" ") || (hook ? hook.good : null)) : null;
@@ -119,7 +121,8 @@ export function FitBox({ id, facts, hook, total, bestLine, levelDisagree, card, 
   // 2 strengths and 1 catch on a clean fit, up to 2 otherwise; a hard conflict without a racket line keeps the fit check's reason.
   const lines = verdict && card && verdict.kind !== "thin" ? cardLines(card, choice, { maxCatches: verdict.kind === "good" ? 1 : 2, hard: verdict.kind === "no" ? verdict.reasons[0] : undefined }) : null;
   const hasCatch = lines ? !!(lines.lead || lines.catches.length) : !!consider;
-  const headline = !verdict ? "" : verdict.kind === "good" ? (hasCatch ? "Yes, with one catch." : "Yes — a clean fit.") : verdict.kind === "maybe" ? "Maybe — try it first." : verdict.kind === "no" ? "Probably not this one." : "Not enough reports from players like you yet.";
+  // Product page v11 (owner 2026-11-17): the handoff's headlines in the site's words, no em dashes (lib/v11-words.ts).
+  const headline = !verdict ? "" : V11_HEADLINES[niche.id] ? V11_HEADLINES[niche.id][verdict.kind] : verdict.kind === "good" ? (hasCatch ? "Yes, with one catch." : "Yes — a clean fit.") : verdict.kind === "maybe" ? "Maybe — try it first." : verdict.kind === "no" ? "Probably not this one." : "Not enough reports from players like you yet.";
   // One reason line (owner 2026-11-16): "why this score, for you", from the Why yes / Why not items that matter for the picks
   // (the fit-card lines when the page has none) plus the level reason. Bullets are gone: Why yes, why not says the rest.
   const asItem = (l: { t: string; for: string[] }) => ({ title: l.t.includes(": ") ? l.t.split(": ")[0] : l.t, t: l.t.includes(": ") ? l.t.slice(l.t.indexOf(": ") + 2) : l.t, for: l.for });
@@ -130,7 +133,8 @@ export function FitBox({ id, facts, hook, total, bestLine, levelDisagree, card, 
     ...(why ? [{ tone: "yes" as const, lead: verdict.kind === "no" ? "What works:" : "Why it fits:", text: why }] : []),
     ...(consider ? [{ tone: "no" as const, lead: verdict.kind === "good" ? "One thing to know:" : "The catch:", text: consider }] : [])];
   // The try-instead link ("Want it easier? The AT10 18K 2026…") from the top catch, when it names a racket we list.
-  const alt = lines?.catches.map(l => l.note?.kind === "alt" ? l.note.alt : null).find(x => x && card?.links[x.slug]) ?? null;
+  // With a hard-filter arm pick (SimRacingRecs: console) the page's own suggestion may be PC only, so it isn't offered.
+  const alt = choice.arm && QUICK?.quick?.armFilter ? null : lines?.catches.map(l => l.note?.kind === "alt" ? l.note.alt : null).find(x => x && card?.links[x.slug]) ?? null;
   const gameWords = [choice.level && levelLabel(choice.level), choice.style === "any" ? null : styleWord(choice.style), choice.arm ? ARM_WORD : null, ...fineWords(choice.fine)].filter((x): x is string => !!x);
   // With no picks, a tap starts from the defaults (any style / no level / no arm) but always lands on a picked page.
   const base = picked ? choice : DEFAULT_CHOICE;
@@ -139,22 +143,24 @@ export function FitBox({ id, facts, hook, total, bestLine, levelDisagree, card, 
   return <div className={`rf-fit ${verdict ? `v-${verdict.kind}` : "ask"}`} id="fit">
     {!verdict ? <div className="rf-ask">
       <div className="rf-asktitle"><h2>{`Is this the right ${niche.words.one} for you?`}</h2>
-        <p>{`Two taps and we'll check it against ${total} player ${total === 1 ? "review" : "reviews"}.`}</p></div>
-      <AskPicks onPick={c => set({ choice: c, picked: true })}/>
-      {bestLine && <p className="rf-best"><b>Generally best for</b>{` ${bestLine}.`}</p>}
+        <p>{`Two taps to check it against ${[rated - yt > 0 || !yt ? `${rated - yt} ${QUICK?.words?.person ?? "player"} ${rated - yt === 1 ? "review" : "reviews"}` : null, yt > 0 ? `${yt} YouTube${rated - yt > 0 ? "" : yt === 1 ? " review" : " reviews"}` : null].filter(Boolean).join(" + ")}.`}</p></div>
+      <AskPicks onPick={c => set({ choice: c, picked: true })} noMain={(() => { const m = QUICK?.quick?.filters?.find(f => f.main); return !!m && m.options.every(([v]) => facts.ff?.[m.key]?.includes(v)); })()}/>
+      {bestLine && <p className="rf-best">{bestLine}</p>}
       {levelDisagree && <p className="rf-lvl">{levelDisagree}</p>}
     </div> : <div className="rf-ans" aria-live="polite">
-      {choice.level && <RememberPicks style={choice.style} level={choice.level} arm={choice.arm}/>}
+      {choice.level && <RememberPicks style={choice.style} level={choice.level} arm={choice.arm} {...(choice.ff ? { ff: choice.ff } : {})}/>}
       <div className="rf-chipsrow"><span className="rf-k">⚡ your match</span>
-        <span className={`rf-vpill ${verdict.kind}`} title="How well it fits your picks, from player reports. Not a % of happy players.">{pct === null ? "— · not enough reports yet" : `${pct}% · ${verdictWord}`}</span>
+        <span className={`rf-vpill ${verdict.kind}`} title={`How well it fits your picks, from ${QUICK?.words?.person ?? "player"} reports. Not a % of happy ${QUICK?.words ? niche.people.many : "players"}.`}>{pct === null ? "— · not enough reports yet" : `${pct}% · ${verdictWord}`}</span>
           {verdict.kind !== "thin" && total < FEW_FIT_REPORTS && <span className="rf-few">{`based on fewer reports (${total})`}</span>}</div>
       <h2>{headline}</h2>
-      {verdict.kind === "thin" ? <p className="rf-for">{total < MIN_FIT_REPORTS ? `Only ${total} player ${total === 1 ? "report" : "reports"} so far, too few to answer for your ${gameWords.join(" · ")} game. The bars below show what we know.` : `Players haven't said enough about what you picked yet. The bars below show what we know.`}</p>
+      {verdict.kind === "thin" ? <p className="rf-for">{total < MIN_FIT_REPORTS ? `Only ${total} ${QUICK?.words?.person ?? "player"} ${total === 1 ? "report" : "reports"} so far, too few to answer for your ${gameWords.join(" · ")} ${QUICK?.words?.game ?? "game"}. The bars below show what we know.` : `${QUICK?.words ? niche.people.Many : "Players"} haven't said enough about what you picked yet. The bars below show what we know.`}</p>
         : <>{reason.length > 0 && <div className="rf-reason">{reason.map(r => <p key={r.tone} className={`rf-rrow ${r.tone}`}><i aria-hidden="true">{r.tone === "yes" ? "✓" : "!"}</i><span><b>{r.lead}</b>{` ${r.text}`}</span></p>)}</div>}
           {(alt || yesNo) && <p className="rf-reasonl">{alt && <a href={card!.links[alt.slug].href} className="rf-alt">{"→ "}{boldName(alt.t, card!.links[alt.slug].name)}</a>}{yesNo && <a href="#yes-no" className="rf-seewhy">See why ↓</a>}</p>}</>}
       {/* Edit: a CSS-only toggle (checkbox + label), so the pills open under the footer row as in the mockup. */}
       <input type="checkbox" id="rf-edit-t" className="rf-edit-t" aria-label="Edit your picks"/>
-      <div className="rf-afoot"><span>{gameWords.map(w => w[0].toUpperCase() + w.slice(1)).join("  ·  ")}</span>
+      {/* "Matched for intermediate · power" (owner 2026-11-17: bare pick words read out of context). */}
+      <div className="rf-afoot"><span>{`Matched for ${(QUICK?.levelOne ? [choice.level ? QUICK.levelOne[choice.level] : null,
+        ...Object.entries(choice.ff ?? {}).map(([k, v]) => QUICK.quick?.filters?.find(f => f.key === k)?.options.find(([x]) => x === v)?.[1] ?? null)].filter(Boolean) : gameWords).join(" · ") || "your picks"}`}</span>
         <span className="rf-acts"><label htmlFor="rf-edit-t" className="rf-editl"><span className="o">edit ↗</span><span className="c">done ✓</span></label>
         <a {...to(null)} className="rf-reset">start over</a></span></div>
       <div className="rf-bar rf-editp">
@@ -177,7 +183,7 @@ export function FitSaid({ views }: { views: Record<string, SaidView> }) {
     <div className="rf-h"><h2>{v.title}</h2><span>{v.sub}</span></div>
     <div className="rf-said">
       <div className="rf-sum">
-        {v.badge && <div className="rf-badge" title="Player score: not a % of happy players. It blends how much players like it with how many have weighed in."><b>{v.badge.n}</b><span>{v.badge.label}</span></div>}
+        {v.badge && <div className="rf-badge" title={`${ownScore("Player score")}: not a % of happy players. It blends how much players like it with how many have weighed in.`}><b>{v.badge.n}</b><span>{v.badge.label}</span></div>}
         {v.pos + v.mix + v.neg > 0 && <div className="rf-sumr"><div className="rf-sbar" role="img" aria-label={`${v.pos} positive, ${v.mix} mixed, ${v.neg} negative`}><i className="p" style={{ flex: v.pos }}/><i className="m" style={{ flex: v.mix }}/><i className="n" style={{ flex: v.neg }}/></div>
           <p className="rf-counts"><span>{`👍 ${v.pos} loved`}</span><span>{`🤷 ${v.mix} mixed`}</span><span>{`👎 ${v.neg} nope`}</span></p></div>}
       </div>
@@ -204,8 +210,8 @@ export function FitAlts({ id, facts, cards, similar, brandLink, similarTitle }: 
     <ul className="rf-alts">{rows.map(r => <li key={r.href}><a href={`${r.href}${picks}`}>
       <span className="rf-apic">{r.pic ? <img src={r.pic} alt="" width={408} height={620} decoding="async" loading="lazy"/> : <span>{r.name.split(" ").slice(0, 2).join(" ")}</span>}</span>
       <span className="rf-abody"><b>{r.name}</b>{r.why && <span>{r.why}</span>}</span>
-      {picked ? <span className="rf-score" title="How well it fits your picks, from player reports. Not a % of happy players.">{r.score === null ? "—" : `${r.score}%`}</span>
-        : r.score !== null && <span className="rf-score" title="Player score: not a % of happy players. It blends how much players like it with how many have weighed in.">{r.score}</span>}
+      {picked ? <span className="rf-score" title={`How well it fits your picks, from ${QUICK?.words?.person ?? "player"} reports. Not a % of happy ${QUICK?.words ? niche.people.many : "players"}.`}>{r.score === null ? "—" : `${r.score}%`}</span>
+        : r.score !== null && <span className="rf-score" title={`${ownScore("Player score")}: not a % of happy players. It blends how much players like it with how many have weighed in.`}>{r.score}</span>}
     </a></li>)}</ul>
   </div>;
 }
@@ -229,6 +235,8 @@ export function FitSticky({ buy, name }: { buy: { url: string; label: string; re
         : <a href="#fit" className="rp-check">{picked && result?.kind === "thin" ? "not enough reports yet" : "Check your fit ↑"}</a>}
     </div>
     {buy && <a className="rf-btn rp-buy" href={buy.url} target="_blank" rel={buy.rel}>{`${buy.label} ↗`}</a>}
+    {/* No shop link (owner 2026-11-18, SimRacingRecs #469): the bar still has somewhere to go, a quiet compare link. */}
+    {!buy && <a className="rp-cmp" href={`${catalogPath}?compare=1`}>compare →</a>}
   </div>;
 }
 
@@ -238,18 +246,21 @@ export type CompareCard = { name: string; short: string; href: string; pic: stri
 const DOTS = SITE_FIT.traits.filter(t => !t.hidden);
 const DIFF: [string, string][] = DOTS.map(t => [t.key, t.diff ?? `more ${t.label.toLowerCase()}`]);
 /** "more power": the trait where the other racket is furthest ahead; "similar" when it is ahead nowhere. */
-const diffWord = (me: number[], other: number[]) => { let best = -1, gap = 0; other.forEach((v, i) => { const g = v - (me[i] || 0); if (v && me[i] && g > gap) { gap = g; best = i; } }); return best < 0 ? "similar feel" : DIFF[best]?.[1] ?? "similar feel"; };
+/** Row i's trait: by its key when the rows say (per-type rows, SimRacingRecs), else the site's i-th dot trait. */
+const at = (i: number, keys?: string[]) => keys ? DOTS.findIndex(t => t.key === keys[i]) : i;
+const diffWord = (me: number[], other: number[], keys?: string[]) => { let best = -1, gap = 0; other.forEach((v, i) => { const g = v - (me[i] || 0); if (v && me[i] && g > gap) { gap = g; best = i; } }); return best < 0 ? "similar feel" : DIFF[at(best, keys)]?.[1] ?? "similar feel"; };
 /** "Stick with this one if you…" / "Pick X if you…" (owner's final mock): the two traits where a racket's dots are furthest
  *  ahead, each as a player's need. Derived from the dots only, so the lines never disagree with the bars above them. */
 const IF_YOU = DOTS.map(t => t.ifYou ?? `care about ${t.noun}`);
-const aheadIn = (a: number[], b: number[]) => a.map((v, i) => ({ i, g: v && b[i] ? v - b[i] : 0 })).filter(x => x.g > 0).sort((x, y) => y.g - x.g || x.i - y.i).slice(0, 2).map(x => IF_YOU[x.i]);
+const aheadIn = (a: number[], b: number[], keys?: string[]) => a.map((v, i) => ({ i, g: v && b[i] ? v - b[i] : 0 })).filter(x => x.g > 0).sort((x, y) => y.g - x.g || x.i - y.i).slice(0, 2).map(x => IF_YOU[at(x.i, keys)]);
 const Segs = ({ n }: { n: number }) => n ? <span className="rf-segs" role="img" aria-label={`${n} of 5`}>{[1, 2, 3, 4, 5].map(i => <i key={i} className={i <= n ? `on t${n}` : undefined}/>)}</span> : <span className="rf-segs none"/>;
 
 /** "How it plays & compares" (owner's final mock): tab one is this racket's six trait bars with a short note each; the other
  *  tabs set it beside an alternative. With picks, the alternatives are the visitor's better matches (lib/home-rank.ts, the
  *  home's order); without, similar rackets from the server. */
 export function FitCompare({ id, me, rows, cards, similar }: { id: string; me: CompareCard;
-  rows: { label: string; note: string }[]; cards: Record<string, CompareCard>; similar: string[] }) {
+  rows: { label: string; note: string; key?: string }[]; cards: Record<string, CompareCard>; similar: string[] }) {
+  const keys = rows.every(r => r.key) ? rows.map(r => r.key!) : undefined;
   const rank = useRank(id), { choice, picked } = rank;
   const alts = (picked ? rank.alts(6).map(r => r.id) : similar).filter(x => cards[x] && x !== id).slice(0, 3);
   const [tab, setTab] = useState<string>("me");
@@ -260,7 +271,7 @@ export function FitCompare({ id, me, rows, cards, similar }: { id: string; me: C
         <span className="rp-tpic">{me.pic && <img src={me.pic} alt="" width={36} height={54} loading="lazy"/>}</span><span><b>{`This ${niche.words.one}`}</b><small>{`how it ${USE_WORD}`}</small></span></button>
       {alts.map(a => <button key={a} type="button" role="tab" aria-selected={cur === cards[a]} onClick={() => setTab(a)}>
         <span className="rp-tpic">{cards[a].pic && <img src={cards[a].pic!} alt="" width={36} height={54} loading="lazy"/>}</span>
-        <span><b>{cards[a].short}</b><small>{diffWord(me.dots, cards[a].dots)}</small></span></button>)}
+        <span><b>{cards[a].short}</b><small>{diffWord(me.dots, cards[a].dots, keys)}</small></span></button>)}
     </div>
     <div className="rp-panel" role="tabpanel">
       {!cur ? rows.map((r, i) => <div key={r.label} className="rp-row"><b>{r.label}</b><Segs n={me.dots[i]}/><span className="rp-note">{r.note.split("==").map((x, j) => j % 2 ? <mark key={j}>{x}</mark> : <span key={j}>{x}</span>)}</span></div>)
@@ -273,13 +284,36 @@ export function FitCompare({ id, me, rows, cards, similar }: { id: string; me: C
             <span className="rp-cside"><Segs n={cur.dots[i]}/>{cur.dots[i] > me.dots[i] && me.dots[i] > 0 && <em>▲ better</em>}</span></div>)}
         </>}
     </div>
-    {cur && (() => { const stay = aheadIn(me.dots, cur.dots), go = aheadIn(cur.dots, me.dots), href = `${cur.href}${picked && !isDefault(choice) ? choiceHref(choice, "").slice(1) : ""}`;
+    {cur && (() => { const stay = aheadIn(me.dots, cur.dots, keys), go = aheadIn(cur.dots, me.dots, keys), href = `${cur.href}${picked && !isDefault(choice) ? choiceHref(choice, "").slice(1) : ""}`;
       return <div className="rp-pick">
         <div className="rp-stay"><span className="rp-ph">stick with this one if you…</span>{stay.length ? stay.map(x => <span key={x} className="rp-pi"><i>→</i>{x}</span>) : <span className="rp-pi"><i>→</i>like how it plays: the two feel much alike</span>}</div>
         <div className="rp-go"><span className="rp-ph">{`pick ${cur.short} if you…`}</span>{go.length ? go.map(x => <span key={x} className="rp-pi"><i>→</i>{x}</span>) : <span className="rp-pi"><i>→</i>prefer its feel or price: the two play much alike</span>}
           <a href={href}>{`open ${cur.short} →`}</a></div>
       </div>; })()}
   </div>;
+}
+
+/** Product page v11 (owner 2026-11-17): the picks and every racket's match % once the items are in (undefined before a pick),
+ *  for the sections that sort or badge by match. */
+export function useMatchOf() {
+  const { p: { choice, picked } } = use(), { items } = useContext(ItemsCtx);
+  const m = picked && items ? matchPcts(items, choice, SETUP.levelGate, SETUP.engine) : null;
+  return { picked: !!m, pctOf: (id: string) => m ? m.get(id) ?? null : undefined, picksHref: picked && !isDefault(choice) ? choiceHref(choice, "").slice(1) : "" };
+}
+/** v11: this racket's answer for the picks (null without one) and the better matches for them (the home's order). */
+export function useAnswer(id: string, facts: FitFacts) {
+  const rank = useRank(id, facts);
+  if (!rank.picked) return null;
+  return { pct: rank.pct(), kind: rank.verdict().kind, alts: rank.alts(4), picksHref: !isDefault(rank.choice) ? choiceHref(rank.choice, "").slice(1) : "" };
+}
+
+/** v11: the better matches for the picks, up to `n` (the home's order: curated list first, then the engine), once the items or
+ *  the server's seed are in; null without a pick. */
+export function useAlts(id: string, n = 8) {
+  const { p: { choice, picked } } = use(), { items, seed } = useContext(ItemsCtx);
+  if (!picked) return null;
+  if (items) return alternatives(items, SETUP, BAD, choice, id, n);
+  return seed && sameChoice(seed.choice, choice) ? seed.alts6 : null;
 }
 
 /** Children only before the visitor picks (owner's final mock: the bottom line shows before picks). Still in the HTML. */
@@ -290,8 +324,9 @@ export function BeforePicks({ children }: { children: ReactNode }) {
 
 /** "Why yes, why not" (owner's final mock): 3 items per column and "+N more" (in the HTML, opened by a tap); with picks, up to 2
  *  items per column that speak to them get a "matters for you" tag. */
-export function FitYesNo({ yes, no, tier = "full", research = false }: { yes: PageItem[]; no: PageItem[]; /** "short" (6–9 reports): 1–2 items a side, no "+N more". */ tier?: PageTier;
-  /** Research content (sources are web pages, not players): no "N players mention it" lines. */ research?: boolean }) {
+export function FitYesNo({ yes, no, tier = "full", research = false, fold = false }: { yes: PageItem[]; no: PageItem[]; /** "short" (6–9 reports): 1–2 items a side, no "+N more". */ tier?: PageTier;
+  /** Research content (sources are web pages, not players): no "N players mention it" lines. */ research?: boolean;
+  /** Product page v11: each point is its title, a tap opens it. */ fold?: boolean }) {
   const { p: { choice, picked } } = use(), picks = picked ? pickTags(choice) : [];
   return <div className="rp-yn">{([["yes", "✓", "Why yes", yes], ["no", "!", "Why not", no]] as const).map(([side, icon, title, items]) => {
     // A "matters for you" item never hides under "+N more": it takes the place of the last untagged one shown.
@@ -300,6 +335,10 @@ export function FitYesNo({ yes, no, tier = "full", research = false }: { yes: Pa
       const out = list.slice(0, SHOWN_ITEMS).reverse().find(x => !hot.has(x.title)); if (!out) break;
       list.splice(list.indexOf(h), 1); list.splice(list.indexOf(out), 0, h); }
     const rest = list.slice(SHOWN_ITEMS);
+    const body = (it: PageItem) => <><p>{marked(it.t).map((x, i) => x.mark ? <mark key={i}>{x.text}</mark> : <span key={i}>{x.text}</span>)}</p>
+      {!research && evidenceLine(it) && <small>{evidenceLine(it)}</small>}</>;
+    if (fold) return <div key={side} className={`v11-ycol ${side}`}><p className="v11-ych"><i aria-hidden="true">{icon}</i>{title}</p>
+      {list.map(it => <details key={it.title} className="v11-yit"><summary><b>{it.title}</b>{hot.has(it.title) && <span className="rp-hot">matters for you</span>}<i aria-hidden="true"/></summary>{body(it)}</details>)}</div>;
     const item = (it: PageItem) => <div key={it.title} className="rp-item"><b>{it.title}{hot.has(it.title) && <span className="rp-hot">matters for you</span>}</b>
       <p>{marked(it.t).map((x, i) => x.mark ? <mark key={i}>{x.text}</mark> : <span key={i}>{x.text}</span>)}</p>
       {!research && evidenceLine(it) && <small>{evidenceLine(it)}</small>}</div>;

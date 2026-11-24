@@ -24,7 +24,10 @@ function top(items: ReasonItem[], picks: string[]): { it: ReasonItem; tagged: bo
 export function clause(t: string) {
   // "players", never "owners" (owner rule), also in older fit-card lines.
   const s = t.replace(/==/g, "").trim().replace(/[.!]$/, "").replace(/\b([Oo])wners\b/g, (_, o) => o === "O" ? "Players" : "players").replace(/\b([Oo])wner\b/g, (_, o) => o === "O" ? "Player" : "player");
-  return /^[A-Z][A-Z0-9]/.test(s) ? s : s.replace(/^./, c => c.toLowerCase());
+  // A line that starts with a name keeps its case (site audit 2026-11-17 #27: "Q-Line runs", "Z and ESP runs", "Champion and
+  // Halo hold up"): a one-letter or hyphenated name, two names joined by "and" / "or", or a name before "runs", "plastic", "blend".
+  const named = /^(?![AI]\s)[A-Z](?:[-\s]|$)/.test(s) || /^[A-Z][\w-]*(,? (and|or)|,) [A-Z]/.test(s) || /^[A-Z][\w-]* (runs?|plastics?|blends?)\b/.test(s);
+  return named || /^[A-Z][A-Z0-9]/.test(s) ? s : s.replace(/^./, c => c.toLowerCase());
 }
 /** One row of the reason: ✓ (what fits) or ! (the catch), a bold lead and its text. */
 export type ReasonPart = { tone: "yes" | "no"; lead: string; text: string };
@@ -49,11 +52,18 @@ export function butLevel(r: string) {
  *  then the catch. Weak: what it has going for you, then what holds it back: the level when it decides the fit or no catch
  *  speaks to the picks, else the catch. Empty when there is nothing to say. */
 export function fitReasonParts(kind: ReasonKind, yes: ReasonItem[], no: ReasonItem[], c: Pick<QuickChoice, "style" | "level" | "arm">, conflicts?: string[]): ReasonPart[] {
-  const picks = pickTags(c), y = top(yes, picks), n = top(no, picks), lvl = kind === "good" ? null : levelReason(conflicts, c);
+  const picks = pickTags(c), n = top(no, picks), lvl = kind === "good" ? null : levelReason(conflicts, c);
   // A weak fit's deal-breaker is the fit check's first conflict: when that is the level, the level reason is the catch.
   const levelFirst = !!lvl && !!conflicts?.[0] && levelReason(conflicts.slice(0, 1), c) === lvl;
+  // When the level decides it, a Why yes for that same level can't be its plus (site audit 2026-11-17: the Wraith, speed 11,
+  // "Probably not" for a beginner beside "newer arms can make it work").
+  const SAYS: Record<string, RegExp> = { beginner: /beginner|newer|new players|first (disc|racket|paddle)|learn/i, intermediate: /intermediate/i, advanced: /advanced|pro\b|experts?/i };
+  const claimsLevel = (it: ReasonItem) => !!c.level && (it.for ?? []).includes(c.level) && SAYS[c.level].test(`${it.title} ${it.t}`);
+  const y = top(levelFirst ? yes.filter(it => !claimsLevel(it)) : yes, picks);
   // A strength that isn't about the picks is only "its strength", not something that suits the visitor.
-  const lead = kind === "good" ? "Built for what you picked:" : !y?.tagged ? "Its strength:" : kind === "maybe" ? "What suits your game:" : "It has one thing going for you:";
+  // "Built for what you picked" only when the line speaks to the style or sore arm picked (audit: a power pick shown a touch line).
+  const forPick = !!y && (y.it.for ?? []).some(t => (c.style !== "any" && t === c.style) || (c.arm && t === "arm"));
+  const lead = kind === "good" ? (forPick || (c.style === "any" && !c.arm && y?.tagged) ? "Built for what you picked:" : "Its strength:") : !y?.tagged ? "Its strength:" : kind === "maybe" ? "What suits your game:" : "It has one thing going for you:";
   const nLead = kind === "good" ? "One thing to know:" : kind === "maybe" ? "The catch:" : "Holding it back:";
   const out: ReasonPart[] = [];
   if (y) out.push(part("yes", lead, y.it));

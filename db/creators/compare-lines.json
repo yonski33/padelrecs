@@ -1,0 +1,591 @@
+{
+ "pickleball": {
+  "six-zero-black-opal-14mm": {
+   "bread-butter-loco-hybrid": {
+    "line": "Smaller sweet spot and slower hands than the Black Opal 14mm",
+    "n": 1,
+    "by": [
+     "cr_fd7317fd31d9ae2f"
+    ]
+   },
+   "honolulu-j6cr": {
+    "line": "More forgiving and ranked above the Black Opal 14mm",
+    "n": 1,
+    "by": [
+     "cr_f4e59a9b7ed4daaf"
+    ]
+   }
+  },
+  "spartus-apollo": {
+   "six-zero-ruby": {
+    "line": "Softer and more muted, with less pop than the Apollo",
+    "n": 1,
+    "by": [
+     "cr_0d5a95985d430f2d"
+    ]
+   }
+  },
+  "crbn1-trufoam-genesis": {
+   "pickleball-apes-pulse": {
+    "line": "Less powerful than the CRBN1",
+    "n": 1,
+    "by": [
+     "cr_d8663a5e50b3a4e5"
+    ]
+   }
+  },
+  "rpm-jade-elongated": {
+   "honolulu-j2cr": {
+    "line": "Harder hitting than the Jade, with shots going short against it",
+    "n": 1,
+    "by": [
+     "cr_d104703165efc31f"
+    ]
+   }
+  },
+  "spartus-spitfire-elongated": {
+   "honolulu-j6cr": {
+    "line": "Stiffer, hollower and slightly poppier than the Spitfire",
+    "n": 1,
+    "by": [
+     "cr_4db78c9298ce783b"
+    ]
+   },
+   "enhance-mpp-turbo": {
+    "line": "Softer than the Spitfire, with easier resets and angles",
+    "n": 1,
+    "by": [
+     "tt-cr_d089b0e4d6c5d1ed"
+    ]
+   },
+   "11six24-hurache-x-power-2": {
+    "line": "Pop about the same as the Spitfire",
+    "n": 1,
+    "by": [
+     "cr_0be60ca31af497a5"
+    ]
+   },
+   "spartus-p1-hybrid": {
+    "line": "Less explosive, with less spin when new than the Spitfire",
+    "n": 1,
+    "by": [
+     "cr_3967b283d43db537"
+    ]
+   }
+  },
+  "joola-hyperion-pro-iv": {
+   "joola-agassi-pro": {
+    "line": "Spins a little more than the Hyperion Pro IV",
+    "n": 1,
+    "by": [
+     "cr_007f1e34c9ef8884"
+    ]
+   },
+   "joola-perseus-pro-iv": {
+    "line": "Slightly slower than the Hyperion Pro IV",
+    "n": 1,
+    "by": [
+     "cr_007f1e34c9ef8884"
+    ]
+   },
+   "joola-scorpeus-pro-iv": {
+    "line": "Rated higher for spin than the Hyperion Pro IV",
+    "n": 1,
+    "by": [
+     "cr_007f1e34c9ef8884"
+    ]
+   }
+  },
+  "vatic-pro-saga": {
+   "spartus-olympus": {
+    "line": "More pop than the Saga, with power close or a touch higher",
+    "n": 2,
+    "by": [
+     "cr_3a1fbad6547ebae9",
+     "cr_f849c259482815c9"
+    ]
+   },
+   "vatic-pro-prism-flash": {
+    "line": "Similar power and spin, with better control and forgiveness than the Saga",
+    "n": 1,
+    "by": [
+     "cr_cd6fb6e01026b6b6"
+    ]
+   }
+  },
+  "joola-perseus-pro-iv": {
+   "joola-agassi-pro": {
+    "line": "Thicker handle than the Perseus Pro IV",
+    "n": 1,
+    "by": [
+     "cr_cb03f4fce75188ee"
+    ]
+   },
+   "paddletek-bantam-esq-c": {
+    "line": "More spin and more control than the Perseus Pro IV",
+    "n": 1,
+    "by": [
+     "cr_cfe4fa72e46e298d"
+    ]
+   },
+   "vatic-pro-saga": {
+    "line": "Plusher than the Perseus Pro IV, which was hard to control at first",
+    "n": 1,
+    "by": [
+     "cr_6360d8b05fe850d2"
+    ]
+   }
+  },
+  "luzz-cannon": {
+   "six-zero-double-black-diamond-control": {
+    "line": "Better power and control balance than the Cannon, but pricier",
+    "n": 1,
+    "by": [
+     "cr_14c151f6d4e82c5f"
+    ]
+   }
+  },
+  "luzz-pro-4-inferno": {
+   "enhance-mpp-turbo": {
+    "line": "Tentatively more powerful than the Inferno",
+    "n": 1,
+    "by": [
+     "tt-cr_97b8492b2537d935"
+    ]
+   },
+   "luzz-cannon": {
+    "line": "Same power, smoother foam delivery and more spin than the Inferno",
+    "n": 1,
+    "by": [
+     "cr_9aea4909ecd9e9c2"
+    ]
+   }
+  },
+  "crbn2-trufoam-genesis": {
+   "paddletek-bantam-esq-c": {
+    "line": "Liked a little more than the CRBN2, and $25 cheaper",
+    "n": 1,
+    "by": [
+     "cr_b327af2c7d52a0b3"
+    ]
+   },
+   "pickleball-apes-pulse": {
+    "line": "Less powerful than the CRBN2",
+    "n": 1,
+    "by": [
+     "cr_17ec53d67b176b3f"
+    ]
+   }
+  },
+  "spartus-olympus": {
+   "spartus-apollo": {
+    "line": "Top tier spin, like the Olympus",
+    "n": 1,
+    "by": [
+     "cr_d8f631923e9f7961"
+    ]
+   }
+  },
+  "pickleball-apes-pulse": {
+   "spartus-olympus": {
+    "line": "Rated below the Pulse S",
+    "n": 1,
+    "by": [
+     "cr_599eeb9eb8e742bd"
+    ]
+   },
+   "vatic-pro-prism-flash": {
+    "line": "Cheaper pure control pick for beginners than the Pulse",
+    "n": 1,
+    "by": [
+     "cr_06ad49262ba27767"
+    ]
+   }
+  },
+  "friday-aura-pro-elongated": {
+   "friday-aura-elongated": {
+    "line": "Preferred for defense and resets over the Aura Pro Elongated",
+    "n": 1,
+    "by": [
+     "cr_6259c55b308d8c14"
+    ]
+   },
+   "honolulu-j6cr": {
+    "line": "About the same power but more pop than the Aura Pro Elongated",
+    "n": 1,
+    "by": [
+     "cr_612a2d78e6d5bd1c"
+    ]
+   }
+  },
+  "joola-agassi-pro": {
+   "joola-perseus-pro-iv": {
+    "line": "A bit more power and slightly less dwell than the Agassi Pro",
+    "n": 1,
+    "by": [
+     "cr_240ce03b4932a90d"
+    ]
+   },
+   "paddletek-bantam-esq-c": {
+    "line": "Feels like a non-elongated version of the Agassi Pro",
+    "n": 1,
+    "by": [
+     "cr_240ce03b4932a90d"
+    ]
+   },
+   "paddletek-bantam-tko-c": {
+    "line": "A bit more power than the Agassi Pro",
+    "n": 1,
+    "by": [
+     "cr_240ce03b4932a90d"
+    ]
+   }
+  },
+  "rpm-q2-elongated": {
+   "honolulu-j6cr": {
+    "line": "Cheaper pick for beginners than the Q2 Elongated",
+    "n": 1,
+    "by": [
+     "cr_0a8494cd0d9d2b8c"
+    ]
+   }
+  },
+  "six-zero-coral-pro-16mm": {
+   "11six24-vapor-power-2": {
+    "line": "Faster drives than the Coral Pro 16mm",
+    "n": 1,
+    "by": [
+     "cr_5cb1dceb1255ea1c"
+    ]
+   },
+   "honolulu-j2cr": {
+    "line": "A rival with durable grit to the Coral Pro 16mm",
+    "n": 1,
+    "by": [
+     "cr_6bbcdfb4a6a7a381"
+    ]
+   }
+  },
+  "vatic-pro-v-sol-pro": {
+   "11six24-vapor-power-2": {
+    "line": "More powerful than the V-Sol Pro, for advanced players",
+    "n": 1,
+    "by": [
+     "cr_fe378d1d2c0dd1d4"
+    ]
+   },
+   "vatic-pro-prism-flash": {
+    "line": "Older design; its 14 mm is quickest at the net next to the V-Sol Pro",
+    "n": 1,
+    "by": [
+     "cr_1d7993318b2eb5ae"
+    ]
+   }
+  },
+  "joola-perseus-pro-v": {
+   "honolulu-j6cr": {
+    "line": "Slightly more power and spin than the Perseus Pro V, at near half the price",
+    "n": 1,
+    "by": [
+     "cr_46b3fff500b8f627"
+    ]
+   }
+  },
+  "11six24-hurache-x-power-2": {
+   "enhance-mpp-turbo": {
+    "line": "Plays on par with the Hurache-X Power 2; neither is an upgrade",
+    "n": 1,
+    "by": [
+     "tt-cr_aab7851df8ae4d17"
+    ]
+   },
+   "luzz-cannon": {
+    "line": "Cheaper, with more power, pop and a stiffer face than the Hurache-X",
+    "n": 1,
+    "by": [
+     "cr_10942bd4b994f94e"
+    ]
+   }
+  },
+  "11six24-pegasus-jelly-bean-2": {
+   "honolulu-j2cr": {
+    "line": "Clearly stronger drives than the Jelly Bean 2",
+    "n": 1,
+    "by": [
+     "cr_8b8cd8b4df288b8f"
+    ]
+   }
+  },
+  "honolulu-j6cr": {
+   "honolulu-j2cr": {
+    "line": "Largely identical ball feel and quicker hands than the J6CR",
+    "n": 1,
+    "by": [
+     "cr_3e195fd8bae9c358"
+    ]
+   },
+   "enhance-duo": {
+    "line": "Softer, more muted feel than the J6CR",
+    "n": 1,
+    "by": [
+     "cr_c77c47d03554ccc6"
+    ]
+   }
+  },
+  "11six24-vapor-power-2": {
+   "11six24-hurache-x-power-2": {
+    "line": "Less forgiving than the Vapor Power 2",
+    "n": 1,
+    "by": [
+     "cr_e861849f88abeb65"
+    ]
+   },
+   "honolulu-j2cr": {
+    "line": "Just ahead of the Vapor Power 2 overall",
+    "n": 1,
+    "by": [
+     "tt-cr_30f45a5e1b5b07cf"
+    ]
+   },
+   "volair-cmd-hyb": {
+    "line": "Swing weight near 111, close to the Vapor Power 2's",
+    "n": 1,
+    "by": [
+     "cr_740b9dd47b3aa807"
+    ]
+   }
+  },
+  "vatic-pro-v-sol-tour": {
+   "honolulu-j6cr": {
+    "line": "Elite shot shaping that the V-Sol Tour comes close to",
+    "n": 1,
+    "by": [
+     "cr_27dff1c45e7c4995"
+    ]
+   }
+  },
+  "enhance-mpp-turbo": {
+   "11six24-vapor-power-2": {
+    "line": "More elite spin than the MPP Turbo",
+    "n": 1,
+    "by": [
+     "cr_4cecbe67b13b3edc"
+    ]
+   },
+   "enhance-epp-turbo": {
+    "line": "Picked over the MPP Turbo for a better fit with their game",
+    "n": 1,
+    "by": [
+     "cr_38044e23fbc857a5"
+    ]
+   }
+  },
+  "honolulu-j2cr": {
+   "honolulu-j6cr": {
+    "line": "Hits harder than the J2CR",
+    "n": 3,
+    "by": [
+     "cr_978d958670c8175d",
+     "cr_7ac40d2dbf4d9549",
+     "cr_14da45f526b736f4"
+    ]
+   },
+   "11six24-vapor-power-2": {
+    "line": "More control but less spin and power than the J2CR",
+    "n": 1,
+    "by": [
+     "cr_7ac40d2dbf4d9549"
+    ]
+   },
+   "honolulu-j3cr": {
+    "line": "Heavier, more muted and harder on mishits than the J2CR",
+    "n": 1,
+    "by": [
+     "cr_978d958670c8175d"
+    ]
+   },
+   "11six24-hurache-x-power-2": {
+    "line": "Hard to tell apart from the J2CR on serve dip",
+    "n": 1,
+    "by": [
+     "tt-cr_00db06a8fdc11334"
+    ]
+   }
+  },
+  "enhance-duo": {
+   "bread-butter-loco-elongated": {
+    "line": "A little more pop and power than the Duo, but less maneuverable",
+    "n": 1,
+    "by": [
+     "cr_f7da9b3c1e9f0824"
+    ]
+   },
+   "enhance-mpp-turbo": {
+    "line": "More explosive, with livelier pop and a lower price than the Duo",
+    "n": 1,
+    "by": [
+     "cr_f2a66f4a5be74f78"
+    ]
+   },
+   "luzz-pro-4-inferno": {
+    "line": "More hollow and less connected than the Duo",
+    "n": 1,
+    "by": [
+     "cr_67bc422e979769e5"
+    ]
+   }
+  },
+  "11six24-ultre-power-2": {
+   "11six24-vapor-power-2": {
+    "line": "Plays nearly identically to the Ultre, but is slightly less preferred",
+    "n": 2,
+    "by": [
+     "cr_03f5fae4faf64a83",
+     "cr_747776e747a75110"
+    ]
+   },
+   "honolulu-j2cr": {
+    "line": "Quicker to swing than the Ultre",
+    "n": 1,
+    "by": [
+     "cr_e4f07c8833de03e2"
+    ]
+   }
+  },
+  "six-zero-ruby": {
+   "six-zero-double-black-diamond-control": {
+    "line": "Less pop, slightly more power and more control than the Ruby",
+    "n": 1,
+    "by": [
+     "cr_3712ebbfd1ff58bb"
+    ]
+   }
+  },
+  "six-zero-double-black-diamond-control": {
+   "six-zero-black-diamond-power": {
+    "line": "Behaves almost the same as the Control",
+    "n": 1,
+    "by": [
+     "cr_d46dfab0179413a6"
+    ]
+   }
+  },
+  "six-zero-coral-16mm": {
+   "pickleball-apes-charm": {
+    "line": "Power in the same range as the Coral",
+    "n": 2,
+    "by": [
+     "cr_b17436682ee1367d",
+     "cr_8692e6500d181423"
+    ]
+   },
+   "honolulu-j6cr": {
+    "line": "More power on serves and drives than the Coral 16mm",
+    "n": 1,
+    "by": [
+     "cr_9efb25a94dbc84b3"
+    ]
+   },
+   "selkirk-slk-era-power": {
+    "line": "In the same ballpark as the Coral 16mm",
+    "n": 1,
+    "by": [
+     "cr_4e5001a4135917a2"
+    ]
+   }
+  },
+  "gearbox-gbx-power-elongated": {
+   "honolulu-j6cr": {
+    "line": "About as fast as the GBX Power Elongated",
+    "n": 1,
+    "by": [
+     "cr_894f95958d3b2e5b"
+    ]
+   }
+  },
+  "gearbox-pro-ultimate-power-elongated-14mm": {
+   "paddletek-bantam-tko-c": {
+    "line": "Less pop and slower at the kitchen than the Pro Ultimate Elongated",
+    "n": 1,
+    "by": [
+     "cr_f25d305a7946f0b9"
+    ]
+   }
+  },
+  "holbrook-fuze-vantagrit": {
+   "enhance-mpp-turbo": {
+    "line": "Softer, more hollow feel than the Fuze VantaGrit",
+    "n": 1,
+    "by": [
+     "cr_7a532850fe664898"
+    ]
+   },
+   "honolulu-j2cr": {
+    "line": "More forgiving sweet spot, less controlled feel than the Fuze",
+    "n": 1,
+    "by": [
+     "cr_162220f8abfe9167"
+    ]
+   },
+   "pakle-fuse-hybrid-w": {
+    "line": "Softer, more hollow feel than the Fuze VantaGrit",
+    "n": 1,
+    "by": [
+     "cr_7a532850fe664898"
+    ]
+   }
+  },
+  "luzz-cannon-xpp-m1": {
+   "honolulu-j6cr": {
+    "line": "Less powerful out of the box than the Cannon XPP M1, with similar spin",
+    "n": 1,
+    "by": [
+     "cr_71f9b0850a4c6d60"
+    ]
+   }
+  },
+  "paddletek-the-reserve-honeyfoam": {
+   "crbn4-trufoam-barrage": {
+    "line": "More power than the Reserve Honeyfoam, at a higher price",
+    "n": 1,
+    "by": [
+     "cr_db55133a83b41690"
+    ]
+   },
+   "enhance-duo": {
+    "line": "Similar to the Reserve Honeyfoam",
+    "n": 1,
+    "by": [
+     "cr_749e39c5018ca365"
+    ]
+   }
+  },
+  "prokennex-black-ace-pro": {
+   "six-zero-ruby": {
+    "line": "Slower hands and midcourt volleys, but more spin than the Black Ace Pro",
+    "n": 1,
+    "by": [
+     "cr_853389a7f9f4eaa2"
+    ]
+   }
+  },
+  "volair-shift-el": {
+   "bread-butter-loco-elongated": {
+    "line": "Notably lower swing weight than the Shift EL, which brings strain",
+    "n": 1,
+    "by": [
+     "cr_020421b86717bacd"
+    ]
+   }
+  },
+  "pakle-fuse-elongated": {
+   "bread-butter-loco-elongated": {
+    "line": "Matches the Fuse Elongated on control, one point higher on power",
+    "n": 1,
+    "by": [
+     "cr_cdca5697442533d3"
+    ]
+   }
+  }
+ }
+}

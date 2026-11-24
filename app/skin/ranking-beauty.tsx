@@ -15,11 +15,13 @@ import { listHref, type RankedList } from "../rankings/lists";
 import { photoOf, shortDate } from "../rankings/rankings-v2";
 import { skinContext } from "./context";
 import { bpFontVars, bpBodyFonts } from "./beauty-fonts";
+import { scoreState } from "../../lib/score-view";
+import { NewPill } from "../score-tags";
 
 /** A SkinRecs ranking in the owner's beauty design (Claude Design "SkinRecs rankings", 2026-11-16): the lists as tabs, a big
  *  serif title, a "find my match" nudge to the home's quick match, the #1 as a card, the rest as rows with "best for" (from who
  *  it suits: people with that skin type rating it well) and the user score. The order is the list's own. FAQ stays for search. */
-const DOT = (n: number) => n >= 88 ? "hi" : n >= 84 ? "mid" : "lo";
+const DOT = (n: number) => n >= 85 ? "hi" : n >= 70 ? "mid" : "lo";
 
 export default async function RankingBeauty({ data, lists, found, amazon, affiliate, faq, jsonLd }: {
   data: Catalog; lists: RankedList[]; found: RankedList; amazon: (AmazonButton | null)[]; affiliate: boolean;
@@ -45,7 +47,7 @@ export default async function RankingBeauty({ data, lists, found, amazon, affili
     const a = amazon[i], site = websiteButton({ websiteUrl: e.product.websiteUrl ?? null, affiliateUrl: e.product.affiliateUrl ?? null });
     const shop = a ? { url: a.url, rel: "sponsored nofollow noopener" } : site ? { url: site.url, rel: site.affiliate ? "sponsored nofollow noopener" : "noopener" } : null;
     return { e, r, url: productHref(r), pic: photoOf(r), brand: brand(r.brandId), name: nameOnly(r), line: rowLine(e.product),
-      best: bestFor(r.id), sig: e.signal?.signal ?? null, shop };
+      best: bestFor(r.id), sig: e.signal?.signal ?? null, judged: e.positive + e.mixed + e.negative, shop };
   }).filter(x => !!x);
   const [top, ...rest] = rows;
   const scoreBadge = (sig: number | null, big = false) => <span className={`rb-sc ${sig === null ? "lo" : DOT(sig)}${big ? " big" : ""}`}
@@ -92,12 +94,12 @@ export default async function RankingBeauty({ data, lists, found, amazon, affili
           {x.line && <span className="rb-line">{x.line}</span>}
           {x.best && <span className="rb-best">{`best for ${x.best}`}</span>}
         </div>
-        <span className="rb-scw col">{scoreBadge(x.sig)}<small>user score</small></span>
+        {scoreState(x.judged) === "new" ? <span className="rb-scw col"><NewPill n={x.judged}/></span> : <span className="rb-scw col">{scoreBadge(x.sig)}<small>user score</small></span>}
         {x.shop ? <a className="rb-buy" href={x.shop.url} target="_blank" rel={x.shop.rel}>check price ↗</a> : <span/>}
       </li>)}</ol>}
       <Link className="rb-all" href={RANKINGS_PATH}>see all rankings →</Link>
 
-      <section className="bh-own rb-own"><p className="t">Used one of these?</p><p>Your verdict moves the list. Two minutes, no account.</p><a className="bp-btn" href="/add-review">+ add a review</a></section>
+      <section className="bh-own rb-own"><p className="t">Used one of these?</p><p>Your review moves the list. Two minutes, no account.</p><a className="bp-btn" href="/add-review">+ add a review</a></section>
 
       <section className="bh-faq rb-faq" id="how-we-rank"><h2>Common questions</h2>
         <div className="bp-card">{faq.map(f => <details key={f.q}><summary><span>{f.q}</span><i aria-hidden="true"/></summary><p>{f.a}</p></details>)}

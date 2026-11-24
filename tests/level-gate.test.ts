@@ -16,14 +16,13 @@ const passes = (s: ReturnType<typeof levelSuits>, level: "beginner" | "intermedi
 const NAMED = ["Adidas Metalbone HRD+ 3.4 2025", "Adidas Metalbone HRD+ 3.5 2026", "Adidas Metalbone 3.5 2026", "Head Coello Pro 2026", "Bullpadel Neuron 02 Edge 2027",
   "Bullpadel Neuron 02 Edge 2026", "Wilson Blade Pro V3 2025", "Wilson Bela Pro V3 2025", "Siux Electra Pro ST5 2026", "Head Speed Pro 2025", "Nox AT10 Pro EDT 2026"];
 
-test("the owner's named pro lines never pass the intermediate or beginner gate (brand: advanced)", () => {
+test("padel: a 'Pro' in the model name never sets the level (owner 2026-11-17, 'the pro comes from the brand')", () => {
+  assert.deepEqual(padel.fit?.proLines ?? [], []);
   for (const name of NAMED) {
-    assert.ok(isPro(name), `${name} is a pro line`);
-    // Even with a few players and reviewers who like it, and YouTube putting it at intermediate to advanced.
-    const s = suitsFor(name, { players: [{ level: 2, liked: true }, { level: 1, liked: true }], youtube: { from: 1, to: 2, channels: 3 } });
-    assert.ok(s.intermediate <= 35 && !passes(s, "intermediate"), `${name} intermediate ${s.intermediate}`);
-    assert.ok(s.beginner <= 25 && !passes(s, "beginner"), `${name} beginner ${s.beginner}`);
-    assert.ok(passes(s, "advanced"), `${name} still shows for advanced`);
+    assert.ok(!isPro(name), `${name}: no name rule`);
+    // Intermediate players who like it and YouTube at intermediate to advanced put it at intermediate, whatever the name.
+    const s = suitsFor(name, { players: [{ level: 1, liked: true }, { level: 1, liked: true }, { level: 1, liked: true }, { level: 2, liked: true }], youtube: { from: 1, to: 2, channels: 3 } });
+    assert.ok(passes(s, "intermediate"), `${name} intermediate ${s.intermediate}`);
   }
 });
 
@@ -35,9 +34,8 @@ test("control and family lines are not pro lines", () => {
 test("3+ intermediate players vouching lift the intermediate cap; the brand's label alone never does the capping", () => {
   const vouched = suitsFor("Bullpadel Neuron 02 2026", { players: [{ level: 1, liked: true }, { level: 1, liked: true }, { level: 1, liked: null }, { level: 2, liked: true }] });
   assert.ok(vouched.intermediate > 35 && passes(vouched, "intermediate"));
-  assert.ok(vouched.beginner <= 25, "still not for beginners");
-  const split = suitsFor("Bullpadel Neuron 02 2026", { players: [{ level: 1, liked: true }, { level: 1, liked: true }, { level: 1, liked: true }, { level: 1, liked: false }, { level: 1, liked: false }, { level: 1, liked: false }] });
-  assert.ok(split.intermediate <= 35, "split opinions don't lift it");
+  // No name rule on padel: beginners stay out on the brand's "advanced" and the players' levels, not the name.
+  assert.ok(!passes(vouched, "beginner"), "still not for beginners");
   // Not a pro line, no advanced voices: the brand's "advanced" stays a nudge.
   assert.equal(levelSuits({ brand: advanced }).intermediate, 50);
   // A pro line the brand calls intermediate-advanced keeps its intermediate score; beginners still don't get it.
@@ -53,7 +51,8 @@ test("demanding or advanced voices (3+) cap it like a pro line", () => {
 });
 
 test("the fit check says why: a pro line is 'not aimed at intermediates', not a made-up player claim", () => {
-  const s = suitsFor("Head Coello Pro 2026");
+  // The generic rule, for a site that keeps name rules (padel has none since 2026-11-17).
+  const s = levelSuits({ brand: advanced, proLine: true });
   const v = fitVerdict({ style: "power", level: "intermediate", arm: false }, { reports: 40, tags: { "easy power": 9 }, suits: s });
   assert.equal(v.kind, "no");
   assert.ok(v.reasons.some(r => /pro line, built for advanced players/.test(r)), v.reasons.join(" | "));

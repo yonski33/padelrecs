@@ -1,0 +1,1488 @@
+{
+ "wheelbases": {
+  "Asetek Forte Direct Drive Wheelbase": {
+   "fixed_rim": "no",
+   "qr_system": "Asetek Racing Quick Release (all Asetek wheelbases); Invicta Quick Release Adapter mounts third-party wheels with a standard hole pattern",
+   "platforms": "PC",
+   "editions": "unknown",
+   "pedal_ports": "unknown",
+   "shifter_ports": "unknown",
+   "source": "https://www.asetek.com/simsports/us/product/forte-direct-drive-wheelbase-18nm/",
+   "notes": "Asetek's shifter/handbrake pages mention Xbox with an 'Asetek Racing Xbox-compatible wheelbase', but this base page says Compatibility: PC."
+  },
+  "Asetek Initium Direct Drive Wheelbase": {
+   "fixed_rim": "no",
+   "qr_system": "Asetek Racing Quick Release (all Asetek wheelbases); Invicta Quick Release Adapter mounts third-party wheels with a standard hole pattern",
+   "platforms": "PC",
+   "editions": "unknown",
+   "pedal_ports": "'5 peripheral connection ports' for other Asetek peripherals",
+   "shifter_ports": "same 5 Asetek peripheral ports",
+   "source": "https://www.asetek.com/simsports/us/product/initium-direct-drive-wheelbase-us/",
+   "notes": "Not compatible with Asetek RaceView Display steering wheels (Forte Formula Pro, Invicta Formula). Asetek's shifter/handbrake pages mention Xbox with an 'Asetek Racing Xbox-compatible wheelbase', but this base page says Compatibility: PC."
+  },
+  "Asetek Invicta Direct Drive Wheelbase": {
+   "fixed_rim": "no",
+   "qr_system": "Asetek Racing Quick Release (all Asetek wheelbases); Invicta Quick Release Adapter mounts third-party wheels with a standard hole pattern",
+   "platforms": "PC",
+   "editions": "unknown",
+   "pedal_ports": "unknown",
+   "shifter_ports": "unknown",
+   "source": "https://www.asetek.com/simsports/us/product/invicta-direct-drive-wheelbase-27nm/",
+   "notes": "Asetek's shifter/handbrake pages mention Xbox with an 'Asetek Racing Xbox-compatible wheelbase', but this base page says Compatibility: PC."
+  },
+  "Asetek La Prima Direct Drive Wheelbase": {
+   "fixed_rim": "no",
+   "qr_system": "Asetek Racing Quick Release (all Asetek wheelbases); Invicta Quick Release Adapter mounts third-party wheels with a standard hole pattern",
+   "platforms": "PC",
+   "editions": "unknown",
+   "pedal_ports": "unknown",
+   "shifter_ports": "unknown",
+   "source": "https://www.asetek.com/simsports/us/product/la-prima-direct-drive-wheelbase-12nm/",
+   "notes": "Asetek's shifter/handbrake pages mention Xbox with an 'Asetek Racing Xbox-compatible wheelbase', but this base page says Compatibility: PC."
+  },
+  "Fanatec ClubSport DD+": {
+   "fixed_rim": "no",
+   "qr_system": "QR2; all Fanatec steering wheels with QR2",
+   "platforms": "PS4, PS5, PC; other platforms depend on the steering wheel used",
+   "editions": "unknown",
+   "pedal_ports": "Pedals port - all Fanatec pedals (adapter cables for non-RJ12); Ports: Power supply, USB-C to PC/console, Shifter 1, Shifter 2 (Sequential only), Pedals, Handbrake, CAN (for future Fanatec peripherals)",
+   "shifter_ports": "Shifter 1, Shifter 2 (sequential only), Handbrake - ClubSport Shifter (all versions), ClubSport Handbrake",
+   "source": "https://www.fanatec.com/us/en/p/wheel-bases/cs_dd+_us/clubsport-dd-plus-us",
+   "notes": "ClubSport Static Shifter Paddles not supported."
+  },
+  "Fanatec ClubSport DD": {
+   "fixed_rim": "no",
+   "qr_system": "QR2 (Type-F base-side per Fanatec naming); all Fanatec steering wheels with QR2",
+   "platforms": "PC (with a Fanatec steering wheel); Xbox only with a Fanatec Xbox-licensed wheel; NOT PlayStation (cannot be upgraded)",
+   "editions": "unknown",
+   "pedal_ports": "Pedals port - all Fanatec pedals (adapter cables for non-RJ12); ports: Power supply, USB-C to PC/console, Shifter 1, Shifter 2 (Sequential only), Pedals, Handbrake, CAN",
+   "shifter_ports": "Shifter 1, Shifter 2 (sequential only), Handbrake - ClubSport Shifter (all versions), ClubSport Handbrake",
+   "source": "https://www.fanatec.com/us/en/p/wheel-bases/cs_dd_us/clubsport-dd-us",
+   "notes": "ClubSport Static Shifter Paddles not supported."
+  },
+  "Fanatec CSL DD 5 Nm": {
+   "fixed_rim": "no",
+   "qr_system": "QR2 Lite base-side; takes wheels with QR2 Lite, QR2 or QR2 Pro wheel-side",
+   "platforms": "PC; Xbox One/Series only with a Fanatec Xbox-licensed steering wheel; NOT PlayStation (cannot be upgraded)",
+   "editions": "unknown",
+   "pedal_ports": "Pedal port (RJ12) - all Fanatec pedals, adapter cables for pedals without RJ12; ports: Power supply, USB-C to PC/console, Fanatec DataPort-C, Shifter 1, Shifter 2 (Sequential only), Pedal, Handbrake",
+   "shifter_ports": "Shifter 1, Shifter 2 (sequential only), Handbrake - ClubSport Shifter (incl. Static Shifter Paddles), ClubSport Handbrake (all versions)",
+   "source": "https://www.fanatec.com/us/en/p/wheel-bases/csl_dd_qr2l_90_us/csl-dd-qr2l-5-nm-us",
+   "notes": "US product page (QR2 Lite version)."
+  },
+  "Fanatec CSL DD 8 Nm": {
+   "fixed_rim": "no",
+   "qr_system": "QR2 Lite base-side; takes wheels with QR2 Lite, QR2 or QR2 Pro wheel-side",
+   "platforms": "PC; Xbox One/Series only with a Fanatec Xbox-licensed steering wheel; NOT PlayStation (cannot be upgraded)",
+   "editions": "unknown",
+   "pedal_ports": "Pedal port (RJ12) - all Fanatec pedals, adapter cables for pedals without RJ12; ports: Power supply, USB-C to PC/console, Fanatec DataPort-C, Shifter 1, Shifter 2 (Sequential only), Pedal, Handbrake",
+   "shifter_ports": "Shifter 1, Shifter 2 (sequential only), Handbrake - ClubSport Shifter (incl. Static Shifter Paddles), ClubSport Handbrake (all versions)",
+   "source": "https://www.fanatec.com/us/en/p/wheel-bases/csl_dd_qr2l_180_us/csl-dd-qr2l-8-nm-us",
+   "notes": "US product page (QR2 Lite version)."
+  },
+  "Fanatec Gran Turismo DD Pro": {
+   "fixed_rim": "no",
+   "qr_system": "QR2 Lite (per URL/naming); Podium/ClubSport/CSL steering wheels 'depending on the quick release'",
+   "platforms": "PS5, PS4, PC; other platforms depend on the steering wheel",
+   "editions": "unknown",
+   "pedal_ports": "Pedals port - all Fanatec pedals (adapter cables for non-RJ12); Ports: Power supply, USB-C to console/PC, Shifter 1, Shifter 2 (Sequential only), Pedals, Handbrake",
+   "shifter_ports": "Shifter 1, Shifter 2 (sequential only), Handbrake - all Fanatec shifters and handbrakes",
+   "source": "https://www.fanatec.com/us/en/p/wheel-bases/crd-9020006-us/gran-turismo-dd-pro-wheel-base-qr2-us",
+   "notes": ""
+  },
+  "Fanatec Podium DD": {
+   "fixed_rim": "no",
+   "qr_system": "QR2 base-side (Type-F) preinstalled; all Fanatec steering wheels with QR2; third-party USB wheels via ClubSport Universal Hub V2 or Podium Hub",
+   "platforms": "PC (with a Fanatec wheel or hub); Xbox only with a Fanatec Xbox-licensed wheel; NOT PlayStation (cannot be upgraded)",
+   "editions": "unknown",
+   "pedal_ports": "Pedals port - all Fanatec pedals (adapter cables for non-RJ12); ports: Power supply, USB-C to PC/console, Shifter 1, Shifter 2 (Sequential only), Pedals, Handbrake, CAN",
+   "shifter_ports": "Shifter 1, Shifter 2 (sequential only), Handbrake - ClubSport Shifter (all versions), ClubSport Handbrake (all versions)",
+   "source": "https://www.fanatec.com/us/en/p/wheel-bases/crd-9020022-us/podium-dd-us",
+   "notes": ""
+  },
+  "Logitech G29": {
+   "fixed_rim": "yes",
+   "qr_system": "n/a (fixed rim)",
+   "platforms": "PS5/PS4/PC",
+   "editions": "G29 = PlayStation/PC; the Xbox/PC version is the G920 (same product page)",
+   "pedal_ports": "Pedals included in the bundle; PRO Racing Pedals work on console via the Logitech G Racing Adapter (sold separately); port not named",
+   "shifter_ports": "Driving Force Shifter 'designed to work with G923, G29 and G920'; RS H-Shifter and RS Shifter & Handbrake list G Series (Logitech G Racing Adapter required on console); port not named",
+   "source": "https://www.logitechg.com/en-us/shop/p/driving-force-racing-wheel ; https://www.logitechg.com/en-us/shop/p/racing-adapter",
+   "notes": ""
+  },
+  "Logitech G920": {
+   "fixed_rim": "yes",
+   "qr_system": "n/a (fixed rim)",
+   "platforms": "Xbox Series X|S / Xbox One / PC",
+   "editions": "G920 = Xbox/PC; the PlayStation/PC version is the G29 (same product page)",
+   "pedal_ports": "Pedals included in the bundle; PRO Racing Pedals work on console via the Logitech G Racing Adapter (sold separately); port not named",
+   "shifter_ports": "Driving Force Shifter 'designed to work with G923, G29 and G920'; RS H-Shifter and RS Shifter & Handbrake list G Series (Logitech G Racing Adapter required on console); port not named",
+   "source": "https://www.logitechg.com/en-us/shop/p/driving-force-racing-wheel ; https://www.logitechg.com/en-us/shop/p/racing-adapter",
+   "notes": ""
+  },
+  "Logitech G923": {
+   "fixed_rim": "yes",
+   "qr_system": "n/a (fixed rim)",
+   "platforms": "per edition: PS5/PlayStation/PC; Xbox Series X|S/Xbox One/PC; PC only",
+   "editions": "3 editions: PlayStation/PC, Xbox/PC, PC only",
+   "pedal_ports": "Pedals included in the bundle; PRO Racing Pedals work on console via the Logitech G Racing Adapter (sold separately); port not named",
+   "shifter_ports": "Driving Force Shifter 'designed to work with G923, G29 and G920'; RS H-Shifter and RS Shifter & Handbrake list G Series (Logitech G Racing Adapter required on console); port not named",
+   "source": "https://www.logitechg.com/en-us/shop/p/g923-trueforce-sim-racing-wheel ; https://www.logitechg.com/en-us/shop/p/racing-adapter",
+   "notes": ""
+  },
+  "Logitech PRO DD11": {
+   "fixed_rim": "no",
+   "qr_system": "unknown",
+   "platforms": "PC; PlayStation only on the PlayStation/PC version ('cannot be added later'); Xbox added by fitting an Xbox-compatible wheel such as the RS Wheel Hub for Xbox",
+   "editions": "PC | PS/PC | Xbox Compatibility",
+   "pedal_ports": "unknown port; PRO Racing Pedals and RS Pedals: console use 'requires connection to a compatible Logitech steering wheel'",
+   "shifter_ports": "unknown port; RS H-Shifter: 'seamless compatibility with PRO/RS50 base and G-Series'",
+   "source": "https://www.logitechg.com/en-us/shop/p/pro-dd11-base ; https://www.logitechg.com/en-us/shop/p/rs-wheel-hub",
+   "notes": ""
+  },
+  "Logitech PRO Racing Wheel": {
+   "fixed_rim": "no",
+   "qr_system": "unknown",
+   "platforms": "PC; PlayStation only on the PlayStation/PC version ('cannot be added later'); Xbox added by fitting an Xbox-compatible wheel such as the RS Wheel Hub for Xbox",
+   "editions": "PC | PlayStation/PC | Xbox via RS Wheel Hub for Xbox",
+   "pedal_ports": "unknown port; PRO Racing Pedals and RS Pedals: console use 'requires connection to a compatible Logitech steering wheel'",
+   "shifter_ports": "unknown port; RS H-Shifter: 'seamless compatibility with PRO/RS50 base and G-Series'",
+   "source": "https://www.logitechg.com/en-us/shop/p/pro-racing-wheel ; https://www.logitechg.com/en-us/shop/p/rs-wheel-hub",
+   "notes": ""
+  },
+  "Logitech RS50": {
+   "fixed_rim": "no",
+   "qr_system": "integrated quick release; wheels via RS Wheel Hub",
+   "platforms": "PC; PlayStation only on the PlayStation/PC version ('cannot be added later'); Xbox added by fitting an Xbox-compatible wheel such as the RS Wheel Hub for Xbox",
+   "editions": "PC only | PS/PC | Xbox/PC",
+   "pedal_ports": "unknown port; PRO Racing Pedals and RS Pedals: console use 'requires connection to a compatible Logitech steering wheel'",
+   "shifter_ports": "unknown port; RS H-Shifter: 'seamless compatibility with PRO/RS50 base and G-Series'",
+   "source": "https://www.logitechg.com/en-us/shop/p/rs50-system ; https://www.logitechg.com/en-us/shop/p/rs-wheel-hub",
+   "notes": ""
+  },
+  "MOZA R12 V2": {
+   "fixed_rim": "no",
+   "qr_system": "MOZA quick release",
+   "platforms": "PC; Xbox only with an Xbox-licensed MOZA wheel (ESX) - 'without an Xbox-licensed wheel or bundle, the base itself cannot operate on Xbox'",
+   "editions": "unknown",
+   "pedal_ports": "ports: Power, USB, Pedal, Dash, Shifter, Handbrake, E-stop; MOZA chart: SR-P, SR-P Lite, CRP2, mBooster Kit connect directly",
+   "shifter_ports": "Shifter + Handbrake ports; MOZA chart: HGP, SGP, HBP, Active Shifter Knob connect directly",
+   "source": "https://mozaracing.com/products/r12-wheelbase ; https://support.mozaracing.com/en/support/solutions/articles/70000645133-moza-racing-products-compatibility ; https://support.mozaracing.com/en/support/solutions/articles/70000627811",
+   "notes": ""
+  },
+  "MOZA R16 Ultra": {
+   "fixed_rim": "no",
+   "qr_system": "MOZA quick release",
+   "platforms": "PC; Xbox only with an Xbox-licensed MOZA wheel (ESX) - 'without an Xbox-licensed wheel or bundle, the base itself cannot operate on Xbox'",
+   "editions": "unknown",
+   "pedal_ports": "ports: Power, PC, Pedals, Dashboard, Shifter, Handbrake, Emergency Stop Switch; MOZA chart: SR-P, SR-P Lite, CRP2, mBooster Kit connect directly",
+   "shifter_ports": "Shifter + Handbrake ports; MOZA chart: HGP, SGP, HBP, Active Shifter Knob connect directly",
+   "source": "https://mozaracing.com/products/r16-ultra ; https://support.mozaracing.com/en/support/solutions/articles/70000645133-moza-racing-products-compatibility ; https://support.mozaracing.com/en/support/solutions/articles/70000627811",
+   "notes": ""
+  },
+  "MOZA R21 Ultra": {
+   "fixed_rim": "no",
+   "qr_system": "MOZA quick release",
+   "platforms": "PC; Xbox only with an Xbox-licensed MOZA wheel (ESX) - 'without an Xbox-licensed wheel or bundle, the base itself cannot operate on Xbox'",
+   "editions": "unknown",
+   "pedal_ports": "ports: Power, PC, Pedals, Dashboard, Shifter, Handbrake, E-Stop; MOZA chart: SR-P, SR-P Lite, CRP2, mBooster Kit connect directly",
+   "shifter_ports": "Shifter + Handbrake ports; MOZA chart: HGP, SGP, HBP, Active Shifter Knob connect directly",
+   "source": "https://mozaracing.com/products/r21-ultra ; https://support.mozaracing.com/en/support/solutions/articles/70000645133-moza-racing-products-compatibility ; https://support.mozaracing.com/en/support/solutions/articles/70000627811",
+   "notes": ""
+  },
+  "MOZA R25 Ultra": {
+   "fixed_rim": "no",
+   "qr_system": "MOZA quick release",
+   "platforms": "PC; Xbox only with an Xbox-licensed MOZA wheel (ESX) - 'without an Xbox-licensed wheel or bundle, the base itself cannot operate on Xbox'",
+   "editions": "unknown",
+   "pedal_ports": "ports: Power, PC, Pedals, Dashboard, Shifter, Handbrake, E-Stop; MOZA chart: SR-P, SR-P Lite, CRP2, mBooster Kit connect directly",
+   "shifter_ports": "Shifter + Handbrake ports; MOZA chart: HGP, SGP, HBP, Active Shifter Knob connect directly",
+   "source": "https://mozaracing.com/products/r25-ultra ; https://support.mozaracing.com/en/support/solutions/articles/70000645133-moza-racing-products-compatibility ; https://support.mozaracing.com/en/support/solutions/articles/70000627811",
+   "notes": ""
+  },
+  "MOZA R3": {
+   "fixed_rim": "no",
+   "qr_system": "MOZA quick release; also takes third-party D1 SPEC wheels",
+   "platforms": "PC & Xbox (Xbox via the R3 Xbox bundle / an Xbox-licensed wheel)",
+   "editions": "R3 PC bundle; R3 Xbox bundle",
+   "pedal_ports": "ports: Power, DC Input, Pedal, USB, Dash; MOZA chart: SR-P, SR-P Lite, CRP2, mBooster Kit connect directly",
+   "shifter_ports": "none listed in ports, yet MOZA chart ticks HGP, SGP, HBP for R3",
+   "source": "https://us.mozaracing.com/pages/r3-racing-bundle ; https://support.mozaracing.com/en/support/solutions/articles/70000645133-moza-racing-products-compatibility ; https://support.mozaracing.com/en/support/solutions/articles/70000627811",
+   "notes": "R3 has no shifter/handbrake port in its port list but the compatibility chart ticks shifters/handbrake - contradiction inside MOZA's own pages."
+  },
+  "MOZA R5": {
+   "fixed_rim": "no",
+   "qr_system": "MOZA quick release",
+   "platforms": "PC; Xbox only with an Xbox-licensed MOZA wheel (ESX) - 'without an Xbox-licensed wheel or bundle, the base itself cannot operate on Xbox'",
+   "editions": "unknown",
+   "pedal_ports": "unknown port list; MOZA chart: SR-P, SR-P Lite, CRP2, mBooster Kit connect directly",
+   "shifter_ports": "unknown port list; MOZA chart: HGP, SGP, HBP, Active Shifter Knob connect directly",
+   "source": "https://us.mozaracing.com/products/r5-racing-bundle ; https://support.mozaracing.com/en/support/solutions/articles/70000645133-moza-racing-products-compatibility ; https://support.mozaracing.com/en/support/solutions/articles/70000627811",
+   "notes": ""
+  },
+  "MOZA R9 V3": {
+   "fixed_rim": "no",
+   "qr_system": "MOZA quick release",
+   "platforms": "PC; Xbox only with an Xbox-licensed MOZA wheel (ESX) - 'without an Xbox-licensed wheel or bundle, the base itself cannot operate on Xbox'",
+   "editions": "unknown",
+   "pedal_ports": "ports: Power, DC, Pedals, E-stop, USB, Dash, Shifter, Handbrake; MOZA chart: SR-P, SR-P Lite, CRP2, mBooster Kit connect directly",
+   "shifter_ports": "Shifter + Handbrake ports; MOZA chart: HGP, SGP, HBP, Active Shifter Knob connect directly",
+   "source": "https://mozaracing.com/products/r9-wheelbase ; https://support.mozaracing.com/en/support/solutions/articles/70000645133-moza-racing-products-compatibility ; https://support.mozaracing.com/en/support/solutions/articles/70000627811",
+   "notes": ""
+  },
+  "Simagic Alpha EVO Pro": {
+   "fixed_rim": "no",
+   "qr_system": "Full support for SIMAGIC QR50, QR70 and QR-A; optional QR Adapter for third-party wheels",
+   "platforms": "unknown",
+   "editions": "unknown",
+   "pedal_ports": "unknown on base page; Simagic P1000/P1000i say they plug into a 'SIMAGIC Wheelbase (via Bus Port)'",
+   "shifter_ports": "unknown on base page ('11 output sockets' on Alpha EVO); Simagic shifters say 'USB Connection: PC, SIMAGIC Wheelbase'",
+   "source": "https://simagic.com/pages/alpha-evo",
+   "notes": "Simagic pages state no platform; third-party sites say PC only but are not maker sources."
+  },
+  "Simagic Alpha EVO Sport": {
+   "fixed_rim": "no",
+   "qr_system": "Full support for SIMAGIC QR50, QR70 and QR-A; optional QR Adapter for third-party wheels",
+   "platforms": "unknown",
+   "editions": "unknown",
+   "pedal_ports": "unknown on base page; Simagic P1000/P1000i say they plug into a 'SIMAGIC Wheelbase (via Bus Port)'",
+   "shifter_ports": "unknown on base page ('11 output sockets' on Alpha EVO); Simagic shifters say 'USB Connection: PC, SIMAGIC Wheelbase'",
+   "source": "https://simagic.com/pages/alpha-evo",
+   "notes": "Simagic pages state no platform; third-party sites say PC only but are not maker sources."
+  },
+  "Simagic Alpha EVO Ultra": {
+   "fixed_rim": "no",
+   "qr_system": "unknown",
+   "platforms": "unknown",
+   "editions": "unknown",
+   "pedal_ports": "unknown on base page; Simagic P1000/P1000i say they plug into a 'SIMAGIC Wheelbase (via Bus Port)'",
+   "shifter_ports": "unknown on base page; Simagic shifters say 'USB Connection: PC, SIMAGIC Wheelbase'",
+   "source": "https://simagic.com/products/simagic-alpha-evo-ultra-28nm-direct-drive-wheel-base",
+   "notes": "Simagic pages state no platform; third-party sites say PC only but are not maker sources."
+  },
+  "Simagic Alpha EVO": {
+   "fixed_rim": "no",
+   "qr_system": "Full support for SIMAGIC QR50, QR70 and QR-A; optional QR Adapter for third-party wheels",
+   "platforms": "unknown",
+   "editions": "unknown",
+   "pedal_ports": "unknown on base page; Simagic P1000/P1000i say they plug into a 'SIMAGIC Wheelbase (via Bus Port)'",
+   "shifter_ports": "unknown on base page ('11 output sockets' on Alpha EVO); Simagic shifters say 'USB Connection: PC, SIMAGIC Wheelbase'",
+   "source": "https://simagic.com/pages/alpha-evo",
+   "notes": "Simagic pages state no platform; third-party sites say PC only but are not maker sources."
+  },
+  "Simagic Alpha Mini": {
+   "fixed_rim": "no",
+   "qr_system": "Simagic Quick Release",
+   "platforms": "unknown",
+   "editions": "unknown",
+   "pedal_ports": "unknown on base page; Simagic P1000/P1000i say they plug into a 'SIMAGIC Wheelbase (via Bus Port)'",
+   "shifter_ports": "unknown on base page; Simagic shifters say 'USB Connection: PC, SIMAGIC Wheelbase'",
+   "source": "https://simagic.com/pages/details-alpha-mini",
+   "notes": "Simagic pages state no platform; third-party sites say PC only but are not maker sources."
+  },
+  "Simagic Alpha Ultimate": {
+   "fixed_rim": "no",
+   "qr_system": "Simagic Quick Release",
+   "platforms": "unknown",
+   "editions": "unknown",
+   "pedal_ports": "unknown on base page; Simagic P1000/P1000i say they plug into a 'SIMAGIC Wheelbase (via Bus Port)'",
+   "shifter_ports": "unknown on base page; Simagic shifters say 'USB Connection: PC, SIMAGIC Wheelbase'",
+   "source": "https://simagic.com/pages/details-alpha-u",
+   "notes": "Simagic pages state no platform; third-party sites say PC only but are not maker sources."
+  },
+  "Simagic Alpha": {
+   "fixed_rim": "no",
+   "qr_system": "Simagic Quick Release",
+   "platforms": "unknown",
+   "editions": "unknown",
+   "pedal_ports": "unknown on base page; Simagic P1000/P1000i say they plug into a 'SIMAGIC Wheelbase (via Bus Port)'",
+   "shifter_ports": "unknown on base page; Simagic shifters say 'USB Connection: PC, SIMAGIC Wheelbase'",
+   "source": "https://simagic.com/pages/details-alpha",
+   "notes": "Simagic pages state no platform; third-party sites say PC only but are not maker sources."
+  },
+  "Simucube 2 Pro": {
+   "fixed_rim": "no",
+   "qr_system": "Simucube Quick Release (SQR), fits 50.8 mm or 70 mm PCD wheels",
+   "platforms": "PC ('Gaming computer with an available USB port')",
+   "editions": "unknown",
+   "pedal_ports": "none: SC2 cabling lists only torque-off, USB to PC, power, antenna",
+   "shifter_ports": "none: same cabling list",
+   "source": "https://simucube.com/en-us/products/simucube-2-pro ; https://docs.simucube.com/Simucube%202/Items%20needed.html ; https://docs.simucube.com/Simucube%202/Cabling.html",
+   "notes": "Wireless wheels pair via the built-in antenna."
+  },
+  "Simucube 2 Sport": {
+   "fixed_rim": "no",
+   "qr_system": "Simucube Quick Release (SQR), fits 50.8 mm or 70 mm PCD wheels",
+   "platforms": "PC ('Gaming computer with an available USB port')",
+   "editions": "unknown",
+   "pedal_ports": "none: SC2 cabling lists only torque-off, USB to PC, power, antenna",
+   "shifter_ports": "none: same cabling list",
+   "source": "https://simucube.com/en-us/products/simucube-2-sport ; https://docs.simucube.com/Simucube%202/Items%20needed.html ; https://docs.simucube.com/Simucube%202/Cabling.html",
+   "notes": "Wireless wheels pair via the built-in antenna."
+  },
+  "Simucube 3 Pro": {
+   "fixed_rim": "no",
+   "qr_system": "Simucube Link Quick Release (70 mm; 50.8 mm with adapter)",
+   "platforms": "PC (needs Link Hub, sold separately; USB wheels connect to the PC)",
+   "editions": "unknown",
+   "pedal_ports": "none on base: ActivePedals join via Simucube Link Hub (+ Ethernet switch for several)",
+   "shifter_ports": "unknown",
+   "source": "https://simucube.com/en-us/products/simucube-3-pro ; https://docs.simucube.com/Simucube3/Items%20needed.html ; https://docs.simucube.com/Simucube3/FAQ.html ; https://docs.simucube.com/Simucube3/Quick%20release.html",
+   "notes": ""
+  },
+  "Simucube 3 Ultimate": {
+   "fixed_rim": "no",
+   "qr_system": "Simucube Link Quick Release (70 mm; 50.8 mm with adapter)",
+   "platforms": "PC (needs Link Hub, sold separately; USB wheels connect to the PC)",
+   "editions": "unknown",
+   "pedal_ports": "none on base: ActivePedals join via Simucube Link Hub (+ Ethernet switch for several)",
+   "shifter_ports": "unknown",
+   "source": "https://simucube.com/en-us/products/simucube-3-ultimate ; https://docs.simucube.com/Simucube3/Items%20needed.html ; https://docs.simucube.com/Simucube3/FAQ.html ; https://docs.simucube.com/Simucube3/Quick%20release.html",
+   "notes": ""
+  },
+  "Thrustmaster T-GT II": {
+   "fixed_rim": "no",
+   "qr_system": "Thrustmaster Quick Release",
+   "platforms": "PC/PS4/PS5",
+   "editions": "unknown",
+   "pedal_ports": "checker-compatible pedals: T-LCM Pedals [PC/PS4/PS5]; T3PM [PC/PS4/PS5]; T3PA Add-On [PC/PS4]",
+   "shifter_ports": "checker-compatible shifters/handbrakes: TSS Handbrake [PC/PS4/PS5]; TSS HANDBRAKE Sparco Mod + [PC/PS4/PS5]; TH8A Shifter Add-On [PC/PS4/PS5]; TH8S SHIFTER ADD-ON [PC/PS5]",
+   "source": "https://www.thrustmaster.com/en-us/products/t-gt-ii/",
+   "notes": "Compatible wheels per checker: Ferrari 488 GT3 Wheel Add-On [PC/PS4/PS5]; EVO Racing 32R Leather [PC/PS4/PS5]; 599XX EVO 30 Wheel Add-On Alcantara Edition [PC/PS4/PS5]; Ferrari 250 GTO Wheel Add-On [PC]; Ferrari F1 Wheel Add-On [PC/PS4/PS5]; TM COMPETITION WHEEL Add-On Sparco P310 Mod [PC/PS4]; Rally Wheel Add-On Sparco® R383 Mod [PC/PS4/PS5]; TM OPEN WHEEL ADD-ON [PC/PS4/PS5] Checker contradictions: Raceline Pedals LTE's checker lists this, but this product's checker does not list it; T3PM's own checker does not list this; TH8S's own checker does not list this; TSS Handbrake Sparco Mod+'s own checker does not list this; TSS Handbrake's own checker does not list this; EVO Racing 32R Leather's own checker does not list this; Ferrari 250 GTO Wheel Add-On's own checker does not list this; Ferrari 488 GT3 Wheel Add-On's own checker does not list this; Ferrari SF1000 Edition Wheel Add-On's checker lists this, but this product's checker does not list it; Rally Wheel Add-On Sparco R383 Mod's own checker does not list this; TM Competition Wheel Add-On Sparco P310 Mod's own checker does not list this."
+  },
+  "Thrustmaster T128": {
+   "fixed_rim": "yes",
+   "qr_system": "n/a (fixed rim)",
+   "platforms": "PC/PS4/PS5",
+   "editions": "unknown",
+   "pedal_ports": "checker-compatible pedals: T-LCM Pedals [PC/PS4/PS5]; T3PA Add-On [PC/PS4]; T3PM [PC/PS4/PS5]",
+   "shifter_ports": "checker-compatible shifters/handbrakes: TH8A Shifter Add-On [PC/PS4/PS5]; TH8S SHIFTER ADD-ON [PC/PS5]; TSS HANDBRAKE Sparco Mod + [PC/PS4/PS5]",
+   "source": "https://www.thrustmaster.com/en-us/products/t128/",
+   "notes": "Fixed rim: the Thrustmaster checker lists no wheel add-ons for this base. Checker contradictions: TSS Handbrake Sparco Mod+'s own checker does not list this. Accessory checkers also list a separate '(XBOX / PC)' version of this base."
+  },
+  "Thrustmaster T150": {
+   "fixed_rim": "yes",
+   "qr_system": "n/a (fixed rim)",
+   "platforms": "PC/PS4",
+   "editions": "unknown",
+   "pedal_ports": "checker-compatible pedals: T3PA Add-On [PC/PS4]; T-LCM Pedals [PC/PS4]; T3PM [PC/PS4]",
+   "shifter_ports": "checker-compatible shifters/handbrakes: TH8S SHIFTER ADD-ON [PC]; TH8A Shifter Add-On [PC/PS4]; TSS HANDBRAKE Sparco Mod + [PC/PS4]",
+   "source": "https://www.thrustmaster.com/en-us/products/t150/",
+   "notes": "Fixed rim: the Thrustmaster checker lists no wheel add-ons for this base. Checker contradictions: T3PA's own checker does not list this; T3PM's own checker does not list this; TH8S's own checker does not list this; TSS Handbrake Sparco Mod+'s own checker does not list this. Page text: 'The T150 (PS4/PC) and TMX (Xbox One/PC) are compatible with the TH8A ... and the T3PA'."
+  },
+  "Thrustmaster T248": {
+   "fixed_rim": "yes",
+   "qr_system": "n/a (fixed rim)",
+   "platforms": "PC/PS4/PS5",
+   "editions": "unknown",
+   "pedal_ports": "checker-compatible pedals: T-LCM Pedals [PC/PS4/PS5]; T3PM [PC/PS4/PS5]; T3PA Add-On [PC/PS4]",
+   "shifter_ports": "checker-compatible shifters/handbrakes: TH8A Shifter Add-On [PC/PS4/PS5]; TH8S SHIFTER ADD-ON [PC/PS5]; TSS Handbrake [PC/PS4/PS5]",
+   "source": "https://www.thrustmaster.com/en-us/products/t248/",
+   "notes": "Fixed rim: the Thrustmaster checker lists no wheel add-ons for this base. Checker contradictions: TSS Handbrake's own checker does not list this. Accessory checkers also list a separate '(XBOX / PC)' version of this base."
+  },
+  "Thrustmaster T248R": {
+   "fixed_rim": "yes",
+   "qr_system": "n/a (fixed rim)",
+   "platforms": "PC/PS4/PS5",
+   "editions": "unknown",
+   "pedal_ports": "checker-compatible pedals: T-LCM Pedals [PC/PS4/PS5]; T3PA Add-On [PC/PS4]",
+   "shifter_ports": "checker-compatible shifters/handbrakes: TH8A Shifter Add-On [PC/PS4/PS5]; TH8S SHIFTER ADD-ON [PC/PS5]; TSS Handbrake [PC/PS4/PS5]",
+   "source": "https://www.thrustmaster.com/en-us/products/t248r/",
+   "notes": "Fixed rim: the Thrustmaster checker lists no wheel add-ons for this base. Checker contradictions: T-LCM's own checker does not list this; T3PA's own checker does not list this; TH8A's own checker does not list this; TH8S's own checker does not list this; TSS Handbrake's own checker does not list this."
+  },
+  "Thrustmaster T300RS GT Edition": {
+   "fixed_rim": "no",
+   "qr_system": "Thrustmaster Quick Release",
+   "platforms": "PC/PS3/PS4/PS5",
+   "editions": "unknown",
+   "pedal_ports": "checker-compatible pedals: T-LCM Pedals [PC/PS4/PS5]; T3PM [PC/PS4/PS5]; T3PA Add-On [PC/PS4]",
+   "shifter_ports": "checker-compatible shifters/handbrakes: TSS Handbrake [PC/PS4/PS5]; TSS HANDBRAKE Sparco Mod + [PC/PS4/PS5]; TH8A Shifter Add-On [PC/PS4/PS5]; TH8S SHIFTER ADD-ON [PC/PS5]",
+   "source": "https://www.thrustmaster.com/en-us/products/t300rs-gt-edition/",
+   "notes": "Compatible wheels per checker: Rally Wheel Add-On Sparco® R383 Mod [PC/PS4/PS5]; Ferrari 488 GT3 Wheel Add-On [PC/PS4/PS5]; EVO Racing 32R Leather [PC/PS4/PS5]; 599XX EVO 30 Wheel Add-On Alcantara Edition [PC/PS4/PS5]; Ferrari 250 GTO Wheel Add-On [PC]; Ferrari F1 Wheel Add-On [PC/PS3/PS4/PS5]; TM COMPETITION WHEEL Add-On Sparco P310 Mod [PC/PS4]; TM OPEN WHEEL ADD-ON [PC/PS4/PS5]; TM Leather 28 GT Wheel Add-On [PC/PS4] Checker contradictions: Raceline Pedals LTE's checker lists this, but this product's checker does not list it; T3PM's own checker does not list this; TSS Handbrake Sparco Mod+'s own checker does not list this; TSS Handbrake's own checker does not list this; 599XX EVO 30 Wheel Add-On Alcantara Edition's own checker does not list this; EVO Racing 32R Leather's own checker does not list this; Ferrari 250 GTO Wheel Add-On's own checker does not list this; Ferrari 488 GT3 Wheel Add-On's own checker does not list this; Ferrari SF1000 Edition Wheel Add-On's checker lists this, but this product's checker does not list it; Rally Wheel Add-On Sparco R383 Mod's own checker does not list this; TM Competition Wheel Add-On Sparco P310 Mod's own checker does not list this; TM Leather 28 GT Wheel Add-On's own checker does not list this."
+  },
+  "Thrustmaster T300RS": {
+   "fixed_rim": "no",
+   "qr_system": "Thrustmaster Quick Release",
+   "platforms": "PC/PS3/PS4",
+   "editions": "unknown",
+   "pedal_ports": "checker-compatible pedals: T3PM [PC/PS4]; T-LCM Pedals [PC/PS4]",
+   "shifter_ports": "checker-compatible shifters/handbrakes: TH8A Shifter Add-On [PC/PS4]; TSS HANDBRAKE Sparco Mod + [PC/PS4]",
+   "source": "https://www.thrustmaster.com/en-us/products/t300rs/",
+   "notes": "Compatible wheels per checker: Ferrari F1 Wheel Add-On [PC/PS3/PS4]; 599XX EVO 30 Wheel Add-On Alcantara Edition [PC/PS4]; Ferrari 250 GTO Wheel Add-On [PC]; Rally Wheel Add-On Sparco® R383 Mod [PC/PS4]; TM COMPETITION WHEEL Add-On Sparco P310 Mod [PC/PS4]; TM OPEN WHEEL ADD-ON [PC/PS4] Checker contradictions: Raceline Pedals LTE's checker lists this, but this product's checker does not list it; T-LCM's own checker does not list this; TH8A's own checker does not list this; 599XX EVO 30 Wheel Add-On Alcantara Edition's own checker does not list this; Ferrari F1 Wheel Add-On's own checker does not list this; Ferrari SF1000 Edition Wheel Add-On's checker lists this, but this product's checker does not list it; TM Leather 28 GT Wheel Add-On's checker lists this, but this product's checker does not list it; TM Open Wheel Add-On's own checker does not list this."
+  },
+  "Thrustmaster T598": {
+   "fixed_rim": "no",
+   "qr_system": "next-gen Thrustmaster Quick Release; Quick Release Adapter for older rims",
+   "platforms": "PC/PS4/PS5",
+   "editions": "unknown",
+   "pedal_ports": "checker-compatible pedals: T-LCM Pedals [PC/PS4/PS5]; T3PA Add-On [PC/PS4]",
+   "shifter_ports": "checker-compatible shifters/handbrakes: TH8S SHIFTER ADD-ON [PC/PS5]; TH8A Shifter Add-On [PC/PS4/PS5]; TSS Handbrake [PC/PS4/PS5]; TSS HANDBRAKE Sparco Mod + [PC/PS4/PS5]",
+   "source": "https://www.thrustmaster.com/en-us/products/t598/",
+   "notes": "Compatible wheels per checker: Ferrari 488 GT3 Wheel Add-On [PC/PS4/PS5]; EVO Racing 32R Leather [PC/PS4/PS5]; Ferrari F1 Wheel Add-On [PC/PS4/PS5]; TM OPEN WHEEL ADD-ON [PC/PS4/PS5]; HYPERCAR WHEEL ADD-ON [PC/PS4/PS5]; 599XX EVO 30 Wheel Add-On Alcantara Edition [PC/PS4/PS5]; Rally Wheel Add-On Sparco® R383 Mod [PC/PS4/PS5]; TM Leather 28 GT Wheel Add-On [PC/PS4]; TM COMPETITION WHEEL Add-On Sparco P310 Mod [PC/PS4] Checker contradictions: Raceline Pedals LTE's checker lists this, but this product's checker does not list it; T3PM's checker lists this, but this product's checker does not list it; TH8S's own checker does not list this; TSS Handbrake Sparco Mod+'s own checker does not list this; TSS Handbrake's own checker does not list this; EVO Racing 32R Leather's own checker does not list this; Ferrari 250 GTO Wheel Add-On's checker lists this, but this product's checker does not list it; Ferrari SF1000 Edition Wheel Add-On's checker lists this, but this product's checker does not list it; GT Wheel Add-On's checker lists this, but this product's checker does not list it; Hypercar Wheel Add-On's own checker does not list this; Rally Wheel Add-On Sparco R383 Mod's own checker does not list this; TM Competition Wheel Add-On Sparco P310 Mod's own checker does not list this."
+  },
+  "Thrustmaster T80 Ferrari 488 GTB Edition": {
+   "fixed_rim": "yes",
+   "qr_system": "n/a (fixed rim)",
+   "platforms": "PC/PS4/PS5",
+   "editions": "unknown",
+   "pedal_ports": "checker-compatible pedals: T3PA Add-On [PC/PS4]; T3PM [PC/PS4/PS5]; T-LCM Pedals [PC/PS4/PS5]",
+   "shifter_ports": "checker-compatible shifters/handbrakes: TSS HANDBRAKE Sparco Mod + [PC/PS4/PS5]",
+   "source": "https://www.thrustmaster.com/en-us/products/t80-ferrari-488-gtb-edition/",
+   "notes": "Fixed rim: the Thrustmaster checker lists no wheel add-ons for this base. Checker contradictions: T-LCM's own checker does not list this; T3PM's own checker does not list this; TSS Handbrake Sparco Mod+'s own checker does not list this. No force feedback (bungee-cord return) per Thrustmaster page."
+  },
+  "Thrustmaster T818": {
+   "fixed_rim": "no",
+   "qr_system": "next-gen Thrustmaster Quick Release; Quick Release Adapter for older rims",
+   "platforms": "PC",
+   "editions": "unknown",
+   "pedal_ports": "checker-compatible pedals: Raceline Pedals III [PC]; T-LCM Pedals [PC]; T3PM [PC]; T3PA Add-On [PC]",
+   "shifter_ports": "checker-compatible shifters/handbrakes: TH8A Shifter Add-On [PC]; TSS Handbrake [PC]; TH8S SHIFTER ADD-ON [PC]",
+   "source": "https://www.thrustmaster.com/en-us/products/t818/",
+   "notes": "Compatible wheels per checker: EVO Racing 32R Leather [PC]; 599XX EVO 30 Wheel Add-On Alcantara Edition [PC]; Ferrari 488 GT3 Wheel Add-On [PC]; Ferrari 250 GTO Wheel Add-On [PC]; HYPERCAR WHEEL ADD-ON [PC]; Ferrari F1 Wheel Add-On [PC] Checker contradictions: Raceline Pedals III's own checker does not list this; Raceline Pedals LTE's checker lists this, but this product's checker does not list it; TH8S's own checker does not list this; TSS Handbrake's own checker does not list this; EVO Racing 32R Leather's own checker does not list this; Ferrari 250 GTO Wheel Add-On's own checker does not list this; Ferrari SF1000 Edition Wheel Add-On's checker lists this, but this product's checker does not list it; Hypercar Wheel Add-On's own checker does not list this; TM Open Wheel Add-On's checker lists this, but this product's checker does not list it."
+  },
+  "Thrustmaster TMX": {
+   "fixed_rim": "yes",
+   "qr_system": "n/a (fixed rim)",
+   "platforms": "PC/XBOX",
+   "editions": "unknown",
+   "pedal_ports": "checker-compatible pedals: T-LCM Pedals [PC/XBOX]; T3PM [PC/XBOX]",
+   "shifter_ports": "checker-compatible shifters/handbrakes: TH8A Shifter Add-On [PC/XBOX]",
+   "source": "https://www.thrustmaster.com/en-us/products/tmx-force-feedback/",
+   "notes": "Fixed rim: the Thrustmaster checker lists no wheel add-ons for this base. Checker contradictions: T-LCM's own checker does not list this; TH8A's own checker does not list this; TSS Handbrake Sparco Mod+'s checker lists this, but this product's checker does not list it. French TMX page checker also lists T3PA."
+  },
+  "Thrustmaster TS-PC Racer Ferrari 488 Challenge Edition": {
+   "fixed_rim": "no",
+   "qr_system": "Thrustmaster Quick Release",
+   "platforms": "PC",
+   "editions": "unknown",
+   "pedal_ports": "checker-compatible pedals: T-LCM Pedals [PC]; T3PM [PC]; T3PA Add-On [PC]",
+   "shifter_ports": "checker-compatible shifters/handbrakes: TH8A Shifter Add-On [PC]; TSS HANDBRAKE Sparco Mod + [PC]",
+   "source": "https://www.thrustmaster.com/en-us/products/ts-pc-racer-ferrari-488-challenge-edition/",
+   "notes": "Compatible wheels per checker: Formula Wheel Add-On Ferrari SF1000 Edition [PC]; 599XX EVO 30 Wheel Add-On Alcantara Edition [PC]; Ferrari 250 GTO Wheel Add-On [PC]; Ferrari F1 Wheel Add-On [PC]; TM COMPETITION WHEEL Add-On Sparco P310 Mod [PC]; TM OPEN WHEEL ADD-ON [PC]; Rally Wheel Add-On Sparco® R383 Mod [PC]; TM Leather 28 GT Wheel Add-On [PC] Checker contradictions: Raceline Pedals LTE's checker lists this, but this product's checker does not list it; T3PM's own checker does not list this; TSS Handbrake Sparco Mod+'s own checker does not list this; Ferrari 250 GTO Wheel Add-On's own checker does not list this; Ferrari SF1000 Edition Wheel Add-On's own checker does not list this; Rally Wheel Add-On Sparco R383 Mod's own checker does not list this; TM Competition Wheel Add-On Sparco P310 Mod's own checker does not list this; TM Leather 28 GT Wheel Add-On's own checker does not list this."
+  },
+  "Thrustmaster TS-XW Racer Sparco P310 Competition Mod": {
+   "fixed_rim": "no",
+   "qr_system": "Thrustmaster Quick Release",
+   "platforms": "PC/XBOX",
+   "editions": "unknown",
+   "pedal_ports": "checker-compatible pedals: T-LCM Pedals [PC/XBOX]; T3PM [PC/XBOX]; T3PA Add-On [PC/XBOX]",
+   "shifter_ports": "checker-compatible shifters/handbrakes: TSS HANDBRAKE Sparco Mod + [PC/XBOX]; TH8A Shifter Add-On [PC/XBOX]; TH8S SHIFTER ADD-ON [PC/XBOX]",
+   "source": "https://www.thrustmaster.com/en-us/products/ts-xw-racer-sparco-p310-competition-mod/",
+   "notes": "Compatible wheels per checker: Rally Wheel Add-On Sparco® R383 Mod [PC/XBOX]; 599XX EVO 30 Wheel Add-On Alcantara Edition [PC/XBOX]; Ferrari 250 GTO Wheel Add-On [PC]; Ferrari F1 Wheel Add-On [PC/XBOX]; TM COMPETITION WHEEL Add-On Sparco P310 Mod [PC/XBOX]; TM OPEN WHEEL ADD-ON [PC/XBOX]; TM Leather 28 GT Wheel Add-On [PC/XBOX] Checker contradictions: Raceline Pedals LTE's checker lists this, but this product's checker does not list it."
+  },
+  "Thrustmaster TX Racing Wheel Leather Edition": {
+   "fixed_rim": "no",
+   "qr_system": "Thrustmaster Quick Release",
+   "platforms": "PC/XBOX",
+   "editions": "unknown",
+   "pedal_ports": "checker-compatible pedals: T-LCM Pedals [PC/XBOX]; T3PM [PC/XBOX]; T3PA Add-On [PC/XBOX]",
+   "shifter_ports": "checker-compatible shifters/handbrakes: TH8A Shifter Add-On [PC/XBOX]; TH8S SHIFTER ADD-ON [PC/XBOX]; TSS HANDBRAKE Sparco Mod + [PC/XBOX]",
+   "source": "https://www.thrustmaster.com/en-us/products/tx-racing-wheel-leather-edition/",
+   "notes": "Compatible wheels per checker: 599XX EVO 30 Wheel Add-On Alcantara Edition [PC/XBOX]; Ferrari 250 GTO Wheel Add-On [PC]; Ferrari F1 Wheel Add-On [PC/XBOX]; TM COMPETITION WHEEL Add-On Sparco P310 Mod [PC/XBOX]; TM OPEN WHEEL ADD-ON [PC/XBOX]; Rally Wheel Add-On Sparco® R383 Mod [PC/XBOX]; TM Leather 28 GT Wheel Add-On [PC/XBOX] Checker contradictions: T3PA's own checker does not list this; T3PM's own checker does not list this; TSS Handbrake Sparco Mod+'s own checker does not list this; Ferrari 250 GTO Wheel Add-On's own checker does not list this; Rally Wheel Add-On Sparco R383 Mod's own checker does not list this; TM Competition Wheel Add-On Sparco P310 Mod's own checker does not list this; TM Leather 28 GT Wheel Add-On's own checker does not list this."
+  }
+ },
+ "wheels": {
+  "Asetek Forte Formula Pro": {
+   "needs": "Asetek Racing Quick Release",
+   "fits_bases": "Asetek Racing wheelbases except Initium (Initium base: 'Not compatible with Asetek Racing RaceView Display Steering Wheels')",
+   "console_note": "PC (Compatibility: PC)",
+   "source": "https://www.asetek.com/simsports/us/product/forte-formula-pro-steering-wheel/ ; https://www.asetek.com/simsports/us/product/initium-direct-drive-wheelbase-us/",
+   "notes": "Has RaceView 60Hz display."
+  },
+  "Asetek Forte Formula": {
+   "needs": "Asetek Racing Quick Release",
+   "fits_bases": "Asetek Racing wheelbases",
+   "console_note": "PC (Compatibility: PC)",
+   "source": "https://www.asetek.com/simsports/us/product/forte-formula-steering-wheel/",
+   "notes": ""
+  },
+  "Asetek Forte GT": {
+   "needs": "Asetek Racing Quick Release",
+   "fits_bases": "Asetek Racing wheelbases",
+   "console_note": "PC (Compatibility: PC)",
+   "source": "https://www.asetek.com/simsports/us/product/forte-gt-steering-wheel-black-aluminum/",
+   "notes": ""
+  },
+  "Asetek Initium Steering Wheel": {
+   "needs": "Asetek Racing Quick Release (Initium wheel: integrated cableless quick release)",
+   "fits_bases": "Asetek Racing wheelbases",
+   "console_note": "PC (Compatibility: PC)",
+   "source": "https://www.asetek.com/simsports/us/product/initium-steering-wheel-pc/",
+   "notes": ""
+  },
+  "Asetek Invicta Formula": {
+   "needs": "Asetek Racing Quick Release",
+   "fits_bases": "Asetek Racing wheelbases except Initium (Initium base: 'Not compatible with Asetek Racing RaceView Display Steering Wheels')",
+   "console_note": "PC (Compatibility: PC)",
+   "source": "https://www.asetek.com/simsports/us/product/invicta-formula-steering-wheel/ ; https://www.asetek.com/simsports/us/product/initium-direct-drive-wheelbase-us/",
+   "notes": "Has RaceView 60Hz display. Invicta Formula is custom-made to order."
+  },
+  "Fanatec ClubSport Formula V3": {
+   "needs": "Fanatec QR2 wheel-side (also QR1-compatible)",
+   "fits_bases": "CSL DD; Gran Turismo DD Pro Wheel Base; ClubSport DD; ClubSport DD+; Podium Wheel Base DD1; Podium Wheel Base DD1 PS4™; Podium Wheel Base DD2; Podium DD (2026)",
+   "console_note": "PC: compatible on compatible Fanatec bases. PlayStation: becomes compatible when connected to a PlayStation-licensed Fanatec base. XBOX: not compatible with XBOX.",
+   "source": "https://www.fanatec.com/us/en/p/steering-wheels/crd-9020019-ww/clubsport-formula-v3",
+   "notes": ""
+  },
+  "Fanatec ClubSport Steering Wheel GT3 Endurance for Xbox": {
+   "needs": "Fanatec quick release (QR1/QR2 depending on installed wheel-side)",
+   "fits_bases": "PODIUM Wheel Base DD1; PODIUM Wheel Base DD2; PODIUM Wheel Base DD1 PS4™; ClubSport Wheel Base V2.5; ClubSport DD Wheel Base; ClubSport DD+ Wheel Base; CSL DD Wheel Base; Gran Turismo DD Pro Wheel Base; CSL Elite Wheel Base +; CSL Elite Wheel Base V1.1",
+   "console_note": "XBOX: if connected with this Universal Hub, the above mentioned wheel bases will be compatible with with XBOX One® and XBOX Series X|S. PC and other platforms: The specifications of the compatible wheel bases will remain unchanged. The functionality of this product on XBOX or PlayStation can be limited by the capabilities of the console (subject to firmware/OS changes and developer support) (see FAQ). The full functionality can only be guaranteed on PC; this is also game-dependent.",
+   "source": "https://www.fanatec.com/us/en/p/steering-wheels/sw_cs_gt3_e_x_qr2/clubsport-steering-wheel-gt3-endurance-xbox-qr2",
+   "notes": "Xbox-licensed: makes compatible Fanatec bases work on Xbox."
+  },
+  "Fanatec ClubSport Steering Wheel Porsche 911 GT3 R V2 for Xbox": {
+   "needs": "Fanatec quick release (QR1/QR2 depending on installed wheel-side)",
+   "fits_bases": "PODIUM DD Wheel Base; PODIUM Wheel Base DD1; PODIUM Wheel Base DD2; PODIUM Wheel Base DD1 PS4™; ClubSport Wheel Base V2.5; ClubSport DD Wheel Base; ClubSport DD+ Wheel Base; CSL DD Wheel Base; Gran Turismo DD Pro Wheel Base; CSL Elite Wheel Base +; CSL Elite Wheel Base V1.1",
+   "console_note": "XBOX: if connected with this Universal Hub, the above mentioned wheel bases will be compatible with with XBOX One® and XBOX Series X|S. PC and other platforms: The specifications of the compatible wheel bases will remain unchanged. The functionality of this product on XBOX or PlayStation can be limited by the capabilities of the console (subject to firmware/OS changes and developer support). The full functionality can only be guaranteed on PC; this is also game-dependent.",
+   "source": "https://www.fanatec.com/us/en/p/steering-wheels/sw_cs_p911_gt3r_s_x_qr2/clubsport-steering-wheel-porsche-911-gt3r-v2-xbox-suede-qr2",
+   "notes": "Xbox-licensed: makes compatible Fanatec bases work on Xbox."
+  },
+  "Fanatec ClubSport Wheel Rim 320": {
+   "needs": "a hub: Podium Hub, ClubSport Universal Hub (all versions) or CSL Universal Hub - 'NOT included and needed for operation'",
+   "fits_bases": "none directly - only via a hub; ClubSport Universal Hub V2 QR2 lists CSL DD among its bases",
+   "console_note": "'For PC/console compatibility, check the specifications of the used Hub and the connected Wheel Base' (ClubSport Universal Hub V2 QR2: PC yes, Xbox no, PS4 limited)",
+   "source": "https://www.fanatec.com/us/en/p/wheel-rims/cs_wr_320/clubsport-wheel-rim-320 ; https://www.fanatec.com/us/en/p/sim-racing-accessories/cs_uh_v2_qr2/clubsport-universal-hub-v2-qr2",
+   "notes": "Rim only."
+  },
+  "Fanatec ClubSport Wheel Rim Classic 2": {
+   "needs": "a hub: Podium Hub, ClubSport Universal Hub (all versions) or CSL Universal Hub - 'NOT included and needed for operation'",
+   "fits_bases": "none directly - only via a hub; ClubSport Universal Hub V2 QR2 lists CSL DD among its bases",
+   "console_note": "'For PC/console compatibility, check the specifications of the used Hub and the connected Wheel Base' (ClubSport Universal Hub V2 QR2: PC yes, Xbox no, PS4 limited)",
+   "source": "https://www.fanatec.com/us/en/p/wheel-rims/uh_rclassic2/clubsport-wheel-rim-classic-2 ; https://www.fanatec.com/us/en/p/sim-racing-accessories/cs_uh_v2_qr2/clubsport-universal-hub-v2-qr2",
+   "notes": "Rim only."
+  },
+  "Fanatec ClubSport Wheel Rim GT3": {
+   "needs": "a hub: ClubSport Universal Hub (V1/V2, incl. Xbox versions), Podium Hub (two Button Clusters) or Podium Button Module Rally",
+   "fits_bases": "none directly - only via a hub; ClubSport Universal Hub V2 QR2 lists CSL DD among its bases",
+   "console_note": "'For PC/console compatibility, check the specifications of the used Hub and the connected Wheel Base' (ClubSport Universal Hub V2 QR2: PC yes, Xbox no, PS4 limited)",
+   "source": "https://www.fanatec.com/us/en/p/wheel-rims/crd-9020020-ww/clubsport-wheel-rim-gt3 ; https://www.fanatec.com/us/en/p/sim-racing-accessories/cs_uh_v2_qr2/clubsport-universal-hub-v2-qr2",
+   "notes": "Rim only."
+  },
+  "Fanatec CSL Elite Steering Wheel Porsche Vision GT": {
+   "needs": "QR2 Lite wheel-side preinstalled; QR1 wheel-side (sold separately) for bases that cannot take QR2",
+   "fits_bases": "CSL Elite Wheel Base (QR1 Wheel-Side required); CSL Elite Wheel Base V1.1 (QR1 Wheel-Side required); CSL Elite Wheel Base + - officially licensed for PS4™ (QR1 Wheel-Side required); CSL DD; Gran Turismo DD Pro Wheel Base; ClubSport Wheel Base V2 (QR1 Wheel-Side required); ClubSport Wheel Base V2.5 (QR1 Wheel-Side required); ClubSport DD; ClubSport DD+; PODIUM Wheel Base DD1; PODIUM Wheel Base DD1 PS4™; PODIUM Wheel Base DD2",
+   "console_note": "unknown",
+   "source": "https://www.fanatec.com/us/en/p/steering-wheels/csl_e_sw_pvgt/csl-elite-steering-wheel-porsche-vision-gt",
+   "notes": ""
+  },
+  "Fanatec CSL Steering Wheel GT3": {
+   "needs": "Fanatec QR2 wheel-side (also QR1-compatible)",
+   "fits_bases": "CSL DD; Gran Turismo DD Pro Wheel Base; ClubSport DD; ClubSport DD+; Podium Wheel Base DD1; Podium Wheel Base DD1 PS4™; Podium Wheel Base DD2",
+   "console_note": "XBOX: This Wheel enables compatibility with XBOX One® and XBOX Series X|S. PC: This product is compatible with Windows PC. PlayStation: This product is compatible with PS4 and PS5 when paired with a PlayStation-licensed direct drive Base. The functionality of this product on XBOX or PlayStation can be limited by the capabilities of the console (subject to firmware/OS changes and developer support) (see FAQ). The full functionality can only be guaranteed on PC; this is also game-dependent.",
+   "source": "https://www.fanatec.com/us/en/p/steering-wheels/crd-9020021-ww/csl-steering-wheel-gt3",
+   "notes": "Xbox-licensed: makes compatible Fanatec bases work on Xbox."
+  },
+  "Fanatec CSL Steering Wheel P1 V2": {
+   "needs": "QR2 wheel-side preinstalled; QR1 wheel-side for bases that cannot take QR2",
+   "fits_bases": "PODIUM Wheel Base DD1*; PODIUM Wheel Base DD2*; PODIUM Wheel Base DD1 PS4™*; ClubSport Wheel Base V2; ClubSport Wheel Base V2.5; ClubSport DD Wheel Base*; ClubSport DD+ Wheel Base*; CSL DD Wheel Base; Gran Turismo DD Pro Wheel Base; CSL Elite Wheel Base +; CSL Elite Wheel Base V1.1",
+   "console_note": "PC: this product is compatible with Windows PC. XBOX: this product is not compatible with XBOX systems. PlayStation: The functionality of this product on PS4 can be limited by the capabilities of the console (subject to firmware/OS changes and developer support). The full functionality can only be guaranteed on PC; this is also game-dependent. PlayStation 5: Check our platform compatibility page for more details.",
+   "source": "https://www.fanatec.com/us/en/p/steering-wheels/csl_sw_p1_v2r_qr2l/csl-steering-wheel-p1-v2-qr2-lite",
+   "notes": "* on DD1/DD2/CS DD/DD+ in maker list (footnote not captured)."
+  },
+  "Fanatec CSL Steering Wheel R300 V2": {
+   "needs": "Fanatec quick release (QR1/QR2 depending on installed wheel-side)",
+   "fits_bases": "PODIUM Wheel Base DD1; PODIUM Wheel Base DD2; PODIUM Wheel Base DD1 PS4™; ClubSport Wheel Base V2; ClubSport Wheel Base V2.5; CSL Elite Wheel Base; CSL Elite Wheel Base V1.1; CSL Elite Wheel Base + - officially licensed for PS4™; CSL DD Wheel Base; Gran Turismo DD Pro Wheel Base",
+   "console_note": "PC: this product is compatible with Windows PC. XBOX: this product is not compatible with XBOX systems. PlayStation: The functionality of this product on PS4 can be limited by the capabilities of the console (subject to firmware/OS changes and developer support). The full functionality can only be guaranteed on PC; this is also game-dependent. PlayStation 5: Check our platform compatibility page for more details.",
+   "source": "https://www.fanatec.com/us/en/p/steering-wheels/sw_csl_r300_v2_qr2l/csl-steering-wheel-r300-v2-qr2l",
+   "notes": "Not compatible with the Podium Button Module Endurance."
+  },
+  "Fanatec Podium Steering Wheel BMW M4 GT3": {
+   "needs": "Fanatec quick release (QR1/QR2 depending on installed wheel-side)",
+   "fits_bases": "Podium DD Wheel Base; PODIUM Wheel Base DD1; PODIUM Wheel Base DD2; PODIUM Wheel Base DD1 PS4™; ClubSport DD; ClubSport DD+; ClubSport Wheel Base V2; ClubSport Wheel Base V2.5; CSL Elite Wheel Base; CSL Elite Wheel Base V1.1; CSL Elite Wheel Base + - officially licensed for PS4™; CSL DD Wheel Base; Gran Turismo DD Pro Wheel Base",
+   "console_note": "PC: this product is compatible with Windows PC. XBOX: this product is not compatible with XBOX systems. PlayStation: The functionality of this product on PS4 can be limited by the capabilities of the console. PlayStation 5: Check our platform compatibility page for more details.",
+   "source": "https://www.fanatec.com/us/en/p/steering-wheels/p_sw_bmw_gt3_h/podium-steering-wheel-bmw-m4-gt3",
+   "notes": ""
+  },
+  "Fanatec Podium Steering Wheel GT3 Endurance": {
+   "needs": "Fanatec quick release (QR1/QR2 depending on installed wheel-side)",
+   "fits_bases": "PODIUM Wheel Base DD1; PODIUM Wheel Base DD2; PODIUM Wheel Base DD1 PS4™; ClubSport Wheel Base V2.5; ClubSport DD Wheel Base; ClubSport DD+ Wheel Base; CSL DD Wheel Base; Gran Turismo DD Pro Wheel Base; CSL Elite Wheel Base +; CSL Elite Wheel Base V1.1",
+   "console_note": "PC: this Steering Wheel is compatible with Windows PC when connected to a compatible Fanatec Wheel Base. XBOX: this Steering Wheel is not compatible with XBOX systems. PlayStation: this Steering Wheel becomes compatible with PlayStation when used with a PlayStation-licensed Wheel Base. Functionality may be limited by the capabilities of the console (subject to firmware/OS changes and developer support). Check our platform compatibility page for more details.",
+   "source": "https://www.fanatec.com/us/en/p/steering-wheels/sw_p_gt3_e_qr2/podium-steering-wheel-gt3-endurance-qr2",
+   "notes": ""
+  },
+  "Fanatec Podium Steering Wheel Monte Carlo Rally": {
+   "needs": "Fanatec quick release (QR1/QR2 depending on installed wheel-side)",
+   "fits_bases": "Podium Wheel Base DD1; Podium Wheel Base DD2; Podium Wheel Base DD1 PS4™; ClubSport DD Wheel Base; ClubSport DD+ Wheel Base; CSL DD Wheel Base; Gran Turismo DD Pro Wheel Base; Support for ClubSport Wheel Base V2.5, CSL Elite Wheel Base V1.1, and CSL Elite Wheel Base+ coming soon.",
+   "console_note": "PC: this product is compatible with Windows PC. XBOX: this product is not compatible with XBOX systems. PlayStation: this Steering Wheel becomes compatible with PlayStation when used with a PlayStation-licensed Wheel Base. Functionality may be limited by the capabilities of the console (subject to firmware/OS changes and developer support). Check our platform compatibility page for more details.",
+   "source": "https://www.fanatec.com/us/en/p/steering-wheels/sw_p_mcr_qr2/podium-steering-wheel-monte-carlo-rally-qr2-pro",
+   "notes": "Support for ClubSport Wheel Base V2.5, CSL Elite V1.1 and CSL Elite+ \"coming soon\"."
+  },
+  "Fanatec Podium Steering Wheel Porsche 911 GT3 R": {
+   "needs": "Fanatec quick release (QR1/QR2 depending on installed wheel-side)",
+   "fits_bases": "PODIUM Wheel Base DD1; PODIUM Wheel Base DD2; PODIUM Wheel Base DD1 PS4™; ClubSport Wheel Base V2.5; CSL DD Wheel Base; Gran Turismo DD Pro Wheel Base; CSL Elite Wheel Base +; CSL Elite Wheel Base V1.1",
+   "console_note": "XBOX: The Podium Steering Wheel Porsche 911 GT3 R is not compatible with XBOX. PC and other Platforms: The specifications of the compatible wheel bases will remain unchanged. PS4: The functionality of this product on PS4 can be limited by the capabilities of the console (subject to firmware/OS changes and developer support). The full functionality can only be guaranteed on PC; this is also game-dependent.",
+   "source": "https://www.fanatec.com/us/en/p/steering-wheels/sw_p_p911_gt3r_s_qr2/podium-steering-wheel-porsche-911-gt3r-suede-qr2",
+   "notes": "'Only compatible' list omits ClubSport DD, ClubSport DD+ and Podium DD (2026)."
+  },
+  "Fanatec Podium Wheel Rim Porsche 911 GT3 Cup": {
+   "needs": "a hub: Podium Hub, ClubSport Universal Hub (all versions) or CSL Universal Hub - 'NOT included and needed for operation'",
+   "fits_bases": "none directly - only via a hub; ClubSport Universal Hub V2 QR2 lists CSL DD among its bases",
+   "console_note": "'For PC/console compatibility, check the specifications of the used Hub and the connected Wheel Base' (ClubSport Universal Hub V2 QR2: PC yes, Xbox no, PS4 limited)",
+   "source": "https://www.fanatec.com/us/en/p/wheel-rims/uh_r911s/podium-wheel-rim-porsche-911-gt3-cup-leather ; https://www.fanatec.com/us/en/p/sim-racing-accessories/cs_uh_v2_qr2/clubsport-universal-hub-v2-qr2",
+   "notes": "Rim only."
+  },
+  "Fanatec Podium Wheel Rim R300": {
+   "needs": "a hub: Podium Hub, ClubSport Universal Hub (all versions) or CSL Universal Hub - 'NOT included and needed for operation'",
+   "fits_bases": "none directly - only via a hub; ClubSport Universal Hub V2 QR2 lists CSL DD among its bases",
+   "console_note": "'For PC/console compatibility, check the specifications of the used Hub and the connected Wheel Base' (ClubSport Universal Hub V2 QR2: PC yes, Xbox no, PS4 limited)",
+   "source": "https://www.fanatec.com/us/en/p/wheel-rims/uh_r300/podium-wheel-rim-r300 ; https://www.fanatec.com/us/en/p/sim-racing-accessories/cs_uh_v2_qr2/clubsport-universal-hub-v2-qr2",
+   "notes": "Rim only."
+  },
+  "Heusinkveld One": {
+   "needs": "integrated 50.8 mm threaded hub - mounts to 'most quick release systems or adapters'; optional HE-SW-ADAPT for 70 mm",
+   "fits_bases": "'most wheelbases' via their quick release (no list)",
+   "console_note": "PC only: 'does not work (correctly) with consoles such as Xbox or PlayStation'; wireless dongle to PC",
+   "source": "https://heusinkveld.com/shop/wheel/one/",
+   "notes": ""
+  },
+  "Logitech PRO Racing GT D Rim": {
+   "needs": "unknown",
+   "fits_bases": "'Compatible Logitech Wheel Base: RS/PRO Racing DD11 Base'",
+   "console_note": "Windows USB; 'PlayStation compatibility requires connection to a compatible Logitech steering wheel'",
+   "source": "https://www.logitechg.com/en-us/shop/p/pro-gtd-rim",
+   "notes": ""
+  },
+  "Logitech RS Formula Wheel McLaren Racing Edition": {
+   "needs": "'Requires RS Wheel Hub or RS QR Adapter'",
+   "fits_bases": "Logitech G direct-drive bases via RS Wheel Hub ('attach to any compatible Logitech G Direct Drive base')",
+   "console_note": "PlayStation needs a PRO Racing Wheel/base for PlayStation/PC (RS Wheel Hub page)",
+   "source": "https://www.logitechg.com/en-us/shop/p/rs-formula-wheel-mclaren-racing-edition ; https://www.logitechg.com/en-us/shop/p/rs-wheel-hub",
+   "notes": ""
+  },
+  "Logitech RS Round Wheel": {
+   "needs": "RS Wheel Hub ('Steering Wheel for RS Wheel Hub')",
+   "fits_bases": "Logitech G direct-drive bases (RS50, PRO DD11/PRO Racing Wheel) via RS Wheel Hub",
+   "console_note": "SKU labelled 'XBOX/PC/PS'; PlayStation needs a PRO base for PlayStation/PC (RS Wheel Hub page)",
+   "source": "https://www.logitechg.com/en-us/shop/p/rs-round-wheel ; https://www.logitechg.com/en-us/shop/p/rs-wheel-hub",
+   "notes": ""
+  },
+  "Logitech RS Track Wheel": {
+   "needs": "RS Wheel Hub ('Steering Wheel for RS Wheel Hub')",
+   "fits_bases": "Logitech G direct-drive bases (RS50, PRO DD11/PRO Racing Wheel) via RS Wheel Hub",
+   "console_note": "SKU labelled 'XBOX/PC/PS'; PlayStation needs a PRO base for PlayStation/PC (RS Wheel Hub page)",
+   "source": "https://www.logitechg.com/en-us/shop/p/rs-track-wheel ; https://www.logitechg.com/en-us/shop/p/rs-wheel-hub",
+   "notes": ""
+  },
+  "MOZA CS Pro": {
+   "needs": "MOZA quick release (included)",
+   "fits_bases": "all MOZA wheelbases currently on sale; third-party bases via MOZA hub kit; MOZA chart: connects directly to R3, R5, R9 V2/V3, R12 V1/V2, R16, R21, R21 Ultra, R25 Ultra",
+   "console_note": "PC - MOZA bases run on Xbox only with an Xbox-licensed wheel (ESX) or the R3 Xbox bundle",
+   "source": "https://mozaracing.com/products/cs-pro-wheel ; https://support.mozaracing.com/en/support/solutions/articles/70000645133-moza-racing-products-compatibility ; https://support.mozaracing.com/en/support/solutions/articles/70000627811",
+   "notes": ""
+  },
+  "MOZA CS V2P": {
+   "needs": "MOZA quick release (included)",
+   "fits_bases": "R3, R5, R9 V2/V3, R12 V2, R16 V2, R21 V2, R21 Ultra, R25 Ultra - NOT R9 V1/R16 V1/R21 V1; MOZA chart: connects directly to R3, R5, R9 V2/V3, R12 V1/V2, R16, R21, R21 Ultra, R25 Ultra",
+   "console_note": "PC - MOZA bases run on Xbox only with an Xbox-licensed wheel (ESX) or the R3 Xbox bundle",
+   "source": "https://mozaracing.com/products/cs-v2p-wheel ; https://support.mozaracing.com/en/support/solutions/articles/70000645133-moza-racing-products-compatibility ; https://support.mozaracing.com/en/support/solutions/articles/70000627811",
+   "notes": ""
+  },
+  "MOZA Essenza SCV12 Steering Wheel": {
+   "needs": "MOZA quick release (included)",
+   "fits_bases": "all MOZA force feedback bases; select third-party via MOZA universal hub; MOZA chart: connects directly to R3, R5, R9 V2/V3, R12 V1/V2, R16, R21, R21 Ultra, R25 Ultra",
+   "console_note": "PC - MOZA bases run on Xbox only with an Xbox-licensed wheel (ESX) or the R3 Xbox bundle",
+   "source": "https://mozaracing.com/products/lamborghini-essenza-scv12-wheel ; https://support.mozaracing.com/en/support/solutions/articles/70000645133-moza-racing-products-compatibility ; https://support.mozaracing.com/en/support/solutions/articles/70000627811",
+   "notes": ""
+  },
+  "MOZA ESX": {
+   "needs": "MOZA quick release (included)",
+   "fits_bases": "all MOZA wheelbases in the compatibility guide (R3 bundle not required); MOZA chart: connects directly to R3, R5, R9 V2/V3, R12 V1/V2, R16, R21, R21 Ultra, R25 Ultra",
+   "console_note": "PC & Xbox (Xbox-licensed; makes a MOZA base work on Xbox)",
+   "source": "https://mozaracing.com/products/esx-steering-wheel ; https://support.mozaracing.com/en/support/solutions/articles/70000645133-moza-racing-products-compatibility",
+   "notes": ""
+  },
+  "MOZA Ford Mustang GTD Wheel": {
+   "needs": "MOZA quick release (included)",
+   "fits_bases": "'all current MOZA wheel bases and supported third-party bases'",
+   "console_note": "PC - MOZA bases run on Xbox only with an Xbox-licensed wheel (ESX) or the R3 Xbox bundle",
+   "source": "https://mozaracing.com/products/ford-gtd-wheel ; https://support.mozaracing.com/en/support/solutions/articles/70000645133-moza-racing-products-compatibility ; https://support.mozaracing.com/en/support/solutions/articles/70000627811",
+   "notes": "Not in MOZA's compatibility chart (chart says products not shown are 'no longer supported') although the product page sells it as current."
+  },
+  "MOZA FSR2": {
+   "needs": "MOZA quick release (included)",
+   "fits_bases": "all MOZA wheelbases; third-party via MOZA hub; MOZA chart: connects directly to R3, R5, R9 V2/V3, R12 V1/V2, R16, R21, R21 Ultra, R25 Ultra",
+   "console_note": "PC - MOZA bases run on Xbox only with an Xbox-licensed wheel (ESX) or the R3 Xbox bundle",
+   "source": "https://mozaracing.com/products/fsr2-formula-wheel ; https://support.mozaracing.com/en/support/solutions/articles/70000645133-moza-racing-products-compatibility ; https://support.mozaracing.com/en/support/solutions/articles/70000627811",
+   "notes": ""
+  },
+  "MOZA GS V2P": {
+   "needs": "MOZA quick release (included)",
+   "fits_bases": "R3, R5, R9 V2/V3, R12 V2, R16 V2, R21 V2, R21 Ultra, R25 Ultra - NOT R9 V1/R16 V1/R21 V1; MOZA chart: connects directly to R3, R5, R9 V2/V3, R12 V1/V2, R16, R21, R21 Ultra, R25 Ultra",
+   "console_note": "PC - MOZA bases run on Xbox only with an Xbox-licensed wheel (ESX) or the R3 Xbox bundle",
+   "source": "https://mozaracing.com/products/gs-v2p-gt-wheel ; https://support.mozaracing.com/en/support/solutions/articles/70000645133-moza-racing-products-compatibility ; https://support.mozaracing.com/en/support/solutions/articles/70000627811",
+   "notes": ""
+  },
+  "MOZA KS Pro": {
+   "needs": "MOZA quick release (included)",
+   "fits_bases": "all MOZA wheelbases; third-party via MOZA hub kit; MOZA chart: connects directly to R3, R5, R9 V2/V3, R12 V1/V2, R16, R21, R21 Ultra, R25 Ultra",
+   "console_note": "PC - MOZA bases run on Xbox only with an Xbox-licensed wheel (ESX) or the R3 Xbox bundle",
+   "source": "https://mozaracing.com/products/ks-pro-wheel ; https://support.mozaracing.com/en/support/solutions/articles/70000645133-moza-racing-products-compatibility ; https://support.mozaracing.com/en/support/solutions/articles/70000627811",
+   "notes": ""
+  },
+  "MOZA KS": {
+   "needs": "MOZA quick release (included)",
+   "fits_bases": "All MOZA wheelbases and 3rd party wheelbases (3rd-party base expansion port); MOZA chart: connects directly to R3, R5, R9 V2/V3, R12 V1/V2, R16, R21, R21 Ultra, R25 Ultra",
+   "console_note": "PC - MOZA bases run on Xbox only with an Xbox-licensed wheel (ESX) or the R3 Xbox bundle",
+   "source": "https://mozaracing.com/products/ks-gt-wheel ; https://support.mozaracing.com/en/support/solutions/articles/70000645133-moza-racing-products-compatibility ; https://support.mozaracing.com/en/support/solutions/articles/70000627811",
+   "notes": ""
+  },
+  "MOZA Porsche Mission R Steering Wheel": {
+   "needs": "MOZA quick release (included)",
+   "fits_bases": "'Compatible with all MOZA bases' / 'mostly MOZA wheelbases'; third-party via MOZA hub; MOZA chart: connects directly to R3, R5, R9 V2/V3, R12 V1/V2, R16, R21, R21 Ultra, R25 Ultra",
+   "console_note": "PC - MOZA bases run on Xbox only with an Xbox-licensed wheel (ESX) or the R3 Xbox bundle",
+   "source": "https://mozaracing.com/products/porsche-mission-r-wheel ; https://support.mozaracing.com/en/support/solutions/articles/70000645133-moza-racing-products-compatibility ; https://support.mozaracing.com/en/support/solutions/articles/70000627811",
+   "notes": ""
+  },
+  "MOZA Revuelto Steering Wheel": {
+   "needs": "MOZA quick release (included)",
+   "fits_bases": "all MOZA wheelbases currently on sale; third-party via MOZA hub",
+   "console_note": "PC - MOZA bases run on Xbox only with an Xbox-licensed wheel (ESX) or the R3 Xbox bundle",
+   "source": "https://mozaracing.com/products/revuelto-sim-wheel ; https://support.mozaracing.com/en/support/solutions/articles/70000645133-moza-racing-products-compatibility ; https://support.mozaracing.com/en/support/solutions/articles/70000627811",
+   "notes": "Not in MOZA's compatibility chart (chart says products not shown are 'no longer supported') although the product page sells it as current."
+  },
+  "MOZA RS V2": {
+   "needs": "MOZA quick release (included)",
+   "fits_bases": "all MOZA wheelbases currently on sale; MOZA chart: connects directly to R3, R5, R9 V2/V3, R12 V1/V2, R16, R21, R21 Ultra, R25 Ultra",
+   "console_note": "PC - MOZA bases run on Xbox only with an Xbox-licensed wheel (ESX) or the R3 Xbox bundle",
+   "source": "https://mozaracing.com/products/rs-v2-wheel ; https://support.mozaracing.com/en/support/solutions/articles/70000645133-moza-racing-products-compatibility ; https://support.mozaracing.com/en/support/solutions/articles/70000627811",
+   "notes": ""
+  },
+  "MOZA TSW": {
+   "needs": "MOZA quick release (included)",
+   "fits_bases": "all MOZA bases; third-party via MOZA hub; MOZA chart: connects directly to R3, R5, R9 V2/V3, R12 V1/V2, R16, R21, R21 Ultra, R25 Ultra",
+   "console_note": "PC - MOZA bases run on Xbox only with an Xbox-licensed wheel (ESX) or the R3 Xbox bundle",
+   "source": "https://mozaracing.com/products/tsw-truck-wheel ; https://support.mozaracing.com/en/support/solutions/articles/70000645133-moza-racing-products-compatibility ; https://support.mozaracing.com/en/support/solutions/articles/70000627811",
+   "notes": ""
+  },
+  "MOZA Vision GS": {
+   "needs": "MOZA quick release (included)",
+   "fits_bases": "all MOZA wheelbases; third-party via MOZA hub; MOZA chart: connects directly to R3, R5, R9 V2/V3, R12 V1/V2, R16, R21, R21 Ultra, R25 Ultra",
+   "console_note": "PC - MOZA bases run on Xbox only with an Xbox-licensed wheel (ESX) or the R3 Xbox bundle",
+   "source": "https://mozaracing.com/products/vision-gs-wheel ; https://support.mozaracing.com/en/support/solutions/articles/70000645133-moza-racing-products-compatibility ; https://support.mozaracing.com/en/support/solutions/articles/70000627811",
+   "notes": ""
+  },
+  "Sim-Lab GTSL Pro": {
+   "needs": "70 mm bolt pattern quick release; Industrial 7-pin connector to USB cable",
+   "fits_bases": "'all PC wheelbases via USB with 70mm bolt pattern'",
+   "console_note": "PC only",
+   "source": "https://sim-lab.eu/products/gtsl-pro-sim-racing-steering-wheel",
+   "notes": ""
+  },
+  "Sim-Lab Porsche 911 RSR Steering Wheel": {
+   "needs": "6 x 70 mm hub; 6-pin Lumberg connector; power injector box + USB",
+   "fits_bases": "unknown",
+   "console_note": "unknown",
+   "source": "https://sim-lab.eu/products/porsche-911-rsr-sim-racing-steering-wheel",
+   "notes": ""
+  },
+  "Simagic Aston Martin Valkyrie": {
+   "needs": "choose base type at purchase ('Alpha EVO Series / Alpha Series / Third party'); MagLink Pro sold as add-on",
+   "fits_bases": "Alpha EVO Series, Alpha Series, third-party (with the matching accessory)",
+   "console_note": "unknown",
+   "source": "https://simagic.com/products/simagic-aston-martin-valkyrie ; https://simagic.com/pages/alpha-evo",
+   "notes": "Simagic states no platform. The base list on GT-series pages is a 'frequently bought together' box, not a compatibility list."
+  },
+  "Simagic FX Pro": {
+   "needs": "SIMAGIC QR50 included",
+   "fits_bases": "Alpha EVO (supports QR50/QR70/QR-A); other bases: unknown",
+   "console_note": "unknown",
+   "source": "https://simagic.com/products/fx-pro ; https://simagic.com/pages/alpha-evo",
+   "notes": "Simagic states no platform. The base list on GT-series pages is a 'frequently bought together' box, not a compatibility list."
+  },
+  "Simagic FX": {
+   "needs": "SIMAGIC QR50 included",
+   "fits_bases": "Alpha EVO (supports QR50/QR70/QR-A); other bases: unknown",
+   "console_note": "unknown",
+   "source": "https://simagic.com/products/fx-formula ; https://simagic.com/pages/alpha-evo",
+   "notes": "Simagic states no platform. The base list on GT-series pages is a 'frequently bought together' box, not a compatibility list."
+  },
+  "Simagic GT Neo": {
+   "needs": "SIMAGIC QR50 included; MagLink cable unlocks third-party bases",
+   "fits_bases": "Alpha EVO (supports QR50/QR70/QR-A); other bases: unknown",
+   "console_note": "unknown",
+   "source": "https://simagic.com/products/gt-neo ; https://simagic.com/pages/alpha-evo",
+   "notes": "Simagic states no platform. The base list on GT-series pages is a 'frequently bought together' box, not a compatibility list."
+  },
+  "Simagic GT1": {
+   "needs": "SIMAGIC QR70 included",
+   "fits_bases": "Alpha EVO (supports QR50/QR70/QR-A); other bases: unknown",
+   "console_note": "unknown",
+   "source": "https://simagic.com/products/gt1 ; https://simagic.com/pages/alpha-evo",
+   "notes": "Simagic states no platform. The base list on GT-series pages is a 'frequently bought together' box, not a compatibility list."
+  },
+  "Simagic GTC": {
+   "needs": "SIMAGIC QR50 included",
+   "fits_bases": "Alpha EVO (supports QR50/QR70/QR-A); other bases: unknown",
+   "console_note": "unknown",
+   "source": "https://simagic.com/products/gtc ; https://simagic.com/pages/alpha-evo",
+   "notes": "Simagic states no platform. The base list on GT-series pages is a 'frequently bought together' box, not a compatibility list."
+  },
+  "Simagic GTS": {
+   "needs": "SIMAGIC QR50 included",
+   "fits_bases": "Alpha EVO (supports QR50/QR70/QR-A); other bases: unknown",
+   "console_note": "unknown",
+   "source": "https://simagic.com/products/gts ; https://simagic.com/pages/alpha-evo",
+   "notes": "Simagic states no platform. The base list on GT-series pages is a 'frequently bought together' box, not a compatibility list."
+  },
+  "Simagic P-325C": {
+   "needs": "unknown",
+   "fits_bases": "unknown",
+   "console_note": "unknown",
+   "source": "https://simagic.com/products/p-325c ; https://simagic.com/pages/alpha-evo",
+   "notes": "Simagic states no platform. The base list on GT-series pages is a 'frequently bought together' box, not a compatibility list."
+  },
+  "Simagic Zeus Formula": {
+   "needs": "MagLink Pro; choose base type at purchase ('Alpha EVO Series / Alpha Series / Third party')",
+   "fits_bases": "Alpha EVO Series, Alpha Series, third-party (with the matching accessory)",
+   "console_note": "unknown",
+   "source": "https://simagic.com/products/simagic-zeus-formula-steering-wheel ; https://simagic.com/pages/alpha-evo",
+   "notes": "Simagic states no platform. The base list on GT-series pages is a 'frequently bought together' box, not a compatibility list."
+  },
+  "Simagic Zeus GT": {
+   "needs": "MagLink Pro; choose base type at purchase ('Alpha EVO Series / Alpha Series / Third party')",
+   "fits_bases": "Alpha EVO Series, Alpha Series, third-party (with the matching accessory)",
+   "console_note": "unknown",
+   "source": "https://simagic.com/products/zeus-gt-steering-wheel ; https://simagic.com/pages/alpha-evo",
+   "notes": "Simagic states no platform. The base list on GT-series pages is a 'frequently bought together' box, not a compatibility list."
+  },
+  "Simagic Zeus Sport": {
+   "needs": "MagLink Pro; choose base type at purchase ('Alpha EVO Series / Alpha Series / Third party')",
+   "fits_bases": "Alpha EVO Series, Alpha Series, third-party (with the matching accessory)",
+   "console_note": "unknown",
+   "source": "https://simagic.com/products/zeus-sport-steering-wheel ; https://simagic.com/pages/alpha-evo",
+   "notes": "Simagic states no platform. The base list on GT-series pages is a 'frequently bought together' box, not a compatibility list."
+  },
+  "Simucube Savu Pro": {
+   "needs": "Configuration choice: Simucube 3 version (Link Quick Release, wireless power) or Simucube 2 version (Simucube Quick Release, battery)",
+   "fits_bases": "Simucube 2 and Simucube 3 (buy the matching version); 70 mm bolt pattern",
+   "console_note": "PC (wireless via Simucube Link Hub)",
+   "source": "https://simucube.com/products/simucube-savu-pro",
+   "notes": ""
+  },
+  "Simucube Tahko GT-21": {
+   "needs": "unknown",
+   "fits_bases": "Simucube 2 ('No cables needed to connect to the Simucube 2 wheelbase ecosystem'); Simucube 3: unknown",
+   "console_note": "PC",
+   "source": "https://simucube.com/products/tahko ; https://docs.simucube.com/Simucube%202/Items%20needed.html ; https://docs.simucube.com/Simucube%202/Cabling.html",
+   "notes": "Not in the comparison table of current Simucube wheels on its own page."
+  },
+  "Simucube Valo GT-23": {
+   "needs": "Configuration choice: Simucube 3 version (Link Quick Release) or Simucube 2 version (Simucube Quick Release)",
+   "fits_bases": "Simucube 2 and Simucube 3 (buy the matching version)",
+   "console_note": "PC (wireless via Simucube Link Hub)",
+   "source": "https://simucube.com/products/simucube-valo-gt-23",
+   "notes": ""
+  },
+  "Simucube x BavarianSimTec Delta Pro SC": {
+   "needs": "Simucube Link Quick Release (included; LightBridge power+data)",
+   "fits_bases": "Simucube 3 only (Compatibility tab lists only Simucube 3)",
+   "console_note": "PC",
+   "source": "https://simucube.com/products/simucube-x-bavariansimtec-delta-pro-sc",
+   "notes": ""
+  },
+  "Thrustmaster 599XX EVO 30 Wheel Add-On Alcantara Edition": {
+   "needs": "a Thrustmaster base with the Thrustmaster Quick Release",
+   "fits_bases": "own checker: T598 (PLAYSTATION / PC) [PC/PS4/PS5]; T818 Ferrari SF1000 Simulator [PC]; T-GT II [PC/PS4/PS5]; T300 Ferrari Integral Racing Wheel Alcantara Edition [PC/PS4]; T300 Racing Wheel Servo Base [PC/PS4/PS5]; TS-PC RACER Ferrari 488 Challenge Edition [PC]; TS-XW Racer Sparco P310 Competition Mod [PC/XBOX]; TS-XW Servo Base [PC/XBOX]; TX Racing Wheel Leather Edition [PC/XBOX]; TX Racing Wheel Servo Base [PC/XBOX] | listed on base checkers: T-GT II, T300RS, T300RS GT Edition, T598, T818, TS-PC Racer Ferrari 488 Challenge Edition, TS-XW Racer Sparco P310 Competition Mod, TX Racing Wheel Leather Edition",
+   "console_note": "checker platforms: PC/PS4/PS5/XBOX",
+   "source": "https://www.thrustmaster.com/en-us/products/599xx-evo-30-wheel-add-on-alcantara-edition/",
+   "notes": "Checker contradictions: T300RS GT Edition's checker lists this, but this product's checker does not list it; T300RS's checker lists this, but this product's checker does not list it Not on Thrustmaster's shop when checked 17 Nov 2026 (product page still live) - treat as discontinued/unavailable."
+  },
+  "Thrustmaster EVO Racing 32R Leather": {
+   "needs": "two Quick Release holders included - 'compatible with all existing and future Thrustmaster Force Feedback racing wheel bases'",
+   "fits_bases": "own checker: none | listed on base checkers: T-GT II, T300RS GT Edition, T598, T818",
+   "console_note": "PS5, PS4, Xbox Series/One (some features limited on Xbox), PC - with a Thrustmaster FFB base",
+   "source": "https://www.thrustmaster.com/en-us/products/evo-racing-32r-leather/",
+   "notes": "Checker contradictions: T-GT II's checker lists this, but this product's checker does not list it; T300RS GT Edition's checker lists this, but this product's checker does not list it; T598's checker lists this, but this product's checker does not list it; T818's checker lists this, but this product's checker does not list it No compatibility checker on this page."
+  },
+  "Thrustmaster Ferrari 250 GTO Wheel Add-On": {
+   "needs": "a Thrustmaster base with the Thrustmaster Quick Release",
+   "fits_bases": "own checker: T598 (PLAYSTATION / PC) [PC]; T300 Ferrari Integral Racing Wheel Alcantara Edition [PC]; T300RS [PC]; T300 Racing Wheel Servo Base [PC]; TS-XW Racer Sparco P310 Competition Mod [PC]; TS-XW Servo Base [PC]; TX Racing Wheel Servo Base [PC] | listed on base checkers: T-GT II, T300RS, T300RS GT Edition, T818, TS-PC Racer Ferrari 488 Challenge Edition, TS-XW Racer Sparco P310 Competition Mod, TX Racing Wheel Leather Edition",
+   "console_note": "PC only",
+   "source": "https://www.thrustmaster.com/en-us/products/ferrari-250-gto-wheel-add-on/",
+   "notes": "Checker contradictions: T-GT II's checker lists this, but this product's checker does not list it; T300RS GT Edition's checker lists this, but this product's checker does not list it; T598's own checker does not list this; T818's checker lists this, but this product's checker does not list it; TS-PC Racer Ferrari 488 Challenge Edition's checker lists this, but this product's checker does not list it; TX Racing Wheel Leather Edition's checker lists this, but this product's checker does not list it Page: compatible on PC with 'TS-PC Racer, TS-XW Racer, T-GT, T500 RS, T300 series, TX series'."
+  },
+  "Thrustmaster Ferrari 488 GT3 Wheel Add-On": {
+   "needs": "a Thrustmaster base with the Thrustmaster Quick Release",
+   "fits_bases": "own checker: T598 (PLAYSTATION / PC) [PC/PS4/PS5]; T818 Ferrari SF1000 Simulator [PC]; TS-XW Servo Base [PC/XBOX]; TS-PC Racer Servo Base [PC]; T300 Racing Wheel Servo Base [PC/PS4/PS5]; T300 Ferrari Integral Racing Wheel Alcantara Edition [PC/PS4] | listed on base checkers: T-GT II, T300RS GT Edition, T598, T818",
+   "console_note": "checker platforms: PC/PS4/PS5/XBOX",
+   "source": "https://www.thrustmaster.com/en-us/products/ferrari-488-gt3-wheel-add-on/",
+   "notes": "Checker contradictions: T-GT II's checker lists this, but this product's checker does not list it; T300RS GT Edition's checker lists this, but this product's checker does not list it"
+  },
+  "Thrustmaster Ferrari F1 Wheel Add-On": {
+   "needs": "a Thrustmaster base with the Thrustmaster Quick Release",
+   "fits_bases": "own checker: T598 (PLAYSTATION / PC) [PC/PS4/PS5]; TX Racing Wheel Servo Base [PC/XBOX]; T-GT II Servo Base [PC/PS4/PS5]; TS-XW Servo Base [PC/XBOX]; TS-PC Racer Servo Base [PC]; T300 Racing Wheel Servo Base [PC/PS4/PS5]; T818 Ferrari SF1000 Simulator [PC]; T-GT II [PC/PS4/PS5]; TS-PC RACER Ferrari 488 Challenge Edition [PC]; TS-XW Racer Sparco P310 Competition Mod [PC/XBOX]; T300 Ferrari Integral Racing Wheel Alcantara Edition [PC/PS4]; T300RS GT Edition [PC/PS3/PS4/PS5]; TX Racing Wheel Leather Edition [PC/XBOX] | listed on base checkers: T-GT II, T300RS, T300RS GT Edition, T598, T818, TS-PC Racer Ferrari 488 Challenge Edition, TS-XW Racer Sparco P310 Competition Mod, TX Racing Wheel Leather Edition",
+   "console_note": "checker platforms: PC/PS3/PS4/PS5/XBOX",
+   "source": "https://www.thrustmaster.com/en-us/products/ferrari-f1-wheel-add-on/",
+   "notes": "Checker contradictions: T300RS's checker lists this, but this product's checker does not list it"
+  },
+  "Thrustmaster Ferrari SF1000 Edition Wheel Add-On": {
+   "needs": "a Thrustmaster base with the Thrustmaster Quick Release",
+   "fits_bases": "own checker: T598 (PLAYSTATION / PC) [PC/PS4/PS5]; T818 [PC]; T300 Racing Wheel Servo Base [PC/PS4/PS5]; T-GT II [PC/PS4/PS5]; T300 Ferrari Integral Racing Wheel Alcantara Edition [PC/PS4]; T300RS [PC/PS4/PS5]; T300RS GT Edition [PC/PS4/PS5] | listed on base checkers: TS-PC Racer Ferrari 488 Challenge Edition",
+   "console_note": "checker platforms: PC/PS4/PS5",
+   "source": "https://www.thrustmaster.com/en-us/products/formula-wheel-add-on-ferrari-sf1000-edition/",
+   "notes": "Checker contradictions: T-GT II's own checker does not list this; T300RS GT Edition's own checker does not list this; T300RS's own checker does not list this; T598's own checker does not list this; T818's own checker does not list this; TS-PC Racer Ferrari 488 Challenge Edition's checker lists this, but this product's checker does not list it"
+  },
+  "Thrustmaster GT Wheel Add-On": {
+   "needs": "next-gen Quick Release - 'natively compatible with the T818 and T598'",
+   "fits_bases": "own checker: T818 Black Edition [PC]; T598 Servo Base [PC/PS5]",
+   "console_note": "checker platforms: PC/PS5",
+   "source": "https://www.thrustmaster.com/en-us/products/gt-wheel-add-on/",
+   "notes": "Checker contradictions: T598's own checker does not list this"
+  },
+  "Thrustmaster Hypercar Wheel Add-On": {
+   "needs": "next-gen Quick Release - 'natively compatible with T818, T598 and all future Thrustmaster racing wheel bases'",
+   "fits_bases": "own checker: none | listed on base checkers: T598, T818",
+   "console_note": "page lists PC, PS4, PS5, Xbox (via base)",
+   "source": "https://www.thrustmaster.com/en-us/products/hypercar-wheel-add-on/",
+   "notes": "Checker contradictions: T598's checker lists this, but this product's checker does not list it; T818's checker lists this, but this product's checker does not list it No compatibility checker on this page."
+  },
+  "Thrustmaster Rally Wheel Add-On Sparco R383 Mod": {
+   "needs": "a Thrustmaster base with the Thrustmaster Quick Release",
+   "fits_bases": "own checker: T300 Ferrari Integral Racing Wheel Alcantara Edition [PC/PS4]; T300RS [PC/PS4]; TS-XW Racer Sparco P310 Competition Mod [PC/XBOX]; TS-XW Servo Base [PC/XBOX]; TX Racing Wheel Servo Base [PC/XBOX]; T300 Racing Wheel Servo Base [PC/PS4/PS5] | listed on base checkers: T-GT II, T300RS, T300RS GT Edition, T598, TS-PC Racer Ferrari 488 Challenge Edition, TS-XW Racer Sparco P310 Competition Mod, TX Racing Wheel Leather Edition",
+   "console_note": "checker platforms: PC/PS4/PS5/XBOX",
+   "source": "https://www.thrustmaster.com/en-us/products/rally-wheel-add-on-sparco-r383-mod/",
+   "notes": "Checker contradictions: T-GT II's checker lists this, but this product's checker does not list it; T300RS GT Edition's checker lists this, but this product's checker does not list it; T598's checker lists this, but this product's checker does not list it; TS-PC Racer Ferrari 488 Challenge Edition's checker lists this, but this product's checker does not list it; TX Racing Wheel Leather Edition's checker lists this, but this product's checker does not list it Not on Thrustmaster's shop when checked 17 Nov 2026 (product page still live) - treat as discontinued/unavailable."
+  },
+  "Thrustmaster TM Competition Wheel Add-On Sparco P310 Mod": {
+   "needs": "a Thrustmaster base with the Thrustmaster Quick Release",
+   "fits_bases": "own checker: TS-XW Servo Base [PC/XBOX]; T300 Ferrari Integral Racing Wheel Alcantara Edition [PC/PS4]; T300RS [PC/PS4]; T300 Racing Wheel Servo Base [PC/PS4]; TS-XW Racer Sparco P310 Competition Mod [PC/XBOX]; TX Racing Wheel Servo Base [PC/XBOX] | listed on base checkers: T-GT II, T300RS, T300RS GT Edition, T598, TS-PC Racer Ferrari 488 Challenge Edition, TS-XW Racer Sparco P310 Competition Mod, TX Racing Wheel Leather Edition",
+   "console_note": "checker platforms: PC/PS4/XBOX",
+   "source": "https://www.thrustmaster.com/en-us/products/tm-competition-wheel-add-on-sparco-p310-mod/",
+   "notes": "Checker contradictions: T-GT II's checker lists this, but this product's checker does not list it; T300RS GT Edition's checker lists this, but this product's checker does not list it; T598's checker lists this, but this product's checker does not list it; TS-PC Racer Ferrari 488 Challenge Edition's checker lists this, but this product's checker does not list it; TX Racing Wheel Leather Edition's checker lists this, but this product's checker does not list it Not on Thrustmaster's shop when checked 17 Nov 2026 (product page still live) - treat as discontinued/unavailable. Page: 'compatible with all Thrustmaster T-Series racing wheel bases: TX and T300 servo bases, T-GT, TS-XW and even TS-PC Racer'."
+  },
+  "Thrustmaster TM Leather 28 GT Wheel Add-On": {
+   "needs": "a Thrustmaster base with the Thrustmaster Quick Release",
+   "fits_bases": "own checker: T598 (PLAYSTATION / PC) [PC/PS4]; T300 Racing Wheel Servo Base [PC/PS4]; T300 Ferrari Integral Racing Wheel Alcantara Edition [PC/PS4]; T300RS [PC/PS4]; TS-XW Racer Sparco P310 Competition Mod [PC/XBOX]; TS-XW Servo Base [PC/XBOX]; TX Racing Wheel Servo Base [PC/XBOX] | listed on base checkers: T300RS GT Edition, T598, TS-PC Racer Ferrari 488 Challenge Edition, TS-XW Racer Sparco P310 Competition Mod, TX Racing Wheel Leather Edition",
+   "console_note": "checker platforms: PC/PS4/XBOX",
+   "source": "https://www.thrustmaster.com/en-us/products/tm-leather-28-gt-wheel-add-on/",
+   "notes": "Checker contradictions: T300RS GT Edition's checker lists this, but this product's checker does not list it; T300RS's own checker does not list this; TS-PC Racer Ferrari 488 Challenge Edition's checker lists this, but this product's checker does not list it; TX Racing Wheel Leather Edition's checker lists this, but this product's checker does not list it Not on Thrustmaster's shop when checked 17 Nov 2026 (product page still live) - treat as discontinued/unavailable."
+  },
+  "Thrustmaster TM Open Wheel Add-On": {
+   "needs": "a Thrustmaster base with the Thrustmaster Quick Release",
+   "fits_bases": "own checker: T598 (PLAYSTATION / PC) [PC/PS4/PS5]; T-GT II Servo Base [PC/PS4/PS5]; TS-PC Racer Servo Base [PC]; TS-XW Servo Base [PC/XBOX]; T300 Racing Wheel Servo Base [PC/PS4/PS5]; TX Racing Wheel Servo Base [PC/XBOX]; T300 Ferrari Integral Racing Wheel Alcantara Edition [PC/PS4]; T300RS GT Edition [PC/PS4/PS5]; TS-PC RACER Ferrari 488 Challenge Edition [PC]; TS-XW Racer Sparco P310 Competition Mod [PC/XBOX]; T818 Ferrari SF1000 Simulator [PC]; T-GT II [PC/PS4/PS5]; TX Racing Wheel Leather Edition [PC/XBOX] | listed on base checkers: T-GT II, T300RS, T300RS GT Edition, T598, TS-PC Racer Ferrari 488 Challenge Edition, TS-XW Racer Sparco P310 Competition Mod, TX Racing Wheel Leather Edition",
+   "console_note": "checker platforms: PC/PS4/PS5/XBOX",
+   "source": "https://www.thrustmaster.com/en-us/products/tm-open-wheel-add-on/",
+   "notes": "Checker contradictions: T300RS's checker lists this, but this product's checker does not list it; T818's own checker does not list this"
+  }
+ },
+ "pedals": {
+  "Asetek Forte Pedals": {
+   "connection": "unknown",
+   "works_on_pc_alone": "unknown",
+   "plugs_into_bases": "unknown",
+   "console": "PC only (Compatibility: PC)",
+   "source": "https://www.asetek.com/simsports/us/product/forte-sim-racing-pedals-brake-throttle/",
+   "notes": ""
+  },
+  "Asetek Forte S-Series Pedals": {
+   "connection": "unknown",
+   "works_on_pc_alone": "unknown",
+   "plugs_into_bases": "unknown",
+   "console": "PC only (Compatibility: PC)",
+   "source": "https://www.asetek.com/simsports/us/product/forte-s-series-brake-throttle/",
+   "notes": ""
+  },
+  "Asetek Initium Pedal Set": {
+   "connection": "unknown",
+   "works_on_pc_alone": "unknown",
+   "plugs_into_bases": "unknown",
+   "console": "PC only (Compatibility: PC)",
+   "source": "https://www.asetek.com/simsports/us/product/initium-pedal-set/",
+   "notes": ""
+  },
+  "Asetek Invicta Pedals THORP II": {
+   "connection": "unknown",
+   "works_on_pc_alone": "unknown",
+   "plugs_into_bases": "unknown",
+   "console": "PC only (Compatibility: PC)",
+   "source": "https://www.asetek.com/simsports/us/product/invicta-pedals-thorp-2/",
+   "notes": "The THORP II clutch is 'only compatible with Asetek Racing pedals - not as a stand-alone product'."
+  },
+  "Asetek Invicta S-Series THORP II": {
+   "connection": "unknown",
+   "works_on_pc_alone": "unknown",
+   "plugs_into_bases": "unknown",
+   "console": "PC only (Compatibility: PC)",
+   "source": "https://www.asetek.com/simsports/us/product/invicta-s-series-thorp-2/",
+   "notes": "The THORP II clutch is 'only compatible with Asetek Racing pedals - not as a stand-alone product'."
+  },
+  "Asetek La Prima Pedals": {
+   "connection": "unknown",
+   "works_on_pc_alone": "unknown",
+   "plugs_into_bases": "unknown",
+   "console": "PC only (Compatibility: PC)",
+   "source": "https://www.asetek.com/simsports/global/product/la-prima-sim-racing-pedals-brake-throttle/",
+   "notes": ""
+  },
+  "Fanatec ClubSport Pedals V3 Inverted": {
+   "connection": "RJ12 (to Fanatec base) + USB",
+   "works_on_pc_alone": "yes - 'will work with any racing wheel, also of any other brand ... connected to PC via USB'",
+   "plugs_into_bases": "Fanatec wheel bases / racing wheels",
+   "console": "consoles only through a Fanatec wheel base (not via direct USB or the ClubSport USB Adapter)",
+   "source": "https://www.fanatec.com/us/en/p/pedals/csp_v3i/clubsport-pedals-v3-inverted",
+   "notes": ""
+  },
+  "Fanatec ClubSport Pedals V3": {
+   "connection": "RJ12 (to Fanatec base) + USB",
+   "works_on_pc_alone": "yes - 'will work with any racing wheel, also of any other brand ... connected to PC via USB'",
+   "plugs_into_bases": "Fanatec wheel bases / racing wheels",
+   "console": "consoles only through a Fanatec wheel base (not via direct USB or the ClubSport USB Adapter)",
+   "source": "https://www.fanatec.com/us/en/p/pedals/csp_v3/clubsport-pedals-v3",
+   "notes": ""
+  },
+  "Fanatec CSL Elite Pedals V2": {
+   "connection": "RJ12 + USB",
+   "works_on_pc_alone": "yes (standalone via USB)",
+   "plugs_into_bases": "All CSL Elite bases, CSL DD, Gran Turismo DD Pro, all ClubSport bases, all Podium bases",
+   "console": "PS4/PS5 via a PlayStation-licensed Fanatec base; Xbox via a Fanatec base + Xbox-licensed Fanatec wheel",
+   "source": "https://www.fanatec.com/us/en/p/pedals/csl_ep_v2/csl-elite-pedals-v2",
+   "notes": ""
+  },
+  "Fanatec CSL Pedals LC": {
+   "connection": "RJ12 + USB",
+   "works_on_pc_alone": "yes (standalone via USB)",
+   "plugs_into_bases": "All CSL Elite bases, CSL DD, Gran Turismo DD Pro, all ClubSport bases, all Podium bases",
+   "console": "via a Fanatec wheel base",
+   "source": "https://www.fanatec.com/us/en/p/pedals/csl_p_lc/csl_pedals_lc",
+   "notes": ""
+  },
+  "Fanatec CSL Pedals": {
+   "connection": "RJ12 (no USB)",
+   "works_on_pc_alone": "no - needs ClubSport USB Adapter or CSL Pedals Load Cell Kit (adds USB)",
+   "plugs_into_bases": "All CSL Elite bases, CSL DD, all ClubSport bases, all Podium bases (Gran Turismo DD Pro not in this list)",
+   "console": "via a Fanatec wheel base",
+   "source": "https://www.fanatec.com/us/en/p/pedals/csl_p/csl-pedals",
+   "notes": ""
+  },
+  "Fanatec Podium Pedals Formula": {
+   "connection": "unknown",
+   "works_on_pc_alone": "unknown",
+   "plugs_into_bases": "unknown",
+   "console": "unknown",
+   "source": "https://www.fanatec.com/us/en/p/pedals/pp_f/podium-pedals-formula",
+   "notes": "Fanatec page: 'Currently Unavailable / OUT OF STOCK'; no compatibility section shown."
+  },
+  "Heusinkveld Sprint": {
+   "connection": "USB",
+   "works_on_pc_alone": "yes (PC, Windows 10 or newer)",
+   "plugs_into_bases": "unknown (maker describes USB to PC only)",
+   "console": "no - 'not supported on Linux or consoles such as Xbox or Playstation'",
+   "source": "https://heusinkveld.com/shop/sprint-pedals/sprint/",
+   "notes": ""
+  },
+  "Heusinkveld Ultimate+": {
+   "connection": "USB (controller box)",
+   "works_on_pc_alone": "yes (PC, Windows 10 or newer)",
+   "plugs_into_bases": "unknown (maker describes USB to PC only)",
+   "console": "PC only (Windows 10 or newer)",
+   "source": "https://heusinkveld.com/shop/pedals/ultimate-3-pedal-set-black/",
+   "notes": ""
+  },
+  "Logitech PRO Racing Pedals": {
+   "connection": "unknown",
+   "works_on_pc_alone": "unknown",
+   "plugs_into_bases": "RS/PRO Racing Wheel for PlayStation/PC; G29/G923 via Logitech G Racing Adapter (sold separately)",
+   "console": "PS4/PS5 when connected to the RS/PRO Racing Wheel for PlayStation/PC or G29/G923 (via Racing Adapter)",
+   "source": "https://www.logitechg.com/en-us/shop/p/pro-racing-pedals ; https://www.logitechg.com/en-us/shop/p/racing-adapter",
+   "notes": ""
+  },
+  "Logitech RS Pedals": {
+   "connection": "USB",
+   "works_on_pc_alone": "yes (Windows, USB 2.0 port)",
+   "plugs_into_bases": "'a compatible Logitech steering wheel' for console",
+   "console": "PlayStation or Xbox 'requires connection to a compatible Logitech steering wheel'",
+   "source": "https://www.logitechg.com/en-us/shop/p/rs-pedals",
+   "notes": ""
+  },
+  "MOZA CRP2 Pedals": {
+   "connection": "USB (direct to PC) or MOZA base pedal port",
+   "works_on_pc_alone": "yes",
+   "plugs_into_bases": "MOZA bases (chart: R3, R5, R9 V2/V3, R12, R16, R21, R21 Ultra, R25 Ultra)",
+   "console": "Xbox: connect to the base with the Xbox-licensed ESX wheel; 'full compatibility with PC and Xbox systems'",
+   "source": "https://mozaracing.com/products/crp2-pedals ; https://support.mozaracing.com/en/support/solutions/articles/70000645133-moza-racing-products-compatibility",
+   "notes": ""
+  },
+  "MOZA mBooster Active Pedal": {
+   "connection": "direct to PC or base",
+   "works_on_pc_alone": "yes",
+   "plugs_into_bases": "'compatible with almost all branded bases, fully supporting MOZA's wheelbase lineup'; chart ticks mBooster Kit for all MOZA bases",
+   "console": "unknown",
+   "source": "https://mozaracing.com/products/mbooster-active-pedal ; https://mozaracing.com/pages/mbooster-active-pedal ; https://support.mozaracing.com/en/support/solutions/articles/70000645133-moza-racing-products-compatibility",
+   "notes": "'Compatible with CRP2 pedals' (works alongside CRP2 throttle)."
+  },
+  "MOZA SR-P Pedals": {
+   "connection": "USB",
+   "works_on_pc_alone": "yes - 'use them with USB together with any other brand'",
+   "plugs_into_bases": "MOZA bases (chart)",
+   "console": "unknown",
+   "source": "https://mozaracing.com/products/srp-pedals ; https://support.mozaracing.com/en/support/solutions/articles/70000645133-moza-racing-products-compatibility",
+   "notes": "Sold out on mozaracing.com (possible successor SRP2)."
+  },
+  "MOZA SRP2 Pedals": {
+   "connection": "direct to PC (USB per page wording) or MOZA base",
+   "works_on_pc_alone": "yes",
+   "plugs_into_bases": "'compatible with almost all branded bases, fully supporting MOZA's wheelbase lineup'",
+   "console": "page title: 'for PC & Xbox' (route not stated; MOZA ESX FAQ: peripherals get Xbox support by connecting to the base)",
+   "source": "https://mozaracing.com/products/srp2-pedals ; https://mozaracing.com/pages/srp2-pedals",
+   "notes": "Not in MOZA's compatibility chart."
+  },
+  "Sim-Lab XP1": {
+   "connection": "unknown",
+   "works_on_pc_alone": "unknown",
+   "plugs_into_bases": "unknown",
+   "console": "unknown",
+   "source": "https://sim-lab.eu/en-us/products/pedal-set-xp1-loadcell-sim-racing",
+   "notes": "Maker page states no connection or platform."
+  },
+  "Simagic P1000": {
+   "connection": "USB",
+   "works_on_pc_alone": "yes",
+   "plugs_into_bases": "SIMAGIC wheelbase (via Bus Port)",
+   "console": "unknown (Simagic lists only 'PC, SIMAGIC Wheelbase')",
+   "source": "https://simagic.com/products/p1000 ; https://simagic.com/pages/details-p1000",
+   "notes": ""
+  },
+  "Simagic P1000i": {
+   "connection": "USB",
+   "works_on_pc_alone": "yes",
+   "plugs_into_bases": "SIMAGIC wheelbase (via Bus Port)",
+   "console": "unknown (Simagic lists only 'PC, SIMAGIC Wheelbase')",
+   "source": "https://simagic.com/pages/details-p1000i",
+   "notes": ""
+  },
+  "Simagic P2000": {
+   "connection": "unknown",
+   "works_on_pc_alone": "unknown",
+   "plugs_into_bases": "unknown",
+   "console": "unknown",
+   "source": "https://simagic.com/products/p2000-r",
+   "notes": "Maker page states no connection or platform."
+  },
+  "Simagic P500": {
+   "connection": "USB",
+   "works_on_pc_alone": "yes",
+   "plugs_into_bases": "SIMAGIC wheelbase",
+   "console": "unknown (Simagic lists only 'PC, SIMAGIC Wheelbase')",
+   "source": "https://simagic.com/products/simagic-p500-pedals ; https://simagic.com/pages/details-p500",
+   "notes": ""
+  },
+  "Simagic P700": {
+   "connection": "unknown",
+   "works_on_pc_alone": "unknown",
+   "plugs_into_bases": "unknown",
+   "console": "unknown",
+   "source": "https://simagic.com/products/simagic-p700-pedal",
+   "notes": "Maker page states no connection or platform."
+  },
+  "Simucube ActivePedal Pro": {
+   "connection": "RJ45 to Simucube Link Hub, then USB to PC (proprietary Link system)",
+   "works_on_pc_alone": "yes - with a Simucube Link Hub (one hub per rig)",
+   "plugs_into_bases": "none directly; Simucube 3 via the shared Link Hub",
+   "console": "PC ('Gaming computer with an available USB port')",
+   "source": "https://simucube.com/en-us/products/simucube-activepedal-pro ; https://docs.simucube.com/",
+   "notes": "Third-party throttle/clutch can be used alongside; Heusinkveld connector cable available."
+  },
+  "Simucube ActivePedal Ultimate": {
+   "connection": "RJ45 to Simucube Link Hub, then USB to PC (proprietary Link system)",
+   "works_on_pc_alone": "yes - with a Simucube Link Hub (one hub per rig)",
+   "plugs_into_bases": "none directly; Simucube 3 via the shared Link Hub",
+   "console": "PC ('Gaming computer with an available USB port')",
+   "source": "https://simucube.com/en-us/products/simucube-activepedal-ultimate ; https://docs.simucube.com/",
+   "notes": "Third-party throttle/clutch can be used alongside; Heusinkveld connector cable available."
+  },
+  "Thrustmaster Raceline Pedals III LC": {
+   "connection": "USB (PC); console via Thrustmaster base",
+   "works_on_pc_alone": "yes",
+   "plugs_into_bases": "'all Thrustmaster Force Feedback racing wheel bases (excluding T500)' on consoles; on PC all bases via USB",
+   "console": "PC, PS4, PS5, Xbox via a Thrustmaster FFB base",
+   "source": "https://www.thrustmaster.com/en-us/products/raceline-pedals-iii-lc/",
+   "notes": ""
+  },
+  "Thrustmaster Raceline Pedals III": {
+   "connection": "unknown",
+   "works_on_pc_alone": "unknown",
+   "plugs_into_bases": "unknown",
+   "console": "page platforms: PC, PS4, PS5, Xbox",
+   "source": "https://www.thrustmaster.com/en-us/products/raceline-pedals-iii/",
+   "notes": "Checker contradictions: T818's checker lists this, but this product's checker does not list it No compatibility checker on this page."
+  },
+  "Thrustmaster Raceline Pedals LTE": {
+   "connection": "unknown",
+   "works_on_pc_alone": "unknown",
+   "plugs_into_bases": "checker: T598 (PLAYSTATION / PC) [PC/PS4/PS5]; T818 Ferrari SF1000 Simulator [PC]; T-GT II PACK [PC/PS4/PS5]; T-GT II [PC/PS4/PS5]; T-GT II Servo Base [PC/PS4/PS5]; TS-XW Racer Sparco P310 Competition Mod [PC/XBOX]; TS-XW Servo Base [PC/XBOX]; TS-PC RACER Ferrari 488 Challenge Edition [PC]; TS-PC Racer Servo Base [PC]; T300 Ferrari Integral Racing Wheel Alcantara Edition [PC/PS4]; T300RS [PC/PS4]; T300RS GT Edition [PC/PS4/PS5]; T300 Racing Wheel Servo Base [PC/PS4/PS5]",
+   "console": "checker platforms: PC/PS4/PS5/XBOX",
+   "source": "https://www.thrustmaster.com/en-us/products/raceline-pedals-lte/",
+   "notes": "Checker contradictions: T-GT II's own checker does not list this; T300RS GT Edition's own checker does not list this; T300RS's own checker does not list this; T598's own checker does not list this; T818's own checker does not list this; TS-PC Racer Ferrari 488 Challenge Edition's own checker does not list this; TS-XW Racer Sparco P310 Competition Mod's own checker does not list this"
+  },
+  "Thrustmaster T-LCM": {
+   "connection": "unknown",
+   "works_on_pc_alone": "unknown",
+   "plugs_into_bases": "checker: T598 (PLAYSTATION / PC) [PC/PS4/PS5]; TS-XW Servo Base [PC/XBOX]; T818 Ferrari SF1000 Simulator [PC]; T-GT II [PC/PS4/PS5]; T300RS GT Edition [PC/PS4/PS5]; T300 Ferrari Integral Racing Wheel Alcantara Edition [PC/PS4]; T300 Racing Wheel Servo Base [PC/PS4/PS5]; TS-PC RACER Ferrari 488 Challenge Edition [PC]; TS-XW Racer Sparco P310 Competition Mod [PC/XBOX]; TX Racing Wheel Leather Edition [PC/XBOX]; TX Racing Wheel Servo Base [PC/XBOX]; T248 (XBOX / PC) [PC/XBOX]; T248 (Playstation / PC) [PC/PS4/PS5]; T128 (Playstation / PC) [PC/PS4/PS5]; T150 Force Feedback [PC/PS4]",
+   "console": "checker platforms: PC/PS4/PS5/XBOX",
+   "source": "https://www.thrustmaster.com/en-us/products/t-lcm-pedals/",
+   "notes": "Checker contradictions: T248R's checker lists this, but this product's checker does not list it; T300RS's checker lists this, but this product's checker does not list it; T80 Ferrari 488 GTB Edition's checker lists this, but this product's checker does not list it; TMX's checker lists this, but this product's checker does not list it"
+  },
+  "Thrustmaster T3PA": {
+   "connection": "unknown",
+   "works_on_pc_alone": "unknown",
+   "plugs_into_bases": "checker: T598 (PLAYSTATION / PC) [PC/PS4]; TX Racing Wheel Servo Base [PC/XBOX]; T-GT II Servo Base [PC/PS4]; TS-PC Racer Servo Base [PC]; TS-XW Servo Base [PC/XBOX]; T300 Racing Wheel Servo Base [PC/PS4]; T818 Ferrari SF1000 Simulator [PC]; T-GT II [PC/PS4]; TS-PC RACER Ferrari 488 Challenge Edition [PC]; T300 Ferrari Integral Racing Wheel Alcantara Edition [PC/PS4]; T300RS GT Edition [PC/PS4]; TS-XW Racer Sparco P310 Competition Mod [PC/XBOX]; T248 (Playstation / PC) [PC/PS4]; T248 (XBOX / PC) [PC/XBOX]; T128 (Playstation / PC) [PC/PS4]; T80 Ferrari 488 GTB Edition [PC/PS4]",
+   "console": "checker platforms: PC/PS4/XBOX",
+   "source": "https://www.thrustmaster.com/en-us/products/t3pa-add-on/",
+   "notes": "Checker contradictions: T150's checker lists this, but this product's checker does not list it; T248R's checker lists this, but this product's checker does not list it; TX Racing Wheel Leather Edition's checker lists this, but this product's checker does not list it"
+  },
+  "Thrustmaster T3PM": {
+   "connection": "unknown",
+   "works_on_pc_alone": "unknown",
+   "plugs_into_bases": "checker: T598 (PLAYSTATION / PC) [PC/PS4/PS5]; TX Racing Wheel Servo Base [PC/XBOX]; T818 Ferrari SF1000 Simulator [PC]; T300 Ferrari Integral Racing Wheel Alcantara Edition [PC/PS4]; T300RS [PC/PS4]; T300 Racing Wheel Servo Base [PC/PS4/PS5]; TMX Force Feedback [PC/XBOX]; TS-XW Racer Sparco P310 Competition Mod [PC/XBOX]; TS-XW Servo Base [PC/XBOX]; T248 (XBOX / PC) [PC/XBOX]; T248 (Playstation / PC) [PC/PS4/PS5]; T128 (Playstation / PC) [PC/PS4/PS5]; T128 (XBOX / PC) [PC/XBOX]; Ferrari 458 Spider Racing Wheel [XBOX]",
+   "console": "checker platforms: PC/PS4/PS5/XBOX",
+   "source": "https://www.thrustmaster.com/en-us/products/t3pm/",
+   "notes": "Checker contradictions: T-GT II's checker lists this, but this product's checker does not list it; T150's checker lists this, but this product's checker does not list it; T300RS GT Edition's checker lists this, but this product's checker does not list it; T598's own checker does not list this; T80 Ferrari 488 GTB Edition's checker lists this, but this product's checker does not list it; TS-PC Racer Ferrari 488 Challenge Edition's checker lists this, but this product's checker does not list it; TX Racing Wheel Leather Edition's checker lists this, but this product's checker does not list it"
+  }
+ },
+ "shifters": {
+  "Asetek Dual Mode Shifter": {
+   "type": "combo (H-pattern 7+R / sequential)",
+   "connection": "unknown",
+   "works_on_pc_alone": "unknown",
+   "plugs_into_bases": "unknown",
+   "console": "Spec says 'Compatibility: PC'; text says 'Xbox ready with an Asetek Racing Xbox-compatible wheelbase and steering wheel'",
+   "source": "https://www.asetek.com/simsports/us/product/dual-mode-shifter/",
+   "notes": "Every Asetek base page says Compatibility: PC, so the Xbox claim has no matching Asetek base on the maker's own pages."
+  },
+  "Asetek Load Cell Handbrake": {
+   "type": "handbrake",
+   "connection": "unknown",
+   "works_on_pc_alone": "unknown",
+   "plugs_into_bases": "unknown",
+   "console": "Spec says 'Compatibility: PC'; text says 'Xbox ready with an Asetek Racing Xbox-compatible wheelbase and steering wheel'",
+   "source": "https://www.asetek.com/simsports/us/product/load-cell-handbrake/",
+   "notes": "Every Asetek base page says Compatibility: PC, so the Xbox claim has no matching Asetek base on the maker's own pages."
+  },
+  "Fanatec ClubSport Handbrake V2": {
+   "type": "handbrake",
+   "connection": "Fanatec base handbrake port, or handbrake port on CSL Elite V2 / ClubSport V3 / V3 inverted / CSL Elite LC Kit pedals; USB only via ClubSport USB Adapter",
+   "works_on_pc_alone": "only with the ClubSport USB Adapter",
+   "plugs_into_bases": "CSL Elite (all), CSL DD, Gran Turismo DD Pro, ClubSport V2/V2.5, ClubSport DD, ClubSport DD+, Podium DD1/DD1 PS4/DD2 (Podium DD 2026 not in list)",
+   "console": "via a Fanatec wheel base",
+   "source": "https://www.fanatec.com/us/en/p/add-ons/crd-9050002-ww/clubsport-handbrake",
+   "notes": "Analogue signal 'not optimised for belt-driven Wheel Bases'."
+  },
+  "Fanatec ClubSport Shifter SQ V1.5": {
+   "type": "combo (H-pattern / sequential)",
+   "connection": "Fanatec shifter port; USB only via ClubSport USB Adapter (optional)",
+   "works_on_pc_alone": "only with the ClubSport USB Adapter - then 'with any racing wheel of any brand (e.g. Logitech G29 / G920, Thrustmaster TX)'",
+   "plugs_into_bases": "all Fanatec wheel bases / racing wheels",
+   "console": "via a Fanatec wheel base; not via the ClubSport USB Adapter",
+   "source": "https://www.fanatec.com/us/en/p/add-ons/crd-9040002-ww/clubsport-shifter-sq",
+   "notes": ""
+  },
+  "Heusinkveld Handbrake": {
+   "type": "handbrake",
+   "connection": "USB",
+   "works_on_pc_alone": "yes (PC, Windows 10 or newer)",
+   "plugs_into_bases": "unknown (maker describes USB to PC only)",
+   "console": "PC only (Windows 10 or newer)",
+   "source": "https://heusinkveld.com/shop/handbrake-shifters/handbrake/",
+   "notes": ""
+  },
+  "Heusinkveld MagShift Mini": {
+   "type": "sequential",
+   "connection": "USB",
+   "works_on_pc_alone": "yes (PC, Windows 10 or newer)",
+   "plugs_into_bases": "unknown (maker describes USB to PC only)",
+   "console": "PC only (Windows 10 or newer)",
+   "source": "https://heusinkveld.com/shop/handbrake-shifters/magshift-mini/",
+   "notes": ""
+  },
+  "Heusinkveld MagShift": {
+   "type": "sequential",
+   "connection": "USB",
+   "works_on_pc_alone": "yes (PC, Windows 10 or newer)",
+   "plugs_into_bases": "unknown (maker describes USB to PC only)",
+   "console": "PC only (Windows 10 or newer)",
+   "source": "https://heusinkveld.com/shop/handbrake-shifters/magshift/",
+   "notes": ""
+  },
+  "Logitech Driving Force Shifter": {
+   "type": "H-pattern (6 speeds + push-down reverse)",
+   "connection": "unknown",
+   "works_on_pc_alone": "unknown",
+   "plugs_into_bases": "G923, G29, G920 ('designed to work with'); PRO Racing Wheel via Logitech G Racing Adapter on console",
+   "console": "via G29/G923 (PlayStation) or G920/G923 (Xbox)",
+   "source": "https://www.logitechg.com/en-us/shop/p/driving-force-shifter ; https://www.logitechg.com/en-us/shop/p/racing-adapter",
+   "notes": ""
+  },
+  "Logitech RS H-Shifter": {
+   "type": "H-pattern (7+R)",
+   "connection": "USB",
+   "works_on_pc_alone": "yes (Windows, USB 2.0 port)",
+   "plugs_into_bases": "PRO/RS50 bases and G-Series; 'Racing Adapter required for console'",
+   "console": "'PlayStation or XBOX compatibility requires connection to a compatible Logitech steering wheel'",
+   "source": "https://www.logitechg.com/en-us/shop/p/rs-h-shifter ; https://www.logitechg.com/en-us/shop/p/racing-adapter",
+   "notes": ""
+  },
+  "Logitech RS Shifter & Handbrake": {
+   "type": "combo (sequential / handbrake)",
+   "connection": "USB",
+   "works_on_pc_alone": "yes (Windows, USB 2.0 port)",
+   "plugs_into_bases": "'Compatible with RS/PRO Series and G Series Wheels'",
+   "console": "'PlayStation compatibility requires connection to a compatible Logitech steering wheel'",
+   "source": "https://www.logitechg.com/en-us/shop/p/rs-shifter-handbrake",
+   "notes": ""
+  },
+  "MOZA Active Shifter": {
+   "type": "combo (H-pattern / sequential / handbrake modes)",
+   "connection": "unknown",
+   "works_on_pc_alone": "unknown",
+   "plugs_into_bases": "unknown",
+   "console": "unknown",
+   "source": "https://mozaracing.com/products/active-shifter",
+   "notes": "Product page gives no compatibility info; not in MOZA chart (chart has \"Active Shifter Knob\", a different item)."
+  },
+  "MOZA HBP Handbrake": {
+   "type": "handbrake",
+   "connection": "USB to PC or base handbrake port",
+   "works_on_pc_alone": "yes",
+   "plugs_into_bases": "'a wheelbase with a handbrake port'; MOZA chart ticks all MOZA bases",
+   "console": "unknown on page; MOZA ESX FAQ: peripherals get Xbox support by connecting to the base",
+   "source": "https://mozaracing.com/pages/hbp-handbrake ; https://mozaracing.com/products/hbp-handbrake.json ; https://support.mozaracing.com/en/support/solutions/articles/70000645133-moza-racing-products-compatibility",
+   "notes": ""
+  },
+  "MOZA HGP Shifter": {
+   "type": "H-pattern (7+R)",
+   "connection": "USB to PC or MOZA base shifter port",
+   "works_on_pc_alone": "yes",
+   "plugs_into_bases": "MOZA bases (chart, incl. R3)",
+   "console": "unknown on page; MOZA ESX FAQ: peripherals get Xbox support by connecting to the base",
+   "source": "https://mozaracing.com/pages/hgp-shifter ; https://mozaracing.com/products/hgp-shifter.json ; https://support.mozaracing.com/en/support/solutions/articles/70000645133-moza-racing-products-compatibility",
+   "notes": ""
+  },
+  "MOZA SGP Sequential Shifter": {
+   "type": "sequential",
+   "connection": "USB to PC or MOZA base",
+   "works_on_pc_alone": "yes",
+   "plugs_into_bases": "MOZA bases (chart)",
+   "console": "unknown on page; MOZA ESX FAQ: peripherals get Xbox support by connecting to the base",
+   "source": "https://mozaracing.com/products/sgp-shifter ; https://support.mozaracing.com/en/support/solutions/articles/70000645133-moza-racing-products-compatibility",
+   "notes": ""
+  },
+  "Sim-Lab Push-Pull Rally Shifter": {
+   "type": "sequential (push-pull)",
+   "connection": "unknown",
+   "works_on_pc_alone": "unknown",
+   "plugs_into_bases": "mounts (physically) on Fanatec DD1/DD2, ClubSport, CSL (DD)/CSL Elite, Simucube Sport/Pro, Simagic Alpha, VRS DirectForce Pro, OSW/SC1",
+   "console": "PC ('Compatible with all PC simulator titles')",
+   "source": "https://sim-lab.eu/products/push-pull-rally-shifter-sim-racing",
+   "notes": "Mounting list is physical fit, not electrical."
+  },
+  "Sim-Lab SQ1": {
+   "type": "sequential",
+   "connection": "USB (cable included)",
+   "works_on_pc_alone": "unknown",
+   "plugs_into_bases": "unknown",
+   "console": "unknown",
+   "source": "https://sim-lab.eu/products/sequential-shifter-sq1",
+   "notes": ""
+  },
+  "Sim-Lab XB1": {
+   "type": "handbrake",
+   "connection": "USB (cable included)",
+   "works_on_pc_alone": "yes - 'can be used in any PC racing simulation title'",
+   "plugs_into_bases": "unknown",
+   "console": "PC",
+   "source": "https://sim-lab.eu/products/handbrake-xb1-loadcell-sim-racing",
+   "notes": ""
+  },
+  "Simagic DS-8X": {
+   "type": "H-pattern",
+   "connection": "USB",
+   "works_on_pc_alone": "yes",
+   "plugs_into_bases": "SIMAGIC wheelbase",
+   "console": "unknown (Simagic lists only 'PC, SIMAGIC Wheelbase')",
+   "source": "https://simagic.com/products/ds-8x-shifter ; https://simagic.com/pages/details-ds-8x",
+   "notes": ""
+  },
+  "Simagic Q1": {
+   "type": "sequential",
+   "connection": "USB",
+   "works_on_pc_alone": "yes",
+   "plugs_into_bases": "SIMAGIC wheelbase",
+   "console": "unknown (Simagic lists only 'PC, SIMAGIC Wheelbase')",
+   "source": "https://simagic.com/pages/details-q1",
+   "notes": ""
+  },
+  "Simagic Q1S": {
+   "type": "sequential",
+   "connection": "unknown",
+   "works_on_pc_alone": "unknown",
+   "plugs_into_bases": "unknown",
+   "console": "unknown",
+   "source": "https://simagic.com/products/sequential-shifter-q1s",
+   "notes": "Maker page states no connection or platform."
+  },
+  "Simagic TB-1": {
+   "type": "handbrake (dual-mode lever)",
+   "connection": "USB",
+   "works_on_pc_alone": "yes",
+   "plugs_into_bases": "SIMAGIC wheelbase",
+   "console": "unknown (Simagic lists only 'PC, SIMAGIC Wheelbase')",
+   "source": "https://simagic.com/pages/details-tb1",
+   "notes": ""
+  },
+  "Simagic TB-NEO": {
+   "type": "handbrake (dual modes)",
+   "connection": "USB",
+   "works_on_pc_alone": "yes",
+   "plugs_into_bases": "SIMAGIC wheelbase",
+   "console": "unknown (Simagic lists only 'PC, SIMAGIC Wheelbase')",
+   "source": "https://simagic.com/pages/tb-neo",
+   "notes": ""
+  },
+  "Simagic TB-RS": {
+   "type": "handbrake",
+   "connection": "USB",
+   "works_on_pc_alone": "yes",
+   "plugs_into_bases": "SIMAGIC wheelbase",
+   "console": "unknown (Simagic lists only 'PC, SIMAGIC Wheelbase')",
+   "source": "https://simagic.com/pages/details-tb-rs",
+   "notes": ""
+  },
+  "Thrustmaster TH8A": {
+   "type": "combo (H-pattern 7+1 / sequential)",
+   "connection": "USB and/or DIN",
+   "works_on_pc_alone": "yes - 'works with all racing wheels on the market on PC'",
+   "plugs_into_bases": "checker: T598 (PLAYSTATION / PC) [PC/PS4/PS5]; T150 Force Feedback [PC/PS4]; T-GT II Servo Base [PC/PS4/PS5]; TS-XW Servo Base [PC/XBOX]; TS-PC Racer Servo Base [PC]; T300 Racing Wheel Servo Base [PC/PS4/PS5]; TX Racing Wheel Servo Base [PC/XBOX]; T818 Ferrari SF1000 Simulator [PC]; T-GT II [PC/PS4/PS5]; TS-PC RACER Ferrari 488 Challenge Edition [PC]; TS-XW Racer Sparco P310 Competition Mod [PC/XBOX]; T300 Ferrari Integral Racing Wheel Alcantara Edition [PC/PS4]; T300RS GT Edition [PC/PS4/PS5]; TX Racing Wheel Leather Edition [PC/XBOX]; T248 (Playstation / PC) [PC/PS4/PS5]; T248 (XBOX / PC) [PC/XBOX]; T128 (XBOX / PC) [PC/XBOX]; T128 (Playstation / PC) [PC/PS4/PS5]",
+   "console": "Thrustmaster wheels on consoles",
+   "source": "https://www.thrustmaster.com/en-us/products/th8a-shifter-add-on/",
+   "notes": "Checker contradictions: T248R's checker lists this, but this product's checker does not list it; T300RS's checker lists this, but this product's checker does not list it; TMX's checker lists this, but this product's checker does not list it"
+  },
+  "Thrustmaster TH8S": {
+   "type": "unknown (8 gears; layout not stated)",
+   "connection": "USB and DIN",
+   "works_on_pc_alone": "yes (USB)",
+   "plugs_into_bases": "checker: T248 (XBOX / PC) [PC/XBOX]; T248 (Playstation / PC) [PC/PS5]; T128 (Playstation / PC) [PC/PS5]; TS-XW Servo Base [PC/XBOX]; T300 Racing Wheel Servo Base [PC/PS5]; TX Racing Wheel Servo Base [PC/XBOX]; T-GT II Servo Base [PC/PS5]; TS-PC Racer Servo Base [PC]; TS-XW Racer Sparco P310 Competition Mod [PC/XBOX]; TS-PC RACER Ferrari 488 Challenge Edition [PC]; T300 Ferrari Integral Racing Wheel Alcantara Edition [PC]; T300RS GT Edition [PC/PS5]; TX Racing Wheel Leather Edition [PC/XBOX]",
+   "console": "checker platforms: PC/PS5/XBOX",
+   "source": "https://www.thrustmaster.com/en-us/products/th8s-shifter-add-on/",
+   "notes": "Checker contradictions: T-GT II's checker lists this, but this product's checker does not list it; T150's checker lists this, but this product's checker does not list it; T248R's checker lists this, but this product's checker does not list it; T598's checker lists this, but this product's checker does not list it; T818's checker lists this, but this product's checker does not list it"
+  },
+  "Thrustmaster TSS Handbrake Sparco Mod+": {
+   "type": "combo (handbrake / sequential)",
+   "connection": "unknown",
+   "works_on_pc_alone": "unknown",
+   "plugs_into_bases": "checker: TS-XW Servo Base [PC/XBOX]; TS-XW Racer Sparco P310 Competition Mod [PC/XBOX]; TX Racing Wheel Servo Base [PC/XBOX]; TMX Force Feedback [PC/XBOX]; T300 Ferrari Integral Racing Wheel Alcantara Edition [PC/PS4]; T300RS [PC/PS4]; T300 Racing Wheel Servo Base [PC/PS4/PS5]",
+   "console": "PS4 with T-GT and T300 series; Xbox One with TS-XW and TX series (page)",
+   "source": "https://www.thrustmaster.com/en-us/products/tss-handbrake-sparco-mod/",
+   "notes": "Checker contradictions: T-GT II's checker lists this, but this product's checker does not list it; T128's checker lists this, but this product's checker does not list it; T150's checker lists this, but this product's checker does not list it; T300RS GT Edition's checker lists this, but this product's checker does not list it; T598's checker lists this, but this product's checker does not list it; T80 Ferrari 488 GTB Edition's checker lists this, but this product's checker does not list it; TMX's own checker does not list this; TS-PC Racer Ferrari 488 Challenge Edition's checker lists this, but this product's checker does not list it; TX Racing Wheel Leather Edition's checker lists this, but this product's checker does not list it"
+  },
+  "Thrustmaster TSS Handbrake": {
+   "type": "combo (handbrake / sequential)",
+   "connection": "USB on PC; base connection on console",
+   "works_on_pc_alone": "yes - 'Compatible on PC with all racing wheels via USB cable'",
+   "plugs_into_bases": "T128, T248, T-GT / T-GT II, T300 series, TS-XW, TX series and T598 (page)",
+   "console": "PS5, PS4, Xbox One, Xbox Series X|S with those bases",
+   "source": "https://www.thrustmaster.com/en-us/products/tss-handbrake/",
+   "notes": "Checker contradictions: T-GT II's checker lists this, but this product's checker does not list it; T248's checker lists this, but this product's checker does not list it; T248R's checker lists this, but this product's checker does not list it; T300RS GT Edition's checker lists this, but this product's checker does not list it; T598's checker lists this, but this product's checker does not list it; T818's checker lists this, but this product's checker does not list it"
+  }
+ }
+}

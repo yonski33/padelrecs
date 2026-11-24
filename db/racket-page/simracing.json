@@ -108,7 +108,7 @@
   "yes": [
    {
     "title": "Handles a strong wheelbase",
-    "t": "The frame ==stays stiff under direct drive and load-cell braking==.",
+    "t": "The frame ==stays stiff under direct drive and load-cell brakes up to 100 kg==.",
     "for": [
      "beginner",
      "intermediate"
@@ -2428,7 +2428,7 @@
    },
    {
     "title": "Outgrown fast",
-    "t": "About 2 Nm ==feels weak and slow== once you want road texture.",
+    "t": "2.3 Nm ==feels weak and slow== once you want road texture.",
     "for": [
      "intermediate"
     ],
@@ -5865,8 +5865,8 @@
   ]
  },
  "moza-r21-ultra": {
-  "tagline": "A 21 Nm direct-drive wheelbase for PC. The catch: quick-release and grinding faults can show up early.",
-  "bottom": "For PC drivers wanting big, smooth 21 Nm torque. Newcomers should start with a smaller base.",
+  "tagline": "21 Nm direct drive for PC and Xbox (ESX wheel). The catch: quick-release and grinding faults happen.",
+  "bottom": "For PC or Xbox (ESX wheel) drivers wanting big, smooth 21 Nm. Newcomers should start with a smaller base.",
   "yes": [
    {
     "title": "Huge torque",
@@ -7269,8 +7269,8 @@
   ]
  },
  "moza-srp2-pedals": {
-  "tagline": "Entry-level 100 kg load-cell pedal set for PC. The catch: the brake is far stiffer than a road car's.",
-  "bottom": "For a first load-cell brake on PC at a low price. Skip it if you want a soft, road-car brake.",
+  "tagline": "Entry 100 kg load-cell pedals for PC and Xbox. The catch: the brake is far stiffer than a road car's.",
+  "bottom": "For a first load-cell brake on PC or Xbox at a low price. Skip it if you want a soft, road-car brake.",
   "yes": [
    {
     "title": "Load-cell control",
@@ -7611,8 +7611,8 @@
   ]
  },
  "moza-r25-ultra": {
-  "tagline": "25 Nm direct drive base for PC. The catch: cranked up, it feels like a car without power steering.",
-  "bottom": "For serious PC drivers who want flagship headroom for less. Newcomers and console racers should skip it.",
+  "tagline": "25 Nm direct drive for PC and Xbox (ESX wheel). The catch: cranked up, it's a car without power steering.",
+  "bottom": "For serious PC or Xbox (ESX wheel) drivers after flagship headroom for less. Newcomers should skip it.",
   "yes": [
    {
     "title": "Huge clean headroom",

@@ -9,7 +9,7 @@ async function configFor(niche: string | undefined) {
   finally { if (before === undefined) delete process.env.NICHE; else process.env.NICHE = before; }
 }
 
-test("padel serves /rackets with no redirects but last season's ranking slugs; only icons are mapped", async () => {
+test("padel serves /rackets with no redirects but renamed and last season's ranking slugs; only icons are mapped", async () => {
   const config = await configFor(undefined);
   assert.equal(config.env.NICHE, "padel");
   const icons = (niche: string) => ["favicon.ico", "icon.svg", "apple-icon.png"].map(file => ({ source: `/${file}`, destination: `/niches/${niche}/${file}` }));
@@ -18,6 +18,10 @@ test("padel serves /rackets with no redirects but last season's ranking slugs; o
   const last = new Date().getUTCFullYear() - 1;
   // Plus "Most forgiving", folded into Best for control (owner 2026-11-14).
   assert.deepEqual(await config.redirects(), [
+    // The Thread sore-arms ranking, named for tennis elbow (owner 2026-11-19, lib/thread/look.ts THREAD_MOVED).
+    { source: "/rankings/best-padel-rackets-for-sore-arms", destination: "/rankings/best-padel-rackets-for-tennis-elbow", statusCode: 301 },
+    // "How the score works" retired on the v3 sites (owner 2026-11-22): a 308 to "How rankings work".
+    { source: "/how-we-make-these", destination: "/how-rankings-work", statusCode: 308 },
     { source: "/rankings/most-forgiving-padel-rackets", destination: "/rankings/best-control-padel-rackets", statusCode: 301 },
     ...[1, 2, 3].map(n => ({ source: `/rankings/best-padel-rackets-${last - n}`, destination: `/rankings/best-padel-rackets-${last}`, statusCode: 301 })),
   ]);

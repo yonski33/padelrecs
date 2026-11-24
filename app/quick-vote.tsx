@@ -1,5 +1,6 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
+import { siteVoice, voiceThanks } from "../lib/site-voice";
 import { MAX_TAGS, TAGS } from "../lib/tags";
 
 // One-tap verdicts (2026-11-14 pivot, owner's mockup): "Have you played with this racket?" between "What players say" and
@@ -56,7 +57,7 @@ export function ChoiceRow({ label, options, value, onPick }: { label: string; op
 /** The three verdict cards. compact: a smaller row for /rate. */
 export function VerdictButtons({ value, onPick, name, compact, disabled }: { value: Verdict | null; onPick: (v: typeof VERDICTS[number]) => void; name: string; compact?: boolean; disabled?: boolean }) {
   const [pop, setPop] = useState<Verdict | null>(null);
-  return <div className={compact ? "vb vb-compact" : "vb"} role="radiogroup" aria-label={`Your verdict on the ${name}`}>
+  return <div className={compact ? "vb vb-compact" : "vb"} role="radiogroup" aria-label={`Your take on the ${name}`}>
     {VERDICTS.map(v => <button type="button" key={v.key} role="radio" aria-checked={value === v.key} disabled={disabled}
       className={`s-${v.key}${pop === v.key ? " pop" : ""}`} onClick={() => { setPop(v.key); setTimeout(() => setPop(null), 220); onPick(v); }}>
       <b>{v.word}</b>{!compact && <small>{v.hint}</small>}
@@ -72,6 +73,8 @@ export default function QuickVote({ racketId, name, question, people, placeholde
   // After a vote: a small "few words" box that posts a normal (moderated) review, or closes with "Nah, I'm good".
   const [note, setNote] = useState<"closed" | "open" | "details" | "sending" | "sent">("closed"), [words, setWords] = useState(""), [noteError, setNoteError] = useState("");
   const token = useRef("");
+  // The site's own thank-you after the few words are sent (lib/site-voice.ts), picked once per page view.
+  const [sentLine] = useState(() => voiceThanks(""));
   const [postedAs, setPostedAs] = useState(""), [todo, setTodo] = useState<DetailStep[]>([]), [step, setStep] = useState(0), [tags, setTags] = useState<string[]>([]);
   const saved = useRef<{ id: string; edit: string } | null>(null); // the posted review, which the details are added to
 
@@ -177,7 +180,7 @@ export default function QuickVote({ racketId, name, question, people, placeholde
         {todo.length > 0 && <small>Your review is saved. Each answer is added as you tap.</small>}
       </div>
     </div>}
-    {mine && justVoted && !error && note === "sent" && <p className="qv-thanks" role="status">{`Thanks! Your review${postedAs ? ` by ${postedAs}` : ""} goes live after a quick check.`}</p>}
+    {mine && justVoted && !error && note === "sent" && <p className="qv-thanks" role="status">{siteVoice() ? `${sentLine}${postedAs ? ` Posted as ${postedAs}.` : ""}` : `Thanks! Your review${postedAs ? ` by ${postedAs}` : ""} goes live after a quick check.`}</p>}
     {mine && justVoted && !error && note === "closed" && <p className="qv-thanks" role="status">
       {`Thanks! ${others > 0 ? `Counted with ${others.toLocaleString("en-US")} other ${others === 1 ? people.one : people.many}.` : "You're the first to vote."}`}
     </p>}

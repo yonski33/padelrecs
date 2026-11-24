@@ -22,8 +22,8 @@ export default async function ScoreBeauty() {
   const example = (pos: number, mix: number, neg: number) => signals([...products, { id: "__ex", category: "all", positive: pos, mixed: mix, judged: pos + mix + neg }]).get("__ex")?.signal ?? "–";
   const steps = [
     ["Collect", "Reviews sent through this site, YouTube reviews from skincare creators and dermatologists, beauty blogs, and what people write in public skincare forums.", "oklch(0.9 0.06 20)"],
-    ["Tag the verdict", "Each review becomes one of three: loved it, mixed, or not for me. We also note the writer's skin type, when they say it, and what helped or irritated.", MARK],
-    ["Count it", `Verdicts roll up into a ${scoreLabel.toLowerCase()} per product. More reviews, more confidence.`, "oklch(0.93 0.05 155)"],
+    ["Read the take", "Each review becomes one of three: loved it, mixed, or not for me. We also note the writer's skin type, when they say it, and what helped or irritated.", MARK],
+    ["Count it", `Reviews roll up into a ${scoreLabel.toLowerCase()} per product. More reviews, more confidence.`, "oklch(0.93 0.05 155)"],
     ["Write one honest line", "We sum up what people keep saying, the good and the catch, so you can scan instead of reading 60 reviews.", "oklch(0.94 0.045 45)"],
   ];
   const rules = [
@@ -38,7 +38,7 @@ export default async function ScoreBeauty() {
     ["Why don't you test products yourselves?", "One face is one data point. Sixty reviewers across every skin type tell you far more about how a product behaves on skin like yours."],
     ["Are you dermatologists?", "No. We count what real people report. For eczema, rosacea, persistent acne or anything that worries you, see a dermatologist."],
     ["Can a brand flood you with fake reviews?", "Every review sent through this site is checked before it's published, and we watch for bursts from new visitors on the same product. Suspicious batches get held, not counted."],
-    ["What does a mixed verdict mean?", "The reviewer liked parts but wouldn't fully recommend it, for example loved the texture but it pilled under SPF. It counts as neither a yes nor a no."],
+    ["What does a mixed review mean?", "The reviewer liked parts but wouldn't fully recommend it, for example loved the texture but it pilled under SPF. It counts as neither a yes nor a no."],
   ];
   return <main className={`bp bs ${bpFontVars}`}>
     <style>{bpBodyFonts}</style>

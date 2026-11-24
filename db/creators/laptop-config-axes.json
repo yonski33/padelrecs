@@ -1,0 +1,28 @@
+{
+ "lenovo-thinkpad-t14s-gen-6": {
+  "axis": "Platform",
+  "field": "cpu",
+  "groups": [
+   { "label": "Snapdragon", "match": "snapdragon|x elite|x plus|qualcomm" },
+   { "label": "AMD", "match": "ryzen|amd" },
+   { "label": "Intel", "match": "intel|core ultra" }
+  ]
+ },
+ "asus-rog-zephyrus-g14-2025": {
+  "axis": "GPU",
+  "field": "gpu",
+  "groups": [
+   { "label": "RTX 5060", "match": "5060" },
+   { "label": "RTX 5070 Ti", "match": "5070" },
+   { "label": "RTX 5080", "match": "5080" }
+  ]
+ },
+ "asus-zenbook-14-oled-um3406": {
+  "axis": "CPU",
+  "field": "cpu",
+  "groups": [
+   { "label": "Ryzen 7 8840HS", "match": "8840hs" },
+   { "label": "Ryzen AI 300", "match": "ryzen ai|\\b3[4-7]0\\b" }
+  ]
+ }
+}

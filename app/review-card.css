@@ -1,0 +1,25 @@
+/* One review card (owner 2026-11-17): the Latest reviews page and a product page's "What players say" share these rules,
+   so both stay in sync. Loaded by app/reviews/latest-v2.tsx and app/rackets/[slug]/racket-fit.tsx. Colour and font tokens
+   come from the page (.lr2 or .rf), with fallbacks. */
+:is(.lr2, .rf) {
+  .lr2-head { display: flex; justify-content: space-between; align-items: flex-start; gap: 10px; flex-wrap: wrap; }
+  .lr2-pill { flex: none; white-space: nowrap; font: 800 13px var(--display); border: 2px solid var(--ink); border-radius: 8px; padding: 2px 9px; box-shadow: 2px 2px 0 var(--ink); transform: rotate(-1.5deg); }
+  .lr2-pill.r { transform: rotate(1.5deg); }
+  .lr2-pill.positive { background: oklch(0.88 0.17 125); } .lr2-pill.mixed { background: oklch(0.93 0.14 100); } .lr2-pill.negative { background: oklch(0.88 0.09 30); }
+  .lr2-text { margin: 0; font-size: 16.5px; line-height: 1.55; text-wrap: pretty; overflow-wrap: anywhere; }
+  .lr2-who { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; font-size: 13px; color: var(--soft, #4a4740); }
+  .lr2-who strong { color: var(--ink); }
+  .lr2-av { width: 22px; height: 22px; border-radius: 50%; border: 1.5px solid var(--ink); display: inline-flex; align-items: center; justify-content: center; font-weight: 700; font-size: 11px; color: var(--ink); flex: none; }
+  .lr2-av.a0 { background: oklch(0.85 0.1 145); } .lr2-av.a1 { background: oklch(0.85 0.1 200); } .lr2-av.a2 { background: oklch(0.85 0.1 40); } .lr2-av.a3 { background: oklch(0.88 0.12 100); }
+  .lr2-yt { width: 22px; height: 22px; border-radius: 6px; background: oklch(0.6 0.2 28); color: #fff; display: inline-flex; align-items: center; justify-content: center; font-size: 10px; flex: none; }
+  .lr2-when { margin-left: auto; font: 12px var(--mono); color: var(--mute, #6a675f); }
+  .lr2-tags { display: flex; gap: 6px; flex-wrap: wrap; }
+  .lr2-tags span { white-space: nowrap; font: 12px var(--mono); border-radius: 6px; padding: 1px 8px; background: var(--tile, #f3f1ea); color: #2b2925; }
+  .lr2-watch { font: 600 12px var(--mono); }
+  /* The product page's card: no photo column, the verdict pill top right, the text first, who and when at the bottom. */
+  .lr2-card { border: 2px solid var(--ink); border-radius: 16px; background: var(--paper, #fff); padding: 16px 18px; display: flex; flex-direction: column; gap: 9px; min-width: 0; }
+  .lr2-card .lr2-head { justify-content: flex-end; margin-bottom: -4px; }
+  .lr2-card .lr2-head:empty { display: none; }
+  .lr2-ythumb { flex: none; width: 40px; height: 22.5px; border-radius: 4px; border: 1.5px solid var(--ink); overflow: hidden; background: #e9e6dc; display: inline-block; }
+  .lr2-ythumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+}

@@ -1,4 +1,9 @@
-export type SearchRacket = { photo?: string | null; name: string; slug: string; shape?: string | null; brand?: string; notes?: number };
+export type SearchRacket = { photo?: string | null; name: string; slug: string; shape?: string | null; brand?: string; notes?: number;
+  /** For the Thread look (app/thread/live/header.tsx): the model year, the live Player score (null until it has one), and
+   *  whether this year takes its model's row (lib/compare-pairs.ts familyRowIds). Classic ignores them. */
+  year?: number; score?: number | null; current?: boolean };
+/** Current models first, older years after, each group in match order (the Thread search). */
+export const currentFirst = <T extends { current?: boolean }>(list: T[]) => [...list.filter(r => r.current !== false), ...list.filter(r => r.current === false)];
 
 function normalize(value: string) {
   return value.normalize("NFKD").replace(/[\u0300-\u036f]/g, "").toLowerCase().replace(/[^a-z0-9]+/g, " ").trim();
@@ -24,9 +29,13 @@ export function matchingRackets<T extends { name: string }>(rackets: readonly T[
   const words = normalized.split(/\s+/).filter(Boolean);
   if (!words.length) return [...rackets];
   const joined = words.join("");
-  const prepared = rackets.map(racket => { const name = normalize(racket.name); return { racket, name, compact: name.replace(/ /g, ""), parts: name.split(" ") }; });
-  const strict = prepared.filter(p => words.every(word => p.name.includes(word)) || p.compact.includes(joined));
-  const hits = strict.length ? strict : words.length ? prepared.filter(p => words.every(word => p.name.includes(word) || (/^[a-z]{4,}$/.test(word) && p.parts.some(part => within1(word, part))))) : [];
+  // The page address counts too: a model can be known by a word its name leaves out ("st5" in siux-electra-pro-st5-2026,
+  // listed as "Siux Electra Pro 2026"). Ranking still reads the name.
+  const prepared = rackets.map(racket => { const name = normalize(racket.name), slug = "slug" in racket && typeof racket.slug === "string" ? normalize(racket.slug) : "";
+    const hay = slug ? `${name} ${slug}` : name;
+    return { racket, name, hay, compact: name.replace(/ /g, ""), slugCompact: slug.replace(/ /g, ""), parts: hay.split(" ") }; });
+  const strict = prepared.filter(p => words.every(word => p.hay.includes(word)) || p.compact.includes(joined) || (!!p.slugCompact && p.slugCompact.includes(joined)));
+  const hits = strict.length ? strict : words.length ? prepared.filter(p => words.every(word => p.hay.includes(word) || (/^[a-z]{4,}$/.test(word) && p.parts.some(part => within1(word, part))))) : [];
   const rank = (p: { name: string; parts: string[] }) => p.name === normalized ? 0 : p.name.startsWith(normalized) ? 1 : words.every(w => p.parts.some(part => part.startsWith(w))) ? 2 : 3;
   const year = (p: { name: string }) => Number(p.name.match(/(?:^| )((?:19|20)\d{2})$/)?.[1] ?? 0);
   return hits.sort((a, b) => rank(a) - rank(b) || year(b) - year(a) || a.racket.name.localeCompare(b.racket.name)).map(p => p.racket);

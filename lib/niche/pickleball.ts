@@ -24,6 +24,7 @@ export const pickleball: Niche = {
   // per-site words, its own logo and colours, and the paddle profile (lib/fit-config.ts PICKLEBALL) on the match engine.
   design: "v2",
   v2copy: {
+    homeH1: ["Find your", "pickleball paddle"],
     sport: "pickleball", emoji: "🏓", strip: "a free, ad-light side project · built by pickleball players",
     madeBy: "made by people who own too many paddles 🏓", forum: "pickleball forum", blog: "pickleball blog",
     aboutStory: ["pickleballrecs started on the sideline of a 3.5 open play. Every paddle claimed more power, more spin and more control at once, every review site sold the same picks, and nobody said which ones suit a game like ours.",
@@ -34,7 +35,9 @@ export const pickleball: Niche = {
     rate: { powerRating: ["no put-away", "cannon"], controlRating: ["all over the place", "on a string"], comfortRating: ["no bite", "grabs the ball"],
       forgivenessRating: ["tiny sweet spot", "huge sweet spot"], maneuverabilityRating: ["slow in hand battles", "lightning hands"] },
     prompts: ["what surprised you", "what you came from", "how the grit held up", "who should skip it"],
-    footLine: "we read YouTube, forums & your reviews, count the verdicts, write one honest line. no sponsored picks.", footBrands: true,
+    footLine: "YouTube, forums & your reviews, read and counted, one honest line each. no sponsored picks.", footBrands: true,
+    // No "we / us" in the shared page chrome (copy rule; PickleballRecs final polish 2026-11-24).
+    plain: true,
   },
   // The home in the owner's PickleballRecs mock (2026-11-16), on the shared v2 components.
   v2home: {
@@ -107,6 +110,9 @@ export const pickleball: Niche = {
     "--site-good": "oklch(0.92 0.17 105)",
     "--site-soso": "oklch(0.95 0.08 105)",
     "--site-wash": "oklch(0.985 0.035 105)",
+    // Product page v11 (2026-11-17): the build cards' tint and How it plays' top band.
+    "--site-tint": "oklch(0.96 0.07 105)",
+    "--site-top": "oklch(0.975 0.05 105)",
     "--site-wash-line": "oklch(0.88 0.08 105)",
     "--site-shadow": "oklch(0.62 0.12 235)",
     "--site-scale": "linear-gradient(90deg, oklch(0.95 0.06 105), oklch(0.8 0.12 105) 50%, #17203a)",
@@ -149,28 +155,29 @@ export const pickleball: Niche = {
   rowDetail: { column: "core", suffix: " core" },
   // Add new terms at the end; renaming or removing one orphans it on existing reviews.
   tags: [
-    { label: "easy power", tone: "pos" },
-    { label: "great pop", tone: "pos" },
-    { label: "good control", tone: "pos" },
-    { label: "great for dinks", tone: "pos" },
-    { label: "lots of spin", tone: "pos" },
-    { label: "forgiving", tone: "pos" },
-    { label: "fast hands", tone: "pos" },
-    { label: "arm-friendly", tone: "pos" },
-    { label: "small sweet spot", tone: "neg" },
-    { label: "hard to control", tone: "neg" },
-    { label: "low spin", tone: "neg" },
-    { label: "dead spots", tone: "neg" },
-    { label: "delamination", tone: "neg" },
-    { label: "durability issues", tone: "neg" },
-    { label: "firm", tone: "neutral" },
-    { label: "soft", tone: "neutral" },
+    { label: "easy power", tone: "pos", says: "say it gives easy power" },
+    { label: "great pop", tone: "pos", says: "say it has great pop" },
+    { label: "good control", tone: "pos", says: "say it has good control" },
+    { label: "great for dinks", tone: "pos", says: "say it is great for dinks" },
+    { label: "lots of spin", tone: "pos", says: "say it gives lots of spin" },
+    { label: "forgiving", tone: "pos", says: "say it is forgiving" },
+    { label: "fast hands", tone: "pos", says: "say it is fast in hand battles" },
+    { label: "arm-friendly", tone: "pos", says: "say it is kind to the arm" },
+    { label: "small sweet spot", tone: "neg", says: "say it has a small sweet spot" },
+    { label: "hard to control", tone: "neg", says: "say it is hard to control" },
+    { label: "low spin", tone: "neg", says: "say it gives little spin" },
+    { label: "dead spots", tone: "neg", says: "report dead spots" },
+    { label: "delamination", tone: "neg", says: "report delamination" },
+    { label: "durability issues", tone: "neg", says: "report durability issues" },
+    { label: "firm", tone: "neutral", says: "say it feels firm" },
+    { label: "soft", tone: "neutral", says: "say it feels soft" },
   ],
   // Same bar as padel (owner via the recs PM 2026-11-15: "fit bar = 6, same rules as padel"); under 15 the verdict and % say
   // they rest on fewer reports.
   fit: { minReports: 6, fewReports: 15,
-    // Same gate as padel: with a level picked, only paddles whose suits score reaches the bar are candidates.
-    levelGate: { beginner: 60, intermediate: 50, advanced: 50 },
+    // One level source (Grok audit 2026-11-17, owner rule): the gate is the page's own "Generally best for" bar (lib/fit-verdict
+    // SUITS_OK 62), so a level the page doesn't list is never Worth a look or better (it was 60 / 50 / 50).
+    levelGate: { beginner: 62, intermediate: 62, advanced: 62 },
     // Match audit 2026-11-16: gate on 5+ players or an expert value only; an expert's level reaches the next level at 55, so
     // an "intermediate" paddle stays in advanced lists (it was 45, under the gate).
     gateMinPlayers: 5, expertAdjacentSuits: 55,
@@ -185,7 +192,16 @@ export const pickleball: Niche = {
       // PickleballRecs' own (audit 2026-11-16): fine-tune penalty only; the name only clamps the axis while players have said
       // little (owner 2026-11-16: "weakEvidence"); sore arm demotes 14 mm cores and firm feels a little; spin has its own %.
       finePenalty: 0.35, labelClamp: "weakEvidence", armSpecDemote: { core14: 0.04, firm: 0.03 }, styles: ["control", "balance", "power", "spin"],
-      traits: ["power", "pop", "control", "spin", "forgiveness", "speed", "arm"], complaint: ["forgiveness", "arm"] } },
+      traits: ["power", "pop", "control", "spin", "forgiveness", "speed", "arm"], complaint: ["forgiveness", "arm"],
+      // Grok audit 2026-11-17 (owner-approved plan): bars span the catalogue (108 of 178 read "Moderate power" at a floor of 3).
+      // and a bar never reads the opposite of its own page's Why yes / Why not (#8 #9).
+      lowShare: 0.2, pageBars: true,
+      // and a power, control or spin pick needs that bar above 3 for a Strong fit (padel #438, audit #3 #4 #12).
+      styleBarMax: 3,
+      // A paddle's own style never scores under "balance", the opposite style never over it (#15).
+      styleOrder: true,
+      // Curated lists (db/curated/pickleball.json, owner 2026-11-19): as padel, curated #1–3 are at least Strong fits.
+      curatedTop: [90, 86, 82] } },
   finder: {
     title: "Pickleball Paddle Finder Quiz",
     heading: "Which pickleball paddle is right for you?",
@@ -231,15 +247,16 @@ export const pickleball: Niche = {
   topLists: [
     { slug: "best-pickleball-paddles", label: "Best overall", title: "Best Pickleball Paddles", minReviews: 12,
       intro: "The paddles players are most consistently happy with." },
+    // Grok audit 2026-11-17 (#3 #4 #12): a trait list takes only paddles whose own bar for it is 4+.
     { slug: "best-power-pickleball-paddles", label: "Best for power", title: "Best Pickleball Paddles for Power", minReviews: 10,
       intro: "Paddles players keep describing as powerful: easy power and pop.",
-      trait: { tags: ["easy power", "great pop"], minShare: 0.2, noun: "power or pop" } },
+      trait: { tags: ["easy power", "great pop"], minShare: 0.2, noun: "power or pop", bar: { key: "power", min: 4 } } },
     { slug: "best-control-pickleball-paddles", label: "Best for control", title: "Best Pickleball Paddles for Control", minReviews: 10,
       intro: "Paddles players praise for control, dinks and resets.",
-      trait: { tags: ["good control", "great for dinks"], minShare: 0.2, against: ["hard to control"], noun: "control or dinks" } },
+      trait: { tags: ["good control", "great for dinks"], minShare: 0.2, against: ["hard to control"], noun: "control or dinks", bar: { key: "control", min: 4 } } },
     { slug: "best-spin-pickleball-paddles", label: "Best for spin", title: "Best Pickleball Paddles for Spin", minReviews: 10,
       intro: "Paddles players say put lots of spin on the ball.",
-      trait: { tags: ["lots of spin"], minShare: 0.2, against: ["low spin"], noun: "spin" } },
+      trait: { tags: ["lots of spin"], minShare: 0.2, against: ["low spin"], noun: "spin", bar: { key: "spin", min: 4 } } },
     // For a kind of player (owner's mock, via the recs PM 2026-11-16): the home quick match's order for the pick, with the
     // level gate for beginners. No "under $100" list: we hold no prices.
     { slug: "best-pickleball-paddles-for-tennis-elbow", label: "Best for tennis elbow", title: "Best Pickleball Paddles for Tennis Elbow", minReviews: 10,

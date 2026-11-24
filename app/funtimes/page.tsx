@@ -3,6 +3,10 @@ import { and, count, desc, eq, notLike } from "drizzle-orm";
 import { database } from "../../db/data";
 import { reviews, rackets, externalReviews, brands } from "../../db/schema";
 import { isAdmin } from "./auth";
+import { ReviewActions, ApproveAll, DeleteRejected, DeleteAllRejected } from "./review-actions";
+import { QuickEdit } from "./quick-edit";
+/** Player reviews per page in the queue (owner 2026-11-17: 100). */
+const QUEUE_PAGE = 100;
 import { getCurrentUser } from "../../lib/supabase/auth";
 import RacketPicker from "../racket-picker";
 import RacketSpecs from "./racket-specs";
@@ -12,10 +16,19 @@ import DeleteWebReview from "./delete-web-review";
 import { oldSlugs } from "../../db/racket-slugs";
 import { Stars } from "../components";
 import { TagCheckboxes, TagList } from "../tags";
-import { niche, catalogPath, productHref, isV2 } from "../../lib/niche";
+import { niche, catalogPath, productHref } from "../../lib/niche";
 import { fitConfigFor } from "../../lib/fit-config";
 import { productVariants } from "../../lib/variants";
 import { FinderForm, FinderResults, allSources } from "./finder";
+import { AdminNav } from "./admin-nav";
+import { redirect } from "next/navigation";
+import { commentsHref } from "../../lib/admin-comments";
+import { StoriesAdmin } from "./stories-admin";
+import { storiesSite } from "../../lib/thread/sites";
+import { TraitsAdmin } from "./traits-admin";
+import { AccountsAdmin } from "./accounts-admin";
+import { threadSite } from "../../lib/thread/look";
+import { accountSite } from "../../lib/thread/sites";
 import { reviewSites, searchInput, searchReviews } from "../../db/review-search";
 const w = niche.words;
 export const dynamic = "force-dynamic";
@@ -27,6 +40,7 @@ const messages: Record<string,string> = {
  pending:"Review moved back to pending and hidden from the public feed.",
  web:"Web review published.",
  "edit-saved":"Review updated.",
+ deleted:"Rejected reviews deleted permanently.",
  "web-deleted":"Web review deleted. It leaves the public pages within about a minute.",
  "edit-invalid":"Could not open the review editor. Please try again.",
  invalid:`Please check all fields. A web review needs an existing ${w.one} or a new brand, model and year (1980–2100), an excerpt of at least 20 characters or a summary of at least 30, source details, and a valid HTTP or HTTPS source link.`,
@@ -52,6 +66,23 @@ export default async function Admin({searchParams}:{searchParams:Promise<{eviden
  const status = q.status==="approved"||q.status==="rejected" ? q.status : "pending";
  const page = Math.max(1, Math.min(100000, parseInt(q.page||"1",10)||1));
  const db = await database();
+ if (q.tab === "traits" && threadSite(niche.id)) {
+  return <main><div className="page-title"><h1>Review admin</h1><p className="muted">“How does it play?” and the overall tally: fix the counts, remove abused votes, freeze voting.</p></div>
+  <AdminNav current="traits"/>
+  <TraitsAdmin racket={q.racket} result={q.result} rackets={(await db.select({ id: rackets.id, slug: rackets.slug, name: rackets.name, shape: rackets.shape }).from(rackets)).sort((a, b) => a.name.localeCompare(b.name))}/></main>;
+ }
+ if (q.tab === "accounts" && accountSite(niche.id)) {
+  return <main><div className="page-title"><h1>Review admin</h1><p className="muted">Player accounts: reserved names on the Thread pages.</p></div>
+  <AdminNav current="accounts"/>
+  <AccountsAdmin result={q.result} q={q.q}/></main>;
+ }
+ if (q.tab === "stories" && storiesSite(niche.id)) {
+  return <main><div className="page-title"><h1>Review admin</h1><p className="muted">Members' stories (PadelRecs pilot): approve them to show on /stories.</p></div>
+  <AdminNav current="stories"/>
+  <StoriesAdmin status={q.status} result={q.result}/></main>;
+ }
+ // The Comments tab moved to its own page (owner 2026-11-24, /funtimes/comments); old links land there with their filters.
+ if (q.tab === "comments" && threadSite(niche.id)) redirect(commentsHref({ status: q.status === "pending" || q.status === "approved" || q.status === "rejected" ? q.status : "all", q: q.q, racket: q.racket }));
  if (find) {
   const result = await searchReviews(db, finderInput, sites);
   return <main><div className="page-title"><h1>Review admin</h1><p className="muted">Find and fix published web reviews on every site.</p></div>
@@ -71,7 +102,7 @@ export default async function Admin({searchParams}:{searchParams:Promise<{eviden
  const [models, totals, queue, external, allBrands] = await Promise.all([
   db.select().from(rackets).orderBy(rackets.name),
   db.select({status:reviews.status,total:count()}).from(reviews).where(notLike(reviews.id,"demo-%")).groupBy(reviews.status),
-  db.select().from(reviews).where(and(eq(reviews.status,status),notLike(reviews.id,"demo-%"))).orderBy(desc(reviews.createdAt)).limit(21).offset((page-1)*20),
+  db.select().from(reviews).where(and(eq(reviews.status,status),notLike(reviews.id,"demo-%"))).orderBy(desc(reviews.createdAt)).limit(QUEUE_PAGE+1).offset((page-1)*QUEUE_PAGE),
   web ? db.select().from(externalReviews).where(notLike(externalReviews.id,"demo-%")).orderBy(desc(externalReviews.createdAt)).limit(21).offset((page-1)*20) : Promise.resolve([]),
   (web||specs) ? db.select({id:brands.id,name:brands.name}).from(brands).orderBy(brands.name) : Promise.resolve([])
  ]);
@@ -98,20 +129,19 @@ export default async function Admin({searchParams}:{searchParams:Promise<{eviden
  </div><aside><section><h2>Before you publish</h2><p>Use a short, accurate excerpt. Include a direct source link and respect the original author’s context.</p></section></aside></div> : <>
  <div className="admin-filters" aria-label="Review status">{["pending","approved","rejected"].map(s=><a key={s} aria-current={status===s?"page":undefined} href={`/funtimes?status=${s}`}>{s[0].toUpperCase()+s.slice(1)} ({totals.find(t=>t.status===s)?.total||0})</a>)}</div>
 
- <div className="admin-queue">{queue.slice(0,20).map(r=>{const model=models.find(m=>m.id===r.racketId);return <article className="review" key={r.id}>
+ {status!=="approved"&&<ApproveAll count={Math.min(queue.length,QUEUE_PAGE)}/>}
+ {status==="rejected"&&<DeleteAllRejected total={Number(totals.find(t=>t.status==="rejected")?.total||0)}/>}
+ <div className="admin-queue">{queue.slice(0,QUEUE_PAGE).map(r=>{const model=models.find(m=>m.id===r.racketId);return <article className="review" key={r.id}>
  <div className="review-top"><Stars rating={r.rating}/><span className="admin-status">{r.status}</span></div><h3><a href={model ? productHref(model) : catalogPath}>{model?.name}</a></h3>
- <p className="review-text">{r.reviewText}</p><TagList tags={r.tags}/>{variantLine(r.variant)}<div className="review-meta">{[r.playerLevel,r.playingSide,r.playingStyle,r.timeWithRacket].filter(Boolean).join(" · ")||`No ${niche.people.one} details provided`}</div>
- <div className="byline"><span>by <b>{r.alias||`Anonymous ${niche.people.one}`}</b></span><time dateTime={r.createdAt}>{date(r.createdAt)}</time></div>
+ <QuickEdit id={r.id} field="text" value={r.reviewText}/><TagList tags={r.tags}/>{variantLine(r.variant)}<div className="review-meta">{[r.playerLevel,r.playingSide,r.playingStyle,r.timeWithRacket].filter(Boolean).join(" · ")||`No ${niche.people.one} details provided`}</div>
+ <div className="byline"><span>by <QuickEdit id={r.id} field="alias" value={r.alias??""} empty={`Anonymous ${niche.people.one}`}/></span><QuickEdit id={r.id} field="date" value={r.createdAt}/></div>
  <p className="small muted">Private email: {r.email||"Not provided"}</p>
  <p><a href={`/funtimes/edit-review?type=player&id=${encodeURIComponent(r.id)}`}>Edit review</a></p>
- <div className="admin-actions">{["approved","rejected","pending"].filter(s=>s!==r.status).map(next=><form action="/api/funtimes/reviews" method="post" key={next}><input type="hidden" name="id" value={r.id}/><input type="hidden" name="status" value={next}/><input type="hidden" name="expectedStatus" value={r.status}/><input type="hidden" name="returnStatus" value={status}/><button type="submit" className={next==="approved"?"":"secondary-button"}>{next==="approved"?"Approve":next==="rejected"?"Reject":"Move to pending"}</button></form>)}</div>
+ <ReviewActions id={r.id} status={r.status as "pending"|"approved"|"rejected"} back={status}/>
+ {r.status==="rejected"&&<DeleteRejected id={r.id}/>}
  </article>})}{!queue.length && <p className="admin-empty">No {status} submissions.</p>}</div>
- <div className="admin-pagination">{page>1&&<a href={`/funtimes?status=${status}&page=${page-1}`}>← Newer</a>}{queue.length>20&&<a href={`/funtimes?status=${status}&page=${page+1}`}>Older →</a>}</div>
+ <div className="admin-pagination">{page>1&&<a href={`/funtimes?status=${status}&page=${page-1}`}>← Newer</a>}{queue.length>QUEUE_PAGE&&<a href={`/funtimes?status=${status}&page=${page+1}`}>Older →</a>}</div>
  </>}
  </main>;
 }
 
-function AdminNav({current}:{current:"find"|"player"|"web"|"specs"|"expert"}) {
- const at=(tab:typeof current)=>current===tab?"page" as const:undefined;
- return <nav className="admin-nav" aria-label="Admin sections"><a href="/funtimes?tab=find" aria-current={at("find")}>Find &amp; fix</a><a href="/funtimes" aria-current={at("player")}>{`${niche.people.One} submissions`}</a><a href="/funtimes?tab=web" aria-current={at("web")}>Web reviews</a><a href="/funtimes?tab=specs" aria-current={at("specs")}>{`${w.Many} & specs`}</a>{isV2 && <a href="/funtimes?tab=expert" aria-current={at("expert")}>Expert values</a>}<form method="post" action="/auth/signout" style={{marginLeft:"auto"}}><button className="text-button">Sign out</button></form></nav>;
-}

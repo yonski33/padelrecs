@@ -1,0 +1,65 @@
+[
+ {
+  "name": "Thrustmaster TH8S",
+  "set": {
+   "core": "PC via USB; PS5 / Xbox One / Xbox Series X|S with a compatible Thrustmaster wheel"
+  },
+  "source": "https://www.thrustmaster.com/en-us/products/th8s-shifter-add-on/"
+ },
+ {
+  "name": "Asetek Dual Mode Shifter",
+  "set": {
+   "core": "PC"
+  },
+  "source": "https://www.asetek.com/simsports/us/product/dual-mode-shifter/"
+ },
+ {
+  "name": "Asetek Load Cell Handbrake",
+  "set": {
+   "core": "PC"
+  },
+  "source": "https://www.asetek.com/simsports/us/product/load-cell-handbrake/"
+ },
+ {
+  "name": "MOZA R5",
+  "set": {
+   "core": "PC; Xbox with MOZA ESX Steering Wheel"
+  },
+  "source": "https://support.mozaracing.com/en/support/solutions/articles/70000663979-xbox-faq"
+ },
+ {
+  "name": "MOZA HGP Shifter",
+  "set": {
+   "core": "PC; Xbox through a MOZA base with the ESX wheel"
+  },
+  "source": "https://support.mozaracing.com/en/support/solutions/articles/70000663979-xbox-faq"
+ },
+ {
+  "name": "MOZA SGP Sequential Shifter",
+  "set": {
+   "core": "PC; Xbox through a MOZA base with the ESX wheel"
+  },
+  "source": "https://support.mozaracing.com/en/support/solutions/articles/70000663979-xbox-faq"
+ },
+ {
+  "name": "MOZA HBP Handbrake",
+  "set": {
+   "core": "PC; Xbox through a MOZA base with the ESX wheel"
+  },
+  "source": "https://support.mozaracing.com/en/support/solutions/articles/70000663979-xbox-faq"
+ },
+ {
+  "name": "Logitech RS H-Shifter",
+  "set": {
+   "core": "PC via USB; PlayStation / Xbox through a compatible Logitech wheel (G29 / G920 / G923 need the G Racing Adapter)"
+  },
+  "source": "https://www.logitechg.com/en-us/shop/p/rs-h-shifter"
+ },
+ {
+  "name": "Simagic P500",
+  "set": {
+   "review_summary": "Many drivers like it as a well-built load cell upgrade after G29 pedals (it connects to a PC by USB, not to the G29), with easy setup and adjustable springs or elastomers. Brake consistency is the doubt, with a few finding it inconsistent or needing a lot of force. One unit's haptics froze until power cycled, and one driver hated it."
+  },
+  "source": "https://simagic.com/pages/details-p500"
+ }
+]

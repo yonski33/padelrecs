@@ -1,0 +1,679 @@
+{
+ "_about": "Short names reviewers use for catalog products (lib/thread/mention-links.ts). aliases: per slug, linked only when unique and not part of another product's name; defaults: base-model names that are allowed inside variant names (e.g. \"Coral\" = the original Coral 16mm). Sonnet-drafted 2026-11-23, script-checked.",
+ "pickleball": {
+  "aliases": {
+   "six-zero-black-opal-14mm-elongated": [
+    "Black Opal Elongated",
+    "Six Zero Black Opal Elongated"
+   ],
+   "six-zero-boulder-opal-14mm": [
+    "Boulder Opal",
+    "Six Zero Boulder Opal"
+   ],
+   "six-zero-coral-16mm": [
+    "Original Coral",
+    "Original Six Zero Coral",
+    "Coral 16"
+   ],
+   "six-zero-coral-pro-16mm": [
+    "Coral Pro",
+    "Six Zero Coral Pro",
+    "Coral Pro 16"
+   ],
+   "six-zero-coral-16mm-lightweight": [
+    "Coral Lightweight",
+    "Lightweight Coral",
+    "Six Zero Coral Lightweight"
+   ],
+   "six-zero-ruby": [
+    "Original Ruby"
+   ],
+   "six-zero-ruby-pro-14mm": [
+    "Ruby Pro",
+    "Six Zero Ruby Pro",
+    "Ruby Pro 14"
+   ],
+   "six-zero-infinity-edgeless-ruby": [
+    "Infinity Ruby",
+    "Six Zero Infinity Ruby"
+   ],
+   "six-zero-infinity-edgeless-black-diamond-power": [
+    "Infinity Black Diamond",
+    "Infinity Black Diamond Power",
+    "Six Zero Infinity Black Diamond"
+   ],
+   "six-zero-double-black-diamond-control": [
+    "Double Black Diamond",
+    "Six Zero Double Black Diamond",
+    "Six Zero Double Black",
+    "16mm Double Black Diamond",
+    "Double Black Diamond 16",
+    "Double Black"
+   ],
+   "helios-the-apollo": [
+    "Helios Apollo"
+   ],
+   "crbn1-trufoam-genesis": [
+    "CRBN 1 Genesis",
+    "CRBN1 Genesis",
+    "CRBN 1 TruFoam Genesis",
+    "CRBN 1 Genesis TruFoam",
+    "Genesis 1"
+   ],
+   "crbn2-trufoam-genesis": [
+    "CRBN 2 Genesis",
+    "CRBN2 Genesis",
+    "CRBN 2 TruFoam Genesis",
+    "CRBN 2 Genesis TruFoam",
+    "Genesis 2"
+   ],
+   "crbn4-trufoam-waves": [
+    "CRBN 4 Waves",
+    "CRBN4 Waves",
+    "CRBN 4 TruFoam Waves",
+    "CRBN 4 Waves TruFoam"
+   ],
+   "crbn1-trufoam-waves": [
+    "CRBN 1 Waves",
+    "CRBN1 Waves",
+    "CRBN 1 TruFoam Waves",
+    "CRBN 1 Waves TruFoam"
+   ],
+   "crbn4-trufoam-genesis": [
+    "CRBN 4 Genesis",
+    "CRBN4 Genesis",
+    "CRBN 4 TruFoam Genesis",
+    "CRBN 4 Genesis TruFoam",
+    "Genesis 4"
+   ],
+   "crbn3-trufoam-genesis": [
+    "CRBN 3 Genesis",
+    "CRBN3 Genesis",
+    "CRBN 3 TruFoam Genesis",
+    "CRBN 3 Genesis TruFoam",
+    "Genesis 3"
+   ],
+   "crbn1-trufoam-barrage": [
+    "CRBN 1 Barrage",
+    "CRBN1 Barrage",
+    "CRBN 1 TruFoam Barrage",
+    "CRBN 1 Barrage TruFoam"
+   ],
+   "crbn4-trufoam-barrage": [
+    "CRBN 4 Barrage",
+    "CRBN4 Barrage",
+    "CRBN 4 TruFoam Barrage",
+    "CRBN 4 Barrage TruFoam"
+   ],
+   "crbn2-trufoam-waves": [
+    "CRBN 2 Waves",
+    "CRBN2 Waves",
+    "CRBN 2 TruFoam Waves",
+    "CRBN 2 Waves TruFoam"
+   ],
+   "crbn3-trufoam-barrage": [
+    "CRBN 3 Barrage",
+    "CRBN3 Barrage",
+    "CRBN 3 TruFoam Barrage",
+    "CRBN 3 Barrage TruFoam"
+   ],
+   "vatic-pro-prism-flash": [
+    "Vatic Prism Flash",
+    "Vatic Pro Prism",
+    "Prism Flash 14"
+   ],
+   "vatic-pro-saga": [
+    "Vatic Saga"
+   ],
+   "vatic-pro-v-sol-pro": [
+    "Vatic V-Sol Pro"
+   ],
+   "vatic-pro-v-sol-tour": [
+    "Vatic V-Sol Tour"
+   ],
+   "joola-hyperion-pro-iv": [
+    "Hyperion Pro 4",
+    "Joola Hyperion Pro 4",
+    "Hyperion 4"
+   ],
+   "joola-hyperion-pro-v": [
+    "Hyperion Pro 5",
+    "Joola Hyperion Pro 5",
+    "Hyperion 5"
+   ],
+   "joola-perseus-pro-iv": [
+    "Perseus Pro 4",
+    "Joola Perseus Pro 4",
+    "Perseus 4"
+   ],
+   "joola-perseus-pro-v": [
+    "Perseus Pro 5",
+    "Joola Perseus Pro 5",
+    "Perseus 5"
+   ],
+   "joola-magnus-pro-iv": [
+    "Magnus Pro 4",
+    "Joola Magnus Pro 4"
+   ],
+   "joola-scorpeus-pro-iv": [
+    "Scorpeus Pro 4",
+    "Joola Scorpeus Pro 4",
+    "Scorpius Pro IV",
+    "Scorpius Pro 4",
+    "Scorpeus 4"
+   ],
+   "joola-scorpeus-pro-v": [
+    "Scorpeus Pro 5",
+    "Joola Scorpeus Pro 5",
+    "Scorpius Pro V",
+    "Scorpius Pro 5",
+    "Scorpeus 5"
+   ],
+   "joola-agassi-pro-v": [
+    "Agassi Pro 5",
+    "Joola Agassi Pro 5",
+    "Agassi V"
+   ],
+   "joola-kosmos-pro-v": [
+    "Kosmos Pro 5",
+    "Joola Kosmos Pro 5",
+    "Kosmos",
+    "Joola Kosmos"
+   ],
+   "joola-hyperion-cas": [
+    "Hyperion CAS 16",
+    "Hyperion CAS 13.5",
+    "Joola CAS"
+   ],
+   "joola-perseus-cfs": [
+    "Perseus CFS 16",
+    "Joola Perseus CFS 16"
+   ],
+   "joola-perseus-3s-dual": [
+    "Perseus 3S",
+    "Joola Perseus 3S"
+   ],
+   "joola-hyperion-3s-dual": [
+    "Hyperion 3S",
+    "Joola Hyperion 3S"
+   ],
+   "joola-scorpeus-3s": [
+    "Scorpius 3S"
+   ],
+   "joola-scorpeus-heat-vision": [
+    "Heat Vision",
+    "Scorpeus Heat",
+    "Scorpius Heat Vision"
+   ],
+   "joola-perseus-power-fx": [
+    "Perseus FX",
+    "Perseus Power"
+   ],
+   "joola-graf-pro": [
+    "Joola Graf"
+   ],
+   "selkirk-slk-halo-power-max": [
+    "Halo Power Max",
+    "Halo Max",
+    "Selkirk Halo Max",
+    "Selkirk Halo Power Max",
+    "SLK Halo Max"
+   ],
+   "selkirk-slk-halo-power-xl": [
+    "Halo Power XL",
+    "Halo XL",
+    "Selkirk Halo XL",
+    "Selkirk Halo Power XL",
+    "SLK Halo XL"
+   ],
+   "selkirk-labs-project-boomstik-elongated": [
+    "Boomstik Elongated",
+    "Boomstick Elongated",
+    "Selkirk Boomstik Elongated",
+    "Selkirk Boomstick Elongated",
+    "Selkirk Project Boomstik Elongated",
+    "Selkirk LABS Boomstik Elongated",
+    "Project Boomstick Elongated",
+    "LABS Boomstik Elongated"
+   ],
+   "selkirk-labs-project-boomstik-widebody": [
+    "Boomstik Widebody",
+    "Boomstick Widebody",
+    "Selkirk Boomstik Widebody",
+    "Selkirk Boomstick Widebody",
+    "Selkirk Project Boomstik Widebody",
+    "Selkirk LABS Boomstik Widebody",
+    "Project Boomstick Widebody",
+    "LABS Boomstik Widebody"
+   ],
+   "selkirk-labs-project-007": [
+    "Selkirk 007",
+    "Project 007",
+    "Selkirk Project 007",
+    "LABS 007"
+   ],
+   "selkirk-luxx-control-air-epic": [
+    "Luxx Epic",
+    "Selkirk Luxx Epic",
+    "Selkirk LUXX Air Epic",
+    "Luxx Air Epic"
+   ],
+   "selkirk-luxx-control-air-invikta": [
+    "Invikta",
+    "Luxx Invikta",
+    "Selkirk Luxx Invikta",
+    "Selkirk Invikta",
+    "Luxx Air Invikta"
+   ],
+   "selkirk-slk-era-power": [
+    "SLK Era",
+    "Selkirk Era",
+    "Selkirk Era Power",
+    "Era Power"
+   ],
+   "bread-butter-loco-hybrid": [
+    "Butter Loco Hybrid",
+    "B&B Loco Hybrid",
+    "BnB Loco Hybrid",
+    "Bread Butter Loco Hybrid"
+   ],
+   "bread-butter-loco-elongated": [
+    "Butter Loco Elongated",
+    "B&B Loco Elongated",
+    "BnB Loco Elongated",
+    "Bread Butter Loco Elongated"
+   ],
+   "bread-butter-loco-standard": [
+    "Butter Loco Standard",
+    "B&B Loco Standard",
+    "BnB Loco Standard",
+    "Bread Butter Loco Standard"
+   ],
+   "bread-butter-loco-2-elongated": [
+    "Butter Loco 2 Elongated",
+    "B&B Loco 2 Elongated",
+    "BnB Loco 2 Elongated",
+    "Bread Butter Loco 2 Elongated",
+    "Loco 2",
+    "Butter Loco 2",
+    "Bread and Butter Loco 2",
+    "B&B Loco 2"
+   ],
+   "bread-butter-filth-hybrid": [
+    "Butter Filth Hybrid",
+    "B&B Filth Hybrid",
+    "BnB Filth Hybrid",
+    "Bread Butter Filth Hybrid",
+    "Filth",
+    "Butter Filth",
+    "Bread and Butter Filth",
+    "B&B Filth"
+   ],
+   "bread-butter-psycho": [
+    "Butter Psycho",
+    "B&B Psycho",
+    "BnB Psycho",
+    "Bread Butter Psycho"
+   ],
+   "luzz-cannon2-m1": [
+    "Luzz Cannon 2",
+    "Cannon 2",
+    "Cannon2",
+    "Luzz Cannon2"
+   ],
+   "luzz-cannon-xpp-m1": [
+    "Cannon XPP",
+    "Luzz Cannon XPP"
+   ],
+   "luzz-inferno2-m2": [
+    "Luzz Inferno 2",
+    "Inferno 2",
+    "Inferno2",
+    "Luzz Inferno2"
+   ],
+   "luzz-pro-4-inferno": [
+    "Luzz Pro 4",
+    "Luzz Pro4 Inferno"
+   ],
+   "luzz-glider-2026-hybrid": [
+    "Luzz Glider",
+    "Glider 2026"
+   ],
+   "ronbus-quanta-r1-16": [
+    "Quanta R1",
+    "Ronbus Quanta R1",
+    "Rhombus Quanta R1"
+   ],
+   "ronbus-quanta-r2-16": [
+    "Quanta R2",
+    "Ronbus Quanta R2",
+    "Rhombus Quanta R2"
+   ],
+   "ronbus-quanta-r3-16": [
+    "Quanta R3",
+    "Ronbus Quanta R3",
+    "Rhombus Quanta R3"
+   ],
+   "ronbus-quanta-r4-16": [
+    "Quanta R4",
+    "Ronbus Quanta R4",
+    "Rhombus Quanta R4"
+   ],
+   "ronbus-quanta-pro-r3-16": [
+    "Quanta Pro R3",
+    "Ronbus Quanta Pro R3",
+    "Rhombus Quanta Pro R3",
+    "Quanta Pro",
+    "Ronbus Quanta Pro",
+    "Rhombus Quanta Pro"
+   ],
+   "ronbus-ripple-v2-r4-14": [
+    "Ripple R4",
+    "Ronbus Ripple R4",
+    "Rhombus Ripple R4",
+    "Ripple V2 R4"
+   ],
+   "ronbus-ripple-v2-r5-14": [
+    "Ripple R5",
+    "Ronbus Ripple R5",
+    "Rhombus Ripple R5",
+    "Ripple V2 R5"
+   ],
+   "ronbus-ripple-v2-r1-14": [
+    "Ripple V2 R1",
+    "Ronbus Ripple V2 R1",
+    "Rhombus Ripple V2 R1"
+   ],
+   "ronbus-ripple-v2-r2-14": [
+    "Ripple V2 R2",
+    "Ronbus Ripple V2 R2",
+    "Rhombus Ripple V2 R2"
+   ],
+   "ronbus-beta-ripple-r1-14": [
+    "Beta Ripple R1",
+    "Ronbus Beta Ripple R1",
+    "Rhombus Beta Ripple R1",
+    "Ripple Beta R1",
+    "Ronbus Ripple Beta R1",
+    "Beta R1"
+   ],
+   "ronbus-beta-ripple-r2-14": [
+    "Beta Ripple R2",
+    "Ronbus Beta Ripple R2",
+    "Rhombus Beta Ripple R2",
+    "Ripple Beta R2",
+    "Ronbus Ripple Beta R2",
+    "Beta R2"
+   ],
+   "ronbus-tenon-r2-16": [
+    "Tenon R2",
+    "Ronbus Tenon R2",
+    "Rhombus Tenon R2",
+    "Tenon",
+    "Ronbus Tenon",
+    "Rhombus Tenon"
+   ],
+   "gearbox-gbx-power-elongated": [
+    "GBX Power",
+    "Gearbox GBX Power"
+   ],
+   "gearbox-gx2-power-hybrid": [
+    "GX2 Power",
+    "Gearbox GX2 Power"
+   ],
+   "gearbox-gx2-integra-xl": [
+    "Integra XL",
+    "GX2 Integra",
+    "Gearbox Integra XL"
+   ],
+   "gearbox-pro-ultimate-hyper-16mm": [
+    "Pro Ultimate Hyper",
+    "Gearbox Pro Hyper",
+    "Gearbox Pro Ultimate Hyper"
+   ],
+   "gearbox-pro-ultimate-power-elongated-14mm": [
+    "Gearbox Pro Power",
+    "Gearbox Pro Power Elongated",
+    "Pro Ultimate Power",
+    "Pro Ultimate Power Elongated",
+    "Gearbox Pro Ultimate Power"
+   ],
+   "gearbox-pro-ultimate-elongated-16mm": [
+    "Pro Ultimate Elongated",
+    "Gearbox Pro Ultimate Elongated"
+   ],
+   "11six24-hurache-x-power-2": [
+    "Huarache-X Power 2",
+    "11SIX24 Huarache-X Power 2"
+   ],
+   "11six24-ultre-jelly-bean-2": [
+    "Ultra Jelly Bean 2",
+    "11SIX24 Ultra Jelly Bean 2"
+   ],
+   "11six24-hurache-x-power": [
+    "Huarache-X Power",
+    "11SIX24 Huarache-X Power"
+   ],
+   "11six24-hurache-x-jelly-bean": [
+    "Huarache-X Jelly Bean",
+    "11SIX24 Huarache-X Jelly Bean"
+   ],
+   "11six24-ultre-power-2": [
+    "Ultra Power 2",
+    "11SIX24 Ultra Power 2"
+   ],
+   "11six24-vapor-alpha-pro-power": [
+    "Alpha Pro Power",
+    "11SIX24 Alpha Pro Power",
+    "Vapor Alpha Pro"
+   ],
+   "engage-pursuit-pro1-innovation-15-2": [
+    "Pursuit Innovation",
+    "Pursuit Pro 1 Innovation",
+    "Engage Pursuit Innovation",
+    "Pursuit Pro1 Innovation"
+   ],
+   "engage-pursuit-pro1-elongated-15-2": [
+    "Pursuit Elongated",
+    "Pursuit Pro 1 Elongated",
+    "Engage Pursuit Elongated",
+    "Pursuit Pro1 Elongated"
+   ],
+   "friday-fever-101-elongated": [
+    "Fever 101",
+    "Friday 101",
+    "Friday Fever 101"
+   ],
+   "friday-fever-102-widebody": [
+    "Friday 102 Widebody",
+    "Fever 102 WB"
+   ],
+   "friday-fever-102-elongated": [
+    "Friday 102 Elongated"
+   ],
+   "paddletek-bantam-esq-c": [
+    "ESQ-C",
+    "Paddletek ESQ-C",
+    "Bantam ESQ",
+    "Paddletek Bantam ESQ"
+   ],
+   "paddletek-bantam-tko-c": [
+    "TKO-C",
+    "Paddletek TKO-C"
+   ],
+   "paddletek-bantam-tko-cx": [
+    "TKO-CX",
+    "Paddletek TKO-CX"
+   ],
+   "paddletek-the-reserve-honeyfoam": [
+    "Paddletek Reserve",
+    "Paddletek The Reserve",
+    "Reserve Honeyfoam"
+   ],
+   "holbrook-fuze-vantagrit": [
+    "Fuze",
+    "Holbrook Fuze",
+    "Fuze Vanta"
+   ],
+   "holbrook-arma-x": [
+    "Arma X",
+    "Holbrook Arma X"
+   ],
+   "pakle-fuse-hybrid-w": [
+    "Pakle Fuse Hybrid",
+    "Fuse Hybrid"
+   ],
+   "diadem-warrior-blucore": [
+    "Diadem Warrior"
+   ],
+   "diadem-edge-18k-max": [
+    "Edge 18K",
+    "Diadem Edge 18K"
+   ],
+   "diadem-edge-blucore-pro": [
+    "Diadem Edge Pro",
+    "Edge Pro"
+   ],
+   "diadem-edge-blucore-hybrid": [
+    "Diadem Edge Hybrid",
+    "Edge Hybrid"
+   ],
+   "aireo-cyclone-elongated": [
+    "Aireo Cyclone",
+    "Aerial Cyclone",
+    "Aireo Cyclone EL"
+   ],
+   "rpm-friction-pro-v2-elongated": [
+    "Friction Pro V2",
+    "RPM Friction Pro V2"
+   ],
+   "rpm-q2-hybrid-flat-top": [
+    "Q2 Hybrid",
+    "RPM Q2 Hybrid",
+    "Q2 Flat Top",
+    "RPM Q2 Flat Top"
+   ],
+   "rpm-friction-pro-elongated-14mm": [
+    "Friction Pro Elongated",
+    "RPM Friction Pro Elongated"
+   ],
+   "honolulu-j6cr": [
+    "J6 CR",
+    "Honolulu J6 CR"
+   ],
+   "honolulu-j2cr": [
+    "J2 CR",
+    "Honolulu J2 CR",
+    "J2CR Crystal Blue",
+    "Honolulu J2CR Crystal Blue"
+   ],
+   "honolulu-j3cr": [
+    "J3 CR",
+    "Honolulu J3 CR"
+   ],
+   "prokennex-black-ace-14": [
+    "Black Ace 14mm",
+    "ProKennex Black Ace 14mm"
+   ],
+   "prokennex-black-ace-16": [
+    "Black Ace 16mm",
+    "ProKennex Black Ace 16mm"
+   ],
+   "prokennex-black-ace-lg-14": [
+    "Black Ace LG 14mm"
+   ],
+   "franklin-c45-aurelius": [
+    "Aurelius",
+    "Franklin Aurelius"
+   ],
+   "franklin-c45-dynasty": [
+    "Franklin Dynasty"
+   ],
+   "proton-series-four-project-roadrunner": [
+    "Proton Roadrunner",
+    "Proton Project Roadrunner",
+    "Proton Series Four",
+    "Proton Series Four Roadrunner"
+   ],
+   "neonic-flare-prime-x": [
+    "Flare Prime",
+    "Neonic Prime X",
+    "Prime X"
+   ],
+   "neonic-flare-titanium": [
+    "Neonic Titanium",
+    "Flare Ti"
+   ],
+   "volair-cmd-hyb": [
+    "Command Hybrid",
+    "Volair Command Hybrid",
+    "Volair Command HYB",
+    "Command HYB",
+    "Volair CMD Hybrid"
+   ],
+   "volair-cmd-el": [
+    "Command Elongated",
+    "Volair Command Elongated",
+    "Volair Command EL",
+    "Command EL",
+    "Volair CMD Elongated"
+   ],
+   "volair-shift-el": [
+    "Shift Elongated",
+    "Volair Shift Elongated"
+   ],
+   "volair-shift-wb": [
+    "Shift Widebody",
+    "Volair Shift Widebody"
+   ],
+   "volair-ctrl-1-forza": [
+    "Control 1 Forza",
+    "Volair Control 1",
+    "Volair CTRL 1",
+    "CTRL 1",
+    "CTRL1 Forza"
+   ],
+   "enhance-sweetspot-pro": [
+    "Sweet Spot Pro",
+    "Enhance Sweet Spot Pro"
+   ],
+   "enhance-sweetspot-team": [
+    "Sweet Spot Team",
+    "Enhance Sweet Spot Team"
+   ],
+   "pickleball-apes-pulse": [
+    "Apes Pulse",
+    "PB Apes Pulse"
+   ],
+   "pickleball-apes-zen": [
+    "Apes Zen",
+    "PB Apes Zen"
+   ],
+   "pickleball-apes-harmony": [
+    "Apes Harmony",
+    "PB Apes Harmony"
+   ],
+   "pickleball-apes-charm": [
+    "Apes Charm",
+    "PB Apes Charm"
+   ],
+   "flik-f1-smh-standard": [
+    "FLiK F1",
+    "Flick F1",
+    "Flick F1 SMH",
+    "F1 SMH"
+   ],
+   "spartus-p1-elongated": [
+    "Spartus P1 EL"
+   ]
+  },
+  "defaults": {
+   "Coral": "six-zero-coral-16mm",
+   "Six Zero Coral": "six-zero-coral-16mm",
+   "Ruby": "six-zero-ruby",
+   "Black Opal": "six-zero-black-opal-14mm",
+   "Six Zero Black Opal": "six-zero-black-opal-14mm",
+   "Luzz Cannon": "luzz-cannon"
+  }
+ }
+}

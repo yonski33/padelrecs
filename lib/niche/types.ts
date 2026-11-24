@@ -27,7 +27,9 @@ export type Profile = {
   options: ProfileOption[];
 };
 
-export type Tag = { label: string; tone: "pos" | "neg" | "neutral" };
+/** `says`: how a TL;DR line puts the tag after a count, "8 reviews say it holds its line" (Thread sites, 2026-11-20).
+ *  Written per tag, not built from the label, so a label like "holds lines" never reads "say it is holds lines". */
+export type Tag = { label: string; tone: "pos" | "neg" | "neutral"; says?: string };
 
 export type Seo = { title: string; description: string };
 
@@ -57,6 +59,9 @@ export type TopList = {
     against?: string[];
     /** Shown on each entry: "8 of 12 reviews mention {noun}". */
     noun: string;
+    /** The product's own bar for the trait must be at least `min` (PickleballRecs Grok audit 2026-11-17: a "best for power"
+     *  list never shows a paddle whose page reads Power 3/5). Read from the match facts (app/rankings/lists.ts). */
+    bar?: { key: "power" | "control" | "spin"; min: number };
   };
   filters?: SpecFilter[];
   /** Only list models from the last this many model years (2 in 2026 → 2024–2026). Only for niches whose products carry
@@ -131,6 +136,8 @@ export type Niche = {
   talkLabel?: string;
   /** Who writes reviews: "player" / "players" on sports sites, "user" / "users" on SkinRecs. */
   people: Words;
+  /** Who reviews on the product page, where it differs from `people` (DiscGolfRecs: "throwers"). Defaults to people. */
+  reviewers?: { one: string; many: string };
   /** Products have model years (rackets, paddles). When false, years are not asked, shown, filtered or put in names. */
   productYears?: boolean;
   /** Without real years: versions of one model line still share a row ("Jelly Bean" and "Jelly Bean 2", the higher name
@@ -156,12 +163,20 @@ export type Niche = {
     /** How a product is used, as a verb: "plays" (default) / "works". */ use?: string;
     /** What the reviewers' test is called on About ("real court time"). */ tested?: string;
     /** The rankings page's call to the quick match ("Tell us how you play"). */ tellUs?: string;
+    /** The home H1 naming the sport (owner 2026-11-18): plain words, then the highlighted ones, e.g. ["Find your", "padel racket"].
+     *  Set, the home drops the "Tell us how you play…" subline under it. */ homeH1?: [string, string];
     /** The italic last words of About's second story paragraph ("game"). */ aboutLast?: string;
     /** The add-review page: the dot ratings' low / high words per rating column, and the "+ prompt" chips. */
     rate?: Record<string, [string, string]>; prompts?: string[];
     /** The community score's name ("thrower score"); default "player score". */ score?: string;
     /** The home's "N reviews · N new this week" pill sits inline after the subtitle (owner, DiscGolfRecs mock review). */ pillInline?: boolean;
     /** Where the sport is played, for "Fresh off the court" ("course"); default "court". */ venue?: string;
+    /** The quick match's summary label on a type-picker site ("Your rig"); default "Your throw". */ yourPicks?: string;
+    /** The home headline's last word ("Less guessing. Better rigs."); default the product word. */ better?: string;
+    /** The v2 header's catalogue link ("gear"); default the product word. */ catalogNav?: string;
+    /** "Better matches for your …" on product pages ("setup"); default "game". */ game?: string;
+    /** No "we / us" service voice in the shared page chrome (CoffeeRecs, owner 2026-11-18): "how it works", "how scoring works",
+     *  "Two taps to check it", "report it" and so on. Unset: every other site keeps its words. */ plain?: boolean;
     /** The footer's line (default "we read forums, YouTube & your reviews, …"); and a "brands" link in the footer. */ footLine?: string; footBrands?: boolean;
   };
   /** The v2 home in a site's own mock (PickleballRecs, owner 2026-11-16), on the shared components; unset = padel's home. */
@@ -173,8 +188,11 @@ export type Niche = {
     /** "Explore the rankings": tiles for the site's ranking lists. */ rankTiles: true;
     /** The "how we score" strip under the tiles. */ steps: true;
     /** "Questions": `{top:beginner}` / `{top:arm}` in an answer name the two top paddles for that pick, from the live list. */
-    faq: { q: string; a: string; link: string; href: string }[];
+    faq: HomeFaq[];
   };
+  /** The home's sections below the list on a site that keeps its own look (padel, disc golf; owner 2026-11-17): "Explore the
+   *  rankings" tiles, the "how we score" strip and "Questions". The same parts as v2home, without its mock look. */
+  homeMore?: { faq: HomeFaq[] };
   /** Home feed, popular strip and sidebar only show reviews of models from the last this many model years (1 in 2026 →
    *  2025–2026), so the front page doesn't look outdated; older models keep their own pages. Needs productYears. */
   feedMaxAgeYears?: number;
@@ -212,7 +230,8 @@ export type Niche = {
   /** Chart segment colours in the "Who's playing it" panel. */
   chartColors: string[];
   /** Share-card (Open Graph) colours and rating icons as standalone SVG markup. */
-  og: { background: string; accent: string; muted: string; text: string; scoreOn: string; scoreOff: string };
+  og: { background: string; accent: string; muted: string; text: string; scoreOn: string; scoreOff: string;
+    /** How many product photos the home / guide share card shows (default 3; TennisRecs 2: its photos show each racket twice). */ photos?: number };
   /** Overall-rating hover words, keyed "1".."5". */
   ratingWords: Record<string, string>;
   categories: { column: CategoryColumn; label: string; hint: string; adminLabel?: string }[];
@@ -246,6 +265,9 @@ export type Niche = {
   /** "Similar products" at the foot of every product page (app/similar-section.tsx, owner 2026-11-16): one list ("single"),
    *  or tabs with a second list: "routine" (SkinRecs, "Pairs well with"), "bag" (DiscGolfRecs, "Complete your bag"),
    *  "works" (SimRacingRecs, "Works with"). `look`: the mockups' softer (SkinRecs) or disc (DiscGolfRecs) cards. */
+  /** A short note above the match list for a pick that needs one (padel, owner 2026-11-17: power for beginners), with a one-tap
+   *  switch to a better-suited pick. Lines ≤ 105 characters, expert voice. */
+  pickNotes?: { style: string; level: string; text: string; link: { label: string; style: string; level: string } }[];
   similar?: { mode: "single" | "tabs"; pairs?: "routine" | "bag" | "works"; pairLabel?: string; look?: "soft" | "disc" };
   topLists?: TopList[];
   /** The product finder at /finder (lib/finder.ts). Niches without one have no such page. */
@@ -273,8 +295,9 @@ export type Niche = {
     prompts: [string, string][];
     tips: string[];
     /** The one-tap card on product pages (app/quick-vote.tsx): its question, the "few words" hint, and the second half of
-     *  the generated nicknames (e.g. "Volley" in SteadyVolley482). Generic racket-sport wording when left out. */
-    quickVote?: { question: string; placeholder: string; nicknames: string[] };
+     *  the generated nicknames (e.g. "Volley" in SteadyVolley482), each niche in its own words. Generic racket-sport wording when left out. */
+    quickVote?: { question: string; placeholder: string; nicknames: string[];
+      /** The first halves ("Dewy" in DewyGlow482) where the generic ones read wrong (SkinRecs). */ nickFirst?: string[] };
   };
   seo: {
     homeTitle: string;
@@ -314,3 +337,6 @@ export type Niche = {
     about: { heading: string; paragraphs: [string, ...string[]]; sections: { heading: string; body: string }[] };
   };
 };
+
+/** A home "Questions" entry: `{top:beginner}` / `{top:arm}` in the answer name the two first products of that live list. */
+export type HomeFaq = { q: string; a: string; link: string; href: string };

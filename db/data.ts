@@ -6,6 +6,10 @@ import { voteCounts } from "./votes";
 import { isRecent, webDate, MIN_RECENT } from "../lib/recent";
 import { tagTone } from "../lib/tags";
 import { kept, forgetKept } from "./keep";
+import { editStamp, bumpEditStamp } from "./edit-stamp";
+import { sql } from "drizzle-orm";
+import { niche } from "../lib/niche";
+import { creatorPageOn } from "../lib/thread/sites";
 export async function database() { return getDb(); }
 
 type RacketRef = { id: string; brandId: string; createdAt: string };
@@ -26,10 +30,10 @@ export function publicCatalogItems<R extends RacketRef, B extends BrandRef>(allB
 }
 
 // Kept in this server instance's memory between requests (db/keep.ts). Scripts pass their own connection and always read fresh.
-const kept_ = kept(() => loadCatalog());
+const kept_ = kept(() => loadCatalog(), Date.now, editStamp);
 /** Drops this instance's kept copies (the catalog and everything built from it), so the next page reads fresh (after an
- *  admin publish or edit: app/funtimes/auth.ts). */
-export function forgetCatalog() { forgetKept(); }
+ *  admin publish or edit: app/funtimes/auth.ts), and marks the edit for every other instance (db/edit-stamp.ts). */
+export function forgetCatalog() { forgetKept(); bumpEditStamp(); }
 // Cached per request too: the layout reads it for the header's rankings menu, and so does the page.
 export const catalog = cache(async function catalog(connection?:ReturnType<typeof getDb>) {
  return connection ? loadCatalog(connection) : kept_.get();
@@ -37,16 +41,18 @@ export const catalog = cache(async function catalog(connection?:ReturnType<typeo
 
 async function loadCatalog(connection?:ReturnType<typeof getDb>) {
  const db = connection ?? await database();
- const [allBrands, allRackets, publicReviews, external, unapproved, votes] = await Promise.all([
+ const [allBrands, allRackets, publicReviews, external, unapproved, votes, creatorIds] = await Promise.all([
  db.select().from(brands), db.select().from(rackets),
  db.select({id: reviews.id, racketId: reviews.racketId, rating: reviews.rating, reviewText: reviews.reviewText, alias: reviews.alias, playerLevel: reviews.playerLevel, playingSide: reviews.playingSide, playingStyle: reviews.playingStyle, timeWithRacket: reviews.timeWithRacket, createdAt: reviews.createdAt, powerRating: reviews.powerRating, controlRating: reviews.controlRating, maneuverabilityRating: reviews.maneuverabilityRating, comfortRating: reviews.comfortRating, forgivenessRating: reviews.forgivenessRating, variant: reviews.variant, tags: reviews.tags, highlights: reviews.highlights}).from(reviews).where(eq(reviews.status, "approved")).orderBy(desc(reviews.createdAt)),
  db.select().from(externalReviews).orderBy(desc(externalReviews.createdAt)),
  db.select({racketId: reviews.racketId, createdAt: reviews.createdAt}).from(reviews).where(ne(reviews.status, "approved")),
- voteCounts(db)]);
+ voteCounts(db), creatorBacked(db)]);
  const visible = publicCatalogItems(allBrands, allRackets, publicReviews.map(r => r.racketId), external.map(e => e.racketId), unapproved);
  // Listings (catalogue, type and brand pages, sidebar, sitemap) only show products somebody has reviewed. Every visible
  // product still has its page and can be picked when adding a review, so `rackets` stays the full list for lookups.
- const reviewed = new Set([...publicReviews.map(r => r.racketId), ...external.map(e => e.racketId)]);
+ // On creator-page sites a live creator page also lists the product: PickleballRecs' 26 popular paddles
+ // came in with creator reviews only and were missing from the sitemap, catalogue, brand pages and search (2026-11-24).
+ const reviewed = new Set([...publicReviews.map(r => r.racketId), ...external.map(e => e.racketId), ...creatorIds]);
  const listed = visible.rackets.filter(r => reviewed.has(r.id));
  const listedBrands = visible.brands.filter(b => listed.some(r => r.brandId === b.id));
  return { brands: visible.brands, rackets: visible.rackets, listed, listedBrands,
@@ -54,6 +60,15 @@ async function loadCatalog(connection?:ReturnType<typeof getDb>) {
   external: external.map(e => ({ ...e, helpful: votes.get(`web:${e.id}`) ?? 0 })) };
 }
 export type Catalog = Awaited<ReturnType<typeof catalog>>;
+/** The products with a live creator page (db/creator-reviews.ts tables), on sites with the creator page switch on; none
+ *  where the tables don't exist yet or can't be read, so the catalogue never fails over them. */
+async function creatorBacked(db: ReturnType<typeof getDb>): Promise<string[]> {
+ if (!creatorPageOn(niche.id) || !/^[a-z_][a-z0-9_]*$/.test(niche.schema)) return [];
+ try {
+  const r = await db.execute(sql`select racket_id from ${sql.raw(`"${niche.schema}"`)}.creator_pages where status = 'live'`);
+  return ((Array.isArray(r) ? r : (r as { rows?: unknown[] }).rows ?? []) as { racket_id: unknown }[]).map(x => String(x.racket_id));
+ } catch { return []; }
+}
 /** The star average shows only from this many user ratings; below it one or two ratings would read as the verdict. */
 export const MIN_RATINGS = 3;
 /** User ratings and judged web reviews together: a user review counts as positive at 4–5 stars, like the rankings

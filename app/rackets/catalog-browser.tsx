@@ -1,9 +1,11 @@
 "use client";
+import { siteVoice } from "../../lib/site-voice";
 // The catalogue's filters and list (owner 2026-11-15: "/rackets … still slow on every tap"). The server renders the first view
 // for the address (app/rackets/catalog-v2.tsx), so every filter combination is still a real, shareable page; a tap re-runs the
 // same pure filter (lib/catalog-filter.ts) on the rows sent with the page and updates the address, with no round trip. Links
 // stay real links: a new tab, or no JavaScript, still gets the server's page.
 import { useEffect } from "react";
+import { ownScore } from "../../lib/niche";
 import { useInstantView, instantClick } from "../instant-view";
 import { catalogView, catalogHref, readCatalogFilters, CATALOG_KEYS, CATALOG_STYLES, CATALOG_LEVELS, CATALOG_SHAPES, CATALOG_SORTS, CATALOG_PAGE,
   type CatalogFilters, type CatalogRow, type SpecGroup } from "../../lib/catalog-filter";
@@ -12,6 +14,8 @@ import { levelLabel, type Level } from "../../lib/quick-match";
 import { hasYears, mockLook } from "../../lib/niche";
 import { MIN_LIST_REVIEWS } from "../../lib/top-lists";
 import { useComparePicks, CompareTray, MAX_PICKS } from "./compare-tray";
+import { scoreState } from "../../lib/score-view";
+import { NewPill } from "../score-tags";
 /** How an option reads: levels on the site's own scale (pickleball 2.5 / 3.5 / 4.5+). */
 const optWord = (key: string, val: string) => key === "level" ? levelLabel(val as Level) : val;
 
@@ -20,7 +24,9 @@ type F = CatalogFilters;
 
 /** A type-picker site's catalogue (lib/fit-config.ts quick: DiscGolfRecs): which of the niche's spec filters lead (disc type,
  *  stability) in place of padel's play style / shape / year / weight / feel, and its words. Unset: padel's catalogue, unchanged. */
-export type CatalogLook = { lead: string[]; arm: string; score: string };
+export type CatalogLook = { lead: string[]; arm: string; score: string;
+  /** Filter groups that pick one thing between them (SimRacingRecs: Category and Rig & extras are both the product type, Grok
+   *  audit 2026-11-17 #24), so a pick in one clears the other instead of an empty AND. */ oneOf?: string[] };
 
 export function CatalogBrowser({ rows, cards, f: first, base, suitsOk, many, one, spec = [], look }: { rows: CatalogRow[]; cards: Record<string, CatalogCard>; f: F; base: string; suitsOk: number; many: string; one: string;
   /** The niche's spec filters (lib/guide.ts specGroups), under "more filters". */ spec?: SpecGroup[]; look?: CatalogLook }) {
@@ -31,9 +37,10 @@ export function CatalogBrowser({ rows, cards, f: first, base, suitsOk, many, one
   // The site's own phone mock (mockLook): the filter groups start closed on a phone, except one with a pick.
   useEffect(() => { if (mockLook && matchMedia("(max-width: 760px)").matches) document.querySelectorAll<HTMLDetailsElement>(".ct2-m .ct-g").forEach(d => { if (!d.querySelector(".ct-opt.on")) d.open = false; }); }, []);
   const v = catalogView(rows, f, suitsOk, spec);
-  const href = (next: F) => catalogHref(base, f, next, specKeys);
+  const oneOfPick = (next: F): F => { const k = look?.oneOf?.find(x => (next as Record<string, unknown>)[x]); return k ? { ...Object.fromEntries(look!.oneOf!.filter(x => x !== k).map(x => [x, undefined])), ...next } as F : next; };
+  const href = (next: F) => catalogHref(base, f, oneOfPick(next), specKeys);
   // From the latest view, not this render's state, so two quick taps both count.
-  const go = (next: F) => instantClick(() => setF(cur => readCatalogFilters(Object.fromEntries(new URL(catalogHref(base, cur, next, specKeys), location.origin).searchParams), specKeys)));
+  const go = (next: F) => instantClick(() => setF(cur => readCatalogFilters(Object.fromEntries(new URL(catalogHref(base, cur, oneOfPick(next), specKeys), location.origin).searchParams), specKeys)));
   const to = (next: F, current?: boolean) => ({ href: href(next), onClick: go(next), ...(current ? { "aria-current": "true" as const } : {}) });
   const specGroup = (g: SpecGroup) => [g.label, g.key, g.values] as [string, string, readonly string[]];
   const lead = look ? spec.filter(g => look.lead.includes(g.key)) : [];
@@ -77,9 +84,11 @@ export function CatalogBrowser({ rows, cards, f: first, base, suitsOk, many, one
 
     <section className="ct2-main">
       <div className="ct2-bar">
+        {/* The count is one row per model; older versions have their own pages (Grok pickleball audit 2026-11-17, #32). */}
         <div className="ct2-count"><b>{active.length || f.q || f.older === "1" ? `${shown.length} ${shown.length === 1 ? one : many}` : `All ${v.total} ${many}`}</b>
+          {!(active.length || f.q || f.older === "1") && <span className="ct2-per">one per model</span>}
           {active.map(a => <a {...to(a.next)} key={a.label} className="ct2-chipx">{a.label} <i aria-hidden="true">✕</i></a>)}</div>
-        <div className="ct2-sort"><button type="button" className={`ct2-cmp${cmp.on ? " on" : ""}`} aria-pressed={cmp.on} onClick={cmp.toggleMode}><i aria-hidden="true"/>compare</button><span>sort</span>{CATALOG_SORTS.map(([k, sortLabel]) => { const label = mockLook && k === "score" ? "top rated" : sortLabel; return <a {...to({ sort: k === "score" ? undefined : k }, sort === k)} key={k} className={sort === k ? "on" : undefined}>{label}</a>; })}</div>
+        <div className="ct2-sort"><button type="button" className={`ct2-cmp${cmp.on ? " on" : ""}`} aria-pressed={cmp.on} onClick={cmp.toggleMode}><i aria-hidden="true"/>compare</button><span>sort</span>{CATALOG_SORTS.map(([k, sortLabel]) => { const label = mockLook && k === "score" ? "top rated" : k === "score" ? ownScore(sortLabel) : sortLabel; return <a {...to({ sort: k === "score" ? undefined : k }, sort === k)} key={k} className={sort === k ? "on" : undefined}>{label}</a>; })}</div>
       </div>
       {cmp.on && <p className="ct2-cmpnote"><b>compare on</b><span>{`Tap up to ${MAX_PICKS} ${many} to compare them side by side.`}</span></p>}
       <ol className={`ct2-list${cmp.on ? " cmp" : ""}`}>{shown.slice(0, show).map((x, i) => {
@@ -100,14 +109,14 @@ export function CatalogBrowser({ rows, cards, f: first, base, suitsOk, many, one
             {c.best && <span className="ct2-best">{`best for ${c.best}`}</span>}
             <span className="ct2-mt">{meta.map(m => <span key={m}>{m}</span>)}{c.shop && <a className="ct2-buy" href={c.shop.url} target="_blank" rel={c.shop.rel}>check price ↗</a>}</span>
           </span>
-          <span className="ct2-sent"><span><strong>{x.n.toLocaleString("en-US")}</strong>{` ${x.n === 1 ? "review" : "reviews"}`}</span>
+          <span className="ct2-sent"><span><strong>{x.judged.toLocaleString("en-US")}</strong>{` ${x.judged === 1 ? "review" : "reviews"}`}</span>
             {x.judged > 0 && <span className="ct2-bar6" aria-label={`${c.pos} positive, ${c.mix} mixed, ${c.neg} negative`}><i className="p" style={{ flex: c.pos }}/><i className="m" style={{ flex: c.mix }}/><i className="n" style={{ flex: c.neg }}/></span>}</span>
-          <span className={`ct2-sc ${x.signal === null ? "none" : x.signal >= 85 ? "hi" : x.signal >= 75 ? "mid" : ""}`} title={`${look ? `${look.score[0].toUpperCase()}${look.score.slice(1)}` : "Player score"}: not a % of happy players. It blends how much players like it with how many have weighed in.`}>
+          {scoreState(x.judged) === "new" ? <span className="ct2-sc"><NewPill n={x.judged}/></span> : <span className={`ct2-sc ${x.signal === null ? "none" : x.signal >= 85 ? "hi" : x.signal >= 70 ? "mid" : ""}`} title={`${look ? `${look.score[0].toUpperCase()}${look.score.slice(1)}` : "Player score"}: not a % of happy players. It blends how much players like it with how many have weighed in.`}>
             <b>{x.signal ?? "—"}</b>{mockLook ? <>
               {x.judged > 0 && <span className="ct2-bar6" aria-hidden="true"><i className="p" style={{ flex: c.pos }}/><i className="m" style={{ flex: c.mix }}/><i className="n" style={{ flex: c.neg }}/></span>}
-              <small><span className="ct2-ps">player score · </span>{`${x.n.toLocaleString("en-US")} ${x.n === 1 ? "review" : "reviews"}`}</small></> : <small>{look?.score ?? "player score"}</small>}</span>
+              <small><span className="ct2-ps">{`${ownScore("player score")} · `}</span>{`${x.judged.toLocaleString("en-US")} ${x.judged === 1 ? "review" : "reviews"}`}</small></> : <small>{look?.score ?? "player score"}</small>}</span>}
         </div></li>; })}</ol>
-      {shown.length === 0 && <div className="ct2-empty"><b>Nothing matches all of that</b><a {...to(clearAll)}>clear filters</a></div>}
+      {shown.length === 0 && <div className="ct2-empty"><b>{siteVoice()?.empty.filters ?? "Nothing matches all of that"}</b><a {...to(clearAll)}>clear filters</a></div>}
       {!f.q && !f.year && v.olderN > 0 && <a {...to({ older: f.older === "1" ? undefined : "1" })} className="ct2-older">{f.older === "1" ? "hide older models ▴" : `show older models (${v.olderN}) ▾`}</a>}
       {shown.length > show && <a {...to({ show: String(show + CATALOG_PAGE) })} className="ct2-load">{`load ${Math.min(CATALOG_PAGE, shown.length - show)} more ↓`}</a>}
       {cmp.on && <CompareTray picks={cmp.picks} remove={cmp.remove} clear={cmp.clear} one={one}/>}

@@ -1,5 +1,5 @@
 import {createHash} from "node:crypto";
-import {and,eq} from "drizzle-orm";
+import {and,eq,inArray,notLike} from "drizzle-orm";
 import {z} from "zod";
 import type {getDb} from "./index";
 import {reviews,externalReviews,rackets,reviewVotes} from "./schema";
@@ -56,5 +56,21 @@ export async function deleteWebReview(db:ReturnType<typeof getDb>,id:string){
   await tx.delete(reviewVotes).where(and(eq(reviewVotes.reviewType,"web"),eq(reviewVotes.reviewId,id)));
   const removed=await tx.delete(externalReviews).where(eq(externalReviews.id,id)).returning({id:externalReviews.id});
   return removed.length?"deleted":"missing";
+ });
+}
+
+/** Permanent delete of rejected player reviews (owner 2026-11-18). Only status "rejected" can match, checked in the same
+ *  statement as the delete, so a review restored meanwhile (or any pending/approved id sent here) is never touched. The site's
+ *  own schema only (catalogSchema). Tags live on the row; its "helpful" votes go in the same transaction. Demo rows stay. */
+export function rejectedOnly(ids:string[]|"all"){
+ const rejected=and(eq(reviews.status,"rejected"),notLike(reviews.id,"demo-%"));
+ return ids==="all"?rejected:and(rejected,inArray(reviews.id,ids));
+}
+export async function deleteRejectedReviews(db:ReturnType<typeof getDb>,ids:string[]|"all"){
+ if(ids!=="all"&&!ids.length)return [];
+ return db.transaction(async tx=>{
+  const removed=(await tx.delete(reviews).where(rejectedOnly(ids)).returning({id:reviews.id})).map(r=>r.id);
+  for(let i=0;i<removed.length;i+=500)await tx.delete(reviewVotes).where(and(eq(reviewVotes.reviewType,"player"),inArray(reviewVotes.reviewId,removed.slice(i,i+500))));
+  return removed;
  });
 }

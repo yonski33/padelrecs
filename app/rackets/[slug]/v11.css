@@ -1,0 +1,514 @@
+/* Product page v11 (owner 2026-11-17, design_handoff_product_page_v11/README.md): padel, pickleball and disc golf product pages.
+   Tokens from the handoff, read through the page's own .rf tokens (racket-fit.css), which on padel are exactly the handoff's;
+   each site's --site-* theme (and DiscGolfRecs' v2 style) gives it its own look. Score colours are shared (--score-*). */
+.rf {
+  --v-ink: var(--ink); --v-page: var(--bg); --v-card: #fff; --v-mute: var(--soft); --v-mute2: var(--mute); --v-body: var(--text); --v-dash: #c9c5ba;
+  --v-lime: var(--acc); --v-hl: var(--marker); --v-tint: var(--site-tint, oklch(0.95 0.06 125)); --v-top: var(--site-top, oklch(0.97 0.05 100)); --v-green: var(--score-g); --v-yellow: var(--score-y);
+  --v-yes: oklch(0.95 0.05 145); --v-no: oklch(0.96 0.04 60); --v-nofit: oklch(0.9 0.08 30);
+  --v-mono: var(--qt-mono, "JetBrains Mono"), ui-monospace, monospace; --v-display: var(--qt-display, "Archivo"), system-ui, sans-serif;
+}
+.rf .v11-pill { display: inline-block; font: 600 12.5px var(--v-mono); border: 1.5px solid var(--v-ink); border-radius: 999px; padding: 1px 9px; background: var(--v-card); white-space: nowrap; justify-self: start; }
+.rf .v11-pill.g { background: var(--v-green); } .rf .v11-pill.y { background: var(--v-yellow); } .rf .v11-pill.r { background: var(--v-nofit); }
+.rf .v11-plink { position: relative; z-index: 1; justify-self: start; align-self: flex-start; font: 13px var(--v-mono); text-decoration: underline; text-underline-offset: 3px; color: var(--v-ink); }
+.rf .v11-sh { display: flex; justify-content: space-between; align-items: baseline; gap: 4px 16px; flex-wrap: wrap; }
+.rf .v11-sh h2 { font: 800 22px/1.15 var(--v-display); letter-spacing: -0.01em; margin: 0; }
+.rf .v11-sh > span { font: 13px var(--v-mono); color: var(--v-mute2); }
+
+/* Hero: the score strip under the photo and title, ONE filled price button. */
+.rf .v11-score { grid-column: 1 / -1; display: flex; align-items: center; justify-content: space-between; gap: 14px 18px; flex-wrap: wrap;
+  border: 2px solid var(--v-ink); border-radius: 14px; background: var(--v-card); padding: 12px 14px; }
+.rf .v11-sl { display: flex; align-items: center; gap: 14px; min-width: 0; text-decoration: none; color: var(--v-ink); }
+/* A new product's "New · N reviews so far" pill is wider than the score box: on a phone it wraps above the label. */
+.rf .v11-sl:has(.sv-new) { flex-wrap: wrap; gap: 8px 14px; }
+.rf .v11-sq { flex: none; width: 60px; height: 60px; box-sizing: border-box; border: 2px solid var(--v-ink); border-radius: 12px; background: var(--v-card);
+  display: flex; align-items: center; justify-content: center; font: 800 32px/1 var(--v-display); letter-spacing: -0.03em; }
+.rf .v11-sq.g { background: var(--v-green); } .rf .v11-sq.y { background: var(--v-yellow); }
+.rf .v11-sm { display: flex; flex-direction: column; gap: 5px; min-width: 0; }
+.rf .v11-sm > b { font: 800 17px/1.1 var(--v-display); white-space: nowrap; }
+.rf .v11-sm small { font: 12.5px var(--v-mono); color: var(--v-mute); white-space: nowrap; }
+.rf .v11-sbar { display: flex; width: 140px; height: 8px; border: 1.5px solid var(--v-ink); border-radius: 999px; overflow: hidden; }
+.rf .v11-sbar .p { background: oklch(0.72 0.15 145); } .rf .v11-sbar .m { background: oklch(0.85 0.14 90); } .rf .v11-sbar .n { background: oklch(0.7 0.15 30); }
+.rf .v11-buy { background: var(--v-ink); color: var(--v-page); text-decoration: none; padding: 10px 18px; border-radius: 10px; font-weight: 700; font-size: 16px; border: 2px solid var(--v-ink); white-space: nowrap; }
+.rf .v11-sres { font: 13px var(--v-mono); color: var(--v-mute); }
+.rf .v11-aff { grid-column: 1 / -1; margin: -12px 0 0; }
+
+/* Better matches strip (not a fit only). */
+.rf .v11-better { width: 100%; max-width: 1000px; margin: 0 auto; display: flex; flex-direction: column; gap: 12px; scroll-margin-top: 80px; }
+.rf .v11-brow { display: flex; gap: 12px; overflow-x: auto; scroll-snap-type: x mandatory; padding: 2px 4px 6px 2px; margin: 0 -4px 0 -2px; }
+.rf .v11-bcard { position: relative; flex: 1 0 250px; scroll-snap-align: start; display: grid; grid-template-columns: 64px minmax(0, 1fr); gap: 12px;
+  border: 2px solid var(--v-ink); border-radius: 14px; background: var(--v-card); box-shadow: 3px 3px 0 var(--v-ink); padding: 10px 12px; }
+.rf .v11-bpic { display: flex; align-items: center; justify-content: center; } .rf .v11-bpic img { max-width: 100%; max-height: 96px; object-fit: contain; }
+.rf .v11-bbody { display: flex; flex-direction: column; gap: 5px; min-width: 0; }
+.rf .v11-stretch { color: var(--v-ink); text-decoration: none; } .rf .v11-stretch::after { content: ""; position: absolute; inset: 0; }
+.rf .v11-stretch b { font: 800 16px/1.2 var(--v-display); }
+.rf .v11-bline { font-size: 14.5px; line-height: 1.4; color: var(--v-body); text-wrap: pretty; }
+.rf .v11-curious { align-self: flex-start; font: 13.5px var(--v-mono); color: var(--v-mute); text-decoration: underline; text-underline-offset: 3px; }
+
+/* Why yes, why not: two columns, each point a tap to open. */
+.rf .v11-ycol { border: 2.5px solid var(--v-ink); border-radius: 18px; background: var(--v-card); overflow: hidden; align-self: start; }
+.rf .rp-yn:has(.v11-ycol) { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 14px; align-items: start; }
+.rf .v11-ych { margin: 0; padding: 10px 18px; border-bottom: 2px solid var(--v-ink); display: flex; align-items: center; gap: 10px; font: 800 19px var(--v-display); background: var(--v-yes); }
+.rf .v11-ycol.no .v11-ych { background: var(--v-no); }
+.rf .v11-ych i { width: 24px; height: 24px; border-radius: 50%; border: 2px solid var(--v-ink); display: flex; align-items: center; justify-content: center; font: normal 700 13px var(--qt-body, system-ui); background: oklch(0.72 0.15 145); box-sizing: border-box; }
+.rf .v11-ycol.no .v11-ych i { background: oklch(0.85 0.1 60); }
+/* Rows sit evenly: no global details margin under each one (owner 2026-11-18: the later rows had extra top space). */
+.rf .v11-yit { margin: 0; border-bottom: 1.5px dashed var(--v-dash); }
+.rf .v11-ysrc { margin: 0 0 8px; text-align: right; font: 12.5px var(--v-mono); color: var(--v-mute); } .rf .v11-yit:last-child { border-bottom: 0; }
+.rf .v11-yit summary { list-style: none; cursor: pointer; padding: 12px 18px; display: flex; justify-content: space-between; align-items: center; gap: 10px; }
+.rf .v11-yit summary::-webkit-details-marker { display: none; }
+.rf .v11-yit summary b { font: 800 17.5px/1.25 var(--v-display); margin-right: auto; }
+.rf .v11-yit summary i::before { content: "+"; font: 600 16px var(--v-mono); color: var(--v-mute); } .rf .v11-yit[open] summary i::before { content: "–"; }
+.rf .v11-yit > p { margin: 0; padding: 0 18px 6px; font-size: 16.5px; line-height: 1.45; color: var(--v-body); }
+.rf .v11-yit > p mark { background: var(--v-hl); padding: 0 3px; border-radius: 3px; color: var(--v-ink); font-weight: 700; box-decoration-break: clone; -webkit-box-decoration-break: clone; }
+.rf .v11-yit > small { display: block; padding: 0 18px 12px; font: 12.5px var(--v-mono); color: var(--v-mute2); }
+.rf .v11-ycol.yes .v11-yit[open] { background: oklch(0.985 0.025 145); } .rf .v11-ycol.no .v11-yit[open] { background: oklch(0.985 0.02 60); }
+
+/* How it plays: three bands. */
+.rf .v11-plays, .rf .v11-build, .rf .v11-faq, .rf .v11-sec { display: flex; flex-direction: column; gap: 14px; }
+.rf .v11-plays h2 { font: 800 30px var(--v-display); letter-spacing: -0.015em; margin: 0; }
+.rf .v11-build h2, .rf .v11-faq h2, .rf .v11-sec h2 { font: 800 26px/1.15 var(--v-display); margin: 0; }
+.rf .v11-bands { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); border-top: 2.5px solid var(--v-ink); border-bottom: 2.5px solid var(--v-ink); }
+.rf .v11-bands > div { padding: 18px 20px; display: flex; flex-direction: column; gap: 8px; border-right: 1.5px dashed var(--v-ink); }
+.rf .v11-bands > div:last-child { border-right: 0; } .rf .v11-bands > div.top { background: var(--v-top); }
+.rf .v11-bn { font: 800 clamp(36px, 4.6vw, 52px)/1 var(--v-display); letter-spacing: -0.03em; } .rf .v11-bn small { font-size: 0.4em; color: var(--v-mute2); }
+.rf .v11-bands b { font: 800 18px var(--v-display); }
+.rf .v11-segs { display: flex; gap: 3px; } .rf .v11-segs i { width: 24px; height: 10px; border-radius: 3px; border: 1.5px solid var(--v-ink); background: var(--v-card); }
+.rf .v11-segs i.on { background: oklch(0.72 0.15 145); } .rf .v11-segs i.on.t3 { background: var(--v-yellow); } .rf .v11-segs i.on.t2, .rf .v11-segs i.on.t1 { background: oklch(0.75 0.13 40); }
+.rf .v11-bnote { font-size: 16px; line-height: 1.4; }
+.rf .v11-tip { margin: 0; display: flex; gap: 10px; align-items: baseline; font-size: 16px; line-height: 1.45; }
+.rf .v11-tip > span:first-child { flex: none; font: 600 12.5px var(--v-mono); border: 1.5px solid var(--v-ink); border-radius: 6px; padding: 0 7px; background: var(--v-hl); }
+
+/* What the build means for you: four cards from the specs. */
+.rf .v11-bcards { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 14px; }
+.rf .v11-bc { border: 2px solid var(--v-ink); border-radius: 16px; background: var(--v-card); box-shadow: 4px 4px 0 var(--v-ink); padding: 16px; display: flex; flex-direction: column; gap: 8px; align-items: flex-start; }
+.rf .v11-bc > b { font: 800 20px var(--v-display); } .rf .v11-bc > span:last-child { font-size: 16px; line-height: 1.45; color: var(--v-body); text-wrap: pretty; }
+.rf .v11-vis { height: 56px; width: 100%; display: flex; align-items: center; }
+.rf .v11-vis .sh { display: block; width: 44px; height: 44px; border: 3px solid var(--v-ink); background: var(--v-tint); box-sizing: border-box; border-radius: 50%; }
+.rf .v11-vis .sh.teardrop, .rf .v11-vis .sh.hexagonal { border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%; height: 50px; width: 40px; }
+.rf .v11-vis .sh.diamond { border-radius: 8px; transform: rotate(45deg) scale(0.8); }
+.rf .v11-vis .sh.hybrid { border-radius: 50% 50% 46% 46% / 56% 56% 44% 44%; height: 48px; width: 42px; }
+.rf .v11-vis .core { position: relative; display: block; width: 100%; height: 14px; border: 2px solid var(--v-ink); border-radius: 999px; background: linear-gradient(90deg, var(--v-tint), var(--v-ink)); box-sizing: border-box; }
+.rf .v11-vis .core > i, .rf .v11-vis .bal > i { position: absolute; width: 14px; height: 14px; border-radius: 50%; border: 2px solid var(--v-ink); background: var(--v-card); box-sizing: border-box; top: -2px; }
+.rf .v11-vis .bal { position: relative; display: block; width: 16px; height: 48px; border: 2px solid var(--v-ink); border-radius: 999px; box-sizing: border-box; }
+.rf .v11-vis .bal > i { left: -1px; background: var(--v-ink); }
+.rf .v11-vis .face { display: block; width: 100%; height: 30px; border: 2px solid var(--v-ink); border-radius: 10px; background-color: var(--v-tint);
+  background-image: radial-gradient(var(--v-ink) 1px, transparent 1.2px); background-size: 10px 10px; box-sizing: border-box; }
+
+/* What players said · from player forums. */
+.rf .v11-said { border: 2.5px solid var(--v-ink); border-radius: 18px; background: var(--v-card); padding: 16px 18px; display: flex; flex-direction: column; gap: 14px; }
+.rf .v11-saidh { display: flex; justify-content: space-between; align-items: baseline; gap: 8px; flex-wrap: wrap; }
+.rf .v11-saidh b { font: 800 18px var(--v-display); } .rf .v11-saidh span { font: 12.5px var(--v-mono); color: var(--v-mute2); }
+.rf .v11-q { display: flex; flex-direction: column; gap: 6px; } .rf .v11-q + .v11-q { border-top: 1.5px dashed var(--v-dash); padding-top: 14px; }
+.rf .v11-q p { margin: 0; font-size: 17px; line-height: 1.45; text-wrap: pretty; }
+.rf .v11-q div { display: flex; align-items: center; gap: 6px 10px; flex-wrap: wrap; font-size: 14.5px; }
+.rf .v11-qwho { font-weight: 700; } .rf .v11-q a { font: 12.5px var(--v-mono); margin-left: auto; color: var(--v-ink); }
+.rf .v11-more { align-self: center; margin-top: -14px; display: inline-flex; align-items: center; gap: 8px; text-decoration: none; font: 600 14px var(--v-mono); color: var(--v-ink);
+  padding: 6px 14px; border: 2px solid var(--v-ink); border-radius: 999px; background: var(--v-hl); transform: rotate(-1.5deg); }
+.rf .v11-more:hover { background: var(--v-lime); transform: rotate(0deg) translateY(2px); }
+
+/* Common questions. */
+.rf .v11-faq details { border: 2px solid var(--v-ink); border-radius: 10px; background: var(--v-card); }
+.rf .v11-faq summary { cursor: pointer; list-style: none; padding: 12px 16px; font-weight: 700; font-size: 16.5px; display: flex; justify-content: space-between; gap: 16px; }
+.rf .v11-faq summary::-webkit-details-marker { display: none; } .rf .v11-faq summary::after { content: "+"; font: 16px var(--v-mono); } .rf .v11-faq details[open] summary::after { content: "–"; }
+.rf .v11-faq details p { margin: 0; padding: 0 16px 14px; font-size: 16px; line-height: 1.5; }
+
+/* Other rackets: detailed cards. */
+.rf .v11-rule { border-top: 2px solid var(--v-ink); padding-top: 22px; }
+.rf .v11-rule h2 { font-size: 30px; }
+.rf .v11-others { display: flex; flex-direction: column; gap: 16px; }
+.rf .v11-ocard { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 16px 22px; border: 2.5px solid var(--v-ink); border-radius: 18px; background: var(--v-card); padding: 14px; }
+.rf .v11-oleft { display: flex; flex-direction: column; gap: 10px; min-width: 0; }
+.rf .v11-otop { display: grid; grid-template-columns: 96px minmax(0, 1fr); gap: 14px; }
+.rf .v11-opic { display: flex; align-items: center; justify-content: center; border-radius: 10px; } .rf .v11-opic img { max-width: 100%; max-height: 140px; object-fit: contain; }
+.rf .v11-oname { font: 800 20px/1.2 var(--v-display); color: var(--v-ink); text-decoration: none; }
+.rf .v11-oline { margin: 6px 0 0; font-size: 15.5px; line-height: 1.4; color: var(--v-body); } .rf .v11-obest { margin: 6px 0 0; font-size: 15px; line-height: 1.4; }
+.rf .v11-ofoot { display: flex; align-items: center; gap: 8px 12px; flex-wrap: wrap; border-top: 1.5px dashed var(--v-dash); padding-top: 10px; margin-top: auto; }
+.rf .v11-ofoot .v11-plink { margin-left: auto; align-self: center; }
+.rf .v11-oscore { display: inline-flex; align-items: center; gap: 8px; }
+.rf .v11-oscore > b { width: 40px; height: 40px; box-sizing: border-box; border: 2px solid var(--v-ink); border-radius: 9px; display: flex; align-items: center; justify-content: center; font: 800 20px var(--v-display); background: var(--v-card); }
+.rf .v11-oscore > b.g { background: var(--v-green); } .rf .v11-oscore > b.y { background: var(--v-yellow); }
+.rf .v11-oscore span b { font: 800 15px var(--v-display); }
+.rf .v11-oright { display: flex; flex-direction: column; gap: 10px; min-width: 0; }
+.rf .v11-otag { align-self: flex-start; font: 600 12.5px var(--v-mono); border: 1.5px solid var(--v-ink); border-radius: 6px; padding: 1px 8px; background: var(--v-hl); }
+.rf .v11-ohead { margin: 0; font: 800 20px/1.2 var(--v-display); }
+.rf .v11-ogain, .rf .v11-ogive { border-radius: 10px; padding: 10px 12px; display: flex; flex-direction: column; gap: 4px; font-size: 15px; line-height: 1.4; }
+.rf .v11-ogain { background: var(--v-yes); } .rf .v11-ogive { background: var(--v-no); } .rf .v11-ogain b, .rf .v11-ogive b { font-size: 15px; }
+
+@media (max-width: 760px) {
+  .rf .v11-ocard { grid-template-columns: 1fr; }
+  .rf .v11-bands > div { border-right: 0; border-bottom: 1.5px dashed var(--v-ink); } .rf .v11-bands > div:last-child { border-bottom: 0; }
+  .rf .v11-bcard { flex: 0 0 82%; }
+  .rf .v11-plays h2 { font-size: 26px; } .rf .v11-rule h2 { font-size: 26px; }
+  .rf .v11-score { padding: 10px 12px; } .rf .v11-sbar { width: 110px; }
+}
+
+/* v11 layout: one 1000px column after the hero, and the sticky box as a bar across the bottom of the screen (the mock). */
+.rf:has(.v11-score) .rp-body { max-width: 1000px; }
+.rf:has(.v11-score) .rp-stick { left: 0; right: 0; top: auto; bottom: 0; width: auto; flex-direction: row; align-items: center; justify-content: space-between;
+  border-radius: 0; border-width: 2px 0 0; box-shadow: none; padding: 10px 20px; }
+.rf:has(.v11-score) .rp-sk { flex-direction: row; align-items: center; gap: 10px; }
+.rf:has(.v11-score) .rp-sk .rp-k { display: none; }
+.rf:has(.v11-score) .rp-buy { padding: 9px 16px; }
+.rf .v11-bcards { grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); }
+.rf .v11-yit summary { padding: 10px 18px; }
+
+/* Phones: the bottom line stacks; its text sizes to its words (a desktop flex-basis made it 300px tall). */
+@media (max-width: 760px) { .rf .rp-bottom b { flex: 1 1 auto; } }
+.rf .v11-tile { display: flex; align-items: center; justify-content: center; width: 100%; height: 100%; min-height: 60px; border: 2px solid var(--v-ink); border-radius: 10px; background: var(--v-tint); font: 800 12px/1.2 var(--v-display); text-align: center; padding: 4px; box-sizing: border-box; }
+
+/* Filled price button on hover (owner 2026-11-17): a yellow fill, the text and arrow stay ink (white on yellow was unreadable). */
+.rf .v11-buy:hover, .rf .v11-buy:focus-visible { background: var(--v-hl); color: var(--v-ink); }
+
+/* "Other rackets for your game": the match pill sits at the top right of the card in the score colour (green 85+, yellow 70–84, white below). */
+.rf .v11-otag.v11-omatch { align-self: flex-end; font-size: 13px; padding: 2px 10px; border-radius: 999px; background: var(--v-card); }
+.rf .v11-otag.v11-omatch.g { background: var(--v-green); } .rf .v11-otag.v11-omatch.y { background: var(--v-yellow); }
+@media (max-width: 760px) { .rf .v11-otag.v11-omatch { align-self: flex-start; } }
+/* The other sites' build cards (lib/v11-site.ts): paddle outlines, a gauge with its two ends, disc golf's flight numbers and a disc. */
+.rf .v11-vis .sh[class*="pb-"] { border-radius: 12px 12px 9px 9px; width: 36px; height: 46px; }
+.rf .v11-vis .sh.pb-elongated { width: 28px; height: 54px; } .rf .v11-vis .sh.pb-hybrid { width: 32px; height: 50px; } .rf .v11-vis .sh.pb-widebody { width: 44px; height: 46px; border-radius: 14px 14px 9px 9px; }
+.rf .v11-vis .gauge { display: grid; grid-template-columns: 1fr 1fr; gap: 4px 0; width: 100%; }
+.rf .v11-vis .gauge > .core { grid-column: 1 / -1; }
+.rf .v11-vis .gauge small { font: 12px var(--v-mono); color: var(--v-mute2); } .rf .v11-vis .gauge small + small { text-align: right; }
+.rf .v11-vis .flight { display: flex; gap: 6px; }
+.rf .v11-vis .flight b { min-width: 30px; height: 30px; padding: 0 4px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid var(--v-ink); border-radius: 8px; background: var(--v-card); font: 800 15px var(--v-display); }
+.rf .v11-vis .flight b:first-child { background: var(--v-tint); }
+.rf .v11-vis .disc { display: block; width: 46px; height: 46px; border-radius: 50%; border: 3px solid var(--v-ink); background: var(--v-tint); box-shadow: inset 0 0 0 7px var(--v-card), inset 0 0 0 9px var(--v-ink); box-sizing: border-box; }
+/* Long picks ("Beginner · Understable · Slower arm speed") wrap on phones instead of running past the card. */
+@media (max-width: 760px) { .rf .rf-afoot > span { white-space: pre-wrap; min-width: 0; } }
+
+/* Compare links (UX audit 2026-11-17): a quiet "compare with…" beside Check price, and "compare ↗" on each other-racket card
+   after its price link. */
+.rf .v11-cmp { font: 13px var(--v-mono); color: var(--v-ink); text-decoration: underline; text-underline-offset: 3px; white-space: nowrap; display: inline-flex; align-items: center; min-height: 32px; }
+.rf .v11-ofoot .v11-plink + .v11-ocmp { margin-left: 0; }
+.rf .v11-ofoot .v11-oscore + .v11-ocmp { margin-left: auto; }
+
+/* ===== v11c (owner 2026-11-17, design_handoff_product_page_v11c) ===== */
+/* How it plays: one slim box; three bars in a row, build chips, rule of thumb. */
+.rf .v11-plays.v11c { border: 2px solid var(--v-ink); border-radius: 16px; background: var(--v-card); padding: 14px 18px; gap: 12px; scroll-margin-top: 80px; }
+.rf .v11-plays.v11c h2 { font-size: 22px; letter-spacing: -0.01em; }
+.rf .v11-plays.v11c .v11-bands { grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 10px 24px; border: 0; }
+.rf .v11-plays.v11c .v11-bands > div { padding: 0; border: 0; gap: 5px; background: none; }
+.rf .v11-plays.v11c .v11-bh { display: flex; justify-content: space-between; align-items: baseline; gap: 8px; }
+.rf .v11-plays.v11c .v11-bh b { font: 700 16px var(--qt-body, system-ui); }
+.rf .v11-plays.v11c .v11-bn { font: 800 18px/1 var(--v-display); letter-spacing: 0; } .rf .v11-plays.v11c .v11-bn small { font-size: 13px; }
+.rf .v11-plays.v11c .v11-segs i { flex: 1; width: auto; height: 8px; }
+.rf .v11-plays.v11c .v11-bnote { font-size: 14.5px; color: var(--v-body); }
+.rf .v11-pfoot { display: flex; flex-direction: column; gap: 8px; border-top: 1.5px dashed var(--v-dash); padding-top: 10px; }
+.rf .v11-chips { display: flex; gap: 6px; flex-wrap: wrap; align-items: center; }
+.rf .v11-ck { font: 12.5px var(--v-mono); color: var(--v-mute2); margin-right: 4px; }
+.rf .v11-chips button { all: unset; cursor: pointer; min-height: 32px; box-sizing: border-box; display: inline-flex; align-items: center; gap: 4px; white-space: nowrap; padding: 0 12px;
+  border: 1.5px solid var(--v-ink); border-radius: 999px; font-size: 14.5px; font-weight: 600; background: var(--v-card); color: var(--v-ink); }
+.rf .v11-chips button span { font: 12px var(--v-mono); }
+.rf .v11-chips button[aria-expanded="true"] { background: var(--v-ink); color: var(--v-page); }
+.rf .v11-chips button:focus-visible { outline: 3px solid var(--v-lime); outline-offset: 2px; }
+.rf .v11-cline { margin: 0; font-size: 16px; line-height: 1.45; color: var(--v-body); }
+.rf .v11-cline mark { background: var(--v-hl); padding: 0 3px; border-radius: 3px; color: var(--v-ink); font-weight: 700; box-decoration-break: clone; -webkit-box-decoration-break: clone; }
+.rf .v11-plays.v11c .v11-tip { margin: 0; }
+
+/* Other rackets: a compact strip of 3; phones show 2 and "one more option". */
+.rf .v11-others { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
+.rf .v11-others .v11-ocard { display: grid; grid-template-columns: 56px minmax(0, 1fr); gap: 4px 12px; align-items: start; border: 2px solid var(--v-ink); border-radius: 14px; padding: 12px; }
+.rf .v11-others .v11-opic { height: 84px; } .rf .v11-others .v11-opic img { max-height: 84px; width: auto; mix-blend-mode: multiply; }
+.rf .v11-obody { display: flex; flex-direction: column; gap: 6px; min-width: 0; align-items: flex-start; }
+.rf .v11-others .v11-oname { font-size: 16.5px; }
+.rf .v11-others .v11-oline { margin: 0; font-size: 14.5px; }
+.rf .v11-others .v11-oscore > b { width: 32px; height: 32px; font-size: 16px; border-radius: 8px; }
+.rf .v11-oscore > span { font: 12px var(--v-mono); color: var(--v-mute); }
+.rf .v11-olinks { display: flex; gap: 4px 14px; flex-wrap: wrap; }
+.rf .v11-olinks .v11-plink { margin: 0; min-height: 32px; display: inline-flex; align-items: center; }
+.rf .v11-omore { all: unset; cursor: pointer; display: none; min-height: 32px; align-self: flex-start; font: 13px var(--v-mono); color: var(--v-mute); text-decoration: underline; text-underline-offset: 3px; }
+
+/* Still deciding? and Explore the rankings. */
+.rf .v11-decide { border: 2px solid var(--v-ink); border-radius: 16px; background: var(--v-card); padding: 16px 18px; display: flex; flex-wrap: wrap; gap: 14px 28px; align-items: center; }
+.rf .v11-dl { flex: 1 1 380px; min-width: 0; display: grid; grid-template-columns: 56px minmax(0, 1fr); gap: 4px 14px; align-items: center; }
+.rf .v11-dpic { grid-row: span 3; height: 76px; display: flex; align-items: center; justify-content: center; } .rf .v11-dpic img { height: 100%; width: auto; mix-blend-mode: multiply; }
+.rf .v11-dk { font: 12.5px var(--v-mono); color: var(--v-mute2); } .rf .v11-dn { font: 800 19px/1.15 var(--v-display); }
+.rf .v11-dv { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; } .rf .v11-dline { font-size: 15px; color: var(--v-body); }
+.rf .v11-dlinks { flex: 0 1 auto; display: flex; flex-direction: column; gap: 2px; align-items: flex-start; }
+.rf .v11-dlinks a { font: 14px var(--v-mono); color: var(--v-ink); text-decoration: underline; text-underline-offset: 3px; min-height: 32px; display: inline-flex; align-items: center; }
+.rf .v11-rt { display: flex; flex-direction: column; gap: 12px; }
+.rf .v11-rt .v11-sh a { font: 13px var(--v-mono); color: var(--v-ink); }
+.rf .v11-rtgrid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 14px; padding: 2px 6px 8px 2px; }
+.rf .v11-rtgrid > a { text-decoration: none; color: var(--v-ink); border: 2px solid var(--v-ink); border-radius: 16px; background: var(--v-card); box-shadow: 4px 4px 0 var(--v-ink);
+  padding: 14px 16px; display: flex; align-items: center; gap: 10px; height: 120px; box-sizing: border-box; transition: transform .12s, box-shadow .12s; }
+.rf .v11-rtgrid > a:hover { transform: translate(-2px, -2px); box-shadow: 6px 6px 0 var(--v-ink); background: var(--v-tint); }
+.rf .v11-rtgrid .t { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 6px; }
+.rf .v11-rtgrid .t b { font: 800 19px/1.15 var(--v-display); } .rf .v11-rtgrid .t em { font: normal 12.5px var(--v-mono); color: var(--v-mute2); }
+.rf .v11-rtpics { flex: none; position: relative; width: 100px; height: 88px; }
+.rf .v11-rtpics img { position: absolute; width: auto; mix-blend-mode: multiply; }
+.rf .v11-rtpics .p2 { right: 50px; bottom: 4px; height: 66px; } .rf .v11-rtpics .p1 { right: 25px; bottom: 2px; height: 76px; } .rf .v11-rtpics .p0 { right: 0; bottom: 0; height: 88px; }
+.rf .v11-foot p { margin: 0; font-size: 14px; text-wrap: pretty; } .rf .v11-foot a { color: var(--v-ink); }
+
+/* What players say: the new-this-week dot, the score row, the one-row "Played it?", level · side under the name. */
+@keyframes rvPulse { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: .35; transform: scale(.7); } }
+.rf .rv-head.v11c { align-items: center; }
+.rf .rv-ht { display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap; }
+.rf .rv-new { display: inline-flex; align-items: center; gap: 7px; font: 12.5px var(--v-mono); color: var(--v-mute2); }
+.rf .rv-new i { width: 9px; height: 9px; border-radius: 50%; background: oklch(0.72 0.15 145); animation: rvPulse 1.6s ease-in-out infinite; }
+@media (prefers-reduced-motion: reduce) { .rf .rv-new i { animation: none; } }
+.rf .rv-mood.v11c { display: flex; flex-wrap: wrap; gap: 10px 14px; align-items: center; margin: 12px 0 0; }
+.rf .rv-mood.v11c .rv-mbar { flex: 1 1 220px; min-width: 0; display: flex; flex-direction: column; gap: 5px; }
+.rf .rv-mood.v11c .rf-sbar { width: 100%; height: 10px; }
+.rf .rv-mood.v11c small { font: 12.5px var(--v-mono); color: var(--v-mute2); }
+.rf .rv-played { scroll-margin-top: 116px; border: 2px dashed var(--v-ink); border-radius: 14px; background: var(--v-card); padding: 12px 14px; display: flex; flex-direction: column; gap: 10px; }
+.rf .rv-prow { display: flex; align-items: center; gap: 8px 10px; flex-wrap: wrap; }
+.rf .rv-prow > b { font: 800 16px var(--v-display); }
+.rf .rv-prow button { all: unset; cursor: pointer; min-height: 32px; box-sizing: border-box; display: inline-flex; align-items: center; gap: 7px; white-space: nowrap; padding: 0 12px 0 9px;
+  border-radius: 999px; border: 1.5px solid var(--v-ink); font-size: 14.5px; font-weight: 600; background: var(--v-card); }
+.rf .rv-prow button[aria-pressed="true"] { border-width: 2.5px; background: var(--v-tint); }
+.rf .rv-prow button i { width: 12px; height: 12px; border-radius: 50%; border: 1.5px solid var(--v-ink); }
+.rf .rv-prow button.positive i { background: oklch(0.72 0.15 145); } .rf .rv-prow button.mixed i { background: oklch(0.85 0.14 90); } .rf .rv-prow button.negative i { background: oklch(0.7 0.15 30); }
+.rf .rv-prow button:focus-visible { outline: 3px solid var(--v-lime); outline-offset: 2px; }
+.rf .rv-pk { margin-left: auto; font: 12.5px var(--v-mono); color: var(--v-mute2); }
+.rf .rv-pwords { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
+.rf .rv-pwords input { flex: 1 1 240px; min-width: 0; box-sizing: border-box; border: 1.5px solid var(--v-ink); border-radius: 10px; padding: 8px 12px; font: 16px var(--qt-body, system-ui); background: var(--v-page); }
+.rf .rv-pwords .rv-post { min-height: 36px; padding: 0 16px; background: var(--v-card); color: var(--v-ink); }
+.rf .rv-who2 { font: 12.5px var(--v-mono); color: var(--v-mute2); margin-top: -4px; }
+
+@media (max-width: 760px) {
+  .rf .v11-others { grid-template-columns: 1fr; }
+  .rf .v11-others:not(.all) .v11-ocard.x { display: none; }
+  .rf .v11-others:not(.all) + .v11-omore { display: inline-flex; align-items: center; }
+  .rf .v11-rtgrid { grid-template-columns: 1fr; }
+  .rf .rv-pk { margin-left: 0; flex-basis: 100%; }
+}
+/* Both span the body column (it is a flex row of sections). */
+.rf .v11-rt, .rf .v11-decide { flex: 1 1 100%; width: 100%; box-sizing: border-box; }
+/* Tap targets on phones (v11c rule: 32px+). */
+@media (max-width: 760px) {
+  .rf .rf-back, .rf .rf-last, .rf .rv-watch, .rf .v11-rt .v11-sh a { display: inline-flex; align-items: center; min-height: 32px; }
+  .rf .v11-others .v11-oname { display: inline-flex; align-items: center; min-height: 32px; }
+}
+
+/* Other rackets, two cards (owner 2026-11-17): the tagline, then a green gain line and a peach give-up line. */
+.rf .v11-others.two { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.rf .v11-tgain, .rf .v11-tgive { margin: 0; border-radius: 8px; padding: 5px 9px; font-size: 14px; line-height: 1.35; align-self: stretch; }
+.rf .v11-tgain { background: var(--v-yes); } .rf .v11-tgive { background: var(--v-no); }
+/* More rackets for your game: the richer cards, stacked. */
+.rf .v11-mlist { display: flex; flex-direction: column; gap: 14px; }
+.rf .v11-more2 .v11-ofoot .v11-olinks { margin-left: auto; }
+@media (max-width: 760px) { .rf .v11-others.two { grid-template-columns: 1fr; } }
+
+/* YouTube reviews, lighter (owner 2026-11-17): half-size thumbnail, grey label, our summary in two lines at most. */
+.rf .rv-card.youtube.v11c { padding: 12px 14px; }
+.rf .rv-ytl, .rf .rv-ycomm { display: flex; flex-direction: column; gap: 8px; }
+.rf .rv-yhead { display: grid; grid-template-columns: 72px minmax(0, 1fr); gap: 12px; align-items: start; }
+.rf .rv-tl { display: block; width: 72px; aspect-ratio: 16 / 9; border-radius: 8px; overflow: hidden; border: 1.5px solid var(--v-ink); background: #e9e6dc; }
+.rf .rv-tl img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.rf .rv-ylab { font: 12px var(--v-mono); color: var(--v-mute2); white-space: nowrap; }
+.rf .rv-ysub { font: 12px var(--v-mono); color: var(--v-mute2); margin-top: 2px; }
+.rf .rv-y2 { margin: 0; }
+@media (max-width: 760px) { .rf .rv-yhead { grid-template-columns: 64px minmax(0, 1fr); gap: 10px; } .rf .rv-tl { width: 64px; } }
+
+/* "What players say", narrower (owner 2026-11-17): on desktop the whole section (heading, tabs, score row, Played it? and
+   the cards) stops at 740px on the page's left content edge, and the text fills the narrower cards (no 70ch cap here).
+   Phones unchanged. */
+/* (The 740px cap on "What players say" was undone, owner 2026-11-17: full content width, Latest reviews cards.) */
+.rf .rv-card.v11c .rv-text, .rf .rv-card.v11c .rv-yb ul { max-width: none; }
+/* The score row stays a row (an older phone rule turned it into a column, so the bar's 220px basis became 220px of height). */
+.rf .rv-mood.v11c { flex-direction: row; }
+@media (max-width: 760px) { .rf .rv-mood.v11c .rv-mbar { flex: 1 1 100%; } }
+
+/* A viewer's comment reads like a player card; its "watch" link sits under the text like a summary's. */
+.rf .rv-ycomm .rv-who2 { margin-top: -4px; } .rf .rv-ytl .rv-watch, .rf .rv-ycomm .rv-watch { align-self: flex-start; }
+
+/* Approved reviews mock (owner 2026-11-17): the vote bar filters by verdict; "What players mention" filters by tag (sticky
+   on desktop, a chip row on phones). Everything filters in the browser, at once. */
+.rf .rv-vbar { display: flex; width: 100%; height: 18px; border: 2px solid var(--v-ink); border-radius: 999px; overflow: hidden; }
+.rf .rv-vbar button { all: unset; cursor: pointer; min-width: 10px; height: 100%; transition: opacity .15s; }
+.rf .rv-vbar button.p { background: oklch(0.72 0.15 145); } .rf .rv-vbar button.m { background: oklch(0.85 0.14 90); } .rf .rv-vbar button.n { background: oklch(0.7 0.15 30); }
+.rf .rv-vbar button + button { border-left: 2px solid var(--v-ink); }
+.rf .rv-vbar:has(button[aria-pressed="true"]) button:not([aria-pressed="true"]) { opacity: .3; }
+.rf .rv-vbar button:focus-visible { outline: 3px solid var(--v-lime); outline-offset: -3px; }
+.rf .rv-mood.v11c .rv-mbar { gap: 6px; }
+.rf .rv-showing { margin: 0; font: 13px var(--v-mono); color: var(--v-mute2); }
+.rf .rv-clear { all: unset; cursor: pointer; font: 13px var(--v-mono); color: var(--v-ink); text-decoration: underline; text-underline-offset: 3px; min-height: 32px; display: inline-flex; align-items: center; }
+.rf .rv-body { display: flex; flex-direction: column; gap: 14px; }
+.rf .rv-body > .rv-list { min-width: 0; }
+.rf .rv-ment { display: flex; flex-direction: column; gap: 10px; }
+.rf .rv-menth { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+.rf .rv-menth b { font: 800 16px var(--v-display); }
+.rf .rv-mchips { display: flex; gap: 6px; flex-wrap: wrap; }
+.rf .rv-mchip { all: unset; cursor: pointer; display: inline-flex; align-items: center; gap: 6px; min-height: 32px; box-sizing: border-box; padding: 0 11px; white-space: nowrap;
+  border: 1.5px solid var(--v-ink); border-radius: 999px; font-size: 14.5px; font-weight: 600; background: var(--v-card); }
+.rf .rv-mchip span { font: 12px var(--v-mono); color: var(--v-mute2); }
+.rf .rv-mchip.pos { background: var(--v-yes); } .rf .rv-mchip.neg { background: var(--v-no); }
+.rf .rv-mchip[aria-pressed="true"] { background: var(--v-ink); color: var(--v-page); } .rf .rv-mchip[aria-pressed="true"] span { color: var(--v-page); }
+.rf .rv-mchip:focus-visible { outline: 3px solid var(--v-lime); outline-offset: 2px; }
+@media (min-width: 761px) {
+  .rf .rv-body.side { display: grid; grid-template-columns: minmax(0, 1fr) 250px; gap: 22px; align-items: start; }
+  .rf .rv-body.side > .rv-list { grid-column: 1; grid-row: 1; }
+  .rf .rv-body.side > .rv-ment { grid-column: 2; grid-row: 1; position: sticky; top: 84px; border: 2px solid var(--v-ink); border-radius: 14px; background: var(--v-card); padding: 14px; }
+}
+@media (max-width: 760px) {
+  /* Phones: the tags as one sideways row of chips above the list. */
+  .rf .rv-mchips { flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none; padding: 2px 0; }
+  .rf .rv-mchips::-webkit-scrollbar { display: none; }
+}
+
+/* ===== "What players say", the approved mock copied (owner 2026-11-17, artifact NXPeRJcKkjVCxjwZ7EH9Xj) ===== */
+.rf .rv12 { display: grid; grid-template-columns: minmax(0, 1fr); gap: 14px; align-items: start; font-family: var(--qt-body, "Atkinson Hyperlegible"), system-ui, sans-serif; color: #151515; }
+.rf .rv12-main { min-width: 0; display: flex; flex-direction: column; gap: 14px; }
+.rf .rv12-head { display: flex; justify-content: space-between; align-items: center; gap: 10px 16px; flex-wrap: wrap; }
+.rf .rv12-head h2 { font: 800 28px var(--v-display); letter-spacing: -0.01em; margin: 0; }
+.rf .rv12-head .rv-new { margin-right: auto; }
+.rf .rv12-tabs { display: flex; border: 2px solid #151515; border-radius: 8px; overflow: hidden; }
+.rf .rv12-tabs button { all: unset; cursor: pointer; min-height: 32px; box-sizing: border-box; display: inline-flex; align-items: center; white-space: nowrap; padding: 0 12px; font-size: 14.5px; font-weight: 700; background: #fff; color: #151515; border-right: 1.5px solid #151515; }
+.rf .rv12-tabs button:last-child { border-right: 0; } .rf .rv12-tabs button[aria-pressed="true"] { background: #151515; color: #fbfaf6; }
+.rf .rv12-score { display: flex; flex-wrap: wrap; gap: 10px 14px; align-items: center; }
+.rf .rv12-badge { flex: none; display: inline-flex; align-items: center; gap: 9px; padding: 4px 12px 4px 4px; border: 2px solid #151515; border-radius: 10px; background: oklch(0.93 0.14 100); box-shadow: 2px 2px 0 #151515; }
+.rf .rv12-badge b { width: 34px; height: 30px; box-sizing: border-box; border: 2px solid #151515; border-radius: 7px; background: #fff; display: flex; align-items: center; justify-content: center; font: 800 19px var(--v-display); letter-spacing: -0.02em; }
+.rf .rv12-badge b.g { background: oklch(0.8 0.16 145); } .rf .rv12-badge b.y { background: oklch(0.88 0.15 95); }
+.rf .rv12-badge span { font: 800 15.5px var(--v-display); white-space: nowrap; }
+.rf .rv12-bar { flex: 1 1 200px; min-width: 0; display: flex; flex-direction: column; gap: 5px; }
+.rf .rv12-bar small { font: 12.5px var(--v-mono); color: #4a4740; }
+.rf .rv12-vbar { display: flex; height: 16px; border: 1.5px solid #151515; border-radius: 999px; overflow: hidden; }
+.rf .rv12-vbar button { all: unset; cursor: pointer; height: 100%; }
+.rf .rv12-vbar button:hover { filter: brightness(0.92); }
+.rf .rv12-vbar button.p { background: oklch(0.72 0.15 145); } .rf .rv12-vbar button.m { background: oklch(0.85 0.14 90); } .rf .rv12-vbar button.n { background: oklch(0.7 0.15 30); }
+.rf .rv12-vbar:has(button[aria-pressed="true"]) button:not([aria-pressed="true"]) { opacity: .35; }
+.rf .rv12-vbar button:focus-visible { outline: 3px solid var(--v-lime); outline-offset: -3px; }
+.rf .rv12-thanks { border-radius: 10px; background: oklch(0.95 0.05 145); padding: 10px 14px; font-size: 15.5px; }
+.rf .rv12-row { display: flex; gap: 6px; overflow-x: auto; padding: 2px 0 4px; scrollbar-width: none; }
+.rf .rv12-row::-webkit-scrollbar { display: none; }
+.rf .rv12-showing { font: 13px var(--v-mono); color: #4a4740; } .rf .rv12-showing strong { color: #151515; }
+.rf .rv12-showing button, .rf .rv12-boxh button, .rf .rv12-empty button, .rf .rv12-more { all: unset; cursor: pointer; font-family: var(--v-mono); color: #151515; text-decoration: underline; text-underline-offset: 3px; }
+.rf .rv12-showing button { font-size: 13px; } .rf .rv12-boxh button { font-size: 12.5px; } .rf .rv12-empty button { font-size: 13px; }
+.rf .rv12-list { display: flex; flex-direction: column; gap: 10px; }
+.rf .rv12-card { padding: 14px 16px; border: 2px solid #151515; border-radius: 12px; background: #fff; display: flex; flex-direction: column; gap: 8px; }
+.rf .rv12-top { display: flex; align-items: flex-start; gap: 10px; }
+.rf .rv12-av { flex: none; width: 30px; height: 30px; border-radius: 50%; border: 1.5px solid #151515; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 14px; }
+.rf .rv12-av.a0 { background: oklch(0.88 0.09 145); } .rf .rv12-av.a1 { background: oklch(0.88 0.08 230); } .rf .rv12-av.a2 { background: oklch(0.9 0.09 95); } .rf .rv12-av.a3 { background: oklch(0.88 0.08 300); }
+.rf .rv12-av.yt { background: oklch(0.88 0.08 25); }
+.rf .rv12-who { flex: 1; min-width: 0; display: flex; flex-direction: column; line-height: 1.3; }
+.rf .rv12-line { display: flex; align-items: center; gap: 6px 10px; flex-wrap: wrap; } .rf .rv12-line strong { font-size: 15.5px; }
+.rf .rv12-pill { flex: none; white-space: nowrap; font: 12px var(--v-mono); border: 1.5px solid #151515; border-radius: 999px; padding: 0 8px; }
+.rf .rv12-pill.positive { background: oklch(0.92 0.08 145); } .rf .rv12-pill.mixed { background: oklch(0.94 0.09 95); } .rf .rv12-pill.negative { background: oklch(0.92 0.06 30); }
+.rf .rv12-when { margin-left: auto; font: 12.5px var(--v-mono); color: #6a675f; }
+.rf .rv12-sub { font: 12px var(--v-mono); color: #4a4740; }
+.rf .rv12-text { margin: 0; font-size: 17px; line-height: 1.55; text-wrap: pretty; overflow-wrap: anywhere; }
+.rf .rv12-link { font: 12.5px var(--v-mono); align-self: flex-start; color: #151515; }
+.rf .rv12-yt { display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; } .rf .rv12-yt .rv12-text { flex: 1; min-width: 0; }
+.rf .rv12-ymeta { display: flex; align-items: center; gap: 6px 10px; flex-wrap: wrap; font-size: 13.5px; color: #4a4740; }
+.rf .rv12-ymeta strong { color: #151515; font-size: 14.5px; } .rf .rv12-ymeta a:not(.rv12-thumb) { font: 12.5px var(--v-mono); color: #151515; }
+.rf .rv12-ymeta .rv12-ysum { color: #151515; font-size: 14px; font-weight: 600; }
+.rf .rv12-thumb { position: relative; flex: none; width: 64px; aspect-ratio: 16 / 9; border-radius: 5px; overflow: hidden; background: #e9e6dd; border: 1.5px solid #151515; display: block; }
+.rf .rv12-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+/* Blog review card (owner 2026-11-18): the video summary's layout, with a small "blog" label where the thumbnail is. */
+.rf .rv12-src { font: 11.5px var(--v-mono); color: #4a4740; border: 1.5px solid #c9c5ba; border-radius: 6px; padding: 0 6px; background: #fff; }
+/* Phones: up to five tabs (all · players · youtube · blogs · reddit) share the row instead of running off it, and a summary
+   card's pill goes above its text so the text keeps the card's full width. */
+@media (max-width: 560px) {
+  .rf .rv12-tabs { width: 100%; }
+  .rf .rv12-tabs button { flex: 1 1 auto; justify-content: center; padding: 0 7px; font-size: 13.5px; }
+  .rf .rv12-yt { flex-direction: column-reverse; gap: 8px; } .rf .rv12-yt .rv12-text { width: 100%; }
+}
+.rf .rv12-empty { border: 2px dashed #b9b5aa; border-radius: 12px; padding: 20px; display: flex; flex-direction: column; align-items: center; gap: 6px; text-align: center; } .rf .rv12-empty b { font: 800 16px var(--v-display); }
+.rf .rv12-more { min-height: 32px; align-self: flex-start; font-size: 14px; }
+/* Tags: a vertical list in the sidebar, chips in the row. */
+.rf .rv12-tag { all: unset; cursor: pointer; box-sizing: border-box; min-height: 36px; display: flex; align-items: center; gap: 8px; padding: 6px 10px; border-radius: 10px; border: 1.5px solid; font-size: 14.5px; font-weight: 600; line-height: 1.25; }
+.rf .rv12-tag.pos { background: oklch(0.95 0.05 145); border-color: oklch(0.75 0.08 145); } .rf .rv12-tag.neg { background: oklch(0.96 0.04 60); border-color: oklch(0.78 0.07 60); }
+.rf .rv12-tag[aria-pressed="true"] { border: 2px solid #151515; }
+.rf .rv12-tag i { flex: none; width: 10px; height: 10px; border-radius: 50%; border: 1.5px solid #151515; }
+.rf .rv12-tag.pos i { background: oklch(0.72 0.15 145); } .rf .rv12-tag.neg i { background: oklch(0.75 0.13 50); }
+/* A tag that is neither praise nor complaint ("firm"): plain, grey dot, so it never reads as praise. */
+.rf .rv12-tag.neu { background: #fff; border-color: #c9c5ba; } .rf .rv12-tag.neu i { background: #c9c5ba; }
+.rf .rv12-tag span { flex: 1; min-width: 0; } .rf .rv12-tag small { flex: none; font: 400 12px var(--v-mono); color: #4a4740; }
+.rf .rv12-tag.chip { flex: none; min-height: 32px; display: inline-flex; gap: 7px; white-space: nowrap; padding: 0 12px 0 10px; border-radius: 999px; font-size: 14px; }
+.rf .rv12-tag.chip i { width: 9px; height: 9px; } .rf .rv12-tag.chip span { flex: none; }
+.rf .rv12-tag:focus-visible { outline: 3px solid var(--v-lime); outline-offset: 2px; }
+.rf .rv12-side { display: none; }
+.rf .rv12-box { border: 2px solid #151515; border-radius: 16px; background: #fff; padding: 14px; display: flex; flex-direction: column; gap: 10px; }
+.rf .rv12-boxh { display: flex; justify-content: space-between; align-items: baseline; gap: 8px; } .rf .rv12-boxh h3 { font: 800 17px var(--v-display); margin: 0; }
+.rf .rv12-hint { font: 12px var(--v-mono); color: #6a675f; margin-top: -6px; }
+.rf .rv12-tags { display: flex; flex-direction: column; gap: 6px; }
+.rf .rv12-legend { display: flex; gap: 12px; flex-wrap: wrap; font: 12px var(--v-mono); color: #4a4740; }
+.rf .rv12-legend span { display: inline-flex; align-items: center; gap: 5px; } .rf .rv12-legend i { width: 8px; height: 8px; border-radius: 50%; }
+.rf .rv12-legend i.pos { background: oklch(0.72 0.15 145); } .rf .rv12-legend i.neg { background: oklch(0.75 0.13 50); }
+@media (min-width: 1024px) {
+  /* The left column stays 720px with or without the tag list (the mock's score row and cards width). */
+  .rf .rv12 { grid-template-columns: minmax(0, 720px) minmax(0, 1fr); justify-content: space-between; gap: 36px; }
+  .rf .rv12.side .rv12-side { display: block; position: sticky; top: 114px; margin-top: 52px; }
+  .rf .rv12.side .rv12-row { display: none; }
+}
+
+/* "Played it?" words (owner 2026-11-18): a textarea, full width, 3 lines growing to about 8, 16px+ (no iOS zoom), Post below
+   on the right. */
+.rf .rv-pwords { flex-direction: column; align-items: stretch; flex-wrap: nowrap; }
+.rf .rv-pwords textarea { width: 100%; box-sizing: border-box; min-height: calc(3 * 1.5em + 18px); max-height: calc(8 * 1.5em + 18px); resize: none; overflow-y: auto;
+  border: 2px solid #3a3833 !important; border-radius: 10px !important; padding: 8px 12px; font: 16px/1.5 var(--qt-body, "Atkinson Hyperlegible"), system-ui, sans-serif; background: #fbfaf6 !important; box-shadow: none !important; outline: none !important; }
+/* Plain focus (owner 2026-11-18): no coloured ring or glow; the border turns full ink and the box turns white, which keyboard
+   users still see. */
+/* !important: the light design's site-wide input rule (.lt-site … :is(input, textarea), its green focus glow) is more specific. */
+.rf .rv-pwords textarea:focus, .rf .rv-pwords textarea:focus-visible { outline: none !important; box-shadow: none !important; border-color: #151515 !important; background: #fff !important; }
+.rf .rv-pwords .rv-post { align-self: flex-end; }
+
+/* "posting as" beside Post (owner 2026-11-18): the composer's nickname field, sized and bordered like the textarea. */
+.rf .rv-psend { display: flex; align-items: center; gap: 8px 10px; flex-wrap: wrap; }
+.rf .rv-pas { font: 12.5px var(--v-mono); color: #4a4740; }
+.rf .rv-psend .rv-nick { flex: 1 1 220px; max-width: 360px; min-width: 0; display: flex; gap: 6px; }
+.rf .rv-psend .rv-nick input { flex: 1; min-width: 0; min-height: 36px; box-sizing: border-box; border: 2px solid #3a3833 !important; border-radius: 10px !important; padding: 6px 10px;
+  font: 16px var(--qt-body, "Atkinson Hyperlegible"), system-ui, sans-serif; background: #fbfaf6 !important; box-shadow: none !important; outline: none !important; }
+.rf .rv-psend .rv-nick input:focus { border-color: #151515 !important; background: #fff !important; }
+.rf .rv-psend .rv-nick button { all: unset; cursor: pointer; flex: none; width: 36px; min-height: 36px; display: flex; align-items: center; justify-content: center; border: 2px solid #151515; border-radius: 10px; background: #fff; font-size: 16px; }
+.rf .rv-psend .rv-nick button:focus-visible { outline: 3px solid var(--v-lime); outline-offset: 2px; }
+.rf .rv-psend .rv-post { margin-left: auto; }
+@media (max-width: 520px) { .rf .rv-psend .rv-nick { flex-basis: 100%; max-width: none; } }
+
+/* Full content width for the sections above the reviews (owner 2026-11-18): rp-body is a flex column that doesn't stretch, and
+   since the bottom line moved out of rp-main (#472) nothing held rp-main at the full width any more. */
+.rf:has(.v11-score) .rp-main { width: 100%; }
+/* The bottom bar's compare link, for a product with no shop link (SimRacingRecs #469). */
+.rf .rp-stick .rp-cmp { margin-left: auto; font: 13px var(--v-mono, var(--mono)); color: inherit; text-decoration: underline; text-underline-offset: 3px; white-space: nowrap; }
+
+/* Hero (owner 2026-11-18): the fit card is as tall as its content, so "Generally best for" sits right under the questions
+   instead of at the bottom of a card stretched to the left column; both columns align to the top. */
+.rf:has(.v11-score) .rf-top { align-items: flex-start; }
+.rf:has(.v11-score) .rf-fit { align-self: flex-start; }
+.rf:has(.v11-score) .rf-fit .rf-best { margin-top: 14px !important; }
+
+/* "Other rackets": a lone card runs the full width, photo left, the gain and give-up side by side (owner 2026-11-18). */
+.rf .v11-olines { display: flex; flex-direction: column; gap: inherit; align-self: stretch; }
+.rf .v11-others.one { grid-template-columns: 1fr; }
+.rf .v11-others.one .v11-ocard { grid-template-columns: 96px minmax(0, 1fr); gap: 4px 18px; }
+.rf .v11-others.one .v11-opic img { max-height: 140px; }
+.rf .v11-others.one .v11-olines { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 10px; }
+@media (max-width: 760px) { .rf .v11-others.one .v11-ocard { grid-template-columns: 56px minmax(0, 1fr); } .rf .v11-others.one .v11-olines { grid-template-columns: 1fr; } }
+
+/* "Works with" (SimRacingRecs): the makers' compatibility pairs, a group per product type. */
+.rf .v11-works .v11-wg h3 { font: 700 15px var(--v-display); margin: 4px 0 8px; }
+.rf .v11-works ul { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(210px, 1fr)); gap: 8px; }
+.rf .v11-works li a { display: flex; align-items: center; gap: 10px; padding: 8px 10px; border: 1.5px solid #d3d4d8; border-radius: 12px; background: #fff; color: inherit; text-decoration: none; height: 100%; box-sizing: border-box; }
+.rf .v11-works li a:hover { border-color: #151515; }
+.rf .v11-works .v11-wpic { flex: none; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; }
+.rf .v11-works .v11-wpic img { max-width: 40px; max-height: 40px; object-fit: contain; }
+.rf .v11-works .v11-wn { display: flex; flex-direction: column; min-width: 0; }
+.rf .v11-works .v11-wn b { font: 600 14px/1.25 inherit; }
+.rf .v11-works .v11-wn small { font: 12px var(--v-mono); color: #8a4a1a; }
+.rf .v11-works .v11-wmore { margin: 6px 0 0; font: 12px var(--v-mono); color: var(--v-mute2); }
+/* CoffeeRecs: a product that is not shipping yet (Decent Bengle) says so over its reviews. */
+.rf .rv-soon{margin:0 0 14px;padding:10px 14px;border:1.5px dashed var(--line,#e2d6cd);border-radius:10px;font-size:15px;line-height:1.45;color:var(--text,#3a2a22)}
+/* Desktop (owner 2026-11-18): no sticky fit / price bar. The hero's fit card and Check price, the Other rackets links and the
+   "Still deciding?" card are enough; phones (< 1024px) keep the bottom bar. Its bottom padding only applies under 900px. */
+@media (min-width: 1024px) { .rf:has(.v11-score) .rp-stick, .rf:has(.v11-score) .rp-stick.on { display: none; } }
+
+/* "Jump to reviews (N)" under the hook (owner 2026-11-18); the landing clears padel's 98px sticky header. */
+.rf .v11-jump { align-self: start; font: 600 14px var(--v-mono); color: var(--v-ink); text-decoration: underline; text-underline-offset: 3px; }
+.rf .v11-jump:hover, .rf .v11-jump:focus-visible { background: var(--v-hl); }
+.rf:has(.v11-score) #reviews { scroll-margin-top: 112px; }
+
+/* What the build means for you, back as full cards below How it plays (owner 2026-11-18). Flat cards like the other v11c
+   boxes; on phones a sideways swipe row, one card and a bit of the next in view. */
+.rf .v11-build.v11c { gap: 12px; scroll-margin-top: 80px; }
+.rf .v11-build.v11c h2 { font-size: 22px; letter-spacing: -0.01em; }
+.rf .v11-build.v11c .v11-bcards { grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; }
+.rf .v11-build.v11c .v11-bc { box-shadow: none; border-radius: 14px; padding: 14px; gap: 6px; }
+.rf .v11-build.v11c .v11-bc > b { font-size: 18px; line-height: 1.2; }
+.rf .v11-build.v11c .v11-bc > span:last-child { font-size: 15.5px; }
+.rf .v11-build.v11c .v11-vis { height: 52px; }
+@media (max-width: 760px) {
+  .rf .v11-build.v11c .v11-bcards { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; overscroll-behavior-x: contain;
+    padding-bottom: 4px; scrollbar-width: none; }
+  .rf .v11-build.v11c .v11-bcards::-webkit-scrollbar { display: none; }
+  .rf .v11-build.v11c .v11-bc { flex: 0 0 80%; scroll-snap-align: start; box-sizing: border-box; }
+}

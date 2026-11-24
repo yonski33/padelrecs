@@ -52,6 +52,9 @@ export type EngineProfile = {
   /** "Any" style: the style term is the product's quality Q instead of a flat 0.5. */ anyByQuality?: boolean;
   /** Display anchors per style pick (and "any"), not pooled over the styles. */ anchorsPerStyle?: boolean;
   /** Any hard reason (level, arm, feel) holds the % at this (under the "Worth a look" cut, so never Strong fit). */ hardCap?: number;
+  /** Trait dots: the bottom share of the catalogue's ranking per trait reads 2 (PickleballRecs); unset, 3 is the floor. */ lowShare?: number;
+  /** Trait dots follow the page's own clear claims (lib/page-bars.ts, app/match-context.ts; PickleballRecs). */ pageBars?: boolean;
+  /** A product's own style (its bars) scores at least its "balance" %, the opposite style at most (lib/home-rank.ts). */ styleOrder?: boolean;
   /** One row per model: the best-scoring eligible member, a newer one winning when it is within this many % points. Unset:
    *  the newest year that passes. */ familyBestWithin?: number;
   /** Ties on the cautious score go to the product with more reports. */ tieByReports?: boolean;
@@ -62,9 +65,20 @@ export type EngineProfile = {
   /** With "sore arm": small demotions of the cautious score for a thin (14 mm) core and a firm feel (PickleballRecs). */ armSpecDemote?: { core14: number; firm: number };
   /** The maker's mould bounds the final axis like a label (owner 2026-11-17, "the Oxdog is a diamond"): shape word (matched
    *  in the lower-cased shape) → [min, max]. A diamond plays on the power side however its control is praised. */ shapeBounds?: Record<string, [number, number]>;
+  /** Newest model wins (owner 2026-11-17): a newer year with this many reports always takes the model's row. */ newestAt?: number;
+  /** The shape rule (owner 2026-11-17): for these styles at these levels, these shapes (lib/fine-tune shapeOf) go after every
+   *  other row and stay under "Worth a look". */ shapeOrder?: { styles: string[]; levels: string[]; below: string[] };
+  /** At these levels a high-balance (head-heavy) racket goes after the rest, like the shape rule. */ headHeavyBelow?: string[];
+  /** A power (control) pick on a racket whose Attack (Control) bar is at most this is held under Strong fit. */ styleBarMax?: number;
+  /** The lowest % for curated places #1, #2, #3 … (the owner's "perfect fits"). */ curatedTop?: number[];
   /** The balance pick's axis term with a flat middle: within this distance of 0.5 counts as fully all-round. */ balanceFlat?: number;
   // The DiscGolfRecs match audit (Grok 2026-11-16, owner OK 2026-11-17). Unset: as before.
   /** A hard reason (with hardCap) also takes this off the cautious score, and the product sorts after every other row. */ hardPenalty?: number;
+  /** A softer warning (FitFacts.warn: DiscGolfRecs' step-up drivers, page warnings) takes this off, holds the % under Strong fit
+   *  and sorts the row after the unwarned ones (audit 2026-11-17). */ warnPenalty?: number;
+  /** A product whose own stability (FitFacts.lean) is the opposite of the picked one is held under "Worth a look" and sorted
+   *  after the rest. */ oppositeLeanLow?: boolean;
+  /** With the slower-arm pick, a product the specs call slow-arm friendly (RankItem.flags.slowArm) gains this much. */ slowArmLift?: number;
   /** The display scale: the floor anchor maps to `base`, the best to base + span, clamped at max (default 45 / 50 / 97). */ display?: { base: number; span: number; max: number };
   /** "Any" style: a stability window at this share of the fit, around `target` (or `lowTarget` for a beginner or a slower arm),
    *  so a well-suited product can reach Strong fit without a style pick. */ anyWindow?: { share: number; target: number; lowTarget: number };
@@ -118,7 +132,8 @@ export function engineBase(items: { id: string; n: number; e: EngineFacts }[], p
     if (mid) a0 = Math.min(a0, cap);
     if (ctl) a0 = Math.min(a0, p.labelBounds[0]);
     if (pow) a0 = Math.max(a0, p.labelBounds[1]);
-    const Pc = vo(x, "control").plus / base.control * base.power, Pp = vo(x, "power").plus;
+    // A catalogue with no control praise at all (SimRacingRecs before any style evidence) has no rate to compare to: 0, not 0/0.
+    const Pc = base.control > 0 ? vo(x, "control").plus / base.control * base.power : 0, Pp = vo(x, "power").plus;
     let num = p.ks * a0 + Pp, den = p.ks + Pp + Pc;
     const ec = x.e.expert.control, ep = x.e.expert.power;
     if (ec !== undefined && ep !== undefined && ec + ep > 0) { num += p.E * ep / (ec + ep); den += p.E; }
@@ -178,7 +193,8 @@ export const enginePct = (cautious: number, a: { lo: number; hi: number }, d: { 
 /** Candidates for a list: enough reports, passing the level gate; one row per model (the newest year that passes), unless
  *  every year is asked for. `family` is the model's row id (lib/compare-pairs.ts rowOfFamily). */
 export function engineCandidates<T extends { id: string; n: number; family: string; year: number }>(items: T[], ok: (x: T) => boolean, minReports: number, everyYear = false,
-  /** With familyBestWithin: each member's % for the picks; the best one stays, a newer one within that many points wins. */ best?: { pct: (x: T) => number; within: number }): T[] {
+  /** With familyBestWithin: each member's % for the picks; the best one stays, a newer one within that many points wins (and
+   *  always, with newestAt, once it has that many reports). */ best?: { pct: (x: T) => number; within: number; newestAt?: number }): T[] {
   const pass = items.filter(x => x.n >= minReports && ok(x));
   if (everyYear) return pass;
   const keep = new Map<string, T>();
@@ -187,7 +203,7 @@ export function engineCandidates<T extends { id: string; n: number; family: stri
     if (!b) { keep.set(x.family, x); continue; }
     if (!best) { if (x.year > b.year) keep.set(x.family, x); continue; }
     const [newer, older] = x.year >= b.year ? [x, b] : [b, x];
-    keep.set(x.family, best.pct(newer) >= best.pct(older) - best.within ? newer : older);
+    keep.set(x.family, (best.newestAt !== undefined && newer.n >= best.newestAt) || best.pct(newer) >= best.pct(older) - best.within ? newer : older);
   }
   return [...keep.values()];
 }
@@ -235,7 +251,10 @@ export function engineTraitDots(items: { id: string; n: number; e: EngineFacts }
     const worst = new Set((p.complaint ?? COMPLAINT_DOTS).includes(t) ? order.filter(x => vo(x, t).minus > vo(x, t).plus && vo(x, t).minus >= MIN_COMPLAINT_VOICES).slice(-Math.max(1, Math.round(0.06 * items.length))).map(x => x.id) : []);
     for (const x of items) {
       const i = rank.get(x.id)!, { plus, minus } = vo(x, t), b = base.get(x.id);
-      let dots = worst.has(x.id) ? 2 : i < n5 ? 5 : i < n4 ? 4 : 3;
+      // A site's low band (lowShare, PickleballRecs Grok audit 2026-11-17): the bottom of the catalogue's ranking reads 2, so
+      // the bars span the catalogue like 4 and 5 do ("less than most"), not a floor of 3 on every trait.
+      const low = p.lowShare !== undefined && i >= items.length - Math.round(p.lowShare * items.length);
+      let dots = worst.has(x.id) ? 2 : i < n5 ? 5 : i < n4 ? 4 : low ? 2 : 3;
       if (b && t === "control" && b.axis <= p.labelBounds[2] && minus <= plus) dots = Math.max(dots, 4);
       if (b && t === "power" && b.axis >= p.labelBounds[3] && minus <= plus) dots = Math.max(dots, 4);
       const within = 1 - i / Math.max(1, items.length - 1);

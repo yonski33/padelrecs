@@ -1,0 +1,86 @@
+[
+ {
+  "name": "Decent Bengle",
+  "item": "type",
+  "note": "unknown (maker does not name heater type; boiler-free design like DE1 expected – check)",
+  "source": "https://decentespresso.com/bengle"
+ },
+ {
+  "name": "Fellow Espresso Series 1",
+  "item": "type",
+  "note": "unknown in schema terms (maker: 'Boosted Boiler' – boiler plus flow-through booster)",
+  "source": "https://fellowproducts.com/products/espresso-series-1"
+ },
+ {
+  "name": "Flair Classic",
+  "item": "discontinued?",
+  "note": "check (maker page shows 'Sold out')",
+  "source": "https://flairespresso.com/products/flair-classic"
+ },
+ {
+  "name": "Timemore Chestnut C3",
+  "item": "discontinued?",
+  "note": "check (C3S/C3 Pro may supersede)",
+  "source": "https://www.timemore.com/"
+ },
+ {
+  "name": "Acaia Pyxis",
+  "item": "discontinued?",
+  "note": "check (maker now sells 'Pyxis Black' limited edition, $325)",
+  "source": "https://acaia.co/products/pyxis"
+ },
+ {
+  "name": "Brewista Smart Scale III",
+  "item": "fits a drip tray?",
+  "note": "unknown",
+  "source": "https://www.brewistabrand.co/products/brewista-smart-scale-3"
+ },
+ {
+  "name": "Timemore Basic 3.0",
+  "item": "fits a drip tray?",
+  "note": "check (140 × 120 mm)",
+  "source": "https://www.timemore.com/products/timemore-basic-3-0-electronic-espresso-scale-with-timer"
+ },
+ {
+  "name": "Varia AKU Pro",
+  "item": "fits a drip tray?",
+  "note": "unknown (130 × 110 mm)",
+  "source": "https://www.variabrewing.com/products/varia-aku-pro"
+ },
+ {
+  "name": "Decent Bengle",
+  "item": "owner call",
+  "note": "Not shipping yet (maker: first units Dec 2026). Its page shows pre-release impressions with a label, and it stays out of the match.",
+  "source": "https://decentespresso.com/bengle"
+ },
+ {
+  "name": "Weber Workshops EG-1",
+  "item": "owner call",
+  "note": "Mk.3, out of production since the Oct 2026 redesign: marked discontinued (out of the match). Add the new EG-1 as its own product?",
+  "source": "https://weberworkshops.com/products/eg-1"
+ },
+ {
+  "name": "Profitec GO",
+  "item": "owner call",
+  "note": "Replaced by the GO 2.0 (already listed): marked discontinued (out of the match). Merge its 90 reports into the GO 2.0 instead?",
+  "source": "https://www.profitec-espresso.com/en/products/go-2-0"
+ },
+ {
+  "name": "Moccamaster KBGV",
+  "item": "owner call",
+  "note": "Maker / SCA name is 'KBGV Select'. Rename (changes the URL; a redirect is kept)?",
+  "source": "https://us.moccamaster.com/"
+ },
+ {
+  "name": "Timemore Crystal Eye B75",
+  "item": "owner call",
+  "note": "Key specs hold a dose ('up to ~15 g'), not a capacity; Grok found no capacity. Leave as is?",
+  "source": "https://www.timemore.com/"
+ },
+ {
+  "name": "Lelit Mara X",
+  "item": "owner call",
+  "note": "Weight 18.5 kg vs 18.4 kg at retailers (no maker page). Leave as is?",
+  "source": "https://lelit.com/"
+ }
+]

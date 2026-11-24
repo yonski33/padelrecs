@@ -33,7 +33,7 @@ export default function ReviewForm({rackets,brands,initialRacket,initialRating}:
   if(values.racketMode==="existing"&&!values.racketId){setError(`Pick a ${w.one} from the list as you type.`);return;}
   if(values.racketMode==="new"&&!(values.brandName?.trim()&&values.modelName?.trim()&&(!hasYears||/^\d{4}$/.test(values.year||"")))){setError(values.brandName===undefined?`Which ${w.one}? Start typing its name and pick it from the list.`:`For a new ${w.one} we need the brand${hasYears?", model and year":" and product name"}.`);return;}
   if(!values.rating){setError("Pick how it went overall: positive, mixed or negative.");return;}
-  if((values.reviewText||"").trim().length<20){setError(`Tell us a little more — at least 20 characters about ${niche.copy.ui.howItWent}.`);return;}
+  if((values.reviewText||"").trim().length<20){setError(`A little more, please: at least 20 characters about ${niche.copy.ui.howItWent}.`);return;}
   if(!formToken.current)formToken.current=await fetchFormToken();
   if(!formToken.current){setError("Could not reach the site. Check your connection and try again.");return;}
   setBusy(true);

@@ -83,7 +83,6 @@ test("bots get the normal success response, even when saving the rejected copy f
  for (const [why, body, ip] of [
   ["honeypot", {...valid, website: "http://spam.example", formToken: old}, "203.0.113.1"],
   ["no token", valid, "203.0.113.2"],
-  ["too fast", {...valid, formToken: issueFormToken(Date.now())}, "203.0.113.3"],
   ["random content", {...valid, ...spam[0], formToken: old}, "203.0.113.4"],
  ] as const) {
   const response = await post(body, ip);
@@ -93,6 +92,14 @@ test("bots get the normal success response, even when saving the rejected copy f
   assert.equal(body2.status, "pending", why); assert.deepEqual(Object.keys(body2).sort(), ["edit", "id", "status"], why);
   assert.equal(checkReviewEdit(body2.id, body2.edit), true, why);
  }
+});
+
+test("a too-fast token with real text goes to the normal save as pending, not the rejected pile (owner 2026-11-18)", async () => {
+ const valid = {racketId: "racket-nox", rating: "4", ...real[0]};
+ // No DATABASE_URL here: the normal save fails with a 500, which shows the review took the pending path (a rejected copy
+ // would have answered 201 like the bot cases above).
+ const response = await post({...valid, formToken: issueFormToken(Date.now())}, "203.0.113.3");
+ assert.equal(response.status, 500);
 });
 
 test("robots.txt does not reveal the admin path", () => {

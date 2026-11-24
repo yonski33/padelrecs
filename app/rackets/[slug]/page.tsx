@@ -1,5 +1,7 @@
 export const dynamic = "force-dynamic";
+import { specNumber } from "../../../lib/spec-number";
 import { pageContent, pageTier } from "../../../lib/racket-page";
+import { ownScore } from "../../../lib/niche";
 import { isLight } from "../../../lib/look";
 import { amazonPhoto } from "../../../lib/amazon-photos";
 import { photoHidden, shopPhoto } from "../../../lib/shop-photos";
@@ -19,7 +21,7 @@ import { redirectedSlug } from "../../../db/racket-slugs";
 import { database } from "../../../db/data";
 import { saveAmazonPhoto } from "../../../db/amazon-photo-save";
 import { after } from "next/server";
-import { displayName } from "../../../lib/brand-name";
+import { withoutYear, displayName } from "../../../lib/brand-name";
 import { Review, External, WebSplit, racketParts, webReviewsLine } from "../../components";
 import { Score, PlusIcon, ProductIcon } from "../../icons";
 import ReviewList, { PAGE, variantParam, type ListItem } from "./review-list";
@@ -50,15 +52,22 @@ import { summary } from "../../../lib/product-summary";
 import { comparePairs, comparePick, pairHref, pairKey, modelFamily } from "../../../lib/compare-pairs";
 import "../../compare/compare-lists.css";
 import { SimilarSection, type SimilarItem, type SimilarTab } from "../../similar-section";
+import simPairs from "../../../db/compat/simracing-pairs.json";
 import { tint, tileWord, worksWith, expertLine, type RigPart } from "../../../lib/similar-picks";
 import { platformsOf as simPlatforms } from "../../../lib/attr-profile-simracing";
 import { evidenceRows } from "../../../db/evidence";
 import { withModelYears, rankingHref } from "../../../lib/top-lists";
 
 /** The fit page's spec line: padel's words, or a type-picker site's own (DiscGolfRecs: flight, rim, plastics, max weight). */
-const specLine = (r: { weight: string | null; balance: string | null; shape: string | null; core: string | null; surface: string | null; year: number }) => (fitConfigFor(niche)?.quick
+// A site's own labels per type (SimRacingRecs: "Torque", "Brake force"; a no-break space keeps a two-word label whole).
+const SPEC_LABELS = fitConfigFor(niche)?.quick?.specLabels;
+const specLine = (r: { weight: string | null; balance: string | null; shape: string | null; core: string | null; surface: string | null; year: number }) => (SPEC_LABELS
+  ? (["weight", "balance", "core", "surface"] as const).map(k => { const l = SPEC_LABELS(r.shape)[k]; return r[k] && l ? `${l.toLowerCase().replace(/ /g, "\u00a0")} ${r[k]}` : null; })
+  : fitConfigFor(niche)?.quick
   ? [r.weight && `flight ${r.weight}`, r.balance && `rim ${r.balance}`, r.core && `plastics ${r.core}`, r.surface && `max weight ${r.surface}`]
-  : [r.weight && `weight ${r.weight}`, r.balance && `balance ${r.balance.toLowerCase()}`, r.shape && `shape ${r.shape.toLowerCase()}`, r.core && `core ${r.core}`, r.surface && `face ${r.surface}`, `year ${r.year}`]).filter((x): x is string => !!x);
+  : [r.weight && `weight ${r.weight}`, r.balance && `${BALANCE_LABEL} ${specNumber(r.balance).toLowerCase()}`, r.shape && `shape ${r.shape.toLowerCase()}`, r.core && `core ${r.core}`, r.surface && `face ${r.surface}`, `year ${r.year}`]).filter((x): x is string => !!x);
+/** The balance column's own name on this site: PickleballRecs stores swing weight there (Grok audit 2026-11-17, #7). */
+const BALANCE_LABEL = (niche.specs.find(x => x.column === "balance")?.label ?? "balance").toLowerCase();
 const categories = niche.categories.map(c => [c.label, c.column] as const);
 const { playerLevel, playingSide } = niche.profile;
 // "2026-10-29T12:00:00Z" → "October 29, 2026", for niche.specsNote.
@@ -86,12 +95,13 @@ export async function generateMetadata({params, searchParams}: {params: Promise<
   // Racket pages with their own words (lib/racket-page.ts, owner's final mock): "<Brand Model Year> review" and the bottom line.
   const pc = pageContent(r.slug);
   if (pc && pageTier(pc)) {
-    const t = `${name} review`, images = [{ url: `${productHref(r)}/share-image`, width: 1200, height: 630, alt: niche.seo.ogProductAlt }];
+    const t = `${name} review | ${niche.site.name}`, images = [{ url: `${productHref(r)}/share-image`, width: 1200, height: 630, alt: niche.seo.ogProductAlt }];
     return { title: { absolute: t }, description: pc.bottom, alternates: { canonical: productHref(r) }, openGraph: { title: t, description: pc.bottom, url: productHref(r), type: "website", images }, twitter: { card: "summary_large_image", images } };
   }
   const bare = hasYears ? name.replace(new RegExp(`\\s+${r.year}$`), "") : name;
   // "<Brand Model Year> review" on every racket page (owner's final mock, SEO rule).
-  const title = `${name} review`;
+  // "| SiteName" on every product page (Grok audit 2026-11-18), as the other pages have.
+  const title = `${name} review | ${niche.site.name}`;
   const sig = (await productSignals()).get(r.id)?.signal;
   const line = shortLine(r) ?? listLine(r) ?? (r.reviewSummary && r.reviewSummary.length <= 155 ? r.reviewSummary : null);
   const facts = reportsN === 0 ? `No ${niche.people.one} reports yet. Be the first to review it.`
@@ -221,12 +231,12 @@ export default async function RacketPage({params, searchParams}: {params: Promis
   const list = (ts: readonly string[]) => ts.length > 1 ? `${ts.slice(0, -1).join(", ")} and ${ts[ts.length - 1]}` : ts[0];
   const faq: { q: string; a: string }[] = [];
   if (r.reviewSummary) faq.push({ q: `What do ${niche.people.many} say about ${name}?`, a: r.reviewSummary });
-  if (judged >= 5) faq.push({ q: `Is ${name} worth it?`, a: [`Of the ${judged.toLocaleString("en-US")} reviews with a clear verdict, ${share("positive")}% are positive, ${share("mixed")}% mixed and ${share("negative")}% negative.`,
+  if (judged >= 5) faq.push({ q: `Is ${name} worth it?`, a: [`Of the ${judged.toLocaleString("en-US")} reviews with a clear opinion, ${share("positive")}% are positive, ${share("mixed")}% mixed and ${share("negative")}% negative.`,
     sum.loved[0] ? `The praise mentioned most is ${sum.loved[0]}.` : "", sum.complaints[0] ? `The most common complaint is ${sum.complaints[0]}.` : ""].filter(Boolean).join(" ") });
   if (sum.loved.length) { const ex = example(sum.loved[0], "positive"); faq.push({ q: `What do people like about ${name}?`, a: `The praise reviewers mention most: ${list(sum.loved.slice(0, 3).map(mention))}.${ex ? ` For example: ${ex}` : ""}` }); }
   if (sum.complaints.length) { const ex = example(sum.complaints[0], "negative"); faq.push({ q: `What are the most common complaints about ${name}?`, a: `The complaints reviewers mention most: ${list(sum.complaints.slice(0, 3).map(mention))}.${ex ? ` For example: ${ex}` : ""}` }); }
-  if (sig?.set) faq.push({ q: `What does the signal score of ${sig.signal} mean?`, a: `It's how well reviewed ${name} is, out of 100, next to the other ${categoryWords(sig.category)} here. This one was set by the ${niche.site.name} team rather than worked out from reviews alone.` });
-  else if (sig) faq.push({ q: `What does the signal score of ${sig.signal} mean?`, a: `It's how well reviewed ${name} is, out of 100. Negative and mixed reviews take points off, and so does having only a few reviews: a ${niche.words.one} needs plenty of them, compared with the most-reviewed ${niche.words.many} here, to reach the high 80s and 90s. It's worked out from reviews only, needs at least ${MIN_SIGNAL_REVIEWS} of them, and updates as new ones come in.` });
+  if (sig?.set) faq.push({ q: `What does the ${ownScore("signal score")} of ${sig.signal} mean?`, a: `It's how well reviewed ${name} is, out of 100, next to the other ${categoryWords(sig.category)} here. This one was set by the ${niche.site.name} team rather than worked out from reviews alone.` });
+  else if (sig) faq.push({ q: `What does the ${ownScore("signal score")} of ${sig.signal} mean?`, a: `It's how well reviewed ${name} is, out of 100. Negative and mixed reviews take points off, and so does having only a few reviews: a ${niche.words.one} needs plenty of them, compared with the most-reviewed ${niche.words.many} here, to reach the high 80s and 90s. It's worked out from reviews only, needs at least ${MIN_SIGNAL_REVIEWS} of them, and updates as new ones come in.` });
   if (specs.length) faq.push({ q: `What are the specs of ${name}?`, a: specs.map(([k, v]) => `${k}: ${v}`).join(". ") + "." });
   if (placings.length) faq.push({ q: `How does ${name} rank?`, a: `${placings.slice(0, 3).map(p => `#${p.rank} in ${p.title}`).join(", ")}, ranked by real ${niche.people.one} reviews.` });
   // Where the reviews come from (this used to be two sidebar boxes): web reviews by platform, and how user reviews count.
@@ -329,9 +339,16 @@ export default async function RacketPage({params, searchParams}: {params: Promis
     .map(e => [e.productId, e.valueText!] as const)) : null;
   const works = sheet ? (() => {
     const part = (x: (typeof data.listed)[number]): RigPart => ({ id: x.id, type: x.shape, brand: data.brands.find(y => y.id === x.brandId)?.name ?? null,
-      platforms: simPlatforms(sheet.get(x.id)) ?? simPlatforms(x.core) ?? [], signal: sigs.get(x.id)?.signal ?? null });
-    return worksWith(part(r), data.listed.filter(x => score(data, x.id).judged >= 3).map(part));
+      platforms: simPlatforms(sheet.get(x.id)) ?? simPlatforms(x.core) ?? [], signal: sigs.get(x.id)?.signal ?? null, weight: x.weight, frame: x.shape === "Cockpit" ? x.balance : null });
+    void part;
+    // Only the makers' compatibility pairs (db/compat/simracing-pairs.json, owner 2026-11-18), never a brand guess.
+    const mine = (simPairs as Record<string, { name: string; shape: string; note?: string }[]>)[r.name] ?? [];
+    return mine.flatMap(p => { const x = data.listed.find(y => y.name === p.name); return x && !/^Discontinued\b/i.test(x.surface ?? "") ? [{ id: x.id, why: p.note ?? "on the maker's list" }] : []; })
+      .sort((a, b) => (sigs.get(b.id)?.signal ?? -1) - (sigs.get(a.id)?.signal ?? -1)).slice(0, 4);
   })() : [];
+  // The "works with" tab, also on the v2 product page (racket-fit.tsx, SimRacingRecs).
+  const pairsTab: SimilarTab | null = niche.similar && works.length ? { key: "pairs", label: niche.similar.pairLabel ?? "works with", sub: `what ${niche.people.many} add next to it`,
+    items: works.map((w, i) => oldItem(data.listed.find(x => x.id === w.id)!, i, w.why)), more: null } : null;
   const simTabs: SimilarTab[] = niche.similar ? [
     { key: "sim", label: `similar ${groupWord}`, sub: `other ${groupWord} ${niche.people.many} compare it with`,
       // One card per model (the best liked year), never another year of this one.
@@ -341,8 +358,7 @@ export default async function RacketPage({params, searchParams}: {params: Promis
         .filter(({ x }, _i, all) => niche.similar?.pairs !== "works" || r.shape !== "Wheelbase" || !r.balance || all.filter(y => y.x.balance === r.balance).length < 2 || x.balance === r.balance)
         .map(({ x }, i) => oldItem(x, i, loved?.get(x.id)?.loved ?? null)),
       more: firstList ? { href: rankingHref(firstList.slug), label: `all ${groupWord}, ranked →` } : null },
-    ...(works.length ? [{ key: "pairs", label: niche.similar.pairLabel ?? "works with", sub: `what ${niche.people.many} add next to it`,
-      items: works.map((w, i) => oldItem(data.listed.find(x => x.id === w.id)!, i, w.why)), more: null }] : []),
+    ...(pairsTab ? [pairsTab] : []),
   ] : [];
   const simSection = simTabs.length > 0 && simTabs[0].items.length + (simTabs[1]?.items.length ?? 0) > 0
     && <SimilarSection title="Also worth a look" tabs={simTabs} scoreLabel={scoreLabel.toLowerCase()} look={niche.similar?.look}/>;
@@ -391,13 +407,14 @@ export default async function RacketPage({params, searchParams}: {params: Promis
   // SkinRecs on the match engine (owner 2026-11-15): the beauty product page (app/skin/skin-product.tsx, owner's design 2026-11-16). ?layout=long / ?look=classic keep the old one.
   if (isV2 && attrProfileFor(niche) && query.layout !== "long" && query.look !== "classic") {
     // Skin pages load only on SkinRecs, so other sites' routes don't preload the beauty fonts (app/skin/beauty-fonts.ts).
-    const { default: SkinProduct } = await import("../../skin/skin-product");
+    // The shared v11c page in the beauty look (owner 2026-11-18, app/skin/skin-v11.tsx); ?v=old shows the earlier skin page.
+    const { default: SkinProduct } = query.v === "old" ? await import("../../skin/skin-product") : await import("../../skin/skin-v11");
     return <SkinProduct productId={r.id} choice={readSkinChoice(query, niche.typePages ?? [])}
       buy={amazon ? { url: amazon.url, label: "Check price", rel: "sponsored nofollow noopener" } : site ? { url: site.url, label: site.label, rel: site.affiliate ? "sponsored nofollow noopener" : "noopener" } : null}
       jsonLd={{ "@context": "https://schema.org", "@graph": jsonLd["@graph"].filter(x => x["@type"] === "BreadcrumbList" || x["@type"] === "Product") }}/>;
   }
   if (!qt && isV2 && query.layout !== "long" && query.qt !== "off" && query.look !== "classic") {
-    const shortName = fullName.replace(new RegExp(`\\s+${r.year}$`), "");
+    const shortName = withoutYear(fullName);
     // English only: some stored excerpts have no language set, so common Spanish/Italian/French words rule a text out too.
     const english = (t?: string | null) => !!t && /^[\x00-\x7F’‘“”–—…é]+$/.test(t) && t.length >= 40 && t.length <= 240 && !/\b(pero|que|muy|una?|poco|tengo|est[aá]|para|con|del|los|las|molto|della|questa|perch[eé]|tr[eè]s|avec|mais|pour)\b/i.test(t);
     const pickTake = (ok: boolean) => {
@@ -408,7 +425,7 @@ export default async function RacketPage({params, searchParams}: {params: Promis
       return web ? { id: web.id, text: web.excerpt!, verbatim: true, ok } : null;
     };
     const picked = ["style", "level", "arm"].some(k => typeof query[k] === "string");
-    return <RacketFit qt={null} line={shortLine(r) ?? listLine(r)} quotes={[pickTake(true), pickTake(false)].filter((x): x is NonNullable<typeof x> => !!x)}
+    return <RacketFit pairsTab={pairsTab} qt={null} line={shortLine(r) ?? listLine(r)} quotes={[pickTake(true), pickTake(false)].filter((x): x is NonNullable<typeof x> => !!x)}
       racketId={r.id} slug={r.slug} href={productHref(r)} name={fullName} shortName={shortName} year={r.year} shape={r.shape} photo={photoHidden(r) ? null : shopPhoto(r) ?? amazonPhoto(r)?.image ?? null}
       crumbs={<div className="crumbs"><a href={catalogPath}>{catalogLabel}</a><span>/</span>{brand && <a href={`/brands/${brand.slug}`}>{brand.name}</a>}</div>}
       reports={[...external.map(e => ({ id: e.id, platform: e.sourcePlatform, sourceName: e.sourceName, url: e.sourceUrl, date: e.sourceDate, sentiment: e.sentiment })),
@@ -417,7 +434,7 @@ export default async function RacketPage({params, searchParams}: {params: Promis
       specs={specLine(r)}
       buy={amazon ? { url: amazon.url, label: "Check price", rel: "sponsored nofollow noopener" } : site ? { url: site.url, label: site.label, rel: site.affiliate ? "sponsored nofollow noopener" : "noopener" } : null}
       fontClass={qtFontVars} tags={niche.tags.map(t => t.label)} nicknames={niche.form.quickVote?.nicknames ?? []}
-      choice={readChoice({ style: typeof query.style === "string" ? query.style : undefined, level: typeof query.level === "string" ? query.level : undefined, arm: typeof query.arm === "string" ? query.arm : undefined, shape: typeof query.shape === "string" ? query.shape : undefined, weight: typeof query.weight === "string" ? query.weight : undefined, feel: typeof query.feel === "string" ? query.feel : undefined, sweet: typeof query.sweet === "string" ? query.sweet : undefined })}
+      choice={readChoice({ ...(fitConfigFor(niche)?.quick?.filters ? Object.fromEntries(Object.entries(query).filter(([, v]) => typeof v === "string")) : {}), style: typeof query.style === "string" ? query.style : undefined, level: typeof query.level === "string" ? query.level : undefined, arm: typeof query.arm === "string" ? query.arm : undefined, shape: typeof query.shape === "string" ? query.shape : undefined, weight: typeof query.weight === "string" ? query.weight : undefined, feel: typeof query.feel === "string" ? query.feel : undefined, sweet: typeof query.sweet === "string" ? query.sweet : undefined })}
       picked={picked} jsonLd={{ "@context": "https://schema.org", "@graph": [jsonLd["@graph"].find(x => x["@type"] === "BreadcrumbList")].filter(Boolean) }}/>;
   }
   if (qt) {
@@ -425,7 +442,7 @@ export default async function RacketPage({params, searchParams}: {params: Promis
     const slugs = new Set([...qt.compare?.cards.map(c => c.slug) ?? [], ...qt.modules.map(m => m.type === "version" ? m.other.slug : null)].filter((x): x is string => !!x));
     const products = new Map(data.rackets.filter(x => slugs.has(x.slug)).map(x => [x.slug, { slug: x.slug, name: displayName(x.name, data.brands.find(b => b.id === x.brandId)?.name), href: productHref(x), photo: photoOf(x) }]));
     // "Siux Electra Pro ST4 2025" → "Siux Electra Pro ST4": the year sits beside the H1 (recipe "SEO").
-    const shortName = fullName.replace(new RegExp(`\\s+${r.year}$`), "");
+    const shortName = withoutYear(fullName);
     const qtLd = { "@context": "https://schema.org", "@graph": [
       { "@type": "FAQPage", mainEntity: qt.answers.map(a => ({ "@type": "Question", name: a.q, acceptedAnswer: { "@type": "Answer", text: `${a.badge}. ${plainText(a.a)}` } })) },
       jsonLd["@graph"].find(x => x["@type"] === "BreadcrumbList"),
@@ -434,7 +451,7 @@ export default async function RacketPage({params, searchParams}: {params: Promis
     // check for the visitor's picks (?style=&level=&arm=1, the same as the home's quick match). ?layout=long shows the old one.
     if (query.layout !== "long" && query.look !== "classic") {
       const picked = ["style", "level", "arm"].some(k => typeof query[k] === "string");
-      return <RacketFit qt={qt} racketId={r.id} slug={r.slug} href={productHref(r)} name={fullName} shortName={shortName} year={r.year} shape={r.shape} photo={own ?? amazonImage ?? null}
+      return <RacketFit pairsTab={pairsTab} qt={qt} racketId={r.id} slug={r.slug} href={productHref(r)} name={fullName} shortName={shortName} year={r.year} shape={r.shape} photo={own ?? amazonImage ?? null}
         crumbs={<div className="crumbs"><a href={catalogPath}>{catalogLabel}</a><span>/</span>{brand && <a href={`/brands/${brand.slug}`}>{brand.name}</a>}</div>}
         reports={[...external.map(e => ({ id: e.id, platform: e.sourcePlatform, sourceName: e.sourceName, url: e.sourceUrl, date: e.sourceDate, sentiment: e.sentiment })),
           ...reviews.map(x => ({ id: x.id, platform: niche.site.name, sourceName: null, url: null, date: x.createdAt.slice(0, 10), sentiment: ratingVerdict(x.rating), nickname: x.alias, level: x.playerLevel }))]}
@@ -442,7 +459,7 @@ export default async function RacketPage({params, searchParams}: {params: Promis
         specs={specLine(r)}
         buy={amazon ? { url: amazon.url, label: "Check price", rel: "sponsored nofollow noopener" } : site ? { url: site.url, label: site.label, rel: site.affiliate ? "sponsored nofollow noopener" : "noopener" } : null}
         fontClass={qtFontVars} tags={niche.tags.map(t => t.label)} nicknames={niche.form.quickVote?.nicknames ?? []}
-        choice={readChoice({ style: typeof query.style === "string" ? query.style : undefined, level: typeof query.level === "string" ? query.level : undefined, arm: typeof query.arm === "string" ? query.arm : undefined, shape: typeof query.shape === "string" ? query.shape : undefined, weight: typeof query.weight === "string" ? query.weight : undefined, feel: typeof query.feel === "string" ? query.feel : undefined, sweet: typeof query.sweet === "string" ? query.sweet : undefined })}
+        choice={readChoice({ ...(fitConfigFor(niche)?.quick?.filters ? Object.fromEntries(Object.entries(query).filter(([, v]) => typeof v === "string")) : {}), style: typeof query.style === "string" ? query.style : undefined, level: typeof query.level === "string" ? query.level : undefined, arm: typeof query.arm === "string" ? query.arm : undefined, shape: typeof query.shape === "string" ? query.shape : undefined, weight: typeof query.weight === "string" ? query.weight : undefined, feel: typeof query.feel === "string" ? query.feel : undefined, sweet: typeof query.sweet === "string" ? query.sweet : undefined })}
         // The fit page doesn't show the quick take's Q&A, so no FAQPage data here (audit 2026-11-15, #5): structured data
         // must match what the page shows. The long layout (below) shows the answers and keeps it.
         picked={picked} jsonLd={{ "@context": "https://schema.org", "@graph": [jsonLd["@graph"].find(x => x["@type"] === "BreadcrumbList")].filter(Boolean) }}/>;
@@ -512,7 +529,7 @@ export default async function RacketPage({params, searchParams}: {params: Promis
           {r.shape && <p className="lp-chiprow"><span className="lp-cat">{r.shape}</span>{hasYears && <span className="lp-year">{r.year}</span>}{placings[0] && <a className="lp-rank" href={placings[0].href}>{`Ranked #${placings[0].rank} in ${placings[0].label}`}</a>}</p>}
           {oneLine && <p className="lp-line">{oneLine}</p>}
           {sum.total > 0 ? <div className="lp-stats lp-stats2">
-            {sig && <div className="lp-stat"><b className="lp-signal">{sig.signal}</b><span>Signal score</span></div>}
+            {sig && <div className="lp-stat"><b className="lp-signal">{sig.signal}</b><span>{ownScore("Signal score")}</span></div>}
             {/* The counts over the bar, not a share (owner, 2026-11-14): a "% positive" read like a second score next to the signal. */}
             {pos !== null && <div className="lp-stat lp-split"><p className="lp-counts">
               <span className="c-pos"><b>{s.positive.toLocaleString("en-US")}</b> positive</span>
@@ -588,7 +605,7 @@ export default async function RacketPage({params, searchParams}: {params: Promis
         </div> : <p className="p-first">{`Be the first to review it. ${niche.copy.ui.triedIt}`}</p>}
         {pos !== null && <SentimentBand positive={s.positive} mixed={s.mixed} negative={s.negative}/>}
         {/* What the split is a share of, so it reads the same as the review tabs below (owner, 2026-11-12). */}
-        {pos !== null && <p className="sband-base">{`Of ${s.judged.toLocaleString("en-US")} ${s.judged === 1 ? "review" : "reviews"} with a clear verdict`}</p>}
+        {pos !== null && <p className="sband-base">{`Of ${s.judged.toLocaleString("en-US")} ${s.judged === 1 ? "review" : "reviews"} with a clear opinion`}</p>}
         {pos !== null && <ul className="p-legend m-only" aria-hidden="true">{([["positive", "Positive", s.positive], ["mixed", "Mixed", s.mixed], ["negative", "Negative", s.negative]] as const).map(([k, w, n], i) =>
           <li key={k} className={`s-${k}`}><span>{w}</span><b>{`${shares([s.positive, s.mixed, s.negative])[i]}%`}</b></li>)}</ul>}
       </div>

@@ -162,6 +162,118 @@
       "when": 1794889400000,
       "tag": "0023_evidence",
       "breakpoints": true
+    },
+    {
+      "idx": 24,
+      "version": "7",
+      "when": 1794889500000,
+      "tag": "0024_trait_votes",
+      "breakpoints": true
+    },
+    {
+      "idx": 25,
+      "version": "7",
+      "when": 1794889600000,
+      "tag": "0025_comments",
+      "breakpoints": true
+    },
+    {
+      "idx": 26,
+      "version": "7",
+      "when": 1794889700000,
+      "tag": "0026_model_line",
+      "breakpoints": true
+    },
+    {
+      "idx": 27,
+      "version": "7",
+      "when": 1794889800000,
+      "tag": "0027_trait_admin",
+      "breakpoints": true
+    },
+    {
+      "idx": 28,
+      "version": "7",
+      "when": 1794889900000,
+      "tag": "0028_accounts",
+      "breakpoints": true
+    },
+    {
+      "idx": 30,
+      "version": "7",
+      "when": 1794890100000,
+      "tag": "0030_account_trust",
+      "breakpoints": true
+    },
+    {
+      "idx": 31,
+      "version": "7",
+      "when": 1794890300000,
+      "tag": "0031_stories",
+      "breakpoints": true
+    },
+    {
+      "idx": 32,
+      "version": "7",
+      "when": 1794890500000,
+      "tag": "0032_story_edits",
+      "breakpoints": true
+    },
+    {
+      "idx": 33,
+      "version": "7",
+      "when": 1794890700000,
+      "tag": "0033_story_topics_likes",
+      "breakpoints": true
+    },
+    {
+      "idx": 34,
+      "version": "7",
+      "when": 1794890900000,
+      "tag": "0034_racket_follows",
+      "breakpoints": true
+    },
+    {
+      "idx": 35,
+      "version": "7",
+      "when": 1794891100000,
+      "tag": "0035_comment_post_type",
+      "breakpoints": true
+    },
+    {
+      "idx": 36,
+      "version": "7",
+      "when": 1794891300000,
+      "tag": "0036_helpful_overrides",
+      "breakpoints": true
+    },
+    {
+      "idx": 38,
+      "version": "7",
+      "when": 1794891700000,
+      "tag": "0038_comment_flair_none",
+      "breakpoints": true
+    },
+    {
+      "idx": 39,
+      "version": "7",
+      "when": 1794891900000,
+      "tag": "0039_creator_reviews",
+      "breakpoints": true
+    },
+    {
+      "idx": 40,
+      "version": "7",
+      "when": 1794892100000,
+      "tag": "0040_creator_key_point",
+      "breakpoints": true
+    },
+    {
+      "idx": 41,
+      "version": "7",
+      "when": 1794892300000,
+      "tag": "0041_creator_review_config",
+      "breakpoints": true
     }
   ]
 }

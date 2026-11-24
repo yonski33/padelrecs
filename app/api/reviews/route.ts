@@ -8,10 +8,16 @@ import { variantInput, reviewVariant } from "../../../db/review-variant";
 import { reviews, rackets } from "../../../db/schema";
 import { tagsInput } from "../../../lib/tags";
 import { profileChoice } from "../../../lib/review-options";
-import { issueFormToken, checkFormToken, reviewEditToken, checkReviewEdit } from "../../../lib/form-token";
+import { issueFormToken, checkFormToken, tokenRejects, reviewEditToken, checkReviewEdit } from "../../../lib/form-token";
 import { spamScore, normalizeEmail } from "../../../lib/review-spam";
 import { clientIp, createLimiter } from "../../../lib/rate-limit";
 import { makeNickname } from "../../../lib/nickname";
+import { threadSite } from "../../../lib/thread/look";
+import { postingAs, afterPost, RESERVED, BLOCKED, type Poster } from "../../../lib/thread/account-post";
+import { device } from "../thread-device";
+import { isTrusted } from "../../../db/trust";
+import { revalidatePath } from "next/cache";
+import { isProfileOnlyName, PROFILE_NAME } from "../../../lib/thread/display-name";
 const rating=z.coerce.number().int().min(1).max(5);
 const optionalRating=z.preprocess(v=>v===""||v===null?undefined:v,rating.optional());
 const input=z.object({
@@ -24,11 +30,11 @@ const input=z.object({
 }).and(racketSelection);
 const noStore={"Cache-Control":"no-store"};
 type Valid=z.infer<typeof input>;
-const reviewRow=(value:Valid,status:"pending"|"rejected",variant:string|null=null)=>({id:crypto.randomUUID(),rating:value.rating,powerRating:value.powerRating,controlRating:value.controlRating,maneuverabilityRating:value.maneuverabilityRating,comfortRating:value.comfortRating,forgivenessRating:value.forgivenessRating,playerLevel:value.playerLevel,playingSide:value.playingSide,playingStyle:value.playingStyle,timeWithRacket:value.timeWithRacket,reviewText:value.reviewText,tags:value.tags,email:value.email||null,alias:value.alias||makeNickname(niche.form.quickVote?.nicknames),variant,status,createdAt:new Date().toISOString()});
+const reviewRow=(value:Valid,status:"pending"|"rejected"|"approved",variant:string|null=null)=>({id:crypto.randomUUID(),rating:value.rating,powerRating:value.powerRating,controlRating:value.controlRating,maneuverabilityRating:value.maneuverabilityRating,comfortRating:value.comfortRating,forgivenessRating:value.forgivenessRating,playerLevel:value.playerLevel,playingSide:value.playingSide,playingStyle:value.playingStyle,timeWithRacket:value.timeWithRacket,reviewText:value.reviewText,tags:value.tags,email:value.email||null,alias:value.alias||makeNickname(niche.form.quickVote?.nicknames),variant,status,createdAt:new Date().toISOString()});
 // Spam is answered exactly like a saved review, so a bot learns nothing from the response; only the server log says why.
 // Every accepted answer carries an id and edit token (the one-tap card adds details to it). Dropped and rejected posts get
 // one too, so the answer looks the same; their details just never land, since only pending reviews take them.
-const accepted=(id:string=crypto.randomUUID())=>Response.json({status:"pending",id,edit:reviewEditToken(id)},{status:201,headers:noStore});
+const accepted=(id:string=crypto.randomUUID(),status:"pending"|"approved"="pending")=>Response.json({status,id,edit:reviewEditToken(id)},{status:201,headers:noStore});
 function dropped(reason:string){console.warn(`Review dropped (${reason})`);return accepted();}
 // A flagged submission that is still a valid review of a listed product is kept as "rejected", so the owner sees it in the
 // admin area and can approve a false positive. New products are never created for it, and a failed save is only logged.
@@ -59,31 +65,51 @@ export async function POST(request:Request){
  const ip=clientIp(request);
  if(!perIpBurst.hit(ip)||!perIpDay.hit(ip))return dropped("ip-rate-limit");
  const parsed=input.safeParse({racketMode:"existing",...body});
- if(!parsed.success)return honeypot||token!=="ok"?dropped(honeypot?"honeypot":`form-token-${token}`):Response.json({error:`Check the ${niche.words.one} details (brand, model and year for a new ${niche.words.one}), rating, email, and review text (at least 20 characters).`},{status:400});
+ // A "too fast" token is not proof of a bot (a person can tap Post within 3 s of the form opening): such a review is kept
+ // for moderation as pending, never filed as rejected (owner 2026-11-18). Missing, invalid or expired tokens and the
+ // honeypot are handled as before.
+ const tokenBad=tokenRejects(token);
+ if(!parsed.success)return honeypot||tokenBad?dropped(honeypot?"honeypot":`form-token-${token}`):Response.json({error:`Check the ${niche.words.one} details (brand, model and year for a new ${niche.words.one}), rating, email, and review text (at least 20 characters).`},{status:400});
  if(honeypot)return rejected("honeypot",parsed.data);
- if(token!=="ok")return rejected(`form-token-${token}`,parsed.data);
+ if(tokenBad)return rejected(`form-token-${token}`,parsed.data);
  const spam=spamScore(parsed.data);if(spam.spam)return rejected(`content: ${spam.reasons.join(", ")}`,parsed.data);
  try {
   const db=await database(),value=parsed.data;
+  // PadelRecs optional accounts (lib/thread/account-post.ts): a signed-in member posts under their reserved name; a guest
+  // can't use one (told plainly, so a person can pick another name). Other sites: always a guest.
+  const poster:Poster=threadSite(niche.id)?await postingAs(db,value.alias):{kind:"guest"};
+  if(poster.kind==="reserved")return Response.json({error:RESERVED,reserved:true},{status:409,headers:noStore});
+  if(poster.kind==="blocked")return Response.json({error:BLOCKED},{status:403,headers:noStore});
+  // A guest name that is only a level and side reads as reviewer info, so Thread sites refuse it (owner 2026-11-21).
+  if(poster.kind==="guest"&&threadSite(niche.id)&&value.alias&&isProfileOnlyName(value.alias))return Response.json({error:PROFILE_NAME},{status:400,headers:noStore});
+  // A member's saved level and side (already the form's own values, db/accounts.ts cleanLevel) fill in what the form didn't
+  // send; the review card shows the account's live ones.
+  if(poster.kind==="member"){value.alias=poster.account.name;value.playerLevel||=poster.account.level??undefined;value.playingSide||=poster.account.side??undefined;}
   if(value.email){
    // Gmail ignores dots and +tags, so compare normalised inboxes rather than the typed address.
    const since=new Date(Date.now()-24*60*60_000).toISOString(),inbox=normalizeEmail(value.email);
    const recent=await db.select({email:reviews.email}).from(reviews).where(and(isNotNull(reviews.email),gte(reviews.createdAt,since)));
    if(recent.filter(r=>r.email&&normalizeEmail(r.email)===inbox).length>=EMAIL_DAILY_LIMIT)return rejected("email-rate-limit",value);
   }
-  const review=reviewRow(value,"pending");
+  // Trusted members (db/trust.ts): once the owner has approved one of their posts, a review that passes the spam check with
+  // nothing flagged (no link, enough words, a readable name) goes live at once. Anything flagged waits as pending, as now.
+  const live=poster.kind==="member"&&value.racketMode==="existing"&&spam.score===0&&await isTrusted(db,poster.account).catch(()=>false);
+  const review=reviewRow(value,live?"approved":"pending");
   if(value.racketMode==="existing") {
    const [racket]=await db.select({id:rackets.id}).from(rackets).where(eq(rackets.id,value.racketId));
    if(!racket)return Response.json({error:`Choose a listed ${niche.words.one} or select New ${niche.words.one}.`},{status:400});
    await db.insert(reviews).values({...review,racketId:racket.id,variant:await reviewVariant(db,niche,racket.id,value.variant)});
+   if(threadSite(niche.id))await afterPost(db,"review",review.id,poster,await device(false));
   } else {
    await db.transaction(async tx=>{
     const racketId=await ensureRacket(tx,value,review.createdAt);
     await tx.insert(reviews).values({...review,racketId});
    });
   }
-  // New reviews reach the owner in the daily digest (lib/review-digest.ts), not one email each.
-  return accepted(review.id);
+  // New reviews reach the owner in the daily digest (lib/review-digest.ts), not one email each. A live one shows on the
+  // cached pages on their next view.
+  if(live){try{revalidatePath("/","layout");}catch{/* outside a request */}}
+  return accepted(review.id,live?"approved":"pending");
  }catch(error){console.error("Review save failed",error);return Response.json({error:"Could not save the review. Please try again."},{status:500});}
 }
 // The one-tap card's optional details, added one tap at a time to the review it just posted. Only the fields below, only

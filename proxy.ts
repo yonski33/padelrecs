@@ -1,6 +1,6 @@
 import { assertAuthTarget } from "./lib/deployment-target";
 import { createServerClient } from "@supabase/ssr";
-import { NextResponse, type NextRequest } from "next/server";
+import { NextResponse, NextRequest } from "next/server";
 import { niche } from "./lib/niche";
 import type { Niche } from "./lib/niche/types";
 import { productRedirect, productSlugIn } from "./lib/product-redirect";
@@ -10,11 +10,14 @@ import { readChoice, choiceKey, readChoiceKey, homeHref, OTHER_HOME_PARAMS } fro
 import { viewKey, readViewKey, viewQuery, CATALOG_VIEW, RANKING_VIEW, RACKET_VIEW, SKIN_HOME_VIEW, SKIN_CATALOG_VIEW, SKIN_PRODUCT_VIEW, SKIN_RANKING_VIEW } from "./lib/view-key";
 import { catalogPath } from "./lib/niche";
 import { specGroups } from "./lib/guide";
+import { threadPath, threadSite, THREAD_LOOK, THREAD_DEFAULT, CLASSIC_LOOK } from "./lib/thread/look";
+import { creatorPageFor, CREATOR_VIEW, CREATOR_PAGE_SITES, creatorPageOn, creatorPlainSite } from "./lib/thread/sites";
+import laptopCreatorPages from "./db/creators/laptop-pages.json";
 // The catalogue's cached views also hold the niche's spec filters (its guide config: padel balance and face).
 const CATALOG_Q = [...CATALOG_VIEW, ...specGroups(niche.guide).map(g => g.key)];
 
-// Only these paths depend on who is signed in. The admin area lives at /funtimes, not /admin (which is an ordinary 404).
-const PRIVATE = /^\/(?:funtimes|auth|api\/funtimes)(?:\/|$)/;
+// Only these paths depend on who is signed in (/account: PadelRecs players' optional accounts). The admin area lives at /funtimes, not /admin (which is an ordinary 404).
+const PRIVATE = /^\/(?:funtimes|auth|account|api\/funtimes|api\/account)(?:\/|$)/;
 
 /** categoryPaths niches (lib/niche): old product addresses (/tools/<slug>, /rackets/<slug>), former slugs and products filed
  *  under another type answer with a 301 to /<type slug>/<slug>. A real 301, which next.config redirects can't give here
@@ -63,11 +66,80 @@ export function skinView(request:NextRequest) {
  return null;
 }
 
+/** PadelRecs' Thread look (lib/thread/look.ts): by default (THREAD_DEFAULT) every address with a Thread page is served by it
+ *  (app/thread/…); ?look=thread does the same in preview mode. ?look=classic is handled in proxy() below. */
+export function threadView(request:NextRequest) {
+ if(!threadSite(niche.id))return null;
+ const look=request.nextUrl.searchParams.get("look");
+ if(look===CLASSIC_LOOK||(!THREAD_DEFAULT&&look!==THREAD_LOOK))return null;
+ const to=threadPath(request.nextUrl.pathname,catalogPath,niche.id);
+ if(!to)return null;
+ // Add a review reads ?racket= / ?from=; ?classic=1 (a product that isn't listed) stays on the live full form.
+ const add=to==="/thread/add-review";
+ if(add&&request.nextUrl.searchParams.get("classic"))return null;
+ const url=request.nextUrl.clone();url.pathname=to;if(!add)url.search="";
+ // The creator-page preview (lib/thread/sites.ts CREATOR_PAGE_SITES): ?view=creators on a product with creator data is
+ // served by its own cached page (app/thread/creators/[slug]); every other address routes as before.
+ // The same switch on the home: ?view=creators shows the creators home (app/thread/creators-home).
+ if(to==="/thread"&&request.nextUrl.searchParams.get("view")===CREATOR_VIEW&&CREATOR_PAGE_SITES.includes(niche.id))url.pathname="/thread/creators-home";
+ const product=/^\/thread\/rackets\/([a-z0-9-]+)$/.exec(to);
+ if(product&&request.nextUrl.searchParams.get("view")===CREATOR_VIEW&&creatorPageFor(niche.id,product[1]!))url.pathname=`/thread/creators/${product[1]}`;
+ return NextResponse.rewrite(url);
+}
+
+/** The Thread product page's own path (/thread/rackets/<slug>) answered 200 with a copy of the page on every Thread site
+ *  (DiscGolfRecs audit 2026-11-20); it is only meant as proxy.ts's rewrite target. A direct visit now gets a 301 to the
+ *  public address (/discs/<slug>, /rackets/<slug>, a type-path site's /<type>/<slug>), and /thread/rackets to the catalogue.
+ *  Rewrites never pass through here again, and Next's own revalidation requests are left alone. */
+export async function threadRedirect(request:NextRequest, lookup:()=>Promise<Map<string,{slug:string;shape:string|null}>>) {
+ if(!threadSite(niche.id)||request.headers.has("x-prerender-revalidate"))return null;
+ const m=/^\/thread\/(?:rackets|creators)(?:\/([a-z0-9-]+))?\/?$/.exec(request.nextUrl.pathname);
+ if(!m)return null;
+ const creators=request.nextUrl.pathname.startsWith("/thread/creators");
+ let to=m[1]?`${catalogPath}/${m[1]}`:catalogPath;
+ if(m[1]&&niche.categoryPaths){
+  try{const products=await lookup();to=productRedirect(niche,`/rackets/${m[1]}`,slug=>products.get(slug))??to;}
+  catch(error){console.error("Thread redirect lookup failed",error);}
+ }
+ const url=request.nextUrl.clone();url.pathname=to;url.search=creators&&m[1]?`?view=${CREATOR_VIEW}`:"";
+ return NextResponse.redirect(url,301);
+}
+
+/** Creator pages on a site that is not a Thread site (LaptopRecs, lib/thread/sites.ts CREATOR_PLAIN_SITES): the product
+ *  address of a product in db/creators/<site>-pages.json is served by app/thread/creator-product/[slug], which falls back to
+ *  today's product page when the product has no creator data. The query rides along; every other address routes as before. */
+const CREATOR_PLAIN_PAGES:Record<string,Set<string>>={laptop:new Set(laptopCreatorPages)};
+export function creatorProduct(request:NextRequest){
+ if(!creatorPlainSite(niche.id)||!creatorPageOn(niche.id))return null;
+ const seg=request.nextUrl.pathname.split("/").slice(1);
+ const slug=seg.length!==2?null:niche.categoryPaths?(TYPE_SLUGS.has(seg[0])?seg[1]:null):(`/${seg[0]}`===catalogPath?seg[1]:null);
+ if(!slug||!CREATOR_PLAIN_PAGES[niche.id]?.has(slug))return null;
+ const url=request.nextUrl.clone();url.pathname=`/thread/creator-product/${slug}`;
+ return NextResponse.rewrite(url);
+}
+
 export async function proxy(request:NextRequest) {
+ const moved=await threadRedirect(request,async()=>(await import("./lib/product-lookup")).productLookup());
+ if(moved)return moved;
+ const thread=threadView(request);
+ if(thread)return thread;
+ // Rollback look while Thread is the default: ?look=classic runs the live routing on the address without the query, so it
+ // gets exactly today's pages and their cached views (not the older "classic" look the pages themselves know).
+ if(THREAD_DEFAULT&&threadSite(niche.id)&&request.nextUrl.searchParams.get("look")===CLASSIC_LOOK){
+  const url=request.nextUrl.clone();url.searchParams.delete("look");
+  const res=await liveProxy(new NextRequest(url,request));
+  return res.headers.get("x-middleware-next")==="1"&&!PRIVATE.test(url.pathname)?NextResponse.rewrite(url):res;
+ }
+ return liveProxy(request);
+}
+
+async function liveProxy(request:NextRequest) {
  if(niche.categoryPaths){
   const moved=await productMove(request,niche,async()=>(await import("./lib/product-lookup")).productLookup());
   if(moved)return moved;
  }
+ const creator=creatorProduct(request);
+ if(creator)return creator;
  // The quick-match home (batch D): "/" and its picks are served from one cached page per combination (app/quick/[key]).
  // Other home views (?home=, ?type=, ?feed=, ?q=) stay with app/page.tsx. /quick/<key> itself is only ever a rewrite target.
  // SkinRecs (an attribute profile, lib/attr-profile.ts) has its own quick match on app/page.tsx (app/skin/home-skin.tsx).
@@ -96,7 +168,10 @@ export async function proxy(request:NextRequest) {
  if(isV2&&niche.finder&&!attrProfileFor(niche)){
   const {pathname,searchParams}=request.nextUrl;
   const to=(path:string)=>{const url=request.nextUrl.clone();url.pathname=path;url.search="";return NextResponse.rewrite(url);};
-  const ranking=/^\/rankings\/([a-z0-9-]+)$/.exec(pathname),racket=pathname.startsWith(`${catalogPath}/`)?/^([a-z0-9-]+)$/.exec(pathname.slice(catalogPath.length+1)):null;
+  const ranking=/^\/rankings\/([a-z0-9-]+)$/.exec(pathname),seg=pathname.split("/").slice(1);
+  // A categoryPaths site (SimRacingRecs) has its product pages under the type page (/wheelbases/<slug>), not the catalogue.
+  const racket=niche.categoryPaths?(seg.length===2&&TYPE_SLUGS.has(seg[0])?/^([a-z0-9-]+)$/.exec(seg[1]):null)
+   :pathname.startsWith(`${catalogPath}/`)?/^([a-z0-9-]+)$/.exec(pathname.slice(catalogPath.length+1)):null;
   if(pathname===catalogPath){const k=viewKey(searchParams,CATALOG_Q);if(k)return to(`/v/rackets/${k}`);}
   else if(ranking){const k=viewKey(searchParams,RANKING_VIEW);if(k)return to(`/v/rankings/${ranking[1]}/${k}`);}
   else if(racket){const k=viewKey(searchParams,RACKET_VIEW);if(k)return to(`/v/racket/${racket[1]}/${k}`);}

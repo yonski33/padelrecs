@@ -1,5 +1,8 @@
 import { cache } from "react";
+import { pageBar, PAGE_BAR_TRAITS } from "../lib/page-bars";
+import { pageContent } from "../lib/racket-page";
 import { kept } from "../db/keep";
+import { editStamp } from "../db/edit-stamp";
 import { catalog } from "../db/data";
 import { productSignals } from "./signals";
 import { baseLists } from "./rankings/lists";
@@ -11,23 +14,29 @@ import { ratingVerdict } from "../lib/top-lists";
 import { niche } from "../lib/niche";
 import { quickTakeHooks } from "../db/quick-take";
 import { traitOverrides, levelToSuits } from "../db/trait-override";
-import { traitScores, type TraitInput } from "../lib/trait-score";
+import { traitScores, type TraitInput, type TraitScore } from "../lib/trait-score";
+import { shownDots } from "../lib/expert-play";
 import { armFromReportText } from "../lib/youtube-trait-rules";
 import { evidenceRows } from "../db/evidence";
-import { evidenceBalance, labPercentiles, reportOf } from "../lib/evidence";
+import { evidenceBalance, labPercentiles, reportOf, tagRows, type EvidenceRow } from "../lib/evidence";
 import { balanceScores, type BalanceInput, type Trait as TraitKey } from "../lib/trait-score";
 import { levelSuits, levelDisagreement, type Suits, type SuitsInput } from "../lib/level-suits";
+import { levelTier, applyTier } from "../lib/level-tiers";
 import { EXTRACTORS } from "../lib/evidence";
 import { shapeOf, gramsOf, feelLean, feelClasses, type FineFacts , coreClass, FINE_ROWS } from "../lib/fine-tune";
 import { MIN_FIT_REPORTS } from "../lib/fit-verdict";
 import { factsWith, matchPcts, type RankItem } from "../lib/home-rank";
 import { engineBase, engineTraitDots, DOT_TRAITS, type EngineFacts, type DotTrait } from "../lib/engine";
 import { rowOfFamily } from "../lib/compare-pairs";
+import { hasCurated } from "../lib/curated";
 import { matchData } from "../db/match-data";
 import type { QuickChoice } from "../lib/quick-match";
 
 import { fitConfigFor } from "../lib/fit-config";
 import { discRules, type SiteRules } from "../lib/discgolf-hard";
+import { SUITS_OK } from "../lib/fit-verdict";
+import { paddleRules } from "../lib/pickleball-hard";
+import { coffeeRules } from "../lib/coffee-hard";
 
 /** What quick match (home) and the fit check (racket pages) read, built once per request: the finder's pool and tag counts
  *  over the models the home page shows, the Player scores, the quick-take hooks and level bands, and players' stated levels. */
@@ -36,8 +45,10 @@ const MATCH = matchData(niche.id);
 const GATE = niche.fit?.levelGate, ENGINE = niche.fit?.engine, ENGINE_TRAITS = ENGINE?.traits ?? DOT_TRAITS;
 const BEGINNER_LINES = (niche.fit?.beginnerLines ?? []).map(p => new RegExp(p, "i"));
 const PRO_LINES = (niche.fit?.proLines ?? []).map(p => new RegExp(p, "i"));
-/** A site's own hard rules and level floors (DiscGolfRecs match audit 2026-11-16, lib/discgolf-hard.ts); none elsewhere. */
-const RULES: ((d: { slug: string; weight: string | null }) => SiteRules) | undefined = niche.id === "discgolf" ? discRules : undefined;
+/** A site's own hard rules and level floors (DiscGolfRecs, lib/discgolf-hard.ts; PickleballRecs, lib/pickleball-hard.ts). */
+type SiteRuleFn = (d: { slug: string; weight: string | null }, noLevel?: boolean) => SiteRules;
+const SITE_RULES: Partial<Record<string, SiteRuleFn>> = { discgolf: discRules, pickleball: paddleRules, coffee: coffeeRules };
+const RULES: SiteRuleFn | undefined = SITE_RULES[niche.id];
 const LEVEL_VALUE: Record<Level, string> = { beginner: "Beginner", intermediate: "Intermediate", advanced: "Advanced" };
 // Built once per server instance and kept (db/keep.ts), not once per page: it takes seconds over a big catalog (owner
 // 2026-11-16: first visits to the v2 sites took 8–49 s). Still read once per request through cache(), so one page sees one copy.
@@ -48,9 +59,22 @@ const keptContext = kept(async () => {
   // The site's fit rules (lib/fit-config.ts); only sites with one call this.
   const cfg = fitConfigFor(niche)!;
   const rulesMemo = new Map<string, SiteRules>();
-  const rulesOf = (id: string): SiteRules => { let r = rulesMemo.get(id); if (!r) { const x = data.rackets.find(y => y.id === id); r = RULES && x ? RULES({ slug: x.slug, weight: x.weight }) : {}; rulesMemo.set(id, r); } return r; };
+  // `noLevel`: the product has no level data, so a rule may read the page's own level (PickleballRecs, lib/pickleball-hard.ts).
+  const rulesOf = (id: string, noLevel = false): SiteRules => { const key = `${id}|${noLevel}`; let r = rulesMemo.get(key); if (!r) { const x = data.rackets.find(y => y.id === id); r = RULES && x ? RULES({ slug: x.slug, weight: x.weight }, noLevel) : {}; rulesMemo.set(key, r); } return r; };
   // A site with its own evidence names (DiscGolfRecs) hands the engine the rows it reads; everyone else's pass through.
-  const evidence = cfg.evidenceAdapter ? cfg.evidenceAdapter(stored) : stored;
+  // A site with no evidence table yet (CoffeeRecs, fit-config tagEvidence) reads its reports' quick tags as rows, as the tags
+  // backfill would store them: a good tag doesn't count on a negative report, one row per tag and trait.
+  const goodTags = new Set(niche.tags.filter(t => t.tone === "pos").map(t => t.label));
+  const fromTags = (): EvidenceRow[] => [
+    ...data.reviews.map(r => ({ productId: r.racketId, ref: `p:${r.id}`, kind: "own_review" as const, author: r.alias ? `own:${r.alias.toLowerCase()}` : `p:${r.id}`, at: r.createdAt, v: ratingVerdict(r.rating), tags: r.tags })),
+    ...data.external.map(e => ({ productId: e.racketId, ref: `w:${e.id}`, kind: e.sourcePlatform === "YouTube" ? "youtube" as const : e.sourcePlatform === "Blog" ? "blog" as const : "player_report" as const,
+      author: e.sourcePlatform === "Reddit" || !e.sourceName ? `w:${e.id}` : `${e.sourcePlatform}:${e.sourceName.toLowerCase()}`, at: e.sourceDate || e.createdAt, v: e.sentiment, tags: e.tags })),
+  ].flatMap(x => tagRows({ ...x, tags: x.tags.filter(t => !(goodTags.has(t) && x.v === "negative")) }, cfg));
+  const evidence = !stored.length && cfg.tagEvidence ? fromTags() : cfg.evidenceAdapter ? cfg.evidenceAdapter(stored) : stored;
+  // The owner's facts per product (owner evidence rows, the latest per attribute), for the hard filters' facts (quick.factValues).
+  const ownerFacts = new Map<string, Record<string, string | number | null>>();
+  if (cfg.quick?.factValues) for (const r of [...stored].filter(x => x.sourceKind === "owner").sort((a, b) => (a.saidAt ?? "").localeCompare(b.saidAt ?? "")))
+    (ownerFacts.get(r.productId) ?? ownerFacts.set(r.productId, {}).get(r.productId)!)[r.attribute] = r.valueText ?? r.value;
   const good = niche.tags.filter(t => t.tone === "pos").map(t => t.label), bad = niche.tags.filter(t => t.tone === "neg").map(t => t.label);
   // Places come from the live rankings (the lists people see, ordered by Player score), not a second ranking worked out here:
   // that one used another order, so "control" picked a different ten than the Best for control page (owner, 2026-11-15).
@@ -95,8 +119,19 @@ const keptContext = kept(async () => {
     const reports = data.reviews.filter(r => r.racketId === id).length + data.external.filter(e => e.racketId === id).length;
     const su = suitsOf.get(id), fi = fineOf.get(id);
     const armDots = traitMap?.get(id)?.arm?.dots;
-    const hard = RULES && rulesOf(id).hard;
-    return { reports, tags, ...(armDots ? { armDots } : {}), ...(hard ? { hard } : {}), ...(fi ? { fine: fi } : {}), band: takes.get(id)?.band, levels: sourcesOf(id), ...(su ? { suits: su.suits, levelDisagree: su.disagree ?? undefined } : {}), places: { control: controlList ? inPool?.lists?.[controlList] : undefined, power: powerList ? inPool?.lists?.[powerList] : undefined } };
+    // The Attack and Control bars as shown (owner audit 2026-11-17: one style per racket on every page).
+    const pd = traitMap?.get(id)?.power?.dots, cd = traitMap?.get(id)?.control?.dots, sp = traitMap?.get(id)?.spin?.dots;
+    const styleDots = pd && cd ? { power: pd, control: cd, ...(sp ? { spin: sp } : {}) } : undefined;
+    // A hard-filter arm pick (SimRacingRecs: console): a product without the fact is held back for it, with the site's reason.
+    const noArm = cfg.quick?.armFilter && cfg.quick.factValues && cfg.words?.hardArm ? (() => { const x = data.rackets.find(y => y.id === id);
+      return !!x && !cfg.quick!.factValues!(x, ownerFacts.get(id) ?? {})[cfg.quick!.armFilter!.key]?.includes(cfg.quick!.armFilter!.value); })() : false;
+    const hard = noArm ? { ...(RULES && rulesOf(id, !su).hard), arm: cfg.words!.hardArm } : RULES && rulesOf(id, !su).hard, warn = RULES && rulesOf(id, !su).warn, lean = RULES && rulesOf(id, !su).lean;
+    const ffRow = cfg.quick?.factValues && cfg.quick.filters?.some(q => q.main) ? data.rackets.find(y => y.id === id) : undefined;
+    // The site's own reason per main-filter value the product lacks (CoffeeRecs: "Not for espresso: built for filter, …").
+    const ff = ffRow ? cfg.quick!.factValues!(ffRow, ownerFacts.get(id) ?? {}) : undefined;
+    const ffWhy = ffRow && ff && cfg.quick?.missWhy ? Object.fromEntries((cfg.quick.filters ?? []).filter(q => q.main).flatMap(q => q.options.filter(([v]) => !ff[q.key]?.includes(v))
+      .flatMap(([v]) => { const w = cfg.quick!.missWhy!(ffRow, q.key, v); return w ? [[`${q.key}:${v}`, w]] : []; }))) : undefined;
+    return { reports, tags, ...(ff ? { ff } : {}), ...(ffWhy && Object.keys(ffWhy).length ? { ffWhy } : {}), ...(armDots ? { armDots } : {}), ...(styleDots ? { styleDots } : {}), ...(hard ? { hard } : {}), ...(warn ? { warn } : {}), ...(lean ? { lean } : {}), ...(fi ? { fine: fi } : {}), band: takes.get(id)?.band, levels: sourcesOf(id), ...(su ? { suits: su.suits, levelDisagree: su.disagree ?? undefined } : {}), places: { control: controlList ? inPool?.lists?.[controlList] : undefined, power: powerList ? inPool?.lists?.[powerList] : undefined } };
   };
   // Trait scores (lib/trait-score.ts) for every listed racket: tags counted like the finder (a good tag doesn't count from a
   // negative report), "tagged" = reports with at least one counted tag.
@@ -119,7 +154,7 @@ const keptContext = kept(async () => {
   // YouTube reviewers' mentions (db/youtube-traits, one per channel) and the specs as a small prior (lib/trait-score.ts).
   const ytTraits = MATCH.youtubeTraits;
   for (const [id, p] of tagIn) { const r = data.rackets.find(x => x.id === id); if (!r) continue;
-    p.youtube = ytTraits[r.slug]; p.specs = { shape: r.shape, balance: r.balance, weight: r.weight, core: r.core, surface: r.surface }; }
+    p.youtube = ytTraits[r.slug]; p.specs = { shape: r.shape, balance: r.balance, weight: r.weight, core: r.core, surface: r.surface, ...(cfg.tagEvidence ? { slug: r.slug } : {}) }; }
   // Worked out from reports ("auto"), and with the owner's hand-set dots on top (admin area, db/trait-override.ts).
   const dotsSet = (id: string) => Object.fromEntries(Object.entries(overrides.get(id)?.traits ?? {}).filter(([, e]) => e?.dots).map(([t, e]) => [t, e!.dots!]));
   let traitAuto: ReturnType<typeof traitScores>, traitMap: ReturnType<typeof traitScores>;
@@ -193,13 +228,28 @@ const keptContext = kept(async () => {
         continue;
       }
       if (sp) { for (const l of ["beginner", "intermediate", "advanced"] as const) su[l] = Math.round((su[l] + sp[`suits_${l}`]!) / 2); su.basis.push("the specs"); }
+      // Thin level data on a site with spec levels (DiscGolfRecs, audit 2026-11-17 #7: every 3-player disc read 71 / 63 / 37): the
+      // flight numbers' levels weigh in until 8 players have said theirs.
+      const ss = RULES && !expertLevel ? rulesOf(id).specSuits : undefined, pn = Math.min(8, x.players?.length ?? 0);
+      if (ss) for (const l of ["beginner", "intermediate", "advanced"] as const) su[l] = Math.round((su[l] * pn + ss[l] * (8 - pn)) / 8);
       // A site's level floor (DiscGolfRecs: a speed ≤ 7 disc suits advanced players at least 50, lib/discgolf-hard.ts).
       const floor = RULES && rulesOf(id).suitsFloor;
       if (floor) for (const l of ["beginner", "intermediate", "advanced"] as const) su[l] = Math.max(su[l], floor[l] ?? 0);
+      // A product fact that caps its levels (SimRacingRecs: torque): a level it can't suit stays under the bar (fit-config levelCap).
+      const capRow = cfg.levelCap && data.rackets.find(r => r.id === id), cap = capRow ? cfg.levelCap!(capRow, ownerFacts.get(id) ?? {}) : null;
+      if (cap) for (const l of ["beginner", "intermediate", "advanced"] as const) {
+        if (cap[l] === false) su[l] = Math.min(su[l], SUITS_OK - 1);
+        // "on": the racers' own levels put it there (SimRacingRecs, owner 2026-11-21: follow racers' levels).
+        else if (cap[l] === "on") su[l] = Math.max(su[l], SUITS_OK);
+      }
+      // The owner's level tiers (lib/level-tiers.ts): the last word on intermediate+ and truly advanced rackets.
+      const tier = levelTier(niche.id, name, su);
+      if (tier) { suitsOf.set(id, { suits: applyTier(tier, su), disagree: null }); continue; }
       suitsOf.set(id, { suits: su, disagree: levelDisagreement(x) });
     }
     // Expert values (admin expert grid) win over the calculated score and hand-set dots.
-    const expertTraits = (id: string) => Object.fromEntries(Object.entries(overrides.get(id)?.expert ?? {}).filter(([k]) => !k.startsWith("suits_")).map(([k, e]) => [k, e!.value])) as Partial<Record<TraitKey, number>>;
+    const expertTraits = (id: string) => ({ ...Object.fromEntries(Object.entries(overrides.get(id)?.expert ?? {}).filter(([k]) => !k.startsWith("suits_")).map(([k, e]) => [k, e!.value])),
+      ...Object.fromEntries(Object.entries(cfg.expertAlias ?? {}).flatMap(([t, k]) => { const v = (overrides.get(id)?.expert as Record<string, { value: number } | undefined> | undefined)?.[k]?.value; return v === undefined ? [] : [[t, v]]; })) }) as Partial<Record<TraitKey, number>>;
     traitMap = balanceScores(inputs.map(p => ({ ...p, override: { ...knownSet(slugOf.get(p.id) ?? ""), ...dotsSet(p.id) }, expert: expertTraits(p.id) })), cfg);
   } else {
     traitAuto = traitScores([...tagIn.values()], cfg);
@@ -213,13 +263,13 @@ const keptContext = kept(async () => {
   const engOf = (id: string, r: (typeof data.rackets)[number]): EngineFacts => {
     const t = traitMap.get(id), ex = overrides.get(id)?.expert ?? {};
     const vo = (k: DotTrait) => ({ plus: t?.[k]?.plus ?? 0, minus: t?.[k]?.minus ?? 0 });
-    const exv = (k: DotTrait) => (ex as Record<string, { value: number } | undefined>)[k]?.value;
+    const exv = (k: DotTrait) => (ex as Record<string, { value: number } | undefined>)[cfg.expertAlias?.[k] ?? k]?.value;
     return { name: r.name, year: r.year, ...(sentOf.get(id) ?? { pos: 0, mix: 0, neg: 0 }),
       voices: { control: vo("control"), power: vo("power"), ...Object.fromEntries(ENGINE_TRAITS.map(k => [k, vo(k)])) },
       spec: { control: t?.control?.spec ?? 0, power: t?.power?.spec ?? 0, ...Object.fromEntries(ENGINE_TRAITS.map(k => [k, t?.[k]?.spec ?? 0])) },
       expert: Object.fromEntries(ENGINE_TRAITS.flatMap(k => exv(k) !== undefined ? [[k, exv(k)!]] : [])),
       // The mould, only where the profile bounds the axis by it (padel), so other sites' payloads stay as they were.
-      ...(ENGINE?.shapeBounds ? { shape: shapeOf(r.shape) } : {}) };
+      ...(RULES ? { shape: rulesOf(id).axisKey ?? null } : ENGINE?.shapeBounds ? { shape: shapeOf(r.shape) } : {}) };
   };
   // Trait dots from the engine (lib/engine engineTraitDots; PM / owner 2026-11-15, one story across the page): they replace the
   // per-report-rate dots everywhere (racket page, filters, the fit check), and hand-set dots still win.
@@ -231,8 +281,35 @@ const keptContext = kept(async () => {
       for (const k of ENGINE_TRAITS) { const cur = m[k]; if (!cur) continue;
         const hand = cur.set && !(k in ex); if (hand) continue;
         m[k] = { ...cur, dots: d[k].dots, score: d[k].score }; } }
+    // The page's own clear claims (engine pageBars, PickleballRecs Grok audit 2026-11-17): a bar never reads the opposite of
+    // its Why yes / Why not (lib/page-bars.ts). Hand-set and expert dots still win.
+    // An expert 3 or less gives way to 4 only where the page claims the strength and the reviews (the auto dots) say 4+ too
+    // (owner 2026-11-17: "Raise to 4" for the 9 paddles in the Grok audit, e.g. the Ruby's spin). It only ever raises.
+    if (ENGINE.pageBars) for (const id of listed) { const m = traitMap.get(id), ex = overrides.get(id)?.expert ?? {}, page = pageContent(slugOf.get(id) ?? ""); if (!m || !page) continue;
+      for (const k of PAGE_BAR_TRAITS as TraitKey[]) { const cur = m[k]; if (!cur) continue;
+        if (k in ex) { const auto = traitAuto.get(id)?.[k]?.dots ?? 0;
+          if (cur.dots < 4 && auto >= 4 && pageBar(k, cur.dots, page) >= 4) m[k] = { ...cur, dots: 4, score: 70 };
+          continue; }
+        if (cur.set) continue;
+        const dots = pageBar(k, cur.dots, page); if (dots !== cur.dots) m[k] = { ...cur, dots, score: (dots - 1) * 20 + 10 }; } }
   }
+  // A site's arm-dot limits from the specs (DiscGolfRecs: speed 11+ is never "easy to throw", a speed-5 putter always is), over
+  // players and hand-set dots alike, so the bar, the arm check and the chips say what the flight numbers allow.
+  if (RULES) for (const id of listed) { const m = traitMap?.get(id) as Record<string, { dots: number; score: number } | undefined> | undefined;
+    for (const [k, b] of Object.entries(rulesOf(id).dotBounds ?? {})) { const cur = m?.[k]; if (!m || !cur) continue;
+      const dots = Math.min(b[1], Math.max(b[0], cur.dots)); if (dots !== cur.dots) m[k] = { ...cur, dots, score: Math.min(Math.max(cur.score, (dots - 1) * 20), (dots - 1) * 20 + 19) }; } }
 
+  // The expert's How it plays (owner decision 2026-11-18, db/expert-play/<niche>.json): the shown bars, the style a product is
+  // filed under, its arm check and the "more X than" lines read these dots. The engine's own reading stays for the match %
+  // (each trait's `score` and the engine facts are untouched; `engineDots` keeps its dots for the gap report). An admin
+  // hand-set dot still wins.
+  const engineDots = new Map<string, Partial<Record<string, number>>>();
+  const EXPERT_PLAY = MATCH.expertPlay?.products ?? {};
+  for (const id of listed) { const m = traitMap?.get(id) as Record<string, TraitScore | undefined> | undefined, e = EXPERT_PLAY[slugOf.get(id) ?? ""]; if (!m || !e) continue;
+    const hand = dotsSet(id), was: Partial<Record<string, number>> = {};
+    for (const [k, dots] of Object.entries(shownDots(e, hand))) { const cur = m[k]; if (!cur || dots === undefined) continue;
+      was[k] = cur.dots; m[k] = { ...cur, dots, set: true, expert: true }; }
+    engineDots.set(id, was); }
   const leans = new Map([...listed].map(id => { const r = data.rackets.find(x => x.id === id); return [id, feelLean(tagIn.get(id)?.tags ?? {}, r?.core)] as const; }));
   const feels = feelClasses(leans);
   for (const id of listed) { const r = data.rackets.find(x => x.id === id);
@@ -244,7 +321,9 @@ const keptContext = kept(async () => {
     const pool = p ? { reviews: p.reviews, positive: p.positive, mixed: p.mixed, negative: p.negative, shape: p.shape, lists: p.lists } : undefined;
     return { id, facts: facts(id), control: t?.control?.score ?? null, power: t?.power?.score ?? null, arm: t?.arm?.score ?? null, level: level(id), signal: signal(id),
       ...(pool ? { pool } : {}), row: rowOfFamily(r, data.listed, x => facts(x.id).reports >= MIN_FIT_REPORTS).shown.id, ...(ENGINE ? { eng: engOf(id, r) } : {}),
-      ...(cfg.quick ? { kind: cfg.quick.types.find(t => t.shape === r.shape)?.key } : {}), ...(RULES && rulesOf(id).flags ? { flags: rulesOf(id).flags } : {}) };
+      ...(hasCurated() ? { slug: r.slug, ...(/high/i.test(r.balance ?? "") ? { headHeavy: true } : {}) } : {}),
+      ...(cfg.quick ? { kind: cfg.quick.types.find(t => t.shape === r.shape)?.key } : {}), ...(RULES && rulesOf(id).flags ? { flags: rulesOf(id).flags } : {}),
+      ...(cfg.quick?.factValues ? { ff: cfg.quick.factValues(r, ownerFacts.get(id) ?? {}) } : {}) };
   });
   /** The fit check's facts for these picks: facts() plus the racket's place inside a picked shape. */
   const factsFor = (choice: QuickChoice, id: string): FitFacts => factsWith(items, choice, facts(id), id);
@@ -253,5 +332,7 @@ const keptContext = kept(async () => {
   /** The level suits scores before any expert value (for the admin expert grid). */
   const suitsAuto = (id: string) => suitsAutoOf.get(id) ?? null;
   const traits = (id: string) => ({ scores: traitMap.get(id) ?? null, auto: traitAuto.get(id) ?? null, tagged: tagIn.get(id)?.tagged ?? 0, tags: tagIn.get(id)?.tags ?? {}, edits: overrides.get(id) ?? null });
-  return { cfg, data, sigs, takes, finder, bad, pool: pool as FinderProduct[], items, levelGate: GATE, level, signal, facts, factsFor, traits, matchPct, fineOf: (id: string) => fineOf.get(id), suitsAuto, evidence, scoreInputs };
-});
+    /** The expert's bar line for a trait (db/expert-play), when the bar shows the expert's dots. */
+  const expertLine = (id: string, k: string) => (traitMap?.get(id) as Record<string, TraitScore | undefined> | undefined)?.[k]?.expert ? EXPERT_PLAY[slugOf.get(id) ?? ""]?.traits[k]?.line ?? null : null;
+  return { cfg, data, sigs, takes, finder, bad, pool: pool as FinderProduct[], items, levelGate: GATE, level, signal, facts, factsFor, traits, matchPct, fineOf: (id: string) => fineOf.get(id), suitsAuto, evidence, scoreInputs, engineDots: (id: string) => engineDots.get(id) ?? null, expertLine };
+}, Date.now, editStamp);

@@ -1,5 +1,6 @@
 "use client";
 import { niche, v2copy } from "../../lib/niche";
+import { useFormToken } from "../form-token-client";
 import { matchingRackets } from "../../lib/racket-search";
 import { useState } from "react";
 import { VERDICTS, loadProfile, nickname, saveProfile, sendVote, type Verdict } from "../quick-vote";
@@ -27,6 +28,7 @@ export default function AddReviewV2({ rackets, initial, levels, sides, times, tr
   const [level, setLevel] = useState<string | null>(null), [side, setSide] = useState<string | null>(null), [time, setTime] = useState<string | null>(null);
   const [r, setR] = useState<Record<string, number>>({}), [text, setText] = useState(""), [name, setName] = useState("");
   const [busy, setBusy] = useState(false), [error, setError] = useState(""), [done, setDone] = useState<null | "words" | "vote">(null);
+  const formToken = useFormToken();
   const racket = rackets.find(x => x.id === racketId) ?? null;
   const qq = q.trim().toLowerCase();
   const matches = (qq ? matchingRackets(rackets, qq) : rackets).slice(0, qq ? 8 : 4);
@@ -37,7 +39,7 @@ export default function AddReviewV2({ rackets, initial, levels, sides, times, tr
   async function submit() {
     if (!ready || busy) return;
     const words = text.trim();
-    if (words && words.length < MIN_WORDS) { setError(`A little more, please: ${MIN_WORDS} characters at least, or clear the box to post just your verdict.`); return; }
+    if (words && words.length < MIN_WORDS) { setError(`A little more, please: ${MIN_WORDS} characters at least, or clear the box to post just your vote.`); return; }
     setBusy(true); setError("");
     try {
       const v = VERDICTS.find(x => x.key === verdict)!;
@@ -45,13 +47,13 @@ export default function AddReviewV2({ rackets, initial, levels, sides, times, tr
       if (level || side) saveProfile(profile);
       await sendVote(racket!.id, v.rating, profile);
       if (words) {
-        const token = ((await (await fetch("/api/reviews", { cache: "no-store" })).json()) as { token?: string }).token || "";
+        const token = await formToken();
         const ratings = Object.fromEntries(traits.filter(([n]) => r[n]).map(([n, key]) => [key, r[n]]));
         const res = await fetch("/api/reviews", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({
           racketMode: "existing", racketId: racket!.id, rating: v.rating, reviewText: words, tags: [], website: "", formToken: token, alias: name.trim() || nickname(niche.form.quickVote?.nicknames) || undefined,
           ...(level ? { playerLevel: level } : {}), ...(side ? { playingSide: side } : {}), ...(time ? { timeWithRacket: time } : {}), ...ratings }) });
         const b = await res.json() as { error?: string };
-        if (!res.ok) throw new Error(b.error || "Your verdict counted, but the words didn't post. Try again?");
+        if (!res.ok) throw new Error(b.error || "Your vote counted, but the words didn't post. Try again?");
       }
       setDone(words ? "words" : "vote"); window.scrollTo({ top: 0 });
     } catch (e) { setError(e instanceof Error ? e.message : "Could not post that. Try again?"); }
@@ -61,7 +63,7 @@ export default function AddReviewV2({ rackets, initial, levels, sides, times, tr
 
   if (done) return <section className="ar-done" role="status">
     <div aria-hidden="true">{v2copy.emoji || "✓"}</div>
-    <h1>{done === "words" ? "Thanks — your verdict is in." : "Thanks — your verdict counts."}</h1>
+    <h1>{done === "words" ? "Thanks, your review is in." : "Thanks, your vote counts."}</h1>
     <p>{done === "words" ? `It'll appear in the feed after a quick check, and counts toward the ${racket?.name} score.` : `It counts toward the ${racket?.name} score. Add a few words next time and it shows in the feed too.`}</p>
     <div><button type="button" className="ar-again" onClick={again}>{`+ review another ${niche.words.one}`}</button><a href="/reviews">see latest reviews</a></div>
   </section>;
@@ -70,7 +72,7 @@ export default function AddReviewV2({ rackets, initial, levels, sides, times, tr
     {opts.map(o => <button key={o.value} type="button" aria-pressed={value === o.value} onClick={() => set(value === o.value ? null : o.value)}>{o.label}</button>)}</div>;
 
   return <>
-    <section className="ar-head"><h1>Add your verdict</h1><p>Two required taps, the rest is optional. No account. Your review goes live in the feed and moves the rankings.</p></section>
+    <section className="ar-head"><h1>Add your review</h1><p>Two required taps, the rest is optional. No account. Your review goes live in the feed and moves the rankings.</p></section>
     <div className="ar-grid">
       <section className="ar-steps">
         <div className="ar-card">
@@ -84,7 +86,7 @@ export default function AddReviewV2({ rackets, initial, levels, sides, times, tr
         </div>
         <div className="ar-card">
           <div className="ar-h"><h2>2. Did it work for you?</h2><span className="req">required</span></div>
-          <div className="ar-verdicts" role="group" aria-label="Your verdict">{(Object.keys(V) as Verdict[]).map(k => <button key={k} type="button" aria-pressed={verdict === k} className={k} onClick={() => { setVerdict(k); setError(""); }}>
+          <div className="ar-verdicts" role="group" aria-label="Your take">{(Object.keys(V) as Verdict[]).map(k => <button key={k} type="button" aria-pressed={verdict === k} className={k} onClick={() => { setVerdict(k); setError(""); }}>
             <span aria-hidden="true">{V[k].icon}</span><b>{V[k].label}</b></button>)}</div>
         </div>
         <div className="ar-card">
@@ -104,22 +106,22 @@ export default function AddReviewV2({ rackets, initial, levels, sides, times, tr
           <div className="ar-h"><h2>5. In your words</h2><span>optional</span></div>
           <div className="ar-prompts">{prompts.map(p => <button key={p} type="button" onClick={() => setText(t => (t ? t.trimEnd() + " " : "") + p[0].toUpperCase() + p.slice(1) + ": ")}>+ {p}</button>)}</div>
           <textarea rows={5} maxLength={2000} value={text} onChange={e => { setText(e.target.value); setError(""); }} placeholder="What would you tell a friend thinking of buying it?" aria-label="Your review"/>
-          <div className="ar-row"><span>show my name as</span><input value={name} maxLength={50} onChange={e => setName(e.target.value)} placeholder="first name or nickname (blank = we pick one for you)" aria-label="Show my name as"/></div>
+          <div className="ar-row"><span>show my name as</span><input value={name} maxLength={50} onChange={e => setName(e.target.value)} placeholder="first name or nickname (blank = a nickname is picked for you)" aria-label="Show my name as"/></div>
         </div>
       </section>
       <aside className="ar-side">
         <p className="ar-k">{"// preview — how it'll look in the feed"}</p>
         <article className="ar-pv">
-          <div className="ar-pvh"><b>{racket?.name ?? `Pick a ${niche.words.one}`}</b><span className={`ar-pill ${verdict ?? ""}`}>{verdict ? `${V[verdict].icon} ${V[verdict].label}` : "verdict?"}</span></div>
+          <div className="ar-pvh"><b>{racket?.name ?? `Pick a ${niche.words.one}`}</b><span className={`ar-pill ${verdict ?? ""}`}>{verdict ? `${V[verdict].icon} ${V[verdict].label}` : "your take?"}</span></div>
           <div className="ar-pvb">
             <div className="ar-who"><span aria-hidden="true">{who[0].toUpperCase()}</span><strong>{who}</strong><span className="m">{[label(levels, level), label(sides, side)].filter(Boolean).join(" · ")}</span></div>
             <p className={text.trim() ? undefined : "ph"}>{text.trim() || "Your words go here."}</p>
             <div className="ar-tags">{[time && `used ${label(times, time)}`, ...traits.filter(([n]) => r[n]).map(([n]) => `${n.toLowerCase()} ${r[n]}/5`)].filter(Boolean).map(t => <span key={t as string}>{t}</span>)}</div>
           </div>
         </article>
-        <button type="button" className="ar-submit" disabled={!ready || busy} onClick={submit}>{busy ? "posting…" : ready ? "Post my review →" : !racket ? `pick a ${niche.words.one} first` : "pick a verdict first"}</button>
+        <button type="button" className="ar-submit" disabled={!ready || busy} onClick={submit}>{busy ? "posting…" : ready ? "Post my review →" : !racket ? `pick a ${niche.words.one} first` : "pick your take first"}</button>
         {error && <p className="ar-err" role="alert">{error}</p>}
-        <p className="ar-small">{"Every review gets a check before it counts. No ads in your inbox: we don't ask for an email."}</p>
+        <p className="ar-small">{"Every review gets a check before it counts. No ads in your inbox: no email needed."}</p>
       </aside>
     </div>
   </>;

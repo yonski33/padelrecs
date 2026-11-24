@@ -19,7 +19,7 @@ export default function ContactForm({siteName}:{siteName:string}) {
  async function submit(event:React.FormEvent<HTMLFormElement>){
   event.preventDefault();setError("");
   const values=Object.fromEntries(new FormData(event.currentTarget)) as Record<string,string>;
-  if(!values.name?.trim()){setError("Tell us your name.");return;}
+  if(!values.name?.trim()){setError("Add your name.");return;}
   if(!/^\S+@\S+\.\S+$/.test(values.email?.trim()||"")){setError("Add an email address so we can reply.");return;}
   if(!values.subject?.trim()){setError("Add a subject.");return;}
   if((values.message||"").trim().length<10){setError("Your message needs at least 10 characters.");return;}

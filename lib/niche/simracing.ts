@@ -1,4 +1,6 @@
 import type { Niche } from "./types";
+import { simracingV2Style } from "./simracing-v2-style";
+import { simracingGuide } from "./simracing-guide";
 
 // Rating icons: a steering wheel from the front, a signal-red rim with three asphalt spokes and hub. Same tile sizes as the other niches (17×14 strip, 20×20 picker).
 const svg = (markup: string) => `url("data:image/svg+xml,${markup.replace(/</g, "%3C").replace(/>/g, "%3E").replace(/#/g, "%23")}")`;
@@ -13,6 +15,24 @@ const ogWheel = (rim: string, hub: string) => `<svg xmlns="http://www.w3.org/200
 
 export const simracing: Niche = {
   id: "simracing",
+  // Design v2 (owner mock AgaVcamisXwobUR5sY9CDn, 2026-11-16) on the shared shell, as DiscGolfRecs: lib/simracing-fit.ts profile.
+  design: "v2",
+  guide: simracingGuide,
+  v2style: simracingV2Style, v2fonts: ["Chakra+Petch:wght@600;700"],
+  v2copy: {
+    homeH1: ["Find your", "sim racing gear"],
+    sport: "sim racing", emoji: "🏁", strip: "a free, ad-light side project · built by sim racers",
+    madeBy: "kept by people whose rig takes up most of the spare room 🏁", forum: "sim racing forum", blog: "sim racing blog",
+    aboutStory: ["simracingrecs started after one too many upgrades bought off a spec sheet. We'd spent real money on bases and pedals that racers had already warned about, and couldn't find a straight answer in one place.",
+      "So we built the thing we wanted: one place that brings driver reviews, YouTube reviewers and sim racing forums together, counts it honestly, and tells you if a piece of gear fits"],
+    example: "Fanatec CSL DD", use: "drives", tested: "real laps", score: "racer score", pillInline: true, tellUs: "Pick how you race", aboutLast: "your rig", yourPicks: "Your rig", better: "rigs", venue: "track", catalogNav: "gear",
+  },
+  // The fit check and quick match (lib/simracing-fit.ts, PM 2026-11-16). The engine's numbers are padel's (no sim racing tuning;
+  // ENGINE-ALGO: other sites supply a profile and a yardstick). No maker label words.
+  fit: { minReports: 6, fewReports: 15,
+    levelGate: { beginner: 45, intermediate: 40, advanced: 40 },
+    engine: { m: 10, k: 6, ks: 12, E: 8, z: 1.5, wq: 0.30, wf: 0.55, wp: 0.15, minReports: 6, ax: 0.75,
+      controlLabels: [], powerLabels: [], labelBounds: [0.3, 0.72, 0.35, 0.65], cuts: { good: 75, maybe: 55 }, armShare: 0.3, fineShare: 0.2 } },
   schema: "simracingrecs",
   site: {
     name: "SimRacingRecs",
@@ -114,22 +134,22 @@ export const simracing: Niche = {
   rowDetail: { column: "balance", suffix: "" },
   // Add new terms at the end; renaming or removing one orphans it on existing reviews.
   tags: [
-    { label: "detailed force feedback", tone: "pos" },
-    { label: "strong force feedback", tone: "pos" },
-    { label: "great brake feel", tone: "pos" },
-    { label: "rigid", tone: "pos" },
-    { label: "solid build", tone: "pos" },
-    { label: "great ergonomics", tone: "pos" },
-    { label: "good software", tone: "pos" },
-    { label: "easy setup", tone: "pos" },
-    { label: "great value", tone: "pos" },
-    { label: "flex", tone: "neg" },
-    { label: "noisy", tone: "neg" },
-    { label: "bad software", tone: "neg" },
-    { label: "quality control issues", tone: "neg" },
-    { label: "durability issues", tone: "neg" },
-    { label: "overpriced", tone: "neg" },
-    { label: "console compatible", tone: "neutral" },
+    { label: "detailed force feedback", tone: "pos", says: "say it has detailed force feedback" },
+    { label: "strong force feedback", tone: "pos", says: "say it has strong force feedback" },
+    { label: "great brake feel", tone: "pos", says: "say it has great brake feel" },
+    { label: "rigid", tone: "pos", says: "say it is rigid" },
+    { label: "solid build", tone: "pos", says: "say it is solidly built" },
+    { label: "great ergonomics", tone: "pos", says: "say it has great ergonomics" },
+    { label: "good software", tone: "pos", says: "say its software is good" },
+    { label: "easy setup", tone: "pos", says: "say it is easy to set up" },
+    { label: "great value", tone: "pos", says: "say it is great value" },
+    { label: "flex", tone: "neg", says: "say it flexes" },
+    { label: "noisy", tone: "neg", says: "say it is noisy" },
+    { label: "bad software", tone: "neg", says: "say its software is poor" },
+    { label: "quality control issues", tone: "neg", says: "report quality control issues" },
+    { label: "durability issues", tone: "neg", says: "report durability issues" },
+    { label: "overpriced", tone: "neg", says: "say it is overpriced" },
+    { label: "console compatible", tone: "neutral", says: "say it works on console" },
   ],
   finder: {
     title: "Sim Racing Gear Finder Quiz",

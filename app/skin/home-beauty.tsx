@@ -10,10 +10,11 @@ import { displayName } from "../../lib/brand-name";
 import { rankedLists, listHref } from "../rankings/lists";
 import { platformName } from "../../lib/source-label";
 import { niche, productHref } from "../../lib/niche";
-import { newThisWeek } from "../../lib/new-this-week";
+import { newThisWeek, WEEK_SHORT } from "../../lib/new-this-week";
 import { FEW_VOICES } from "../../lib/attr-score";
 import { V2Footer } from "../v2-footer";
 import { skinHref, type SkinChoice } from "../../lib/skin-choice";
+import { withVoiceFaq } from "../../lib/site-voice";
 
 /** The SkinRecs home in the owner's beauty design (Claude Design "SkinRecs home", 2026-11-16): quick match as one sentence
  *  ("My skin is … and I want to …"), an optional fine-tune, the ranked list with category pills, then textures, rankings, how
@@ -41,7 +42,7 @@ export default async function HomeBeauty({ choice }: { choice: SkinChoice }) {
   // Fresh: our own reviews and YouTube, one per product (as before).
   const seen = new Set<string>();
   const fresh = [
-    ...data.reviews.map(r => ({ id: r.id, racketId: r.racketId, date: r.createdAt, text: r.reviewText, quote: true, tag: niche.site.name.toLowerCase(), who: r.playerLevel ? `${r.playerLevel} skin` : null })),
+    ...data.reviews.map(r => ({ id: r.id, racketId: r.racketId, date: r.createdAt, text: r.reviewText, quote: true, tag: null as string | null, who: r.playerLevel ? `${r.playerLevel} skin` : null })),
     ...data.external.filter(e => e.sentiment && e.sourcePlatform === "YouTube" && e.summary).map(e => ({ id: e.id, racketId: e.racketId, date: e.sourceDate || e.createdAt, text: e.summary!, quote: false, tag: platformName(e.sourcePlatform).toLowerCase(), who: e.sourceName })),
   ].filter(x => byId.has(x.racketId)).sort((a, b) => b.date.localeCompare(a.date)).filter(x => !seen.has(x.racketId) && !!seen.add(x.racketId)).slice(0, 3);
   const best = lists.lists.filter(l => l.entries.length > 0).filter((l, i, a) => a.findIndex(x => x.list.slug === l.list.slug) === i);
@@ -67,7 +68,7 @@ export default async function HomeBeauty({ choice }: { choice: SkinChoice }) {
       link: sensList ? { href: listHref(sensList.list.slug), t: "See the sensitive-skin list →" } : { href: skinHref({ ...choice, concerns: ["sensitive"] }), t: "Rank for sensitive skin →" } }] : []),
     { q: "Light or rich texture?", a: "Lighter textures tend to suit oily and combination skin, richer ones dry skin. Each product page shows how reviewers describe its texture, and you can fine-tune the list above by texture.", link: { href: "#textures", t: "Textures →" } },
     { q: "What does the match % mean?", a: MATCH_NOTE, link: { href: "/how-we-make-these#match", t: "How we score →" } },
-    { q: "Where do the reviews come from?", a: `Reviews left here, ${channels ? `${channels} YouTube channels, ` : ""}skincare blogs and forums. We count the verdicts by skin type and write one honest line per product.`, link: { href: "/how-we-make-these", t: "How we make these →" } },
+    { q: "Where do the reviews come from?", a: `Reviews left here, ${channels ? `${channels} YouTube channels, ` : ""}skincare blogs and forums. We count the reviews by skin type and write one honest line per product.`, link: { href: "/how-we-make-these", t: "How we make these →" } },
     { q: "Is anything sponsored?", a: "No. Some “check price” links earn us a small commission, but they never change the order or the score.", link: { href: "/affiliate-disclosure", t: "Affiliate note →" } },
   ];
 
@@ -75,10 +76,10 @@ export default async function HomeBeauty({ choice }: { choice: SkinChoice }) {
     <style>{bpBodyFonts}</style>
     <div className="bh-wrap">
       <section className="bh-hero">
-        {/* One row on desktop (owner 2026-11-16, as PickleballRecs), the live pill on the subtitle's line; both wrap on phones. */}
-        <div><h1>{"Less guessing. "}<em>Better skincare.</em></h1>
-          <div className="bh-subrow"><p>{"Tell us about your skin. We'll handle the homework."}</p>
-            <span className="bh-live"><i aria-hidden="true"/>{`${total.toLocaleString("en-US")} reviews · ${newThisWeek(data, now).toLocaleString("en-US")} new this week`}</span></div></div>
+        {/* The live pill on the headline's line, to its right (owner 2026-11-18, every site). */}
+        <div><div className="bh-hrow"><h1>{`${niche.v2copy?.homeH1?.[0] ?? "Less guessing."} `}<em>{niche.v2copy?.homeH1?.[1] ?? "Better skincare."}</em></h1>
+            <span className="bh-live"><i aria-hidden="true"/>{`${total.toLocaleString("en-US")} reviews · ${newThisWeek(data, now).toLocaleString("en-US")} ${WEEK_SHORT}`}</span></div>
+          {!niche.v2copy?.homeH1 && <div className="bh-subrow"><p>{"Tell us about your skin. We'll handle the homework."}</p></div>}</div>
       </section>
 
       {/* The picks, the list and the texture links work in the browser (app/skin/home-match-skin.tsx). */}
@@ -87,7 +88,7 @@ export default async function HomeBeauty({ choice }: { choice: SkinChoice }) {
           <section>
             <div className="bh-sidehead"><h3>Fresh reviews</h3><a href="/reviews">all →</a></div>
             <ul className="bh-feed">{fresh.map(f => { const r = byId.get(f.racketId)!; return <li key={f.id}><a href={productHref(r)}>
-              <span className="bh-src"><span className={`t ${f.tag}`}>{f.tag}</span>{[ago(f.date, now), f.who].filter(Boolean).join(" · ")}</span>
+              <span className="bh-src">{f.tag && <span className={`t ${f.tag}`}>{f.tag}</span>}{[ago(f.date, now), f.who].filter(Boolean).join(" · ")}</span>
               <b>{nameOf(r)}</b>
               <span className="bh-q">{f.quote ? `“${clip(f.text)}”` : clip(f.text)}</span>
             </a></li>; })}</ul>
@@ -114,7 +115,7 @@ export default async function HomeBeauty({ choice }: { choice: SkinChoice }) {
 
       <section className="bh-how">
         <span className="bp-tag sm">how we score</span>
-        {[`${total.toLocaleString("en-US")} reviews${channels ? ` + ${channels} YouTube channels` : ""} + forums`, "we count every verdict, by skin type", "one honest line"].map((t, i) =>
+        {[`${total.toLocaleString("en-US")} reviews${channels ? ` + ${channels} YouTube channels` : ""} + forums`, "we count every review, by skin type", "one honest line"].map((t, i) =>
           <span key={t} className="bh-step"><i>{i + 1}</i>{t}</span>)}
         <b>No sponsored picks.</b>
         <a href="/how-we-make-these">how it works →</a>
@@ -122,8 +123,8 @@ export default async function HomeBeauty({ choice }: { choice: SkinChoice }) {
 
       <section className="bh-sec bh-faq">
         <h2>Questions</h2>
-        <div className="bp-card">{faqs.map(f => <details key={f.q}><summary><span>{f.q}</span><i aria-hidden="true"/></summary>
-          <p>{`${f.a} `}<a href={f.link.href}>{f.link.t}</a></p></details>)}</div>
+        <div className="bp-card">{withVoiceFaq<{ q: string; a: string; link?: { href: string; t: string } }>(faqs, f => f).map(f => <details key={f.q}><summary><span>{f.q}</span><i aria-hidden="true"/></summary>
+          <p>{`${f.a} `}{f.link && <a href={f.link.href}>{f.link.t}</a>}</p></details>)}</div>
       </section>
     </div>
     <V2Footer/>

@@ -1,0 +1,61 @@
+import { test } from "node:test";
+import assert from "node:assert/strict";
+import { topPicks, type PickCat, type PickRacket } from "../lib/thread/top-picks";
+
+// "Top picks by players" (owner 2026-11-19): share ranking, 10+ opinions, 5+ backers, one version per model, spread #1s.
+const cat = (key: string): PickCat => ({ key, title: key, trait: key, choice: "x", href: "/" });
+// `opinions` is the group total for every list here; one test below gives each list its own.
+const r = (id: string, opinions: number, counts: Record<string, number>, family = id): PickRacket =>
+  ({ id, name: id.toUpperCase(), family, counts, totals: Object.fromEntries(Object.keys(counts).map(k => [k, opinions])) });
+
+test("ranks by count, high to low (owner 2026-11-19), needs 10 opinions and 5 backers", () => {
+  const [l] = topPicks([r("big", 200, { a: 40 }), r("small", 20, { a: 10 }), r("tiny", 9, { a: 9 }), r("thin", 50, { a: 4 }), r("mid", 50, { a: 15 })], [cat("a")]);
+  assert.deepEqual(l.rows.map(x => [x.id, x.n]), [["big", 40], ["mid", 15], ["small", 10]]);
+});
+test("a tie on count goes to the higher share", () => {
+  const [l] = topPicks([r("wide", 60, { a: 12 }), r("narrow", 15, { a: 12 }), r("third", 30, { a: 7 })], [cat("a")]);
+  assert.deepEqual(l.rows.map(x => x.id), ["narrow", "wide", "third"]);
+});
+
+test("one version per model", () => {
+  const [l] = topPicks([r("ctrl35", 40, { a: 20 }, "ctrl"), r("ctrl34", 40, { a: 18 }, "ctrl"), r("b", 40, { a: 10 }), r("c", 40, { a: 8 })], [cat("a")]);
+  assert.deepEqual(l.rows.map(x => x.id), ["ctrl35", "b", "c"]);
+});
+
+test("no racket is #1 in more than 2 lists: it keeps its 2 biggest counts, the runner-up moves up elsewhere", () => {
+  const cats = ["a", "b", "c"].map(cat);
+  const star = r("star", 20, { a: 18, b: 16, c: 12 });
+  const others = [r("x", 20, { a: 10, b: 10, c: 10 }), r("y", 20, { a: 8, b: 8, c: 8 }), r("z", 20, { a: 6, b: 6, c: 6 })];
+  const lists = topPicks([star, ...others], cats);
+  assert.deepEqual(lists.map(l => l.rows[0].id), ["star", "star", "x"]);
+  // It leaves the third list, so that list still reads high to low.
+  assert.deepEqual(lists[2].rows.map(x => [x.id, x.n]), [["x", 10], ["y", 8], ["z", 6]]);
+  // With only 3 in the list it stays, at #2.
+  const short = topPicks([star, ...others.slice(0, 2)], cats);
+  assert.deepEqual(short[2].rows.map(x => x.id), ["x", "star", "y"]);
+});
+
+test("a list needs three picks to show", () => {
+  assert.equal(topPicks([r("a", 20, { a: 9 }), r("b", 20, { a: 9 })], [cat("a")]).length, 0);
+});
+
+test("the grid shows the first six lists that qualify, in order; a waiting list steps in when one falls short", async () => {
+  const { PICK_CATS } = await import("../lib/thread/top-picks");
+  const full = Object.fromEntries(PICK_CATS.map(c => [c.key, 9]));
+  const many = ["a", "b", "c", "d"].map(id => r(id, 20, { ...full }));
+  assert.deepEqual(topPicks(many).map(l => l.cat.key), ["sweet", "arm", "control", "power", "net", "intermediate"]);
+  const noControl = ["a", "b", "c", "d"].map(id => r(id, 20, { ...full, control: 0 }));
+  assert.deepEqual(topPicks(noControl).map(l => l.cat.key), ["sweet", "arm", "power", "net", "intermediate", "defence"]);
+  // Intermediate and defence short: low trampoline is next; with that short too, beginners.
+  const thin = (o: Record<string, number>) => ["a", "b", "c", "d"].map(id => r(id, 20, { ...full, intermediate: 0, defence: 0, ...o }));
+  assert.deepEqual(topPicks(thin({})).map(l => l.cat.key).at(-1), "trampoline");
+  assert.deepEqual(topPicks(thin({ trampoline: 0 })).map(l => l.cat.key).at(-1), "beginner");
+});
+
+test("share (the tie-break) is the pick over its own group's total, and the 10+ minimum is on that total", () => {
+  const g = (id: string, n: number, total: number): PickRacket => ({ id, name: id, family: id, counts: { a: n }, totals: { a: total } });
+  // 39 of 41 beats 26 of 50 and 12 of 30; 6 of 9 is out (fewer than 10 in its group).
+  const [l] = topPicks([g("x", 26, 50), g("y", 39, 41), g("z", 6, 9), g("w", 12, 30)], [cat("a")]);
+  assert.deepEqual(l.rows.map(x => x.id), ["y", "x", "w"]);
+  for (const x of l.rows) assert.ok(x.share <= 1, `${x.id} ${x.share}`);
+});

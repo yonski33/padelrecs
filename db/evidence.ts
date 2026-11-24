@@ -4,6 +4,7 @@ import { niche } from "../lib/niche";
 import { assertSchemaName } from "./migrations";
 import type { EvidenceRow } from "../lib/evidence";
 import { kept } from "./keep";
+import { editStamp } from "./edit-stamp";
 
 /** The active niche's evidence rows (migration 0023, lib/evidence.ts), for the trait scores. Empty when the table is missing
  *  (a niche not migrated yet) or holds nothing, so callers fall back to counting tags. Spec rows are left out (the specs
@@ -11,7 +12,7 @@ import { kept } from "./keep";
 export function evidenceRows(): Promise<EvidenceRow[]> { return keptRows.get().catch(() => []); }
 // Kept in this instance's memory (db/keep.ts): every page with a fit check reads them, and the read takes seconds. A failed
 // read is not kept, so the next page tries again.
-const keptRows = kept(loadEvidence);
+const keptRows = kept(loadEvidence, Date.now, editStamp);
 async function loadEvidence(): Promise<EvidenceRow[]> {
   const db = await database();
   const res = await db.execute(sql`select product_id, source_kind, source_ref, author_key, attribute, value, value_text, strength, quote, said_at, extracted_by

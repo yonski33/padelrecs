@@ -1,6 +1,7 @@
 import type { NextConfig } from "next";
 import { fileURLToPath } from "node:url";
 import { selectNiche } from "./lib/niche/all";
+import { threadSite, THREAD_MOVED, v3Site } from "./lib/thread/sites";
 const root=fileURLToPath(new URL(".",import.meta.url));
 // Which Recs site this deployment is (lib/niche); an unknown NICHE fails the build here.
 const niche=selectNiche(process.env.NICHE);
@@ -34,12 +35,21 @@ const config:NextConfig={
   // so they win over the generic /rackets and /types redirects.
   const moved=(niche.movedAway??[]).map(m=>({source:m.source,destination:m.destination,statusCode:301 as const,...(m.query?{has:[{type:"query" as const,key:m.query.key,value:m.query.value}]}:{})}));
   // "/product" (singular) 404'd on SkinRecs (owner 2026-11-16): the catalogue's singular, and a product under it, go to the catalogue.
+  // Thread pages that moved (lib/thread/sites.ts THREAD_MOVED): a 301 to the new address, on Thread sites only.
+  const thread=threadSite(niche.id)?THREAD_MOVED.map(m=>({source:m.from,destination:m.to,statusCode:301 as const})):[];
+  // The v3 sites (padel, audio, sim racing) have no score, so "How the score works" is retired: its address 308s to "How
+  // rankings work" (owner 2026-11-22), so old links don't 404. No noindex.
+  const retired=v3Site(niche.id)?[{source:"/how-we-make-these",destination:"/how-rankings-work",statusCode:308 as const}]:[];
   const singular=products.endsWith("s")&&products!=="/rackets"?[{source:products.slice(0,-1),destination:products,permanent:true},{source:`${products.slice(0,-1)}/:slug`,destination:`${products}/:slug`,permanent:true}]:[];
-  return products==="/rackets"?[...moved,...types,...rankings,...seasons]:[...moved,...types,...rankings,...seasons,...singular,{source:"/rackets",destination:products,permanent:true},
+  return products==="/rackets"?[...moved,...thread,...retired,...types,...rankings,...seasons]:[...moved,...thread,...retired,...types,...rankings,...seasons,...singular,{source:"/rackets",destination:products,permanent:true},
    // categoryPaths niches: the product's new address depends on its shape (a database value), so proxy.ts sends that 301.
    ...(niche.categoryPaths?[]:[{source:"/rackets/:slug",destination:`${products}/:slug`,permanent:true}])];
  },
  // Only the running site's config goes into the build (lib/niche/index.ts): "@/lib/niche/selected" becomes lib/niche/<id>.ts.
+ // Builds: 2 static-generation workers (BUILD_CPUS to change), each with one database connection (db/index.ts), so a build
+ // holds about 3 pooler clients (2 workers + the main process) instead of up to 5 per CPU; ~30 sites building at once stay
+ // near 90, under the pooler's 200 (2026-11-17 EMAXCONN). Pages per worker stay at Next's default 8, queued on that connection.
+ experimental:{cpus:Math.max(1,Number(process.env.BUILD_CPUS)||2)},
  turbopack:{root,resolveAlias:{"@/lib/niche/selected":`./lib/niche/${niche.id}.ts`}},outputFileTracingRoot:root,serverExternalPackages:["postgres"],outputFileTracingIncludes:{"/**":["./assets/fonts/**"]},
  // Public pages look the same for everyone: Vercel's CDN may serve a copy up to a minute old and refresh it in the background.
  // Admin, sign-in and write endpoints are excluded, and client-side navigation payloads (RSC requests) are never cached.
@@ -49,6 +59,6 @@ const config:NextConfig={
   // Product photos (public/photos) rarely change and keep their file name when they do: a week in browsers and the CDN,
   // then a day served stale while it refreshes (audit 2026-11-15, #10: they were max-age=0).
   const photos={source:"/photos/:path*",headers:[{key:"Cache-Control",value:"public, max-age=604800, stale-while-revalidate=86400"}]};
-  return [photos,...["/",products,`${products}/:slug*`,...(products==="/rackets"?[]:["/rackets/:slug*"]),"/brands","/brands/:slug*","/about","/contact","/reviews","/how-we-make-these",...(niche.amazon?["/affiliate-disclosure"]:[]),"/add-review","/rankings","/rankings/:slug*","/compare","/compare/:pair*","/api/racket-search","/api/rank-items","/sitemap.xml",...(niche.typePages??[]).flatMap(t=>niche.categoryPaths?[`/${t.slug}`,`/${t.slug}/:slug*`]:[`/${t.slug}`])].map(source=>({source,headers:cdn,missing}))];
+  return [photos,...["/",products,`${products}/:slug*`,...(products==="/rackets"?[]:["/rackets/:slug*"]),"/brands","/brands/:slug*","/about","/contact",...(["padel","pickleball","skin","discgolf"].includes(niche.id)?["/privacy"]:[]),"/reviews","/how-we-make-these",...(niche.id==="padel"?["/how-rankings-work"]:[]),...(niche.amazon?["/affiliate-disclosure"]:[]),"/add-review","/rankings","/rankings/:slug*","/compare","/compare/:pair*","/api/racket-search","/api/rank-items","/sitemap.xml",...(niche.typePages??[]).flatMap(t=>niche.categoryPaths?[`/${t.slug}`,`/${t.slug}/:slug*`]:[`/${t.slug}`])].map(source=>({source,headers:cdn,missing}))];
  }};
 export default config;

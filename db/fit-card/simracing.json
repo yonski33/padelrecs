@@ -107,7 +107,7 @@
  "playseat-trophy": {
   "strengths": [
    {
-    "t": "Handles a strong wheelbase: the frame stays stiff under direct drive and load-cell braking.",
+    "t": "Handles a strong wheelbase: the frame stays stiff under direct drive and load-cell brakes up to 100 kg.",
     "for": [
      "beginner",
      "intermediate"
