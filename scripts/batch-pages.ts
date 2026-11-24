@@ -100,6 +100,7 @@ async function inputs() {
 // ---------------------------------------------------------------- prompts
 const RULES = `Copy rules for every field:
 - No prices anywhere (owner 2026-11-24: quoted prices go stale, live prices live in the price box): no currency amounts ($92, 390 euro, €220, under $100), no "list price", "MSRP", "costs X", "at $X with a code", "$150 more". Value words without a number are fine ("good value", "pricey for what it offers", "cheaper than X"). No price keys in measured.
+- Name another product only by its exact model and edition as the source says it ("Babolat Technical Viper 2026", "Joola Perseus Pro IV"), never shortened to the line or brand ("a Viper", "a Nox", "Bullpadel", "the Perseus"). When the source only names a line or brand, leave that comparison out or describe the feel without a name ("sits between soft and firm"). (Owner 2026-11-24.)
 - No em dashes or en dashes. Never the word "verdict". Never "we", "us", "our". Write "players" for Reddit and forum people and "reviewers" for YouTube and blog reviewers, never "owners" or "creators". Refer to any person as they/them.
 - Plain, dry English, no hype. Never claim that ${SITE} or anyone at the site tested the ${ITEM}.
 - Facts only from the material given. Every claim in the TL;DR needs 2+ reviews behind it. Counts must be exact ("two players", "one reviewer"); when unsure, say "some" rather than inflate. Never state the total number of reviews or posts except in "Early signal from N posts."

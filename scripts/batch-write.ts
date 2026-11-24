@@ -163,6 +163,7 @@ const COPY_RULES = `Copy rules for every text field:
 - Never use the word "verdict". Write "players", not "owners". Never "we", "us" or "our". Say "reviewers", never "creators".
 - Never write that the site or anyone at the site tested the ${ITEM}.
 - No prices anywhere (owner 2026-11-24: quoted prices go stale, live prices live in the price box): no currency amounts ($92, 390 euro, €220, under $100), no "list price", "MSRP", "costs X", "at $X with a code", "$150 more". Value words without a number are fine ("good value", "pricey for what it offers", "cheaper than X"). No price keys in measured.
+- Name another product only by its exact model and edition as the source says it ("Babolat Technical Viper 2026", "Joola Perseus Pro IV"), never shortened to the line or brand ("a Viper", "a Nox", "Bullpadel", "the Perseus"). When the source only names a line or brand, leave that comparison out or describe the feel without a name ("sits between soft and firm"). (Owner 2026-11-24.)
 - Never repeat a review site's own star, category or overall ratings in the text (Pickleheads scores are hidden until their scale is confirmed). Describe them in words instead.
 - Plain, dry English. No hype words unless inside the exact quote.
 - Facts only from the source. Report opinions as theirs ("Finds", "Calls", "Rates"). When captions garble a number or a ${ITEM} name, leave it out rather than guess. Spell paddle and brand names correctly even if captions misspell them; if a garbled name cannot be pinned down, write "another ${ITEM}".`;
