@@ -2760,6 +2760,25 @@
      "tone": "neg"
     }
    ]
+  },
+  "neonic-swift-flx": {
+   "paras": [
+    "Reviewers praise the light, maneuverable elongated build and soft feel, and Pickleball Pursuit calls it the most maneuverable elongated paddle they have played and tested. Comparisons differ on spin: Pickleball Pursuit finds more spin than the Joola Pro 5, WhiskyDink says it spins less than the 11SIX24 Power 2, and vonEgypt Pickleball finds it a bit grittier than the Enhance MPP Turbo. Power is on the low side at the stock swing weight of about 108, so vonEgypt Pickleball plans to add weight, Pickleball Pursuit says players will need perimeter weight, and Farmer Lanky Pickleball says the improved peel ply grit is not a durable grit."
+   ],
+   "highlights": [
+    {
+     "text": "most maneuverable elongated paddle",
+     "tone": "pos"
+    },
+    {
+     "text": "spins less than the 11SIX24 Power 2",
+     "tone": "neg"
+    },
+    {
+     "text": "Power is on the low side",
+     "tone": "neg"
+    }
+   ]
   }
  },
  "padel": {
