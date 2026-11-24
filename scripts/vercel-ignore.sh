@@ -30,7 +30,9 @@ case " padel pickleball tennis simracing discgolf skin coffee stackrecs audio la
 # A skipped site still gets the change on its next build (Vercel diffs from its last good deploy), so a wrong skip only
 # delays. Any doubt = build.
 # 1) "[site pickleball]" or "[site padel audio]" in the merge commit title: only those sites build.
-sites=$(printf '%s' "$VERCEL_GIT_COMMIT_MESSAGE" | sed -n 's/.*\[site \([a-z ]*\)\].*/\1/p')
+# The title line only: a squash merge repeats the tag in its body ("* [site discgolf] ..."), and several matches joined by
+# newlines never matched " $NICHE " below, so #695's merge skipped discgolfrecs (2026-11-24).
+sites=$(printf '%s' "$VERCEL_GIT_COMMIT_MESSAGE" | head -n 1 | sed -n 's/.*\[site \([a-z ]*\)\].*/\1/p')
 if [ -n "$sites" ]; then
   case " $sites " in *" $NICHE "*) echo "Tagged [site $sites]: building $NICHE."; exit 1;; esac
   echo "Tagged [site $sites]: skipping $NICHE."; exit 0
