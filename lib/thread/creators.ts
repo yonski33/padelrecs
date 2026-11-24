@@ -140,8 +140,11 @@ export const scoreText = (s: NonNullable<CreatorReview["score"]>) => `${s.value}
 const MEASURED: Record<string, string> = { spin_rpm: "Spin", swing_weight: "Swing weight", twist_weight: "Twist weight" };
 /** LaptopRecs' measurements keep the reviewer's own label ("Battery, looped movie at 200 nits: almost 19 hours"). */
 const FREE_MEASURED = new Set(["laptop"]);
+/** No prices in review text (owner 2026-11-24: quoted prices go stale; live prices live in the price box only). */
+export const PRICE_TEXT = /[€$£]\s?\d|\d[\d.,]*\s?(€|euros?\b|eur\b|dollars?\b|usd\b|bucks\b|gbp\b)|\blist price\b|\bmsrp\b|\bretails? (for|at)\b|\bcosts? (about |around |roughly )?[€$£]?\d/i;
+const priceEntry = ([k, v]: [string, unknown]) => /price|cost|msrp|discount|code|deal/i.test(k) || PRICE_TEXT.test(String(v));
 export const measuredLine = (m: CreatorReview["measured"], site = process.env.NICHE ?? "") => FREE_MEASURED.has(site)
-  ? Object.entries(m).filter(([k, v]) => k.trim() && String(v).trim()).map(([k, v]) => `${k}: ${v}`).join(" · ")
+  ? Object.entries(m).filter(([k, v]) => k.trim() && String(v).trim() && !priceEntry([k, v])).map(([k, v]) => `${k}: ${v}`).join(" · ")
   : Object.entries(m).filter(([k]) => MEASURED[k]).map(([k, v]) => `${MEASURED[k]} ${v}${k === "spin_rpm" ? " rpm" : ""}`).join(" · ");
 
 /** Initials for the creator's avatar ("Pickleball Studio" → "PS"). */
