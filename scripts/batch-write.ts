@@ -45,9 +45,10 @@ const SITE = niche.site.name, ITEM = niche.words.one, SPORT_ITEM = `${niche.id} 
 const PRICE = { input: 1.0, output: 5.0, cacheRead: 0.05, cacheWrite: 1.25 }; // $ per MTok, batch rate
 const DROP = new Set(["FORWRD", "Man vs Debt", "REDTACKLE", "PickleballCentral", "Pickleball Hustle"]);
 /** Channels the owner dropped for every paddle (2026-11-23: The Kitchen Pickle YouTube and TikTok, with its site). */
-const BLOCK_CREATORS = /^the kitchen( pickle(ball)?)?$/i;
+const BLOCK_CREATORS = /^the kitchen( pickle(ball)?)?$|padel\.how|streltcoff|pickleball3/i;
 /** Sites the owner dropped for every paddle (2026-11-23: thekitchenpickle.com reads as AI content with no real testing). */
-const BLOCK_DOMAINS = ["thekitchenpickle.com"];
+// Owner 2026-11-24: padel.how reads as AI-generated (no real play, figures estimated from spec sheets); pickleball3.com likewise.
+const BLOCK_DOMAINS = ["thekitchenpickle.com", "padel.how", "pickleball3.com"];
 const blocked = (u: string | null | undefined) => !!u && BLOCK_DOMAINS.some(d => new RegExp(`(^|[/.])${d.replace(/\./g, "\\.")}(/|$)`, "i").test(u.replace(/^https?:\/\//, "")));
 const ATTR_NAMES = ["power", "control", "spin", "pop", "forgiveness", "comfort", "durability", "value"] as const;
 const WORDS = ["Excellent", "Great", "Good", "Okay", "Weak"] as const;
