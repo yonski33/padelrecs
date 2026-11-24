@@ -14,6 +14,7 @@ export type ThreadRow = {
   brand: string; year: number; levels: ("beginner" | "intermediate" | "advanced")[]; feel: "Soft" | "Medium" | "Hard" | "Warm" | "Balanced" | "Bright" | null; arm: boolean;
   /** The year that takes its model's row (lib/compare-pairs.ts familyRowIds, the classic catalog's and home's rule). Older
    *  years (false) stay reachable by their page and the catalog's search or "Show older models". */ current?: boolean;
+  /** A previous model's successor (PickleballRecs): the page labels it "Previous model" and links here. */ newer?: { name: string; href: string };
   /** SkinRecs' catalogue filters (its mock): skin types it works for, its texture, gentle on sensitive skin. Other sites: absent. */
   facets?: { skin: string[]; texture: string | null; sensitive: boolean };
   /** AudioRecs: the kind (Over-ear, Open-back, IEM, Earbuds), the tuning listeners hear and its filters. Other sites: absent. */
@@ -66,8 +67,9 @@ export function Badge({ n, label = W.score, size, pct, top }: { n: number | null
 export function SBar({ pos, mix, neg, lg }: { pos: number; mix: number; neg: number; lg?: boolean }) {
   return <span className={`th-sbar${lg ? " lg" : ""}`} aria-label={`${pos} loved it, ${mix} mixed, ${neg} not for me`}><i style={{ flex: pos }}/><i style={{ flex: mix }}/><i style={{ flex: neg }}/></span>;
 }
-export function Photo({ src, className = "th-photo", href }: { src: string | null; className?: string; href?: string }) {
-  const inner = src ? <img src={src} alt="" loading="lazy"/> : <span className="th-ph" aria-hidden="true"/>;
+/** `alt`: the product's name (Grok audit 2026-11-24: product photos had empty alt text). */
+export function Photo({ src, className = "th-photo", href, alt = "" }: { src: string | null; className?: string; href?: string; alt?: string }) {
+  const inner = src ? <img src={src} alt={alt} loading="lazy"/> : <span className="th-ph" aria-hidden="true"/>;
   return href ? <a className={className} href={th(href)} tabIndex={-1} aria-hidden="true">{inner}</a> : <span className={className}>{inner}</span>;
 }
 
@@ -85,7 +87,7 @@ export function Row({ r, rank, badge, badgeLabel = W.score, pct, rating, top }: 
   const judged = r.pos + r.mix + r.neg;
   return <div className={`th-row${rank ? "" : " norank"}`}>
     {rank ? <span className="th-rank">{rank}</span> : null}
-    <Photo src={r.pic} href={r.href}/>
+    <Photo src={r.pic} href={r.href} alt={r.name}/>
     <div className="th-row-body">
       <span className="th-row-name">{rank ? <span className="mrank">{rank}.</span> : null}<a href={href}>{r.name}</a>{r.shape && <span className="th-pill">{cap(r.shape)}</span>}{r.flight && <Flight f={r.flight}/>}</span>
       {r.line && <span className="th-verdict">{r.line}</span>}

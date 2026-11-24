@@ -266,7 +266,7 @@ export default async function ThreadRacket({ params }: P) {
             {!V3 && <span className="th-inline-score">{row?.score != null ? <><span className={`th-badge xs ${tone(row.score)}`}>{row.score}</span>{W.score}</> : "New, not enough votes yet"}</span>}
           </div>
           <div className="th-hero-grid">
-            <Photo src={row?.pic ?? null} className="th-bigphoto"/>
+            <Photo src={row?.pic ?? null} className="th-bigphoto" alt={row?.name ?? ""}/>
             <div style={{ display: "flex", flexDirection: "column", gap: 10, minWidth: 0 }}>
               {(lead || bullets.length > 0) && <div className="th-tldr"><div className="th-tldr-h">TL;DR</div>
                 {lead && <p>{lead}</p>}

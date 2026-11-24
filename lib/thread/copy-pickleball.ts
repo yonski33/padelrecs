@@ -29,9 +29,9 @@ const PADDLE_STEPS = steps([
   ["Shape: standard, hybrid or elongated",
     "Standard paddles have the sweet spot low and central, so they forgive mishits. Hybrid is the all-rounder. Elongated adds reach and drive power, but has a smaller sweet spot."],
   ["Feel: soft, medium or hard",
-    "A soft core is comfortable and gives easy depth from the baseline. A hard core gives more control and pop at the kitchen, but needs more effort and is harder on the arm."],
-  ["Weight: lighter is often better",
-    "Most paddles weigh 7.6 to 8.4 oz. Lighter paddles are quicker at the kitchen and easier on the arm over a long match. Heavier ones add power but tire you faster."],
+    "A soft feel, usually from a thicker 16 mm core, gives more touch and control at the kitchen and is easier on the arm. A hard feel, often from a thinner core, gives more pop and power, but is less forgiving."],
+  ["Weight: the middle suits most players",
+    "Most paddles weigh 7.6 to 8.4 oz. Lighter paddles are quicker at the kitchen, but very light ones pass more shock to the arm. Heavier ones add power and stability but tire you faster."],
   ["Balance: where the weight sits",
     "Low balance feels quick and easy to control. High balance adds power to drives but feels slower in fast exchanges. Shape usually sets the balance for you."],
   ["Your level, honestly",
@@ -39,7 +39,7 @@ const PADDLE_STEPS = steps([
   ["Doubles or singles",
     "Doubles is won at the kitchen, so quick, controlled paddles fit well. Singles rewards reach and drives from the baseline, so elongated paddles make more sense."],
   ["Sore arm? Put comfort first",
-    "If you have tennis elbow or a sore wrist, pick a soft core, low balance and a lighter weight. Add an overgrip and hold the paddle loosely."],
+    "If you have tennis elbow or a sore wrist, pick a soft core, low balance and a mid weight, not a very light paddle. Add an overgrip and hold the paddle loosely."],
 ]);
 const BEGINNER_STEPS = steps([
   ["Remember the two-bounce rule",
@@ -90,8 +90,8 @@ const FORMAT_STEPS = steps([
 const ELBOW_STEPS = steps([
   ["Go for a soft core",
     "Thicker 16 mm polymer cores take in more of the shock at contact. Thin, stiff paddles send more vibration into your elbow on every hit."],
-  ["Keep the weight low",
-    "A lighter paddle is easier to swing late in a match, when tired muscles let more strain reach the elbow. Look at 7.8 to 8.2 oz."],
+  ["Pick a mid weight, not a very light one",
+    "A very light paddle has little mass to take in the shock and makes you swing harder. A heavy one tires the arm late in a match. Look at about 7.8 to 8.4 oz."],
   ["Choose low balance",
     "Weight near the handle means less leverage on your forearm. Standard paddles usually have the lowest swing weight."],
   ["Hold it loosely",
@@ -108,7 +108,7 @@ export const PB_GUIDES: GuideCopy[] = [
     description: "Pick the pickleball paddle shape first, then the feel. Beginners: standard, soft and light. Intermediate: try a hybrid. Sore arm: comfort first.",
     tldrLead: "Pick the shape first, then the feel. Most players are happier with a paddle that is easier than they think they need.",
     tldr: ["Beginners: standard shape, soft core, lighter weight.", "Intermediate: try a hybrid for more all-round play.", "Sore arm: comfort first, power can come later."],
-    stepsTitle: "7 things to check, in order", steps: PADDLE_STEPS, picksTitle: "Players' favourite in each shape",
+    stepsTitle: "7 things to check, in order", steps: PADDLE_STEPS, picksTitle: "Players' favorite in each shape",
     commentsTitle: "Ask or share", composerPrompt: "What made you pick your paddle? Or ask for advice", composerPlaceholder: COMPOSER_PLACEHOLDER,
     onThisPage: PADDLE_STEPS.map(s => s.title),
   },
@@ -126,7 +126,7 @@ export const PB_GUIDES: GuideCopy[] = [
     description: "Standard vs hybrid vs elongated pickleball paddles: standard forgives, elongated reaches furthest and drives hardest, hybrid sits in between.",
     tldrLead: "Shape changes reach, sweet spot and how fast the paddle swings. Standard forgives, elongated reaches furthest, hybrid sits in between.",
     tldr: ["Standard: widest face, biggest sweet spot, best to learn with.", "Hybrid: a little extra reach, a good second paddle.", "Elongated: most reach and drive power, smallest sweet spot."],
-    stepsTitle: "6 things that change with shape", steps: SHAPE_STEPS, picksTitle: "Players' favourite in each shape",
+    stepsTitle: "6 things that change with shape", steps: SHAPE_STEPS, picksTitle: "Players' favorite in each shape",
     commentsTitle: "Ask or share", composerPrompt: "Which shape do you play, and would you switch?", composerPlaceholder: COMPOSER_PLACEHOLDER,
     onThisPage: SHAPE_STEPS.map(s => s.title),
   },
@@ -141,9 +141,9 @@ export const PB_GUIDES: GuideCopy[] = [
   },
   {
     key: "elbow", crumb: "Paddles", title: "Paddles for tennis elbow", seoTitle: "Pickleball paddles for tennis elbow",
-    description: "Pickleball paddles for tennis elbow: a soft core, low balance and lighter weight. Hold it loosely, add an overgrip and see a physio if pain lasts.",
-    tldrLead: "A soft, light paddle with low balance takes most of the shock away from your arm. How you hold it matters just as much.",
-    tldr: ["Pick a soft core, low balance and a lighter weight.", "Hold the paddle loosely and use an overgrip.", "See a physio if the pain lasts more than a few weeks."],
+    description: "Pickleball paddles for tennis elbow: a soft core, low balance and a mid weight. Hold it loosely, add an overgrip and see a physio if pain lasts.",
+    tldrLead: "A soft, mid-weight paddle with low balance takes most of the shock away from your arm. How you hold it matters just as much.",
+    tldr: ["Pick a soft core, low balance and a mid weight.", "Hold the paddle loosely and use an overgrip.", "See a physio if the pain lasts more than a few weeks."],
     stepsTitle: "6 things that help a sore arm", steps: ELBOW_STEPS, picksTitle: "Paddles players with sore arms vote for",
     commentsTitle: "Ask or share", composerPrompt: "Got elbow pain? Share what helped, or ask", composerPlaceholder: COMPOSER_PLACEHOLDER,
     onThisPage: ELBOW_STEPS.map(s => s.title),
@@ -156,4 +156,24 @@ const SWAPS: [RegExp, string][] = [[/PadelRecs/g, "PickleballRecs"], [/\bpadel\b
 export const toPickleball = (t: string) => SWAPS.reduce((s, [re, to]) => s.replace(re, to), t);
 const swapDeep = <T,>(v: T): T => (typeof v === "string" ? toPickleball(v) : Array.isArray(v) ? v.map(swapDeep)
   : v && typeof v === "object" ? Object.fromEntries(Object.entries(v).map(([k, x]) => [toPickleball(k), swapDeep(x)])) : v) as T;
-export const pickleballInfo = (padel: InfoCopy[]): InfoCopy[] => swapDeep(padel);
+/** Owner "Yes, both" 2026-11-24 (Grok audit #99, #100): no score wording on the About and affiliate pages (paddles show counts),
+ *  and an honest line on how reviews are checked. Exact sentences, each must match (tests/pickleball-audit-1124.test.ts). */
+export const PB_INFO_SWAPS: [string, string][] = [
+  ["Every paddle gets one player score, so you can see at a glance what people actually think.",
+    "Every paddle shows how many players loved it, were mixed or say not for me, so you can see at a glance what people actually think."],
+  ["Scores come only from players, and every review on the site is checked by a real person before it counts.",
+    "Rankings come only from players. Player reviews are checked before they show; summaries of YouTube, blog and Reddit reviews are written with AI and checked by a second pass."],
+  ["If a paddle is bad, the score says so.", "If a paddle is bad, the counts say so."],
+  ["It never changes a score or a ranking.", "It never changes a ranking or a review."],
+  ["never changes a score, a ranking or a review.", "never changes a ranking, a review or a vote count."],
+  ["Scores, rankings and reviews come only from players.", "Rankings, reviews and vote counts come only from players."],
+];
+/** The About section that explained the 0 to 100 score: gone with the score. */
+export const PB_INFO_DROP = ["How the score works"];
+const noScore = (c: InfoCopy): InfoCopy => {
+  const sw = (t: string) => PB_INFO_SWAPS.reduce((x, [a, b]) => x.replace(a, b), t);
+  const links = (c.extra?.sectionLinks ?? null) as Record<string, unknown> | null;
+  return { ...c, intro: c.intro.map(sw), sections: c.sections.filter(x => !PB_INFO_DROP.includes(x.title)).map(x => ({ ...x, body: x.body.map(sw) })),
+    ...(links ? { extra: { ...c.extra, sectionLinks: Object.fromEntries(Object.entries(links).filter(([k]) => !PB_INFO_DROP.includes(k))) } } : {}) };
+};
+export const pickleballInfo = (padel: InfoCopy[]): InfoCopy[] => swapDeep(padel).map(c => c.key === "about" || c.key === "affiliate" ? noScore(c) : c);

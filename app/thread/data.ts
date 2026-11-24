@@ -1,13 +1,14 @@
 // The Thread pages' data, all from what the live site already reads (no new tables): the match context (catalogue, Player
 // scores, fit facts, trait scores), the ranked lists (curated top 10s first) and the web reports. Built once per instance copy.
 import { cache } from "react";
+import creatorTldrs from "../../db/creators/tldrs.json";
 import { tennisFeel } from "../../lib/thread/tennis-notes";
 import { matchContext } from "../match-context";
 import { rankedLists } from "../rankings/lists";
 import { displayName } from "../../lib/brand-name";
 import { rowLine } from "../../lib/row-line";
 import { bestFor, levelBand, levelRange, SUITS_OK, MIN_FIT_REPORTS } from "../../lib/fit-verdict";
-import { familyRowIds, modelFamily } from "../../lib/compare-pairs";
+import { familyRowIds, modelFamily, rowOfFamily } from "../../lib/compare-pairs";
 import { topPicks, PICK_CATS, type PickList, type PickRacket } from "../../lib/thread/top-picks";
 import { traitSeed } from "../../lib/thread/trait-seed";
 import { SENTIMENT_KEY, tallyWith } from "../../lib/thread/trait-view";
@@ -69,8 +70,16 @@ async function countedRows(): Promise<Rows> {
   const reports = new Map<string, number>();
   for (const x of [...data.reviews, ...data.external]) reports.set(x.racketId, (reports.get(x.racketId) ?? 0) + 1);
   const rows = new Map<string, ThreadRow>();
-  const current = familyRowIds(data.listed, x => (reports.get(x.id) ?? 0) >= MIN_FIT_REPORTS);
+  // PickleballRecs (Grok audit 2026-11-24): a live creator page counts as enough to show, so a new model that came in with
+  // creator reviews only (Loco 2 Elongated) is the current one, not hidden as if it were the older model.
+  const creator = new Set(niche.id === "pickleball" ? (data as { creatorIds?: string[] }).creatorIds ?? [] : []);
+  const enough = (x: { id: string }) => (reports.get(x.id) ?? 0) >= MIN_FIT_REPORTS || creator.has(x.id);
+  const current = familyRowIds(data.listed, enough);
   for (const r of data.listed) rows.set(r.id, { ...rowOf(ctx, r, brand.get(r.brandId) ?? "", reports.get(r.id) ?? 0, takes.get(r.id)?.hook), current: current.has(r.id) });
+  // A previous model names the model that replaced it (its page says so, with a link).
+  if (niche.id === "pickleball") for (const r of data.listed) { if (current.has(r.id)) continue;
+    const shown = rowOfFamily(r, data.listed, enough).shown, x = rows.get(shown.id), me = rows.get(r.id);
+    if (x && me && shown.id !== r.id) me.newer = { name: x.name, href: x.href }; }
   return { ctx, rows, all: [...rows.values()], bySlug: new Map([...rows.values()].map(x => [x.slug, x])) };
 }
 
@@ -80,6 +89,9 @@ const flightRow = (w: string | null | undefined): Pick<ThreadRow, "flight"> => {
   const f = flightOf(w);
   return f ? { flight: [f.speed, f.glide, f.turn, f.fade] } : {};
 };
+/** A creator page's written TL;DR (db/creators/tldrs.json), its first sentence, as a card line. */
+const tldrLine = (slug: string) => { const t = (creatorTldrs as Record<string, Record<string, string>>)[niche.id]?.[slug];
+  const first = t?.split(/(?<=[.!?])\s+/)[0]?.trim(); return first && first.length <= 140 ? first : null; };
 function rowOf(ctx: Ctx, r: Ctx["data"]["listed"][number], brand: string, n: number, hook?: string | null): ThreadRow {
   const f = ctx.facts(r.id), c = score(ctx.data, r.id);
   let best = bestFor(f);
@@ -98,7 +110,8 @@ function rowOf(ctx: Ctx, r: Ctx["data"]["listed"][number], brand: string, n: num
     // SimRacingRecs: its drive kind, and its row line in racer words (V3-ROLLOUT-BRIEF: never "owners").
     ...(niche.id === "simracing" ? { drive: r.balance, line: ((l: string | null) => l && playersWord(l, "racer"))(rowLine(r, hook)) } : {}),
     // PickleballRecs (v3 wave 2): its row line says players, never owners.
-    ...(niche.id === "pickleball" ? { line: ((l: string | null) => l && playersWord(l))(rowLine(r, hook)) } : {}),
+    // Without a stored line, its creator page's TL;DR, first sentence (Grok audit 2026-11-24: cards were blank beside a full page).
+    ...(niche.id === "pickleball" ? { line: ((l: string | null) => l && playersWord(l))(rowLine(r, hook) ?? tldrLine(r.slug)) } : {}),
     // DiscGolfRecs: "owners" in a stored line read as "players" (V3-ROLLOUT-BRIEF).
     ...(niche.id === "discgolf" ? { line: ((l: string | null) => l && playersWord(l))(rowLine(r, hook)) } : {}) };
 }

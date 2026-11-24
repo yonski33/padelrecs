@@ -70,7 +70,8 @@ const two = <B extends { tone: string }>(bs: B[]) => { const pos = bs.find(b => 
 /** The mock's dots: green praise, orange mixed (the catch colour), red complaint. */
 const DOT = { pos: "pos", mix: "catch", catch: "catch", neg: "neg" } as const;
 /** Owner 2026-11-20: this exact note under Check price. */
-const BUY_NOTE = "Affiliate link - price stays the same";
+// PickleballRecs: the same note as its creator pages (Grok audit 2026-11-24: two different notes under the buy buttons).
+const BUY_NOTE = niche.id === "pickleball" ? `Affiliate link: ${niche.site.name} may earn a small commission.` : "Affiliate link - price stays the same";
 /** "Head Extreme Pro (2026)", as the page's own title. */
 // A site without model years (TennisRecs) keeps the name whole: its generation is part of it ("Head Speed MP 2022").
 const named = (x: ThreadRow) => { const b = withoutYear(x.name); return hasYears && x.year && b !== x.name ? `${b} (${x.year})` : x.name; };
@@ -118,7 +119,7 @@ export function RacketV7b(p: V7bProps) {
       {p.crumbs}
       <article id="overview" className="th-card th8-top">
         <div className="th8-hero">
-          <Photo src={row?.pic ?? null} className="th-bigphoto th8-photo"/>
+          <Photo src={row?.pic ?? null} className="th-bigphoto th8-photo" alt={row?.name ?? ""}/>
           <div className="th8-hero-r">
             <h1 className="th-h1">{p.title}</h1>
             {followSite(niche.id) && <FollowButton id={p.id} name={p.model} place="hero"/>}

@@ -73,7 +73,7 @@ export async function CreatorsHomeBody() {
   const extra: Record<string, HomeExtra> = PADEL ? Object.fromEntries(rows.map(r => { const x = extra0[r.id]!, o = padelOffers(r.slug).find(y => y.inStock);
     return [r.id, o ? { ...x, price: { label: `from ${o.price} · check price ↗`, url: o.href, rel: o.rel } } : x]; })) : extra0;
   const now = Date.now();
-  const total = home ? `${home.total.toLocaleString("en-US")} reviews summarised` : "";
+  const total = home ? `${home.total.toLocaleString("en-US")} reviews ${niche.id === "pickleball" ? "summarized" : "summarised"}` : "";
   const name = (slug: string) => { const r = bySlug.get(slug); return r ? withoutYear(r.name) : slug; };
 
   // Top picks: the site's vote boards (threadTopPicks, the same lists the other homes show), six at most.
@@ -84,11 +84,13 @@ export async function CreatorsHomeBody() {
   const ji = ctx && justInSite(niche.id) ? justIn(all.filter(r => listed.has(r.id)), added) : null, fresh = ji && ji.year === 2027 ? ji.rows : [];
   // The sidebar, from the site's own data: newest comments, the rankings, Reddit summaries.
   const said = side.filter(x => x.kind === "comment").slice(0, 3);
-  const rankLinks = lists.slice(0, 7).map(l => ({ label: l.label, href: l.href }));
+  // PickleballRecs has 8 lists (Grok audit 2026-11-24: Best hybrid was cut off the home list while Best elongated showed).
+  const rankLinks = lists.slice(0, niche.id === "pickleball" ? 8 : 7).map(l => ({ label: l.label, href: l.href }));
   // LaptopRecs: older generations never list (lib/thread/laptop-lines.ts), here or in the YouTube summaries below.
   const LT = niche.id === "laptop";
   const web = feed.filter(f => f.kind === "reddit" && byId.has(f.racketId) && (!LT || byId.get(f.racketId)!.current)).slice(0, 2);
-  const latest = (home?.latest ?? []).filter(c => !LT || bySlug.get(c.slug)?.current);
+  // Listed paddles only, four (Grok audit 2026-11-24: two linked unlisted pages without a photo); LaptopRecs: current only.
+  const latest = (home?.latest ?? []).filter(c => bySlug.has(c.slug) && (!LT || bySlug.get(c.slug)?.current)).slice(0, 4);
   const cut = (t: string, n: number) => t.length > n ? `${t.slice(0, t.lastIndexOf(" ", n - 3))}...` : t;
 
   return <Shell>
