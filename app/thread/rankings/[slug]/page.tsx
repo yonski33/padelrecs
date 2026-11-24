@@ -29,7 +29,7 @@ import { JsonLd, crumbs, base } from "../../seo";
 import { W } from "../../../../lib/thread/words";
 import { threadFeed } from "../../data";
 import { ELBOW_SLUG, GUIDE_PATHS } from "../../../../lib/thread/look";
-import { RankRows, QuickMatch, type V5Row } from "../../live/ranking-v5";
+import { RankRows, RankRowsOlder, QuickMatch, type V5Row } from "../../live/ranking-v5";
 import { traitCounts, traitGroup } from "../../data";
 import { listOrder, listPill } from "../../../../lib/thread/vote-order";
 import { oneShape } from "../../../../lib/thread/shape";
@@ -136,7 +136,9 @@ export default async function ThreadRanking({ params }: P) {
       itemListElement: list.map((r, i) => ({ "@type": "ListItem", position: i + 1, name: r.name, url: `${base()}${r.href}` })) },
     crumbs([{ name: "Rankings", path: "/rankings" }, ...(hub ? [{ name: hub.label, path: hub.href }] : []), { name: l.label, path: l.href }]),
   ] };
-  if (V3) return <RankingV5 l={l} lists={lists} list={list} rated={rated} label={cat?.label ?? null} faqs={faqs} ld={ld} picOf={id => rows.get(id)?.pic ?? null}/>;
+  // LaptopRecs: the list with older generations in, for its "Include older models" toggle.
+  const olderList = LT && l.older ? l.older.map(id => rows.get(id)!).filter(Boolean) : null;
+  if (V3) return <RankingV5 l={l} lists={lists} list={list} {...(olderList ? { olderList } : {})} rated={rated} label={cat?.label ?? null} faqs={faqs} ld={ld} picOf={id => rows.get(id)?.pic ?? null}/>;
   return <Shell active="rankings">
     <JsonLd data={ld}/>
     <main className={PADEL ? "th-main th-hp" : "th-main"}>
@@ -242,7 +244,8 @@ function pickedLine(group: Record<string, number>) {
   const top = Object.entries(group).filter(([k]) => PLAYS[k]).sort((a, b) => b[1] - a[1])[0];
   return top && top[1] >= 5 && total >= 10 ? `Most picked for ${PLAYS[top[0]]} · ${plural(top[1], "player", "players")}` : null;
 }
-async function RankingV5({ l, lists, list, rated, label, faqs, ld, picOf }: { l: Lists[number]; lists: Lists; list: import("../../ui").ThreadRow[];
+async function RankingV5({ l, lists, list, olderList, rated, label, faqs, ld, picOf }: { l: Lists[number]; lists: Lists; list: import("../../ui").ThreadRow[];
+  /** LaptopRecs: the same list with older generations in (the toggle). */ olderList?: import("../../ui").ThreadRow[];
   rated: Record<string, number> | null; label: string | null; faqs: { q: string; a: string }[]; ld: object; picOf: (id: string) => string | null }) {
   const t = await traitCounts();
   // A list ordered by votes (lib/thread/vote-order.ts) says so in About these rankings, with the answer it counts.
@@ -262,7 +265,7 @@ async function RankingV5({ l, lists, list, rated, label, faqs, ld, picOf }: { l:
   // "Most picked for …" line.
   const padelPill = (r: import("../../ui").ThreadRow) => { const own = listPill(vo, Object.fromEntries(TRAIT_GROUPS.map(g => [g.key, traitGroup(t, r.id, g.key)])), r.pos, W.people);
     return own === undefined ? pickedLine(traitGroup(t, r.id, "plays_like")) : own; };
-  const rows: V5Row[] = list.map((r, i) => ({ id: r.id, rank: i + 1, name: r.name, href: r.href, pic: r.pic, shape: oneShape(r.shape) ? r.shape![0].toUpperCase() + r.shape!.slice(1) : null,
+  const toRows = (xs: import("../../ui").ThreadRow[]): V5Row[] => xs.map((r, i) => ({ id: r.id, rank: i + 1, name: r.name, href: r.href, pic: r.pic, shape: oneShape(r.shape) ? r.shape![0].toUpperCase() + r.shape!.slice(1) : null,
     line: r.line, pos: r.pos, mix: r.mix, neg: r.neg, rating: rated?.[r.id] != null ? (rated[r.id] / 10).toFixed(1) : null,
     picked: au ? votePill(Object.fromEntries(TRAIT_GROUPS.map(g => [g.key, traitGroup(t, r.id, g.key)])), W.people, AUDIO_PILL_LABELS, AUDIO_PILL_LABELS)
       : PICKLEBALL || LT ? pbPill(r)
@@ -270,6 +273,7 @@ async function RankingV5({ l, lists, list, rated, label, faqs, ld, picOf }: { l:
       : DG ? votePill(Object.fromEntries(TRAIT_GROUPS.map(g => [g.key, traitGroup(t, r.id, g.key)])), W.people, DISCGOLF_PILL_LABELS, DISCGOLF_PILL_LABELS)
       : SKIN ? votePill(Object.fromEntries(TRAIT_GROUPS.map(g => [g.key, traitGroup(t, r.id, g.key)])), W.people, SKIN_PILL_WORDS, SKIN_PILL_LABELS)
       : niche.id === "padel" ? padelPill(r) : pickedLine(traitGroup(t, r.id, "plays_like")), arm: !!r.arm, ...(au && r.audio?.kind ? { shape: r.audio.kind } : {}) }));
+  const rows = toRows(list), olderRows = olderList ? toRows(olderList) : null;
   const opinions: [string, string] = [W.opinions.replace(/s$/, ""), W.opinions];
   const said = rows.reduce((a, r) => a + r.pos + r.mix + r.neg, 0);
   // SkinRecs has ~30 lists: its pills and More rankings are the skin needs, this list's need and the product types (moreFor).
@@ -313,6 +317,7 @@ async function RankingV5({ l, lists, list, rated, label, faqs, ld, picOf }: { l:
             <div className="rk5-list-head"><h2 className="th-h2">{l.label}</h2>
               <span>{`${AUDIO || SR || PICKLEBALL || DG || SKIN || LT ? plural(rows.length, W.item, W.items) : plural(rows.length, ONE, MANY)}  ·  ${plural(said, opinions[0], opinions[1])}`}</span></div>
             {skinWire ? <SkinRankRows rows={rows} ratingLabel={label} opinions={opinions} markLoved={loved} wire={skinWire}/>
+              : olderRows ? <RankRowsOlder rows={rows} older={olderRows} ratingLabel={label} opinions={opinions} markLoved={loved}/>
               : <RankRows rows={rows} ratingLabel={label} opinions={opinions} markLoved={loved} {...(wire ? { wire } : {})}/>}
           </section>
         </div>

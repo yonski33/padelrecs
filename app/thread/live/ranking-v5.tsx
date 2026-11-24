@@ -3,7 +3,7 @@
 // your fit". The quick match never reorders the list: once a level and a style are picked, the box names the best fit in this
 // list and that row gets a "Your best fit here" tag. The picks are the site's shared ones (live/picks.ts), so they follow the
 // visitor from the home and the catalogue, and the match % comes from the same engine as the home.
-import { useMemo } from "react";
+import { useMemo, useState } from "react";
 import { th } from "../../../lib/thread/look";
 import { niche } from "../../../lib/niche";
 import { usePicks, usePayload, pctsFor, complete, LEVEL_OPTS, STYLE_OPTS, BUDGETS, styleLabel } from "./picks";
@@ -60,6 +60,17 @@ export function RankRows({ rows, ratingLabel, opinions, markLoved = false, wire,
         {total > 0 && <span className="cnt">{markLoved ? <mark className="mk">{`${r.pos} loved`}</mark> : `${r.pos} loved`}{` · ${r.mix} mixed · ${r.neg} not for me`}</span>}
       </span>
     </a>; })}</>;
+}
+
+/** LaptopRecs (owner 2026-11-24): current models by default, "Include older models" swaps in the list with older
+ *  generations. Both lists come with the page, so the switch never asks the server (instant filters). */
+export function RankRowsOlder({ older, ...p }: { rows: V5Row[]; older: V5Row[]; ratingLabel: string | null; opinions: [string, string]; markLoved?: boolean }) {
+  const [all, setAll] = useState(false);
+  const extra = older.filter(r => !p.rows.some(x => x.id === r.id)).length;
+  return <>
+    {extra > 0 && <label className="rk5-older"><input type="checkbox" checked={all} onChange={e => setAll(e.target.checked)}/>{" Include older models"}</label>}
+    <RankRows {...p} rows={all ? older : p.rows}/>
+  </>;
 }
 
 export function QuickMatch({ rows, wire }: { rows: V5Row[]; wire?: AudioWire[] }) {

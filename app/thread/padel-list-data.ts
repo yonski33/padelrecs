@@ -1,7 +1,8 @@
 // The data the PadelRecs home and catalogue lists share (v3 handoff): listed rows, brands by count, one vote pill per row
 // (lib/thread/vote-pill.ts), when each racket joined, and the "PadelRecs picks" order (db/curated/padel.json interleaved).
 import { cache } from "react";
-import { threadRows, traitCounts, traitGroup, audioOf, skinOf } from "./data";
+import { threadRows, traitCounts, traitGroup, audioOf, skinOf, laptopOf } from "./data";
+import { MIN_TO_SHOW } from "../../lib/thread/laptop-lines";
 import { votePill, AUDIO_PILL_LABELS, PILL_WORDS, PILL_LABELS, SIMRACING_PILL_WORDS, SIMRACING_PILL_LABELS, TENNIS_PILL_WORDS, TENNIS_PILL_LABELS, PICKLEBALL_PILL_WORDS, PICKLEBALL_PILL_LABELS, DISCGOLF_PILL_LABELS, SKIN_PILL_WORDS, SKIN_PILL_LABELS } from "../../lib/thread/vote-pill";
 import { niche } from "../../lib/niche";
 import { W } from "../../lib/thread/words";
@@ -62,7 +63,9 @@ export const padelListData = cache(async () => {
   const { all: rowsAll, ctx } = await threadRows();
   const surface = TN ? new Map((ctx?.data.rackets ?? []).map(x => [x.id, x.surface])) : null;
   const all = AUDIO ? rowsAll.map(asAudio) : SR ? rowsAll.map(asSim) : TN ? rowsAll.map(r => asTennis(r, surface?.get(r.id))) : DG ? rowsAll.map(asDisc) : SKIN ? rowsAll.map(asSkin) : rowsAll;
-  const rows = all.filter(r => r.n > 0);
+  // LaptopRecs: a laptop with a creator page lists even before owners weigh in (MacBook Air 13 M5, owner 2026-11-24).
+  const lt = LT && ctx ? laptopOf(ctx) : null;
+  const rows = all.filter(r => r.n > 0 || (lt?.creator.get(r.id) ?? 0) >= MIN_TO_SHOW);
   const count = new Map<string, number>();
   for (const r of rows) count.set(r.brand, (count.get(r.brand) ?? 0) + 1);
   const brands = [...count].filter(([b]) => b).sort((a, b) => b[1] - a[1]).map(([b]) => b);

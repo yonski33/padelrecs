@@ -7,6 +7,7 @@ import { racketData } from "../../racket-data";
 import { playersWord } from "../../../../lib/thread/web-sources";
 import { AudioFitCard } from "../../live/audio-match";
 import { LaptopFitCard } from "../../live/laptop-match";
+import { NewerVersion } from "../../newer-version";
 import { padelListData } from "../../padel-list-data";
 import { audioGroupsFor } from "../../../../lib/thread/traits";
 import { AUDIO_PILL_LABELS, SIMRACING_PILL_WORDS, SIMRACING_PILL_LABELS, TENNIS_PILL_WORDS, TENNIS_PILL_LABELS, PICKLEBALL_PILL_WORDS, PICKLEBALL_PILL_LABELS, DISCGOLF_PILL_LABELS, SKIN_PILL_WORDS, SKIN_PILL_LABELS } from "../../../../lib/thread/vote-pill";
@@ -245,7 +246,7 @@ export default async function ThreadRacket({ params }: P) {
     })() : null;
     return <Shell active="rackets">
       <JsonLd data={ld}/>
-      <RacketV7b id={r.id} title={r.year && bare !== name ? `${bare} (${r.year})` : name} model={model} crumbs={crumbsEl} tags={aw ? audioTagsOf(aw, r.weight) : DG && flight ? [...tags, `${flight.speed} | ${flight.glide} | ${flight.turn} | ${flight.fade}`] : tags} lime={aw ? aw.anc : !!style} row={row} judged={judged} {...(niche.id === "padel" ? { offers: padelOffers(r.slug) } : {})} {...(aw && au ? audioPageProps(r.id, aw, au, rows, ctx) : SR ? srPageProps(r.id, r.shape) : SKIN ? { fit: <SkinFitCard id={r.id} wire={skinWire} links={skinLinks}/> } : LT ? { fit: <LaptopFitCard id={r.id} wire={ltSame} links={ltLinks}/> } : DG ? dgPageProps(r.id, cards) : fitCore ? { fit: fitCore } : {})}
+      <RacketV7b id={r.id} title={r.year && bare !== name ? `${bare} (${r.year})` : name} model={model} crumbs={LT ? <>{crumbsEl}<NewerVersion slug={r.slug}/></> : crumbsEl} tags={aw ? audioTagsOf(aw, r.weight) : DG && flight ? [...tags, `${flight.speed} | ${flight.glide} | ${flight.turn} | ${flight.fade}`] : tags} lime={aw ? aw.anc : !!style} row={row} judged={judged} {...(niche.id === "padel" ? { offers: padelOffers(r.slug) } : {})} {...(aw && au ? audioPageProps(r.id, aw, au, rows, ctx) : SR ? srPageProps(r.id, r.shape) : SKIN ? { fit: <SkinFitCard id={r.id} wire={skinWire} links={skinLinks}/> } : LT ? { fit: <LaptopFitCard id={r.id} wire={ltSame} links={ltLinks}/> } : DG ? dgPageProps(r.id, cards) : fitCore ? { fit: fitCore } : {})}
         lead={aw && lead ? lead.replace(/(?<![\w-])([Oo])wner(s?)\b/g, (_, o: string, x: string) => `${o === "O" ? "L" : "l"}istener${x}`) : DG && lead ? playersWord(lead, W.person) : SKIN && lead ? playersWord(lead, "reviewer") : SR && lead ? lead.replace(/(?<![\w-])([Oo])wner(s?)\b/g, (_, o: string, x: string) => `${o === "O" ? "R" : "r"}acer${x}`) : TN && lead ? lead.replace(/(?<![\w-])([Oo])wner(s?)\b/g, (_, o: string, x: string) => `${o === "O" ? "P" : "p"}layer${x}`) : lead} bullets={v7Bullets} specs={v7Specs} shop={shop} cards={cards} also={also} brand={brand ? { name: brand.name, slug: brand.slug } : null}
         sim={simSelf ? pickSimilar(simSelf, simSpecs, new Set(compared.map(c => c.row.id))).flatMap(id => rows.get(id) ?? []) : aw || SR || DG || SKIN || LT ? sim.filter(x => !compared.some(c => c.row.id === x.id)) : []} pill={pill} week={weekLine(cm.opinions, cm.posts)} latest={cm.latest} who={who} compared={compared} stories={tales}/>
     </Shell>;

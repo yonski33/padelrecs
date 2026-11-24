@@ -292,12 +292,17 @@ export const audioOf = (ctx: Ctx) => (ctx as unknown as { audio?: AudioThreadCtx
  *  catalogue, the owner scores (app/signals.ts) and the quick-take hooks, as AudioRecs' do; its quick match runs on its own
  *  inputs (lib/laptop-wire.ts). Current: the newest generation of each model with enough reviews. */
 async function laptopRows(): Promise<Rows> {
-  const [{ catalog }, { productSignals }, { quickTakeHooks }] = await Promise.all([import("../../db/data"), import("../signals"), import("../../db/quick-take")]);
-  const [data, sigs, takes] = await Promise.all([catalog(), productSignals(), quickTakeHooks()]);
-  const ctx = { data, sigs, takes, facts: () => ({ reports: 0, tags: {} }), traits: () => ({}), expertLine: () => null } as unknown as Ctx;
+  const [{ catalog }, { productSignals }, { quickTakeHooks }, { creatorPagesAll }, { laptopLines }] = await Promise.all([import("../../db/data"), import("../signals"),
+    import("../../db/quick-take"), import("../../lib/thread/creator-data"), import("../../lib/thread/laptop-lines")]);
+  const [data, sigs, takes, pages] = await Promise.all([catalog(), productSignals(), quickTakeHooks(), creatorPagesAll(niche.id)]);
   const brand = new Map(data.brands.map(b => [b.id, b.name])), reports = new Map<string, number>();
   for (const x of [...data.reviews, ...data.external]) reports.set(x.racketId, (reports.get(x.racketId) ?? 0) + 1);
-  const current = familyRowIds(data.listed, x => (reports.get(x.id) ?? 0) >= MIN_FIT_REPORTS);
+  // Current = the newest model of its line that can show yet (owner 2026-11-24, lib/thread/laptop-lines.ts), from owner and web
+  // opinions and creator reviews; older models keep their pages and link to the newest.
+  const creator = new Map(data.listed.map(r => [r.id, pages?.get(r.slug)?.reviews.length ?? 0]));
+  const lines = laptopLines(data.listed.map(r => ({ id: r.id, slug: r.slug, opinions: reports.get(r.id) ?? 0, creator: creator.get(r.id) ?? 0 })));
+  const current = lines.current;
+  const ctx = { data, sigs, takes, laptop: { creator, newer: lines.newer, fallback: lines.fallback }, facts: () => ({ reports: 0, tags: {} }), traits: () => ({}), expertLine: () => null } as unknown as Ctx;
   const rows = new Map<string, ThreadRow>();
   for (const r of data.listed) {
     const c = score(data, r.id), b = brand.get(r.brandId) ?? "";
@@ -307,6 +312,10 @@ async function laptopRows(): Promise<Rows> {
   }
   return { ctx, rows, all: [...rows.values()], bySlug: new Map([...rows.values()].map(x => [x.slug, x])) };
 }
+/** LaptopRecs' line data on the rows' context (laptopRows): creator reviews per product id, each older model's newest
+ *  version (slug -> slug) and the lines that fall back to an older model. */
+export type LaptopThreadCtx = { creator: Map<string, number>; newer: Map<string, string>; fallback: { line: string; newest: string; shown: string | null }[] };
+export const laptopOf = (ctx: Ctx) => (ctx as unknown as { laptop?: LaptopThreadCtx }).laptop ?? null;
 /** "Owners mostly rate…" → "Listeners mostly rate…" (V3-ROLLOUT-BRIEF: never "owners"). */
 const listenerLine = (t: string | null) => t ? t.replace(/(?<![\w-])([Oo])wner(s?)\b/g, (_, o: string, x: string) => `${o === "O" ? "L" : "l"}istener${x}`) : t;
 async function audioRows(): Promise<Rows> {
