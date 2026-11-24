@@ -431,7 +431,8 @@ function Wrap({ w, n, links = false }: { w: Wrapup; n: number; /** PadelRecs: ra
   </div>;
 }
 
-type Roundup = { posts: number; threads: number; at: string | null; headline: string; tags: { tone: "pos" | "neg"; text: string; n: number }[];
+// No post or thread counts (owner 2026-11-24, every site): the box says "summary of player posts", never how many.
+type Roundup = { at: string | null; headline: string; tags: { tone: "pos" | "neg"; text: string; n?: number }[];
   paras: string[]; highlights: { text: string; url: string }[] };
 
 /** "Players on Reddit and forums", written from ALL the paddle's stored Reddit posts (pilot, owner OK 2026-11-23): a
@@ -451,7 +452,7 @@ function RedditBox({ rd }: { rd: Roundup }) {
     <div className="thc-card-b">
       <div className="thc-card-top"><span className="thc-av thc-rd-av" aria-hidden="true">r/</span>
         <span className="thc-name">{`${W.People} on Reddit and forums`}</span></div>
-      <span className="thc-meta">{`${niche.site.name} summary of ${plural(rd.posts, `${W.person} post`)} in ${plural(rd.threads, "thread")}${day ? ` · ${day}` : ""}`}</span>
+      <span className="thc-meta">{`${niche.site.name} summary of ${W.person} posts${day ? ` · ${day}` : ""}`}</span>
       <h3 className="thc-rd-h">{rd.headline}</h3>
       <div className="thc-rd-tags">{rd.tags.map(t => <span key={t.text} className={`thc-rd-tag ${t.tone}`}>
         <i aria-hidden="true">{t.tone === "pos" ? "+" : "−"}</i>{t.text}</span>)}</div>
@@ -466,7 +467,6 @@ function RedditBox({ rd }: { rd: Roundup }) {
  *  paddle's Reddit summaries (PickleballRecs summaries of each post). A headline from the posts' own takes, each summary in
  *  full with its short real quote marked and a numbered source chip, then the numbered thread links. Never counted as a review. */
 function RedditRoundup({ items }: { items: import("./racket-data").RvCard[] }) {
-  const threads = new Set(items.map(c => c.url?.match(/\/comments\/([a-z0-9]+)/i)?.[1] ?? c.id)).size;
   const pos = items.filter(c => c.verdict === "positive").length, neg = items.filter(c => c.verdict === "negative").length;
   const head = pos * 2 > items.length ? `${W.People} mostly like it.` : neg * 2 > items.length ? `${W.People} mostly have doubts.` : `${W.People} are split on it.`;
   const newest = items.map(c => c.at).filter(Boolean).sort().pop();
@@ -480,7 +480,7 @@ function RedditRoundup({ items }: { items: import("./racket-data").RvCard[] }) {
     <div className="thc-card-b">
       <div className="thc-card-top"><span className="thc-av thc-rd-av" aria-hidden="true">r/</span>
         <span className="thc-name">{`${W.People} on Reddit and forums`}</span></div>
-      <span className="thc-meta">{`${niche.site.name} summary of ${plural(items.length, `${W.person} post`)} in ${plural(threads, "thread")}${day ? ` · ${day}` : ""}`}</span>
+      <span className="thc-meta">{`${niche.site.name} summary of ${W.person} posts${day ? ` · ${day}` : ""}`}</span>
       <h3 className="thc-rd-h">{head}</h3>
       {paras.map((ps, k) => <p key={k} className="thc-sum">{ps.map(c => { const n = items.indexOf(c) + 1;
         return <span key={c.id}>{marked(c)}<b className="thc-num">{n}</b>{" "}</span>; })}</p>)}
