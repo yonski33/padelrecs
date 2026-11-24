@@ -1,10 +1,10 @@
-# Research pilot output (validated) -> merged into db/racket-page/padel.json + db/fit-card/padel.json, marked source "research".
-# Usage: python3 scripts/grok-research/convert_research.py "<grok folder>/research/padel-research-01.out.json"
+# Research pilot output (validated) -> merged into db/racket-page/{SITE}.json + db/fit-card/{SITE}.json, marked source "research".
+# Usage: python3 scripts/grok-research/convert_research.py <out.json> [padel|pickleball|skin]
 # Sources are web URLs (src), never player report ids; the page shows "Based on published reviews and specs" for these rackets.
 import json,sys
-R='.'; out=json.load(open(sys.argv[1]))
-P=json.load(open(f'{R}/db/racket-page/padel.json')); C=json.load(open(f'{R}/db/fit-card/padel.json'))
-TAG=('control','power','beginner','intermediate','advanced','arm')
+R='.'; out=json.load(open(sys.argv[1])); SITE=sys.argv[2] if len(sys.argv)>2 else 'padel'
+P=json.load(open(f'{R}/db/racket-page/{SITE}.json')); C=json.load(open(f'{R}/db/fit-card/{SITE}.json'))
+TAG=('control','power','spin','beginner','intermediate','advanced','arm')
 urls=lambda xs: list(dict.fromkeys(x['url'] if isinstance(x,dict) else x for x in xs))
 n=0
 for slug,v in out.items():
@@ -23,5 +23,5 @@ for slug,v in out.items():
     return o
   C[slug]={'strengths':[line(a,r) for a,r in zip(yes,v['why_yes'])],'catches':[line(a,r) for a,r in zip(no,v['why_not'])]}
   n+=1
-json.dump(P,open(f'{R}/db/racket-page/padel.json','w'),indent=1,ensure_ascii=False); json.dump(C,open(f'{R}/db/fit-card/padel.json','w'),indent=1,ensure_ascii=False)
-print(n,'research rackets merged;',len(P),'padel rackets with content')
+json.dump(P,open(f'{R}/db/racket-page/{SITE}.json','w'),indent=1,ensure_ascii=False); json.dump(C,open(f'{R}/db/fit-card/{SITE}.json','w'),indent=1,ensure_ascii=False)
+print(n,'research products merged;',len(P),SITE,'products with content')
