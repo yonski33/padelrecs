@@ -27,6 +27,7 @@ import { SideFit } from "./live/side-fit";
 import { followSite } from "../../lib/thread/sites";
 import type { RvCard } from "./racket-data";
 import type { TraitGroup } from "../../lib/thread/traits";
+import { newestCheck, type ShopOffer } from "../../lib/padel-offers";
 
 /** Owner 2026-11-21: no Player score anywhere on the racket page. true brings the badge back (sidebar and phone tag row). */
 export const SHOW_SCORE = false;
@@ -46,7 +47,23 @@ export type V7bProps = {
   stories: { id: string; slug: string; title: string; author: { name: string } }[];
   /** AudioRecs (V3-ROLLOUT-BRIEF): its own fit card and its kind's vote groups. Padel: absent. */ fit?: ReactNode; groups?: TraitGroup[];
   /** DiscGolfRecs: its plastic chips over the feed (2+ plastics named). Others: absent. */ plastics?: string[];
+  /** PadelRecs: the padel shops' offers for Where to buy (lib/padel-offers.ts), in stock and cheapest first. Others: absent. */ offers?: ShopOffer[];
 };
+/** Where to buy shows this many shops; the rest open under "All N shops". */
+const SHOPS_SHOWN = 5;
+/** Where to buy (PadelRecs, 2026-11-24): the padel shops' own prices in their own currencies, a stock word and a plain link
+ *  each (no affiliate approvals yet: lib/padel-shops.ts switches them on). Server-rendered, no client code. */
+function WhereToBuy({ offers }: { offers: ShopOffer[] }) {
+  const row = (o: ShopOffer) => <a key={o.href} className="th8-shop" href={o.href} target="_blank" rel={o.rel} title={o.shop}>
+    <strong>{o.short}</strong><span className="th8-shop-p">{o.price}</span>
+    <span className={`th8-shop-s${o.inStock ? " in" : ""}`}>{o.inStock ? "In stock" : "Sold out"}</span><span className="th8-shop-go" aria-hidden="true">↗</span></a>;
+  const shown = offers.slice(0, SHOPS_SHOWN), more = offers.slice(SHOPS_SHOWN), day = newestCheck(offers);
+  return <section className="th-card th8-box th8-shops"><h2 className="th8-bh">Where to buy</h2>
+    <div className="th8-shop-list">{shown.map(row)}</div>
+    {more.length > 0 && <details className="th8-shop-more"><summary>{`All ${offers.length} shops`}</summary><div className="th8-shop-list">{more.map(row)}</div></details>}
+    <small className="th8-shop-note">{`${day ? `Prices checked ${day}. ` : ""}Each shop's own price and currency; shipping varies.${offers.some(o => o.affiliate) ? " Some links are affiliate links." : ""}`}</small>
+  </section>;
+}
 /** Two TL;DR bullets: the first praise and the first catch, so a downside always shows. */
 const two = <B extends { tone: string }>(bs: B[]) => { const pos = bs.find(b => b.tone === "pos"), neg = bs.find(b => b.tone !== "pos");
   return pos && neg ? [pos, neg] : bs.slice(0, 2); };
@@ -93,6 +110,7 @@ export function RacketV7b(p: V7bProps) {
     {p.brand && <a className="th8-all" href={th(`/brands/${p.brand.slug}`)}>{`All ${p.brand.name} ${niche.words.many} →`}</a>}</section>;
   const community = (week || latest || who || compared) && <>{week}{latest}{who}{compared}</>;
   const basics = (specs || buy) && <section className="th-card th8-box"><h2 className="th8-bh">The basics</h2>{specs}{buy}</section>;
+  const shops = p.offers && p.offers.length > 0 && <WhereToBuy offers={p.offers}/>;
   // The one-line tagline is no longer shown here (owner 2026-11-21: it repeats the TL;DR); meta and OG text keep using it.
   const votes = row ? row.pos + row.mix + row.neg : 0;
   return <main className="th-main th7 th8">
@@ -128,7 +146,7 @@ export function RacketV7b(p: V7bProps) {
         </nav>
       </article>
       {/* No sidebar under 1000px: Check price and the basics, compact (owner 2026-11-21). */}
-      {basics && <div className="th8-narrow th8-narrow-basics">{basics}</div>}
+      {(shops || basics) && <div className="th8-narrow th8-narrow-basics">{shops}{basics}</div>}
       {p.fit ?? <FitCard id={p.id} title={`Is this ${niche.words.one} right for me?`} sub="Pick how you play and what you want, for a quick fit from community feedback."/>}
       <div id="feedback" className="th8-anchor">
         <PollCard id={p.id} reviews={{ positive: row?.pos ?? 0, mixed: row?.mix ?? 0, negative: row?.neg ?? 0 }} question="Poll: would you buy it again?"
@@ -151,6 +169,6 @@ export function RacketV7b(p: V7bProps) {
         <ul className="th-stories sm">{p.stories.map(s => <li key={s.id}><a className="th-story-t" href={th(`/stories/${s.slug}`)}>{s.title}</a>
           <span className="th-story-by"><strong>{s.author.name}</strong><MemberMark/></span></li>)}</ul></section>}
     </div>
-    <aside className="th-side th8-aside">{scoreEl && <section className="th-card th8-box">{scoreEl}</section>}{community}{basics}<SideFit/></aside>
+    <aside className="th-side th8-aside">{scoreEl && <section className="th-card th8-box">{scoreEl}</section>}{community}{shops}{basics}<SideFit/></aside>
   </main>;
 }
