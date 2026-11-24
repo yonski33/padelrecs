@@ -54,7 +54,7 @@ export function configFromRow(r: Record<string, unknown>): ReviewConfig {
 export function takeFromRow(r: Record<string, unknown>): TikTokTake {
   return { id: String(r.id), creator: String(r.creator), handle: str(r.handle) ?? String(r.creator), date: str(r.published_on) ?? "",
     len: num(r.duration_s) ?? 0, stance: String(r.stance) as Stance, quote: catalogSpelling(str(r.quote) ?? ""), take: txt(r.summary) ?? catalogSpelling(String(r.summary)),
-    tags: list(r.tags).filter(t => !PRICE_TEXT.test(t) && !/\bprice\b/i.test(t)).map(catalogSpelling).slice(0, 3), disclosure: "", url: String(r.url), keyPoint: txt(r.key_point) };
+    tags: list(r.tags).filter(t => !PRICE_TEXT.test(t)).map(catalogSpelling).slice(0, 3), disclosure: "", url: String(r.url), keyPoint: txt(r.key_point) };
 }
 /** creator_prices rows as offers, in stock first then cheapest, and the newest check date. */
 /** Amazon's rule for shown prices (owner 2026-11-23, scripts/amazon-prices.mts): an Amazon row counts only while its price is
