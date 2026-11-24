@@ -218,7 +218,7 @@ export async function CreatorProductBody({ slug }: { slug: string }) {
   // PadelRecs (owner 2026-11-24): one catalogue row per model year, so names resolve by this racket's season first
   // (lib/thread/mention-years.ts, db/creators/padel-mentions.json); the TL;DR and In more detail link too.
   const yc = PADEL ? yearContext(allRows, slug, r.year ?? new Date().getUTCFullYear(), padelMentions as unknown as MentionYears) : null;
-  const mxAll = yc ? mentionIndex(yc.rows, yc.extra) : mentionIndex(allRows, (aliases as unknown as Record<string, MentionAliases>)[niche.id] ?? {});
+  const mxAll = yc ? mentionIndex(yc.rows, yc.extra, allRows) : mentionIndex(allRows, (aliases as unknown as Record<string, MentionAliases>)[niche.id] ?? {});
   const mxIds = namedIds([...feed.flatMap(x => [x.summary, x.more, x.compared]), ...(yc ? [tldr, ...(wrap?.paras ?? [])] : [])], mxAll, r.id);
   const mxIndex = mxAll.filter(k => k.id === r.id || mxIds.includes(k.id));
   const mxTargets: Record<string, MentionTarget> = Object.fromEntries(mxIds.flatMap(id => { const x = allRows.find(y => y.id === id); if (!x) return [];
