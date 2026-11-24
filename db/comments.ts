@@ -107,17 +107,40 @@ export async function voteComment(db: Database, commentId: string, voter: string
 export type AdminComment = { id: string; page: string; parentId: string | null; alias: string; body: string; status: "pending" | "approved" | "rejected"; spamScore: number; at: string };
 /** The admin's comment list (app/funtimes?tab=comments): one status (or "all"), newest first, with each status's total.
  *  `page` narrows it to one page ("racket:<id>"), `q` to comments whose text or name has those words. */
-export async function adminComments(db: Pick<Database, "select">, status: AdminComment["status"] | "all", limit = 50, find: { page?: string | null; q?: string | null } = {}) {
+export async function adminComments(db: Pick<Database, "select">, status: AdminComment["status"] | "all", limit = 50, find: { page?: string | null; q?: string | null; offset?: number } = {}) {
   const words = (find.q ?? "").trim().split(/\s+/).filter(Boolean).slice(0, 6);
   const where = and(status === "all" ? undefined : eq(comments.status, status), find.page ? eq(comments.page, find.page) : undefined,
     ...words.map(w => or(ilike(comments.body, `%${w.replace(/[%_\\]/g, m => `\\${m}`)}%`), ilike(comments.alias, `%${w.replace(/[%_\\]/g, m => `\\${m}`)}%`))));
   const [rows, totals] = await Promise.all([
-    db.select().from(comments).where(where).orderBy(desc(comments.createdAt)).limit(limit),
+    db.select().from(comments).where(where).orderBy(desc(comments.createdAt), desc(comments.id)).limit(limit).offset(Math.max(0, find.offset ?? 0)),
     db.select({ status: comments.status, n: count() }).from(comments).groupBy(comments.status),
   ]);
   return { rows: rows.map(r => ({ id: r.id, page: r.page, parentId: r.parentId, alias: r.alias, body: r.body, status: r.status, spamScore: r.spamScore, at: r.createdAt })) as AdminComment[],
     totals: Object.fromEntries(totals.map(t => [t.status, Number(t.n)])) as Partial<Record<AdminComment["status"], number>> };
 }
+/** What the admin's Latest comments page shows beside each row (app/funtimes/comments): the ▲▼ total from the votes, the
+ *  owner's helpful override when there is one (drizzle/0036, it replaces the shown total), the name it replies to, and how
+ *  many replies it has. Three small reads keyed by the listed ids (comment_votes_unique, the primary key, parent_id). */
+export type CommentExtras = { votes: number; shown: number | null; replyTo: string | null; replies: number };
+export async function commentExtras(db: Pick<Database, "select">, rows: { id: string; parentId: string | null }[]): Promise<Map<string, CommentExtras>> {
+  const ids = rows.map(r => r.id), parents = [...new Set(rows.map(r => r.parentId).filter((x): x is string => !!x))];
+  if (!ids.length) return new Map();
+  const [sums, parentRows, kids, overrides] = await Promise.all([
+    db.select({ id: commentVotes.commentId, s: sql<number>`coalesce(sum(${commentVotes.value}), 0)` }).from(commentVotes).where(inArray(commentVotes.commentId, ids)).groupBy(commentVotes.commentId),
+    parents.length ? db.select({ id: comments.id, alias: comments.alias }).from(comments).where(inArray(comments.id, parents)) : Promise.resolve([]),
+    db.select({ id: comments.parentId, n: count() }).from(comments).where(inArray(comments.parentId, ids)).groupBy(comments.parentId),
+    helpfulOverrideMap(db, ["comment"], ids),
+  ]);
+  const sum = new Map(sums.map(x => [x.id, Number(x.s)])), alias = new Map(parentRows.map(p => [p.id, p.alias])), kid = new Map(kids.map(k => [k.id as string, Number(k.n)]));
+  return new Map(rows.map(r => [r.id, { votes: sum.get(r.id) ?? 0, shown: overrides.get(`comment:${r.id}`) ?? null,
+    replyTo: r.parentId ? alias.get(r.parentId) ?? "a deleted comment" : null, replies: kid.get(r.id) ?? 0 }]));
+}
+/** The comments behind a bulk action: id, page and parent, so the route can order the work and refresh the pages. */
+export async function commentsByIds(db: Pick<Database, "select">, ids: string[]) {
+  if (!ids.length) return [];
+  return db.select({ id: comments.id, page: comments.page, parentId: comments.parentId }).from(comments).where(inArray(comments.id, ids));
+}
+
 /** Approve, reject or hold one comment. A reply waits with its parent: it shows only once the parent is approved. */
 export async function setCommentStatus(db: Database, id: string, status: AdminComment["status"]) {
   const done = await db.update(comments).set({ status }).where(eq(comments.id, id)).returning({ id: comments.id });
@@ -138,10 +161,12 @@ export async function editComment(db: Database, id: string, change: string | { b
   return (await db.update(comments).set(set).where(eq(comments.id, id)).returning({ id: comments.id })).length ? "ok" as const : "missing" as const;
 }
 /** Owner delete: a comment with replies becomes "[removed]" (name and text) so the replies stay; one with none goes, with its
- *  votes (comment_votes cascade). */
-export async function deleteComment(db: Database, id: string) {
+ *  votes (comment_votes cascade). With `withReplies` (admin Latest comments, "also delete its replies") the replies go
+ *  first, with their votes, and then the comment itself. */
+export async function deleteComment(db: Database, id: string, opts: { withReplies?: boolean } = {}) {
   const [c] = await db.select({ id: comments.id }).from(comments).where(eq(comments.id, id));
   if (!c) return "missing" as const;
+  if (opts.withReplies) { await db.delete(comments).where(eq(comments.parentId, id)); await db.delete(comments).where(eq(comments.id, id)); return "deleted" as const; }
   const [kids] = await db.select({ n: count() }).from(comments).where(eq(comments.parentId, id));
   if (Number(kids.n) > 0) { await db.update(comments).set({ body: REMOVED, alias: REMOVED }).where(eq(comments.id, id)); return "removed" as const; }
   await db.delete(comments).where(eq(comments.id, id));
