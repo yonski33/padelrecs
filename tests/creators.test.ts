@@ -167,7 +167,7 @@ test("creator votes ask the pickleball ranking categories, no padel-only group",
   assert.deepEqual(keys, ["plays_like", "level", "sweet_spot", "arm", "feel", "spin"]);
   for (const k of rankingTraits("pickleball")) assert.ok(keys.includes(k), k);
   assert.ok(!keys.includes("side") && !keys.includes("game_type"));
-  assert.deepEqual(creatorVoteGroups("discgolf"), []);
+  assert.deepEqual(creatorVoteGroups("discgolf").map(g => g.key), ["stability", "glide", "arm_speed", "wind", "grip", "durability"]);
 });
 test("vote count line: plain counts, never 0 votes", () => {
   assert.equal(voteCountLine(0), "Be the first to vote");
