@@ -18,11 +18,11 @@ import { mkdir, readFile, readdir, writeFile } from "node:fs/promises";
 import { join } from "node:path";
 import { connect } from "./connection";
 import { niche } from "../lib/niche";
-import { forSchema } from "../db/migrations";
+import { forSchema, migrationsTable } from "../db/migrations";
 import { slugify } from "../lib/slug";
 
-const SITES = new Set(["pickleball", "skin", "laptop"]);
-if (!SITES.has(niche.id)) throw new Error(`Creator reviews are on PickleballRecs, SkinRecs and LaptopRecs only: run with NICHE=pickleball, skin or laptop (got ${niche.id}).`);
+const SITES = new Set(["pickleball", "skin", "padel", "laptop"]);
+if (!SITES.has(niche.id)) throw new Error(`Creator reviews are on PickleballRecs, SkinRecs, PadelRecs and LaptopRecs only: run with NICHE=pickleball, skin, padel or laptop (got ${niche.id}).`);
 const LAPTOP = niche.id === "laptop";
 const S = niche.schema;
 const args = process.argv.slice(2), cmd = args[0];
@@ -44,10 +44,13 @@ const PICKLEBALL_ATTR: Record<string, string> = { power: "power", control: "cont
 /** SkinRecs' attribute words (the skin sweep's reader brief), keys as stored (spaces become underscores). */
 const SKIN_ATTR: Record<string, string> = Object.fromEntries(["texture", "hydration", "finish", "results", "irritation", "absorption",
   "scent", "value", "packaging", "white cast", "sun protection", "adhesion"].map(k => [k, k.replace(/ /g, "_")]));
+/** PadelRecs' attribute words (the padel sweep, 2026-11-23). */
+const PADEL_ATTR: Record<string, string> = { power: "power", control: "control", sweet_spot: "sweet", comfort: "comfort", maneuverability: "maneuver",
+  spin: "spin", durability: "durability" };
 /** LaptopRecs' attribute words (the laptop reader brief), stored under the same keys. */
 const LAPTOP_ATTR: Record<string, string> = Object.fromEntries(["performance", "thermals", "battery", "display", "keyboard", "build",
   "portability", "value"].map(k => [k, k]));
-const ATTR = niche.id === "skin" ? SKIN_ATTR : LAPTOP ? LAPTOP_ATTR : PICKLEBALL_ATTR;
+const ATTR = niche.id === "skin" ? SKIN_ATTR : niche.id === "padel" ? PADEL_ATTR : LAPTOP ? LAPTOP_ATTR : PICKLEBALL_ATTR;
 const WORDS = new Set(["Excellent", "Great", "Good", "Okay", "Weak"]);
 const STANCE: Record<string, "pos" | "mix" | "neg"> = { "Loved it": "pos", Mixed: "mix", "Not for me": "neg" };
 /** Chapters that say nothing about the paddle. */
@@ -168,7 +171,7 @@ function buildRows(inp: Awaited<ReturnType<typeof loadInputs>>, brandOf: (slug: 
       measured: r.skin_type ? { skin_type: r.skin_type } : r.measured ?? {}, also_url: r.also_url ?? null, version: r.version ?? null, edition: null,
       note: r.type === "long-term" ? "Long-term" : null, brand_tie: null, disclosure: r.disclosure ?? null,
       evidence_note: r.evidence_note ?? null, check_result: "checked", status: "live",
-      source: niche.id === "skin" ? "skin-creator-reviews 2026-11-22" : "pb-creator-reviews-51-80 2026-11-23",
+      source: niche.id === "skin" ? "skin-creator-reviews 2026-11-22" : niche.id === "padel" ? "padel-creator-reviews 2026-11-23 (API batch, transcripts)" : "pb-creator-reviews-51-80 2026-11-23",
       key_point: kp ? (/[.!?]$/.test(kp) ? kp : `${kp}.`) : null, created_at: now, updated_at: now });
   }
   // LaptopRecs (2026-11-24): the staged laptop cards, each with the config the reviewer tested (drizzle/0041). Its key points
@@ -267,7 +270,7 @@ async function main() {
       const dir = args[1]; if (!dir) throw new Error("Usage: backup <dir>");
       await mkdir(dir, { recursive: true });
       const tables = await client`select table_name from information_schema.tables where table_schema = ${S} order by 1`;
-      const mig = await client.unsafe(`select * from drizzle."__drizzle_migrations_${S}" order by created_at`);
+      const mig = await client.unsafe(`select * from drizzle."${migrationsTable(S)}" order by created_at`);
       const brands = await client.unsafe(`select * from "${S}"."brands" order by id`);
       const rackets = await client.unsafe(`select * from "${S}"."rackets" order by id`);
       const existing: Record<string, unknown[]> = {};

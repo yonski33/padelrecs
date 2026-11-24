@@ -14,15 +14,20 @@ const PICKLEBALL_ATTRS = [["power", "Power"], ["control", "Control"], ["spin", "
 const SKIN_ATTRS = [["hydration", "Hydration"], ["texture", "Texture"], ["finish", "Finish"], ["absorption", "Absorbs"],
   ["irritation", "Gentleness"], ["results", "Results"], ["scent", "Scent"], ["white_cast", "No white cast"],
   ["sun_protection", "Sun protection"], ["adhesion", "Stays on"], ["packaging", "Packaging"], ["value", "Value"]] as const;
+/** PadelRecs' words (the padel sweep, 2026-11-23, the reader brief's padel attribute words). */
+const PADEL_ATTRS = [["power", "Power"], ["control", "Control"], ["sweet", "Sweet spot"], ["comfort", "Arm comfort"],
+  ["maneuver", "Maneuverability"], ["spin", "Spin"], ["durability", "Durability"]] as const;
 /** LaptopRecs' words (the laptop reader brief, 2026-11-24): how the reviewer rated each part of the laptop. */
 const LAPTOP_ATTRS = [["performance", "Performance"], ["thermals", "Thermals"], ["battery", "Battery"], ["display", "Display"],
   ["keyboard", "Keyboard"], ["build", "Build"], ["portability", "Portability"], ["value", "Value"]] as const;
-export type AttrKey = (typeof PICKLEBALL_ATTRS)[number][0] | (typeof SKIN_ATTRS)[number][0] | (typeof LAPTOP_ATTRS)[number][0];
+export type AttrKey = (typeof PICKLEBALL_ATTRS)[number][0] | (typeof SKIN_ATTRS)[number][0] | (typeof PADEL_ATTRS)[number][0]
+  | (typeof LAPTOP_ATTRS)[number][0];
 /** Each site's attribute set (pickleball's paddle words unless a site has its own). */
-const SITE_ATTRS: Record<string, readonly (readonly [AttrKey, string])[]> = { skin: SKIN_ATTRS, laptop: LAPTOP_ATTRS };
+const SITE_ATTRS: Record<string, readonly (readonly [AttrKey, string])[]> = { skin: SKIN_ATTRS, padel: PADEL_ATTRS, laptop: LAPTOP_ATTRS };
 export const attrsFor = (site: string): readonly (readonly [AttrKey, string])[] => SITE_ATTRS[site] ?? PICKLEBALL_ATTRS;
-/** The site's own set: NICHE is inlined at build (next.config env), so the browser cards get the same list. */
-export const ATTRS: readonly (readonly [AttrKey, string])[] = attrsFor(process.env.NICHE ?? "");
+/** The site's own set: NICHE is inlined at build (next.config env), so the browser cards get the same list (padel when unset,
+ *  the niche default). */
+export const ATTRS: readonly (readonly [AttrKey, string])[] = attrsFor(process.env.NICHE || "padel");
 /** The heading over the per-attribute words ("How it plays"), per site. */
 const HOW_TITLE: Record<string, string> = { skin: "How it works", laptop: "How it holds up" };
 export const howTitleFor = (site: string) => HOW_TITLE[site] ?? "How it plays";
@@ -247,7 +252,7 @@ export function reviewLists(page: CreatorPage) {
  *  the attribute Excellent or Great (likes) or Okay or Weak (concerns). Most backed first, up to 3 a side. A like needs more
  *  reviews for it than against it. */
 const LIKE: Record<AttrKey, string> = { power: "Strong power", control: "Strong control", spin: "Strong spin", pop: "Lively pop",
-  sweet: "Forgiving sweet spot", comfort: "Easy on the arm", durability: "Grit that lasts",
+  sweet: "Forgiving sweet spot", comfort: "Easy on the arm", durability: "Grit that lasts", maneuver: "Quick and manoeuvrable",
   hydration: "Hydrating", texture: "Pleasant texture", finish: "Nice finish", absorption: "Absorbs fast", irritation: "Gentle on skin",
   results: "Visible results", scent: "Pleasant or no scent", white_cast: "No white cast", sun_protection: "Solid sun protection",
   adhesion: "Stays on well", packaging: "Handy packaging", value: "Good value",
@@ -255,6 +260,7 @@ const LIKE: Record<AttrKey, string> = { power: "Strong power", control: "Strong 
   keyboard: "A good keyboard", build: "Solid build", portability: "Easy to carry" };
 const CONCERN: Record<AttrKey, string> = { power: "Low on power for some", control: "Harder to control for some", spin: "Less spin than some rivals",
   pop: "Muted pop for some", sweet: "Smaller sweet spot for some", comfort: "Firm on the arm for some", durability: "Durability doubts",
+  maneuver: "Heavy or slow to move for some",
   hydration: "Not hydrating enough for some", texture: "Texture not for everyone", finish: "Finish not for everyone",
   absorption: "Slow to absorb for some", irritation: "Irritated some skin", results: "Little change for some", scent: "Scent bothered some",
   white_cast: "Some white cast", sun_protection: "Protection doubts", adhesion: "Comes off for some", packaging: "Packaging gripes",

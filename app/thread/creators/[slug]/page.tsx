@@ -9,7 +9,9 @@ import { CreatorProductBody } from "../../creator-page";
 
 export const revalidate = 86400;
 export const dynamicParams = false;
-export async function generateStaticParams() { return (await creatorSlugs(niche.id)).map(slug => ({ slug })); }
+// No DATABASE_URL (CI): nothing to prerender, because the page reads the racket from the database; the fixture only stands in
+// at request time. A build with the database prerenders every product that has creator data.
+export async function generateStaticParams() { return process.env.DATABASE_URL ? (await creatorSlugs(niche.id)).map(slug => ({ slug })) : []; }
 
 type P = { params: Promise<{ slug: string }> };
 // The live product page's title, description, canonical (the product's own address) and share image.
