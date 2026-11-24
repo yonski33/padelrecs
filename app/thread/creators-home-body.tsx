@@ -29,7 +29,6 @@ import { W } from "../../lib/thread/words";
 import { creatorHome } from "../../lib/thread/creator-data";
 import { creatorPageFor, creatorPageOn, CREATOR_VIEW } from "../../lib/thread/sites";
 import { CreatorsHomeTop, type HomeExtra } from "./live/creators-home";
-import { homeCopyFor } from "../../lib/thread/creator-home-copy";
 import { storiesSite } from "../../lib/thread/sites";
 import { threadStories } from "./stories-data";
 import { MemberMark } from "./live/member-mark";
@@ -50,8 +49,9 @@ const BOARD_ICON: Record<string, keyof typeof ICON> = { sweet: "target", arm: "a
   // PadelRecs' boards (lib/thread/top-picks.ts PADEL_CATS).
   net: "ctrl", intermediate: "target", defence: "shield", trampoline: "spin" };
 const PILL_BG = { pos: "oklch(0.93 0.08 145)", mix: "oklch(0.95 0.08 95)", neg: "oklch(0.93 0.05 35)" } as const;
-/** The site's words, shapes and their chip colours (lib/thread/creator-home-copy.ts). */
-const COPY = homeCopyFor(niche.id), TYPE_BG = COPY.shapeBg;
+const TYPE_BG: Record<string, string> = { Widebody: "oklch(0.94 0.06 125)", Standard: "oklch(0.94 0.04 250)", Elongated: "oklch(0.93 0.05 35)", Hybrid: "oklch(0.94 0.04 250)",
+  // PadelRecs' shapes.
+  Round: "oklch(0.94 0.06 125)", Teardrop: "oklch(0.94 0.04 250)", Diamond: "oklch(0.93 0.05 35)" };
 /** PadelRecs (2026-11-24): a row's price is its cheapest in-stock padel shop (lib/padel-offers.ts, the racket page's Where to
  *  buy box), in that shop's own currency; the creator data holds no padel prices. */
 const PADEL = niche.id === "padel";
@@ -88,7 +88,7 @@ export async function CreatorsHomeBody() {
 
   return <Shell>
     <main className="tch">
-      <CreatorsHomeTop copy={COPY} rows={rows} extra={extra} curated={curated} added={d.added} total={total} brands={brands}
+      <CreatorsHomeTop rows={rows} extra={extra} curated={curated} added={d.added} total={total} brands={brands}
         after={<>
           {bd.length > 0 && <section key="tp" className="tch-card tch-sec">
             <div className="tch-sec-h"><h2><svg width="28" height="26" viewBox="0 0 30 28" fill="none" stroke="currentColor" strokeWidth="2" strokeLinejoin="round" aria-hidden="true"><path d="M15 3C8 3 3 7.3 3 12.5c0 2.6 1.3 5 3.4 6.7L5 25l6.3-3.2c1.2.3 2.4.5 3.7.5 7 0 12-4.3 12-9.8S22 3 15 3z"/><g fill="currentColor" stroke="none"><circle cx="10" cy="12.5" r="1.5"/><circle cx="15" cy="12.5" r="1.5"/><circle cx="20" cy="12.5" r="1.5"/></g></svg>{`Top picks by ${W.people}`}
@@ -103,7 +103,7 @@ export async function CreatorsHomeBody() {
           </section>}
 
           {fresh.length > 0 && <section key="ji" className="tch-card tch-sec">
-            <div className="tch-sec-h"><h2><span className="tch-new">NEW</span>{`2027 ${COPY.many} just in`}</h2><a className="tch-all" href={th(catalogPath)}>{`All new ${COPY.many} →`}</a></div>
+            <div className="tch-sec-h"><h2><span className="tch-new">NEW</span>{`2027 ${niche.words.many} just in`}</h2><a className="tch-all" href={th(catalogPath)}>{`All new ${niche.words.many} →`}</a></div>
             <div className="tch-new-g">{fresh.map(r => { const t = r.pos + r.mix + r.neg, at = added[r.id], shape = oneShape(r.shape);
               return <a key={r.id} className="tch-new-c" href={th(r.href)}>
                 <span className="tch-new-ph">{at && <span className="tch-when"><Ago at={at} initial={ago(at, now)}/></span>}{r.pic ? <img src={r.pic} alt="" loading="lazy"/> : <span className="tch-noimg"/>}</span>

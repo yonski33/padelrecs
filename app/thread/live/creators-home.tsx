@@ -13,7 +13,7 @@ import { useRacketList, named, type Key } from "./padel-list";
 import { LEVEL_OPTS, type Level, type Style } from "./picks";
 import { countsLine, opinionsLabel, siteSentiment } from "../../../lib/thread/site-sentiment";
 import { W } from "../../../lib/thread/words";
-import type { HomeCopy } from "../../../lib/thread/creator-home-copy";
+import { niche } from "../../../lib/niche";
 
 const FIRST = 6, STEP = 10;
 const STYLES: [Style, string][] = [["control", "Control"], ["balance", "Balance"], ["power", "Power"]];
@@ -23,15 +23,35 @@ export const LEVEL_ICON: Record<Level, ReactNode> = {
   intermediate: <svg width="12" height="15" viewBox="0 0 12 15" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinejoin="round" aria-hidden="true"><path d="M7 1L1.5 8.5H6L5 14l5.5-7.5H6z"/></svg>,
   advanced: <svg width="16" height="14" viewBox="0 0 16 14" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinejoin="round" aria-hidden="true"><path d="M4 1h8l3 4-7 8-7-8zM1 5h14M6 1L5 5l3 8 3-8-1-4"/></svg>,
 };
-const FEELS = ["Soft", "Medium", "Hard"], TOP_BRANDS = 6;
+const SHAPES = ["Widebody", "Standard", "Elongated", "Hybrid"], FEELS = ["Soft", "Medium", "Hard"], TOP_BRANDS = 6;
+/** The home's words and drawings per site (PickleballRecs is the template, owner 2026-11-24). `groups`: the fine-tune groups
+ *  other than Brand, as [row key, title, values]. `line`: the hero's line, when it differs from pickleball's. Same shape as
+ *  LaptopRecs' #683 (HOME_SITES), so the two merge as one table. */
+type HomeSite = { title: string; one: string; many: string; groups: [Key, string, string[]][]; art: ReactNode; rowIcon: ReactNode; line?: string };
+const PICKLEBALL_HOME: HomeSite = { title: "Every pickleball paddle review, summed up", one: "paddle", many: "paddles", groups: [["shape", "Shape", SHAPES], ["feel", "Feel", FEELS]],
+  art: <svg className="tch-art" width="74" height="80" viewBox="0 0 74 80" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+            <ellipse cx="33" cy="30" rx="20" ry="24" transform="rotate(28 33 30)" fill="#fff"/>
+            <g fill="currentColor" stroke="none">{[[27, 20], [35, 18], [24, 28], [32, 26], [40, 25], [29, 34], [37, 33], [26, 41], [34, 41]].map(([x, y]) => <circle key={`${x}-${y}`} cx={x} cy={y} r="2.1"/>)}</g>
+            <path d="M20 51 L9 74 M15 49 L5 70 M26 53 L15 76"/><path d="M57 7 l3 -5 M63 15 l6 -3 M65 25 l6 1"/></svg>,
+  rowIcon: <svg width="28" height="28" viewBox="0 0 30 30" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" aria-hidden="true"><ellipse cx="17" cy="12" rx="9" ry="10" transform="rotate(30 17 12)"/><path d="M11 20L4 28"/><g fill="currentColor" stroke="none"><circle cx="15" cy="9" r="1.2"/><circle cx="19" cy="9" r="1.2"/><circle cx="14" cy="13" r="1.2"/><circle cx="18" cy="13" r="1.2"/><circle cx="21" cy="12" r="1.2"/></g></svg> };
+/** PadelRecs (2026-11-24): a padel racket (round perforated head, short throat) in the same line style; padel's shapes. Its
+ *  creator reviews are YouTube; Reddit and forum posts are summed up on the racket pages. */
+const PADEL_HOME: HomeSite = { title: "Every padel racket review, summed up", one: "racket", many: "rackets", groups: [["shape", "Shape", ["Round", "Teardrop", "Diamond", "Hybrid"]], ["feel", "Feel", FEELS]],
+  line: "Reviews from YouTube and Reddit, read and summed up so you don't have to.",
+  art: <svg className="tch-art" width="74" height="80" viewBox="0 0 74 80" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+    <ellipse cx="33" cy="28" rx="20" ry="22" transform="rotate(20 33 28)" fill="#fff"/>
+    <g fill="currentColor" stroke="none">{[[27, 18], [35, 17], [23, 26], [31, 25], [39, 24], [27, 33], [35, 32], [31, 40]].map(([x, y]) => <circle key={`${x}-${y}`} cx={x} cy={y} r="2"/>)}</g>
+    <path d="M24 49 L28 54 L20 74"/><path d="M57 7 l3 -5 M63 15 l6 -3 M65 25 l6 1"/></svg>,
+  rowIcon: <svg width="28" height="28" viewBox="0 0 30 30" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" aria-hidden="true"><ellipse cx="17" cy="11" rx="9" ry="9.5"/><path d="M14 20l-1 2-7 6"/><g fill="currentColor" stroke="none"><circle cx="14" cy="8" r="1.2"/><circle cx="19" cy="8" r="1.2"/><circle cx="14" cy="13" r="1.2"/><circle cx="19" cy="13" r="1.2"/></g></svg> };
+const HOME_SITES: Record<string, HomeSite> = { pickleball: PICKLEBALL_HOME, padel: PADEL_HOME };
+const HS = HOME_SITES[niche.id] ?? PICKLEBALL_HOME;
 
 /** One row's extra data from the server: its praise pill, where it links, its lowest price (lib/thread/creator-home.ts). The
  *  bar and counts are the row's own site votes (owner 2026-11-22). */
 import type { RowExtra as HomeExtra } from "../../../lib/thread/creator-home";
 export type { HomeExtra };
 
-export function CreatorsHomeTop({ rows, extra, curated, added, total, brands, after, side, copy }: {
-  /** The site's words (lib/thread/creator-home-copy.ts). */ copy: HomeCopy;
+export function CreatorsHomeTop({ rows, extra, curated, added, total, brands, after, side }: {
   rows: ThreadRow[]; extra: Record<string, HomeExtra>; curated: string[]; added: Record<string, string>;
   /** "247 reviews summarised". */ total: string; brands: string[]; after: ReactNode; side: ReactNode;
 }) {
@@ -39,22 +59,22 @@ export function CreatorsHomeTop({ rows, extra, curated, added, total, brands, af
   const [ft, setFt] = useState(false), [count, setCount] = useState(FIRST), [sortOpen, setSortOpen] = useState(false), [moreBrands, setMoreBrands] = useState(false);
   // The list grows 10 at a time (owner 2026-11-23), then "Show fewer" folds it back to the first six.
   const shown = list.slice(0, count), left = list.length - shown.length;
-  const groups = useMemo(() => ([["shape", "Shape", copy.shapes], ["feel", "Feel", FEELS], ["brand", "Brand", brands]] as [Key, string, string[]][]).map(([k, title, vals]) => {
+  const groups = useMemo(() => ([...HS.groups, ["brand", "Brand", brands]] as [Key, string, string[]][]).map(([k, title, vals]) => {
     const opts = vals.map(v => ({ v, n: pool.filter(r => pass(r, k) && test(r, k, v)).length, on: !!f[k]?.includes(v) })).filter(o => k !== "shape" || o.n > 0 || o.on);
     return { k, title, opts: k === "brand" && !moreBrands ? opts.filter((o, i) => i < TOP_BRANDS || o.on) : opts, more: k === "brand" && opts.length > TOP_BRANDS ? opts.length - TOP_BRANDS : 0 };
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  }), [pool, f, brands, moreBrands, copy.shapes]);
+  }), [pool, f, brands, moreBrands]);
   // The list title says what it holds once filters or a quick match are on (owner 2026-11-23): "Top Widebody, Medium paddles (8)".
-  const listTitle = chips.length ? `Top ${chips.map(c => c.v).join(", ")} ${copy.many}` : mine || picks.arm ? "Your best matches" : `Top ${copy.many} right now`;
+  const listTitle = chips.length ? `Top ${chips.map(c => c.v).join(", ")} ${HS.many}` : mine || picks.arm ? "Your best matches" : `Top ${HS.many} right now`;
   const sortLabel = l.sorts.find(([k]) => k === l.sort)?.[1] ?? l.sorts[0][1];
   return <>
     <section className="tch-hero">
       <div className="tch-hero-top">
         <div className="tch-hero-l">
-          <HeroArt art={copy.art}/>
+          {HS.art}
           <div className="tch-hero-t">
-            <h1>{copy.title}<svg width="26" height="28" viewBox="0 0 30 30" fill="none" stroke="oklch(0.92 0.17 105)" strokeWidth="4" strokeLinecap="round" aria-hidden="true"><path d="M6 14 L12 4 M12 20 L24 13 M14 27 L27 26"/></svg></h1>
-            <span>{copy.line}</span>
+            <h1>{HS.title}<svg width="26" height="28" viewBox="0 0 30 30" fill="none" stroke="oklch(0.92 0.17 105)" strokeWidth="4" strokeLinecap="round" aria-hidden="true"><path d="M6 14 L12 4 M12 20 L24 13 M14 27 L27 26"/></svg></h1>
+            <span>{HS.line ?? "Reviews from YouTube, blogs and Reddit, read and summed up so you don't have to."}</span>
           </div>
         </div>
         <span className="tch-count"><i aria-hidden="true"/>{total}</span>
@@ -84,10 +104,10 @@ export function CreatorsHomeTop({ rows, extra, curated, added, total, brands, af
       <div className="tch-main">
         <section className="tch-card tch-top">
           <div className="tch-top-h">
-            <h2><svg width="28" height="28" viewBox="0 0 30 30" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" aria-hidden="true"><ellipse cx="17" cy="12" rx="9" ry="10" transform="rotate(30 17 12)"/><path d="M11 20L4 28"/><g fill="currentColor" stroke="none"><circle cx="15" cy="9" r="1.2"/><circle cx="19" cy="9" r="1.2"/><circle cx="14" cy="13" r="1.2"/><circle cx="18" cy="13" r="1.2"/><circle cx="21" cy="12" r="1.2"/></g></svg>{listTitle}{(chips.length > 0 || mine || picks.arm) && <small className="tch-top-n">{` (${list.length})`}</small>}</h2>
+            <h2>{HS.rowIcon}{listTitle}{(chips.length > 0 || mine || picks.arm) && <small className="tch-top-n">{` (${list.length})`}</small>}</h2>
             <span className="tch-sort"><span>Sort:</span>
               <button type="button" aria-haspopup="listbox" aria-expanded={sortOpen} onClick={() => setSortOpen(o => !o)}>{sortLabel}<small aria-hidden="true">▼</small></button>
-              {sortOpen && <span className="tch-sort-m" role="listbox" aria-label={`Sort ${copy.many}`}>{l.sorts.filter(([k]) => k !== "match" || pcts).map(([k, t]) =>
+              {sortOpen && <span className="tch-sort-m" role="listbox" aria-label={`Sort ${HS.many}`}>{l.sorts.filter(([k]) => k !== "match" || pcts).map(([k, t]) =>
                 <button key={k} type="button" role="option" aria-selected={l.sort === k} onClick={() => { l.setSort(k); setSortOpen(false); }}>{t}<span>{l.sort === k ? "✓" : ""}</span></button>)}</span>}
             </span>
           </div>
@@ -109,24 +129,12 @@ export function CreatorsHomeTop({ rows, extra, curated, added, total, brands, af
                   {x?.price && <a className="tch-price" href={x.price.url} target="_blank" rel={x.price.rel}>{x.price.label}</a>}</span>
               </div>
             </div>; })}
-          {list.length === 0 && <div className="tch-none">{`No ${copy.many} match. `}<button type="button" onClick={clearAll}>Clear all</button></div>}
-          {list.length > FIRST && <div className="tch-more"><button type="button" onClick={() => setCount(c => left > 0 ? c + STEP : FIRST)}>{left > 0 ? `Show ${Math.min(STEP, left)} more ${Math.min(STEP, left) === 1 ? copy.one : copy.many}` : "Show fewer"}</button></div>}
+          {list.length === 0 && <div className="tch-none">{`No ${HS.many} match. `}<button type="button" onClick={clearAll}>Clear all</button></div>}
+          {list.length > FIRST && <div className="tch-more"><button type="button" onClick={() => setCount(c => left > 0 ? c + STEP : FIRST)}>{left > 0 ? `Show ${Math.min(STEP, left)} more ${Math.min(STEP, left) === 1 ? HS.one : HS.many}` : "Show fewer"}</button></div>}
         </section>
         {after}
       </div>
       {side}
     </div>
   </>;
-}
-
-/** The hero drawing: PickleballRecs' paddle with a ball, PadelRecs' racket (a perforated round head, a short throat). */
-function HeroArt({ art }: { art: HomeCopy["art"] }) {
-  if (art === "racket") return <svg className="tch-art" width="74" height="80" viewBox="0 0 74 80" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-    <ellipse cx="33" cy="28" rx="20" ry="22" transform="rotate(20 33 28)" fill="#fff"/>
-    <g fill="currentColor" stroke="none">{[[27, 18], [35, 17], [23, 26], [31, 25], [39, 24], [27, 33], [35, 32], [31, 40]].map(([x, y]) => <circle key={`${x}-${y}`} cx={x} cy={y} r="2"/>)}</g>
-    <path d="M24 49 L28 54 L20 74"/><path d="M57 7 l3 -5 M63 15 l6 -3 M65 25 l6 1"/></svg>;
-  return <svg className="tch-art" width="74" height="80" viewBox="0 0 74 80" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-            <ellipse cx="33" cy="30" rx="20" ry="24" transform="rotate(28 33 30)" fill="#fff"/>
-            <g fill="currentColor" stroke="none">{[[27, 20], [35, 18], [24, 28], [32, 26], [40, 25], [29, 34], [37, 33], [26, 41], [34, 41]].map(([x, y]) => <circle key={`${x}-${y}`} cx={x} cy={y} r="2.1"/>)}</g>
-            <path d="M20 51 L9 74 M15 49 L5 70 M26 53 L15 76"/><path d="M57 7 l3 -5 M63 15 l6 -3 M65 25 l6 1"/></svg>;
 }
