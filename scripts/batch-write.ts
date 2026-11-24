@@ -162,6 +162,7 @@ const COPY_RULES = `Copy rules for every text field:
 - No em dashes or en dashes anywhere. Use commas, colons or full stops.
 - Never use the word "verdict". Write "players", not "owners". Never "we", "us" or "our". Say "reviewers", never "creators".
 - Never write that the site or anyone at the site tested the ${ITEM}.
+- No prices anywhere (owner 2026-11-24: quoted prices go stale, live prices live in the price box): no currency amounts ($92, 390 euro, €220, under $100), no "list price", "MSRP", "costs X", "at $X with a code", "$150 more". Value words without a number are fine ("good value", "pricey for what it offers", "cheaper than X"). No price keys in measured.
 - Never repeat a review site's own star, category or overall ratings in the text (Pickleheads scores are hidden until their scale is confirmed). Describe them in words instead.
 - Plain, dry English. No hype words unless inside the exact quote.
 - Facts only from the source. Report opinions as theirs ("Finds", "Calls", "Rates"). When captions garble a number or a ${ITEM} name, leave it out rather than guess. Spell paddle and brand names correctly even if captions misspell them; if a garbled name cannot be pinned down, write "another ${ITEM}".`;
@@ -171,7 +172,7 @@ const FIELDS = `Card fields:
 - version: the shape/thickness/edition the source covers, as stated (e.g. "Widebody, 16mm"), or null.
 - starts_at: "m:ss" where the part about this ${ITEM} starts in a multi-${ITEM} video, else null.
 - creator_score: only if the source publishes its own overall score with a stated scale (e.g. 8.5 out of 10). Otherwise null. Never turn words into a number. Per-trait scores without an overall do not count.
-- measured: only numbers the source states for this ${ITEM} (swing weight, twist weight, static weight, RPM, mph, balance point, price), as {name, value} with the unit in value.
+- measured: only numbers the source states for this ${ITEM} (swing weight, twist weight, static weight, RPM, mph, balance point; never a price), as {name, value} with the unit in value.
 - attributes: only those the source discusses, each one word from Excellent, Great, Good, Okay, Weak. Names: power, control, spin, pop, forgiveness (sweet spot), comfort (feel, vibration, arm), durability, value. In doubt go one lower.
 - stance: "Loved it", "Mixed" or "Not for me".
 - summary: ONE paragraph of 80 to 120 words with real substance: what they tested and how (drills, matches, hours, weeks, comparisons, pre-production unit), concrete findings (power, control, spin, pop, sweet spot, feel, weight, durability or grit wear) with the source's own numbers, and who they say it suits and who it doesn't.
@@ -342,6 +343,7 @@ async function quoteAt(videoId: string, quote: string, tDir: string): Promise<st
   for (let i = 0; i + words.length <= stream.length; i++) if (words.every((w, k) => stream[i + k].w === w)) return stream[i].t;
   return null;
 }
+const PRICE_TEXT = /[€$£]\s?\d|\d[\d.,]*\s?(€|euros?\b|eur\b|dollars?\b|usd\b|bucks\b|gbp\b)|\blist price\b|\bmsrp\b|\bretails? (for|at)\b|\bcosts? (about |around |roughly )?[€$£]?\d/i;
 function codeCheck(c: Card, s: Source): string[] {
   const p: string[] = [], wc = (x: string | null) => x ? x.trim().split(/\s+/).length : 0;
   if (wc(c.summary) < 80 || wc(c.summary) > 120) p.push(`summary ${wc(c.summary)} words`);
@@ -351,6 +353,7 @@ function codeCheck(c: Card, s: Source): string[] {
   if (!c.key_point || c.key_point.length > 70 || !c.key_point.endsWith(".")) p.push(`key_point: ${c.key_point}`);
   const all = [c.summary, c.summary_more, c.key_point, c.stood_out, c.trade_off].filter(Boolean).join(" ");
   if (/[—–]/.test(all)) p.push("dash");
+  if (PRICE_TEXT.test(all) || (c.measured ?? []).some(m => /price|cost|msrp/i.test(m.name) || PRICE_TEXT.test(m.value))) p.push("price in text");
   if (/verdict|\b(we|us|our|owners?|creators?)\b/i.test(all.replace(/\bU\.?S\.?\b/g, ""))) p.push("banned word");
   if (/\b(he|she|his|her|him|hers)\b/i.test(all)) p.push("gendered pronoun");
   for (const w of s.creator.split(/\W+/).filter(w => w.length > 3 && !/^(pickleball|pickle|paddle|paddles|padel|racket|rackets|review|reviews)$/i.test(w)))

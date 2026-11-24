@@ -99,6 +99,7 @@ async function inputs() {
 
 // ---------------------------------------------------------------- prompts
 const RULES = `Copy rules for every field:
+- No prices anywhere (owner 2026-11-24: quoted prices go stale, live prices live in the price box): no currency amounts ($92, 390 euro, €220, under $100), no "list price", "MSRP", "costs X", "at $X with a code", "$150 more". Value words without a number are fine ("good value", "pricey for what it offers", "cheaper than X"). No price keys in measured.
 - No em dashes or en dashes. Never the word "verdict". Never "we", "us", "our". Write "players" for Reddit and forum people and "reviewers" for YouTube and blog reviewers, never "owners" or "creators". Refer to any person as they/them.
 - Plain, dry English, no hype. Never claim that ${SITE} or anyone at the site tested the ${ITEM}.
 - Facts only from the material given. Every claim in the TL;DR needs 2+ reviews behind it. Counts must be exact ("two players", "one reviewer"); when unsure, say "some" rather than inflate. Never state the total number of reviews or posts except in "Early signal from N posts."
@@ -214,6 +215,8 @@ function codeCheck(c: Content, i: Input): string[] {
   const p: string[] = [];
   const texts = [c.tldr, ...c.wrapup.paras, ...(c.reddit ? [c.reddit.headline, ...c.reddit.paras, ...c.reddit.tags.map(t => t.text)] : [])].join(" ");
   if (/[—–]/.test(texts)) p.push("dash");
+  const PRICE_TEXT = /[€$£]\s?\d|\d[\d.,]*\s?(€|euros?\b|eur\b|dollars?\b|usd\b|bucks\b|gbp\b)|\blist price\b|\bmsrp\b|\bretails? (for|at)\b|\bcosts? (about |around |roughly )?[€$£]?\d/i;
+  if (PRICE_TEXT.test(texts)) p.push("price in text");
   if (/verdict|\b(we|us|our|owners?|creators?)\b/i.test(texts.replace(/\bU\.?S\.?A?\b/g, ""))) p.push("banned word");
   if (/\b(he|she|his|her|him|hers)\b/i.test(texts)) p.push("gendered pronoun");
   if (!/The catch:/.test(c.tldr) || words(c.tldr) < 12 || words(c.tldr) > 40) p.push(`tldr shape (${words(c.tldr)} words)`);
