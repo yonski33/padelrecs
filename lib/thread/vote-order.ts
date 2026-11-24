@@ -17,6 +17,10 @@ export const LIST_ORDER: Record<string, Record<string, ListOrder>> = {
     "best-power-padel-rackets": { order: "votes", option: "power", pool: "all" },
     "best-control-padel-rackets": { order: "votes", option: "control", pool: "all" },
     "best-padel-rackets": { order: "loved" },
+    // 2026-11-24 (onto the pickleball template): these two keep their own order (the engine's pick and the curated top 10)
+    // and only their row tag follows the list, as PickleballRecs' beginners list does.
+    "best-padel-rackets-for-tennis-elbow": { order: "keep", trait: "arm", option: "very", word: "arm comfort" },
+    "best-padel-rackets-for-beginners": { order: "keep", trait: "level", option: "beginner", word: "beginners" },
   },
   // PickleballRecs (owner 2026-11-23, "do the same like we did on padel"): each list by the votes for its own answer, and
   // each row tagged with that list's count, never another trait ("Lots of spin" sat on every list). Beginner votes are too

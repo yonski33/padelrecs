@@ -27,22 +27,32 @@ export const LEVEL_ICON: Record<Level, ReactNode> = {
   advanced: <svg width="16" height="14" viewBox="0 0 16 14" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinejoin="round" aria-hidden="true"><path d="M4 1h8l3 4-7 8-7-8zM1 5h14M6 1L5 5l3 8 3-8-1-4"/></svg>,
 };
 const SHAPES = ["Widebody", "Standard", "Elongated", "Hybrid"], FEELS = ["Soft", "Medium", "Hard"], TOP_BRANDS = 6;
-/** The home's words and drawings per site (PickleballRecs is the template, owner 2026-11-24; LaptopRecs copies it). `groups`:
- *  the fine-tune groups other than Brand, as [row key, title, values]. */
-type HomeSite = { title: string; one: string; many: string; groups: [Key, string, string[]][]; art: ReactNode; rowIcon: ReactNode };
+/** The home's words and drawings per site (PickleballRecs is the template, owner 2026-11-24). `groups`: the fine-tune groups
+ *  other than Brand, as [row key, title, values]. `line`: the hero's line, when it differs from pickleball's. Same shape as
+ *  LaptopRecs' (#683), merged as one table. */
+type HomeSite = { title: string; one: string; many: string; groups: [Key, string, string[]][]; art: ReactNode; rowIcon: ReactNode; line?: string };
 const PICKLEBALL_HOME: HomeSite = { title: "Every pickleball paddle review, summed up", one: "paddle", many: "paddles", groups: [["shape", "Shape", SHAPES], ["feel", "Feel", FEELS]],
   art: <svg className="tch-art" width="74" height="80" viewBox="0 0 74 80" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-    <ellipse cx="33" cy="30" rx="20" ry="24" transform="rotate(28 33 30)" fill="#fff"/>
-    <g fill="currentColor" stroke="none">{[[27, 20], [35, 18], [24, 28], [32, 26], [40, 25], [29, 34], [37, 33], [26, 41], [34, 41]].map(([x, y]) => <circle key={`${x}-${y}`} cx={x} cy={y} r="2.1"/>)}</g>
-    <path d="M20 51 L9 74 M15 49 L5 70 M26 53 L15 76"/><path d="M57 7 l3 -5 M63 15 l6 -3 M65 25 l6 1"/></svg>,
+            <ellipse cx="33" cy="30" rx="20" ry="24" transform="rotate(28 33 30)" fill="#fff"/>
+            <g fill="currentColor" stroke="none">{[[27, 20], [35, 18], [24, 28], [32, 26], [40, 25], [29, 34], [37, 33], [26, 41], [34, 41]].map(([x, y]) => <circle key={`${x}-${y}`} cx={x} cy={y} r="2.1"/>)}</g>
+            <path d="M20 51 L9 74 M15 49 L5 70 M26 53 L15 76"/><path d="M57 7 l3 -5 M63 15 l6 -3 M65 25 l6 1"/></svg>,
   rowIcon: <svg width="28" height="28" viewBox="0 0 30 30" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" aria-hidden="true"><ellipse cx="17" cy="12" rx="9" ry="10" transform="rotate(30 17 12)"/><path d="M11 20L4 28"/><g fill="currentColor" stroke="none"><circle cx="15" cy="9" r="1.2"/><circle cx="19" cy="9" r="1.2"/><circle cx="14" cy="13" r="1.2"/><circle cx="18" cy="13" r="1.2"/><circle cx="21" cy="12" r="1.2"/></g></svg> };
+/** PadelRecs (2026-11-24): a padel racket (round perforated head, short throat) in the same line style; padel's shapes. Its
+ *  creator reviews are YouTube; Reddit and forum posts are summed up on the racket pages. */
+const PADEL_HOME: HomeSite = { title: "Every padel racket review, summed up", one: "racket", many: "rackets", groups: [["shape", "Shape", ["Round", "Teardrop", "Diamond", "Hybrid"]], ["feel", "Feel", FEELS]],
+  line: "Reviews from YouTube and Reddit, read and summed up so you don't have to.",
+  art: <svg className="tch-art" width="74" height="80" viewBox="0 0 74 80" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+    <ellipse cx="33" cy="28" rx="20" ry="22" transform="rotate(20 33 28)" fill="#fff"/>
+    <g fill="currentColor" stroke="none">{[[27, 18], [35, 17], [23, 26], [31, 25], [39, 24], [27, 33], [35, 32], [31, 40]].map(([x, y]) => <circle key={`${x}-${y}`} cx={x} cy={y} r="2"/>)}</g>
+    <path d="M24 49 L28 54 L20 74"/><path d="M57 7 l3 -5 M63 15 l6 -3 M65 25 l6 1"/></svg>,
+  rowIcon: <svg width="28" height="28" viewBox="0 0 30 30" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" aria-hidden="true"><ellipse cx="17" cy="11" rx="9" ry="9.5"/><path d="M14 20l-1 2-7 6"/><g fill="currentColor" stroke="none"><circle cx="14" cy="8" r="1.2"/><circle cx="19" cy="8" r="1.2"/><circle cx="14" cy="13" r="1.2"/><circle cx="19" cy="13" r="1.2"/></g></svg> };
 /** LaptopRecs: an open laptop in the same line style; Category in place of Shape, no Feel. */
 const LAPTOP_HOME: HomeSite = { title: "Every laptop review, summed up", one: "laptop", many: "laptops", groups: [["shape", "Category", LAPTOP_CATEGORIES]],
   art: <svg className="tch-art" width="84" height="70" viewBox="0 0 84 70" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
     <rect x="14" y="8" width="56" height="38" rx="4" fill="#fff"/><path d="M21 16h20M21 23h30M21 30h14"/><path d="M4 52h76l-5 8H9z" fill="#fff"/><path d="M36 56h12"/>
     <path d="M74 4 l3 -4 M78 12 l5 -2"/></svg>,
   rowIcon: <svg width="28" height="28" viewBox="0 0 30 30" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><rect x="5" y="6" width="20" height="14" rx="1.5"/><path d="M2 24h26l-2 3H4z"/></svg> };
-const HOME_SITES: Record<string, HomeSite> = { pickleball: PICKLEBALL_HOME, laptop: LAPTOP_HOME };
+const HOME_SITES: Record<string, HomeSite> = { pickleball: PICKLEBALL_HOME, padel: PADEL_HOME, laptop: LAPTOP_HOME };
 const HS = HOME_SITES[niche.id] ?? PICKLEBALL_HOME;
 
 /** One row's extra data from the server: its praise pill, where it links, its lowest price (lib/thread/creator-home.ts). The
@@ -77,7 +87,7 @@ export function CreatorsHomeTop({ rows, extra, curated, added, total, brands, af
           {HS.art}
           <div className="tch-hero-t">
             <h1>{HS.title}<svg width="26" height="28" viewBox="0 0 30 30" fill="none" stroke="oklch(0.92 0.17 105)" strokeWidth="4" strokeLinecap="round" aria-hidden="true"><path d="M6 14 L12 4 M12 20 L24 13 M14 27 L27 26"/></svg></h1>
-            <span>Reviews from YouTube, blogs and Reddit, read and summed up so you don&apos;t have to.</span>
+            <span>{HS.line ?? "Reviews from YouTube, blogs and Reddit, read and summed up so you don't have to."}</span>
           </div>
         </div>
         {total && <span className="tch-count"><i aria-hidden="true"/>{total}</span>}
