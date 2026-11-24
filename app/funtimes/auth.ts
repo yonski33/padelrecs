@@ -34,9 +34,9 @@ export function refreshProductPages(items: { slug: string; shape: string | null;
  }
  try { for (const path of paths) revalidatePath(path); revalidatePath("/rankings", "layout"); revalidatePath("/thread/rankings", "layout"); } catch { /* outside a request scope (tests) */ }
 }
-export function adminRedirect(request: Request, query: string) {
+export function adminRedirect(request: Request, query: string, path = "/funtimes") {
  adminChanged(request);
- return new Response(null, {status: 303, headers: {Location: new URL(`/funtimes?${query}`, siteOrigin(request.url)).toString(), "Cache-Control": "no-store"}});
+ return new Response(null, {status: 303, headers: {Location: new URL(`${path}?${query}`, siteOrigin(request.url)).toString(), "Cache-Control": "no-store"}});
 }
 /** The in-place variant (owner 2026-11-17: approve without a reload): the same write, the same refresh, a JSON answer
  *  instead of the redirect. Only for a request that asks for JSON; the guard before it is unchanged. */

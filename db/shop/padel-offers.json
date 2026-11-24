@@ -1,0 +1,6249 @@
+{
+ "note": "PadelRecs Where to buy. Grok shop pack 2026-11-23, every link re-checked 2026-11-24 (HTTP 200, exact model and year); 5 dropped. Shopify shops: live price and stock; Tienda Padel Point: live stock; Padel Nuestro: pack values. NINEPADEL rows: scripts/ninepadel-feed.mts.",
+ "offers": {
+  "adidas-adipower-carbon-ctrl-3-4-2025": [
+   {
+    "shop": "Padel Pro Shop",
+    "url": "https://padelproshop.com/products/pala-adidas-adipower-carbon-ctrl",
+    "price": 129.9,
+    "currency": "EUR",
+    "inStock": false,
+    "checked": "2026-11-24"
+   }
+  ],
+  "adidas-adipower-carbon-light-3-4-2025": [
+   {
+    "shop": "Padel Pro Shop",
+    "url": "https://padelproshop.com/products/pala-adidas-adipower-carbon-light",
+    "price": 159.0,
+    "currency": "EUR",
+    "inStock": false,
+    "checked": "2026-11-24"
+   }
+  ],
+  "adidas-arrow-hit-2026": [
+   {
+    "shop": "Padel-Point",
+    "url": "https://www.padel-point.com/products/adidas-arrow-hit-2026-padel-racket-00507600297000-en",
+    "price": 202.95,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Tienda Padel Point",
+    "url": "https://www.tiendapadelpoint.com/en/pala-adidas-arrow-hit-2026-en",
+    "price": 187.56,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-24"
+   }
+  ],
+  "adidas-arrow-hit-carbon-2026": [
+   {
+    "shop": "Padel Pro Shop",
+    "url": "https://padelproshop.com/products/pala-adidas-arrow-hit-carbon-2026",
+    "price": 174.0,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Tienda Padel Point",
+    "url": "https://www.tiendapadelpoint.com/en/pala-adidas-arrow-hit-carbon-2026-en",
+    "price": 132.19,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-24"
+   }
+  ],
+  "adidas-arrow-hit-carbon-ctrl-2026": [
+   {
+    "shop": "NINEPADEL",
+    "url": "https://ninepadel.com/products/adidas-arrow-hit-carbon-ctrl-padel-racket-2026",
+    "price": 174.99,
+    "currency": "GBP",
+    "inStock": true,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Padel Market EU",
+    "url": "https://padelmarket.com/en-eu/products/adidas-arrow-hit-carbon-ctrl-2026-racket",
+    "price": 134.95,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Padel Market US",
+    "url": "https://us.padelmarket.com/products/adidas-arrow-hit-carbon-ctrl-2026-racket",
+    "price": 264.95,
+    "currency": "USD",
+    "inStock": true,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Padel Pro Shop",
+    "url": "https://padelproshop.com/products/pala-adidas-arrow-hit-carbon-ctrl-2026",
+    "price": 159.0,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-24"
+   }
+  ],
+  "adidas-arrow-hit-light-2026": [
+   {
+    "shop": "NINEPADEL",
+    "url": "https://ninepadel.com/products/adidas-arrow-hit-light-ari-sanchez-padel-racket-2026",
+    "price": 207.99,
+    "currency": "GBP",
+    "inStock": true,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Padel Market EU",
+    "url": "https://padelmarket.com/en-eu/products/adidas-arrow-hit-light-2026-ari-sanchez-racket",
+    "price": 179.95,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Tienda Padel Point",
+    "url": "https://www.tiendapadelpoint.com/en/pala-adidas-ari-sanchez-arrow-hit-light-2026-en",
+    "price": 127.23,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-24"
+   }
+  ],
+  "adidas-arrow-hit-pro-edt-2026": [
+   {
+    "shop": "NINEPADEL",
+    "url": "https://ninepadel.com/products/adidas-arrow-hit-pro-edt-padel-racket-2026",
+    "price": 269.99,
+    "currency": "GBP",
+    "inStock": true,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Padel-Point",
+    "url": "https://www.padel-point.com/products/adidas-arrow-hit-2026-pro-padel-racket-p0000008110301-en",
+    "price": 449.95,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Padel Nuestro",
+    "url": "https://www.padelnuestro.com/adidas-arrow-hit-2026-pro-edt-125250-p",
+    "price": 309.95,
+    "currency": "EUR",
+    "inStock": false,
+    "checked": "2026-11-23"
+   },
+   {
+    "shop": "Padel USA",
+    "url": "https://padelusa.com/products/adidas-arrow-hit-2026-pro-edition",
+    "price": 518.0,
+    "currency": "USD",
+    "inStock": false,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Padel Pro Shop",
+    "url": "https://padelproshop.com/products/pala-adidas-arrow-hit-pro-edt-2026",
+    "price": 326.9,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Tienda Padel Point",
+    "url": "https://www.tiendapadelpoint.com/en/pala-adidas-ari-sanchez-arrow-hit-pro-edt-2026-en",
+    "price": 270.21,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Padelshop",
+    "url": "https://padelshop.com/products/adidas-arrow-hit-2026-pro-edt",
+    "price": 289.95,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-24"
+   }
+  ],
+  "adidas-cross-it-3-4-2025": [
+   {
+    "shop": "Padel-Point",
+    "url": "https://www.padel-point.com/products/adidas-cross-it-34-padel-racket-00507500213000-en",
+    "price": 159.95,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Padel Pro Shop",
+    "url": "https://padelproshop.com/products/pala-adidas-cross-it-3-4",
+    "price": 168.9,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-24"
+   }
+  ],
+  "adidas-cross-it-carbon-3-5-2026": [
+   {
+    "shop": "Padel Market EU",
+    "url": "https://padelmarket.com/en-eu/products/adidas-cross-it-carbon-2026-racket",
+    "price": 139.95,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Padel Nuestro",
+    "url": "https://www.padelnuestro.com/pala-adidas-crossit-carbon-2026-ar2aa5u30",
+    "price": 153.95,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-23"
+   },
+   {
+    "shop": "Padel Pro Shop",
+    "url": "https://padelproshop.com/products/pala-adidas-crossit-carbont-2026",
+    "price": 167.95,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Padelshop",
+    "url": "https://padelshop.com/products/adidas-cross-it-carbon-2026",
+    "price": 177.95,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-24"
+   }
+  ],
+  "adidas-cross-it-ctrl-3-4-2025": [
+   {
+    "shop": "Padel Pro Shop",
+    "url": "https://padelproshop.com/products/pala-adidas-cross-it-ctrl-3-4",
+    "price": 195.0,
+    "currency": "EUR",
+    "inStock": false,
+    "checked": "2026-11-24"
+   }
+  ],
+  "adidas-cross-it-ctrl-3-5-2026": [
+   {
+    "shop": "Padel Market EU",
+    "url": "https://padelmarket.com/en-eu/products/adidas-cross-it-ctrl-2026-racket-1",
+    "price": 174.95,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Padel Market US",
+    "url": "https://us.padelmarket.com/products/adidas-cross-it-ctrl-2026-racket",
+    "price": 343.95,
+    "currency": "USD",
+    "inStock": true,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Padel Nuestro",
+    "url": "https://www.padelnuestro.com/pala-adidas-crossit-ctrl-2026-ar1cb2u68",
+    "price": 174.95,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-23"
+   },
+   {
+    "shop": "Padel Pro Shop",
+    "url": "https://padelproshop.com/products/pala-adidas-crossit-ctrl-2026",
+    "price": 204.95,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Padelshop",
+    "url": "https://padelshop.com/products/adidas-cross-it-ctrl-2026",
+    "price": 199.95,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-24"
+   }
+  ],
+  "adidas-cross-it-light-3-4-2025": [
+   {
+    "shop": "Padel Nuestro",
+    "url": "https://www.padelnuestro.com/pala-adidas-cross-lt-light-3-4-ar1ca6u11",
+    "price": 164.95,
+    "currency": "EUR",
+    "inStock": false,
+    "checked": "2026-11-23"
+   },
+   {
+    "shop": "Padel USA",
+    "url": "https://padelusa.com/products/adidas-cross-it-light-3-4-padel-racket",
+    "price": 288.75,
+    "currency": "USD",
+    "inStock": false,
+    "checked": "2026-11-24"
+   }
+  ],
+  "adidas-cross-it-light-3-5-2026": [
+   {
+    "shop": "NINEPADEL",
+    "url": "https://ninepadel.com/products/adidas-crossit-light-2026-ortega-padel-racket",
+    "price": 189.99,
+    "currency": "GBP",
+    "inStock": true,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Padel Nuestro",
+    "url": "https://www.padelnuestro.com/adidas-cross-it-light-2026-120459-p",
+    "price": 145.95,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-23"
+   }
+  ],
+  "adidas-cross-it-light-pro-edt-2026": [
+   {
+    "shop": "NINEPADEL",
+    "url": "https://ninepadel.com/products/adidas-cross-it-light-pro-edt-ortega-padel-racket-2026",
+    "price": 219.99,
+    "currency": "GBP",
+    "inStock": false,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Padel-Point",
+    "url": "https://www.padel-point.com/products/adidas-cross-it-light-2026-pro-padel-racket-p0000008110501-en",
+    "price": 359.95,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Padel Nuestro",
+    "url": "https://www.padelnuestro.com/pala-adidas-cross-it-light-2026-pro-edt-ar1cb4u02",
+    "price": 219.95,
+    "currency": "EUR",
+    "inStock": false,
+    "checked": "2026-11-23"
+   },
+   {
+    "shop": "Padel USA",
+    "url": "https://padelusa.com/products/adidas-cross-it-light-2026-pro-edition",
+    "price": 290.0,
+    "currency": "USD",
+    "inStock": false,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Padel Pro Shop",
+    "url": "https://padelproshop.com/products/pala-adidas-cross-it-light-pro-edt-2026",
+    "price": 257.9,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-24"
+   }
+  ],
+  "adidas-metalbone-3-4-2025": [
+   {
+    "shop": "Padel Market EU",
+    "url": "https://padelmarket.com/en-eu/products/adidas-metalbone-3-4-2025-ale-galan-racket-1",
+    "price": 229.95,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Padel Market US",
+    "url": "https://us.padelmarket.com/products/adidas-metalbone-3-4-2025-racket",
+    "price": 199.0,
+    "currency": "USD",
+    "inStock": true,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Padel Nuestro",
+    "url": "https://www.padelnuestro.com/pala-adidas-metalbone-3-4-ar1aa0u22",
+    "price": 169.95,
+    "currency": "EUR",
+    "inStock": false,
+    "checked": "2026-11-23"
+   },
+   {
+    "shop": "Padel USA",
+    "url": "https://padelusa.com/products/adidas-metalbone-3-4-padel-racket",
+    "price": 326.75,
+    "currency": "USD",
+    "inStock": true,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Padel Pro Shop",
+    "url": "https://padelproshop.com/products/pala-adidas-metalbone-3-4-ale-galan",
+    "price": 199.0,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Tienda Padel Point",
+    "url": "https://www.tiendapadelpoint.com/en/Paddle-adidas-ale-galan-metalbone-3-4-2025-1-en",
+    "price": 162.77,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-24"
+   }
+  ],
+  "adidas-metalbone-3-5-2026": [
+   {
+    "shop": "NINEPADEL",
+    "url": "https://ninepadel.com/products/adidas-metalbone-ale-galan-2026",
+    "price": 199.99,
+    "currency": "GBP",
+    "inStock": true,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Padel Market EU",
+    "url": "https://padelmarket.com/en-eu/products/adidas-metalbone-2026-ale-galan-racket",
+    "price": 249.95,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Padel Market US",
+    "url": "https://us.padelmarket.com/products/adidas-metalbone-2026-ale-galan-racket",
+    "price": 455.0,
+    "currency": "USD",
+    "inStock": true,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Padel Nuestro",
+    "url": "https://www.padelnuestro.com/adidas-metalbone-2026-120468-p",
+    "price": 199.95,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-23"
+   },
+   {
+    "shop": "Padel USA",
+    "url": "https://padelusa.com/products/adidas-metalbone-2026-padel-racket",
+    "price": 341.25,
+    "currency": "USD",
+    "inStock": true,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Padelshop",
+    "url": "https://padelshop.com/products/adidas-metalbone-2026",
+    "price": 189.95,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-24"
+   }
+  ],
+  "adidas-metalbone-carbon-3-4-2025": [
+   {
+    "shop": "Padel Market EU",
+    "url": "https://padelmarket.com/en-eu/products/adidas-metalbone-3-4-2025-racket",
+    "price": 169.95,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Padel Nuestro",
+    "url": "https://www.padelnuestro.com/pala-adidas-metalbone-carbon-3-4-ar1aa2u42",
+    "price": 134.95,
+    "currency": "EUR",
+    "inStock": false,
+    "checked": "2026-11-23"
+   },
+   {
+    "shop": "Padel USA",
+    "url": "https://padelusa.com/products/adidas-metalbone-carbon-3-4-padel-racket",
+    "price": 221.25,
+    "currency": "USD",
+    "inStock": false,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Padel Pro Shop",
+    "url": "https://padelproshop.com/products/pala-adidas-metalbone-carbon-3-4",
+    "price": 126.9,
+    "currency": "EUR",
+    "inStock": false,
+    "checked": "2026-11-24"
+   }
+  ],
+  "adidas-metalbone-carbon-3-5-2026": [
+   {
+    "shop": "NINEPADEL",
+    "url": "https://ninepadel.com/products/adidas-metalbone-carbon-2026",
+    "price": 179.99,
+    "currency": "GBP",
+    "inStock": false,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Padel Market EU",
+    "url": "https://padelmarket.com/en-eu/products/adidas-metalbone-carbon-2026-racket",
+    "price": 199.95,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Padel Market US",
+    "url": "https://us.padelmarket.com/products/adidas-metalbone-carbon-2026-racket",
+    "price": 213.5,
+    "currency": "USD",
+    "inStock": true,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Padel Nuestro",
+    "url": "https://www.padelnuestro.com/adidas-metalbone-carbon-2026-120469-p",
+    "price": 159.95,
+    "currency": "EUR",
+    "inStock": false,
+    "checked": "2026-11-23"
+   },
+   {
+    "shop": "Padel USA",
+    "url": "https://padelusa.com/products/adidas-metalbone-carbon-2026-padel-racket",
+    "price": 228.75,
+    "currency": "USD",
+    "inStock": true,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Padel Pro Shop",
+    "url": "https://padelproshop.com/products/pala-adidas-metalbone-carbon-2026",
+    "price": 151.95,
+    "currency": "EUR",
+    "inStock": false,
+    "checked": "2026-11-24"
+   }
+  ],
+  "adidas-metalbone-carbon-ctrl-3-4-2025": [
+   {
+    "shop": "Padel Market EU",
+    "url": "https://padelmarket.com/en-eu/products/adidas-metalbone-carbon-ctrl-3-4-2025-racket",
+    "price": 179.95,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Padel Market US",
+    "url": "https://us.padelmarket.com/products/adidas-metalbone-carbon-ctrl-3-4-2025-racket",
+    "price": 219.0,
+    "currency": "USD",
+    "inStock": true,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Padel USA",
+    "url": "https://padelusa.com/products/adidas-metalbone-carbon-ctrl-3-4-padel-racket",
+    "price": 221.25,
+    "currency": "USD",
+    "inStock": false,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Padel Pro Shop",
+    "url": "https://padelproshop.com/products/pala-adidas-metalbone-carbon-ctrl-3-4",
+    "price": 139.9,
+    "currency": "EUR",
+    "inStock": false,
+    "checked": "2026-11-24"
+   }
+  ],
+  "adidas-metalbone-carbon-ctrl-3-5-2026": [
+   {
+    "shop": "NINEPADEL",
+    "url": "https://ninepadel.com/products/adidas-metalbone-carbon-ctrl-padel-racket-2026",
+    "price": 179.99,
+    "currency": "GBP",
+    "inStock": true,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Padel Market EU",
+    "url": "https://padelmarket.com/en-eu/products/adidas-metalbone-carbon-ctrl-2026-racket",
+    "price": 199.95,
+    "currency": "EUR",
+    "inStock": false,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Padel Market US",
+    "url": "https://us.padelmarket.com/products/adidas-metalbone-carbon-ctrl-2026-racket",
+    "price": 213.5,
+    "currency": "USD",
+    "inStock": false,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Padel Nuestro",
+    "url": "https://www.padelnuestro.com/adidas-metalbone-carbon-ctrl-2026",
+    "price": 169.95,
+    "currency": "EUR",
+    "inStock": false,
+    "checked": "2026-11-23"
+   },
+   {
+    "shop": "Padel USA",
+    "url": "https://padelusa.com/products/adidas-metalbone-carbon-ctrl-2026-padel-racket",
+    "price": 228.75,
+    "currency": "USD",
+    "inStock": true,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Padel Pro Shop",
+    "url": "https://padelproshop.com/products/pala-adidas-metalbone-carbon-ctrl-2026",
+    "price": 169.0,
+    "currency": "EUR",
+    "inStock": false,
+    "checked": "2026-11-24"
+   }
+  ],
+  "adidas-metalbone-ctrl-2026": [
+   {
+    "shop": "NINEPADEL",
+    "url": "https://ninepadel.com/products/adidas-metalbone-ctrl-padel-racket-2026",
+    "price": 237.0,
+    "currency": "GBP",
+    "inStock": true,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Padel Market EU",
+    "url": "https://padelmarket.com/en-eu/products/adidas-metalbone-ctrl-2026-racket",
+    "price": 299.95,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Padel Market US",
+    "url": "https://us.padelmarket.com/products/adidas-metalbone-ctrl-2026-racket",
+    "price": 318.5,
+    "currency": "USD",
+    "inStock": true,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Padel Nuestro",
+    "url": "https://www.padelnuestro.com/adidas-metalbone-ctrl-2026-120471-p",
+    "price": 199.95,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-23"
+   },
+   {
+    "shop": "Padel USA",
+    "url": "https://padelusa.com/products/adidas-metalbone-ctrl-2026-padel-racket",
+    "price": 341.25,
+    "currency": "USD",
+    "inStock": true,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Padel Pro Shop",
+    "url": "https://padelproshop.com/products/pala-adidas-metalbone-ctrl-2026",
+    "price": 197.9,
+    "currency": "EUR",
+    "inStock": false,
+    "checked": "2026-11-24"
+   }
+  ],
+  "adidas-metalbone-ctrl-3-4-2025": [
+   {
+    "shop": "Padel Market EU",
+    "url": "https://padelmarket.com/en-eu/products/adidas-metalbone-ctrl-3-4-2025-racket-1",
+    "price": 229.95,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Padel Market US",
+    "url": "https://us.padelmarket.com/products/adidas-metalbone-ctrl-3-4-2025-racket",
+    "price": 271.95,
+    "currency": "USD",
+    "inStock": true,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Padel Nuestro",
+    "url": "https://www.padelnuestro.com/adidas-metalbone-ctrl-3-4-2025",
+    "price": 178.95,
+    "currency": "EUR",
+    "inStock": false,
+    "checked": "2026-11-23"
+   },
+   {
+    "shop": "Padel USA",
+    "url": "https://padelusa.com/products/adidas-metalbone-ctrl-3-4-padel-racket",
+    "price": 279.0,
+    "currency": "USD",
+    "inStock": false,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Padel Pro Shop",
+    "url": "https://padelproshop.com/products/pala-adidas-metalbone-ctrl-3-4",
+    "price": 178.9,
+    "currency": "EUR",
+    "inStock": false,
+    "checked": "2026-11-24"
+   }
+  ],
+  "adidas-metalbone-hrd-plus-3-4-2025": [
+   {
+    "shop": "Padel Market EU",
+    "url": "https://padelmarket.com/en-eu/products/adidas-metalbone-hrd-3-4-2025-ale-galan-racket-1",
+    "price": 229.95,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Padel Market US",
+    "url": "https://us.padelmarket.com/products/adidas-metalbone-hrd-3-4-2025-ale-galan-racket",
+    "price": 271.95,
+    "currency": "USD",
+    "inStock": true,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Padel Nuestro",
+    "url": "https://www.padelnuestro.com/pala-adidas-metalbone-hrd-3-4-ar1aa1u22",
+    "price": 168.95,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-23"
+   },
+   {
+    "shop": "Padel USA",
+    "url": "https://padelusa.com/products/adidas-metalbone-hrd-3-4-padel-racket",
+    "price": 326.25,
+    "currency": "USD",
+    "inStock": false,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Padel Pro Shop",
+    "url": "https://padelproshop.com/products/pala-adidas-metalbone-hrd-3-4-ale-galan",
+    "price": 199.0,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Tienda Padel Point",
+    "url": "https://www.tiendapadelpoint.com/en/Paddle-adidas-ale-galan-metalbone-hrd-3-4-2025-en",
+    "price": 184.95,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-24"
+   }
+  ],
+  "adidas-metalbone-hrd-plus-3-5-2026": [
+   {
+    "shop": "NINEPADEL",
+    "url": "https://ninepadel.com/products/adidas-metalbone-hrd-2026",
+    "price": 199.99,
+    "currency": "GBP",
+    "inStock": true,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Padel Market EU",
+    "url": "https://padelmarket.com/en-eu/products/adidas-metalbone-hrd-2026-ale-galan-racket",
+    "price": 249.95,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Padel Market US",
+    "url": "https://us.padelmarket.com/products/adidas-metalbone-hrd-2026-ale-galan-racket",
+    "price": 455.0,
+    "currency": "USD",
+    "inStock": true,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Padel Nuestro",
+    "url": "https://www.padelnuestro.com/adidas-metalbone-hrd-2026-120472-p",
+    "price": 199.95,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-23"
+   },
+   {
+    "shop": "Padel USA",
+    "url": "https://padelusa.com/products/adidas-metalbone-hrd-2026-padel-racket",
+    "price": 341.25,
+    "currency": "USD",
+    "inStock": true,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Padelshop",
+    "url": "https://padelshop.com/products/adidas-metalbone-hrd-2026",
+    "price": 229.95,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-24"
+   }
+  ],
+  "adidas-metalbone-pro-edt-2026": [
+   {
+    "shop": "NINEPADEL",
+    "url": "https://ninepadel.com/products/adidas-metalbone-pro-edt-galan-padel-racket-2026",
+    "price": 292.4,
+    "currency": "GBP",
+    "inStock": true,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Padel-Point",
+    "url": "https://www.padel-point.com/products/adidas-metalbone-2026-pro-padel-racket-p0000008110401-en",
+    "price": 424.95,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Padel Market EU",
+    "url": "https://padelmarket.com/en-eu/products/adidas-metalbone-pro-edt-2026-ale-galan-racket",
+    "price": 299.95,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Padel Nuestro",
+    "url": "https://www.padelnuestro.com/adidas-metalbone-2026-pro-edt",
+    "price": 249.95,
+    "currency": "EUR",
+    "inStock": false,
+    "checked": "2026-11-23"
+   },
+   {
+    "shop": "Padel USA",
+    "url": "https://padelusa.com/products/adidas-metalbone-2026-pro-edition",
+    "price": 389.0,
+    "currency": "USD",
+    "inStock": true,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Padel Pro Shop",
+    "url": "https://padelproshop.com/products/pala-adidas-metalbone-pro-edt-2026",
+    "price": 229.9,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Tienda Padel Point",
+    "url": "https://www.tiendapadelpoint.com/en/adidas-ale-galan-metalbone-pro-edt-2026-en",
+    "price": 189.21,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-24"
+   }
+  ],
+  "adidas-metalbone-team-3-5-2026": [
+   {
+    "shop": "NINEPADEL",
+    "url": "https://ninepadel.com/products/adidas-metalbone-team-padel-racket-2026",
+    "price": 136.0,
+    "currency": "GBP",
+    "inStock": true,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Padel Market EU",
+    "url": "https://padelmarket.com/en-eu/products/adidas-metalbone-team-2026-racket",
+    "price": 149.95,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Padel Nuestro",
+    "url": "https://www.padelnuestro.com/pala-adidas-metalbone-team-2026-ar2aa3u22",
+    "price": 119.95,
+    "currency": "EUR",
+    "inStock": false,
+    "checked": "2026-11-23"
+   },
+   {
+    "shop": "Padel Pro Shop",
+    "url": "https://padelproshop.com/products/pala-adidas-metalbone-team-2026",
+    "price": 118.9,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-24"
+   }
+  ],
+  "babolat-air-origin-2025": [
+   {
+    "shop": "NINEPADEL",
+    "url": "https://ninepadel.com/products/babolat-air-origin-padel-racket-2025",
+    "price": 85.0,
+    "currency": "GBP",
+    "inStock": true,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Padel Pro Shop",
+    "url": "https://padelproshop.com/products/pala-babolat-air-origin",
+    "price": 99.0,
+    "currency": "EUR",
+    "inStock": false,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Tienda Padel Point",
+    "url": "https://www.tiendapadelpoint.com/en/pala-babolat-air-origin-2025-en",
+    "price": 66.07,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-24"
+   }
+  ],
+  "babolat-air-veron-2025": [
+   {
+    "shop": "Padel USA",
+    "url": "https://padelusa.com/products/babolat-air-veron-2-5-2025-padel-racket",
+    "price": 270.0,
+    "currency": "USD",
+    "inStock": false,
+    "checked": "2026-11-24"
+   }
+  ],
+  "babolat-air-veron-2026": [
+   {
+    "shop": "Padel-Point",
+    "url": "https://www.padel-point.com/products/babolat-air-veron-2026-padel-racket-00907603203000-en",
+    "price": 194.34,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Padel Pro Shop",
+    "url": "https://padelproshop.com/products/pala-babolat-air-veron-2026",
+    "price": 169.95,
+    "currency": "EUR",
+    "inStock": false,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Tienda Padel Point",
+    "url": "https://www.tiendapadelpoint.com/en/pala-babolat-air-veron-2026-en",
+    "price": 136.95,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-24"
+   }
+  ],
+  "babolat-air-vertuo-2026": [
+   {
+    "shop": "Padel-Point",
+    "url": "https://www.padel-point.com/products/babolat-air-vertuo-2026-padel-racket-00907603202000-en",
+    "price": 138.78,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Padel Pro Shop",
+    "url": "https://padelproshop.com/products/pala-babolat-air-vertuo-2026",
+    "price": 161.95,
+    "currency": "EUR",
+    "inStock": false,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Tienda Padel Point",
+    "url": "https://www.tiendapadelpoint.com/en/pala-babolat-air-vertuo-2026-en",
+    "price": 101.61,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-24"
+   }
+  ],
+  "babolat-air-viper-2026": [
+   {
+    "shop": "Padel-Point",
+    "url": "https://www.padel-point.com/products/babolat-air-viper-2026-padel-racket-00907603200000-en",
+    "price": 222.95,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Padel Pro Shop",
+    "url": "https://padelproshop.com/products/pala-babolat-air-viper-2026",
+    "price": 271.95,
+    "currency": "EUR",
+    "inStock": false,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Tienda Padel Point",
+    "url": "https://www.tiendapadelpoint.com/en/pala-babolat-air-viper-2026-en",
+    "price": 148.75,
+    "currency": "EUR",
+    "inStock": false,
+    "checked": "2026-11-24"
+   }
+  ],
+  "babolat-counter-origin-2025": [
+   {
+    "shop": "NINEPADEL",
+    "url": "https://ninepadel.com/products/babolat-counter-origin-padel-racket-2025",
+    "price": 85.0,
+    "currency": "GBP",
+    "inStock": true,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Padel Nuestro",
+    "url": "https://www.padelnuestro.com/pala-babolat-counter-origin-150154-100",
+    "price": 64.95,
+    "currency": "EUR",
+    "inStock": false,
+    "checked": "2026-11-23"
+   },
+   {
+    "shop": "Padel Pro Shop",
+    "url": "https://padelproshop.com/products/pala-babolat-counter-origin",
+    "price": 84.0,
+    "currency": "EUR",
+    "inStock": false,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Tienda Padel Point",
+    "url": "https://www.tiendapadelpoint.com/en/pala-babolat-counter-origin-2025-en",
+    "price": 49.55,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-24"
+   }
+  ],
+  "babolat-counter-veron-2026": [
+   {
+    "shop": "Padel-Point",
+    "url": "https://www.padel-point.com/products/babolat-counter-veron-2026-padel-racket-00907603199000-en",
+    "price": 152.95,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Padel Pro Shop",
+    "url": "https://padelproshop.com/products/pala-babolat-counter-veron-2026",
+    "price": 139.0,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Tienda Padel Point",
+    "url": "https://www.tiendapadelpoint.com/en/pala-babolat-counter-veron-2026-en",
+    "price": 113.18,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-24"
+   }
+  ],
+  "babolat-counter-vertuo-2026": [
+   {
+    "shop": "Padel-Point",
+    "url": "https://www.padel-point.com/products/babolat-counter-vertuo-2026-padel-racket-00907603197000-en",
+    "price": 129.95,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Padel Pro Shop",
+    "url": "https://padelproshop.com/products/pala-babolat-counter-vertuo-2026",
+    "price": 130.0,
+    "currency": "EUR",
+    "inStock": false,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Tienda Padel Point",
+    "url": "https://www.tiendapadelpoint.com/en/pala-babolat-counter-vertuo-2026-en",
+    "price": 97.48,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-24"
+   }
+  ],
+  "babolat-counter-viper-2025": [
+   {
+    "shop": "Padel-Point",
+    "url": "https://www.padel-point.com/products/babolat-counter-viper-2025-00907503064000",
+    "price": 230.18,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-24"
+   }
+  ],
+  "babolat-counter-viper-2026": [
+   {
+    "shop": "Padel-Point",
+    "url": "https://www.padel-point.com/products/babolat-counter-viper-2026-padel-racket-00907603195000-en",
+    "price": 169.95,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Padel Pro Shop",
+    "url": "https://padelproshop.com/products/pala-babolat-counter-viper-2026",
+    "price": 184.0,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Tienda Padel Point",
+    "url": "https://www.tiendapadelpoint.com/en/pala-babolat-counter-viper-2026-en",
+    "price": 150.37,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-24"
+   }
+  ],
+  "babolat-technical-origin-2026": [
+   {
+    "shop": "Padel USA",
+    "url": "https://padelusa.com/products/babolat-technical-origin-padel-racket",
+    "price": 102.0,
+    "currency": "USD",
+    "inStock": true,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Tienda Padel Point",
+    "url": "https://www.tiendapadelpoint.com/en/pala-babolat-technical-origin-2026-en",
+    "price": 103.95,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-24"
+   }
+  ],
+  "babolat-technical-veron-2025": [
+   {
+    "shop": "Padel Nuestro",
+    "url": "https://www.padelnuestro.com/pala-babolat-technical-veron-150162-100",
+    "price": 114.95,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-23"
+   },
+   {
+    "shop": "Padel Pro Shop",
+    "url": "https://padelproshop.com/products/pala-babolat-technical-veron",
+    "price": 148.95,
+    "currency": "EUR",
+    "inStock": false,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Tienda Padel Point",
+    "url": "https://www.tiendapadelpoint.com/en/pala-babolat-technical-veron-2025-1-en",
+    "price": 94.17,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-24"
+   }
+  ],
+  "babolat-technical-vertuo-2025": [
+   {
+    "shop": "Padel Nuestro",
+    "url": "https://www.padelnuestro.com/pala-babolat-technical-vertuo-150165-100",
+    "price": 119.95,
+    "currency": "EUR",
+    "inStock": false,
+    "checked": "2026-11-23"
+   },
+   {
+    "shop": "Padel USA",
+    "url": "https://padelusa.com/products/babolat-technical-vertuo-juan-lebron-2025-padel-racket",
+    "price": 220.0,
+    "currency": "USD",
+    "inStock": false,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Padel Pro Shop",
+    "url": "https://padelproshop.com/products/pala-babolat-tecnical-vertuo",
+    "price": 139.0,
+    "currency": "EUR",
+    "inStock": false,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Tienda Padel Point",
+    "url": "https://www.tiendapadelpoint.com/en/Pala-Babolat-Juan-Lebron-Technical-Vertuo-2025-1-en",
+    "price": 99.13,
+    "currency": "EUR",
+    "inStock": false,
+    "checked": "2026-11-24"
+   }
+  ],
+  "babolat-technical-viper-2025": [
+   {
+    "shop": "Padel Nuestro",
+    "url": "https://www.padelnuestro.com/pala-babolat-technical-viper-150159-100",
+    "price": 142.95,
+    "currency": "EUR",
+    "inStock": false,
+    "checked": "2026-11-23"
+   },
+   {
+    "shop": "Padel Pro Shop",
+    "url": "https://padelproshop.com/products/pala-babolat-te-chnical-viper",
+    "price": 225.0,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Tienda Padel Point",
+    "url": "https://www.tiendapadelpoint.com/en/Paddle-Babolat-Juan-Lebron-Technical-Viper-2025-1-en",
+    "price": 148.72,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-24"
+   }
+  ],
+  "babolat-veron-juan-lebron-3-0-2026": [
+   {
+    "shop": "NINEPADEL",
+    "url": "https://ninepadel.com/products/babolat-lebron-juan-lebron-3-0-padel-racket-2026",
+    "price": 136.5,
+    "currency": "GBP",
+    "inStock": true,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Padel Market EU",
+    "url": "https://padelmarket.com/en-eu/products/babolat-veron-3-0-2026-juan-lebron-padel-racket",
+    "price": 203.95,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Padel Nuestro",
+    "url": "https://www.padelnuestro.com/pala-babolat-veron-juan-lebron-3-0-150182-100",
+    "price": 119.95,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-23"
+   },
+   {
+    "shop": "Padel USA",
+    "url": "https://padelusa.com/products/babolat-veron-juan-lebron-3-0-padel-racket",
+    "price": 162.0,
+    "currency": "USD",
+    "inStock": true,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Tienda Padel Point",
+    "url": "https://www.tiendapadelpoint.com/en/pala-babolat-juan-lebron-veron-3-0-2026-1-en",
+    "price": 98.31,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-24"
+   }
+  ],
+  "babolat-veron-juan-lebron-3-1-2027": [
+   {
+    "shop": "NINEPADEL",
+    "url": "https://ninepadel.com/products/babolat-veron-juan-lebron-3-1-padel-racket-2027",
+    "price": 210.0,
+    "currency": "GBP",
+    "inStock": true,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Padel Market EU",
+    "url": "https://padelmarket.com/en-eu/products/babolat-veron-3-1-2027-juan-lebron-pala",
+    "price": 240.0,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Padel Nuestro",
+    "url": "https://www.padelnuestro.com/pala-babolat-veron-juan-lebron-3-1-150197-100-124256-p",
+    "price": 204.95,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-23"
+   },
+   {
+    "shop": "Padel USA",
+    "url": "https://padelusa.com/products/babolat-veron-juan-lebron-3-1-padel-racket",
+    "price": 270.0,
+    "currency": "USD",
+    "inStock": true,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Tienda Padel Point",
+    "url": "https://www.tiendapadelpoint.com/en/pala-babolat-juan-lebron-veron-3-1-2027-en",
+    "price": 168.55,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Padelshop",
+    "url": "https://padelshop.com/products/babolat-veron-juan-lebron-3-1",
+    "price": 169.95,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-24"
+   }
+  ],
+  "babolat-viper-juan-lebron-3-0-2026": [
+   {
+    "shop": "NINEPADEL",
+    "url": "https://ninepadel.com/products/babolat-viper-juan-lebron-3-0-padel-racket-2026",
+    "price": 189.99,
+    "currency": "GBP",
+    "inStock": false,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Padel Market EU",
+    "url": "https://padelmarket.com/en-eu/products/babolat-viper-3-0-2026-juan-lebron-padelracket",
+    "price": 349.95,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Padel Nuestro",
+    "url": "https://www.padelnuestro.com/babolat-viper-juan-lebron-3-0",
+    "price": 219.95,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-23"
+   },
+   {
+    "shop": "Padel USA",
+    "url": "https://padelusa.com/products/babolat-viper-juan-lebron-3-0-padel-racket",
+    "price": 252.0,
+    "currency": "USD",
+    "inStock": true,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Tienda Padel Point",
+    "url": "https://www.tiendapadelpoint.com/en/pala-babolat-juan-lebron-viper-3-0-2026-1-en",
+    "price": 184.26,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-24"
+   }
+  ],
+  "babolat-viper-juan-lebron-3-1-2027": [
+   {
+    "shop": "NINEPADEL",
+    "url": "https://ninepadel.com/products/babolat-viper-juan-lebron-3-1-padel-racket-2027",
+    "price": 339.99,
+    "currency": "GBP",
+    "inStock": true,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Padel Market EU",
+    "url": "https://padelmarket.com/en-eu/products/babolat-viper-3-1-2027-juan-lebron-pala",
+    "price": 390.0,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Padel Nuestro",
+    "url": "https://www.padelnuestro.com/pala-babolat-viper-juan-lebron-3-1-150195-100",
+    "price": 329.95,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-23"
+   },
+   {
+    "shop": "Padel USA",
+    "url": "https://padelusa.com/products/babolat-viper-juan-lebron-3-1-padel-racket",
+    "price": 420.0,
+    "currency": "USD",
+    "inStock": true,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Tienda Padel Point",
+    "url": "https://www.tiendapadelpoint.com/en/pala-babolat-juan-lebron-viper-3-1-2027-en",
+    "price": 271.9,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Padelshop",
+    "url": "https://padelshop.com/products/babolat-viper-juan-lebron-3-1",
+    "price": 278.95,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-24"
+   }
+  ],
+  "babolat-viper-soft-juan-lebron-3-0-2026": [
+   {
+    "shop": "NINEPADEL",
+    "url": "https://ninepadel.com/products/babolat-viper-soft-juan-lebron-3-0-padel-racket-2026",
+    "price": 168.99,
+    "currency": "GBP",
+    "inStock": true,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Padel Market EU",
+    "url": "https://padelmarket.com/en-eu/products/babolat-viper-soft-3-0-2026-juan-lebron-padel-racket",
+    "price": 269.95,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Padel Nuestro",
+    "url": "https://www.padelnuestro.com/pala-babolat-viper-soft-juan-lebron-150178-100",
+    "price": 164.95,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-23"
+   },
+   {
+    "shop": "Padel USA",
+    "url": "https://padelusa.com/products/babolat-viper-soft-juan-lebron-3-0-padel-racket",
+    "price": 198.0,
+    "currency": "USD",
+    "inStock": true,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Tienda Padel Point",
+    "url": "https://www.tiendapadelpoint.com/en/pala-babolat-juan-lebron-viper-soft-3-0-2026-1-en",
+    "price": 135.5,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-24"
+   }
+  ],
+  "babolat-viper-soft-juan-lebron-3-1-2027": [
+   {
+    "shop": "NINEPADEL",
+    "url": "https://ninepadel.com/products/babolat-viper-soft-juan-lebron-3-1-padel-racket-2027",
+    "price": 259.99,
+    "currency": "GBP",
+    "inStock": true,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Padel Market EU",
+    "url": "https://padelmarket.com/en-eu/products/babolat-viper-soft-3-1-2027-juan-lebron-pala",
+    "price": 300.0,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Padel Nuestro",
+    "url": "https://www.padelnuestro.com/pala-babolat-viper-soft-juan-lebron-3-1-150196-100-124258-p",
+    "price": 254.95,
+    "currency": "EUR",
+    "inStock": false,
+    "checked": "2026-11-23"
+   },
+   {
+    "shop": "Padel USA",
+    "url": "https://padelusa.com/products/babolat-viper-soft-juan-lebron-3-1-padel-racket",
+    "price": 330.0,
+    "currency": "USD",
+    "inStock": true,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Tienda Padel Point",
+    "url": "https://www.tiendapadelpoint.com/en/pala-babolat-juan-lebron-viper-soft-3-1-2027-en",
+    "price": 245.41,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Padelshop",
+    "url": "https://padelshop.com/products/babolat-viper-soft-juan-lebron-3-1",
+    "price": 229.95,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-24"
+   }
+  ],
+  "bullpadel-hack-04-2025": [
+   {
+    "shop": "NINEPADEL",
+    "url": "https://ninepadel.com/products/bullpadel-hack-04-2025-paquito-padel-racket",
+    "price": 160.0,
+    "currency": "GBP",
+    "inStock": true,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Padel Nuestro",
+    "url": "https://www.padelnuestro.com/bullpadel-hack-04-25-113754-p",
+    "price": 149.95,
+    "currency": "EUR",
+    "inStock": false,
+    "checked": "2026-11-23"
+   },
+   {
+    "shop": "Padel USA",
+    "url": "https://padelusa.com/products/bullpadel-hack-04-2025-padel-racket",
+    "price": 219.0,
+    "currency": "USD",
+    "inStock": false,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Tienda Padel Point",
+    "url": "https://www.tiendapadelpoint.com/en/Bullpadel-Paquito-Navarro-Hack-04-2025-1-en",
+    "price": 123.1,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-24"
+   }
+  ],
+  "bullpadel-hack-04-2026": [
+   {
+    "shop": "Padel-Point",
+    "url": "https://www.padel-point.com/products/bullpadel-hack-04-26-padel-racket-14907600230000-en",
+    "price": 204.95,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Padel Market EU",
+    "url": "https://padelmarket.com/en-eu/products/bullpadel-hack-04-2026-paquito-navarro-racket",
+    "price": 205.95,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Padel Market US",
+    "url": "https://us.padelmarket.com/products/bullpadel-hack-04-2026-paquito-navarro-racket",
+    "price": 290.0,
+    "currency": "USD",
+    "inStock": true,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Padel Nuestro",
+    "url": "https://www.padelnuestro.com/bullpadel-hack-04-26-120892-p",
+    "price": 155.95,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-23"
+   },
+   {
+    "shop": "Padel USA",
+    "url": "https://padelusa.com/products/bullpadel-hack-04-2026-padel-racket",
+    "price": 296.8,
+    "currency": "USD",
+    "inStock": true,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Padel Pro Shop",
+    "url": "https://padelproshop.com/products/pala-bullpadel-hack-4-226",
+    "price": 179.0,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Tienda Padel Point",
+    "url": "https://www.tiendapadelpoint.com/en/bullpadel-paquito-navarro-hack-04-2026-en",
+    "price": 146.24,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-24"
+   }
+  ],
+  "bullpadel-hack-04-comfort-2026": [
+   {
+    "shop": "NINEPADEL",
+    "url": "https://ninepadel.com/products/bullpadel-hack-04-comfort-padel-racket-2026",
+    "price": 169.99,
+    "currency": "GBP",
+    "inStock": true,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Padel-Point",
+    "url": "https://www.padel-point.com/products/bullpadel-hack-04-cmf-26-padel-racket-14907600232000-en",
+    "price": 139.95,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Padel Market EU",
+    "url": "https://padelmarket.com/en-eu/products/bullpadel-hack-04-cmf-2026-paquito-navarro-racket",
+    "price": 174.95,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Padel Market US",
+    "url": "https://us.padelmarket.com/products/bullpadel-hack-04-cmf-2026-paquito-navarro-racket",
+    "price": 220.0,
+    "currency": "USD",
+    "inStock": true,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Padel Nuestro",
+    "url": "https://www.padelnuestro.com/bullpadel-hack-04-comfort-26",
+    "price": 139.95,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-23"
+   },
+   {
+    "shop": "Padel USA",
+    "url": "https://padelusa.com/products/bullpadel-hack-04-comfort-2026-padel-racket",
+    "price": 232.0,
+    "currency": "USD",
+    "inStock": true,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Padel Pro Shop",
+    "url": "https://padelproshop.com/products/pala-bullpadel-hack-4-comfort-226",
+    "price": 169.95,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Tienda Padel Point",
+    "url": "https://www.tiendapadelpoint.com/en/bullpadel-paquito-navarro-hack-04-comfort-2026-en",
+    "price": 138.8,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-24"
+   }
+  ],
+  "bullpadel-hack-04-hybrid-2025": [
+   {
+    "shop": "Padel Market EU",
+    "url": "https://padelmarket.com/en-eu/products/bullpadel-hack-04-hybrid-2025-racket",
+    "price": 159.95,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Padel Market US",
+    "url": "https://us.padelmarket.com/products/bullpadel-hack-04-hybrid-2025-racket",
+    "price": 185.0,
+    "currency": "USD",
+    "inStock": true,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Padel Nuestro",
+    "url": "https://www.padelnuestro.com/bullpadel-hack-04-hybrid-25-113755-p",
+    "price": 169.95,
+    "currency": "EUR",
+    "inStock": false,
+    "checked": "2026-11-23"
+   },
+   {
+    "shop": "Padel USA",
+    "url": "https://padelusa.com/products/bullpadel-hack-04-hybrid-2025-padel-racket",
+    "price": 249.0,
+    "currency": "USD",
+    "inStock": true,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Tienda Padel Point",
+    "url": "https://www.tiendapadelpoint.com/en/Bullpadel-Paquito-Navarro-Hack-04-Hybrid-2025-1-en",
+    "price": 132.19,
+    "currency": "EUR",
+    "inStock": false,
+    "checked": "2026-11-24"
+   }
+  ],
+  "bullpadel-hack-04-hybrid-2026": [
+   {
+    "shop": "Padel-Point",
+    "url": "https://www.padel-point.com/products/bullpadel-hack-04-hyb-26-padel-racket-14907600231000-en",
+    "price": 168.95,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Padel Market EU",
+    "url": "https://padelmarket.com/en-eu/products/bullpadel-hack-04-hyb-2026-paquito-navarro-racket",
+    "price": 189.95,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Padel Market US",
+    "url": "https://us.padelmarket.com/products/bullpadel-hack-04-hyb-2026-paquito-navarro-racket",
+    "price": 199.0,
+    "currency": "USD",
+    "inStock": true,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Padel Nuestro",
+    "url": "https://www.padelnuestro.com/bullpadel-hack-04-hybrid-26-120894-p",
+    "price": 164.95,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-23"
+   },
+   {
+    "shop": "Padel USA",
+    "url": "https://padelusa.com/products/bullpadel-hack-04-hybrid-2026-padel-racket",
+    "price": 296.8,
+    "currency": "USD",
+    "inStock": true,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Padel Pro Shop",
+    "url": "https://padelproshop.com/products/pala-bullpadel-hack-4-hybrid-226",
+    "price": 179.0,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Tienda Padel Point",
+    "url": "https://www.tiendapadelpoint.com/en/bullpadel-paquito-navarro-hack-04-hybrid-2026-en",
+    "price": 146.24,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-24"
+   }
+  ],
+  "bullpadel-hack-05-2027": [
+   {
+    "shop": "NINEPADEL",
+    "url": "https://ninepadel.com/products/bullpadel-hack-05-padel-racket-2027",
+    "price": 259.99,
+    "currency": "GBP",
+    "inStock": false,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Padel Market EU",
+    "url": "https://padelmarket.com/en-eu/products/bullpadel-hack-05-2027-paquito-navarro-racket-1",
+    "price": 279.95,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Padel Nuestro",
+    "url": "https://www.padelnuestro.com/pala-bullpadel-hack-05-27-497233-160622-p",
+    "price": 274.95,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-23"
+   },
+   {
+    "shop": "Padel Pro Shop",
+    "url": "https://padelproshop.com/products/pala-bullpadel-hack-05-2027",
+    "price": 273.9,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Tienda Padel Point",
+    "url": "https://www.tiendapadelpoint.com/en/bullpadel-paquito-navarro-hack-05-2027-en",
+    "price": 273.95,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Padelshop",
+    "url": "https://padelshop.com/products/bullpadel-hack-05-2027",
+    "price": 349.95,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-24"
+   }
+  ],
+  "bullpadel-hack-05-hybrid-2027": [
+   {
+    "shop": "Padel-Point",
+    "url": "https://www.padel-point.com/products/bullpadel-hack-05-hybrid-27-padel-racket-full-surface-p0000012022401",
+    "price": 349.95,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Padel Market EU",
+    "url": "https://padelmarket.com/en-eu/products/bullpadel-hack-05-hybrid-2027-paquito-navarro-racket",
+    "price": 279.95,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Padel Nuestro",
+    "url": "https://www.padelnuestro.com/pala-bullpadel-hack-05-hybrid-27-497234-160635-p",
+    "price": 274.95,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-23"
+   },
+   {
+    "shop": "Padel Pro Shop",
+    "url": "https://padelproshop.com/products/pala-bullpadel-hack-05-hybrid-2027",
+    "price": 273.9,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Tienda Padel Point",
+    "url": "https://www.tiendapadelpoint.com/en/pala-bullpadel-paquito-navarro-hack-05-hybrid-2027-en",
+    "price": 273.95,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Padelshop",
+    "url": "https://padelshop.com/products/bullpadel-hack-05-hybrid-2027",
+    "price": 349.95,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-24"
+   }
+  ],
+  "bullpadel-hack-advance-2026": [
+   {
+    "shop": "Padel Pro Shop",
+    "url": "https://padelproshop.com/products/pala-bullpadel-hack-advance-2026",
+    "price": 94.9,
+    "currency": "EUR",
+    "inStock": false,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Tienda Padel Point",
+    "url": "https://www.tiendapadelpoint.com/en/bullpadel-hack-advance-2026-en",
+    "price": 74.37,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-24"
+   }
+  ],
+  "bullpadel-icon-2026": [
+   {
+    "shop": "NINEPADEL",
+    "url": "https://ninepadel.com/products/bullpadel-icon-padel-racket-2026",
+    "price": 220.0,
+    "currency": "GBP",
+    "inStock": false,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Padel-Point",
+    "url": "https://www.padel-point.com/products/bullpadel-icon-26-padel-racket-14907600242000-en",
+    "price": 186.56,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Padel Nuestro",
+    "url": "https://www.padelnuestro.com/bullpadel-icon-26-120898-p",
+    "price": 158.95,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-23"
+   },
+   {
+    "shop": "Padel USA",
+    "url": "https://padelusa.com/products/bullpadel-icon-2026-padel-racket",
+    "price": 260.0,
+    "currency": "USD",
+    "inStock": false,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Padel Pro Shop",
+    "url": "https://padelproshop.com/products/pala-bullpadel-icon-226",
+    "price": 161.9,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-24"
+   }
+  ],
+  "bullpadel-neuron-02-2026": [
+   {
+    "shop": "NINEPADEL",
+    "url": "https://ninepadel.com/products/bullpadel-neuron-02-padel-racket-2026",
+    "price": 169.99,
+    "currency": "GBP",
+    "inStock": false,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Padel Market EU",
+    "url": "https://padelmarket.com/en-eu/products/bullpadel-neuron-02-2026-fede-chingotto-racket",
+    "price": 179.0,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Padel Market US",
+    "url": "https://us.padelmarket.com/products/bullpadel-neuron-02-2026-fede-chingotto-racket",
+    "price": 219.0,
+    "currency": "USD",
+    "inStock": true,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Padel USA",
+    "url": "https://padelusa.com/products/bullpadel-neuron-02-2026-padel-racket",
+    "price": 296.8,
+    "currency": "USD",
+    "inStock": true,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Padel Pro Shop",
+    "url": "https://padelproshop.com/products/pala-bullpadel-neuron-2-226",
+    "price": 189.0,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Padelshop",
+    "url": "https://padelshop.com/products/bullpadel-neuron-02-2026-padel-racket",
+    "price": 209.95,
+    "currency": "EUR",
+    "inStock": false,
+    "checked": "2026-11-24"
+   }
+  ],
+  "bullpadel-neuron-02-2027": [
+   {
+    "shop": "NINEPADEL",
+    "url": "https://ninepadel.com/products/bullpadel-neuron-padel-racket-2027",
+    "price": 247.5,
+    "currency": "GBP",
+    "inStock": false,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Padel Market EU",
+    "url": "https://padelmarket.com/en-eu/products/bullpadel-neuron-02-2027-fede-chingotto-racket",
+    "price": 271.95,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Padel Nuestro",
+    "url": "https://www.padelnuestro.com/pala-bullpadel-neuron-27-497241-160656-p",
+    "price": 267.95,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-23"
+   },
+   {
+    "shop": "Padel Pro Shop",
+    "url": "https://padelproshop.com/products/pala-bullpadel-neuron-02-2027",
+    "price": 266.9,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Tienda Padel Point",
+    "url": "https://www.tiendapadelpoint.com/en/pala-bullpadel-chingotto-neuron-02-2027-en",
+    "price": 266.95,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Padelshop",
+    "url": "https://padelshop.com/products/bullpadel-neuron-2027",
+    "price": 339.95,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-24"
+   }
+  ],
+  "bullpadel-neuron-02-comfort-2027": [
+   {
+    "shop": "Padel Market EU",
+    "url": "https://padelmarket.com/en-eu/products/bullpadel-neuron-02-edge-comfort-2027-padel-racket",
+    "price": 207.95,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Padel Nuestro",
+    "url": "https://www.padelnuestro.com/pala-bullpadel-neuron-02-cmf-27-497243-160653-p",
+    "price": 204.95,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-23"
+   },
+   {
+    "shop": "Tienda Padel Point",
+    "url": "https://www.tiendapadelpoint.com/en/pala-bullpadel-chingotto-neuron-02-edge-comfort-2027-en",
+    "price": 168.55,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Padelshop",
+    "url": "https://padelshop.com/products/bullpadel-neuron-02-comfort-2027",
+    "price": 259.95,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-24"
+   }
+  ],
+  "bullpadel-neuron-02-edge-2026": [
+   {
+    "shop": "Padel Market EU",
+    "url": "https://padelmarket.com/en-eu/products/bullpadel-neuron-02-edge-2026-fede-chingotto-racket",
+    "price": 199.0,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Padel Market US",
+    "url": "https://us.padelmarket.com/products/bullpadel-neuron-02-edge-2026-fede-chingotto-racket",
+    "price": 259.0,
+    "currency": "USD",
+    "inStock": true,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Padel USA",
+    "url": "https://padelusa.com/products/bullpadel-neuron-02-edge-2026-padel-racket",
+    "price": 296.8,
+    "currency": "USD",
+    "inStock": true,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Padel Pro Shop",
+    "url": "https://padelproshop.com/products/pala-bullpadel-neuron-2-geo",
+    "price": 186.9,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-24"
+   }
+  ],
+  "bullpadel-neuron-02-edge-2027": [
+   {
+    "shop": "NINEPADEL",
+    "url": "https://ninepadel.com/products/bullpadel-neuron-02-edge-padel-racket-2027",
+    "price": 247.5,
+    "currency": "GBP",
+    "inStock": true,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Padel Market EU",
+    "url": "https://padelmarket.com/en-eu/products/bullpadel-neuron-02-edge-2027-fede-chingotto-padel-racket",
+    "price": 271.95,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Padel Nuestro",
+    "url": "https://www.padelnuestro.com/bullpadel-neuron-02-edge-27-160638-p",
+    "price": 267.95,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-23"
+   },
+   {
+    "shop": "Padel Pro Shop",
+    "url": "https://padelproshop.com/products/pala-bullpadel-neuron-02-edge-2027",
+    "price": 267.9,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Tienda Padel Point",
+    "url": "https://www.tiendapadelpoint.com/en/pala-bullpadel-chingotto-neuron-02-edge-2027-en",
+    "price": 269.95,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Padelshop",
+    "url": "https://padelshop.com/products/bullpadel-neuron-02-edge-2027",
+    "price": 339.95,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-24"
+   }
+  ],
+  "bullpadel-neuron-2024": [
+   {
+    "shop": "Padel Market EU",
+    "url": "https://padelmarket.com/en-eu/products/bullpadel-neuron-2024-chingotto-padel-racket",
+    "price": 153.95,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-24"
+   }
+  ],
+  "bullpadel-neuron-2025": [
+   {
+    "shop": "Padel Market EU",
+    "url": "https://padelmarket.com/en-eu/products/bullpadel-neuron-2025-fede-chingotto-racket-1",
+    "price": 197.95,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Padel Market US",
+    "url": "https://us.padelmarket.com/products/bullpadel-neuron-2025-fede-chingotto-racket",
+    "price": 235.0,
+    "currency": "USD",
+    "inStock": true,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Padel Nuestro",
+    "url": "https://www.padelnuestro.com/bullpadel-neuron-25-113768-p",
+    "price": 139.95,
+    "currency": "EUR",
+    "inStock": false,
+    "checked": "2026-11-23"
+   },
+   {
+    "shop": "Padel USA",
+    "url": "https://padelusa.com/products/bullpadel-neuron-2025-padel-racket",
+    "price": 209.0,
+    "currency": "USD",
+    "inStock": false,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Tienda Padel Point",
+    "url": "https://www.tiendapadelpoint.com/en/Bullpadel-Chingotto-Neuron-2025-1-en",
+    "price": 113.18,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-24"
+   }
+  ],
+  "bullpadel-pearl-2026": [
+   {
+    "shop": "Padel Nuestro",
+    "url": "https://www.padelnuestro.com/bullpadel-pearl-2026-120492-p",
+    "price": 169.95,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-23"
+   },
+   {
+    "shop": "Padel USA",
+    "url": "https://padelusa.com/products/bullpadel-pearl-2026-padel-racket",
+    "price": 260.0,
+    "currency": "USD",
+    "inStock": false,
+    "checked": "2026-11-24"
+   }
+  ],
+  "bullpadel-pearl-2027": [
+   {
+    "shop": "Padel-Point",
+    "url": "https://www.padel-point.com/products/bullpadel-pearl-27-padel-racket-full-surface-p0000012020301",
+    "price": 294.95,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Padel Nuestro",
+    "url": "https://www.padelnuestro.com/bullpadel-pearl-2027-160686-p",
+    "price": 227.95,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-23"
+   },
+   {
+    "shop": "Padelshop",
+    "url": "https://padelshop.com/products/bullpadel-pearl-2027",
+    "price": 269.95,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-24"
+   }
+  ],
+  "bullpadel-vertex-04-2024": [
+   {
+    "shop": "Tienda Padel Point",
+    "url": "https://www.tiendapadelpoint.com/en/pala-bullpadel-juan-tello-vertex-04-2024-en",
+    "price": 118.95,
+    "currency": "EUR",
+    "inStock": false,
+    "checked": "2026-11-24"
+   }
+  ],
+  "bullpadel-vertex-04-2025": [
+   {
+    "shop": "Padel Market EU",
+    "url": "https://padelmarket.com/en-eu/products/bullpadel-vertex-04-2025-juan-tello-racket-1",
+    "price": 184.95,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Padel Market US",
+    "url": "https://us.padelmarket.com/products/bullpadel-vertex-04-2025-juan-tello-racket",
+    "price": 249.0,
+    "currency": "USD",
+    "inStock": true,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Padel Nuestro",
+    "url": "https://www.padelnuestro.com/bullpadel-vertex-04-25-113772-p",
+    "price": 134.95,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-23"
+   },
+   {
+    "shop": "Padel USA",
+    "url": "https://padelusa.com/products/bullpadel-vertex-04-2025-juan-tello-padel-racket",
+    "price": 239.0,
+    "currency": "USD",
+    "inStock": false,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Tienda Padel Point",
+    "url": "https://www.tiendapadelpoint.com/en/Bullpadel-Racket-Juan-Tello-Vertex-04-2025-1-en",
+    "price": 119.79,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-24"
+   }
+  ],
+  "bullpadel-vertex-04-hybrid-2025": [
+   {
+    "shop": "Padel USA",
+    "url": "https://padelusa.com/products/bullpadel-vertex-04-hybrid-2025-padel-racket",
+    "price": 209.0,
+    "currency": "USD",
+    "inStock": false,
+    "checked": "2026-11-24"
+   }
+  ],
+  "bullpadel-vertex-05-2026": [
+   {
+    "shop": "Padel Market EU",
+    "url": "https://padelmarket.com/en-eu/products/bullpadel-vertex-05-2026-juan-tello-racket",
+    "price": 199.95,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Padel Market US",
+    "url": "https://us.padelmarket.com/products/bullpadel-vertex-05-2026-juan-tello-racket",
+    "price": 289.0,
+    "currency": "USD",
+    "inStock": true,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Padel USA",
+    "url": "https://padelusa.com/products/bullpadel-vertex-05-2026-padel-racket",
+    "price": 315.2,
+    "currency": "USD",
+    "inStock": true,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Padel Pro Shop",
+    "url": "https://padelproshop.com/products/pala-bullpadel-vertex-5-226",
+    "price": 192.9,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Tienda Padel Point",
+    "url": "https://www.tiendapadelpoint.com/en/bullpadel-racket-juan-tello-vertex-05-2026-en",
+    "price": 159.46,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-24"
+   }
+  ],
+  "bullpadel-vertex-05-2027": [
+   {
+    "shop": "NINEPADEL",
+    "url": "https://ninepadel.com/products/bullpadel-vertex-05-padel-racket-2027",
+    "price": 259.99,
+    "currency": "GBP",
+    "inStock": true,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Padel-Point",
+    "url": "https://www.padel-point.com/products/bullpadel-vertex-05-27-padel-racket-p0000012021101-en",
+    "price": 349.95,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Padel Market EU",
+    "url": "https://padelmarket.com/en-eu/products/bullpadel-vertex-05-2027-juan-tello-padel-racket",
+    "price": 279.95,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Padel Nuestro",
+    "url": "https://www.padelnuestro.com/pala-bullpadel-vertex-05-27-47236-160632-p",
+    "price": 274.95,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-23"
+   },
+   {
+    "shop": "Padel Pro Shop",
+    "url": "https://padelproshop.com/products/pala-bullpadel-vertex-05-2027",
+    "price": 274.9,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Tienda Padel Point",
+    "url": "https://www.tiendapadelpoint.com/en/pala-bullpadel-juan-tello-vertex-05-2027-en",
+    "price": 274.95,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Padelshop",
+    "url": "https://padelshop.com/products/bullpadel-vertex-05-2027",
+    "price": 349.95,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-24"
+   }
+  ],
+  "bullpadel-vertex-05-comfort-2026": [
+   {
+    "shop": "Padel USA",
+    "url": "https://padelusa.com/products/bullpadel-vertex-05-comfort-2026-padel-racket",
+    "price": 232.0,
+    "currency": "USD",
+    "inStock": false,
+    "checked": "2026-11-24"
+   }
+  ],
+  "bullpadel-vertex-05-geo-2026": [
+   {
+    "shop": "Padel Market EU",
+    "url": "https://padelmarket.com/en-eu/products/bullpadel-vertex-05-geo-2026-pablo-cardona-racket",
+    "price": 219.95,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Padel Market US",
+    "url": "https://us.padelmarket.com/products/bullpadel-vertex-05-geo-2026-pablo-cardona-racket",
+    "price": 270.0,
+    "currency": "USD",
+    "inStock": true,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Padel USA",
+    "url": "https://padelusa.com/products/bullpadel-vertex-05-geo-2026-padel-racket",
+    "price": 315.2,
+    "currency": "USD",
+    "inStock": true,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Padel Pro Shop",
+    "url": "https://padelproshop.com/products/pala-bullpadel-5-geo-226",
+    "price": 189.0,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Tienda Padel Point",
+    "url": "https://www.tiendapadelpoint.com/en/bullpadel-pablo-cardona-vertex-05-geo-2026-en",
+    "price": 186.95,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-24"
+   }
+  ],
+  "bullpadel-vertex-05-geo-2027": [
+   {
+    "shop": "NINEPADEL",
+    "url": "https://ninepadel.com/products/bullpadel-vertex-05-geo-padel-racket-2027",
+    "price": 259.99,
+    "currency": "GBP",
+    "inStock": true,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Padel-Point",
+    "url": "https://www.padel-point.com/products/bullpadel-vertex-05-geo-27-padel-racket-p0000012022801-en",
+    "price": 349.95,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Padel Market EU",
+    "url": "https://padelmarket.com/en-eu/products/bullpadel-vertex-05-geo-2027-pablo-cardona-padel-racket",
+    "price": 279.95,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Padel Pro Shop",
+    "url": "https://padelproshop.com/products/pala-bullpadel-vertex-05-geo-2027",
+    "price": 273.9,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Tienda Padel Point",
+    "url": "https://www.tiendapadelpoint.com/en/pala-bullpadel-pablo-cardona-vertex-05-geo-2027-en",
+    "price": 273.95,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Padelshop",
+    "url": "https://padelshop.com/products/bullpadel-vertex-05-geo-2027",
+    "price": 349.95,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-24"
+   }
+  ],
+  "bullpadel-vertex-05-hybrid-2026": [
+   {
+    "shop": "NINEPADEL",
+    "url": "https://ninepadel.com/products/bullpadel-vertex-05-hybrid-padel-racket-26",
+    "price": 179.99,
+    "currency": "GBP",
+    "inStock": false,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Padel Market EU",
+    "url": "https://padelmarket.com/en-eu/products/bullpadel-vertex-05-hyb-2026-racket",
+    "price": 219.95,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Padel Market US",
+    "url": "https://us.padelmarket.com/products/bullpadel-vertex-05-hyb-2026-racket",
+    "price": 299.0,
+    "currency": "USD",
+    "inStock": true,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Padel USA",
+    "url": "https://padelusa.com/products/bullpadel-vertex-05-hybrid-2026-padel-racket",
+    "price": 315.2,
+    "currency": "USD",
+    "inStock": true,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Padel Pro Shop",
+    "url": "https://padelproshop.com/products/pala-bullpadel-vertex-5-hybrid",
+    "price": 219.0,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Tienda Padel Point",
+    "url": "https://www.tiendapadelpoint.com/en/pala-bullpadel-vertex-05-hybrid-2026-en",
+    "price": 164.42,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Padelshop",
+    "url": "https://padelshop.com/products/bullpadel-vertex-05-hybrid-2026-padel-racket",
+    "price": 214.95,
+    "currency": "EUR",
+    "inStock": false,
+    "checked": "2026-11-24"
+   }
+  ],
+  "bullpadel-vertex-05-hybrid-2027": [
+   {
+    "shop": "Padel-Point",
+    "url": "https://www.padel-point.com/products/bullpadel-vertex-05-hybrid-27-padel-racket-p0000012022501-en",
+    "price": 349.95,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Padel Market EU",
+    "url": "https://padelmarket.com/en-eu/products/bullpadel-vertex-05-hybrid-2027-racket",
+    "price": 279.95,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Padel Nuestro",
+    "url": "https://www.padelnuestro.com/pala-bullpadel-vertex-05-hybrid-27-497237-160624-p",
+    "price": 274.95,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-23"
+   },
+   {
+    "shop": "Padel Pro Shop",
+    "url": "https://padelproshop.com/products/pala-bullpadel-vertex-05-hybrid-2027",
+    "price": 273.9,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Tienda Padel Point",
+    "url": "https://www.tiendapadelpoint.com/en/pala-bullpadel-vertex-05-hybrid-2027-en",
+    "price": 226.41,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Padelshop",
+    "url": "https://padelshop.com/products/bullpadel-vertex-05-hybrid-2027",
+    "price": 349.95,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-24"
+   }
+  ],
+  "bullpadel-vertex-05-women-2026": [
+   {
+    "shop": "Padel Market EU",
+    "url": "https://padelmarket.com/en-eu/products/bullpadel-vertex-w-05-2026-delfi-brea-racket",
+    "price": 179.95,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Padel Market US",
+    "url": "https://us.padelmarket.com/products/bullpadel-vertex-w-05-2026-delfi-brea-racket",
+    "price": 229.0,
+    "currency": "USD",
+    "inStock": true,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Padel USA",
+    "url": "https://padelusa.com/products/bullpadel-vertex-05-w-2026-padel-racket",
+    "price": 260.0,
+    "currency": "USD",
+    "inStock": true,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Padel Pro Shop",
+    "url": "https://padelproshop.com/products/pala-bullpadel-vertex-5-women-226",
+    "price": 164.9,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Tienda Padel Point",
+    "url": "https://www.tiendapadelpoint.com/en/bullpadel-delfi-brea-vertex-05-woman-2026-en",
+    "price": 164.95,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-24"
+   }
+  ],
+  "bullpadel-vertex-05-women-2027": [
+   {
+    "shop": "NINEPADEL",
+    "url": "https://ninepadel.com/products/bullpadel-vertex-05-w-padel-racket-2027",
+    "price": 183.75,
+    "currency": "GBP",
+    "inStock": true,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Padel-Point",
+    "url": "https://www.padel-point.com/products/bullpadel-vertex-05-w-27-padel-racket-full-surface-p0000012022201",
+    "price": 294.95,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Padel Market EU",
+    "url": "https://padelmarket.com/en-eu/products/bullpadel-vertex-05-w-2027-delfi-brea-racket",
+    "price": 235.95,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Padel Nuestro",
+    "url": "https://www.padelnuestro.com/pala-bullpadel-vertex-05-w-27-497240-mujer-160629-p",
+    "price": 232.95,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-23"
+   },
+   {
+    "shop": "Padel Pro Shop",
+    "url": "https://padelproshop.com/products/pala-bullpadel-vertex-05-w-2027",
+    "price": 231.9,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Tienda Padel Point",
+    "url": "https://www.tiendapadelpoint.com/en/pala-bullpadel-delfi-brea-vertex-05-woman-2027-en",
+    "price": 191.69,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Padelshop",
+    "url": "https://padelshop.com/products/bullpadel-vertex-05-w-2027",
+    "price": 294.95,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-24"
+   }
+  ],
+  "bullpadel-wonder-2026": [
+   {
+    "shop": "Padel USA",
+    "url": "https://padelusa.com/products/bullpadel-wonder-2026-padel-racket",
+    "price": 250.4,
+    "currency": "USD",
+    "inStock": false,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Padel Pro Shop",
+    "url": "https://padelproshop.com/products/pala-bullpadel-wonder-226",
+    "price": 174.9,
+    "currency": "EUR",
+    "inStock": false,
+    "checked": "2026-11-24"
+   }
+  ],
+  "bullpadel-wonder-2027": [
+   {
+    "shop": "Padel-Point",
+    "url": "https://www.padel-point.com/products/bullpadel-wonder-27-padel-racket-full-surface-p0000012021701",
+    "price": 284.95,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Padel Pro Shop",
+    "url": "https://padelproshop.com/products/pala-bullpadel-wonder-2027",
+    "price": 223.9,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Padelshop",
+    "url": "https://padelshop.com/products/bullpadel-wonder-2027",
+    "price": 284.95,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-24"
+   }
+  ],
+  "bullpadel-xplo-02-2027": [
+   {
+    "shop": "Padel Market EU",
+    "url": "https://padelmarket.com/en-eu/products/bullpadel-xplo-02-2027-martin-di-nenno-padel-racket",
+    "price": 263.95,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Padel Nuestro",
+    "url": "https://www.padelnuestro.com/pala-bullpadel-xplo-27-497244-160644-p",
+    "price": 259.95,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-23"
+   },
+   {
+    "shop": "Padel Pro Shop",
+    "url": "https://padelproshop.com/products/pala-bullpadel-xplo-02-2027",
+    "price": 258.9,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-24"
+   }
+  ],
+  "bullpadel-xplo-02-comfort-2027": [
+   {
+    "shop": "Padel Market EU",
+    "url": "https://padelmarket.com/en-eu/products/bullpadel-xplo-02-comfort-2027-padel-racket",
+    "price": 199.95,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Padel Nuestro",
+    "url": "https://www.padelnuestro.com/pala-bullpadel-xplo-cmf-27-497245-160648-p",
+    "price": 194.95,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-23"
+   },
+   {
+    "shop": "Padel Pro Shop",
+    "url": "https://padelproshop.com/products/pala-bullpadel-xplo-02-comfort-2027",
+    "price": 193.9,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-24"
+   }
+  ],
+  "bullpadel-xplo-2025": [
+   {
+    "shop": "Padel Market EU",
+    "url": "https://padelmarket.com/en-eu/products/bullpadel-xplo-2025-di-nenno-racket-1",
+    "price": 149.95,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Padel Market US",
+    "url": "https://us.padelmarket.com/products/bullpadel-xplo-2025-di-nenno-racket",
+    "price": 199.0,
+    "currency": "USD",
+    "inStock": true,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Padel Nuestro",
+    "url": "https://www.padelnuestro.com/bullpadel-xplo-2025-113777-p",
+    "price": 114.95,
+    "currency": "EUR",
+    "inStock": false,
+    "checked": "2026-11-23"
+   },
+   {
+    "shop": "Padel USA",
+    "url": "https://padelusa.com/products/bullpadel-xplo-2025-padel-racket",
+    "price": 239.0,
+    "currency": "USD",
+    "inStock": false,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Tienda Padel Point",
+    "url": "https://www.tiendapadelpoint.com/en/pala-bullpadel-di-nenno-xplo-2025-1-en",
+    "price": 119.95,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-24"
+   }
+  ],
+  "bullpadel-xplo-2026": [
+   {
+    "shop": "Padel-Point",
+    "url": "https://www.padel-point.com/products/bullpadel-xplo-26-padel-racket-14907600238000-en",
+    "price": 185.95,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Padel Market EU",
+    "url": "https://padelmarket.com/en-eu/products/bullpadel-xplo-2026-martin-di-nenno-racket",
+    "price": 205.95,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Padel Market US",
+    "url": "https://us.padelmarket.com/products/bullpadel-xplo-2026-martin-di-nenno-racket",
+    "price": 299.0,
+    "currency": "USD",
+    "inStock": true,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Padel Nuestro",
+    "url": "https://www.padelnuestro.com/bullpadel-xplo-26-120920-p",
+    "price": 144.95,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-23"
+   },
+   {
+    "shop": "Padel USA",
+    "url": "https://padelusa.com/products/bullpadel-xplo-2026-padel-racket",
+    "price": 296.8,
+    "currency": "USD",
+    "inStock": true,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Padel Pro Shop",
+    "url": "https://padelproshop.com/products/pala-bullpadel-xplo-226",
+    "price": 199.0,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Padelshop",
+    "url": "https://padelshop.com/products/bullpadel-xplo-2026-padel-racket",
+    "price": 199.95,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-24"
+   }
+  ],
+  "bullpadel-xplo-comfort-2025": [
+   {
+    "shop": "Padel Nuestro",
+    "url": "https://www.padelnuestro.com/bullpadel-xplo-komfort-25-113778-p",
+    "price": 99.95,
+    "currency": "EUR",
+    "inStock": false,
+    "checked": "2026-11-23"
+   },
+   {
+    "shop": "Padel USA",
+    "url": "https://padelusa.com/products/bullpadel-xplo-comfort-2025",
+    "price": 209.0,
+    "currency": "USD",
+    "inStock": false,
+    "checked": "2026-11-24"
+   }
+  ],
+  "bullpadel-xplo-comfort-2026": [
+   {
+    "shop": "Padel-Point",
+    "url": "https://www.padel-point.com/products/bullpadel-xplo-cmf-26-padel-racket-14907600239000-en",
+    "price": 167.95,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Padel Market EU",
+    "url": "https://padelmarket.com/en-eu/products/bullpadel-xplo-cmf-2026-martin-di-nenno-racket",
+    "price": 169.95,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Padel Market US",
+    "url": "https://us.padelmarket.com/products/bullpadel-xplo-cmf-2026-martin-di-nenno-racket",
+    "price": 220.0,
+    "currency": "USD",
+    "inStock": true,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Padel Nuestro",
+    "url": "https://www.padelnuestro.com/bullpadel-xplo-cmf-2026",
+    "price": 109.95,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-23"
+   },
+   {
+    "shop": "Padel USA",
+    "url": "https://padelusa.com/products/bullpadel-xplo-comfort-2026-padel-racket",
+    "price": 222.4,
+    "currency": "USD",
+    "inStock": true,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Padel Pro Shop",
+    "url": "https://padelproshop.com/products/pala-bullpadel-xplo-comfort-226",
+    "price": 153.95,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Padelshop",
+    "url": "https://padelshop.com/products/bullpadel-xplo-comfort-2026-padel-racket",
+    "price": 159.95,
+    "currency": "EUR",
+    "inStock": false,
+    "checked": "2026-11-24"
+   }
+  ],
+  "head-coello-motion-2025": [
+   {
+    "shop": "Padel Market EU",
+    "url": "https://padelmarket.com/en-eu/products/head-coello-motion-2025-racket",
+    "price": 191.95,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Padel Nuestro",
+    "url": "https://www.padelnuestro.com/pala-head-coello-motion-2025-225025",
+    "price": 141.95,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-23"
+   },
+   {
+    "shop": "Padel USA",
+    "url": "https://padelusa.com/products/head-coello-motion-2025-padel-racket",
+    "price": 249.95,
+    "currency": "USD",
+    "inStock": false,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Padel Pro Shop",
+    "url": "https://padelproshop.com/products/pala-head-coello-motion",
+    "price": 141.95,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-24"
+   }
+  ],
+  "head-coello-motion-2026": [
+   {
+    "shop": "Padel Market EU",
+    "url": "https://padelmarket.com/en-eu/products/head-coello-motion-2026-racket",
+    "price": 296.95,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Padel Nuestro",
+    "url": "https://www.padelnuestro.com/pala-head-coello-motion-2026-225046",
+    "price": 168.95,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-23"
+   },
+   {
+    "shop": "Padel USA",
+    "url": "https://padelusa.com/products/head-coello-motion-2026-padel-racket",
+    "price": 374.95,
+    "currency": "USD",
+    "inStock": true,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Padel Pro Shop",
+    "url": "https://padelproshop.com/products/pala-head-coello-motion-2026",
+    "price": 168.9,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Tienda Padel Point",
+    "url": "https://www.tiendapadelpoint.com/en/pala-head-coello-motion-2026-en",
+    "price": 139.63,
+    "currency": "EUR",
+    "inStock": false,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Padelshop",
+    "url": "https://padelshop.com/products/head-coello-motion-2026",
+    "price": 214.95,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-24"
+   }
+  ],
+  "head-coello-pro-2025": [
+   {
+    "shop": "Padel Nuestro",
+    "url": "https://www.padelnuestro.com/pala-head-coello-pro-2025-225015",
+    "price": 159.95,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-23"
+   },
+   {
+    "shop": "Padel USA",
+    "url": "https://padelusa.com/products/head-coello-pro-2025-padel-racket",
+    "price": 229.99,
+    "currency": "USD",
+    "inStock": false,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Padel Pro Shop",
+    "url": "https://padelproshop.com/products/pala-head-coello-pro",
+    "price": 148.9,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Tienda Padel Point",
+    "url": "https://www.tiendapadelpoint.com/en/paddle-head-coello-pro-2025-1-en",
+    "price": 148.95,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-24"
+   }
+  ],
+  "head-coello-pro-2026": [
+   {
+    "shop": "Padel Market EU",
+    "url": "https://padelmarket.com/en-eu/products/head-coello-pro-2026-arturo-coello-racket",
+    "price": 296.95,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Padel Nuestro",
+    "url": "https://www.padelnuestro.com/pala-head-coello-pro-2026-225036",
+    "price": 168.95,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-23"
+   },
+   {
+    "shop": "Padel USA",
+    "url": "https://padelusa.com/products/head-coello-pro-2026-padel-racket",
+    "price": 374.95,
+    "currency": "USD",
+    "inStock": true,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Padel Pro Shop",
+    "url": "https://padelproshop.com/products/pala-head-coello-pro-2026",
+    "price": 168.9,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Tienda Padel Point",
+    "url": "https://www.tiendapadelpoint.com/en/paddle-head-coello-pro-2026-en",
+    "price": 139.63,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Padelshop",
+    "url": "https://padelshop.com/products/head-coello-pro-2026",
+    "price": 209.95,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-24"
+   }
+  ],
+  "head-coello-team-2025": [
+   {
+    "shop": "Padel Market EU",
+    "url": "https://padelmarket.com/en-eu/products/head-coello-team-2025-racket",
+    "price": 169.95,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Padel Nuestro",
+    "url": "https://www.padelnuestro.com/pala-head-coello-team-2025-225035",
+    "price": 87.95,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-23"
+   },
+   {
+    "shop": "Padel USA",
+    "url": "https://padelusa.com/products/head-coello-team-2025-padel-racket",
+    "price": 169.95,
+    "currency": "USD",
+    "inStock": true,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Padel Pro Shop",
+    "url": "https://padelproshop.com/products/pala-padel-head-coello-team",
+    "price": 124.0,
+    "currency": "EUR",
+    "inStock": false,
+    "checked": "2026-11-24"
+   }
+  ],
+  "head-coello-team-2026": [
+   {
+    "shop": "Padel-Point",
+    "url": "https://www.padel-point.com/products/head-coello-team-2026-padel-racket-00607604610000-en",
+    "price": 159.95,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Padel Market EU",
+    "url": "https://padelmarket.com/en-eu/products/head-coello-team-2026-racket",
+    "price": 186.95,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Padel Nuestro",
+    "url": "https://www.padelnuestro.com/pala-head-coello-team-2026-225056",
+    "price": 129.95,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-23"
+   },
+   {
+    "shop": "Padel USA",
+    "url": "https://padelusa.com/products/head-coello-team-2026-padel-racket",
+    "price": 229.95,
+    "currency": "USD",
+    "inStock": false,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Padel Pro Shop",
+    "url": "https://padelproshop.com/products/pala-head-coello-team-2026",
+    "price": 104.95,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Tienda Padel Point",
+    "url": "https://www.tiendapadelpoint.com/en/pala-head-coello-team-2026-en",
+    "price": 107.4,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-24"
+   }
+  ],
+  "head-evo-speed-2025": [
+   {
+    "shop": "Padel-Point",
+    "url": "https://www.padel-point.de/products/head-evo-speed-2025-padelschlaeger-00606904484000",
+    "price": 69.95,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Padel Nuestro",
+    "url": "https://www.padelnuestro.com/pala-head-evo-speed-2025-226405",
+    "price": 54.95,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-23"
+   },
+   {
+    "shop": "Padel USA",
+    "url": "https://padelusa.com/products/head-evo-speed-2025-padel-racket",
+    "price": 99.95,
+    "currency": "USD",
+    "inStock": false,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Tienda Padel Point",
+    "url": "https://www.tiendapadelpoint.com/en/pala-head-speed-evo-2025-1-en",
+    "price": 66.9,
+    "currency": "EUR",
+    "inStock": false,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Padelshop",
+    "url": "https://padelshop.com/products/head-evo-speed-2025",
+    "price": 68.95,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-24"
+   }
+  ],
+  "head-extreme-motion-2026": [
+   {
+    "shop": "Padel-Point",
+    "url": "https://www.padel-point.com/products/head-extreme-motion-2026-padel-racket-full-surface-p0000011480201",
+    "price": 174.95,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Padel Market EU",
+    "url": "https://padelmarket.com/en-eu/products/racket-head-extreme-motion-2026-paula-josemaria",
+    "price": 216.0,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Padel Nuestro",
+    "url": "https://www.padelnuestro.com/head-extreme-motion-2026-162499-p",
+    "price": 199.95,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-23"
+   },
+   {
+    "shop": "Padel USA",
+    "url": "https://padelusa.com/products/head-extreme-motion-2026",
+    "price": 254.95,
+    "currency": "USD",
+    "inStock": true,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Padel Pro Shop",
+    "url": "https://padelproshop.com/products/pala-head-extreme-motion-2026",
+    "price": 198.9,
+    "currency": "EUR",
+    "inStock": false,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Tienda Padel Point",
+    "url": "https://www.tiendapadelpoint.com/en/pala-head-extreme-motion-2026-en",
+    "price": 198.95,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Padelshop",
+    "url": "https://padelshop.com/products/head-extreme-motion-2026",
+    "price": 209.95,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-24"
+   }
+  ],
+  "head-extreme-one-2025": [
+   {
+    "shop": "Padel-Point",
+    "url": "https://www.padel-point.com/products/head-extreme-one-2025-padel-racket-00607204604000-en",
+    "price": 196.95,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Padel Nuestro",
+    "url": "https://www.padelnuestro.com/pala-head-extreme-one-2025-223115",
+    "price": 163.95,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-23"
+   },
+   {
+    "shop": "Padel Pro Shop",
+    "url": "https://padelproshop.com/products/pala-head-extreme-one-25",
+    "price": 184.95,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Tienda Padel Point",
+    "url": "https://www.tiendapadelpoint.com/en/paddle-head-extreme-one-2025-en",
+    "price": 135.5,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Padelshop",
+    "url": "https://padelshop.com/products/head-extreme-one-2025-padelracket",
+    "price": 178.95,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-24"
+   }
+  ],
+  "head-extreme-pro-2025": [
+   {
+    "shop": "Padel-Point",
+    "url": "https://www.padel-point.com/products/head-extreme-pro-2025-padel-racket-00607104605000-en",
+    "price": 194.95,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Padel Nuestro",
+    "url": "https://www.padelnuestro.com/head-extreme-pro-2025",
+    "price": 159.95,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-23"
+   },
+   {
+    "shop": "Padel USA",
+    "url": "https://padelusa.com/products/head-extreme-pro-2025-padel-racket",
+    "price": 299.95,
+    "currency": "USD",
+    "inStock": true,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Padel Pro Shop",
+    "url": "https://padelproshop.com/products/pala-head-extreme-pro-226",
+    "price": 164.95,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Tienda Padel Point",
+    "url": "https://www.tiendapadelpoint.com/en/pala-head-extreme-pro-2025-en",
+    "price": 158.95,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-24"
+   }
+  ],
+  "head-extreme-pro-2026": [
+   {
+    "shop": "Padel-Point",
+    "url": "https://www.padel-point.com/products/head-extreme-pro-2026-padel-racket-full-surface-p0000011480301",
+    "price": 194.95,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Padel Market EU",
+    "url": "https://padelmarket.com/en-eu/products/head-extreme-pro-2026-padel-racket",
+    "price": 252.0,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Padel Nuestro",
+    "url": "https://www.padelnuestro.com/pala-head-extreme-pro-2026-223126",
+    "price": 239.95,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-23"
+   },
+   {
+    "shop": "Padel USA",
+    "url": "https://padelusa.com/products/head-extreme-pro-2026",
+    "price": 299.95,
+    "currency": "USD",
+    "inStock": true,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Padel Pro Shop",
+    "url": "https://padelproshop.com/products/pala-head-extreme-pro-2026",
+    "price": 238.9,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Tienda Padel Point",
+    "url": "https://www.tiendapadelpoint.com/en/pala-head-extreme-pro-2026-en",
+    "price": 238.95,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Padelshop",
+    "url": "https://padelshop.com/products/head-extreme-pro-2026",
+    "price": 249.95,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-24"
+   }
+  ],
+  "head-gravity-motion-2024": [
+   {
+    "shop": "Padel-Point",
+    "url": "https://www.padel-point.com/products/head-gravity-motion-2024-padel-racket-00606804469000-en",
+    "price": 124.95,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Padel Nuestro",
+    "url": "https://www.padelnuestro.com/head-gravity-motion-2024-113827-p",
+    "price": 132.95,
+    "currency": "EUR",
+    "inStock": false,
+    "checked": "2026-11-23"
+   },
+   {
+    "shop": "Padel USA",
+    "url": "https://padelusa.com/products/head-gravity-motion-2024-padel-racket",
+    "price": 179.95,
+    "currency": "USD",
+    "inStock": true,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Padel Pro Shop",
+    "url": "https://padelproshop.com/products/pala-head-gravity-motion-2024",
+    "price": 132.9,
+    "currency": "EUR",
+    "inStock": false,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Tienda Padel Point",
+    "url": "https://www.tiendapadelpoint.com/en/pala-head-gravity-motion-2024-1-en",
+    "price": 115.66,
+    "currency": "EUR",
+    "inStock": false,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Padelshop",
+    "url": "https://padelshop.com/products/head-gravity-motion-padel-racket",
+    "price": 127.95,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-24"
+   }
+  ],
+  "head-radical-motion-2026": [
+   {
+    "shop": "Padel-Point",
+    "url": "https://www.padel-point.com/products/head-radical-motion-2026-padel-racket-00607204600000-en",
+    "price": 149.95,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Padel Nuestro",
+    "url": "https://www.padelnuestro.com/head-radical-motion-2026",
+    "price": 124.95,
+    "currency": "EUR",
+    "inStock": false,
+    "checked": "2026-11-23"
+   },
+   {
+    "shop": "Padel USA",
+    "url": "https://padelusa.com/products/head-radical-motion-2026-padel-racket",
+    "price": 229.95,
+    "currency": "USD",
+    "inStock": true,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Padel Pro Shop",
+    "url": "https://padelproshop.com/products/pala-head-radical-motion-26",
+    "price": 149.0,
+    "currency": "EUR",
+    "inStock": false,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Tienda Padel Point",
+    "url": "https://www.tiendapadelpoint.com/en/pala-head-radical-motion-2026-en",
+    "price": 103.26,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-24"
+   }
+  ],
+  "head-radical-pro-2026": [
+   {
+    "shop": "Padel-Point",
+    "url": "https://www.padel-point.com/products/head-radical-pro-2026-padel-racket-00607204599000-en",
+    "price": 166.95,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Padel Nuestro",
+    "url": "https://www.padelnuestro.com/head-radical-pro-2026",
+    "price": 159.95,
+    "currency": "EUR",
+    "inStock": false,
+    "checked": "2026-11-23"
+   },
+   {
+    "shop": "Padel USA",
+    "url": "https://padelusa.com/products/head-radical-pro-2026-padel-racket",
+    "price": 249.95,
+    "currency": "USD",
+    "inStock": true,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Padel Pro Shop",
+    "url": "https://padelproshop.com/products/pala-head-radical-pro-26",
+    "price": 159.95,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Tienda Padel Point",
+    "url": "https://www.tiendapadelpoint.com/en/pala-head-radical-pro-2026-en",
+    "price": 149.95,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Padelshop",
+    "url": "https://padelshop.com/products/head-radical-pro-2026",
+    "price": 154.95,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-24"
+   }
+  ],
+  "head-radical-team-2026": [
+   {
+    "shop": "Padel Market EU",
+    "url": "https://padelmarket.com/en-eu/products/head-radical-team-2026-racket",
+    "price": 129.95,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Padel Nuestro",
+    "url": "https://www.padelnuestro.com/head-radical-team-2026",
+    "price": 99.95,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-23"
+   },
+   {
+    "shop": "Padel USA",
+    "url": "https://padelusa.com/products/head-radical-team-2026-padel-racket",
+    "price": 179.95,
+    "currency": "USD",
+    "inStock": true,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Padel Pro Shop",
+    "url": "https://padelproshop.com/products/pala-head-radical-team-26",
+    "price": 99.9,
+    "currency": "EUR",
+    "inStock": false,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Tienda Padel Point",
+    "url": "https://www.tiendapadelpoint.com/en/pala-head-radical-team-2026-en",
+    "price": 94.17,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-24"
+   }
+  ],
+  "head-radical-team-light-2026": [
+   {
+    "shop": "Padel Nuestro",
+    "url": "https://www.padelnuestro.com/head-radical-team-light-2026",
+    "price": 94.95,
+    "currency": "EUR",
+    "inStock": false,
+    "checked": "2026-11-23"
+   },
+   {
+    "shop": "Padel USA",
+    "url": "https://padelusa.com/products/head-radical-team-light-2026-padel-racket",
+    "price": 179.95,
+    "currency": "USD",
+    "inStock": true,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Padel Pro Shop",
+    "url": "https://padelproshop.com/products/pala-head-radical-team-light-26",
+    "price": 92.95,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Tienda Padel Point",
+    "url": "https://www.tiendapadelpoint.com/en/pala-head-radical-team-light-2026-en",
+    "price": 75.99,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-24"
+   }
+  ],
+  "head-speed-motion-2025": [
+   {
+    "shop": "Padel-Point",
+    "url": "https://www.padel-point.com/products/head-speed-motion-2025-padel-racket-00606904477000-en",
+    "price": 174.66,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Padel Nuestro",
+    "url": "https://www.padelnuestro.com/head-speed-motion-2025",
+    "price": 144.95,
+    "currency": "EUR",
+    "inStock": false,
+    "checked": "2026-11-23"
+   },
+   {
+    "shop": "Padel USA",
+    "url": "https://padelusa.com/products/head-speed-motion-2025-padel-racket",
+    "price": 254.95,
+    "currency": "USD",
+    "inStock": false,
+    "checked": "2026-11-24"
+   }
+  ],
+  "head-speed-one-2025": [
+   {
+    "shop": "Padel-Point",
+    "url": "https://www.padel-point.com/products/head-speed-one-2025-padel-racket-00606904475000-en",
+    "price": 146.95,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Padel Nuestro",
+    "url": "https://www.padelnuestro.com/head-speed-one-2025",
+    "price": 129.95,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-23"
+   },
+   {
+    "shop": "Padel USA",
+    "url": "https://padelusa.com/products/head-speed-one-2025-padel-racket",
+    "price": 299.95,
+    "currency": "USD",
+    "inStock": true,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Padel Pro Shop",
+    "url": "https://padelproshop.com/products/pala-head-speed-one",
+    "price": 127.95,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Tienda Padel Point",
+    "url": "https://www.tiendapadelpoint.com/en/pala-head-speed-one-2025-1-en",
+    "price": 104.92,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Padelshop",
+    "url": "https://padelshop.com/products/head-speed-one-2025-padel-racket",
+    "price": 149.95,
+    "currency": "EUR",
+    "inStock": false,
+    "checked": "2026-11-24"
+   }
+  ],
+  "head-speed-pro-2025": [
+   {
+    "shop": "Padel-Point",
+    "url": "https://www.padel-point.com/products/head-speed-pro-2025-padel-racket-00606904476000-en",
+    "price": 157.95,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Padel Nuestro",
+    "url": "https://www.padelnuestro.com/pala-head-speed-pro-2025-221065",
+    "price": 127.95,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-23"
+   },
+   {
+    "shop": "Padel USA",
+    "url": "https://padelusa.com/products/head-speed-pro-2025-padel-racket",
+    "price": 249.95,
+    "currency": "USD",
+    "inStock": true,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Padel Pro Shop",
+    "url": "https://padelproshop.com/products/pala-head-speed-pro",
+    "price": 127.9,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Tienda Padel Point",
+    "url": "https://www.tiendapadelpoint.com/en/pala-head-speed-pro-2025-1-en",
+    "price": 105.74,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Padelshop",
+    "url": "https://padelshop.com/products/head-speed-pro-padel-racket",
+    "price": 159.95,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-24"
+   }
+  ],
+  "head-speed-team-2025": [
+   {
+    "shop": "Padel-Point",
+    "url": "https://www.padel-point.com/products/head-speed-team-2025-padel-racket-00606904478000-en",
+    "price": 120.96,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Padel Nuestro",
+    "url": "https://www.padelnuestro.com/pala-head-speed-team-2025-221085",
+    "price": 83.95,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-23"
+   },
+   {
+    "shop": "Padel USA",
+    "url": "https://padelusa.com/products/head-speed-team-2025-padel-racket",
+    "price": 179.95,
+    "currency": "USD",
+    "inStock": true,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Padel Pro Shop",
+    "url": "https://padelproshop.com/products/pala-head-speed-team",
+    "price": 83.9,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Tienda Padel Point",
+    "url": "https://www.tiendapadelpoint.com/en/pala-head-speed-team-2025-1-en",
+    "price": 69.38,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-24"
+   }
+  ],
+  "nox-at10-18k-2025": [
+   {
+    "shop": "NINEPADEL",
+    "url": "https://ninepadel.com/products/nox-at10-genius-18k-alum-agustin-tapia-padel-racket",
+    "price": 180.0,
+    "currency": "GBP",
+    "inStock": true,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Padel Nuestro",
+    "url": "https://www.padelnuestro.com/nox-at10-genius-18k-alum-by-agustin-tapia-2025-113540-p",
+    "price": 169.95,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-23"
+   },
+   {
+    "shop": "Tienda Padel Point",
+    "url": "https://www.tiendapadelpoint.com/en/pala-nox-agustin-tapia-at10-genius-18k-alum-2025-1-en",
+    "price": 132.19,
+    "currency": "EUR",
+    "inStock": false,
+    "checked": "2026-11-24"
+   }
+  ],
+  "nox-at10-genius-12k-2025": [
+   {
+    "shop": "NINEPADEL",
+    "url": "https://ninepadel.com/products/nox-at10-genius-12k-alum-agustin-tapia-padel-racket",
+    "price": 169.0,
+    "currency": "GBP",
+    "inStock": false,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Padel Nuestro",
+    "url": "https://www.padelnuestro.com/nox-at10-genius-12k-by-agustin-tapia-2025-113539-p",
+    "price": 154.95,
+    "currency": "EUR",
+    "inStock": false,
+    "checked": "2026-11-23"
+   },
+   {
+    "shop": "Padel Pro Shop",
+    "url": "https://padelproshop.com/products/pala-nox-at1-genius-12k-agustin-tapia",
+    "price": 154.9,
+    "currency": "EUR",
+    "inStock": false,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Tienda Padel Point",
+    "url": "https://www.tiendapadelpoint.com/en/pala-nox-agustin-tapia-at10-genius-12k-2025-1-en",
+    "price": 128.06,
+    "currency": "EUR",
+    "inStock": false,
+    "checked": "2026-11-24"
+   }
+  ],
+  "nox-at10-genius-12k-alum-xtrem-2026": [
+   {
+    "shop": "NINEPADEL",
+    "url": "https://ninepadel.com/products/nox-at10-genius-12k-xtrem-alum-agustin-tapia-padel-2026",
+    "price": 220.0,
+    "currency": "GBP",
+    "inStock": false,
+    "checked": "2026-11-24"
+   }
+  ],
+  "nox-at10-genius-12k-alum-xtrem-2027": [
+   {
+    "shop": "NINEPADEL",
+    "url": "https://ninepadel.com/products/nox-genius-12k-alum-xtrem-agustin-tapia-padel-racket-2027",
+    "price": 305.0,
+    "currency": "GBP",
+    "inStock": true,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Padel-Point",
+    "url": "https://www.padel-point.com/products/nox-genius-12k-alum-xtrem-2027-padel-racket-full-surface-p0000013230401",
+    "price": 311.95,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Padel Nuestro",
+    "url": "https://www.padelnuestro.com/pala-nox-genius-12k-alum-xtrem-by-agustin-tapia-pagenius1227-162307-p",
+    "price": 389.95,
+    "currency": "EUR",
+    "inStock": false,
+    "checked": "2026-11-23"
+   },
+   {
+    "shop": "Padel USA",
+    "url": "https://padelusa.com/products/nox-genius-12k-alum-xtrem-2027-by-agustin-tapia",
+    "price": 450.0,
+    "currency": "USD",
+    "inStock": true,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Padel Pro Shop",
+    "url": "https://padelproshop.com/products/pala-nox-at10-genius-12k-xtrem-by-agustin-tapia-2027",
+    "price": 388.9,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Padelshop",
+    "url": "https://padelshop.com/products/nox-genius-12k-alum-xtrem-2027",
+    "price": 389.95,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-24"
+   }
+  ],
+  "nox-at10-genius-12k-alum-xtrem-lite-2026": [
+   {
+    "shop": "NINEPADEL",
+    "url": "https://ninepadel.com/products/nox-at10-genius-12k-xtrem-lite-alum-agustin-tapia-padel-2026",
+    "price": 240.0,
+    "currency": "GBP",
+    "inStock": false,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Padel Nuestro",
+    "url": "https://www.padelnuestro.com/nox-at10-genius-12k-alum-xtreme-lite-by-agustin-tapia-2026",
+    "price": 179.95,
+    "currency": "EUR",
+    "inStock": false,
+    "checked": "2026-11-23"
+   },
+   {
+    "shop": "Padel Pro Shop",
+    "url": "https://padelproshop.com/products/pala-nox-at10-genius-12k-alum-xtrem-lite-by-agustin-tapia-2026",
+    "price": 169.95,
+    "currency": "EUR",
+    "inStock": false,
+    "checked": "2026-11-24"
+   }
+  ],
+  "nox-at10-genius-12k-alum-xtrem-lite-2027": [
+   {
+    "shop": "NINEPADEL",
+    "url": "https://ninepadel.com/products/nox-genius-12k-alum-xtrem-lite-agustin-tapia-padel-racket-2027",
+    "price": 295.0,
+    "currency": "GBP",
+    "inStock": true,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Padel-Point",
+    "url": "https://www.padel-point.com/products/nox-genius-12k-alum-xtrem-lite-2027-padel-racket-full-surface-p0000013230701",
+    "price": 279.95,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Padel Market EU",
+    "url": "https://padelmarket.com/en-eu/products/nox-genius-12k-xtrem-lite-2027-by-agustin-tapia-racket",
+    "price": 349.95,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Padel Nuestro",
+    "url": "https://www.padelnuestro.com/pala-nox-genius-12k-alum-xtrem-lite-by-agustin-tapia-pagenius12li27-162308-p",
+    "price": 349.95,
+    "currency": "EUR",
+    "inStock": false,
+    "checked": "2026-11-23"
+   },
+   {
+    "shop": "Padel USA",
+    "url": "https://padelusa.com/products/nox-genius-12k-alum-xtrem-lite-2027-by-agustin-tapia",
+    "price": 415.0,
+    "currency": "USD",
+    "inStock": true,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Padel Pro Shop",
+    "url": "https://padelproshop.com/products/pala-nox-at10-genius-12k-xtrem-lite-by-agustin-tapia-2027",
+    "price": 349.9,
+    "currency": "EUR",
+    "inStock": false,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Padelshop",
+    "url": "https://padelshop.com/products/nox-genius-12k-alum-xtrem-lite-tapia-2027",
+    "price": 349.95,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-24"
+   }
+  ],
+  "nox-at10-genius-18k-2026": [
+   {
+    "shop": "NINEPADEL",
+    "url": "https://ninepadel.com/products/nox-at10-genius-18k-alum-agustin-tapia-padel-2026",
+    "price": 220.0,
+    "currency": "GBP",
+    "inStock": true,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Padel Market EU",
+    "url": "https://padelmarket.com/en-eu/products/nox-at10-genius-18k-alum-2026-by-agustin-tapia-racket",
+    "price": 239.95,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Padel Nuestro",
+    "url": "https://www.padelnuestro.com/nox-at10-genius-18k-alumby-agustin-tapia-2026",
+    "price": 204.95,
+    "currency": "EUR",
+    "inStock": false,
+    "checked": "2026-11-23"
+   },
+   {
+    "shop": "Padel Pro Shop",
+    "url": "https://padelproshop.com/products/pala-nox-at10-genuis-18k-alum-by-agustin-tapia",
+    "price": 209.9,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Tienda Padel Point",
+    "url": "https://www.tiendapadelpoint.com/en/pala-nox-agustin-tapia-at10-genius-18k-alum-2026-en",
+    "price": 171.03,
+    "currency": "EUR",
+    "inStock": false,
+    "checked": "2026-11-24"
+   }
+  ],
+  "nox-at10-genius-18k-alum-2027": [
+   {
+    "shop": "NINEPADEL",
+    "url": "https://ninepadel.com/products/nox-genius-18k-alum-agustin-tapia-padel-racket-2027",
+    "price": 305.0,
+    "currency": "GBP",
+    "inStock": true,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Padel-Point",
+    "url": "https://www.padel-point.com/products/nox-genius-18k-alum-2027-padel-racket-full-surface-p0000013231801",
+    "price": 311.95,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Padel Market EU",
+    "url": "https://padelmarket.com/en-eu/products/nox-genius-18k-2027-by-agustin-tapia-racket",
+    "price": 389.95,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Padel Nuestro",
+    "url": "https://www.padelnuestro.com/pala-nox-genius-18k-alum-by-agustin-tapia-pagenius1827-162304-p",
+    "price": 389.95,
+    "currency": "EUR",
+    "inStock": false,
+    "checked": "2026-11-23"
+   },
+   {
+    "shop": "Padel USA",
+    "url": "https://padelusa.com/products/nox-genius-18k-alum-2027-by-agustin-tapia",
+    "price": 450.0,
+    "currency": "USD",
+    "inStock": false,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Padel Pro Shop",
+    "url": "https://padelproshop.com/products/pala-nox-at10-genius-18k-alum-by-agustin-tapia-2027",
+    "price": 388.9,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Tienda Padel Point",
+    "url": "https://www.tiendapadelpoint.com/en/pala-nox-agustin-tapia-at10-genius-18k-alum-2027-en",
+    "price": 321.45,
+    "currency": "EUR",
+    "inStock": false,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Padelshop",
+    "url": "https://padelshop.com/products/nox-genius-18k-alum-tapia-2027",
+    "price": 389.95,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-24"
+   }
+  ],
+  "nox-at10-genius-attack-12k-alum-xtrem-2026": [
+   {
+    "shop": "NINEPADEL",
+    "url": "https://ninepadel.com/products/nox-at10-genius-attack-12k-xtrem-agustin-tapia-padel-2026",
+    "price": 240.0,
+    "currency": "GBP",
+    "inStock": true,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Padel Pro Shop",
+    "url": "https://padelproshop.com/products/pala-nox-at10-genius-attack-12k-alum-xtrem-by-agustin-tapia-2026",
+    "price": 167.9,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-24"
+   }
+  ],
+  "nox-at10-genius-attack-12k-alum-xtrem-2027": [
+   {
+    "shop": "NINEPADEL",
+    "url": "https://ninepadel.com/products/nox-genius-attack-12k-alum-xtrem-agustin-tapia-padel-racket-2027",
+    "price": 305.0,
+    "currency": "GBP",
+    "inStock": true,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Padel-Point",
+    "url": "https://www.padel-point.com/products/nox-genius-attack-12k-alum-xtrem-2027-padel-racket-full-surface-p0000013230501",
+    "price": 311.95,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Padel USA",
+    "url": "https://padelusa.com/products/nox-genius-attack-12k-alum-xtrem-2027-by-agustin-tapia",
+    "price": 450.0,
+    "currency": "USD",
+    "inStock": true,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Padel Pro Shop",
+    "url": "https://padelproshop.com/products/pala-nox-at10-genius-attack-12k-xtrem-by-agustin-tapia-2027",
+    "price": 388.9,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Padelshop",
+    "url": "https://padelshop.com/products/nox-genius-attack-12k-alum-xtrem-tapia-2027",
+    "price": 389.95,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-24"
+   }
+  ],
+  "nox-at10-genius-attack-18k-2025": [
+   {
+    "shop": "Padel Nuestro",
+    "url": "https://www.padelnuestro.com/nox-at10-genius-attack-18k-alum-by-agustin-tapia-2025-113542-p",
+    "price": 159.95,
+    "currency": "EUR",
+    "inStock": false,
+    "checked": "2026-11-23"
+   },
+   {
+    "shop": "Padel Pro Shop",
+    "url": "https://padelproshop.com/products/pala-nox-at1-genius-attack-18k-agustin-tapia",
+    "price": 159.9,
+    "currency": "EUR",
+    "inStock": false,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Tienda Padel Point",
+    "url": "https://www.tiendapadelpoint.com/en/pala-nox-agustin-tapia-at10-genius-attack-18k-alum-2025-1-en",
+    "price": 132.22,
+    "currency": "EUR",
+    "inStock": false,
+    "checked": "2026-11-24"
+   }
+  ],
+  "nox-at10-genius-attack-18k-2026": [
+   {
+    "shop": "NINEPADEL",
+    "url": "https://ninepadel.com/products/nox-at10-genius-attack-18k-alum-agustin-tapia-padel-2026",
+    "price": 199.99,
+    "currency": "GBP",
+    "inStock": true,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Padel Market EU",
+    "url": "https://padelmarket.com/en-eu/products/nox-at10-genius-attack-18k-2026-by-agustin-tapia-racket",
+    "price": 179.95,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Padel Nuestro",
+    "url": "https://www.padelnuestro.com/nox-at10-genius-attack-18k-alum-by-agustin-tapia-2026",
+    "price": 159.95,
+    "currency": "EUR",
+    "inStock": false,
+    "checked": "2026-11-23"
+   },
+   {
+    "shop": "Padel Pro Shop",
+    "url": "https://padelproshop.com/products/pala-nox-at10-genius-attack-18k-alum-by-agustin-tapia",
+    "price": 154.95,
+    "currency": "EUR",
+    "inStock": false,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Tienda Padel Point",
+    "url": "https://www.tiendapadelpoint.com/en/pala-nox-agustin-tapia-at10-genius-attack-18k-alum-2026-en",
+    "price": 132.15,
+    "currency": "EUR",
+    "inStock": false,
+    "checked": "2026-11-24"
+   }
+  ],
+  "nox-at10-genius-attack-18k-alum-2027": [
+   {
+    "shop": "NINEPADEL",
+    "url": "https://ninepadel.com/products/nox-genius-attack-18k-alum-agustin-tapia-padel-racket-2027",
+    "price": 305.0,
+    "currency": "GBP",
+    "inStock": true,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Padel-Point",
+    "url": "https://www.padel-point.com/products/nox-genius-attack-18k-alum-2027-padel-racket-full-surface-p0000013230801",
+    "price": 311.95,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Padel Market EU",
+    "url": "https://padelmarket.com/en-eu/products/nox-genius-attack-18k-2027-by-agustin-tapia-racket",
+    "price": 389.95,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Padel Nuestro",
+    "url": "https://www.padelnuestro.com/pala-nox-genius-attack-18k-alum-by-agustin-tapia-pageniusat1827-162303-p",
+    "price": 389.95,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-23"
+   },
+   {
+    "shop": "Padel USA",
+    "url": "https://padelusa.com/products/nox-genius-attack-18k-alum-2027-by-agustin-tapia",
+    "price": 450.0,
+    "currency": "USD",
+    "inStock": true,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Padel Pro Shop",
+    "url": "https://padelproshop.com/products/pala-nox-at10-genius-attack-18k-by-agustin-tapia-2027",
+    "price": 388.9,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Tienda Padel Point",
+    "url": "https://www.tiendapadelpoint.com/en/pala-nox-agustin-tapia-at10-genius-attack-18k-alum-2027-en",
+    "price": 321.45,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Padelshop",
+    "url": "https://padelshop.com/products/nox-genius-attack-18k-alum-tapia-2027",
+    "price": 389.95,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-24"
+   }
+  ],
+  "nox-at10-pro-cup-hard-2026": [
+   {
+    "shop": "NINEPADEL",
+    "url": "https://ninepadel.com/products/nox-at10-pro-cup-hard-padel-racket-2026",
+    "price": 145.0,
+    "currency": "GBP",
+    "inStock": false,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Padel Market EU",
+    "url": "https://padelmarket.com/en-eu/products/nox-at10-pro-cup-hard-2026-by-agustin-tapia-racket-1",
+    "price": 149.95,
+    "currency": "EUR",
+    "inStock": false,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Padel USA",
+    "url": "https://padelusa.com/products/nox-at10-pro-cup-hard-padel-racket",
+    "price": 245.0,
+    "currency": "USD",
+    "inStock": false,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Padel Pro Shop",
+    "url": "https://padelproshop.com/products/pala-nox-at10-pro-cup-hard-by-agustin-tapia-2026",
+    "price": 129.9,
+    "currency": "EUR",
+    "inStock": false,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Tienda Padel Point",
+    "url": "https://www.tiendapadelpoint.com/en/pala-nox-at10-pro-cup-hard-2026-en",
+    "price": 132.19,
+    "currency": "EUR",
+    "inStock": false,
+    "checked": "2026-11-24"
+   }
+  ],
+  "nox-at10-pro-cup-soft-2026": [
+   {
+    "shop": "NINEPADEL",
+    "url": "https://ninepadel.com/products/nox-at10-pro-cup-soft-padel-racket-2026",
+    "price": 145.0,
+    "currency": "GBP",
+    "inStock": false,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Padel Market EU",
+    "url": "https://padelmarket.com/en-eu/products/nox-at10-pro-cup-soft-2026-by-agustin-tapia-racket-1",
+    "price": 149.95,
+    "currency": "EUR",
+    "inStock": false,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Padel USA",
+    "url": "https://padelusa.com/products/nox-at10-pro-cup-soft-padel-racket",
+    "price": 245.0,
+    "currency": "USD",
+    "inStock": false,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Padel Pro Shop",
+    "url": "https://padelproshop.com/products/pala-nox-at10-pro-cup-soft-2026",
+    "price": 139.9,
+    "currency": "EUR",
+    "inStock": false,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Tienda Padel Point",
+    "url": "https://www.tiendapadelpoint.com/en/pala-nox-at10-pro-cup-soft-2026-en",
+    "price": 123.93,
+    "currency": "EUR",
+    "inStock": false,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Padelshop",
+    "url": "https://padelshop.com/products/nox-at10-pro-cup-soft-2026",
+    "price": 149.95,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-24"
+   }
+  ],
+  "nox-ea10-ventus-attack-12k-xtrem-2026": [
+   {
+    "shop": "NINEPADEL",
+    "url": "https://ninepadel.com/products/nox-ea10-ventus-attack-12k-xtrem-padel-racket-2026",
+    "price": 179.7,
+    "currency": "GBP",
+    "inStock": false,
+    "checked": "2026-11-24"
+   }
+  ],
+  "nox-equation-soft-advanced-2026": [
+   {
+    "shop": "NINEPADEL",
+    "url": "https://ninepadel.com/products/nox-equation-advanced-soft-padel-racket-2026",
+    "price": 95.0,
+    "currency": "GBP",
+    "inStock": false,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Padel Market EU",
+    "url": "https://padelmarket.com/en-eu/products/nox-equation-soft-advanced-2026-racket-1",
+    "price": 124.95,
+    "currency": "EUR",
+    "inStock": false,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Padelshop",
+    "url": "https://padelshop.com/products/nox-equation-soft-advanced-2026",
+    "price": 99.95,
+    "currency": "EUR",
+    "inStock": false,
+    "checked": "2026-11-24"
+   }
+  ],
+  "nox-ml10-pro-cup-coorp-2025": [
+   {
+    "shop": "Padel Pro Shop",
+    "url": "https://padelproshop.com/products/pala-nox-ml1-pro-cup-coorp",
+    "price": 99.9,
+    "currency": "EUR",
+    "inStock": false,
+    "checked": "2026-11-24"
+   }
+  ],
+  "nox-ml10-pro-cup-silver-2025": [
+   {
+    "shop": "Tienda Padel Point",
+    "url": "https://www.tiendapadelpoint.com/en/paddle-nox-ml10-pro-cup-silver-2025-1-en",
+    "price": 82.6,
+    "currency": "EUR",
+    "inStock": false,
+    "checked": "2026-11-24"
+   }
+  ],
+  "nox-ml10-ventus-control-3k-2026": [
+   {
+    "shop": "Padel USA",
+    "url": "https://padelusa.com/products/nox-ml10-ventus-control-3k-padel-racket",
+    "price": 250.0,
+    "currency": "USD",
+    "inStock": false,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Padelshop",
+    "url": "https://padelshop.com/products/nox-ml10-ventus-control-3k-2026",
+    "price": 199.95,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-24"
+   }
+  ],
+  "nox-ventus-hybrid-12k-lite-2026": [
+   {
+    "shop": "Padel Market EU",
+    "url": "https://padelmarket.com/en-eu/products/nox-ventus-hybrid-12k-lite-2026-racket-1",
+    "price": 164.95,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Padel USA",
+    "url": "https://padelusa.com/products/nox-ventus-hybrid-12k-lite-padel-racket",
+    "price": 235.0,
+    "currency": "USD",
+    "inStock": false,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Padel Pro Shop",
+    "url": "https://padelproshop.com/products/pala-nox-ventus-hybrid-12k-lite-2026",
+    "price": 149.9,
+    "currency": "EUR",
+    "inStock": false,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Tienda Padel Point",
+    "url": "https://www.tiendapadelpoint.com/en/pala-nox-ventus-hybrid-12k-lite-2026-en",
+    "price": 123.93,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Padelshop",
+    "url": "https://padelshop.com/products/nox-ventus-hybrid-12k-lite-2026",
+    "price": 192.95,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-24"
+   }
+  ],
+  "nox-vk10-ventus-control-12k-2026": [
+   {
+    "shop": "Padel USA",
+    "url": "https://padelusa.com/products/nox-vk10-ventus-control-12k-padel-racket",
+    "price": 220.0,
+    "currency": "USD",
+    "inStock": false,
+    "checked": "2026-11-24"
+   }
+  ],
+  "oxdog-hyper-pro-2-0-2026": [
+   {
+    "shop": "NINEPADEL",
+    "url": "https://ninepadel.com/products/oxdog-hyper-pro-2-0-padel-racket-2026",
+    "price": 255.0,
+    "currency": "GBP",
+    "inStock": false,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Padel Pro Shop",
+    "url": "https://padelproshop.com/products/pala-oxdog-hyper-pro-2-0-2026",
+    "price": 309.0,
+    "currency": "EUR",
+    "inStock": false,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Padelshop",
+    "url": "https://padelshop.com/products/oxdog-hyper-pro-2-0-2026",
+    "price": 309.95,
+    "currency": "EUR",
+    "inStock": false,
+    "checked": "2026-11-24"
+   }
+  ],
+  "oxdog-hyper-pro-plus-2-0-2025": [
+   {
+    "shop": "Padel Pro Shop",
+    "url": "https://padelproshop.com/products/pala-oxdog-hyper-pro-2",
+    "price": 239.0,
+    "currency": "EUR",
+    "inStock": false,
+    "checked": "2026-11-24"
+   }
+  ],
+  "oxdog-hyper-pro-plus-2-0-2026": [
+   {
+    "shop": "NINEPADEL",
+    "url": "https://ninepadel.com/products/oxdog-hyper-pro-plus-2-0-padel-racket-2026",
+    "price": 265.0,
+    "currency": "GBP",
+    "inStock": false,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Padel Pro Shop",
+    "url": "https://padelproshop.com/products/pala-oxdog-hyper-pro-plus-2-0-2026",
+    "price": 287.0,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Padelshop",
+    "url": "https://padelshop.com/products/oxdog-hyper-pro-2-0-plus-2026",
+    "price": 318.95,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-24"
+   }
+  ],
+  "oxdog-hyper-tour-2-0-2025": [
+   {
+    "shop": "Padel Pro Shop",
+    "url": "https://padelproshop.com/products/pala-oxdog-hyper-tour-2",
+    "price": 249.9,
+    "currency": "EUR",
+    "inStock": false,
+    "checked": "2026-11-24"
+   }
+  ],
+  "oxdog-hyper-tour-x-2-0-2026": [
+   {
+    "shop": "NINEPADEL",
+    "url": "https://ninepadel.com/products/oxdog-hyper-tour-x-2-0-padel-racket-2026",
+    "price": 215.0,
+    "currency": "GBP",
+    "inStock": false,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Padel Pro Shop",
+    "url": "https://padelproshop.com/products/pala-oxdog-hyper-tour-x-2-0-2026",
+    "price": 249.0,
+    "currency": "EUR",
+    "inStock": false,
+    "checked": "2026-11-24"
+   }
+  ],
+  "oxdog-pure-court-2026": [
+   {
+    "shop": "NINEPADEL",
+    "url": "https://ninepadel.com/products/oxdog-pure-court-padel-racket-2026",
+    "price": 124.99,
+    "currency": "GBP",
+    "inStock": false,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Padel Pro Shop",
+    "url": "https://padelproshop.com/products/pala-oxdog-pure-court-2026",
+    "price": 149.0,
+    "currency": "EUR",
+    "inStock": false,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Padelshop",
+    "url": "https://padelshop.com/products/oxdog-pure-court-2026",
+    "price": 141.95,
+    "currency": "EUR",
+    "inStock": false,
+    "checked": "2026-11-24"
+   }
+  ],
+  "oxdog-pure-pro-plus-2025": [
+   {
+    "shop": "Padel Pro Shop",
+    "url": "https://padelproshop.com/products/pala-oxdog-pure-pro",
+    "price": 229.0,
+    "currency": "EUR",
+    "inStock": false,
+    "checked": "2026-11-24"
+   }
+  ],
+  "oxdog-pure-pro-plus-2026": [
+   {
+    "shop": "NINEPADEL",
+    "url": "https://ninepadel.com/products/oxdog-pure-pro-padel-racket-2026",
+    "price": 196.0,
+    "currency": "GBP",
+    "inStock": true,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Padel Pro Shop",
+    "url": "https://padelproshop.com/products/pala-oxdog-pure-pro-2026",
+    "price": 269.0,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Padelshop",
+    "url": "https://padelshop.com/products/oxdog-pure-pro-2026",
+    "price": 279.95,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-24"
+   }
+  ],
+  "oxdog-pure-tour-x-2026": [
+   {
+    "shop": "NINEPADEL",
+    "url": "https://ninepadel.com/products/oxdog-pure-tour-x-padel-racket-2026",
+    "price": 210.0,
+    "currency": "GBP",
+    "inStock": false,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Padel Pro Shop",
+    "url": "https://padelproshop.com/products/pala-oxdog-pure-tour-x-2026",
+    "price": 224.0,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-24"
+   }
+  ],
+  "oxdog-ultimate-nxt-gen-2026": [
+   {
+    "shop": "NINEPADEL",
+    "url": "https://ninepadel.com/products/oxdog-ultimate-nxt-gen-padel-racket-2026",
+    "price": 150.0,
+    "currency": "GBP",
+    "inStock": false,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Padel Pro Shop",
+    "url": "https://padelproshop.com/products/pala-oxdog-ultimate-nxt-gen-2026",
+    "price": 179.0,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Padelshop",
+    "url": "https://padelshop.com/products/oxdog-ultimate-nxt-gen-2026",
+    "price": 159.95,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-24"
+   }
+  ],
+  "oxdog-ultimate-pro-2025": [
+   {
+    "shop": "Padel Pro Shop",
+    "url": "https://padelproshop.com/products/pala-oxdog-ultimate-pro",
+    "price": 219.0,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-24"
+   }
+  ],
+  "oxdog-ultimate-pro-2026": [
+   {
+    "shop": "NINEPADEL",
+    "url": "https://ninepadel.com/products/oxdog-ultimate-pro-padel-racket-2026-2",
+    "price": 220.0,
+    "currency": "GBP",
+    "inStock": true,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Padel Pro Shop",
+    "url": "https://padelproshop.com/products/pala-oxdog-ultimate-p-ro-2026",
+    "price": 296.0,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-24"
+   }
+  ],
+  "oxdog-ultimate-pro-light-2026": [
+   {
+    "shop": "Padel Pro Shop",
+    "url": "https://padelproshop.com/products/pala-oxdog-ultimate-pro-light-2026",
+    "price": 319.0,
+    "currency": "EUR",
+    "inStock": false,
+    "checked": "2026-11-24"
+   }
+  ],
+  "oxdog-ultimate-pro-plus-2025": [
+   {
+    "shop": "Padel Pro Shop",
+    "url": "https://padelproshop.com/products/pala-oxdog-ultimate-pro-plus",
+    "price": 329.0,
+    "currency": "EUR",
+    "inStock": false,
+    "checked": "2026-11-24"
+   }
+  ],
+  "oxdog-ultimate-pro-plus-2026": [
+   {
+    "shop": "NINEPADEL",
+    "url": "https://ninepadel.com/products/oxdog-ultimate-pro-pluspadel-racket-2026",
+    "price": 260.0,
+    "currency": "GBP",
+    "inStock": false,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Padel Pro Shop",
+    "url": "https://padelproshop.com/products/pala-oxdog-ultimate-pro-2026",
+    "price": 305.0,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Padelshop",
+    "url": "https://padelshop.com/products/oxdog-ultimate-pro-plus-2026",
+    "price": 278.95,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-24"
+   }
+  ],
+  "oxdog-ultimate-pro-smash-2025": [
+   {
+    "shop": "Padel Pro Shop",
+    "url": "https://padelproshop.com/products/pala-oxdog-ultimate-pro-smash",
+    "price": 199.0,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-24"
+   }
+  ],
+  "oxdog-ultimate-pro-smash-2026": [
+   {
+    "shop": "NINEPADEL",
+    "url": "https://ninepadel.com/products/oxdog-ultimate-pro-smash-padel-racket-2026",
+    "price": 275.0,
+    "currency": "GBP",
+    "inStock": false,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Padel Pro Shop",
+    "url": "https://padelproshop.com/products/pala-oxdog-ultimate-pro-smash-2026",
+    "price": 296.0,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Padelshop",
+    "url": "https://padelshop.com/products/oxdog-ultimate-pro-smash-2026",
+    "price": 306.95,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-24"
+   }
+  ],
+  "oxdog-ultimate-tour-x-2026": [
+   {
+    "shop": "NINEPADEL",
+    "url": "https://ninepadel.com/products/oxdog-ultimate-tour-x-padel-racket-2026",
+    "price": 215.0,
+    "currency": "GBP",
+    "inStock": false,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Padel Pro Shop",
+    "url": "https://padelproshop.com/products/pala-oxdog-ultimate-tour-x-2026",
+    "price": 259.0,
+    "currency": "EUR",
+    "inStock": false,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Padelshop",
+    "url": "https://padelshop.com/products/oxdog-ultimate-tour-2026",
+    "price": 258.95,
+    "currency": "EUR",
+    "inStock": false,
+    "checked": "2026-11-24"
+   }
+  ],
+  "siux-astra-hybrid-2026": [
+   {
+    "shop": "Padel Pro Shop",
+    "url": "https://padelproshop.com/products/pala-siux-astra-hybrid-2026-copia",
+    "price": 77.9,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-24"
+   }
+  ],
+  "siux-diablo-pro-4-2025": [
+   {
+    "shop": "Padel Nuestro",
+    "url": "https://www.padelnuestro.com/siux-diablo-sanyo-pro-4",
+    "price": 129.95,
+    "currency": "EUR",
+    "inStock": false,
+    "checked": "2026-11-23"
+   }
+  ],
+  "siux-electra-elite-6-2026": [
+   {
+    "shop": "Tienda Padel Point",
+    "url": "https://www.tiendapadelpoint.com/en/pala-siux-electra-elite-6-2026-en",
+    "price": 103.95,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Padelshop",
+    "url": "https://padelshop.com/products/siux-electra-elite-6-2026",
+    "price": 159.95,
+    "currency": "EUR",
+    "inStock": false,
+    "checked": "2026-11-24"
+   }
+  ],
+  "siux-electra-pro-st4-2025": [
+   {
+    "shop": "NINEPADEL",
+    "url": "https://ninepadel.com/products/siux-stupa-st4-electra-pro-padel-racket-2025",
+    "price": 129.99,
+    "currency": "GBP",
+    "inStock": true,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Padel-Point",
+    "url": "https://www.padel-point.com/products/siux-electra-stupa-pro-st4-padel-racket-31007000061000-en",
+    "price": 146.56,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Padel Market EU",
+    "url": "https://padelmarket.com/en-eu/products/siux-electra-pro-st4-2025-franco-stupaczuk-racket-1",
+    "price": 169.95,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Padel Market US",
+    "url": "https://us.padelmarket.com/products/siux-electra-pro-st4-2025-franco-stupaczuk-racket",
+    "price": 209.0,
+    "currency": "USD",
+    "inStock": true,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Padel Nuestro",
+    "url": "https://www.padelnuestro.com/siux-electra-stupa-pro-st4",
+    "price": 134.95,
+    "currency": "EUR",
+    "inStock": false,
+    "checked": "2026-11-23"
+   },
+   {
+    "shop": "Padel USA",
+    "url": "https://padelusa.com/products/siux-electra-stupa-pro-st4-padel-racket",
+    "price": 259.99,
+    "currency": "USD",
+    "inStock": false,
+    "checked": "2026-11-24"
+   }
+  ],
+  "siux-electra-pro-st5-2026": [
+   {
+    "shop": "Tienda Padel Point",
+    "url": "https://www.tiendapadelpoint.com/en/paddle-siux-stupa-electra-pro-2026-red-black-en",
+    "price": 114.01,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-24"
+   }
+  ],
+  "siux-fenix-elite-6-2026": [
+   {
+    "shop": "Padel Pro Shop",
+    "url": "https://padelproshop.com/products/pala-siux-fenix-elite-6-2026",
+    "price": 124.9,
+    "currency": "EUR",
+    "inStock": false,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Tienda Padel Point",
+    "url": "https://www.tiendapadelpoint.com/en/pala-siux-fenix-elite-6-2026-en",
+    "price": 143.95,
+    "currency": "EUR",
+    "inStock": false,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Padelshop",
+    "url": "https://padelshop.com/products/siux-fenix-elite-6-2026",
+    "price": 149.95,
+    "currency": "EUR",
+    "inStock": false,
+    "checked": "2026-11-24"
+   }
+  ],
+  "siux-fenix-pro-5-2025": [
+   {
+    "shop": "Padel Market EU",
+    "url": "https://padelmarket.com/en-eu/products/siux-fenix-pro-5-2025-racket-1",
+    "price": 169.95,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Padel Market US",
+    "url": "https://us.padelmarket.com/products/siux-fenix-pro-5-2025-racket",
+    "price": 209.0,
+    "currency": "USD",
+    "inStock": true,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Padel Nuestro",
+    "url": "https://www.padelnuestro.com/siux-fenix-pro-5",
+    "price": 119.95,
+    "currency": "EUR",
+    "inStock": false,
+    "checked": "2026-11-23"
+   },
+   {
+    "shop": "Padel USA",
+    "url": "https://padelusa.com/products/siux-fenix-pro-5-padel-racket",
+    "price": 259.99,
+    "currency": "USD",
+    "inStock": false,
+    "checked": "2026-11-24"
+   }
+  ],
+  "siux-fenix-pro-6-2026": [
+   {
+    "shop": "NINEPADEL",
+    "url": "https://ninepadel.com/products/siux-fenix-pro-black-padel-racket-2026",
+    "price": 179.99,
+    "currency": "GBP",
+    "inStock": true,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Padel Nuestro",
+    "url": "https://www.padelnuestro.com/pala-siux-fenix-pro-2026-black-200046",
+    "price": 169.95,
+    "currency": "EUR",
+    "inStock": false,
+    "checked": "2026-11-23"
+   },
+   {
+    "shop": "Padel Pro Shop",
+    "url": "https://padelproshop.com/products/pala-siux-fenix-pro-black-2026",
+    "price": 166.9,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Padelshop",
+    "url": "https://padelshop.com/products/siux-fenix-pro-2026-black",
+    "price": 199.95,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-24"
+   }
+  ],
+  "siux-obsidian-elite-2027": [
+   {
+    "shop": "Padel-Point",
+    "url": "https://www.padel-point.com/products/siux-obsidian-elite-2027-padel-racket-p0000012760701-en",
+    "price": 217.95,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Padel Market EU",
+    "url": "https://padelmarket.com/en-eu/products/siux-obsidian-elite-2027-pala",
+    "price": 270.0,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Padel Pro Shop",
+    "url": "https://padelproshop.com/products/pala-siux-obsidian-elite-2027",
+    "price": 221.95,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Tienda Padel Point",
+    "url": "https://www.tiendapadelpoint.com/en/pala-siux-obsidian-elite-2027-en",
+    "price": 183.88,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-24"
+   }
+  ],
+  "siux-obsidian-pro-2027": [
+   {
+    "shop": "NINEPADEL",
+    "url": "https://ninepadel.com/products/siux-obsidian-pro-black-padel-racket-2027",
+    "price": 325.0,
+    "currency": "GBP",
+    "inStock": true,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Padel-Point",
+    "url": "https://www.padel-point.com/products/siux-obsidian-pro-2027-padel-racket-p0000012780401-en",
+    "price": 305.95,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Padel Market EU",
+    "url": "https://padelmarket.com/en-eu/products/siux-obsidian-pro-2027-black-pala",
+    "price": 359.95,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Padel Pro Shop",
+    "url": "https://padelproshop.com/products/pala-siux-obsidian-pro-black-2027",
+    "price": 321.9,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Tienda Padel Point",
+    "url": "https://www.tiendapadelpoint.com/en/pala-siux-obsidian-pro-2027-negro-en",
+    "price": 266.07,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Padelshop",
+    "url": "https://padelshop.com/products/siux-obsidian-pro-2027-black",
+    "price": 359.95,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-24"
+   }
+  ],
+  "siux-pegasus-elite-4-2026": [
+   {
+    "shop": "Padel USA",
+    "url": "https://padelusa.com/products/siux-pegasus-elite-4-2026-padel-racket",
+    "price": 205.95,
+    "currency": "USD",
+    "inStock": false,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Padel Pro Shop",
+    "url": "https://padelproshop.com/products/pegasus-elite-4-2026",
+    "price": 169.95,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Tienda Padel Point",
+    "url": "https://www.tiendapadelpoint.com/en/pala-siux-pegasus-elite-4-2026-en",
+    "price": 88.39,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Padelshop",
+    "url": "https://padelshop.com/products/siux-pegasus-elite-6-2026",
+    "price": 159.95,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-24"
+   }
+  ],
+  "siux-trilogy-pro-5-2025": [
+   {
+    "shop": "Padel Market US",
+    "url": "https://us.padelmarket.com/products/siux-trilogy-pro-5-2025-racket",
+    "price": 262.95,
+    "currency": "USD",
+    "inStock": false,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Padel Nuestro",
+    "url": "https://www.padelnuestro.com/siux-trilogy-pro-5",
+    "price": 104.95,
+    "currency": "EUR",
+    "inStock": false,
+    "checked": "2026-11-23"
+   },
+   {
+    "shop": "Padel USA",
+    "url": "https://padelusa.com/products/siux-trilogy-pro-5-2025-padel-racket",
+    "price": 259.99,
+    "currency": "USD",
+    "inStock": false,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Tienda Padel Point",
+    "url": "https://www.tiendapadelpoint.com/en/pala-siux-trilogy-pro-5-2025-1-en",
+    "price": 104.92,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Padelshop",
+    "url": "https://padelshop.com/products/siux-trology-pro-5-padel-racket",
+    "price": 139.95,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-24"
+   }
+  ],
+  "siux-valkiria-pro-2026": [
+   {
+    "shop": "NINEPADEL",
+    "url": "https://ninepadel.com/products/siux-valkiria-pro-2026",
+    "price": 285.0,
+    "currency": "GBP",
+    "inStock": true,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Padel Nuestro",
+    "url": "https://www.padelnuestro.com/pala-siux-valkiria-pro-2026-200047",
+    "price": 219.95,
+    "currency": "EUR",
+    "inStock": false,
+    "checked": "2026-11-23"
+   },
+   {
+    "shop": "Padel USA",
+    "url": "https://padelusa.com/products/siux-valkiria-pro-2026-padel-racket",
+    "price": 389.95,
+    "currency": "USD",
+    "inStock": false,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Padel Pro Shop",
+    "url": "https://padelproshop.com/products/pala-siux-valkiria-pro-2026",
+    "price": 189.9,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-24"
+   }
+  ],
+  "starvie-astrum-plus-2026": [
+   {
+    "shop": "Padel Market EU",
+    "url": "https://padelmarket.com/en-eu/products/starvie-astrum-2026-pala",
+    "price": 154.95,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Padel Pro Shop",
+    "url": "https://padelproshop.com/products/pala-starvie-astrum-2026",
+    "price": 149.0,
+    "currency": "EUR",
+    "inStock": false,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Tienda Padel Point",
+    "url": "https://www.tiendapadelpoint.com/en/pala-starvie-astrum-2026-en",
+    "price": 131.36,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Padelshop",
+    "url": "https://padelshop.com/products/starvie-astrum-2026",
+    "price": 204.9,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-24"
+   }
+  ],
+  "starvie-black-titan-2026": [
+   {
+    "shop": "Padel Market EU",
+    "url": "https://padelmarket.com/en-eu/products/starvie-black-titan-2026-pala",
+    "price": 159.95,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Padel Pro Shop",
+    "url": "https://padelproshop.com/products/pala-starvie-black-titan-2026",
+    "price": 142.9,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Tienda Padel Point",
+    "url": "https://www.tiendapadelpoint.com/en/pala-starvie-black-titan-2026-en",
+    "price": 118.14,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-24"
+   }
+  ],
+  "starvie-drax-plus-2026": [
+   {
+    "shop": "Padel Market EU",
+    "url": "https://padelmarket.com/en-eu/products/starvie-drax-2026-pala",
+    "price": 135.0,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Padel Pro Shop",
+    "url": "https://padelproshop.com/products/pala-starvie-drax-2026",
+    "price": 129.0,
+    "currency": "EUR",
+    "inStock": false,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Tienda Padel Point",
+    "url": "https://www.tiendapadelpoint.com/en/pala-starvie-drax-2026-en",
+    "price": 132.23,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Padelshop",
+    "url": "https://padelshop.com/products/starvie-drax-2026",
+    "price": 179.95,
+    "currency": "EUR",
+    "inStock": false,
+    "checked": "2026-11-24"
+   }
+  ],
+  "starvie-eternal-2027": [
+   {
+    "shop": "Padel Market EU",
+    "url": "https://padelmarket.com/en-eu/products/starvie-eternal-2027-sanyo-gutierrez-padel-racket",
+    "price": 297.0,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Padel Nuestro",
+    "url": "https://www.padelnuestro.com/pala-starvie-eternal-pstete41000-162969-p",
+    "price": 267.95,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-23"
+   },
+   {
+    "shop": "Padelshop",
+    "url": "https://padelshop.com/products/starvie-eternal-2027",
+    "price": 329.95,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-24"
+   }
+  ],
+  "starvie-kenta-plus-2026": [
+   {
+    "shop": "Padel Market EU",
+    "url": "https://padelmarket.com/en-eu/products/starvie-kenta-2026-racket-1",
+    "price": 132.5,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Padel Market US",
+    "url": "https://us.padelmarket.com/products/starvie-kenta-2026-racket",
+    "price": 182.99,
+    "currency": "USD",
+    "inStock": true,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Padel Pro Shop",
+    "url": "https://padelproshop.com/products/pala-starvie-kenta-2026",
+    "price": 119.9,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-24"
+   }
+  ],
+  "starvie-metheora-plus-2027": [
+   {
+    "shop": "Padel Market EU",
+    "url": "https://padelmarket.com/en-eu/products/starvie-metheora-plus-2027-padel-racket",
+    "price": 243.0,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Padel Pro Shop",
+    "url": "https://padelproshop.com/products/pala-starvie-metheora-2027",
+    "price": 227.9,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Tienda Padel Point",
+    "url": "https://www.tiendapadelpoint.com/en/pala-starvie-metheora-2027-en",
+    "price": 188.39,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Padelshop",
+    "url": "https://padelshop.com/products/starvie-metheora-2027",
+    "price": 269.95,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-24"
+   }
+  ],
+  "starvie-raptor-plus-2026": [
+   {
+    "shop": "Padel Market EU",
+    "url": "https://padelmarket.com/en-eu/products/starvie-raptor-2026-racket-1",
+    "price": 154.95,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Padel Market US",
+    "url": "https://us.padelmarket.com/products/starvie-raptor-2026-racket",
+    "price": 183.99,
+    "currency": "USD",
+    "inStock": true,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Padel Pro Shop",
+    "url": "https://padelproshop.com/products/pala-starvie-raptor-2026",
+    "price": 155.9,
+    "currency": "EUR",
+    "inStock": false,
+    "checked": "2026-11-24"
+   }
+  ],
+  "starvie-raptor-plus-2027": [
+   {
+    "shop": "Padel Market EU",
+    "url": "https://padelmarket.com/en-eu/products/starvie-raptor-plus-2027-padel-racket",
+    "price": 288.0,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Padel Pro Shop",
+    "url": "https://padelproshop.com/products/pala-starvie-raptor-red-2027",
+    "price": 256.9,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Tienda Padel Point",
+    "url": "https://www.tiendapadelpoint.com/en/pala-starvie-raptor-2027-en",
+    "price": 212.36,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Padelshop",
+    "url": "https://padelshop.com/products/starvie-raptor-red-2027",
+    "price": 319.95,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-24"
+   }
+  ],
+  "starvie-triton-balance-plus-2027": [
+   {
+    "shop": "Padel Market EU",
+    "url": "https://padelmarket.com/en-eu/products/starvie-triton-plus-balance-2027-padel-racket",
+    "price": 265.5,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Padel Pro Shop",
+    "url": "https://padelproshop.com/products/pala-starvie-triton-balance-2027",
+    "price": 247.9,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Tienda Padel Point",
+    "url": "https://www.tiendapadelpoint.com/en/pala-starvie-triton-balance-2027-en",
+    "price": 204.92,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Padelshop",
+    "url": "https://padelshop.com/products/starvie-triton-balance-2027",
+    "price": 294.95,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-24"
+   }
+  ],
+  "starvie-triton-plus-balance-2026": [
+   {
+    "shop": "Padel Market EU",
+    "url": "https://padelmarket.com/en-eu/products/starvie-triton-balance-2026-pala",
+    "price": 154.95,
+    "currency": "EUR",
+    "inStock": false,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Padel Pro Shop",
+    "url": "https://padelproshop.com/products/pala-starvie-triton-balance2026",
+    "price": 154.9,
+    "currency": "EUR",
+    "inStock": false,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Tienda Padel Point",
+    "url": "https://www.tiendapadelpoint.com/en/pala-starvie-triton-balance-2026-en",
+    "price": 141.28,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-24"
+   }
+  ],
+  "starvie-triton-plus-power-2026": [
+   {
+    "shop": "Padel Market EU",
+    "url": "https://padelmarket.com/en-eu/products/starvie-triton-power-2026-pala",
+    "price": 154.95,
+    "currency": "EUR",
+    "inStock": false,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Padel Pro Shop",
+    "url": "https://padelproshop.com/products/pala-starvie-triton-power-2026",
+    "price": 149.0,
+    "currency": "EUR",
+    "inStock": false,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Tienda Padel Point",
+    "url": "https://www.tiendapadelpoint.com/en/pala-starvie-triton-power-2026-en",
+    "price": 128.06,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Padelshop",
+    "url": "https://padelshop.com/products/starvie-triton-power-2026",
+    "price": 194.95,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-24"
+   }
+  ],
+  "starvie-triton-power-plus-2027": [
+   {
+    "shop": "Padel Market EU",
+    "url": "https://padelmarket.com/en-eu/products/starvie-triton-plus-power-2027-padel-racket",
+    "price": 265.5,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Padel Pro Shop",
+    "url": "https://padelproshop.com/products/pala-starvie-triton-power-2027",
+    "price": 247.9,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Tienda Padel Point",
+    "url": "https://www.tiendapadelpoint.com/en/pala-starvie-triton-power-2027-en",
+    "price": 204.92,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Padelshop",
+    "url": "https://padelshop.com/products/starvie-triton-power-2027",
+    "price": 294.95,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-24"
+   }
+  ],
+  "wilson-bela-ls-v3-2025": [
+   {
+    "shop": "NINEPADEL",
+    "url": "https://ninepadel.com/products/wilson-bela-ls-v3-2025-padel-racket",
+    "price": 170.0,
+    "currency": "GBP",
+    "inStock": true,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Padel Nuestro",
+    "url": "https://www.padelnuestro.com/pala-wilson-bela-ls-v3",
+    "price": 134.95,
+    "currency": "EUR",
+    "inStock": false,
+    "checked": "2026-11-23"
+   },
+   {
+    "shop": "Padel USA",
+    "url": "https://padelusa.com/products/wilson-bela-ls-v3-padel-racket",
+    "price": 224.25,
+    "currency": "USD",
+    "inStock": true,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Padel Pro Shop",
+    "url": "https://padelproshop.com/products/pala-wilson-bela-ls-v-3",
+    "price": 169.0,
+    "currency": "EUR",
+    "inStock": false,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Tienda Padel Point",
+    "url": "https://www.tiendapadelpoint.com/en/paddle-wilson-bela-ls-v3-1-en",
+    "price": 140.45,
+    "currency": "EUR",
+    "inStock": false,
+    "checked": "2026-11-24"
+   }
+  ],
+  "wilson-bela-lt-v2-5-2024": [
+   {
+    "shop": "Padel USA",
+    "url": "https://padelusa.com/products/wilson-bela-v2-5-lt-2024-padel-racket",
+    "price": 209.0,
+    "currency": "USD",
+    "inStock": false,
+    "checked": "2026-11-24"
+   }
+  ],
+  "wilson-bela-pro-v3-2025": [
+   {
+    "shop": "Padel-Point",
+    "url": "https://www.padel-point.com/products/wilson-bela-pro-v3-padel-racket-00707504153000-en",
+    "price": 199.95,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Padel Nuestro",
+    "url": "https://www.padelnuestro.com/pala-wilson-bela-pro-v3-wr186411u",
+    "price": 185.95,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-23"
+   },
+   {
+    "shop": "Padel USA",
+    "url": "https://padelusa.com/products/wilson-bela-pro-v3-padel-racket",
+    "price": 299.25,
+    "currency": "USD",
+    "inStock": true,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Padel Pro Shop",
+    "url": "https://padelproshop.com/products/pala-wilson-bela-pro-v3",
+    "price": 239.0,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Tienda Padel Point",
+    "url": "https://www.tiendapadelpoint.com/en/pala-wilson-bela-pro-v3-1-en",
+    "price": 152.85,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-24"
+   }
+  ],
+  "wilson-bela-v3-2025": [
+   {
+    "shop": "Padel-Point",
+    "url": "https://www.padel-point.com/products/wilson-bela-v3-padel-racket-00707504154000-en",
+    "price": 183.95,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Padel Nuestro",
+    "url": "https://www.padelnuestro.com/pala-wilson-bela-v3-wr186511u",
+    "price": 164.95,
+    "currency": "EUR",
+    "inStock": false,
+    "checked": "2026-11-23"
+   },
+   {
+    "shop": "Padel USA",
+    "url": "https://padelusa.com/products/wilson-bela-v3-padel-racket",
+    "price": 261.75,
+    "currency": "USD",
+    "inStock": false,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Padel Pro Shop",
+    "url": "https://padelproshop.com/products/pala-wilson-be-la-v3",
+    "price": 220.0,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Tienda Padel Point",
+    "url": "https://www.tiendapadelpoint.com/en/paddle-wilson-bela-v3-1-en",
+    "price": 148.72,
+    "currency": "EUR",
+    "inStock": false,
+    "checked": "2026-11-24"
+   }
+  ],
+  "wilson-blade-pro-v3-2024": [
+   {
+    "shop": "Padel-Point",
+    "url": "https://www.padel-point.com/products/wilson-blade-pro-v3-padel-racket-00706704105000-en",
+    "price": 135.95,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Padel USA",
+    "url": "https://padelusa.com/products/wilson-blade-pro-v3-2024-padel-racket",
+    "price": 199.0,
+    "currency": "USD",
+    "inStock": false,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Tienda Padel Point",
+    "url": "https://www.tiendapadelpoint.com/en/pala-wilson-blade-pro-v3-1-en",
+    "price": 148.72,
+    "currency": "EUR",
+    "inStock": false,
+    "checked": "2026-11-24"
+   }
+  ],
+  "wilson-blade-v3-2024": [
+   {
+    "shop": "Padel Nuestro",
+    "url": "https://www.padelnuestro.com/wilson-blade-v3-padel-113594-p",
+    "price": 159.95,
+    "currency": "EUR",
+    "inStock": false,
+    "checked": "2026-11-23"
+   },
+   {
+    "shop": "Padel USA",
+    "url": "https://padelusa.com/products/wilson-blade-v3-2024-padel-racket",
+    "price": 189.0,
+    "currency": "USD",
+    "inStock": false,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Tienda Padel Point",
+    "url": "https://www.tiendapadelpoint.com/en/pala-wilson-blade-v3-1-en",
+    "price": 125.58,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-24"
+   }
+  ],
+  "wilson-blade-v4-2026": [
+   {
+    "shop": "Padel-Point",
+    "url": "https://www.padel-point.com/products/wilson-blade-v4-padel-racket-p0000008720501-en",
+    "price": 141.95,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Padel Market EU",
+    "url": "https://padelmarket.com/en-eu/products/wilson-blade-v4-padel-green-2026-racket",
+    "price": 189.95,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Padel Nuestro",
+    "url": "https://www.padelnuestro.com/pala-wilson-blade-v4-padel-gr-frm-wr203611u2",
+    "price": 129.95,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-23"
+   },
+   {
+    "shop": "Padel USA",
+    "url": "https://padelusa.com/products/wilson-blade-v4-gr-padel-racket",
+    "price": 209.25,
+    "currency": "USD",
+    "inStock": true,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Padel Pro Shop",
+    "url": "https://padelproshop.com/products/pala-wilson-blade-v4",
+    "price": 159.9,
+    "currency": "EUR",
+    "inStock": false,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Tienda Padel Point",
+    "url": "https://www.tiendapadelpoint.com/en/pala-wilson-blade-v4-en",
+    "price": 106.57,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Padelshop",
+    "url": "https://padelshop.com/products/wilson-blade-v4-2026",
+    "price": 133.95,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-24"
+   }
+  ],
+  "wilson-defy-pro-v1-2025": [
+   {
+    "shop": "Padel-Point",
+    "url": "https://www.padel-point.com/products/wilson-defy-pro-v1-padel-racket-00707504156000-en",
+    "price": 159.95,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Padel Nuestro",
+    "url": "https://www.padelnuestro.com/pala-wilson-defy-pro-v1-padel-2-wr173611u2",
+    "price": 164.95,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-23"
+   },
+   {
+    "shop": "Padel USA",
+    "url": "https://padelusa.com/products/wilson-defy-pro-v1-padel-racket",
+    "price": 329.0,
+    "currency": "USD",
+    "inStock": true,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Tienda Padel Point",
+    "url": "https://www.tiendapadelpoint.com/en/paddle-wilson-defy-pro-v1-1-en",
+    "price": 135.5,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-24"
+   }
+  ],
+  "wilson-defy-v1-2025": [
+   {
+    "shop": "Padel-Point",
+    "url": "https://www.padel-point.com/products/wilson-defy-v1-padel-racket-p0000008690401-en",
+    "price": 196.95,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Padel Nuestro",
+    "url": "https://www.padelnuestro.com/pala-wilson-defy-v1-padel-2-wr173711u2",
+    "price": 139.95,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-23"
+   },
+   {
+    "shop": "Padel USA",
+    "url": "https://padelusa.com/products/wilson-defy-v1-padel-racket",
+    "price": 299.0,
+    "currency": "USD",
+    "inStock": true,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Padel Pro Shop",
+    "url": "https://padelproshop.com/products/pala-wilson-defy-v1",
+    "price": 189.0,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Tienda Padel Point",
+    "url": "https://www.tiendapadelpoint.com/en/paddle-wilson-defy-v1-1-en",
+    "price": 114.83,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-24"
+   }
+  ],
+  "wilson-endure-pro-v1-2026": [
+   {
+    "shop": "NINEPADEL",
+    "url": "https://ninepadel.com/products/wilson-endure-pro-v1-2026-padel-racket",
+    "price": 159.99,
+    "currency": "GBP",
+    "inStock": true,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Padel-Point",
+    "url": "https://www.padel-point.com/products/wilson-endure-pro-v1-padel-racket-00707604271000-en",
+    "price": 203.95,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Padel Nuestro",
+    "url": "https://www.padelnuestro.com/pala-wilson-endure-pro-v1-wr190311u",
+    "price": 194.95,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-23"
+   },
+   {
+    "shop": "Padel USA",
+    "url": "https://padelusa.com/products/wilson-endure-pro-v1-2026-padel-racket",
+    "price": 269.25,
+    "currency": "USD",
+    "inStock": true,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Padel Pro Shop",
+    "url": "https://padelproshop.com/products/pala-wilson-endure-pro-v1-2026",
+    "price": 216.9,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Tienda Padel Point",
+    "url": "https://www.tiendapadelpoint.com/en/paddle-wilson-endure-pro-v1-en",
+    "price": 216.95,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-24"
+   }
+  ],
+  "wilson-endure-v1-2026": [
+   {
+    "shop": "NINEPADEL",
+    "url": "https://ninepadel.com/products/wilson-endure-v1-2026-padel-racket",
+    "price": 139.99,
+    "currency": "GBP",
+    "inStock": true,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Padel-Point",
+    "url": "https://www.padel-point.com/products/wilson-endure-v1-padel-racket-00707604272000-en",
+    "price": 197.67,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Padel Nuestro",
+    "url": "https://www.padelnuestro.com/pala-wilson-endure-v1-wr190411u",
+    "price": 164.95,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-23"
+   },
+   {
+    "shop": "Padel USA",
+    "url": "https://padelusa.com/products/wilson-endure-v1-2026-padel-racket",
+    "price": 239.25,
+    "currency": "USD",
+    "inStock": true,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Padel Pro Shop",
+    "url": "https://padelproshop.com/products/pala-wilson-endure-v1-2026",
+    "price": 181.95,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Tienda Padel Point",
+    "url": "https://www.tiendapadelpoint.com/en/spade-wilson-endure-v1-en",
+    "price": 135.5,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Padelshop",
+    "url": "https://padelshop.com/products/wilson-endure-v1-2026",
+    "price": 159.95,
+    "currency": "EUR",
+    "inStock": false,
+    "checked": "2026-11-24"
+   }
+  ],
+  "wilson-optix-v2-lite-2026": [
+   {
+    "shop": "NINEPADEL",
+    "url": "https://ninepadel.com/products/wilson-optix-v2-lite-lilac-2026-padel-racket",
+    "price": 75.0,
+    "currency": "GBP",
+    "inStock": true,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Padel-Point",
+    "url": "https://www.padel-point.com/products/wilson-optix-v2-lite-padel-racket-00707604267000-en",
+    "price": 77.67,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Padel Market EU",
+    "url": "https://padelmarket.com/en-eu/products/wilson-optix-v2-lite-lilac-2026-racket",
+    "price": 79.95,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Padel Nuestro",
+    "url": "https://www.padelnuestro.com/pala-wilson-optix-v2-lite-wr190711u-white",
+    "price": 64.95,
+    "currency": "EUR",
+    "inStock": false,
+    "checked": "2026-11-23"
+   },
+   {
+    "shop": "Padel USA",
+    "url": "https://padelusa.com/products/wilson-optix-v2-lite-2026-padel-racket",
+    "price": 104.25,
+    "currency": "USD",
+    "inStock": false,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Padel Pro Shop",
+    "url": "https://padelproshop.com/products/pala-wilson-wilson-optix-lite-v2-2026",
+    "price": 64.9,
+    "currency": "EUR",
+    "inStock": false,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Tienda Padel Point",
+    "url": "https://www.tiendapadelpoint.com/en/pala-wilson-optix-v2-lite-blanco-en",
+    "price": 82.6,
+    "currency": "EUR",
+    "inStock": false,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Padelshop",
+    "url": "https://padelshop.com/products/wilson-optix-lite-v2-lite-white",
+    "price": 77.95,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-24"
+   }
+  ],
+  "wilson-optix-v2-power-2026": [
+   {
+    "shop": "NINEPADEL",
+    "url": "https://ninepadel.com/products/wilson-optix-v2-power-2026-padel-racket",
+    "price": 95.0,
+    "currency": "GBP",
+    "inStock": true,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Padel-Point",
+    "url": "https://www.padel-point.com/products/wilson-optix-v2-power-padel-racket-00707604270000-en",
+    "price": 95.45,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Padel Market EU",
+    "url": "https://padelmarket.com/en-eu/products/wilson-optix-v2-power-red-2026-racket",
+    "price": 109.95,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Padel Nuestro",
+    "url": "https://www.padelnuestro.com/pala-wilson-optix-v2-power-wr190811u-red",
+    "price": 79.95,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-23"
+   },
+   {
+    "shop": "Padel USA",
+    "url": "https://padelusa.com/products/wilson-optix-v2-power-2026-padel-racket",
+    "price": 119.25,
+    "currency": "USD",
+    "inStock": true,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Padel Pro Shop",
+    "url": "https://padelproshop.com/products/pala-wilson-optix-v2-power-red-2026",
+    "price": 84.9,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-24"
+   },
+   {
+    "shop": "Tienda Padel Point",
+    "url": "https://www.tiendapadelpoint.com/en/pala-wilson-optix-v2-power-azul-en",
+    "price": 65.25,
+    "currency": "EUR",
+    "inStock": true,
+    "checked": "2026-11-24"
+   }
+  ]
+ }
+}

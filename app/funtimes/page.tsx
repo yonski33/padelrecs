@@ -16,11 +16,13 @@ import DeleteWebReview from "./delete-web-review";
 import { oldSlugs } from "../../db/racket-slugs";
 import { Stars } from "../components";
 import { TagCheckboxes, TagList } from "../tags";
-import { niche, catalogPath, productHref, isV2 } from "../../lib/niche";
+import { niche, catalogPath, productHref } from "../../lib/niche";
 import { fitConfigFor } from "../../lib/fit-config";
 import { productVariants } from "../../lib/variants";
 import { FinderForm, FinderResults, allSources } from "./finder";
-import { CommentsAdmin } from "./comments-admin";
+import { AdminNav } from "./admin-nav";
+import { redirect } from "next/navigation";
+import { commentsHref } from "../../lib/admin-comments";
 import { StoriesAdmin } from "./stories-admin";
 import { storiesSite } from "../../lib/thread/sites";
 import { TraitsAdmin } from "./traits-admin";
@@ -79,11 +81,8 @@ export default async function Admin({searchParams}:{searchParams:Promise<{eviden
   <AdminNav current="stories"/>
   <StoriesAdmin status={q.status} result={q.result}/></main>;
  }
- if (q.tab === "comments" && threadSite(niche.id)) {
-  return <main><div className="page-title"><h1>Review admin</h1><p className="muted">Comments on the Thread pages (racket, ranking and guide pages).</p></div>
-  <AdminNav current="comments"/>
-  <CommentsAdmin status={q.status} result={q.result} q={q.q} racket={q.racket} rackets={new Map((await db.select({ id: rackets.id, slug: rackets.slug, name: rackets.name, shape: rackets.shape }).from(rackets)).map(r => [r.id, r]))}/></main>;
- }
+ // The Comments tab moved to its own page (owner 2026-11-24, /funtimes/comments); old links land there with their filters.
+ if (q.tab === "comments" && threadSite(niche.id)) redirect(commentsHref({ status: q.status === "pending" || q.status === "approved" || q.status === "rejected" ? q.status : "all", q: q.q, racket: q.racket }));
  if (find) {
   const result = await searchReviews(db, finderInput, sites);
   return <main><div className="page-title"><h1>Review admin</h1><p className="muted">Find and fix published web reviews on every site.</p></div>
@@ -146,7 +145,3 @@ export default async function Admin({searchParams}:{searchParams:Promise<{eviden
  </main>;
 }
 
-function AdminNav({current}:{current:"find"|"player"|"web"|"specs"|"expert"|"comments"|"traits"|"accounts"|"stories"}) {
- const at=(tab:typeof current)=>current===tab?"page" as const:undefined;
- return <nav className="admin-nav" aria-label="Admin sections"><a href="/funtimes?tab=find" aria-current={at("find")}>Find &amp; fix</a><a href="/funtimes" aria-current={at("player")}>{`${niche.people.One} submissions`}</a><a href="/funtimes?tab=web" aria-current={at("web")}>Web reviews</a><a href="/funtimes?tab=specs" aria-current={at("specs")}>{`${w.Many} & specs`}</a>{isV2 && <a href="/funtimes?tab=expert" aria-current={at("expert")}>Expert values</a>}{threadSite(niche.id) && <a href="/funtimes?tab=comments" aria-current={at("comments")}>Comments</a>}{threadSite(niche.id) && <a href="/funtimes?tab=traits" aria-current={at("traits")}>Traits</a>}{accountSite(niche.id) && <a href="/funtimes?tab=accounts" aria-current={at("accounts")}>Accounts</a>}{storiesSite(niche.id) && <a href="/funtimes?tab=stories" aria-current={at("stories")}>Stories</a>}<form method="post" action="/auth/signout" style={{marginLeft:"auto"}}><button className="text-button">Sign out</button></form></nav>;
-}

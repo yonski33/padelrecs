@@ -1245,6 +1245,448 @@
    ]
   }
  },
+ "padel": {
+  "bullpadel-vertex-05-2026": {
+   "paras": [
+    "Reviewers mostly praise it as a versatile, controllable all-rounder with a dry medium feel, mainly for intermediate and advanced players. Power is where takes split: Extreme Padel finds it clearly more powerful in smashes than the 2025 model but much less tolerant off centre, while Setup Padel | Mario Pazos calls it the least powerful in the Proline range. Against the Vertex 05 Geo, Fabio Ferro favours the standard model for control and spin, while Extreme Padel would keep the Geo."
+   ],
+   "highlights": [
+    {
+     "text": "versatile, controllable all-rounder",
+     "tone": "pos"
+    },
+    {
+     "text": "much less tolerant",
+     "tone": "neg"
+    },
+    {
+     "text": "least powerful in the Proline range",
+     "tone": "neg"
+    }
+   ]
+  },
+  "nox-at10-genius-18k-2026": {
+   "paras": [
+    "Reviewers praise the easy handling, wide sweet spot and control, with padelwithmax and Peter Consuegra both describing a softer feel than the 12K. Power is where takes split: Padel Review finds it stiffer and more powerful than the 12K at high swing speeds, while Super Padel Bros finds power and spin lacking. Price draws criticism too, with Fabio Ferro calling the €395 list price too high and suggesting the cheaper 2025 model."
+   ],
+   "highlights": [
+    {
+     "text": "wide sweet spot",
+     "tone": "pos"
+    },
+    {
+     "text": "softer feel than the 12K",
+     "tone": "pos"
+    },
+    {
+     "text": "power and spin lacking",
+     "tone": "neg"
+    },
+    {
+     "text": "list price too high",
+     "tone": "neg"
+    }
+   ]
+  },
+  "wilson-endure-pro-v1-2026": {
+   "paras": [
+    "Reviewers praise the control, a dry medium-hard feel and a wide sweet spot, and see it suiting intermediate to advanced players with good technique. Power is where takes split: Trypadel calls it a 100 percent control racket where hitting hard needs a full swing, while Padel Test calls it the most powerful round racket they have tested, though below the Adidas Metalbone HRD. Hotel Palas finds the sweet spot smaller than the standard Endure and prefers that racket, while Mejora Tu Padel picks the Pro over the standard version for personal use."
+   ],
+   "highlights": [
+    {
+     "text": "dry medium-hard feel",
+     "tone": "pos"
+    },
+    {
+     "text": "wide sweet spot",
+     "tone": "pos"
+    },
+    {
+     "text": "hitting hard needs a full swing",
+     "tone": "neg"
+    },
+    {
+     "text": "sweet spot smaller than the standard Endure",
+     "tone": "neg"
+    }
+   ]
+  },
+  "bullpadel-vertex-05-geo-2026": {
+   "paras": [
+    "Reviewers mostly praise the control, the easy power on smashes, bandeja and volleys, and a comfortable, manoeuvrable feel, and it suits intermediate to advanced attacking players. Power is where takes split: Hotel Palas | La Suite del Padel and PadelLab find it more powerful than the standard Vertex 05 in the smash, while Simone Mazzola Padel finds smashes less explosive than a classic Vertex and Extreme Padel finds them leaving slower. Several reviewers, including Probando Palas and Setup Padel | Mario Pazos, also dislike the smooth area near the logo, where the ball slides, and some note the rough texture wears off."
+   ],
+   "highlights": [
+    {
+     "text": "easy power on smashes, bandeja and volleys",
+     "tone": "pos"
+    },
+    {
+     "text": "more powerful than the standard Vertex 05",
+     "tone": "pos"
+    },
+    {
+     "text": "less explosive than a classic Vertex",
+     "tone": "neg"
+    },
+    {
+     "text": "smooth area near the logo",
+     "tone": "neg"
+    }
+   ]
+  },
+  "nox-at10-genius-12k-alum-xtrem-2026": {
+   "paras": [
+    "Reviewers mostly praise the easy handling, comfortable feel and touch at the net, and place it with intermediate to advanced players. Power is where takes split: Extreme Padel calls it the clear winner in its smash power test, while Super Padel Bros finds the ball exit weak and the power low. Against the 18K, Padel Elite Barletta finds the 12K gives much more push at high pace, while Probando Palas finds the 18K gives more control from the baseline, and some reviewers call the price too high."
+   ],
+   "highlights": [
+    {
+     "text": "comfortable feel",
+     "tone": "pos"
+    },
+    {
+     "text": "touch at the net",
+     "tone": "pos"
+    },
+    {
+     "text": "ball exit weak",
+     "tone": "neg"
+    },
+    {
+     "text": "price too high",
+     "tone": "neg"
+    }
+   ]
+  },
+  "bullpadel-neuron-02-edge-2026": {
+   "paras": [
+    "Reviewers mostly point intermediate and advanced players to it for control with extra attacking response, and volleys, vibora and smashes are the most praised areas. Probando Palas finds it more powerful than the standard Neuron 02 but less manoeuvrable from the baseline, while el4Set finds it very light with the best defensive control they remember testing and weak smashes, which goes against what most reviewers say about finishing. Nmscontrolpadel calls the sweet spot small and notes vibration on off-centre hits, and Dani 13 finds balls come out shorter when hit away from the middle."
+   ],
+   "highlights": [
+    {
+     "text": "control with extra attacking response",
+     "tone": "pos"
+    },
+    {
+     "text": "less manoeuvrable from the baseline",
+     "tone": "neg"
+    },
+    {
+     "text": "weak smashes",
+     "tone": "neg"
+    }
+   ]
+  },
+  "siux-electra-pro-st5-2026": {
+   "paras": [
+    "Reviewers mostly praise the spin from the rough surface, easy maneuverability and attacking potential, and see it as suiting technical or offensive players. Canary Padel calls it one of the most balanced rackets of the year for a wide audience, while Simone Mazzola Padel finds control only inside a smaller sweet spot and would not buy it. Reviewers also differ on feel against last year, with Probando Palas finding it softer than the 2025 and Otro Nivel Padel and Dani 13 finding it harder than last year's version."
+   ],
+   "highlights": [
+    {
+     "text": "spin from the rough surface",
+     "tone": "pos"
+    },
+    {
+     "text": "easy maneuverability",
+     "tone": "pos"
+    },
+    {
+     "text": "one of the most balanced rackets",
+     "tone": "pos"
+    },
+    {
+     "text": "smaller sweet spot",
+     "tone": "neg"
+    }
+   ]
+  },
+  "adidas-metalbone-3-5-2026": {
+   "paras": [
+    "Reviewers mostly praise the 2026 Metalbone 3.5 for smash and overhead power, with a removable weight system, and recommend it to advanced and upper intermediate players. Padel Smash TV finds it easier to control than the HRD Plus, while Extreme Padel finds it more forgiving than the HRD+ but still demanding and tiring at the net. Simone Mazzola Padel and Fabio Ferro both see little change from the 3.4 and question the 390 euro list price, with Fabio Ferro preferring the Metalbone Carbon."
+   ],
+   "highlights": [
+    {
+     "text": "smash and overhead power",
+     "tone": "pos"
+    },
+    {
+     "text": "advanced and upper intermediate players",
+     "tone": "pos"
+    },
+    {
+     "text": "tiring at the net",
+     "tone": "neg"
+    },
+    {
+     "text": "little change from the 3.4",
+     "tone": "neg"
+    }
+   ]
+  },
+  "head-coello-pro-2026": {
+   "paras": [
+    "Reviewers praise the power on smashes and víboras, along with a sweet spot that is larger than standard, and several point to attacking players with good technique and fitness. Probando Palas suggests it suits less advanced players who want easy power, while Extreme Padel recommends level 7 minimum and felt it in the shoulder after 20 minutes. Dani13 finds the Coello Motion better for defence and volleys, and Simone Mazzola Padel finds the Pro heavy at the net and less powerful than the Delta Pro."
+   ],
+   "highlights": [
+    {
+     "text": "power on smashes and víboras",
+     "tone": "pos"
+    },
+    {
+     "text": "sweet spot that is larger than standard",
+     "tone": "pos"
+    },
+    {
+     "text": "felt it in the shoulder",
+     "tone": "neg"
+    },
+    {
+     "text": "heavy at the net",
+     "tone": "neg"
+    }
+   ]
+  },
+  "bullpadel-xplo-2026": {
+   "paras": [
+    "Reviewers mostly praise the Xplo 2026 for volleys and net play, with Padel Racket Australia describing a firm, direct feel and Padel5 describing power without losing control, and it is generally aimed at advanced or medium to high level players. Opinions split on the sweet spot and spin, as Otro Nivel / Justpadel finds a very big sweet spot and a lot of spin, while the4Set finds the sweet spot smaller than the Neuron Edge and the glossy surface harder for spin shots. Weight and demands are the other catch, since Otro Nivel / Justpadel calls it heavy at 365 to 375 g and Padel Racket Australia says late or off-center contact is punished."
+   ],
+   "highlights": [
+    {
+     "text": "firm, direct feel",
+     "tone": "pos"
+    },
+    {
+     "text": "power without losing control",
+     "tone": "pos"
+    },
+    {
+     "text": "glossy surface harder for spin shots",
+     "tone": "neg"
+    },
+    {
+     "text": "heavy at 365 to 375 g",
+     "tone": "neg"
+    }
+   ]
+  },
+  "bullpadel-neuron-02-2026": {
+   "paras": [
+    "Reviewers mostly praise the control, manoeuvrability and secure volleys, and suit it to players who build points rather than rely on power. Spin is where they split: Padel Review scores it 6.5 and dislikes the lack of spin, while Fabio Ferro scores spin 8.5. Several reviewers, including Extreme Padel and Probando Palas, point players wanting more power to the Neuron 02 Edge, and Fabio Ferro calls the 319 euro price high."
+   ],
+   "highlights": [
+    {
+     "text": "control, manoeuvrability and secure volleys",
+     "tone": "pos"
+    },
+    {
+     "text": "dislikes the lack of spin",
+     "tone": "neg"
+    },
+    {
+     "text": "more power to the Neuron 02 Edge",
+     "tone": "neg"
+    },
+    {
+     "text": "319 euro price high",
+     "tone": "neg"
+    }
+   ]
+  },
+  "adidas-metalbone-hrd-plus-3-5-2026": {
+   "paras": [
+    "Reviewers praise the HRD+ for smash power and stable volley blocks, and rate it for advanced attacking players, with some saying it fits the left side best. Opinions split on handling and forgiveness: Simone Mazzola Padel finds defence better than expected with a good sweet spot, while Extreme Padel finds it more demanding than the standard Metalbone and Tom Pandore says it left them late on fast balls. Hotel Palas picks it over the standard 3.5 for control on blocks, and several reviewers prefer it with the weights removed."
+   ],
+   "highlights": [
+    {
+     "text": "smash power",
+     "tone": "pos"
+    },
+    {
+     "text": "defence better than expected",
+     "tone": "pos"
+    },
+    {
+     "text": "more demanding than the standard Metalbone",
+     "tone": "neg"
+    },
+    {
+     "text": "late on fast balls",
+     "tone": "neg"
+    }
+   ]
+  },
+  "wilson-defy-pro-v1-2025": {
+   "paras": [
+    "Reviewers mostly praise the spin from the rough texture and the easy handling for a diamond shape, and place it with advanced or aggressive players, often on the left side. Power is where takes split: Padel5 finds smashes go like a cannon, while Simone Mazzola Padel and Padel Review find the power less extreme than expected. Mejora Tu Padel and the4Set are mixed, with Mejora Tu Padel seeing little difference from the regular Defy and the ball rising in defense, and the4Set struggling to feel the ball on lobs."
+   ],
+   "highlights": [
+    {
+     "text": "spin from the rough texture",
+     "tone": "pos"
+    },
+    {
+     "text": "easy handling for a diamond shape",
+     "tone": "pos"
+    },
+    {
+     "text": "the power less extreme than expected",
+     "tone": "neg"
+    },
+    {
+     "text": "struggling to feel the ball on lobs",
+     "tone": "neg"
+    }
+   ]
+  },
+  "babolat-viper-soft-juan-lebron-3-0-2026": {
+   "paras": [
+    "Reviewers who liked it, mostly advanced and intermediate-high players who want power, praise the dry touch and the easy handling for an offensive racket at roughly 360 to 366 g. Mixed takes come from the Soft name: Mejora Tu Padel calls it a hard racket that is only a little more flexible than the standard 3.0, and Hotel Palas | La Suite del Padel finds it only slightly more forgiving than the regular Viper, while pdhsports finds it much softer than the older Technical range. Dani 13 says off-centre balls die, and the4Set reports less control at high speed and on volleys than the hard version."
+   ],
+   "highlights": [
+    {
+     "text": "dry touch",
+     "tone": "pos"
+    },
+    {
+     "text": "easy handling for an offensive racket",
+     "tone": "pos"
+    },
+    {
+     "text": "only a little more flexible",
+     "tone": "neg"
+    },
+    {
+     "text": "off-centre balls die",
+     "tone": "neg"
+    }
+   ]
+  },
+  "babolat-viper-juan-lebron-3-0-2026": {
+   "paras": [
+    "Reviewers mostly praise strong power on smashes and fast attacking shots, and say it suits experienced or advanced players with good physical condition. Reported weights range from 366 g to 378 g, and reviewers describe it as heavy and hard to handle, with a small sweet spot and little ball output. Dani 13 rates control as very good, while Mejora Tu Padel finds low volleys float in transition play, and Hotel Palas | La Suite del Padel prefers the Soft version in defence."
+   ],
+   "highlights": [
+    {
+     "text": "strong power on smashes",
+     "tone": "pos"
+    },
+    {
+     "text": "heavy and hard to handle",
+     "tone": "neg"
+    },
+    {
+     "text": "small sweet spot",
+     "tone": "neg"
+    }
+   ]
+  },
+  "nox-ea10-ventus-hybrid-12k-2026": {
+   "paras": [
+    "Reviewers mostly praise its control and easy handling, and it suits players who want a dry, predictable feel and build points rather than finish them. Sweet spot size is where opinions split: Simone Mazzola Padel finds the sweet spot not generous and the racket demanding, while Nico Ballesteros rates it as huge and forgiving compared with the Attack version. Hotel Palas | La Suite del Padel finds it the stiffest and driest next to the AT10 12K and AT10 18K and harder on the arm, and Extreme Padel and el4Set both place its power below the Attack or the Genius 12K."
+   ],
+   "highlights": [
+    {
+     "text": "control and easy handling",
+     "tone": "pos"
+    },
+    {
+     "text": "dry, predictable feel",
+     "tone": "pos"
+    },
+    {
+     "text": "sweet spot not generous",
+     "tone": "neg"
+    },
+    {
+     "text": "harder on the arm",
+     "tone": "neg"
+    }
+   ]
+  },
+  "wilson-endure-v1-2026": {
+   "paras": [
+    "Reviewers praise the Endure V1 as a balanced round racket with good control and precision, suited to intermediate players and to those moving up to a first advanced racket. Mixed takes come mostly from comparisons with the Pro: Mejora Tu Padel finds it more manoeuvrable but with less body, and Justpadel finds smashes can kick out and would pick the Pro for power. Hotel Palas | La Suite del Padel names it the most balanced of the three Endure models, though it is only correct on smashes."
+   ],
+   "highlights": [
+    {
+     "text": "good control and precision",
+     "tone": "pos"
+    },
+    {
+     "text": "most balanced of the three",
+     "tone": "pos"
+    },
+    {
+     "text": "smashes can kick out",
+     "tone": "neg"
+    },
+    {
+     "text": "only correct on smashes",
+     "tone": "neg"
+    }
+   ]
+  },
+  "head-coello-motion-2026": {
+   "paras": [
+    "Reviewers mostly praise it as a middle step between the Coello Pro and the Coello Team, with power that is easier to handle than the Pro, and some aim it at intermediate to advanced players. Simone Mazzola Padel finds it a softer Pro that is not different enough to justify a separate model, and calls it demanding to move at the net. Extreme Padel calls it head heavy with a reduced sweet spot, and Tino finds the sweet spot smaller and limits sessions to two hours."
+   ],
+   "highlights": [
+    {
+     "text": "easier to handle than the Pro",
+     "tone": "pos"
+    },
+    {
+     "text": "demanding to move at the net",
+     "tone": "neg"
+    },
+    {
+     "text": "head heavy with a reduced sweet spot",
+     "tone": "neg"
+    }
+   ]
+  },
+  "bullpadel-hack-04-2025": {
+   "paras": [
+    "Reviewers mostly describe an attacking diamond racket for intermediate to advanced players, praising its control at pace, viper shots and volleys. Opinions split on how it compares with other rackets: Peter Consuegra finds it clearly behind the Vertex 04 for control, while Rodri Ovide switched from the Vertex to the Hack. Sweet spot size also varies, with Padel Test by Roberto Cardi finding it high and not very wide, and Padel Review finding it bigger than on previous Hacks."
+   ],
+   "highlights": [
+    {
+     "text": "control at pace",
+     "tone": "pos"
+    },
+    {
+     "text": "viper shots and volleys",
+     "tone": "pos"
+    },
+    {
+     "text": "high and not very wide",
+     "tone": "neg"
+    }
+   ]
+  },
+  "wilson-bela-pro-v3-2025": {
+   "paras": [
+    "Reviewers praise the grip on the ball and spin from the 3D sandy surface, along with a wide sweet spot, for intermediate to advanced players. Sweet spot opinions differ: Extreme Padel finds it restricted and vibrating off centre, while Mejora Tu Padel calls it very wide. Padel Vlog Italia finds it more playable than the V2 and V2.5, but Padel Review prefers the older 2.5 and Padel Test by Roberto Cardi gives only 5.5 out of 10 for value at 310 euros."
+   ],
+   "highlights": [
+    {
+     "text": "grip on the ball",
+     "tone": "pos"
+    },
+    {
+     "text": "calls it very wide",
+     "tone": "pos"
+    },
+    {
+     "text": "vibrating off centre",
+     "tone": "neg"
+    },
+    {
+     "text": "5.5 out of 10 for value",
+     "tone": "neg"
+    }
+   ]
+  }
+ },
  "laptop": {
   "asus-zenbook-14-oled-um3406": {
    "paras": [
