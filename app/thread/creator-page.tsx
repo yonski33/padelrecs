@@ -22,7 +22,10 @@ import { websiteButton } from "../../lib/product-links";
 import { JsonLd, crumbs } from "./seo";
 import { catalogLabel, catalogPath, productHref } from "../../lib/niche";
 import { STANCE_LABEL, lowestOffer, shortShop, usd, reviewLists, agreeChips, stanceLine, stanceCounts, howItPlays, langCode, platform, scoreText, takeaway,
-  wordTone, type CreatorReview } from "../../lib/thread/creators";
+  wordTone, howTitleFor, type CreatorReview } from "../../lib/thread/creators";
+import { LaptopFitCard } from "./live/laptop-match";
+import { padelListData } from "./padel-list-data";
+import { configAxisFor, configCell, configSite, textSlugs } from "../../lib/thread/creator-config";
 import { creatorPage, creatorSlugs, creatorHome } from "../../lib/thread/creator-data";
 import { threadTitle } from "../../lib/thread/web-sources";
 import roundups from "../../db/creators/reddit-roundups.json";
@@ -31,7 +34,7 @@ import tldrs from "../../db/creators/tldrs.json";
 import compareLines from "../../db/creators/compare-lines.json";
 import aliases from "../../db/creators/aliases.json";
 import bestFor from "../../db/creators/best-for.json";
-import { creatorPageFor, CREATOR_VIEW, CREATOR_MIN_REVIEWS, creatorPageOn } from "../../lib/thread/sites";
+import { creatorPageFor, CREATOR_VIEW, CREATOR_MIN_REVIEWS, creatorPageOn, creatorPlainSite } from "../../lib/thread/sites";
 import { Avatar, CreatorReviews } from "./live/creator-reviews";
 import { MentionsProvider, type MentionTarget } from "./live/mention-links";
 import { mentionIndex, namedIds, type MentionAliases } from "../../lib/thread/mention-links";
@@ -79,6 +82,13 @@ const KEYS = ["pos", "mix", "neg"] as const;
 /** SkinRecs (owner "Yes, Skin next" 2026-11-23): the same page in its own soft look (creators.css .th-skin block), its own
  *  tags, fit check (the skin engine, as on its product page) and vote groups (lib/thread/creator-votes.ts). */
 const SKIN = niche.id === "skin";
+/** LaptopRecs (2026-11-24): the creator page on a site that is not a Thread site, so without the Thread-only parts (the fit
+ *  check runs on the padel-style engine, the vote boxes and the discussion on Thread tables). Its reviews carry the config
+ *  each reviewer tested (lib/thread/creator-config.ts): a "Reviewed: ..." line per card, config chips, a Config column. */
+const PLAIN = creatorPlainSite(niche.id);
+/** LaptopRecs on the Thread pages (2026-11-24): its own fit check (live/laptop-match.tsx) in place of the padel-style one. */
+const LT = niche.id === "laptop";
+const CONFIGS = configSite(niche.id);
 /** PadelRecs (2026-11-24, onto this page from its v7b racket page): the padel shops' own prices in the price box (lib/padel-offers.ts,
  *  db/shop/padel-offers.json), the Follow button in the head and the member stories that name the racket. */
 const PADEL = niche.id === "padel";
@@ -103,7 +113,9 @@ export async function CreatorProductBody({ slug }: { slug: string }) {
   // The TL;DR sentence (owner 2026-11-23): the creator page's own line where it has one, else the same line the usual
   // product page shows (racketData: the written "In short" summary, the page content's tagline, the short or list line).
   // A written TL;DR for products whose creator import came without one (db/creators/tldrs.json, 2026-11-23).
-  const tldr = page.tldr || (tldrs as Record<string, Record<string, string>>)[niche.id]?.[slug] || (SKIN && d.lead ? playersWord(d.lead, "reviewer") : d.lead) || null;
+  // A laptop staged under another slug keeps its text under that slug (lib/thread/creator-config.ts textSlugs).
+  const textKeys = textSlugs(niche.id, slug), siteTldrs = (tldrs as Record<string, Record<string, string>>)[niche.id];
+  const tldr = page.tldr || textKeys.map(k => siteTldrs?.[k]).find(Boolean) || (SKIN && d.lead ? playersWord(d.lead, "reviewer") : d.lead) || null;
   // The bar and its counts are the site's own players (lib/thread/site-sentiment.ts, owner 2026-11-22); the creator reviews
   // keep their cards and a praise line ("Praised for spin in 13 reviews").
   const votes = siteSentiment(row);
@@ -120,6 +132,9 @@ export async function CreatorProductBody({ slug }: { slug: string }) {
   const skinAttrs = sk?.attrs.get(r.id), tex = skinAttrs?.scores.texture;
   const skinTex = tex && tex.n >= 3 ? (tex.score >= 62 ? "Rich" : tex.score <= 38 ? "Light" : null) : null;
   const bySlug = new Map(allRows.map(x => [x.slug, x]));
+  // LaptopRecs' fit check: the laptops of this one's category (padelListData's quick match inputs).
+  const ltWire = LT ? ((await padelListData()).laptop ?? []).filter(w => w.category === r.shape && (w.id === r.id || rowMap.get(w.id)?.current !== false)) : [];
+  const ltLinks = Object.fromEntries(ltWire.flatMap(w => { const t = rowMap.get(w.id); return t ? [[w.id, { name: t.name, href: t.href }]] : []; }));
   const sims = sim.filter(x => x.id !== r.id && x.current !== false);
   for (const s of Object.keys(staged).sort((a, b) => Number(bySlug.get(b)?.shape === r.shape) - Number(bySlug.get(a)?.shape === r.shape))) {
     if (sims.length >= 4) break;
@@ -133,7 +148,8 @@ export async function CreatorProductBody({ slug }: { slug: string }) {
   // the feed. Never counted as a review (not in N reviews, the table or the sentiment bar). Real short quotes only.
   const reddit = cards.filter(c => c.kind === "reddit").slice(0, 6);
   // The written roundup of ALL the paddle's Reddit posts (pilot 2026-11-23, db/creators/reddit-roundups.json), where one exists.
-  const wrap = (wrapups as Record<string, Record<string, Wrapup>>)[niche.id]?.[slug] ?? null;
+  const siteWraps = (wrapups as Record<string, Record<string, Wrapup>>)[niche.id];
+  const wrap = textKeys.map(k => siteWraps?.[k]).find(Boolean) ?? null;
   const rd = (roundups as Record<string, Record<string, Roundup>>)[niche.id]?.[slug] ?? null;
   const name = withoutYear(row?.name ?? r.name);
   // The live page's buy link, the same logic (app/thread/rackets/[slug]/page.tsx): the Amazon lookup, the saved listing when
@@ -156,10 +172,11 @@ export async function CreatorProductBody({ slug }: { slug: string }) {
   const how = howItPlays(rs), agree = agreeChips(rs);
   // The at-a-glance table (owner 2026-11-23): reviewer, take and the short key point only, in the reviews' own order.
   const glance = rs;
-  const gRow = (x: (typeof rs)[number]) => <a key={x.id} className="thc-g-row" href={`#cr-${x.id}`}>
+  const gRow = (x: (typeof rs)[number]) => <a key={x.id} className={`thc-g-row${CONFIGS ? " cfg" : ""}`} href={`#cr-${x.id}`}>
     <span className="thc-g-who"><Avatar name={x.creator} kind={x.kind} size="sm"/><span><strong>{x.creator}</strong>
       <span>{`${platform(x)} · ${langCode(x.lang)}`}{x.score && ` · ${scoreText(x.score)}`}</span></span></span>
     <span className={`thc-take sm ${x.stance}`}>{STANCE_LABEL[x.stance]}</span>
+    {CONFIGS && <span className="cfg-l">{configCell(x.config)}</span>}
     <span className="kp">{keyPoint(x)}</span>
   </a>;
   const ld = { "@context": "https://schema.org", "@graph": [crumbs([{ name: catalogLabel, path: catalogPath },
@@ -171,6 +188,7 @@ export async function CreatorProductBody({ slug }: { slug: string }) {
   // The level tag from the catalogue's "best for" line: its first part, "intermediate → advanced" as "Intermediate to advanced".
   const level = row?.best?.split(",")[0]?.replace(/\s*(→|->)\s*/g, " to ").trim() ?? null;
   const tags = (SKIN ? [r.shape, skinAttrs?.facts.fragrance_free === "free" ? "Fragrance free" : null, skinTex ? `${skinTex} texture` : null]
+    : PLAIN || LT ? [r.shape]
     : [style ? STYLE_WORD[style] : null, row?.feel ? `${row.feel} feel` : null, level ? `${level[0]!.toUpperCase()}${level.slice(1)}` : null]).filter((x): x is string => !!x);
   // Two + points and one - point (owner 2026-11-22), the likes and concerns backed by 2+ reviews.
   const plus = agree.likes.slice(0, 2), minus = agree.concerns[0] ?? null;
@@ -224,11 +242,11 @@ export async function CreatorProductBody({ slug }: { slug: string }) {
           </div>}
           {/* The site's own players (owner 2026-11-22, #651): the bar and shares, never the creator reviews. */}
           <div className="thc-vbox">
-            <span className="thc-vbox-h"><strong>{`${votes.total.toLocaleString("en-US")} ${W.person} ${votes.total === 1 ? "vote" : "votes"}`}</strong><a href="#vote">Vote ↓</a></span>
+            <span className="thc-vbox-h"><strong>{`${votes.total.toLocaleString("en-US")} ${W.person} ${votes.total === 1 ? "vote" : "votes"}`}</strong>{!PLAIN && <a href="#vote">Vote ↓</a>}</span>
             {votes.total > 0 ? <><span className="thc-vbar" aria-hidden="true">{KEYS.map(k => votes[k] > 0 && <i key={k} className={k} style={{ flex: votes[k] }}/>)}</span>
               {/* 4a: raw counts with colour dots, so the three add up to the total. */}
               <span className="thc-vcnt">{KEYS.map(k => <span key={k}><i className={k} aria-hidden="true"/>{`${votes[k].toLocaleString("en-US")} ${k === "pos" ? "loved" : k === "mix" ? "mixed" : "not for me"}`}</span>)}</span></>
-              : <span className="thc-none">No votes yet. Be the first.</span>}
+              : <span className="thc-none">{PLAIN ? "No votes yet." : "No votes yet. Be the first."}</span>}
           </div>
         </div>
         {shops.length > 0 ? <div className="thc-head-r"><ShopBox offers={shops}/></div>
@@ -260,20 +278,23 @@ export async function CreatorProductBody({ slug }: { slug: string }) {
       {/* SkinRecs with store prices (owner 2026-11-23): the price list fills the right column, so its fit check moves to
           this full-width row, as on PickleballRecs; Amazon-only products keep it under the button. */}
       {SKIN ? low && <div className="thc-fitrow"><SkinCompactFit id={r.id} wire={skinWire} links={skinLinks}/></div>
+        : PLAIN ? null : LT ? ltWire.length > 0 && <div className="thc-fitrow"><LaptopFitCard id={r.id} wire={ltWire} links={ltLinks} compact/></div>
         : <div className="thc-fitrow"><CompactFit id={r.id} title={`Is this ${niche.words.one} right for me?`} sub="Pick your level and style" bar/></div>}
       <div className="thc-rule"/>
 
       <main className="thc-body">
         {/* Side by side (owner choice): players on Reddit and forums, and the site's own vote. */}
-        <div className={`thc-duo${reddit.length ? "" : " one"}`}>
+        {/* LaptopRecs: the Reddit card alone, when there is one (no vote boxes there). */}
+        {PLAIN ? (rd || reddit.length > 0) && <div className="thc-duo one">{rd ? <RedditBox rd={rd}/> : <RedditRoundup items={reddit}/>}</div>
+        : <div className={`thc-duo${reddit.length ? "" : " one"}`}>
           {rd ? <RedditBox rd={rd}/> : reddit.length > 0 && <RedditRoundup items={reddit}/>}
           {/* Played it? Vote and rate it: the would-you-buy-it-again bars and six vote boxes (lib/thread/creator-votes.ts),
               the stored votes loading live, one tap, no account. */}
           <section id="vote" className="thc-box1 thc-vote">
-            <PollCard id={r.id} reviews={{ positive: row?.pos ?? 0, mixed: row?.mix ?? 0, negative: row?.neg ?? 0 }} question={SKIN ? "Tried it? Vote and rate it." : "Played it? Vote and rate it."} countLine/>
+            <PollCard id={r.id} reviews={{ positive: row?.pos ?? 0, mixed: row?.mix ?? 0, negative: row?.neg ?? 0 }} question={SKIN ? "Tried it? Vote and rate it." : LT ? `${W.usedIt} Vote and rate it.` : "Played it? Vote and rate it."} countLine/>
             {voteGroups.length > 0 && <TraitVotes id={r.id} seed={traitSeed(niche.id, r.id)} groups={voteGroups} title={W.traitsTitle} tieNone {...(SKIN ? { of: d.judged } : {})}/>}
           </section>
-        </div>
+        </div>}
 
         <div className="thc-web">
           <span className="thc-kick">From around the web</span>
@@ -301,7 +322,7 @@ export async function CreatorProductBody({ slug }: { slug: string }) {
           <div className="thc-row-l">
             <section id="creators" className="thc-box1 flush thc-glance">
               <div className="thc-h rule"><strong>{`All ${rs.length} reviews at a glance`}</strong><span>Tap a row to jump to the full summary</span></div>
-              <div className="thc-g-row thc-g-head"><span>Reviewer</span><span>Take</span><span className="kp">Key point</span></div>
+              <div className={`thc-g-row thc-g-head${CONFIGS ? " cfg" : ""}`}><span>Reviewer</span><span>Take</span>{CONFIGS && <span className="cfg-l">Config</span>}<span className="kp">Key point</span></div>
               {/* Graded rows first (owner 2026-11-22), 15 shown, the rest behind "Show all N reviews" (no script: a details box). */}
               {glance.slice(0, GLANCE).map(gRow)}
               {glance.length > GLANCE && <details className="thc-g-more"><summary>{`Show all ${rs.length} reviews`}</summary>{glance.slice(GLANCE).map(gRow)}</details>}
@@ -309,7 +330,7 @@ export async function CreatorProductBody({ slug }: { slug: string }) {
           </div>
           <StickyCol className="thc-row-r">
             {how.length > 0 && <section className="thc-box1 flush">
-              <div className="thc-h rule"><strong>{SKIN ? "How it works" : "How it plays"}</strong><span>{`From all ${rs.length} reviews`}</span></div>
+              <div className="thc-h rule"><strong>{howTitleFor(niche.id)}</strong><span>{`From all ${rs.length} reviews`}</span></div>
               {how.map(h => <div key={h.k} className="thc-grade"><span><strong>{h.label}</strong><Word w={h.word}/></span><span>{h.line}</span></div>)}
             </section>}
             {named.length > 0 && <section className="thc-box1 flush">
@@ -329,7 +350,7 @@ export async function CreatorProductBody({ slug }: { slug: string }) {
         </div>
 
         <MentionsProvider index={mxIndex} targets={mxTargets} selfId={r.id} selfSlug={slug} unit={W.people} noun={niche.words.one}>
-          <CreatorReviews reviews={feed} count={rs.length} roundup={null}/>
+          <CreatorReviews reviews={feed} count={rs.length} roundup={null} {...(CONFIGS ? { configs: true, axis: configAxisFor(niche.id, slug) } : {})}/>
         </MentionsProvider>
 
         {/* PadelRecs' member stories that name this racket (the pilot), as on its v7b racket page. */}
@@ -339,7 +360,7 @@ export async function CreatorProductBody({ slug }: { slug: string }) {
             <span className="th-story-by"><strong>{t.author.name}</strong><MemberMark/></span></li>)}</ul>
         </section>}
         {/* Comments (the mock's section 7): the site's own discussion for this paddle, the same thread as its product page. */}
-        <section className="thc-sec2 thc-comments"><Comments page={`racket:${r.id}`} title="Discussion" avatars nicknames={niche.form.quickVote?.nicknames ?? []}/></section>
+        {!PLAIN && <section className="thc-sec2 thc-comments"><Comments page={`racket:${r.id}`} title="Discussion" avatars nicknames={niche.form.quickVote?.nicknames ?? []}/></section>}
 
         {similar.length > 0 && <section className="thc-sec2">
           <div className="thc-sec2-h"><h2>{`Similar ${niche.words.many}`}</h2>

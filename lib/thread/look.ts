@@ -5,7 +5,7 @@
 // PickleballRecs (plans/PICKLEBALL-THREAD-PLAN.md) runs the same pages, previewed with ?look=thread until its flag is on.
 import { niche, catalogPath } from "../niche";
 
-import { threadDefaultFor, ELBOW_SLUG, storiesSite, v3Site, questionsSite } from "./sites";
+import { threadDefaultFor, ELBOW_SLUG, storiesSite, v3Site, questionsSite, creatorPlainSite } from "./sites";
 export { THREAD_DEFAULTS, threadDefaultFor, threadSite, THREAD_MOVED, ELBOW_SLUG } from "./sites";
 /** The running site's flag. */
 export const THREAD_DEFAULT = threadDefaultFor(niche.id);
@@ -99,7 +99,16 @@ const TENNIS_GUIDES: Record<GuideKey, string> = {
   side: "/guides/string-patterns",
   elbow: "/guides/tennis-elbow",
 };
-export const guidePathsFor = (nicheId: string): Record<GuideKey, string> => nicheId === "pickleball" ? PICKLEBALL_GUIDES : nicheId === "skin" ? SKIN_GUIDES
+/** LaptopRecs: choosing a laptop, buying mistakes, laptop types, Mac, Windows or Chromebook and battery life ("shape" = the
+ *  types, "side" = the operating system, "elbow" = battery life). */
+const LAPTOP_GUIDES: Record<GuideKey, string> = {
+  racket: "/guide",
+  beginner: "/guides/buying-tips",
+  shape: "/guides/laptop-types",
+  side: "/guides/mac-windows-or-chromebook",
+  elbow: "/guides/battery-life",
+};
+export const guidePathsFor = (nicheId: string): Record<GuideKey, string> => nicheId === "laptop" ? LAPTOP_GUIDES : nicheId === "pickleball" ? PICKLEBALL_GUIDES : nicheId === "skin" ? SKIN_GUIDES
   : nicheId === "discgolf" ? DISCGOLF_GUIDES : nicheId === "audio" ? AUDIO_GUIDES : nicheId === "simracing" ? SIMRACING_GUIDES : nicheId === "tennis" ? TENNIS_GUIDES : PADEL_GUIDES;
 /** The running site's guide addresses. */
 export const GUIDE_PATHS = guidePathsFor(niche.id);
@@ -107,7 +116,7 @@ export const GUIDE_KEYS = Object.keys(PADEL_GUIDES) as GuideKey[];
 export const guideKeyOf = (path: string, nicheId = niche.id): GuideKey | null => GUIDE_KEYS.find(k => guidePathsFor(nicheId)[k] === path) ?? null;
 
 /** The sites whose add-review page is the design-v2 form, which has a Thread page (StackRecs keeps its own full form). */
-export const ADD_REVIEW_SITES = new Set(["padel", "pickleball", "skin", "discgolf", "simracing", "tennis"]);
+export const ADD_REVIEW_SITES = new Set(["padel", "pickleball", "skin", "discgolf", "simracing", "tennis", "laptop"]);
 /** The Thread page an address shows with ?look=thread, or null when the Thread look has no page for it (compare and
  *  add-review keep their live page). `catalog` is the niche's catalogue path ("/rackets" on padel, "/paddles" on pickleball). */
 export function threadPath(pathname: string, catalog = catalogPath, nicheId = niche.id): string | null {
@@ -147,9 +156,9 @@ export function threadPath(pathname: string, catalog = catalogPath, nicheId = ni
   if (brand) return `/thread/brands/${brand[1]}`;
   // DiscGolfRecs: each type page (/putters) is a catalogue of its own; its discs stay under /discs.
   if (nicheId === "discgolf" && nicheId === niche.id && (niche.typePages ?? []).some(t => t.slug === p.slice(1))) return `/thread/types${p}`;
-  // SkinRecs, AudioRecs and SimRacingRecs: products live under their type page (/moisturizers/<slug>, /headphones/<slug>,
-  // /wheelbases/<slug>), and each type page is a catalogue of its own.
-  if ((nicheId === "skin" || nicheId === "audio" || nicheId === "simracing") && nicheId === niche.id && niche.categoryPaths) {
+  // SkinRecs, AudioRecs, SimRacingRecs and LaptopRecs: products live under their type page (/moisturizers/<slug>,
+  // /headphones/<slug>, /wheelbases/<slug>, /gaming-laptops/<slug>), and each type page is a catalogue of its own.
+  if ((nicheId === "skin" || nicheId === "audio" || nicheId === "simracing" || nicheId === "laptop") && nicheId === niche.id && niche.categoryPaths) {
     const [, type, slug, extra] = p.split("/");
     if (type && !extra && (niche.typePages ?? []).some(t => t.slug === type) && (!slug || /^[a-z0-9-]+$/.test(slug))) return slug ? `/thread/rackets/${slug}` : `/thread/types/${type}`;
   }
@@ -159,7 +168,8 @@ export function threadPath(pathname: string, catalog = catalogPath, nicheId = ni
 /** A Thread link. While Thread is the default it is the plain address; in preview mode it carries ?look=thread (kept ahead
  *  of any #hash) so the next page is a Thread page too. Unpreviewed addresses and outside links are left as they are. */
 export function th(href: string, catalog = catalogPath, preview = !THREAD_DEFAULT): string {
-  if (!preview) return href;
+  // Creator pages on a non-Thread site (lib/thread/sites.ts CREATOR_PLAIN_SITES) sit on its own addresses: plain links there.
+  if (!preview || creatorPlainSite(niche.id)) return href;
   if (!href.startsWith("/") || href.startsWith("//")) return href;
   const [rest, hash = ""] = href.split("#", 2);
   const [path, query = ""] = rest.split("?", 2);

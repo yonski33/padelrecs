@@ -24,9 +24,9 @@ export const dynamicParams = false;
 export function generateStaticParams() { return GUIDE_KEYS.map(key => ({ key })); }
 type P = { params: Promise<{ key: string }> };
 const PICKLEBALL = niche.id === "pickleball";
-const SKIN = niche.id === "skin", DG = niche.id === "discgolf", AUDIO = niche.id === "audio", SR = niche.id === "simracing", TN = niche.id === "tennis";
+const SKIN = niche.id === "skin", DG = niche.id === "discgolf", AUDIO = niche.id === "audio", SR = niche.id === "simracing", TN = niche.id === "tennis", LT = niche.id === "laptop";
 const SHAPES = PICKLEBALL ? ["standard", "hybrid", "elongated"] : ["round", "teardrop", "diamond"];
-const BEST = SKIN ? "best-face-moisturizers" : DG ? "best-disc-golf-discs" : AUDIO ? "best-headphones" : SR ? "best-sim-racing-gear" : `best-${niche.id}-${niche.words.many}`; // "best-padel-rackets", "best-pickleball-paddles"
+const BEST = LT ? "best-laptops" : SKIN ? "best-face-moisturizers" : DG ? "best-disc-golf-discs" : AUDIO ? "best-headphones" : SR ? "best-sim-racing-gear" : `best-${niche.id}-${niche.words.many}`; // "best-padel-rackets", "best-pickleball-paddles"
 const GUIDE_NAME = `${niche.words.One} guide`;
 const guideOf = (key: string) => GUIDES.find(g => g.key === key);
 
@@ -67,6 +67,15 @@ async function picksFor(key: GuideKey): Promise<{ title?: string; rows: ThreadRo
     if (key === "side") return [{ title: "Backhand", rows: top(BEST, 2) }, { title: "Forehand", rows: await match({ style: "power", arm: false }, 2) }];
     if (key === "elbow") return [{ rows: top("best-disc-golf-discs-for-slow-arms", 4) }];
   }
+  if (LT) {
+    // LaptopRecs: its live lists by exact slug (one favourite per category for the choose and types guides).
+    const top = (slug: string, n: number) => (lists.find(l => l.slug === slug)?.ids ?? []).slice(0, n).map(id => rows.get(id)).filter((x): x is ThreadRow => !!x);
+    const cats = ["best-ultrabooks", "best-gaming-laptops", "best-business-laptops", "best-macbooks"];
+    if (key === "racket" || key === "shape") return [{ rows: cats.flatMap(s => top(s, 1)) }];
+    if (key === "side") return [{ title: "Mac", rows: top("best-macbooks", 2) }, { title: "Windows", rows: top("best-ultrabooks", 2) }, { title: "Chromebook", rows: top("best-chromebooks", 2) }];
+    if (key === "elbow") return [{ rows: top("best-battery-life-laptops", 4) }];
+    return [{ rows: top(BEST, 4) }];
+  }
   if (TN) {
     // TennisRecs: its live lists by exact slug, and the best of each head size band (its shape column) for the head size guide.
     const top = (slug: string, n: number) => (lists.find(l => l.slug === slug)?.ids ?? []).slice(0, n).map(id => rows.get(id)).filter((x): x is ThreadRow => !!x);
@@ -105,6 +114,7 @@ export default async function ThreadGuide({ params }: P) {
     : SR ? (g.key === "beginner" ? `${BEST}-for-beginners` : g.key === "side" ? "best-sim-racing-pedals" : g.key === "elbow" ? "best-sim-racing-cockpits"
       : g.key === "shape" ? "best-sim-racing-wheelbases" : BEST)
     : TN ? (g.key === "beginner" ? `${BEST}-for-beginners` : g.key === "elbow" ? "best-arm-friendly-tennis-rackets" : g.key === "side" ? "best-spin-tennis-rackets" : BEST)
+    : LT ? (g.key === "elbow" ? "best-battery-life-laptops" : g.key === "side" ? "best-macbooks" : BEST)
     : AUDIO ? (g.key === "shape" ? "best-open-back-headphones" : g.key === "elbow" ? "best-noise-cancelling-headphones" : "best-headphones-overall")
     : g.key === "beginner" ? `${BEST}-for-beginners` : g.key === "elbow" ? (PICKLEBALL ? `${BEST}-for-tennis-elbow` : ELBOW_SLUG) : BEST;
   const fullRanking = `/rankings/${shown.has(wanted) ? wanted : BEST}`;

@@ -42,6 +42,13 @@ export default async function ThreadTypePage({ params }: P) {
     return <Shell active="rackets"><PadelCatalog rows={d.rows.filter(r => r.shape === t.shape)} brands={d.brands} pills={d.pills} added={d.added} curated={[]}
       rankings={lists.slice(0, 6).map(l => ({ label: l.label, href: l.href }))} latest={[]} title={t.label} crumb={t.label}/></Shell>;
   }
+  // LaptopRecs (owner 2026-11-24): the v3 catalogue for one category, with its quick match, no score.
+  if (niche.id === "laptop") {
+    const d = await padelListData(), lists = await threadRankings(), keep = new Set(d.rows.filter(r => r.shape === t.shape).map(r => r.id));
+    const ld = listJsonLd([{ name: t.label, path: `/${t.slug}` }], d.rows.filter(r => keep.has(r.id)).sort((a, b) => b.n - a.n).map(r => ({ name: r.name, href: r.href })));
+    return <Shell active="rackets"><script type="application/ld+json" dangerouslySetInnerHTML={{ __html: ld }}/><PadelCatalog rows={d.rows.filter(r => keep.has(r.id))} brands={d.brands} pills={d.pills} added={d.added} curated={[]}
+      rankings={lists.slice(0, 6).map(l => ({ label: l.label, href: l.href }))} latest={[]} title={t.label} crumb={t.label} {...(d.laptop ? { laptop: d.laptop.filter(w => keep.has(w.id)) } : {})}/></Shell>;
+  }
   // SkinRecs (v3 rollout 2026-11-21): the v3 catalogue for one product type, with its quick match, no score.
   if (niche.id === "skin") {
     const d = await padelListData(), lists = await threadRankings(), keep = new Set(d.rows.filter(r => r.shape === t.shape).map(r => r.id));

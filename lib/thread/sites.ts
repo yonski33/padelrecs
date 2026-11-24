@@ -5,13 +5,13 @@
 /** THE go-live flags, per site (owner 2026-11-19): true = Thread is the default look on the normal addresses and
  *  ?look=classic shows the current live pages; false = the live pages are the default and ?look=thread previews Thread.
  *  Roll a site back by setting it to false. */
-export const THREAD_DEFAULTS: Record<string, boolean> = { padel: true, pickleball: true, stackrecs: true, skin: true, discgolf: true, audio: true, simracing: true, tennis: true };
+export const THREAD_DEFAULTS: Record<string, boolean> = { padel: true, pickleball: true, stackrecs: true, skin: true, discgolf: true, audio: true, simracing: true, tennis: true, laptop: true };
 export const threadDefaultFor = (nicheId: string) => THREAD_DEFAULTS[nicheId] ?? false;
 /** PadelRecs (the pilot), PickleballRecs (owner 2026-11-19: next after padel), StackRecs (Build + Grow pilot, owner
  *  2026-11-19), which is built on the Thread pages from the start, SkinRecs and DiscGolfRecs (owner 2026-11-20), AudioRecs
  *  (owner design handoff 2026-11-21). */
 export const threadSite = (nicheId: string) => nicheId === "padel" || nicheId === "pickleball" || nicheId === "stackrecs" || nicheId === "skin"
-  || nicheId === "discgolf" || nicheId === "audio" || nicheId === "simracing" || nicheId === "tennis";
+  || nicheId === "discgolf" || nicheId === "audio" || nicheId === "simracing" || nicheId === "tennis" || nicheId === "laptop";
 /** Thread addresses that moved (a 301 from the old one, next.config.ts redirects): the sore-arms ranking is named for tennis
  *  elbow (owner 2026-11-19). */
 /** The tennis elbow ranking's slug: the ranking, the elbow guide's picks and links, and the home's Top picks all read it. */
@@ -43,11 +43,13 @@ export const accountSite = (nicheId: string) => ACCOUNT_SITES.includes(nicheId);
 /** Each Thread site's quick match, as its home shows it: "engine" = level · style · arm (app/thread/live/lists.tsx MatchBox,
  *  with the site's own styles and arm words), "skin" = skin type · goal · sensitive (live/skin-match.tsx). A site not listed
  *  has none, so its ranking pages show no "See how you match" card (owner report 2026-11-21: SkinRecs showed padel's). */
-export const QUICK_MATCH: Record<string, "engine" | "skin"> = { padel: "engine", pickleball: "engine", discgolf: "engine", skin: "skin", tennis: "engine" };
+/** "laptop" = what you use it for · what you want · quiet fans (lib/laptop-match.ts, app/thread/live/laptop-match.tsx). */
+export const QUICK_MATCH: Record<string, "engine" | "skin" | "laptop"> = { padel: "engine", pickleball: "engine", discgolf: "engine", skin: "skin", tennis: "engine", laptop: "laptop" };
 export const quickMatchFor = (nicheId: string) => QUICK_MATCH[nicheId] ?? null;
 /** The PadelRecs v3 pages (home, catalogue, product page, compare, rankings; owner 2026-11-21) and the sites rolled onto them
  *  (V3-ROLLOUT-BRIEF: AudioRecs first). No score anywhere on these. */
-export const V3_SITES = ["padel", "audio", "simracing", "tennis", "pickleball", "discgolf", "skin"];
+// LaptopRecs (owner 2026-11-24: "change laptop ... to the new design", PickleballRecs as the default copy).
+export const V3_SITES = ["padel", "audio", "simracing", "tennis", "pickleball", "discgolf", "skin", "laptop"];
 export const v3Site = (nicheId: string) => V3_SITES.includes(nicheId);
 
 /** The v3 home's two community sections, per site (owner 2026-11-22). "Just in" only where model years are real (padel,
@@ -68,6 +70,7 @@ const QUESTION_WORDS: Record<string, { one: string; many: string; page: string }
   simracing: { one: "sim racing product", many: "sim racing gear", page: "product" },
   audio: { one: "headphone or IEM", many: "headphones and IEMs", page: "product" },
   skin: { one: "product", many: "skincare", page: "product" },
+  laptop: { one: "laptop", many: "laptops", page: "laptop" },
 };
 export const questionWords = (nicheId: string) => QUESTION_WORDS[nicheId] ?? QUESTION_WORDS.padel!;
 
@@ -99,11 +102,20 @@ export const creatorPageFor = (nicheId: string, slug: string) => CREATOR_PAGE_SI
  *  more creator reviews (one per reviewer, TikTok channels once) gets the creator page (app/thread/creator-page.tsx) at its
  *  normal address, and "/" gets the creators home (app/thread/creators-home-body.tsx). Every other product keeps today's
  *  page. Set a site to false to switch it all off at once. */
-export const CREATOR_PAGE: Record<string, boolean> = { pickleball: true, skin: true, padel: true };
+export const CREATOR_PAGE: Record<string, boolean> = { pickleball: true, skin: true, padel: true, laptop: true };
 export const creatorPageOn = (nicheId: string) => CREATOR_PAGE[nicheId] ?? false;
 /** The creators home at "/" (app/thread/creators-home-body.tsx), apart from the product page switch: SkinRecs (owner "Yes,
  *  Skin next" 2026-11-23) moves its product pages first and keeps its own home for now. PadelRecs (owner 2026-11-24: "we can
  *  use pickleball from now on as the default copy for the sites"): false brings back padel's v3 home. */
-export const CREATOR_HOME: Record<string, boolean> = { pickleball: true, padel: true };
+export const CREATOR_HOME: Record<string, boolean> = { pickleball: true, padel: true, laptop: true };
 export const creatorHomeOn = (nicheId: string) => creatorPageOn(nicheId) && (CREATOR_HOME[nicheId] ?? false);
 export const CREATOR_MIN_REVIEWS = 3;
+/** Creator pages on a site that is not a Thread site (LaptopRecs, 2026-11-24): proxy.ts serves its product addresses for the
+ *  products in db/creators/<site>-pages.json from app/thread/creator-product/[slug], which shows the creator page when the
+ *  product has CREATOR_MIN_REVIEWS or more reviews in the database (drizzle/0039-0041) and today's product page otherwise.
+ *  Thread links (lib/thread/look.ts th) stay plain addresses there, and the page leaves out the Thread-only parts (the fit
+ *  check, the vote boxes, the discussion). Set CREATOR_PAGE to false for the site to switch it off. */
+// LaptopRecs moved onto the Thread pages (2026-11-24), so its creator pages come from the Thread product page like
+// PickleballRecs'. The list stays for a future non-Thread site.
+export const CREATOR_PLAIN_SITES: string[] = [];
+export const creatorPlainSite = (nicheId: string) => CREATOR_PLAIN_SITES.includes(nicheId);
