@@ -1,0 +1,6969 @@
+{
+ "about": "PadelRecs creator cards, owner 2026-11-25: video chapters (titles in English, intro/outro/price/discount chapters left out) and length from YouTube (videos.list fetched 2026-11-25), quotes in English (quote_was = the creator's own words). Applied by scripts/padel-creator-english.mts.",
+ "cards": {
+  "cr_c9065b164e98d5d3": {
+   "duration_s": 89,
+   "quote": "It doesn't help you, but it amplifies what you do.",
+   "quote_was": "Elle ne t'aide pas, mais elle amplifie ce que tu fais."
+  },
+  "cr_94ac57baa76686e1": {
+   "duration_s": 42,
+   "quote": "It's the most versatile racket I've found in the whole Bullpadel line",
+   "quote_was": "es la pala más polivalente que he encontrado en toda la línea de Bullpadel"
+  },
+  "cr_3d10fdee341fdefd": {
+   "duration_s": 53,
+   "quote": "This racket is a true classic",
+   "quote_was": "Det her bat er en sand klassiker"
+  },
+  "cr_b0fd447dcbe0e63a": {
+   "duration_s": 1394,
+   "quote": "Not a cannon, but if you push, the ball comes out.",
+   "quote_was": "Non un cannone, ma se spingi la palla esce."
+  },
+  "cr_19d6ddd24718a4ec": {
+   "duration_s": 787,
+   "quote": "The feeling of control on this Vertex 05 is very good",
+   "quote_was": "la sensación de control de esta verte 05 es muy buena"
+  },
+  "cr_61b5019bddaf7d76": {
+   "duration_s": 695,
+   "chapters": [
+    [
+     40,
+     "Technical specs"
+    ],
+    [
+     265,
+     "On-court test"
+    ],
+    [
+     535,
+     "Who I recommend the Vertex 05 for"
+    ],
+    [
+     555,
+     "Final conclusion"
+    ]
+   ],
+   "quote": "It's a racket that will help you a lot to move up a level",
+   "quote_was": "es una pala que te va a ayudar muchísimo a subir de nivel"
+  },
+  "cr_7960e0c04cb15587": {
+   "duration_s": 1221
+  },
+  "cr_1deccb7bd23a9c69": {
+   "duration_s": 548,
+   "chapters": [
+    [
+     116,
+     "Back of the court"
+    ],
+    [
+     180,
+     "Volley"
+    ],
+    [
+     270,
+     "Víbora and bandeja"
+    ],
+    [
+     320,
+     "Smash"
+    ],
+    [
+     443,
+     "Conclusions"
+    ]
+   ],
+   "quote": "We've always said the Vertex is a super versatile racket",
+   "quote_was": "Siempre hemos dicho que la Vertex es una pala super polivalente"
+  },
+  "cr_f2fdaf5da870d71c": {
+   "duration_s": 302,
+   "quote": "It's very easy to control all over the court",
+   "quote_was": "se controla muy bien en toda la cancha"
+  },
+  "cr_0e645d3574bc2a45": {
+   "duration_s": 763,
+   "quote": "I find the slice on this Vertex 05 excellent.",
+   "quote_was": "Trovo eccellente il taglio di questa Vertex 05."
+  },
+  "cr_b48300c7b50f0905": {
+   "duration_s": 254,
+   "quote": "It's much more powerful than the previous version.",
+   "quote_was": "C'est bien plus puissant que la version précédente."
+  },
+  "cr_f52e562c78ed53c1": {
+   "duration_s": 596,
+   "quote": "It also feels like it has a bigger sweet spot",
+   "quote_was": "Da la sensación de tener un punto dulce más amplio también"
+  },
+  "cr_31803277f3f8cf67": {
+   "duration_s": 337
+  },
+  "cr_bd36a2b7abe4e63d": {
+   "duration_s": 557,
+   "chapters": [
+    [
+     97,
+     "My picks for intermediates"
+    ],
+    [
+     215,
+     "5th favourite"
+    ],
+    [
+     275,
+     "4th favourite"
+    ],
+    [
+     328,
+     "3rd and 2nd favourite"
+    ],
+    [
+     427,
+     "My favourite racket of 2026"
+    ]
+   ]
+  },
+  "cr_9d75f7841ccc649a": {
+   "duration_s": 434,
+   "quote": "You really feel more power, but for me the control is much harder",
+   "quote_was": "Powernya emang lebih kerasa, cuma untuk kontrolnya buat gua jauh lebih sulit"
+  },
+  "cr_5b40c61cbf77d748": {
+   "duration_s": 1084,
+   "quote": "The sweet spot is bigger and better than on the 12K",
+   "quote_was": "Il punto dolce è più ampio e migliore rispetto alla 12K"
+  },
+  "cr_3c9bf4693b541379": {
+   "duration_s": 1109,
+   "chapters": [
+    [
+     199,
+     "Level"
+    ],
+    [
+     231,
+     "Technical features"
+    ],
+    [
+     304,
+     "From the back of the court"
+    ],
+    [
+     357,
+     "Test from the back"
+    ],
+    [
+     447,
+     "At the net"
+    ],
+    [
+     532,
+     "Test at the net"
+    ],
+    [
+     627,
+     "Overheads"
+    ],
+    [
+     672,
+     "Overhead test"
+    ],
+    [
+     767,
+     "First challenge"
+    ],
+    [
+     895,
+     "Second challenge"
+    ],
+    [
+     1037,
+     "Scores (12 categories)"
+    ],
+    [
+     1078,
+     "Average scores of 2026 rackets"
+    ]
+   ],
+   "quote": "It's a racket that demands technique and precision",
+   "quote_was": "è una racchetta che richiede tecnica e precisione"
+  },
+  "cr_6876d0dcaf7330bf": {
+   "duration_s": 92
+  },
+  "cr_b5d7a1dd5965223f": {
+   "duration_s": 389,
+   "quote": "It's an extremely manoeuvrable racket",
+   "quote_was": "es una pala extremadamente manejable"
+  },
+  "cr_1efbe8ca5327f9fe": {
+   "duration_s": 726,
+   "quote": "It's like getting more with less",
+   "quote_was": "Es como conseguir más con menos"
+  },
+  "cr_c988a123ac6feaa6": {
+   "duration_s": 617,
+   "quote": "A manoeuvrable racket with a big sweet spot that you don't feel in your arm",
+   "quote_was": "Una pala maneggevole con punto dolce ampio che non senti sul braccio"
+  },
+  "cr_4b76896353b51170": {
+   "duration_s": 706,
+   "chapters": [
+    [
+     80,
+     "The 3 new 2026 technologies"
+    ],
+    [
+     175,
+     "Description and lab measurements"
+    ],
+    [
+     375,
+     "On-court test: how it feels"
+    ],
+    [
+     585,
+     "Conclusion and advice for players"
+    ]
+   ]
+  },
+  "cr_9d757b683435395c": {
+   "duration_s": 613,
+   "chapters": [
+    [
+     84,
+     "Main features"
+    ],
+    [
+     238,
+     "Feel on court"
+    ],
+    [
+     513,
+     "Who it is for"
+    ]
+   ],
+   "quote": "Honestly, I think it's a great racket",
+   "quote_was": "creo que es un palón, la verdad"
+  },
+  "cr_d12e45812b442766": {
+   "duration_s": 1687,
+   "chapters": [
+    [
+     130,
+     "Endure V1"
+    ],
+    [
+     330,
+     "Endure Pro"
+    ],
+    [
+     554,
+     "V1 and Pro walkthrough"
+    ],
+    [
+     900,
+     "Endure LS"
+    ],
+    [
+     1125,
+     "LS walkthrough"
+    ]
+   ]
+  },
+  "cr_6bf60cca5732bb25": {
+   "duration_s": 1061,
+   "quote": "It's the same as the white one, but softer and bouncier, let's say.",
+   "quote_was": "Es igual que la blanca, pero más blandita, más rebotona, diríamos."
+  },
+  "cr_77ec4fed12037a39": {
+   "duration_s": 83
+  },
+  "cr_94686902837132cd": {
+   "duration_s": 57,
+   "quote": "A super light racket with a giant sweet spot.",
+   "quote_was": "Pala superligera con un punto dulce gigante."
+  },
+  "cr_a968f197f5042786": {
+   "duration_s": 89,
+   "quote": "It's a really reassuring racket.",
+   "quote_was": "C'est une raquette super rassurante."
+  },
+  "cr_c10f6ff1c7f1fd96": {
+   "duration_s": 114
+  },
+  "cr_3b84602adefeaa80": {
+   "duration_s": 917,
+   "quote": "And for me the Pro is the hardest one to get power out of",
+   "quote_was": "Y la Pro para mí es la que más difícil es sacarle potencia"
+  },
+  "cr_586220886ba8d57e": {
+   "duration_s": 266,
+   "chapters": [
+    [
+     22,
+     "The range"
+    ],
+    [
+     81,
+     "Differences between the models"
+    ],
+    [
+     146,
+     "On-court test"
+    ],
+    [
+     209,
+     "Conclusion: which Endure to choose?"
+    ]
+   ],
+   "quote": "It's truly the one that offers the most precision",
+   "quote_was": "it’s truly the one that offers the most precision"
+  },
+  "cr_852fe467871d9423": {
+   "duration_s": 832,
+   "quote": "It's a racket with easy power.",
+   "quote_was": "Es una pala de potencia fácil."
+  },
+  "cr_c99671006ee6ae8e": {
+   "duration_s": 146,
+   "quote": "It isn't born a cannon, but it's a fine rifle",
+   "quote_was": "Non nasce come cannone, ma è un bel fucile"
+  },
+  "cr_e70b63026231e48c": {
+   "duration_s": 686
+  },
+  "cr_a0cd94411fbb3aab": {
+   "duration_s": 91
+  },
+  "cr_57ec23948bb98771": {
+   "duration_s": 204
+  },
+  "cr_079493d33591a482": {
+   "duration_s": 115
+  },
+  "cr_1f46938b968c3237": {
+   "duration_s": 72,
+   "quote": "I felt I always hit it well",
+   "quote_was": "Sentí que siempre le pegué bien"
+  },
+  "cr_1db849fe4ac60a87": {
+   "duration_s": 472,
+   "chapters": [
+    [
+     145,
+     "Neuron range"
+    ],
+    [
+     214,
+     "Xplo range"
+    ],
+    [
+     308,
+     "Hack range"
+    ],
+    [
+     364,
+     "Most power vs most control"
+    ],
+    [
+     410,
+     "Stan's favourite"
+    ],
+    [
+     429,
+     "Ewan's favourite"
+    ]
+   ]
+  },
+  "cr_fb79d0141f74a35d": {
+   "duration_s": 548,
+   "chapters": [
+    [
+     116,
+     "Back of the court"
+    ],
+    [
+     180,
+     "Volley"
+    ],
+    [
+     270,
+     "Víbora and bandeja"
+    ],
+    [
+     320,
+     "Smash"
+    ],
+    [
+     443,
+     "Conclusions"
+    ]
+   ],
+   "quote": "The Geo is more explosive, it definitely feels a bit more aggressive",
+   "quote_was": "La Geo es más explosiva, definitivamente sí se siente algo más agresiva"
+  },
+  "cr_95f2d438842aa0dd": {
+   "duration_s": 302,
+   "quote": "This racket sends the ball off a bit faster",
+   "quote_was": "esta paleta despida un poco más rápido"
+  },
+  "cr_383f57ef77d250af": {
+   "duration_s": 971,
+   "quote": "It's definitely not a racket that blasts holes in the ground",
+   "quote_was": "sicuramente non è una palla che fa i buchi per terra"
+  },
+  "cr_1b4b08a0649a8886": {
+   "duration_s": 460,
+   "quote": "A fairly versatile racket, and a very manoeuvrable one",
+   "quote_was": "una pala bastante polivalente, que es una pala muy manejable"
+  },
+  "cr_68e785106efd7dad": {
+   "duration_s": 655
+  },
+  "cr_e414941faba80307": {
+   "duration_s": 75,
+   "quote": "It gives optimal ball control",
+   "quote_was": "Elle offre un contrôle de balle optimal"
+  },
+  "cr_97959f7bbb045435": {
+   "duration_s": 254,
+   "quote": "The racket vibrates less and it's more stable",
+   "quote_was": "la raquette, elle vibre moins et elle est plus stable"
+  },
+  "cr_702e6853c9c4a0b4": {
+   "duration_s": 79,
+   "quote": "It's a direct, dry racket, with loads of power and no concessions.",
+   "quote_was": "Es una pala directa, seca, con muchísima potencia y sin concesiones."
+  },
+  "cr_4edaf5ca11972534": {
+   "duration_s": 337
+  },
+  "cr_f6155945dc0c1c54": {
+   "duration_s": 928,
+   "chapters": [
+    [
+     72,
+     "Technical specs"
+    ],
+    [
+     376,
+     "First impressions"
+    ],
+    [
+     435,
+     "On-court test"
+    ],
+    [
+     537,
+     "Final conclusion"
+    ]
+   ],
+   "quote": "It's a racket that can play fully offensive or fully defensive",
+   "quote_was": "Es una pala que puede jugar totalmente ofensivo o totalmente defensivo"
+  },
+  "cr_949b1107501a4810": {
+   "duration_s": 164,
+   "chapters": [
+    [
+     38,
+     "Specs and technology"
+    ],
+    [
+     63,
+     "Design and first impressions"
+    ],
+    [
+     85,
+     "Defence, firm feel and control"
+    ],
+    [
+     126,
+     "Volleys, balance and attacking play"
+    ],
+    [
+     145,
+     "Power and final thoughts"
+    ]
+   ]
+  },
+  "cr_a6a44a320d26dbec": {
+   "duration_s": 640,
+   "chapters": [
+    [
+     60,
+     "The AT10"
+    ],
+    [
+     145,
+     "Back of the court"
+    ],
+    [
+     250,
+     "Volleys"
+    ],
+    [
+     385,
+     "Víbora"
+    ],
+    [
+     445,
+     "Smash"
+    ],
+    [
+     509,
+     "Conclusion"
+    ]
+   ],
+   "quote": "The manoeuvrability is really incredible.",
+   "quote_was": "La maniabilité est vraiment incroyable."
+  },
+  "cr_a684bd9e9b8025d0": {
+   "duration_s": 1380,
+   "quote": "This year I'd class it as a racket with easy power.",
+   "quote_was": "Es una pala que yo este año la catalogaría de potencia fácil."
+  },
+  "cr_9849336a7fa6453e": {
+   "duration_s": 977,
+   "quote": "I really liked how comfortable this racket is.",
+   "quote_was": "Ho apprezzato molto il comfort di questa pala."
+  },
+  "cr_7740303d4feb6b1b": {
+   "duration_s": 706,
+   "chapters": [
+    [
+     80,
+     "The 3 new 2026 technologies"
+    ],
+    [
+     175,
+     "Description and lab measurements"
+    ],
+    [
+     375,
+     "On-court test: how it feels"
+    ],
+    [
+     585,
+     "Conclusion and advice for players"
+    ]
+   ],
+   "quote": "It's a great racket for volleys",
+   "quote_was": "c'est une super raquette au niveau de la volée"
+  },
+  "cr_42e7fafececd8dab": {
+   "duration_s": 1141,
+   "quote": "The best Tapia racket ever",
+   "quote_was": "La miglior tapia di sempre"
+  },
+  "cr_bdc91404525abb45": {
+   "duration_s": 915,
+   "chapters": [
+    [
+     244,
+     "Volleys and net play"
+    ],
+    [
+     314,
+     "Overheads: víbora and bandeja"
+    ],
+    [
+     357,
+     "Basic shots: forehand, backhand and lob"
+    ],
+    [
+     430,
+     "Low wall exits"
+    ],
+    [
+     477,
+     "High wall exits"
+    ],
+    [
+     525,
+     "Sweet spot"
+    ],
+    [
+     555,
+     "Blocks"
+    ],
+    [
+     595,
+     "Feel at impact"
+    ],
+    [
+     637,
+     "Smash"
+    ],
+    [
+     724,
+     "Who is this racket for?"
+    ]
+   ]
+  },
+  "cr_0a510a26e3ff2a04": {
+   "duration_s": 540,
+   "quote": "For me it's a very versatile racket",
+   "quote_was": "es una pala para mí muy polivalente"
+  },
+  "cr_69aac535248458ba": {
+   "duration_s": 641,
+   "chapters": [
+    [
+     131,
+     "AT10 2026 vs 2025"
+    ],
+    [
+     300,
+     "AT10 hardness and ball exit"
+    ],
+    [
+     356,
+     "AT10 defence"
+    ],
+    [
+     428,
+     "AT10 volleys"
+    ],
+    [
+     487,
+     "AT10 bandeja and víbora"
+    ],
+    [
+     533,
+     "AT10 power"
+    ],
+    [
+     573,
+     "AT10 conclusions"
+    ]
+   ]
+  },
+  "cr_cabdd3ebe363fcc7": {
+   "duration_s": 1077,
+   "quote": "The feel on the face is top.",
+   "quote_was": "Il feeling proprio col piatto è top."
+  },
+  "cr_760902d516604c9b": {
+   "duration_s": 1083,
+   "chapters": [
+    [
+     160,
+     "Feel in defence"
+    ],
+    [
+     296,
+     "Defence on court"
+    ],
+    [
+     351,
+     "Feel on víbora and bandeja"
+    ],
+    [
+     482,
+     "Víbora and bandeja on court"
+    ],
+    [
+     555,
+     "Feel on volleys"
+    ],
+    [
+     650,
+     "Volleys on court"
+    ],
+    [
+     708,
+     "Feel on smashes"
+    ],
+    [
+     804,
+     "Smashes on court"
+    ],
+    [
+     823,
+     "Conclusion and opinion"
+    ]
+   ],
+   "quote": "It's a racket that handles very well",
+   "quote_was": "es una pala que se maneja muy bien"
+  },
+  "cr_61ccf88f6ce32dfd": {
+   "duration_s": 324,
+   "quote": "It's a racket that gives you lots of control with an extra bit of power",
+   "quote_was": "es una pala que te da mucho control con un extra de potencia"
+  },
+  "cr_4f9a5456edc601ed": {
+   "duration_s": 922,
+   "quote": "You really put the ball wherever you want",
+   "quote_was": "la palla veramente la metti dove vuoi tu"
+  },
+  "cr_1ac026e24a0ba65c": {
+   "duration_s": 401,
+   "quote": "I really, really liked how it plays.",
+   "quote_was": "Me ha gustado muchísimo su comportamiento."
+  },
+  "cr_b2e63b46b4030b9e": {
+   "duration_s": 1209,
+   "chapters": [
+    [
+     87,
+     "Level"
+    ],
+    [
+     305,
+     "Technical features"
+    ],
+    [
+     372,
+     "From the back of the court"
+    ],
+    [
+     424,
+     "Test from the back"
+    ],
+    [
+     514,
+     "At the net"
+    ],
+    [
+     586,
+     "Test at the net"
+    ],
+    [
+     707,
+     "Overheads"
+    ],
+    [
+     736,
+     "Overhead test"
+    ],
+    [
+     808,
+     "First challenge (Emiliano)"
+    ],
+    [
+     1016,
+     "Second challenge (Alvin)"
+    ],
+    [
+     1159,
+     "Scores (13 categories)"
+    ]
+   ],
+   "quote": "A racket for truly offensive right-side players, very explosive.",
+   "quote_was": "Una racchetta per giocatori offensivi veramente di destra, molto esplosiva."
+  },
+  "cr_59282737afeab5bd": {
+   "duration_s": 512,
+   "chapters": [
+    [
+     36,
+     "The range at a glance"
+    ],
+    [
+     110,
+     "The Bullpadel Neuron 02 in detail"
+    ],
+    [
+     198,
+     "The Bullpadel Neuron 02 Edge: precise power?"
+    ],
+    [
+     300,
+     "On court: how it feels"
+    ],
+    [
+     433,
+     "Summary and recommendations"
+    ],
+    [
+     466,
+     "Conclusion"
+    ]
+   ]
+  },
+  "cr_41370da7e5492577": {
+   "duration_s": 1032,
+   "quote": "Wow, it surprises in the air game because it feels powerful.",
+   "quote_was": "Ostras, que sorprende con el juego aéreo porque se siente potente."
+  },
+  "cr_6cdbee65606d8bfd": {
+   "duration_s": 802,
+   "chapters": [
+    [
+     178,
+     "Volleys and net play"
+    ],
+    [
+     223,
+     "Overheads: víbora and bandeja"
+    ],
+    [
+     270,
+     "Basic shots: forehand, backhand and lob"
+    ],
+    [
+     311,
+     "Feel at impact"
+    ],
+    [
+     355,
+     "Low wall exits"
+    ],
+    [
+     387,
+     "Sweet spot"
+    ],
+    [
+     421,
+     "High wall exits"
+    ],
+    [
+     466,
+     "Blocks"
+    ],
+    [
+     519,
+     "Smash"
+    ],
+    [
+     628,
+     "Who is this racket for?"
+    ]
+   ],
+   "quote": "It's really a racket that satisfies me a lot.",
+   "quote_was": "È davvero una pala che mi soddisfa veramente tanto."
+  },
+  "cr_3e3ac6f582402ec2": {
+   "duration_s": 283,
+   "quote": "It's a racket that doesn't push at the net",
+   "quote_was": "è una racchetta che davanti non spinge"
+  },
+  "cr_18f8e50623251662": {
+   "duration_s": 288
+  },
+  "cr_91a4af0c0cd93719": {
+   "duration_s": 978,
+   "quote": "It's a racket that works really, really well overhead",
+   "quote_was": "es una pala que funciona muy muy bien por arriba"
+  },
+  "cr_4d2fbfb10cd867e8": {
+   "duration_s": 473,
+   "quote": "The serves are powerful with this.",
+   "quote_was": "The serves are powerful with this."
+  },
+  "cr_3f5b979bd48e77ac": {
+   "duration_s": 1077
+  },
+  "cr_efe04bead2e14a61": {
+   "duration_s": 1444,
+   "quote": "A racket that gave me confidence",
+   "quote_was": "A racket that gave me confidence"
+  },
+  "cr_e4a8e640be34967c": {
+   "duration_s": 1364,
+   "quote": "At high pace it gives you great control of the game",
+   "quote_was": "ad alti ritmi ti permette un grande controllo di gioco"
+  },
+  "cr_8ceeabeaeaf99c02": {
+   "duration_s": 997,
+   "chapters": [
+    [
+     111,
+     "Feel in defence"
+    ],
+    [
+     237,
+     "Defence on court"
+    ],
+    [
+     295,
+     "Feel on víbora and bandeja"
+    ],
+    [
+     431,
+     "Víbora and bandeja on court"
+    ],
+    [
+     497,
+     "Feel on volleys"
+    ],
+    [
+     632,
+     "Volleys on court"
+    ],
+    [
+     703,
+     "Feel on smashes"
+    ],
+    [
+     764,
+     "Smashes on court"
+    ],
+    [
+     785,
+     "Conclusion and opinion"
+    ]
+   ],
+   "quote": "With this slightly higher hardness I have a much more controllable racket",
+   "quote_was": "tengo una pala bastante más controlable con esta dureza un poquito más alta"
+  },
+  "cr_d2c72b24765c2c83": {
+   "duration_s": 1794,
+   "chapters": [
+    [
+     120,
+     "Fenix and Pegasus"
+    ],
+    [
+     795,
+     "Electra Pro and Diablo"
+    ],
+    [
+     1302,
+     "Valkiria and Trilogy"
+    ]
+   ],
+   "quote": "There's a lot of good stuff in this racket.",
+   "quote_was": "Finns mycket bra grejer i det här racket."
+  },
+  "cr_2f9bdb9c122108c0": {
+   "duration_s": 720
+  },
+  "cr_a21a818739968507": {
+   "duration_s": 62,
+   "quote": "It's one of the best options we have on the market",
+   "quote_was": "es una de las mejores opciones que tenemos en el mercado"
+  },
+  "cr_b26fba38e0751cbb": {
+   "duration_s": 635
+  },
+  "cr_586f1efc1dd7aeb9": {
+   "duration_s": 245,
+   "chapters": [
+    [
+     14,
+     "Metalbone Team technical specs"
+    ],
+    [
+     60,
+     "What the Metalbone is"
+    ],
+    [
+     75,
+     "What's different from other rackets"
+    ],
+    [
+     92,
+     "How the Metalbone feels on court"
+    ],
+    [
+     124,
+     "Who should buy the Metalbone"
+    ],
+    [
+     140,
+     "Who shouldn't buy the Metalbone"
+    ]
+   ]
+  },
+  "cr_589bd61f59be6452": {
+   "duration_s": 147,
+   "chapters": [
+    [
+     11,
+     "On court"
+    ],
+    [
+     31,
+     "Unboxing"
+    ],
+    [
+     67,
+     "Review"
+    ]
+   ]
+  },
+  "cr_eac7500cffae7d7e": {
+   "duration_s": 409
+  },
+  "cr_bf9f36fcdc00c7be": {
+   "duration_s": 781,
+   "quote": "I'd go to war with it seven days a week.",
+   "quote_was": "Ci vado in guerra 7 giorni su sette."
+  },
+  "cr_f16aa5acada540a2": {
+   "duration_s": 624,
+   "chapters": [
+    [
+     48,
+     "The range: the look"
+    ],
+    [
+     79,
+     "Technologies"
+    ],
+    [
+     173,
+     "Lab measurements: real weight, balance and swingweight"
+    ],
+    [
+     297,
+     "On-court test: defence, volleys and smashes"
+    ],
+    [
+     506,
+     "Summary"
+    ],
+    [
+     533,
+     "Scores: ideal player and limits"
+    ]
+   ],
+   "quote": "With the Metalbone, it's super easy.",
+   "quote_was": "Pour la métal bon, c'est hyper facile."
+  },
+  "cr_69b40abadcec8d4d": {
+   "duration_s": 408
+  },
+  "cr_4be8f3dfef24b5a3": {
+   "duration_s": 551,
+   "chapters": [
+    [
+     121,
+     "Volleys and net play"
+    ],
+    [
+     147,
+     "Overheads: víbora and bandeja"
+    ],
+    [
+     188,
+     "Basic shots: forehand and backhand"
+    ],
+    [
+     232,
+     "Low wall exits"
+    ],
+    [
+     242,
+     "Sweet spot"
+    ],
+    [
+     313,
+     "High wall exits"
+    ],
+    [
+     345,
+     "Blocks"
+    ],
+    [
+     380,
+     "Smash"
+    ],
+    [
+     440,
+     "Who is this racket for?"
+    ]
+   ],
+   "quote": "I feel nothing in my arm, really, really excellent.",
+   "quote_was": "non sento nulla sul braccio, davvero davvero eccellente."
+  },
+  "cr_2e24d99245e6f54c": {
+   "duration_s": 1559
+  },
+  "cr_43b37767e64296db": {
+   "duration_s": 147
+  },
+  "cr_0399454f0ccd812a": {
+   "duration_s": 1227,
+   "quote": "A very powerful racket, one of the most powerful I've tested, no doubt",
+   "quote_was": "una pala muy potente de las más potentes que he probado sin duda"
+  },
+  "cr_82ac8a98a133f76c": {
+   "duration_s": 779,
+   "chapters": [
+    [
+     42,
+     "Head Coello: design"
+    ],
+    [
+     64,
+     "Head Coello: technologies"
+    ],
+    [
+     220,
+     "Head Coello: specs"
+    ],
+    [
+     263,
+     "On-court comparison: defence, net, transitions, smash"
+    ],
+    [
+     640,
+     "Which Coello 2026 is for you?"
+    ]
+   ],
+   "quote": "It's a point-winning machine",
+   "quote_was": "c'est une machine à gagner le point"
+  },
+  "cr_483e85809618ba08": {
+   "duration_s": 988,
+   "quote": "I really like how you handle the ball from the back.",
+   "quote_was": "Mi piace proprio il modo in cui si gestisce palla dal fondo."
+  },
+  "cr_61ec46a13726c3c8": {
+   "duration_s": 509
+  },
+  "cr_90dc8ed65aa94e05": {
+   "duration_s": 1180,
+   "chapters": [
+    [
+     128,
+     "Level"
+    ],
+    [
+     173,
+     "Technical features"
+    ],
+    [
+     284,
+     "From the back of the court"
+    ],
+    [
+     329,
+     "Test from the back"
+    ],
+    [
+     475,
+     "At the net"
+    ],
+    [
+     548,
+     "Test at the net"
+    ],
+    [
+     710,
+     "Overheads"
+    ],
+    [
+     760,
+     "Overhead test"
+    ],
+    [
+     852,
+     "First challenge"
+    ],
+    [
+     980,
+     "Second challenge"
+    ],
+    [
+     1139,
+     "Scores (12 categories)"
+    ]
+   ],
+   "quote": "For an attacking racket, it's the sweet spot that surprises, in my view",
+   "quote_was": "è il punto dolce che sorprende secondo me per essere una racchetta d'attacco"
+  },
+  "cr_25b768c18d909771": {
+   "duration_s": 61
+  },
+  "cr_ae0eefbc8fd29a4f": {
+   "duration_s": 79,
+   "quote": "It's agile, stable and quite forgiving",
+   "quote_was": "Es ágil, estable y bastante permisiva"
+  },
+  "cr_d9c4161e753ad35c": {
+   "duration_s": 1614,
+   "quote": "I think it's my number one",
+   "quote_was": "je crois que c'est mon top 1"
+  },
+  "cr_0f7d6876fb95efa1": {
+   "duration_s": 472,
+   "chapters": [
+    [
+     145,
+     "Neuron range"
+    ],
+    [
+     214,
+     "Xplo range"
+    ],
+    [
+     308,
+     "Hack range"
+    ],
+    [
+     364,
+     "Most power vs most control"
+    ],
+    [
+     410,
+     "Stan's favourite"
+    ],
+    [
+     429,
+     "Ewan's favourite"
+    ]
+   ]
+  },
+  "cr_a89f8d2c5e524561": {
+   "duration_s": 81,
+   "quote": "Smashes out over the fence are one of its strong points.",
+   "quote_was": "Los rulos a la reja son uno de sus puntos fuertes."
+  },
+  "cr_74d0bb56d05b6775": {
+   "duration_s": 937,
+   "chapters": [
+    [
+     25,
+     "Technical specs"
+    ],
+    [
+     235,
+     "First impressions"
+    ],
+    [
+     280,
+     "On-court test"
+    ],
+    [
+     380,
+     "Final conclusion: Xplo 2026"
+    ],
+    [
+     756,
+     "Final summary"
+    ]
+   ],
+   "quote": "I like that dry little touch it gives you.",
+   "quote_was": "Me gusta ese tactito seco que te da."
+  },
+  "cr_507461fadf904500": {
+   "duration_s": 564,
+   "quote": "The control is really solid, for me it's the very best",
+   "quote_was": "ini kontrolnya mantap banget dan gua the best bangetlah ini"
+  },
+  "cr_1b2a8669c4451dd7": {
+   "duration_s": 1032,
+   "quote": "It feels much more controllable at high pace",
+   "quote_was": "se siente mucho más controlable a velocidades altas"
+  },
+  "cr_470757024dbfa348": {
+   "duration_s": 472,
+   "chapters": [
+    [
+     145,
+     "Neuron range"
+    ],
+    [
+     214,
+     "Xplo range"
+    ],
+    [
+     308,
+     "Hack range"
+    ],
+    [
+     364,
+     "Most power vs most control"
+    ],
+    [
+     410,
+     "Stan's favourite"
+    ],
+    [
+     429,
+     "Ewan's favourite"
+    ]
+   ]
+  },
+  "cr_200315da7e6cd8f8": {
+   "duration_s": 326,
+   "quote": "It's a very versatile racket that works quite well",
+   "quote_was": "es una pala muy polivalente, que va bastante bien"
+  },
+  "cr_46e025641426c289": {
+   "duration_s": 512,
+   "chapters": [
+    [
+     36,
+     "The range at a glance"
+    ],
+    [
+     110,
+     "The Bullpadel Neuron 02 in detail"
+    ],
+    [
+     198,
+     "The Bullpadel Neuron 02 Edge: precise power?"
+    ],
+    [
+     300,
+     "On court: how it feels"
+    ],
+    [
+     433,
+     "Summary and recommendations"
+    ],
+    [
+     466,
+     "Conclusion"
+    ]
+   ],
+   "quote": "The classic Neuron is a must of musts",
+   "quote_was": "le modèle Neuron classique, c'est un must de chez must"
+  },
+  "cr_3991a14d74375ed9": {
+   "duration_s": 1294,
+   "chapters": [
+    [
+     42,
+     "Technical specs"
+    ],
+    [
+     150,
+     "Screw weight settings"
+    ],
+    [
+     330,
+     "Back of the court"
+    ],
+    [
+     570,
+     "Volley"
+    ],
+    [
+     679,
+     "Víbora and bandeja"
+    ],
+    [
+     799,
+     "Smash"
+    ],
+    [
+     1143,
+     "Conclusions"
+    ]
+   ]
+  },
+  "cr_20b59bf31fdd5f6c": {
+   "duration_s": 799,
+   "chapters": [
+    [
+     60,
+     "The Metalbone"
+    ],
+    [
+     97,
+     "Back of the court"
+    ],
+    [
+     200,
+     "Volleys"
+    ],
+    [
+     388,
+     "Víbora"
+    ],
+    [
+     440,
+     "Smash"
+    ],
+    [
+     520,
+     "Conclusion"
+    ]
+   ],
+   "quote": "For the smash, really flawless, it smashes very, very hard",
+   "quote_was": "pour le smash, vraiment impeccable, ça smashe très très fort"
+  },
+  "cr_5d0e7486f4aff352": {
+   "duration_s": 97
+  },
+  "cr_01c5b7d3d8d9550c": {
+   "duration_s": 624,
+   "chapters": [
+    [
+     48,
+     "The range: the look"
+    ],
+    [
+     79,
+     "Technologies"
+    ],
+    [
+     173,
+     "Lab measurements: real weight, balance and swingweight"
+    ],
+    [
+     297,
+     "On-court test: defence, volleys and smashes"
+    ],
+    [
+     506,
+     "Summary"
+    ],
+    [
+     533,
+     "Scores: ideal player and limits"
+    ]
+   ],
+   "quote": "It's really a weapon of mass destruction for truly advanced players",
+   "quote_was": "C'est vraiment une arme de destruction massive réservée à des joueurs vraiment avancés"
+  },
+  "cr_539fbce1fbe82b46": {
+   "duration_s": 1559
+  },
+  "cr_e3c6d38bc635cf47": {
+   "duration_s": 649,
+   "chapters": [
+    [
+     108,
+     "Volleys and net play"
+    ],
+    [
+     191,
+     "Overheads: víbora and bandeja"
+    ],
+    [
+     233,
+     "Sweet spot"
+    ],
+    [
+     254,
+     "Basic shots: forehand and backhand"
+    ],
+    [
+     290,
+     "Low wall exits"
+    ],
+    [
+     360,
+     "High wall exits"
+    ],
+    [
+     396,
+     "Blocks"
+    ],
+    [
+     434,
+     "Feel at impact"
+    ],
+    [
+     464,
+     "Smash"
+    ],
+    [
+     551,
+     "Who is this racket for?"
+    ]
+   ],
+   "quote": "Truly a serious contender to be number one for the smash.",
+   "quote_was": "Davvero la seria candidata a essere la numero uno per lo Smash."
+  },
+  "cr_6d538f4e5e3602bb": {
+   "duration_s": 958,
+   "chapters": [
+    [
+     177,
+     "Level"
+    ],
+    [
+     256,
+     "Technical features"
+    ],
+    [
+     375,
+     "From the back of the court"
+    ],
+    [
+     434,
+     "Test from the back"
+    ],
+    [
+     535,
+     "At the net"
+    ],
+    [
+     620,
+     "Test at the net"
+    ],
+    [
+     754,
+     "Overheads"
+    ],
+    [
+     824,
+     "Overhead test"
+    ],
+    [
+     909,
+     "Scores (13 categories)"
+    ],
+    [
+     944,
+     "Average scores"
+    ]
+   ],
+   "quote": "An offensive racket, very aggressive, but also very technical",
+   "quote_was": "una racchetta offensiva, molto aggressiva, però è molto tecnica anche"
+  },
+  "cr_d56dc6cb9cead6bf": {
+   "duration_s": 83
+  },
+  "cr_3e4a5bde45de96bd": {
+   "duration_s": 1143,
+   "chapters": [
+    [
+     226,
+     "Feel in defence"
+    ],
+    [
+     366,
+     "Defence on court"
+    ],
+    [
+     412,
+     "Feel on víbora and bandeja"
+    ],
+    [
+     566,
+     "Víbora and bandeja on court"
+    ],
+    [
+     646,
+     "Feel on volleys"
+    ],
+    [
+     758,
+     "Volleys on court"
+    ],
+    [
+     815,
+     "Feel on smashes"
+    ],
+    [
+     905,
+     "Smashes on court"
+    ],
+    [
+     927,
+     "Personal opinion and best feel"
+    ]
+   ],
+   "quote": "It's a racket that really doesn't forgive many mistakes",
+   "quote_was": "es una pala que realmente no te permite mucho fallo"
+  },
+  "cr_06b4c98b770edc94": {
+   "duration_s": 489,
+   "quote": "Great manoeuvrability when I play the ball off the high wall",
+   "quote_was": "grande la manovrabilità quando vado a fare l'uscita di parete alta"
+  },
+  "cr_50e2b2163cd96946": {
+   "duration_s": 936,
+   "quote": "I really like the racket from back here, from the back of the court.",
+   "quote_was": "Me gusta mucho la pala desde aquí, desde el fondo de pista."
+  },
+  "cr_38f2e59ab8a3cfca": {
+   "duration_s": 891,
+   "quote": "Truly fantastic spin, on par with the best in its class",
+   "quote_was": "Truly fantastic spin, on par with the top of the category"
+  },
+  "cr_b759913ed848c009": {
+   "duration_s": 1323,
+   "chapters": [
+    [
+     161,
+     "Level"
+    ],
+    [
+     210,
+     "Technical features"
+    ],
+    [
+     329,
+     "From the back of the court"
+    ],
+    [
+     393,
+     "Test from the back"
+    ],
+    [
+     538,
+     "At the net"
+    ],
+    [
+     650,
+     "Test at the net"
+    ],
+    [
+     812,
+     "Overheads"
+    ],
+    [
+     872,
+     "Overhead test"
+    ],
+    [
+     954,
+     "First challenge"
+    ],
+    [
+     1143,
+     "Second challenge"
+    ],
+    [
+     1274,
+     "Scores (13 categories)"
+    ]
+   ],
+   "quote": "What surprised me most is the control it has",
+   "quote_was": "what surprised me the most is the control that it has"
+  },
+  "cr_533285e268498e52": {
+   "duration_s": 1064
+  },
+  "cr_81196caa8a869fcb": {
+   "duration_s": 666,
+   "quote": "For a Soft, it doesn't seem soft to me, it feels like a hard racket",
+   "quote_was": "para ser soft no me parece que sea soft, me parece una pala dura"
+  },
+  "cr_d7f635b10cb86f71": {
+   "duration_s": 658,
+   "chapters": [
+    [
+     109,
+     "Volleys and net play"
+    ],
+    [
+     161,
+     "Overheads: víbora and bandeja"
+    ],
+    [
+     190,
+     "Basic shots: forehand, backhand and lob"
+    ],
+    [
+     242,
+     "Feel at impact"
+    ],
+    [
+     283,
+     "Low wall exits"
+    ],
+    [
+     324,
+     "High wall exits"
+    ],
+    [
+     413,
+     "Blocks"
+    ],
+    [
+     449,
+     "Sweet spot"
+    ],
+    [
+     472,
+     "Smash"
+    ],
+    [
+     539,
+     "Who is this racket for?"
+    ]
+   ],
+   "quote": "The way I play the lob with this racket is amazing.",
+   "quote_was": "Una cosa strepitosa come gioco il pallonetto con questa pala."
+  },
+  "cr_e83a477dbfc2458d": {
+   "duration_s": 589,
+   "chapters": [
+    [
+     81,
+     "Level"
+    ],
+    [
+     100,
+     "Technical features"
+    ],
+    [
+     183,
+     "From the baseline"
+    ],
+    [
+     203,
+     "At the net"
+    ],
+    [
+     221,
+     "Overheads"
+    ],
+    [
+     245,
+     "First challenge"
+    ],
+    [
+     412,
+     "Second challenge"
+    ],
+    [
+     541,
+     "Ratings"
+    ]
+   ]
+  },
+  "cr_23c0ef74ac7391e6": {
+   "duration_s": 637,
+   "quote": "The Viper Soft doesn't fall short at all",
+   "quote_was": "La Viper soft no se queda corta en absoluto"
+  },
+  "cr_87d096c840562a14": {
+   "duration_s": 645
+  },
+  "cr_3daa11894a1dd56f": {
+   "duration_s": 751,
+   "chapters": [
+    [
+     35,
+     "Specs"
+    ],
+    [
+     135,
+     "On-court test"
+    ],
+    [
+     390,
+     "Who I recommend it for"
+    ],
+    [
+     440,
+     "Final opinion"
+    ]
+   ],
+   "quote": "I love the feel it has",
+   "quote_was": "me encanta el tacto que tiene"
+  },
+  "cr_3e0f2be934eb8fc3": {
+   "duration_s": 353,
+   "quote": "For a power racket, you feel the ball really well",
+   "quote_was": "siendo de potencia se siente muy bien la bola"
+  },
+  "cr_81ad5c3f5e4be453": {
+   "duration_s": 601,
+   "chapters": [
+    [
+     26,
+     "Unboxing"
+    ],
+    [
+     88,
+     "Unboxing"
+    ],
+    [
+     152,
+     "Measurements and weight"
+    ],
+    [
+     188,
+     "Balance"
+    ],
+    [
+     212,
+     "Grip"
+    ],
+    [
+     246,
+     "Close-ups"
+    ],
+    [
+     263,
+     "Official specs"
+    ],
+    [
+     356,
+     "On-court test"
+    ],
+    [
+     368,
+     "Specs"
+    ],
+    [
+     386,
+     "First impressions"
+    ],
+    [
+     456,
+     "Important: keep this in mind"
+    ],
+    [
+     556,
+     "What other rackets it reminds me of"
+    ]
+   ],
+   "quote": "This is a demanding racket, a hard racket",
+   "quote_was": "Esta es una pala exigente, es una pala dura"
+  },
+  "cr_8b49c622cd18e6f9": {
+   "duration_s": 313
+  },
+  "cr_3abb159bb1736450": {
+   "duration_s": 79
+  },
+  "cr_c3eff43358e3fce4": {
+   "duration_s": 637,
+   "quote": "If you're well set and hit it with everything, the regular Viper wins.",
+   "quote_was": "Si te pilla bien plantado y le pegas con todo, la Viper normal gana."
+  },
+  "cr_d4e1317e871d0eef": {
+   "duration_s": 675
+  },
+  "cr_00114b46eb4c1f60": {
+   "duration_s": 1197,
+   "quote": "A racket with lots of control and lots of manoeuvrability.",
+   "quote_was": "Una pala que tiene mucho control y mucha manejabilidad."
+  },
+  "cr_efb0410a074c53d4": {
+   "duration_s": 425,
+   "chapters": [
+    [
+     56,
+     "The EA10 Ventus range"
+    ],
+    [
+     70,
+     "Nox technologies (EOS Tunnel, Custom Grip)"
+    ],
+    [
+     103,
+     "Lab analysis: weight, balance and stiffness"
+    ],
+    [
+     189,
+     "On-court test: defence and handling"
+    ],
+    [
+     341,
+     "Who is it for?"
+    ]
+   ],
+   "quote": "Its big strength is forgiveness and control.",
+   "quote_was": "Son gros point fort, c'est la tolérance et le contrôle."
+  },
+  "cr_a15c3afc53a05942": {
+   "duration_s": 1089,
+   "quote": "Hit well, they come out surgical; hit badly, much less so.",
+   "quote_was": "Impattati bene, vengono chirurgici, eh, impattati male decisamente meno."
+  },
+  "cr_d25bc18aebd5824d": {
+   "duration_s": 720,
+   "quote": "This EA10 is a super versatile racket",
+   "quote_was": "esta EA10 es una pala super polivalente"
+  },
+  "cr_7bff4ec6a26fce7c": {
+   "duration_s": 1015,
+   "chapters": [
+    [
+     91,
+     "Level"
+    ],
+    [
+     126,
+     "Technical features"
+    ],
+    [
+     164,
+     "From the back of the court"
+    ],
+    [
+     211,
+     "Test from the back"
+    ],
+    [
+     305,
+     "At the net"
+    ],
+    [
+     381,
+     "Test at the net"
+    ],
+    [
+     502,
+     "Overheads"
+    ],
+    [
+     547,
+     "Overhead test"
+    ],
+    [
+     613,
+     "First challenge (Emiliano)"
+    ],
+    [
+     806,
+     "Second challenge (Alvin)"
+    ],
+    [
+     977,
+     "Scores (13 categories)"
+    ]
+   ],
+   "quote": "From the back of the court, it's total control.",
+   "quote_was": "Da fondo campo è controllo totale."
+  },
+  "cr_a424c05f9de8337f": {
+   "duration_s": 749,
+   "chapters": [
+    [
+     64,
+     "EA10 Edu Alonso"
+    ],
+    [
+     75,
+     "Specs"
+    ],
+    [
+     102,
+     "Feel"
+    ],
+    [
+     134,
+     "AT10 Xtrem"
+    ],
+    [
+     219,
+     "Changing the weights"
+    ],
+    [
+     241,
+     "Fuji"
+    ],
+    [
+     338,
+     "Varlion Rega Maxima"
+    ],
+    [
+     377,
+     "Hardness"
+    ],
+    [
+     433,
+     "Who is it for?"
+    ],
+    [
+     452,
+     "Bullpadel Carona"
+    ],
+    [
+     497,
+     "Who is it for?"
+    ],
+    [
+     532,
+     "The rough face"
+    ],
+    [
+     610,
+     "My favourites"
+    ]
+   ],
+   "quote": "Lots of control at low pace, and it makes the hard things easy",
+   "quote_was": "mucho control a baja velocidad y que hace fácil lo difícil"
+  },
+  "cr_90b4d8ed63f4ded2": {
+   "duration_s": 114
+  },
+  "cr_47460ba5fd4ad870": {
+   "duration_s": 885
+  },
+  "cr_c664348ce9e377d2": {
+   "duration_s": 599
+  },
+  "cr_57af453a2b5dcb35": {
+   "duration_s": 1687,
+   "chapters": [
+    [
+     130,
+     "Endure V1"
+    ],
+    [
+     330,
+     "Endure Pro"
+    ],
+    [
+     554,
+     "V1 and Pro walkthrough"
+    ],
+    [
+     900,
+     "Endure LS"
+    ],
+    [
+     1125,
+     "LS walkthrough"
+    ]
+   ],
+   "quote": "You have the speed when you want it.",
+   "quote_was": "Du har farten när du vill ha det."
+  },
+  "cr_e2a892246b7f1308": {
+   "duration_s": 917,
+   "quote": "I think it's the most balanced racket in every area of the court.",
+   "quote_was": "Creo que es la pala más equilibrada en todas las zonas de pista."
+  },
+  "cr_8908c7e185be167e": {
+   "duration_s": 266,
+   "chapters": [
+    [
+     22,
+     "The range"
+    ],
+    [
+     81,
+     "Differences between the models"
+    ],
+    [
+     146,
+     "On-court test"
+    ],
+    [
+     209,
+     "Conclusion: which Endure to choose?"
+    ]
+   ],
+   "quote": "The classic version keeps very good precision and great control",
+   "quote_was": "The classic version retains very good precision and great control"
+  },
+  "cr_4ee28f82a20c8a75": {
+   "duration_s": 924,
+   "quote": "You start to notice a bit more body",
+   "quote_was": "ya se empieza a notar un poco más de cuerpo"
+  },
+  "cr_ea6f75a5a4d553f6": {
+   "duration_s": 767,
+   "quote": "It's a racket that responds very well",
+   "quote_was": "es una pala que responde muy bien"
+  },
+  "cr_1920d209ebeb88d8": {
+   "duration_s": 1048,
+   "quote": "It's a racket you'll move very quickly",
+   "quote_was": "Es una pala que vais a mover muy ágil"
+  },
+  "cr_f43a3cb267062c80": {
+   "duration_s": 779,
+   "chapters": [
+    [
+     42,
+     "Head Coello: design"
+    ],
+    [
+     64,
+     "Head Coello: technologies"
+    ],
+    [
+     220,
+     "Head Coello: specs"
+    ],
+    [
+     263,
+     "On-court comparison: defence, net, transitions, smash"
+    ],
+    [
+     640,
+     "Which Coello 2026 is for you?"
+    ]
+   ],
+   "quote": "It's much easier to play than the Pro",
+   "quote_was": "c'est bien plus facile à jouer que la pro"
+  },
+  "cr_8bf45205d4d54cc2": {
+   "duration_s": 813,
+   "chapters": [
+    [
+     58,
+     "Hack 03"
+    ],
+    [
+     425,
+     "Hack 04"
+    ],
+    [
+     733,
+     "Comparison results"
+    ]
+   ],
+   "quote": "The Hack 04 is an excellent racket, I strongly recommend it over the Hack 03",
+   "quote_was": "المضرب ممتاز الهاك فور انصح بيه بشده عن الهاك 3"
+  },
+  "cr_0313bd26e4489767": {
+   "duration_s": 836,
+   "quote": "It still has plenty of character, and when needed it can finish with real force",
+   "quote_was": "ha ancora il suo bel carattere e se serve sa chiudere con importante veemenza"
+  },
+  "cr_199c36831ef32e83": {
+   "duration_s": 1548,
+   "chapters": [
+    [
+     141,
+     "Level"
+    ],
+    [
+     177,
+     "Technical features"
+    ],
+    [
+     266,
+     "Weight and balance system"
+    ],
+    [
+     553,
+     "From the back of the court"
+    ],
+    [
+     670,
+     "Test from the back"
+    ],
+    [
+     801,
+     "At the net"
+    ],
+    [
+     886,
+     "Test at the net"
+    ],
+    [
+     1024,
+     "Overheads"
+    ],
+    [
+     1086,
+     "Overhead test"
+    ],
+    [
+     1180,
+     "First challenge"
+    ],
+    [
+     1285,
+     "Second challenge"
+    ],
+    [
+     1481,
+     "Scores (13 categories)"
+    ]
+   ],
+   "quote": "It's complete, dry and aggressive",
+   "quote_was": "it is complete, dry, aggressive"
+  },
+  "cr_ebaa901d23034ec7": {
+   "duration_s": 1293,
+   "chapters": [
+    [
+     126,
+     "Level"
+    ],
+    [
+     188,
+     "Technical features"
+    ],
+    [
+     274,
+     "From the back of the court"
+    ],
+    [
+     332,
+     "Test from the back"
+    ],
+    [
+     582,
+     "At the net"
+    ],
+    [
+     709,
+     "Test at the net"
+    ],
+    [
+     818,
+     "Overheads"
+    ],
+    [
+     884,
+     "Overhead test"
+    ],
+    [
+     1003,
+     "First challenge (Emiliano)"
+    ],
+    [
+     1136,
+     "Second challenge (Alvin)"
+    ],
+    [
+     1244,
+     "Scores (13 categories)"
+    ]
+   ]
+  },
+  "cr_41b99d129dad8619": {
+   "duration_s": 1129,
+   "quote": "It's a racket that works very well",
+   "quote_was": "it's a racket that works very well"
+  },
+  "cr_0ae91cf364d67bd8": {
+   "duration_s": 120
+  },
+  "cr_d83c184700c8c222": {
+   "duration_s": 556,
+   "chapters": [
+    [
+     87,
+     "Real weight"
+    ],
+    [
+     160,
+     "Volleys and net play"
+    ],
+    [
+     194,
+     "Overheads: víbora and bandeja"
+    ],
+    [
+     228,
+     "Basic shots: forehand and backhand"
+    ],
+    [
+     287,
+     "Low wall exits"
+    ],
+    [
+     334,
+     "High wall exits"
+    ],
+    [
+     381,
+     "Blocks"
+    ],
+    [
+     400,
+     "Smash"
+    ],
+    [
+     493,
+     "Final comments"
+    ]
+   ],
+   "quote": "On the rest of the shots it's truly exceptional.",
+   "quote_was": "Sul resto dei colpi è davvero eccezionale."
+  },
+  "cr_43c8a3a3945780a8": {
+   "duration_s": 211
+  },
+  "cr_a9fa09b4797d7612": {
+   "duration_s": 203,
+   "quote": "It's the most playable, most immediate Bela Pro",
+   "quote_was": "è la bella pro più giocabile, più immediata"
+  },
+  "cr_5d544ff11dbda4c9": {
+   "duration_s": 1349,
+   "quote": "It's a true all-rounder and does everything very well",
+   "quote_was": "è una all round per davvero e fa tutto molto bene"
+  },
+  "cr_064074f5d6bfeb4f": {
+   "duration_s": 571
+  },
+  "cr_c19f931d32cf99fa": {
+   "duration_s": 804,
+   "quote": "This is for the top advanced player",
+   "quote_was": "det här är för den toppavancerade spelaren"
+  },
+  "cr_5b8687a2ccca2e9d": {
+   "duration_s": 628,
+   "chapters": [
+    [
+     35,
+     "Specs"
+    ],
+    [
+     94,
+     "Design"
+    ],
+    [
+     114,
+     "Technologies"
+    ],
+    [
+     176,
+     "Lab analysis"
+    ],
+    [
+     250,
+     "On-court test"
+    ],
+    [
+     358,
+     "Summary and X-Compare"
+    ],
+    [
+     455,
+     "Who is it for?"
+    ],
+    [
+     505,
+     "The range"
+    ]
+   ],
+   "quote": "It has really superb grip on the ball.",
+   "quote_was": "Elle a vraiment une superbe accroche."
+  },
+  "cr_063f2b80dfee1164": {
+   "duration_s": 714,
+   "chapters": [
+    [
+     114,
+     "Volleys and net play"
+    ],
+    [
+     181,
+     "Overheads: víbora and bandeja"
+    ],
+    [
+     218,
+     "Feel at impact"
+    ],
+    [
+     311,
+     "Basic shots: forehand, backhand and lob"
+    ],
+    [
+     350,
+     "Sweet spot"
+    ],
+    [
+     382,
+     "Low wall exits"
+    ],
+    [
+     424,
+     "High wall exits"
+    ],
+    [
+     492,
+     "Blocks"
+    ],
+    [
+     524,
+     "Smash"
+    ],
+    [
+     615,
+     "Who is this racket for?"
+    ]
+   ]
+  },
+  "cr_7f429c32ac3cfb0a": {
+   "duration_s": 731,
+   "quote": "For me, the Arrow Hit experiment is a complete success.",
+   "quote_was": "Per me esperimento Arrow Hit completamente riuscito."
+  },
+  "cr_52a4d7302ac8792f": {
+   "duration_s": 756
+  },
+  "cr_709a040977fe29e9": {
+   "quote": "It's a racket that rewards attacking intent",
+   "quote_was": "C’est une raquette qui récompense l’intention offensive"
+  },
+  "cr_ae524259ea92262a": {
+   "duration_s": 1371,
+   "quote": "It's definitely a serious racket",
+   "quote_was": "it is definitely a serious racket"
+  },
+  "cr_c5248925e0411fef": {
+   "duration_s": 854,
+   "chapters": [
+    [
+     142,
+     "Real weight"
+    ],
+    [
+     194,
+     "Volleys and net play"
+    ],
+    [
+     250,
+     "Overheads: víbora and bandeja"
+    ],
+    [
+     335,
+     "Basic shots: forehand and backhand"
+    ],
+    [
+     425,
+     "Low wall exits"
+    ],
+    [
+     490,
+     "High wall exits"
+    ],
+    [
+     540,
+     "Blocks"
+    ],
+    [
+     602,
+     "Smash"
+    ]
+   ],
+   "quote": "Don't let the shape fool you, because it's an exceptional racket",
+   "quote_was": "non vi fate ingannare dalla forma perché è una pala eccezionale"
+  },
+  "cr_65ce76bbbc746a82": {
+   "duration_s": 411,
+   "chapters": [
+    [
+     22,
+     "Metalbone 3.4 2025 technical specs"
+    ],
+    [
+     160,
+     "Metalbone 3.4 2025 in defence"
+    ],
+    [
+     244,
+     "Metalbone 3.4 2025 on bandejas"
+    ],
+    [
+     293,
+     "Metalbone 3.4 2025 on smashes"
+    ],
+    [
+     350,
+     "Metalbone 3.4 2025: conclusion and opinion"
+    ]
+   ],
+   "quote": "Recommended for defence as well as attack",
+   "quote_was": "recomendada tanto en defensa como en ataque"
+  },
+  "cr_fb63b5383108da9f": {
+   "duration_s": 1310,
+   "quote": "For me, it's the one to buy in the Adidas range",
+   "quote_was": "per me è quella da comprare in ambito Adidas"
+  },
+  "cr_bd169568a5a2dcb3": {
+   "duration_s": 548,
+   "quote": "It's still the racket that pushes, but you have to know how",
+   "quote_was": "è rimasta la racchetta che spinge Ma devi saperlo fare"
+  },
+  "cr_b2c1673f4eff2a30": {
+   "duration_s": 1069,
+   "quote": "But man, the power you generate with this racket",
+   "quote_was": "But man, how you generate power with this racket"
+  },
+  "cr_721a9f1b327e63ef": {
+   "duration_s": 1252,
+   "chapters": [
+    [
+     126,
+     "Level"
+    ],
+    [
+     178,
+     "Technical features"
+    ],
+    [
+     288,
+     "From the back of the court"
+    ],
+    [
+     354,
+     "Test from the back"
+    ],
+    [
+     468,
+     "At the net"
+    ],
+    [
+     545,
+     "Test at the net"
+    ],
+    [
+     704,
+     "Overheads"
+    ],
+    [
+     804,
+     "Overhead test"
+    ],
+    [
+     885,
+     "First challenge"
+    ],
+    [
+     1016,
+     "Second challenge"
+    ],
+    [
+     1208,
+     "Scores (13 categories)"
+    ],
+    [
+     1247,
+     "Average scores of 2025 rackets"
+    ]
+   ],
+   "quote": "At last it doesn't vibrate, I really liked it",
+   "quote_was": "Finalmente non vibra mi è piaciuta proprio"
+  },
+  "cr_228476c578f2beee": {
+   "duration_s": 641,
+   "chapters": [
+    [
+     101,
+     "Real weight and balance"
+    ],
+    [
+     179,
+     "Volleys and net play"
+    ],
+    [
+     239,
+     "Overheads: víbora and bandeja"
+    ],
+    [
+     296,
+     "Basic shots: forehand and backhand"
+    ],
+    [
+     328,
+     "Low wall exits"
+    ],
+    [
+     366,
+     "High wall exits"
+    ],
+    [
+     410,
+     "Blocks"
+    ],
+    [
+     441,
+     "Smash"
+    ],
+    [
+     480,
+     "Final comments"
+    ]
+   ],
+   "quote": "It's a racket that gives me good comfort when I play",
+   "quote_was": "è una racchetta che mi dà un buon comfort di gioco"
+  },
+  "cr_abf0e8ff01748746": {
+   "duration_s": 437,
+   "chapters": [
+    [
+     14,
+     "Metalbone Carbon CTRL 3.4 2025 technical specs"
+    ],
+    [
+     154,
+     "Metalbone Carbon CTRL 3.4 2025 in defence"
+    ],
+    [
+     230,
+     "Metalbone Carbon CTRL 3.4 2025 on volleys"
+    ],
+    [
+     291,
+     "Metalbone Carbon CTRL 3.4 2025 in the air"
+    ],
+    [
+     345,
+     "Metalbone Carbon CTRL 3.4 2025: conclusion and opinion"
+    ]
+   ],
+   "quote": "A very good racket for players who like to defend with control",
+   "quote_was": "Muy buena pala para jugadores que les gusta defender con control"
+  },
+  "cr_8d5a54ec3fb8d051": {
+   "duration_s": 150
+  },
+  "cr_6fafa5ee60ef79f0": {
+   "duration_s": 213
+  },
+  "cr_f95455e4783714f1": {
+   "duration_s": 1559
+  },
+  "cr_c6d9826733563754": {
+   "duration_s": 1140,
+   "quote": "As of today, it's the Metalbone I would buy",
+   "quote_was": "ad oggi lei è la Metalbone che io comprerei"
+  },
+  "cr_e5117e42fd6c0dd4": {
+   "duration_s": 693,
+   "chapters": [
+    [
+     139,
+     "Real weight and balance"
+    ],
+    [
+     276,
+     "Volleys and net play"
+    ],
+    [
+     302,
+     "Overheads: víbora and bandeja"
+    ],
+    [
+     336,
+     "Basic shots: forehand and backhand"
+    ],
+    [
+     362,
+     "Feel at impact"
+    ],
+    [
+     389,
+     "Low wall exits"
+    ],
+    [
+     418,
+     "High wall exits"
+    ],
+    [
+     472,
+     "Blocks"
+    ],
+    [
+     487,
+     "Smash"
+    ],
+    [
+     531,
+     "Final comments"
+    ]
+   ],
+   "quote": "A really great racket on the basic shots",
+   "quote_was": "davvero un'ottima racchetta sui colpi basici"
+  },
+  "cr_ac0b36f1285de9d1": {
+   "duration_s": 267
+  },
+  "cr_2ceea32887f2c756": {
+   "quote": "A balanced, forgiving and very playable padel racket",
+   "quote_was": "una pala de pádel equilibrada, permisiva y muy jugable"
+  },
+  "cr_7d7f3c8d3cecfe48": {
+   "quote": "This racket rewards placement, not brute force.",
+   "quote_was": "Esta pala premia la colocación, no la fuerza bruta."
+  },
+  "cr_5fa7fc8682fc72c4": {
+   "duration_s": 1075
+  },
+  "cr_ae3b361bf4e18f26": {
+   "duration_s": 1169,
+   "quote": "A very well made racket, much nicer than the soft model",
+   "quote_was": "una pala molto ben riuscita molto più apprezzabile rispetto al modello soft"
+  },
+  "cr_e69a307a242c41f5": {
+   "duration_s": 985,
+   "chapters": [
+    [
+     107,
+     "Drax+"
+    ],
+    [
+     129,
+     "Astrum+"
+    ],
+    [
+     364,
+     "Triton Balance and Power"
+    ],
+    [
+     542,
+     "Raptor+"
+    ],
+    [
+     746,
+     "Black Titan"
+    ],
+    [
+     845,
+     "Kenta+"
+    ]
+   ],
+   "quote": "You could still feel the ball a bit",
+   "quote_was": "Kunde ändå känna bollen lite"
+  },
+  "cr_4388cce73a3b6841": {
+   "duration_s": 1393,
+   "chapters": [
+    [
+     180,
+     "Level"
+    ],
+    [
+     219,
+     "Technical features"
+    ],
+    [
+     382,
+     "From the back of the court"
+    ],
+    [
+     495,
+     "Test from the back"
+    ],
+    [
+     609,
+     "At the net"
+    ],
+    [
+     776,
+     "Test at the net"
+    ],
+    [
+     926,
+     "Overheads"
+    ],
+    [
+     970,
+     "Overhead test"
+    ],
+    [
+     1050,
+     "First challenge"
+    ],
+    [
+     1208,
+     "Second challenge"
+    ],
+    [
+     1342,
+     "Scores (13 categories)"
+    ]
+   ],
+   "quote": "It's a powerful racket that makes play that annoys the opponent",
+   "quote_was": "it's a powerful racket that creates play that annoys the opponent"
+  },
+  "cr_be75222ae22fa7f1": {
+   "duration_s": 883,
+   "chapters": [
+    [
+     140,
+     "Real weight"
+    ],
+    [
+     351,
+     "Volleys and net play"
+    ],
+    [
+     398,
+     "Overheads: víbora and bandeja"
+    ],
+    [
+     476,
+     "Basic shots: forehand and backhand"
+    ],
+    [
+     518,
+     "Low wall exits"
+    ],
+    [
+     567,
+     "High wall exits"
+    ],
+    [
+     631,
+     "Blocks"
+    ],
+    [
+     695,
+     "Smash"
+    ]
+   ],
+   "quote": "The best racket for the lob I've ever tested",
+   "quote_was": "la miglior Pala per il pallonetto che io abbia mai testato"
+  },
+  "cr_932d3ae30418df96": {
+   "duration_s": 458
+  },
+  "cr_6bde86aa5527c61e": {
+   "duration_s": 512,
+   "quote": "On the volley it blew me away",
+   "quote_was": "en la bolea me ha flipado"
+  },
+  "cr_0342c95a6349bfa3": {
+   "duration_s": 470,
+   "quote": "It's the must, the ideal for the left-side player",
+   "quote_was": "è il must l'ideale per il giocatore di sinistra"
+  },
+  "cr_c22e7d6f4ac26d2c": {
+   "duration_s": 1090,
+   "quote": "The sweet spot is bigger and the spin works more easily",
+   "quote_was": "il punto dolce è più grande lo spin lavora più facilmente"
+  },
+  "cr_c995922d5924b672": {
+   "duration_s": 1303,
+   "chapters": [
+    [
+     141,
+     "Level"
+    ],
+    [
+     236,
+     "Technical features"
+    ],
+    [
+     317,
+     "From the back of the court"
+    ],
+    [
+     430,
+     "Test from the back"
+    ],
+    [
+     560,
+     "At the net"
+    ],
+    [
+     614,
+     "Test at the net"
+    ],
+    [
+     747,
+     "Overheads"
+    ],
+    [
+     804,
+     "Overhead test"
+    ],
+    [
+     890,
+     "First challenge"
+    ],
+    [
+     1034,
+     "Second challenge"
+    ],
+    [
+     1239,
+     "Scores (13 categories)"
+    ],
+    [
+     1297,
+     "Average scores of 2025 rackets"
+    ]
+   ],
+   "quote": "It's not a cannon, but it's a racket that gives you total control.",
+   "quote_was": "It's not a cannon, but it's a racket with which you have total control."
+  },
+  "cr_1141a73287f4b523": {
+   "duration_s": 914,
+   "quote": "It's a racket that has gained sweet spot this year",
+   "quote_was": "es una pala que este año ha ganado en punto dulce"
+  },
+  "cr_61b91ad2eca684fd": {
+   "duration_s": 962,
+   "quote": "If you hit long with the Air Viper, it's your fault, no excuses.",
+   "quote_was": "Se vai lungo con l'Air Viper è colpa tua, non ci sono alternative."
+  },
+  "cr_7047a03c181273b5": {
+   "duration_s": 771,
+   "quote": "It's a racket that goes wonderfully on the volley.",
+   "quote_was": "Es una pala que en bolea va de maravilla."
+  },
+  "cr_e952db3b5b516404": {
+   "duration_s": 548,
+   "quote": "It's just powerful enough and just comfortable enough",
+   "quote_was": "è potente al punto giusto è confortevole al punto giusto"
+  },
+  "cr_7b52d7bcf7370b6f": {
+   "quote": "Handling is the Air Viper 2.5's showpiece",
+   "quote_was": "Das Handling ist die Paradedisziplin des Air Viper 2.5"
+  },
+  "cr_b3869804dab2b5ce": {
+   "duration_s": 712,
+   "quote": "The Blade is definitely a winner.",
+   "quote_was": "The blade is definitely a winner."
+  },
+  "cr_5b5c8ba09f7960b1": {
+   "duration_s": 1382,
+   "quote": "It's a racket that's easy to carry around the court",
+   "quote_was": "è una racchetta che si porta bene a spasso"
+  },
+  "cr_b242146c1672eeb7": {
+   "duration_s": 493,
+   "quote": "The control of pace seems very good to me",
+   "quote_was": "el control de las velocidades me parece muy bueno"
+  },
+  "cr_ef432d1e6895d440": {
+   "duration_s": 276,
+   "quote": "A manoeuvrable racket, easy to move and very comfortable",
+   "quote_was": "pala manejable, fácil de de mover y y muy cómoda"
+  },
+  "cr_20b35e0b1afc15d9": {
+   "duration_s": 481,
+   "chapters": [
+    [
+     51,
+     "Level"
+    ],
+    [
+     65,
+     "Technical features"
+    ],
+    [
+     91,
+     "From the baseline"
+    ],
+    [
+     114,
+     "At the net"
+    ],
+    [
+     131,
+     "Overheads"
+    ],
+    [
+     154,
+     "First challenge"
+    ],
+    [
+     288,
+     "Second challenge"
+    ],
+    [
+     405,
+     "Ratings"
+    ],
+    [
+     450,
+     "Average ratings 2026"
+    ]
+   ]
+  },
+  "cr_58a956c811f8454a": {
+   "duration_s": 833
+  },
+  "cr_dead0b3be44ab0ab": {
+   "duration_s": 1227,
+   "chapters": [
+    [
+     129,
+     "Level"
+    ],
+    [
+     144,
+     "Technical features"
+    ],
+    [
+     196,
+     "From the back of the court"
+    ],
+    [
+     262,
+     "Test from the back"
+    ],
+    [
+     396,
+     "At the net"
+    ],
+    [
+     449,
+     "Test at the net"
+    ],
+    [
+     573,
+     "Overheads"
+    ],
+    [
+     627,
+     "Overhead test"
+    ],
+    [
+     725,
+     "First challenge"
+    ],
+    [
+     875,
+     "Second challenge"
+    ],
+    [
+     1115,
+     "Scores (13 categories)"
+    ],
+    [
+     1169,
+     "Average scores of 2025 rackets"
+    ]
+   ],
+   "quote": "Smashing is a real pleasure with this one",
+   "quote_was": "Smashing is a pleasure with this, truly"
+  },
+  "cr_13098b1cbcc78138": {
+   "duration_s": 983,
+   "quote": "It has the best sweet spot of the Vipers",
+   "quote_was": "lei ha il punto dolce migliore tra le Viper"
+  },
+  "cr_305347f13bd1f738": {
+   "duration_s": 569,
+   "quote": "It can be hell or heaven: you either like it or you don't",
+   "quote_was": "Può essere l'inferno o il paradiso, o piacere o no"
+  },
+  "cr_80b75e9ce73e1b1f": {
+   "duration_s": 1202,
+   "quote": "The most accessible and most generous of Babolat's Vipers",
+   "quote_was": "la più accessibile e la più generosa delle Viper di Babolat"
+  },
+  "cr_42cb3a1cc203cb36": {
+   "duration_s": 602,
+   "chapters": [
+    [
+     71,
+     "Level"
+    ],
+    [
+     104,
+     "Technical features"
+    ],
+    [
+     140,
+     "From the baseline"
+    ],
+    [
+     166,
+     "At the net"
+    ],
+    [
+     195,
+     "Overheads"
+    ],
+    [
+     241,
+     "First challenge"
+    ],
+    [
+     384,
+     "Second challenge"
+    ],
+    [
+     511,
+     "Ratings"
+    ],
+    [
+     571,
+     "Average ratings 2026"
+    ]
+   ]
+  },
+  "cr_6c60370a81039e38": {
+   "duration_s": 580,
+   "quote": "This racket gives you power when you put power into it.",
+   "quote_was": "This racket will provide power when you put power into it."
+  },
+  "cr_80720d6b73410e8e": {
+   "duration_s": 618,
+   "chapters": [
+    [
+     14,
+     "2024 vs 2026"
+    ],
+    [
+     24,
+     "Technical differences"
+    ],
+    [
+     57,
+     "Defence"
+    ],
+    [
+     75,
+     "Volleys"
+    ],
+    [
+     104,
+     "Air game"
+    ],
+    [
+     132,
+     "Power and smash"
+    ],
+    [
+     160,
+     "Comfort and handling"
+    ],
+    [
+     185,
+     "Which one to choose?"
+    ],
+    [
+     245,
+     "Match highlights"
+    ]
+   ]
+  },
+  "cr_1e95744cc370f79b": {
+   "duration_s": 1006
+  },
+  "cr_1bb12b3df87fa862": {
+   "duration_s": 1216,
+   "quote": "The Technical Viper is the Technical Viper again",
+   "quote_was": "Technical Viper è tornata ad essere Technical Viper"
+  },
+  "cr_a735a2153023df03": {
+   "duration_s": 833,
+   "quote": "The Technical Viper isn't really the same as last year's",
+   "quote_was": "la technical Viper n'est plus vraiment la même que celle de l'année dernière"
+  },
+  "cr_31d2e520df210eba": {
+   "duration_s": 685,
+   "quote": "It has power to spare.",
+   "quote_was": "Va sobrada de potencia."
+  },
+  "cr_f3d8ad4e249cfb44": {
+   "duration_s": 308,
+   "quote": "I felt really at home with this racket.",
+   "quote_was": "Con esta pala yo me he encontrado muy a gusto."
+  },
+  "cr_2f12fa7d87610878": {
+   "duration_s": 1255,
+   "quote": "It's a racket that plays really, really well",
+   "quote_was": "è una racchetta lei che gioca veramente molto bene"
+  },
+  "cr_7234590bf6f8cef0": {
+   "duration_s": 860,
+   "chapters": [
+    [
+     149,
+     "Defence"
+    ],
+    [
+     275,
+     "Víbora and bandeja"
+    ],
+    [
+     375,
+     "Volley"
+    ],
+    [
+     498,
+     "Smash"
+    ],
+    [
+     628,
+     "Conclusion"
+    ]
+   ]
+  },
+  "cr_115fb70eb9922fbe": {
+   "duration_s": 980,
+   "quote": "This one also moves super well.",
+   "quote_was": "This one also moves super well."
+  },
+  "cr_1ec10d9fb6816a5e": {
+   "duration_s": 160
+  },
+  "cr_02bce3a4bed2a5e0": {
+   "duration_s": 1208,
+   "chapters": [
+    [
+     179,
+     "Feel in defence"
+    ],
+    [
+     311,
+     "Defence on court"
+    ],
+    [
+     403,
+     "Feel on víbora and bandeja"
+    ],
+    [
+     597,
+     "Víbora and bandeja on court"
+    ],
+    [
+     673,
+     "Feel on volleys"
+    ],
+    [
+     800,
+     "Volleys on court"
+    ],
+    [
+     871,
+     "Feel on smashes"
+    ],
+    [
+     968,
+     "Smashes on court"
+    ],
+    [
+     995,
+     "Conclusion and opinion"
+    ]
+   ]
+  },
+  "cr_4ff8bb4c487746ea": {
+   "duration_s": 1349
+  },
+  "cr_618f97ba992e6fec": {
+   "duration_s": 602,
+   "chapters": [
+    [
+     21,
+     "Design: two different profiles"
+    ],
+    [
+     69,
+     "Technologies: Hack Core 5 and ExoAir"
+    ],
+    [
+     118,
+     "Lab measurements: weight, balance and inertia"
+    ],
+    [
+     246,
+     "On-court test: feel and differences in play"
+    ],
+    [
+     470,
+     "Summary"
+    ]
+   ]
+  },
+  "cr_6de05e0b0dbfa3b9": {
+   "duration_s": 379,
+   "quote": "It's the option with the least risk of getting it wrong.",
+   "quote_was": "Es la opción con menos riesgo de equivocarse."
+  },
+  "cr_9d75cdf789d4b870": {
+   "duration_s": 223,
+   "quote": "It lets me place a fence smash comfortably, for example",
+   "quote_was": "Esto me permite colocar con comodidad un rulo por ejemplo"
+  },
+  "cr_1fb7c4b7b70a6aaa": {
+   "duration_s": 798
+  },
+  "cr_59304dbb48965d36": {
+   "duration_s": 1525,
+   "chapters": [
+    [
+     82,
+     "Elite W"
+    ],
+    [
+     192,
+     "Flow"
+    ],
+    [
+     302,
+     "Vertex 04 W"
+    ],
+    [
+     439,
+     "Neuron"
+    ],
+    [
+     592,
+     "Hack 04"
+    ],
+    [
+     817,
+     "Hack 04 Hybrid"
+    ],
+    [
+     925,
+     "Vertex 04 Hybrid"
+    ],
+    [
+     1028,
+     "Vertex 04"
+    ],
+    [
+     1194,
+     "Xplo"
+    ],
+    [
+     1370,
+     "How the review works"
+    ],
+    [
+     1392,
+     "Ranking"
+    ]
+   ],
+   "quote": "I like it a little more than the Hybrid on the volley.",
+   "quote_was": "I like it a little more than the Hybrid in the volley."
+  },
+  "cr_9e94b8c00b8a7c2c": {
+   "quote": "Keeping very high smash power without giving up manoeuvrability at the net",
+   "quote_was": "mantener una potencia de remate muy alta sin sacrificar la maniobrabilidad en la red"
+  },
+  "cr_61adf2737a770c37": {
+   "duration_s": 205
+  },
+  "cr_d61406d3f6defa99": {
+   "quote": "The bandeja comes out well placed and the víbora has enough bite to cause trouble.",
+   "quote_was": "La bandeja sale muy bien colocada y la víbora tiene mordida suficiente para incomodar."
+  },
+  "cr_0cac8f285bb72139": {
+   "duration_s": 791,
+   "quote": "This one has feel, and lots of it.",
+   "quote_was": "Questa di feeling ne ha e ne ha tanto."
+  },
+  "cr_59bd845ca4de2b72": {
+   "duration_s": 713,
+   "quote": "It's a great racket that lets me do a bit of everything",
+   "quote_was": "è un'ottima pala che mi fa fare un po' di tutto"
+  },
+  "cr_f29b3d68d71183fb": {
+   "duration_s": 1021,
+   "chapters": [
+    [
+     85,
+     "Level"
+    ],
+    [
+     186,
+     "Technical features"
+    ],
+    [
+     238,
+     "From the back of the court"
+    ],
+    [
+     284,
+     "Test from the back"
+    ],
+    [
+     395,
+     "At the net"
+    ],
+    [
+     484,
+     "Test at the net"
+    ],
+    [
+     589,
+     "Overheads"
+    ],
+    [
+     635,
+     "Overhead test"
+    ],
+    [
+     707,
+     "First challenge"
+    ],
+    [
+     846,
+     "Second challenge"
+    ],
+    [
+     968,
+     "Scores (13 categories)"
+    ],
+    [
+     1003,
+     "Season averages"
+    ]
+   ],
+   "quote": "The most offensive Vertex Woman ever",
+   "quote_was": "La Vertex Woman più offensiva di sempre"
+  },
+  "cr_7b6735c71d2682e6": {
+   "duration_s": 607
+  },
+  "cr_0dbce188b540163c": {
+   "quote": "The sweet spot is more generous than usual for a diamond.",
+   "quote_was": "El punto dulce es más generoso de lo habitual en una diamante."
+  },
+  "cr_07d0012fd93570d4": {
+   "duration_s": 788,
+   "quote": "For me and my style of smashing, it felt like a cannon.",
+   "quote_was": "For me and my style of smashing, it felt like a cannon."
+  },
+  "cr_b085b70271d8b5ac": {
+   "duration_s": 223,
+   "quote": "But if you're after an attacking game, it's a very good option.",
+   "quote_was": "Pero si buscas un juego ofensivo, es una muy buena opción."
+  },
+  "cr_8f2fe9280b020031": {
+   "duration_s": 744,
+   "quote": "Easy, almost comfortable to play high, deep lobs to push the opponents back",
+   "quote_was": "Facile, quasi confortevole fare pallonetti alti, profondi per rimandare indietro gli avversari"
+  },
+  "cr_28d3d0896df9567f": {
+   "duration_s": 1371,
+   "quote": "Even being a bit softer, it gives you lots of help and lots of power",
+   "quote_was": "aún siendo un poquito más blanda te aporta mucha ayuda mucha potencia"
+  },
+  "cr_b912d97ba057f381": {
+   "quote": "The Motion offers more manoeuvrability, with good power",
+   "quote_was": "la Motion ofrece más manejabilidad, con buena potencia"
+  },
+  "cr_c1e1d2813364e556": {
+   "duration_s": 779,
+   "chapters": [
+    [
+     42,
+     "Head Coello: design"
+    ],
+    [
+     64,
+     "Head Coello: technologies"
+    ],
+    [
+     220,
+     "Head Coello: specs"
+    ],
+    [
+     263,
+     "On-court comparison: defence, net, transitions, smash"
+    ],
+    [
+     640,
+     "Which Coello 2026 is for you?"
+    ]
+   ],
+   "quote": "You feel no unwanted vibration",
+   "quote_was": "on sent aucune vibration parasite"
+  },
+  "cr_716f4cebb901a792": {
+   "quote": "Control is one of the nice surprises of this test.",
+   "quote_was": "Le contrôle est l’une des bonnes surprises de ce test."
+  },
+  "cr_3fe17a12d88700d3": {
+   "duration_s": 792,
+   "quote": "It's a real joy to move, both from the back and at the net.",
+   "quote_was": "È davvero uno spettacolo da muovere, sia a fondo campo che a rete."
+  },
+  "cr_913f7899ce019479": {
+   "duration_s": 400,
+   "quote": "It's a fairly versatile racket",
+   "quote_was": "es una pala bastante polivalente"
+  },
+  "cr_0a41880a982edbfc": {
+   "duration_s": 363,
+   "chapters": [
+    [
+     107,
+     "Level"
+    ],
+    [
+     146,
+     "Technical features"
+    ],
+    [
+     255,
+     "From the baseline"
+    ],
+    [
+     278,
+     "At the net"
+    ],
+    [
+     297,
+     "Overheads"
+    ],
+    [
+     319,
+     "Ratings"
+    ]
+   ]
+  },
+  "cr_2fbd35855f9b69c3": {
+   "duration_s": 998
+  },
+  "cr_250f673e553eff09": {
+   "duration_s": 999
+  },
+  "cr_9e6878c6e9b792f4": {
+   "duration_s": 576,
+   "quote": "I really liked this racket, I like it a lot",
+   "quote_was": "Me ha gustado mucho esta pala, me gusta mucho"
+  },
+  "cr_1985266e51d72141": {
+   "duration_s": 598
+  },
+  "cr_0615a305db3a3f99": {
+   "duration_s": 986,
+   "quote": "From the back of the court it's a safe bet.",
+   "quote_was": "Es una pala que en fondo de pista es una apuesta segura."
+  },
+  "cr_52da5e5781b08954": {
+   "duration_s": 1215,
+   "chapters": [
+    [
+     209,
+     "Level"
+    ],
+    [
+     245,
+     "Technical features"
+    ],
+    [
+     322,
+     "From the back of the court"
+    ],
+    [
+     376,
+     "Test from the back"
+    ],
+    [
+     501,
+     "At the net"
+    ],
+    [
+     590,
+     "Test at the net"
+    ],
+    [
+     725,
+     "Overheads"
+    ],
+    [
+     775,
+     "Overhead test"
+    ],
+    [
+     872,
+     "First challenge"
+    ],
+    [
+     971,
+     "Second challenge"
+    ],
+    [
+     1161,
+     "Scores (13 categories)"
+    ],
+    [
+     1209,
+     "Average scores of 2025 rackets"
+    ]
+   ],
+   "quote": "Super, super, super manoeuvrable despite a 27 cm balance",
+   "quote_was": "super super super maneggevole nonostante un bilanciamento a 27"
+  },
+  "cr_93ff4ecaff4990ef": {
+   "duration_s": 722,
+   "chapters": [
+    [
+     188,
+     "Real weight and balance"
+    ],
+    [
+     302,
+     "Volleys and net play"
+    ],
+    [
+     346,
+     "Feel at impact"
+    ],
+    [
+     365,
+     "Overheads: víbora and bandeja"
+    ],
+    [
+     390,
+     "Basic shots: forehand, backhand and lob"
+    ],
+    [
+     406,
+     "Sweet spot"
+    ],
+    [
+     433,
+     "Low wall exits"
+    ],
+    [
+     478,
+     "High wall exits"
+    ],
+    [
+     519,
+     "Blocks"
+    ],
+    [
+     540,
+     "Smash"
+    ]
+   ]
+  },
+  "cr_4fba68cf4193d685": {
+   "duration_s": 1240,
+   "quote": "It really sends the ball a long way, and fairly easily.",
+   "quote_was": "Lei fa andare la palla veramente tanto e discretamente facilmente."
+  },
+  "cr_319b49bba1d394c1": {
+   "duration_s": 154
+  },
+  "cr_32b480acf32ee565": {
+   "duration_s": 721,
+   "chapters": [
+    [
+     97,
+     "Feel in defence"
+    ],
+    [
+     216,
+     "Feel on víbora and bandeja"
+    ],
+    [
+     325,
+     "Feel on volleys"
+    ],
+    [
+     421,
+     "Feel on smashes"
+    ],
+    [
+     547,
+     "Conclusion and opinion"
+    ]
+   ],
+   "quote": "It's a racket I found manoeuvrable",
+   "quote_was": "es una pala que me ha parecido manejable"
+  },
+  "cr_c88915d9fc60ac52": {
+   "duration_s": 1117,
+   "quote": "A very versatile racket, but with that extra edge in the attacking game.",
+   "quote_was": "una pala muy polivalente, pero con ese puntito en el juego ofensivo."
+  },
+  "cr_16757343af4d07fc": {
+   "duration_s": 651
+  },
+  "cr_720c8625895f317b": {
+   "duration_s": 1117
+  },
+  "cr_4cd669c06a111926": {
+   "duration_s": 1112,
+   "quote": "It has become a more serious racket",
+   "quote_was": "è diventata una racchetta più seria"
+  },
+  "cr_618fdeb622d4dd92": {
+   "duration_s": 569
+  },
+  "cr_e8147d0d0a13294c": {
+   "duration_s": 650,
+   "chapters": [
+    [
+     73,
+     "Real weight"
+    ],
+    [
+     189,
+     "Volleys and net play"
+    ],
+    [
+     261,
+     "Overheads: víbora and bandeja"
+    ],
+    [
+     310,
+     "Basic shots: forehand and backhand"
+    ],
+    [
+     380,
+     "Low wall exits"
+    ],
+    [
+     419,
+     "High wall exits"
+    ],
+    [
+     469,
+     "Blocks"
+    ],
+    [
+     508,
+     "Smash"
+    ],
+    [
+     583,
+     "Final comments"
+    ]
+   ],
+   "quote": "Great manoeuvrability when I go for the volley",
+   "quote_was": "Grandissima la maneggevolezza quando vado a fare la vol"
+  },
+  "cr_e43494a33b10486a": {
+   "duration_s": 1073,
+   "quote": "For me this one feels the best",
+   "quote_was": "buat gua Nox udah yang paling enak"
+  },
+  "cr_2342d0f9196c9001": {
+   "duration_s": 776,
+   "chapters": [
+    [
+     12,
+     "Technical specs: 12K and 18K"
+    ],
+    [
+     296,
+     "18K in defence"
+    ],
+    [
+     362,
+     "12K in defence"
+    ],
+    [
+     469,
+     "18K on volleys"
+    ],
+    [
+     517,
+     "12K on volleys"
+    ],
+    [
+     550,
+     "18K in the air"
+    ],
+    [
+     569,
+     "12K in the air"
+    ],
+    [
+     640,
+     "18K smashes"
+    ],
+    [
+     682,
+     "12K smashes"
+    ],
+    [
+     720,
+     "Conclusion and opinions"
+    ]
+   ],
+   "quote": "A very manoeuvrable racket, with a very big sweet spot",
+   "quote_was": "una pala muy manejable, punto dulce muy amplio"
+  },
+  "cr_8c8c34c641ea9270": {
+   "quote": "From the back of the court, the control is outstanding",
+   "quote_was": "Desde el fondo de pista el control es sobresaliente"
+  },
+  "cr_7e6a0f0d40cbb488": {
+   "duration_s": 936,
+   "quote": "It's a racket that gives you a lot of security",
+   "quote_was": "it is a racket that gives you a lot of security"
+  },
+  "cr_58fd6c873cd8edb5": {
+   "duration_s": 467,
+   "chapters": [
+    [
+     64,
+     "General features"
+    ],
+    [
+     167,
+     "Feel on court"
+    ],
+    [
+     361,
+     "Conclusion: who is this racket for?"
+    ]
+   ],
+   "quote": "It has a fairly big sweet spot",
+   "quote_was": "tiene un punto dulce bastante amplio"
+  },
+  "cr_5455566735331a4f": {
+   "duration_s": 776,
+   "chapters": [
+    [
+     12,
+     "Technical specs: 12K and 18K"
+    ],
+    [
+     296,
+     "18K in defence"
+    ],
+    [
+     362,
+     "12K in defence"
+    ],
+    [
+     469,
+     "18K on volleys"
+    ],
+    [
+     517,
+     "12K on volleys"
+    ],
+    [
+     550,
+     "18K in the air"
+    ],
+    [
+     569,
+     "12K in the air"
+    ],
+    [
+     640,
+     "18K smashes"
+    ],
+    [
+     682,
+     "12K smashes"
+    ],
+    [
+     720,
+     "Conclusion and opinions"
+    ]
+   ],
+   "quote": "A racket I'd recommend for attacking players, and honestly very manoeuvrable.",
+   "quote_was": "Pala recomendable para jugadores de ataque y la verdad muy manejable."
+  },
+  "cr_876979d364775d9a": {
+   "duration_s": 792,
+   "chapters": [
+    [
+     141,
+     "Feel in defence"
+    ],
+    [
+     279,
+     "Feel on víbora and bandeja"
+    ],
+    [
+     408,
+     "Feel on volleys"
+    ],
+    [
+     514,
+     "Feel on smashes"
+    ],
+    [
+     619,
+     "Conclusion and opinion"
+    ]
+   ],
+   "quote": "It's a very fast racket, often you feel like you're holding nothing",
+   "quote_was": "es una pala muy rápida, sientes que no llevas nada muchas veces"
+  },
+  "cr_11ce91033fd7a262": {
+   "duration_s": 542
+  },
+  "cr_531e718e265ec5cd": {
+   "quote": "This is where it shines most.",
+   "quote_was": "Aquí es donde más brilla."
+  },
+  "cr_ecfd4bbe8ad18d4a": {
+   "duration_s": 1338
+  },
+  "cr_376a3c2737875dc6": {
+   "duration_s": 622,
+   "chapters": [
+    [
+     85,
+     "Main features"
+    ],
+    [
+     185,
+     "Defence"
+    ],
+    [
+     240,
+     "Volley"
+    ],
+    [
+     330,
+     "Air game"
+    ],
+    [
+     410,
+     "Smash"
+    ],
+    [
+     456,
+     "Conclusion"
+    ]
+   ]
+  },
+  "cr_72ea094885e706c7": {
+   "duration_s": 1197,
+   "chapters": [
+    [
+     239,
+     "Level"
+    ],
+    [
+     298,
+     "Technical features"
+    ],
+    [
+     326,
+     "From the back of the court"
+    ],
+    [
+     350,
+     "Test from the back"
+    ],
+    [
+     456,
+     "At the net"
+    ],
+    [
+     543,
+     "Test at the net"
+    ],
+    [
+     668,
+     "Overheads"
+    ],
+    [
+     717,
+     "Overhead test"
+    ],
+    [
+     822,
+     "First challenge"
+    ],
+    [
+     978,
+     "Second challenge"
+    ],
+    [
+     1128,
+     "Scores (12 categories)"
+    ],
+    [
+     1167,
+     "Average scores of 2026 rackets"
+    ]
+   ],
+   "quote": "At slow pace this racket is out of this world",
+   "quote_was": "a ritmi blandi che sta racchetta è spaziale"
+  },
+  "cr_670e06d6bbecebf1": {
+   "duration_s": 557,
+   "quote": "It's a racket that moves very, very, very well",
+   "quote_was": "It’s a racket that moves very, very, very well"
+  },
+  "cr_d9086b0f151f91ad": {
+   "duration_s": 208
+  },
+  "cr_490f6aa0bce0fc02": {
+   "duration_s": 218
+  },
+  "cr_fbf1fa7cd5eab7a4": {
+   "duration_s": 653,
+   "chapters": [
+    [
+     119,
+     "Level"
+    ],
+    [
+     136,
+     "Technical features"
+    ],
+    [
+     223,
+     "From the baseline"
+    ],
+    [
+     256,
+     "At the net"
+    ],
+    [
+     280,
+     "Overheads"
+    ],
+    [
+     307,
+     "First challenge"
+    ],
+    [
+     444,
+     "Second challenge"
+    ],
+    [
+     608,
+     "Ratings"
+    ]
+   ]
+  },
+  "cr_f3d4087335356b33": {
+   "duration_s": 696,
+   "quote": "This racket demands presence, commitment and aggression from the start.",
+   "quote_was": "Questa palla richiede presenza, approccio e aggressività da subito."
+  },
+  "cr_8af5bb868de80dca": {
+   "duration_s": 755,
+   "chapters": [
+    [
+     47,
+     "Oxdog's secret: rethinking balance"
+    ],
+    [
+     104,
+     "Lab data for the 3 models"
+    ],
+    [
+     260,
+     "On-court test"
+    ],
+    [
+     553,
+     "Which racket for whom?"
+    ]
+   ],
+   "quote": "For a round racket, it was really not bad on power",
+   "quote_was": "pour une ronde, c'était vraiment pas mal en puissance"
+  },
+  "cr_e9c2f1105c38f024": {
+   "duration_s": 1010,
+   "quote": "What surprises me most is the manoeuvrability.",
+   "quote_was": "Lo que más me sorprende de ella es la manejabilidad."
+  },
+  "cr_aa2b57a083695133": {
+   "duration_s": 656,
+   "chapters": [
+    [
+     100,
+     "Level"
+    ],
+    [
+     113,
+     "Technical features"
+    ],
+    [
+     227,
+     "From the baseline"
+    ],
+    [
+     243,
+     "At the net"
+    ],
+    [
+     258,
+     "Overheads"
+    ],
+    [
+     282,
+     "Emiliano vs Alvin, round 1"
+    ],
+    [
+     446,
+     "Alvin vs Emiliano, round 2"
+    ],
+    [
+     604,
+     "Ratings"
+    ]
+   ]
+  },
+  "cr_3550b660ce576b7b": {
+   "quote": "This is the racket's biggest strength.",
+   "quote_was": "Este es el punto fuerte más destacado de la raqueta."
+  },
+  "cr_55b54af235a908c3": {
+   "duration_s": 1385,
+   "quote": "It's a very powerful racket, I give it a nine",
+   "quote_was": "è una racchetta molto potente le do un nove"
+  },
+  "cr_7eeb83e330c22cdc": {
+   "duration_s": 1026,
+   "quote": "Here I'd go with the Ultimate Pro Plus",
+   "quote_was": "aquí sí que me quedaría con la Ultimate Pro Plus"
+  },
+  "cr_ed81df0062459fee": {
+   "duration_s": 622,
+   "chapters": [
+    [
+     88,
+     "Volleys and net play"
+    ],
+    [
+     121,
+     "Overheads: víbora and bandeja"
+    ],
+    [
+     153,
+     "Basic shots: forehand, backhand and lob"
+    ],
+    [
+     210,
+     "Sweet spot"
+    ],
+    [
+     235,
+     "Feel at impact"
+    ],
+    [
+     259,
+     "Low wall exits"
+    ],
+    [
+     281,
+     "High wall exits"
+    ],
+    [
+     306,
+     "Blocks"
+    ],
+    [
+     364,
+     "Smash"
+    ],
+    [
+     431,
+     "Who is this racket for?"
+    ]
+   ],
+   "quote": "The racket lets me play the volley really, really well.",
+   "quote_was": "La pala mi fa esprimere molto molto bene la volé."
+  },
+  "cr_3c5537c00262e039": {
+   "duration_s": 1248,
+   "quote": "It's the easy, everyday Ultimate Pro Light",
+   "quote_was": "Lei è l'Ultimate Prolight facile per tutti i giorni"
+  },
+  "cr_a3a5184556a14102": {
+   "quote": "It forgives slightly off-centre hits quite well",
+   "quote_was": "Perdona bastante bien los contactos algo desplazados"
+  },
+  "cr_35e5e68020e5ad7c": {
+   "duration_s": 855
+  },
+  "cr_f7da067c95b4653c": {
+   "duration_s": 622,
+   "quote": "I no longer get that springy effect it had before.",
+   "quote_was": "Non ho più quell'effetto elastico che aveva prima."
+  },
+  "cr_8b4eed26872ffbd4": {
+   "duration_s": 140,
+   "quote": "I think it's a great racket for volleying.",
+   "quote_was": "Creo que es una gran pala para volear."
+  },
+  "cr_296cd791bc3da78e": {
+   "quote": "It's a racket more about execution than raw explosion.",
+   "quote_was": "Es una pala más de ejecución que de explosión bruta."
+  },
+  "cr_2cdca4878e106147": {
+   "quote": "As soon as you speed up the swing, the ball literally explodes off the racket.",
+   "quote_was": "Sobald man den Schwung beschleunigt, explodiert der Ball förmlich vom Schläger."
+  },
+  "cr_62e1cba415984ce6": {
+   "duration_s": 683,
+   "chapters": [
+    [
+     82,
+     "Volleys and net play"
+    ],
+    [
+     96,
+     "Feel at impact"
+    ],
+    [
+     223,
+     "Overheads: víbora and bandeja"
+    ],
+    [
+     235,
+     "Sweet spot"
+    ],
+    [
+     285,
+     "Basic shots: forehand, backhand and lob"
+    ],
+    [
+     365,
+     "Low wall exits"
+    ],
+    [
+     389,
+     "High wall exits"
+    ],
+    [
+     412,
+     "Blocks"
+    ],
+    [
+     450,
+     "Smash"
+    ],
+    [
+     531,
+     "Who is this racket for?"
+    ]
+   ],
+   "quote": "A racket that suits a very wide range of players",
+   "quote_was": "una pala che prende un range di giocatore molto ampio"
+  },
+  "cr_d45c08400b81c129": {
+   "quote": "The Diablo Pro 4 smashes with authority.",
+   "quote_was": "La Diablo Pro 4 remata con autoridad."
+  },
+  "cr_5845c1e40abc8935": {
+   "duration_s": 1283,
+   "quote": "I'd buy it because it has a nice ball exit",
+   "quote_was": "La comprerei perché ha una bella uscita di palla"
+  },
+  "cr_a4b72d0822a9a27d": {
+   "duration_s": 561,
+   "quote": "It lets me manoeuvre really well on the forehand and the backhand",
+   "quote_was": "mi fa manovrare molto molto bene sul dritto sul rovescio"
+  },
+  "cr_a9f97fb2b54502a6": {
+   "duration_s": 1055,
+   "quote": "It's a very versatile racket",
+   "quote_was": "es una pala muy polivalente"
+  },
+  "cr_99ea4ca03ae0a854": {
+   "duration_s": 803,
+   "quote": "I loved this racket on the volley.",
+   "quote_was": "Moi j'ai adoré cette raquette à la volée."
+  },
+  "cr_86c4e45f1cb57b59": {
+   "duration_s": 930,
+   "chapters": [
+    [
+     113,
+     "Fenix Elite 2026: wall defence and half-volleys"
+    ],
+    [
+     296,
+     "Impressions from the back"
+    ],
+    [
+     368,
+     "Fenix Elite 2026 on volleys"
+    ],
+    [
+     590,
+     "Impressions at the net"
+    ],
+    [
+     652,
+     "Bandejas, víboras and smashes"
+    ],
+    [
+     851,
+     "Final impressions: Fenix Elite 6"
+    ]
+   ]
+  },
+  "cr_d43591b112d5c693": {
+   "duration_s": 681,
+   "quote": "Of the two, I'd keep the Fenix",
+   "quote_was": "de las dos me quedaría con la Fenix"
+  },
+  "cr_9f1ee4bedd0f41f6": {
+   "duration_s": 1278,
+   "quote": "It's a racket that goes fast and doesn't demand too much",
+   "quote_was": "è una racchetta che va forte e non richiede troppo"
+  },
+  "cr_a6330152e83a29d1": {
+   "duration_s": 935,
+   "quote": "It's a racket that copies the movement of your hand perfectly.",
+   "quote_was": "Es una pala que copia fenomenal el gesto de la mano."
+  },
+  "cr_42e1d41787451971": {
+   "duration_s": 615,
+   "chapters": [
+    [
+     120,
+     "Volleys and net play"
+    ],
+    [
+     155,
+     "Overheads: víbora and bandeja"
+    ],
+    [
+     194,
+     "Feel at impact"
+    ],
+    [
+     207,
+     "Basic shots: forehand, backhand and lob"
+    ],
+    [
+     258,
+     "Low wall exits"
+    ],
+    [
+     274,
+     "Sweet spot"
+    ],
+    [
+     351,
+     "High wall exits"
+    ],
+    [
+     395,
+     "Blocks"
+    ],
+    [
+     433,
+     "Smash"
+    ],
+    [
+     477,
+     "Final comments"
+    ]
+   ],
+   "quote": "This racket lets me slice well and gives me great power",
+   "quote_was": "questa Pala mi fa tagliare bene mi fa uscire un'ottima potenza"
+  },
+  "cr_f5b9896a948993c1": {
+   "duration_s": 829,
+   "quote": "The smash is power at its purest",
+   "quote_was": "Lo Smash è la sublimazione della potenza"
+  },
+  "cr_4ea5053aaed5c80d": {
+   "quote": "Every well-hit smash becomes a winner",
+   "quote_was": "cada remate bien ejecutado se convierte en un punto directo"
+  },
+  "cr_23a60d6d901f0346": {
+   "duration_s": 855
+  },
+  "cr_3ae718865273135e": {
+   "duration_s": 579,
+   "chapters": [
+    [
+     118,
+     "Volleys and net play"
+    ],
+    [
+     140,
+     "Overheads: víbora and bandeja"
+    ],
+    [
+     160,
+     "Feel at impact"
+    ],
+    [
+     182,
+     "Basic shots: forehand, backhand and lob"
+    ],
+    [
+     199,
+     "Sweet spot"
+    ],
+    [
+     244,
+     "Low wall exits"
+    ],
+    [
+     281,
+     "High wall exits"
+    ],
+    [
+     321,
+     "Blocks"
+    ],
+    [
+     387,
+     "Smash"
+    ],
+    [
+     473,
+     "Who is this racket for?"
+    ]
+   ],
+   "quote": "This is a top-three contender for the smash.",
+   "quote_was": "Questa è la candidata tra le prime tre pale per lo Smash."
+  },
+  "cr_2750ed7567d0478e": {
+   "duration_s": 856,
+   "quote": "At the net it's a real cannon.",
+   "quote_was": "En red es un auténtico cañón."
+  },
+  "cr_9b4ae3c9bba43a38": {
+   "duration_s": 661,
+   "chapters": [
+    [
+     181,
+     "Volleys and net play"
+    ],
+    [
+     230,
+     "Overheads: víbora and bandeja"
+    ],
+    [
+     257,
+     "Feel at impact"
+    ],
+    [
+     274,
+     "Sweet spot"
+    ],
+    [
+     308,
+     "Basic shots: forehand, backhand and lob"
+    ],
+    [
+     329,
+     "Low wall exits"
+    ],
+    [
+     372,
+     "High wall exits"
+    ],
+    [
+     400,
+     "Blocks"
+    ],
+    [
+     438,
+     "Smash"
+    ],
+    [
+     552,
+     "Who is this racket for?"
+    ]
+   ],
+   "quote": "Great manoeuvrability on this racket when I play the volley",
+   "quote_was": "Ottima la maneggevolezza di questa pala quando vado a giocare la volé"
+  },
+  "cr_f786aa123eab8dd1": {
+   "duration_s": 351,
+   "quote": "Power is there, and control is there.",
+   "quote_was": "Power is there, and control is there."
+  },
+  "cr_f428151f851e8e84": {
+   "quote": "The smash is a standout shot",
+   "quote_was": "El smash es un golpe destacado"
+  },
+  "cr_b206f4a2af0f7a7a": {
+   "duration_s": 313,
+   "chapters": [
+    [
+     67,
+     "Features"
+    ],
+    [
+     144,
+     "Feel"
+    ],
+    [
+     249,
+     "Conclusion"
+    ]
+   ],
+   "quote": "It's a racket you can be aggressive with near the net",
+   "quote_was": "Es una pala con la que puedes ser agresivo cerca de la red"
+  },
+  "cr_8f8975c16449a2cd": {
+   "duration_s": 985,
+   "chapters": [
+    [
+     107,
+     "Drax+"
+    ],
+    [
+     129,
+     "Astrum+"
+    ],
+    [
+     364,
+     "Triton Balance and Power"
+    ],
+    [
+     542,
+     "Raptor+"
+    ],
+    [
+     746,
+     "Black Titan"
+    ],
+    [
+     845,
+     "Kenta+"
+    ]
+   ],
+   "quote": "I could actually feel the ball on every shot",
+   "quote_was": "kände bollen egentligen i varje slag"
+  },
+  "cr_82c728ec63447051": {
+   "duration_s": 1734,
+   "quote": "It's very light and handles very well",
+   "quote_was": "es muy ligera, se maneja muy bien"
+  },
+  "cr_b8f14dadbb4d45d0": {
+   "duration_s": 641,
+   "chapters": [
+    [
+     66,
+     "Real weight"
+    ],
+    [
+     225,
+     "Volleys and net play"
+    ],
+    [
+     255,
+     "Feel at impact"
+    ],
+    [
+     276,
+     "Overheads: víbora and bandeja"
+    ],
+    [
+     305,
+     "Basic shots: forehand, backhand and lob"
+    ],
+    [
+     360,
+     "Low wall exits"
+    ],
+    [
+     423,
+     "High wall exits"
+    ],
+    [
+     495,
+     "Smash"
+    ],
+    [
+     542,
+     "Final comments"
+    ]
+   ],
+   "quote": "One of the easiest rackets to smash with",
+   "quote_was": "una delle racchette più facili per fare lo smash"
+  },
+  "cr_d22ef7dc337d0d05": {
+   "duration_s": 971,
+   "chapters": [
+    [
+     159,
+     "Level"
+    ],
+    [
+     235,
+     "Technical features"
+    ],
+    [
+     325,
+     "From the back of the court"
+    ],
+    [
+     387,
+     "Test from the back"
+    ],
+    [
+     505,
+     "At the net"
+    ],
+    [
+     596,
+     "Test at the net"
+    ],
+    [
+     705,
+     "Overheads"
+    ],
+    [
+     792,
+     "Overhead test"
+    ],
+    [
+     883,
+     "Scores (13 categories)"
+    ]
+   ],
+   "quote": "It's a racket that makes you do everything right",
+   "quote_was": "it is a racquet that makes you do everything right"
+  },
+  "cr_bd2b2a7323f478e4": {
+   "duration_s": 229,
+   "chapters": [
+    [
+     15,
+     "Wilson Blade V4 2026 review"
+    ],
+    [
+     134,
+     "Who is this racket for?"
+    ]
+   ]
+  },
+  "cr_e44d6d46e2cfc7e9": {
+   "duration_s": 1399,
+   "quote": "If you don't need the Pro, go for this one",
+   "quote_was": "se non vi serve la Pro andate su questa qua"
+  },
+  "cr_dc9e0e7842fd0dfe": {
+   "duration_s": 818
+  },
+  "cr_77fe5ef2502a539a": {
+   "duration_s": 220,
+   "chapters": [
+    [
+     21,
+     "Design"
+    ],
+    [
+     40,
+     "Technologies"
+    ],
+    [
+     74,
+     "Lab analysis"
+    ],
+    [
+     106,
+     "On-court test"
+    ],
+    [
+     173,
+     "Summary"
+    ]
+   ]
+  },
+  "cr_ea1024920f014e7a": {
+   "duration_s": 1129,
+   "quote": "This feel seems more human for the average player",
+   "quote_was": "this feel seems more human for the average person"
+  },
+  "cr_db94277d90f6ee19": {
+   "quote": "It moves with disconcerting ease compared to its sisters.",
+   "quote_was": "elle se déplace avec une facilité déconcertante par rapport à ses sœurs."
+  },
+  "cr_5a7d94687872e7da": {
+   "quote": "Control is clearly one of its big strengths.",
+   "quote_was": "Le contrôle est clairement l’un de ses grands atouts."
+  },
+  "cr_cd1e52ffc1764b2c": {
+   "duration_s": 164
+  },
+  "cr_a9b9931cfe1f7707": {
+   "quote": "The Xplo Comfort is a marvel.",
+   "quote_was": "La Xplo Comfort est une merveille."
+  },
+  "cr_a10c88c369c593d2": {
+   "quote": "The little one is top class, because the touch is remarkable",
+   "quote_was": "La chiquita è da top class perché la sensibilità è notevole"
+  },
+  "cr_1a40c6511e5dc429": {
+   "quote": "The Motion is particularly pleasant to play",
+   "quote_was": "La Motion est particulièrement plaisante à jouer"
+  },
+  "cr_fa1ab9686e126e8e": {
+   "quote": "Pleasantly easy to handle, big sweet spot, nicely forgiving",
+   "quote_was": "angenehm handlich, großer Sweet Spot, schön gutmütig"
+  },
+  "cr_1ffe7fdc53bba186": {
+   "quote": "The ball goes where you point the face",
+   "quote_was": "La bola sale hacia donde apuntas la cara"
+  },
+  "cr_1fd60d7690b33fd9": {
+   "quote": "Control is clearly one of its big strengths.",
+   "quote_was": "Le contrôle est clairement l’un de ses grands atouts."
+  },
+  "cr_94f26fdeb921d073": {
+   "duration_s": 603,
+   "quote": "I think this is the most versatile of all, honestly.",
+   "quote_was": "I think this is the most versatile of all, honestly."
+  },
+  "cr_2b2a82a7b68cb227": {
+   "duration_s": 1350,
+   "chapters": [
+    [
+     25,
+     "Spec sheet"
+    ],
+    [
+     270,
+     "From the back"
+    ],
+    [
+     500,
+     "Volleys"
+    ],
+    [
+     650,
+     "Víbora"
+    ],
+    [
+     720,
+     "Smash"
+    ],
+    [
+     890,
+     "The competitors"
+    ],
+    [
+     1080,
+     "Scores"
+    ]
+   ],
+   "quote": "A very solid racket from Oxdog",
+   "quote_was": "Racchetta molto concreta da parte di OxDog"
+  },
+  "cr_4d8de6162a6b67bb": {
+   "duration_s": 1416
+  },
+  "cr_70639d5e32e8d9c0": {
+   "duration_s": 1064,
+   "quote": "It's the most powerful of the Ultimate series",
+   "quote_was": "è la più potente della serie Ultimate"
+  },
+  "cr_e48d86e9f6de5639": {
+   "duration_s": 1579,
+   "quote": "It's an easy, playable racket, with a lot to like",
+   "quote_was": "È una racchetta facile, giocabile, apprezzabile per tante cose"
+  },
+  "cr_981c42845c9c6eed": {
+   "quote": "Dry, precise touch, with a particularly pleasant feeling of control",
+   "quote_was": "toucher sec et précis, avec une sensation de contrôle particulièrement plaisante"
+  },
+  "cr_d171441fac1a48b4": {
+   "quote": "Lightning head speed and phenomenal stability on the block",
+   "quote_was": "une vitesse de tête foudroyante et une stabilité phénoménale au bloc"
+  },
+  "cr_ccbf2bd1ab21cc0b": {
+   "duration_s": 1235,
+   "quote": "It's the Wilson I'd buy today",
+   "quote_was": "è la Wilson che comprerei oggi"
+  },
+  "cr_ff399583752d0265": {
+   "duration_s": 770,
+   "quote": "This LT moves really, really well",
+   "quote_was": "questa LT si muove davvero davvero bene"
+  },
+  "cr_bd1d25e9a2471c8b": {
+   "duration_s": 142,
+   "quote": "But it's a very complete racket",
+   "quote_was": "pero es una pala muy completa"
+  },
+  "cr_20711722dbbfdd8f": {
+   "duration_s": 92,
+   "quote": "I feel the ball now comes off it a touch better.",
+   "quote_was": "Siento que es una pala que ahora sale un pelín mejor."
+  },
+  "cr_4a218731e17eb24a": {
+   "duration_s": 778,
+   "quote": "Great control, but little ball exit.",
+   "quote_was": "Ottimo controllo, ma poca uscita di palla."
+  },
+  "cr_748bf35a25f5c089": {
+   "duration_s": 1682,
+   "quote": "It's undoubtedly an explosive racket.",
+   "quote_was": "Indubbiamente è una racchetta esplosiva."
+  },
+  "cr_fdbb31b990e9c427": {
+   "duration_s": 1033,
+   "chapters": [
+    [
+     127,
+     "Feel in defence"
+    ],
+    [
+     263,
+     "Defence on court"
+    ],
+    [
+     323,
+     "Feel on víbora and bandeja"
+    ],
+    [
+     466,
+     "Víbora and bandeja on court"
+    ],
+    [
+     550,
+     "Feel on volleys"
+    ],
+    [
+     653,
+     "Volleys on court"
+    ],
+    [
+     728,
+     "Feel on smashes"
+    ],
+    [
+     810,
+     "Smashes on court"
+    ],
+    [
+     830,
+     "Conclusion and opinion"
+    ]
+   ],
+   "quote": "You place the ball very well where you want it",
+   "quote_was": "tiras muy bien la bola donde quieres"
+  },
+  "cr_e281762f56d4bbce": {
+   "duration_s": 846,
+   "quote": "A technical, dry, precise racket that demands quality",
+   "quote_was": "Una pala tecnica, secca, precisa, che richiede qualità"
+  },
+  "cr_b47c8edbd674149e": {
+   "duration_s": 911,
+   "chapters": [
+    [
+     136,
+     "Feel in defence"
+    ],
+    [
+     234,
+     "Defence on court"
+    ],
+    [
+     299,
+     "Feel on víbora and bandeja"
+    ],
+    [
+     379,
+     "Víbora and bandeja on court"
+    ],
+    [
+     456,
+     "Feel on volleys"
+    ],
+    [
+     564,
+     "Volleys on court"
+    ],
+    [
+     620,
+     "Feel on smashes"
+    ],
+    [
+     687,
+     "Smashes on court"
+    ],
+    [
+     710,
+     "Conclusion and opinion"
+    ]
+   ],
+   "quote": "It's like the 13 model, just a touch harder",
+   "quote_was": "es como una Nox de 13 un pelín más dura"
+  },
+  "cr_7ac3aa96d5c3237b": {
+   "duration_s": 581,
+   "quote": "The control of pace seems sublime to me",
+   "quote_was": "El control de las velocidades me parece sublime"
+  },
+  "cr_9d0f0928063bee13": {
+   "duration_s": 566,
+   "quote": "If you don't hit it well, the ball doesn't come out.",
+   "quote_was": "Se non la colpisci bene, la palla non esce."
+  },
+  "cr_4041fdae20df5724": {
+   "duration_s": 76,
+   "quote": "It moves faster on court",
+   "quote_was": "se mueve más rápido en pista"
+  },
+  "cr_568fd54c5b07a4cb": {
+   "duration_s": 157,
+   "quote": "It's a racket that controls very well at faster pace",
+   "quote_was": "Es una pala que se controla muy bien en ritmos más rápidos"
+  },
+  "cr_b436608fb8ce26f7": {
+   "duration_s": 669,
+   "quote": "The Carbon holds the ball a little longer",
+   "quote_was": "La carbon retiene un poco más la pelota"
+  },
+  "cr_b0b9929221d464aa": {
+   "duration_s": 959,
+   "chapters": [
+    [
+     120,
+     "Feel in defence"
+    ],
+    [
+     249,
+     "Defence on court"
+    ],
+    [
+     310,
+     "Feel on víbora and bandeja"
+    ],
+    [
+     415,
+     "Víbora and bandeja on court"
+    ],
+    [
+     494,
+     "Feel on volleys"
+    ],
+    [
+     587,
+     "Volleys on court"
+    ],
+    [
+     657,
+     "Feel on smashes"
+    ],
+    [
+     724,
+     "Smashes on court"
+    ],
+    [
+     774,
+     "Conclusion and opinion"
+    ]
+   ]
+  },
+  "cr_c0c8fd4165d35509": {
+   "quote": "Exceptional power, ideal for smashes",
+   "quote_was": "Puissance exceptionnelle, idéale pour les smashes"
+  },
+  "cr_e35f5c475b6e1780": {
+   "duration_s": 970,
+   "quote": "When you hit it well, it's a real sword",
+   "quote_was": "when you hit it well it's a real sword"
+  },
+  "cr_0fdff482a217f05a": {
+   "duration_s": 713,
+   "chapters": [
+    [
+     90,
+     "Defence"
+    ],
+    [
+     207,
+     "Víbora and bandeja"
+    ],
+    [
+     309,
+     "Volley"
+    ],
+    [
+     412,
+     "Smash"
+    ],
+    [
+     519,
+     "Conclusion"
+    ]
+   ]
+  },
+  "cr_9b474bfb0adddca7": {
+   "quote": "It's not an uncontrolled raw-power machine",
+   "quote_was": "Ce n’est pas une machine à puissance brute incontrôlée"
+  },
+  "cr_f323bd4b72cc02d5": {
+   "quote": "Above all, the control stands out: the frame transfers force with precision",
+   "quote_was": "Sobre todo, destaca el control: el marco transmite la fuerza con precisión"
+  },
+  "cr_92ccc7450e00928f": {
+   "duration_s": 991
+  },
+  "cr_8e2a55b1ef23f054": {
+   "duration_s": 615,
+   "chapters": [
+    [
+     205,
+     "Volleys and net play"
+    ],
+    [
+     229,
+     "Overheads: víbora and bandeja"
+    ],
+    [
+     263,
+     "Basic shots: forehand, backhand and lob"
+    ],
+    [
+     280,
+     "Sweet spot"
+    ],
+    [
+     313,
+     "Low wall exits"
+    ],
+    [
+     345,
+     "High wall exits"
+    ],
+    [
+     382,
+     "Blocks"
+    ],
+    [
+     420,
+     "Smash"
+    ],
+    [
+     454,
+     "Feel at impact"
+    ],
+    [
+     524,
+     "Who is this racket for?"
+    ]
+   ],
+   "quote": "What a joy this racket is on the volley",
+   "quote_was": "Che meraviglia da le volè questa pala"
+  },
+  "cr_ea7418adb3caf227": {
+   "duration_s": 1130,
+   "chapters": [
+    [
+     149,
+     "Feel in defence"
+    ],
+    [
+     286,
+     "Defence on court"
+    ],
+    [
+     363,
+     "Feel on víbora and bandeja"
+    ],
+    [
+     483,
+     "Víbora and bandeja on court"
+    ],
+    [
+     558,
+     "Feel on volleys"
+    ],
+    [
+     707,
+     "Volleys on court"
+    ],
+    [
+     796,
+     "Feel on smashes"
+    ],
+    [
+     900,
+     "Smashes on court"
+    ],
+    [
+     940,
+     "Conclusion and opinion"
+    ]
+   ],
+   "quote": "The feeling of control with this new one is much better",
+   "quote_was": "the feeling of control that we have with this new one is much better"
+  },
+  "cr_e836ab6edc441fbf": {
+   "duration_s": 1197,
+   "chapters": [
+    [
+     159,
+     "Level"
+    ],
+    [
+     198,
+     "Technical features"
+    ],
+    [
+     255,
+     "From the back of the court"
+    ],
+    [
+     305,
+     "Test from the back"
+    ],
+    [
+     379,
+     "At the net"
+    ],
+    [
+     499,
+     "Test at the net"
+    ],
+    [
+     580,
+     "Overheads"
+    ],
+    [
+     626,
+     "Overhead test"
+    ],
+    [
+     712,
+     "First challenge"
+    ],
+    [
+     919,
+     "Second challenge"
+    ],
+    [
+     1103,
+     "Scores (12 categories)"
+    ],
+    [
+     1167,
+     "Average scores of 2026 rackets"
+    ]
+   ],
+   "quote": "We recommend it because it's a great racket",
+   "quote_was": "ve la consigliamo perché è una gran pala"
+  },
+  "cr_006c6e0f28bb7f7a": {
+   "duration_s": 1418,
+   "quote": "Still just powerful enough, nice grip.",
+   "quote_was": "Comunque potente il giusto, bel grip."
+  },
+  "cr_3edd2f7aaa6e3e46": {
+   "duration_s": 1255,
+   "chapters": [
+    [
+     153,
+     "Level"
+    ],
+    [
+     249,
+     "Technical features"
+    ],
+    [
+     356,
+     "From the back of the court"
+    ],
+    [
+     428,
+     "Test from the back"
+    ],
+    [
+     577,
+     "At the net"
+    ],
+    [
+     675,
+     "Test at the net"
+    ],
+    [
+     826,
+     "Overheads"
+    ],
+    [
+     872,
+     "Overhead test"
+    ],
+    [
+     978,
+     "First challenge"
+    ],
+    [
+     1097,
+     "Second challenge"
+    ],
+    [
+     1212,
+     "Scores (12 categories)"
+    ],
+    [
+     1244,
+     "Average scores of 2026 rackets"
+    ]
+   ],
+   "quote": "A round racket with character",
+   "quote_was": "una tonda con carattere"
+  },
+  "cr_6a825ff6b57be86c": {
+   "duration_s": 686
+  },
+  "cr_923dfeb8a06c5489": {
+   "duration_s": 1294,
+   "chapters": [
+    [
+     42,
+     "Technical specs"
+    ],
+    [
+     150,
+     "Screw weight settings"
+    ],
+    [
+     330,
+     "Back of the court"
+    ],
+    [
+     570,
+     "Volley"
+    ],
+    [
+     679,
+     "Víbora and bandeja"
+    ],
+    [
+     799,
+     "Smash"
+    ],
+    [
+     1143,
+     "Conclusions"
+    ]
+   ]
+  },
+  "cr_d3f6321b0b0c3f2d": {
+   "duration_s": 1206,
+   "chapters": [
+    [
+     30,
+     "Adidas Cross It 2026 line"
+    ],
+    [
+     315,
+     "Adidas Arrow Hit 2026 line"
+    ],
+    [
+     584,
+     "Adidas Metalbone 2026 line"
+    ]
+   ],
+   "quote": "It's a head-heavy racket that will demand a lot from us physically",
+   "quote_was": "es una pala cabezona que nos va a exigir físicamente"
+  },
+  "cr_c7f955debecae7c4": {
+   "duration_s": 806,
+   "quote": "Power is nothing without some physical strength",
+   "quote_was": "La potenza è nulla senza un po' di forza fisica"
+  },
+  "cr_7bc588636b59e80c": {
+   "duration_s": 598,
+   "quote": "Total power with control, but only if you're trained",
+   "quote_was": "potenza totale con controllo, ma solo se sei allenato"
+  },
+  "cr_1b25b8b6edd573ee": {
+   "duration_s": 867
+  },
+  "cr_6634f9b78375a55a": {
+   "duration_s": 867
+  },
+  "cr_0888a67b740fe98a": {
+   "duration_s": 522,
+   "quote": "It's the most controllable of the three.",
+   "quote_was": "Es la más controlable del trío."
+  },
+  "cr_931b61d80e662efb": {
+   "duration_s": 765,
+   "chapters": [
+    [
+     183,
+     "Back of the court"
+    ],
+    [
+     363,
+     "Volley"
+    ],
+    [
+     446,
+     "Víbora and bandeja"
+    ],
+    [
+     539,
+     "Smash"
+    ],
+    [
+     657,
+     "Conclusions"
+    ]
+   ]
+  },
+  "cr_f23585c0b0a66615": {
+   "duration_s": 1100,
+   "chapters": [
+    [
+     157,
+     "Feel in defence"
+    ],
+    [
+     331,
+     "Defence on court"
+    ],
+    [
+     421,
+     "Feel on víbora and bandeja"
+    ],
+    [
+     552,
+     "Víbora and bandeja on court"
+    ],
+    [
+     665,
+     "Feel on volleys"
+    ],
+    [
+     806,
+     "Volleys on court"
+    ],
+    [
+     919,
+     "Feel on smashes"
+    ],
+    [
+     987,
+     "Smashes on court"
+    ],
+    [
+     1036,
+     "Conclusion"
+    ]
+   ]
+  },
+  "cr_2e776ef2413653f2": {
+   "duration_s": 995,
+   "quote": "The sweet spot is really good.",
+   "quote_was": "Buonissimo il punto dolce."
+  },
+  "cr_2e6a947688c5c38a": {
+   "duration_s": 1261,
+   "chapters": [
+    [
+     258,
+     "Feel in defence"
+    ],
+    [
+     402,
+     "Defence on court"
+    ],
+    [
+     475,
+     "Feel on víbora and bandeja"
+    ],
+    [
+     614,
+     "Víbora and bandeja on court"
+    ],
+    [
+     734,
+     "Feel on volleys"
+    ],
+    [
+     865,
+     "Volleys on court"
+    ],
+    [
+     958,
+     "Feel on smashes"
+    ],
+    [
+     1043,
+     "Smashes on court"
+    ],
+    [
+     1069,
+     "Conclusion and opinion"
+    ]
+   ]
+  },
+  "cr_963d65fd16acc72a": {
+   "duration_s": 1191,
+   "quote": "A really, really powerful racket that almost prefers the dry, hard hit",
+   "quote_was": "raccetta veramente veramente potente che predilige quasi il colpo secco"
+  },
+  "cr_304ea75f0557fc8d": {
+   "duration_s": 1100,
+   "chapters": [
+    [
+     157,
+     "Feel in defence"
+    ],
+    [
+     331,
+     "Defence on court"
+    ],
+    [
+     421,
+     "Feel on víbora and bandeja"
+    ],
+    [
+     552,
+     "Víbora and bandeja on court"
+    ],
+    [
+     665,
+     "Feel on volleys"
+    ],
+    [
+     806,
+     "Volleys on court"
+    ],
+    [
+     919,
+     "Feel on smashes"
+    ],
+    [
+     987,
+     "Smashes on court"
+    ],
+    [
+     1036,
+     "Conclusion"
+    ]
+   ]
+  },
+  "cr_e883951cc2b4fd60": {
+   "quote": "This is where it makes the most sense.",
+   "quote_was": "Aquí es donde más sentido tiene."
+  },
+  "cr_9bc003f3df7b3bfd": {
+   "duration_s": 678,
+   "chapters": [
+    [
+     157,
+     "Volleys and net play"
+    ],
+    [
+     199,
+     "Overheads: víbora and bandeja"
+    ],
+    [
+     227,
+     "Basic shots: forehand, backhand and lob"
+    ],
+    [
+     241,
+     "Sweet spot"
+    ],
+    [
+     283,
+     "Low wall exits"
+    ],
+    [
+     334,
+     "High wall exits"
+    ],
+    [
+     398,
+     "Feel at impact"
+    ],
+    [
+     408,
+     "Blocks"
+    ],
+    [
+     431,
+     "Smash"
+    ],
+    [
+     531,
+     "Who is this racket for?"
+    ]
+   ],
+   "quote": "When I go for power, it's truly excellent.",
+   "quote_was": "Quando vado a spingere di potenza è davvero eccellente."
+  },
+  "cr_b9d2df0e20d1c130": {
+   "quote": "The power is there, but only if we generate it ourselves",
+   "quote_was": "la potenza c’è, ma solo se la generiamo noi"
+  },
+  "cr_9c2b90ce3cc5aa60": {
+   "duration_s": 943,
+   "quote": "I consider it the best rough face on the market",
+   "quote_was": "I consider it the best roughness on the market"
+  },
+  "cr_d7b235221c2e1f6c": {
+   "duration_s": 1180,
+   "quote": "A pity about the weight, because otherwise it would be a super racket.",
+   "quote_was": "Peccato per il peso, perché sennò sarebbe davvero una super pala."
+  },
+  "cr_17e5c3744dc33355": {
+   "duration_s": 1285,
+   "chapters": [
+    [
+     145,
+     "Level"
+    ],
+    [
+     174,
+     "Technical features"
+    ],
+    [
+     246,
+     "From the back of the court"
+    ],
+    [
+     300,
+     "Test from the back"
+    ],
+    [
+     464,
+     "At the net"
+    ],
+    [
+     547,
+     "Test at the net"
+    ],
+    [
+     705,
+     "Overheads"
+    ],
+    [
+     758,
+     "Overhead test"
+    ],
+    [
+     830,
+     "First challenge"
+    ],
+    [
+     1073,
+     "Second challenge"
+    ],
+    [
+     1195,
+     "Scores (13 categories)"
+    ],
+    [
+     1259,
+     "Average scores of 2025 rackets"
+    ]
+   ],
+   "quote": "Power: present. Control: present. Spin: present. Physical demand: none.",
+   "quote_was": "Potenza presente, controllo presente, effetti presenti, fisico assente."
+  },
+  "cr_f91b054751ad9942": {
+   "quote": "The Fenix Pro gives you 90% of the performance",
+   "quote_was": "La Fenix Pro ofrece el 90 % del rendimiento al 80 % del precio"
+  },
+  "cr_e8d0f15ce010cfd6": {
+   "duration_s": 456,
+   "chapters": [
+    [
+     20,
+     "Lisa's first go with the Defy range"
+    ],
+    [
+     70,
+     "Defy Pro vs Defy V1 differences"
+    ],
+    [
+     120,
+     "Sweet spot, surface and control"
+    ],
+    [
+     190,
+     "Who the V1 is best for"
+    ],
+    [
+     280,
+     "Why Steve switched to the V1"
+    ],
+    [
+     320,
+     "Final thoughts"
+    ]
+   ]
+  },
+  "cr_b24b41b4a30927b7": {
+   "duration_s": 1856,
+   "quote": "If you put your legs and your arm into it, it works.",
+   "quote_was": "Se ci metti gambe, se ci metti braccio, funziona."
+  },
+  "cr_71ee6402550bbfa5": {
+   "duration_s": 1639,
+   "quote": "It's definitely a racket with good control",
+   "quote_was": "Sicuramente è una racchetta che ha un buon controllo"
+  },
+  "cr_1059a44d16d1eff5": {
+   "duration_s": 466
+  },
+  "cr_054368e65d5ed51e": {
+   "duration_s": 702,
+   "quote": "A very complete racket, very well balanced between control and power",
+   "quote_was": "una pala muy completa y muy equilibrada entre control y potencia"
+  },
+  "cr_cf8de819221e1521": {
+   "duration_s": 831,
+   "chapters": [
+    [
+     164,
+     "Defence"
+    ],
+    [
+     285,
+     "Víbora and bandeja"
+    ],
+    [
+     394,
+     "Volley"
+    ],
+    [
+     495,
+     "Smash"
+    ],
+    [
+     602,
+     "Conclusion"
+    ]
+   ],
+   "quote": "I do feel it's a much more powerful option than the previous one.",
+   "quote_was": "I do feel like it's a much more powerful option than the previous one."
+  },
+  "cr_b37ac39c7dcd5bff": {
+   "duration_s": 1140
+  },
+  "cr_3c0b04fd7e190683": {
+   "duration_s": 817
+  },
+  "cr_b6b04e9036a31595": {
+   "duration_s": 687,
+   "chapters": [
+    [
+     94,
+     "Defence"
+    ],
+    [
+     235,
+     "Víbora and bandeja"
+    ],
+    [
+     326,
+     "Volley"
+    ],
+    [
+     427,
+     "Smash"
+    ],
+    [
+     526,
+     "Conclusion"
+    ]
+   ],
+   "quote": "It's the racket I've liked most in this Lebrón line",
+   "quote_was": "es la pala que más me ha gustado de esta línea del lobo"
+  },
+  "cr_46bf88b19d30c417": {
+   "duration_s": 580,
+   "chapters": [
+    [
+     98,
+     "Xplo features"
+    ],
+    [
+     256,
+     "Hack 04 features"
+    ],
+    [
+     348,
+     "Defence: Xplo and Hack 04"
+    ],
+    [
+     436,
+     "Volley and bandeja: Xplo and Hack 04"
+    ],
+    [
+     489,
+     "Power: Xplo and Hack 04"
+    ],
+    [
+     527,
+     "Finishing: Xplo and Hack 04"
+    ]
+   ]
+  },
+  "cr_a39823a2564e7501": {
+   "duration_s": 1156,
+   "chapters": [
+    [
+     208,
+     "Feel in defence"
+    ],
+    [
+     350,
+     "Defence on court"
+    ],
+    [
+     405,
+     "Feel on víbora and bandeja"
+    ],
+    [
+     573,
+     "Víbora and bandeja on court"
+    ],
+    [
+     638,
+     "Feel on volleys"
+    ],
+    [
+     740,
+     "Volleys on court"
+    ],
+    [
+     787,
+     "Feel on smashes"
+    ],
+    [
+     895,
+     "Smashes on court"
+    ],
+    [
+     917,
+     "Conclusion and opinion"
+    ]
+   ],
+   "quote": "A racket for a bit of everything, as long as you like this medium hardness",
+   "quote_was": "una pala un poquito para todo, siempre y cuando te guste esta dureza media"
+  },
+  "cr_a7c88677f25a1ce0": {
+   "duration_s": 1050,
+   "chapters": [
+    [
+     134,
+     "Feel in defence"
+    ],
+    [
+     294,
+     "Defence on court"
+    ],
+    [
+     352,
+     "Feel on víbora and bandeja"
+    ],
+    [
+     452,
+     "Víbora and bandeja on court"
+    ],
+    [
+     553,
+     "Feel on volleys"
+    ],
+    [
+     646,
+     "Volleys on court"
+    ],
+    [
+     713,
+     "Feel on smashes"
+    ],
+    [
+     794,
+     "Smashes on court"
+    ],
+    [
+     814,
+     "Conclusion and opinion"
+    ]
+   ],
+   "quote": "It made me feel quite comfortable, with a lot of confidence",
+   "quote_was": "me ha hecho sentirme bastante cómodo, con mucha confianza"
+  },
+  "cr_9ff1bb45727088e5": {
+   "duration_s": 612,
+   "chapters": [
+    [
+     165,
+     "Volleys and net play"
+    ],
+    [
+     193,
+     "Overheads: víbora and bandeja"
+    ],
+    [
+     214,
+     "Sweet spot"
+    ],
+    [
+     229,
+     "Feel at impact"
+    ],
+    [
+     246,
+     "Basic shots: forehand, backhand and lob"
+    ],
+    [
+     280,
+     "Low wall exits"
+    ],
+    [
+     308,
+     "High wall exits"
+    ],
+    [
+     336,
+     "Blocks"
+    ],
+    [
+     370,
+     "Smash"
+    ],
+    [
+     425,
+     "Who is this racket for?"
+    ]
+   ],
+   "quote": "The most powerful round racket I've ever tested",
+   "quote_was": "la pala rotonda più potente che io abbia mai testato"
+  },
+  "cr_a1a6085a3a67a6f2": {
+   "duration_s": 1167,
+   "chapters": [
+    [
+     176,
+     "Feel in defence"
+    ],
+    [
+     345,
+     "Defence on court"
+    ],
+    [
+     434,
+     "Feel on víbora and bandeja"
+    ],
+    [
+     585,
+     "Víbora and bandeja on court"
+    ],
+    [
+     667,
+     "Feel on volleys"
+    ],
+    [
+     810,
+     "Volleys on court"
+    ],
+    [
+     890,
+     "Feel on smashes"
+    ],
+    [
+     946,
+     "Smashes on court"
+    ],
+    [
+     963,
+     "Conclusion and opinion"
+    ]
+   ],
+   "quote": "Really one of the places where this racket will perform best.",
+   "quote_was": "Realmente uno de los sitios donde mejor se va a comportar esta pala."
+  },
+  "cr_5864b3e0786c376b": {
+   "duration_s": 1140
+  },
+  "cr_8e233f2608af17cd": {
+   "duration_s": 909
+  },
+  "cr_cb22dea41db530b0": {
+   "duration_s": 533,
+   "quote": "The sandy rough face is one of the best on the market",
+   "quote_was": "el rugoso arenoso es de los mejores del mercado"
+  },
+  "cr_17ebd83cbd1d0873": {
+   "duration_s": 981,
+   "quote": "It's a very good racket, high marks in almost everything",
+   "quote_was": "es una pala de notable, alto en casi todo"
+  },
+  "cr_1c4a3c6c885002a0": {
+   "duration_s": 589,
+   "chapters": [
+    [
+     114,
+     "Volleys and net play"
+    ],
+    [
+     146,
+     "Overheads: víbora and bandeja"
+    ],
+    [
+     184,
+     "Feel at impact"
+    ],
+    [
+     201,
+     "Basic shots: forehand, backhand and lob"
+    ],
+    [
+     219,
+     "Sweet spot"
+    ],
+    [
+     267,
+     "Low wall exits"
+    ],
+    [
+     302,
+     "High wall exits"
+    ],
+    [
+     349,
+     "Blocks"
+    ],
+    [
+     378,
+     "Smash"
+    ],
+    [
+     434,
+     "Who is this racket for?"
+    ]
+   ],
+   "quote": "It lets me play with crazy comfort",
+   "quote_was": "mi fa giocare veramente con un comfort pazzesco"
+  },
+  "cr_8a9ec5dc03a77c1d": {
+   "duration_s": 924,
+   "quote": "I've noticed the Endure Pro has more inertia.",
+   "quote_was": "Yo he notado que la Endure Pro más inercia."
+  },
+  "cr_ffae00adeab70875": {
+   "duration_s": 937,
+   "chapters": [
+    [
+     81,
+     "Level"
+    ],
+    [
+     96,
+     "Technical features"
+    ],
+    [
+     175,
+     "From the back of the court"
+    ],
+    [
+     214,
+     "Test from the back"
+    ],
+    [
+     331,
+     "At the net"
+    ],
+    [
+     401,
+     "Test at the net"
+    ],
+    [
+     496,
+     "Overheads"
+    ],
+    [
+     541,
+     "Overhead test"
+    ],
+    [
+     607,
+     "First challenge (Emiliano)"
+    ],
+    [
+     736,
+     "Second challenge (Alvin)"
+    ],
+    [
+     890,
+     "Scores (13 categories)"
+    ]
+   ],
+   "quote": "Powerful, but not as powerful as I expected.",
+   "quote_was": "Potente, ma non potente come me l'aspettavo."
+  },
+  "cr_35d5980931fbc5b6": {
+   "duration_s": 195,
+   "quote": "The sweet spot turns out a bit bigger than on the 12K.",
+   "quote_was": "Il punto dolce risulta essere un po' più ampio della 12K."
+  },
+  "cr_ad77ba926271a8a4": {
+   "duration_s": 985,
+   "chapters": [
+    [
+     107,
+     "Drax+"
+    ],
+    [
+     129,
+     "Astrum+"
+    ],
+    [
+     364,
+     "Triton Balance and Power"
+    ],
+    [
+     542,
+     "Raptor+"
+    ],
+    [
+     746,
+     "Black Titan"
+    ],
+    [
+     845,
+     "Kenta+"
+    ]
+   ],
+   "quote": "A slightly more forgiving control racket, medium balance",
+   "quote_was": "lite mer förlåtande kontrollrack, medium balans"
+  },
+  "cr_0c45722085532c1e": {
+   "duration_s": 1296,
+   "quote": "On the volley it works really well and comes through fast",
+   "quote_was": "Sulla volet lavora veramente molto bene ed entra veloce"
+  },
+  "cr_ef772f7120656d9b": {
+   "duration_s": 1254,
+   "chapters": [
+    [
+     54,
+     "Bela line"
+    ],
+    [
+     90,
+     "Specs"
+    ],
+    [
+     251,
+     "Bela Pro on court"
+    ],
+    [
+     414,
+     "Racket balance deep dive"
+    ],
+    [
+     681,
+     "Bela LT on court"
+    ],
+    [
+     969,
+     "Final recommendations"
+    ],
+    [
+     1223,
+     "\"You got that on camera, right?\""
+    ]
+   ]
+  },
+  "cr_af8022a864cb326e": {
+   "duration_s": 525
+  },
+  "cr_19718ce696b1457a": {
+   "duration_s": 1401,
+   "quote": "Very hard to find fault with this Ultimate Tour X",
+   "quote_was": "muy difícil sacarle pegas a esta Ultimate Tour X"
+  },
+  "cr_3e14c176742ebdef": {
+   "duration_s": 920,
+   "quote": "I think it'll be a candidate for racket of the year for versatility",
+   "quote_was": "me parece que va a ser candidata a pala del año en polivalencia"
+  },
+  "cr_40458ceb711cda40": {
+   "duration_s": 1161,
+   "chapters": [
+    [
+     175,
+     "Feel in defence"
+    ],
+    [
+     334,
+     "Defence on court"
+    ],
+    [
+     416,
+     "Feel on víbora and bandeja"
+    ],
+    [
+     544,
+     "Víbora and bandeja on court"
+    ],
+    [
+     643,
+     "Feel on volleys"
+    ],
+    [
+     766,
+     "Volleys on court"
+    ],
+    [
+     837,
+     "Feel on smashes"
+    ],
+    [
+     939,
+     "Smashes on court"
+    ],
+    [
+     963,
+     "Conclusion and opinion"
+    ]
+   ],
+   "quote": "You feel the ball a lot, but at the same time we get a good ball exit.",
+   "quote_was": "Se siente mucho la pelota, pero a la vez tenemos buena salida de bola."
+  },
+  "cr_339794f0f079e355": {
+   "duration_s": 1075,
+   "chapters": [
+    [
+     161,
+     "Feel in defence"
+    ],
+    [
+     290,
+     "Defence on court"
+    ],
+    [
+     370,
+     "Feel on víbora and bandeja"
+    ],
+    [
+     530,
+     "Víbora and bandeja on court"
+    ],
+    [
+     628,
+     "Feel on volleys"
+    ],
+    [
+     740,
+     "Volleys on court"
+    ],
+    [
+     792,
+     "Feel on smashes"
+    ],
+    [
+     866,
+     "Smashes on court"
+    ],
+    [
+     882,
+     "Conclusion and opinion"
+    ]
+   ]
+  },
+  "cr_84a0d54ca519bdfb": {
+   "duration_s": 1149,
+   "quote": "But the control is really top.",
+   "quote_was": "Però controllo top davvero."
+  },
+  "cr_6738711cda8f95f4": {
+   "duration_s": 490,
+   "quote": "It's the racket with the most control I can remember testing",
+   "quote_was": "es la pala con más control que yo recuerde que haya probado"
+  },
+  "cr_3dc15f2be382fbde": {
+   "duration_s": 489
+  },
+  "cr_63d83390b751b92a": {
+   "duration_s": 138
+  },
+  "cr_e683b7c0fc1e1886": {
+   "duration_s": 820,
+   "chapters": [
+    [
+     144,
+     "Defence"
+    ],
+    [
+     294,
+     "Víbora and bandeja"
+    ],
+    [
+     401,
+     "Volley"
+    ],
+    [
+     501,
+     "Smash"
+    ],
+    [
+     622,
+     "Conclusion"
+    ]
+   ]
+  },
+  "cr_a18b49f75a8aa3a6": {
+   "duration_s": 1577
+  },
+  "cr_d1bf834d6cae23a1": {
+   "duration_s": 1531,
+   "quote": "On the volley is really where it shines",
+   "quote_was": "al volo è veramente dove brilla"
+  },
+  "cr_c8970d00ab2de75d": {
+   "duration_s": 593,
+   "chapters": [
+    [
+     65,
+     "Neuron technology level"
+    ],
+    [
+     121,
+     "The technologies"
+    ],
+    [
+     171,
+     "Something to improve"
+    ],
+    [
+     184,
+     "The Xplo"
+    ],
+    [
+     228,
+     "Differences from the Vertex"
+    ],
+    [
+     266,
+     "Power test"
+    ],
+    [
+     380,
+     "Drop shot test"
+    ],
+    [
+     457,
+     "Recommendation"
+    ],
+    [
+     544,
+     "Hardness scale"
+    ]
+   ],
+   "quote": "In the end, this racket has power.",
+   "quote_was": "Es que en definitiva esta esta pala tiene potencia."
+  },
+  "cr_c6d0d9c8c296b2a7": {
+   "duration_s": 1190,
+   "chapters": [
+    [
+     172,
+     "Level"
+    ],
+    [
+     199,
+     "Technical features"
+    ],
+    [
+     246,
+     "From the back of the court"
+    ],
+    [
+     278,
+     "Test from the back"
+    ],
+    [
+     392,
+     "At the net"
+    ],
+    [
+     472,
+     "Test at the net"
+    ],
+    [
+     598,
+     "Overheads"
+    ],
+    [
+     653,
+     "Overhead test"
+    ],
+    [
+     718,
+     "First challenge"
+    ],
+    [
+     829,
+     "Second challenge"
+    ],
+    [
+     1018,
+     "Scores (12 categories)"
+    ],
+    [
+     1161,
+     "Average scores of 2026 rackets"
+    ]
+   ],
+   "quote": "It's not a cannon at all.",
+   "quote_was": "Non è un cannone per niente."
+  },
+  "cr_9f7a4782e80028b4": {
+   "duration_s": 288
+  },
+  "cr_698509ee715c3841": {
+   "duration_s": 674,
+   "quote": "It's not for everyone: a more offensive, more refined racket",
+   "quote_was": "This is not for all audiences, a logically more offensive and more refined shovel"
+  },
+  "cr_c98723abbffa4541": {
+   "duration_s": 1525,
+   "chapters": [
+    [
+     82,
+     "Elite W"
+    ],
+    [
+     192,
+     "Flow"
+    ],
+    [
+     302,
+     "Vertex 04 W"
+    ],
+    [
+     439,
+     "Neuron"
+    ],
+    [
+     592,
+     "Hack 04"
+    ],
+    [
+     817,
+     "Hack 04 Hybrid"
+    ],
+    [
+     925,
+     "Vertex 04 Hybrid"
+    ],
+    [
+     1028,
+     "Vertex 04"
+    ],
+    [
+     1194,
+     "Xplo"
+    ],
+    [
+     1370,
+     "How the review works"
+    ],
+    [
+     1392,
+     "Ranking"
+    ]
+   ],
+   "quote": "Up here like this, I like it, it gives me a feeling of security",
+   "quote_was": "Up like this, I like it, it gives me a feeling of security"
+  },
+  "cr_f861486374640f5f": {
+   "duration_s": 742,
+   "quote": "You hit it more slowly and the ball still comes out fast.",
+   "quote_was": "La tocas más despacio y aún así la bola sale con velocidad."
+  },
+  "cr_a072c106d8cdfb7c": {
+   "duration_s": 749,
+   "chapters": [
+    [
+     64,
+     "EA10 Edu Alonso"
+    ],
+    [
+     75,
+     "Specs"
+    ],
+    [
+     102,
+     "Feel"
+    ],
+    [
+     134,
+     "AT10 Xtrem"
+    ],
+    [
+     219,
+     "Changing the weights"
+    ],
+    [
+     241,
+     "Fuji"
+    ],
+    [
+     338,
+     "Varlion Rega Maxima"
+    ],
+    [
+     377,
+     "Hardness"
+    ],
+    [
+     433,
+     "Who is it for?"
+    ],
+    [
+     452,
+     "Bullpadel Carona"
+    ],
+    [
+     497,
+     "Who is it for?"
+    ],
+    [
+     532,
+     "The rough face"
+    ],
+    [
+     610,
+     "My favourites"
+    ]
+   ],
+   "quote": "It's a very easy racket to use from the moment you pick it up",
+   "quote_was": "es una pala muy fácil de usar desde el primer momento que la agarréis"
+  },
+  "cr_482bcdda26a61417": {
+   "duration_s": 195,
+   "quote": "It's a racket that feels much more solid.",
+   "quote_was": "È una pala che sembra molto più piena."
+  },
+  "cr_a385c8cdcb0044cf": {
+   "duration_s": 1872,
+   "chapters": [
+    [
+     48,
+     "Spec sheet"
+    ],
+    [
+     512,
+     "From the back"
+    ],
+    [
+     803,
+     "Volleys"
+    ],
+    [
+     984,
+     "Víbora"
+    ],
+    [
+     1132,
+     "Smash"
+    ],
+    [
+     1255,
+     "The competitors"
+    ],
+    [
+     1600,
+     "Scores"
+    ]
+   ],
+   "quote": "For me it's the most explosive racket at medium-high pace",
+   "quote_was": "Secondo me è la racchetta più esplosiva su un ritmo medio alto"
+  },
+  "cr_31c2a0ec11df52ac": {
+   "duration_s": 799
+  },
+  "cr_759684875fba912b": {
+   "duration_s": 1003,
+   "quote": "I think the volley is one of its best points",
+   "quote_was": "Me parece que la volea es uno de sus mejores puntos"
+  },
+  "cr_af7169e904a1c629": {
+   "duration_s": 541,
+   "quote": "It's a real cannon.",
+   "quote_was": "Es un auténtico cañón."
+  },
+  "cr_a0b6c6d0589e96d2": {
+   "duration_s": 1692,
+   "quote": "It's a physically demanding racket",
+   "quote_was": "è una racchetta fisicamente impegnativa"
+  },
+  "cr_0c8aac1d155143aa": {
+   "duration_s": 534
+  },
+  "cr_1301c0ad35f10641": {
+   "duration_s": 642
+  },
+  "cr_d72827b061441893": {
+   "duration_s": 1311,
+   "quote": "The sweet spot is very well optimised",
+   "quote_was": "el punto dulce está muy bien optimizado"
+  },
+  "cr_eee71f3a39c5636e": {
+   "duration_s": 1036,
+   "quote": "As far as I'm concerned, it's a stunning racket.",
+   "quote_was": "Per quanto mi riguarda è una pala stupenda."
+  },
+  "cr_2edbc89b1d1326de": {
+   "duration_s": 622,
+   "chapters": [
+    [
+     91,
+     "Main technologies"
+    ],
+    [
+     216,
+     "Feel on court"
+    ],
+    [
+     571,
+     "Who the EA10 Ventus Hybrid is for"
+    ]
+   ],
+   "quote": "I found a very good balance between power and control",
+   "quote_was": "he encontrado una relación muy buena entre potencia y control"
+  },
+  "cr_58b2a565fc2a1a2a": {
+   "duration_s": 602,
+   "quote": "It's a very good racket for starting a counterattack",
+   "quote_was": "es una pala muy buena para iniciar un contragolpe"
+  },
+  "cr_5329aaddeea91dba": {
+   "duration_s": 918
+  },
+  "cr_fa834d53d42e85d2": {
+   "duration_s": 1414,
+   "chapters": [
+    [
+     228,
+     "Feel in defence"
+    ],
+    [
+     404,
+     "Defence on court"
+    ],
+    [
+     501,
+     "Feel on víbora and bandeja"
+    ],
+    [
+     675,
+     "Víbora and bandeja on court"
+    ],
+    [
+     754,
+     "Feel on volleys"
+    ],
+    [
+     869,
+     "Volleys on court"
+    ],
+    [
+     961,
+     "Feel on smashes"
+    ],
+    [
+     1098,
+     "Smashes on court"
+    ],
+    [
+     1164,
+     "Conclusion and opinion"
+    ]
+   ]
+  },
+  "cr_e3cd63ac58a15f7f": {
+   "duration_s": 1120,
+   "chapters": [
+    [
+     128,
+     "Feel in defence"
+    ],
+    [
+     278,
+     "Defence on court"
+    ],
+    [
+     348,
+     "Feel on víbora and bandeja"
+    ],
+    [
+     492,
+     "Víbora and bandeja on court"
+    ],
+    [
+     574,
+     "Feel on volleys"
+    ],
+    [
+     685,
+     "Volleys on court"
+    ],
+    [
+     754,
+     "Feel on smashes"
+    ],
+    [
+     844,
+     "Smashes on court"
+    ],
+    [
+     868,
+     "Conclusion and opinion"
+    ]
+   ]
+  },
+  "cr_231673cf43dc8c58": {
+   "duration_s": 1010,
+   "chapters": [
+    [
+     259,
+     "Feel in defence"
+    ],
+    [
+     415,
+     "Feel on víbora and bandeja"
+    ],
+    [
+     541,
+     "Feel on volleys"
+    ],
+    [
+     685,
+     "Feel on smashes"
+    ],
+    [
+     809,
+     "Conclusion and opinion"
+    ]
+   ],
+   "quote": "The most offensive and most powerful racket we can find",
+   "quote_was": "la pala más ofensiva y más potente que podemos encontrar"
+  },
+  "cr_f9700d429ed684f7": {
+   "duration_s": 1038,
+   "chapters": [
+    [
+     159,
+     "Feel in defence"
+    ],
+    [
+     258,
+     "Defence on court"
+    ],
+    [
+     337,
+     "Feel on víbora and bandeja"
+    ],
+    [
+     501,
+     "Víbora and bandeja on court"
+    ],
+    [
+     567,
+     "Feel on volleys"
+    ],
+    [
+     678,
+     "Volleys on court"
+    ],
+    [
+     740,
+     "Feel on smashes"
+    ],
+    [
+     805,
+     "Smashes on court"
+    ],
+    [
+     839,
+     "Conclusion and opinion"
+    ]
+   ]
+  },
+  "cr_7cc2e760b634b8ef": {
+   "duration_s": 1363,
+   "chapters": [
+    [
+     122,
+     "Level"
+    ],
+    [
+     177,
+     "Technical features"
+    ],
+    [
+     273,
+     "From the back of the court"
+    ],
+    [
+     348,
+     "Test from the back"
+    ],
+    [
+     476,
+     "At the net"
+    ],
+    [
+     595,
+     "Test at the net"
+    ],
+    [
+     715,
+     "Overheads"
+    ],
+    [
+     790,
+     "Overhead test"
+    ],
+    [
+     894,
+     "First challenge"
+    ],
+    [
+     1013,
+     "Second challenge"
+    ],
+    [
+     1311,
+     "Scores (13 categories)"
+    ],
+    [
+     1350,
+     "Average scores of 2025 rackets"
+    ]
+   ],
+   "quote": "This year it finally doesn't vibrate",
+   "quote_was": "Quest'anno finalmente non vibra"
+  },
+  "cr_7be11735af0040d3": {
+   "duration_s": 1066,
+   "chapters": [
+    [
+     131,
+     "Feel in defence"
+    ],
+    [
+     249,
+     "Defence on court"
+    ],
+    [
+     336,
+     "Feel on víbora and bandeja"
+    ],
+    [
+     446,
+     "Víbora and bandeja on court"
+    ],
+    [
+     536,
+     "Feel on volleys"
+    ],
+    [
+     660,
+     "Volleys on court"
+    ],
+    [
+     746,
+     "Feel on smashes"
+    ],
+    [
+     837,
+     "Smashes on court"
+    ],
+    [
+     866,
+     "Conclusion and opinion"
+    ]
+   ]
+  },
+  "cr_9f1f20fa4c8559a9": {
+   "duration_s": 842,
+   "quote": "A racket that surprised me a lot, and for the better",
+   "quote_was": "a racket that has surprised me a lot and for the better"
+  },
+  "cr_a7b0a792b3ba6d06": {
+   "duration_s": 562,
+   "quote": "I absolutely love this Coello Motion overhead",
+   "quote_was": "Mi piace da morire questa Coello Motion dall'alto"
+  },
+  "cr_190811d7f01d9a6f": {
+   "duration_s": 580,
+   "chapters": [
+    [
+     64,
+     "Main features"
+    ],
+    [
+     227,
+     "Feel on court"
+    ],
+    [
+     488,
+     "Who it is for"
+    ]
+   ],
+   "quote": "I can defend quite well with it and place it where I want",
+   "quote_was": "puedo defender bastante bien con ella y puedo dirigirla donde quiero"
+  },
+  "cr_86c6e0c2d08d3dec": {
+   "duration_s": 256
+  },
+  "cr_5a2d25f134e423b1": {
+   "duration_s": 741,
+   "quote": "It feels like this racket has shock absorbers, it's that comfortable",
+   "quote_was": "Sembra abbia gli ammortizzatori questa palla perché è davvero comoda"
+  },
+  "cr_ae4cc2983c498f71": {
+   "duration_s": 1062,
+   "chapters": [
+    [
+     175,
+     "Feel in defence"
+    ],
+    [
+     303,
+     "Defence on court"
+    ],
+    [
+     350,
+     "Feel on víbora and bandeja"
+    ],
+    [
+     507,
+     "Víbora and bandeja on court"
+    ],
+    [
+     566,
+     "Feel on volleys"
+    ],
+    [
+     648,
+     "Volleys on court"
+    ],
+    [
+     705,
+     "Feel on smashes"
+    ],
+    [
+     805,
+     "Smashes on court"
+    ],
+    [
+     832,
+     "Conclusion and opinion"
+    ]
+   ]
+  },
+  "cr_a9d1525f2153eab1": {
+   "duration_s": 1168,
+   "chapters": [
+    [
+     164,
+     "Feel in defence"
+    ],
+    [
+     325,
+     "Defence on court"
+    ],
+    [
+     386,
+     "Feel on víbora and bandeja"
+    ],
+    [
+     530,
+     "Víbora and bandeja on court"
+    ],
+    [
+     611,
+     "Feel on volleys"
+    ],
+    [
+     717,
+     "Volleys on court"
+    ],
+    [
+     782,
+     "Feel on smashes"
+    ],
+    [
+     886,
+     "Smashes on court"
+    ],
+    [
+     914,
+     "Conclusion and opinion"
+    ]
+   ],
+   "quote": "If it isn't the most offensive, it's one of the most offensive, no doubt",
+   "quote_was": "si no es la más ofensiva, es de las más ofensivas, sin dudas"
+  },
+  "cr_3a0d367cce651aa0": {
+   "duration_s": 770,
+   "chapters": [
+    [
+     128,
+     "Defence"
+    ],
+    [
+     232,
+     "Víbora and bandeja"
+    ],
+    [
+     325,
+     "Volley"
+    ],
+    [
+     412,
+     "Smash"
+    ],
+    [
+     555,
+     "Conclusion"
+    ]
+   ]
+  },
+  "cr_d7f6650c1125c51b": {
+   "duration_s": 949,
+   "chapters": [
+    [
+     136,
+     "Feel in defence"
+    ],
+    [
+     256,
+     "Defence on court"
+    ],
+    [
+     304,
+     "Feel on víbora and bandeja"
+    ],
+    [
+     403,
+     "Víbora and bandeja on court"
+    ],
+    [
+     474,
+     "Feel on volleys"
+    ],
+    [
+     576,
+     "Volleys on court"
+    ],
+    [
+     647,
+     "Feel on smashes"
+    ],
+    [
+     712,
+     "Smashes on court"
+    ],
+    [
+     748,
+     "Conclusion and opinion"
+    ]
+   ]
+  },
+  "cr_7af778337f880783": {
+   "duration_s": 1030,
+   "chapters": [
+    [
+     164,
+     "Feel in defence"
+    ],
+    [
+     288,
+     "Defence on court"
+    ],
+    [
+     362,
+     "Feel on víbora and bandeja"
+    ],
+    [
+     474,
+     "Víbora and bandeja on court"
+    ],
+    [
+     538,
+     "Feel on volleys"
+    ],
+    [
+     652,
+     "Volleys on court"
+    ],
+    [
+     709,
+     "Feel on smashes"
+    ],
+    [
+     809,
+     "Smashes on court"
+    ],
+    [
+     834,
+     "Conclusion and opinion"
+    ]
+   ],
+   "quote": "Like I said, possibly Bullpadel's most powerful racket this year.",
+   "quote_was": "Como digo, posiblemente la pala más potente de Bullpadel este año."
+  }
+ }
+}
