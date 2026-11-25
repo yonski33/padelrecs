@@ -483,6 +483,13 @@ body:has(.th) .th a.th-ac-item:hover, body:has(.th) .th a.th-ac-item[aria-select
 .th-menu .th-search { flex: none; width: 100%; flex-direction: column; }
 .th-menu .th-ac-drop { position: static; width: auto; margin-top: 6px; box-shadow: none; }
 @media (max-width: 639px) { .th-head .th-menu .th-search { display: flex; } }
+/* Phones (owner 2026-11-25): search sits first in the menu. 16px text so iOS doesn't zoom in on focus (the zoom pushed
+   "Close" off screen), and the suggestions stop above the keyboard (--th-vvh, header.tsx) and scroll. */
+.th-menu .th-search { margin: 0 0 8px; }
+.th-menu .th-search input { font-size: 16px; }
+.th-menu .th-ac-drop ul { max-height: max(150px, calc(var(--th-vvh, 100dvh) - 210px)); overscroll-behavior: contain; }
+.th-menu-btn { flex: none; }
+@media (max-width: 379px) { .th-head-in { gap: 12px; padding-inline: 14px; } }
 
 /* Reading width (owner 2026-11-19): body text inside cards stops at about 75 characters, so wider pages don't stretch lines. */
 .th-card p, .th-lead { max-width: 75ch; }
