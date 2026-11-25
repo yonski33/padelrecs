@@ -2,7 +2,7 @@
 // The Thread header (README "Header"): logo, Rackets · Rankings · Guides with the current page in bold, and search. Brands is
 // off the menu (owner 2026-11-19); the brand pages stay live and are linked from racket pages and the catalog.
 // On phones a Menu button opens the same links full width, with the same search.
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { th, GUIDE_PATHS, THREAD_DEFAULT } from "../../../lib/thread/look";
 import { RacketSearch } from "../../racket-search";
 import { niche, catalogPath } from "../../../lib/niche";
@@ -39,6 +39,15 @@ function Search({ id, shortcut = true }: { id: string; shortcut?: boolean }) {
 export function ThreadHeader({ active, stories = false }: { active: Section; /** Member stories are live (PadelRecs). */ stories?: boolean }) {
   const NAV = stories ? [...SITE_NAV, ["stories", "Stories", "/stories"] as [Exclude<Section, null>, string, string]] : SITE_NAV;
   const [open, setOpen] = useState(false);
+  // The height left above the phone keyboard (visualViewport), so the menu's suggestion list ends above it and scrolls.
+  const menu = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    const vv = window.visualViewport, el = menu.current;
+    if (!open || !vv || !el) return;
+    const fit = () => el.style.setProperty("--th-vvh", `${Math.round(vv.height)}px`);
+    fit(); vv.addEventListener("resize", fit);
+    return () => vv.removeEventListener("resize", fit);
+  }, [open]);
   return <header className="th-head">
     <div className="th-head-in">
       <a className="th-logo" href={th("/")}>{niche.id === "stackrecs" || niche.id === "simracing" ? <img className="th-logo-icon" src={`/niches/${niche.id}/icon.svg`} alt="" width={24} height={24}/> : <span className="th-dot" aria-hidden="true"/>}{niche.site.name}</a>
@@ -52,11 +61,12 @@ export function ThreadHeader({ active, stories = false }: { active: Section; /**
         <span className="th-burger" aria-hidden="true"><i/><i/><i/></span>{open ? "Close" : "Menu"}
       </button>
     </div>
-    {open && <div className="th-menu" id="th-menu">
+    {open && <div className="th-menu" id="th-menu" ref={menu}>
+      {/* Search first (owner 2026-11-25, iPhone): at the bottom it sat behind the keyboard with its suggestions under it. */}
+      <Search id="th-q-menu" shortcut={false}/>
       {NAV.map(([k, label, href]) => <a key={k} href={th(href)} aria-current={active === k ? "page" : undefined}>{label}</a>)}
       <a href={ADD}>Add a review</a>
       {ACCOUNTS && <AccountLink/>}
-      <Search id="th-q-menu" shortcut={false}/>
     </div>}
   </header>;
 }
