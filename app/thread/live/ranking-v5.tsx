@@ -3,7 +3,7 @@
 // your fit". The quick match never reorders the list: once a level and a style are picked, the box names the best fit in this
 // list and that row gets a "Your best fit here" tag. The picks are the site's shared ones (live/picks.ts), so they follow the
 // visitor from the home and the catalogue, and the match % comes from the same engine as the home.
-import { useMemo } from "react";
+import { useMemo, useState, type ReactNode } from "react";
 import { th } from "../../../lib/thread/look";
 import { niche } from "../../../lib/niche";
 import { usePicks, usePayload, pctsFor, complete, LEVEL_OPTS, STYLE_OPTS, BUDGETS, styleLabel } from "./picks";
@@ -62,14 +62,26 @@ export function RankRows({ rows, ratingLabel, opinions, markLoved = false, wire,
     </a>; })}</>;
 }
 
+/** The quick match box. On phones (owner 2026-11-25) it sits above the list (thread.css, .rk5-grid order) and starts folded:
+ *  the title, what's picked (or the best fit) and a Show/Hide toggle, so the list stays on screen. Desktop: always open, in the sidebar. */
+function QmShell({ summary, reset, children }: { summary: string; reset: ReactNode; children: ReactNode }) {
+  const [open, setOpen] = useState(false);
+  return <section className={`th-card rk5-qm rk5-qm-fold${open ? " open" : ""}`}>
+    <div className="head"><h3>Quick match: find your fit</h3>{reset}
+      <button type="button" className="fold" aria-expanded={open} aria-controls="rk5-qm-body" onClick={() => setOpen(o => !o)}>{open ? "Hide" : "Show"}<span aria-hidden="true">{open ? "▴" : "▾"}</span></button></div>
+    <span className="fold-sum">{summary}</span>
+    <div className="body" id="rk5-qm-body">{children}</div>
+  </section>;
+}
+
 export function QuickMatch({ rows, wire }: { rows: V5Row[]; wire?: AudioWire[] }) {
   const [picks, set] = usePicks(), best = useBestFit(rows, wire), any = !!(picks.level || picks.style || picks.arm || picks.budget);
   const [ap, aset] = useAudioPicks();
   // AudioRecs: the same box with its own picks (use, sound, noise cancelling).
   if (wire) { const good = best != null && best.pct >= GOOD;
-    return <section className="th-card rk5-qm">
-      <div className="head"><h3>Quick match: find your fit</h3>
-        {audioPickedAny(ap) && <button type="button" className="reset" onClick={() => aset({ use: null, sound: null, anc: false })}>Reset</button>}</div>
+    const picked = [USES.find(([v]) => v === ap.use)?.[1], SOUNDS.find(([v]) => v === ap.sound)?.[1], ap.anc ? "noise cancelling" : null].filter(Boolean).join(" · ");
+    return <QmShell summary={best ? `Best fit here: ${best.row.name}` : picked || "Pick how you listen."}
+      reset={audioPickedAny(ap) && <button type="button" className="reset" onClick={() => aset({ use: null, sound: null, anc: false })}>Reset</button>}>
       <p>Pick how you listen. The list keeps its order.</p>
       <span className="lbl">Mostly for</span>
       <div className="opts">{USES.map(([v, t]) => <button key={v} type="button" aria-pressed={ap.use === v} onClick={() => aset({ use: ap.use === v ? null : v })}>{t}</button>)}</div>
@@ -82,16 +94,16 @@ export function QuickMatch({ rows, wire }: { rows: V5Row[]; wire?: AudioWire[] }
           <span>Best fit here: <b>{best.row.name}</b>. {good ? (ap.use ? `Listeners rate it well for ${USE_WORDS[ap.use]}.` : "Listeners rate it well for the sound you picked.") : "Nothing here fits every pick. This one comes closest."}</span>
           <a href={th(best.row.href)}>See more details →</a></span>
       </div>}
-    </section>; }
+    </QmShell>; }
   const good = best != null && best.pct >= GOOD;
   // SimRacingRecs (BUDGETS, no styles): level and budget, "I race on console" (a hard filter, so no arm line).
   const budget = BUDGETS.find(([k]) => k === picks.budget)?.[1].toLowerCase();
   const why = best ? (good ? (BUDGETS.length ? `It suits ${picks.level} racers${budget ? ` on a ${budget} budget` : ""}.` : `It suits ${picks.level} players who want ${picks.style === "balance" ? "a balanced racket" : picks.style}.`)
     : "Nothing here fits every pick. This one comes closest.")
     + (picks.arm && !BUDGETS.length ? (best.row.arm ? " Players with sore arms speak well of it." : " Some find it firm on the arm.") : "") : "";
-  return <section className="th-card rk5-qm">
-    <div className="head"><h3>Quick match: find your fit</h3>
-      {any && <button type="button" className="reset" onClick={() => set({ level: null, style: null, arm: false, ...(BUDGETS.length ? { budget: null } : {}) })}>Reset</button>}</div>
+  const picked = [picks.level && cap(picks.level), picks.style && styleLabel(picks.style), BUDGETS.find(([k]) => k === picks.budget)?.[1], picks.arm ? (BUDGETS.length ? "console" : "arm comfort") : null].filter(Boolean).join(" · ");
+  return <QmShell summary={best ? `Best fit here: ${best.row.name}` : picked || (BUDGETS.length ? "Pick your level and budget." : "Pick your level and what matters most.")}
+    reset={any && <button type="button" className="reset" onClick={() => set({ level: null, style: null, arm: false, ...(BUDGETS.length ? { budget: null } : {}) })}>Reset</button>}>
     <p>{BUDGETS.length ? "Pick your level and budget. The list keeps its order." : "Pick how you play. The list keeps its order."}</p>
     <span className="lbl">Your level</span>
     <div className="opts">{LEVEL_OPTS.map(v => <button key={v} type="button" aria-pressed={picks.level === v} onClick={() => set({ level: picks.level === v ? null : v })}>{cap(v)}</button>)}</div>
@@ -105,5 +117,5 @@ export function QuickMatch({ rows, wire }: { rows: V5Row[]; wire?: AudioWire[] }
         <span>Best fit here: <b>{best.row.name}</b>. {why}</span>
         <a href={th(best.row.href)}>See more details →</a></span>
     </div>}
-  </section>;
+  </QmShell>;
 }
