@@ -43,7 +43,11 @@ function Card({ x, lit, configs }: { x: ReviewEntry; lit: boolean; configs?: boo
   // marked phrases, the rest of the summary after it, 68ch at 17px on 1.65.
   const vid = true;
   const [lead, rest] = vid ? leadSentences(x.summary, 3) : [x.summary, ""];
-  const hl = vid ? x.highlights.slice(0, 2) : x.highlights;
+  // Marked phrases: up to two in the lead; the opened part gets up to two of the others that sit in it (owner 2026-11-25:
+  // the text after Read more had none, since the first two always fell in the lead).
+  const hl = vid ? x.highlights.filter(h => lead.includes(h)).slice(0, 2) : x.highlights;
+  const hlRest = vid ? x.highlights.filter(h => !hl.includes(h) && !lead.includes(h) && rest.includes(h)).slice(0, 2) : [];
+  const hlMore = vid && x.more ? x.highlights.filter(h => !hl.includes(h) && !hlRest.includes(h) && x.more!.includes(h)).slice(0, 2 - hlRest.length) : [];
   // The config's extra lines (LaptopRecs): the source's note on a second config and the price as tested, in the open card only.
   const cfgMore = configs ? [x.config?.note, x.config?.fields.price_as_tested ? `Price as tested: ${x.config.fields.price_as_tested}.` : null].filter((t): t is string => !!t) : [];
   const more = !!rest || !!x.more || !!measured || !!x.alsoUrl || cfgMore.length > 0;
@@ -111,8 +115,8 @@ function Card({ x, lit, configs }: { x: ReviewEntry; lit: boolean; configs?: boo
         {sub && <span className="thc-box-s">{sub}</span>}</div>)}</div>}
       <p ref={sumRef} className={`thc-sum${vid ? " vid" : ""}`}>{marks(lead, hl).map((m, i) => m.on ? <mark key={i}>{link(m.t)}</mark> : <Fragment key={i}>{link(m.t)}</Fragment>)}
         {more && !open && <>{" "}{toggle}</>}</p>
-      {open && rest && <p className={`thc-sum${vid ? " vid" : ""}`}>{marks(rest, hl.filter(h => !lead.includes(h))).map((m, i) => m.on ? <mark key={i}>{link(m.t)}</mark> : <Fragment key={i}>{link(m.t)}</Fragment>)}</p>}
-      {open && x.more && <p className={`thc-sum${vid ? " vid" : ""}`}>{link(x.more)}</p>}
+      {open && rest && <p className={`thc-sum${vid ? " vid" : ""}`}>{marks(rest, hlRest).map((m, i) => m.on ? <mark key={i}>{link(m.t)}</mark> : <Fragment key={i}>{link(m.t)}</Fragment>)}</p>}
+      {open && x.more && <p className={`thc-sum${vid ? " vid" : ""}`}>{marks(x.more, hlMore).map((m, i) => m.on ? <mark key={i}>{link(m.t)}</mark> : <Fragment key={i}>{link(m.t)}</Fragment>)}</p>}
       {open && measured && <p className="thc-sum sm">{`Measured by the reviewer: ${measured}.`}</p>}
       {open && cfgMore.map(t => <p key={t} className="thc-sum sm">{t}</p>)}
       {open && <p className="thc-sum">{toggle}</p>}
