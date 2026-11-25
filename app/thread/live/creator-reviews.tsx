@@ -8,7 +8,7 @@
 // A row of "All N reviews at a glance" (any a[href="#cr-…"]) opens the list if the card is hidden, clears a filter that
 // hides it, scrolls to it and highlights it. Filtering runs in the browser on the cards the page already has, so the
 // page's ISR cache is untouched.
-import { Fragment, useEffect, useMemo, useState, type ReactNode } from "react";
+import { Fragment, useEffect, useLayoutEffect, useMemo, useRef, useState, type ReactNode } from "react";
 import { atSecond, clock } from "../../../lib/thread/video-meta";
 import { VideoProvider, clipOf, playClick, usePlay } from "./video-overlay";
 import { mentionNodes, useMentions } from "./mention-links";
@@ -43,11 +43,29 @@ function Card({ x, lit, configs }: { x: ReviewEntry; lit: boolean; configs?: boo
   // marked phrases, the rest of the summary after it, 68ch at 17px on 1.65.
   const vid = true;
   const [lead, rest] = vid ? leadSentences(x.summary, 3) : [x.summary, ""];
-  const hl = vid ? x.highlights.slice(0, 2) : x.highlights;
+  // Marked phrases: up to two in the lead; the opened part gets up to two of the others that sit in it (owner 2026-11-25:
+  // the text after Read more had none, since the first two always fell in the lead).
+  const hl = vid ? x.highlights.filter(h => lead.includes(h)).slice(0, 2) : x.highlights;
+  const hlRest = vid ? x.highlights.filter(h => !hl.includes(h) && !lead.includes(h) && rest.includes(h)).slice(0, 2) : [];
+  const hlMore = vid && x.more ? x.highlights.filter(h => !hl.includes(h) && !hlRest.includes(h) && x.more!.includes(h)).slice(0, 2 - hlRest.length) : [];
   // The config's extra lines (LaptopRecs): the source's note on a second config and the price as tested, in the open card only.
   const cfgMore = configs ? [x.config?.note, x.config?.fields.price_as_tested ? `Price as tested: ${x.config.fields.price_as_tested}.` : null].filter((t): t is string => !!t) : [];
   const more = !!rest || !!x.more || !!measured || !!x.alsoUrl || cfgMore.length > 0;
-  const toggle = <button type="button" className="thc-more" aria-expanded={open} onClick={() => setOpen(!open)}>{open ? "Show less" : "Read more"}</button>;
+  // Read more keeps the summary where it was (owner 2026-11-25, iPhone): the inline button moves to the end of the card, and
+  // the browser's scroll anchoring followed it, dropping the reader below the text they were about to read. Show less brings
+  // the card's top back into view when the shorter card would leave it above the screen.
+  const sumRef = useRef<HTMLParagraphElement>(null), held = useRef<number | null>(null);
+  const flip = () => { held.current = sumRef.current?.getBoundingClientRect().top ?? null; setOpen(o => !o); };
+  useLayoutEffect(() => {
+    const el = sumRef.current, was = held.current;
+    held.current = null;
+    if (!el || was == null) return;
+    const now = el.getBoundingClientRect().top;
+    if (open) { if (Math.abs(now - was) > 1) window.scrollBy(0, now - was); }
+    else if (now < 0) { const head = document.querySelector(".th-head")?.getBoundingClientRect().height ?? 0, card = el.closest("article");
+      if (card) window.scrollBy(0, card.getBoundingClientRect().top - head - 12); }
+  }, [open]);
+  const toggle = <button type="button" className="thc-more" aria-expanded={open} onClick={flip}>{open ? "Show less" : "Read more"}</button>;
   const tags = [TYPE_TAG[x.type], x.note, x.version].filter((t): t is string => !!t);
   // Stood out, The trade-off, then Best for (owner 2026-11-23: in place of "Compared to", which only listed names): who this
   // reviewer says the paddle suits, and their reason. No Best for: just the first two boxes.
@@ -95,10 +113,10 @@ function Card({ x, lit, configs }: { x: ReviewEntry; lit: boolean; configs?: boo
       {boxes.length > 0 && <div className="thc-boxes">{boxes.map(([i, h, t, k, sub]) => <div key={h} className={`thc-box ${k}`}>
         <span className="thc-box-h"><b aria-hidden="true">{i}</b><span>{h}</span></span><span className="thc-box-t">{t}</span>
         {sub && <span className="thc-box-s">{sub}</span>}</div>)}</div>}
-      <p className={`thc-sum${vid ? " vid" : ""}`}>{marks(lead, hl).map((m, i) => m.on ? <mark key={i}>{link(m.t)}</mark> : <Fragment key={i}>{link(m.t)}</Fragment>)}
+      <p ref={sumRef} className={`thc-sum${vid ? " vid" : ""}`}>{marks(lead, hl).map((m, i) => m.on ? <mark key={i}>{link(m.t)}</mark> : <Fragment key={i}>{link(m.t)}</Fragment>)}
         {more && !open && <>{" "}{toggle}</>}</p>
-      {open && rest && <p className={`thc-sum${vid ? " vid" : ""}`}>{marks(rest, hl.filter(h => !lead.includes(h))).map((m, i) => m.on ? <mark key={i}>{link(m.t)}</mark> : <Fragment key={i}>{link(m.t)}</Fragment>)}</p>}
-      {open && x.more && <p className={`thc-sum${vid ? " vid" : ""}`}>{link(x.more)}</p>}
+      {open && rest && <p className={`thc-sum${vid ? " vid" : ""}`}>{marks(rest, hlRest).map((m, i) => m.on ? <mark key={i}>{link(m.t)}</mark> : <Fragment key={i}>{link(m.t)}</Fragment>)}</p>}
+      {open && x.more && <p className={`thc-sum${vid ? " vid" : ""}`}>{marks(x.more, hlMore).map((m, i) => m.on ? <mark key={i}>{link(m.t)}</mark> : <Fragment key={i}>{link(m.t)}</Fragment>)}</p>}
       {open && measured && <p className="thc-sum sm">{`Measured by the reviewer: ${measured}.`}</p>}
       {open && cfgMore.map(t => <p key={t} className="thc-sum sm">{t}</p>)}
       {open && <p className="thc-sum">{toggle}</p>}
