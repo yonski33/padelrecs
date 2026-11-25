@@ -181,7 +181,12 @@ export async function CreatorProductBody({ slug }: { slug: string }) {
   // The one filled Check price button (README rule) goes to a lowest in-stock shop; without prices, to the live page's link.
   // On a tie for the lowest price the button goes to Amazon, or another affiliate link (owner 2026-11-23: until the other
   // shops have affiliate codes); otherwise the first shop at that price.
-  const top = low ? low.shops.find(o => o.shop === "Amazon" || o.affiliate) ?? low.shops[0]! : null;
+  // SkinRecs and PickleballRecs (owner 2026-11-25): Amazon is the site's only affiliate, so its button always leads, whatever
+  // the other shops charge: Amazon's own in-stock offer when the sweep has one, else the Amazon link (the product, or a search
+  // for its name). The other shops stay listed under it.
+  const amazonFirst = (SKIN || niche.id === "pickleball") && shop?.where === "Amazon";
+  const top = amazonFirst ? offers.find(o => o.shop === "Amazon" && o.inStock) ?? null
+    : low ? low.shops.find(o => o.shop === "Amazon" || o.affiliate) ?? low.shops[0]! : null;
   const cta = top ? { url: top.url, rel: relOf(top.affiliate || top.shop === "Amazon") } : shop;
   const how = howItPlays(rs), agree = agreeChips(rs);
   // The at-a-glance table (owner 2026-11-23): reviewer, take and the short key point only, in the reviews' own order.
@@ -291,10 +296,10 @@ export async function CreatorProductBody({ slug }: { slug: string }) {
               <span className="thc-pbox-s">{/* The shops listed below (owner 2026-11-23), not every in-stock offer. */}{buy.length > 0 && `In stock at ${plural(buy.length, "shop")}`}</span></>}
             {/* With a price shown (owner 2026-11-23) the button names its shop: the lowest in-stock shop ("Desert Paddles ›",
                 its "(brand store)" note left off), or on SkinRecs "Amazon ›". */}
-            {cta && <a className="thc-cta wide" href={cta.url} target="_blank" rel={cta.rel}>{top ? `${shortShop(top.shop)} ›` : SKIN && shop ? `${shop.where} ›` : "Check price ↗"}</a>}
+            {cta && <a className="thc-cta wide" href={cta.url} target="_blank" rel={cta.rel}>{top ? `${shortShop(top.shop)} ›` : (SKIN || amazonFirst) && shop ? `${shop.where} ›` : "Check price ↗"}</a>}
             {/* The affiliate note under the shop button (owner 2026-11-23), linking to the site's disclosure page. */}
             {/* Every site (owner 2026-11-23: "place affiliate note below any amazon link"); skin also names the shop otherwise. */}
-            {!low && shop && (SKIN || shop.rel.includes("sponsored")) && <span className="thc-pbox-on">{shop.rel.includes("sponsored")
+            {(!low || (amazonFirst && !top)) && shop && (SKIN || shop.rel.includes("sponsored")) && <span className="thc-pbox-on">{shop.rel.includes("sponsored")
               ? <>{`Affiliate link: ${niche.site.name} may earn a small commission. `}<a href={th("/affiliate-disclosure")}>Learn more</a></> : `on ${shop.where}`}</span>}
 
             {/* The button's own shop is not listed again below it (owner 2026-11-23). */}
