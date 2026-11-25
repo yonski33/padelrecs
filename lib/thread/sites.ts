@@ -118,5 +118,10 @@ export const CREATOR_MIN_REVIEWS = 3;
  *  check, the vote boxes, the discussion). Set CREATOR_PAGE to false for the site to switch it off. */
 // LaptopRecs moved onto the Thread pages (2026-11-24), so its creator pages come from the Thread product page like
 // PickleballRecs'. The list stays for a future non-Thread site.
+/** Sites whose vote boxes also count votes imported from owner posts on Reddit (owner 2026-11-24: one box, merged display,
+ *  rows kept apart in the DB with network "reddit", scripts/import-reddit-votes.mts). The box says where its votes come from. */
+export const VOTE_SOURCE_NOTE: Record<string, string> = {
+  laptop: "Votes come from LaptopRecs users and from owner posts and comments on Reddit.",
+};
 export const CREATOR_PLAIN_SITES: string[] = [];
 export const creatorPlainSite = (nicheId: string) => CREATOR_PLAIN_SITES.includes(nicheId);
