@@ -98,6 +98,9 @@ const CONFIGS = configSite(niche.id);
 /** PadelRecs (2026-11-24, onto this page from its v7b racket page): the padel shops' own prices in the price box (lib/padel-offers.ts,
  *  db/shop/padel-offers.json), the Follow button in the head and the member stories that name the racket. */
 const PADEL = niche.id === "padel";
+/** The shown name: PadelRecs keeps the model year in brackets ("Bullpadel Vertex 05 (2026)", owner 2026-11-25, as on its
+ *  other pages, padel-list named()); the other sites drop it (one row per model, no years in their names). */
+const shown = (name: string, year?: number | null) => { const b = withoutYear(name); return PADEL && year && b !== name ? `${b} (${year})` : PADEL ? name : b; };
 
 function Word({ w }: { w: CreatorReview["attrs"][keyof CreatorReview["attrs"]] }) {
   return w ? <span className={`thc-w ${wordTone(w)}`}>{w}</span> : <span className="thc-w none" aria-label="Not covered">–</span>;
@@ -162,7 +165,7 @@ export async function CreatorProductBody({ slug }: { slug: string }) {
   const siteWraps = (wrapups as Record<string, Record<string, Wrapup>>)[niche.id];
   const wrap = textKeys.map(k => siteWraps?.[k]).find(Boolean) ?? null;
   const rd = enoughReddit ? (roundups as Record<string, Record<string, Roundup>>)[niche.id]?.[slug] ?? null : null;
-  const name = withoutYear(row?.name ?? r.name);
+  const name = shown(row?.name ?? r.name, r.year);
   // The live page's buy link, the same logic (app/thread/rackets/[slug]/page.tsx): the Amazon lookup, the saved listing when
   // the two disagree, else the product's own site. No prices: none are stored yet.
   const live = await amazonButton({ name: r.name, brand: brand?.name }), saved = amazonPhoto(r);
@@ -241,7 +244,7 @@ export async function CreatorProductBody({ slug }: { slug: string }) {
   const mxIndex = mxAll.filter(k => k.id === r.id || mxIds.includes(k.id));
   const mxTargets: Record<string, MentionTarget> = Object.fromEntries(mxIds.flatMap(id => { const x = allRows.find(y => y.id === id); if (!x) return [];
     const votes = x.pos + x.mix + x.neg;
-    return [[id, { id, slug: x.slug, name: withoutYear(x.name), href: th(x.href), pic: x.pic ?? null, loved: votes ? Math.round(100 * x.pos / votes) : null, votes,
+    return [[id, { id, slug: x.slug, name: shown(x.name, x.year), href: th(x.href), pic: x.pic ?? null, loved: votes ? Math.round(100 * x.pos / votes) : null, votes,
       price: staged[x.slug]?.price?.usd ?? null }]]; }));
   const mxProps = { index: mxIndex, targets: mxTargets, selfId: r.id, selfSlug: slug, unit: W.people, noun: niche.words.one };
 
@@ -372,7 +375,7 @@ export async function CreatorProductBody({ slug }: { slug: string }) {
                 {i === namedVs.length && namedVs.length > 0 && <div className="thc-men-also">Also mentioned</div>}
                 <div className="thc-men">
                   <a className="thc-men-ph" href={th(m.href)} aria-hidden="true" tabIndex={-1}>{m.row.pic ? <img src={m.row.pic} alt="" loading="lazy"/> : null}</a>
-                  <span><a className="thc-men-n" href={th(m.href)}><strong>{withoutYear(m.row.name)}</strong></a>
+                  <span><a className="thc-men-n" href={th(m.href)}><strong>{shown(m.row.name, m.row.year)}</strong></a>
                     {m.vs ? <span>{m.vs}{m.by.length > 0 && <>{", per "}{m.by.map((b, j) => <Fragment key={b.id}>{j > 0 && (j === m.by.length - 1 ? " and " : ", ")}<a className="thc-men-by" href={`#cr-${b.id}`}>{b.name}</a></Fragment>)}{" ↓"}</>}</span>
                       : m.row.line && <span>{m.row.line}</span>}
                     <small>{`${m.vs ? `Compared in ${plural(m.by.length || m.vsN || m.n, "review")}` : `Mentioned in ${plural(m.n, "review")}`}${m.price ? ` · from ${usd(m.price.usd)}` : ""}`}</small></span>
@@ -400,7 +403,7 @@ export async function CreatorProductBody({ slug }: { slug: string }) {
           <div className="thc-sim">{similar.map(({ x, href, pos, mix, neg, unit, price }) => { const t = pos + mix + neg;
             return <div key={x.id} className="thc-sim-c">
               <a className="thc-sim-ph" href={th(href)} tabIndex={-1} aria-hidden="true">{x.pic ? <img src={x.pic} alt={x.name} loading="lazy"/> : null}</a>
-              <a className="thc-sim-n" href={th(href)}>{withoutYear(x.name)}</a>
+              <a className="thc-sim-n" href={th(href)}>{shown(x.name, x.year)}</a>
               {(x.line || x.best) && <span className="thc-sim-l">{x.line ?? `Best for ${x.best}.`}</span>}
               {t > 0 && <span className="thc-sim-s"><span className="thc-sim-bar" aria-hidden="true"><i className="pos" style={{ flex: pos }}/><i className="mix" style={{ flex: mix }}/><i className="neg" style={{ flex: neg }}/></span>
                 <span>{`${pos} of ${t} ${unit} loved it`}</span></span>}
