@@ -59,7 +59,8 @@ export function SiteHeader({ ranked, guide = false }: { ranked: string[]; /** Th
   // PadelRecs: the Claude Design header (owner 2026-11-15, "match the mockup"): the black side-project strip, then the logo dot,
   // three plain links, search and "+ add a review". Other niches keep the light header below.
   if (isV2) return <div className={`hv2-top ${qtFontVars}`}>
-    <div className="hv2-strip">{`${v2copy.strip} · `}<a href="/how-we-make-these">{v2copy.plain ? "how it works →" : "how we make these →"}</a></div>
+    {/* PadelRecs (2026-11-26, the no we/us rule): "how it works →" in place of "how we make these →". */}
+    <div className="hv2-strip">{`${v2copy.strip} · `}<a href="/how-we-make-these">{v2copy.plain || niche.id === "padel" ? "how it works →" : "how we make these →"}</a></div>
     <header className={`site-header hv2-sh${mockLook ? " hv2-sh-m" : ""}${menu ? " hv2-open" : ""}`} onKeyDown={e => { if (e.key === "Escape") setMenu(false); }}><div className="hv2-shin">
       <Link className="hv2-logo" href="/">{v2copy.logo === "icon" ? <img className="hv2-icon" src={`/niches/${niche.id}/icon.svg`} alt="" width={22} height={22}/> : <i aria-hidden="true"/>}{niche.site.name.toLowerCase()}</Link>
       <nav id="hv2-nav" aria-label="Main navigation">
