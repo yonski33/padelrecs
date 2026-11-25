@@ -263,13 +263,16 @@ async function RankingV5({ l, lists, list, rated, label, faqs, ld, picOf }: { l:
   // "Most picked for …" line.
   const padelPill = (r: import("../../ui").ThreadRow) => { const own = listPill(vo, Object.fromEntries(TRAIT_GROUPS.map(g => [g.key, traitGroup(t, r.id, g.key)])), r.pos, W.people);
     return own === undefined ? pickedLine(traitGroup(t, r.id, "plays_like")) : own; };
+  // SkinRecs (2026-11-26, onto the pickleball template): the same list-matched tags; a list with no rule keeps skin's pill.
+  const skinPill = (r: import("../../ui").ThreadRow) => { const groups = Object.fromEntries(TRAIT_GROUPS.map(g => [g.key, traitGroup(t, r.id, g.key)]));
+    const own = listPill(vo, groups, r.pos, W.people); return own === undefined ? votePill(groups, W.people, SKIN_PILL_WORDS, SKIN_PILL_LABELS) : own; };
   const rows: V5Row[] = list.map((r, i) => ({ id: r.id, rank: i + 1, name: r.name, href: r.href, pic: r.pic, shape: oneShape(r.shape) ? r.shape![0].toUpperCase() + r.shape!.slice(1) : null,
     line: r.line, pos: r.pos, mix: r.mix, neg: r.neg, rating: rated?.[r.id] != null ? (rated[r.id] / 10).toFixed(1) : null,
     picked: au ? votePill(Object.fromEntries(TRAIT_GROUPS.map(g => [g.key, traitGroup(t, r.id, g.key)])), W.people, AUDIO_PILL_LABELS, AUDIO_PILL_LABELS)
       : PICKLEBALL || LT ? pbPill(r)
       : SR ? votePill(Object.fromEntries(traitGroupsForType(niche.id, r.shape, r.id).map(g => [g.key, traitGroup(t, r.id, g.key)])), W.people, SIMRACING_PILL_WORDS, SIMRACING_PILL_LABELS)
       : DG ? votePill(Object.fromEntries(TRAIT_GROUPS.map(g => [g.key, traitGroup(t, r.id, g.key)])), W.people, DISCGOLF_PILL_LABELS, DISCGOLF_PILL_LABELS)
-      : SKIN ? votePill(Object.fromEntries(TRAIT_GROUPS.map(g => [g.key, traitGroup(t, r.id, g.key)])), W.people, SKIN_PILL_WORDS, SKIN_PILL_LABELS)
+      : SKIN ? skinPill(r)
       : niche.id === "padel" ? padelPill(r) : pickedLine(traitGroup(t, r.id, "plays_like")), arm: !!r.arm, experts: expertLine(niche.id, r.slug), ...(au && r.audio?.kind ? { shape: r.audio.kind } : {}) }));
   const opinions: [string, string] = [W.opinions.replace(/s$/, ""), W.opinions];
   const said = rows.reduce((a, r) => a + r.pos + r.mix + r.neg, 0);
@@ -323,7 +326,8 @@ async function RankingV5({ l, lists, list, rated, label, faqs, ld, picOf }: { l:
           <section className="th-card rk5-box"><h3>About these rankings</h3>
             <div className="about">
               <span className="item"><svg className="ic" width="30" height="28" viewBox="0 0 30 28" aria-hidden="true" fill="currentColor"><circle cx="15" cy="9" r="4.5"/><circle cx="6" cy="11" r="3.5"/><circle cx="24" cy="11" r="3.5"/><path d="M7 24c0-4.5 3.6-8 8-8s8 3.5 8 8zM0 23c0-3.3 2.4-6 5.5-6 1.2 0 2.2.3 3 .9C7 19.4 6 21.3 6 23.5zM30 23c0-3.3-2.4-6-5.5-6-1.2 0-2.2.3-3 .9 1.5 1.5 2.5 3.4 2.5 5.6z"/></svg><span><strong>{`Based on ${W.person} feedback`}</strong><span>Reviews and votes on {niche.site.name}, plus summaries of Reddit threads, YouTube reviews and blogs.</span></span></span>
-              <span className="item"><svg className="ic" width="30" height="28" viewBox="0 0 30 28" aria-hidden="true" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinejoin="round"><path d="M15 3L26 9 15 15 4 9z"/><path d="M4 14l11 6 11-6M4 19l11 6 11-6"/></svg><span>{SKIN ? <><strong>{l.own ? "Ordered by reviews" : "Ordered by the skin match"}</strong><span>{l.own
+              <span className="item"><svg className="ic" width="30" height="28" viewBox="0 0 30 28" aria-hidden="true" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinejoin="round"><path d="M15 3L26 9 15 15 4 9z"/><path d="M4 14l11 6 11-6M4 19l11 6 11-6"/></svg><span>{SKIN ? <><strong>{loved ? "Ordered by most loved" : l.own ? "Ordered by reviews" : "Ordered by the skin match"}</strong><span>{loved
+                  ? `Products go by how many ${W.people} loved them, the count on each row, from products with enough reviews.` : l.own
                   ? `Products go by how consistently ${W.people} are happy with them, from products with enough reviews.`
                   : `The ${niche.site.name} match for this skin need, from what ${W.people} with that skin report. Products with a match only.`}</span></>
                 : loved ? <><strong>Ordered by most loved</strong><span>{AUDIO || DG ? `${cap(W.items)} go by how many ${W.people} loved them, the count on each row. Current models with 10+ reviews.` : SR ? `${cap(W.items)} go by how many ${W.people} loved them, the count on each row. ${new Date().getUTCFullYear()} models with 10+ reviews.` : PICKLEBALL ? `${cap(W.items)} go by how many ${W.people} loved them, the count on each row. Current models with 10+ reviews.` : LT ? `${cap(W.items)} go by how many ${W.people} loved them, the count on each row. Current generations with 5+ reviews.` : `Rackets go by how many players loved them, the count on each row. ${new Date().getUTCFullYear()} models with 10+ reviews.`}</span></>

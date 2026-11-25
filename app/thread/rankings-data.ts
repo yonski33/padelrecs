@@ -144,9 +144,11 @@ async function votesFor(lists: Awaited<ReturnType<typeof threadLists>>, all: Awa
   // "loved" (Best overall): the row's loved count, this season's models only.
   for (const l of lists) { const lo = listOrder(niche.id, l.slug); if (lo?.order !== "loved") continue;
     const cfg = niche.topLists?.find(x => x.slug === l.slug), cur = lo.years === "current";
+    // SkinRecs: every product is its own row (modelFamily drops numbers, so SPF 30 and SPF 50 would merge).
     // LaptopRecs: a category list ranks only its own category (the list's shape filter, lib/niche/laptop.ts topLists).
-    const only = LT ? cfg?.filters?.find(f => f.column === "shape")?.include ?? null : null;
-    const ids = lovedOrder(all.flatMap(r => { const p = listed.get(r.id); return p && (!cur || r.current !== false) && (!PICKLEBALL || r.current !== false) && (!only || only.includes(r.shape ?? "")) ? [{ id: r.id, name: r.name, family: LT ? LAPTOP_LINES[r.slug]?.[0] ?? r.slug : modelFamily(p), year: r.year, reviews: r.n,
+    // SkinRecs (2026-11-26, as pickleball): the same, by its product type.
+    const only = LT || SKIN ? cfg?.filters?.find(f => f.column === "shape")?.include ?? null : null;
+    const ids = lovedOrder(all.flatMap(r => { const p = listed.get(r.id); return p && (!cur || r.current !== false) && (!PICKLEBALL || r.current !== false) && (!only || only.includes(r.shape ?? "")) ? [{ id: r.id, name: r.name, family: LT ? LAPTOP_LINES[r.slug]?.[0] ?? r.slug : SKIN ? r.id : modelFamily(p), year: r.year, reviews: r.n,
       loved: r.pos, mixed: r.mix, notForMe: r.neg }] : []; }), cur ? null : YEAR(), { ...LOVED_ORDER, minReviews: cfg?.minReviews ?? LOVED_ORDER.minReviews });
     // LaptopRecs keeps its loved order even when few current models qualify (older generations never list).
     if (ids.length >= (LT ? 1 : 5)) out.set(l.slug, ids); }

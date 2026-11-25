@@ -8,6 +8,7 @@ export type ListOrder = {
   order: "votes" | "loved" | "curated" | "keep";
   /** The vote group this list counts (default plays_like) and the answer in it (power, control, lots, very, beginner). */ trait?: string; option?: string;
   /** The row tag's words: "Most picked for <word> · N players" (default: the plays_like words). */ word?: string;
+  /** The row tag's own words for a "keep" list, in place of "Picked for <word>" (SkinRecs: "No irritation · 14 people"). */ say?: string;
   /** "all": every racket that passes the floors below; "curated": the curated top 10, reordered. */ pool?: "all" | "curated";
   /** "loved" lists: "season" (default) is this year's models only; "current" is each model's current year (PickleballRecs:
    *  its catalogue mixes 2024-2026 models). */ years?: "season" | "current";
@@ -34,6 +35,16 @@ export const LIST_ORDER: Record<string, Record<string, ListOrder>> = {
     "best-pickleball-paddles": { order: "loved", years: "current" },
     "best-elongated-pickleball-paddles": { order: "loved", years: "current" },
     "best-hybrid-pickleball-paddles": { order: "loved", years: "current" },
+  },
+  // SkinRecs (2026-11-26, onto the pickleball template): each product-type list by most loved, every product listed (no model
+  // years); the skin-need lists keep their own order (the skin engine's match) and only their row tag follows the list.
+  skin: {
+    ...Object.fromEntries(["best-face-moisturizers", "best-face-cleansers", "best-face-sunscreens", "best-skincare-treatments", "best-balms-ointments"]
+      .map(slug => [slug, { order: "loved", years: "current" } as ListOrder])),
+    "best-skincare-for-sensitive-skin": { order: "keep", trait: "irritation", option: "none", say: "No irritation" },
+    ...Object.fromEntries(["dry", "oily"].flatMap(need => [`best-skincare-for-${need}-skin`, ...["moisturizers", "cleansers", "sunscreens", "serums"].map(t => `best-${t}-for-${need}-skin`)]
+      .map(slug => [slug, { order: "keep", trait: "skin_type", option: need, word: `${need} skin` } as ListOrder]))),
+    ...Object.fromEntries(["moisturizers", "cleansers", "sunscreens", "serums"].map(t => [`best-${t}-for-sensitive-skin`, { order: "keep", trait: "irritation", option: "none", say: "No irritation" } as ListOrder])),
   },
   // SimRacingRecs (v3 rollout 2026-11-21): Best overall by most loved, like padel; the rest keep their order.
   simracing: { "best-sim-racing-gear": { order: "loved" } },
@@ -91,6 +102,6 @@ export function listPill(o: ListOrder | null, groups: Record<string, Record<stri
   if (o.order === "loved") return loved > 0 ? `Loved by ${n(loved)}` : null;
   const g = groups[o.trait ?? VOTE_ORDER.trait] ?? {}, v = g[o.option ?? ""] ?? 0, word = o.word ?? o.option;
   if (v < 5) return null;
-  if (o.order === "keep") return `Picked for ${word} · ${n(v)}`;
+  if (o.order === "keep") return `${o.say ?? `Picked for ${word}`} · ${n(v)}`;
   return Object.entries(g).every(([k, x]) => k === o.option || v > x) ? `Most picked for ${word} · ${n(v)}` : null;
 }

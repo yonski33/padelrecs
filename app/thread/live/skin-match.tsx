@@ -166,18 +166,21 @@ const NONE: SkinWire[] = [];
 const clearPicks = (set: (p: Partial<SkinPicks>) => void) => set({ skin: null, goal: null, sens: false });
 
 /** The v3 match bar in its classes (live/padel-list.tsx MatchBar): My skin … | I want to … · Sensitive skin · Reset. */
-function SkinBar({ picks, set, tag, after, ft, setFt }: { picks: SkinPicks; set: (p: Partial<SkinPicks>) => void; tag?: string; after?: ReactNode; ft: boolean; setFt: (x: boolean) => void }) {
-  return <div className="tc-qm" role="group" aria-label="Find my match">
+// `home`: the creators home's classes (tch-, PickleballRecs template, 2026-11-26), as live/laptop-match.tsx LaptopBar.
+function SkinBar({ picks, set, tag, after, ft, setFt, home }: { picks: SkinPicks; set: (p: Partial<SkinPicks>) => void; tag?: string; after?: ReactNode; ft: boolean; setFt: (x: boolean) => void; home?: boolean }) {
+  const c = home ? { qm: "tch-qm", l: "tch-qm-l", sep: "tch-qm-sep", pill: "tch-chip", check: "tch-arm", reset: "tch-reset", ft: "tch-ft" }
+    : { qm: "tc-qm", l: "tc-qm-l", sep: "tc-qm-sep", pill: "tc-pill", check: "th-check tc-arm", reset: "tc-link", ft: "tc-ft" };
+  return <div className={c.qm} role="group" aria-label={home ? "Quick match" : "Find my match"}>
     {tag && <span className="tc-qm-tag">{tag}</span>}
-    <span className="tc-qm-l">My skin</span>
-    {SKIN_OPTS.map(([v, l]) => <button key={v} type="button" className="tc-pill" aria-pressed={picks.skin === v} onClick={() => set({ skin: picks.skin === v ? null : v })}>{l}</button>)}
-    <span className="tc-qm-sep" aria-hidden="true"/>
-    <span className="tc-qm-l">I want to</span>
-    {GOAL_OPTS.map(([v, l]) => <button key={v} type="button" className="tc-pill" aria-pressed={picks.goal === v} onClick={() => set({ goal: picks.goal === v ? null : v })}>{l}</button>)}
-    <button type="button" className="th-check tc-arm" aria-pressed={picks.sens} onClick={() => set({ sens: !picks.sens })}><span aria-hidden="true">{picks.sens ? "✓" : ""}</span>Sensitive skin</button>
+    <span className={c.l}>My skin</span>
+    {SKIN_OPTS.map(([v, l]) => <button key={v} type="button" className={c.pill} aria-pressed={picks.skin === v} onClick={() => set({ skin: picks.skin === v ? null : v })}>{l}</button>)}
+    <span className={c.sep} aria-hidden="true"/>
+    <span className={c.l}>I want to</span>
+    {GOAL_OPTS.map(([v, l]) => <button key={v} type="button" className={c.pill} aria-pressed={picks.goal === v} onClick={() => set({ goal: picks.goal === v ? null : v })}>{l}</button>)}
+    <button type="button" className={c.check} aria-pressed={picks.sens} onClick={() => set({ sens: !picks.sens })}><span aria-hidden="true">{picks.sens ? "✓" : ""}</span>Sensitive skin</button>
     {after}
-    {skinPickedAny(picks) && <button type="button" className="tc-link" onClick={() => clearPicks(set)}>Reset</button>}
-    <button type="button" className="tc-ft" aria-expanded={ft} onClick={() => setFt(!ft)}>Not sure yet? <u>fine-tune</u> {ft ? "▴" : "▾"}</button>
+    {skinPickedAny(picks) && <button type="button" className={c.reset} onClick={() => clearPicks(set)}>Reset</button>}
+    <button type="button" className={c.ft} aria-expanded={ft} onClick={() => setFt(!ft)}>Not sure yet? <u>fine-tune</u> {ft ? "▴" : "▾"}</button>
   </div>;
 }
 
