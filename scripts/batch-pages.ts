@@ -15,6 +15,7 @@ import { existsSync } from "node:fs";
 import { mkdir, readdir, readFile, writeFile } from "node:fs/promises";
 import { join } from "node:path";
 import { niche } from "../lib/niche";
+import { B } from "./batch-niche";
 import { connect } from "./connection";
 
 if (!process.env.NICHE) throw new Error("Set NICHE (e.g. NICHE=pickleball): the niche config defaults to padel otherwise.");
@@ -111,11 +112,11 @@ async function inputs() {
 // ---------------------------------------------------------------- prompts
 const RULES = `Copy rules for every field:
 - No prices anywhere (owner 2026-11-24: quoted prices go stale, live prices live in the price box): no currency amounts ($92, 390 euro, €220, under $100), no "list price", "MSRP", "costs X", "at $X with a code", "$150 more". Value words without a number are fine ("good value", "pricey for what it offers", "cheaper than X"). No price keys in measured.
-- Name another product only by its exact model and edition, so readers (and the site's product links) know which one. Reviewers often use shorthand ("the Hard", "the Control", "the Vertex", "the Viper", "the Pro", "the 16mm"): resolve it to the exact model from context. Same family first (in a Metalbone 3.5 2026 review, "the Hard" is the Adidas Metalbone HRD+ 3.5 2026); otherwise the model current at the source's date ("the Vertex" in a late-2025 video is the Bullpadel Vertex 05 2026); use any extra hint in the source (edition, colour, player). Write the full name ("Babolat Technical Viper 2026"), never the line or brand alone. Only when it stays ambiguous, leave the comparison unnamed or describe the feel instead ("sits between soft and firm"). (Owner 2026-11-24.)
-- Spell every product name exactly as the site catalog does. Transcripts often mishear names (Fenix as "Phoenix", AT10 as "AT", Xplo as "Explo", Vertex as "Vortex"); correct them to the catalog spelling, and if a name cannot be pinned down, write "another ${ITEM}". (Owner 2026-11-24.)
-- No em dashes or en dashes. Never the word "verdict". Never "we", "us", "our". Write "players" for Reddit and forum people and "reviewers" for YouTube and blog reviewers, never "owners" or "creators". Refer to any person as they/them.
+- ${B.shorthand}
+- ${B.spelling}
+- No em dashes or en dashes. Never the word "verdict". Never "we", "us", "our". Write "${B.people}" for Reddit and forum people and "reviewers" for YouTube and blog reviewers, never "owners" or "creators". Refer to any person as they/them.
 - Plain, dry English, no hype. Never claim that ${SITE} or anyone at the site tested the ${ITEM}.
-- Facts only from the material given. Every claim in the TL;DR needs 2+ reviews behind it. Counts must be exact ("two players", "one reviewer"); when unsure, say "some" rather than inflate. Never state the total number of reviews or posts. In the Reddit box never give ANY exact count of players, posts, comments or threads (see the reddit rules).
+- Facts only from the material given. Every claim in the TL;DR needs 2+ reviews behind it. Counts must be exact ("two ${B.people}", "one reviewer"); when unsure, say "some" rather than inflate. Never state the total number of reviews or posts. In the Reddit box never give ANY exact count of ${B.people}, posts, comments or threads (see the reddit rules).
 - Keep sibling versions apart: a claim about another shape, thickness, generation or edition is not about this ${ITEM}. Leave it out or label it as that version.
 - Highlights are short phrases (2 to 7 words) copied character for character from your own text.`;
 
@@ -125,17 +126,17 @@ const SPEC = `Write three things for the ${ITEM} page of {NAME}:
 
 2. wrapup ("In more detail", shown above the review table): ONE paragraph of 2 or 3 sentences. Open with who it suits or what reviewers praise. Then where mixed takes come from, comparisons and disagreements. You may name reviewers (channel or site names) when you attribute a specific finding. Give 2 to 4 highlights: tone "pos" for praise (shown yellow), "neg" for criticism (shown pink); at least one "pos", and at least one "neg" when there is criticism.
 
-3. reddit: the "Players on Reddit and forums" box, written from the Reddit posts. Only if 4 or more posts are clearly about THIS ${ITEM}; otherwise null. Ignore posts about other ${ITEMS} or sibling versions, and posts that only mention the name. Fields:
+3. reddit: the "${B.people[0]!.toUpperCase() + B.people.slice(1)} on Reddit and forums" box, written from the Reddit posts. Only if 4 or more posts are clearly about THIS ${ITEM}; otherwise null. Ignore posts about other ${ITEMS} or sibling versions, and posts that only mention the name. Fields:
 - used_post_ids: ids of the posts you used (only posts about this ${ITEM}).
-- headline: one line, 6 to 14 words, what players agree on and the main drawback.
+- headline: one line, 6 to 14 words, what ${B.people} agree on and the main drawback.
 - tags: 2 to 5 short tags (2 to 6 words), tone "pos" or "neg", each with post_ids of the 2 or more posts that back it.
-- paras: exactly two short paragraphs. First: what players agree on. Second: durability, weight, comparisons and complaints. If fewer than 10 posts are used, end the second paragraph with exactly "Early signal from a small number of posts."
-- NO exact counts of players, posts, comments or threads anywhere in the box (owner rule 2026-11-24: exact numbers make it look like an automated sweep of Reddit). Use vague amounts on this scale: "most players" (about two thirds or more), "many players", "some players", "a few players" (3 to 5), "a couple of players" (2), "one player" (1, kept for single examples). Never write "24 players", "three players", "five posts", "half of the 24" or "N% of players". Numbers that are not counts of people (grams, 12K, 16mm, years, a score a player gave) are fine.
+- paras: exactly two short paragraphs. First: what ${B.people} agree on. Second: ${B.redditSecond}. If fewer than 10 posts are used, end the second paragraph with exactly "Early signal from a small number of posts."
+- NO exact counts of ${B.people}, posts, comments or threads anywhere in the box (owner rule 2026-11-24: exact numbers make it look like an automated sweep of Reddit). Use vague amounts on this scale: "most ${B.people}" (about two thirds or more), "many ${B.people}", "some ${B.people}", "a few ${B.people}" (3 to 5), "a couple of ${B.people}" (2), "one ${B.person}" (1, kept for single examples). Never write "24 ${B.people}", "three ${B.people}", "five posts", "half of the 24" or "N% of ${B.people}". Numbers that are not counts of people (grams, 12K, 16mm, years, a score a ${B.person} gave) are fine.
 - highlights: 2 to 4, each a short phrase from your paragraphs that also appears word for word in the one post it points to (post_id).`;
 
-const WRITER_SYSTEM = `You write page content for ${SITE}, a site that collects what reviewers and players say about each ${niche.id} ${ITEM}.\n\n${RULES}`;
+const WRITER_SYSTEM = `You write page content for ${SITE}, a site that collects what reviewers and ${B.people} say about each ${niche.id} ${ITEM}.\n\n${RULES}`;
 const CHECKER_SYSTEM = `You fact-check page content for ${SITE} against the reviews and posts it was written from. A different writer produced it.
-Check every claim and count: the TL;DR (each point backed by 2+ reviews), the wrap-up (attributions correct, counts exact, nothing borrowed from a sibling version or another ${ITEM}), and the Reddit box (only posts about this exact ${ITEM}, tag counts match the posts listed, each highlight word for word in its post, "Early signal from a small number of posts." when fewer than 10 posts, and NO exact count of players, posts, comments or threads anywhere in it: replace any with a vague amount).
+Check every claim and count: the TL;DR (each point backed by 2+ reviews), the wrap-up (attributions correct, counts exact, nothing borrowed from a sibling version or another ${ITEM}), and the Reddit box (only posts about this exact ${ITEM}, tag counts match the posts listed, each highlight word for word in its post, "Early signal from a small number of posts." when fewer than 10 posts, and NO exact count of ${B.people}, posts, comments or threads anywhere in it: replace any with a vague amount).
 Return result "pass" (no change needed), "fixed" (you corrected it with the smallest edits; return the full corrected content) or "reject" (too wrong to fix). List every problem.\n\n${RULES}`;
 
 const nul = (t: object) => ({ anyOf: [t, { type: "null" }] });
@@ -258,7 +259,7 @@ function codeCheck(c: Content, i: Input): string[] {
     }
     if (used.size < 10 && !rd.paras[1]?.trim().endsWith("Early signal from a small number of posts.")) p.push("reddit: missing 'Early signal from a small number of posts.'");
     // Owner rule 2026-11-24: no exact player or post counts in a Reddit box ("one player" stays allowed).
-    const rt = [rd.headline, ...rd.paras, ...rd.tags.map(t => t.text)].join(" ").replace(/\b[Oo]ne players?\b/g, "someone");
+    const rt = [rd.headline, ...rd.paras, ...rd.tags.map(t => t.text)].join(" ").replace(/\b[Oo]ne (?:players?|persons?|people)\b/g, "someone");
     const hit = rt.match(NO_COUNT) ?? rt.match(/\d+\s*(?:%|percent)\s+of\s+(?:the\s+)?(?:players|posts|comments|people)|\b(?:two|three) thirds?\b|\b(?:half|a third|a quarter) of the (?:players|posts|comments|people)\b/i);
     if (hit) p.push(`reddit: exact count: ${hit[0]}`);
   }

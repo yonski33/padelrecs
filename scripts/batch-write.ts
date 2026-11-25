@@ -19,6 +19,7 @@
 // cost would take the stage's total over --max-usd.
 import Anthropic from "@anthropic-ai/sdk";
 import { niche } from "../lib/niche";
+import { B } from "./batch-niche";
 import { createHash } from "node:crypto";
 import { existsSync } from "node:fs";
 import { mkdir, readdir, readFile, writeFile } from "node:fs/promises";
@@ -50,7 +51,7 @@ const BLOCK_CREATORS = /^the kitchen( pickle(ball)?)?$|padel\.how|streltcoff|pic
 // Owner 2026-11-24: padel.how reads as AI-generated (no real play, figures estimated from spec sheets); pickleball3.com likewise.
 const BLOCK_DOMAINS = ["thekitchenpickle.com", "padel.how", "pickleball3.com"];
 const blocked = (u: string | null | undefined) => !!u && BLOCK_DOMAINS.some(d => new RegExp(`(^|[/.])${d.replace(/\./g, "\\.")}(/|$)`, "i").test(u.replace(/^https?:\/\//, "")));
-const ATTR_NAMES = ["power", "control", "spin", "pop", "forgiveness", "comfort", "durability", "value"] as const;
+const ATTR_NAMES = B.attrs;
 const WORDS = ["Excellent", "Great", "Good", "Okay", "Weak"] as const;
 const STANCES = ["Loved it", "Mixed", "Not for me"] as const;
 
@@ -172,37 +173,37 @@ const COPY_RULES = `Copy rules for every text field:
 - Never name the channel, the creator or the site in any text field. Other ${niche.words.many} by name are fine.
 - Refer to the creator only as "they/them". Never "he", "she", "his", "her".
 - No em dashes or en dashes anywhere. Use commas, colons or full stops.
-- Never use the word "verdict". Write "players", not "owners". Never "we", "us" or "our". Say "reviewers", never "creators".
+- Never use the word "verdict". Write "${B.people}", not "owners". Never "we", "us" or "our". Say "reviewers", never "creators".
 - Never write that the site or anyone at the site tested the ${ITEM}.
 - No prices anywhere (owner 2026-11-24: quoted prices go stale, live prices live in the price box): no currency amounts ($92, 390 euro, €220, under $100), no "list price", "MSRP", "costs X", "at $X with a code", "$150 more". Value words without a number are fine ("good value", "pricey for what it offers", "cheaper than X"). No price keys in measured.
-- Name another product only by its exact model and edition, so readers (and the site's product links) know which one. Reviewers often use shorthand ("the Hard", "the Control", "the Vertex", "the Viper", "the Pro", "the 16mm"): resolve it to the exact model from context. Same family first (in a Metalbone 3.5 2026 review, "the Hard" is the Adidas Metalbone HRD+ 3.5 2026); otherwise the model current at the source's date ("the Vertex" in a late-2025 video is the Bullpadel Vertex 05 2026); use any extra hint in the source (edition, colour, player). Write the full name ("Babolat Technical Viper 2026"), never the line or brand alone. Only when it stays ambiguous, leave the comparison unnamed or describe the feel instead ("sits between soft and firm"). (Owner 2026-11-24.)
-- Spell every product name exactly as the site catalog does. Transcripts often mishear names (Fenix as "Phoenix", AT10 as "AT", Xplo as "Explo", Vertex as "Vortex"); correct them to the catalog spelling, and if a name cannot be pinned down, write "another ${ITEM}". (Owner 2026-11-24.)
+- ${B.shorthand}
+- ${B.spelling}
 - Never repeat a review site's own star, category or overall ratings in the text (Pickleheads scores are hidden until their scale is confirmed). Describe them in words instead.
 - Plain, dry English. No hype words unless inside the exact quote.
-- Facts only from the source. Report opinions as theirs ("Finds", "Calls", "Rates"). When captions garble a number or a ${ITEM} name, leave it out rather than guess. Spell paddle and brand names correctly even if captions misspell them; if a garbled name cannot be pinned down, write "another ${ITEM}".`;
+- Facts only from the source. Report opinions as theirs ("Finds", "Calls", "Rates"). When captions garble a number or a ${ITEM} name, leave it out rather than guess. Spell ${ITEM} and brand names correctly even if captions misspell them; if a garbled name cannot be pinned down, write "another ${ITEM}".`;
 
 const FIELDS = `Card fields:
 - type: "review", "comparison" (a real part compares it head to head) or "long-term" (weeks or months of use stated).
-- version: the shape/thickness/edition the source covers, as stated (e.g. "Widebody, 16mm"), or null.
+- version: ${B.version}
 - starts_at: "m:ss" where the part about this ${ITEM} starts in a multi-${ITEM} video, else null.
 - creator_score: only if the source publishes its own overall score with a stated scale (e.g. 8.5 out of 10). Otherwise null. Never turn words into a number. Per-trait scores without an overall do not count.
-- measured: only numbers the source states for this ${ITEM} (swing weight, twist weight, static weight, RPM, mph, balance point; never a price), as {name, value} with the unit in value.
-- attributes: only those the source discusses, each one word from Excellent, Great, Good, Okay, Weak. Names: power, control, spin, pop, forgiveness (sweet spot), comfort (feel, vibration, arm), durability, value. In doubt go one lower.
+- measured: ${B.measured}
+- attributes: only those the source discusses, each one word from Excellent, Great, Good, Okay, Weak. ${B.attrHelp} In doubt go one lower.
 - stance: "Loved it", "Mixed" or "Not for me".
-- summary: ONE paragraph of 80 to 120 words with real substance: what they tested and how (drills, matches, hours, weeks, comparisons, pre-production unit), concrete findings (power, control, spin, pop, sweet spot, feel, weight, durability or grit wear) with the source's own numbers, and who they say it suits and who it doesn't.
-- summary_more: a second paragraph of 60 to 100 words for "Read more" (comparisons, long-term notes, setup tips like lead tape or grip). null if the source does not go deeper; never pad.
+- summary: ONE paragraph of 80 to 120 words with real substance: ${B.summary}
+- summary_more: a second paragraph of 60 to 100 words for "Read more" (${B.summaryMore}). null if the source does not go deeper; never pad.
 - highlights: 3 to 5 phrases of 2 to 7 words, copied character for character from summary.
-- key_point: ONE sentence, 6 to 12 words, at most 70 characters, ends with a full stop, NOT verb-first, concrete, e.g. "Best defensive ${ITEM} in the line this year." No names, no dashes.
+- key_point: ONE sentence, 6 to 12 words, at most 70 characters, ends with a full stop, NOT verb-first, concrete, e.g. "${B.keyPointExample}" No names, no dashes.
 - stood_out: one short line (at most 15 words): what they liked most.
 - trade_off: one short line (at most 15 words): the main weakness or who it is not for, or null.
 - compared_to: names of the other ${niche.words.many} they compare it with (correct spelling), or [].
 - quote: one sentence they actually said or wrote about THIS ${ITEM}, copied word for word from the source text, 4 to 14 words. Fix nothing inside it. null if no good line. Never make one up.
-- disclosure: any brand tie the source states (${ITEM} sent by the brand, paid testing, affiliate or discount code, sells it), in plain words, or null.`;
+${B.skinType ? "- skin_type: the reviewer's own skin type and concerns as they state them (e.g. \"oily, acne-prone\"), or null. Never guess.\n" : ""}- disclosure: any brand tie the source states (${ITEM} sent by the brand, paid testing, affiliate or discount code, sells it), in plain words, or null.`;
 
 const WRITER_SYSTEM = `You write creator review cards for ${SITE}, a site that collects what YouTube and blog reviewers said about each ${SPORT_ITEM}. One request = one source (a video transcript or an article) for one ${ITEM}.
 
 First decide whether the source is usable. Set keep=false (with drop_reason) when:
-- it is not about the EXACT ${ITEM} named in the request. Shape (elongated, hybrid, widebody, standard), thickness (14mm, 16mm), face, edition and generation all matter; a sibling shape, thickness or generation is a different ${ITEM}. Keep it only if the source itself names or clearly shows this exact model; never infer the shape or thickness. If only a part of a multi-paddle video covers it, keep it and use only that part.
+- it is not about the EXACT ${ITEM} named in the request. ${B.exactRule} If only a part of a multi-paddle video covers it, keep it and use only that part.
 - it is a shop or brand channel, an unboxing with no opinion, a sale post, a spec-only video or page, or has too little about this ${ITEM} to write an 80-word summary.
 - it is an article by a shop or retailer (sells ${niche.words.many}, buy links, store discount codes) that does not describe real hands-on testing of this ${ITEM} by a named person: sessions played, drills, matches, measurements or direct comparisons. Restated maker specs and generic praise are not testing.
 - it comes from ${BLOCK_DOMAINS.join(", ")} or from The Kitchen Pickle / The Kitchen Pickleball channels (dropped by the site owner for every ${ITEM}).
@@ -240,6 +241,7 @@ const CARD_PROPS = {
   stance: { type: "string", enum: [...STANCES] },
   summary: str, summary_more: nul(str), highlights: strArr, key_point: str, stood_out: str, trade_off: nul(str),
   compared_to: strArr, quote: nul(str), disclosure: nul(str),
+  ...(B.skinType ? { skin_type: nul(str) } : {}),
 };
 const obj = (props: Record<string, unknown>) => ({ type: "object", properties: props, required: Object.keys(props), additionalProperties: false });
 const WRITER_SCHEMA = obj({ keep: { type: "boolean" }, drop_reason: nul(str), exact_model_evidence: nul(str), card: nul(obj(CARD_PROPS)) });
@@ -247,7 +249,7 @@ const CHECKER_SCHEMA = obj({ result: { type: "string", enum: ["pass", "fixed", "
 type Card = { type: string; version: string | null; starts_at: string | null; creator_score: { value: number; scale: number } | null;
   measured: { name: string; value: string }[]; attributes: { name: string; word: string }[]; stance: string; summary: string;
   summary_more: string | null; highlights: string[]; key_point: string; stood_out: string; trade_off: string | null;
-  compared_to: string[]; quote: string | null; disclosure: string | null };
+  compared_to: string[]; quote: string | null; disclosure: string | null; skin_type?: string | null };
 
 function sourceBlock(s: Source, notes: string) {
   return [`${niche.words.One}: ${s.paddle} (page slug: ${s.slug})`, `Source: ${s.kind === "youtube" ? "YouTube video" : "article"} ${s.url}`,
@@ -371,7 +373,7 @@ function codeCheck(c: Card, s: Source): string[] {
   if (PRICE_TEXT.test(all) || (c.measured ?? []).some(m => /price|cost|msrp/i.test(m.name) || PRICE_TEXT.test(m.value))) p.push("price in text");
   if (/verdict|\b(we|us|our|owners?|creators?)\b/i.test(all.replace(/\bU\.?S\.?\b/g, ""))) p.push("banned word");
   if (/\b(he|she|his|her|him|hers)\b/i.test(all)) p.push("gendered pronoun");
-  for (const w of s.creator.split(/\W+/).filter(w => w.length > 3 && !/^(pickleball|pickle|paddle|paddles|padel|racket|rackets|review|reviews)$/i.test(w)))
+  for (const w of s.creator.split(/\W+/).filter(w => w.length > 3 && !B.nameStop.test(w)))
     if (new RegExp(`\\b${w}\\b`).test(all)) p.push(`creator name? ${w}`);
   if (blocked(s.url) || BLOCK_CREATORS.test(s.creator)) p.push("blocked source");
   if (/pickleheads/i.test(s.creator) && (c.creator_score || /\b\d+(\.\d+)?\s*(out of|\/)\s*\d+/i.test(all))) p.push("Pickleheads score in text");
@@ -410,7 +412,7 @@ async function build() {
         creator_score: card.creator_score, measured: Object.fromEntries(card.measured.map(m => [m.name, m.value])),
         attributes: Object.fromEntries(card.attributes.map(a => [a.name, a.word])), stance: card.stance, summary: card.summary,
         summary_more: card.summary_more, highlights: card.highlights, key_point: card.key_point, stood_out: card.stood_out,
-        trade_off: card.trade_off, compared_to: card.compared_to,
+        trade_off: card.trade_off, compared_to: card.compared_to, ...(B.skinType ? { skin_type: card.skin_type ?? null } : {}),
         quote: s.kind === "youtube" && card.quote && !qAt ? null : card.quote, quote_at: qAt, disclosure: card.disclosure,
         evidence_note: `${s.kind === "youtube" ? "transcript full" : "article text (script fetch)"}; API batch writer + checker (${c.result})`,
         link_check: s.link_check, check: { result: c.result, problems: c.problems } });
