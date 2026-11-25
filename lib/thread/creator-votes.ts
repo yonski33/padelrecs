@@ -19,6 +19,10 @@ export const CREATOR_VOTE_KEYS: Record<string, string[]> = {
   // its three ranking groups first, then court side, sweet spot and trampoline. All six are padel's stored keys
   // (lib/thread/traits.ts PADEL_TRAIT_GROUPS), so votes save to trait_votes as on the other racket pages; no new keys.
   padel: ["plays_like", "arm", "level", "side", "sweet_spot", "trampoline"],
+  // DiscGolfRecs (owner bug 2026-11-24: the box showed only the poll): six of its nine "How does it fly?" groups
+  // (lib/thread/traits.ts DISCGOLF_TRAIT_GROUPS), the flight traits plus plastic durability, all prefilled from reviews in
+  // db/thread/discgolf-traits.json; votes save to trait_votes as on the disc pages.
+  discgolf: ["stability", "glide", "arm_speed", "wind", "grip", "durability"],
 };
 /** The groups the creator page asks, in ranking order; only keys the site's vote API accepts. */
 export function creatorVoteGroups(nicheId: string): TraitGroup[] {

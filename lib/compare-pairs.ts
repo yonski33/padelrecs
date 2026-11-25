@@ -94,7 +94,11 @@ const FAMILY_ALIASES: Record<string, string> = {
   "nox at10 18k": "nox at10 genius 18k",
 };
 /** Lines whose number names a separate line, not a generation (match audit 2026-11-16: Xplo and Xplo 02 are two models). */
-const SEPARATE_LINES: [RegExp, string][] = [[/\bxplo 0(\d)\b/g, "xplo0$1"]];
+const SEPARATE_LINES: [RegExp, string][] = [[/\bxplo 0(\d)\b/g, "xplo0$1"],
+  // PickleballRecs (Grok audit 2026-11-24): CRBN's number is the shape (CRBN¹ … CRBN⁴ TruFoam Genesis are four current
+  // paddles), and ProKennex Black Ace 14 / 16 and LG / LG 14 are thicknesses sold side by side, not generations.
+  [/\bcrbn\s*([¹1])/g, "crbn1"], [/\bcrbn\s*([²2])/g, "crbn2"], [/\bcrbn\s*([³3])/g, "crbn3"], [/\bcrbn\s*([⁴4])/g, "crbn4"],
+  [/\bblack ace (lg )?(1[0-9])\b/g, "black ace $1t$2"]];
 export const modelFamily = (p: { name: string; brandId: string }) => {
   const name = SEPARATE_LINES.reduce((n, [re, to]) => n.replace(re, to), p.name.toLowerCase()).replace(/\b(19|20)\d{2}\b/g, " ").replace(/\b(?:v|st|gen ?)?\d+(?:\.\d+)?\b(?![k+])/g, " ").replace(/[^a-z0-9+]+/g, " ").trim();
   return `${p.brandId}:${FAMILY_ALIASES[name] ?? name}`;

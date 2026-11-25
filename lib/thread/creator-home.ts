@@ -54,7 +54,7 @@ export function rowExtras<R extends { id: string; slug: string; href: string }>(
     return [r.id, { pill: (p ? praiseLine(p) : null) ?? pills[r.id] ?? null, href: hrefOf(r.slug, r.href), reviews: p?.reviews ?? 0,
       price: p?.price ? { label: `from ${usd(p.price.usd)} · check price ↗`, url: p.price.url, rel: p.price.affiliate ? "sponsored nofollow noopener" : "nofollow noopener" } : null }]; }));
 }
-export function homeFromPages(pages: Map<string, CreatorPage>, latestN = 4): CreatorHome {
+export function homeFromPages(pages: Map<string, CreatorPage>, latestN = 12): CreatorHome {
   const paddles: Record<string, HomePaddle> = {}, yt: HomeSummary[] = [];
   let checked = "";
   for (const [slug, page] of pages) {
