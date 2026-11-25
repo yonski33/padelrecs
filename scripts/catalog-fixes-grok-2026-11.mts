@@ -33,11 +33,8 @@ const PADEL: { fixes: Fix[]; merges: Merge[] } = {
     { slug: "adidas-metalbone-pro-edt-2026", name: "Adidas Metalbone Pro Edition 2026", why: "\"Pro EDT\" is Pro Edition" },
     { slug: "adidas-cross-it-light-pro-edt-2026", name: "Adidas Cross It Light Pro Edition 2026", why: "\"Pro EDT\" is Pro Edition" },
     { slug: "adidas-arrow-hit-pro-edt-2026", name: "Adidas Arrow Hit Pro Edition 2026", why: "\"Pro EDT\" is Pro Edition" },
-    ...([["adidas-metalbone-ctrl-2026", "Adidas Metalbone CTRL 2026"], ["adidas-metalbone-3-5-2026", "Adidas Metalbone 2026"], ["adidas-metalbone-hrd-plus-3-5-2026", "Adidas Metalbone HRD+ 2026"],
-      ["adidas-metalbone-carbon-3-5-2026", "Adidas Metalbone Carbon 2026"], ["adidas-metalbone-carbon-ctrl-3-5-2026", "Adidas Metalbone Carbon CTRL 2026"], ["adidas-metalbone-team-3-5-2026", "Adidas Metalbone Team 2026"],
-      ["adidas-metalbone-team-light-3-5-2026", "Adidas Metalbone Team Light 2026"], ["adidas-cross-it-ctrl-3-5-2026", "Adidas Cross It CTRL 2026"], ["adidas-cross-it-carbon-3-5-2026", "Adidas Cross It Carbon 2026"],
-      ["adidas-cross-it-carbon-ctrl-3-5-2026", "Adidas Cross It Carbon CTRL 2026"], ["adidas-cross-it-light-3-5-2026", "Adidas Cross It Light 2026"]] as const)
-      .map(([slug, name]) => ({ slug, name, why: "Adidas dropped the \"3.5\" from the 2026 names" })),
+    // The 2026 Adidas "3.5" renames (Metalbone, Cross It) were wrong and are undone: owner wants the full model name
+    // ("Adidas Metalbone 3.5"), 2026-11-25. scripts/restore-adidas-3-5-names.mts puts them back.
     { slug: "bullpadel-neuron-02-comfort-2027", name: "Bullpadel Neuron 02 Edge Comfort 2027", why: "maker's name" },
     { slug: "bullpadel-xplo-comfort-2025", name: "Bullpadel Xplo CMF 2025", set: { balance: "Medium" }, why: "maker's name (CMF); medium balance" },
     { slug: "bullpadel-xplo-comfort-2026", name: "Bullpadel Xplo CMF 2026", why: "maker's name (CMF)" },
