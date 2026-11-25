@@ -1835,6 +1835,24 @@ body:has(.th) .th .th-hp3 a.tc-row.ranked { grid-template-columns: 34px 96px min
 .rk5-qm .arm { all: unset; cursor: pointer; display: inline-flex; align-items: center; gap: 9px; font-size: 14px; font-weight: 600; margin-top: 2px; }
 .rk5-qm .arm > span { width: 16px; height: 16px; border: 1.5px solid var(--ink); border-radius: 3px; display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 700; background: #fff; }
 .rk5-qm .arm[aria-pressed="true"] > span { background: var(--lime); }
+/* The folding quick match (owner 2026-11-25): desktop shows it whole in the sidebar; under 1000px the two columns flatten so
+   it sits between the title and the list, and phones start it folded (ranking-v5.tsx QmShell). */
+.rk5-qm .body { display: flex; flex-direction: column; gap: 10px; }
+.rk5-qm .fold, .rk5-qm .fold-sum { display: none; }
+@media (max-width: 999px) {
+  .rk5-main, .rk5-side { display: contents; }
+  .rk5-grid { gap: 14px; }
+  .rk5-hero { order: 0; } .rk5-qm-fold { order: 1; } .rk5-list { order: 2; } .rk5-side > :not(.rk5-qm-fold) { order: 3; }
+}
+@media (max-width: 639px) {
+  .rk5-qm-fold { gap: 6px; }
+  .rk5-qm-fold .head { align-items: center; }
+  .rk5-qm-fold h3 { font-size: 24px; }
+  .rk5-qm-fold .fold { all: unset; cursor: pointer; display: inline-flex; align-items: center; gap: 6px; margin-left: auto; font-size: 14px; font-weight: 700;
+    padding: 6px 14px; border: 1.5px solid var(--ink); border-radius: 999px; background: #fff; white-space: nowrap; }
+  .rk5-qm-fold .fold-sum { display: block; font-size: 14px; color: var(--ink2); }
+  .rk5-qm-fold:not(.open) .body, .rk5-qm-fold:not(.open) .reset, .rk5-qm-fold.open .fold-sum { display: none; }
+}
 .rk5-qm .fit { display: grid; grid-template-columns: 44px minmax(0,1fr); gap: 12px; align-items: center; padding: 14px; border-radius: 12px; background: var(--r5-soft); margin-top: 4px; }
 .rk5-qm .fit .ic { width: 40px; height: 40px; border-radius: 50%; background: #E3BE3E; display: flex; align-items: center; justify-content: center; color: #fff; font-weight: 800; font-size: 20px; }
 .rk5-qm .fit .ic.good { background: #3FC35A; }
