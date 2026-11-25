@@ -248,6 +248,8 @@ body:has(.thc) .thc a.thc-tt-cover { position: relative; display: flex; align-it
   .thc-g-row .thc-g-w + .thc-g-w { justify-self: start; }
 }
 
+/* Where the votes come from (lib/thread/sites.ts VOTE_SOURCE_NOTE), under the vote boxes. */
+.thc-vote-note { margin: 10px 0 0; font-size: 13px; line-height: 1.4; color: var(--muted); }
 /* Played it? Vote and rate it (PR #649): the padel poll and vote grid, flush in the column. */
 .thc .thc-vote .thc-sec2-h > span { font-size: 13px; color: var(--muted); }
 .thc .thc-vote > .th-card { margin: 0; }

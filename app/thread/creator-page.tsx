@@ -54,7 +54,7 @@ import { siteSentiment } from "../../lib/thread/site-sentiment";
 import { W } from "../../lib/thread/words";
 import { mentions } from "../../lib/thread/mentions";
 import { padelOffers, newestCheck, type ShopOffer } from "../../lib/padel-offers";
-import { storiesSite } from "../../lib/thread/sites";
+import { storiesSite, VOTE_SOURCE_NOTE } from "../../lib/thread/sites";
 import { specPills } from "../../lib/thread/spec-pills";
 import { racketStories } from "./stories-data";
 import { MemberMark } from "./live/member-mark";
@@ -303,13 +303,14 @@ export async function CreatorProductBody({ slug }: { slug: string }) {
           <section id="vote" className="thc-box1 thc-vote">
             <PollCard id={r.id} reviews={{ positive: row?.pos ?? 0, mixed: row?.mix ?? 0, negative: row?.neg ?? 0 }} question={SKIN ? "Tried it? Vote and rate it." : LT ? `${W.usedIt} Vote and rate it.` : "Played it? Vote and rate it."} countLine/>
             {voteGroups.length > 0 && <TraitVotes id={r.id} seed={traitSeed(niche.id, r.id)} groups={voteGroups} title={W.traitsTitle} tieNone {...(SKIN ? { of: d.judged } : {})}/>}
+            {VOTE_SOURCE_NOTE[niche.id] && <p className="thc-vote-note">{VOTE_SOURCE_NOTE[niche.id]}</p>}
           </section>
         </div>}
 
         <div className="thc-web">
           <span className="thc-kick">From around the web</span>
           <h2>What reviewers are saying</h2>
-          <p>{`The votes above are from ${niche.site.name} ${W.people}. Below is a summary of ${plural(rs.length, "review")} from ${sourceList(rs)}.`}</p>
+          <p>{`${VOTE_SOURCE_NOTE[niche.id] ? `The votes above are from ${niche.site.name} users and from owner posts and comments on Reddit.` : `The votes above are from ${niche.site.name} ${W.people}.`} Below is a summary of ${plural(rs.length, "review")} from ${sourceList(rs)}.`}</p>
         </div>
 
         {/* The short version: the reviews' own takes as count cards (no reviewer bar, owner choice), then likes and concerns. */}

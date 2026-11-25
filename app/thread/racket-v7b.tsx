@@ -24,7 +24,7 @@ import type { LatestQuestion } from "./community-data";
 import { MemberMark } from "./live/member-mark";
 import { FollowButton } from "./live/follow-button";
 import { SideFit } from "./live/side-fit";
-import { followSite } from "../../lib/thread/sites";
+import { followSite, VOTE_SOURCE_NOTE } from "../../lib/thread/sites";
 import type { RvCard } from "./racket-data";
 import type { TraitGroup } from "../../lib/thread/traits";
 import { newestCheck, type ShopOffer } from "../../lib/padel-offers";
@@ -153,6 +153,7 @@ export function RacketV7b(p: V7bProps) {
           sub={`Vote and see how other ${W.people} feel after using it.`} countsOnly/>
       </div>
       <TraitVotes id={p.id} seed={traitSeed(niche.id, p.id)} tieNone {...(p.groups ? { groups: p.groups } : {})}/>
+      {VOTE_SOURCE_NOTE[niche.id] && <p className="th8-vote-note" style={{ margin: "-4px 4px 12px", fontSize: 13, lineHeight: 1.4, color: "var(--muted)" }}>{VOTE_SOURCE_NOTE[niche.id]}</p>}
       {/* Similar rackets (owner bug 2026-11-21): four current models, none from Often compared with (lib/thread/similar-pick.ts),
           as a row of tiles across the column on desktop and a stack on phones. */}
       {p.sim.length > 0 && <section className="th-card th8-sec"><div className="th8-sec-h"><h2 className="th-h2">{`Similar ${niche.words.many}`}</h2>
