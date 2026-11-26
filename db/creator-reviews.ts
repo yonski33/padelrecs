@@ -8,6 +8,7 @@ import type { getDb } from "./index";
 import type { AttrKey, CreatorPage, CreatorReview, Offer, ReviewConfig, Stance, TikTokTake, Word } from "../lib/thread/creators";
 import { ATTRS, WORDS, PRICE_TEXT } from "../lib/thread/creators";
 import { PADEL_SHOP_SOURCE } from "../lib/padel-shops";
+import { niche } from "../lib/niche";
 import { cleanCreatorText, catalogSpelling, shopName, shownShop } from "../lib/thread/creator-text";
 
 type Database = ReturnType<typeof getDb>;
@@ -61,7 +62,13 @@ export function takeFromRow(r: Record<string, unknown>): TikTokTake {
 /** Amazon's rule for shown prices (owner 2026-11-23, scripts/amazon-prices.mts): an Amazon row counts only while its price is
  *  under 24 hours old; after that the page shows Amazon as a plain link again. Other shops keep their weekly checks. */
 const AMAZON_MAX_AGE_MS = 24 * 60 * 60 * 1000;
-const freshEnough = (r: Record<string, unknown>, now: number) => String(r.shop) !== "Amazon" || now - Date.parse(String(r.checked_at)) < AMAZON_MAX_AGE_MS;
+/** Sites whose shop rows are re-read daily (scripts/pickleball-shop-prices.mts, owner 2026-11-26): a shop price checked more than
+ *  3 days ago is not shown, so prices disappear by themselves if the job stops. Current prices only, no history. */
+const SHOP_DAILY = new Set(["pickleball"]);
+const SHOP_MAX_AGE_MS = 3 * 24 * 60 * 60 * 1000;
+const freshEnough = (r: Record<string, unknown>, now: number) => String(r.shop) === "Amazon"
+  ? now - Date.parse(String(r.checked_at)) < AMAZON_MAX_AGE_MS
+  : !SHOP_DAILY.has(niche.id) || now - Date.parse(String(r.checked_at)) <= SHOP_MAX_AGE_MS;
 export function offersFromRows(rows: Record<string, unknown>[], now = Date.now()): { checked: string; offers: Offer[] } | null {
   // PadelRecs' shop rows (source "padel-shop:...") have their own box and 3-day rule (lib/padel-offers.ts), never this one.
   rows = rows.filter(r => freshEnough(r, now) && !String(r.source ?? "").startsWith(PADEL_SHOP_SOURCE));

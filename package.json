@@ -12,6 +12,7 @@
     "start": "next start",
     "typecheck": "tsc --noEmit",
     "shop:padel-prices": "tsx --env-file-if-exists=.env.local scripts/padel-shop-prices.mts",
+    "shop:pickleball-prices": "tsx --env-file-if-exists=.env.local scripts/pickleball-shop-prices.mts",
     "shop:padel-import": "tsx --env-file-if-exists=.env.local scripts/padel-shop-import.mts",
     "test": "node --conditions=react-server --import tsx --test tests/*.test.ts",
     "db:generate": "drizzle-kit generate",
