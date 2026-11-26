@@ -34,7 +34,11 @@ const TABLES = ["creator_pages", "creator_reviews", "creator_prices"] as const;
 
 // ---- Owner decisions (2026-11-22), as in the #649 fixture builder ----
 /** Weak sources the owner dropped. */
-const DROP = new Set(["FORWRD", "Man vs Debt", "REDTACKLE", "PickleballCentral", "Pickleball Hustle"]);
+const DROP = new Set(["FORWRD", "Man vs Debt", "REDTACKLE", "PickleballCentral", "Pickleball Hustle", "Max Streltcoff / padel.how", "padel.how", "Pickleball3"]);
+/** Removed site-wide by the owner on 2026-11-23 (13 rows deleted after a backup): The Kitchen Pickle site and channels. */
+const BLOCKED_CREATORS = /^the kitchen( pickle(ball)?)?$/i;
+// Owner 2026-11-24: padel.how and pickleball3.com read as AI-generated (no real play, spec-sheet figures); never imported.
+const BLOCKED_URLS = /(^|\/\/|\.)(thekitchenpickle\.com|padel\.how|pickleball3\.com)\b|tiktok\.com\/@thekitchenpickleball\b/i;
 /** Scores kept in the data but hidden until the scale is confirmed. */
 const HIDE_SCORE = new Set(["Pickleheads"]);
 /** Plain auto-caption spelling typos in quotes. */
@@ -225,7 +229,12 @@ function buildRows(inp: Awaited<ReturnType<typeof loadInputs>>, brandOf: (slug: 
   }
   for (const r of reviews) if (!pages.has(r.slug))
     pages.set(r.slug, { slug: r.slug, racket_id: "", url: "", tldr: null, group_pos: null, group_mix: null, group_neg: null });
-  return { reviews, prices, pages: [...pages.values()].map(p => ({ ...p, status: "live", updated_at: now })), skipped };
+  // Sources the owner removed site-wide (2026-11-23: The Kitchen Pickle site, YouTube and TikTok), whatever file they come from.
+  const blockedSource = (r: Row) => BLOCKED_CREATORS.test(String(r.creator ?? "")) ||
+    [r.url, r.also_url].some(u => typeof u === "string" && BLOCKED_URLS.test(u));
+  for (const r of reviews.filter(blockedSource)) skipped.push(`${r.slug}: ${r.creator} (blocked source)`);
+  const kept = reviews.filter(r => !blockedSource(r));
+  return { reviews: kept, prices, pages: [...pages.values()].map(p => ({ ...p, status: "live", updated_at: now })), skipped };
 }
 
 /** Copy checks on everything a visitor can read. */

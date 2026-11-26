@@ -41,6 +41,7 @@
     "zod": "^3.25.76"
   },
   "devDependencies": {
+    "@anthropic-ai/sdk": "^1.12.0",
     "@electric-sql/pglite": "^0.3.14",
     "@types/node": "22.19.19",
     "@types/pg": "8.23.1",
