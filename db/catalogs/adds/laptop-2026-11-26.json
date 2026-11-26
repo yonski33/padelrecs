@@ -1,0 +1,300 @@
+{
+ "about": "LaptopRecs catalog adds (2026-11-26, owner \"Yes, 5+ outlets\"): laptops named in 5+ outlets' expert best-of lists (Gemini pack, checked) that were not in the catalogue. Vague rows resolved: MacBook Air (M5) 13/15 and MacBook Pro sizes/chips are already in the catalogue; HP Victus 15, HP OmniBook 5 and Alienware 15 (2026) skipped (lists name no single exact model); Zenbook Duo (2026) was two rows. Values read on maker pages or maker newsrooms; Gigabyte, Razer and MSI pages returned 403, so their values come from maker-page text in search previews; Acer values from news.acer.com. Aspire 14 AI keeps only the Lunar Lake chips (the Meteor Lake model is A14-51M). Blank = not read on a maker page. New models stay unlisted until LAPTOP_READY (3 reviews and 3 votes).",
+ "checked": "2026-11-26",
+ "brands": [
+  {
+   "id": "honor",
+   "name": "Honor"
+  }
+ ],
+ "products": [
+  {
+   "brand": "asus",
+   "name": "ASUS Zenbook A16 (UX3607)",
+   "year": 2026,
+   "shape": "Ultrabook",
+   "balance": "Snapdragon X2 Elite Extreme X2E-96-100 / X2E-94-100 / Snapdragon X Plus X1P-42-100 / Snapdragon X X1-26-100",
+   "core": "Qualcomm Adreno",
+   "surface": "16\" 2880×1800 OLED 120 Hz / 16\" 1920×1200 OLED 60 Hz",
+   "weight": "1.10 kg",
+   "swingWeight": null,
+   "sources": [
+    "https://www.asus.com/laptops/for-home/zenbook/asus-zenbook-a16-ux3607/techspec/"
+   ],
+   "slug": "asus-zenbook-a16-ux3607"
+  },
+  {
+   "brand": "asus",
+   "name": "ASUS ExpertBook Ultra (B9406CAA)",
+   "year": 2026,
+   "shape": "Business",
+   "balance": "Intel Core Ultra X9 388H / Ultra 7 366H / Ultra X7 358H / Ultra 7 356H / Ultra 5 325",
+   "core": "Intel Arc Pro B390 / Arc B390 / Intel Graphics",
+   "surface": "14\" 2880×1800 Tandem OLED touch / 14\" 2880×1800 OLED touch",
+   "weight": "0.99 kg",
+   "swingWeight": null,
+   "sources": [
+    "https://www.asus.com/laptops/for-work/expertbook/asus-expertbook-ultra/techspec/"
+   ],
+   "slug": "asus-expertbook-ultra-b9406caa"
+  },
+  {
+   "brand": "dell",
+   "name": "Dell 14S (DS14260)",
+   "year": 2026,
+   "shape": "Ultrabook",
+   "balance": "Intel Core Ultra 7 355 / Ultra 5 322",
+   "core": "Intel Graphics",
+   "surface": "14\" 1920×1200 touch / non-touch (60 Hz, 400 nits) / 14\" 1920×1200 OLED touch / non-touch",
+   "weight": "1.49 kg",
+   "swingWeight": null,
+   "sources": [
+    "https://www.dell.com/en-us/shop/p/-/SPD/DELL-DS14260-LAPTOP/"
+   ],
+   "slug": "dell-14s-ds14260"
+  },
+  {
+   "brand": "acer",
+   "name": "Acer Swift Air 14 (SFA14-I31)",
+   "year": 2026,
+   "shape": "Ultrabook",
+   "balance": "Intel Core 5 320 / Core 7 350",
+   "core": "Intel Graphics",
+   "surface": "14\" 1920×1200 IPS 120 Hz",
+   "weight": "1.19 kg",
+   "swingWeight": null,
+   "sources": [
+    "https://news.acer.com/acer-launches-new-swift-air-14-powered-by-latest-intel-core-series-3-processors"
+   ],
+   "slug": "acer-swift-air-14-sfa14-i31"
+  },
+  {
+   "brand": "acer",
+   "name": "Acer Aspire 14 AI (A14-52M)",
+   "year": 2024,
+   "shape": "Ultrabook",
+   "balance": "Intel Core Ultra 5 226V / Ultra 7 256V / Ultra 7 258V",
+   "core": "Intel Arc Graphics",
+   "surface": "14\" 1920×1200 IPS / touch / 14\" OLED",
+   "weight": "1.4 kg",
+   "swingWeight": null,
+   "sources": [
+    "https://news.acer.com/acer-expands-copilot-pc-portfolio-with-new-swift-go-ai-laptops-and-aspire-laptops-and-desktops"
+   ],
+   "slug": "acer-aspire-14-ai-a14-52m"
+  },
+  {
+   "brand": "alienware",
+   "name": "Alienware 16X Aurora (AC16251)",
+   "year": 2025,
+   "shape": "Gaming",
+   "balance": "Intel Core Ultra 7 255HX / Ultra 9 275HX / Ultra 7 270HX Plus / Ultra 9 290HX Plus",
+   "core": "NVIDIA GeForce RTX 5060 / 5070 / 5070 Ti",
+   "surface": "16\" 2560×1600 OLED 240 Hz",
+   "weight": "2.57 kg",
+   "swingWeight": null,
+   "sources": [
+    "https://www.dell.com/en-us/shop/dell-laptops/alienware-16x-aurora-gaming-laptop/spd/alienware-aurora-ac16251-gaming-laptop/useac16251wmlkcto03",
+    "https://www.dell.com/en-uk/shop/gaming-and-games/alienware-16x-aurora-gaming-laptop/spd/alienware-aurora-ac16251-gaming-laptop/nac1625105sc"
+   ],
+   "slug": "alienware-16x-aurora-ac16251"
+  },
+  {
+   "brand": "asus",
+   "name": "ASUS Zenbook Duo (2026)",
+   "year": 2026,
+   "shape": "Ultrabook",
+   "balance": "Intel Core Ultra X9 388H / X9 378H / X7 358H / Ultra 9 386H / Ultra 7 355",
+   "core": "Intel Arc Graphics",
+   "surface": "Dual 14\" 2880×1800 OLED touch 144 Hz",
+   "weight": "1.65 kg",
+   "swingWeight": null,
+   "sources": [
+    "https://www.asus.com/laptops/for-home/zenbook/asus-zenbook-duo-ux8407/techspec/"
+   ],
+   "slug": "asus-zenbook-duo-2026"
+  },
+  {
+   "brand": "gigabyte",
+   "name": "Gigabyte AERO X16 (EG61H)",
+   "year": 2025,
+   "shape": "Creator",
+   "balance": "AMD Ryzen AI 7 350",
+   "core": "NVIDIA GeForce RTX 5050 / 5060 / 5070",
+   "surface": "16\" 2560×1600 IPS 165 Hz",
+   "weight": "1.9 kg",
+   "swingWeight": null,
+   "sources": [
+    "https://www.gigabyte.com/Laptop/GIGABYTE-AERO-X16-EG61H/sp"
+   ],
+   "slug": "gigabyte-aero-x16-eg61h"
+  },
+  {
+   "brand": "acer",
+   "name": "Acer Swift 16 AI (SF16-71T)",
+   "year": 2026,
+   "shape": "Ultrabook",
+   "balance": "Intel Core Ultra X9 388H / Ultra X7 358H",
+   "core": "Intel Arc B390",
+   "surface": "16\" 2880×1800 OLED touch 120 Hz / 16\" 1920×1200 OLED touch",
+   "weight": "1.55 kg",
+   "swingWeight": null,
+   "sources": [
+    "https://news.acer.com/acer-announces-new-lineup-of-premium-swift-ai-copilot-pcs-featuring-intel-core-ultra-series-3-processors"
+   ],
+   "slug": "acer-swift-16-ai-sf16-71t"
+  },
+  {
+   "brand": "acer",
+   "name": "Acer Aspire 16 AI (A16-11M)",
+   "year": 2025,
+   "shape": "Ultrabook",
+   "balance": "Qualcomm Snapdragon X X1-26-100",
+   "core": "Qualcomm Adreno",
+   "surface": "16\" 1920×1200 IPS 120 Hz",
+   "weight": "1.54 kg",
+   "swingWeight": null,
+   "sources": [
+    "https://news.acer.com/acer-expands-aspire-ai-series-with-six-new-copilot-pcs-powered-by-next-gen-processors"
+   ],
+   "slug": "acer-aspire-16-ai-a16-11m"
+  },
+  {
+   "brand": "hp",
+   "name": "HP OmniBook X Flip 16 (16-as0000)",
+   "year": 2024,
+   "shape": "2-in-1",
+   "balance": "Intel Core Ultra 7 256V / Ultra 7 258V",
+   "core": "Intel Arc 140V",
+   "surface": "16\" 2880×1800 OLED touch",
+   "weight": "1.88 kg",
+   "swingWeight": null,
+   "sources": [
+    "https://www.hp.com/au-en/shop/hp-omnibook-x-flipngai-16-as0000tu-bd5q7pa.html",
+    "https://www.hp.com/sa-en/products/laptops/product-details/2103228258"
+   ],
+   "slug": "hp-omnibook-x-flip-16-16-as0000"
+  },
+  {
+   "brand": "acer",
+   "name": "Acer Predator Triton 14 AI (PT14-52T)",
+   "year": 2025,
+   "shape": "Gaming",
+   "balance": "Intel Core Ultra 9 288V",
+   "core": "NVIDIA GeForce RTX 5070",
+   "surface": "14.5\" 2880×1800 OLED touch 120 Hz",
+   "weight": "1.6 kg",
+   "swingWeight": null,
+   "sources": [
+    "https://news.acer.com/acer-announces-new-predator-triton-14-ai-blending-top-tier-laptop-gaming-performance-and-creative-capabilities"
+   ],
+   "slug": "acer-predator-triton-14-ai-pt14-52t"
+  },
+  {
+   "brand": "razer",
+   "name": "Razer Blade 18 (2026)",
+   "year": 2026,
+   "shape": "Gaming",
+   "balance": "Intel Core Ultra 9 290HX Plus",
+   "core": "NVIDIA GeForce RTX 5070 Ti / 5080 / 5090",
+   "surface": "18\" 3840×2400 dual-mode 240 Hz (or 1920×1200 440 Hz)",
+   "weight": null,
+   "swingWeight": null,
+   "sources": [
+    "https://razer.com/newsroom/product-news/2026-blade-18",
+    "https://www.razer.com/gaming-laptops/razer-blade-18"
+   ],
+   "slug": "razer-blade-18-2026"
+  },
+  {
+   "brand": "msi",
+   "name": "MSI Stealth 16 AI+ (B3W)",
+   "year": 2026,
+   "shape": "Gaming",
+   "balance": "Intel Core Ultra 9 386H",
+   "core": "NVIDIA GeForce RTX 5070 Ti / 5080",
+   "surface": "16\" 2560×1600 OLED 240 Hz",
+   "weight": "1.99 kg",
+   "swingWeight": null,
+   "sources": [
+    "https://www.msi.com/Laptop/Stealth-16-AI-Plus-B3WX/Specification"
+   ],
+   "slug": "msi-stealth-16-ai-b3w"
+  },
+  {
+   "brand": "lenovo",
+   "name": "Lenovo IdeaPad Slim 3 Gen 10 (15IRH10R)",
+   "year": 2025,
+   "shape": "Ultrabook",
+   "balance": "Intel Core 5 210H",
+   "core": null,
+   "surface": "15.3\" 1920×1200",
+   "weight": null,
+   "swingWeight": null,
+   "sources": [
+    "https://psref.lenovo.com/syspool/Sys/PDF/IdeaPad/IdeaPad_Slim_3_15IRH10R/IdeaPad_Slim_3_15IRH10R_Spec.pdf"
+   ],
+   "slug": "lenovo-ideapad-slim-3-gen-10-15irh10r"
+  },
+  {
+   "brand": "asus",
+   "name": "ASUS ProArt P16 (H7607)",
+   "year": 2026,
+   "shape": "Creator",
+   "balance": "NVIDIA RTX Spark N1X (20-core CPU)",
+   "core": "NVIDIA Blackwell RTX GPU (6144 cores, integrated in N1X)",
+   "surface": "16\" 3840×2400 Tandem OLED 120 Hz touch",
+   "weight": "1.77 kg",
+   "swingWeight": null,
+   "sources": [
+    "https://www.asus.com/rs-en/laptops/for-creators/proart/proart-p16-h7607/techspec/"
+   ],
+   "slug": "asus-proart-p16-h7607"
+  },
+  {
+   "brand": "acer",
+   "name": "Acer Googlebook 14 (GP714-91N)",
+   "year": 2026,
+   "shape": "Chromebook",
+   "balance": "Intel Core Ultra 7 355 / Ultra 5 325",
+   "core": "Intel Graphics",
+   "surface": "14\" 2880×1800 OLED touch",
+   "weight": "1.14 kg",
+   "swingWeight": null,
+   "sources": [
+    "https://news.acer.com/acer-debuts-first-googlebook-the-embodiment-of-premium-intelligence-powered-hardware"
+   ],
+   "slug": "acer-googlebook-14-gp714-91n"
+  },
+  {
+   "brand": "hp",
+   "name": "HP HyperX OMEN 15 (15-ga0000)",
+   "year": 2026,
+   "shape": "Gaming",
+   "balance": "Intel Core i7-14650HX",
+   "core": "NVIDIA GeForce RTX 5060",
+   "surface": "15.3\" 2K IPS",
+   "weight": null,
+   "swingWeight": null,
+   "sources": [
+    "https://www.hp.com/bd-en/products/laptops/product-details/2103796372"
+   ],
+   "slug": "hp-hyperx-omen-15-15-ga0000"
+  },
+  {
+   "brand": "honor",
+   "name": "Honor MagicBook 16 (2026)",
+   "year": 2026,
+   "shape": "Ultrabook",
+   "balance": "Intel Core Ultra 5 325",
+   "core": null,
+   "surface": "16\" 1920×1200 LCD",
+   "weight": "1.64 kg",
+   "swingWeight": null,
+   "sources": [
+    "https://www.honor.com/uk/laptops/honor-magicbook-16-2026/"
+   ],
+   "slug": "honor-magicbook-16-2026"
+  }
+ ]
+}
