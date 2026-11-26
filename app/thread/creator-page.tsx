@@ -94,8 +94,8 @@ const PLAIN = creatorPlainSite(niche.id);
 /** LaptopRecs on the Thread pages (2026-11-24): its own fit check (live/laptop-match.tsx) in place of the padel-style one. */
 const LT = niche.id === "laptop";
 const CONFIGS = configSite(niche.id);
-/** PadelRecs (2026-11-24, onto this page from its v7b racket page): the padel shops' own prices in the price box (lib/padel-offers.ts,
- *  db/shop/padel-offers.json), the Follow button in the head and the member stories that name the racket. */
+/** PadelRecs (2026-11-24, onto this page from its v7b racket page): the padel shops' own prices in the price box (lib/padel-offers.ts, from
+ *  padelrecs.creator_prices since 2026-11-26), the Follow button in the head and the member stories that name the racket. */
 const PADEL = niche.id === "padel";
 /** The shown name: PadelRecs keeps the model year in brackets ("Bullpadel Vertex 05 (2026)", owner 2026-11-25, as on its
  *  other pages, padel-list named()); the other sites drop it (one row per model, no years in their names). */

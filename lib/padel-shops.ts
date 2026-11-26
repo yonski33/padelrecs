@@ -1,8 +1,9 @@
-// PadelRecs shops for the "Where to buy" box on racket pages (db/shop/padel-offers.json, lib/padel-offers.ts).
+// PadelRecs shops for the "Where to buy" box on racket pages (lib/padel-offers.ts).
 // Amazon barely sells padel rackets, so these are the padel shops' own product pages. The affiliate programmes
 // (Padel-Point on Awin, Padel Market, Padel Nuestro, NINEPADEL, Padel USA) are still pending, so every link is plain
 // for now. THIS FILE IS THE ONE PLACE to switch a shop's affiliate link on once it is approved: fill its `affiliate`
 // below and its links get the parameters (or the Awin deep link) and rel="sponsored" on the next deploy.
+// Rows live in padelrecs.creator_prices (source "padel-shop:..."); scripts/padel-shop-prices.mts re-reads each page daily.
 
 export type ShopCurrency = "EUR" | "GBP" | "USD";
 
@@ -18,21 +19,35 @@ export type Shop = {
   /** Short name in the price box (owner 2026-11-23: "show few stores", short names). */ short: string;
   /** The shop's own sites (Padel-Point: the .com store, and .de where only the German store lists the racket). */ hosts: string[]; currency: ShopCurrency;
   /** null = plain link (no affiliate approval yet). */ affiliate: Affiliate | null;
+  /** How the daily script reads the page: Shopify's product .js, the page's schema.org Product, or not at all (the shop
+   *  blocks scripts; its rows are never worked around, they go stale and hide after MAX_AGE_DAYS). */ read: "shopify" | "jsonld" | "blocked";
+  /** Shopify: the country whose price to read (?country=). Without it some shops answer an ex-VAT price for a visitor
+   *  outside the EU (Padelshop: 156.98 instead of 189.95, 2026-11-26); the shop's home country is the price its buyers see. */ country?: string;
 };
 
 export const PADEL_SHOPS: Shop[] = [
-  { name: "Padel Nuestro", short: "Padel Nuestro", hosts: ["padelnuestro.com"], currency: "EUR", affiliate: null },
-  { name: "Padel-Point", short: "Padel-Point", hosts: ["padel-point.com", "padel-point.de"], currency: "EUR", affiliate: null },
-  { name: "Padel Market EU", short: "Padel Market EU", hosts: ["padelmarket.com"], currency: "EUR", affiliate: null },
-  { name: "Padel Market US", short: "Padel Market US", hosts: ["us.padelmarket.com"], currency: "USD", affiliate: null },
-  // NINEPADEL's public feed (scripts/ninepadel-feed.mts) gives the template "?ref={YOUR_CODE}": once approved, set
+  { name: "Padel Nuestro", short: "Padel Nuestro", hosts: ["padelnuestro.com"], currency: "EUR", affiliate: null, read: "jsonld" },
+  { name: "Padel-Point", short: "Padel-Point", hosts: ["padel-point.com", "padel-point.de"], currency: "EUR", affiliate: null, read: "shopify", country: "DE" },
+  { name: "Padel Market EU", short: "Padel Market EU", hosts: ["padelmarket.com"], currency: "EUR", affiliate: null, read: "shopify", country: "ES" },
+  { name: "Padel Market US", short: "Padel Market US", hosts: ["us.padelmarket.com"], currency: "USD", affiliate: null, read: "shopify", country: "US" },
+  // NINEPADEL's public feed (https://ninepadel.com/affiliate-feed.json) gives the template "?ref={YOUR_CODE}": once approved, set
   // { kind: "query", params: { ref: "<code>" } }.
-  { name: "NINEPADEL", short: "NINEPADEL", hosts: ["ninepadel.com"], currency: "GBP", affiliate: null },
-  { name: "Padel USA", short: "Padel USA", hosts: ["padelusa.com"], currency: "USD", affiliate: null },
-  { name: "Padel Pro Shop", short: "Padel Pro Shop", hosts: ["padelproshop.com"], currency: "EUR", affiliate: null },
-  { name: "Tienda Padel Point", short: "Padel Point ES", hosts: ["tiendapadelpoint.com"], currency: "EUR", affiliate: null },
-  { name: "Padelshop", short: "Padelshop", hosts: ["padelshop.com"], currency: "EUR", affiliate: null },
+  { name: "NINEPADEL", short: "NINEPADEL", hosts: ["ninepadel.com"], currency: "GBP", affiliate: null, read: "shopify", country: "GB" },
+  { name: "Padel USA", short: "Padel USA", hosts: ["padelusa.com"], currency: "USD", affiliate: null, read: "shopify", country: "US" },
+  { name: "Padel Pro Shop", short: "Padel Pro Shop", hosts: ["padelproshop.com"], currency: "EUR", affiliate: null, read: "shopify", country: "ES" },
+  { name: "Tienda Padel Point", short: "Padel Point ES", hosts: ["tiendapadelpoint.com"], currency: "EUR", affiliate: null, read: "blocked" },
+  { name: "Padelshop", short: "Padelshop", hosts: ["padelshop.com"], currency: "EUR", affiliate: null, read: "shopify", country: "NL" },
+  // Kuikma rackets only (Decathlon's own brand, owner 2026-11-26). The domain decides the currency.
+  { name: "Decathlon UK", short: "Decathlon", hosts: ["decathlon.co.uk"], currency: "GBP", affiliate: null, read: "jsonld" },
+  { name: "Decathlon ES", short: "Decathlon", hosts: ["decathlon.es"], currency: "EUR", affiliate: null, read: "jsonld" },
 ];
+/** creator_prices.source for padel shop rows (prefix); the creator page's own price box (db/creator-reviews.ts) skips them. */
+export const PADEL_SHOP_SOURCE = "padel-shop";
+/** The shop whose site this URL is on, or null. */
+export function shopForUrl(url: string): Shop | null {
+  let host: string; try { host = new URL(url).host.replace(/^www\./, ""); } catch { return null; }
+  return PADEL_SHOPS.find(s => s.hosts.includes(host)) ?? null;
+}
 
 const BY_NAME = new Map(PADEL_SHOPS.map(s => [s.name, s]));
 export const shopNamed = (name: string) => BY_NAME.get(name) ?? null;

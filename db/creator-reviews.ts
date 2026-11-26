@@ -7,6 +7,7 @@ import { sql } from "drizzle-orm";
 import type { getDb } from "./index";
 import type { AttrKey, CreatorPage, CreatorReview, Offer, ReviewConfig, Stance, TikTokTake, Word } from "../lib/thread/creators";
 import { ATTRS, WORDS, PRICE_TEXT } from "../lib/thread/creators";
+import { PADEL_SHOP_SOURCE } from "../lib/padel-shops";
 import { cleanCreatorText, catalogSpelling, shopName, shownShop } from "../lib/thread/creator-text";
 
 type Database = ReturnType<typeof getDb>;
@@ -62,7 +63,8 @@ export function takeFromRow(r: Record<string, unknown>): TikTokTake {
 const AMAZON_MAX_AGE_MS = 24 * 60 * 60 * 1000;
 const freshEnough = (r: Record<string, unknown>, now: number) => String(r.shop) !== "Amazon" || now - Date.parse(String(r.checked_at)) < AMAZON_MAX_AGE_MS;
 export function offersFromRows(rows: Record<string, unknown>[], now = Date.now()): { checked: string; offers: Offer[] } | null {
-  rows = rows.filter(r => freshEnough(r, now));
+  // PadelRecs' shop rows (source "padel-shop:...") have their own box and 3-day rule (lib/padel-offers.ts), never this one.
+  rows = rows.filter(r => freshEnough(r, now) && !String(r.source ?? "").startsWith(PADEL_SHOP_SOURCE));
   // Dollars only, and only US shops (a euro shop saved as USD showed its euros as dollars), never a review site or a dead link
   // (lib/thread/creator-text.ts shownShop); a shop saved as its web address shows its own name.
   const offers = rows.filter(r => (str(r.currency) ?? "USD") === "USD" && shownShop(String(r.url))).map(r => ({ shop: shopName(String(r.shop)), url: String(r.url), price: Number(r.price),
