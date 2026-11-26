@@ -34,7 +34,9 @@ const TABLES = ["creator_pages", "creator_reviews", "creator_prices"] as const;
 
 // ---- Owner decisions (2026-11-22), as in the #649 fixture builder ----
 /** Weak sources the owner dropped. */
-const DROP = new Set(["FORWRD", "Man vs Debt", "REDTACKLE", "PickleballCentral", "Pickleball Hustle"]);
+/** 2026-11-26 owner: AI / upload or shop channels found in the expert lists (Pickleball Story, Legoat, Pickle Madness). */
+const DROP = new Set(["FORWRD", "Man vs Debt", "REDTACKLE", "PickleballCentral", "Pickleball Hustle",
+  "Pickleball Story (피클볼 스토리)", "Pickleball Story", "Legoat Pickleball", "Pickle Madness"]);
 /** Scores kept in the data but hidden until the scale is confirmed. */
 const HIDE_SCORE = new Set(["Pickleheads"]);
 /** Plain auto-caption spelling typos in quotes. */
