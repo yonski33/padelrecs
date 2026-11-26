@@ -12,6 +12,7 @@ import { niche } from "../lib/niche";
 import { creatorPageOn } from "../lib/thread/sites";
 import { shopPhoto } from "../lib/shop-photos";
 import { amazonPhoto } from "../lib/amazon-photos";
+import { padelReadyIds } from "../lib/thread/padel-ready";
 export async function database() { return getDb(); }
 
 type RacketRef = { id: string; brandId: string; createdAt: string };
@@ -51,6 +52,8 @@ async function loadCatalog(connection?:ReturnType<typeof getDb>) {
  db.select().from(externalReviews).orderBy(desc(externalReviews.createdAt)),
  db.select({racketId: reviews.racketId, createdAt: reviews.createdAt}).from(reviews).where(ne(reviews.status, "approved")),
  voteCounts(db), creatorBacked(db)]);
+ // PadelRecs: its thin-racket counts (creator reviewers and votes), read only on padel.
+ const padelExtra = niche.id === "padel" ? await padelCounts(db) : null;
  const visible = publicCatalogItems(allBrands, allRackets, publicReviews.map(r => r.racketId), external.map(e => e.racketId), unapproved);
  // Listings (catalogue, type and brand pages, sidebar, sitemap) only show products somebody has reviewed. Every visible
  // product still has its page and can be picked when adding a review, so `rackets` stays the full list for lookups.
@@ -61,13 +64,36 @@ async function loadCatalog(connection?:ReturnType<typeof getDb>) {
  // similar lists"; never noindex): a paddle without a photo is not listed. Its page still works and it lists itself once a
  // photo is saved.
  const photoOk = (r: typeof allRackets[number]) => !PHOTO_TO_LIST.has(niche.id) || !!(shopPhoto(r) ?? amazonPhoto(r)?.image);
- const listed = visible.rackets.filter(r => reviewed.has(r.id) && photoOk(r));
+ // PadelRecs (owner 2026-11-26, lib/thread/padel-ready.ts): a racket with fewer than 3 reviews and fewer than 3 votes is not
+ // listed either, unless it was added in the last 30 days. Its page still works; it lists itself once it passes either bar.
+ const padelOk = padelExtra ? padelReadyOf(visible.rackets, publicReviews, external, padelExtra) : null;
+ const listed = visible.rackets.filter(r => reviewed.has(r.id) && photoOk(r) && (!padelOk || padelOk.has(r.id)));
  const listedBrands = visible.brands.filter(b => listed.some(r => r.brandId === b.id));
- return { brands: visible.brands, rackets: visible.rackets, listed, listedBrands, creatorIds,
+ return { brands: visible.brands, rackets: visible.rackets, listed, listedBrands, creatorIds, padelReady: padelOk,
   reviews: publicReviews.map(r => ({ ...r, helpful: votes.get(`player:${r.id}`) ?? 0 })),
   external: external.map(e => ({ ...e, helpful: votes.get(`web:${e.id}`) ?? 0 })) };
 }
 export type Catalog = Awaited<ReturnType<typeof catalog>>;
+/** PadelRecs' per-racket creator reviewers and votes (quick votes + distinct "How does it play?" voters); empty maps when a
+ *  table can't be read, so the catalogue never fails over them. */
+async function padelCounts(db: ReturnType<typeof getDb>) {
+ const rows = async (q: ReturnType<typeof sql>) => { try { const r = await db.execute(q);
+   return ((Array.isArray(r) ? r : (r as { rows?: unknown[] }).rows ?? []) as { id: unknown; n: unknown }[]).map(x => [String(x.id), Number(x.n)] as const); } catch { return []; } };
+ const s = sql.raw(`"${niche.schema}"`);
+ const [creators, quick, trait] = await Promise.all([
+  rows(sql`select racket_id as id, count(distinct creator) as n from ${s}.creator_reviews where status = 'live' group by racket_id`),
+  rows(sql`select racket_id as id, count(*) as n from ${s}.product_votes group by racket_id`),
+  rows(sql`select racket_id as id, count(distinct voter) as n from ${s}.trait_votes group by racket_id`)]);
+ return { creators: new Map(creators), quick: new Map(quick), trait: new Map(trait) };
+}
+/** The PadelRecs ids ready to list (lib/thread/padel-ready.ts), from the catalogue's reviews and the counts above. */
+export function padelReadyOf(items: { id: string; createdAt: string }[], playerReviews: { racketId: string }[], web: { racketId: string }[],
+ extra: { creators: Map<string, number>; quick: Map<string, number>; trait: Map<string, number> }, now = Date.now()) {
+ const reviews = new Map<string, number>(extra.creators), votes = new Map<string, number>();
+ for (const x of [...playerReviews, ...web]) reviews.set(x.racketId, (reviews.get(x.racketId) ?? 0) + 1);
+ for (const m of [extra.quick, extra.trait]) for (const [id, n] of m) votes.set(id, (votes.get(id) ?? 0) + n);
+ return padelReadyIds(items, { reviews, votes }, now);
+}
 /** The products with a live creator page (db/creator-reviews.ts tables), on sites with the creator page switch on; none
  *  where the tables don't exist yet or can't be read, so the catalogue never fails over them. */
 async function creatorBacked(db: ReturnType<typeof getDb>): Promise<string[]> {
