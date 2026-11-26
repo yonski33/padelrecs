@@ -14,9 +14,9 @@ import { looksLikeOtherProduct } from "./amazon-match";
 
 /** match: "name" when every word of the name is in the listing title, "loose" when only the key words are
  *  (matchesProductLoose); a loose match is worth a look before its ASIN is saved. */
-export type AmazonOffer = { asin: string; title: string; price: string | null; url: string; image: string | null; match?: "name" | "loose" };
+export type AmazonOffer = { asin: string; title: string; price: string | null; url: string; image: string | null; match?: "name" | "loose"; /** Why the match needs a look before its ASIN is saved. */ doubt?: string };
 export type AmazonCredentials = { id: string; secret: string; partnerTag: string };
-export type AmazonSettings = { searchIndex: string; marketplace?: string };
+export type AmazonSettings = { searchIndex: string; marketplace?: string; match?: "loose" | "variants" };
 type Fetch = typeof fetch;
 
 const API = "https://creatorsapi.amazon";
@@ -116,6 +116,24 @@ export function isSiblingListing(product: { name: string }, title: string) {
     && !(w === "tinted" && head.includes("untinted")));
 }
 
+/** PickleballRecs variants (owner 2026-11-26): shape, thickness and generation must match both ways. */
+const SHAPE = /^(elongated|hybrid|widebody|standard)$/, THICK = /^\d{2}mm$/, GEN = /^(ii|iii|iv|v|vi|vii|[2-9]|gen\d*|\d\.0)$/;
+const shapeWords = (ws: string[]) => ws.map(w => w === "wide" ? "widebody" : w).filter(w => SHAPE.test(w));
+/** Why a listing is another variant (reject) or a parent listing of several (doubt), for "variants" niches. */
+export function variantCheck(product: { name: string; brand: string }, title: string): { reject?: string; doubt?: string } {
+  const own = words(product.name), all = words(title), head = words(title.split(/[,|(]/)[0] ?? "");
+  for (const [label, test] of [["shape", (w: string) => SHAPE.test(w)], ["thickness", (w: string) => THICK.test(w)], ["generation", (w: string) => GEN.test(w)]] as const) {
+    const mine = own.filter(test);
+    const extra = (label === "shape" ? shapeWords(head) : head.filter(test)).filter(w => !mine.includes(w));
+    if (extra.length) return { reject: `${label} ${extra[0]} in the listing name, not in ours` };
+    const lacking = mine.filter(w => !(label === "shape" ? shapeWords(all) : all).includes(w));
+    if (lacking.length) return { reject: `${label} ${lacking[0]} not in the listing` };
+  }
+  const shapes = new Set(shapeWords(all)), thick = new Set(all.filter(w => THICK.test(w)));
+  if (shapes.size > 1 || thick.size > 1) return { doubt: `parent listing with variants (${[...shapes, ...thick].join(", ")})` };
+  return {};
+}
+
 /** Thrown for answers that should be retried later (throttling, outages), so a cache never keeps them as "not on Amazon". */
 export class AmazonUnavailable extends Error {}
 
@@ -176,11 +194,15 @@ export async function findAmazonOffer(product: { name: string; brand: string }, 
   const found = await call("/catalog/v1/searchItems", {
     keywords: product.name.trim(), searchIndex: settings.searchIndex, itemCount: 5, resources: ["itemInfo.title", "itemInfo.byLineInfo"],
   }, credentials, marketplace, fetcher);
+  const mode = settings.match;
   const items = (found.searchResult?.items ?? []).filter(item => item.asin && isAsin(item.asin) && item.itemInfo?.title?.displayValue
     // The name alone isn't enough: "CeraVe Healing Ointment Lip Balm" carries every word of "CeraVe Healing Ointment".
-    && !looksLikeOtherProduct(product, item.itemInfo.title.displayValue) && !isSiblingListing(product, item.itemInfo.title.displayValue));
+    && !looksLikeOtherProduct(product, item.itemInfo.title.displayValue)
+    && (mode !== "loose" || !isSiblingListing(product, item.itemInfo.title.displayValue))
+    && (mode !== "variants" || !variantCheck(product, item.itemInfo.title.displayValue).reject));
   const pick = (test: typeof matchesProduct) => items.find(item => test(product, { title: item.itemInfo!.title!.displayValue!, brand: item.itemInfo!.byLineInfo?.brand?.displayValue }));
-  const exact = pick(matchesProduct), match = exact ?? pick(matchesProductLoose), how: "name" | "loose" = exact ? "name" : "loose";
+  const exact = pick(matchesProduct), match = exact ?? (mode ? pick(matchesProductLoose) : undefined), how: "name" | "loose" = exact ? "name" : "loose";
+  const doubt = match && mode === "variants" ? variantCheck(product, match.itemInfo!.title!.displayValue!).doubt : undefined;
   if (!match?.asin) {
     const titles = (found.searchResult?.items ?? []).map(item => `${item.asin} "${item.itemInfo?.title?.displayValue ?? ""}"`);
     log(`[amazon] No matching result for ${product.name}${titles.length ? `; Amazon returned ${titles.join(", ")}` : found.errors?.[0]?.code ? ` (${found.errors[0].code})` : "; Amazon returned nothing"}`);
@@ -192,7 +214,7 @@ export async function findAmazonOffer(product: { name: string; brand: string }, 
   const item = details.itemsResult?.items?.find(i => i.asin === match.asin);
   const price = item ? listingPrice(item) : null;
   if (!price) log(`[amazon] ${product.name} matched ${match.asin} but Amazon lists no price for it`);
-  return { asin: match.asin, title: item?.itemInfo?.title?.displayValue ?? match.itemInfo!.title!.displayValue!, price, url: amazonLink(match.asin, credentials.partnerTag, marketplace), image: item?.images?.primary?.large?.url ?? null, match: how };
+  return { asin: match.asin, title: item?.itemInfo?.title?.displayValue ?? match.itemInfo!.title!.displayValue!, price, url: amazonLink(match.asin, credentials.partnerTag, marketplace), image: item?.images?.primary?.large?.url ?? null, match: how, ...(doubt ? { doubt } : {}) };
 }
 
 /** One known ASIN's live offer (getItems with OffersV2), for the daily price job (scripts/amazon-prices.mts): no search,

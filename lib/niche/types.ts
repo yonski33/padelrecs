@@ -276,7 +276,11 @@ export type Niche = {
   guide?: import("../guide").GuideConfig;
   /** Amazon affiliate links on product pages (lib/amazon.ts), searched in this Amazon category ("Beauty"). They appear
    *  once the deployment also has the Amazon variables (lib/amazon-offer.ts amazonLinksOn; scripts/set-amazon-env.mjs). */
-  amazon?: { searchIndex: string; marketplace?: string; /** Show Amazon's product photo on product pages, where Amazon matches the product. */ photos?: boolean };
+  amazon?: { searchIndex: string; marketplace?: string; /** Show Amazon's product photo on product pages, where Amazon matches the product. */ photos?: boolean;
+    /** Name matching (lib/amazon.ts): "loose" lets a search fall back to the key words (SkinRecs: sizes, pack counts and
+     *  marketing words vary); "variants" also falls back but shape, thickness and generation must match both ways
+     *  (PickleballRecs: Pro IV is not Pro V, Loco is not Loco 2, 14mm is not 16mm). Unset: every word must match. */
+    match?: "loose" | "variants" };
   /** Product pages link to the product's own website ("Visit site") instead of Amazon (SoftwareRecs, MoneyRecs). Each product's
    *  website_url, or its affiliate_url when it has one, is the link (lib/product-links.ts); products without either show
    *  "Add your review" there as usual. Pick this or `amazon`, not both. */

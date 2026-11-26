@@ -26,3 +26,13 @@ test("a loose match still rejects another formula, SPF, tint or a bundle", () =>
   assert.ok(!ok("COSRX Acne Pimple Master Patch", "COSRX", "COSRX Acne Pimple Patches Absorbing Hydrocolloid Spot, 3 Size (240 Count)"));
   assert.ok(!ok("CeraVe Hydrating Facial Cleanser", "La Roche-Posay", "CeraVe Hydrating Cleanser, Gentle Face Cleanser", "CeraVe"));
 });
+
+test("pickleball variants: generation, shape and thickness must match both ways; a parent listing is doubtful", async () => {
+  const { variantCheck } = await import("../lib/amazon");
+  assert.ok(variantCheck({ name: "JOOLA Perseus Pro IV 16mm", brand: "JOOLA" }, "JOOLA Perseus Pro V 16mm Pickleball Paddle").reject);
+  assert.ok(variantCheck({ name: "Bread & Butter Loco Hybrid", brand: "Bread & Butter" }, "Bread & Butter Loco 2 Hybrid Pickleball Paddle").reject);
+  assert.ok(variantCheck({ name: "CRBN TruFoam Genesis 14mm Elongated", brand: "CRBN" }, "CRBN TruFoam Genesis 16mm Elongated Paddle").reject);
+  assert.ok(variantCheck({ name: "Friday Aura Elongated", brand: "Friday" }, "Friday Aura Hybrid Pickleball Paddle").reject);
+  assert.ok(!variantCheck({ name: "JOOLA Perseus Pro V 16mm", brand: "JOOLA" }, "JOOLA Perseus Pro V 16mm Pickleball Paddle, Carbon Friction Surface").reject);
+  assert.ok(variantCheck({ name: "Friday Aura Elongated", brand: "Friday" }, "Friday Aura Pickleball Paddle | Available in Elongated, Hybrid and Widebody").doubt);
+});
