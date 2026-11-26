@@ -72,5 +72,8 @@ test("model check: exact model and year only", () => {
   assert.match(sameRacket("Head Coello Pro", 2026, "Head Coello Pro 2025").why, /^year/);
   assert.equal(sameRacket("Nox AT10 Genius 18K", 2026, "Nox AT10 Genius 18K ALUM", "https://padelusa.com/products/nox-at10-genius-18k-alum").ok, false);
   assert.ok(sameRacket("Wilson Blade V4", 2026, "Wilson Blade V4 Padel", "https://shop.example/products/wilson-blade-v4-2026").ok);
+  assert.ok(sameRacket("Nox EA10 Ventus Attack 12K Xtrem", 2026, "Nox EA10 VENTUS ATTACK 12K Xtreme 2026").ok);
+  assert.ok(sameRacket("Adidas Metalbone ZZ Carbon", 2026, "ADIDAS METALBONE ZINEDINE ZIDANE Carbon 2026").ok);
+  assert.ok(sameRacket("Nox AT10 Genius 12K Alum Xtrem", 2026, "Pala NOX AT10 Genius 12K Xtrem 2026 A. Tapia", "https://padelproshop.com/products/pala-nox-at10-genius-12k-alum-xtrem-by-aagustin-tapia-2026").ok);
   assert.match(sameRacket("Bullpadel Neuron 02 Edge Comfort", 2027, "Pala Bullpadel Chingotto Neuron 02 2027").why, /^missing/);
 });

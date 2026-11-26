@@ -55,7 +55,8 @@ const VARIANT = new Set(["light", "lite", "comfort", "cmf", "hybrid", "hyb", "at
   "mujer", "w", "junior", "jr", "kids", "edge", "ctrl", "control", "carbon", "power", "motion", "geo", "lt", "ls", "edt", "edition", "balance",
   "tour", "xtrem", "12k", "18k", "24k", "3k", "alum", "plus", "pro", "one", "speed", "ultralight"]);
 const ALIAS: Record<string, string[]> = { comfort: ["cmf"], cmf: ["comfort"], women: ["w", "woman", "mujer"], w: ["woman", "women", "mujer"],
-  hybrid: ["hyb"], hrd: ["hard"], ctrl: ["control"], lite: ["light"], light: ["lite"], edition: ["edt"], edt: ["edition"] };
+  hybrid: ["hyb"], hrd: ["hard"], ctrl: ["control"], lite: ["light"], light: ["lite"], edition: ["edt"], edt: ["edition"],
+  xtrem: ["xtreme"], xtreme: ["xtrem"], zz: ["zidane"] };
 const SOFT = new Set(["at10", "juan", "lebron", "ale", "galan", "ari", "sanchez", "agustin", "tapia", "padel", "racket", "pala", "paddle", "by", "the"]);
 const words = (s: string) => s.toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "").replace(/\+/g, " plus ").replace(/[^a-z0-9]+/g, " ").trim().split(" ").filter(Boolean);
 
@@ -70,10 +71,12 @@ export function sameRacket(name: string, year: number | null, title: string, url
   const short = y ? y.slice(2) : null;
   const hasYear = !y || years.includes(y) || (short != null && (tset.has(short) || new RegExp(`(^|[^0-9])(${y}|${short})([^0-9]|$)`).test(strip(url).split("/").pop() ?? "")));
   if (!hasYear) return { ok: false, why: "no year on page or in URL" };
-  const missing = model.filter(w => !SOFT.has(w) && !/^\d$/.test(w) && !tset.has(w) && !(ALIAS[w] ?? []).some(a => tset.has(a)));
+  // A model word may sit in the URL only (Padel Pro Shop "Genius 12K Xtrem 2026" at .../genius-12k-alum-xtrem-...).
+  const uset = new Set(words(strip(url).split("/").pop() ?? ""));
+  const missing = model.filter(w => !SOFT.has(w) && !/^\d$/.test(w) && ![w, ...(ALIAS[w] ?? [])].some(a => tset.has(a) || uset.has(a)));
   if (missing.length) return { ok: false, why: `missing ${missing.join(", ")}` };
   const mset = new Set(model.flatMap(w => [w, ...(ALIAS[w] ?? [])]));
-  const extra = t.filter(w => VARIANT.has(w) && !mset.has(w));
+  const extra = t.filter(w => VARIANT.has(w) && !mset.has(w) && !(w === "xtreme" && mset.has("xtrem")));
   if (extra.length) return { ok: false, why: `extra ${[...new Set(extra)].join(", ")}` };
   return { ok: true, why: "" };
 }
