@@ -19,6 +19,7 @@
 // cost would take the stage's total over --max-usd.
 import Anthropic from "@anthropic-ai/sdk";
 import { niche } from "../lib/niche";
+import { B } from "./batch-niche";
 import { createHash } from "node:crypto";
 import { existsSync } from "node:fs";
 import { mkdir, readdir, readFile, writeFile } from "node:fs/promises";
@@ -50,7 +51,7 @@ const BLOCK_CREATORS = /^the kitchen( pickle(ball)?)?$|padel\.how|streltcoff|pic
 // Owner 2026-11-24: padel.how reads as AI-generated (no real play, figures estimated from spec sheets); pickleball3.com likewise.
 const BLOCK_DOMAINS = ["thekitchenpickle.com", "padel.how", "pickleball3.com"];
 const blocked = (u: string | null | undefined) => !!u && BLOCK_DOMAINS.some(d => new RegExp(`(^|[/.])${d.replace(/\./g, "\\.")}(/|$)`, "i").test(u.replace(/^https?:\/\//, "")));
-const ATTR_NAMES = ["power", "control", "spin", "pop", "forgiveness", "comfort", "durability", "value"] as const;
+const ATTR_NAMES = B.attrs;
 const WORDS = ["Excellent", "Great", "Good", "Okay", "Weak"] as const;
 const STANCES = ["Loved it", "Mixed", "Not for me"] as const;
 
@@ -115,7 +116,9 @@ async function inputs() {
     const sec = pack.split(/\n(?=## )/).find(b => b.startsWith(`## ${slug}\n`)) ?? "";
     if (sec.trim()) state.packNotes[slug] = [state.packNotes[slug], sec.trim()].filter(Boolean).filter((x, k, a) => a.indexOf(x) === k).join("\n\n");
     const page = await htmlText(`https://www.${niche.site.domain}/${niche.productPath}/${slug}`);
-    const paddle = flag("name") ?? (page.title.replace(new RegExp(`\\s*review\\s*\\|\\s*${SITE}\\s*$`, "i"), "").trim() || slug);
+    const decoded = page.title.replace(/&#x([0-9a-f]+);/gi, (_, h) => String.fromCharCode(parseInt(h, 16)))
+      .replace(/&#(\d+);/g, (_, d) => String.fromCharCode(Number(d))).replace(/&quot;/g, '"').replace(/&amp;/g, "&");
+    const paddle = flag("name") ?? (decoded.replace(new RegExp(`\\s*review\\s*\\|\\s*${SITE}\\s*$`, "i"), "").trim() || slug);
     const grok = await readJson<{ sources: Record<string, string | null>[] }>(join(srcDir, `${slug}.json`));
     // Merge with what this stage already has for the product (another pack, or a re-run once transcripts exist): a URL keeps
     // its id, so its writer/checker results stay attached; new URLs get the next free id.
@@ -172,37 +175,37 @@ const COPY_RULES = `Copy rules for every text field:
 - Never name the channel, the creator or the site in any text field. Other ${niche.words.many} by name are fine.
 - Refer to the creator only as "they/them". Never "he", "she", "his", "her".
 - No em dashes or en dashes anywhere. Use commas, colons or full stops.
-- Never use the word "verdict". Write "players", not "owners". Never "we", "us" or "our". Say "reviewers", never "creators".
+- Never use the word "verdict". Write "${B.people}", not "owners". Never "we", "us" or "our". Say "reviewers", never "creators".
 - Never write that the site or anyone at the site tested the ${ITEM}.
 - No prices anywhere (owner 2026-11-24: quoted prices go stale, live prices live in the price box): no currency amounts ($92, 390 euro, €220, under $100), no "list price", "MSRP", "costs X", "at $X with a code", "$150 more". Value words without a number are fine ("good value", "pricey for what it offers", "cheaper than X"). No price keys in measured.
-- Name another product only by its exact model and edition, so readers (and the site's product links) know which one. Reviewers often use shorthand ("the Hard", "the Control", "the Vertex", "the Viper", "the Pro", "the 16mm"): resolve it to the exact model from context. Same family first (in a Metalbone 3.5 2026 review, "the Hard" is the Adidas Metalbone HRD+ 3.5 2026); otherwise the model current at the source's date ("the Vertex" in a late-2025 video is the Bullpadel Vertex 05 2026); use any extra hint in the source (edition, colour, player). Write the full name ("Babolat Technical Viper 2026"), never the line or brand alone. Only when it stays ambiguous, leave the comparison unnamed or describe the feel instead ("sits between soft and firm"). (Owner 2026-11-24.)
-- Spell every product name exactly as the site catalog does. Transcripts often mishear names (Fenix as "Phoenix", AT10 as "AT", Xplo as "Explo", Vertex as "Vortex"); correct them to the catalog spelling, and if a name cannot be pinned down, write "another ${ITEM}". (Owner 2026-11-24.)
+- ${B.shorthand}
+- ${B.spelling}
 - Never repeat a review site's own star, category or overall ratings in the text (Pickleheads scores are hidden until their scale is confirmed). Describe them in words instead.
 - Plain, dry English. No hype words unless inside the exact quote.
-- Facts only from the source. Report opinions as theirs ("Finds", "Calls", "Rates"). When captions garble a number or a ${ITEM} name, leave it out rather than guess. Spell paddle and brand names correctly even if captions misspell them; if a garbled name cannot be pinned down, write "another ${ITEM}".`;
+- Facts only from the source. Report opinions as theirs ("Finds", "Calls", "Rates"). When captions garble a number or a ${ITEM} name, leave it out rather than guess. Spell ${ITEM} and brand names correctly even if captions misspell them; if a garbled name cannot be pinned down, write "another ${ITEM}".`;
 
 const FIELDS = `Card fields:
 - type: "review", "comparison" (a real part compares it head to head) or "long-term" (weeks or months of use stated).
-- version: the shape/thickness/edition the source covers, as stated (e.g. "Widebody, 16mm"), or null.
+- version: ${B.version}
 - starts_at: "m:ss" where the part about this ${ITEM} starts in a multi-${ITEM} video, else null.
 - creator_score: only if the source publishes its own overall score with a stated scale (e.g. 8.5 out of 10). Otherwise null. Never turn words into a number. Per-trait scores without an overall do not count.
-- measured: only numbers the source states for this ${ITEM} (swing weight, twist weight, static weight, RPM, mph, balance point; never a price), as {name, value} with the unit in value.
-- attributes: only those the source discusses, each one word from Excellent, Great, Good, Okay, Weak. Names: power, control, spin, pop, forgiveness (sweet spot), comfort (feel, vibration, arm), durability, value. In doubt go one lower.
+- measured: ${B.measured}
+- attributes: only those the source discusses, each one word from Excellent, Great, Good, Okay, Weak. ${B.attrHelp} In doubt go one lower.
 - stance: "Loved it", "Mixed" or "Not for me".
-- summary: ONE paragraph of 80 to 120 words with real substance: what they tested and how (drills, matches, hours, weeks, comparisons, pre-production unit), concrete findings (power, control, spin, pop, sweet spot, feel, weight, durability or grit wear) with the source's own numbers, and who they say it suits and who it doesn't.
-- summary_more: a second paragraph of 60 to 100 words for "Read more" (comparisons, long-term notes, setup tips like lead tape or grip). null if the source does not go deeper; never pad.
+- summary: ONE paragraph of 80 to 120 words with real substance: ${B.summary}
+- summary_more: a second paragraph of 60 to 100 words for "Read more" (${B.summaryMore}). null if the source does not go deeper; never pad.
 - highlights: 3 to 5 phrases of 2 to 7 words, copied character for character from summary.
-- key_point: ONE sentence, 6 to 12 words, at most 70 characters, ends with a full stop, NOT verb-first, concrete, e.g. "Best defensive ${ITEM} in the line this year." No names, no dashes.
+- key_point: ONE sentence, 6 to 12 words, at most 70 characters, ends with a full stop, NOT verb-first, concrete, e.g. "${B.keyPointExample}" No names, no dashes.
 - stood_out: one short line (at most 15 words): what they liked most.
 - trade_off: one short line (at most 15 words): the main weakness or who it is not for, or null.
 - compared_to: names of the other ${niche.words.many} they compare it with (correct spelling), or [].
 - quote: one sentence they actually said or wrote about THIS ${ITEM}, copied word for word from the source text, 4 to 14 words. Fix nothing inside it. null if no good line. Never make one up.
-- disclosure: any brand tie the source states (${ITEM} sent by the brand, paid testing, affiliate or discount code, sells it), in plain words, or null.`;
+${B.skinType ? "- skin_type: the reviewer's own skin type and concerns as they state them (e.g. \"oily, acne-prone\"), or null. Never guess.\n" : ""}- disclosure: any brand tie the source states (${ITEM} sent by the brand, paid testing, affiliate or discount code, sells it), in plain words, or null.`;
 
 const WRITER_SYSTEM = `You write creator review cards for ${SITE}, a site that collects what YouTube and blog reviewers said about each ${SPORT_ITEM}. One request = one source (a video transcript or an article) for one ${ITEM}.
 
 First decide whether the source is usable. Set keep=false (with drop_reason) when:
-- it is not about the EXACT ${ITEM} named in the request. Shape (elongated, hybrid, widebody, standard), thickness (14mm, 16mm), face, edition and generation all matter; a sibling shape, thickness or generation is a different ${ITEM}. Keep it only if the source itself names or clearly shows this exact model; never infer the shape or thickness. If only a part of a multi-paddle video covers it, keep it and use only that part.
+- it is not about the EXACT ${ITEM} named in the request. ${B.exactRule} If only a part of a multi-paddle video covers it, keep it and use only that part.
 - it is a shop or brand channel, an unboxing with no opinion, a sale post, a spec-only video or page, or has too little about this ${ITEM} to write an 80-word summary.
 - it is an article by a shop or retailer (sells ${niche.words.many}, buy links, store discount codes) that does not describe real hands-on testing of this ${ITEM} by a named person: sessions played, drills, matches, measurements or direct comparisons. Restated maker specs and generic praise are not testing.
 - it comes from ${BLOCK_DOMAINS.join(", ")} or from The Kitchen Pickle / The Kitchen Pickleball channels (dropped by the site owner for every ${ITEM}).
@@ -240,6 +243,7 @@ const CARD_PROPS = {
   stance: { type: "string", enum: [...STANCES] },
   summary: str, summary_more: nul(str), highlights: strArr, key_point: str, stood_out: str, trade_off: nul(str),
   compared_to: strArr, quote: nul(str), disclosure: nul(str),
+  ...(B.skinType ? { skin_type: nul(str) } : {}),
 };
 const obj = (props: Record<string, unknown>) => ({ type: "object", properties: props, required: Object.keys(props), additionalProperties: false });
 const WRITER_SCHEMA = obj({ keep: { type: "boolean" }, drop_reason: nul(str), exact_model_evidence: nul(str), card: nul(obj(CARD_PROPS)) });
@@ -247,7 +251,7 @@ const CHECKER_SCHEMA = obj({ result: { type: "string", enum: ["pass", "fixed", "
 type Card = { type: string; version: string | null; starts_at: string | null; creator_score: { value: number; scale: number } | null;
   measured: { name: string; value: string }[]; attributes: { name: string; word: string }[]; stance: string; summary: string;
   summary_more: string | null; highlights: string[]; key_point: string; stood_out: string; trade_off: string | null;
-  compared_to: string[]; quote: string | null; disclosure: string | null };
+  compared_to: string[]; quote: string | null; disclosure: string | null; skin_type?: string | null };
 
 function sourceBlock(s: Source, notes: string) {
   return [`${niche.words.One}: ${s.paddle} (page slug: ${s.slug})`, `Source: ${s.kind === "youtube" ? "YouTube video" : "article"} ${s.url}`,
@@ -279,9 +283,7 @@ const estimate = (chars: number, n: number, outPer: number) => (chars / 3.5 * PR
 
 // ---------------------------------------------------------------- submit
 const client = () => new Anthropic();
-async function submit(step: "write" | "check") {
-  const state = await loadState();
-  if (state.batches.some(b => !b.collected)) throw new Error("A batch is still open: run poll first.");
+async function itemsFor(step: "write" | "check", state: State) {
   // Re-runs only send sources without a good result yet (e.g. videos whose transcript arrived later).
   const prev = existsSync(join(STAGE, `${step}-results.json`)) ? await readJson<Record<string, { error?: string }>>(join(STAGE, `${step}-results.json`)) : {};
   const sources = (await loadSources(state)).filter(s => !s.skip && s.text && (!prev[s.id] || prev[s.id].error) &&
@@ -297,6 +299,12 @@ async function submit(step: "write" | "check") {
       user: `${sourceBlock(s, "")}\n\nCard to check (JSON):\n${JSON.stringify(written[s.id].card, null, 1)}` }));
   }
   if (!items.length) throw new Error("Nothing to submit.");
+  return items;
+}
+async function submit(step: "write" | "check") {
+  const state = await loadState();
+  if (state.batches.some(b => !b.collected)) throw new Error("A batch is still open: run poll first.");
+  const items = await itemsFor(step, state);
   const est = estimate(items.reduce((a, i) => a + i.system.length + i.user.length, 0), items.length, 5000);
   const total = await runSpent(state);
   console.log(`${step}: ${items.length} requests, estimate $${est.toFixed(2)}; spent so far $${total.toFixed(2)} of $${MAX_USD} (all stages)`);
@@ -371,7 +379,7 @@ function codeCheck(c: Card, s: Source): string[] {
   if (PRICE_TEXT.test(all) || (c.measured ?? []).some(m => /price|cost|msrp/i.test(m.name) || PRICE_TEXT.test(m.value))) p.push("price in text");
   if (/verdict|\b(we|us|our|owners?|creators?)\b/i.test(all.replace(/\bU\.?S\.?\b/g, ""))) p.push("banned word");
   if (/\b(he|she|his|her|him|hers)\b/i.test(all)) p.push("gendered pronoun");
-  for (const w of s.creator.split(/\W+/).filter(w => w.length > 3 && !/^(pickleball|pickle|paddle|paddles|padel|racket|rackets|review|reviews)$/i.test(w)))
+  for (const w of s.creator.split(/\W+/).filter(w => w.length > 3 && !B.nameStop.test(w)))
     if (new RegExp(`\\b${w}\\b`).test(all)) p.push(`creator name? ${w}`);
   if (blocked(s.url) || BLOCK_CREATORS.test(s.creator)) p.push("blocked source");
   if (/pickleheads/i.test(s.creator) && (c.creator_score || /\b\d+(\.\d+)?\s*(out of|\/)\s*\d+/i.test(all))) p.push("Pickleheads score in text");
@@ -386,7 +394,7 @@ async function build() {
   const sources = await loadSources(state);
   const W = existsSync(join(STAGE, "write-results.json")) ? await readJson<Record<string, any>>(join(STAGE, "write-results.json")) : {};
   const C = existsSync(join(STAGE, "check-results.json")) ? await readJson<Record<string, any>>(join(STAGE, "check-results.json")) : {};
-  const paddles: any[] = [], rows: string[] = [], tally = { sources: 0, skipped_inputs: 0, dropped_writer: 0, pass: 0, fixed: 0, reject: 0, code_fail: 0, errors: 0, staged: 0 };
+  const paddles: any[] = [], rows: string[] = [], tally = { sources: 0, skipped_inputs: 0, dropped_writer: 0, pass: 0, fixed: 0, unchecked: 0, reject: 0, code_fail: 0, errors: 0, staged: 0 };
   const per: Record<string, { usd: number; input: number; output: number }> = {};
   for (const [k, u] of Object.entries(state.usage)) { const slug = k.split(":")[1].split("__")[0];
     per[slug] ??= { usd: 0, input: 0, output: 0 }; per[slug].usd += u.usd; per[slug].input += u.input + u.cacheRead + u.cacheWrite; per[slug].output += u.output; }
@@ -395,7 +403,8 @@ async function build() {
     for (const s of ss) {
       tally.sources++;
       if (s.skip) { tally.skipped_inputs++; skipped.push({ url: s.url, why: s.skip }); continue; }
-      const w = W[s.id], c = C[s.id];
+      // --unchecked: stage writer cards that have no second-reader result yet (code checks still run), marked "unchecked".
+      const w = W[s.id], c = C[s.id] ?? (has("unchecked") && w?.keep && w.card ? { result: "unchecked", card: w.card } : undefined);
       if (!w || w.error) { tally.errors++; skipped.push({ url: s.url, why: `writer ${w?.error ?? "missing"}` }); continue; }
       if (!w.keep) { tally.dropped_writer++; skipped.push({ url: s.url, why: `writer dropped: ${w.drop_reason}` }); continue; }
       if (!c || c.error) { tally.errors++; skipped.push({ url: s.url, why: `checker ${c?.error ?? "missing"}` }); continue; }
@@ -403,16 +412,16 @@ async function build() {
       if (c.result === "reject" || !c.card) { tally.reject++; skipped.push({ url: s.url, why: `checker rejected: ${(c.problems ?? []).join("; ")}` }); continue; }
       const card: Card = c.card, probs = codeCheck(card, s);
       if (probs.length) { tally.code_fail++; skipped.push({ url: s.url, why: `code check: ${probs.join("; ")}`, result: c.result }); continue; }
-      tally[c.result as "pass" | "fixed"]++;
+      tally[c.result as "pass" | "fixed" | "unchecked"]++;
       const qAt = card.quote && s.video_id ? await quoteAt(s.video_id, card.quote, tDir) : null;
       reviews.push({ creator: s.creator, kind: s.kind, type: card.type, channel_url: s.channel_url, language: s.language, date: s.date,
         url: s.url, video_id: s.video_id, duration_s: s.duration_s, chapters: s.chapters, starts_at: card.starts_at, version: card.version,
         creator_score: card.creator_score, measured: Object.fromEntries(card.measured.map(m => [m.name, m.value])),
         attributes: Object.fromEntries(card.attributes.map(a => [a.name, a.word])), stance: card.stance, summary: card.summary,
         summary_more: card.summary_more, highlights: card.highlights, key_point: card.key_point, stood_out: card.stood_out,
-        trade_off: card.trade_off, compared_to: card.compared_to,
+        trade_off: card.trade_off, compared_to: card.compared_to, ...(B.skinType ? { skin_type: card.skin_type ?? null } : {}),
         quote: s.kind === "youtube" && card.quote && !qAt ? null : card.quote, quote_at: qAt, disclosure: card.disclosure,
-        evidence_note: `${s.kind === "youtube" ? "transcript full" : "article text (script fetch)"}; API batch writer + checker (${c.result})`,
+        evidence_note: `${s.kind === "youtube" ? "transcript full" : "article text (script fetch)"}; ${c.result === "unchecked" ? "writer only, second reader pending (code checks passed)" : `writer + checker (${c.result})`}`,
         link_check: s.link_check, check: { result: c.result, problems: c.problems } });
     }
     // One card per creator: the video stays, a blog by the same creator becomes also_url.
@@ -440,7 +449,48 @@ async function build() {
   console.log(report);
 }
 
-const run: Record<string, () => Promise<void>> = { inputs, write: () => submit("write"), check: () => submit("check"), poll, build };
-if (!run[cmd]) throw new Error(`Unknown command ${cmd}: inputs | write | check | poll | build`);
+
+// ---------------------------------------------------------------- in-house runs (no API credit)
+// export: the same requests as `write`/`check`, cut into task files for Claude Code subagents (Sonnet), each writing
+// <task>.out.json mapping item id -> result. ingest: merges those files into <step>-results.json, so build and the code
+// checks run exactly as after a Message Batch. Usage: export --step write [--per 8] ; ingest --step write
+// Long transcript lines are wrapped at word breaks so the Read tool shows them whole (the source text itself is unchanged).
+const wrap = (t: string) => t.split("\n").map(l => l.length <= 400 ? l : l.match(/.{1,400}(\s|$)|\S+/g)!.join("\n")).join("\n");
+async function exportTasks() {
+  const step = need("step") as "write" | "check", per = Number(flag("per") ?? 8), state = await loadState();
+  const items = await itemsFor(step, state), dir = join(STAGE, "inhouse", step);
+  await mkdir(dir, { recursive: true });
+  const maxChars = Number(flag("max-chars") ?? 220_000);
+  const groups: typeof items[] = [];
+  for (const it of items) {
+    const g = groups[groups.length - 1];
+    if (!g || g.length >= per || g.reduce((a, x) => a + x.user.length, 0) + it.user.length > maxChars) groups.push([it]); else g.push(it);
+  }
+  for (const [k, g] of groups.entries()) {
+    const name = `${step}-${String(k + 1).padStart(3, "0")}`, out = join(dir, `${name}.out.json`);
+    const md = [`# Task ${name}: ${g.length} items`, "",
+      "Work through EVERY item below. For each item, follow the instructions exactly as if the item were its own request, and produce one result object that matches the JSON schema exactly (every required key, nothing extra).",
+      `When done, write ONE JSON object to ${out} with the Write tool, mapping each item id to its result: {"<item id>": {...}, ...}. Include every item id listed: ${g.map(i => i.id).join(", ")}.`, "",
+      "## Instructions (apply to every item)", "", g[0].system, "",
+      "## JSON schema of each result", "", "```json", JSON.stringify(g[0].schema), "```", "",
+      "## Items", "", ...g.flatMap(i => [`### ITEM ${i.id}`, "", wrap(i.user), ""])].join("\n");
+    await writeFile(join(dir, `${name}.md`), md);
+  }
+  console.log(`${step}: ${items.length} items in ${groups.length} task files under ${dir}`);
+}
+async function ingest() {
+  const step = need("step"), dir = join(STAGE, "inhouse", step), file = join(STAGE, `${step}-results.json`);
+  const results: Record<string, unknown> = existsSync(file) ? await readJson(file) : {};
+  let n = 0, bad = 0;
+  for (const f of (await readdir(dir)).filter(f => f.endsWith(".out.json")).sort()) {
+    try { for (const [id, r] of Object.entries(await readJson<Record<string, unknown>>(join(dir, f)))) { results[id] = r; n++; } }
+    catch { bad++; console.log(`unreadable: ${f}`); }
+  }
+  await writeFile(file, JSON.stringify(results, null, 1));
+  console.log(`Ingested ${n} ${step} results (${bad} unreadable files); ${Object.keys(results).length} in ${step}-results.json`);
+}
+
+const run: Record<string, () => Promise<void>> = { inputs, write: () => submit("write"), check: () => submit("check"), poll, build, export: exportTasks, ingest };
+if (!run[cmd]) throw new Error(`Unknown command ${cmd}: inputs | write | check | poll | build | export | ingest`);
 await run[cmd]();
 void createHash;
