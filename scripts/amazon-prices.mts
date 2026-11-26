@@ -69,7 +69,7 @@ try {
       const id = `cp_${createHash("sha1").update(`${r.id}|amazon`).digest("hex").slice(0, 16)}`;
       await client.unsafe(`insert into "${S}".creator_prices (id, racket_id, shop, url, price, currency, in_stock, edition, listing_title, affiliate, affiliate_note, source, checked_at, status)
         values ($1,$2,'Amazon',$3,$4,'USD',true,null,$5,true,'Amazon Associates','amazon-creators-api',$6,'live')
-        on conflict (racket_id, url) do update set price = excluded.price, listing_title = excluded.listing_title, checked_at = excluded.checked_at, status = 'live'`,
+        on conflict (id) do update set url = excluded.url, price = excluded.price, listing_title = excluded.listing_title, checked_at = excluded.checked_at, status = 'live'`,
         [id, r.id, res.url, price, res.title, new Date().toISOString()]);
     }
   }
