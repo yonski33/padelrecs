@@ -103,8 +103,9 @@ export function matchesProductLoose(product: { name: string; brand: string }, re
   if (key.length < 2) return false;
   if (key.some(w => /\d/.test(w) && !title.has(w) && !title.has(w.replace(/s$/, "")))) return false;
   const has = (w: string) => title.has(w) || title.has(w.replace(/s$/, "")) || title.has(`${w}s`);
-  const missing = key.filter(w => !has(w)).length;
-  if (missing > Math.floor(key.length / 3)) return false;
+  const missing = key.filter(w => !has(w));
+  // The first two key words name the line ("UV Restore", "DIVE IN"): never missing, so UV Daily isn't taken for UV Restore.
+  if (missing.length > Math.floor(key.length / 3) || missing.some(w => key.indexOf(w) < 2)) return false;
   return !isSiblingListing(product, result.title);
 }
 

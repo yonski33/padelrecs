@@ -24,6 +24,7 @@ test("a loose match still rejects another formula, SPF, tint or a bundle", () =>
   assert.ok(!ok("Beauty of Joseon Relief Sun: Rice + Probiotics SPF 50+", "Beauty of Joseon", "Beauty of Joseon Relief Sun Aqua-Fresh Rice + B5 SPF 50+"));
   assert.ok(!ok("COSRX Advanced Snail 96 Mucin Power Essence", "COSRX", "COSRX Snail 96% Mucin Essence 2ea & Retinol 0.1% Cream Mini Sample 1ea | Glass Skin Starter Set"));
   assert.ok(!ok("COSRX Acne Pimple Master Patch", "COSRX", "COSRX Acne Pimple Patches Absorbing Hydrocolloid Spot, 3 Size (240 Count)"));
+  assert.ok(!ok("EltaMD UV Restore Broad-Spectrum SPF 40", "EltaMD", "EltaMD UV Daily Untinted Face Sunscreen Moisturizer, SPF 40, 1.7 oz | Hydrates Dry Skin"));
   assert.ok(!ok("CeraVe Hydrating Facial Cleanser", "La Roche-Posay", "CeraVe Hydrating Cleanser, Gentle Face Cleanser", "CeraVe"));
 });
 
