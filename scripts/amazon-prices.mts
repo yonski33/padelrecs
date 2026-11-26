@@ -4,7 +4,7 @@
 // Dry run by default (calls Amazon, writes nothing); --apply upserts creator_prices rows (shop "Amazon") and saves the ASIN
 // a name search found to the product's amazon_asin (only where none is saved), so later runs use "saved ASIN".
 //   NICHE=skin npx tsx --env-file=.env.local scripts/amazon-prices.mts [--apply] [--asins <file.json>] [--out <dry-run.json>]
-//        [--slugs <file>]   # products by slug (comma or newline separated) instead of the live creator pages, e.g.
+//        [--skip <slug,slug>] [--slugs <file>]   # products by slug (comma or newline separated) instead of the live creator pages, e.g.
 //                           # pages about to go live; prices are written for live pages only, ASINs for all
 // --asins: { "<slug>": "<ASIN>" } hand-checked ASINs, used before the saved one and before a name search.
 // A "loose" match (lib/amazon.ts matchesProductLoose) is flagged in the output: check those before --apply.
@@ -43,7 +43,9 @@ try {
   const saved = new Map<string, string[]>();
   for (const x of await client.unsafe(`select slug, amazon_asin from "${S}".rackets where amazon_asin is not null`)) saved.set(x.amazon_asin, [...(saved.get(x.amazon_asin) ?? []), x.slug]);
   const out: Record<string, any>[] = [];
-  for (const r of rows) {
+  // --skip <slug,slug>: products the owner's review left out (no lookup, nothing written).
+  const skip = new Set((flag("skip") ?? "").split(",").map(x => x.trim()).filter(Boolean));
+  for (const r of rows.filter((x: any) => !skip.has(x.slug))) {
     const asin = manual[r.slug] ?? r.amazon_asin ?? null;
     let res: { asin: string; title: string; price: string | null; url: string; match?: "name" | "loose"; doubt?: string } | null = null, how = asin ? (manual[r.slug] ? "hand-checked ASIN" : "saved ASIN") : "name search", err: string | null = null;
     try { res = asin ? await paced(() => amazonOfferByAsin(asin, settings, creds)) : await paced(() => findAmazonOffer({ name: r.name, brand: r.brand }, settings, creds, fetch, m => { err = m.slice(0, 240); })); }
@@ -58,7 +60,7 @@ try {
   const byFound = new Map<string, string[]>();
   for (const o of out) if (o.found) byFound.set(o.found, [...(byFound.get(o.found) ?? []), o.slug]);
   for (const o of out) if (o.found && byFound.get(o.found)!.length > 1) o.doubts.push(`same ASIN found for ${byFound.get(o.found)!.filter((s: string) => s !== o.slug).join(", ")}`);
-  for (const [i, r] of rows.entries()) {
+  for (const [i, r] of rows.filter((x: any) => !skip.has(x.slug)).entries()) {
     const o = out[i], res = o.asin && o.title ? { asin: o.asin as string, title: o.title as string, url: amazonLink(o.asin, creds.partnerTag, settings.marketplace ?? "www.amazon.com") } : null;
     const price = o.price ? Number(String(o.price).replace(/[^0-9.]/g, "")) : null;
     o.save_asin = o.found && !o.doubts.length ? o.found : null;
