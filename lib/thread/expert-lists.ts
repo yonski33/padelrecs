@@ -47,3 +47,28 @@ export const placeText = (p: ShownPick) => p.label ?? `#${p.position} in ${p.l.t
 
 /** Outlet names compared loosely, to find a creator card from the same outlet ("Notebookcheck.com" = "Notebookcheck"). */
 export const outletKey = (s: string) => s.toLowerCase().replace(/\.(com|net|org|de|fr|co\.uk)\b/g, "").replace(/reviews?(_de)?$/, "").replace(/[^a-z0-9]/g, "");
+
+/** The square badge on a "Picked in expert lists" card (owner mockup 2026-11-26): the place in two or three characters ("#1",
+ *  "S") or one short word for an award ("Top pick", "Spin", "Budget"). `top` (yellow) marks first places, S tiers and
+ *  best-overall awards; `soft` (pale) the other awards; `plain` (outline) lower places, lower tiers and mentions. */
+export type Badge = { text: string; tone: "top" | "soft" | "plain" };
+const AWARD_WORDS: [RegExp, string][] = [[/budget|cheap|value/, "Value"], [/spin|grit/, "Spin"], [/power/, "Power"], [/control/, "Control"],
+  [/forgiv/, "Forgiving"], [/beginner/, "Beginner"], [/widebody|wide body/, "Wide"], [/elongated/, "Long"], [/portable|travel|ultraportable/, "Portable"],
+  [/battery/, "Battery"], [/gaming/, "Gaming"], [/student/, "Students"], [/2-in-1|touch/, "2-in-1"], [/fast hands/, "Hands"]];
+export function badgeOf(p: Pick<ShownPick, "label" | "position">): Badge {
+  const l = (p.label ?? "").trim(), low = l.toLowerCase();
+  if (!l) return { text: `#${p.position}`, tone: p.position === 1 ? "top" : "plain" };
+  const tier = /^([sabcd])\s*-?\s*tier\b/i.exec(l);
+  if (tier) { const t = tier[1]!.toUpperCase(); return { text: t, tone: t === "S" ? "top" : t === "A" ? "soft" : "plain" }; }
+  const place = /^#(\d+)/.exec(l) ?? /\b(?:tied|joint)\s+(\d+)(?:st|nd|rd|th)\b/i.exec(l);
+  if (place) { const n = Number(place[1]); return { text: `#${n}`, tone: n === 1 ? "top" : "plain" }; }
+  if (/honou?rable mention/.test(low)) return { text: "Mention", tone: "plain" };
+  if (/overall|of the year|editors|most people|best all|current main/.test(low)) return { text: "Top pick", tone: "top" };
+  const word = AWARD_WORDS.find(([re]) => re.test(low));
+  return { text: word ? word[1] : "Top pick", tone: "soft" };
+}
+/** The box's summary line: "#1 in 2 lists · picked in 4 more", or "Picked in 3 lists". */
+export function picksSummary(picks: Pick<ShownPick, "label" | "position">[]): string {
+  const first = picks.filter(p => badgeOf(p).text === "#1").length, rest = picks.length - first, ls = (n: number) => n === 1 ? "list" : "lists";
+  return first ? `#1 in ${first} ${ls(first)}${rest ? ` · picked in ${rest} more` : ""}` : `Picked in ${picks.length} ${ls(picks.length)}`;
+}

@@ -637,16 +637,27 @@ body:has(.thc) .thc .thc-pbox-on a, body:has(.thc) .thc .thc-sim-aff a { color: 
 /* The spec line (owner 2026-11-24): plain small grey text under the tags, wrapping as text. */
 .thc-specline { display: block; font-size: 13px; line-height: 1.45; color: var(--h4-muted, var(--muted, #5b5b5b)); margin-top: -2px; }
 
-/* Picked in expert lists (2026-11-26, lib/thread/expert-lists.ts): outlets' best-of picks, and the badge on a card from the same outlet. */
-.thc-xp { margin-bottom: 18px; }
-.thc-xp-l { list-style: none; margin: 10px 0 0; padding: 0; display: flex; flex-direction: column; gap: 12px; }
-.thc-xp-l li { display: flex; flex-direction: column; gap: 3px; padding-top: 10px; border-top: 1px solid var(--line, #E6E1D8); }
-.thc-xp-l li:first-child { border-top: 0; padding-top: 0; }
-.thc-xp-top { display: flex; flex-wrap: wrap; align-items: baseline; gap: 8px; }
-.thc-xp-top strong { font-size: 15px; }
-.thc-xp-lab { font-size: 12.5px; font-weight: 600; padding: 2px 10px; border-radius: 999px; background: var(--r5-chip, #F1EEE6); }
-.thc-xp-r { font-size: 14.5px; line-height: 1.5; color: var(--para); }
-.thc-xp-l .thc-mono { font-size: 12px; align-self: flex-start; }
+/* Picked in expert lists (owner mockup 2026-11-26): a two-column grid of compact cards under the review consensus. */
+.thc-xp { gap: 14px; }
+.thc-xp .thc-h > strong { font-size: 24px; }
+.thc-xp-g { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+.thc-xp-c { display: flex; gap: 14px; align-items: flex-start; background: #fff; border: 1.5px solid var(--rule); border-radius: 12px; padding: 14px 16px; min-width: 0; }
+.thc-xp-b { flex: none; width: 46px; height: 46px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; text-align: center;
+  border: 2px solid var(--ink); border-radius: 10px; font: 800 22px/1 'Barlow Condensed', var(--bc, sans-serif); background: #fff; }
+.thc-xp-b.word { font-size: 13px; line-height: 1.05; padding: 2px; }
+.thc-xp-b.top { background: #F4EC6E; } .thc-xp-b.soft { background: #FAF7D6; }
+.thc-xp-m { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 2px; }
+.thc-xp-top { display: flex; justify-content: space-between; align-items: baseline; gap: 10px; }
+.thc-xp-top strong { font-size: 15px; min-width: 0; overflow-wrap: anywhere; }
+body:has(.thc) .thc .thc-xp-top a { flex: none; font-size: 11.5px; font-weight: 600; text-decoration: none; }
+body:has(.thc) .thc .thc-xp-top a:hover { text-decoration: underline; }
+.thc-xp-sub { font-size: 12.5px; color: var(--muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.thc-xp-r { font-size: 14px; line-height: 1.45; color: var(--para); margin-top: 2px; }
+.thc-xp-more > summary { list-style: none; cursor: pointer; align-self: center; text-align: center; font-size: 13.5px; font-weight: 700; padding: 6px 0 0; }
+.thc-xp-more > summary::-webkit-details-marker { display: none; }
+.thc-xp-more[open] > summary { display: none; }
+.thc-xp-more .thc-xp-g { margin-top: 12px; }
+@media (max-width: 719px) { .thc-xp-g { grid-template-columns: minmax(0, 1fr); } .thc-xp-c { padding: 12px 14px; gap: 12px; } }
 .thc-xp-badge { align-self: flex-start; display: inline-block; margin: 2px 0 6px; font-size: 12.5px; font-weight: 600; padding: 2px 10px; border-radius: 999px; background: var(--r5-chip, #F1EEE6); }
 
 /* ── Paddle page v3 (owner handoff 2026-11-26, "PickleballRecs Paddle Page Hybrid v3"): the shared creator page on every

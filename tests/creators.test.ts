@@ -254,3 +254,17 @@ test("padel's creator page asks its ranking groups plus Best on, Sweet spot and 
   assert.deepEqual(creatorVoteGroups("padel").map(g => g.key), ["plays_like", "arm", "level", "side", "sweet_spot", "trampoline"]);
   assert.deepEqual(creatorVoteGroups("padel").find(g => g.key === "side")?.options.map(o => o[1]), ["Right side", "Left side", "Both sides"]);
 });
+
+// Picked in expert lists cards (owner mockup 2026-11-26): the badge and the summary line.
+import { badgeOf, picksSummary } from "../lib/thread/expert-lists";
+test("expert list badges: places, tiers and awards in a few characters", () => {
+  assert.deepEqual(badgeOf({ label: null, position: 1 }), { text: "#1", tone: "top" });
+  assert.deepEqual(badgeOf({ label: null, position: 2 }), { text: "#2", tone: "plain" });
+  assert.deepEqual(badgeOf({ label: "S tier", position: 3 }), { text: "S", tone: "top" });
+  assert.deepEqual(badgeOf({ label: "B tier", position: 9 }), { text: "B", tone: "plain" });
+  assert.deepEqual(badgeOf({ label: "Tied 4th for spin", position: 4 }), { text: "#4", tone: "plain" });
+  assert.deepEqual(badgeOf({ label: "Best overall", position: 1 }), { text: "Top pick", tone: "top" });
+  assert.deepEqual(badgeOf({ label: "Best for lasting spin", position: 2 }), { text: "Spin", tone: "soft" });
+  assert.equal(picksSummary([{ label: null, position: 1 }, { label: "S tier", position: 1 }, { label: null, position: 1 }]), "#1 in 2 lists · picked in 1 more");
+  assert.equal(picksSummary([{ label: "Best value", position: 3 }]), "Picked in 1 list");
+});
