@@ -35,7 +35,7 @@ import wrapups from "../../db/creators/reviewer-wrapups.json";
 import tldrs from "../../db/creators/tldrs.json";
 import aliases from "../../db/creators/aliases.json";
 import bestFor from "../../db/creators/best-for.json";
-import { expertPicks, outletKey, placeText, type ShownPick } from "../../lib/thread/expert-lists";
+import { expertPicks, outletKey, placeText, badgeOf, picksSummary, type ShownPick } from "../../lib/thread/expert-lists";
 import { creatorPageFor, CREATOR_VIEW, CREATOR_MIN_REVIEWS, creatorPageOn, creatorPlainSite } from "../../lib/thread/sites";
 import { Avatar, CreatorReviews } from "./live/creator-reviews";
 import { MentionsProvider, MentionText, type MentionTarget } from "./live/mention-links";
@@ -346,8 +346,6 @@ export async function CreatorProductBody({ slug }: { slug: string }) {
           </section>
         </div>}
 
-        {listPicks.length > 0 && <ExpertPicks picks={listPicks}/>}
-
         {/* Reviews from around the web: the heading and where the reviews come from (the counted reviews, so the parts add
             up to every other "N reviews" on the page). */}
         <div className="thc-web">
@@ -377,6 +375,9 @@ export async function CreatorProductBody({ slug }: { slug: string }) {
           {how.length > 0 && <div className="thc-cons-g" aria-label={howTitleFor(niche.id)}>{how.map(h => <span key={h.k} title={h.line}>
             <span>{h.label}</span><strong className={h.word ? wordTone(h.word) : "none"}>{h.word ?? "–"}</strong></span>)}</div>}
         </section>
+
+        {/* Picked in expert lists (owner mockup 2026-11-26): under the consensus, above the table. */}
+        {listPicks.length > 0 && <ExpertPicks picks={listPicks}/>}
 
         {/* N reviews at a glance: three rows, then Show all N (live/glance-table.tsx). */}
         <GlanceTable title={`${plural(rs.length, "review")} at a glance`} sub="Tap a row to jump to the full summary"
@@ -467,16 +468,26 @@ type Roundup = { at: string | null; headline: string; tags: { tone: "pos" | "neg
 /** "Players on Reddit and forums", written from ALL the paddle's stored Reddit posts (pilot, owner OK 2026-11-23): a
  *  one-line headline, +/- tags each backed by 2+ posts, two short paragraphs (what players agree on, then what they raise
  *  that reviews don't), and 2-4 short real phrases marked with a numbered link to their post. Checked by a second reader. */
-/** "Picked in expert lists": outlets' best-of lists that pick this product, one row each (outlet, its award or place, one
- *  line in our own words, a link to the list). Six shown, the rest behind a details box. */
+/** "Picked in expert lists" (owner mockup 2026-11-26: the full-width rows took too much room): a two-column grid of compact
+ *  cards (one column on phones). Each card: a square badge with the place or award (lib/thread/expert-lists.ts badgeOf), the
+ *  outlet, Watch or Read, a grey line with the award or the list's name, and one short reason. Six shown, the rest behind
+ *  Show all N (a details box, no script). Server-rendered. */
+const XP_FIRST = 6;
 function ExpertPicks({ picks }: { picks: ShownPick[] }) {
-  const row = (p: ShownPick) => <li key={p.l.url}><span className="thc-xp-top"><strong>{p.l.outlet}</strong><span className="thc-xp-lab">{placeText(p)}</span></span>
-    <span className="thc-xp-r">{p.reason}</span>
-    <a className="thc-mono" href={p.l.url} target="_blank" rel="nofollow noopener">{`${p.l.platform === "youtube" ? "Watch" : "Read"} the list ↗`}</a></li>;
+  const card = (p: ShownPick) => { const b = badgeOf(p);
+    return <li key={p.l.url + p.list} className="thc-xp-c">
+      <span className={`thc-xp-b ${b.tone}${b.text.length > 3 ? " word" : ""}`} title={placeText(p)}>{b.text}</span>
+      <span className="thc-xp-m">
+        <span className="thc-xp-top"><strong>{p.l.outlet}</strong>
+          <a className="thc-mono" href={p.l.url} target="_blank" rel="nofollow noopener">{`${p.l.platform === "youtube" ? "Watch" : "Read"} ↗`}</a></span>
+        <span className="thc-xp-sub" title={p.l.title}>{p.label ?? p.l.title}</span>
+        <span className="thc-xp-r">{p.reason}</span>
+      </span>
+    </li>; };
   return <section id="expert-lists" className="thc-box1 thc-xp">
-    <div className="thc-h"><strong>Picked in expert lists</strong><span>{`${picks.length} ${picks.length === 1 ? "outlet" : "outlets"}`}</span></div>
-    <ul className="thc-xp-l">{picks.slice(0, 6).map(row)}</ul>
-    {picks.length > 6 && <details className="thc-g-more"><summary>{`Show all ${picks.length}`}</summary><ul className="thc-xp-l">{picks.slice(6).map(row)}</ul></details>}
+    <div className="thc-h"><strong>Picked in expert lists</strong><span>{picksSummary(picks)}</span></div>
+    <ul className="thc-xp-g">{picks.slice(0, XP_FIRST).map(card)}</ul>
+    {picks.length > XP_FIRST && <details className="thc-xp-more"><summary>{`Show all ${picks.length}`}</summary><ul className="thc-xp-g">{picks.slice(XP_FIRST).map(card)}</ul></details>}
   </section>;
 }
 
