@@ -94,18 +94,19 @@ const titleWords = (t: string) => { const w = words(t); return new Set([...w, ..
  * and a third of the remaining key words may be missing ("Torriden DIVE IN Hyaluronic Acid Serum" for the "DIVE-IN Low
  * Molecular" one). A sibling formula word in the listing's name part (before the first comma or "|") still rejects it.
  */
-export function matchesProductLoose(product: { name: string; brand: string }, result: { title: string; brand?: string | null }) {
+export function matchesProductLoose(product: { name: string; brand: string }, result: { title: string; brand?: string | null }, allMustMatch = false) {
   const title = titleWords(result.title), brand = words(product.brand), resultBrand = words(result.brand ?? "").join(" ");
   const brandOk = brand.length > 0 && (resultBrand ? resultBrand.includes(brand.join(" ")) || brand.join(" ").includes(resultBrand) : brand.every(w => title.has(w)));
   if (!brandOk) return false;
-  const brandWords = new Set(brand);
+  const brandWords = new Set(brand.flatMap(w => [w, ...w.split(/(?<=[a-z])(?=\d)|(?<=\d)(?=[a-z])/)]));
+  if (title.has("wide") && title.has("body")) title.add("widebody");
   const key = words(product.name).flatMap(w => w.split(/(?<=[a-z])(?=\d)|(?<=\d)(?=[a-z])/)).filter(w => !brandWords.has(w) && !SOFT.has(w));
   if (key.length < 2) return false;
   if (key.some(w => /\d/.test(w) && !title.has(w) && !title.has(w.replace(/s$/, "")))) return false;
   const has = (w: string) => title.has(w) || title.has(w.replace(/s$/, "")) || title.has(`${w}s`);
   const missing = key.filter(w => !has(w));
   // The first two key words name the line ("UV Restore", "DIVE IN"): never missing, so UV Daily isn't taken for UV Restore.
-  if (missing.length > Math.floor(key.length / 3) || missing.some(w => key.indexOf(w) < 2)) return false;
+  if (missing.length > (allMustMatch ? 0 : Math.floor(key.length / 3)) || missing.some(w => key.indexOf(w) < 2)) return false;
   return !isSiblingListing(product, result.title);
 }
 
@@ -206,7 +207,8 @@ export async function findAmazonOffer(product: { name: string; brand: string }, 
     && (mode !== "loose" || !isSiblingListing(product, item.itemInfo.title.displayValue))
     && (mode !== "variants" || !variantCheck(product, item.itemInfo.title.displayValue).reject));
   const pick = (test: typeof matchesProduct) => items.find(item => test(product, { title: item.itemInfo!.title!.displayValue!, brand: item.itemInfo!.byLineInfo?.brand?.displayValue }));
-  const exact = pick(matchesProduct), match = exact ?? (mode ? pick(matchesProductLoose) : undefined), how: "name" | "loose" = exact ? "name" : "loose";
+  // "variants" niches (pickleball) ignore only sizes and marketing words; every other word of the name must be there.
+  const exact = pick(matchesProduct), match = exact ?? (mode ? pick((p, r) => matchesProductLoose(p, r, mode === "variants")) : undefined), how: "name" | "loose" = exact ? "name" : "loose";
   const doubt = match && mode === "variants" ? variantCheck(product, match.itemInfo!.title!.displayValue!).doubt : undefined;
   if (!match?.asin) {
     const titles = (found.searchResult?.items ?? []).map(item => `${item.asin} "${item.itemInfo?.title?.displayValue ?? ""}"`);
