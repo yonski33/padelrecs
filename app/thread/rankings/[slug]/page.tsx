@@ -33,6 +33,7 @@ import { RankRows, QuickMatch, type V5Row } from "../../live/ranking-v5";
 import { traitCounts, traitGroup } from "../../data";
 import { listOrder, listPill } from "../../../../lib/thread/vote-order";
 import { oneShape } from "../../../../lib/thread/shape";
+import { expertLine } from "../../../../lib/thread/expert-lists";
 /** PadelRecs (owner 2026-11-21): no "Ranked by player score…" line, the lists as one dropdown, and phone rows with the rank
  *  inline (th-hp, as on the home page). */
 const PADEL = niche.id === "padel";
@@ -269,7 +270,7 @@ async function RankingV5({ l, lists, list, rated, label, faqs, ld, picOf }: { l:
       : SR ? votePill(Object.fromEntries(traitGroupsForType(niche.id, r.shape, r.id).map(g => [g.key, traitGroup(t, r.id, g.key)])), W.people, SIMRACING_PILL_WORDS, SIMRACING_PILL_LABELS)
       : DG ? votePill(Object.fromEntries(TRAIT_GROUPS.map(g => [g.key, traitGroup(t, r.id, g.key)])), W.people, DISCGOLF_PILL_LABELS, DISCGOLF_PILL_LABELS)
       : SKIN ? votePill(Object.fromEntries(TRAIT_GROUPS.map(g => [g.key, traitGroup(t, r.id, g.key)])), W.people, SKIN_PILL_WORDS, SKIN_PILL_LABELS)
-      : niche.id === "padel" ? padelPill(r) : pickedLine(traitGroup(t, r.id, "plays_like")), arm: !!r.arm, ...(au && r.audio?.kind ? { shape: r.audio.kind } : {}) }));
+      : niche.id === "padel" ? padelPill(r) : pickedLine(traitGroup(t, r.id, "plays_like")), arm: !!r.arm, experts: expertLine(niche.id, r.slug), ...(au && r.audio?.kind ? { shape: r.audio.kind } : {}) }));
   const opinions: [string, string] = [W.opinions.replace(/s$/, ""), W.opinions];
   const said = rows.reduce((a, r) => a + r.pos + r.mix + r.neg, 0);
   // SkinRecs has ~30 lists: its pills and More rankings are the skin needs, this list's need and the product types (moreFor).

@@ -102,6 +102,7 @@ function Card({ x, lit, configs }: { x: ReviewEntry; lit: boolean; configs?: boo
         {!tt && <span className="thc-lang">{langCode(x.lang)}</span>}
         <span className={`thc-take ${x.stance}`}>{`${STANCE_MARK[x.stance]} ${STANCE_LABEL[x.stance]}`}</span>
       </div>
+      {x.badge && <span className="thc-xp-badge">{`Expert pick: ${x.badge}`}</span>}
       {configs && <span className="thc-cfg">{configLine(x.config)}</span>}
       {/* No "Works with [brand]" note (owner 2026-11-22: no disclosure lines; `tie` stays in the data). */}
       {(tags.length > 0 || x.score) && <div className="thc-tags">
