@@ -38,6 +38,8 @@ const TABLES = ["creator_pages", "creator_reviews", "creator_prices"] as const;
 const DROP = new Set(["FORWRD", "Man vs Debt", "REDTACKLE", "PickleballCentral", "Pickleball Hustle",
   "Pickleball Story (피클볼 스토리)", "Pickleball Story", "Legoat Pickleball", "Pickle Madness"]);
 /** Scores kept in the data but hidden until the scale is confirmed. */
+/** Sites the owner dropped for every paddle (2026-11-26: stspickleball.com reads as an AI site). Checked on every review URL. */
+const BLOCKED_URL = /(^|\/\/|\.)stspickleball\.com\b/i;
 const HIDE_SCORE = new Set(["Pickleheads"]);
 /** Plain auto-caption spelling typos in quotes. */
 const TYPOS: [RegExp, string][] = [[/\ballcourt\b/g, "all-court"], [/\bpadle\b/g, "paddle"], [/\bpadles\b/g, "paddles"]];
@@ -338,6 +340,8 @@ async function main() {
     // One row per (product, url): a duplicate inside the files is a data problem, reported and the first kept.
     const seen = new Set<string>(), dups: string[] = [];
     built.reviews = built.reviews.filter(r => { const k = `${r.racket_id}|${r.url}`; if (seen.has(k)) { dups.push(`${r.slug} ${r.creator} ${r.url}`); return false; } seen.add(k); return true; });
+    { const before = built.reviews.length; built.reviews = built.reviews.filter(r => !BLOCKED_URL.test(String(r.url)) && !DROP.has(String(r.creator)));
+      if (before > built.reviews.length) console.log(`Dropped (blocked site or source): ${before - built.reviews.length}`); }
     // --drop-url <url,...>: takes the owner left out (2026-11-23: three Ronbus/Pakle TikToks).
     const dropUrls = new Set((flag("drop-url") ?? "").split(",").map(u => u.trim()).filter(Boolean));
     if (dropUrls.size) { const before = built.reviews.length; built.reviews = built.reviews.filter(r => !dropUrls.has(r.url)); console.log(`Dropped by --drop-url: ${before - built.reviews.length}`); }

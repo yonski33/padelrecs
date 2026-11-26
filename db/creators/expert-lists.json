@@ -5953,105 +5953,6 @@
     "date": "2026-05-05",
     "checked": "2026-11-26"
    },
-   "sts-pickleball-advanced": {
-    "url": "https://stspickleball.com/best-pickleball-paddles/advanced",
-    "outlet": "STS Pickleball",
-    "title": "The best pickleball paddles for advanced players",
-    "platform": "blog",
-    "topic": "other: advanced",
-    "date": "2026-10-21",
-    "checked": "2026-11-26"
-   },
-   "sts-pickleball-beginners": {
-    "url": "https://stspickleball.com/best-pickleball-paddles/beginners",
-    "outlet": "STS Pickleball",
-    "title": "The best pickleball paddles for beginners",
-    "platform": "blog",
-    "topic": "beginners",
-    "date": "2026-10-14",
-    "checked": "2026-11-26"
-   },
-   "sts-pickleball-control": {
-    "url": "https://stspickleball.com/best-pickleball-paddles/control",
-    "outlet": "STS Pickleball",
-    "title": "The best control pickleball paddles",
-    "platform": "blog",
-    "topic": "control",
-    "date": "2026-10-22",
-    "checked": "2026-11-26"
-   },
-   "sts-pickleball-elongated": {
-    "url": "https://stspickleball.com/best-pickleball-paddles/elongated",
-    "outlet": "STS Pickleball",
-    "title": "The best elongated pickleball paddles",
-    "platform": "blog",
-    "topic": "elongated",
-    "date": "2026-10-21",
-    "checked": "2026-11-26"
-   },
-   "sts-pickleball-hybrid": {
-    "url": "https://stspickleball.com/best-pickleball-paddles/hybrid",
-    "outlet": "STS Pickleball",
-    "title": "The best hybrid pickleball paddles",
-    "platform": "blog",
-    "topic": "hybrid",
-    "date": "2026-10-14",
-    "checked": "2026-11-26"
-   },
-   "sts-pickleball-intermediate": {
-    "url": "https://stspickleball.com/best-pickleball-paddles/intermediate",
-    "outlet": "STS Pickleball",
-    "title": "The best pickleball paddles for intermediate players",
-    "platform": "blog",
-    "topic": "other: intermediate",
-    "date": "2026-10-14",
-    "checked": "2026-11-26"
-   },
-   "sts-pickleball-overall": {
-    "url": "https://stspickleball.com/best-pickleball-paddles",
-    "outlet": "STS Pickleball",
-    "title": "The best pickleball paddles of 2026",
-    "platform": "blog",
-    "topic": "overall",
-    "date": "2026-10-22",
-    "checked": "2026-11-26"
-   },
-   "sts-pickleball-power": {
-    "url": "https://stspickleball.com/best-pickleball-paddles/power",
-    "outlet": "STS Pickleball",
-    "title": "The best power pickleball paddles",
-    "platform": "blog",
-    "topic": "power",
-    "date": "2026-10-21",
-    "checked": "2026-11-26"
-   },
-   "sts-pickleball-spin": {
-    "url": "https://stspickleball.com/best-pickleball-paddles/spin",
-    "outlet": "STS Pickleball",
-    "title": "The best pickleball paddles for spin",
-    "platform": "blog",
-    "topic": "spin",
-    "date": "2026-10-14",
-    "checked": "2026-11-26"
-   },
-   "sts-pickleball-under-100": {
-    "url": "https://stspickleball.com/best-pickleball-paddles/under-100",
-    "outlet": "STS Pickleball",
-    "title": "The best budget pickleball paddles under $100",
-    "platform": "blog",
-    "topic": "budget",
-    "date": "2026-10-26",
-    "checked": "2026-11-26"
-   },
-   "sts-pickleball-widebody": {
-    "url": "https://stspickleball.com/best-pickleball-paddles/widebody",
-    "outlet": "STS Pickleball",
-    "title": "The best widebody pickleball paddles",
-    "platform": "blog",
-    "topic": "widebody",
-    "date": "2026-10-14",
-    "checked": "2026-11-26"
-   },
    "the-dink-all-court": {
     "url": "https://www.thedinkpickleball.com/5-ultimate-all-court-pickleball-paddles-based-on-lab-data/",
     "outlet": "The Dink",
@@ -7883,12 +7784,6 @@
      "position": 7,
      "label": "Personal top 5 pick",
      "reason": "Feels denser and less tingy than hollow rivals, with high forgiveness and consistent shots when weighted low on the face."
-    },
-    {
-     "list": "sts-pickleball-power",
-     "position": 9,
-     "label": "Heavy swing, big drives",
-     "reason": "Offers big drives from a heavy swing weight in an elongated foam frame."
     }
    ],
    "11six24-vapor-power": [
@@ -8111,12 +8006,6 @@
      "reason": "Delivers big put-away power, crisp pop and solid spin, trading hand speed and off-center forgiveness on defense."
     },
     {
-     "list": "sts-pickleball-under-100",
-     "position": 10,
-     "label": "Best budget pick",
-     "reason": "Brings Gen 3 style power with dual USA Pickleball and UPA-A approval, though control is low."
-    },
-    {
      "list": "yt-matts-pickleball-awards-2025",
      "position": 10,
      "label": "Most underrated paddle",
@@ -8207,12 +8096,6 @@
      "position": 1,
      "label": "Best for tennis players",
      "reason": "Gives attacking tennis converts a long handle, aggressive power and heavy spin."
-    },
-    {
-     "list": "sts-pickleball-elongated",
-     "position": 1,
-     "label": "Best all-around",
-     "reason": "Leads the list for spin and control as a well-rounded elongated, though approved only for UPA-A events."
     },
     {
      "list": "yt-all-drive-no-drop-categories-summer-2026",
@@ -8329,12 +8212,6 @@
      "reason": "Gives traditional power hitters immediate pop and speed with a large sweet spot; pop is harder to control."
     },
     {
-     "list": "sts-pickleball-overall",
-     "position": 2,
-     "label": "Best all-around elongated",
-     "reason": "Delivers maximum spin with solid power and pop in an elongated shape; UPA-A approval only."
-    },
-    {
      "list": "yt-matts-pickleball-power-foam-showdown-2026",
      "position": 2,
      "label": "Best elongated reach",
@@ -8365,12 +8242,6 @@
      "reason": "Delivers rocket-like pop and a large sweet spot in a 16mm foam build, though soft resets are trickier."
     },
     {
-     "list": "sts-pickleball-spin",
-     "position": 3,
-     "label": "Most elongated spin",
-     "reason": "Delivers the most spin in an elongated, with more power and reach than the Honolulu J3CR."
-    },
-    {
      "list": "the-dink-long-handles",
      "position": 3,
      "label": null,
@@ -8387,12 +8258,6 @@
      "position": 3,
      "label": "Personal top 5 pick",
      "reason": "Offers a toned down stiff hollow elongated with better feel and tunability than hotter power paddles."
-    },
-    {
-     "list": "sts-pickleball-intermediate",
-     "position": 4,
-     "label": "Best intermediate elongated",
-     "reason": "Delivers the top spin on the list with better control than typical elongateds."
     },
     {
      "list": "the-dink-power-dinking",
@@ -8429,12 +8294,6 @@
      "position": 5,
      "label": "Best power",
      "reason": "Hits hardest for intermediates wanting raw power, with a large sweet spot; pop makes soft shots harder."
-    },
-    {
-     "list": "sts-pickleball-advanced",
-     "position": 5,
-     "label": "Most elongated spin",
-     "reason": "Tops the list for elongated spin with better control than most elongateds, though power is lower."
     },
     {
      "list": "intl-ja-yt-kjpickleball-tier-2026-pt2",
@@ -8517,12 +8376,6 @@
      "reason": "Pairs high power and pop with HexGrit that holds its texture, though the stiff feel demands a developed soft game."
     },
     {
-     "list": "sts-pickleball-overall",
-     "position": 1,
-     "label": "Best all-around paddle",
-     "reason": "Pairs heavy spin with strong power and pop for aggressive all-around play, though control is modest."
-    },
-    {
      "list": "the-dink-durable-spin",
      "position": 1,
      "label": null,
@@ -8545,12 +8398,6 @@
      "position": 2,
      "label": "Top 5 pick",
      "reason": "Offers a longer, narrower shape with better side-to-side forgiveness and slightly more pop than other Power 2 paddles."
-    },
-    {
-     "list": "sts-pickleball-hybrid",
-     "position": 2,
-     "label": "Power with most spin",
-     "reason": "Hits hard with strong spin, but has the lowest control on the list."
     },
     {
      "list": "yt-john-kew-kewcast-128-main-contenders-2026",
@@ -8589,12 +8436,6 @@
      "reason": "Combines top-tier spin on the most durable grit surface tested with easy Gen 4 power and pop."
     },
     {
-     "list": "sts-pickleball-intermediate",
-     "position": 3,
-     "label": "Most power",
-     "reason": "Hits with the most power on the list, but control is low."
-    },
-    {
      "list": "yt-all-drive-no-drop-categories-summer-2026",
      "position": 3,
      "label": "Top 5 enhanced grit",
@@ -8617,12 +8458,6 @@
      "position": 4,
      "label": null,
      "reason": "Spins hard on durable HexGrit, starting stiff and hollow before mellowing, with a higher balance point for customizing."
-    },
-    {
-     "list": "sts-pickleball-advanced",
-     "position": 4,
-     "label": "Hybrid power and spin",
-     "reason": "Combines strong power and spin with a bigger sweet spot than the other power picks; UPA-A only."
     },
     {
      "list": "yt-west-side-pickleball-s-tier-2026",
@@ -8655,12 +8490,6 @@
      "reason": "Delivers a slightly longer, poppier hybrid feel that stays forgiving side to side, with strong spin."
     },
     {
-     "list": "sts-pickleball-power",
-     "position": 7,
-     "label": "Power with most spin",
-     "reason": "Combines high power with the most spin among the power picks."
-    },
-    {
      "list": "yt-pickleball-playbook-top-10-nov-2026",
      "position": 7,
      "label": "#4 of the top 10",
@@ -8671,12 +8500,6 @@
      "position": 9,
      "label": "Grit That Lasts",
      "reason": "Sets the benchmark for lasting surface bite with HexGrit durability and strong spin in a flat-top hybrid."
-    },
-    {
-     "list": "sts-pickleball-spin",
-     "position": 9,
-     "label": "Spin with most power",
-     "reason": "Brings the most power on the list alongside high spin, though control is weaker."
     },
     {
      "list": "yt-christy-price-top-5-by-shape-2026",
@@ -8733,12 +8556,6 @@
      "position": 5,
      "label": "Top 5 pick",
      "reason": "Balances well in an elongated shape, with a large sweet spot and a smooth feel on contact."
-    },
-    {
-     "list": "sts-pickleball-power",
-     "position": 6,
-     "label": "Best budget pick",
-     "reason": "Delivers big-hitter power in an elongated foam frame for drives and serves."
     },
     {
      "list": "yt-all-drive-no-drop-categories-summer-2026",
@@ -8803,12 +8620,6 @@
      "position": 1,
      "label": "Best overall",
      "reason": "Combines heavy spin from a durable grit with enough pace to attack."
-    },
-    {
-     "list": "sts-pickleball-hybrid",
-     "position": 1,
-     "label": "Best all-around",
-     "reason": "Has no weak area, with strong pop and spin and quick hands for a hybrid."
     },
     {
      "list": "yt-john-kew-spin-2026",
@@ -8877,12 +8688,6 @@
      "reason": "Delivers strong spin on a multi-density foam core, with an endurance surface that outlasts rival grit."
     },
     {
-     "list": "sts-pickleball-intermediate",
-     "position": 2,
-     "label": "Most control",
-     "reason": "Provides the highest control on the list together with strong spin."
-    },
-    {
      "list": "the-dink-spin-rpm",
      "position": 2,
      "label": null,
@@ -8949,12 +8754,6 @@
      "reason": "Starts very light and fast with durable spin, giving tinkerers wide room to add weight for power and stability."
     },
     {
-     "list": "sts-pickleball-overall",
-     "position": 4,
-     "label": "Most control among hybrids",
-     "reason": "Gives the most control among the listed hybrids while keeping strong pop and spin."
-    },
-    {
      "list": "yt-sts-pickleball-overall-nov-2026",
      "position": 4,
      "label": null,
@@ -8991,12 +8790,6 @@
      "reason": "Predictable from day one, with crisp kitchen flicks, controlled low-tier power and grit that has held up well."
     },
     {
-     "list": "sts-pickleball-beginners",
-     "position": 7,
-     "label": "Most pop",
-     "reason": "Delivers lots of pop and spin for players wanting pace, but approved only for UPA-A events."
-    },
-    {
      "list": "pickletip-overall",
      "position": 8,
      "label": null,
@@ -9027,12 +8820,6 @@
      "position": 1,
      "label": "Top approval",
      "reason": "Delivers superior foam power with a nearly invisible VelociGrit surface, earning the top approval in the roundup."
-    },
-    {
-     "list": "sts-pickleball-advanced",
-     "position": 2,
-     "label": "Best budget pick",
-     "reason": "Brings near top-tier pace in an elongated frame, but low control means it suits experienced hitters."
     },
     {
      "list": "yt-all-drive-no-drop-top-5-oct-2026",
@@ -9071,12 +8858,6 @@
      "reason": "Mixes a soft hollow feel with exponential trampoline power for rockets and drives, though resets and drops need extra thought."
     },
     {
-     "list": "sts-pickleball-elongated",
-     "position": 4,
-     "label": "Best budget pick",
-     "reason": "Brings big power and pop with a larger sweet spot, but low control."
-    },
-    {
      "list": "yt-not-dead-yet-pickleball-top-10-2026",
      "position": 4,
      "label": "#4",
@@ -9093,12 +8874,6 @@
      "position": 5,
      "label": "Best for maximum offense",
      "reason": "Hits harder than any other pick with top-tier spin and good stability, but its lively face punishes loose touch."
-    },
-    {
-     "list": "sts-pickleball-power",
-     "position": 5,
-     "label": "Best budget pick",
-     "reason": "Brings power close to the Selkirk Boomstik Elongated in a 2026 elongated frame."
     },
     {
      "list": "yt-pickleball-willy-tier-list-oct-2026",
@@ -9181,22 +8956,10 @@
      "reason": "Offers a softer, slightly hollow foam feel with solid stability that needs only light side weight."
     },
     {
-     "list": "sts-pickleball-hybrid",
-     "position": 5,
-     "label": "Soft feel, big spin",
-     "reason": "Soft feel with big spin, though the sweet spot is the smallest on the list."
-    },
-    {
      "list": "yt-sts-pickleball-overall-nov-2026",
      "position": 5,
      "label": null,
      "reason": "Pairs licensed HexGrit spin with a softer, plusher face that takes pace off dinks and drops, though UPA-A only."
-    },
-    {
-     "list": "sts-pickleball-spin",
-     "position": 6,
-     "label": "Spin with more pace",
-     "reason": "Brings strong spin with firmer pace than soft-faced paddles, though the sweet spot is small."
     },
     {
      "list": "pickleball-effect-price-tiers",
@@ -9347,12 +9110,6 @@
    ],
    "selkirk-labs-project-boomstik-widebody": [
     {
-     "list": "sts-pickleball-widebody",
-     "position": 1,
-     "label": "Best all-around",
-     "reason": "Gives a very large, stable sweet spot with a firm, loud response in a widebody shape."
-    },
-    {
      "list": "paddlecompare-beginners",
      "position": 2,
      "label": "Joint 1st for forgiveness",
@@ -9375,12 +9132,6 @@
      "position": 4,
      "label": "#4 paddle of 2025",
      "reason": "Sets the benchmark for power with stability and sharpened defensive and soft-game play, but demanding to keep drives in."
-    },
-    {
-     "list": "sts-pickleball-intermediate",
-     "position": 5,
-     "label": "Forgiveness with pace",
-     "reason": "Pairs a near-top sweet spot with a firm feel for forgiveness with pace."
     },
     {
      "list": "yt-ddog-pickleball-best-2025",
@@ -9675,18 +9426,6 @@
    ],
    "luzz-inferno2-m1": [
     {
-     "list": "sts-pickleball-power",
-     "position": 2,
-     "label": "Most elongated power",
-     "reason": "Delivers the most power in an elongated frame, aimed at hard baseline hitters; UPA-A approval only."
-    },
-    {
-     "list": "sts-pickleball-advanced",
-     "position": 3,
-     "label": "Most elongated power",
-     "reason": "Gives the highest power of any elongated on the list for heavy drives, with very little control."
-    },
-    {
      "list": "paddlecompare-control",
      "position": 6,
      "label": "Tied 3rd for control",
@@ -9915,12 +9654,6 @@
      "reason": "Top power pick with strong spin and extra reach, but heavier handling and less forgiveness than the widebody."
     },
     {
-     "list": "sts-pickleball-advanced",
-     "position": 1,
-     "label": "Best for advanced players",
-     "reason": "Delivers top-end pace with an unusually large sweet spot for an elongated, though spin is modest."
-    },
-    {
      "list": "yt-bk-pickleball-awards-2025",
      "position": 1,
      "label": "Runner-up: elongated foam power",
@@ -9931,18 +9664,6 @@
      "position": 2,
      "label": null,
      "reason": "Delivers explosive foam-core power with durable spin grit, though it runs too hot for pure soft-game players."
-    },
-    {
-     "list": "sts-pickleball-elongated",
-     "position": 2,
-     "label": "All-out power and pop",
-     "reason": "Hits hardest of the group with strong pop, but control is weak."
-    },
-    {
-     "list": "sts-pickleball-overall",
-     "position": 3,
-     "label": "All-out power and pop",
-     "reason": "Delivers all-out power and pop in an elongated frame, though control is modest."
     },
     {
      "list": "the-dink-foam-2025",
@@ -9961,12 +9682,6 @@
      "position": 4,
      "label": "Tied 2nd for spin",
      "reason": "Strong spin with top-level power and extra reach, but heavier handling and less forgiveness than the widebody."
-    },
-    {
-     "list": "sts-pickleball-power",
-     "position": 4,
-     "label": "All-out power and pop",
-     "reason": "Delivers all-out power and pop in an elongated frame, though control is modest."
     },
     {
      "list": "yt-all-drive-no-drop-categories-summer-2026",
@@ -10221,12 +9936,6 @@
      "reason": "Offers controllable power and a grippy sandpaper-like face, though it takes a few sessions to adjust."
     },
     {
-     "list": "sts-pickleball-hybrid",
-     "position": 4,
-     "label": "Lighter Power 2 swing",
-     "reason": "Fast swinging power paddle with a light feel, though control is second lowest."
-    },
-    {
      "list": "pickleheads-spin",
      "position": 5,
      "label": "Best speed",
@@ -10255,18 +9964,6 @@
      "position": 6,
      "label": "Best control",
      "reason": "Lets intermediates place the ball precisely while keeping spin and durability; power is the weak point."
-    },
-    {
-     "list": "sts-pickleball-overall",
-     "position": 6,
-     "label": "Lighter Power 2 swing",
-     "reason": "Keeps Power 2 pace with a lighter swing than the 11SIX24 Ultré Power 2 for fast hands."
-    },
-    {
-     "list": "sts-pickleball-intermediate",
-     "position": 7,
-     "label": "Lighter Power 2 swing",
-     "reason": "Light swing and strong spin for fast hands, though control is low."
     },
     {
      "list": "pickletip-foam",
@@ -10347,12 +10044,6 @@
    ],
    "11six24-pegasus-jelly-bean": [
     {
-     "list": "sts-pickleball-beginners",
-     "position": 1,
-     "label": "Best for beginners",
-     "reason": "Keeps the ball in play with very high control and a large sweet spot, ideal for beginners."
-    },
-    {
      "list": "pickletip-beginners",
      "position": 2,
      "label": "Most forgiving for beginners",
@@ -10369,18 +10060,6 @@
      "position": 2,
      "label": "Best for beginners",
      "reason": "Offers one of the largest sweet spots tested, with good spin, which suits newer players moving up."
-    },
-    {
-     "list": "sts-pickleball-control",
-     "position": 2,
-     "label": "Best budget pick",
-     "reason": "Delivers very high control and a big sweet spot, making it a standout easy control pick."
-    },
-    {
-     "list": "sts-pickleball-under-100",
-     "position": 3,
-     "label": "Best budget pick",
-     "reason": "Eases dinks and blocks with very high control and a big sweet spot, but offers little power."
     },
     {
      "list": "pickleheads-under-100",
@@ -10845,30 +10524,6 @@
      "reason": "Steady widebody face with a low, linear response for drops and resets."
     },
     {
-     "list": "sts-pickleball-beginners",
-     "position": 3,
-     "label": "Control with most spin",
-     "reason": "Spins strongly while staying controllable, though approved only for UPA-A events."
-    },
-    {
-     "list": "sts-pickleball-control",
-     "position": 6,
-     "label": "Control with most spin",
-     "reason": "Pairs strong control with the highest spin on the list, though not approved for USA Pickleball events."
-    },
-    {
-     "list": "sts-pickleball-widebody",
-     "position": 7,
-     "label": "Touch and spin",
-     "reason": "Pairs a soft, dense feel for dinking with strong spin, but power and pop are the lowest listed."
-    },
-    {
-     "list": "sts-pickleball-spin",
-     "position": 10,
-     "label": "Most forgiving spin",
-     "reason": "Gives the largest sweet spot and strong control with big spin, though power is low."
-    },
-    {
      "list": "pickletip-overall",
      "position": 13,
      "label": null,
@@ -10881,12 +10536,6 @@
      "position": 7,
      "label": null,
      "reason": "Combines soft control, excellent spin and dependable resets with enough offense on full swings."
-    },
-    {
-     "list": "sts-pickleball-spin",
-     "position": 7,
-     "label": "Soft spin with reach",
-     "reason": "Pairs soft spin with extra reach and a lighter swing, though its sweet spot is the smallest listed."
     },
     {
      "list": "pickletip-control",
@@ -10909,18 +10558,6 @@
      "reason": "Brings a first full-foam build to serious players who want maximum elongated offense."
     },
     {
-     "list": "sts-pickleball-power",
-     "position": 3,
-     "label": "Top power and spin",
-     "reason": "Combines near-top power with strong spin for aggressive play, in an elongated frame."
-    },
-    {
-     "list": "sts-pickleball-elongated",
-     "position": 5,
-     "label": "Top-tier raw power",
-     "reason": "Offers near-top power and spin in an elongated, but a small sweet spot and very low control."
-    },
-    {
      "list": "pickleheads-overall",
      "position": 6,
      "label": "Best power",
@@ -10933,12 +10570,6 @@
      "reason": "Matches top-end pop and firepower with a lower swing weight for customizing, but only for players who can control it."
     },
     {
-     "list": "sts-pickleball-advanced",
-     "position": 9,
-     "label": "Most power, USAP approved",
-     "reason": "Very hard-hitting and USAP approved, but the sweet spot is tiny, so it suits clean strikers."
-    },
-    {
      "list": "yt-whiskydink-reviewers-top-5-2026",
      "position": 17,
      "label": "Most fun paddle",
@@ -10947,22 +10578,10 @@
    ],
    "enhance-epp-turbo": [
     {
-     "list": "sts-pickleball-under-100",
-     "position": 2,
-     "label": "Most widebody power",
-     "reason": "Hits harder than any other widebody, with a sizeable sweet spot but below-average control."
-    },
-    {
      "list": "the-dink-long-handles",
      "position": 2,
      "label": null,
      "reason": "Offers a durable, high-performing full-foam build with a long handle."
-    },
-    {
-     "list": "sts-pickleball-under-100",
-     "position": 4,
-     "label": "Power for soft hands",
-     "reason": "Delivers strong pace for players with soft hands, but control is low."
     },
     {
      "list": "yt-pickleballer-budget-foam-aug-2026",
@@ -10977,46 +10596,10 @@
      "reason": "Delivers high-level spin and off-center forgiveness in a foam build."
     },
     {
-     "list": "sts-pickleball-under-100",
-     "position": 5,
-     "label": "Long handle, big power",
-     "reason": "Adds a long handle for two-handed backhands to strong power, with only moderate control."
-    },
-    {
-     "list": "sts-pickleball-intermediate",
-     "position": 6,
-     "label": "Best budget pick",
-     "reason": "Delivers strong power in a widebody frame with a tight handle."
-    },
-    {
-     "list": "sts-pickleball-widebody",
-     "position": 6,
-     "label": "Most widebody power",
-     "reason": "Offers the most power of any widebody listed, with the lowest spin of the group."
-    },
-    {
-     "list": "sts-pickleball-advanced",
-     "position": 7,
-     "label": "Best budget pick",
-     "reason": "Offers elongated power near the top of the class, with spin on the weak side."
-    },
-    {
-     "list": "sts-pickleball-elongated",
-     "position": 9,
-     "label": "Best budget pick",
-     "reason": "Provides high power in an elongated frame, though it has the lowest spin on the list."
-    },
-    {
      "list": "yt-west-side-pickleball-gen4-tier-list-1-2026",
      "position": 9,
      "label": "A tier",
      "reason": "Mixes a nice sweet spot and consistent floating core with a whippy serve and roomy 6.5-inch handle for two hands."
-    },
-    {
-     "list": "sts-pickleball-power",
-     "position": 10,
-     "label": "Best budget pick",
-     "reason": "Gives strong power and pop in a widebody frame, with below-average control for the shape."
     },
     {
      "list": "yt-all-drive-no-drop-tier-list-q1-2026",
@@ -11467,18 +11050,6 @@
      "reason": "Combines a soft, dense foam feel with durable grit and high twist stability, though it swings heaviest of the three."
     },
     {
-     "list": "sts-pickleball-spin",
-     "position": 4,
-     "label": "Spin with soft touch",
-     "reason": "Combines top-end spin with a soft, dense face for calm dinks and resets, but low pop."
-    },
-    {
-     "list": "sts-pickleball-hybrid",
-     "position": 9,
-     "label": "Spin with soft touch",
-     "reason": "Puts spin and control first with calm dinks and resets, but has the lowest power on the list."
-    },
-    {
      "list": "pickleball-effect-overall",
      "position": 12,
      "label": "Best durable control",
@@ -11851,27 +11422,9 @@
      "position": 8,
      "label": null,
      "reason": "Punches harder than its TruFoam siblings, built for crisp counters and fast blocks over soft touch."
-    },
-    {
-     "list": "sts-pickleball-intermediate",
-     "position": 10,
-     "label": "Dense feel, light swing",
-     "reason": "Dense, solid feel with the lightest swing on the list, but the lowest spin."
-    },
-    {
-     "list": "sts-pickleball-overall",
-     "position": 10,
-     "label": "Dense feel, light swing",
-     "reason": "Pairs a dense feel and light swing in a 14mm hybrid with strong power and pop."
     }
    ],
    "enhance-mpp-turbo": [
-    {
-     "list": "sts-pickleball-under-100",
-     "position": 1,
-     "label": "Best budget pick",
-     "reason": "Suits all-court players wanting reach, power and spin, though the ArmorGrit surface wears a bit faster."
-    },
     {
      "list": "yt-west-side-pickleball-spin-2026",
      "position": 1,
@@ -11909,18 +11462,6 @@
      "reason": "Delivers top-tier play in a hybrid or widebody shape, though raw carbon grit loses spin quickly."
     },
     {
-     "list": "sts-pickleball-beginners",
-     "position": 4,
-     "label": "Forgiveness with spin",
-     "reason": "Pairs a large sweet spot and strong spin with the most power on the list, but the weakest control."
-    },
-    {
-     "list": "sts-pickleball-widebody",
-     "position": 4,
-     "label": "Best budget pick",
-     "reason": "Forgives mishits with a light swing, big sweet spot, good pop and decent spin."
-    },
-    {
      "list": "the-dink-durable-spin",
      "position": 4,
      "label": null,
@@ -11945,18 +11486,6 @@
      "reason": "Pairs big stable flat-top hybrid sweet spot with plush MPP feel and strong drives; low-spin grit is the catch."
     },
     {
-     "list": "sts-pickleball-hybrid",
-     "position": 6,
-     "label": "Best budget pick",
-     "reason": "Offers strong spin with good control, and is the top spin pick for USA Pickleball events."
-    },
-    {
-     "list": "sts-pickleball-under-100",
-     "position": 6,
-     "label": "Best budget pick",
-     "reason": "Offers a forgiving widebody with a big sweet spot and good spin, but average control."
-    },
-    {
      "list": "yt-all-drive-no-drop-top-5-oct-2026",
      "position": 6,
      "label": "Top 5 right now",
@@ -11973,18 +11502,6 @@
      "position": 6,
      "label": null,
      "reason": "Plays a deep bassy hollow feel with strong power, toned-down pop for easy resets and a full-size handle."
-    },
-    {
-     "list": "sts-pickleball-under-100",
-     "position": 7,
-     "label": "Best budget pick",
-     "reason": "Gives the most spin among the picks, with good pop and room for two hands on the handle."
-    },
-    {
-     "list": "sts-pickleball-elongated",
-     "position": 8,
-     "label": "Best budget pick",
-     "reason": "Delivers strong spin and power in an elongated frame with moderate control."
     },
     {
      "list": "yt-matts-pickleball-best-2026",
@@ -12009,12 +11526,6 @@
      "position": 8,
      "label": "A tier",
      "reason": "Offers a deep, powerful, stable flat-top hybrid with MPP feel, calmer than the elongated, though spin is modest."
-    },
-    {
-     "list": "sts-pickleball-intermediate",
-     "position": 9,
-     "label": "Best budget pick",
-     "reason": "Offers high spin with good control in a hybrid frame."
     },
     {
      "list": "yt-whiskydink-reviewers-top-5-2026",
@@ -12063,22 +11574,10 @@
      "reason": "Ranked in the bottom tier for a weak sweet spot and almost no power."
     },
     {
-     "list": "sts-pickleball-control",
-     "position": 4,
-     "label": "Most control in foam",
-     "reason": "Soft, dense foam widebody with high control and a big sweet spot, though pop is low."
-    },
-    {
      "list": "pickleball-union-beginners",
      "position": 5,
      "label": null,
      "reason": "Offers a light, stable widebody swing from a familiar maker, though face consistency is below average."
-    },
-    {
-     "list": "sts-pickleball-beginners",
-     "position": 6,
-     "label": "Most control in foam",
-     "reason": "Very stable and soft for dinks and drops, with the most control in foam, though it adds little spin."
     },
     {
      "list": "pickleball-union-forgiving",
@@ -12287,12 +11786,6 @@
      "reason": "Elongated with long handle, low swing weight for its shape and top-tier hex grit spin, a top-three pick."
     },
     {
-     "list": "sts-pickleball-advanced",
-     "position": 6,
-     "label": "Power 2 with reach",
-     "reason": "Hard-hitting, spin-friendly elongated with long reach, but hard to control and UPA-A approved only."
-    },
-    {
      "list": "yt-john-kew-leaderboard-feb-2026",
      "position": 6,
      "label": null,
@@ -12303,38 +11796,6 @@
      "position": 6,
      "label": "Best durable spin",
      "reason": "Stands out for durable HexGrit spin on every shot and a long handle that suits two-handed backhands."
-    },
-    {
-     "list": "sts-pickleball-elongated",
-     "position": 7,
-     "label": "Power 2 with reach",
-     "reason": "Strong power and a long handle, though the least forgiving model of its line."
-    },
-    {
-     "list": "sts-pickleball-power",
-     "position": 8,
-     "label": "Power 2 with reach",
-     "reason": "Adds reach to Power 2 power, suiting baseline and aggressive play."
-    }
-   ],
-   "engage-axiom-elongated": [
-    {
-     "list": "sts-pickleball-spin",
-     "position": 8,
-     "label": "Most pop",
-     "reason": "Offers the most pop on the list with textured carbon spin and USA Pickleball approval, but weak control."
-    },
-    {
-     "list": "sts-pickleball-advanced",
-     "position": 10,
-     "label": "Honeycomb feel with spin",
-     "reason": "Honeycomb paddle with strong spin and pop, but the least power of the ten."
-    },
-    {
-     "list": "sts-pickleball-elongated",
-     "position": 10,
-     "label": "Honeycomb feel with spin",
-     "reason": "Gives very high spin and pop with a firm honeycomb feel, but the lowest twist stability."
     }
    ],
    "11six24-pegasus-power": [
@@ -12345,12 +11806,6 @@
      "reason": "Gives beginner-friendly power with good dwell and a tapered shape that raises the hitting area, ranking as the favorite widebody."
     },
     {
-     "list": "sts-pickleball-control",
-     "position": 5,
-     "label": "Huge sweet spot",
-     "reason": "Combines a huge sweet spot with strong control in a widebody frame."
-    },
-    {
      "list": "yt-west-side-pickleball-widebody-2026",
      "position": 7,
      "label": null,
@@ -12358,18 +11813,6 @@
     }
    ],
    "11six24-ultre-jelly-bean-2": [
-    {
-     "list": "sts-pickleball-spin",
-     "position": 5,
-     "label": "Soft spin, more drive",
-     "reason": "Keeps the soft face of the 11SIX24 Vapor Jelly Bean 2 with slightly more power and top-end spin."
-    },
-    {
-     "list": "sts-pickleball-hybrid",
-     "position": 8,
-     "label": "Soft spin, more drive",
-     "reason": "Soft, quiet control hybrid for dinking with strong spin and some extra drive, though heavy with a short handle."
-    },
     {
      "list": "yt-west-side-pickleball-gen4-tier-list-2-2026",
      "position": 48,
@@ -12415,12 +11858,6 @@
      "reason": "Blends deep dwell, great spin and a linear power curve that keeps control shots easy, though a little perimeter weight helps."
     },
     {
-     "list": "sts-pickleball-hybrid",
-     "position": 10,
-     "label": "Soft feel with power",
-     "reason": "Offers a soft, forgiving feel with decent power and USA Pickleball approval."
-    },
-    {
      "list": "yt-pickleball-effect-personal-top-5-nov-2025",
      "position": 11,
      "label": "Personal top 5 pick",
@@ -12435,18 +11872,6 @@
    ],
    "11six24-pegasus-power-2": [
     {
-     "list": "sts-pickleball-intermediate",
-     "position": 1,
-     "label": "Best intermediate paddle",
-     "reason": "Offers the largest sweet spot on the list with more pace and forgiveness, though approved only for UPA-A."
-    },
-    {
-     "list": "sts-pickleball-widebody",
-     "position": 2,
-     "label": "Biggest widebody sweet spot",
-     "reason": "Delivers the biggest sweet spot tested with strong power and pop; UPA-A approval only."
-    },
-    {
      "list": "yt-john-kew-leaderboard-feb-2026",
      "position": 3,
      "label": null,
@@ -12457,21 +11882,9 @@
      "position": 3,
      "label": "Tournament pick",
      "reason": "Pockets the ball with soft muted MPP foam for the easiest soft game of five, plus top-tier spin."
-    },
-    {
-     "list": "sts-pickleball-overall",
-     "position": 9,
-     "label": "Biggest sweet spot",
-     "reason": "Gives the biggest sweet spot of the picks plus strong power and pop for forgiving offense; UPA-A approval only."
     }
    ],
    "honolulu-j3cr": [
-    {
-     "list": "sts-pickleball-spin",
-     "position": 2,
-     "label": "Most widebody spin",
-     "reason": "Gives the most spin in a widebody with a large forgiving sweet spot; UPA-A approval only."
-    },
     {
      "list": "yt-not-dead-yet-pickleball-over-60-control-oct-2026",
      "position": 2,
@@ -12485,12 +11898,6 @@
      "reason": "Combines the best sweet spot and most solid feel among five widebodies, suiting newer players, though squarer shape feels clunky."
     },
     {
-     "list": "sts-pickleball-widebody",
-     "position": 3,
-     "label": "Most widebody spin",
-     "reason": "Generates the most spin of any widebody tested, though lower twist weight means mishits turn more."
-    },
-    {
      "list": "yt-west-side-pickleball-widebody-2026",
      "position": 8,
      "label": null,
@@ -12498,12 +11905,6 @@
     }
    ],
    "rpm-q2-widebody": [
-    {
-     "list": "sts-pickleball-widebody",
-     "position": 5,
-     "label": "Most widebody pop",
-     "reason": "Delivers the most pop in a widebody with high power, though control is touchy."
-    },
     {
      "list": "yt-christy-price-top-5-by-shape-2026",
      "position": 5,
@@ -12525,12 +11926,6 @@
      "reason": "Brings strong net power for singles and doubles, but widebodies with cleaner feel and bigger sweet spots rank above it."
     },
     {
-     "list": "sts-pickleball-widebody",
-     "position": 8,
-     "label": "Best budget pick",
-     "reason": "Offers a big sweet spot and the highest twist weight, an all-rounder with no weak score."
-    },
-    {
      "list": "yt-dinking-and-driving-awards-2025",
      "position": 10,
      "label": "Personal paddle of 2025",
@@ -12549,14 +11944,6 @@
      "reason": "Crisp, connected widebody foam power with quick hands, a stable sweet spot and controllable pace after a short break-in."
     }
    ],
-   "ronbus-quanta-pro-r2-16": [
-    {
-     "list": "sts-pickleball-widebody",
-     "position": 9,
-     "label": "Best budget pick",
-     "reason": "Gives big pop and steadier mishits, though power sits near the bottom of the widebody group."
-    }
-   ],
    "friday-aura-pro-widebody": [
     {
      "list": "yt-christy-price-top-5-by-shape-2026",
@@ -12569,12 +11956,6 @@
      "position": 5,
      "label": null,
      "reason": "Pairs a long handle and gritty carbon face with soft controllable power, though top-face hits cause slight vibration."
-    },
-    {
-     "list": "sts-pickleball-widebody",
-     "position": 10,
-     "label": "Light swing, big power",
-     "reason": "Combines the lightest swing with strong power, though control is lowest and soft resets suffer."
     }
    ],
    "enhance-duo": [
