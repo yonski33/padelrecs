@@ -38,6 +38,12 @@ export const creatorPage = cache(async (site: string, slug: string): Promise<Cre
   const r = await withDb(site, (db, m) => m.readCreatorPage(db, niche.schema, slug));
   return withCovers(site, r ? r.v : fixturePage(site, slug));
 });
+/** A product without a creator page, for the thin creator page (lib/thread/sites.ts THIN_CREATOR_PAGE): its live reviews
+ *  and prices with no written text, or an empty page where the database can't be read (the fixtures have no thin pages). */
+export const thinCreatorPage = cache(async (site: string, slug: string): Promise<CreatorPage> => {
+  const r = await withDb(site, (db, m) => m.readThinCreatorPage(db, niche.schema, slug));
+  return withCovers(site, r?.v ?? null) ?? { paddle: slug, tldr: "", groups: { pos: "", mix: "", neg: "" }, prices: null, reviews: [] };
+});
 /** Each TikTok take's saved cover (db/creators/covers.json; the stored TikTok links expire), where one is saved. */
 const COVERS = covers as unknown as Record<string, string[]>;
 function withCovers(site: string, page: CreatorPage | null): CreatorPage | null {
