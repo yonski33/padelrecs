@@ -1,6 +1,6 @@
 import { getDb } from "../../../db";
 import { brands, rackets, reviews, externalReviews } from "../../../db/schema";
-import { publicCatalogItems, catalog } from "../../../db/data";
+import { publicCatalogItems, catalog, THIN_HIDE } from "../../../db/data";
 import { amazonPhoto } from "../../../lib/amazon-photos";
 import { shopPhoto } from "../../../lib/shop-photos";
 import { asc, count, eq, ne } from "drizzle-orm";
@@ -28,7 +28,7 @@ export async function GET() {
   const brandName = new Map(brandList.map(b => [b.id, b.name]));
   // PadelRecs (owner 2026-11-26, lib/thread/padel-ready.ts): rackets with almost no content stay out of search, as out of the
   // other lists; their pages still work and the add-review form still finds them.
-  const padelOk = niche.id === "padel" ? (await catalog()).padelReady : null;
+  const padelOk = THIN_HIDE.has(niche.id) ? (await catalog()).padelReady : null;
   const visible = publicCatalogItems([], list, playerCounts.map(c => c.racketId), webCounts.map(c => c.racketId), unapproved).rackets
     .filter(r => !padelOk || padelOk.has(r.id));
   const notes = new Map<string, number>();
