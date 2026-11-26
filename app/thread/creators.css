@@ -676,18 +676,27 @@ body:has(.thc) .thc .thc-pbox-on a, body:has(.thc) .thc .thc-sim-aff a { color: 
 .thc-fit-txt { font-size: 14px; line-height: 1.35; min-width: 0; } .thc-fit-txt > span { color: var(--body2); }
 .thc .thc-fit-res .thc-fit-reset { font-size: 13px; font-weight: 600; text-underline-offset: 3px; }
 @media (max-width: 639px) { .thc-fit-res { margin-left: 0; flex: 1 1 100%; } .thc-fit-sep { display: none; } }
-/* The sticky price bar: hidden until the head panel is off screen, then under the site header. */
-.thc-stick { position: fixed; left: 0; right: 0; z-index: 9; background: #FEFAF4; border-bottom: 2px solid #17171A; box-shadow: 0 4px 14px rgba(23,23,26,.08);
-  transform: translateY(-110%); visibility: hidden; transition: transform .18s ease, visibility .18s; }
-.thc-stick.on { transform: none; visibility: visible; }
-.thc-stick-in { max-width: 1160px; margin: 0 auto; padding: 9px 24px; display: flex; align-items: center; gap: 14px; box-sizing: border-box; }
-.thc-stick img, .thc-stick-ph { flex: none; width: 28px; height: 40px; object-fit: contain; mix-blend-mode: multiply; border-radius: 6px; }
-.thc-stick-n { flex: 0 1 auto; min-width: 0; font: 800 22px/1.05 'Barlow Condensed', var(--bc, sans-serif); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-.thc-stick-sp { flex: 1; }
+/* The sticky price bar, inside the site header (owner 2026-11-26: one sticky bar, not two). Hidden until the head panel is
+   off screen (html.thc-stuck); then it takes the place of the header's search, Sign in and Add a review. On phones the
+   logo keeps only its dot and the Menu button steps aside for the name and the button. */
+.thc-stick { display: none; }
+.thc-stuck .thc-stick { display: flex; flex: 1 1 auto; min-width: 0; align-items: center; justify-content: flex-end; gap: 12px; }
+.thc-stuck .th-head :is(.th-search, .th-acct, .th-add, .th-add-plus) { display: none !important; }
+.thc-stuck .th-head .th-grow { flex: 0 0 0; }
+.thc-stick img { flex: none; width: 22px; height: 32px; object-fit: contain; mix-blend-mode: multiply; }
+.thc-stick-n { flex: 0 1 auto; min-width: 0; font: 800 20px/1.05 'Barlow Condensed', var(--bc, sans-serif); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .thc-stick-p { flex: none; font-size: 14px; white-space: nowrap; }
-body:has(.thc) .thc .thc-stick a.thc-cta { flex: none; font-size: 15px; font-weight: 800; padding: 7px 18px; white-space: nowrap; background: var(--h4-acc, var(--acc)); border-color: #17171A; }
-@media (max-width: 639px) { .thc-stick-in { padding: 8px 16px; gap: 10px; } .thc-stick-n { font-size: 18px; } .thc-stick-p { display: none; } }
-@media (max-width: 379px) { .thc-stick img, .thc-stick-ph { display: none; } }
+body:has(.thc) .th-head a.thc-stick-cta { flex: none; font-size: 14.5px; font-weight: 800; padding: 6px 16px; white-space: nowrap; color: #17171A; text-decoration: none;
+  background: var(--h4-acc, #F4EC6E); border: 2px solid #17171A; border-radius: 999px; }
+.th-skin .thc-stick-cta, body:has(.th-skin) .th-head a.thc-stick-cta { background: oklch(0.86 0.06 20); }
+@media (max-width: 899px) { .thc-stick-p { display: none; } }
+@media (max-width: 639px) {
+  .thc-stuck .th-head .th-menu-btn { display: none; }
+  .thc-stuck .th-head .th-logo { font-size: 0 !important; gap: 0; }
+  .thc-stuck .th-head .th-head-in { gap: 10px; }
+  .thc-stick { gap: 8px; } .thc-stick-n { font-size: 17px; }
+  body:has(.thc) .th-head a.thc-stick-cta { padding: 5px 12px; font-size: 14px; }
+}
 /* Section headings: "From players", "Reviews from around the web". */
 .thc-sech { display: flex; flex-direction: column; gap: 4px; }
 .thc-sech h2, .thc .thc-web h2 { margin: 0; font-family: 'Barlow Condensed', var(--bc, sans-serif); font-size: 38px !important; font-weight: 800; line-height: 1; }
