@@ -18,6 +18,8 @@ import { SOURCE_COLOR, STANCE_LABEL, cardChips, initials, langCode, marks, measu
 import { configGroupOf, configGroups, configLine, type ConfigAxis } from "../../../lib/thread/creator-config";
 
 const OUT = { target: "_blank", rel: "noopener nofollow" } as const;
+/** Cards shown before "Show N more reviews" (paddle page v3). */
+const FIRST = 6;
 
 const TYPE_TAG: Record<CreatorReview["type"], string | null> = { review: null, comparison: "Comparison", "long-term": null };
 const DOT: Record<Stance | "all", string> = { all: "#171717", pos: "#62C878", mix: "#F0D16B", neg: "#F0796A" };
@@ -127,6 +129,8 @@ function Card({ x, lit, configs }: { x: ReviewEntry; lit: boolean; configs?: boo
           : tt ? <><span className="thc-tt-i" aria-hidden="true">♪</span>Watch on TikTok ↗</>
           : <><span className="thc-blog-i" aria-hidden="true">✎</span>Read the full review ↗</>}</a>
         {open && x.alsoUrl && <a href={x.alsoUrl} {...OUT}>Their written review ↗</a>}
+        {/* A TikTok channel's older takes on this product (one card per reviewer, lib/thread/creators.ts cardList). */}
+        {(x.earlier ?? []).map(e => <a key={e.url} href={e.url} {...OUT}>{`Earlier take${dayLabel(e.date) ? ` (${dayLabel(e.date)})` : ""} ↗`}</a>)}
       </div>
     </div>
   </article>;
@@ -136,7 +140,7 @@ function Card({ x, lit, configs }: { x: ReviewEntry; lit: boolean; configs?: boo
 /** `roundup`: the "Players on Reddit and forums" card, placed after the third card under All (never counted). */
 /** `configs` and `axis` (LaptopRecs): each card's "Reviewed: ..." line, and the model's config axis for the "All (n) · <group>
  *  (n)" chips, shown only when 2 or more groups have cards; the chips filter in the browser like the other pills. */
-export function CreatorReviews({ reviews, count, roundup, configs, axis }: { reviews: ReviewEntry[]; count: number; roundup?: ReactNode;
+export function CreatorReviews({ reviews, roundup, configs, axis }: { reviews: ReviewEntry[]; count: number; roundup?: ReactNode;
   configs?: boolean; axis?: ConfigAxis | null }) {
   const [only, setOnly] = useState<Stance | "all">("all"), [src, setSrc] = useState<Src>(null), [by, setBy] = useState<"stance" | "newest">("stance");
   const [grp, setGrp] = useState<string | null>(null);
@@ -146,8 +150,9 @@ export function CreatorReviews({ reviews, count, roundup, configs, axis }: { rev
   // Under All sources, TikToks are mixed in between the others (owner 2026-11-22), never several in a row.
   const list = useMemo(() => { const l = sortReviews(reviews.filter(r => (only === "all" || r.stance === only) && (!src || r.kind === src) && (!grp || configGroupOf(r.config, axis ?? null) === grp)), by);
     return src ? l : mixTikToks(l, by); }, [reviews, only, src, by, grp, axis]);
-  // Every review shows at once (owner 2026-11-22: little else follows on the page, so no reason to limit them).
-  const shown = list;
+  // Paddle page v3 (owner handoff 2026-11-26): the first FIRST cards, then "Show N more reviews" (N = the cards not shown yet).
+  const [all, setAll] = useState(false);
+  const shown = all ? list : list.slice(0, FIRST);
   const pills = ([["all", "All", reviews.length], ...(["pos", "mix", "neg"] as const).map(k => [k, STANCE_LABEL[k], n[k]] as const)] as const)
     .filter(c => c[2] > 0);
   const sources = SOURCES.map(([k, l]) => [k, l, reviews.filter(r => r.kind === k).length] as const).filter(c => c[2] > 0);
@@ -164,6 +169,7 @@ export function CreatorReviews({ reviews, count, roundup, configs, axis }: { rev
       if (only !== "all" && r.stance !== only) setOnly("all");
       if (src && r.kind !== src) setSrc(null);
       if (grp && configGroupOf(r.config, axis ?? null) !== grp) setGrp(null);
+      setAll(true);
       setGoTo(id);
     };
     document.addEventListener("click", onClick);
@@ -179,23 +185,24 @@ export function CreatorReviews({ reviews, count, roundup, configs, axis }: { rev
   }, [goTo, shown]);
   useEffect(() => { if (!lit) return; const t = setTimeout(() => setLit(null), 2600); return () => clearTimeout(t); }, [lit]);
   return <VideoProvider><section id="reviews" className="thc-reviews">
-    <div className="thc-rv-h">
-      <h2>Reviews <span>{`· ${count}`}</span></h2>
-      <span className="thc-rv-sub">{`Summaries from ${sourcesOf(reviews)}. Watch or read the original review for the full details.`}</span>
-      <label className="thc-sort"><span>Sort:</span><select value={by} onChange={e => setBy(e.target.value as "stance" | "newest")}>
-        <option value="stance">Most relevant</option><option value="newest">Newest</option></select></label>
-    </div>
+    {/* Paddle page v3: the heading on the same row as the filter chips; a chip only when it has cards; Sort at the end. */}
+    <div className="thc-rv-h v3">
+      <h2>Reviews</h2>
     <div className="thc-pills" role="group" aria-label="Filter reviews">{pills.map(([k, l, c]) =>
       <button key={k} type="button" aria-pressed={only === k && (k !== "all" || !src)} onClick={() => { setOnly(k); if (k === "all") setSrc(null); }}>
         <span style={{ color: only === k && k === "all" && !src ? "#fff" : DOT[k] }} aria-hidden="true">●</span>{`${l} (${c})`}</button>)}
       {sources.length > 1 && <span className="thc-pills-sep" aria-hidden="true"/>}
       {sources.length > 1 && sources.map(([k, l, c]) => <button key={k} type="button" aria-pressed={src === k} onClick={() => setSrc(src === k ? null : k)}>
         {`${l} (${c})`}</button>)}</div>
+      <label className="thc-sort"><span>Sort:</span><select value={by} onChange={e => setBy(e.target.value as "stance" | "newest")}>
+        <option value="stance">Most relevant</option><option value="newest">Newest</option></select></label>
+    </div>
     {/* The config chips (LaptopRecs): "All (n) · Snapdragon (6) · AMD (4)", only with 2 or more groups. */}
     {groups.length > 0 && <div className="thc-pills thc-cfg-chips" role="group" aria-label={`Filter by ${axis!.axis}`}>
       <button type="button" aria-pressed={!grp} onClick={() => setGrp(null)}>{`All (${reviews.length})`}</button>
       {groups.map(g => <button key={g.label} type="button" aria-pressed={grp === g.label} onClick={() => setGrp(grp === g.label ? null : g.label)}>{`${g.label} (${g.n})`}</button>)}</div>}
     {shown.map((x, i) => <Fragment key={x.id}><Card x={x} lit={lit === x.id} configs={configs}/>{roundup && i === Math.min(2, shown.length - 1) && only === "all" && !src && !grp && roundup}</Fragment>)}
+    {list.length > shown.length && <button type="button" className="thc-show" onClick={() => setAll(true)}>{`Show ${list.length - shown.length} more ${list.length - shown.length === 1 ? "review" : "reviews"}`}</button>}
   </section></VideoProvider>;
 }
 
@@ -206,11 +213,4 @@ function leadSentences(t: string, n: number): [string, string] {
   // text is ever dropped: the two parts always join back into the summary.
   const parts = t.split(/(?<=[.!?]["”’)]*)\s+(?=\S)/).filter(Boolean);
   return parts.length <= n ? [t, ""] : [parts.slice(0, n).join(" "), parts.slice(n).join(" ")];
-}
-
-/** "YouTube, blogs and TikTok": only the sources these reviews come from (SkinRecs has no TikTok takes yet). */
-function sourcesOf(rs: { kind: string }[]) {
-  const k = new Set(rs.map(r => r.kind));
-  const l = [k.has("youtube") && "YouTube", k.has("blog") && "blogs", k.has("tiktok") && "TikTok"].filter((x): x is string => !!x);
-  return l.length > 1 ? `${l.slice(0, -1).join(", ")} and ${l.at(-1)}` : l[0] ?? "reviews";
 }

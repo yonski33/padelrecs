@@ -648,3 +648,106 @@ body:has(.thc) .thc .thc-pbox-on a, body:has(.thc) .thc .thc-sim-aff a { color: 
 .thc-xp-r { font-size: 14.5px; line-height: 1.5; color: var(--para); }
 .thc-xp-l .thc-mono { font-size: 12px; align-self: flex-start; }
 .thc-xp-badge { align-self: flex-start; display: inline-block; margin: 2px 0 6px; font-size: 12.5px; font-weight: 600; padding: 2px 10px; border-radius: 999px; background: var(--r5-chip, #F1EEE6); }
+
+/* ── Paddle page v3 (owner handoff 2026-11-26, "PickleballRecs Paddle Page Hybrid v3"): the shared creator page on every
+   creator-page site. Cream page and cards, the head panel's new breakpoints, the one-line fit row with its result at the
+   end, the quiet sticky price bar, "From players", the review consensus box, the 3-row glance table, the feed heading on
+   the chip row and the Similar paddles tag. SkinRecs keeps its own tokens (.th-skin above). ── */
+.thc { --card: #FFFCF8; --rule: #E7DFD5; }
+/* Head panel: 3 columns at 1100px+; 640 to 1099px photo + main side by side with the price column full width below; one
+   column under 640px. The name scales with the screen. */
+.thc-v19 .thc-hd4 h1 { font-size: clamp(34px, 4.2vw, var(--h4-name-size)); }
+@media (max-width: 1099px) {
+  .thc-v19 .thc-head.thc-hd4 { grid-template-columns: 200px minmax(0, 1fr); }
+  .thc-v19 .thc-hd4 .thc-photo { height: auto; } .thc-v19 .thc-hd4 .thc-photo img { width: 170px; max-height: none; }
+  .thc-v19 .thc-hd4 .thc-head-r { grid-column: 1 / -1; border-left: 0; border-top: 2px solid var(--h4-line); }
+}
+@media (max-width: 639px) {
+  .thc-v19 .thc-head.thc-hd4 { grid-template-columns: minmax(0, 1fr); }
+  .thc-v19 .thc-hd4 .thc-photo { height: 240px; } .thc-v19 .thc-hd4 .thc-photo img { width: auto; max-height: 100%; }
+  .thc-v19 .thc-hd4 h1 { font-size: clamp(34px, 4.2vw, var(--h4-name-size)); }
+}
+/* The fit row: the result (or the "Pick both" hint) at the end of the chip row, wrapping to a second line when narrow. */
+.thc-fit.bar .thc-fit-line { flex-wrap: wrap; row-gap: 10px; }
+.thc-fit-res { margin-left: auto; display: inline-flex; align-items: center; flex-wrap: wrap; gap: 6px 10px; min-width: 0; }
+.thc-fit-hint { font-size: 13.5px; color: var(--faint); }
+.thc-fit-res .thc-fit-pct { flex: none; font-size: 14.5px; padding: 2px 11px; border-width: 1.5px; }
+.thc-fit-res .thc-fit-pct.r { background: #fff; }
+.thc-fit-txt { font-size: 14px; line-height: 1.35; min-width: 0; } .thc-fit-txt > span { color: var(--body2); }
+.thc .thc-fit-res .thc-fit-reset { font-size: 13px; font-weight: 600; text-underline-offset: 3px; }
+@media (max-width: 639px) { .thc-fit-res { margin-left: 0; flex: 1 1 100%; } .thc-fit-sep { display: none; } }
+/* The sticky price bar: hidden until the head panel is off screen, then under the site header. */
+.thc-stick { position: fixed; left: 0; right: 0; z-index: 9; background: #FEFAF4; border-bottom: 2px solid #17171A; box-shadow: 0 4px 14px rgba(23,23,26,.08);
+  transform: translateY(-110%); visibility: hidden; transition: transform .18s ease, visibility .18s; }
+.thc-stick.on { transform: none; visibility: visible; }
+.thc-stick-in { max-width: 1160px; margin: 0 auto; padding: 9px 24px; display: flex; align-items: center; gap: 14px; box-sizing: border-box; }
+.thc-stick img, .thc-stick-ph { flex: none; width: 28px; height: 40px; object-fit: contain; mix-blend-mode: multiply; border-radius: 6px; }
+.thc-stick-n { flex: 0 1 auto; min-width: 0; font: 800 22px/1.05 'Barlow Condensed', var(--bc, sans-serif); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.thc-stick-sp { flex: 1; }
+.thc-stick-p { flex: none; font-size: 14px; white-space: nowrap; }
+body:has(.thc) .thc .thc-stick a.thc-cta { flex: none; font-size: 15px; font-weight: 800; padding: 7px 18px; white-space: nowrap; background: var(--h4-acc, var(--acc)); border-color: #17171A; }
+@media (max-width: 639px) { .thc-stick-in { padding: 8px 16px; gap: 10px; } .thc-stick-n { font-size: 18px; } .thc-stick-p { display: none; } }
+@media (max-width: 379px) { .thc-stick img, .thc-stick-ph { display: none; } }
+/* Section headings: "From players", "Reviews from around the web". */
+.thc-sech { display: flex; flex-direction: column; gap: 4px; }
+.thc-sech h2, .thc .thc-web h2 { margin: 0; font-family: 'Barlow Condensed', var(--bc, sans-serif); font-size: 38px !important; font-weight: 800; line-height: 1; }
+.thc-sech > span { font-size: 14px; color: var(--muted); }
+.thc .thc-web { padding-top: 0; border-top: 0; margin-top: 22px; gap: 6px; }
+.thc-srcs { display: flex; flex-wrap: wrap; gap: 6px 14px; align-items: center; font-size: 14px; font-weight: 600; }
+.thc-srcs > span { display: inline-flex; gap: 7px; align-items: center; }
+.thc-srcs .thc-srcs-dot { color: #A5A5A0; }
+.thc-srcs .thc-yt { background: #FF0033; }
+.thc-blog-ic { width: 12px; height: 15px; border: 1.5px solid var(--ink); border-radius: 2px; box-sizing: border-box; }
+.thc-srcs .thc-tt-i { width: 15px; height: 15px; font-size: 9px; background: #000; }
+/* The Reddit box: sources collapsed behind "N sources ▾". */
+.thc-rd-more > summary { list-style: none; cursor: pointer; align-self: flex-start; font-size: 13px; font-weight: 700; padding-top: 4px; }
+.thc-rd-more > summary::-webkit-details-marker { display: none; }
+.thc-rd-more > summary .o, .thc-rd-more[open] > summary .c { display: none; }
+.thc-rd-more[open] > summary .o { display: inline; }
+.thc-rd-more .thc-rd-src { margin-top: 8px; padding-top: 8px; }
+.thc-rd .thc-rd-more { margin-top: auto; }
+/* The vote box: the poll rows a little shorter. */
+.thc-v19 .thc-vote .th7-poll button, .thc-v19 .thc-vote .th7-poll [role="button"] { padding-top: 4px; padding-bottom: 4px; }
+/* Review consensus: the wrap-up left, the takes right, How it plays in words along the bottom. */
+.thc-cons-top { display: flex; flex-wrap: wrap; gap: 20px 36px; padding: 20px 22px; }
+.thc-cons-l { flex: 1 1 560px; min-width: 0; display: flex; flex-direction: column; gap: 10px; }
+.thc-cons-t { font: 800 26px/1 'Barlow Condensed', var(--bc, sans-serif); }
+.thc-cons .thc-wrap { margin: 0; }
+.thc-cons .thc-wrap p { font-size: 15px; line-height: 1.65; max-width: 72ch; }
+.thc-cons .thc-wrap mark.pos { background: linear-gradient(transparent 55%, #F4EC6E 55%); font-weight: 600; padding: 0; }
+.thc-cons .thc-wrap mark.neg { background: linear-gradient(transparent 55%, #FBD8D0 55%); font-weight: 600; padding: 0; }
+.thc-cons-r { flex: 1 1 240px; max-width: 320px; min-width: 0; display: flex; flex-direction: column; gap: 10px; }
+.thc-cons-n { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 4px 10px; font-size: 15px; font-weight: 800; }
+.thc-cons-n > span { white-space: nowrap; }
+.thc-cons-n .pos { color: #2F6E22; } .thc-cons-n .mix { color: #8A6400; } .thc-cons-n .neg { color: #A3301F; }
+.thc-cons-r .thc-vbar { border-color: var(--ink); }
+body:has(.thc) .thc .thc-cons-r a.thc-wrap-all { margin-top: auto; font-size: 13.5px; font-weight: 600; }
+.thc-cons-g { display: grid; grid-template-columns: repeat(auto-fit, minmax(110px, 1fr)); border-top: 1px solid var(--rule); }
+.thc-cons-g > span { display: flex; flex-direction: column; align-items: center; gap: 2px; padding: 11px 8px; border-right: 1px solid var(--rule); text-align: center; }
+.thc-cons-g > span > span { font-size: 12.5px; color: var(--muted); }
+.thc-cons-g strong { font-size: 15.5px; }
+.thc-cons-g .w1 { color: #1E5A1E; } .thc-cons-g .w2 { color: #2F6A1E; } .thc-cons-g .w3 { color: #4A5A2A; } .thc-cons-g .w4 { color: #6B5200; } .thc-cons-g .w5 { color: #8A2E1C; }
+.thc-cons-g .none { color: #A5A5A0; }
+@media (max-width: 639px) { .thc-cons-top { padding: 16px; } .thc-cons-r { max-width: none; } .thc-cons-g { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+/* N reviews at a glance: the title in the display face, three rows, then Show all N / Show fewer. */
+.thc-glance .thc-h.rule > strong { font-size: 24px; }
+.thc .thc-g-tog { all: unset; cursor: pointer; align-self: center; margin: 12px 0; font-size: 13.5px; font-weight: 700; padding: 6px 16px; border: 1.5px solid var(--ink); border-radius: 999px; background: #fff; }
+.thc .thc-g-tog:focus-visible { outline: 3px solid var(--acc); outline-offset: 2px; }
+@media (max-width: 639px) {
+  .thc-g-head { display: none; }
+  .thc-g-row, .thc-g-row.cfg { grid-template-columns: minmax(0, 1fr) auto; gap: 6px 10px; }
+  .thc-g-row .kp, .thc-g-row .cfg-l { grid-column: 1 / -1; }
+}
+/* The feed: "Reviews" on the same row as the chips; chips never wrap inside. */
+.thc-rv-h.v3 { align-items: center; justify-content: space-between; gap: 12px 16px; }
+.thc-rv-h.v3 h2 { font-size: 34px !important; line-height: 1; }
+.thc-rv-h.v3 .thc-pills { margin-top: 0; flex: 1 1 auto; }
+.thc-rv-h.v3 .thc-pills button { white-space: nowrap; }
+.thc-rv-h.v3 .thc-sort { margin-left: auto; }
+@media (max-width: 639px) { .thc-rv-h.v3 .thc-pills button { padding: 6px 12px; font-size: 13.5px; } }
+/* Similar paddles: the "Mentioned in N reviews" tag. */
+.thc-sim-men { align-self: flex-start; font-size: 12px; font-weight: 700; background: #FAF7D6; border-radius: 999px; padding: 2px 9px; }
+@media (max-width: 639px) { .thc-sech h2, .thc .thc-web h2 { font-size: 32px !important; } }
+.thc-g-row.thc-g-head .kp, .thc-g-row.thc-g-head .cfg-l { font-size: 11px; font-weight: 700; color: var(--faint); }
+/* The match pill's bands (v3): green 85+, yellow 70 to 84, white below. */
+.thc-fit-res .thc-fit-pct.g { background: #CDEFB0; } .thc-fit-res .thc-fit-pct.y { background: #F4EC6E; }

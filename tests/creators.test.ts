@@ -121,6 +121,11 @@ test("creator page: TikTok takes are reviews, counted once per channel", async (
   const idn = counted.filter(r => r.handle === "@identify.as.a.5.0");
   assert.equal(idn.length, 1); assert.equal(idn[0]!.date, "2026-11-19", "by its newest take");
   for (const t of feed.filter(r => r.kind === "tiktok")) { assert.deepEqual(t.attrs, {}); assert.equal(t.stood, null); assert.equal(t.chapters.length, 0); }
+  // Paddle page v3: one card per counted review, the older take linked from the newest one.
+  const { cardList } = await import("../lib/thread/creators");
+  const cards = cardList(p);
+  assert.equal(cards.length, counted.length);
+  assert.equal(cards.find(r => r.handle === "@identify.as.a.5.0")!.earlier!.length, 1);
   // The other demo paddles are unchanged.
   const v = reviewLists(creatorPage("pickleball", "11six24-vapor-power-2")!);
   assert.equal(v.feed.length, v.counted.length);
@@ -164,8 +169,9 @@ import { rankingTraits } from "../lib/category-rating";
 test("creator votes ask the pickleball ranking categories, no padel-only group", () => {
   assert.deepEqual(rankingTraits("pickleball"), ["plays_like", "spin", "arm", "level"]);
   const keys = creatorVoteGroups("pickleball").map(g => g.key);
-  assert.deepEqual(keys, ["plays_like", "level", "sweet_spot", "arm", "feel", "spin"]);
-  for (const k of rankingTraits("pickleball")) assert.ok(keys.includes(k), k);
+  // Paddle page v3 (owner handoff 2026-11-26): four boxes only; Spin and Feel left out.
+  assert.deepEqual(keys, ["plays_like", "level", "sweet_spot", "arm"]);
+  assert.deepEqual(creatorVoteGroups("pickleball").map(g => g.title), ["Control or power", "Level", "Sweet spot size", "Arm comfort"]);
   assert.ok(!keys.includes("side") && !keys.includes("game_type"));
   assert.deepEqual(creatorVoteGroups("discgolf").map(g => g.key), ["stability", "glide", "arm_speed", "wind", "grip", "durability"]);
 });
