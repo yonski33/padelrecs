@@ -69,7 +69,9 @@ export const padel: Niche = {
       newestAt: 10, shapeOrder: { styles: ["control", "balance"], levels: ["beginner", "intermediate"], below: ["diamond"] },
       headHeavyBelow: ["beginner"],
       // Owner audit fixes 2026-11-17: a style pick needs the matching bar above 3 for a Strong fit; curated #1–3 are Strong fits.
-      styleBarMax: 3, curatedTop: [90, 86, 82], } },
+      styleBarMax: 3, curatedTop: [90, 86, 82],
+      // Owner report 2026-11-26 (EA10 Ventus Attack scored from 7 reviews while its page showed 44 votes): the page's own tally.
+      pageTally: true, } },
   // Owner decision 2026-10-25: the home feed only shows rackets from the current and previous model year (2025–2026 in 2026).
   feedMaxAgeYears: 1,
   productPath: "rackets",

@@ -18,6 +18,8 @@ import { traitScores, type TraitInput, type TraitScore } from "../lib/trait-scor
 import { shownDots } from "../lib/expert-play";
 import { armFromReportText } from "../lib/youtube-trait-rules";
 import { evidenceRows } from "../db/evidence";
+import { sentimentOverrides } from "../db/sentiment-tally";
+import { tallyWith } from "../lib/thread/trait-view";
 import { evidenceBalance, labPercentiles, reportOf, tagRows, type EvidenceRow } from "../lib/evidence";
 import { balanceScores, type BalanceInput, type Trait as TraitKey } from "../lib/trait-score";
 import { levelSuits, levelDisagreement, type Suits, type SuitsInput } from "../lib/level-suits";
@@ -54,7 +56,7 @@ const LEVEL_VALUE: Record<Level, string> = { beginner: "Beginner", intermediate:
 // 2026-11-16: first visits to the v2 sites took 8–49 s). Still read once per request through cache(), so one page sees one copy.
 export const matchContext = cache(() => keptContext.get());
 const keptContext = kept(async () => {
-  const [data, sigs, takes, live, overrides, stored] = await Promise.all([catalog(), productSignals(), quickTakeHooks(), baseLists(), traitOverrides(), evidenceRows()]);
+  const [data, sigs, takes, live, overrides, stored, tallies] = await Promise.all([catalog(), productSignals(), quickTakeHooks(), baseLists(), traitOverrides(), evidenceRows(), sentimentOverrides()]);
   const finder = niche.finder!;
   // The site's fit rules (lib/fit-config.ts); only sites with one call this.
   const cfg = fitConfigFor(niche)!;
@@ -264,7 +266,9 @@ const keptContext = kept(async () => {
     const t = traitMap.get(id), ex = overrides.get(id)?.expert ?? {};
     const vo = (k: DotTrait) => ({ plus: t?.[k]?.plus ?? 0, minus: t?.[k]?.minus ?? 0 });
     const exv = (k: DotTrait) => (ex as Record<string, { value: number } | undefined>)[cfg.expertAlias?.[k] ?? k]?.value;
-    return { name: r.name, year: r.year, ...(sentOf.get(id) ?? { pos: 0, mix: 0, neg: 0 }),
+    // The verdict counts the page shows (owner 2026-11-26): the owner's typed tally where one is saved, else the counted
+    // reviews, so a racket's match % and its vote bar read the same opinions (db/sentiment-tally.ts). Sites opt in (pageTally).
+    return { name: r.name, year: r.year, ...(ENGINE?.pageTally ? tallyWith(sentOf.get(id) ?? { pos: 0, mix: 0, neg: 0 }, tallies.get(id)) : sentOf.get(id) ?? { pos: 0, mix: 0, neg: 0 }),
       voices: { control: vo("control"), power: vo("power"), ...Object.fromEntries(ENGINE_TRAITS.map(k => [k, vo(k)])) },
       spec: { control: t?.control?.spec ?? 0, power: t?.power?.spec ?? 0, ...Object.fromEntries(ENGINE_TRAITS.map(k => [k, t?.[k]?.spec ?? 0])) },
       expert: Object.fromEntries(ENGINE_TRAITS.flatMap(k => exv(k) !== undefined ? [[k, exv(k)!]] : [])),
