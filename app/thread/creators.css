@@ -636,3 +636,15 @@ body:has(.thc) .thc .thc-pbox-on a, body:has(.thc) .thc .thc-sim-aff a { color: 
 .thc-grade strong { min-width: 0; overflow-wrap: anywhere; hyphens: auto; }
 /* The spec line (owner 2026-11-24): plain small grey text under the tags, wrapping as text. */
 .thc-specline { display: block; font-size: 13px; line-height: 1.45; color: var(--h4-muted, var(--muted, #5b5b5b)); margin-top: -2px; }
+
+/* Picked in expert lists (2026-11-26, lib/thread/expert-lists.ts): outlets' best-of picks, and the badge on a card from the same outlet. */
+.thc-xp { margin-bottom: 18px; }
+.thc-xp-l { list-style: none; margin: 10px 0 0; padding: 0; display: flex; flex-direction: column; gap: 12px; }
+.thc-xp-l li { display: flex; flex-direction: column; gap: 3px; padding-top: 10px; border-top: 1px solid var(--line, #E6E1D8); }
+.thc-xp-l li:first-child { border-top: 0; padding-top: 0; }
+.thc-xp-top { display: flex; flex-wrap: wrap; align-items: baseline; gap: 8px; }
+.thc-xp-top strong { font-size: 15px; }
+.thc-xp-lab { font-size: 12.5px; font-weight: 600; padding: 2px 10px; border-radius: 999px; background: var(--r5-chip, #F1EEE6); }
+.thc-xp-r { font-size: 14.5px; line-height: 1.5; color: var(--para); }
+.thc-xp-l .thc-mono { font-size: 12px; align-self: flex-start; }
+.thc-xp-badge { align-self: flex-start; display: inline-block; margin: 2px 0 6px; font-size: 12.5px; font-weight: 600; padding: 2px 10px; border-radius: 999px; background: var(--r5-chip, #F1EEE6); }

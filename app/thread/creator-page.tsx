@@ -36,6 +36,7 @@ import tldrs from "../../db/creators/tldrs.json";
 import compareLines from "../../db/creators/compare-lines.json";
 import aliases from "../../db/creators/aliases.json";
 import bestFor from "../../db/creators/best-for.json";
+import { expertPicks, outletKey, placeText, type ShownPick } from "../../lib/thread/expert-lists";
 import { creatorPageFor, CREATOR_VIEW, CREATOR_MIN_REVIEWS, creatorPageOn, creatorPlainSite } from "../../lib/thread/sites";
 import { Avatar, CreatorReviews } from "./live/creator-reviews";
 import { MentionsProvider, MentionText, type MentionTarget } from "./live/mention-links";
@@ -114,7 +115,13 @@ export async function CreatorProductBody({ slug }: { slug: string }) {
   const { feed: feed0, counted: rs } = reviewLists(page);
   // Best for, per review (db/creators/best-for.json): written from what each reviewer says the paddle suits.
   const bf = (bestFor as Record<string, Record<string, { who: string; why: string }>>)[niche.id] ?? {};
-  const feed = feed0.map(x => bf[x.id] ? { ...x, bestFor: bf[x.id] } : x);
+  // Expert "best X" lists (owner 2026-11-26, lib/thread/expert-lists.ts): where the outlet's full review is a card here, the
+  // card carries its place as a badge; the other outlets go in the small "Picked in expert lists" box.
+  const picks = expertPicks(niche.id, slug), byOutlet = new Map(picks.map(p => [outletKey(p.l.outlet), p]));
+  const carded = new Set<string>();
+  const feed = feed0.map(x => { const p = byOutlet.get(outletKey(x.creator)); if (p) carded.add(outletKey(x.creator));
+    const y = bf[x.id] ? { ...x, bestFor: bf[x.id] } : x; return p ? { ...y, badge: p.label ? `${p.label} · ${p.l.title}` : placeText(p) } : y; });
+  const listPicks = picks.filter(p => !carded.has(outletKey(p.l.outlet)));
   // Under CREATOR_MIN_REVIEWS reviews the product keeps its usual page.
   if (rs.length < CREATOR_MIN_REVIEWS) return null;
   const { r, row, brand, style, sim, cards } = d;
@@ -335,6 +342,8 @@ export async function CreatorProductBody({ slug }: { slug: string }) {
           </section>
         </div>}
 
+        {listPicks.length > 0 && <ExpertPicks picks={listPicks}/>}
+
         <div className="thc-web">
           <span className="thc-kick">From around the web</span>
           <h2>What reviewers are saying</h2>
@@ -472,6 +481,19 @@ type Roundup = { at: string | null; headline: string; tags: { tone: "pos" | "neg
 /** "Players on Reddit and forums", written from ALL the paddle's stored Reddit posts (pilot, owner OK 2026-11-23): a
  *  one-line headline, +/- tags each backed by 2+ posts, two short paragraphs (what players agree on, then what they raise
  *  that reviews don't), and 2-4 short real phrases marked with a numbered link to their post. Checked by a second reader. */
+/** "Picked in expert lists": outlets' best-of lists that pick this product, one row each (outlet, its award or place, one
+ *  line in our own words, a link to the list). Six shown, the rest behind a details box. */
+function ExpertPicks({ picks }: { picks: ShownPick[] }) {
+  const row = (p: ShownPick) => <li key={p.l.url}><span className="thc-xp-top"><strong>{p.l.outlet}</strong><span className="thc-xp-lab">{placeText(p)}</span></span>
+    <span className="thc-xp-r">{p.reason}</span>
+    <a className="thc-mono" href={p.l.url} target="_blank" rel="nofollow noopener">{`${p.l.platform === "youtube" ? "Watch" : "Read"} the list ↗`}</a></li>;
+  return <section id="expert-lists" className="thc-box1 thc-xp">
+    <div className="thc-h"><strong>Picked in expert lists</strong><span>{`${picks.length} ${picks.length === 1 ? "outlet" : "outlets"}`}</span></div>
+    <ul className="thc-xp-l">{picks.slice(0, 6).map(row)}</ul>
+    {picks.length > 6 && <details className="thc-g-more"><summary>{`Show all ${picks.length}`}</summary><ul className="thc-xp-l">{picks.slice(6).map(row)}</ul></details>}
+  </section>;
+}
+
 function RedditBox({ rd }: { rd: Roundup }) {
   const day = rd.at ? new Date(rd.at).toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric", timeZone: "UTC" }) : null;
   // Mark each highlight where it sits in the paragraph, with its source number after it.

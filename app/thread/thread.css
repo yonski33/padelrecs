@@ -1738,6 +1738,7 @@ body:has(.th) .th a.rk5-row:hover .name { color: var(--hover); }
 .rk5-row .line { font-size: 15px; line-height: 1.4; }
 .rk5-row .chips { display: flex; gap: 6px; flex-wrap: wrap; }
 .rk5-row .pick { display: inline-flex; align-items: center; gap: 6px; font-size: 13px; font-weight: 600; padding: 2px 11px 2px 6px; border-radius: 999px; background: var(--r5-chip); }
+.rk5-row .xp { display: inline-flex; align-items: center; font-size: 13px; font-weight: 600; padding: 2px 11px; border-radius: 999px; border: 1.5px solid var(--ink); }
 .rk5-row .pick i { width: 11px; height: 11px; border-radius: 50%; border: 1.5px solid #3E9A2E; }
 .rk5-row .rating { font-size: 13px; font-weight: 700; padding: 1px 11px; border: 1.5px solid var(--ink); border-radius: 999px; background: #fff; white-space: nowrap; }
 .rk5-row .stat { display: flex; flex-direction: column; align-items: center; gap: 6px; }

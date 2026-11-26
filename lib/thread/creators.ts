@@ -236,7 +236,8 @@ export function marks(text: string, hs: string[]): { t: string; on: boolean }[] 
  *  `handle` and `tags` ride along for the card. UNVERIFIED like the takes themselves (page.tiktok.unverified). */
 export type ReviewEntry = CreatorReview & { handle?: string; tags?: string[]; cover?: string | null;
   /** The maker turned embedding off: the thumbnail opens the original in a new tab (live/video-overlay.tsx). */ noEmbed?: boolean;
-  /** Who this reviewer says the paddle suits, and why (db/creators/best-for.json, 2026-11-23). */ bestFor?: { who: string; why: string } | null };
+  /** Who this reviewer says the paddle suits, and why (db/creators/best-for.json, 2026-11-23). */ bestFor?: { who: string; why: string } | null;
+  /** This outlet's place in its own best-of list ("Best overall · Best laptops 2026", lib/thread/expert-lists.ts). */ badge?: string };
 export const takeAsReview = (t: TikTokTake): ReviewEntry => ({
   id: `tt-${t.id}`, creator: t.creator, kind: "tiktok", type: "review", url: t.url, channel: `https://www.tiktok.com/${t.handle}`,
   lang: "en", date: t.date, video: null, len: t.len, chapters: [], quote: t.quote, quoteAt: null, stance: t.stance,

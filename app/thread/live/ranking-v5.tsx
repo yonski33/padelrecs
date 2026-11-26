@@ -11,7 +11,8 @@ import { useAudioPicks } from "./audio-match";
 import { audioMatch, audioPickedAny, USES, SOUNDS, USE_WORDS, type AudioWire } from "../../../lib/audio-match";
 
 export type V5Row = { id: string; rank: number; name: string; href: string; pic: string | null; shape: string | null; line: string | null;
-  pos: number; mix: number; neg: number; rating: string | null; picked: string | null; arm: boolean };
+  pos: number; mix: number; neg: number; rating: string | null; picked: string | null; arm: boolean;
+  /** "Picked by 3 expert lists" (lib/thread/expert-lists.ts), or null. */ experts?: string | null };
 const cap = (s: string) => s[0].toUpperCase() + s.slice(1);
 /** A match this high reads as a good match; under it, the box says "closest fit" instead. */
 const GOOD = 80;
@@ -50,8 +51,9 @@ export function RankRows({ rows, ratingLabel, opinions, markLoved = false, wire,
         <span className="top"><span className="name">{r.name}</span>{r.shape && <span className="shape">{r.shape}</span>}
           {bestId === r.id && <span className="fit">Your best fit here</span>}</span>
         {r.line && <span className="line">{r.line}</span>}
-        {(r.picked || (r.rating && ratingLabel)) && <span className="chips">
+        {(r.picked || r.experts || (r.rating && ratingLabel)) && <span className="chips">
           {r.picked && <span className="pick"><i aria-hidden="true"/>{r.picked}</span>}
+          {r.experts && <span className="xp">{r.experts}</span>}
           {r.rating && ratingLabel && <span className="rating">{`${ratingLabel} ${r.rating}`}</span>}</span>}
       </span>
       <span className="stat">
