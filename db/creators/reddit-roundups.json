@@ -137,34 +137,38 @@
    ]
   },
   "spartus-p1-hybrid": {
-   "at": "2026-06-22",
-   "headline": "Players flag edge guard problems and a heavy feel.",
+   "posts": 5,
+   "threads": 4,
+   "at": "2026-06-21",
+   "headline": "Players find it heavy to swing, with loose edge guards reported",
    "tags": [
     {
      "tone": "neg",
-     "text": "Edge guard separating"
+     "text": "Edge guard coming loose",
+     "n": 2
     },
     {
      "tone": "neg",
-     "text": "Heavy swing"
+     "text": "Heavy to swing around",
+     "n": 2
     }
    ],
    "paras": [
-    "Several players report the edge guard separating, with one saying it was coming off after first use and another seeing dust near the edge guard after two months. One player calls it dense, connected and slightly muted, and one player says power held up after break-in.",
-    "One player found it heavy to swing around, and another measured a stock 8.7oz that felt head heavy, comparing it to a beefed up Coral. One player had to reinforce the edge guard with shoe glue. Another waited a month for delivery. Early signal from a small number of posts."
+    "Weight is the main thing players say about the hybrid. One player likes it but says it is definitely heavy to swing around. Another found it came in a little too heavy stock at 8.7oz and head heavy.",
+    "Durability comments centre on the edge guard. One player says it was coming off after first use, and another saw dust forming near the top and one side after 2 months. One player waited a month for the paddle to arrive in a late April shipping batch. Early signal from 5 posts."
    ],
    "highlights": [
     {
+     "text": "heavy to swing around",
+     "url": "https://www.reddit.com/r/Pickleball/comments/1rdpp7g/spartus_p1_hybrid_shape/o77k8yq/"
+    },
+    {
+     "text": "head heavy",
+     "url": "https://www.reddit.com/r/Pickleball/comments/1to7w60/weekly_paddle_recommendation_thread_what_paddle/oot2dcz/"
+    },
+    {
      "text": "coming off after first use",
      "url": "https://www.reddit.com/r/Pickleball/comments/1uag2fx/p1_standard_arrived_with_a_loose_edgeguard/oso30s8/"
-    },
-    {
-     "text": "dense, connected",
-     "url": "https://www.reddit.com/r/Pickleball/comments/1s92h9l/weekly_paddle_recommendation_thread_what_paddle/oeccbes/"
-    },
-    {
-     "text": "heavy to swing",
-     "url": "https://www.reddit.com/r/Pickleball/comments/1rdpp7g/spartus_p1_hybrid_shape/o77k8yq/"
     }
    ]
   },
@@ -1129,46 +1133,52 @@
    ]
   },
   "crbn3-trufoam-genesis": {
+   "posts": 15,
+   "threads": 14,
    "at": "2026-05-10",
-   "headline": "Pop, spin and touch, but some find it heavy",
+   "headline": "Players like the spin and ball placement, but some find it heavy",
    "tags": [
     {
      "tone": "pos",
-     "text": "Good pop"
+     "text": "Good spin and feel",
+     "n": 3
     },
     {
      "tone": "pos",
-     "text": "Good spin"
-    },
-    {
-     "tone": "pos",
-     "text": "Easy touch game"
+     "text": "Loved by several players",
+     "n": 3
     },
     {
      "tone": "neg",
-     "text": "Feels heavy"
+     "text": "Heavy, head heavy feel",
+     "n": 3
+    },
+    {
+     "tone": "neg",
+     "text": "Handle and face complaints",
+     "n": 2
     }
    ],
    "paras": [
-    "Players lean positive, though opinions vary. A few players like the pop or power and a few like the spin. One player calls drops, resets and dinks effortless and controlled, and another player finds placing the ball easier than ever. One player used their first one for about a year and says it felt super consistent and solid.",
-    "A few players point to weight, with one finding it too head heavy and another calling it super heavy. One player says it is not a power paddle and sits in the all-court segment. One player's pointer finger hurt from the handle, and another noticed a rattling sound within two weeks."
+    "Players mostly like it. Two say they love it after long use, one after about a year of heavy use. One calls it the best so far and likes the feel and spin, while another found placing the ball way easier than before. A player coming from another CRBN paddle found it a lot stronger and poppier at the kitchen and easy to add top spin for drives.",
+    "Weight is the most common complaint. One player called it super heavy after about 5 months as a main paddle, another found it too head heavy after trying all three Genesis shapes, and a third says it is not a power paddle and sits on the heavier side. One player was amazed by the power on day one, which runs against that. One player reports a rattling sound within two weeks of buying it, and another had issues with the central square of fiberglass. One player hates the handle, which hurt their pointer finger even with an overwrap, and another does not care for the paddle at all."
    ],
    "highlights": [
     {
-     "text": "effortless and controlled",
-     "url": "https://www.reddit.com/r/Pickleball/comments/1iavlbv/first_impressions_new_crbn_release/m9hszwd/"
+     "text": "best so far",
+     "url": "https://www.reddit.com/r/Pickleball/comments/1ob8186/weekly_paddle_recommendation_thread_what_paddle/nkln6m9/"
     },
     {
-     "text": "super consistent and solid",
-     "url": "https://www.reddit.com/r/Pickleball/comments/1t9aui2/did_crbn_change_something_with_the_truefoam_3/"
+     "text": "placing the ball way easier",
+     "url": "https://www.reddit.com/r/Pickleball/comments/1jl6l2a/first_10_hours_with_crbn_trufoam_genesis_3/"
+    },
+    {
+     "text": "super heavy",
+     "url": "https://www.reddit.com/r/Pickleball/comments/1m3n0ah/lf_feedback_on_the_crbn3_trufoam_genesis_gen_4/ngt9rwr/"
     },
     {
      "text": "too head heavy",
      "url": "https://www.reddit.com/r/Pickleball/comments/1iikftm/crbn_tf_genesis_3/mb75oor/"
-    },
-    {
-     "text": "rattling sound",
-     "url": "https://www.reddit.com/r/PickleballEquip/comments/1qgvl4k/crbn_trufoam_paddle_rattling_problem/"
     }
    ]
   },
@@ -1809,46 +1819,47 @@
    ]
   },
   "ronbus-ripple-v2-r4-14": {
-   "at": "2025-08-11",
-   "headline": "Strong power and control for some, too much or too dead for others",
+   "posts": 7,
+   "threads": 4,
+   "at": "2025-07-16",
+   "headline": "Players like the power and control, but some struggle with touch",
    "tags": [
     {
      "tone": "pos",
-     "text": "Strong power"
+     "text": "Players like the R4",
+     "n": 3
     },
     {
      "tone": "pos",
-     "text": "Good control"
-    },
-    {
-     "tone": "pos",
-     "text": "Big sweet spot"
+     "text": "Good control for a power paddle",
+     "n": 2
     },
     {
      "tone": "neg",
-     "text": "Hard to control for some"
+     "text": "Hard to place shots",
+     "n": 2
     }
    ],
    "paras": [
-    "Players are split, but those who like it point to power with control. A couple of players describe strong power or pop, and a few say control is good, with one calling it highly underrated. A couple of players mention a big sweet spot, and one longtime R1 player was won over by drives that dip more and drops that feel better.",
-    "Many players did not click with it. One called it the worst paddle in their bag after about two hours, one found it either dead or launching out of control, one found it too much at 3.0 to 3.5, and one found it small and toy-like. One player says it needs roughly ten hours to get most of the way there."
+    "Some players who posted about the R4 are happy with it. One describes top tier power along with good control and good spin, and another thinks the Ripples are highly underrated from a control perspective. One player who had stuck with a Ripple R1 since January says the R4 won them over.",
+    "Not everyone gets along with it. One player found it either felt dead or launched way too hard, and another cannot make it worth it because they like to place shots. A third calls it a really good paddle but finds the smaller shape feels like wielding a toy. One player, two weeks in, found it very similarly powered to their beta Ripple, with similar control. Early signal from 7 posts."
    ],
    "highlights": [
     {
-     "text": "strong power",
+     "text": "top tier power",
      "url": "https://www.reddit.com/r/Pickleball/comments/1lyql8d/weekly_paddle_recommendation_thread_what_paddle/n3dnzvl/"
     },
     {
-     "text": "highly underrated",
-     "url": "https://www.reddit.com/r/Pickleball/comments/1m0ybod/so_many_ronbus_ripple_v2_for_sale/n3dgg6a/"
+     "text": "felt dead or launched way too hard",
+     "url": "https://www.reddit.com/r/Pickleball/comments/1layxvr/thoughts_on_ronbus_v2_r414/"
     },
     {
-     "text": "worst paddle in their bag",
-     "url": "https://www.reddit.com/r/Pickleball/comments/1lwko1o/the_ronbus_ripple_v2_is_so_good/n2flbsg/"
+     "text": "wielding a toy",
+     "url": "https://www.reddit.com/r/Pickleball/comments/1l5uxy0/ronbus_ripple_v2_r4/mwm6m5m/"
     },
     {
-     "text": "too much",
-     "url": "https://www.reddit.com/r/Pickleball/comments/1mij2td/weekly_paddle_recommendation_thread_what_paddle/n85n2q2/"
+     "text": "very similarly powered",
+     "url": "https://www.reddit.com/r/Pickleball/comments/1layxvr/thoughts_on_ronbus_v2_r414/mxqxqun/"
     }
    ]
   },
@@ -1925,29 +1936,35 @@
    ]
   },
   "selkirk-labs-project-boomstik-elongated": {
+   "posts": 9,
+   "threads": 8,
    "at": "2026-09-30",
-   "headline": "Lots of power and mixed control; grit and feel fade for some",
+   "headline": "Players find big power but split on stability, feel and long-term comfort",
    "tags": [
     {
      "tone": "pos",
-     "text": "Plenty of power"
+     "text": "Hard-hitting, effortless power",
+     "n": 2
+    },
+    {
+     "tone": "pos",
+     "text": "Stable and controllable once adjusted",
+     "n": 2
     },
     {
      "tone": "neg",
-     "text": "Head-heavy"
+     "text": "Unstable, disappointing feel for some",
+     "n": 3
     },
     {
      "tone": "neg",
-     "text": "Too poppy or unstable"
-    },
-    {
-     "tone": "neg",
-     "text": "Grit and feel fade"
+     "text": "Side weights and elbow issues",
+     "n": 2
     }
    ],
    "paras": [
-    "Power is the common thread. A few players describe heavy power or pop, with one player saying the paddle would hit the ball hard regardless and another that power felt effortless for the first couple of weeks. Control splits the group: one player found how much control and stability it gave, while a couple of players found it too poppy for resets or unstable. A couple of players call it head-heavy.",
-    "Durability and feel over time worry some. A few players mention grit wearing or the paddle no longer feeling the same after a few weeks, and one player got a warranty replacement that plays very differently from the first. One player developed tennis elbow within a couple of weeks. A couple of borrowers disliked it, and one player still likes it despite the price."
+    "Players who liked the elongated Boomstik say it hits hard without much effort. One said the paddle would hit the ball hard regardless, so the focus was on generating topspin. Another found that power felt effortless in the first couple of weeks and that the soft game came together once they adjusted. A third credited the MOI Tuning System for the control and stability.",
+    "Several players were far less positive. One tried a friend's paddle for a game and called it an awful experience, one said it felt unstable and was the worst paddle they had used, and one was left disappointed after a brief hit. One said the ball will occasionally clip the weights on the side because they stick out, and another developed tennis elbow after just a couple weeks of play. One more said the same elongated model felt way too different. Early signal from 9 posts."
    ],
    "highlights": [
     {
@@ -1955,15 +1972,15 @@
      "url": "https://www.reddit.com/r/Pickleball/comments/1wrih7s/weekly_paddle_recommendation_thread_what_paddle/pd3itqm/"
     },
     {
-     "text": "how much control and stability",
-     "url": "https://www.reddit.com/r/Pickleball/comments/1n7xher/boomstick_is_too_head_heavy_how_did_you_approach/nceadk0/"
+     "text": "power felt effortless",
+     "url": "https://www.reddit.com/r/Pickleball/comments/1nltldi/selkirk_boomstik_foam_going_dead/nfeqw50/"
     },
     {
-     "text": "too poppy",
-     "url": "https://www.reddit.com/r/Pickleball/comments/1oxdtoz/just_got_a_pro_iv_perseus_firstever_gen_3_for_me/np014f6/"
+     "text": "clip the weights on the side",
+     "url": "https://www.reddit.com/r/Pickleball/comments/1qsi8co/wide_body_vs_elongated_paddle/o2x02f7/"
     },
     {
-     "text": "tennis elbow",
+     "text": "tennis elbow after just a couple weeks",
      "url": "https://www.reddit.com/r/Pickleball/comments/1od70nd/finally_finished_this_review_of_the_new_boomstik/o1bjcsi/"
     }
    ]
@@ -2281,30 +2298,38 @@
    ]
   },
   "joola-perseus-power-fx": {
+   "posts": 4,
+   "threads": 3,
    "at": "2026-10-07",
-   "headline": "Early reactions to the Power FX are positive",
+   "headline": "Players like the Power FX, but find the feel stiff and hollow",
    "tags": [
     {
      "tone": "pos",
-     "text": "Liked in first impressions"
+     "text": "Players liked it",
+     "n": 2
+    },
+    {
+     "tone": "neg",
+     "text": "Stiffer feel",
+     "n": 2
     }
    ],
    "paras": [
-    "Players are positive about the new Power FX so far. One player who played it twice says they really like the Power FX, and another says it was super nice. These are short first impressions rather than long-term reports.",
-    "Not everyone is fully sold on the feel. One player finds it stiffer but not jarring, which is a measured take rather than a complaint. No post mentions durability. Early signal from a small number of posts."
+    "Players come across mostly positive on the Power FX. Two say they like it, one describing it as super nice, and one calls it stiffer but not jarring. Another found it surprisingly controllable in the soft game.",
+    "One player describes the feel as stiff and hollow, and also notes it is light, has a longer handle and is grittier than the Joola Perseus Pro V. Nobody in these posts comments on grit durability. Early signal from 4 posts."
    ],
    "highlights": [
     {
-     "text": "really like the Power FX",
-     "url": "https://www.reddit.com/r/Pickleball/comments/1x019xf/new_joola_power_fx/peiaqvl/"
-    },
-    {
-     "text": "super nice",
-     "url": "https://www.reddit.com/r/Pickleball/comments/1wrih7s/weekly_paddle_recommendation_thread_what_paddle/pdqmw56/"
+     "text": "surprisingly controllable in the soft game",
+     "url": "https://www.reddit.com/r/Pickleball/comments/1x019xf/new_joola_power_fx/"
     },
     {
      "text": "stiffer but not jarring",
      "url": "https://www.reddit.com/r/Pickleball/comments/1wxe0nt/weekly_paddle_recommendation_thread_what_paddle/pdysoss/"
+    },
+    {
+     "text": "super nice",
+     "url": "https://www.reddit.com/r/Pickleball/comments/1wrih7s/weekly_paddle_recommendation_thread_what_paddle/pdqmw56/"
     }
    ]
   },
@@ -2477,29 +2502,39 @@
    ]
   },
   "engage-alpha-pro": {
-   "at": "2026-02-06",
-   "headline": "Players like the feel, power and consistency, but the curved top shape takes adjusting",
+   "posts": 7,
+   "threads": 6,
+   "at": "2026-02-24",
+   "headline": "Players like the power, spin and forgiveness, but the curved top takes adjusting.",
    "tags": [
     {
      "tone": "pos",
-     "text": "Feels good"
+     "text": "Power and pop",
+     "n": 2
     },
     {
      "tone": "pos",
-     "text": "Power and pop"
+     "text": "16mm feels great",
+     "n": 2
     },
     {
      "tone": "pos",
-     "text": "16mm gets praise"
+     "text": "Good first impressions",
+     "n": 2
+    },
+    {
+     "tone": "pos",
+     "text": "Curved shape works for some",
+     "n": 2
     }
    ],
    "paras": [
-    "Players who posted describe a paddle that feels great out of the box and felt really good in a demo. One player calls the 16mm a great combination of power, spin and forgiveness, and another found it more powerful and poppier. A player with more play time says drops and resets have been really consistent.",
-    "None of the posts cover durability or weight. One player says the curved top shape may throw people off at first, but that it is an excellent paddle once they get used to it. Early signal from a small number of posts."
+    "Players who use it describe a paddle that feels good quickly. One player said the 16mm feels great out of the box, and another found it really good after demoing a friend's. Two players pointed to power, with one finding it more powerful and poppier and another calling the 16mm a great combination of Power/Spin/Forgiveness.",
+    "Posts say little about durability, weight or comparisons to other paddles. The shape is the one point of caution: one player said the curved top may throw you off a bit but is excellent once it becomes familiar, while another named elongated curved as their best shape. Early signal from 7 posts."
    ],
    "highlights": [
     {
-     "text": "feels great out of the box",
+     "text": "great out of the box",
      "url": "https://www.reddit.com/r/Pickleball/comments/1qnl3i2/engage_alpha_line_long_term_take/o3xwush/"
     },
     {
@@ -2507,31 +2542,31 @@
      "url": "https://www.reddit.com/r/Pickleball/comments/1nlxcmi/new_engage_line_alpha_pro_alpha_and_profoam/nfd0oim/"
     },
     {
-     "text": "drops and resets have been really consistent",
-     "url": "https://www.reddit.com/r/Pickleball/comments/1newcz6/anyone_used_the_engage_profoam_surprising_lack_of/ngxjibd/"
-    },
-    {
-     "text": "an excellent paddle",
+     "text": "may throw you off",
      "url": "https://www.reddit.com/r/Pickleball/comments/1qos4eg/won_an_engage_alpha_pro_pickleball_paddle/o23pkso/"
     }
    ]
   },
   "franklin-c45-dynasty": {
+   "posts": 5,
+   "threads": 5,
    "at": "2026-03-01",
-   "headline": "Players like how it plays, but edge guard durability reports are mixed",
+   "headline": "Players like the playability, but one reports edge guard coming loose",
    "tags": [
     {
      "tone": "pos",
-     "text": "Players like how it plays"
+     "text": "Positive first impressions",
+     "n": 3
     },
     {
      "tone": "neg",
-     "text": "Edge guard durability mixed"
+     "text": "Durability reports are mixed",
+     "n": 2
     }
    ],
    "paras": [
-    "Players who commented are positive. One says they are loving it after setting up a new paddle, another was really impressed with the playability of the 14mm, and a third finds it comfortable for two handed backhands.",
-    "Durability reports are mixed. One player reports the edge guard coming off the top and sides after one month on a 16mm, while another has not had any durability issues with a 16mm. Early signal from a small number of posts."
+    "Players who posted about the Dynasty were positive. One player said they were loving it after setting up a new 16mm, and another was really impressed with the playability of the 14mm after one night of play. One player using the Dynasty found two handed backhands very comfortable.",
+    "Durability reports split. One player reported the edge guard coming off the top and sides of a 16mm after one month, while another had no durability issues with a 16mm. Early signal from 5 posts."
    ],
    "highlights": [
     {
@@ -2545,10 +2580,6 @@
     {
      "text": "edge guard coming off the top and sides",
      "url": "https://www.reddit.com/r/Pickleball/comments/1lcvuzd/franklin_c45_tour_2nd_edge_guard_attached_in_5/n5h0cmz/"
-    },
-    {
-     "text": "not had any durability issues",
-     "url": "https://www.reddit.com/r/Pickleball/comments/1ri0ngx/franklin_c45_parris_todd_durability_issues/o82v8bn/"
     }
    ]
   },
@@ -3045,42 +3076,43 @@
    ]
   },
   "selkirk-slk-era-power": {
+   "posts": 7,
+   "threads": 6,
    "at": "2026-09-04",
-   "headline": "Players praise touch and power, with a dead spot and some regret",
+   "headline": "Players like the power and touch, though a few found it disappointing",
    "tags": [
     {
      "tone": "pos",
-     "text": "Good drops and dinks"
+     "text": "Power without losing control",
+     "n": 3
     },
     {
      "tone": "pos",
-     "text": "Power with usable control"
+     "text": "Good touch on drops and dinks",
+     "n": 2
     },
     {
      "tone": "neg",
-     "text": "Some players unimpressed"
+     "text": "Some players unimpressed",
+     "n": 2
     }
    ],
    "paras": [
-    "Players who like it point to touch and power together. One player says they can \"drop consistently\" and have kitchen battles after switching to it, and another reports that \"Touch on drops and dinks was good\" along with serves where the ball exploded off the paddle. One player on the widebody calls it an \"Amazing sweet spot\" with power that is \"not tough to control\".",
-    "Complaints are mixed. One player with the elongated finds the top inch or so \"more of a dead spot than expected\". One widebody player hated it yet played it for almost six months, and another says tier one grit paddles make their ERA feel like an afterthought. One player finds it easier on the elbow than a Franklin, as was the Hyperion Pro IV, and one widebody player finds it denser and less stiff than the Vapor Power. Early signal from a small number of posts."
+    "Players who liked it point to power that stays controllable. One player says the ball exploded off the paddle on serves while drops and dinks stayed good, and another says it let them drop consistently and dink aggressively while still doing everything else. A player on the widebody finds it dense and less stiff than another paddle, with plenty of power and an amazing sweet spot.",
+    "The complaints are mixed. One player hated the widebody and kept playing it for almost six months because of sunk cost, and an elongated player finds the top inch or so feels like a dead spot. Another says some tier one grit paddles make their ERA feel like an afterthought. One player finds it easier on the elbow than another paddle they used. Early signal from 7 posts."
    ],
    "highlights": [
     {
-     "text": "drop consistently",
-     "url": "https://www.reddit.com/r/Pickleball/comments/1nbyrgy/is_this_actually_new_tech/nd5zmt1/"
-    },
-    {
-     "text": "Touch on drops and dinks was good",
+     "text": "exploded off the paddle",
      "url": "https://www.reddit.com/r/Pickleball/comments/1ldt7en/slk_era_power/myctura/"
     },
     {
-     "text": "Amazing sweet spot",
-     "url": "https://www.reddit.com/r/Pickleball/comments/1ldt7en/slk_era_power/n08scnr/"
+     "text": "dead spot",
+     "url": "https://www.reddit.com/r/Pickleball/comments/1qu4um2/selkirk_slk_era_power_questionsissues/"
     },
     {
-     "text": "more of a dead spot than expected",
-     "url": "https://www.reddit.com/r/Pickleball/comments/1qu4um2/selkirk_slk_era_power_questionsissues/"
+     "text": "sunk cost",
+     "url": "https://www.reddit.com/r/Pickleball/comments/1up4vtt/what_paddle_purchase_was_better_or_worse_than/ovxe5gu/"
     }
    ]
   },
@@ -3173,21 +3205,30 @@
    ]
   },
   "joola-scorpeus-pro-iv": {
+   "posts": 6,
+   "threads": 6,
    "at": "2026-02-26",
-   "headline": "Players mostly liked it; one reported a chip and one shoulder pain",
+   "headline": "Players like the fit and power, but report shoulder pain and a chip",
    "tags": [
     {
      "tone": "pos",
-     "text": "Liked after demoing or buying"
+     "text": "Liked it over other paddles",
+     "n": 2
+    },
+    {
+     "tone": "pos",
+     "text": "Good fit and power level",
+     "n": 2
     },
     {
      "tone": "neg",
-     "text": "Chip and shoulder pain reports"
+     "text": "Shoulder pain and chip reports",
+     "n": 2
     }
    ],
    "paras": [
-    "Players who tried or bought it were positive. One demoed the 14mm and found it to fit really well, another liked the large sweet spot on the 14mm and said the power level is just right, and a third who bought the 16mm next to another paddle loved it immediately.",
-    "One player reported a chip on a paddle that is fairly new, and another developed shoulder tendinitis and shoulder pain after starting on the 14mm. One player uses it with no added weight. Another tried the V-Sol Pro, Quanta and Loco and liked none of them as much as the 14mm. Early signal from a small number of posts."
+    "Players who tried it mostly liked it. One demoed the 14mm and found it to fit really well, and another enjoyed the large sweet spot and says the power level is just right. One player prefers the 14mm to three other paddles they tried, and another bought the 16mm alongside the 11SIX24 Vapor Power and loved the Scorpeus immediately.",
+    "Complaints are about the body and the build. One player started using the 14mm and developed shoulder tendinitis and shoulder pain, and another reports a chip on a fairly new paddle. Each of those is a single report. Early signal from 6 posts."
    ],
    "highlights": [
     {
@@ -3195,12 +3236,8 @@
      "url": "https://www.reddit.com/r/Pickleball/comments/1m0f5jm/elongated_vs_hybrid_vs_wide_body_paddles_for/n39bm52/"
     },
     {
-     "text": "large sweet spot",
+     "text": "power level is just right",
      "url": "https://www.reddit.com/r/Pickleball/comments/1lc5ykm/weekly_paddle_recommendation_thread_what_paddle/mzfeuka/"
-    },
-    {
-     "text": "fairly new",
-     "url": "https://www.reddit.com/r/Pickleball/comments/1rfoslh/my_joola_collin_johns_scorpeus_pro_iv_has_been/"
     },
     {
      "text": "shoulder tendinitis",
@@ -3249,21 +3286,25 @@
    ]
   },
   "honolulu-j3cr": {
+   "posts": 4,
+   "threads": 4,
    "at": "2026-09-09",
-   "headline": "Players like the control and power, but report early grit and consistency issues",
+   "headline": "Players liked the power and control, but report early grit and consistency problems",
    "tags": [
     {
      "tone": "pos",
-     "text": "Liked after trying it"
+     "text": "Liked after trying it",
+     "n": 2
     },
     {
      "tone": "neg",
-     "text": "Early problems reported"
+     "text": "Early grit and consistency trouble",
+     "n": 2
     }
    ],
    "paras": [
-    "A couple of players liked it. One switched to it because it suits their playing style, with enough power, more control and sweet spot. Another borrowed a J3 CBEG for one game and loved it.",
-    "A couple of players describe problems. One says their J3CR had a grit issue if it came from the early batch. Another got a Blue Grit version a few days ago and finds their shots really inconsistent so far. Early signal from a small number of posts."
+    "Two players liked it. One switched to the J3CR because it gives enough power, more control and sweet spot for their style, and another loved it after borrowing one for a game.",
+    "One player said an early batch unit had a grit issue, and another found their shots really inconsistent a few days after getting a Blue Grit unit. Early signal from 4 posts."
    ],
    "highlights": [
     {
