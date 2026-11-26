@@ -71,20 +71,20 @@
   },
   "spartus-p1-hybrid": {
    "paras": [
-    "Most note it runs heavy for a hybrid, and reviewers mostly compare it with the Bread & Butter Loco Hybrid, with several saying it pops less. The one mixed review, from Pickleball3en, found volley rolls at the kitchen popped too much, so pop is where they disagree. The five who checked found little grit wear."
+    "Reviewers recommend it mainly to players who want a durable surface, plus spin and stability on resets and dinks, with Pickleball Studio and Pickleball Effect both measuring little grit wear. Power is where takes differ: Farmer Lanky puts it at the bottom of the power category, Pickleball Effect places it firmly in the power category, and Pickleball Studio places it below the Bread & Butter Loco for pop. The swing weight draws repeated complaints, and Pickleball Studio and The Sweet Spot Pickleball both mention edge guard problems."
    ],
    "highlights": [
     {
-     "text": "runs heavy for a hybrid",
-     "tone": "neg"
-    },
-    {
-     "text": "popped too much",
-     "tone": "neg"
-    },
-    {
-     "text": "little grit wear",
+     "text": "a durable surface",
      "tone": "pos"
+    },
+    {
+     "text": "spin and stability on resets",
+     "tone": "pos"
+    },
+    {
+     "text": "swing weight draws repeated complaints",
+     "tone": "neg"
     }
    ]
   },
@@ -513,15 +513,23 @@
   },
   "crbn3-trufoam-genesis": {
    "paras": [
-    "Reviewers suit it to precision players who value dwell and soft-game control and are willing to tune it, and several call its spin among the best available. Two of the three mixed takes point to the high swing weight, with one finding it clunky and another struggling in hand battles. Several prefer the CRBN 2 shape."
+    "Reviewers who like to shape the ball praise the exceptional spin, dwell and easy soft game, though several flag a high swing weight. Takes split on the sweet spot, which PickleTip calls large for a 14 mm paddle and Farmer Lanky Pickleball calls really good, while Pickleheads calls it small to medium and Johnkew Pickleball finds it narrow. Pickleball Willy found drives landed short until lead tape was added, and Pickleheads, Johnkew Pickleball and Kev Knows Pickleball prefer the CRBN² TruFoam Genesis."
    ],
    "highlights": [
     {
-     "text": "spin among the best available",
+     "text": "exceptional spin",
      "tone": "pos"
     },
     {
-     "text": "finding it clunky",
+     "text": "easy soft game",
+     "tone": "pos"
+    },
+    {
+     "text": "high swing weight",
+     "tone": "neg"
+    },
+    {
+     "text": "drives landed short",
      "tone": "neg"
     }
    ]
@@ -630,15 +638,19 @@
   },
   "joola-kosmos-pro-v": {
    "paras": [
-    "Reviewers see a refinement of the Pro IV more than an upgrade, with a softer feel, less pop and more predictable resets. Several fault the smooth, low-grit face, and three question the price, with Francis Rances calling it a tough sell. Two suggest it for Pro IV fans who want a hybrid shape with more control."
+    "Reviewers mostly suit it to players who want a softer, more controllable hybrid-shape paddle with mid-tier power, and the 16mm is preferred over the 14mm. JJ Pickleball and Pickleball Playbook liked it a lot, while most other reviewers called it a small step from the previous generation, with less pop, a smooth face and expected core crush. Pickleball Studio found the 14mm stiff with a small sweet spot, and Johnkew Pickleball called it probably overpriced for most players."
    ],
    "highlights": [
     {
-     "text": "more predictable resets",
+     "text": "softer, more controllable",
      "tone": "pos"
     },
     {
-     "text": "a tough sell",
+     "text": "small step from the previous generation",
+     "tone": "neg"
+    },
+    {
+     "text": "stiff with a small sweet spot",
      "tone": "neg"
     }
    ]
@@ -804,15 +816,23 @@
   },
   "ronbus-ripple-v2-r4-14": {
    "paras": [
-    "Reviewers point this at advanced players and attackers who can control power, and the two positive takes both like the R4 shape. Two of the three mixed takes find the stock sweet spot tight, and two mention a stiff, tingy feel. Three reviewers add tungsten or throat weight to widen it."
+    "Reviewers who liked the R4.14 praise its effortless power, sharp pop and quick hybrid shape, and it suits advanced players who can control that power. Matt's Pickleball and PickleTip both find the stock sweet spot tight or only average on forgiveness until tungsten or lead tape is added, while Pickleball Studio sees little room to add weight. JJ Pickleball and Pickleball Studio also describe a stiff, slightly tingy feel and less spin than earlier Ripples, and Johnkew Pickleball calls durability the big unknown for foam paddles."
    ],
    "highlights": [
     {
-     "text": "both like the R4 shape",
+     "text": "effortless power",
      "tone": "pos"
     },
     {
-     "text": "stiff, tingy feel",
+     "text": "sharp pop",
+     "tone": "pos"
+    },
+    {
+     "text": "little room to add weight",
+     "tone": "neg"
+    },
+    {
+     "text": "less spin than earlier Ripples",
      "tone": "neg"
     }
    ]
@@ -861,30 +881,46 @@
   },
   "selkirk-labs-project-007": {
    "paras": [
-    "Reviewers suit it to experienced, hard-hitting players, and both positive takes prefer the 10 mm Epic for control and faster hands. All three mixed takes center on a small, unforgiving sweet spot, and two reviewers call the face jarring, with one telling players prone to tennis elbow to pass. Pickleball Studio does not think it is worth the money for most players."
+    "Reviewers mostly describe a power-first paddle for experienced players, with strong pop and spin praised overall, including pop from Pickleball Studio and West Side Pickleball and spin from STS PICKLEBALL. Complaints about a small sweet spot and a board-like, jarring feel come up in most reviews, and several reviewers add lead or tungsten tape to help. Takes also split by version: Famous by Friday Pickleball, Coach Meredith Pollack and STS PICKLEBALL prefer the 10 mm, while Briones Pickleball Breakdown favors the Epic shape for control and Pickleheads liked the Epic's balance of pop and control."
    ],
    "highlights": [
     {
-     "text": "prefer the 10 mm Epic",
+     "text": "power-first paddle",
      "tone": "pos"
     },
     {
-     "text": "small, unforgiving sweet spot",
+     "text": "strong pop and spin",
+     "tone": "pos"
+    },
+    {
+     "text": "small sweet spot",
+     "tone": "neg"
+    },
+    {
+     "text": "board-like, jarring feel",
      "tone": "neg"
     }
    ]
   },
   "selkirk-labs-project-boomstik-elongated": {
    "paras": [
-    "Reviewers recommend it for players who want maximum power with a forgiving sweet spot, and one says it has the most power and pop of any paddle they have tested. Both mixed takes find the feel stiff and dislike the permanent MOI weights, and both say the cheaper SLK Era is easier to handle. Loose edge guards are reported in several takes."
+    "Reviewers mostly praise the elongated Boomstik for top-end power and pop, a large sweet spot and easy spin, and it suits advanced players who want to attack. Mixed takes come from control: Pickleheads, STS PICKLEBALL and Rackets & Runners all note that the pop makes soft resets harder, and PaddleCompare finds it less forgiving in quick exchanges than the Selkirk LABS Project Boomstik Widebody. Matt's Pickleball and Pickleball Studio were the most mixed, citing loose or lifting edge guards, with Matt's Pickleball also questioning the value."
    ],
    "highlights": [
     {
-     "text": "most power and pop",
+     "text": "top-end power and pop",
      "tone": "pos"
     },
     {
-     "text": "Loose edge guards are reported",
+     "text": "large sweet spot",
+     "tone": "pos"
+    },
+    {
+     "text": "soft resets harder",
+     "tone": "neg"
+    },
+    {
+     "text": "loose or lifting edge guards",
      "tone": "neg"
     }
    ]
@@ -1119,80 +1155,84 @@
   },
   "luzz-cannon-xpp-m1": {
    "paras": [
-    "Reviewers mainly praise the spin, with three measuring around 2,200 RPM or more, plus power that stays predictable on a stable head. The heavy swing weight is the trade for three of them, making it slower in hand battles and less maneuverable at the net. Farmer Lanky, the one mixed take, finds it stiff and hard to control below 4.0."
+    "Reviewers mostly praise the very gritty face for heavy spin and dipping drives, and it suits spin-first players who want power and can handle a head-heavy swing. Mixed takes come from feel and control: Pickleball Studio Clips found a small, inconsistent sweet spot that needed added weight, while Pickleball Playbook Paddles called the sweet spot huge and stable. Pickle Li found resets unpredictable and Paddle Addicts found power lacking from the baseline, and several reviewers said grit durability is still unproven after limited play."
    ],
    "highlights": [
     {
-     "text": "power that stays predictable",
+     "text": "very gritty face",
      "tone": "pos"
     },
     {
-     "text": "slower in hand battles",
+     "text": "heavy spin and dipping drives",
+     "tone": "pos"
+    },
+    {
+     "text": "small, inconsistent sweet spot",
      "tone": "neg"
     },
     {
-     "text": "hard to control below 4.0",
+     "text": "grit durability is still unproven",
      "tone": "neg"
     }
    ]
   },
   "joola-perseus-power-fx": {
    "paras": [
-    "Aggressive players who want a stiff paddle for put aways get the clearest fit, and reviewers praise the rougher face, with Pickleball Studio calling the grit the best part and JJ Pickleball and Pickleball Effect both measuring spin near 2,100 RPM. Takes split on feel, as Johnkew Pickleball found it the stiffest of 236 paddles while Famous by Friday described a plush ride with decent touch and sweet spot. Pickleball Studio and Pickleball Effect both found the sweet spot weak or small, and Pickleball Studio's added weight strips raised swing weight from 114 to 123 to improve power and stability."
+    "Reviewers who like it, such as Pickleball Adventure and vonEgypt Pickleball, praise the pop and controllable feel for a full foam paddle, and Pickleball Effect and JJ Pickleball find the face grittier than the Joola Perseus Pro V. Takes turn mixed on feel: Pickleball Studio and Pickleball Effect describe a stiff, hollow face with a small sweet spot, JJ Pickleball and Pickleball Advocate were not won over, and Famous by Friday Pickleball found it just okay. Grit durability is a recurring worry, and Not Dead Yet Pickleball preferred the RPM Jade for control and feel."
    ],
    "highlights": [
     {
-     "text": "grit the best part",
+     "text": "pop and controllable feel",
      "tone": "pos"
     },
     {
-     "text": "plush ride",
-     "tone": "pos"
-    },
-    {
-     "text": "stiffest of 236 paddles",
+     "text": "small sweet spot",
      "tone": "neg"
     },
     {
-     "text": "sweet spot weak or small",
+     "text": "Grit durability is a recurring worry",
      "tone": "neg"
     }
    ]
   },
   "neonic-flare-prime-x": {
    "paras": [
-    "Reviewers like it as a light, poppy widebody that is quick at the net, with several pointing to the low price. Feel is the disagreement: The Pickleball Reviews finds it plush with good touch, while Daniel Pickleball and Pickleball Studio find it stiff and poppy, so drops are harder to place. All Drive No Drop finds the power and pop sit below the Paddletek ESQ."
+    "Reviewers mostly praise the pop, quick hands at the net and a sweet spot that several call large, and Tickle My Pickleball rates it among the best 14mm paddles. Mixed takes come from tape and control: Pickleball Medicine and The Pickleball Reviews found the stock sweet spot smaller than average until lead tape was added, and Daniel Pickleball, the only mixed review, found it stiff with random pop ups on drops and resets. Power is described differently too, as a power paddle all day by Matthew K Pickleball but more of an all court paddle by Pickleball Medicine."
    ],
    "highlights": [
     {
-     "text": "quick at the net",
+     "text": "quick hands at the net",
      "tone": "pos"
     },
     {
-     "text": "drops are harder to place",
+     "text": "stock sweet spot smaller than average",
      "tone": "neg"
     },
     {
-     "text": "sit below the Paddletek ESQ",
+     "text": "random pop ups on drops and resets",
      "tone": "neg"
     }
    ]
   },
   "paddletek-the-reserve-honeyfoam": {
    "paras": [
-    "Reviewers mostly praise the soft, plush feel and the dwell that helps with dinks, drops and spin, and the paddle tends to suit higher level players who accept lower power and may add weight. Price and power draw the criticism, with Womack Pickleball and Kev Knows Pickleball both calling it hard to recommend, while Pickle Li finds above average pop and gives it 7 out of 10. Sweet spot reports split, with Pickleheads calling it large and dependable and Womack Pickleball and Kev Knows Pickleball rating it below average or small."
+    "Reviewers praise the very soft, plush feel and extra dwell, which suits players who want control on dinks, drops and resets and who can make their own power. Sweet spot opinions split: Pickleball Playbook Paddles and Pickleheads call it big and dependable, while Womack Pickleball finds it below average and Kev Knows Pickleball finds it small, and Matt's Pickleball and Kev Knows Pickleball both added weight to improve stability. Pickle Li and MyPickleList found distance hard to predict with more pop-up resets, and Pickleheads also found it head heavy and clunky."
    ],
    "highlights": [
     {
-     "text": "soft, plush feel",
+     "text": "very soft, plush feel",
      "tone": "pos"
     },
     {
-     "text": "large and dependable",
+     "text": "control on dinks, drops and resets",
      "tone": "pos"
     },
     {
-     "text": "hard to recommend",
+     "text": "below average",
+     "tone": "neg"
+    },
+    {
+     "text": "more pop-up resets",
      "tone": "neg"
     }
    ]
@@ -1237,19 +1277,19 @@
   },
   "ronbus-ripple-v2-r1-14": {
    "paras": [
-    "Reviewers agree it is among the most powerful paddles they tried, with maximum plow through on drives, serves and putaways. The shared trade is a 124 to 126 swing weight, which makes it slow in hand battles at the net, with a small sweet spot and low twist weight. Pickleball Medicine and Dash Pickleball are the most upbeat, though both still call it heavy."
+    "Reviewers praise very high legal power and pop on drives, counters and overheads, and the paddle suits aggressive or advanced players who can handle a head-heavy elongated shape. Mixed takes from Pickleball Studio, Cody Childers, Rackets & Runners and Matt's Pickleball centre on a swing weight above 120, a tight sweet spot and slow hands in fast exchanges, and Pickleball Studio, Matt's Pickleball and Pickleball Medicine lean toward the Ronbus Ripple V2 R4.14 hybrid instead. Several reviewers also say spin is lower than the earlier beta version, and two reviewers call the durability of the foam core unknown."
    ],
    "highlights": [
     {
-     "text": "maximum plow through",
+     "text": "very high legal power",
      "tone": "pos"
     },
     {
-     "text": "slow in hand battles at the net",
+     "text": "swing weight above 120",
      "tone": "neg"
     },
     {
-     "text": "small sweet spot",
+     "text": "tight sweet spot",
      "tone": "neg"
     }
    ]
@@ -1336,20 +1376,24 @@
   },
   "volair-shift-el": {
    "paras": [
-    "Several reviewers find it the heaviest ball of the three Shift shapes, with dwell that helps touch shots. The split is stability: PickleTip gives it the lowest twist weight of the three shapes and Matt's Pickleball finds it the most sensitive on mishits, while STS Pickleball calls it their least favorite shape. Pickleball Medicine picks it as the favorite, with playable shots off the tip of the face."
+    "Reviewers who liked it, including Pickleball Blast, Pickleball Pursuit and Salt N Pepper Pickleball, point to spin and shot shaping for intermediate to advanced players, while Pickleball Medicine, Matt's Pickleball and PickleTip describe a dense, connected feel. Mixed takes come mostly from the small sweet spot and a swing weight that Pickleball Blast and InfoTechYeti found high for a 14mm paddle, plus the question of added weight, which Matt's Pickleball and PickleTip say the elongated wants most, while Famous by Friday Pickleball advises against adding much. STS Pickleball and Matt's Pickleball were the least keen, with STS Pickleball preferring the Enhance MPP Turbo ArmorGrit and Matt's Pickleball wanting a poppier response."
    ],
    "highlights": [
     {
-     "text": "the most sensitive on mishits",
-     "tone": "neg"
-    },
-    {
-     "text": "least favorite shape",
-     "tone": "neg"
-    },
-    {
-     "text": "playable shots off the tip",
+     "text": "spin and shot shaping",
      "tone": "pos"
+    },
+    {
+     "text": "dense, connected feel",
+     "tone": "pos"
+    },
+    {
+     "text": "small sweet spot",
+     "tone": "neg"
+    },
+    {
+     "text": "wanting a poppier response",
+     "tone": "neg"
     }
    ]
   },
@@ -1412,61 +1456,61 @@
   },
   "volair-cmd-hyb": {
    "paras": [
-    "Reviewers praise the spin and its durability on this light 16mm hybrid, and Pickleball Playbook and Matt's Pickleball also like the easy soft game. Opinions split on power and sweet spot: Farmer Lanky Pickleball puts power at the bottom of its category, while Pickleball Playbook calls it very powerful, and Pickleball Studio and JJ Pickleball found the sweet spot average or weak off-center at stock weight. Several reviewers add tape to steady it, though Pickleball Studio disliked half gram tungsten tape at the head and bottom corners."
+    "Reviewers mostly praise the spin from the licensed HexGrit surface, along with a soft, hollow feel that suits all-court play and touch at the kitchen. Opinions split on the sweet spot: Pickleball Pursuit and Austin Hardy call it large or huge, while SupaSenpai calls it small and STS Pickleball scores it about average for a hybrid. Many reviewers also found the stock weight light and added tape, and STS Pickleball found it less poppy than the Honolulu J2CR Blue Grit."
    ],
    "highlights": [
     {
-     "text": "spin and its durability",
+     "text": "spin from the licensed HexGrit surface",
      "tone": "pos"
     },
     {
-     "text": "easy soft game",
-     "tone": "pos"
+     "text": "SupaSenpai calls it small",
+     "tone": "neg"
     },
     {
-     "text": "weak off-center at stock weight",
+     "text": "stock weight light",
      "tone": "neg"
     }
    ]
   },
   "engage-alpha-pro": {
    "paras": [
-    "Reviewers praised the pop, spin and drives, with Pickle Li, who also posts on MyPickleList, calling it a mid-tier power paddle that plays well stock, while The Pickleball Pirates placed it in the upper third for power. Mixed takes come from feel and sweet spot: West Side Pickleball found it muted with a narrower sweet spot than the Hyperion, Pickleball Playbook said the sweet spot is not massive, and Matt's Pickleball called the price a tough sell. Matt's Pickleball and The Pickleball Pirates both preferred the 16mm over the 14mm."
+    "Reviewers praise its pop, spin and control for a power paddle, and The Pickleball Pirates and Matt's Pickleball both picked the 16mm over the 14mm. Mixed takes come from feel and price: Salt 'N Brine Picklers and West Side Pickleball found it stiffer or muted with a smaller sweet spot than the JOOLA Pro IV Hyperion, though West Side Pickleball still picked it for the extra grit, and SupaSenpai said the curved top shape puts off many players. Pickle Li, on YouTube and MyPickleList, rates it about level with the Engage Profoam, with more firepower but slightly less shot shaping."
    ],
    "highlights": [
     {
-     "text": "mid-tier power paddle",
+     "text": "pop, spin and control",
      "tone": "pos"
     },
     {
-     "text": "plays well stock",
+     "text": "smaller sweet spot",
+     "tone": "neg"
+    },
+    {
+     "text": "more firepower",
      "tone": "pos"
-    },
-    {
-     "text": "muted with a narrower sweet spot",
-     "tone": "neg"
-    },
-    {
-     "text": "tough sell",
-     "tone": "neg"
     }
    ]
   },
   "franklin-c45-dynasty": {
    "paras": [
-    "Reviewers praise strong pop, spin and a plush feel, and it suits players who want power without losing touch. Most find the 14mm more aggressive with more pop, while Pickleball Pursuit and Johnkew Pickleball find the 16mm softer with less pop. Stock weight splits opinion, as Pickleball Effect and Famous by Friday Pickleball add weight while Johnkew Pickleball found it easy to play stock, and the price is called high by Famous by Friday Pickleball but fair by Pickleball Union."
+    "Reviewers mostly praise a light, quick elongated paddle with strong pop and spin, with the 14mm more powerful and the 16mm softer and easier to control, as Pickleball Pursuit and Johnkew Pickleball describe. Pickleball Medicine and Matt's Pickleball found it needs added weight to feel stable, while JJ Pickleball and Johnkew Pickleball found it easier to play stock than the Franklin C45 Hybrid. Pickleball Union reported that the metallic edge guard scuffs easily, and Johnkew Pickleball saw matte edge guard paint wearing off."
    ],
    "highlights": [
     {
-     "text": "strong pop, spin and a plush feel",
+     "text": "strong pop and spin",
      "tone": "pos"
     },
     {
-     "text": "16mm softer with less pop",
+     "text": "easier to play stock",
+     "tone": "pos"
+    },
+    {
+     "text": "needs added weight to feel stable",
      "tone": "neg"
     },
     {
-     "text": "the price is called high",
+     "text": "edge guard scuffs easily",
      "tone": "neg"
     }
    ]
@@ -1580,19 +1624,19 @@
   },
   "luzz-glider-2026-hybrid": {
    "paras": [
-    "Reviewers mostly praise the quick hands, spin and easy dinks, drops and resets, and it suits all-court players. Power is where takes split: Pickleheads calls it the best budget power paddle they have played, while Amir's Pickleball and Spinwave Pickleball say power is not its strength, and STS Pickleball rates control as its weakest score. Grit life is the common worry, with The New Main Pickleball seeing wear near the center after about 10 hours and Spinwave Pickleball reporting the grit wore off after the first day."
+    "Most reviewers praise the control, spin and large sweet spot of this light hybrid, with resets, drops and dinks drawing the most positive comments. Mixed takes come from power and feel: Mid-Century Pickleball found a longer break-in and less dwell time than the Luzz Glider 2024, and Pickleball Willy found it stiffer with harder drops and dinks, while Pickleheads called the pop explosive, though most reviewers who compared it with the Luzz Cannon found the Cannon hits harder. Grit life is the other open question, with The New Main Pickleball seeing wear near the center after about 10 hours and Spinwave Pickleball reporting the grit wore off after the first day."
    ],
    "highlights": [
     {
-     "text": "quick hands, spin and easy dinks",
+     "text": "control, spin and large sweet spot",
      "tone": "pos"
     },
     {
-     "text": "best budget power paddle",
-     "tone": "pos"
+     "text": "longer break-in and less dwell time",
+     "tone": "neg"
     },
     {
-     "text": "grit wore off after the first day",
+     "text": "wear near the center after about 10 hours",
      "tone": "neg"
     }
    ]
@@ -2038,19 +2082,19 @@
   },
   "selkirk-slk-era-power": {
    "paras": [
-    "Reviewers praise the pop, the value and the one-year warranty, with Johnkew Pickleball and Pickleball Studio both calling the sweet spots generous or top tier. Takes split on power and shape: Pickleball Effect and Matt's Pickleball call the elongated 16mm an all-court paddle rather than a power paddle, Pickle Li puts the 16mm widebody at lower to mid tier power, and Pickleheads and Pickleball Willy find the elongated sweet spot tight or smaller than the widebody. Resets and drops feel harder at first for some, as West Side Pickleball struggled with resets and The Pickleball Pirates found the stiff face jarring on resets."
+    "Reviewers broadly praise it as a well-rounded power paddle, with Pickleball Pursuit and All Drive No Drop calling it the best Selkirk by a wide margin and Famous by Friday singling out spin and dwell time. Mixed takes come from shape and power level: Pickleball Willy calls the widebody very forgiving but capped around six or seven out of ten power, while Pickleheads finds the elongated sweet spot noticeably tight and Johnkew Pickleball finds it generous. Against the 11SIX24 Hurache-X Power, Pickleball Tech Dude finds the ERA Power more responsive, while Pickleball Effect says the 11SIX24 Power is nearly as good for less, and several reviewers note durability is unproven."
    ],
    "highlights": [
     {
-     "text": "generous or top tier",
+     "text": "best Selkirk by a wide margin",
      "tone": "pos"
     },
     {
-     "text": "all-court paddle rather than a power paddle",
+     "text": "capped around six or seven",
      "tone": "neg"
     },
     {
-     "text": "stiff face jarring on resets",
+     "text": "durability is unproven",
      "tone": "neg"
     }
    ]
@@ -2114,23 +2158,19 @@
   },
   "holbrook-arma-t": {
    "paras": [
-    "Reviewers mostly praise the power and pop, with vonEgypt Pickleball rating counters at Paddletek level or better and Famous by Friday Pickleball measuring a 52.6 mph serve against a normal serve near 50. Mixed takes come from durability, where Pickleball Studio and Pickleball Pursuit point to bad looking X-rays and crushed or compressed core cells and suggest waiting, and from feel, where Paddle Addicts found it head heavy with jarring off-center hits after adding weight while vonEgypt Pickleball found the sweet spot covers most of the paddle. Pickleball Pursuit and Paddle Addicts both preferred it to the Metallic T."
+    "Reviewers praise the Holbrook Arma T for big pop, spin and a roomy sweet spot for a 14mm paddle, and it suits aggressive drivers who can handle a high swing weight. Mixed takes come mainly from durability, where Johnkew Pickleball, Pickleball Pursuit and Pickleball Studio cited core crush in a cut open unit or X-rays and advised waiting, and from feel, where Paddle Addicts reported jarring off-center hits while vonEgypt Pickleball found none. Pickleball Portal and Famous by Friday Pickleball, who used the metallic version, saw no play loss yet but both noted occasional flyers and said it is not for control-first players."
    ],
    "highlights": [
     {
-     "text": "power and pop",
+     "text": "big pop, spin and a roomy sweet spot",
      "tone": "pos"
     },
     {
-     "text": "counters at Paddletek level or better",
-     "tone": "pos"
-    },
-    {
-     "text": "crushed or compressed core cells",
+     "text": "cited core crush",
      "tone": "neg"
     },
     {
-     "text": "head heavy",
+     "text": "jarring off-center hits",
      "tone": "neg"
     }
    ]
@@ -2175,19 +2215,23 @@
   },
   "joola-scorpeus-pro-iv": {
    "paras": [
-    "Reviewers mostly praise the power, and Pickleheads, All Drive No Drop and WhiskyDink lean toward the 16mm widebody for more control and a softer feel than the 14mm. Mixed takes come from touch and feel: Francis Rances found the 14mm too powerful for a control game, Paddle Addicts kept the 16mm as a backup because of a stiffer face and less drive power, and STS Pickleball called its pop very low while WhiskyDink noted high pop at the kitchen. The short 5.25 inch handle was criticized by All Drive No Drop and STS Pickleball, and WhiskyDink pointed out the price."
+    "Reviewers mostly praise it as a power widebody with a big, stable face, and it suits players who like widebody shapes and want power with control. Takes differ on how much power it has: All Drive No Drop rates top-end power among the best in the game, while PickyPaddle says it is not a power paddle and that a short swing lands short. Paddle Addicts and Francis Rances were mixed, citing a stiffer feel and less drive power in one case and a very poppy 14mm that is too powerful for touch players in the other."
    ],
    "highlights": [
     {
-     "text": "lean toward the 16mm widebody",
+     "text": "big, stable face",
      "tone": "pos"
     },
     {
-     "text": "too powerful for a control game",
+     "text": "top-end power among the best",
+     "tone": "pos"
+    },
+    {
+     "text": "not a power paddle",
      "tone": "neg"
     },
     {
-     "text": "short 5.25 inch handle",
+     "text": "too powerful for touch players",
      "tone": "neg"
     }
    ]
@@ -2255,19 +2299,19 @@
   },
   "honolulu-j3cr": {
    "paras": [
-    "Reviewers mostly praise the large sweet spot, the pop and the spin, and it suits players who want compact offense at the net. Mixed takes come from sibling comparisons: Pickleball Playbook and The Pickleball Reviews rank the J2CR ahead, and Wongsquared would probably pick the J6 and found fast dinks hard to control. Grit durability is disputed, with West Side Pickleball noting no durable grit surface while The Pickleball Reviews calls Blue Grit durable."
+    "Reviewers praise a big sweet spot, forgiving feel and quick hands in hands battles, and Johnkew Pickleball measured a KewCOR of 0.416, well above the Honolulu J3NF. Takes are mixed on control and balance: Pickleball Playbook found it more jarring on off-center hits and top heavy, and still picked the Honolulu J2CR, while Wongsquared found fast dinks harder to control and would now lean toward the Honolulu J6CR. Grit durability is split, with Not Dead Yet rating the Crystal Blue Endurance surface tier one while West Side Pickleball said the paddle lacks a durable grit surface."
    ],
    "highlights": [
     {
-     "text": "large sweet spot",
+     "text": "big sweet spot",
      "tone": "pos"
     },
     {
-     "text": "fast dinks hard to control",
+     "text": "jarring on off-center hits",
      "tone": "neg"
     },
     {
-     "text": "no durable grit surface",
+     "text": "lacks a durable grit surface",
      "tone": "neg"
     }
    ]
@@ -2320,11 +2364,11 @@
   },
   "pickleball-apes-charm": {
    "paras": [
-    "Reviewers praise the plush, dense feel, long dwell time and forgiving control, with several calling it an all-court paddle that suits players who want touch over loud pop. Takes turn mixed on power and shape: Matt's Pickleball and Pickleball Blast find power modest next to the Loco or Boomstik, while Johnkew Pickleball finds all three shapes hit harder than the Harmony. The X elongated draws swing weight concerns, with Johnkew Pickleball measuring 123.5 and TIM Z reporting 121 to 123, and Matt's Pickleball never got on with the V widebody, while Pickleball Medicine names the V a personal favorite."
+    "Reviewers mostly praise the soft, plush feel and long dwell time, which make dinks, drops and resets easy, with power described as all-court or lower-end rather than explosive. Takes split on shape: the elongated X has a swing weight of roughly 121 to 124 that Tickle My Pickleball, Johnkew Pickleball and TIM Z point to as heavy, while DDOG_Pickleball and Pickleball Medicine pick the V widebody as a favorite and Matt's Pickleball says the V never came together. Sweet spot ratings range from large (Famous by Friday Pickleball) to solid but not best in class (Johnkew Pickleball)."
    ],
    "highlights": [
     {
-     "text": "plush, dense feel",
+     "text": "soft, plush feel",
      "tone": "pos"
     },
     {
@@ -2332,79 +2376,102 @@
      "tone": "pos"
     },
     {
-     "text": "power modest next to the Loco",
-     "tone": "neg"
-    },
-    {
-     "text": "swing weight concerns",
+     "text": "swing weight of roughly 121 to 124",
      "tone": "neg"
     }
    ]
   },
   "selkirk-omni": {
    "paras": [
-    "Reviewers who like it, including Nikki Maldonado and The Pickleball Pirates, praise the control on drops and resets, Pickleball Advocate found better control than the Boomstik, and it suits players who found the Boomstik too hot. Mixed takes come from power and value: Johnkew Pickleball measured lower firepower, Pickleheads found power lacking, and Pickleball Studio called the price hard to justify for an all-court paddle. Grit wear is another worry for Nico the Lefty and Pickleball Studio, and The Pickleball Dad, Johnkew Pickleball and Nico the Lefty preferred the widebody over the elongated shape."
+    "Reviewers such as PickleBaller and Pickleball Playbook Paddles praise the easier control on drops and resets, and it suits players who found the Selkirk Boomstick too hot but still want power. Takes turn mixed on how much is given up: most say power and pop sit below the Boomstick, while JJ Pickleball and Pickleball Studio found it stiff and poppy with the weights on and softer only with them off. Grit durability and price drew complaints from Nico the Lefty, while JJ Pickleball also doubted the grit, and Pickleheads called it hard to justify."
    ],
    "highlights": [
     {
-     "text": "control on drops and resets",
+     "text": "easier control on drops and resets",
      "tone": "pos"
     },
     {
-     "text": "too hot",
-     "tone": "pos"
+     "text": "power and pop sit below",
+     "tone": "neg"
     },
     {
-     "text": "price hard to justify",
+     "text": "Grit durability and price",
      "tone": "neg"
     }
    ]
   },
   "mark-unmarked": {
    "paras": [
-    "Reviewers praise the power, pop and stable sweet spot, with a swing weight around 112 to 115 that feels light for an elongated shape. Mixed takes come from soft shots, where Matt's Pickleball and Nico the Lefty both describe thin margins on resets, drops and dinks, and Pickleball Effect recommends it only for players with a developed soft game. Grit life is disputed: JJ Pickleball and Pickleball Tech Dude say it wears faster than marketed, while West Side Pickleball found spin still strong after 60 hours."
+    "Reviewers who like power praise the big pop, large sweet spot and light, fast swing for an elongated shape, and most point it at advanced or offense-first players with soft hands. Opinions split on grit durability: Pickleball Effect saw it hold 96% in durability testing, while Pickleball Tech Dude measured spin retention of 88% after 10,000 shots and Maiko noted slight spin loss. Pickleball Review found the Spartus Spitfire softer and easier for drops, and Pickleball Pursuit found resets tricky because of the boingy pop."
    ],
    "highlights": [
     {
-     "text": "power, pop and stable sweet spot",
+     "text": "big pop",
      "tone": "pos"
     },
     {
-     "text": "thin margins on resets, drops and dinks",
-     "tone": "neg"
+     "text": "large sweet spot",
+     "tone": "pos"
     },
     {
-     "text": "wears faster than marketed",
+     "text": "found resets tricky",
      "tone": "neg"
     }
    ]
   },
   "bread-butter-loco-2-hybrid": {
    "paras": [
-    "Reviewers mostly recommend the Hybrid to players who liked the original Loco and want more spin from a grit face that has held up in wear tests, with Pickleball Effect reporting 94% grit texture retained. Control is where takes split: Paddle Addicts finds dinks, drops and resets easier than on the Elongated, while STS PICKLEBALL rates control below average for a hybrid and From Tennis to Pickleball finds soft shots too poppy. Pickleball Effect and PickleTip point reach-minded players to the Elongated, and Pickleball Studio found the Hybrid less poppy at the net than last year's widebody."
+    "Reviewers mostly praise it as the same feel as the Bread & Butter Loco with a grittier face that adds spin and has held up so far, along with a roomy sweet spot and quick hands. Mixed takes come from the lively pop, with From Tennis to Pickleball finding soft shots too poppy and STS Pickleball rating control below average for a hybrid, while Matthew K Pickleball found it stiffer and more predictable than the original. On comparisons, Pickleball Playbook Paddles rated it slightly ahead of the 11SIX24 Ultré Power 2, while STS Pickleball called the two about even."
    ],
    "highlights": [
     {
-     "text": "94% grit texture retained",
+     "text": "a grittier face that adds spin",
      "tone": "pos"
     },
     {
-     "text": "rates control below average for a hybrid",
+     "text": "roomy sweet spot",
+     "tone": "pos"
+    },
+    {
+     "text": "soft shots too poppy",
      "tone": "neg"
     },
     {
-     "text": "finds soft shots too poppy",
+     "text": "control below average for a hybrid",
      "tone": "neg"
     }
    ]
   },
   "honolulu-j2nf": {
    "paras": [
-    "Reviewers mostly praised the control, forgiving sweet spot and low swing weight, with Pickleball Studio, Johnkew Pickleball and West Side Pickleball all calling the sweet spot large or generous. Power is where takes split: PickleBaller rated it A and Pickleball Medicine found more pop than the FC Plus, while Pickleball Studio put power in the lower end of the range and West Side Pickleball, on the long handle version, called it mid to low against newer paddles. Pickleball Studio and Paddle Addicts both said the handle plays closer to 5.25 in than the listed 5.5 in, and Pickleball Medicine said it does not fit two hands."
+    "Reviewers mostly praise the huge sweet spot, strong spin and easy control, and suggest it for players wanting a forgiving all-court foam paddle. Power is where takes split: All Drive No Drop Pickleball rated serves and drives among the best they have had, while West Side Pickleball found it less powerful than the Bread & Butter Loco, and Pickleball Studio did not put it on par with the hardest hitters. Several reviewers describe it as firmer and poppier than the Honolulu J2FC+ and the Honolulu J2NFT, and Pickleball Medicine and SupaSenpai both flagged the short handle as a problem for backhands."
    ],
    "highlights": [
     {
-     "text": "forgiving sweet spot",
+     "text": "huge sweet spot",
+     "tone": "pos"
+    },
+    {
+     "text": "strong spin",
+     "tone": "pos"
+    },
+    {
+     "text": "less powerful than the Bread & Butter Loco",
+     "tone": "neg"
+    },
+    {
+     "text": "short handle",
+     "tone": "neg"
+    }
+   ]
+  },
+  "honolulu-j2fc-plus": {
+   "paras": [
+    "Reviewers mostly praise a soft, plush feel that makes dinks, drops and resets easy, along with good spin and a low swing weight. In head-to-heads with the Honolulu J2NF, UnforcedErrorsPB, The Sweet Spot Pickleball and STS PICKLEBALL found it more control oriented and a little less powerful, while Matthew K Pickleball found it poppier and prone to popping soft hits up. The handle drew complaints too, with Pickleball Medicine saying it does not allow two hands and Pickleball Studio saying it plays closer to 5.25 inches."
+   ],
+   "highlights": [
+    {
+     "text": "soft, plush feel",
      "tone": "pos"
     },
     {
@@ -2412,30 +2479,11 @@
      "tone": "pos"
     },
     {
-     "text": "lower end of the range",
+     "text": "a little less powerful",
      "tone": "neg"
     },
     {
-     "text": "closer to 5.25 in",
-     "tone": "neg"
-    }
-   ]
-  },
-  "honolulu-j2fc-plus": {
-   "paras": [
-    "Reviewers mostly praise the soft, forgiving feel and the spin, with control on dinks, drops and resets as the usual strength. Most comparisons against the Honolulu J2NF find the J2FC+ softer with less pop, but Matthew K Pickleball found the J2FC+ poppier, with a trampoline-like feel in a smaller area, and noted that other reviewers disagree. InfoTechYeti was mixed, liking the drop feel but disliking the balance point and the grip, and said they would play the Enhance Duo instead."
-   ],
-   "highlights": [
-    {
-     "text": "soft, forgiving feel",
-     "tone": "pos"
-    },
-    {
-     "text": "softer with less pop",
-     "tone": "neg"
-    },
-    {
-     "text": "disliking the balance point",
+     "text": "does not allow two hands",
      "tone": "neg"
     }
    ]
@@ -2465,23 +2513,19 @@
   },
   "selkirk-boomstik-st": {
    "paras": [
-    "Reviewers who liked it praise the extra spin and power, mostly for players already set on the original Boomstik, with Pickleball Advocate and Ty Butson the most positive. Opinions split on durability: Pickleball Studio measured the forehand side dropping 24% in spin after roughly 49 games, while STS Pickleball found the grit holding up pretty well with its test under halfway done. Resets are another split, with Axel Lee Pickleball calling them the hardest part and Pickleball Studio calling it a reset stick, and the price is a sticking point for several reviewers."
+    "Reviewers who like a stiff, hollow power paddle mostly praise the extra spin over the original Selkirk Boomstik, and several also like the removable MOI weights. Opinions split on grit life: Pickleball Studio measured about 25% less surface roughness after roughly 37 games and could not recommend its unit, while STS PICKLEBALL found the grit holding up fairly well with its test under halfway done. Power and control also vary, with some reviewers finding it slightly less powerful and easier to manage than the original and others finding it equally strong, and several call it pricey."
    ],
    "highlights": [
     {
-     "text": "the extra spin and power",
+     "text": "mostly praise the extra spin",
      "tone": "pos"
     },
     {
-     "text": "holding up pretty well",
+     "text": "removable MOI weights",
      "tone": "pos"
     },
     {
-     "text": "dropping 24% in spin",
-     "tone": "neg"
-    },
-    {
-     "text": "price is a sticking point",
+     "text": "about 25% less surface roughness",
      "tone": "neg"
     }
    ]
@@ -2507,7 +2551,7 @@
   },
   "vanwin-alpha-power": {
    "paras": [
-    "Reviewers who liked it, including Salt N Pepper Pickleball and CarpeDink’em Pickleball, point to a large, consistent sweet spot and soft touch at the kitchen, and Pickleheads found it a touch paddle more than a power one. Opinions split on feel and spin, as Amir's Pickleball found the face smooth and muted with no feedback, while RALLYHAUS Pickleball found plenty of topspin. TGu found stock stability lacking on return of serve, which added weight only partly fixed, and Pickle Li said it plays much like the Luzz Inferno."
+    "Reviewers mostly praise the large, consistent sweet spot, a plush or muted foam feel and a gritty face that helps spin, with Famous by Friday Pickleball and Britt's Life in the Philippines among the most positive. Power is where takes split: CarpeDink'em Pickleball and John Wilkerson put it at the low end of the power range, Farmer Lanky Pickleball places it mid-level, and MyPickleList calls it a high-tier power paddle. Touch is the other split, as Amir's Pickleball found the muted feel gave no feedback and called it the worst paddle they have tested, while TGu needed added weight to steady return of serve."
    ],
    "highlights": [
     {
@@ -2515,34 +2559,34 @@
      "tone": "pos"
     },
     {
-     "text": "soft touch at the kitchen",
+     "text": "gritty face that helps spin",
      "tone": "pos"
     },
     {
-     "text": "smooth and muted with no feedback",
-     "tone": "neg"
-    },
-    {
-     "text": "stock stability lacking on return of serve",
+     "text": "muted feel gave no feedback",
      "tone": "neg"
     }
    ]
   },
   "pickleball-apes-zen-s-plus": {
    "paras": [
-    "Reviewers mostly praise the power on full swings at a light swing weight of about 106 to 109, and it suits players who swing through the ball and want quick hands at the kitchen. Takes on the soft game differ: EZY3D LAB, Matt's Pickleball and Famous by Friday Pickleball found dinks and resets easy and accurate, while JJ Pickleball and Pickleball Effect found little pop on slow shots, and Pickleball Playbook Paddles needed most of a game to adjust. Grit durability is also mixed, with EZY3D LAB expecting it to wear, Matt's Pickleball measuring about a 9% roughness drop over 30 hours, and Pickleball Effect placing it in tier three of its abrasion testing."
+    "Reviewers mostly praise strong power at a light swing weight, with a large sweet spot, and it suits aggressive intermediate to advanced players who swing through the ball. Takes split on the soft game and spin: Spinwave Pickleball and JJ Pickleball found low pop at slow speeds and resets that needed work, while EZY3D LAB found dinks, drops and resets controlled, and Pickleball Studio Clips measured spin well below many paddles while Famous by Friday Pickleball rated it very good. Not Dead Yet Pickleball, after about three games, found less pop and a flat spot near the throat, and would pick the 11SIX24 Ultre."
    ],
    "highlights": [
     {
-     "text": "power on full swings",
+     "text": "strong power at a light swing weight",
      "tone": "pos"
     },
     {
-     "text": "little pop on slow shots",
+     "text": "large sweet spot",
+     "tone": "pos"
+    },
+    {
+     "text": "low pop at slow speeds",
      "tone": "neg"
     },
     {
-     "text": "needed most of a game to adjust",
+     "text": "a flat spot near the throat",
      "tone": "neg"
     }
    ]
@@ -2732,23 +2776,19 @@
   },
   "gherkin-draco-hybrid": {
    "paras": [
-    "Reviewers mostly praise the Draco Hybrid for pop, drive power and a forgiving sweet spot, and it suits players who attack and want a quick, maneuverable paddle. Takes split on how much power and sweet spot there is: Pickleball Studio and Pickle Li put stock power in the mid tier and found the sweet spot about average or not much bigger than normal, while Pickle Pick, Pickleball Playbook and Pickleball Tech Dude called it very large or extremely large. Control is the common caution, along with a handle that three reviewers found thicker than most, and Pickleball Studio called it good but not a standout."
+    "Reviewers mostly praise strong pop, a large forgiving sweet spot and a low swing weight that keeps it quick in hand, and two reviewers suggest it as a first power paddle rather than a beginner paddle. Power ratings vary: Pickleball Pursuit calls firepower almost elite, while Tickle My Pickleball found it the lowest of the hybrids tested, a step below the Spartus P1. The mixed takes from West Side Pickleball and Pickleball Studio centre on a thick handle, less spin than the Spartus P1 and difficulty controlling it for low power or all-court players."
    ],
    "highlights": [
     {
-     "text": "forgiving sweet spot",
+     "text": "strong pop",
      "tone": "pos"
     },
     {
-     "text": "pop, drive power",
+     "text": "large forgiving sweet spot",
      "tone": "pos"
     },
     {
-     "text": "Control is the common caution",
-     "tone": "neg"
-    },
-    {
-     "text": "good but not a standout",
+     "text": "thick handle",
      "tone": "neg"
     }
    ]
@@ -2839,19 +2879,19 @@
   },
   "neonic-swift-flx": {
    "paras": [
-    "Reviewers praise the light, maneuverable elongated build and soft feel, and Pickleball Pursuit calls it the most maneuverable elongated paddle they have played and tested. Comparisons differ on spin: Pickleball Pursuit finds more spin than the Joola Pro 5, WhiskyDink says it spins less than the 11SIX24 Power 2, and vonEgypt Pickleball finds it a bit grittier than the Enhance MPP Turbo. Power is on the low side at the stock swing weight of about 108, so vonEgypt Pickleball plans to add weight, Pickleball Pursuit says players will need perimeter weight, and Farmer Lanky Pickleball says the improved peel ply grit is not a durable grit."
+    "Reviewers praise it as a very light, quick elongated paddle for players who want hand speed and are happy to tune it with added weight. Mixed takes come from stock stability and power: JJ Pickleball found it unsteady on blocks until about three grams at 3 and 9 o'clock raised the swing weight to 115, while Matt's Pickleball named the Neonic Frost FLX as the steadier, more forgiving pick for most players. Spin is a second complaint, as Farmer Lanky Pickleball and Matt's Pickleball both say it has no durable grit."
    ],
    "highlights": [
     {
-     "text": "most maneuverable elongated paddle",
+     "text": "very light, quick elongated paddle",
      "tone": "pos"
     },
     {
-     "text": "spins less than the 11SIX24 Power 2",
+     "text": "unsteady on blocks",
      "tone": "neg"
     },
     {
-     "text": "Power is on the low side",
+     "text": "no durable grit",
      "tone": "neg"
     }
    ]
