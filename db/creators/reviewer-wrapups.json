@@ -6870,6 +6870,397 @@
      "tone": "neg"
     }
    ]
+  },
+  "acer-chromebook-plus-spin-514-cp514-5hn": {
+   "paras": [
+    "Reviewers praise the speed and battery of the Kompanio Ultra 910 models, with about 14 to 15 hours in the tests that gave a figure, and recommend it to people who live in Chrome and Google services. It beats Lenovo's Chromebook Plus 14 in some web benchmarks (PCWorld), though that Lenovo has a more accurate OLED panel (Tom's Guide) and The Verge would pick its OLED model for a high-end Chromebook (The Verge). Complaints center on the price, a jumpy trackpad on the 16GB unit (Android Police) and muddy speakers (The Verge)."
+   ],
+   "highlights": [
+    {
+     "text": "speed and battery",
+     "tone": "pos"
+    },
+    {
+     "text": "jumpy trackpad on the 16GB unit",
+     "tone": "neg"
+    },
+    {
+     "text": "muddy speakers",
+     "tone": "neg"
+    }
+   ]
+  },
+  "apple-macbook-pro-14-m6": {
+   "paras": [
+    "Reviewers recommend it to power users who want the faster chip and can skip the touchscreen PROLED models, with Tom's Hardware measuring a 10 percent single-core Geekbench gain over last year's M5 (Tom's Hardware). Some say to wait for the expected M6 MacBook Air (Macworld), and PCMag expects that Air to make the Pro a tough sell, while also finding an RTX Spark laptop ahead in every graphics contest (PCMag). GoriMe found 16GB a little short for heavy work, with video export slower than their own M4 Max (GoriMe)."
+   ],
+   "highlights": [
+    {
+     "text": "the faster chip",
+     "tone": "pos"
+    },
+    {
+     "text": "make the Pro a tough sell",
+     "tone": "neg"
+    },
+    {
+     "text": "16GB a little short for heavy work",
+     "tone": "neg"
+    }
+   ]
+  },
+  "dell-xps-13-dx13260": {
+   "paras": [
+    "Reviewers recommend it to students and everyday users who stay in browsers and documents, praising 14 to nearly 20 hours of battery and the light aluminum build. Tom's Hardware slightly prefers it over the MacBook Neo for lighter weight and a backlit keyboard (Tom's Hardware), and Reviewed likes its touchscreen over the MacBook Neo too (Reviewed). Memory matters: Tom's Hardware found the 8GB model lags in multitasking, while Notebookcheck's 8GB unit showed graphics too weak for gaming and a chassis more fragile than older XPS 13s (Notebookcheck)."
+   ],
+   "highlights": [
+    {
+     "text": "14 to nearly 20 hours of battery",
+     "tone": "pos"
+    },
+    {
+     "text": "8GB model lags in multitasking",
+     "tone": "neg"
+    },
+    {
+     "text": "graphics too weak for gaming",
+     "tone": "neg"
+    }
+   ]
+  },
+  "framework-laptop-13-pro": {
+   "paras": [
+    "Reviewers recommend it to buyers who value repairability and a sturdier chassis and can absorb a very high price. Battery results differ by config: 15 hours 55 minutes on the Core Ultra X9 388H with 64GB (Tom's Hardware), 16 hours 48 minutes on the X7 385H (Tom's Guide), 16 hours 5 minutes on the X7 358H (Engadget) and 19 hours 18 minutes on the X7 358H (Notebookcheck), against about 10.5 hours on the X7 358H with many Chrome tabs open (The Verge). On speed, The Verge found it behind the MacBook Pro 14 M5 (The Verge), Tom's Hardware says an M5 Max MacBook Pro would beat it (Tom's Hardware), and Notebookcheck saw the CPU above 90 C under load."
+   ],
+   "highlights": [
+    {
+     "text": "a sturdier chassis",
+     "tone": "pos"
+    },
+    {
+     "text": "a very high price",
+     "tone": "neg"
+    },
+    {
+     "text": "above 90 C under load",
+     "tone": "neg"
+    }
+   ]
+  },
+  "gigabyte-aorus-master-16-am6h": {
+   "paras": [
+    "Reviewers recommend it to gamers who want RTX 5080 or 5090 power and a lovely 240Hz OLED, and who accept loud fans and a high price. Against the Razer Blade 16 (2025), The Verge found the Blade's RTX 5090 led by an average of just 3.5 fps without frame generation (The Verge), and Tom's Hardware credits its 55 W CPU for stronger 1080p results than the 28W chip there (Tom's Hardware). Notebookcheck's RTX 5090 unit ran about 20 percentage points faster than the Razer Blade 16 and Zephyrus G16 (Notebookcheck), while Geeknetic found battery life weak on the RTX 5080 model, at a little over two hours at maximum brightness (Geeknetic)."
+   ],
+   "highlights": [
+    {
+     "text": "a lovely 240Hz OLED",
+     "tone": "pos"
+    },
+    {
+     "text": "loud fans",
+     "tone": "neg"
+    },
+    {
+     "text": "battery life weak",
+     "tone": "neg"
+    }
+   ]
+  },
+  "hp-elitebook-ultra-g1i": {
+   "paras": [
+    "Reviewers recommend it to business users who want all-day battery and full x86 app support, with 18h 13min on the Core Ultra 7 258V in PCMark 10 (TechRadar) and over 18 hours on the Core Ultra 7 268V in Techaeris's use (Techaeris), against 12 hours of web surfing on the 258V (Notebookcheck). PCMag calls the design nearly identical to the Snapdragon EliteBook Ultra G1q (PCMag), and Notebookcheck finds the Intel version better, about 150 grams lighter with a much better screen (Notebookcheck). PCMag points to the ThinkPad X1 Carbon Gen 13 Aura Edition as the work laptop to beat (PCMag), and complaints include soldered memory and, for Notebookcheck, a shallow keyboard."
+   ],
+   "highlights": [
+    {
+     "text": "all-day battery",
+     "tone": "pos"
+    },
+    {
+     "text": "much better screen",
+     "tone": "pos"
+    },
+    {
+     "text": "soldered memory",
+     "tone": "neg"
+    }
+   ]
+  },
+  "hp-elitebook-x-g1a": {
+   "paras": [
+    "Reviewers recommend it to business buyers who want power, a good keyboard and an OLED option, not light weight. Battery depends on the config: 14h 12min on the IPS Ryzen AI 9 HX PRO 375 (Notebookcheck), about 11 to nearly 13 hours on the 64GB OLED models (PCWorld, Trusted Reviews, TechRadar) and 14h 29min on the Ryzen AI 7 PRO 360 (IT Pro), with Trusted Reviews finding battery well behind the Dell Pro 14 Premium (Trusted Reviews). Notebookcheck measured it over 500 g heavier than the ThinkPad X1 Carbon Gen 13 (Notebookcheck), and Laptop Mag suggests the MSI Summit 13 AI+ Evo as a cheaper alternative while finding the keys squishy (Laptop Mag)."
+   ],
+   "highlights": [
+    {
+     "text": "a good keyboard",
+     "tone": "pos"
+    },
+    {
+     "text": "over 500 g heavier",
+     "tone": "neg"
+    },
+    {
+     "text": "keys squishy",
+     "tone": "neg"
+    }
+   ]
+  },
+  "hp-omen-max-16-2025": {
+   "paras": [
+    "Reviewers praise the 240Hz OLED, cooling and raw power, and suit it to buyers who stay plugged in. Battery lasted 3 hours 20 minutes on the RTX 5090 version in the tests of Laptop Mag and Tom's Hardware, less than half the Razer Blade 16's 7 hours 21 minutes (Tom's Hardware), and Windows Central measured an 80 percent GPU drop off the charger, while the RTX 5080 unit got 8 hours 48 minutes (High Performance Laptops). Gaming rankings differ: Laptop Mag put it last among its rivals in Cyberpunk 2077 (Laptop Mag), Notebookcheck found the CPU up to 10 percent slower than the same chip in the Legion Pro 7i (Notebookcheck), and Windows Central picked the Lenovo Legion Pro 7i as its favorite 16-inch laptop (Windows Central)."
+   ],
+   "highlights": [
+    {
+     "text": "240Hz OLED, cooling and raw power",
+     "tone": "pos"
+    },
+    {
+     "text": "3 hours 20 minutes",
+     "tone": "neg"
+    },
+    {
+     "text": "80 percent GPU drop off the charger",
+     "tone": "neg"
+    }
+   ]
+  },
+  "hp-omnibook-5-14-14-he0000": {
+   "paras": [
+    "Reviewers recommend it to students and everyday users who want OLED and endurance for light work. Video loops lasted over 25 hours (PCWorld) and 34 hours 48 minutes (PCMag), with Notebookcheck at 16h 56min of web surfing, though PCMag advises checking Arm app support first. The Verge would pick a Microsoft Surface Laptop or M4 MacBook Air at the regular price (The Verge), and PCWorld notes discounted Snapdragon X Elite, Ryzen AI 7 or Core Ultra 7 laptops tend to beat it (PCWorld), while weak 3D performance and glare on the glossy panel are the main complaints."
+   ],
+   "highlights": [
+    {
+     "text": "OLED and endurance",
+     "tone": "pos"
+    },
+    {
+     "text": "weak 3D performance",
+     "tone": "neg"
+    },
+    {
+     "text": "glare on the glossy panel",
+     "tone": "neg"
+    }
+   ]
+  },
+  "hp-omnibook-7-14-14-fr0000": {
+   "paras": [
+    "Reviewers recommend the Core Ultra 7 255H model for buyers who want strong value and speed, with YouTube loops of 12 hours 54 minutes to 17 hours 23 minutes across the two models tested by thehikaku and 16 hours 11 minutes on the 255H (これがおすすめノートパソコン). Config matters: thehikaku found the Core Ultra 7 255U model slower, with a 1920x1200 screen covering 61 percent of sRGB, one fan and no Performance mode, while the Core Ultra 5 225U unit with 512GB was called modest, with up to 8 hours of video (android.com.pl). Two reviewers measured it heavier than HP states, and the keyboard travel is shallow."
+   ],
+   "highlights": [
+    {
+     "text": "strong value and speed",
+     "tone": "pos"
+    },
+    {
+     "text": "heavier than HP states",
+     "tone": "neg"
+    },
+    {
+     "text": "keyboard travel is shallow",
+     "tone": "neg"
+    }
+   ]
+  },
+  "hp-zbook-ultra-g1a": {
+   "paras": [
+    "Reviewers recommend it to professionals who want a light workstation with strong CPU power and a good OLED screen. They differ on graphics and battery: TechRadar found the Radeon 8060S cannot beat the RTX 3500 in the Dell Precision 7780 (TechRadar), PCMag named the Dell Precision 5490 as its pick for weighing less and lasting longer (PCMag), and StorageReview found local AI work slower than an older ThinkPad P15 Gen 2 with an RTX A5000 (StorageReview). Battery varied by config, from 6h 48min of video on the OLED unit (PCMag) to 15h 27min on the Ryzen AI MAX PRO 390 IPS model (High Performance Laptops)."
+   ],
+   "highlights": [
+    {
+     "text": "a light workstation",
+     "tone": "pos"
+    },
+    {
+     "text": "local AI work slower",
+     "tone": "neg"
+    },
+    {
+     "text": "6h 48min of video",
+     "tone": "neg"
+    }
+   ]
+  },
+  "lenovo-thinkpad-t14s-gen-7": {
+   "paras": [
+    "Reviewers recommend it to people who work on the go and type a lot, as a light, cheaper alternative to the X1 Carbon Gen 14 (thehikaku.net). That reviewer found the X1 Carbon Gen 14 faster, with a haptic touchpad and about 100 g less weight, and the older X1 Carbon Gen 13 cheaper with longer battery life (thehikaku.net); slide-style.com found the HP EliteBook X G2i 14 with the same chip about 10 percent higher in Cinebench R23 multi-core (slide-style.com). Under load, tabletpcnavi.com measured the CPU package at 96 degrees and fan noise of 44.5 dB (tabletpcnavi.com), while slide-style.com said the fan was not noticeable."
+   ],
+   "highlights": [
+    {
+     "text": "work on the go",
+     "tone": "pos"
+    },
+    {
+     "text": "light, cheaper alternative",
+     "tone": "pos"
+    },
+    {
+     "text": "the CPU package at 96 degrees",
+     "tone": "neg"
+    }
+   ]
+  },
+  "lenovo-yoga-slim-7x-gen-11": {
+   "paras": [
+    "Reviewers say it suits students and buyers who want speed and endurance with Arm-native apps, with battery results including 19 hours 42 minutes in a PCMark 10 video loop (Trusted Reviews) and 28 hours 48 minutes of local video (PCMag), against about 14 hours of real use in Performance mode (Windows Central). PCWorld compared it with the ThinkPad T14s Gen 6 and the MSI Prestige Flip 14 AI+ and found Snapdragon gives no clear battery edge (PCWorld), and also reported YouTube hitching and several keyboard lockups. Price draws criticism, since both PCMag and Trusted Reviews point to the Asus Zenbook A14 with the same or almost identical specs for less money (PCMag, Trusted Reviews)."
+   ],
+   "highlights": [
+    {
+     "text": "speed and endurance",
+     "tone": "pos"
+    },
+    {
+     "text": "several keyboard lockups",
+     "tone": "neg"
+    },
+    {
+     "text": "Price draws criticism",
+     "tone": "neg"
+    }
+   ]
+  },
+  "lg-gram-pro-16-16z90ts": {
+   "paras": [
+    "Reviewers recommend it to people who want a light laptop with long runtimes, with 19h 36min of web surfing (Notebookcheck) and over 20 hours of video (NETZWELT), against 16h 03min of Full HD video (CHIP). NETZWELT weighed it at 1,220 grams, against 2.15 kilograms for a 16-inch MacBook Pro (NETZWELT), and lists the MacBook Pro with M4 and the ThinkPad X9-14 Gen 1 as alternatives (NETZWELT). Notebookcheck noted slight thermal throttling, a slightly bendy case and weaker graphics than the RTX 3050 of its predecessor (Notebookcheck), and NETZWELT and CHIP both miss a fingerprint sensor."
+   ],
+   "highlights": [
+    {
+     "text": "a light laptop with long runtimes",
+     "tone": "pos"
+    },
+    {
+     "text": "slightly bendy case",
+     "tone": "neg"
+    },
+    {
+     "text": "miss a fingerprint sensor",
+     "tone": "neg"
+    }
+   ]
+  },
+  "microsoft-surface-laptop-8-13-8": {
+   "paras": [
+    "Reviewers praise an excellent keyboard and haptic touchpad, and on the Snapdragon X2 Plus version they measured 18h 53min of web surfing (Notebookcheck) and 13 hours 51 minutes of intensive web use (CHIP). Windows Central's Intel Core Ultra X7 368H business unit lasted about 8 hours, which it calls only okay and well short of the Qualcomm-powered Surface Laptop 7 (Windows Central). Notebookcheck argues private buyers would benefit from the Intel model's Arc B390 graphics but notes Microsoft sells them only the Snapdragon version (Notebookcheck), while Windows Central says standard consumers should wait for the Snapdragon models."
+   ],
+   "highlights": [
+    {
+     "text": "excellent keyboard and haptic touchpad",
+     "tone": "pos"
+    },
+    {
+     "text": "only okay",
+     "tone": "neg"
+    }
+   ]
+  },
+  "microsoft-surface-laptop-ultra": {
+   "paras": [
+    "Reviewers say it suits developers and power users running local AI models, with The Verge calling it hard to recommend for everyone else. Against Apple, Tom's Hardware found multi-core Geekbench short of the MacBook Pro M5 Max (Tom's Hardware) and The Verge found a 4K Premiere export about a minute behind the top MacBook Pro (The Verge), while StorageReview found Cinebench 2026 multi-core ahead of the Razer Blade 16 though the RTX 5090 Blade made tokens 2.3x faster on models fitting 24GB (StorageReview). Results vary by unit: The Verge found local AI felt like a beta on its 128GB unit, Tom's Hardware measured 10 hours 43 minutes of battery on the 32GB unit, and StorageReview said one unit lost power three times under one heavy all-core load."
+   ],
+   "highlights": [
+    {
+     "text": "developers and power users",
+     "tone": "pos"
+    },
+    {
+     "text": "hard to recommend for everyone else",
+     "tone": "neg"
+    },
+    {
+     "text": "lost power three times",
+     "tone": "neg"
+    }
+   ]
+  },
+  "msi-titan-18-hx-ai-a2xw": {
+   "paras": [
+    "Reviewers suit it to desktop replacement buyers who want top gaming speed and an excellent mini-LED screen and have the budget. WIRED found it about 10 percent faster in Cyberpunk 2077 and 18 percent faster in Time Spy than the Razer Blade 16 with the same GPU (WIRED), while IGN found the Razer Blade 16 quieter and easier to carry (IGN), XDA Developers found CPU and synthetic scores only a touch faster than the 16-inch Legion Pro 7i (XDA Developers), and High Performance Laptops notes the MSI Raider A18 HX offers similar baseline performance for less (High Performance Laptops). Short battery life and loud fans come up in most reviews, and the haptic touchpad draws criticism from Notebookcheck, WIRED, PC Guide and XDA Developers."
+   ],
+   "highlights": [
+    {
+     "text": "top gaming speed",
+     "tone": "pos"
+    },
+    {
+     "text": "Short battery life and loud fans",
+     "tone": "neg"
+    },
+    {
+     "text": "haptic touchpad draws criticism",
+     "tone": "neg"
+    }
+   ]
+  },
+  "razer-blade-16-2026": {
+   "paras": [
+    "Reviewers praise the battery, with 12 hours 46 minutes of web use in two tests (Tom's Hardware, Tom's Guide) and 11 hours 41 minutes (Notebookcheck) on the Core Ultra 9 and RTX 5090 versions, along with the vivid OLED. Tom's Hardware found multi-threaded work slower than the MSI Raider 16 Max HX and Red Dead Redemption 2 at 94fps against 121fps for last year's model (Tom's Hardware), while Notebookcheck found games 5 to 20 percent faster than the AMD model but the CPU 10 to 15 percent slower than the Ryzen AI 9 HX 370 (Notebookcheck). Tom's Guide says the Asus ROG Zephyrus Duo has the same specs but performs worse (Tom's Guide), and Notebookcheck calls the price rise hard to justify."
+   ],
+   "highlights": [
+    {
+     "text": "vivid OLED",
+     "tone": "pos"
+    },
+    {
+     "text": "multi-threaded work slower",
+     "tone": "neg"
+    },
+    {
+     "text": "price rise hard to justify",
+     "tone": "neg"
+    }
+   ]
+  },
+  "razer-blade-18-2025": {
+   "paras": [
+    "Reviewers suit it to home gamers near AC power who want top mobile GPU performance. Tom's Hardware found it edging out the MSI Titan 18 HX AI in every game test (Tom's Hardware), Tom's Guide called it the fastest 4K gaming laptop in its testing while trading blows with the Alienware Area-51 (Tom's Guide), and Engadget prefers the Blade 16 for daily carrying (Engadget). Battery is the shared complaint, with PCWorld calling battery life abysmal (PCWorld) and Windows Central measuring 1 hour 25 minutes of gaming on battery (Windows Central), and Windows Central recommends the RTX 5070 Ti or at most the RTX 5080 over the RTX 5090 for desktop replacement."
+   ],
+   "highlights": [
+    {
+     "text": "top mobile GPU performance",
+     "tone": "pos"
+    },
+    {
+     "text": "calling battery life abysmal",
+     "tone": "neg"
+    },
+    {
+     "text": "1 hour 25 minutes of gaming",
+     "tone": "neg"
+    }
+   ]
+  },
+  "samsung-galaxy-book5-pro-360": {
+   "paras": [
+    "Reviewers praise the AMOLED screen and battery, with looped video lasting 19h 41min on the Core Ultra 5 226V (Notebookcheck), 20 hours 3 minutes on the Core Ultra 7 256V (TechRadar), 18 hours 43 minutes on the 258V (WIRED) and nearly 23.5 hours on the 258V (PCWorld), against about 13 hours of average use from a battery report on the Core Ultra 5 228V (Windows Central). The shallow keyboard is the most repeated complaint, and WIRED, the least positive review, also reported frequent bugs. On comparisons, PCWorld says the Dell Inspiron 16 Plus has better raw CPU speed but this laptop lasts longer (PCWorld), Notebookcheck names the HP Envy x360 as a better keyboard option (Notebookcheck), and PCWorld finds the trackpad less premium than the haptic one on the Surface Laptop 7 (PCWorld)."
+   ],
+   "highlights": [
+    {
+     "text": "AMOLED screen and battery",
+     "tone": "pos"
+    },
+    {
+     "text": "shallow keyboard is the most repeated complaint",
+     "tone": "neg"
+    },
+    {
+     "text": "reported frequent bugs",
+     "tone": "neg"
+    }
+   ]
+  },
+  "samsung-galaxy-book6-ultra": {
+   "paras": [
+    "Reviewers praise the AMOLED display and sturdy metal build, with TechRadar, which used it for work and creative apps, advising against it for gamers or tight budgets (TechRadar). Battery depends on the test, from 28 hours 32 minutes of local video (PCMag) and almost 17 hours of web use (Notebookcheck) to 13 hours 39 minutes in a video test (TechRadar), while The Verge saw uneven results of 7 to over 10 hours. On the RTX 5070 model, Notebookcheck says the MacBook Pro 16 M4 Pro is clearly faster with a brighter screen (Notebookcheck), TechRadar says the MacBook Pro beats its battery by about five hours (TechRadar), and The Verge found the MacBook Pro 14 M5 handily wins the 4K video export (The Verge)."
+   ],
+   "highlights": [
+    {
+     "text": "AMOLED display and sturdy metal build",
+     "tone": "pos"
+    },
+    {
+     "text": "7 to over 10 hours",
+     "tone": "neg"
+    }
+   ]
   }
  },
  "discgolf": {

@@ -3,7 +3,9 @@
 // shows one merged count, but every row keeps its source: network = "reddit" and voter = "reddit:<hash of the Reddit name>"
 // (site votes have a hashed device and network). Recount or remove them with `where network = 'reddit'`.
 // Insert only: a row already there (same laptop, voter and trait) is left alone. Dry run by default (reads only).
-//   NICHE=laptop npx tsx --env-file=.env.local scripts/import-reddit-votes.mts <rows.json> [--apply]
+// --replace (a recount, e.g. after a new thread list): in one transaction, delete every network = "reddit" row first, then
+// insert the file. Site votes (any other network) are never touched.
+//   NICHE=laptop npx tsx --env-file=.env.local scripts/import-reddit-votes.mts <rows.json> [--replace] [--apply]
 import { readFile } from "node:fs/promises";
 import { and, eq, inArray, sql } from "drizzle-orm";
 import { connect } from "./connection";
@@ -12,7 +14,7 @@ import { productVotes, rackets, traitVotes } from "../db/schema";
 import { traitGroupsFor } from "../lib/thread/traits";
 
 type Row = { racket: string; voter: string; rating: number | null; traits: Record<string, string> };
-const [file] = process.argv.slice(2).filter(a => !a.startsWith("--")), apply = process.argv.includes("--apply");
+const [file] = process.argv.slice(2).filter(a => !a.startsWith("--")), apply = process.argv.includes("--apply"), replace = process.argv.includes("--replace");
 if (niche.id !== "laptop") throw new Error("Run with NICHE=laptop.");
 if (!file) throw new Error("Usage: import-reddit-votes.mts <rows.json> [--apply]");
 const data = JSON.parse(await readFile(file, "utf8")) as { source: string; network: string; rows: Row[] };
@@ -39,11 +41,12 @@ try {
     tv: sql<number>`(select count(*) from ${traitVotes} where ${traitVotes.network} = 'reddit')::int`,
     pvAll: sql<number>`(select count(*) from ${productVotes})::int`, tvAll: sql<number>`(select count(*) from ${traitVotes})::int` }).from(rackets).limit(1);
   const lap = new Set(rows.map(r => r.racket)).size;
-  console.log(`${apply ? "APPLY" : "DRY RUN"} on ${niche.schema}: ${rows.length} Reddit authors on ${lap} laptops -> ${pv.length} poll rows, ${tv.length} trait rows`);
+  console.log(`${apply ? "APPLY" : "DRY RUN"}${replace ? " (replace all reddit rows)" : ""} on ${niche.schema}: ${rows.length} Reddit authors on ${lap} laptops -> ${pv.length} poll rows, ${tv.length} trait rows`);
   console.log(`In DB now: product_votes ${before?.pvAll ?? 0} (reddit ${before?.pv ?? 0}), trait_votes ${before?.tvAll ?? 0} (reddit ${before?.tv ?? 0})`);
   if (missing.length) console.log(`Not in the catalogue (skipped): ${missing.join(", ")}`);
   if (!apply) { console.log("Dry run only: nothing written."); process.exit(0); }
   await db.transaction(async tx => {
+    if (replace) { await tx.delete(productVotes).where(eq(productVotes.network, "reddit")); await tx.delete(traitVotes).where(eq(traitVotes.network, "reddit")); }
     for (let k = 0; k < pv.length; k += 500) await tx.insert(productVotes).values(pv.slice(k, k + 500)).onConflictDoNothing();
     for (let k = 0; k < tv.length; k += 500) await tx.insert(traitVotes).values(tv.slice(k, k + 500)).onConflictDoNothing();
   });

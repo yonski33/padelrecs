@@ -1,5 +1,5 @@
 {
- "built": "2026-11-24",
+ "built": "2026-11-25",
  "source": "reddit",
  "rule": "Imported from Reddit, not site votes: one vote per Reddit author per laptop (deduped across threads). Sentiment from the author's most upvoted comment with a clear stance in an owner-review, long-term, comparison or buying-advice thread (problem threads feed traits only); a trait vote only where the author's comments state it explicitly and agree. Extracted by Claude Haiku 5.5 from comments a first pass kept as owners of the exact model (scripts/batch-reddit-laptop.ts). Never merge into site votes without a flag; label as Reddit owners.",
  "laptops": {
@@ -19,144 +19,153 @@
   },
   "apple-macbook-air-13-m1": {
    "name": "Apple MacBook Air 13 (M1)",
-   "authors": 271,
+   "authors": 463,
    "sentiment": {
-    "loved": 156,
-    "mixed": 33,
-    "not_for_me": 4
+    "loved": 292,
+    "mixed": 56,
+    "not_for_me": 10
    },
    "groups": {
     "thermals": {
      "warm": 5,
-     "hot": 3,
-     "cool": 18
+     "hot": 5,
+     "cool": 26
     },
     "performance": {
-     "fast": 42,
-     "fine": 38,
-     "slow": 9
+     "fast": 88,
+     "fine": 69,
+     "slow": 13
     },
     "battery": {
-     "short": 24,
-     "all_day": 32,
-     "most_of_day": 17
+     "short": 25,
+     "all_day": 51,
+     "most_of_day": 23
     },
     "value": {
-     "worth_it": 25,
+     "worth_it": 27,
      "overpriced": 2
     },
     "build": {
-     "solid": 28,
-     "flimsy": 6
+     "solid": 32,
+     "flimsy": 10
     },
     "portability": {
-     "very": 15
+     "very": 21
     },
     "best_for": {
-     "work": 21,
-     "creative": 14,
-     "gaming": 1
+     "work": 38,
+     "creative": 25,
+     "gaming": 2
     },
     "screen": {
-     "good": 2,
-     "great": 5,
-     "meh": 4
+     "good": 3,
+     "great": 10,
+     "meh": 5
     },
     "keyboard": {
-     "great": 8,
-     "poor": 1
+     "great": 13,
+     "poor": 2
     }
    }
   },
   "apple-macbook-air-13-m2": {
    "name": "Apple MacBook Air 13 (M2)",
-   "authors": 118,
+   "authors": 224,
    "sentiment": {
-    "loved": 38,
-    "mixed": 4,
-    "not_for_me": 3
+    "loved": 104,
+    "mixed": 12,
+    "not_for_me": 6
    },
    "groups": {
     "portability": {
-     "very": 36
+     "very": 46,
+     "not_really": 1
     },
     "best_for": {
-     "work": 7,
-     "creative": 4,
-     "gaming": 2
+     "work": 9,
+     "creative": 9,
+     "gaming": 3
     },
     "battery": {
-     "all_day": 11,
-     "most_of_day": 1
+     "all_day": 21,
+     "most_of_day": 2,
+     "short": 1
     },
     "build": {
-     "flimsy": 9,
+     "flimsy": 10,
      "average": 2,
-     "solid": 2
+     "solid": 8
     },
     "performance": {
-     "fast": 9,
-     "fine": 11
+     "fast": 22,
+     "fine": 16
     },
     "thermals": {
-     "cool": 10,
-     "hot": 2,
-     "warm": 3
+     "cool": 16,
+     "hot": 3,
+     "warm": 6
     },
     "screen": {
-     "great": 3,
+     "great": 4,
      "meh": 5,
-     "good": 3
+     "good": 4
     },
     "value": {
-     "worth_it": 4,
+     "worth_it": 7,
      "overpriced": 3
     },
     "keyboard": {
-     "fine": 2,
-     "poor": 7
+     "fine": 3,
+     "poor": 7,
+     "great": 1
     }
    }
   },
   "apple-macbook-air-13-m3": {
    "name": "Apple MacBook Air 13 (M3)",
-   "authors": 25,
+   "authors": 69,
    "sentiment": {
-    "loved": 5,
-    "mixed": 0,
-    "not_for_me": 2
+    "loved": 29,
+    "mixed": 4,
+    "not_for_me": 4
    },
    "groups": {
     "thermals": {
-     "cool": 2,
+     "cool": 5,
      "warm": 3,
-     "hot": 1
+     "hot": 2
     },
     "screen": {
-     "great": 1
+     "great": 2,
+     "good": 2
     },
     "performance": {
-     "fast": 2,
+     "fast": 8,
      "slow": 2,
-     "fine": 1
+     "fine": 5
     },
     "best_for": {
-     "work": 1,
-     "gaming": 1
+     "work": 2,
+     "gaming": 1,
+     "creative": 1
     },
     "build": {
-     "flimsy": 3,
+     "flimsy": 4,
      "solid": 1
     },
     "battery": {
-     "short": 2,
-     "all_day": 3
+     "short": 6,
+     "all_day": 7
     },
     "keyboard": {
      "poor": 1
     },
     "value": {
-     "overpriced": 1
+     "overpriced": 1,
+     "worth_it": 4
+    },
+    "portability": {
+     "very": 6
     }
    }
   },
@@ -207,66 +216,70 @@
   },
   "apple-macbook-air-13-m5": {
    "name": "Apple MacBook Air 13 (M5)",
-   "authors": 72,
+   "authors": 108,
    "sentiment": {
-    "loved": 15,
-    "mixed": 2,
-    "not_for_me": 1
+    "loved": 34,
+    "mixed": 5,
+    "not_for_me": 3
    },
    "groups": {
     "thermals": {
-     "hot": 13,
-     "warm": 6,
-     "cool": 5
+     "hot": 15,
+     "warm": 7,
+     "cool": 11
     },
     "battery": {
      "short": 6,
-     "all_day": 7,
+     "all_day": 9,
      "most_of_day": 2
     },
     "portability": {
-     "very": 16
+     "very": 20
     },
     "performance": {
-     "fine": 4,
+     "fine": 5,
      "slow": 1,
-     "fast": 5
+     "fast": 11
     },
     "best_for": {
      "work": 6,
      "gaming": 2,
-     "creative": 1
+     "creative": 2
     },
     "build": {
      "flimsy": 1,
-     "solid": 1
+     "solid": 3
     },
     "screen": {
-     "meh": 4,
-     "good": 1,
+     "meh": 6,
+     "good": 3,
      "great": 1
     },
     "value": {
      "worth_it": 2
+    },
+    "keyboard": {
+     "great": 3
     }
    }
   },
   "apple-macbook-air-15-m2": {
    "name": "Apple MacBook Air 15 (M2)",
-   "authors": 12,
+   "authors": 69,
    "sentiment": {
-    "loved": 5,
-    "mixed": 2,
-    "not_for_me": 0
+    "loved": 42,
+    "mixed": 5,
+    "not_for_me": 4
    },
    "groups": {
     "battery": {
-     "all_day": 6,
+     "all_day": 7,
      "most_of_day": 1
     },
     "thermals": {
-     "cool": 3,
-     "warm": 1
+     "cool": 7,
+     "warm": 1,
+     "hot": 4
     },
     "best_for": {
      "work": 2,
@@ -274,33 +287,43 @@
      "gaming": 1
     },
     "build": {
-     "solid": 1
+     "solid": 2
     },
     "value": {
      "overpriced": 1
     },
     "screen": {
-     "great": 2
+     "great": 4,
+     "meh": 1,
+     "good": 2
     },
     "performance": {
-     "fast": 3
+     "fast": 5,
+     "fine": 5,
+     "slow": 1
     },
     "portability": {
-     "somewhat": 1
+     "somewhat": 3,
+     "very": 4
+    },
+    "keyboard": {
+     "great": 1,
+     "fine": 1,
+     "poor": 1
     }
    }
   },
   "apple-macbook-air-15-m3": {
    "name": "Apple MacBook Air 15 (M3)",
-   "authors": 35,
+   "authors": 60,
    "sentiment": {
-    "loved": 18,
+    "loved": 27,
     "mixed": 4,
     "not_for_me": 4
    },
    "groups": {
     "keyboard": {
-     "poor": 3,
+     "poor": 4,
      "fine": 1
     },
     "screen": {
@@ -319,88 +342,101 @@
     },
     "thermals": {
      "hot": 2,
-     "cool": 4
+     "cool": 6
     },
     "best_for": {
-     "work": 4,
-     "creative": 2
+     "work": 5,
+     "creative": 4
     },
     "battery": {
-     "all_day": 2
+     "all_day": 6,
+     "short": 1,
+     "most_of_day": 1
     },
     "portability": {
-     "very": 4,
+     "very": 8,
      "somewhat": 1
     },
     "performance": {
-     "fast": 6,
+     "fast": 7,
      "fine": 2
     }
    }
   },
   "apple-macbook-air-15-m4": {
    "name": "Apple MacBook Air 15 (M4)",
-   "authors": 50,
+   "authors": 124,
    "sentiment": {
-    "loved": 0,
-    "mixed": 0,
-    "not_for_me": 1
+    "loved": 48,
+    "mixed": 4,
+    "not_for_me": 4
    },
    "groups": {
     "thermals": {
-     "hot": 8,
-     "cool": 1,
+     "hot": 10,
+     "cool": 2,
      "warm": 2
     },
     "best_for": {
-     "work": 1
+     "work": 4,
+     "gaming": 1
     },
     "portability": {
-     "very": 1,
-     "somewhat": 1
+     "very": 6,
+     "somewhat": 5,
+     "not_really": 2
     },
     "battery": {
      "short": 5,
-     "all_day": 14,
+     "all_day": 16,
      "most_of_day": 2
     },
     "build": {
-     "flimsy": 5,
+     "flimsy": 6,
      "solid": 2,
      "average": 1
     },
     "performance": {
-     "fast": 1
+     "fast": 6
+    },
+    "screen": {
+     "good": 2,
+     "great": 1
+    },
+    "keyboard": {
+     "poor": 1,
+     "great": 1
     }
    }
   },
   "apple-macbook-air-15-m5": {
    "name": "Apple MacBook Air 15 (M5)",
-   "authors": 41,
+   "authors": 74,
    "sentiment": {
-    "loved": 17,
-    "mixed": 1,
+    "loved": 38,
+    "mixed": 3,
     "not_for_me": 2
    },
    "groups": {
     "battery": {
-     "all_day": 2,
-     "short": 1
+     "all_day": 3,
+     "short": 2
     },
     "portability": {
-     "very": 7,
+     "very": 10,
      "somewhat": 3
     },
     "best_for": {
-     "work": 3,
-     "creative": 1
+     "work": 4,
+     "creative": 2,
+     "gaming": 1
     },
     "performance": {
-     "fast": 5
+     "fast": 10
     },
     "screen": {
      "good": 2,
-     "great": 12,
+     "great": 14,
      "meh": 1
     },
     "value": {
@@ -413,7 +449,7 @@
     },
     "thermals": {
      "hot": 3,
-     "cool": 1
+     "cool": 4
     },
     "build": {
      "flimsy": 1,
@@ -424,163 +460,182 @@
   },
   "apple-macbook-neo": {
    "name": "Apple MacBook Neo",
-   "authors": 139,
+   "authors": 333,
    "sentiment": {
-    "loved": 56,
-    "mixed": 10,
-    "not_for_me": 4
+    "loved": 184,
+    "mixed": 25,
+    "not_for_me": 22
    },
    "groups": {
     "performance": {
-     "fast": 16,
-     "fine": 11,
-     "slow": 3
+     "fast": 31,
+     "fine": 52,
+     "slow": 15
     },
     "battery": {
-     "all_day": 23,
-     "short": 7,
-     "most_of_day": 12
+     "all_day": 36,
+     "short": 9,
+     "most_of_day": 15
     },
     "portability": {
-     "very": 8,
-     "somewhat": 1
+     "very": 18,
+     "somewhat": 1,
+     "not_really": 2
     },
     "thermals": {
-     "cool": 13,
-     "hot": 3
+     "cool": 18,
+     "hot": 4
     },
     "best_for": {
-     "creative": 5,
-     "work": 10,
-     "gaming": 3
+     "creative": 10,
+     "work": 25,
+     "gaming": 7
     },
     "screen": {
-     "good": 3,
-     "great": 5,
-     "meh": 1
+     "good": 6,
+     "great": 7,
+     "meh": 4
     },
     "build": {
-     "solid": 5,
-     "flimsy": 3
+     "solid": 17,
+     "flimsy": 8
     },
     "value": {
-     "worth_it": 13
+     "worth_it": 34,
+     "overpriced": 1
     },
     "keyboard": {
-     "great": 5,
-     "fine": 4,
-     "poor": 3
+     "great": 8,
+     "fine": 5,
+     "poor": 9
     }
    }
   },
   "apple-macbook-pro-13-m1": {
    "name": "Apple MacBook Pro 13 (M1)",
-   "authors": 69,
+   "authors": 165,
    "sentiment": {
-    "loved": 28,
-    "mixed": 5,
-    "not_for_me": 1
+    "loved": 89,
+    "mixed": 13,
+    "not_for_me": 3
    },
    "groups": {
     "thermals": {
-     "cool": 31,
-     "warm": 2,
+     "cool": 33,
+     "warm": 3,
      "hot": 3
     },
     "best_for": {
-     "creative": 2,
-     "work": 1,
+     "creative": 7,
+     "work": 5,
      "gaming": 1
     },
     "performance": {
-     "fast": 3,
-     "fine": 1
+     "fast": 14,
+     "fine": 12,
+     "slow": 2
     },
     "battery": {
-     "all_day": 6,
+     "all_day": 18,
      "most_of_day": 1
     },
     "value": {
-     "worth_it": 1
+     "worth_it": 6
     },
     "build": {
-     "flimsy": 3,
-     "solid": 3
+     "flimsy": 5,
+     "solid": 8
     },
     "keyboard": {
-     "poor": 1
+     "poor": 2,
+     "great": 3
     },
     "screen": {
-     "meh": 1
+     "meh": 1,
+     "great": 1
+    },
+    "portability": {
+     "very": 2
     }
    }
   },
   "apple-macbook-pro-13-m2": {
    "name": "Apple MacBook Pro 13 (M2)",
-   "authors": 15,
+   "authors": 38,
    "sentiment": {
-    "loved": 5,
-    "mixed": 1,
+    "loved": 20,
+    "mixed": 2,
     "not_for_me": 0
    },
    "groups": {
     "battery": {
      "short": 3,
-     "all_day": 1
+     "all_day": 2
     },
     "thermals": {
      "warm": 1,
      "cool": 1
     },
     "build": {
-     "flimsy": 2
+     "flimsy": 2,
+     "solid": 1
     },
     "keyboard": {
      "poor": 1
     },
     "performance": {
-     "fine": 1
+     "fine": 5,
+     "fast": 5
     },
     "screen": {
-     "good": 1
+     "good": 1,
+     "great": 1,
+     "meh": 1
+    },
+    "best_for": {
+     "gaming": 1
+    },
+    "portability": {
+     "very": 1
     }
    }
   },
   "apple-macbook-pro-14-m1-pro-max": {
    "name": "Apple MacBook Pro 14 (M1 Pro/Max)",
-   "authors": 109,
+   "authors": 176,
    "sentiment": {
-    "loved": 33,
-    "mixed": 10,
+    "loved": 73,
+    "mixed": 17,
     "not_for_me": 0
    },
    "groups": {
     "best_for": {
-     "creative": 7,
-     "work": 5,
+     "creative": 12,
+     "work": 9,
      "gaming": 1
     },
     "battery": {
-     "all_day": 22,
-     "most_of_day": 13,
-     "short": 14
+     "all_day": 24,
+     "most_of_day": 17,
+     "short": 19
     },
     "thermals": {
-     "cool": 13,
+     "cool": 14,
      "warm": 9,
      "hot": 2
     },
     "performance": {
-     "fast": 12,
-     "fine": 8
+     "fast": 18,
+     "fine": 17
     },
     "screen": {
-     "great": 8,
+     "great": 10,
      "good": 1,
      "meh": 1
     },
     "build": {
-     "solid": 5
+     "solid": 8,
+     "flimsy": 4
     },
     "keyboard": {
      "poor": 1,
@@ -593,32 +648,32 @@
     },
     "value": {
      "overpriced": 1,
-     "worth_it": 3,
+     "worth_it": 5,
      "ok": 1
     }
    }
   },
   "apple-macbook-pro-14-m2-pro-max": {
    "name": "Apple MacBook Pro 14 (M2 Pro/Max)",
-   "authors": 39,
+   "authors": 60,
    "sentiment": {
-    "loved": 11,
-    "mixed": 3,
+    "loved": 19,
+    "mixed": 4,
     "not_for_me": 2
    },
    "groups": {
     "thermals": {
-     "hot": 6,
-     "warm": 2,
-     "cool": 9
+     "hot": 7,
+     "warm": 3,
+     "cool": 12
     },
     "performance": {
      "fine": 2,
-     "fast": 4
+     "fast": 10
     },
     "best_for": {
-     "creative": 2,
-     "gaming": 3,
+     "creative": 3,
+     "gaming": 4,
      "work": 3
     },
     "portability": {
@@ -628,31 +683,33 @@
      "great": 2
     },
     "battery": {
-     "all_day": 2,
-     "short": 6,
+     "all_day": 5,
+     "short": 7,
      "most_of_day": 1
     },
     "build": {
-     "flimsy": 3,
+     "flimsy": 4,
      "solid": 2
     },
     "screen": {
-     "great": 1
+     "great": 2,
+     "meh": 1
     }
    }
   },
   "apple-macbook-pro-14-m3-pro-max": {
    "name": "Apple MacBook Pro 14 (M3 Pro/Max)",
-   "authors": 81,
+   "authors": 110,
    "sentiment": {
-    "loved": 31,
-    "mixed": 8,
-    "not_for_me": 7
+    "loved": 47,
+    "mixed": 10,
+    "not_for_me": 11
    },
    "groups": {
     "performance": {
-     "fast": 6,
-     "fine": 1
+     "fast": 11,
+     "fine": 1,
+     "slow": 2
     },
     "value": {
      "worth_it": 1
@@ -660,25 +717,28 @@
     "battery": {
      "most_of_day": 8,
      "short": 14,
-     "all_day": 6
+     "all_day": 7
     },
     "thermals": {
-     "cool": 3,
-     "hot": 6,
-     "warm": 1
+     "cool": 7,
+     "hot": 9,
+     "warm": 3
     },
     "best_for": {
-     "work": 2
+     "work": 2,
+     "creative": 3,
+     "gaming": 1
     },
     "build": {
-     "solid": 2
+     "solid": 2,
+     "flimsy": 1
     },
     "portability": {
      "very": 25,
      "not_really": 1
     },
     "screen": {
-     "great": 2,
+     "great": 3,
      "meh": 1,
      "good": 2
     },
@@ -689,15 +749,15 @@
   },
   "apple-macbook-pro-14-m3": {
    "name": "Apple MacBook Pro 14 (M3)",
-   "authors": 15,
+   "authors": 45,
    "sentiment": {
-    "loved": 4,
-    "mixed": 1,
-    "not_for_me": 2
+    "loved": 14,
+    "mixed": 3,
+    "not_for_me": 8
    },
    "groups": {
     "battery": {
-     "all_day": 1
+     "all_day": 3
     },
     "thermals": {
      "warm": 1,
@@ -705,12 +765,12 @@
      "hot": 1
     },
     "screen": {
-     "great": 1
+     "great": 5
     },
     "performance": {
-     "slow": 3,
-     "fast": 2,
-     "fine": 1
+     "slow": 9,
+     "fast": 3,
+     "fine": 4
     },
     "value": {
      "worth_it": 1
@@ -719,37 +779,42 @@
      "solid": 1
     },
     "best_for": {
-     "creative": 2
+     "creative": 2,
+     "work": 3,
+     "gaming": 1
+    },
+    "keyboard": {
+     "great": 1
     }
    }
   },
   "apple-macbook-pro-14-m4-pro-max": {
    "name": "Apple MacBook Pro 14 (M4 Pro/Max)",
-   "authors": 54,
+   "authors": 122,
    "sentiment": {
-    "loved": 11,
-    "mixed": 4,
-    "not_for_me": 1
+    "loved": 38,
+    "mixed": 8,
+    "not_for_me": 2
    },
    "groups": {
     "best_for": {
-     "work": 4,
-     "creative": 1,
+     "work": 6,
+     "creative": 5,
      "gaming": 1
     },
     "performance": {
-     "fast": 9,
+     "fast": 15,
      "fine": 1
     },
     "thermals": {
-     "cool": 17,
-     "hot": 9,
+     "cool": 22,
+     "hot": 12,
      "warm": 3
     },
     "battery": {
-     "all_day": 1,
-     "short": 4,
-     "most_of_day": 1
+     "all_day": 14,
+     "short": 7,
+     "most_of_day": 6
     },
     "value": {
      "worth_it": 3
@@ -758,50 +823,52 @@
      "solid": 2
     },
     "keyboard": {
-     "poor": 1
+     "poor": 1,
+     "great": 3
     },
     "portability": {
-     "very": 5
+     "very": 13,
+     "not_really": 1
     },
     "screen": {
-     "great": 1
+     "great": 2
     }
    }
   },
   "apple-macbook-pro-14-m4": {
    "name": "Apple MacBook Pro 14 (M4)",
-   "authors": 68,
+   "authors": 84,
    "sentiment": {
-    "loved": 17,
-    "mixed": 2,
+    "loved": 23,
+    "mixed": 4,
     "not_for_me": 3
    },
    "groups": {
     "thermals": {
-     "cool": 12,
+     "cool": 14,
      "warm": 1,
-     "hot": 3
+     "hot": 4
     },
     "battery": {
-     "all_day": 13,
+     "all_day": 14,
      "short": 3,
      "most_of_day": 1
     },
     "screen": {
      "meh": 3,
-     "great": 12
+     "great": 15
     },
     "performance": {
-     "slow": 3,
-     "fast": 8,
-     "fine": 3
+     "slow": 4,
+     "fast": 11,
+     "fine": 4
     },
     "keyboard": {
      "poor": 2,
      "great": 1
     },
     "build": {
-     "flimsy": 1,
+     "flimsy": 2,
      "solid": 4
     },
     "portability": {
@@ -813,59 +880,66 @@
      "worth_it": 8
     },
     "best_for": {
-     "work": 8,
+     "work": 10,
      "gaming": 1,
-     "creative": 1
+     "creative": 2
     }
    }
   },
   "apple-macbook-pro-14-m5-pro-max": {
    "name": "Apple MacBook Pro 14 (M5 Pro/Max)",
-   "authors": 53,
+   "authors": 98,
    "sentiment": {
-    "loved": 3,
-    "mixed": 4,
-    "not_for_me": 4
+    "loved": 29,
+    "mixed": 9,
+    "not_for_me": 9
    },
    "groups": {
     "performance": {
-     "fast": 3,
-     "slow": 9
+     "fast": 15,
+     "slow": 9,
+     "fine": 2
     },
     "screen": {
      "good": 2,
-     "great": 1,
+     "great": 3,
      "meh": 3
     },
     "battery": {
-     "short": 6,
-     "all_day": 1,
+     "short": 9,
+     "all_day": 2,
      "most_of_day": 1
     },
     "thermals": {
-     "hot": 13,
-     "cool": 13,
-     "warm": 4
+     "hot": 20,
+     "cool": 16,
+     "warm": 5
     },
     "portability": {
-     "very": 7
+     "very": 18,
+     "not_really": 2
     },
     "value": {
-     "overpriced": 1
+     "overpriced": 1,
+     "worth_it": 2
     },
     "best_for": {
-     "work": 3,
+     "work": 5,
      "gaming": 3,
-     "creative": 1
+     "creative": 4
+    },
+    "build": {
+     "flimsy": 1,
+     "solid": 1
     }
    }
   },
   "apple-macbook-pro-14-m5": {
    "name": "Apple MacBook Pro 14 (M5)",
-   "authors": 46,
+   "authors": 86,
    "sentiment": {
-    "loved": 23,
-    "mixed": 1,
+    "loved": 43,
+    "mixed": 2,
     "not_for_me": 1
    },
    "groups": {
@@ -875,93 +949,96 @@
      "most_of_day": 3
     },
     "portability": {
-     "very": 11,
+     "very": 12,
      "somewhat": 1
     },
     "best_for": {
-     "work": 3,
-     "creative": 7
+     "work": 5,
+     "creative": 11
     },
     "performance": {
-     "fast": 6,
-     "fine": 3
+     "fast": 15,
+     "fine": 5
     },
     "thermals": {
-     "cool": 3,
-     "warm": 2
+     "cool": 6,
+     "warm": 3,
+     "hot": 1
     },
     "value": {
-     "worth_it": 1,
+     "worth_it": 3,
      "overpriced": 1
     },
     "keyboard": {
-     "great": 1
+     "great": 2
     },
     "screen": {
-     "good": 3,
-     "great": 3,
-     "meh": 1
+     "good": 4,
+     "great": 12,
+     "meh": 2
     },
     "build": {
-     "solid": 2
+     "solid": 3,
+     "flimsy": 1
     }
    }
   },
   "apple-macbook-pro-16-m1-pro-max": {
    "name": "Apple MacBook Pro 16 (M1 Pro/Max)",
-   "authors": 141,
+   "authors": 312,
    "sentiment": {
-    "loved": 54,
-    "mixed": 9,
-    "not_for_me": 2
+    "loved": 95,
+    "mixed": 17,
+    "not_for_me": 5
    },
    "groups": {
     "value": {
-     "worth_it": 16
+     "worth_it": 19
     },
     "best_for": {
-     "creative": 8,
-     "work": 4,
+     "creative": 16,
+     "work": 5,
      "gaming": 2
     },
     "performance": {
-     "fast": 33,
-     "fine": 15
+     "fast": 50,
+     "fine": 17
     },
     "thermals": {
      "hot": 2,
-     "cool": 6,
-     "warm": 1
+     "cool": 16,
+     "warm": 3
     },
     "battery": {
-     "short": 8,
-     "all_day": 2,
-     "most_of_day": 13
+     "short": 9,
+     "all_day": 9,
+     "most_of_day": 15
     },
     "portability": {
-     "not_really": 5,
-     "very": 1
+     "not_really": 12,
+     "very": 4,
+     "somewhat": 4
     },
     "build": {
      "flimsy": 4,
-     "solid": 14,
+     "solid": 17,
      "average": 1
     },
     "screen": {
-     "great": 9,
-     "meh": 5
+     "great": 16,
+     "meh": 6
     },
     "keyboard": {
      "poor": 1,
-     "great": 1
+     "great": 4
     }
    }
   },
   "apple-macbook-pro-16-m2-pro-max": {
    "name": "Apple MacBook Pro 16 (M2 Pro/Max)",
-   "authors": 20,
+   "authors": 40,
    "sentiment": {
-    "loved": 5,
+    "loved": 20,
     "mixed": 0,
     "not_for_me": 1
    },
@@ -971,51 +1048,59 @@
      "somewhat": 1
     },
     "performance": {
-     "fast": 6
+     "fast": 15,
+     "fine": 1
     },
     "value": {
-     "ok": 1
+     "ok": 1,
+     "worth_it": 1
     },
     "battery": {
-     "all_day": 2
+     "all_day": 3,
+     "most_of_day": 2
     },
     "best_for": {
-     "creative": 1
+     "creative": 2,
+     "work": 3,
+     "gaming": 1
     },
     "thermals": {
-     "cool": 2
+     "cool": 4
     },
     "keyboard": {
      "fine": 1
     },
     "screen": {
-     "great": 1
+     "great": 2
     }
    }
   },
   "apple-macbook-pro-16-m3-pro-max": {
    "name": "Apple MacBook Pro 16 (M3 Pro/Max)",
-   "authors": 32,
+   "authors": 50,
    "sentiment": {
-    "loved": 22,
-    "mixed": 0,
-    "not_for_me": 0
+    "loved": 30,
+    "mixed": 2,
+    "not_for_me": 1
    },
    "groups": {
     "thermals": {
-     "cool": 5
+     "cool": 9,
+     "hot": 3,
+     "warm": 1
     },
     "performance": {
-     "fast": 11
+     "fast": 15,
+     "fine": 1
     },
     "battery": {
      "most_of_day": 3,
      "all_day": 5
     },
     "best_for": {
-     "creative": 3,
+     "creative": 4,
      "gaming": 1,
-     "work": 2
+     "work": 3
     },
     "value": {
      "overpriced": 2,
@@ -1032,62 +1117,74 @@
      "solid": 1
     },
     "portability": {
-     "somewhat": 5,
+     "somewhat": 6,
      "not_really": 1
     }
    }
   },
   "apple-macbook-pro-16-m4-pro-max": {
    "name": "Apple MacBook Pro 16 (M4 Pro/Max)",
-   "authors": 51,
+   "authors": 98,
    "sentiment": {
-    "loved": 16,
-    "mixed": 2,
-    "not_for_me": 0
+    "loved": 50,
+    "mixed": 4,
+    "not_for_me": 2
    },
    "groups": {
     "performance": {
-     "fast": 7
+     "fast": 16,
+     "fine": 2
     },
     "best_for": {
-     "creative": 5,
-     "gaming": 1
+     "creative": 7,
+     "gaming": 4,
+     "work": 3
     },
     "thermals": {
      "warm": 1,
-     "hot": 1,
-     "cool": 1
+     "cool": 5,
+     "hot": 2
     },
     "portability": {
-     "somewhat": 1,
-     "not_really": 4
+     "not_really": 6,
+     "somewhat": 3,
+     "very": 1
     },
     "build": {
-     "flimsy": 6
+     "flimsy": 6,
+     "solid": 1
     },
     "value": {
-     "worth_it": 1
+     "worth_it": 2
     },
     "battery": {
-     "all_day": 7,
+     "all_day": 8,
      "short": 4,
      "most_of_day": 2
+    },
+    "keyboard": {
+     "great": 1
+    },
+    "screen": {
+     "great": 8,
+     "good": 1,
+     "meh": 2
     }
    }
   },
   "apple-macbook-pro-16-m5-pro-max": {
    "name": "Apple MacBook Pro 16 (M5 Pro/Max)",
-   "authors": 73,
+   "authors": 111,
    "sentiment": {
-    "loved": 36,
-    "mixed": 5,
-    "not_for_me": 7
+    "loved": 49,
+    "mixed": 10,
+    "not_for_me": 8
    },
    "groups": {
     "performance": {
      "slow": 1,
-     "fast": 13,
-     "fine": 1
+     "fast": 19,
+     "fine": 4
     },
     "build": {
      "flimsy": 3
@@ -1095,15 +1192,15 @@
     "portability": {
      "somewhat": 13,
      "very": 4,
-     "not_really": 4
+     "not_really": 6
     },
     "screen": {
-     "great": 11
+     "great": 12
     },
     "thermals": {
-     "hot": 4,
+     "hot": 13,
      "warm": 1,
-     "cool": 3
+     "cool": 5
     },
     "keyboard": {
      "fine": 2,
@@ -1114,72 +1211,80 @@
      "worth_it": 1
     },
     "best_for": {
-     "creative": 5,
-     "gaming": 1,
-     "work": 4
+     "creative": 7,
+     "gaming": 2,
+     "work": 5
     },
     "battery": {
      "most_of_day": 1,
-     "all_day": 2,
+     "all_day": 4,
      "short": 1
     }
    }
   },
   "asus-chromebook-plus-cm34-flip-cm3401": {
    "name": "ASUS Chromebook Plus CM34 Flip (CM3401)",
-   "authors": 11,
+   "authors": 20,
    "sentiment": {
-    "loved": 1,
-    "mixed": 2,
+    "loved": 5,
+    "mixed": 3,
     "not_for_me": 4
    },
    "groups": {
     "thermals": {
-     "cool": 1
+     "cool": 2
     },
     "screen": {
      "good": 1,
      "meh": 4
     },
     "value": {
-     "overpriced": 1
+     "overpriced": 1,
+     "worth_it": 3
     },
     "performance": {
-     "fast": 1
+     "fast": 1,
+     "fine": 1
     },
     "build": {
-     "solid": 1,
-     "flimsy": 2
+     "solid": 2,
+     "flimsy": 3
+    },
+    "portability": {
+     "not_really": 2
+    },
+    "battery": {
+     "all_day": 1
     }
    }
   },
   "asus-proart-p16-h7606": {
    "name": "ASUS ProArt P16 (H7606)",
-   "authors": 77,
+   "authors": 125,
    "sentiment": {
-    "loved": 15,
-    "mixed": 5,
+    "loved": 19,
+    "mixed": 8,
     "not_for_me": 10
    },
    "groups": {
     "build": {
-     "flimsy": 10,
-     "solid": 8,
-     "average": 2
-    },
-    "battery": {
-     "all_day": 2,
-     "most_of_day": 3,
-     "short": 9
+     "flimsy": 15,
+     "solid": 9,
+     "average": 3
     },
     "screen": {
      "great": 9,
      "good": 1,
-     "meh": 6
+     "meh": 8
     },
     "best_for": {
      "gaming": 5,
      "creative": 7
+    },
+    "battery": {
+     "most_of_day": 4,
+     "short": 10,
+     "all_day": 2
     },
     "keyboard": {
      "fine": 3,
@@ -1191,14 +1296,14 @@
      "very": 2
     },
     "thermals": {
-     "cool": 4,
-     "hot": 9,
+     "cool": 6,
+     "hot": 10,
      "warm": 1
     },
     "performance": {
      "fast": 7,
-     "slow": 6,
-     "fine": 4
+     "slow": 7,
+     "fine": 5
     },
     "value": {
      "overpriced": 4,
@@ -1208,229 +1313,262 @@
   },
   "asus-proart-px13-hn7306": {
    "name": "ASUS ProArt PX13 (HN7306)",
-   "authors": 47,
+   "authors": 125,
    "sentiment": {
-    "loved": 3,
-    "mixed": 3,
-    "not_for_me": 3
+    "loved": 36,
+    "mixed": 19,
+    "not_for_me": 9
    },
    "groups": {
     "best_for": {
-     "creative": 1,
-     "gaming": 4,
-     "work": 2
+     "creative": 3,
+     "gaming": 9,
+     "work": 4
     },
     "screen": {
-     "great": 3
+     "great": 10,
+     "good": 1,
+     "meh": 4
     },
     "performance": {
-     "fine": 5,
-     "slow": 1
+     "fine": 8,
+     "slow": 1,
+     "fast": 13
     },
     "portability": {
-     "very": 2,
+     "very": 6,
      "somewhat": 1
     },
     "build": {
-     "solid": 3,
-     "flimsy": 5,
+     "solid": 14,
+     "flimsy": 12,
      "average": 2
     },
     "keyboard": {
-     "great": 1,
+     "great": 5,
      "fine": 1,
-     "poor": 2
+     "poor": 8
     },
     "battery": {
-     "most_of_day": 2,
-     "short": 5
+     "most_of_day": 10,
+     "short": 11,
+     "all_day": 3
     },
     "value": {
      "ok": 1,
-     "overpriced": 1
+     "overpriced": 2,
+     "worth_it": 3
     },
     "thermals": {
-     "hot": 22,
-     "cool": 1
+     "hot": 30,
+     "cool": 9,
+     "warm": 1
     }
    }
   },
   "asus-rog-flow-z13-2025": {
    "name": "ASUS ROG Flow Z13 (2025)",
-   "authors": 116,
+   "authors": 184,
    "sentiment": {
-    "loved": 25,
-    "mixed": 14,
-    "not_for_me": 2
+    "loved": 55,
+    "mixed": 20,
+    "not_for_me": 9
    },
    "groups": {
     "battery": {
-     "short": 7,
+     "short": 9,
      "most_of_day": 9,
-     "all_day": 2
+     "all_day": 3
     },
     "screen": {
-     "meh": 1,
-     "great": 1
+     "meh": 3,
+     "great": 3,
+     "good": 2
     },
     "performance": {
-     "fast": 11,
-     "slow": 1,
-     "fine": 4
+     "fast": 31,
+     "slow": 3,
+     "fine": 5
     },
     "best_for": {
-     "gaming": 9,
-     "creative": 2,
+     "gaming": 19,
+     "creative": 4,
      "work": 5
     },
+    "keyboard": {
+     "great": 2,
+     "fine": 1,
+     "poor": 1
+    },
     "value": {
-     "overpriced": 2,
-     "worth_it": 1
+     "overpriced": 4,
+     "worth_it": 2,
+     "ok": 1
     },
     "build": {
      "flimsy": 9,
-     "solid": 7
+     "solid": 9
     },
     "thermals": {
-     "hot": 5,
-     "cool": 3
+     "hot": 10,
+     "cool": 8
     },
     "portability": {
-     "very": 3,
-     "somewhat": 2
-    },
-    "keyboard": {
-     "fine": 1,
-     "poor": 1
+     "very": 7,
+     "somewhat": 3,
+     "not_really": 3
     }
    }
   },
   "asus-rog-strix-g16-2024": {
    "name": "ASUS ROG Strix G16 (2024)",
-   "authors": 45,
+   "authors": 67,
    "sentiment": {
-    "loved": 4,
-    "mixed": 2,
-    "not_for_me": 10
+    "loved": 14,
+    "mixed": 3,
+    "not_for_me": 12
    },
    "groups": {
     "thermals": {
-     "cool": 2,
-     "hot": 12,
-     "warm": 3
+     "cool": 4,
+     "hot": 17,
+     "warm": 4
     },
     "value": {
-     "worth_it": 3,
+     "worth_it": 4,
      "overpriced": 1
     },
     "build": {
-     "flimsy": 11,
+     "flimsy": 15,
      "average": 1,
-     "solid": 4
+     "solid": 6
     },
     "performance": {
-     "fast": 1,
-     "slow": 6
+     "fast": 7,
+     "slow": 7
     },
     "screen": {
-     "great": 1,
+     "great": 2,
      "meh": 1
+    },
+    "best_for": {
+     "gaming": 4
     }
    }
   },
   "asus-rog-strix-g16-2025": {
    "name": "ASUS ROG Strix G16 (2025)",
-   "authors": 10,
+   "authors": 50,
    "sentiment": {
-    "loved": 0,
-    "mixed": 0,
-    "not_for_me": 5
+    "loved": 23,
+    "mixed": 2,
+    "not_for_me": 6
    },
    "groups": {
     "performance": {
-     "fast": 3,
+     "fast": 10,
      "fine": 1,
-     "slow": 1
+     "slow": 3
     },
     "thermals": {
-     "hot": 1,
-     "warm": 1,
-     "cool": 2
+     "hot": 6,
+     "warm": 2,
+     "cool": 7
     },
     "build": {
-     "flimsy": 5,
-     "solid": 1
+     "flimsy": 6,
+     "solid": 6
     },
     "best_for": {
-     "gaming": 2
+     "gaming": 8
     },
     "keyboard": {
-     "great": 1
+     "great": 2
     },
     "screen": {
-     "great": 1
+     "great": 4,
+     "good": 2,
+     "meh": 1
     },
     "value": {
-     "overpriced": 1
+     "overpriced": 2,
+     "worth_it": 4
+    },
+    "battery": {
+     "short": 2,
+     "all_day": 1
+    },
+    "portability": {
+     "not_really": 2
     }
    }
   },
   "asus-rog-strix-g18-2025": {
    "name": "ASUS ROG Strix G18 (2025)",
-   "authors": 17,
+   "authors": 39,
    "sentiment": {
-    "loved": 3,
-    "mixed": 0,
+    "loved": 16,
+    "mixed": 1,
     "not_for_me": 0
    },
    "groups": {
     "best_for": {
-     "gaming": 1,
+     "gaming": 5,
      "work": 1,
      "creative": 1
     },
     "build": {
      "solid": 1,
-     "flimsy": 2
+     "flimsy": 3
     },
     "performance": {
-     "fast": 2
+     "fast": 5
     },
     "value": {
      "worth_it": 1
     },
     "thermals": {
      "cool": 3,
-     "hot": 1
+     "hot": 2
     },
     "screen": {
+     "great": 4,
      "meh": 1,
-     "great": 1
+     "good": 1
     },
     "keyboard": {
-     "great": 1
+     "great": 2,
+     "poor": 1
     }
    }
   },
   "asus-rog-strix-scar-16-2024": {
    "name": "ASUS ROG Strix SCAR 16 (2024)",
-   "authors": 8,
+   "authors": 16,
    "sentiment": {
-    "loved": 0,
-    "mixed": 0,
-    "not_for_me": 0
+    "loved": 2,
+    "mixed": 3,
+    "not_for_me": 1
    },
    "groups": {
     "build": {
-     "flimsy": 1,
+     "flimsy": 2,
      "average": 1
     },
     "screen": {
-     "great": 2
+     "great": 4,
+     "meh": 1
     },
     "thermals": {
-     "hot": 5,
-     "cool": 1
+     "hot": 7,
+     "cool": 2
+    },
+    "portability": {
+     "not_really": 2
+    },
+    "performance": {
+     "fine": 2,
+     "fast": 2
     },
     "keyboard": {
      "poor": 1
@@ -1438,15 +1576,8 @@
     "best_for": {
      "gaming": 1
     },
-    "performance": {
-     "fast": 1,
-     "fine": 1
-    },
-    "portability": {
-     "not_really": 1
-    },
     "battery": {
-     "short": 1
+     "short": 2
     },
     "value": {
      "overpriced": 1
@@ -1455,86 +1586,106 @@
   },
   "asus-rog-strix-scar-16-2025": {
    "name": "ASUS ROG Strix SCAR 16 (2025)",
-   "authors": 5,
+   "authors": 29,
    "sentiment": {
-    "loved": 2,
+    "loved": 8,
     "mixed": 0,
-    "not_for_me": 1
+    "not_for_me": 2
    },
    "groups": {
     "build": {
      "flimsy": 1,
-     "solid": 1,
+     "solid": 4,
      "average": 1
     },
     "performance": {
-     "fast": 1
+     "fast": 2
     },
     "battery": {
-     "most_of_day": 1
+     "most_of_day": 1,
+     "short": 1
     },
     "portability": {
      "very": 1
+    },
+    "thermals": {
+     "hot": 4,
+     "cool": 2
+    },
+    "best_for": {
+     "gaming": 2,
+     "creative": 1
+    },
+    "screen": {
+     "great": 3,
+     "meh": 4
     }
    }
   },
   "asus-rog-strix-scar-18-2024": {
    "name": "ASUS ROG Strix SCAR 18 (2024)",
-   "authors": 18,
+   "authors": 58,
    "sentiment": {
-    "loved": 2,
-    "mixed": 1,
+    "loved": 11,
+    "mixed": 6,
     "not_for_me": 3
    },
    "groups": {
     "thermals": {
-     "hot": 6,
-     "cool": 2
+     "hot": 14,
+     "cool": 5
     },
     "best_for": {
-     "gaming": 3
+     "gaming": 7
     },
     "screen": {
-     "great": 3,
-     "meh": 1
+     "great": 10,
+     "meh": 1,
+     "good": 1
     },
     "performance": {
-     "fast": 4,
-     "slow": 1
+     "fast": 9,
+     "slow": 1,
+     "fine": 2
     },
     "keyboard": {
      "poor": 1
     },
     "value": {
-     "overpriced": 1,
-     "worth_it": 1
+     "overpriced": 3,
+     "worth_it": 3
+    },
+    "portability": {
+     "not_really": 1,
+     "somewhat": 1
     },
     "build": {
-     "flimsy": 4,
-     "solid": 1
+     "flimsy": 6,
+     "solid": 3,
+     "average": 1
     },
     "battery": {
-     "short": 1
+     "short": 2
     }
    }
   },
   "asus-rog-strix-scar-18-2025": {
    "name": "ASUS ROG Strix SCAR 18 (2025)",
-   "authors": 42,
+   "authors": 76,
    "sentiment": {
-    "loved": 1,
-    "mixed": 0,
-    "not_for_me": 1
+    "loved": 6,
+    "mixed": 3,
+    "not_for_me": 5
    },
    "groups": {
     "build": {
-     "solid": 4,
+     "solid": 5,
      "flimsy": 7
     },
     "thermals": {
      "cool": 3,
      "warm": 2,
-     "hot": 7
+     "hot": 12
     },
     "value": {
      "ok": 1,
@@ -1542,27 +1693,28 @@
      "worth_it": 1
     },
     "best_for": {
-     "gaming": 2
+     "gaming": 5
     },
     "performance": {
-     "slow": 1,
-     "fast": 4,
+     "slow": 3,
+     "fast": 7,
      "fine": 1
     },
     "screen": {
      "meh": 2,
-     "great": 2
+     "great": 4
     },
     "keyboard": {
-     "great": 1
+     "great": 1,
+     "poor": 1
     }
    }
   },
   "asus-rog-strix-scar-18-2026": {
    "name": "ASUS ROG Strix SCAR 18 (2026)",
-   "authors": 3,
+   "authors": 6,
    "sentiment": {
-    "loved": 1,
+    "loved": 2,
     "mixed": 0,
     "not_for_me": 0
    },
@@ -1571,106 +1723,114 @@
      "gaming": 1
     },
     "performance": {
-     "fast": 1
+     "fast": 2
     },
     "portability": {
      "very": 1
+    },
+    "screen": {
+     "great": 1
     }
    }
   },
   "asus-rog-zephyrus-g14-2023": {
    "name": "ASUS ROG Zephyrus G14 (2023)",
-   "authors": 73,
+   "authors": 144,
    "sentiment": {
-    "loved": 14,
-    "mixed": 3,
-    "not_for_me": 5
+    "loved": 35,
+    "mixed": 5,
+    "not_for_me": 7
    },
    "groups": {
     "best_for": {
-     "gaming": 5
+     "gaming": 7
     },
     "portability": {
-     "very": 2,
+     "very": 4,
      "not_really": 1
     },
     "screen": {
-     "meh": 1,
-     "good": 3
+     "meh": 5,
+     "good": 6,
+     "great": 4
     },
     "battery": {
-     "most_of_day": 5,
-     "short": 2
+     "most_of_day": 6,
+     "short": 3,
+     "all_day": 2
     },
     "build": {
-     "solid": 3,
-     "flimsy": 8,
+     "solid": 8,
+     "flimsy": 10,
      "average": 3
     },
     "thermals": {
-     "cool": 5,
-     "hot": 4,
-     "warm": 6
+     "cool": 6,
+     "hot": 11,
+     "warm": 8
     },
     "value": {
-     "worth_it": 3,
+     "worth_it": 4,
      "ok": 1,
-     "overpriced": 2
+     "overpriced": 3
     },
     "performance": {
-     "fast": 1,
-     "fine": 3
+     "fast": 10,
+     "fine": 6
     },
     "keyboard": {
-     "poor": 3
+     "poor": 3,
+     "great": 2
     }
    }
   },
   "asus-rog-zephyrus-g14-2024": {
    "name": "ASUS ROG Zephyrus G14 (2024)",
-   "authors": 73,
+   "authors": 129,
    "sentiment": {
-    "loved": 18,
+    "loved": 31,
     "mixed": 9,
     "not_for_me": 8
    },
    "groups": {
     "battery": {
-     "short": 3,
-     "most_of_day": 9,
-     "all_day": 2
+     "short": 11,
+     "most_of_day": 13,
+     "all_day": 7
     },
     "thermals": {
-     "cool": 11,
-     "warm": 4,
-     "hot": 18
+     "cool": 12,
+     "warm": 5,
+     "hot": 26
     },
     "performance": {
-     "fine": 4,
-     "fast": 4
+     "fine": 8,
+     "fast": 5
     },
     "best_for": {
-     "work": 3,
-     "gaming": 7
-    },
-    "build": {
-     "flimsy": 9,
-     "solid": 6,
-     "average": 1
-    },
-    "keyboard": {
-     "poor": 1,
-     "great": 3
+     "work": 4,
+     "gaming": 8,
+     "creative": 1
     },
     "screen": {
-     "great": 7
+     "great": 12
+    },
+    "build": {
+     "solid": 13,
+     "flimsy": 9,
+     "average": 2
+    },
+    "keyboard": {
+     "poor": 2,
+     "great": 4,
+     "fine": 1
     },
     "value": {
      "overpriced": 1,
      "ok": 1
     },
     "portability": {
-     "very": 3,
+     "very": 6,
      "somewhat": 1
     }
    }
@@ -1729,137 +1889,141 @@
   },
   "asus-rog-zephyrus-g14-2026": {
    "name": "ASUS ROG Zephyrus G14 (2026)",
-   "authors": 21,
+   "authors": 45,
    "sentiment": {
-    "loved": 1,
-    "mixed": 0,
+    "loved": 7,
+    "mixed": 4,
     "not_for_me": 0
    },
    "groups": {
     "performance": {
-     "fast": 1,
+     "fast": 2,
      "fine": 1
     },
     "screen": {
-     "great": 1,
+     "great": 5,
      "good": 1
     },
     "value": {
-     "worth_it": 1,
-     "overpriced": 1
+     "worth_it": 2,
+     "overpriced": 2
     },
     "battery": {
-     "most_of_day": 1,
-     "all_day": 1,
-     "short": 1
+     "most_of_day": 2,
+     "all_day": 4
     },
     "build": {
-     "solid": 2,
+     "solid": 6,
      "flimsy": 5
     },
     "thermals": {
-     "hot": 3,
-     "cool": 2,
-     "warm": 3
+     "hot": 4,
+     "cool": 6,
+     "warm": 2
     },
     "keyboard": {
      "fine": 2,
-     "great": 1
+     "great": 2
     }
    }
   },
   "asus-rog-zephyrus-g16-2024": {
    "name": "ASUS ROG Zephyrus G16 (2024)",
-   "authors": 77,
+   "authors": 137,
    "sentiment": {
-    "loved": 8,
-    "mixed": 7,
-    "not_for_me": 2
+    "loved": 25,
+    "mixed": 11,
+    "not_for_me": 6
    },
    "groups": {
     "performance": {
-     "slow": 1,
-     "fast": 3
+     "slow": 2,
+     "fast": 9,
+     "fine": 2
     },
     "thermals": {
-     "hot": 10,
-     "cool": 4,
-     "warm": 3
+     "hot": 21,
+     "cool": 8,
+     "warm": 4
     },
     "value": {
-     "overpriced": 1,
-     "worth_it": 1
+     "overpriced": 2,
+     "worth_it": 2
     },
     "screen": {
      "meh": 2,
-     "great": 3,
-     "good": 1
+     "great": 11,
+     "good": 2
     },
     "battery": {
-     "most_of_day": 8,
-     "all_day": 1,
-     "short": 4
-    },
-    "best_for": {
-     "work": 1,
-     "gaming": 3,
-     "creative": 1
+     "most_of_day": 11,
+     "all_day": 9,
+     "short": 11
     },
     "build": {
+     "solid": 4,
      "average": 4,
-     "flimsy": 4,
-     "solid": 1
+     "flimsy": 6
+    },
+    "best_for": {
+     "work": 2,
+     "gaming": 5,
+     "creative": 2
     },
     "keyboard": {
-     "great": 1,
+     "great": 2,
      "poor": 4
     },
     "portability": {
-     "somewhat": 1
+     "somewhat": 2,
+     "very": 1
     }
    }
   },
   "asus-rog-zephyrus-g16-2025": {
    "name": "ASUS ROG Zephyrus G16 (2025)",
-   "authors": 55,
+   "authors": 88,
    "sentiment": {
-    "loved": 7,
-    "mixed": 3,
-    "not_for_me": 1
+    "loved": 14,
+    "mixed": 5,
+    "not_for_me": 2
    },
    "groups": {
     "thermals": {
-     "hot": 8,
-     "warm": 2,
-     "cool": 3
+     "hot": 12,
+     "warm": 3,
+     "cool": 4
     },
     "build": {
-     "flimsy": 4,
-     "solid": 3
+     "flimsy": 5,
+     "solid": 4,
+     "average": 1
     },
     "best_for": {
-     "gaming": 2
+     "gaming": 3
     },
     "performance": {
-     "fast": 3,
-     "fine": 1
+     "fast": 6,
+     "fine": 3,
+     "slow": 1
     },
     "screen": {
-     "great": 3,
+     "great": 5,
      "good": 3,
      "meh": 1
+    },
+    "keyboard": {
+     "poor": 2,
+     "great": 1
     },
     "battery": {
      "most_of_day": 5,
      "short": 3,
-     "all_day": 1
-    },
-    "keyboard": {
-     "great": 1,
-     "poor": 1
+     "all_day": 3
     },
     "portability": {
-     "very": 2
+     "very": 3,
+     "somewhat": 1
     },
     "value": {
      "worth_it": 1
@@ -1868,84 +2032,107 @@
   },
   "asus-rog-zephyrus-g16-2026": {
    "name": "ASUS ROG Zephyrus G16 (2026)",
-   "authors": 8,
+   "authors": 35,
    "sentiment": {
-    "loved": 1,
-    "mixed": 0,
+    "loved": 14,
+    "mixed": 3,
     "not_for_me": 0
    },
    "groups": {
+    "thermals": {
+     "hot": 5,
+     "cool": 5,
+     "warm": 1
+    },
     "battery": {
-     "all_day": 2
+     "all_day": 6,
+     "most_of_day": 1
     },
     "performance": {
-     "fast": 1
+     "fast": 5
     },
     "best_for": {
      "gaming": 2
     },
     "portability": {
-     "very": 1
-    }
-   }
-  },
-  "asus-tuf-gaming-a14-2024": {
-   "name": "ASUS TUF Gaming A14 (2024)",
-   "authors": 23,
-   "sentiment": {
-    "loved": 7,
-    "mixed": 0,
-    "not_for_me": 1
-   },
-   "groups": {
-    "performance": {
-     "fast": 8,
-     "fine": 1
+     "very": 4
     },
-    "portability": {
-     "very": 3
+    "build": {
+     "solid": 4
     },
-    "battery": {
-     "most_of_day": 7,
-     "all_day": 1,
-     "short": 1
-    },
-    "thermals": {
-     "cool": 4,
-     "hot": 2
-    },
-    "best_for": {
-     "gaming": 5
+    "screen": {
+     "great": 2
     },
     "value": {
      "overpriced": 2,
      "worth_it": 1
     },
+    "keyboard": {
+     "great": 1
+    }
+   }
+  },
+  "asus-tuf-gaming-a14-2024": {
+   "name": "ASUS TUF Gaming A14 (2024)",
+   "authors": 47,
+   "sentiment": {
+    "loved": 16,
+    "mixed": 2,
+    "not_for_me": 2
+   },
+   "groups": {
+    "performance": {
+     "fast": 11,
+     "fine": 5
+    },
+    "portability": {
+     "very": 6
+    },
+    "battery": {
+     "most_of_day": 11,
+     "all_day": 4,
+     "short": 2
+    },
+    "thermals": {
+     "cool": 6,
+     "hot": 3,
+     "warm": 2
+    },
+    "best_for": {
+     "gaming": 5
+    },
     "build": {
-     "solid": 1,
-     "average": 1,
-     "flimsy": 2
+     "solid": 4,
+     "average": 2,
+     "flimsy": 3
     },
     "keyboard": {
-     "fine": 2
+     "fine": 2,
+     "great": 1
+    },
+    "value": {
+     "worth_it": 1,
+     "overpriced": 1
     },
     "screen": {
      "meh": 2,
-     "good": 1
+     "good": 5,
+     "great": 1
     }
    }
   },
   "asus-tuf-gaming-a14-2025": {
    "name": "ASUS TUF Gaming A14 (2025)",
-   "authors": 23,
+   "authors": 30,
    "sentiment": {
-    "loved": 3,
+    "loved": 9,
     "mixed": 0,
     "not_for_me": 2
    },
    "groups": {
     "build": {
-     "flimsy": 3
+     "flimsy": 3,
+     "solid": 3
     },
     "screen": {
      "meh": 1
@@ -1954,319 +2141,395 @@
      "poor": 1
     },
     "thermals": {
-     "hot": 7
+     "hot": 7,
+     "cool": 2
     },
     "battery": {
-     "most_of_day": 2
+     "most_of_day": 3,
+     "all_day": 2
     },
     "performance": {
-     "fast": 2
+     "fast": 3,
+     "fine": 1
+    },
+    "portability": {
+     "somewhat": 1,
+     "very": 1
+    },
+    "best_for": {
+     "creative": 1,
+     "work": 1
     }
    }
   },
   "asus-tuf-gaming-a15-2024": {
    "name": "ASUS TUF Gaming A15 (2024)",
-   "authors": 8,
+   "authors": 16,
    "sentiment": {
-    "loved": 2,
+    "loved": 5,
     "mixed": 1,
-    "not_for_me": 0
+    "not_for_me": 1
    },
    "groups": {
     "thermals": {
-     "hot": 4,
+     "hot": 7,
      "cool": 1
     },
     "best_for": {
      "gaming": 2
     },
     "performance": {
-     "fast": 2
+     "fast": 3
     },
     "battery": {
      "most_of_day": 1
     },
     "screen": {
-     "great": 1
+     "great": 2
     },
     "value": {
      "worth_it": 1
+    },
+    "build": {
+     "solid": 1,
+     "flimsy": 1
     }
    }
   },
   "asus-tuf-gaming-a16-2024": {
    "name": "ASUS TUF Gaming A16 (2024)",
-   "authors": 29,
+   "authors": 68,
    "sentiment": {
-    "loved": 3,
-    "mixed": 1,
-    "not_for_me": 3
+    "loved": 22,
+    "mixed": 9,
+    "not_for_me": 5
    },
    "groups": {
     "build": {
      "flimsy": 3,
-     "solid": 1
+     "solid": 6,
+     "average": 1
     },
     "battery": {
-     "most_of_day": 3
+     "most_of_day": 6,
+     "short": 6
     },
     "screen": {
-     "meh": 1
+     "meh": 1,
+     "great": 1,
+     "good": 1
     },
     "thermals": {
-     "cool": 3
+     "cool": 4,
+     "hot": 2,
+     "warm": 2
     },
     "best_for": {
-     "gaming": 2
+     "gaming": 5,
+     "creative": 1
     },
     "keyboard": {
-     "poor": 2
+     "poor": 4,
+     "great": 1
+    },
+    "performance": {
+     "fine": 4,
+     "fast": 10
     },
     "value": {
-     "worth_it": 1
+     "worth_it": 3
+    },
+    "portability": {
+     "not_really": 2,
+     "very": 1
     }
    }
   },
   "asus-tuf-gaming-a16-2025": {
    "name": "ASUS TUF Gaming A16 (2025)",
-   "authors": 13,
+   "authors": 66,
    "sentiment": {
-    "loved": 3,
-    "mixed": 4,
-    "not_for_me": 0
+    "loved": 21,
+    "mixed": 6,
+    "not_for_me": 5
    },
    "groups": {
+    "build": {
+     "solid": 6,
+     "average": 1,
+     "flimsy": 1
+    },
     "thermals": {
-     "cool": 1,
+     "cool": 12,
      "warm": 1,
-     "hot": 2
+     "hot": 8
     },
     "battery": {
-     "most_of_day": 1,
-     "short": 1
+     "most_of_day": 4,
+     "short": 5,
+     "all_day": 3
     },
     "performance": {
-     "fast": 2,
-     "fine": 2
+     "fast": 10,
+     "fine": 3,
+     "slow": 3
     },
     "best_for": {
      "work": 1,
-     "gaming": 2
+     "gaming": 2,
+     "creative": 1
     },
     "portability": {
-     "not_really": 1
+     "not_really": 1,
+     "somewhat": 1,
+     "very": 1
+    },
+    "keyboard": {
+     "poor": 2,
+     "great": 1
+    },
+    "value": {
+     "worth_it": 2
+    },
+    "screen": {
+     "good": 3,
+     "great": 1,
+     "meh": 3
     }
    }
   },
   "asus-tuf-gaming-f15-2023": {
    "name": "ASUS TUF Gaming F15 (2023)",
-   "authors": 31,
+   "authors": 62,
    "sentiment": {
-    "loved": 0,
+    "loved": 13,
     "mixed": 1,
-    "not_for_me": 2
+    "not_for_me": 3
    },
    "groups": {
     "thermals": {
-     "hot": 2,
-     "cool": 1
+     "hot": 7,
+     "cool": 9
     },
     "build": {
-     "flimsy": 3,
+     "flimsy": 7,
      "solid": 2
     },
     "best_for": {
      "gaming": 2
     },
     "performance": {
-     "fast": 2,
-     "slow": 1
+     "fast": 6,
+     "slow": 1,
+     "fine": 3
     },
     "value": {
-     "worth_it": 1
+     "worth_it": 5
     },
     "keyboard": {
      "fine": 1,
      "poor": 4,
-     "great": 1
+     "great": 2
     },
     "battery": {
      "most_of_day": 4,
      "all_day": 1,
-     "short": 2
+     "short": 3
     },
     "screen": {
-     "good": 1
+     "good": 4,
+     "meh": 2,
+     "great": 1
     }
    }
   },
   "asus-tuf-gaming-f16-2025": {
    "name": "ASUS TUF Gaming F16 (2025)",
-   "authors": 32,
+   "authors": 62,
    "sentiment": {
-    "loved": 6,
-    "mixed": 5,
+    "loved": 16,
+    "mixed": 8,
     "not_for_me": 3
    },
    "groups": {
     "performance": {
-     "fast": 4,
-     "fine": 4
+     "fast": 6,
+     "fine": 4,
+     "slow": 1
     },
     "build": {
-     "solid": 3,
+     "solid": 6,
      "flimsy": 8,
      "average": 2
     },
     "screen": {
      "good": 3,
-     "meh": 2
+     "meh": 3
     },
     "value": {
-     "worth_it": 3,
+     "worth_it": 4,
      "overpriced": 1
     },
     "battery": {
-     "most_of_day": 4,
-     "short": 4
+     "most_of_day": 7,
+     "short": 7
     },
     "keyboard": {
      "poor": 1
     },
     "portability": {
-     "somewhat": 1,
+     "somewhat": 2,
      "not_really": 1
+    },
+    "thermals": {
+     "warm": 4,
+     "cool": 6,
+     "hot": 6
     },
     "best_for": {
      "gaming": 2,
      "work": 1
-    },
-    "thermals": {
-     "cool": 1,
-     "hot": 5
     }
    }
   },
   "asus-vivobook-s-14-oled-s5406": {
    "name": "ASUS Vivobook S 14 OLED (S5406)",
-   "authors": 15,
+   "authors": 25,
    "sentiment": {
-    "loved": 3,
+    "loved": 10,
     "mixed": 0,
     "not_for_me": 0
    },
    "groups": {
     "battery": {
      "short": 1,
-     "all_day": 2
+     "all_day": 6,
+     "most_of_day": 2
     },
     "performance": {
-     "fast": 1,
-     "slow": 1
+     "fast": 2,
+     "slow": 1,
+     "fine": 1
     },
     "best_for": {
      "work": 1
     },
     "screen": {
-     "great": 1
+     "great": 4
     },
     "build": {
-     "average": 1
+     "average": 1,
+     "solid": 1
     },
     "value": {
-     "worth_it": 1
+     "worth_it": 6
+    },
+    "thermals": {
+     "cool": 2,
+     "warm": 1
+    },
+    "portability": {
+     "very": 1
+    },
+    "keyboard": {
+     "fine": 2,
+     "poor": 1
     }
    }
   },
   "asus-vivobook-s-16-oled-m5606": {
    "name": "ASUS Vivobook S 16 OLED (M5606)",
-   "authors": 26,
+   "authors": 36,
    "sentiment": {
-    "loved": 4,
-    "mixed": 0,
-    "not_for_me": 0
+    "loved": 9,
+    "mixed": 2,
+    "not_for_me": 2
    },
    "groups": {
     "performance": {
-     "fast": 3,
+     "fast": 6,
      "fine": 2,
      "slow": 1
     },
     "battery": {
-     "most_of_day": 2,
+     "most_of_day": 3,
      "short": 2,
-     "all_day": 2
+     "all_day": 4
     },
     "thermals": {
-     "hot": 4,
-     "cool": 1
+     "hot": 6,
+     "cool": 2,
+     "warm": 2
     },
     "keyboard": {
-     "great": 1,
+     "great": 3,
      "poor": 1
     },
     "value": {
-     "worth_it": 2
+     "worth_it": 3
     },
     "build": {
      "flimsy": 2,
-     "solid": 2
+     "solid": 3
     },
     "portability": {
-     "very": 1
+     "very": 3
     },
     "screen": {
      "meh": 1,
-     "great": 2
+     "great": 6,
+     "good": 1
     },
     "best_for": {
-     "work": 2,
+     "work": 3,
      "creative": 1
     }
    }
   },
   "asus-zenbook-14-oled-um3406": {
    "name": "ASUS Zenbook 14 OLED (UM3406)",
-   "authors": 10,
+   "authors": 18,
    "sentiment": {
-    "loved": 4,
-    "mixed": 0,
-    "not_for_me": 1
+    "loved": 8,
+    "mixed": 1,
+    "not_for_me": 2
    },
    "groups": {
     "build": {
-     "flimsy": 1
+     "flimsy": 3,
+     "average": 1,
+     "solid": 1
     },
     "keyboard": {
      "poor": 2,
      "fine": 1
     },
     "performance": {
-     "fine": 2,
-     "fast": 3
+     "fine": 3,
+     "fast": 4,
+     "slow": 1
     },
     "screen": {
      "meh": 1,
-     "great": 4
+     "great": 5
     },
     "value": {
      "overpriced": 1
     },
     "battery": {
-     "all_day": 3,
-     "most_of_day": 1
+     "all_day": 5
     },
     "thermals": {
      "warm": 1,
      "cool": 1,
-     "hot": 1
+     "hot": 2
     },
     "best_for": {
      "gaming": 2,
-     "work": 2
+     "work": 3
     },
     "portability": {
-     "very": 1
+     "very": 2
     }
    }
   },
@@ -2324,15 +2587,15 @@
   },
   "asus-zenbook-a14-ux3407": {
    "name": "ASUS Zenbook A14 (UX3407)",
-   "authors": 29,
+   "authors": 34,
    "sentiment": {
-    "loved": 8,
-    "mixed": 2,
+    "loved": 9,
+    "mixed": 3,
     "not_for_me": 1
    },
    "groups": {
     "best_for": {
-     "work": 8,
+     "work": 9,
      "creative": 2,
      "gaming": 1
     },
@@ -2347,7 +2610,7 @@
      "overpriced": 2
     },
     "build": {
-     "flimsy": 2,
+     "flimsy": 4,
      "solid": 4,
      "average": 1
     },
@@ -2362,7 +2625,8 @@
     },
     "performance": {
      "fine": 6,
-     "slow": 1
+     "slow": 1,
+     "fast": 1
     },
     "portability": {
      "very": 8
@@ -2375,64 +2639,70 @@
   },
   "asus-zenbook-duo-2024": {
    "name": "ASUS Zenbook Duo (2024)",
-   "authors": 52,
+   "authors": 120,
    "sentiment": {
-    "loved": 7,
-    "mixed": 9,
-    "not_for_me": 5
+    "loved": 24,
+    "mixed": 16,
+    "not_for_me": 7
    },
    "groups": {
     "build": {
-     "flimsy": 8,
-     "solid": 3
+     "flimsy": 13,
+     "solid": 10
     },
     "battery": {
-     "short": 5
+     "short": 12,
+     "most_of_day": 2,
+     "all_day": 2
     },
     "thermals": {
      "warm": 3,
-     "hot": 3
+     "cool": 3,
+     "hot": 7
     },
     "best_for": {
      "gaming": 3,
-     "work": 6
+     "work": 11,
+     "creative": 1
     },
     "value": {
-     "worth_it": 2,
-     "overpriced": 1
-    },
-    "keyboard": {
-     "poor": 8,
-     "fine": 2,
-     "great": 1
+     "worth_it": 5,
+     "overpriced": 2
     },
     "performance": {
-     "fine": 3,
-     "fast": 2,
-     "slow": 3
+     "fast": 6,
+     "fine": 10,
+     "slow": 12
+    },
+    "keyboard": {
+     "poor": 11,
+     "great": 9,
+     "fine": 2
     },
     "screen": {
-     "meh": 3,
-     "good": 1,
-     "great": 2
+     "great": 7,
+     "meh": 4,
+     "good": 1
     },
     "portability": {
-     "not_really": 1
+     "very": 5,
+     "not_really": 2,
+     "somewhat": 1
     }
    }
   },
   "asus-zenbook-duo-2025": {
    "name": "ASUS Zenbook Duo (2025)",
-   "authors": 33,
+   "authors": 45,
    "sentiment": {
-    "loved": 3,
-    "mixed": 3,
-    "not_for_me": 0
+    "loved": 6,
+    "mixed": 5,
+    "not_for_me": 2
    },
    "groups": {
     "build": {
      "solid": 2,
-     "flimsy": 3,
+     "flimsy": 4,
      "average": 1
     },
     "thermals": {
@@ -2440,104 +2710,109 @@
      "cool": 3,
      "hot": 1
     },
+    "performance": {
+     "fast": 1,
+     "fine": 3
+    },
+    "screen": {
+     "great": 3,
+     "good": 1,
+     "meh": 2
+    },
     "battery": {
+     "most_of_day": 5,
      "all_day": 1,
-     "short": 1,
-     "most_of_day": 1
+     "short": 2
+    },
+    "value": {
+     "worth_it": 2,
+     "overpriced": 1
     },
     "portability": {
      "somewhat": 1,
-     "not_really": 1
+     "not_really": 2,
+     "very": 1
     },
     "keyboard": {
      "great": 1
     },
-    "performance": {
-     "fine": 1
-    },
-    "value": {
-     "worth_it": 1
-    },
-    "screen": {
-     "great": 1,
-     "good": 1
-    },
     "best_for": {
-     "work": 1
+     "work": 2,
+     "creative": 1
     }
    }
   },
   "asus-zenbook-s-14-ux5406": {
    "name": "ASUS Zenbook S 14 (UX5406)",
-   "authors": 69,
+   "authors": 123,
    "sentiment": {
-    "loved": 7,
-    "mixed": 14,
-    "not_for_me": 20
+    "loved": 17,
+    "mixed": 22,
+    "not_for_me": 24
    },
    "groups": {
     "keyboard": {
-     "poor": 3,
-     "great": 2,
-     "fine": 1
+     "poor": 6,
+     "great": 3,
+     "fine": 2
     },
     "screen": {
      "meh": 5,
-     "great": 6
+     "great": 10
     },
     "battery": {
-     "most_of_day": 2,
+     "most_of_day": 3,
      "short": 3,
-     "all_day": 3
+     "all_day": 13
     },
     "best_for": {
      "gaming": 2,
      "work": 1
     },
     "build": {
-     "solid": 1,
-     "flimsy": 26,
+     "solid": 7,
+     "flimsy": 36,
      "average": 1
     },
     "portability": {
      "somewhat": 1,
-     "very": 3,
+     "very": 6,
      "not_really": 1
     },
     "value": {
-     "overpriced": 4,
+     "overpriced": 7,
      "worth_it": 4
     },
-    "thermals": {
-     "cool": 4,
-     "hot": 5,
-     "warm": 1
-    },
     "performance": {
-     "fine": 1,
-     "fast": 5,
-     "slow": 1
+     "slow": 9,
+     "fine": 5,
+     "fast": 6
+    },
+    "thermals": {
+     "cool": 7,
+     "hot": 7,
+     "warm": 3
     }
    }
   },
   "asus-zenbook-s-16-um5606": {
    "name": "ASUS Zenbook S 16 (UM5606)",
-   "authors": 127,
+   "authors": 157,
    "sentiment": {
-    "loved": 23,
-    "mixed": 5,
-    "not_for_me": 26
+    "loved": 30,
+    "mixed": 6,
+    "not_for_me": 32
    },
    "groups": {
     "thermals": {
-     "hot": 32,
-     "warm": 7,
-     "cool": 9
+     "hot": 39,
+     "warm": 8,
+     "cool": 14
     },
     "screen": {
-     "good": 1,
-     "great": 17,
-     "meh": 19
+     "good": 2,
+     "great": 18,
+     "meh": 22
     },
     "value": {
      "overpriced": 7,
@@ -2546,31 +2821,31 @@
     },
     "build": {
      "average": 3,
-     "flimsy": 22,
-     "solid": 6
+     "flimsy": 24,
+     "solid": 8
     },
     "keyboard": {
-     "fine": 6,
-     "poor": 14,
+     "fine": 7,
+     "poor": 16,
      "great": 3
     },
     "battery": {
-     "all_day": 6,
-     "most_of_day": 9,
+     "all_day": 8,
+     "most_of_day": 12,
      "short": 3
     },
     "portability": {
      "very": 8
     },
     "best_for": {
-     "work": 12,
+     "work": 13,
      "creative": 1,
      "gaming": 2
     },
     "performance": {
-     "fast": 6,
+     "fast": 8,
      "slow": 4,
-     "fine": 7
+     "fine": 8
     }
    }
   },
@@ -2626,29 +2901,44 @@
   },
   "dell-xps-16-da16260": {
    "name": "Dell XPS 16 (2026, DA16260)",
-   "authors": 27,
+   "authors": 43,
    "sentiment": {
-    "loved": 1,
+    "loved": 8,
     "mixed": 0,
-    "not_for_me": 0
+    "not_for_me": 1
    },
    "groups": {
     "build": {
-     "flimsy": 14
+     "flimsy": 15,
+     "solid": 1
+    },
+    "thermals": {
+     "cool": 3,
+     "hot": 4
     },
     "value": {
      "overpriced": 1
     },
-    "thermals": {
-     "hot": 3,
-     "cool": 1
-    },
-    "screen": {
-     "great": 1,
-     "meh": 1
+    "portability": {
+     "very": 1
     },
     "battery": {
-     "all_day": 1
+     "all_day": 2
+    },
+    "performance": {
+     "fine": 2,
+     "slow": 1
+    },
+    "screen": {
+     "great": 3,
+     "meh": 1
+    },
+    "keyboard": {
+     "poor": 4,
+     "great": 1
+    },
+    "best_for": {
+     "work": 1
     }
    }
   },
@@ -2743,46 +3033,48 @@
   },
   "hp-spectre-x360-14-14-eu0000": {
    "name": "HP Spectre x360 14 (14-eu0000)",
-   "authors": 48,
+   "authors": 87,
    "sentiment": {
-    "loved": 7,
-    "mixed": 10,
-    "not_for_me": 4
+    "loved": 16,
+    "mixed": 11,
+    "not_for_me": 13
    },
    "groups": {
     "screen": {
      "good": 2,
-     "great": 11
+     "great": 13,
+     "meh": 4
     },
     "battery": {
-     "short": 16,
-     "most_of_day": 6,
-     "all_day": 3
+     "short": 18,
+     "most_of_day": 7,
+     "all_day": 5
     },
     "keyboard": {
-     "poor": 2,
-     "great": 5,
-     "fine": 1
+     "poor": 7,
+     "great": 12,
+     "fine": 2
+    },
+    "thermals": {
+     "cool": 12,
+     "hot": 7
     },
     "build": {
      "solid": 6,
-     "flimsy": 2
-    },
-    "thermals": {
-     "cool": 7,
-     "hot": 3
+     "flimsy": 5,
+     "average": 1
     },
     "performance": {
-     "fast": 4,
-     "fine": 4,
-     "slow": 1
+     "fast": 5,
+     "fine": 6,
+     "slow": 6
     },
     "value": {
-     "worth_it": 3,
-     "overpriced": 1
+     "worth_it": 4,
+     "overpriced": 3
     },
     "best_for": {
-     "work": 3,
+     "work": 4,
      "gaming": 2
     },
     "portability": {
@@ -2794,173 +3086,216 @@
   },
   "lenovo-chromebook-plus-14-gen-10": {
    "name": "Lenovo Chromebook Plus 14 Gen 10",
-   "authors": 44,
+   "authors": 96,
    "sentiment": {
-    "loved": 13,
-    "mixed": 4,
-    "not_for_me": 3
+    "loved": 48,
+    "mixed": 8,
+    "not_for_me": 5
    },
    "groups": {
     "keyboard": {
-     "great": 3,
-     "fine": 3,
+     "great": 8,
+     "fine": 7,
      "poor": 1
     },
     "performance": {
-     "fast": 6,
-     "fine": 2,
-     "slow": 1
+     "fast": 16,
+     "slow": 2,
+     "fine": 2
     },
     "screen": {
-     "meh": 5,
-     "great": 6
+     "meh": 8,
+     "great": 14,
+     "good": 2
     },
     "battery": {
+     "all_day": 14,
      "most_of_day": 5,
-     "all_day": 2,
      "short": 1
     },
+    "thermals": {
+     "cool": 9,
+     "warm": 1
+    },
     "build": {
-     "flimsy": 2,
-     "solid": 3,
+     "flimsy": 3,
+     "solid": 11,
      "average": 1
     },
     "value": {
-     "worth_it": 3,
-     "overpriced": 1
+     "worth_it": 6,
+     "overpriced": 3
     },
     "portability": {
-     "not_really": 1,
-     "very": 1
+     "not_really": 2,
+     "very": 7,
+     "somewhat": 1
     },
     "best_for": {
-     "work": 2,
+     "work": 4,
      "gaming": 1
-    },
-    "thermals": {
-     "warm": 1,
-     "cool": 2
     }
    }
   },
   "lenovo-ideapad-pro-5i-gen-9-16imh9": {
    "name": "Lenovo IdeaPad Pro 5i Gen 9 (16IMH9)",
-   "authors": 5,
+   "authors": 14,
    "sentiment": {
-    "loved": 0,
+    "loved": 2,
     "mixed": 1,
     "not_for_me": 2
    },
    "groups": {
     "battery": {
      "short": 2
+    },
+    "best_for": {
+     "gaming": 1
+    },
+    "thermals": {
+     "warm": 2
+    },
+    "screen": {
+     "great": 3
+    },
+    "performance": {
+     "fine": 1
     }
    }
   },
   "lenovo-legion-5-gen-10": {
    "name": "Lenovo Legion 5 Gen 10",
-   "authors": 89,
+   "authors": 161,
    "sentiment": {
-    "loved": 9,
-    "mixed": 4,
-    "not_for_me": 3
+    "loved": 36,
+    "mixed": 8,
+    "not_for_me": 4
    },
    "groups": {
     "screen": {
-     "good": 4,
-     "meh": 3
+     "good": 5,
+     "meh": 5,
+     "great": 9
     },
     "battery": {
-     "short": 1,
-     "all_day": 2,
-     "most_of_day": 2
+     "short": 6,
+     "all_day": 5,
+     "most_of_day": 7
     },
     "build": {
      "average": 1,
-     "flimsy": 21,
-     "solid": 2
+     "flimsy": 24,
+     "solid": 5
     },
     "keyboard": {
      "fine": 1,
-     "great": 1,
-     "poor": 3
+     "great": 3,
+     "poor": 5
     },
     "performance": {
-     "fine": 2,
-     "slow": 1,
-     "fast": 5
+     "fine": 10,
+     "slow": 2,
+     "fast": 9
     },
     "portability": {
-     "very": 2
+     "very": 3,
+     "somewhat": 1
     },
     "best_for": {
      "gaming": 3,
-     "creative": 1,
-     "work": 1
+     "work": 2,
+     "creative": 1
     },
     "value": {
-     "worth_it": 5
+     "worth_it": 6,
+     "overpriced": 2
     },
     "thermals": {
-     "hot": 7,
-     "cool": 3
+     "hot": 9,
+     "cool": 12,
+     "warm": 1
     }
    }
   },
   "lenovo-legion-5i-gen-10": {
    "name": "Lenovo Legion 5i Gen 10",
-   "authors": 34,
+   "authors": 80,
    "sentiment": {
-    "loved": 0,
-    "mixed": 0,
-    "not_for_me": 0
+    "loved": 21,
+    "mixed": 1,
+    "not_for_me": 1
    },
    "groups": {
     "build": {
-     "flimsy": 1,
-     "solid": 2
+     "flimsy": 3,
+     "solid": 8
     },
     "thermals": {
-     "hot": 3,
-     "cool": 6
+     "hot": 5,
+     "cool": 9,
+     "warm": 2
     },
     "performance": {
-     "fast": 1
+     "fast": 7,
+     "fine": 3,
+     "slow": 2
+    },
+    "battery": {
+     "short": 13,
+     "most_of_day": 2
+    },
+    "screen": {
+     "great": 7
+    },
+    "portability": {
+     "somewhat": 1,
+     "very": 1
+    },
+    "keyboard": {
+     "fine": 2,
+     "great": 2
+    },
+    "value": {
+     "ok": 1
     }
    }
   },
   "lenovo-legion-5i-gen-9": {
    "name": "Lenovo Legion 5i Gen 9",
-   "authors": 34,
+   "authors": 74,
    "sentiment": {
-    "loved": 2,
-    "mixed": 0,
+    "loved": 18,
+    "mixed": 2,
     "not_for_me": 2
    },
    "groups": {
     "thermals": {
-     "hot": 2,
-     "cool": 3
+     "hot": 8,
+     "cool": 8,
+     "warm": 1
     },
     "build": {
      "flimsy": 11,
-     "solid": 1
+     "solid": 5
     },
     "best_for": {
-     "gaming": 6,
-     "work": 1,
+     "gaming": 7,
+     "work": 2,
      "creative": 1
     },
     "performance": {
-     "fast": 2,
-     "fine": 2
+     "fast": 10,
+     "fine": 4,
+     "slow": 2
     },
     "screen": {
-     "meh": 1
+     "meh": 1,
+     "good": 2,
+     "great": 2
     },
     "battery": {
      "most_of_day": 2,
-     "short": 5
+     "short": 13
     },
     "keyboard": {
      "poor": 2,
@@ -2974,32 +3309,32 @@
   },
   "lenovo-legion-7i-gen-9": {
    "name": "Lenovo Legion 7i Gen 9",
-   "authors": 66,
+   "authors": 90,
    "sentiment": {
-    "loved": 14,
-    "mixed": 7,
-    "not_for_me": 2
+    "loved": 18,
+    "mixed": 8,
+    "not_for_me": 5
    },
    "groups": {
     "battery": {
-     "short": 10,
+     "short": 11,
      "all_day": 1,
      "most_of_day": 1
     },
     "thermals": {
-     "hot": 15,
-     "cool": 3,
-     "warm": 2
+     "hot": 18,
+     "cool": 4,
+     "warm": 4
     },
     "portability": {
-     "very": 3,
-     "not_really": 3
+     "very": 4,
+     "not_really": 5
     },
     "value": {
      "worth_it": 3
     },
     "build": {
-     "flimsy": 6,
+     "flimsy": 10,
      "solid": 5
     },
     "best_for": {
@@ -3007,56 +3342,102 @@
      "creative": 1
     },
     "performance": {
-     "fast": 5
+     "fast": 5,
+     "fine": 1
     },
     "screen": {
-     "great": 1,
+     "great": 2,
      "good": 1
     },
     "keyboard": {
-     "great": 1
+     "great": 1,
+     "poor": 1
     }
    }
   },
   "lenovo-legion-pro-5i-gen-10": {
    "name": "Lenovo Legion Pro 5i Gen 10",
-   "authors": 14,
+   "authors": 54,
    "sentiment": {
-    "loved": 0,
-    "mixed": 0,
-    "not_for_me": 0
+    "loved": 13,
+    "mixed": 4,
+    "not_for_me": 1
    },
    "groups": {
     "performance": {
-     "fine": 1
+     "fine": 4,
+     "fast": 3,
+     "slow": 2
     },
     "thermals": {
-     "warm": 1,
-     "cool": 2
+     "warm": 3,
+     "cool": 8,
+     "hot": 10
     },
     "build": {
-     "solid": 1,
-     "flimsy": 7
+     "solid": 4,
+     "flimsy": 13
+    },
+    "value": {
+     "worth_it": 4
+    },
+    "best_for": {
+     "gaming": 1
+    },
+    "battery": {
+     "short": 2
+    },
+    "screen": {
+     "great": 1
+    },
+    "keyboard": {
+     "fine": 1
     }
    }
   },
   "lenovo-legion-pro-5i-gen-8": {
    "name": "Lenovo Legion Pro 5i Gen 8",
-   "authors": 26,
+   "authors": 56,
    "sentiment": {
-    "loved": 1,
-    "mixed": 1,
-    "not_for_me": 0
+    "loved": 9,
+    "mixed": 3,
+    "not_for_me": 2
    },
    "groups": {
     "build": {
-     "flimsy": 8
+     "flimsy": 9,
+     "solid": 1
     },
     "thermals": {
-     "cool": 2
+     "cool": 6,
+     "warm": 1,
+     "hot": 3
     },
     "battery": {
-     "short": 1
+     "short": 4,
+     "most_of_day": 2
+    },
+    "keyboard": {
+     "great": 1
+    },
+    "best_for": {
+     "work": 1
+    },
+    "screen": {
+     "good": 2,
+     "great": 1
+    },
+    "performance": {
+     "fast": 5,
+     "fine": 3,
+     "slow": 1
+    },
+    "portability": {
+     "not_really": 1,
+     "somewhat": 1
+    },
+    "value": {
+     "overpriced": 1
     }
    }
   },
@@ -3109,153 +3490,174 @@
   },
   "lenovo-legion-pro-7i-gen-10": {
    "name": "Lenovo Legion Pro 7i Gen 10",
-   "authors": 68,
+   "authors": 136,
    "sentiment": {
-    "loved": 7,
-    "mixed": 5,
-    "not_for_me": 2
+    "loved": 47,
+    "mixed": 8,
+    "not_for_me": 3
    },
    "groups": {
     "best_for": {
      "gaming": 5,
-     "work": 1
+     "work": 2,
+     "creative": 1
     },
     "performance": {
-     "fast": 4,
-     "fine": 6
+     "fast": 18,
+     "fine": 10
     },
     "screen": {
-     "great": 5
+     "great": 11,
+     "meh": 1,
+     "good": 1
     },
     "thermals": {
-     "hot": 9,
-     "cool": 7,
-     "warm": 12
+     "hot": 16,
+     "cool": 19,
+     "warm": 13
     },
     "build": {
-     "solid": 3,
-     "flimsy": 6,
-     "average": 1
+     "solid": 11,
+     "flimsy": 7,
+     "average": 3
     },
     "value": {
-     "worth_it": 2,
-     "overpriced": 2
+     "worth_it": 4,
+     "overpriced": 3
     },
     "portability": {
-     "somewhat": 1
+     "somewhat": 1,
+     "not_really": 2
+    },
+    "battery": {
+     "short": 1
     }
    }
   },
   "lenovo-legion-pro-7i-gen-8": {
    "name": "Lenovo Legion Pro 7i Gen 8",
-   "authors": 22,
+   "authors": 130,
    "sentiment": {
-    "loved": 3,
-    "mixed": 1,
-    "not_for_me": 0
+    "loved": 35,
+    "mixed": 10,
+    "not_for_me": 3
    },
    "groups": {
-    "thermals": {
-     "warm": 1,
-     "hot": 3,
-     "cool": 1
-    },
-    "screen": {
-     "meh": 1,
-     "good": 2
-    },
     "build": {
-     "solid": 4,
-     "flimsy": 2
-    },
-    "portability": {
-     "not_really": 1
-    },
-    "keyboard": {
-     "fine": 1
-    },
-    "battery": {
-     "short": 3
-    },
-    "best_for": {
-     "gaming": 2
+     "average": 3,
+     "solid": 10,
+     "flimsy": 6
     },
     "performance": {
-     "fast": 1,
-     "slow": 1
+     "fast": 17,
+     "slow": 11,
+     "fine": 1
+    },
+    "thermals": {
+     "warm": 6,
+     "hot": 18,
+     "cool": 10
+    },
+    "screen": {
+     "meh": 3,
+     "good": 4
+    },
+    "portability": {
+     "not_really": 2
+    },
+    "keyboard": {
+     "fine": 1,
+     "great": 2,
+     "poor": 2
+    },
+    "battery": {
+     "short": 8,
+     "most_of_day": 2
+    },
+    "best_for": {
+     "gaming": 2,
+     "creative": 1
+    },
+    "value": {
+     "worth_it": 4
     }
    }
   },
   "lenovo-legion-pro-7i-gen-9": {
    "name": "Lenovo Legion Pro 7i Gen 9",
-   "authors": 31,
+   "authors": 64,
    "sentiment": {
-    "loved": 8,
-    "mixed": 3,
+    "loved": 19,
+    "mixed": 4,
     "not_for_me": 3
    },
    "groups": {
     "build": {
-     "solid": 1,
-     "flimsy": 4
+     "solid": 5,
+     "flimsy": 8
     },
     "best_for": {
      "gaming": 4,
-     "work": 1
+     "work": 2
     },
     "value": {
      "overpriced": 2,
      "worth_it": 3
     },
     "thermals": {
-     "cool": 3,
-     "hot": 6,
-     "warm": 1
+     "cool": 5,
+     "hot": 10,
+     "warm": 3
     },
     "battery": {
-     "short": 2
+     "short": 5
     },
     "performance": {
-     "fine": 2,
-     "fast": 2
+     "fine": 3,
+     "fast": 10,
+     "slow": 2
     },
     "keyboard": {
      "poor": 1
     },
     "screen": {
+     "good": 1,
      "great": 1
     }
    }
   },
   "lenovo-legion-slim-5-gen-9": {
    "name": "Lenovo Legion Slim 5 Gen 9",
-   "authors": 29,
+   "authors": 52,
    "sentiment": {
-    "loved": 7,
+    "loved": 14,
     "mixed": 5,
     "not_for_me": 3
    },
    "groups": {
     "build": {
-     "solid": 3,
-     "flimsy": 4
+     "solid": 7,
+     "flimsy": 4,
+     "average": 1
     },
     "screen": {
-     "great": 6
+     "great": 6,
+     "meh": 1
     },
     "performance": {
-     "fast": 4,
+     "fast": 6,
      "fine": 1
     },
     "best_for": {
      "gaming": 5
     },
     "battery": {
-     "most_of_day": 3,
-     "short": 2
+     "most_of_day": 4,
+     "short": 5,
+     "all_day": 3
     },
     "thermals": {
-     "cool": 3,
+     "cool": 6,
      "warm": 1,
      "hot": 3
     },
@@ -3271,106 +3673,128 @@
   },
   "lenovo-loq-15ahp10": {
    "name": "Lenovo LOQ 15AHP10",
-   "authors": 36,
+   "authors": 89,
    "sentiment": {
-    "loved": 4,
-    "mixed": 3,
+    "loved": 22,
+    "mixed": 6,
     "not_for_me": 4
    },
    "groups": {
     "performance": {
-     "fine": 3,
-     "fast": 1
+     "fine": 9,
+     "fast": 7,
+     "slow": 3
     },
     "thermals": {
      "hot": 2,
-     "cool": 3,
-     "warm": 1
+     "warm": 5,
+     "cool": 10
+    },
+    "battery": {
+     "short": 6,
+     "most_of_day": 3
     },
     "build": {
-     "flimsy": 4
+     "flimsy": 8,
+     "solid": 3,
+     "average": 1
     },
     "best_for": {
      "gaming": 3
     },
     "screen": {
-     "meh": 4
+     "meh": 4,
+     "good": 1
+    },
+    "keyboard": {
+     "poor": 1
+    },
+    "value": {
+     "worth_it": 2
     }
    }
   },
   "lenovo-loq-15ahp9": {
    "name": "Lenovo LOQ 15AHP9",
-   "authors": 12,
+   "authors": 37,
    "sentiment": {
-    "loved": 4,
+    "loved": 15,
     "mixed": 2,
     "not_for_me": 0
    },
    "groups": {
     "value": {
      "overpriced": 1,
-     "worth_it": 1
+     "worth_it": 4
     },
     "screen": {
-     "meh": 2,
-     "good": 1
+     "meh": 3,
+     "good": 3,
+     "great": 1
     },
     "performance": {
-     "fine": 4,
-     "fast": 1
+     "slow": 1,
+     "fine": 5,
+     "fast": 4
     },
     "thermals": {
-     "cool": 2,
-     "hot": 1
+     "cool": 8,
+     "hot": 3,
+     "warm": 1
     },
     "battery": {
-     "most_of_day": 1,
-     "short": 1
+     "most_of_day": 3,
+     "short": 4
     },
     "best_for": {
      "gaming": 3
     },
     "build": {
-     "flimsy": 2,
-     "solid": 2
+     "flimsy": 5,
+     "solid": 5,
+     "average": 1
     }
    }
   },
   "lenovo-loq-15irx10": {
    "name": "Lenovo LOQ 15IRX10",
-   "authors": 52,
+   "authors": 96,
    "sentiment": {
-    "loved": 2,
-    "mixed": 3,
-    "not_for_me": 9
+    "loved": 17,
+    "mixed": 5,
+    "not_for_me": 11
    },
    "groups": {
     "best_for": {
-     "gaming": 6
+     "gaming": 6,
+     "work": 1
     },
     "battery": {
-     "short": 6,
+     "short": 12,
      "most_of_day": 1
     },
     "thermals": {
-     "warm": 2,
-     "hot": 6
+     "warm": 5,
+     "hot": 11,
+     "cool": 4
     },
     "screen": {
      "great": 1,
-     "good": 1
+     "good": 3
     },
     "performance": {
-     "fast": 4
+     "fast": 10,
+     "fine": 4,
+     "slow": 4
     },
     "build": {
-     "average": 2,
-     "flimsy": 24,
-     "solid": 1
+     "average": 3,
+     "flimsy": 26,
+     "solid": 3
     },
     "value": {
      "ok": 1,
-     "worth_it": 1,
+     "worth_it": 7,
      "overpriced": 1
     }
    }
@@ -3427,9 +3851,9 @@
   },
   "lenovo-thinkpad-e14-gen-5": {
    "name": "Lenovo ThinkPad E14 Gen 5",
-   "authors": 14,
+   "authors": 16,
    "sentiment": {
-    "loved": 5,
+    "loved": 7,
     "mixed": 0,
     "not_for_me": 0
    },
@@ -3440,7 +3864,7 @@
      "solid": 1
     },
     "battery": {
-     "short": 2,
+     "short": 3,
      "most_of_day": 1
     },
     "screen": {
@@ -3452,7 +3876,7 @@
      "fine": 1
     },
     "value": {
-     "worth_it": 2
+     "worth_it": 4
     },
     "thermals": {
      "warm": 1
@@ -3467,94 +3891,107 @@
   },
   "lenovo-thinkpad-e14-gen-6": {
    "name": "Lenovo ThinkPad E14 Gen 6",
-   "authors": 22,
+   "authors": 41,
    "sentiment": {
-    "loved": 8,
-    "mixed": 1,
+    "loved": 18,
+    "mixed": 3,
     "not_for_me": 0
    },
    "groups": {
     "build": {
-     "solid": 7,
-     "average": 1
+     "solid": 14,
+     "average": 2,
+     "flimsy": 1
     },
     "screen": {
-     "meh": 3
+     "meh": 4,
+     "good": 1
     },
     "performance": {
-     "fast": 2,
+     "fast": 3,
      "fine": 1
     },
     "thermals": {
-     "cool": 2,
+     "cool": 3,
      "hot": 2,
      "warm": 1
     },
     "value": {
-     "worth_it": 2
+     "worth_it": 4
     },
     "battery": {
-     "short": 1,
-     "most_of_day": 3
+     "short": 2,
+     "most_of_day": 4,
+     "all_day": 3
     },
     "best_for": {
      "work": 2,
      "gaming": 1
+    },
+    "keyboard": {
+     "great": 3,
+     "fine": 1
     }
    }
   },
   "lenovo-thinkpad-e14-gen-7": {
    "name": "Lenovo ThinkPad E14 Gen 7",
-   "authors": 39,
+   "authors": 70,
    "sentiment": {
-    "loved": 13,
-    "mixed": 1,
-    "not_for_me": 4
+    "loved": 27,
+    "mixed": 4,
+    "not_for_me": 5
    },
    "groups": {
     "build": {
-     "flimsy": 1,
-     "solid": 9
+     "flimsy": 2,
+     "solid": 14,
+     "average": 1
     },
     "keyboard": {
-     "fine": 1,
-     "great": 5
+     "fine": 3,
+     "great": 7,
+     "poor": 2
     },
     "performance": {
-     "fine": 5,
-     "fast": 6
+     "fine": 7,
+     "fast": 13
     },
     "thermals": {
-     "cool": 6,
-     "hot": 1,
+     "cool": 8,
+     "hot": 2,
      "warm": 2
     },
     "screen": {
      "good": 3,
      "great": 3,
-     "meh": 1
+     "meh": 4
     },
     "battery": {
-     "short": 7,
-     "most_of_day": 6,
-     "all_day": 1
+     "short": 10,
+     "most_of_day": 8,
+     "all_day": 7
     },
     "value": {
-     "worth_it": 6
+     "worth_it": 11,
+     "overpriced": 2,
+     "ok": 1
     },
     "best_for": {
      "gaming": 1,
-     "work": 1,
-     "creative": 1
+     "work": 1
+    },
+    "portability": {
+     "somewhat": 1
     }
    }
   },
   "lenovo-thinkpad-e16-gen-1": {
    "name": "Lenovo ThinkPad E16 Gen 1",
-   "authors": 4,
+   "authors": 9,
    "sentiment": {
-    "loved": 2,
-    "mixed": 1,
+    "loved": 3,
+    "mixed": 2,
     "not_for_me": 0
    },
    "groups": {
@@ -3563,18 +4000,30 @@
     },
     "thermals": {
      "warm": 2,
-     "cool": 1
+     "cool": 2
     },
     "best_for": {
      "creative": 1
+    },
+    "battery": {
+     "short": 1
+    },
+    "screen": {
+     "good": 1
+    },
+    "keyboard": {
+     "fine": 1
+    },
+    "build": {
+     "solid": 1
     }
    }
   },
   "lenovo-thinkpad-l14-gen-5": {
    "name": "Lenovo ThinkPad L14 Gen 5",
-   "authors": 21,
+   "authors": 23,
    "sentiment": {
-    "loved": 5,
+    "loved": 7,
     "mixed": 1,
     "not_for_me": 2
    },
@@ -3592,7 +4041,8 @@
      "cool": 1
     },
     "performance": {
-     "fine": 2
+     "fine": 2,
+     "fast": 2
     },
     "best_for": {
      "work": 4
@@ -3613,104 +4063,110 @@
   },
   "lenovo-thinkpad-p1-gen-6": {
    "name": "Lenovo ThinkPad P1 Gen 6",
-   "authors": 53,
+   "authors": 77,
    "sentiment": {
-    "loved": 2,
-    "mixed": 1,
-    "not_for_me": 5
+    "loved": 9,
+    "mixed": 4,
+    "not_for_me": 8
    },
    "groups": {
     "battery": {
-     "short": 7,
-     "most_of_day": 1
+     "short": 11,
+     "most_of_day": 2
     },
     "value": {
-     "overpriced": 2
+     "overpriced": 2,
+     "worth_it": 1
     },
     "thermals": {
-     "hot": 4,
-     "cool": 2,
-     "warm": 1
+     "hot": 8,
+     "cool": 3,
+     "warm": 3
     },
     "performance": {
      "slow": 2,
-     "fast": 2
-    },
-    "build": {
-     "solid": 2,
-     "flimsy": 6
-    },
-    "keyboard": {
-     "great": 2,
+     "fast": 3,
      "fine": 1
     },
+    "portability": {
+     "somewhat": 1,
+     "very": 1
+    },
+    "build": {
+     "flimsy": 7,
+     "solid": 2
+    },
+    "keyboard": {
+     "great": 3,
+     "fine": 1,
+     "poor": 1
+    },
     "screen": {
-     "great": 1,
-     "good": 1
+     "great": 5,
+     "good": 2,
+     "meh": 3
     },
     "best_for": {
-     "gaming": 1
-    },
-    "portability": {
-     "very": 1
+     "gaming": 2
     }
    }
   },
   "lenovo-thinkpad-p1-gen-7": {
    "name": "Lenovo ThinkPad P1 Gen 7",
-   "authors": 61,
+   "authors": 76,
    "sentiment": {
-    "loved": 15,
-    "mixed": 5,
-    "not_for_me": 10
+    "loved": 17,
+    "mixed": 7,
+    "not_for_me": 12
    },
    "groups": {
     "build": {
      "flimsy": 5,
-     "solid": 4
+     "solid": 7
     },
     "thermals": {
-     "hot": 14,
-     "cool": 8
+     "hot": 16,
+     "cool": 10,
+     "warm": 3
     },
     "keyboard": {
-     "poor": 7,
-     "great": 4,
-     "fine": 2
+     "poor": 9,
+     "great": 7,
+     "fine": 3
     },
     "battery": {
-     "most_of_day": 7,
+     "most_of_day": 9,
      "short": 6,
      "all_day": 3
     },
     "performance": {
-     "fast": 4,
+     "fast": 6,
      "fine": 3,
      "slow": 1
     },
     "screen": {
      "meh": 4,
-     "great": 5,
-     "good": 1
+     "great": 6,
+     "good": 2
     },
     "best_for": {
      "gaming": 4
     },
     "value": {
      "worth_it": 2,
-     "overpriced": 2
+     "overpriced": 3
     },
     "portability": {
-     "somewhat": 1,
+     "somewhat": 3,
      "not_really": 1
     }
    }
   },
   "lenovo-thinkpad-p1-gen-8": {
    "name": "Lenovo ThinkPad P1 Gen 8",
-   "authors": 22,
+   "authors": 24,
    "sentiment": {
-    "loved": 2,
+    "loved": 3,
     "mixed": 2,
     "not_for_me": 0
    },
@@ -3721,14 +4177,16 @@
     },
     "screen": {
      "meh": 1,
-     "great": 2
+     "great": 2,
+     "good": 1
     },
     "battery": {
      "short": 2
     },
     "thermals": {
-     "cool": 2,
-     "hot": 6
+     "cool": 3,
+     "hot": 6,
+     "warm": 1
     },
     "performance": {
      "fast": 1
@@ -3739,21 +4197,24 @@
     "keyboard": {
      "poor": 3,
      "fine": 1
+    },
+    "value": {
+     "worth_it": 1
     }
    }
   },
   "lenovo-thinkpad-p14s-gen-4": {
    "name": "Lenovo ThinkPad P14s Gen 4",
-   "authors": 51,
+   "authors": 64,
    "sentiment": {
-    "loved": 6,
+    "loved": 7,
     "mixed": 6,
     "not_for_me": 6
    },
    "groups": {
     "battery": {
      "most_of_day": 7,
-     "short": 5
+     "short": 8
     },
     "build": {
      "average": 1,
@@ -3762,17 +4223,18 @@
     "best_for": {
      "work": 3
     },
+    "thermals": {
+     "cool": 7,
+     "hot": 11,
+     "warm": 1
+    },
     "keyboard": {
      "great": 2,
      "fine": 1
     },
-    "thermals": {
-     "cool": 4,
-     "hot": 11
-    },
     "screen": {
-     "good": 3,
-     "great": 2,
+     "good": 4,
+     "great": 3,
      "meh": 1
     },
     "value": {
@@ -3781,176 +4243,212 @@
      "overpriced": 1
     },
     "performance": {
-     "fast": 3,
+     "fast": 5,
      "fine": 1
     }
    }
   },
   "lenovo-thinkpad-p14s-gen-5": {
    "name": "Lenovo ThinkPad P14s Gen 5",
-   "authors": 45,
+   "authors": 103,
    "sentiment": {
-    "loved": 7,
-    "mixed": 4,
-    "not_for_me": 2
+    "loved": 38,
+    "mixed": 7,
+    "not_for_me": 6
    },
    "groups": {
     "performance": {
-     "fine": 2,
-     "fast": 3,
+     "fine": 4,
+     "fast": 12,
      "slow": 1
     },
     "build": {
-     "solid": 6,
-     "average": 3,
-     "flimsy": 2
+     "solid": 14,
+     "average": 6,
+     "flimsy": 3
     },
     "thermals": {
-     "cool": 3,
-     "hot": 5,
-     "warm": 1
+     "cool": 15,
+     "hot": 10,
+     "warm": 3
     },
     "screen": {
-     "good": 4,
-     "meh": 2
+     "good": 7,
+     "great": 6,
+     "meh": 3
     },
     "keyboard": {
-     "fine": 3,
-     "poor": 2,
-     "great": 1
+     "fine": 11,
+     "poor": 3,
+     "great": 5
     },
     "best_for": {
      "work": 1,
-     "gaming": 3
+     "gaming": 4
     },
     "battery": {
-     "short": 8,
-     "most_of_day": 3,
-     "all_day": 1
+     "short": 22,
+     "most_of_day": 6,
+     "all_day": 2
+    },
+    "value": {
+     "worth_it": 4,
+     "ok": 1
     },
     "portability": {
-     "not_really": 3
+     "not_really": 3,
+     "somewhat": 2,
+     "very": 1
     }
    }
   },
   "lenovo-thinkpad-t14-gen-1": {
    "name": "Lenovo ThinkPad T14 Gen 1",
-   "authors": 40,
+   "authors": 96,
    "sentiment": {
-    "loved": 15,
-    "mixed": 4,
-    "not_for_me": 1
+    "loved": 40,
+    "mixed": 10,
+    "not_for_me": 2
    },
    "groups": {
     "performance": {
      "slow": 3,
-     "fine": 3
+     "fine": 11,
+     "fast": 3
     },
     "battery": {
-     "short": 3,
-     "most_of_day": 1
+     "short": 8,
+     "most_of_day": 5,
+     "all_day": 1
     },
     "build": {
-     "solid": 4
+     "solid": 6,
+     "flimsy": 2,
+     "average": 1
     },
     "keyboard": {
-     "great": 1,
-     "poor": 3
+     "great": 2,
+     "poor": 5
     },
     "value": {
-     "worth_it": 3
+     "worth_it": 8
     },
     "best_for": {
-     "work": 3
+     "work": 5
     },
     "screen": {
-     "great": 2
+     "great": 3,
+     "meh": 2,
+     "good": 2
     },
     "portability": {
-     "somewhat": 1
+     "somewhat": 1,
+     "very": 1
+    },
+    "thermals": {
+     "hot": 1,
+     "cool": 5
     }
    }
   },
   "lenovo-thinkpad-t14-gen-2": {
    "name": "Lenovo ThinkPad T14 Gen 2",
-   "authors": 25,
+   "authors": 68,
    "sentiment": {
-    "loved": 1,
-    "mixed": 0,
-    "not_for_me": 0
+    "loved": 16,
+    "mixed": 1,
+    "not_for_me": 1
    },
    "groups": {
     "battery": {
-     "most_of_day": 2,
-     "all_day": 1
+     "most_of_day": 3,
+     "all_day": 1,
+     "short": 3
     },
     "keyboard": {
-     "fine": 1
+     "fine": 1,
+     "great": 1
     },
     "build": {
      "solid": 1,
      "flimsy": 2
     },
     "thermals": {
-     "hot": 2,
+     "hot": 4,
      "warm": 1
     },
     "best_for": {
-     "work": 1
+     "work": 2
     },
     "screen": {
-     "meh": 1
+     "meh": 1,
+     "great": 1
+    },
+    "performance": {
+     "fast": 3,
+     "fine": 1
+    },
+    "value": {
+     "worth_it": 3
+    },
+    "portability": {
+     "very": 1
     }
    }
   },
   "lenovo-thinkpad-t14-gen-3": {
    "name": "Lenovo ThinkPad T14 Gen 3",
-   "authors": 64,
+   "authors": 101,
    "sentiment": {
-    "loved": 6,
-    "mixed": 4,
-    "not_for_me": 3
+    "loved": 14,
+    "mixed": 9,
+    "not_for_me": 6
    },
    "groups": {
     "battery": {
      "all_day": 1,
-     "short": 14,
+     "short": 22,
      "most_of_day": 5
     },
     "build": {
      "flimsy": 8,
-     "solid": 1
+     "solid": 3
     },
     "performance": {
-     "fast": 3,
-     "slow": 4
+     "fast": 6,
+     "slow": 5,
+     "fine": 3
     },
     "thermals": {
-     "warm": 2,
-     "cool": 5,
-     "hot": 8
+     "warm": 4,
+     "cool": 8,
+     "hot": 13
     },
     "keyboard": {
-     "great": 1
+     "great": 1,
+     "fine": 4,
+     "poor": 3
     },
     "screen": {
-     "great": 3,
-     "meh": 1
+     "great": 4,
+     "meh": 2,
+     "good": 2
     },
     "value": {
-     "worth_it": 1,
+     "worth_it": 2,
      "overpriced": 1
     },
     "best_for": {
-     "gaming": 1
+     "gaming": 1,
+     "work": 1
     }
    }
   },
   "lenovo-thinkpad-t14-gen-4": {
    "name": "Lenovo ThinkPad T14 Gen 4",
-   "authors": 14,
+   "authors": 22,
    "sentiment": {
-    "loved": 2,
+    "loved": 3,
     "mixed": 2,
     "not_for_me": 1
    },
@@ -3960,21 +4458,21 @@
      "fast": 2
     },
     "battery": {
-     "most_of_day": 1,
-     "short": 3
+     "most_of_day": 3,
+     "short": 5
     },
     "value": {
      "worth_it": 2
     },
     "keyboard": {
-     "great": 2,
+     "great": 3,
      "poor": 2
     },
     "portability": {
      "very": 1
     },
     "screen": {
-     "great": 2,
+     "great": 3,
      "meh": 2
     },
     "build": {
@@ -3982,151 +4480,166 @@
      "flimsy": 2
     },
     "thermals": {
-     "warm": 2,
+     "warm": 4,
      "cool": 2,
-     "hot": 1
+     "hot": 2
     }
    }
   },
   "lenovo-thinkpad-t14-gen-5": {
    "name": "Lenovo ThinkPad T14 Gen 5",
-   "authors": 76,
+   "authors": 107,
    "sentiment": {
-    "loved": 11,
-    "mixed": 5,
+    "loved": 20,
+    "mixed": 9,
     "not_for_me": 9
    },
    "groups": {
     "thermals": {
-     "hot": 12,
-     "cool": 3
+     "hot": 13,
+     "cool": 5,
+     "warm": 3
     },
     "value": {
      "worth_it": 4,
      "ok": 1,
-     "overpriced": 1
+     "overpriced": 2
     },
     "build": {
      "flimsy": 8,
-     "solid": 6,
-     "average": 3
+     "solid": 8,
+     "average": 7
     },
     "best_for": {
      "work": 1
     },
     "battery": {
-     "short": 18,
-     "most_of_day": 4,
-     "all_day": 1
+     "short": 22,
+     "most_of_day": 9,
+     "all_day": 2
     },
     "screen": {
-     "meh": 2,
-     "great": 3,
+     "meh": 4,
+     "great": 4,
      "good": 3
     },
     "keyboard": {
      "poor": 12,
-     "fine": 5
+     "fine": 6,
+     "great": 3
     },
     "portability": {
-     "not_really": 1
+     "not_really": 1,
+     "somewhat": 1
     },
     "performance": {
      "fine": 2,
-     "slow": 2,
-     "fast": 1
+     "fast": 5,
+     "slow": 2
     }
    }
   },
   "lenovo-thinkpad-t14-gen-6": {
    "name": "Lenovo ThinkPad T14 Gen 6",
-   "authors": 19,
+   "authors": 43,
    "sentiment": {
-    "loved": 3,
-    "mixed": 1,
+    "loved": 20,
+    "mixed": 4,
     "not_for_me": 2
    },
    "groups": {
     "battery": {
-     "most_of_day": 1,
-     "short": 1,
-     "all_day": 2
+     "most_of_day": 2,
+     "short": 6,
+     "all_day": 9
     },
     "keyboard": {
-     "great": 1
+     "great": 2,
+     "fine": 1,
+     "poor": 1
     },
     "best_for": {
      "gaming": 2
     },
     "performance": {
-     "fast": 4
+     "fast": 5,
+     "fine": 1
     },
     "thermals": {
      "hot": 3,
-     "cool": 2
+     "cool": 6
     },
     "build": {
      "flimsy": 2,
-     "solid": 1
+     "solid": 2,
+     "average": 2
     },
     "value": {
-     "worth_it": 1,
-     "overpriced": 2
+     "worth_it": 2,
+     "overpriced": 2,
+     "ok": 1
     },
     "screen": {
-     "great": 1
+     "great": 3,
+     "good": 2,
+     "meh": 3
     }
    }
   },
   "lenovo-thinkpad-t14s-gen-4": {
    "name": "Lenovo ThinkPad T14s Gen 4",
-   "authors": 37,
+   "authors": 68,
    "sentiment": {
-    "loved": 5,
-    "mixed": 4,
+    "loved": 8,
+    "mixed": 6,
     "not_for_me": 1
    },
    "groups": {
     "thermals": {
-     "cool": 2,
-     "hot": 5
+     "cool": 3,
+     "hot": 6,
+     "warm": 2
     },
     "value": {
      "overpriced": 4
     },
     "screen": {
-     "great": 1,
-     "meh": 2
+     "great": 2,
+     "meh": 3,
+     "good": 1
     },
     "battery": {
-     "all_day": 2
+     "all_day": 4
     },
     "performance": {
-     "fast": 1
+     "fast": 4,
+     "fine": 1,
+     "slow": 2
     },
     "portability": {
      "very": 1
     },
     "build": {
-     "solid": 1,
-     "flimsy": 1
+     "solid": 2,
+     "flimsy": 2
     }
    }
   },
   "lenovo-thinkpad-t14s-gen-5": {
    "name": "Lenovo ThinkPad T14s Gen 5",
-   "authors": 2,
+   "authors": 8,
    "sentiment": {
     "loved": 1,
     "mixed": 0,
-    "not_for_me": 0
+    "not_for_me": 1
    },
    "groups": {
     "build": {
-     "solid": 1
+     "solid": 1,
+     "flimsy": 1
     },
     "thermals": {
-     "hot": 1
+     "hot": 2
     },
     "best_for": {
      "work": 2
@@ -4189,16 +4702,17 @@
   },
   "lenovo-thinkpad-t16-gen-3": {
    "name": "Lenovo ThinkPad T16 Gen 3",
-   "authors": 8,
+   "authors": 10,
    "sentiment": {
-    "loved": 1,
+    "loved": 2,
     "mixed": 1,
     "not_for_me": 0
    },
    "groups": {
     "thermals": {
      "hot": 2,
-     "warm": 1
+     "warm": 1,
+     "cool": 1
     },
     "build": {
      "solid": 1
@@ -4208,72 +4722,80 @@
      "meh": 1
     },
     "battery": {
-     "most_of_day": 1
+     "most_of_day": 1,
+     "all_day": 1
     },
     "performance": {
      "slow": 1
     },
     "value": {
      "overpriced": 1
+    },
+    "keyboard": {
+     "fine": 1
     }
    }
   },
   "lenovo-thinkpad-t480": {
    "name": "Lenovo ThinkPad T480",
-   "authors": 97,
+   "authors": 142,
    "sentiment": {
-    "loved": 25,
-    "mixed": 13,
-    "not_for_me": 9
+    "loved": 47,
+    "mixed": 18,
+    "not_for_me": 12
    },
    "groups": {
     "thermals": {
-     "cool": 6,
-     "hot": 8
+     "cool": 8,
+     "hot": 10,
+     "warm": 1
     },
     "value": {
      "worth_it": 11,
      "ok": 1,
-     "overpriced": 5
+     "overpriced": 6
     },
     "best_for": {
-     "work": 12,
+     "work": 13,
      "gaming": 4
     },
     "battery": {
      "short": 5,
      "most_of_day": 3,
-     "all_day": 1
+     "all_day": 11
     },
     "screen": {
-     "meh": 8,
-     "good": 1
+     "meh": 12,
+     "good": 1,
+     "great": 2
     },
     "performance": {
-     "fine": 10,
-     "slow": 5,
-     "fast": 4
+     "fine": 15,
+     "slow": 6,
+     "fast": 8
     },
     "build": {
-     "solid": 13,
-     "flimsy": 4
+     "solid": 17,
+     "flimsy": 5,
+     "average": 1
     },
     "keyboard": {
-     "great": 2,
-     "fine": 1
+     "great": 3,
+     "fine": 1,
+     "poor": 2
     },
     "portability": {
      "not_really": 2,
-     "somewhat": 1,
+     "somewhat": 2,
      "very": 1
     }
    }
   },
   "lenovo-thinkpad-t495": {
    "name": "Lenovo ThinkPad T495",
-   "authors": 36,
+   "authors": 48,
    "sentiment": {
-    "loved": 9,
+    "loved": 12,
     "mixed": 2,
     "not_for_me": 2
    },
@@ -4288,54 +4810,64 @@
     },
     "thermals": {
      "cool": 2,
-     "hot": 2
+     "hot": 2,
+     "warm": 2
     },
     "keyboard": {
      "great": 1
     },
     "performance": {
-     "fast": 2
+     "fast": 2,
+     "fine": 2
     },
     "value": {
-     "worth_it": 1
+     "worth_it": 1,
+     "ok": 1
     },
     "screen": {
      "meh": 1
     },
     "best_for": {
      "gaming": 1
+    },
+    "portability": {
+     "very": 1
     }
    }
   },
   "lenovo-thinkpad-x1-2-in-1-gen-10": {
    "name": "Lenovo ThinkPad X1 2-in-1 Gen 10",
-   "authors": 6,
+   "authors": 10,
    "sentiment": {
-    "loved": 0,
+    "loved": 2,
     "mixed": 3,
     "not_for_me": 1
    },
    "groups": {
     "thermals": {
-     "warm": 1
+     "warm": 1,
+     "cool": 1
     },
     "performance": {
-     "fast": 1,
+     "fast": 3,
      "fine": 2
     },
     "battery": {
      "most_of_day": 2,
-     "short": 1
+     "short": 1,
+     "all_day": 1
     },
     "screen": {
-     "good": 1
+     "good": 1,
+     "great": 1
     },
     "keyboard": {
      "poor": 1,
-     "fine": 1
+     "fine": 2,
+     "great": 1
     },
     "build": {
-     "solid": 2
+     "solid": 3
     },
     "best_for": {
      "work": 1
@@ -4344,9 +4876,9 @@
   },
   "lenovo-thinkpad-x1-2-in-1-gen-9": {
    "name": "Lenovo ThinkPad X1 2-in-1 Gen 9",
-   "authors": 4,
+   "authors": 5,
    "sentiment": {
-    "loved": 2,
+    "loved": 3,
     "mixed": 0,
     "not_for_me": 2
    },
@@ -4379,109 +4911,129 @@
   },
   "lenovo-thinkpad-x1-carbon-5th-gen": {
    "name": "Lenovo ThinkPad X1 Carbon 5th Gen",
-   "authors": 15,
+   "authors": 41,
    "sentiment": {
-    "loved": 3,
+    "loved": 6,
     "mixed": 3,
     "not_for_me": 0
    },
    "groups": {
     "screen": {
-     "great": 1
+     "great": 2,
+     "good": 1
     },
     "battery": {
-     "all_day": 2,
-     "most_of_day": 2
+     "all_day": 10,
+     "most_of_day": 4,
+     "short": 2
     },
     "performance": {
-     "fine": 2,
-     "fast": 1,
+     "fine": 3,
+     "fast": 2,
      "slow": 1
     },
     "keyboard": {
-     "great": 2
+     "great": 4,
+     "fine": 2
     },
     "portability": {
-     "very": 1
+     "very": 3
     },
     "build": {
      "solid": 1
     },
     "thermals": {
-     "cool": 1
+     "cool": 3,
+     "warm": 1
+    },
+    "best_for": {
+     "work": 1
     }
    }
   },
   "lenovo-thinkpad-x1-carbon-6th-gen": {
    "name": "Lenovo ThinkPad X1 Carbon 6th Gen",
-   "authors": 39,
+   "authors": 110,
    "sentiment": {
-    "loved": 5,
-    "mixed": 0,
-    "not_for_me": 0
+    "loved": 18,
+    "mixed": 4,
+    "not_for_me": 2
    },
    "groups": {
     "thermals": {
-     "hot": 12,
-     "cool": 2,
+     "hot": 13,
+     "cool": 5,
      "warm": 1
     },
     "value": {
-     "worth_it": 2
+     "worth_it": 3
     },
     "keyboard": {
-     "great": 6
+     "great": 8,
+     "fine": 1
     },
     "best_for": {
-     "gaming": 1
+     "gaming": 1,
+     "work": 2
     },
     "build": {
-     "solid": 2,
-     "flimsy": 1
+     "solid": 5,
+     "flimsy": 5
     },
     "performance": {
-     "slow": 3
+     "slow": 3,
+     "fine": 1,
+     "fast": 2
     },
     "portability": {
-     "very": 1
+     "very": 2
     },
     "screen": {
-     "great": 2,
-     "meh": 1
+     "great": 11,
+     "meh": 2,
+     "good": 5
+    },
+    "battery": {
+     "all_day": 5,
+     "most_of_day": 1
     }
    }
   },
   "lenovo-thinkpad-x1-carbon-gen-11": {
    "name": "Lenovo ThinkPad X1 Carbon Gen 11",
-   "authors": 34,
+   "authors": 52,
    "sentiment": {
-    "loved": 5,
-    "mixed": 4,
-    "not_for_me": 7
+    "loved": 7,
+    "mixed": 5,
+    "not_for_me": 9
    },
    "groups": {
     "battery": {
-     "short": 6,
-     "most_of_day": 6
+     "short": 10,
+     "most_of_day": 7
     },
     "performance": {
      "slow": 4,
-     "fine": 4
+     "fine": 4,
+     "fast": 1
     },
     "build": {
-     "solid": 2
+     "solid": 4,
+     "flimsy": 1
     },
     "value": {
-     "overpriced": 1
+     "overpriced": 1,
+     "worth_it": 1
     },
     "keyboard": {
-     "great": 2,
+     "great": 3,
      "poor": 1,
      "fine": 1
     },
     "thermals": {
-     "hot": 12,
-     "cool": 3
+     "hot": 13,
+     "cool": 3,
+     "warm": 2
     },
     "best_for": {
      "work": 6
@@ -4491,40 +5043,40 @@
     },
     "screen": {
      "meh": 2,
-     "great": 1
+     "great": 2
     }
    }
   },
   "lenovo-thinkpad-x1-carbon-gen-12": {
    "name": "Lenovo ThinkPad X1 Carbon Gen 12",
-   "authors": 42,
+   "authors": 73,
    "sentiment": {
-    "loved": 8,
-    "mixed": 3,
+    "loved": 15,
+    "mixed": 7,
     "not_for_me": 3
    },
    "groups": {
     "battery": {
-     "all_day": 6,
-     "short": 6,
-     "most_of_day": 2
+     "all_day": 5,
+     "short": 9,
+     "most_of_day": 4
     },
     "performance": {
      "fast": 3,
-     "fine": 2,
+     "fine": 3,
      "slow": 2
     },
     "thermals": {
      "warm": 1,
      "hot": 13,
-     "cool": 5
+     "cool": 9
     },
     "portability": {
-     "very": 4,
+     "very": 6,
      "not_really": 1
     },
     "build": {
-     "solid": 3,
+     "solid": 6,
      "flimsy": 4
     },
     "screen": {
@@ -4535,44 +5087,45 @@
      "work": 2
     },
     "keyboard": {
-     "great": 1
+     "great": 4,
+     "fine": 2
     },
     "value": {
-     "overpriced": 1
+     "overpriced": 2
     }
    }
   },
   "lenovo-thinkpad-x1-carbon-gen-13": {
    "name": "Lenovo ThinkPad X1 Carbon Gen 13",
-   "authors": 47,
+   "authors": 87,
    "sentiment": {
-    "loved": 6,
-    "mixed": 3,
-    "not_for_me": 5
+    "loved": 15,
+    "mixed": 6,
+    "not_for_me": 9
    },
    "groups": {
     "thermals": {
-     "hot": 7,
-     "cool": 6
+     "hot": 8,
+     "cool": 11
     },
     "keyboard": {
-     "fine": 1,
-     "poor": 7,
-     "great": 4
+     "fine": 3,
+     "poor": 10,
+     "great": 8
     },
     "battery": {
-     "all_day": 4,
-     "most_of_day": 8,
+     "all_day": 8,
+     "most_of_day": 11,
      "short": 11
     },
     "performance": {
-     "fast": 5,
+     "fast": 10,
      "fine": 1,
-     "slow": 2
+     "slow": 4
     },
     "build": {
      "solid": 3,
-     "flimsy": 4
+     "flimsy": 5
     },
     "best_for": {
      "work": 2,
@@ -4580,22 +5133,22 @@
     },
     "value": {
      "worth_it": 1,
-     "overpriced": 1
+     "overpriced": 4
     },
     "portability": {
-     "very": 3
+     "very": 11
     },
     "screen": {
-     "meh": 1,
-     "great": 2
+     "meh": 4,
+     "great": 7
     }
    }
   },
   "lenovo-thinkpad-x13-gen-5": {
    "name": "Lenovo ThinkPad X13 Gen 5",
-   "authors": 3,
+   "authors": 5,
    "sentiment": {
-    "loved": 0,
+    "loved": 1,
     "mixed": 0,
     "not_for_me": 0
    },
@@ -4604,193 +5157,62 @@
      "great": 2
     },
     "battery": {
-     "all_day": 2
+     "all_day": 2,
+     "most_of_day": 1
     },
     "performance": {
-     "fine": 1
+     "fine": 3
     },
     "build": {
      "solid": 1
     },
     "keyboard": {
      "fine": 1
+    },
+    "thermals": {
+     "warm": 1,
+     "cool": 1
     }
    }
   },
   "lenovo-yoga-7-2-in-1-gen-9-14ahp9": {
    "name": "Lenovo Yoga 7 2-in-1 Gen 9 (14AHP9)",
-   "authors": 9,
-   "sentiment": {
-    "loved": 1,
-    "mixed": 0,
-    "not_for_me": 4
-   },
-   "groups": {
-    "performance": {
-     "fine": 1,
-     "slow": 2
-    },
-    "best_for": {
-     "gaming": 1
-    },
-    "build": {
-     "solid": 2
-    },
-    "keyboard": {
-     "poor": 1
-    },
-    "battery": {
-     "all_day": 1
-    }
-   }
-  },
-  "lenovo-yoga-9i-2-in-1-gen-9": {
-   "name": "Lenovo Yoga 9i 2-in-1 Gen 9",
-   "authors": 8,
-   "sentiment": {
-    "loved": 3,
-    "mixed": 0,
-    "not_for_me": 1
-   },
-   "groups": {
-    "thermals": {
-     "hot": 1
-    },
-    "performance": {
-     "slow": 1
-    },
-    "battery": {
-     "most_of_day": 2,
-     "all_day": 1
-    },
-    "screen": {
-     "good": 1
-    },
-    "best_for": {
-     "work": 1
-    }
-   }
-  },
-  "lenovo-yoga-pro-9i-gen-9": {
-   "name": "Lenovo Yoga Pro 9i Gen 9",
    "authors": 22,
    "sentiment": {
-    "loved": 1,
+    "loved": 8,
     "mixed": 2,
-    "not_for_me": 1
-   },
-   "groups": {
-    "battery": {
-     "short": 3,
-     "most_of_day": 4,
-     "all_day": 1
-    },
-    "build": {
-     "flimsy": 3,
-     "solid": 2
-    },
-    "thermals": {
-     "hot": 5,
-     "cool": 2
-    },
-    "best_for": {
-     "work": 1
-    },
-    "screen": {
-     "great": 3
-    },
-    "performance": {
-     "fine": 1,
-     "fast": 2
-    },
-    "value": {
-     "overpriced": 2
-    },
-    "keyboard": {
-     "poor": 1,
-     "great": 2
-    }
-   }
-  },
-  "lenovo-yoga-slim-7i-aura-edition": {
-   "name": "Lenovo Yoga Slim 7i Aura Edition",
-   "authors": 50,
-   "sentiment": {
-    "loved": 6,
-    "mixed": 4,
-    "not_for_me": 1
-   },
-   "groups": {
-    "thermals": {
-     "cool": 8,
-     "hot": 3
-    },
-    "value": {
-     "worth_it": 6,
-     "ok": 1
-    },
-    "battery": {
-     "all_day": 9,
-     "most_of_day": 2,
-     "short": 2
-    },
-    "best_for": {
-     "work": 2
-    },
-    "screen": {
-     "great": 10,
-     "meh": 4,
-     "good": 2
-    },
-    "build": {
-     "solid": 8,
-     "flimsy": 1,
-     "average": 1
-    },
-    "performance": {
-     "fine": 4,
-     "fast": 2
-    },
-    "keyboard": {
-     "great": 7,
-     "poor": 4,
-     "fine": 2
-    },
-    "portability": {
-     "very": 2
-    }
-   }
-  },
-  "lenovo-yoga-slim-7x-gen-9": {
-   "name": "Lenovo Yoga Slim 7x Gen 9",
-   "authors": 57,
-   "sentiment": {
-    "loved": 12,
-    "mixed": 9,
     "not_for_me": 4
    },
    "groups": {
-    "keyboard": {
-     "poor": 7,
-     "great": 4,
-     "fine": 1
-    },
     "performance": {
      "fine": 2,
-     "slow": 3,
+     "slow": 2,
      "fast": 4
     },
-    "battery": {
-     "all_day": 8,
-     "short": 5,
-     "most_of_day": 2
+    "best_for": {
+     "gaming": 2,
+     "creative": 1,
+     "work": 1
     },
-    "screen": {
-     "great": 6
+    "build": {
+     "solid": 5
+    },
+    "keyboard": {
+     "poor": 2,
+     "fine": 1
+    },
+    "battery": {
+     "all_day": 3,
+     "most_of_day": 3
     },
     "thermals": {
-     "cool": 3,
+     "cool": 2,
+     "warm": 2,
      "hot": 1
+    },
+    "screen": {
+     "good": 5,
+     "great": 1
     },
     "value": {
      "worth_it": 2,
@@ -4798,18 +5220,199 @@
     },
     "portability": {
      "very": 1
+    }
+   }
+  },
+  "lenovo-yoga-9i-2-in-1-gen-9": {
+   "name": "Lenovo Yoga 9i 2-in-1 Gen 9",
+   "authors": 12,
+   "sentiment": {
+    "loved": 4,
+    "mixed": 1,
+    "not_for_me": 3
+   },
+   "groups": {
+    "thermals": {
+     "hot": 1
+    },
+    "performance": {
+     "slow": 1,
+     "fine": 1
+    },
+    "battery": {
+     "most_of_day": 2,
+     "all_day": 1
+    },
+    "screen": {
+     "good": 2
     },
     "best_for": {
      "work": 1
     },
+    "keyboard": {
+     "poor": 2
+    }
+   }
+  },
+  "lenovo-yoga-pro-9i-gen-9": {
+   "name": "Lenovo Yoga Pro 9i Gen 9",
+   "authors": 69,
+   "sentiment": {
+    "loved": 11,
+    "mixed": 3,
+    "not_for_me": 1
+   },
+   "groups": {
+    "battery": {
+     "short": 19,
+     "most_of_day": 7,
+     "all_day": 1
+    },
     "build": {
-     "solid": 1
+     "flimsy": 5,
+     "solid": 6,
+     "average": 1
+    },
+    "thermals": {
+     "hot": 6,
+     "cool": 10,
+     "warm": 1
+    },
+    "performance": {
+     "fast": 4,
+     "fine": 1,
+     "slow": 1
+    },
+    "best_for": {
+     "work": 1,
+     "gaming": 1
+    },
+    "screen": {
+     "great": 10,
+     "good": 2,
+     "meh": 6
+    },
+    "value": {
+     "overpriced": 3,
+     "worth_it": 1
+    },
+    "keyboard": {
+     "poor": 1,
+     "great": 4,
+     "fine": 3
+    },
+    "portability": {
+     "not_really": 1,
+     "somewhat": 1
+    }
+   }
+  },
+  "lenovo-yoga-slim-7i-aura-edition": {
+   "name": "Lenovo Yoga Slim 7i Aura Edition",
+   "authors": 134,
+   "sentiment": {
+    "loved": 31,
+    "mixed": 12,
+    "not_for_me": 14
+   },
+   "groups": {
+    "thermals": {
+     "cool": 15,
+     "hot": 5,
+     "warm": 4
+    },
+    "value": {
+     "worth_it": 8,
+     "ok": 1,
+     "overpriced": 1
+    },
+    "battery": {
+     "all_day": 26,
+     "most_of_day": 6,
+     "short": 5
+    },
+    "best_for": {
+     "work": 3,
+     "creative": 1
+    },
+    "screen": {
+     "great": 17,
+     "meh": 9,
+     "good": 8
+    },
+    "build": {
+     "solid": 14,
+     "flimsy": 4,
+     "average": 4
+    },
+    "performance": {
+     "fine": 6,
+     "fast": 14,
+     "slow": 2
+    },
+    "keyboard": {
+     "great": 12,
+     "poor": 10,
+     "fine": 7
+    },
+    "portability": {
+     "very": 5,
+     "somewhat": 1
+    }
+   }
+  },
+  "lenovo-yoga-slim-7x-gen-9": {
+   "name": "Lenovo Yoga Slim 7x Gen 9",
+   "authors": 102,
+   "sentiment": {
+    "loved": 24,
+    "mixed": 14,
+    "not_for_me": 8
+   },
+   "groups": {
+    "keyboard": {
+     "poor": 8,
+     "great": 6,
+     "fine": 4
+    },
+    "performance": {
+     "fine": 2,
+     "slow": 3,
+     "fast": 12
+    },
+    "screen": {
+     "great": 18,
+     "good": 2,
+     "meh": 1
+    },
+    "battery": {
+     "all_day": 21,
+     "short": 8,
+     "most_of_day": 3
+    },
+    "thermals": {
+     "cool": 9,
+     "hot": 1
+    },
+    "value": {
+     "worth_it": 3,
+     "ok": 1
+    },
+    "build": {
+     "solid": 6,
+     "average": 1
+    },
+    "portability": {
+     "very": 2
+    },
+    "best_for": {
+     "work": 1
     }
    }
   },
   "microsoft-surface-laptop-13-1st-edition": {
    "name": "Microsoft Surface Laptop 13-inch (1st Edition)",
-   "authors": 1,
+   "authors": 2,
    "sentiment": {
     "loved": 0,
     "mixed": 0,
@@ -4877,77 +5480,77 @@
   },
   "microsoft-surface-laptop-studio-2": {
    "name": "Microsoft Surface Laptop Studio 2",
-   "authors": 56,
+   "authors": 88,
    "sentiment": {
-    "loved": 9,
-    "mixed": 11,
-    "not_for_me": 15
+    "loved": 27,
+    "mixed": 15,
+    "not_for_me": 14
    },
    "groups": {
     "build": {
-     "flimsy": 5,
-     "solid": 2
+     "flimsy": 4,
+     "solid": 6
     },
     "keyboard": {
      "poor": 5,
-     "great": 2
+     "great": 5
     },
     "value": {
-     "overpriced": 4,
-     "worth_it": 2
+     "overpriced": 6,
+     "worth_it": 3
     },
     "thermals": {
-     "hot": 11,
-     "cool": 1,
+     "hot": 14,
+     "cool": 3,
      "warm": 2
     },
     "portability": {
-     "not_really": 8,
-     "somewhat": 4
+     "not_really": 9,
+     "somewhat": 5
     },
     "best_for": {
-     "creative": 2,
-     "work": 3,
-     "gaming": 1
-    },
-    "performance": {
-     "fast": 4,
-     "fine": 1,
-     "slow": 1
+     "creative": 3,
+     "work": 5,
+     "gaming": 4
     },
     "battery": {
-     "short": 23,
+     "short": 32,
      "most_of_day": 5
     },
+    "performance": {
+     "fast": 9,
+     "fine": 8,
+     "slow": 3
+    },
     "screen": {
-     "meh": 8,
-     "great": 1,
-     "good": 1
+     "meh": 10,
+     "great": 2,
+     "good": 3
     }
    }
   },
   "microsoft-surface-pro-11-13": {
    "name": "Microsoft Surface Pro 11 13&quot;",
-   "authors": 83,
+   "authors": 183,
    "sentiment": {
-    "loved": 19,
-    "mixed": 11,
-    "not_for_me": 11
+    "loved": 44,
+    "mixed": 21,
+    "not_for_me": 21
    },
    "groups": {
     "performance": {
-     "fine": 6,
-     "fast": 5,
-     "slow": 4
+     "fine": 10,
+     "fast": 13,
+     "slow": 11
     },
     "value": {
-     "overpriced": 5,
-     "worth_it": 1
+     "overpriced": 9,
+     "worth_it": 2
     },
     "best_for": {
      "gaming": 1,
-     "creative": 2,
-     "work": 11
+     "creative": 3,
+     "work": 15
     },
     "portability": {
      "very": 3,
@@ -4955,78 +5558,84 @@
      "somewhat": 1
     },
     "thermals": {
-     "cool": 5,
-     "hot": 2
+     "cool": 7,
+     "hot": 3,
+     "warm": 1
     },
     "keyboard": {
      "fine": 2,
-     "poor": 2,
-     "great": 2
+     "poor": 10,
+     "great": 7
     },
     "screen": {
-     "meh": 8,
-     "great": 2,
-     "good": 1
+     "meh": 21,
+     "great": 13,
+     "good": 16
     },
     "build": {
-     "flimsy": 3,
+     "flimsy": 4,
      "solid": 1
     },
     "battery": {
-     "all_day": 8,
-     "short": 4,
-     "most_of_day": 3
+     "all_day": 15,
+     "most_of_day": 4,
+     "short": 10
     }
    }
   },
   "msi-cyborg-15-a13v": {
    "name": "MSI Cyborg 15 (A13V)",
-   "authors": 15,
+   "authors": 47,
    "sentiment": {
-    "loved": 1,
-    "mixed": 1,
-    "not_for_me": 2
+    "loved": 12,
+    "mixed": 5,
+    "not_for_me": 7
    },
    "groups": {
-    "thermals": {
-     "hot": 7,
-     "cool": 2
-    },
     "value": {
-     "worth_it": 1,
-     "overpriced": 1
+     "worth_it": 3,
+     "overpriced": 2
     },
     "performance": {
-     "fine": 2,
-     "slow": 2
+     "fine": 4,
+     "slow": 4,
+     "fast": 5
     },
     "best_for": {
-     "gaming": 2
+     "gaming": 5
+    },
+    "thermals": {
+     "hot": 12,
+     "cool": 4,
+     "warm": 2
     },
     "build": {
-     "flimsy": 3
+     "flimsy": 4,
+     "solid": 3
     },
     "battery": {
      "short": 3
     },
     "screen": {
-     "great": 1
+     "great": 1,
+     "meh": 2
     },
     "keyboard": {
      "fine": 1
     },
     "portability": {
-     "somewhat": 1
+     "somewhat": 1,
+     "very": 2
     }
    }
   },
   "msi-katana-15-hx-b14w": {
    "name": "MSI Katana 15 HX (B14W)",
-   "authors": 7,
+   "authors": 29,
    "sentiment": {
-    "loved": 1,
-    "mixed": 1,
-    "not_for_me": 1
+    "loved": 14,
+    "mixed": 2,
+    "not_for_me": 4
    },
    "groups": {
     "battery": {
@@ -5034,35 +5643,44 @@
     },
     "build": {
      "flimsy": 1,
-     "solid": 1
+     "solid": 1,
+     "average": 3
     },
     "thermals": {
-     "hot": 2
+     "hot": 6,
+     "warm": 1
     },
     "performance": {
-     "slow": 3,
+     "slow": 4,
+     "fast": 6,
      "fine": 1
     },
     "best_for": {
-     "gaming": 2
+     "gaming": 5,
+     "creative": 1
     },
     "value": {
-     "worth_it": 2
+     "worth_it": 6
     },
     "screen": {
-     "good": 1
+     "good": 3,
+     "meh": 1
     }
    }
   },
   "msi-raider-18-hx-ai-a2xw": {
    "name": "MSI Raider 18 HX AI (A2XW)",
-   "authors": 6,
+   "authors": 14,
    "sentiment": {
     "loved": 4,
-    "mixed": 0,
+    "mixed": 1,
     "not_for_me": 0
    },
    "groups": {
+    "performance": {
+     "fast": 2,
+     "fine": 1
+    },
     "build": {
      "flimsy": 1,
      "solid": 1
@@ -5078,48 +5696,54 @@
     },
     "best_for": {
      "gaming": 1
-    },
-    "performance": {
-     "fast": 1
     }
    }
   },
   "msi-vector-16-hx-ai-a2xw": {
    "name": "MSI Vector 16 HX AI (A2XW)",
-   "authors": 64,
+   "authors": 154,
    "sentiment": {
-    "loved": 4,
-    "mixed": 1,
-    "not_for_me": 2
+    "loved": 45,
+    "mixed": 8,
+    "not_for_me": 10
    },
    "groups": {
     "thermals": {
-     "hot": 17,
-     "warm": 2,
-     "cool": 6
+     "hot": 45,
+     "warm": 19,
+     "cool": 10
     },
     "performance": {
-     "fine": 3
+     "fine": 3,
+     "fast": 28,
+     "slow": 1
+    },
+    "screen": {
+     "good": 4,
+     "great": 4,
+     "meh": 2
+    },
+    "build": {
+     "solid": 10,
+     "average": 3,
+     "flimsy": 9
     },
     "value": {
      "overpriced": 2,
-     "worth_it": 2
+     "worth_it": 11
     },
     "battery": {
-     "short": 2
+     "short": 2,
+     "most_of_day": 1
+    },
+    "keyboard": {
+     "fine": 1,
+     "poor": 1
     },
     "best_for": {
-     "gaming": 2,
+     "gaming": 3,
      "work": 1,
      "creative": 1
-    },
-    "screen": {
-     "great": 1,
-     "good": 1,
-     "meh": 1
-    },
-    "build": {
-     "flimsy": 5
     },
     "portability": {
      "not_really": 1
@@ -5128,59 +5752,73 @@
   },
   "razer-blade-14-2024": {
    "name": "Razer Blade 14 (2024)",
-   "authors": 6,
+   "authors": 20,
    "sentiment": {
-    "loved": 2,
-    "mixed": 0,
-    "not_for_me": 0
+    "loved": 9,
+    "mixed": 1,
+    "not_for_me": 2
    },
    "groups": {
     "thermals": {
-     "hot": 2
-    },
-    "performance": {
-     "fine": 2
-    },
-    "screen": {
-     "good": 1,
-     "meh": 1
+     "hot": 4,
+     "cool": 2
     },
     "battery": {
+     "short": 2,
      "most_of_day": 1
+    },
+    "build": {
+     "solid": 3
+    },
+    "performance": {
+     "fine": 2,
+     "fast": 3
     },
     "portability": {
      "very": 1
     },
     "value": {
-     "overpriced": 1
+     "overpriced": 2,
+     "worth_it": 1
+    },
+    "keyboard": {
+     "fine": 2
+    },
+    "screen": {
+     "meh": 1,
+     "great": 1
+    },
+    "best_for": {
+     "gaming": 2
     }
    }
   },
   "razer-blade-14-2025": {
    "name": "Razer Blade 14 (2025)",
-   "authors": 29,
+   "authors": 34,
    "sentiment": {
-    "loved": 3,
-    "mixed": 1,
+    "loved": 7,
+    "mixed": 2,
     "not_for_me": 0
    },
    "groups": {
     "build": {
-     "solid": 7,
+     "solid": 8,
      "average": 1,
      "flimsy": 2
     },
     "performance": {
      "fine": 2,
-     "fast": 2,
+     "fast": 4,
      "slow": 2
     },
-    "best_for": {
-     "gaming": 7
-    },
     "battery": {
-     "most_of_day": 4,
-     "short": 4
+     "short": 5,
+     "most_of_day": 5
+    },
+    "best_for": {
+     "gaming": 7,
+     "work": 1
     },
     "thermals": {
      "hot": 5,
@@ -5198,8 +5836,8 @@
      "poor": 1
     },
     "screen": {
-     "meh": 3,
-     "great": 2
+     "meh": 4,
+     "great": 3
     },
     "portability": {
      "very": 3
@@ -5208,47 +5846,49 @@
   },
   "razer-blade-16-2025": {
    "name": "Razer Blade 16 (2025)",
-   "authors": 65,
+   "authors": 147,
    "sentiment": {
-    "loved": 11,
-    "mixed": 4,
-    "not_for_me": 8
+    "loved": 22,
+    "mixed": 9,
+    "not_for_me": 13
    },
    "groups": {
-    "keyboard": {
-     "poor": 23,
-     "fine": 1
-    },
-    "battery": {
-     "short": 9,
-     "most_of_day": 5
+    "thermals": {
+     "cool": 9,
+     "warm": 1,
+     "hot": 5
     },
     "performance": {
-     "slow": 4,
-     "fast": 8,
-     "fine": 1
-    },
-    "best_for": {
-     "gaming": 4,
-     "work": 1
-    },
-    "screen": {
-     "great": 4,
-     "meh": 1
+     "fast": 18,
+     "slow": 8
     },
     "portability": {
-     "very": 1,
+     "very": 4,
+     "somewhat": 1,
      "not_really": 1
     },
-    "thermals": {
-     "warm": 1,
-     "hot": 3,
-     "cool": 1
+    "screen": {
+     "great": 6,
+     "meh": 1
+    },
+    "keyboard": {
+     "poor": 66,
+     "fine": 2,
+     "great": 1
+    },
+    "battery": {
+     "short": 11,
+     "most_of_day": 9,
+     "all_day": 1
+    },
+    "best_for": {
+     "gaming": 5,
+     "work": 1
     },
     "build": {
-     "solid": 5,
+     "solid": 9,
      "flimsy": 5,
-     "average": 1
+     "average": 2
     },
     "value": {
      "overpriced": 2,
@@ -5258,10 +5898,10 @@
   },
   "samsung-galaxy-book5-pro": {
    "name": "Samsung Galaxy Book5 Pro (14-inch)",
-   "authors": 42,
+   "authors": 61,
    "sentiment": {
-    "loved": 6,
-    "mixed": 5,
+    "loved": 12,
+    "mixed": 6,
     "not_for_me": 8
    },
    "groups": {
@@ -5271,16 +5911,16 @@
      "work": 4
     },
     "screen": {
-     "great": 6
+     "great": 7
     },
     "battery": {
-     "most_of_day": 7,
-     "short": 2,
-     "all_day": 2
+     "most_of_day": 6,
+     "short": 5,
+     "all_day": 4
     },
     "thermals": {
-     "cool": 4,
-     "hot": 5,
+     "cool": 5,
+     "hot": 4,
      "warm": 2
     },
     "build": {
@@ -5289,29 +5929,30 @@
      "average": 1
     },
     "keyboard": {
-     "great": 2,
-     "poor": 2,
+     "great": 4,
+     "poor": 3,
      "fine": 1
     },
     "performance": {
-     "fine": 2,
-     "fast": 3,
+     "fine": 3,
+     "fast": 5,
      "slow": 1
     },
     "value": {
-     "worth_it": 3
+     "worth_it": 5,
+     "overpriced": 1
     },
     "portability": {
-     "very": 1
+     "very": 3
     }
    }
   },
   "samsung-galaxy-chromebook-plus": {
    "name": "Samsung Galaxy Chromebook Plus",
-   "authors": 14,
+   "authors": 21,
    "sentiment": {
-    "loved": 8,
-    "mixed": 2,
+    "loved": 14,
+    "mixed": 4,
     "not_for_me": 1
    },
    "groups": {
@@ -5319,11 +5960,12 @@
      "fast": 7
     },
     "portability": {
-     "very": 7
+     "very": 9
     },
     "screen": {
      "great": 5,
-     "meh": 4
+     "meh": 5,
+     "good": 1
     },
     "value": {
      "worth_it": 4
@@ -5334,18 +5976,27 @@
      "all_day": 1
     },
     "thermals": {
-     "cool": 1,
-     "hot": 1
+     "cool": 1
     },
     "keyboard": {
-     "great": 1,
-     "poor": 1,
+     "great": 2,
+     "poor": 2,
      "fine": 3
     },
     "build": {
-     "solid": 3
+     "solid": 5
     }
    }
+  },
+  "alienware-16-area-51": {
+   "name": "Alienware 16 Area-51 (AA16250)",
+   "authors": 3,
+   "sentiment": {
+    "loved": 1,
+    "mixed": 0,
+    "not_for_me": 0
+   },
+   "groups": {}
   }
  }
 }
