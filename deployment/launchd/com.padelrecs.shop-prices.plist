@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+  <key>Label</key><string>com.padelrecs.shop-prices</string>
+  <key>ProgramArguments</key>
+  <array>
+    <string>/bin/zsh</string>
+    <string>-lc</string>
+    <string>"$HOME/padelrecs-jobs/deployment/launchd/padel-shop-prices.sh"</string>
+  </array>
+  <!-- Every day at 06:00 local time; a run missed while the Mac sleeps runs when it wakes. -->
+  <key>StartCalendarInterval</key>
+  <dict><key>Hour</key><integer>6</integer><key>Minute</key><integer>0</integer></dict>
+  <key>StandardOutPath</key><string>/tmp/padelrecs-shop-prices.log</string>
+  <key>StandardErrorPath</key><string>/tmp/padelrecs-shop-prices.log</string>
+  <key>LowPriorityIO</key><true/>
+</dict>
+</plist>

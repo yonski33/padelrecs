@@ -32,7 +32,7 @@ import { CreatorsHomeTop, type HomeExtra } from "./live/creators-home";
 import { storiesSite } from "../../lib/thread/sites";
 import { threadStories } from "./stories-data";
 import { MemberMark } from "./live/member-mark";
-import { padelOffers } from "../../lib/padel-offers";
+import { padelOfferMap } from "../../lib/padel-offers";
 import "./creators-home.css";
 
 
@@ -72,7 +72,8 @@ export async function CreatorsHomeBody() {
   // as the catalogue list (padelListData, PR #600). Creator reviews add a praise line and a price, never the order or counts.
   const rows = d.rows, curated = d.curated, brands = d.brands;
   const extra0: Record<string, HomeExtra> = rowExtras(rows, home?.paddles ?? {}, d.pills ?? {}, hrefOf);
-  const extra: Record<string, HomeExtra> = PADEL ? Object.fromEntries(rows.map(r => { const x = extra0[r.id]!, o = padelOffers(r.slug).find(y => y.inStock);
+  const shopMap = PADEL ? await padelOfferMap() : {};
+  const extra: Record<string, HomeExtra> = PADEL ? Object.fromEntries(rows.map(r => { const x = extra0[r.id]!, o = (shopMap[r.slug] ?? []).find(y => y.inStock);
     return [r.id, o ? { ...x, price: { label: `from ${o.price} · check price ↗`, url: o.href, rel: o.rel } } : x]; })) : extra0;
   const now = Date.now();
   const total = home ? `${home.total.toLocaleString("en-US")} reviews ${niche.id === "pickleball" || niche.id === "skin" ? "summarized" : "summarised"}` : "";
