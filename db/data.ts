@@ -9,7 +9,8 @@ import { kept, forgetKept } from "./keep";
 import { editStamp, bumpEditStamp } from "./edit-stamp";
 import { sql } from "drizzle-orm";
 import { niche } from "../lib/niche";
-import { creatorPageOn } from "../lib/thread/sites";
+import { creatorPageOn, CREATOR_MIN_REVIEWS } from "../lib/thread/sites";
+import { dropReplacedYouTube } from "../lib/thread/replaced-youtube";
 import { shopPhoto } from "../lib/shop-photos";
 import { amazonPhoto } from "../lib/amazon-photos";
 import { padelReadyIds } from "../lib/thread/padel-ready";
@@ -49,7 +50,7 @@ export const catalog = cache(async function catalog(connection?:ReturnType<typeo
 
 async function loadCatalog(connection?:ReturnType<typeof getDb>) {
  const db = connection ?? await database();
- const [allBrands, allRackets, publicReviews, external, unapproved, votes, creatorIds] = await Promise.all([
+ const [allBrands, allRackets, publicReviews, allExternal, unapproved, votes, creatorIds] = await Promise.all([
  db.select().from(brands), db.select().from(rackets),
  db.select({id: reviews.id, racketId: reviews.racketId, rating: reviews.rating, reviewText: reviews.reviewText, alias: reviews.alias, playerLevel: reviews.playerLevel, playingSide: reviews.playingSide, playingStyle: reviews.playingStyle, timeWithRacket: reviews.timeWithRacket, createdAt: reviews.createdAt, powerRating: reviews.powerRating, controlRating: reviews.controlRating, maneuverabilityRating: reviews.maneuverabilityRating, comfortRating: reviews.comfortRating, forgivenessRating: reviews.forgivenessRating, variant: reviews.variant, tags: reviews.tags, highlights: reviews.highlights}).from(reviews).where(eq(reviews.status, "approved")).orderBy(desc(reviews.createdAt)),
  db.select().from(externalReviews).orderBy(desc(externalReviews.createdAt)),
@@ -57,6 +58,9 @@ async function loadCatalog(connection?:ReturnType<typeof getDb>) {
  voteCounts(db), creatorBacked(db)]);
  // Thin-hide sites (THIN_HIDE): their thin-product counts (creator reviewers and votes).
  const padelExtra = THIN_HIDE.has(niche.id) ? await padelCounts(db) : null;
+ // PadelRecs (lib/thread/replaced-youtube.ts): old YouTube summaries a checked creator review replaced on a creator-page
+ // racket drop out here, so nothing shows or counts the same video twice. Padel only.
+ const external = niche.id === "padel" && padelExtra ? dropReplacedYouTube(allExternal, padelExtra.cards, padelExtra.pages) : allExternal;
  const visible = publicCatalogItems(allBrands, allRackets, publicReviews.map(r => r.racketId), external.map(e => e.racketId), unapproved);
  // Listings (catalogue, type and brand pages, sidebar, sitemap) only show products somebody has reviewed. Every visible
  // product still has its page and can be picked when adding a review, so `rackets` stays the full list for lookups.
@@ -83,11 +87,18 @@ async function padelCounts(db: ReturnType<typeof getDb>) {
  const rows = async (q: ReturnType<typeof sql>) => { try { const r = await db.execute(q);
    return ((Array.isArray(r) ? r : (r as { rows?: unknown[] }).rows ?? []) as { id: unknown; n: unknown }[]).map(x => [String(x.id), Number(x.n)] as const); } catch { return []; } };
  const s = sql.raw(`"${niche.schema}"`);
- const [creators, quick, trait] = await Promise.all([
+ const live = async () => { try { const r = await db.execute(sql`select racket_id, video_id from ${s}.creator_reviews where status = 'live'`);
+   return ((Array.isArray(r) ? r : (r as { rows?: unknown[] }).rows ?? []) as { racket_id: unknown; video_id: unknown }[])
+    .map(x => ({ racketId: String(x.racket_id), videoId: x.video_id == null ? null : String(x.video_id) })); } catch { return []; } };
+ const [creators, quick, trait, cards] = await Promise.all([
   rows(sql`select racket_id as id, count(distinct creator) as n from ${s}.creator_reviews where status = 'live' group by racket_id`),
   rows(sql`select racket_id as id, count(*) as n from ${s}.product_votes group by racket_id`),
-  rows(sql`select racket_id as id, count(distinct voter) as n from ${s}.trait_votes group by racket_id`)]);
- return { creators: new Map(creators), quick: new Map(quick), trait: new Map(trait) };
+  rows(sql`select racket_id as id, count(distinct voter) as n from ${s}.trait_votes group by racket_id`), live()]);
+ // A racket is on its creator page from CREATOR_MIN_REVIEWS live creator reviews (app/thread/creator-page.tsx).
+ const perRacket = new Map<string, number>();
+ for (const c of cards) perRacket.set(c.racketId, (perRacket.get(c.racketId) ?? 0) + 1);
+ const pages = new Set([...perRacket].filter(([, n]) => n >= CREATOR_MIN_REVIEWS).map(([id]) => id));
+ return { creators: new Map(creators), quick: new Map(quick), trait: new Map(trait), cards, pages };
 }
 /** The PadelRecs ids ready to list (lib/thread/padel-ready.ts), from the catalogue's reviews and the counts above. */
 export function padelReadyOf(items: { id: string; createdAt: string }[], playerReviews: { racketId: string }[], web: { racketId: string }[],
