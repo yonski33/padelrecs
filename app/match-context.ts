@@ -45,6 +45,9 @@ import { coffeeRules } from "../lib/coffee-hard";
  *  over the models the home page shows, the Player scores, the quick-take hooks and level bands, and players' stated levels. */
 // The site's hand-kept match data (db/match-data.ts): owner calls, maker / YouTube levels, YouTube trait mentions.
 const MATCH = matchData(niche.id);
+/** A creator card's word as a voice (owner 2026-11-26, "Count as praise"): Excellent full praise, Great strong praise, Good mild
+ *  praise (about half of Great), Okay a mild complaint, Weak a complaint. Positive = praise, negative = complaint. */
+const CREATOR_WORD = { Excellent: 1, Great: 0.8, Good: 0.4, Okay: -0.5, Weak: -1 } as const;
 const GATE = niche.fit?.levelGate, ENGINE = niche.fit?.engine, ENGINE_TRAITS = ENGINE?.traits ?? DOT_TRAITS;
 const BEGINNER_LINES = (niche.fit?.beginnerLines ?? []).map(p => new RegExp(p, "i"));
 const PRO_LINES = (niche.fit?.proLines ?? []).map(p => new RegExp(p, "i"));
@@ -265,13 +268,13 @@ const keptContext = kept(async () => {
   for (const r of data.reviews) addSent(r.racketId, ratingVerdict(r.rating));
   for (const e of data.external) addSent(e.racketId, e.sentiment);
   // Creator reviews as trait voices (EngineProfile.creatorVoices, owner 2026-11-26): per product, each live card's attribute
-  // word is one praising or faulting voice on its engine trait. Live cards only, so held ones (flagged, seller, discount code)
-  // never count.
+  // word is a praising or faulting voice on its engine trait, weighted by the word (CREATOR_WORD). Live cards only, so held
+  // ones (flagged, seller, discount code) never count.
   const creatorVo = new Map<string, Record<string, { plus: number; minus: number }>>();
   if (creatorPages && ENGINE?.creatorVoices) { const idOf = new Map(data.rackets.map(r => [r.slug, r.id]));
     for (const [slug, page] of creatorPages) { const id = idOf.get(slug); if (!id) continue; const m: Record<string, { plus: number; minus: number }> = {};
       for (const rv of page.reviews) for (const [k, w] of Object.entries(rv.attrs)) { const tr = ENGINE.creatorVoices[k]; if (!tr || !w) continue;
-        const x = m[tr] ??= { plus: 0, minus: 0 }; if (w === "Excellent" || w === "Great") x.plus++; else if (w === "Okay" || w === "Weak") x.minus++; }
+        const x = m[tr] ??= { plus: 0, minus: 0 }, v = CREATOR_WORD[w as keyof typeof CREATOR_WORD] ?? 0; if (v > 0) x.plus += v; else x.minus -= v; }
       creatorVo.set(id, m); } }
   const engOf = (id: string, r: (typeof data.rackets)[number]): EngineFacts => {
     const t = traitMap.get(id), ex = overrides.get(id)?.expert ?? {}, cv = creatorVo.get(id);
