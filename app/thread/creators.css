@@ -760,3 +760,6 @@ body:has(.thc) .thc .thc-cons-r a.thc-wrap-all { margin-top: auto; font-size: 13
 .thc-g-row.thc-g-head .kp, .thc-g-row.thc-g-head .cfg-l { font-size: 11px; font-weight: 700; color: var(--faint); }
 /* The match pill's bands (v3): green 85+, yellow 70 to 84, white below. */
 .thc-fit-res .thc-fit-pct.g { background: #CDEFB0; } .thc-fit-res .thc-fit-pct.y { background: #F4EC6E; }
+/* The fit row's better matches (owner 2026-11-26): named, linked, with their %, on their own line under the result. */
+.thc-fit-better { flex: 1 1 100%; font-size: 13.5px; line-height: 1.45; color: var(--body2); }
+.thc-fit-better > span { white-space: nowrap; }

@@ -11,7 +11,7 @@ import { bestFor, levelBand, levelRange, SUITS_OK, MIN_FIT_REPORTS } from "../..
 import { familyRowIds, modelFamily, rowOfFamily } from "../../lib/compare-pairs";
 import { topPicks, PICK_CATS, type PickList, type PickRacket } from "../../lib/thread/top-picks";
 import { traitSeed } from "../../lib/thread/trait-seed";
-import { SENTIMENT_KEY, tallyWith } from "../../lib/thread/trait-view";
+import { tallyWith } from "../../lib/thread/trait-view";
 import { traitVotes, traitOverrides, comments, productVotes } from "../../db/schema";
 import { and, count, desc, eq, gte, like } from "drizzle-orm";
 import { sideItems, addCounts, BUSY_DAYS, SIDE_SIZE, type SideItem } from "../../lib/thread/home-side";
@@ -21,6 +21,7 @@ import { productHref, niche, hasYears } from "../../lib/niche";
 import { playersWord } from "../../lib/thread/web-sources";
 import { flightOf } from "../../lib/discgolf-profile";
 import { score } from "../../db/data";
+import { sentimentOverrides } from "../../db/sentiment-tally";
 import { LEVELS } from "../../lib/quick-match";
 import { platformName } from "../../lib/source-label";
 import { listYear } from "../../lib/top-lists";
@@ -54,15 +55,6 @@ export const threadRows = cache(async (): Promise<Rows> => {
   const rows = new Map([...base.rows].map(([id, r]) => [id, felt({ ...r, ...tallyWith(r, tallies.get(id)) })]));
   return { ...base, rows, all: [...rows.values()], bySlug: new Map([...rows.values()].map(x => [x.slug, x])) };
 });
-/** The owner's typed overall tallies (Traits tab, trait_overrides under SENTIMENT_KEY), by product. Empty on any error, so
- *  the pages keep the counted tally. */
-async function sentimentOverrides(): Promise<Map<string, Record<string, number>>> {
-  try {
-    const db = await database();
-    const rows = await db.select({ id: traitOverrides.racketId, counts: traitOverrides.reviewCounts }).from(traitOverrides).where(eq(traitOverrides.trait, SENTIMENT_KEY));
-    return new Map(rows.flatMap(r => r.counts ? [[r.id, r.counts] as const] : []));
-  } catch (error) { if (!missingTable(error)) console.error("[thread] sentiment overrides failed", error); return new Map(); }
-}
 async function countedRows(): Promise<Rows> {
   const ctx = await matchContext();
   const { data, sigs, takes } = ctx;

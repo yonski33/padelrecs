@@ -31,6 +31,9 @@ export type EngineFacts = {
 };
 export type EngineProfile = {
   m: number; k: number; ks: number; E: number; z: number; wq: number; wf: number; wp: number; minReports: number;
+  /** Score from the verdict counts the product page shows (the owner's typed tally where saved, db/sentiment-tally.ts) instead
+   *  of the counted reviews alone. PadelRecs first (owner report 2026-11-26); other sites' lists reorder with it, so theirs wait. */
+  pageTally?: boolean;
   /** Share of the style fit that is the axis position (the rest: how positively players talk about the trait). */ ax: number;
   /** Maker label words (matched in the lower-cased name, as written, spaces included) for each end of the axis. */
   controlLabels: string[]; powerLabels: string[];
