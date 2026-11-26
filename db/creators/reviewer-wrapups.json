@@ -3239,6 +3239,220 @@
      "tone": "neg"
     }
    ]
+  },
+  "chorus-phoenix-hx-14mm": {
+   "paras": [
+    "Reviewers praise the Phoenix HX for large power and pop in a maneuverable hybrid shape, and it suits players at 4.0 and above who want power over finesse. Takes are mixed on spin, with Pickleball Tech Dude and Pickleball Pursuit reporting good to great spin while Matt's Pickleball finds it low, and on sweet spot size, which Farmer Lanky Pickleball rates as one of the better 14 mm ones but Pickleball Tech Dude calls tight. Resets and dinks are the common complaint, which The Pickleball Dad and Pickleball Pursuit both found hard to control."
+   ],
+   "highlights": [
+    {
+     "text": "large power and pop",
+     "tone": "pos"
+    },
+    {
+     "text": "hard to control",
+     "tone": "neg"
+    }
+   ]
+  },
+  "enhance-gen-4-5": {
+   "paras": [
+    "Reviewers mostly praise it as an all-court leaning paddle with dwell, touch and a sweet spot that Pickleball Tech Dude finds much larger than on other cutout foam paddles. Power is where takes differ: Dinking And Driving found it hot enough that opponents asked about illegal paddles, while All Drive No Drop Pickleball says it takes a bit more effort to finish points than top power paddles do. Dinking And Driving disliked only the busy graphics, while Tickle My Pickleball found it solid but not exciting."
+   ],
+   "highlights": [
+    {
+     "text": "dwell, touch and a sweet spot",
+     "tone": "pos"
+    },
+    {
+     "text": "solid but not exciting",
+     "tone": "neg"
+    },
+    {
+     "text": "busy graphics",
+     "tone": "neg"
+    }
+   ]
+  },
+  "holbrook-fuze-elongated-14mm": {
+   "paras": [
+    "Reviewers describe a quick, punchy paddle for aggressive or advanced players who want fast hands at the net and plenty of pop. Rylie's Review, UnforcedErrorsPB and Pickleball Tech Dude found the sweet spot stable or large, while Pickleball Rx, Johnkew Pickleball and Matt's Pickleball reported an uneven face, extra twisting or jarring off-centre hits. Pickleball Rx and Johnkew Pickleball both preferred the Holbrook Fuze Elongated 16mm for softer, more forgiving contact, and Rylie's Review and UnforcedErrorsPB both noted a break-in period."
+   ],
+   "highlights": [
+    {
+     "text": "quick, punchy paddle",
+     "tone": "pos"
+    },
+    {
+     "text": "fast hands at the net",
+     "tone": "pos"
+    },
+    {
+     "text": "an uneven face",
+     "tone": "neg"
+    },
+    {
+     "text": "jarring off-centre hits",
+     "tone": "neg"
+    }
+   ]
+  },
+  "holbrook-fuze-elongated-16mm": {
+   "paras": [
+    "Reviewers mostly praise a big sweet spot, good stability and soft, forgiving contact that suits resets and dinks, and several prefer it to the Holbrook Fuze Elongated 14mm. Pickleball Tech Dude was the main dissenter on control, struggling with mid-court control and judging exit speed on resets, while Matt's Pickleball called the elongated shapes niche and several others said the feel needs a few sessions to break in. Power is the least settled point, ranging from low to mid in Pickleball Rx to high in Pickleball Tech Dude and top tier in Pickleball Pursuit."
+   ],
+   "highlights": [
+    {
+     "text": "big sweet spot",
+     "tone": "pos"
+    },
+    {
+     "text": "soft, forgiving contact",
+     "tone": "pos"
+    },
+    {
+     "text": "struggling with mid-court control",
+     "tone": "neg"
+    },
+    {
+     "text": "needs a few sessions to break in",
+     "tone": "neg"
+    }
+   ]
+  },
+  "holbrook-fuze-hybrid-16mm": {
+   "paras": [
+    "Reviewers liked the hybrid for its power and pop, with Pickleball Tech Dude finding the sweet spot large and stable and Pickleball Pursuit praising its stability. Feel is where takes differ: Pickleball Tech Dude described it as soft and very muted, while Pickleball Pursuit and Matt's Pickleball found it bouncier, or stiffer and more hollow. Three reviewers said it takes some time to learn, and Matt's Pickleball found the light stock paddle better with a few grams of added weight."
+   ],
+   "highlights": [
+    {
+     "text": "large and stable",
+     "tone": "pos"
+    },
+    {
+     "text": "power and pop",
+     "tone": "pos"
+    },
+    {
+     "text": "takes some time to learn",
+     "tone": "neg"
+    },
+    {
+     "text": "better with a few grams of added weight",
+     "tone": "neg"
+    }
+   ]
+  },
+  "joola-perseus-mod-ta-15-14mm": {
+   "paras": [
+    "Martin Grunin Pickleball and JJ Pickleball both prefer this 14mm over the 16mm version, praising easier drops and dinks and good spin, with JJ Pickleball also rating touch at the net highly, at the cost of slightly less power. MaxLevelPickleball is more mixed, finding it too hard to control in doubles for most players unless they drill a lot or play at 5.0 plus, with more pop ups on blocks and resets than the Joola Perseus Gen 3. That reviewer also measured it slightly more powerful than the Joola Perseus Gen 3 in two of three runs, by only one or two mph."
+   ],
+   "highlights": [
+    {
+     "text": "easier drops and dinks",
+     "tone": "pos"
+    },
+    {
+     "text": "touch at the net",
+     "tone": "pos"
+    },
+    {
+     "text": "slightly less power",
+     "tone": "neg"
+    },
+    {
+     "text": "too hard to control in doubles",
+     "tone": "neg"
+    }
+   ]
+  },
+  "maverix-havik-2": {
+   "paras": [
+    "Reviewers mostly praise the Havik 2 for strong spin, pop and a low swing weight that gives an elongated shape quick hands, with Matt's Pickleball, Cody Childers and Pickleball Blast all pointing to maneuverability at the kitchen. Takes split on the sweet spot: SupaSenpai calls the whole face good, while The Pickleball Pirates found off center hits unforgiving and Matt's Pickleball found the top corners punish high contact. WhiskyDink found it a little softer and denser than the Nox X-Foam Goldin 14mm but not matching their feel profile, and several reviewers add weight to steady it."
+   ],
+   "highlights": [
+    {
+     "text": "strong spin, pop and a low swing weight",
+     "tone": "pos"
+    },
+    {
+     "text": "the whole face good",
+     "tone": "pos"
+    },
+    {
+     "text": "off center hits unforgiving",
+     "tone": "neg"
+    },
+    {
+     "text": "top corners punish high contact",
+     "tone": "neg"
+    }
+   ]
+  },
+  "pickleball-apes-joy-s-plus": {
+   "paras": [
+    "Three of four reviewers loved the Joy S+, and it suits players who want a hybrid that plays close to a widebody. Tickle My Pickleball and DDOG_Pickleball both found a better, bigger sweet spot than the Pickleball Apes Joy S, and WhiskyDink liked the robust twist weight, though they and Tickle My Pickleball noted a stiffer feel than the brand's recent softer paddles. Pickleball Pursuit disagreed sharply, calling the feel the worst in a year with a tight sweet spot and below-average stability, while DDOG_Pickleball found it a little light and wanted added weight."
+   ],
+   "highlights": [
+    {
+     "text": "better, bigger sweet spot",
+     "tone": "pos"
+    },
+    {
+     "text": "robust twist weight",
+     "tone": "pos"
+    },
+    {
+     "text": "stiffer feel",
+     "tone": "neg"
+    },
+    {
+     "text": "tight sweet spot",
+     "tone": "neg"
+    }
+   ]
+  },
+  "pickleball-apes-joy-s": {
+   "paras": [
+    "Reviewers who like a stiff paddle get the most from the Joy S, with Pickleball Blast finding good power and pop and a different feel for the budget end. Takes split on the sweet spot: DDOG_Pickleball found it more refined and higher on the face than on the Pickleball Apes Harmony S and Pickleball Apes Charm S, while Tickle My Pickleball found it well below average, with jarring off-center hits. Pickleball Blast found it too stiff in limited play, Tickle My Pickleball said it plushes up with play, and both Tickle My Pickleball and DDOG_Pickleball point to added weight as a fix or plan."
+   ],
+   "highlights": [
+    {
+     "text": "good power and pop",
+     "tone": "pos"
+    },
+    {
+     "text": "more refined",
+     "tone": "pos"
+    },
+    {
+     "text": "jarring off-center hits",
+     "tone": "neg"
+    },
+    {
+     "text": "too stiff in limited play",
+     "tone": "neg"
+    }
+   ]
+  },
+  "thrive-fury-elongated": {
+   "paras": [
+    "Reviewers who liked it point to spin, power and plow-through in a light, nimble elongated shape that takes added weight well. Mixed takes come from the touch game: Matt's Pickleball says drops need softer hands and that it amplifies high pop issues, and Pickleball Pursuit calls it a power paddle that is harder for players who struggle with resets and dinks, while Famous by Friday Pickleball lists no complaints. Against the Thrive Fury Hybrid 15.5mm, The Sweet Spot Pickleball finds a smaller sweet spot and slower hands, though Famous by Friday Pickleball recorded serve speeds almost level."
+   ],
+   "highlights": [
+    {
+     "text": "spin, power and plow-through",
+     "tone": "pos"
+    },
+    {
+     "text": "drops need softer hands",
+     "tone": "neg"
+    },
+    {
+     "text": "smaller sweet spot and slower hands",
+     "tone": "neg"
+    }
+   ]
   }
  },
  "padel": {
