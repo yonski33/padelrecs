@@ -1,9 +1,12 @@
 import padel from "../db/photos/padel.json";
+import pickleball from "../db/photos/pickleball.json";
 import { niche } from "./niche";
 
-/** Product photos we host ourselves, by site and product slug, with the shop page each came from. Each shop's written
- *  permission is kept outside the repo; the terms say which pages may show them, so read them before adding a site. */
-const photos: Record<string, Record<string, { source: string }>> = { padel };
+/** Product photos we host ourselves, by site and product slug, with the shop page each came from. Padel: each shop's
+ *  written permission is kept outside the repo; the terms say which pages may show them, so read them before adding a site.
+ *  PickleballRecs: makers' own product photos, hosted on the owner's decision (2026-11-27, "Host them now") without written
+ *  permission; drop a photo if a maker asks. */
+const photos: Record<string, Record<string, { source: string }>> = { padel, pickleball };
 
 /** rackets.image_url: empty for the default photo, an uploaded photo's path, or this word for "show the drawing". */
 export const NO_PHOTO = "none";
