@@ -55,11 +55,12 @@ test("reader: Shopify .js and schema.org Product", () => {
 });
 
 test("reader: blocked shops are never fetched; 404 means gone", async () => {
-  let calls = 0;
-  const f = async () => { calls++; return new Response("", { status: 404 }); };
+  let calls = 0, asked = "";
+  const f = async (u: string) => { calls++; asked = u; return new Response("", { status: 404 }); };
   assert.deepEqual(await readShopPage(shopNamed("Tienda Padel Point")!, "https://www.tiendapadelpoint.com/en/x", f), { ok: false, gone: false, why: "shop blocks scripts" });
   assert.equal(calls, 0);
   assert.deepEqual(await readShopPage(shopNamed("Padel USA")!, "https://padelusa.com/products/x?variant=1", f), { ok: false, gone: true, why: "HTTP 404" });
+  assert.equal(asked, "https://padelusa.com/products/x.js?country=US");
 });
 
 test("model check: exact model and year only", () => {

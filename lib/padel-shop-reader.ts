@@ -40,7 +40,7 @@ export function fromJsonLd(html: string): PageRead {
 /** One page, read the shop's way. `gone` = the page answers 404 or 410 (the row is hidden). */
 export async function readShopPage(shop: Shop, url: string, fetcher: Fetcher = fetch): Promise<PageRead> {
   if (shop.read === "blocked") return { ok: false, gone: false, why: "shop blocks scripts" };
-  const target = shop.read === "shopify" ? `${strip(url)}.js` : url;
+  const target = shop.read === "shopify" ? `${strip(url)}.js${shop.country ? `?country=${shop.country}` : ""}` : url;
   let res: Response;
   try { res = await fetcher(target, { headers: UA, redirect: "follow", signal: AbortSignal.timeout(20000) }); }
   catch (e) { return { ok: false, gone: false, why: `fetch failed: ${e instanceof Error ? e.message : String(e)}`.slice(0, 120) }; }
