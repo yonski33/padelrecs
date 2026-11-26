@@ -41,6 +41,9 @@ export function forgetCatalog() { forgetKept(); bumpEditStamp(); }
 // Cached per request too: the layout reads it for the header's rankings menu, and so does the page.
 /** Sites where a product needs a photo to be listed (catalogue, sitemap, brand pages, rankings, similar lists). */
 const PHOTO_TO_LIST = new Set(["pickleball"]);
+/** Sites that keep thin products off lists and search (lib/thread/padel-ready.ts): padel 2026-11-26 (#718), pickleball 2026-11-26
+ *  (owner: "paddles we cant find enough reviews for will be out of the catalog"). */
+export const THIN_HIDE = new Set(["padel", "pickleball"]);
 export const catalog = cache(async function catalog(connection?:ReturnType<typeof getDb>) {
  return connection ? loadCatalog(connection) : kept_.get();
 });
@@ -53,11 +56,11 @@ async function loadCatalog(connection?:ReturnType<typeof getDb>) {
  db.select().from(externalReviews).orderBy(desc(externalReviews.createdAt)),
  db.select({racketId: reviews.racketId, createdAt: reviews.createdAt}).from(reviews).where(ne(reviews.status, "approved")),
  voteCounts(db), creatorBacked(db)]);
- // PadelRecs: its thin-racket counts (creator reviewers and votes), read only on padel.
- const padelExtra = niche.id === "padel" ? await padelCounts(db) : null;
+ // Thin-hide sites (THIN_HIDE): their thin-product counts (creator reviewers and votes).
+ const padelExtra = THIN_HIDE.has(niche.id) ? await padelCounts(db) : null;
  // PadelRecs (lib/thread/replaced-youtube.ts): old YouTube summaries a checked creator review replaced on a creator-page
- // racket drop out here, so nothing shows or counts the same video twice.
- const external = padelExtra ? dropReplacedYouTube(allExternal, padelExtra.cards, padelExtra.pages) : allExternal;
+ // racket drop out here, so nothing shows or counts the same video twice. Padel only.
+ const external = niche.id === "padel" && padelExtra ? dropReplacedYouTube(allExternal, padelExtra.cards, padelExtra.pages) : allExternal;
  const visible = publicCatalogItems(allBrands, allRackets, publicReviews.map(r => r.racketId), external.map(e => e.racketId), unapproved);
  // Listings (catalogue, type and brand pages, sidebar, sitemap) only show products somebody has reviewed. Every visible
  // product still has its page and can be picked when adding a review, so `rackets` stays the full list for lookups.
@@ -68,7 +71,7 @@ async function loadCatalog(connection?:ReturnType<typeof getDb>) {
  // similar lists"; never noindex): a paddle without a photo is not listed. Its page still works and it lists itself once a
  // photo is saved.
  const photoOk = (r: typeof allRackets[number]) => !PHOTO_TO_LIST.has(niche.id) || !!(shopPhoto(r) ?? amazonPhoto(r)?.image);
- // PadelRecs (owner 2026-11-26, lib/thread/padel-ready.ts): a racket with fewer than 3 reviews and fewer than 3 votes is not
+ // PadelRecs and PickleballRecs (owner 2026-11-26, lib/thread/padel-ready.ts): a product with fewer than 3 reviews and fewer than 3 votes is not
  // listed either, unless it was added in the last 30 days. Its page still works; it lists itself once it passes either bar.
  const padelOk = padelExtra ? padelReadyOf(visible.rackets, publicReviews, external, padelExtra) : null;
  const listed = visible.rackets.filter(r => reviewed.has(r.id) && photoOk(r) && (!padelOk || padelOk.has(r.id)));
