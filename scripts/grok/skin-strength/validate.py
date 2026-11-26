@@ -26,6 +26,8 @@ for r in out:
     if not r.get("reason"): bad.append(f"{i}: no reason")
     if r.get("leave_on") is False and r.get("strength") == "strong" and not re.search(r"benzoyl|salicylic", " ".join(r.get("acid_ingredients", [])) + r.get("reason", ""), re.I):
         bad.append(f"{i}: rinse-off rated strong")
+    if r.get("strength") in ("strong", "moderate") and re.search(r"essential oil", r.get("reason") or "", re.I):
+        bad.append(f"{i}: essential oils are fragrance, not strength (rate on actives)")
     standin = bool(STRONG_NAME.search(by[i]["name"])) or by[i]["category"] == "Exfoliant"
     if standin != (r.get("strength") == "strong"): notes.append(f"DIFFERS from name rule: {by[i]['name']} → {r.get('strength')} ({r.get('reason')})")
 missing = [i for i in ids if i not in seen]

@@ -16,6 +16,9 @@ const FACTS: { id: string; attribute: string; value: number; valueText: string; 
   { id: "dr-jart-cicapair-tiger-grass-cream", attribute: "fragrance_free", value: 0, valueText: "oils", why: "lavender oil #38, grapefruit-peel oil #42, rosemary-leaf oil #45 (incidecoder.com/products/dr-jart-cicapair-tiger-grass-cream)" },
   { id: "sunday-riley-pink-drink-firming-resurfacing-essence", attribute: "fragrance_free", value: 0, valueText: "oils", why: "lemon-peel oil #29 (incidecoder.com/products/sunday-riley-pink-drink-2)" },
   { id: "haruharu-wonder-black-rice-hyaluronic-toner", attribute: "fragrance_free", value: 0, valueText: "oils", why: "original SKU: lavender oil #29, linalool #30 (incidecoder.com/products/haruharu-wonder-black-rice-hyaluronic-toner)" },
+  // Owner OK 2026-11-17 (essential oils are fragrance): found by the strength pass, checked on the INCI pages.
+  { id: "sunday-riley-ice-ceramide-moisturizing-cream", attribute: "fragrance_free", value: 0, valueText: "oils", why: "Rosa Damascena Flower Oil (incidecoder.com/products/sunday-riley-ice-ceramide-moisturizing-cream)" },
+  { id: "sunday-riley-c-e-o-15-vitamin-c-brightening-serum", attribute: "fragrance_free", value: 0, valueText: "oils", why: "Citrus Sinensis (Sweet Orange) Oil, Citrus Tangerina Peel Oil, Limonene (incidecoder.com/products/sunday-riley-c-e-o-rapid-flash-brightening-serum)" },
   { id: "the-ordinary-glycolic-acid-7-exfoliating-toner", attribute: "use", value: 0, valueText: "body-first", why: "own line 'Popular for body use; can sting on facial skin'; page 'Too strong for many faces'" },
 ];
 const SHAPES = [{ id: "the-ordinary-glycolic-acid-7-exfoliating-toner", shape: "Exfoliant", why: "glycolic acid is ingredient #2; leave-on 7% AHA" }];

@@ -8,7 +8,7 @@ Return **only** a JSON array, one object per product, in the pack's order:
 
 ```json
 {"id": "<pack id>", "inci_url": "https://…", "first5": ["Aqua", "…"],
- "strength": "strong|moderate|gentle", "reason": "retinoid|aha|bha|aha+bha|pha|vitamin c 15%+|alcohol first|essential oils|benzoyl peroxide|sulfur|none|other: …",
+ "strength": "strong|moderate|gentle", "reason": "retinoid|aha|bha|aha+bha|pha|vitamin c 15%+|alcohol first|benzoyl peroxide|sulfur|none|other: …",
  "acid": "none|aha|bha|pha|aha+bha|aha+pha|bha+pha", "acid_ingredients": ["Glycolic Acid"],
  "leave_on": true, "sources": ["https://…"], "unsure": false, "note": ""}
 ```
@@ -21,8 +21,8 @@ Rules:
   - Denatured or isopropyl alcohol as ingredient 1–3 in a leave-on product.
   - Benzoyl peroxide.
   - Sulfur at 3%+.
-  - 2 or more essential oils in a leave-on face product.
-- **moderate**: a lower-strength active (AHA under 5%, BHA under 1%, PHA, azelaic acid, niacinamide 10%+, vitamin C under 15%, retinoid-like bakuchiol), or 1 essential oil.
+- **moderate**: a lower-strength active (AHA under 5%, BHA under 1%, PHA, azelaic acid, niacinamide 10%+, vitamin C under 15% or a vitamin C derivative, retinoid-like bakuchiol).
+- **Essential oils are fragrance, not strength.** They never make a product strong or moderate; rate it on its actives alone (we track fragrance separately).
 - **gentle**: none of the above.
 - Rinse-off cleansers and masks are at most **moderate** unless they contain benzoyl peroxide or 2%+ salicylic acid. Set `leave_on: false` for them.
 - `acid`: the AHA/BHA/PHA family present anywhere in the list (`none` if none). Name each in `acid_ingredients` as written in the INCI.
