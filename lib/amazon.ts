@@ -119,11 +119,13 @@ export function isSiblingListing(product: { name: string }, title: string) {
 
 /** PickleballRecs variants (owner 2026-11-26): shape, thickness and generation must match both ways. */
 const SHAPE = /^(elongated|hybrid|widebody|standard)$/, THICK = /^\d{2}mm$/, GEN = /^(ii|iii|iv|v|vi|vii|[2-9]|gen\d*|\d\.0)$/;
+/** Edition words that name another paddle in the same line (Hurache X Power vs Jelly Bean, Coral vs Coral Pro). */
+const EDITION = /^(power|control|jelly|bean|pro|plus|max|lite|ultra|alpha|elite|x)$/;
 const shapeWords = (ws: string[]) => ws.map(w => w === "wide" ? "widebody" : w).filter(w => SHAPE.test(w));
 /** Why a listing is another variant (reject) or a parent listing of several (doubt), for "variants" niches. */
 export function variantCheck(product: { name: string; brand: string }, title: string): { reject?: string; doubt?: string } {
   const own = words(product.name), all = words(title), head = words(title.split(/[,|(]/)[0] ?? "");
-  for (const [label, test] of [["shape", (w: string) => SHAPE.test(w)], ["thickness", (w: string) => THICK.test(w)], ["generation", (w: string) => GEN.test(w)]] as const) {
+  for (const [label, test] of [["shape", (w: string) => SHAPE.test(w)], ["thickness", (w: string) => THICK.test(w)], ["generation", (w: string) => GEN.test(w)], ["edition", (w: string) => EDITION.test(w)]] as const) {
     const mine = own.filter(test);
     const extra = (label === "shape" ? shapeWords(head) : head.filter(test)).filter(w => !mine.includes(w));
     if (extra.length) return { reject: `${label} ${extra[0]} in the listing name, not in ours` };
@@ -132,6 +134,8 @@ export function variantCheck(product: { name: string; brand: string }, title: st
   }
   const shapes = new Set(shapeWords(all)), thick = new Set(all.filter(w => THICK.test(w)));
   if (shapes.size > 1 || thick.size > 1) return { doubt: `parent listing with variants (${[...shapes, ...thick].join(", ")})` };
+  // "R1.16/R2.16/R3.16", "R1.14/R2.14/R4.14": one listing for several models.
+  if (/\b[a-z]*\d[\w.]*\s?\/\s?[a-z]*\d/i.test(title)) return { doubt: "parent listing for several models" };
   return {};
 }
 

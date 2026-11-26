@@ -36,4 +36,7 @@ test("pickleball variants: generation, shape and thickness must match both ways;
   assert.ok(variantCheck({ name: "Friday Aura Elongated", brand: "Friday" }, "Friday Aura Hybrid Pickleball Paddle").reject);
   assert.ok(!variantCheck({ name: "JOOLA Perseus Pro V 16mm", brand: "JOOLA" }, "JOOLA Perseus Pro V 16mm Pickleball Paddle, Carbon Friction Surface").reject);
   assert.ok(variantCheck({ name: "Friday Aura Elongated", brand: "Friday" }, "Friday Aura Pickleball Paddle | Available in Elongated, Hybrid and Widebody").doubt);
+  assert.ok(variantCheck({ name: "11SIX24 Hurache X Power", brand: "11SIX24" }, "11SIX24 Pickleball Paddles | Jelly Bean Model | Carbon Fiber").reject);
+  assert.ok(variantCheck({ name: "Six Zero Coral Pro 16mm", brand: "Six Zero" }, "Six Zero Coral Pickleball Paddle, 16mm Raw Carbon, Black, Widebody").reject);
+  assert.ok(variantCheck({ name: "Ronbus Quanta R1 16", brand: "Ronbus" }, "Ronbus R1.16/R2.16/R3.16 Raw Toray T700 Carbon Fiber Pickleball Paddle").doubt);
 });
