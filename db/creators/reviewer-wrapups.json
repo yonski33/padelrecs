@@ -8494,6 +8494,1235 @@
      "tone": "neg"
     }
    ]
+  },
+  "axiom-insanity": {
+   "paras": [
+    "Reviewers liked the easy distance and ability to shape hyzer flips through gaps. Worn Proton and lighter Fission can turn early, while Eclipse copies often show little turn and a harder finish. Bodanza Disc Golf found that the Discraft Heat had more dome and glide than their max-weight Fission copy."
+   ],
+   "highlights": [
+    {
+     "text": "easy distance",
+     "tone": "pos"
+    },
+    {
+     "text": "shape hyzer flips",
+     "tone": "pos"
+    },
+    {
+     "text": "little turn and a harder finish",
+     "tone": "neg"
+    }
+   ]
+  },
+  "axiom-proxy": {
+   "paras": [
+    "Reviewers praised the straight flight at low power and the ease of throwing through gaps. Electron copies could flip more than premium copies, and the low fade limits flex lines. Disc Golf Puttheads (Rodney Lane) found the Axiom Envy more consistent in wind and better suited to hyzers."
+   ],
+   "highlights": [
+    {
+     "text": "straight flight at low power",
+     "tone": "pos"
+    },
+    {
+     "text": "low fade limits flex lines",
+     "tone": "neg"
+    }
+   ]
+  },
+  "axiom-pyro": {
+   "paras": [
+    "Reviewers liked the torque resistance on forehands and the predictable hard finish. Some still got useful forward carry, while others found it short on low-power approaches. Matt White Disc Golf found the MVP Deflector more overstable."
+   ],
+   "highlights": [
+    {
+     "text": "torque resistance on forehands",
+     "tone": "pos"
+    },
+    {
+     "text": "predictable hard finish",
+     "tone": "pos"
+    },
+    {
+     "text": "short on low-power approaches",
+     "tone": "neg"
+    }
+   ]
+  },
+  "discraft-luna": {
+   "paras": [
+    "Reviewers liked the glide on short drives and straight putts. Some premium copies handled firm throws, while base plastic could turn under power or season quickly. On touch approaches, reviewers generally found less fade than the flight numbers might suggest. In a comparison from Let's Dolf - Disc Golf, the Latitude 64 Pure gave the reviewer a more comfortable grip for throwing."
+   ],
+   "highlights": [
+    {
+     "text": "glide on short drives",
+     "tone": "pos"
+    },
+    {
+     "text": "turn under power",
+     "tone": "neg"
+    },
+    {
+     "text": "season quickly",
+     "tone": "neg"
+    }
+   ]
+  },
+  "dynamic-discs-judge": {
+   "paras": [
+    "Reviewers liked the straight putting flight and predictable finish on throws. Newer copies can cover gentle hyzers, while beat-in copies can take more turn. Several reviewers found that the bead or depth made a clean release harder. In a comparison from Ben Propes, the Dynamic Discs Warden offers a beadless grip and a cleaner release for the reviewer."
+   ],
+   "highlights": [
+    {
+     "text": "straight putting flight",
+     "tone": "pos"
+    },
+    {
+     "text": "predictable finish on throws",
+     "tone": "pos"
+    },
+    {
+     "text": "clean release harder",
+     "tone": "neg"
+    }
+   ]
+  },
+  "innova-aviar": {
+   "paras": [
+    "Reviewers liked the predictable short-range flight and the way DX holds a light release angle. Disc Golf Puttheads (Rodney Lane) found the rim a little deep, and JoeMamaGames found a Halo Star copy could fade early on long putts. Brook Arnold preferred the higher shoulder and stronger finish of the Discmania P2."
+   ],
+   "highlights": [
+    {
+     "text": "predictable short-range flight",
+     "tone": "pos"
+    },
+    {
+     "text": "rim a little deep",
+     "tone": "neg"
+    },
+    {
+     "text": "fade early on long putts",
+     "tone": "neg"
+    }
+   ]
+  },
+  "innova-firebird": {
+   "paras": [
+    "Reviewers trusted the hard finish on forehands and utility shots. Stock Champion often suits headwinds, while some Sexton runs give more straight carry and push before fading. ChasinChains liked the Sexton copy for amateur forehands and found a light Star copy much less stable. In a comparison from Disc Golf Reviewer (Alan Barker), the Innova Ape takes more effort to throw than the tested forehand utility driver."
+   ],
+   "highlights": [
+    {
+     "text": "hard finish on forehands",
+     "tone": "pos"
+    },
+    {
+     "text": "more straight carry and push",
+     "tone": "pos"
+    },
+    {
+     "text": "much less stable",
+     "tone": "neg"
+    }
+   ]
+  },
+  "innova-leopard": {
+   "paras": [
+    "Reviewers liked the easy straight flight on tight fairways. Fresh premium copies can start straighter or more stable than expected, while a beat-in copy may turn quickly. Disc Golf Reviewer found it better suited to long backhand lines than to hard sidearms. In a comparison from DG Squared, the Discraft Nuke offers more maximum distance but less help when learning controlled lines."
+   ],
+   "highlights": [
+    {
+     "text": "easy straight flight",
+     "tone": "pos"
+    },
+    {
+     "text": "turn quickly",
+     "tone": "neg"
+    },
+    {
+     "text": "hard sidearms",
+     "tone": "neg"
+    }
+   ]
+  },
+  "innova-mamba": {
+   "paras": [
+    "Reviewers liked the easy distance for slower arms and low-ceiling hyzer flips. Some premium runs showed less turn than expected, while softer or lighter runs could burn over when thrown hard or into a headwind. Disc Golf Over 40 found the MVP Trail a little longer but liked the accuracy and S curve here."
+   ],
+   "highlights": [
+    {
+     "text": "easy distance for slower arms",
+     "tone": "pos"
+    },
+    {
+     "text": "burn over when thrown hard",
+     "tone": "neg"
+    }
+   ]
+  },
+  "innova-pig": {
+   "paras": [
+    "Reviewers liked the predictable landing and the low glide for approaches. Soft R-Pro copies tend to sit, while Star can feel slicker and skip more. Swanky Disc Golf liked the tacky landing behavior but found the deeper thumb-track grip would not suit every hand. In a comparison from Swanky Disc Golf, the Discraft Zone offers an alternative grip and a different finish on forehands."
+   ],
+   "highlights": [
+    {
+     "text": "predictable landing",
+     "tone": "pos"
+    },
+    {
+     "text": "Star can feel slicker",
+     "tone": "neg"
+    },
+    {
+     "text": "deeper thumb-track grip",
+     "tone": "neg"
+    }
+   ]
+  },
+  "innova-roc": {
+   "paras": [
+    "Reviewers liked the straight flight and how readily they could cover several lines by cycling copies. Fresher copies held up on hyzers, while worn DX could turn in wind. Luke Jenkins Disc Golf found the Discraft Buzzz easier for straight shots and preferred this mold into a headwind."
+   ],
+   "highlights": [
+    {
+     "text": "straight flight",
+     "tone": "pos"
+    },
+    {
+     "text": "cover several lines",
+     "tone": "pos"
+    },
+    {
+     "text": "turn in wind",
+     "tone": "neg"
+    }
+   ]
+  },
+  "innova-roc3": {
+   "paras": [
+    "Reviewers liked the dependable fade and the ability to shape different lines. Cheating Lefty Disc Golf found hard forehands could get unpredictable, while Apollo Disc Golf found the Discmania MD3 carried a little farther and preferred this disc's deeper feel."
+   ],
+   "highlights": [
+    {
+     "text": "dependable fade",
+     "tone": "pos"
+    },
+    {
+     "text": "hard forehands could get unpredictable",
+     "tone": "neg"
+    }
+   ]
+  },
+  "innova-shryke": {
+   "paras": [
+    "Reviewers liked the long carry after it flipped up at speed. ChasinChains found the Champion copy especially useful downwind but harder to control into a headwind, and Disc Golf Nerd felt the speed was a lot for beginners."
+   ],
+   "highlights": [
+    {
+     "text": "long carry",
+     "tone": "pos"
+    },
+    {
+     "text": "harder to control into a headwind",
+     "tone": "neg"
+    }
+   ]
+  },
+  "innova-sidewinder": {
+   "paras": [
+    "Reviewers liked the easy turn on controlled throws and the ability to shape hyzer flips. Worn DX can become a roller, while some premium copies fly straighter with a stronger finish. ChasinChains found the Innova Roadrunner easier to turn in their comparison."
+   ],
+   "highlights": [
+    {
+     "text": "easy turn on controlled throws",
+     "tone": "pos"
+    },
+    {
+     "text": "become a roller",
+     "tone": "neg"
+    }
+   ]
+  },
+  "innova-valkyrie": {
+   "paras": [
+    "Reviewers liked the easy distance and the fade that can follow a hyzer flip. Seasoned copies can turn much more than fresh Halo or Champion. Brook Arnold found the Streamline Trace longer, while liking the stability this mold gave their bag."
+   ],
+   "highlights": [
+    {
+     "text": "easy distance",
+     "tone": "pos"
+    },
+    {
+     "text": "turn much more",
+     "tone": "neg"
+    }
+   ]
+  },
+  "kastaplast-reko": {
+   "paras": [
+    "Reviewers liked the straight flight and how well it held the release angle. Macktown Disc Golf saw easy hyzer flips but had trouble with headwinds, while Ryan Anderson DG found the Kastaplast Tuff glided more and was more forgiving."
+   ],
+   "highlights": [
+    {
+     "text": "held the release angle",
+     "tone": "pos"
+    },
+    {
+     "text": "trouble with headwinds",
+     "tone": "neg"
+    }
+   ]
+  },
+  "latitude-64-fuse": {
+   "paras": [
+    "Reviewers liked the easy glide and the straight distance they could get at low power. Plastic choice changes the flight, and some copies need more hyzer when thrown hard. IceBerg TV called it especially shapeable but found the Discraft Meteor carried farther."
+   ],
+   "highlights": [
+    {
+     "text": "easy glide",
+     "tone": "pos"
+    },
+    {
+     "text": "straight distance",
+     "tone": "pos"
+    },
+    {
+     "text": "need more hyzer",
+     "tone": "neg"
+    }
+   ]
+  },
+  "mvp-atom": {
+   "paras": [
+    "Reviewers liked the straight flight on spin putts and controlled upshots. Some premium copies held a hyzer, while Electron tended to give a straighter finish. Matt White Disc Golf found the Axiom Envy more stable and liked how it caught the chains."
+   ],
+   "highlights": [
+    {
+     "text": "straight flight on spin putts",
+     "tone": "pos"
+    },
+    {
+     "text": "Electron tended to give a straighter finish",
+     "tone": "neg"
+    }
+   ]
+  },
+  "mvp-resistor": {
+   "paras": [
+    "Reviewers liked the dependable flex and fade from a narrower driver rim. Disc Golf Down Under found a shape similar to the Innova Firebird at lower speed and shorter range. Shea Stevens found the Eclipse copy too overstable to hold a long panning anhyzer."
+   ],
+   "highlights": [
+    {
+     "text": "dependable flex and fade",
+     "tone": "pos"
+    },
+    {
+     "text": "too overstable to hold",
+     "tone": "neg"
+    }
+   ]
+  },
+  "mvp-volt": {
+   "paras": [
+    "Reviewers liked the straight push and reliable finish on controlled drives. Plastic and dome can change both turn and carry, with some copies needing more speed to stay up. Matt White Disc Golf found the MVP Terra had more late fade when a forehand needed to fight back."
+   ],
+   "highlights": [
+    {
+     "text": "straight push and reliable finish",
+     "tone": "pos"
+    },
+    {
+     "text": "needing more speed to stay up",
+     "tone": "neg"
+    }
+   ]
+  },
+  "axiom-tempo": {
+   "paras": [
+    "Reviewers liked the comfortable shallow grip and straight forehand push. The same carry can be too much on short approaches, and some wanted more fade. Jose Sanchez found the Discraft Zone finished harder."
+   ],
+   "highlights": [
+    {
+     "text": "comfortable shallow grip",
+     "tone": "pos"
+    },
+    {
+     "text": "straight forehand push",
+     "tone": "pos"
+    },
+    {
+     "text": "too much on short approaches",
+     "tone": "neg"
+    }
+   ]
+  },
+  "discmania-fd": {
+   "paras": [
+    "Reviewers liked the easy glide through tight gaps. Fresh C-Line can resist a flip, whereas some S-Line copies turn more and handle wind less well. BrunoDDiscGolf found the Innova TeeBird3 had less glide and more turn resistance."
+   ],
+   "highlights": [
+    {
+     "text": "easy glide through tight gaps",
+     "tone": "pos"
+    },
+    {
+     "text": "handle wind less well",
+     "tone": "neg"
+    }
+   ]
+  },
+  "discmania-p2": {
+   "paras": [
+    "Reviewers liked the reliable fade and limited ground play on approaches. Firmer or premium blends could finish harder than a worn copy, and several reviewers found the deep grip awkward on drives or forehands. In a comparison from Ryan Anderson DG, the Discraft Roach flies straighter with a softer fade on the compared throws."
+   ],
+   "highlights": [
+    {
+     "text": "reliable fade and limited ground play",
+     "tone": "pos"
+    },
+    {
+     "text": "deep grip awkward",
+     "tone": "neg"
+    }
+   ]
+  },
+  "innova-beast": {
+   "paras": [
+    "Reviewers liked the controllable distance and easy hyzer flip. ChasinChains found the Pro copy struggled in a headwind, while Nick Carroll Disc Golf found the Beast X version held up in strong wind. Ben Howard DG found the MVP Trail had a smoother edge in hand."
+   ],
+   "highlights": [
+    {
+     "text": "controllable distance and easy hyzer flip",
+     "tone": "pos"
+    },
+    {
+     "text": "struggled in a headwind",
+     "tone": "neg"
+    }
+   ]
+  },
+  "innova-eagle": {
+   "paras": [
+    "Reviewers liked the workable turn and reliable finish. Mellow or seasoned copies can drift, while stiffer runs can stay overstable for lower-power throwers. Another Round Disc Golf found its Duo run closer to a seasoned Calvin copy than to a fresh one. In a comparison from Robbie C Discgolf, the Innova TeeBird shows less high-speed turn and a milder late fade."
+   ],
+   "highlights": [
+    {
+     "text": "workable turn and reliable finish",
+     "tone": "pos"
+    },
+    {
+     "text": "stay overstable",
+     "tone": "neg"
+    }
+   ]
+  },
+  "innova-leopard3": {
+   "paras": [
+    "Reviewers liked the straight flight at lower speeds and the ability to hold a turnover line. Some stable runs tolerated faster arms, while GStar could be much flippier. ChasinChains found their copy held anhyzer well but struggled into a headwind. In a comparison from Brook Arnold, the Axiom Crave has slightly more stability on the lines compared in the review."
+   ],
+   "highlights": [
+    {
+     "text": "straight flight at lower speeds",
+     "tone": "pos"
+    },
+    {
+     "text": "could be much flippier",
+     "tone": "neg"
+    }
+   ]
+  },
+  "innova-rhyno": {
+   "paras": [
+    "Reviewers liked the predictable landing and stability on short approaches. Soft plastic can sit quickly, while harder copies can bounce or skip more. Gladiator Disc Golf trusted it in wind on forehands but found Champion copies domier than they wanted. In a comparison from Gladiator Disc Golf, the Kastaplast Berg has a higher profile and felt less suited to soft forehands."
+   ],
+   "highlights": [
+    {
+     "text": "predictable landing",
+     "tone": "pos"
+    },
+    {
+     "text": "domier than they wanted",
+     "tone": "neg"
+    }
+   ]
+  },
+  "innova-roadrunner": {
+   "paras": [
+    "Reviewers liked the easy turning lines and useful glide at moderate power. Some premium runs showed a firmer finish, while a hard or nose-down release could turn into a roller. Go Man Go Outdoors found less recovery than with the Innova Sidewinder on long right-turning lines."
+   ],
+   "highlights": [
+    {
+     "text": "easy turning lines",
+     "tone": "pos"
+    },
+    {
+     "text": "turn into a roller",
+     "tone": "neg"
+    }
+   ]
+  },
+  "innova-thunderbird": {
+   "paras": [
+    "Reviewers liked the dependable forehand flight and range of usable lines as copies wore. Some Halo copies showed more overstability than the numbers suggest, while seasoned copies shaped more easily. Brook Arnold found it less overstable than the Discmania PD for their bag."
+   ],
+   "highlights": [
+    {
+     "text": "dependable forehand flight",
+     "tone": "pos"
+    },
+    {
+     "text": "more overstability than the numbers suggest",
+     "tone": "neg"
+    }
+   ]
+  },
+  "kastaplast-kaxe": {
+   "paras": [
+    "Reviewers liked the midrange control and the extra carry they could get with a fairway-style release. Some got a reliable fade, while others found the flight straighter and more sensitive to angle. Gladiator Disc Golf found its range fell short of the Innova Eagle."
+   ],
+   "highlights": [
+    {
+     "text": "midrange control and the extra carry",
+     "tone": "pos"
+    },
+    {
+     "text": "more sensitive to angle",
+     "tone": "neg"
+    }
+   ]
+  },
+  "kastaplast-svea": {
+   "paras": [
+    "Reviewers liked its straight flight on tight gaps and the way it carried turnovers. Daddy Delp Disc Golf found little extra distance over a putter, while In The Bag Disc Golf found flat throws could turn toward a roller."
+   ],
+   "highlights": [
+    {
+     "text": "straight flight on tight gaps",
+     "tone": "pos"
+    },
+    {
+     "text": "turn toward a roller",
+     "tone": "neg"
+    }
+   ]
+  },
+  "mvp-photon": {
+   "paras": [
+    "Reviewers liked the reliable finish on full drives and headwind throws. Some lighter Fission copies added distance with less effort, while OTB Discs found their copy resisted turn under power and might be too stable for slower arms. In a comparison from Jake from Disc Golf, the MVP Tesla resembles the Plasma copy’s straighter flight at shorter driver distance."
+   ],
+   "highlights": [
+    {
+     "text": "reliable finish on full drives",
+     "tone": "pos"
+    },
+    {
+     "text": "too stable for slower arms",
+     "tone": "neg"
+    }
+   ]
+  },
+  "mvp-relay": {
+   "paras": [
+    "Reviewers liked the easy straight flight and late turn for shaping gaps. Noodle Arm Disc Golf found that seasoning made it more versatile, and Jake from Disc Golf thought the Latitude 64 River had a little more glide."
+   ],
+   "highlights": [
+    {
+     "text": "easy straight flight and late turn",
+     "tone": "pos"
+    },
+    {
+     "text": "seasoning made it more versatile",
+     "tone": "neg"
+    }
+   ]
+  },
+  "mvp-servo": {
+   "paras": [
+    "Reviewers liked the straight flight and useful finish on controlled drives. Takes differed on how much it turns compared with the Axiom Crave: Brook Arnold saw less turn, while Robbie C Discgolf saw more turn and also more fight at the end."
+   ],
+   "highlights": [
+    {
+     "text": "straight flight and useful finish",
+     "tone": "pos"
+    },
+    {
+     "text": "Takes differed",
+     "tone": "neg"
+    }
+   ]
+  },
+  "mvp-watt": {
+   "paras": [
+    "Reviewers liked the ability to hold a straight line at low power and the glide on touch approaches. Jezufan Disc Golf found distance harder to control downhill, while Apollo Disc Golf found the extra glide made it more sensitive to wind. In a comparison from Jezufan Disc Golf, the Axiom Proxy glides less than the tested putter on straight touch lines."
+   ],
+   "highlights": [
+    {
+     "text": "hold a straight line at low power",
+     "tone": "pos"
+    },
+    {
+     "text": "harder to control downhill",
+     "tone": "neg"
+    }
+   ]
+  },
+  "prodigy-a2": {
+   "paras": [
+    "Reviewers trusted the hard finish in wind and the ability to land close to the target. Total Lefty Disc Golf found it faster and more overstable than the Discraft Zone, while Nate Turner preferred the Prodigy A3 for some forehand shaping lines. Some domier copies felt awkward on forehands."
+   ],
+   "highlights": [
+    {
+     "text": "hard finish in wind",
+     "tone": "pos"
+    },
+    {
+     "text": "domier copies",
+     "tone": "neg"
+    }
+   ]
+  },
+  "streamline-range": {
+   "paras": [
+    "Reviewers liked the straight, level flight and the way it sat down near the target. Tyler Tiede found the Kastaplast Berg harder to release on forehands but steadier in wind. Others found the low glide made it harder to stretch to longer approaches."
+   ],
+   "highlights": [
+    {
+     "text": "straight, level flight",
+     "tone": "pos"
+    },
+    {
+     "text": "harder to stretch",
+     "tone": "neg"
+    }
+   ]
+  },
+  "streamline-trace": {
+   "paras": [
+    "Reviewers liked the straight distance and the glide that kept it moving before fade. Some were able to lean on it in moderate wind, while others saw turn on full hyzers or found some copies too stable for the intended shot. In a comparison from Bradley Martin, the Dynamic Discs Trespass gives similar distance when thrown at comparable arm speed."
+   ],
+   "highlights": [
+    {
+     "text": "straight distance",
+     "tone": "pos"
+    },
+    {
+     "text": "saw turn on full hyzers",
+     "tone": "neg"
+    }
+   ]
+  },
+  "westside-tursas": {
+   "paras": [
+    "Reviewers liked the easy turn for slower arms and the glide through narrow gaps. Beaver Branch Disc Golf Adventures found that VIP-Ice held hyzer with a little fight back, while Origio gave little recovery once it turned. Some found the deeper, domier grip harder to release cleanly. In a comparison from Darell Matthews, the Discraft Meteor shares a rounded, deep, slightly gummy feel in the reviewer’s hand."
+   ],
+   "highlights": [
+    {
+     "text": "glide through narrow gaps",
+     "tone": "pos"
+    },
+    {
+     "text": "little recovery once it turned",
+     "tone": "neg"
+    }
+   ]
+  },
+  "discmania-essence": {
+   "paras": [
+    "Reviewers liked the easy distance and controlled flip on backhand throws. Some copies had a reliable finish, while others took time to beat in or turned hard when overpowered. DiscGolf Justice found the Latitude 64 River a little less stable."
+   ],
+   "highlights": [
+    {
+     "text": "easy distance and controlled flip",
+     "tone": "pos"
+    },
+    {
+     "text": "turned hard when overpowered",
+     "tone": "neg"
+    }
+   ]
+  },
+  "discmania-md3": {
+   "paras": [
+    "Reviewers liked the repeatable straight lines and late fade across different releases. Some found that powered forehands turned more than they wanted, and fresh copies could be too stable for touch approaches. Apollo Disc Golf liked the extra carry available on a full throw. In a comparison from Apollo Disc Golf, the Discraft Buzzz carries forward in fade with less of a late hook."
+   ],
+   "highlights": [
+    {
+     "text": "repeatable straight lines and late fade",
+     "tone": "pos"
+    },
+    {
+     "text": "too stable for touch approaches",
+     "tone": "neg"
+    }
+   ]
+  },
+  "discraft-buzzz-ss": {
+   "paras": [
+    "Reviewers liked the easy straight flight and comfortable rim. Dropship Disc Golf placed it between the Discraft Buzzz and Discraft Meteor but could not always tell whether it would fade or keep turning. Some copies gave a more dependable finish than others."
+   ],
+   "highlights": [
+    {
+     "text": "easy straight flight",
+     "tone": "pos"
+    },
+    {
+     "text": "whether it would fade or keep turning",
+     "tone": "neg"
+    }
+   ]
+  },
+  "discraft-heat": {
+   "paras": [
+    "Reviewers liked the easy carry and the backhand lines available without a full swing. Several got a straight flight after a slow flip, while others found forehands or hard throws could turn too much. Some copies were more stable than expected on anhyzers. In a comparison from Cheating Lefty Disc Golf, the Discraft Avenger SS offers a similar understable flight for long shaping shots."
+   ],
+   "highlights": [
+    {
+     "text": "easy carry",
+     "tone": "pos"
+    },
+    {
+     "text": "turn too much",
+     "tone": "neg"
+    }
+   ]
+  },
+  "gateway-wizard": {
+   "paras": [
+    "Reviewers liked the grip and dependable fade on putts or controlled throws. Scott Stokely liked the short comebacks after long attempts but found the lower glide hurt range. Other reviewers found the tall bead uncomfortable or the release less clean. In a comparison from NinjaBands Disc Golf, the Discraft Luna offers less grip in wet or cold conditions than the super-soft copy."
+   ],
+   "highlights": [
+    {
+     "text": "grip and dependable fade",
+     "tone": "pos"
+    },
+    {
+     "text": "tall bead uncomfortable",
+     "tone": "neg"
+    }
+   ]
+  },
+  "innova-invader": {
+   "paras": [
+    "Reviewers liked the clean release and control on short placement shots. Foundation Labs found DX wore quickly, while some reviewers wanted less pace on putts and others liked how quickly the disc came down on approaches. In a comparison from Sixty Point Seven, the Innova Aviar has a taller profile that caught more on release for the reviewer."
+   ],
+   "highlights": [
+    {
+     "text": "clean release and control",
+     "tone": "pos"
+    },
+    {
+     "text": "DX wore quickly",
+     "tone": "neg"
+    }
+   ]
+  },
+  "innova-orc": {
+   "paras": [
+    "Reviewers liked the dependable late bite, including on long flex shots. PoorBoy DiscGolf got a straight flight and finish from a fresh GStar copy but found it caught by wind, while Steven Kitchens Disc Golf saw much harder skips and less useful range for distance shots. In a comparison from Brook Arnold, the Discmania PD produces a similar stable control line with possibly a little less straight push."
+   ],
+   "highlights": [
+    {
+     "text": "dependable late bite",
+     "tone": "pos"
+    },
+    {
+     "text": "caught by wind",
+     "tone": "neg"
+    }
+   ]
+  },
+  "innova-rat": {
+   "paras": [
+    "Reviewers liked the forward carry on angled approaches and the ability to land flat on shorter throws. Myles of Discs preferred flatter copies for forehands, while Disc Golf Coolness found hard forehands could turn and that older copies got flippier."
+   ],
+   "highlights": [
+    {
+     "text": "forward carry on angled approaches",
+     "tone": "pos"
+    },
+    {
+     "text": "hard forehands could turn",
+     "tone": "neg"
+    }
+   ]
+  },
+  "innova-tern": {
+   "paras": [
+    "Reviewers liked the easy distance and the forward carry after a hyzer flip. Some found the shallower rim insecure for forehands or bigger hands. Frank B. found GStar too flippy on forehand, while other plastics covered more stable distance lines."
+   ],
+   "highlights": [
+    {
+     "text": "easy distance and the forward carry",
+     "tone": "pos"
+    },
+    {
+     "text": "shallower rim insecure",
+     "tone": "neg"
+    }
+   ]
+  },
+  "innova-toro": {
+   "paras": [
+    "Reviewers liked the reliable fade and ability to control shorter throws. ChasinChains found the Discraft Zone similar in flight, while Bodanza Disc Golf got a cleaner release from this mold. Some reviewers found it took a hard throw to get much forward carry."
+   ],
+   "highlights": [
+    {
+     "text": "reliable fade",
+     "tone": "pos"
+    },
+    {
+     "text": "get much forward carry",
+     "tone": "neg"
+    }
+   ]
+  },
+  "kastaplast-falk": {
+   "paras": [
+    "Reviewers liked the effortless glide and easy distance on hyzer flips. Daddy Delp Disc Golf found the dome awkward for forehands, while Cheating Lefty Disc Golf found it hardest to control in wind or with more forehand power."
+   ],
+   "highlights": [
+    {
+     "text": "effortless glide and easy distance",
+     "tone": "pos"
+    },
+    {
+     "text": "hardest to control in wind",
+     "tone": "neg"
+    }
+   ]
+  },
+  "kastaplast-jarn": {
+   "paras": [
+    "Reviewers liked its strong finish for approaches and headwinds. Some got useful skips, while others used the low glide to limit range. Flippy James Disc Golf flagged the rim groove as a possible drawback on forehands. In a comparison from In The Bag Disc Golf, the Westside Harp offers less overstability and starts fading later in the comparison."
+   ],
+   "highlights": [
+    {
+     "text": "strong finish for approaches",
+     "tone": "pos"
+    },
+    {
+     "text": "possible drawback on forehands",
+     "tone": "neg"
+    }
+   ]
+  },
+  "latitude-64-claymore": {
+   "paras": [
+    "Reviewers liked the straight glide and the way it followed a clean release. Brook Arnold found the Streamline Echo held a turnover a little longer, while IceBerg TV found this disc could turn more than expected on hard flat throws."
+   ],
+   "highlights": [
+    {
+     "text": "straight glide",
+     "tone": "pos"
+    },
+    {
+     "text": "turn more than expected",
+     "tone": "neg"
+    }
+   ]
+  },
+  "latitude-64-explorer": {
+   "paras": [
+    "Reviewers liked the straight flight and predictable finish at different speeds. Base plastic can straighten as it wears, while firmer runs may be handier into wind. Chris Goodrich found it flipped up a little more readily than the Innova TeeBird."
+   ],
+   "highlights": [
+    {
+     "text": "straight flight and predictable finish",
+     "tone": "pos"
+    },
+    {
+     "text": "straighten as it wears",
+     "tone": "neg"
+    }
+   ]
+  },
+  "latitude-64-grace": {
+   "paras": [
+    "Reviewers liked the easy glide on drives and the finish they could trust at speed. IceBerg TV found the Latitude 64 Rive more stable for big arms, while DiscGod found their copy could flip and pan into a headwind."
+   ],
+   "highlights": [
+    {
+     "text": "easy glide on drives",
+     "tone": "pos"
+    },
+    {
+     "text": "flip and pan into a headwind",
+     "tone": "neg"
+    }
+   ]
+  },
+  "latitude-64-saint": {
+   "paras": [
+    "Reviewers liked how easily the disc covered distance and held gentle turn. Beaver Branch Disc Golf Adventures saw more glide but less stability on anhyzer than with the Dynamic Discs Escape. Some found the glide useful for low-ceiling placement."
+   ],
+   "highlights": [
+    {
+     "text": "held gentle turn",
+     "tone": "pos"
+    },
+    {
+     "text": "less stability on anhyzer",
+     "tone": "neg"
+    }
+   ]
+  },
+  "mvp-deflector": {
+   "paras": [
+    "Reviewers liked the dependable fight back and the ability to use the skip for placement. Some found the rim sharp on forehands, and the low glide made it a situational choice for short, straight holes. In a comparison from Jaden Kouba, the Discraft Zone OS drops sooner without as much straight push before its fade."
+   ],
+   "highlights": [
+    {
+     "text": "dependable fight back",
+     "tone": "pos"
+    },
+    {
+     "text": "low glide made it a situational choice",
+     "tone": "neg"
+    }
+   ]
+  },
+  "mvp-glitch": {
+   "paras": [
+    "Reviewers liked the effortless glide in tight gaps and on long bids. Some found the light disc hard to control on powered forehands, while others found it handy when a full swing or tall flight was unavailable."
+   ],
+   "highlights": [
+    {
+     "text": "effortless glide in tight gaps",
+     "tone": "pos"
+    },
+    {
+     "text": "hard to control on powered forehands",
+     "tone": "neg"
+    }
+   ]
+  },
+  "prodigy-pa-3": {
+   "paras": [
+    "Reviewers liked the straight putting line and reliable hold on approach angles. Some found the rim blocky on forehands. Ben Propes liked the shallow feel for scrambles and found the Dynamic Discs Judge glided more."
+   ],
+   "highlights": [
+    {
+     "text": "straight putting line",
+     "tone": "pos"
+    },
+    {
+     "text": "rim blocky on forehands",
+     "tone": "neg"
+    }
+   ]
+  },
+  "westside-underworld": {
+   "paras": [
+    "Reviewers liked the easy right-moving turn and glide on backhand throws. Beaver Branch Disc Golf Adventures found it too flippy at full power, and some reviewers found base or worn copies took even less effort to turn. The dome was less comfortable for some grips."
+   ],
+   "highlights": [
+    {
+     "text": "easy right-moving turn and glide",
+     "tone": "pos"
+    },
+    {
+     "text": "too flippy at full power",
+     "tone": "neg"
+    }
+   ]
+  },
+  "axiom-pixel": {
+   "paras": [
+    "Reviewers liked the float on longer putts and the way it held softly released angles. Some found the deeper bead or rim uncomfortable, and Cheating Lefty Disc Golf saw the disc drift more than they wanted into a headwind. In a comparison from Flippy James Disc Golf, the Axiom Proxy holds an anhyzer longer on the compared approach lines."
+   ],
+   "highlights": [
+    {
+     "text": "float on longer putts",
+     "tone": "pos"
+    },
+    {
+     "text": "deeper bead or rim uncomfortable",
+     "tone": "neg"
+    }
+   ]
+  },
+  "discmania-dd3": {
+   "paras": [
+    "Reviewers liked the extra distance and the carry they could get from low releases. Some Q-Line copies were workable even for modest arms, while other copies needed considerable anhyzer to reach their full flight. Flippy James Disc Golf also found the rim sharp on forehands. In a comparison from No Chains Needed, the Discraft Nuke produces a similar distance-driver flight in the reviewer’s comparison."
+   ],
+   "highlights": [
+    {
+     "text": "extra distance",
+     "tone": "pos"
+    },
+    {
+     "text": "rim sharp on forehands",
+     "tone": "neg"
+    }
+   ]
+  },
+  "discmania-pd": {
+   "paras": [
+    "Reviewers liked the controlled flex lines and the reliable finish into wind. Some C-Line copies fought back much harder than others. Disc Golf Deals USA found it held an anhyzer longer than the MVP Control, while Ozark Mountain Discs saw substantial overlap."
+   ],
+   "highlights": [
+    {
+     "text": "controlled flex lines",
+     "tone": "pos"
+    },
+    {
+     "text": "fought back much harder",
+     "tone": "neg"
+    }
+   ]
+  },
+  "dynamic-discs-escape": {
+   "paras": [
+    "Reviewers liked the easy distance for slower arms and the glide through a straight line. Plastic and wear changed how much it turned, and some reviewers found it touchy in crosswinds or on forehand releases. In a comparison from Apollo Disc Golf, the Discraft Undertaker feels similar but flies more slowly than the tested driver."
+   ],
+   "highlights": [
+    {
+     "text": "easy distance for slower arms",
+     "tone": "pos"
+    },
+    {
+     "text": "touchy in crosswinds",
+     "tone": "neg"
+    }
+   ]
+  },
+  "dynamic-discs-warden": {
+   "paras": [
+    "Reviewers liked the clean release and straight flight from the rounded, beadless rim. Ben Propes found the Dynamic Discs Judge slightly more stable, while Bradley Martin found the extra glide useful but saw turnover into a headwind."
+   ],
+   "highlights": [
+    {
+     "text": "clean release and straight flight",
+     "tone": "pos"
+    },
+    {
+     "text": "turnover into a headwind",
+     "tone": "neg"
+    }
+   ]
+  },
+  "innova-boss": {
+   "paras": [
+    "Reviewers liked the distance and torque tolerance on strong releases. Tyler Tiede found the rim harder to grip than the Innova Destroyer, and Air It Out Disc Reviews saw their copy gain turn as it wore. Some found distance inconsistent at beginner power."
+   ],
+   "highlights": [
+    {
+     "text": "distance and torque tolerance",
+     "tone": "pos"
+    },
+    {
+     "text": "rim harder to grip",
+     "tone": "neg"
+    }
+   ]
+  },
+  "innova-gorgon": {
+   "paras": [
+    "Reviewers liked the easy flip and rounded rim on controlled drives. Some slower throwers had to wait for a copy to season, while a Halo Champion version offered more stability in wind. Part Time Disc Golf found the MVP Trail slightly longer on sidearms."
+   ],
+   "highlights": [
+    {
+     "text": "easy flip and rounded rim",
+     "tone": "pos"
+    },
+    {
+     "text": "wait for a copy to season",
+     "tone": "neg"
+    }
+   ]
+  },
+  "innova-nova": {
+   "paras": [
+    "Reviewers liked the straight approaches and the soft outer rim that limited skips. Some found the deep grip awkward on full throws, while others reported that the rim could split or tear after tree hits. In a comparison from OB Disc Golf, the Innova Mako3 holds a similarly straight line with less float than the putter."
+   ],
+   "highlights": [
+    {
+     "text": "straight approaches",
+     "tone": "pos"
+    },
+    {
+     "text": "deep grip awkward",
+     "tone": "neg"
+    }
+   ]
+  },
+  "kastaplast-lots": {
+   "paras": [
+    "Reviewers liked the precise straight flight and finish. Cody Lehman found glide after a clean flip up, while Andrew Wood DG found a clear stability spread across runs and weights."
+   ],
+   "highlights": [
+    {
+     "text": "precise straight flight and finish",
+     "tone": "pos"
+    },
+    {
+     "text": "clear stability spread",
+     "tone": "neg"
+    }
+   ]
+  },
+  "latitude-64-diamond": {
+   "paras": [
+    "Reviewers liked the easy straight distance for players stepping up to a driver. Some used it for rollers when additional power brought out too much turn, and Beaver Branch Disc Golf Adventures found modest hyzer flips easier than hard straight drives. In a comparison from Beaver Branch Disc Golf Adventures, the Latitude 64 Jade holds up to more power before flipping into a turnover."
+   ],
+   "highlights": [
+    {
+     "text": "easy straight distance",
+     "tone": "pos"
+    },
+    {
+     "text": "too much turn",
+     "tone": "neg"
+    }
+   ]
+  },
+  "latitude-64-saint-pro": {
+   "paras": [
+    "Reviewers liked the long carry and ability to hold straight tunnel lines. Some found a stable finish, while Cheating Lefty Disc Golf got more mid-flight turn and less wind resistance than expected. Different plastics filled different stability roles. In a comparison from Beaver Branch Disc Golf Adventures, the Westside Bear has less dome than the tested fairway driver."
+   ],
+   "highlights": [
+    {
+     "text": "long carry",
+     "tone": "pos"
+    },
+    {
+     "text": "less wind resistance than expected",
+     "tone": "neg"
+    }
+   ]
+  },
+  "mvp-anode": {
+   "paras": [
+    "Reviewers liked the straight flight through narrow gaps and the way it held soft release angles. Some found the deep grip awkward for putting or tee throws, while others found a hard release or headwind could push it into a turnover."
+   ],
+   "highlights": [
+    {
+     "text": "straight flight through narrow gaps",
+     "tone": "pos"
+    },
+    {
+     "text": "deep grip awkward",
+     "tone": "neg"
+    }
+   ]
+  },
+  "mvp-entropy": {
+   "paras": [
+    "Reviewers liked the straight-then-fade flight and the ability to control upshot distance. Daddy Delp Disc Golf trusted it in wind, while Brook Arnold expected more overstability from the tested copy. Some softer blends can beat in quickly. In a comparison from Brook Arnold, the Streamline Stabilizer shows a little less finishing stability than the tested disc."
+   ],
+   "highlights": [
+    {
+     "text": "straight-then-fade flight",
+     "tone": "pos"
+    },
+    {
+     "text": "expected more overstability",
+     "tone": "neg"
+    }
+   ]
+  },
+  "mvp-ion": {
+   "paras": [
+    "Reviewers liked the steady straight flight and the finish on controlled approaches. Nova Politte and Bradley Martin both saw it turn into a strong headwind, while TK Disc Golf found that lighter copies held turning lines more readily. In a comparison from Bradley Martin, the MVP Atom feels faster and glides more, with easier forehand carry."
+   ],
+   "highlights": [
+    {
+     "text": "steady straight flight",
+     "tone": "pos"
+    },
+    {
+     "text": "turn into a strong headwind",
+     "tone": "neg"
+    }
+   ]
+  },
+  "mvp-matrix": {
+   "paras": [
+    "Reviewers liked the ability to control distance and keep the disc on line in wind. Some newer runs finished harder, and other plastics changed how readily it turned. Flying Fajita Disc Golf liked the control on full throws but wanted more glide for distance. In a comparison from Daddy Delp Disc Golf, the MVP Reactor offers similar stability with more glide and longer carry."
+   ],
+   "highlights": [
+    {
+     "text": "control distance and keep the disc",
+     "tone": "pos"
+    },
+    {
+     "text": "wanted more glide for distance",
+     "tone": "neg"
+    }
+   ]
+  },
+  "mvp-uplink": {
+   "paras": [
+    "Reviewers liked the easy glide and straight flight after a gentle hyzer flip. Some copies kept a little late stability, while others held the angle farther and could roll when released too steeply. Pete Collins Disc Golf found hard forehands needed more hyzer. In a comparison from Jake from Disc Golf, the Axiom Hex offers a flatter shoulder and more control for a faster arm."
+   ],
+   "highlights": [
+    {
+     "text": "easy glide and straight flight",
+     "tone": "pos"
+    },
+    {
+     "text": "could roll when released too steeply",
+     "tone": "neg"
+    }
+   ]
+  },
+  "prodigy-m4": {
+   "paras": [
+    "Reviewers liked the long straight flight and the angles they could shape with it. Some fresh runs resisted the flip until they broke in, while seasoned or more understable copies stayed on anhyzer with little late recovery. In a comparison from Brook Arnold, the Streamline Echo has a similarly neutral, generic hand feel for a midrange."
+   ],
+   "highlights": [
+    {
+     "text": "long straight flight",
+     "tone": "pos"
+    },
+    {
+     "text": "little late recovery",
+     "tone": "neg"
+    }
+   ]
+  },
+  "streamline-lift": {
+   "paras": [
+    "Reviewers liked the controlled S curve and reliable finish. Erik G found a newer run easier to flip than older Eclipse, while Shea Stevens used an Eclipse copy to resist forced anhyzers despite its shorter carry. In a comparison from Erik G, the Innova Thunderbird resembles the older Eclipse run, with no turn and strong fade."
+   ],
+   "highlights": [
+    {
+     "text": "controlled S curve and reliable finish",
+     "tone": "pos"
+    },
+    {
+     "text": "shorter carry",
+     "tone": "neg"
+    }
+   ]
+  },
+  "westside-hatchet": {
+   "paras": [
+    "Reviewers liked the glide and the way it could flip to flat without much power. Some found it carried straighter than expected on a controlled throw, while stronger arms could find it too understable for air shots. In a comparison from Disc Golf Nerd, the Innova Mamba turned more readily than the straighter fairway driver tested alongside it."
+   ],
+   "highlights": [
+    {
+     "text": "flip to flat without much power",
+     "tone": "pos"
+    },
+    {
+     "text": "too understable for air shots",
+     "tone": "neg"
+    }
+   ]
+  },
+  "westside-warship": {
+   "paras": [
+    "Reviewers liked the long carry and the way it held the release angle. Some found that plastic changed the finish. Chris Goodrich got more glide than with the Innova Roc, Discraft Buzzz or Dynamic Discs Truth and sometimes carried past the landing zone."
+   ],
+   "highlights": [
+    {
+     "text": "long carry",
+     "tone": "pos"
+    },
+    {
+     "text": "carried past the landing zone",
+     "tone": "neg"
+    }
+   ]
   }
  }
 }
