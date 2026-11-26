@@ -11,6 +11,8 @@ import { LEVEL_ICON } from "./creators-home";
 import { th } from "../../../lib/thread/look";
 
 const LEVEL_WORD: Record<Level, string> = { beginner: "Beginner", intermediate: "Intermediate", advanced: "Advanced" };
+/** The one-line row's labels (paddle page v3 mockup), by the match pill's band. */
+const BAR_HEAD = { good: "Great fit for you", maybe: "Good fit, one catch", no: "Probably not for you", thin: "Not enough reports to say yet" } as const;
 
 /** `bar`: one row across the page under the head (owner mock 2026-11-23), the chips in joined groups, the result below. */
 export function CompactFit({ id, title, sub, bar = false }: { id: string; title: string; sub: string; bar?: boolean }) {
@@ -22,23 +24,32 @@ export function CompactFit({ id, title, sub, bar = false }: { id: string; title:
   const tone = fit?.pct == null ? "" : fit.pct >= 85 ? " g" : fit.pct >= 70 ? " y" : " r";
   const levels = LEVEL_OPTS.map(v => <button key={v} type="button" className="thc-chip" aria-pressed={picks.level === v} onClick={() => set({ level: picks.level === v ? null : v })}>{LEVEL_ICON[v]}{LEVEL_WORD[v]}</button>);
   const styles = STYLE_OPTS.map(v => <button key={v} type="button" className="thc-chip" aria-pressed={picks.style === v} onClick={() => set({ style: picks.style === v ? null : v })}>{styleLabel(v)}</button>);
-  const arm = <label className="thc-arm"><input type="checkbox" checked={picks.arm} onChange={() => set({ arm: !picks.arm })}/><span>Arm comfort</span></label>;
+  const arm = <label className="thc-arm"><input type="checkbox" checked={picks.arm} onChange={() => set({ arm: !picks.arm })}/><span>{bar ? "Sore arm?" : "Arm comfort"}</span></label>;
+  const reset = <button type="button" className="thc-fit-reset" onClick={() => set({ level: null, style: null, arm: false })}>Reset</button>;
+  // Paddle page v3 (owner handoff 2026-11-26): the result sits at the end of the same row. Before both picks a muted hint;
+  // then the match pill (green 85+, yellow 70 to 84, white below), its label in the same bands, one reason line and Reset.
+  const band = fit?.pct == null ? null : fit.pct >= 85 ? "good" : fit.pct >= 70 ? "maybe" : "no";
+  const result = <span className="thc-fit-res" aria-live="polite">{!on ? <span className="thc-fit-hint">Pick both to see your match %</span>
+    : !fit ? <span className="thc-fit-hint">Working out your match…</span> : <>
+      {fit.pct != null && <span className={`thc-fit-pct${tone}`}>{`${fit.pct}% match`}</span>}
+      <span className="thc-fit-txt"><strong>{`${fit.verdict.kind === "thin" || !band ? BAR_HEAD.thin : BAR_HEAD[band]}.`}</strong>{reason && <>{" "}<span>{reason}</span></>}</span>
+      {reset}</>}</span>;
   return <section className={`thc-box1 thc-fit${bar ? " bar" : ""}`}>
     {/* The home's quick-match row (owner 2026-11-23): separate chips with icons, a thin divider, all on one line. */}
     {bar ? <><h2>{title}</h2><div className="thc-fit-line">
-      <b>{"I'm"}</b>{levels}<span className="thc-fit-sep" aria-hidden="true"/><b>I want</b>{styles}{arm}</div></> : <>
+      <b>{"I'm"}</b>{levels}<span className="thc-fit-sep" aria-hidden="true"/><b>I want</b>{styles}{arm}{result}</div></> : <>
     <h2>{title}</h2>
     <span className="thc-fit-sub">{sub}</span>
     <div className="thc-fit-row"><b>{"I'm"}</b>{levels}</div>
     <div className="thc-fit-row"><b>I want</b>{styles}{arm}</div></>}
-    {(picks.level || picks.style || picks.arm) && <div className="thc-fit-out" aria-live="polite">
+    {!bar && (picks.level || picks.style || picks.arm) && <div className="thc-fit-out" aria-live="polite">
       {!on ? <span className="thc-fit-note">Pick a level and a style to see your match.</span> : !fit ? <span className="thc-fit-note">Working out your match…</span> : <>
         {fit.pct != null && <span className={`thc-fit-pct${tone}`}>{`${fit.pct}% your match`}</span>}
         <strong>{FIT_HEAD[fit.verdict.kind]}</strong>
         {reason && <span className="thc-fit-why">{reason}</span>}
         {adv && adv.better.length > 0 && fit.verdict.kind !== "good" && <span className="thc-fit-why">{"Better for you: "}{adv.better.slice(0, 2).map((b, i) => <span key={b.id}>{i > 0 && " or "}<a className="thc-fit-alt" href={th(b.href)}>{b.name}</a></span>)}.</span>}
       </>}
-      <button type="button" className="thc-fit-reset" onClick={() => set({ level: null, style: null, arm: false })}>Reset</button>
+      {reset}
     </div>}
   </section>;
 }

@@ -7,9 +7,9 @@ import { traitGroupsFor, type TraitGroup } from "./traits";
 
 /** A site's own choice of groups, when it wants other than its ranking categories (none yet). */
 export const CREATOR_VOTE_KEYS: Record<string, string[]> = {
-  // The Hybrid v19 mockup's six boxes (Control or power, Level, Sweet spot, Arm comfort, Feel, Best on), with Spin, one of
-  // pickleball's ranking lists, in place of padel's court side. Covers all four ranking groups.
-  pickleball: ["plays_like", "level", "sweet_spot", "arm", "feel", "spin"],
+  // Paddle page v3 (owner handoff 2026-11-26) asked for four boxes; owner 2026-11-26 after seeing it: back to six. Spin is
+  // one of pickleball's ranking lists (its votes come from here), and six boxes sit level with the Reddit box beside them.
+  pickleball: ["plays_like", "level", "sweet_spot", "arm", "spin", "feel"],
   // SkinRecs (owner "Yes, Skin next" 2026-11-23): six of its own nine groups (lib/thread/traits.ts SKIN_TRAIT_GROUPS); the
   // would-you-buy-it-again poll above them covers repurchase.
   skin: ["skin_type", "texture", "finish", "irritation", "makeup", "value"],
@@ -24,9 +24,15 @@ export const CREATOR_VOTE_KEYS: Record<string, string[]> = {
   // db/thread/discgolf-traits.json; votes save to trait_votes as on the disc pages.
   discgolf: ["stability", "glide", "arm_speed", "wind", "grip", "durability"],
 };
+/** The box titles the creator page uses where they differ from the site's own (paddle page v3 mockup, PickleballRecs). The
+ *  stored keys and options stay the same; other pages keep their titles. */
+export const CREATOR_VOTE_TITLES: Record<string, Record<string, string>> = {
+  pickleball: { plays_like: "Control or power", level: "Level", sweet_spot: "Sweet spot size", arm: "Arm comfort" },
+};
 /** The groups the creator page asks, in ranking order; only keys the site's vote API accepts. */
 export function creatorVoteGroups(nicheId: string): TraitGroup[] {
-  const all = traitGroupsFor(nicheId);
-  return (CREATOR_VOTE_KEYS[nicheId] ?? rankingTraits(nicheId)).map(k => all.find(g => g.key === k)).filter((g): g is TraitGroup => !!g);
+  const all = traitGroupsFor(nicheId), titles = CREATOR_VOTE_TITLES[nicheId] ?? {};
+  return (CREATOR_VOTE_KEYS[nicheId] ?? rankingTraits(nicheId)).map(k => all.find(g => g.key === k)).filter((g): g is TraitGroup => !!g)
+    .map(g => titles[g.key] ? { ...g, title: titles[g.key]! } : g);
 }
 export { voteCountLine } from "./vote-count";

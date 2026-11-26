@@ -237,7 +237,8 @@ export function marks(text: string, hs: string[]): { t: string; on: boolean }[] 
 export type ReviewEntry = CreatorReview & { handle?: string; tags?: string[]; cover?: string | null;
   /** The maker turned embedding off: the thumbnail opens the original in a new tab (live/video-overlay.tsx). */ noEmbed?: boolean;
   /** Who this reviewer says the paddle suits, and why (db/creators/best-for.json, 2026-11-23). */ bestFor?: { who: string; why: string } | null;
-  /** This outlet's place in its own best-of list ("Best overall · Best laptops 2026", lib/thread/expert-lists.ts). */ badge?: string };
+  /** This outlet's place in its own best-of list ("Best overall · Best laptops 2026", lib/thread/expert-lists.ts). */ badge?: string;
+  /** A TikTok channel's older takes on the same product, linked from its newest card (cardList). */ earlier?: { url: string; date: string }[] };
 export const takeAsReview = (t: TikTokTake): ReviewEntry => ({
   id: `tt-${t.id}`, creator: t.creator, kind: "tiktok", type: "review", url: t.url, channel: `https://www.tiktok.com/${t.handle}`,
   lang: "en", date: t.date, video: null, len: t.len, chapters: [], quote: t.quote, quoteAt: null, stance: t.stance,
@@ -250,6 +251,15 @@ export function reviewLists(page: CreatorPage) {
   const newest = new Map<string, ReviewEntry>();
   for (const t of takes) { const x = newest.get(t.handle!); if (!x || t.date > x.date) newest.set(t.handle!, t); }
   return { feed: [...page.reviews, ...takes] as ReviewEntry[], counted: [...page.reviews, ...newest.values()] as ReviewEntry[] };
+}
+/** The paddle page v3 feed (owner handoff 2026-11-26: every review count on a page agrees): one card per counted review, a
+ *  TikTok channel's older takes linked from its newest card ("Earlier take ↗") instead of cards of their own. */
+export function cardList(page: CreatorPage): ReviewEntry[] {
+  const { feed, counted } = reviewLists(page), kept = new Set(counted.map(r => r.id));
+  return counted.map(r => { if (r.kind !== "tiktok") return r;
+    const earlier = feed.filter(x => x.kind === "tiktok" && x.handle === r.handle && !kept.has(x.id)).sort((a, b) => b.date.localeCompare(a.date))
+      .map(x => ({ url: x.url, date: x.date }));
+    return earlier.length ? { ...r, earlier } : r; });
 }
 
 /** "What reviewers agree on" chips (owner 2026-11-22): short phrases, never counts, each backed by 2 or more reviews that rate
