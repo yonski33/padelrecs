@@ -7,9 +7,9 @@ import { traitGroupsFor, type TraitGroup } from "./traits";
 
 /** A site's own choice of groups, when it wants other than its ranking categories (none yet). */
 export const CREATOR_VOTE_KEYS: Record<string, string[]> = {
-  // Paddle page v3 (owner handoff 2026-11-26): four boxes only (Control or power, Level, Sweet spot size, Arm comfort);
-  // Feel and Spin left out. Votes still save to the same trait_votes keys.
-  pickleball: ["plays_like", "level", "sweet_spot", "arm"],
+  // Paddle page v3 (owner handoff 2026-11-26) asked for four boxes; owner 2026-11-26 after seeing it: back to six. Spin is
+  // one of pickleball's ranking lists (its votes come from here), and six boxes sit level with the Reddit box beside them.
+  pickleball: ["plays_like", "level", "sweet_spot", "arm", "spin", "feel"],
   // SkinRecs (owner "Yes, Skin next" 2026-11-23): six of its own nine groups (lib/thread/traits.ts SKIN_TRAIT_GROUPS); the
   // would-you-buy-it-again poll above them covers repurchase.
   skin: ["skin_type", "texture", "finish", "irritation", "makeup", "value"],

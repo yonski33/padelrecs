@@ -169,9 +169,10 @@ import { rankingTraits } from "../lib/category-rating";
 test("creator votes ask the pickleball ranking categories, no padel-only group", () => {
   assert.deepEqual(rankingTraits("pickleball"), ["plays_like", "spin", "arm", "level"]);
   const keys = creatorVoteGroups("pickleball").map(g => g.key);
-  // Paddle page v3 (owner handoff 2026-11-26): four boxes only; Spin and Feel left out.
-  assert.deepEqual(keys, ["plays_like", "level", "sweet_spot", "arm"]);
-  assert.deepEqual(creatorVoteGroups("pickleball").map(g => g.title), ["Control or power", "Level", "Sweet spot size", "Arm comfort"]);
+  // Paddle page v3: six boxes (owner 2026-11-26), every ranking group included.
+  assert.deepEqual(keys, ["plays_like", "level", "sweet_spot", "arm", "spin", "feel"]);
+  for (const k of rankingTraits("pickleball")) assert.ok(keys.includes(k), k);
+  assert.deepEqual(creatorVoteGroups("pickleball").slice(0, 4).map(g => g.title), ["Control or power", "Level", "Sweet spot size", "Arm comfort"]);
   assert.ok(!keys.includes("side") && !keys.includes("game_type"));
   assert.deepEqual(creatorVoteGroups("discgolf").map(g => g.key), ["stability", "glide", "arm_speed", "wind", "grip", "durability"]);
 });
