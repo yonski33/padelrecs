@@ -19,6 +19,7 @@ import { shownDots } from "../lib/expert-play";
 import { armFromReportText } from "../lib/youtube-trait-rules";
 import { evidenceRows } from "../db/evidence";
 import { sentimentOverrides } from "../db/sentiment-tally";
+import { creatorPagesAll } from "../lib/thread/creator-data";
 import { tallyWith } from "../lib/thread/trait-view";
 import { evidenceBalance, labPercentiles, reportOf, tagRows, type EvidenceRow } from "../lib/evidence";
 import { balanceScores, type BalanceInput, type Trait as TraitKey } from "../lib/trait-score";
@@ -56,7 +57,8 @@ const LEVEL_VALUE: Record<Level, string> = { beginner: "Beginner", intermediate:
 // 2026-11-16: first visits to the v2 sites took 8–49 s). Still read once per request through cache(), so one page sees one copy.
 export const matchContext = cache(() => keptContext.get());
 const keptContext = kept(async () => {
-  const [data, sigs, takes, live, overrides, stored, tallies] = await Promise.all([catalog(), productSignals(), quickTakeHooks(), baseLists(), traitOverrides(), evidenceRows(), sentimentOverrides()]);
+  const [data, sigs, takes, live, overrides, stored, tallies, creatorPages] = await Promise.all([catalog(), productSignals(), quickTakeHooks(), baseLists(), traitOverrides(), evidenceRows(), sentimentOverrides(),
+    niche.fit?.engine?.creatorVoices ? creatorPagesAll(niche.id) : Promise.resolve(null)]);
   const finder = niche.finder!;
   // The site's fit rules (lib/fit-config.ts); only sites with one call this.
   const cfg = fitConfigFor(niche)!;
@@ -262,9 +264,18 @@ const keptContext = kept(async () => {
   const addSent = (id: string, v: string | null | undefined) => { const x = sentOf.get(id) ?? { pos: 0, mix: 0, neg: 0 }; if (v === "positive") x.pos++; else if (v === "mixed") x.mix++; else if (v === "negative") x.neg++; sentOf.set(id, x); };
   for (const r of data.reviews) addSent(r.racketId, ratingVerdict(r.rating));
   for (const e of data.external) addSent(e.racketId, e.sentiment);
+  // Creator reviews as trait voices (EngineProfile.creatorVoices, owner 2026-11-26): per product, each live card's attribute
+  // word is one praising or faulting voice on its engine trait. Live cards only, so held ones (flagged, seller, discount code)
+  // never count.
+  const creatorVo = new Map<string, Record<string, { plus: number; minus: number }>>();
+  if (creatorPages && ENGINE?.creatorVoices) { const idOf = new Map(data.rackets.map(r => [r.slug, r.id]));
+    for (const [slug, page] of creatorPages) { const id = idOf.get(slug); if (!id) continue; const m: Record<string, { plus: number; minus: number }> = {};
+      for (const rv of page.reviews) for (const [k, w] of Object.entries(rv.attrs)) { const tr = ENGINE.creatorVoices[k]; if (!tr || !w) continue;
+        const x = m[tr] ??= { plus: 0, minus: 0 }; if (w === "Excellent" || w === "Great") x.plus++; else if (w === "Okay" || w === "Weak") x.minus++; }
+      creatorVo.set(id, m); } }
   const engOf = (id: string, r: (typeof data.rackets)[number]): EngineFacts => {
-    const t = traitMap.get(id), ex = overrides.get(id)?.expert ?? {};
-    const vo = (k: DotTrait) => ({ plus: t?.[k]?.plus ?? 0, minus: t?.[k]?.minus ?? 0 });
+    const t = traitMap.get(id), ex = overrides.get(id)?.expert ?? {}, cv = creatorVo.get(id);
+    const vo = (k: DotTrait) => ({ plus: (t?.[k]?.plus ?? 0) + (cv?.[k]?.plus ?? 0), minus: (t?.[k]?.minus ?? 0) + (cv?.[k]?.minus ?? 0) });
     const exv = (k: DotTrait) => (ex as Record<string, { value: number } | undefined>)[cfg.expertAlias?.[k] ?? k]?.value;
     // The verdict counts the page shows (owner 2026-11-26): the owner's typed tally where one is saved, else the counted
     // reviews, so a racket's match % and its vote bar read the same opinions (db/sentiment-tally.ts). Sites opt in (pageTally).
