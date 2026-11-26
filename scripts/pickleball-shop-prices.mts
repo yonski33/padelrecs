@@ -7,7 +7,9 @@
 // (?country=US&currency=USD) from a source that states its currency: JSON-LD, price meta tags, Shopify page globals (rate
 // 1.0 only), then Shopify's /products/<handle>.json (variant price_currency). Only a USD price is kept, and a price more than
 // 2.5x the paddle's other offers (or above $1,000 with none) is rejected; the row is then left alone. Stock comes from the
-// source, or Shopify's .js, else stays as it is. The run ends with a count per failure reason and the full failure list.
+// source, or Shopify's .js, else stays as it is. One request per 2.5s per host (hosts in parallel); a 429 waits for
+// Retry-After (else 15/30/60s backoff) up to 3 times and never falls back to .json. The run ends with a count per failure
+// reason and the full failure list.
 // Dry run by default; --apply writes. Run by a local scheduled job (deployment/launchd/), never a Claude task.
 //   NICHE=pickleball npx tsx --env-file=.env.local scripts/pickleball-shop-prices.mts [--apply] [--limit N]
 import { connect } from "./connection";
@@ -18,14 +20,35 @@ import { fromShopifyJson, plausible, shopifyJsonUrl, stockFromShopifyJs, usd, us
 if (niche.id !== "pickleball") throw new Error("Run with NICHE=pickleball.");
 const args = process.argv.slice(2), apply = args.includes("--apply");
 const limit = args.includes("--limit") ? Number(args[args.indexOf("--limit") + 1]) : Infinity;
-const S = niche.schema, PACE_MS = 1500;
+const S = niche.schema, HOST_GAP_MS = 2500, RETRIES = 3, MAX_WAIT_MS = 120000;
 const sleep = (ms: number) => new Promise(r => setTimeout(r, ms));
 const headers = { ...UA, "user-agent": "PickleballRecsPriceCheck/1.0 (+https://www.pickleballrecs.com)" };
 
 type Read = { ok: true; source: string; title: string; price: number; inStock: boolean | null } | { ok: false; gone: boolean; why: string };
+// Per-host pacing: at most one request every HOST_GAP_MS to the same host (hosts run in parallel). A 429 waits for the
+// shop's Retry-After (seconds or a date), else 15s, 30s, 60s, then tries again, up to RETRIES times.
+const nextSlot = new Map<string, number>();
+async function hostTurn(host: string, extra = 0) {
+  const at = Math.max(Date.now(), nextSlot.get(host) ?? 0) + extra;
+  nextSlot.set(host, at + HOST_GAP_MS);
+  await sleep(at - Date.now());
+}
+function retryAfterMs(h: string | null, attempt: number): number {
+  const n = Number(h), d = h ? Date.parse(h) : NaN;
+  const ms = h && Number.isFinite(n) ? n * 1000 : Number.isFinite(d) ? d - Date.now() : 15000 * 2 ** attempt;
+  return Math.min(Math.max(ms, 5000), MAX_WAIT_MS);
+}
 async function get(url: string): Promise<{ status: number; body: string }> {
-  try { const r = await fetch(url, { headers, redirect: "follow", signal: AbortSignal.timeout(20000) }); return { status: r.status, body: await r.text() }; }
-  catch (e) { return { status: 0, body: `fetch failed: ${String(e instanceof Error ? e.message : e).slice(0, 80)}` }; }
+  const host = new URL(url).host;
+  let wait = 0;
+  for (let attempt = 0; ; attempt++) {
+    await hostTurn(host, wait);
+    try {
+      const r = await fetch(url, { headers, redirect: "follow", signal: AbortSignal.timeout(20000) });
+      if (r.status === 429 && attempt < RETRIES) { wait = retryAfterMs(r.headers.get("retry-after"), attempt); await r.body?.cancel(); continue; }
+      return { status: r.status, body: await r.text() };
+    } catch (e) { return { status: 0, body: `fetch failed: ${String(e instanceof Error ? e.message : e).slice(0, 80)}` }; }
+  }
 }
 const httpWhy = (r: { status: number; body: string }) => r.status ? `HTTP ${r.status}` : r.body;
 async function read(url: string): Promise<Read> {
@@ -33,16 +56,15 @@ async function read(url: string): Promise<Read> {
   const fromPage = page.status === 200 ? usdOffer(page.body, url) : { ok: false as const, why: httpWhy(page) };
   if (fromPage.ok) return fromPage;
   const json = shopifyJsonUrl(url);
-  if (!json) return { ok: false, gone: page.status === 404 || page.status === 410, why: fromPage.why };
+  // No .json fallback after a 429 (the shop is rate limiting; more requests only make it worse).
+  if (!json || page.status === 429) return { ok: false, gone: page.status === 404 || page.status === 410, why: fromPage.why };
   // Shopify fallback: the product .json, kept only when its variant states USD.
-  await sleep(PACE_MS);
   const j = await get(json);
   const fromJson = j.status === 200 ? usd(fromShopifyJson(j.body, url), "no variant price in .json") : { ok: false as const, why: `.json ${httpWhy(j)}` };
   if (!fromJson.ok) {
     const gone = (page.status === 404 || page.status === 410) && (j.status === 404 || j.status === 410);
     return { ok: false, gone, why: `${fromPage.why}; then ${fromJson.why}` };
   }
-  await sleep(PACE_MS);
   const js = await get(json.replace(/\.json\?/, ".js?"));
   return { ...fromJson, inStock: js.status === 200 ? stockFromShopifyJs(js.body, url) : null };
 }
@@ -63,10 +85,8 @@ try {
   const now = new Date().toISOString();
   await Promise.all([...byHost.values()].map(async list => {
     for (const r of list) {
-      await sleep(PACE_MS);
       const url = String(r.url);
-      let page = await read(url);
-      if (!page.ok && /HTTP 429/.test(page.why)) { await sleep(20000); page = await read(url); }
+      const page = await read(url);
       if (page.ok) bySource.set(page.source, (bySource.get(page.source) ?? 0) + 1);
       if (!page.ok && page.gone) {
         n.hidden++; tally(`hidden: ${page.why}`); fails.push(`${r.slug} ${url}: hidden (${page.why})`);
