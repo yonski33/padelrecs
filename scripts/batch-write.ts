@@ -116,7 +116,9 @@ async function inputs() {
     const sec = pack.split(/\n(?=## )/).find(b => b.startsWith(`## ${slug}\n`)) ?? "";
     if (sec.trim()) state.packNotes[slug] = [state.packNotes[slug], sec.trim()].filter(Boolean).filter((x, k, a) => a.indexOf(x) === k).join("\n\n");
     const page = await htmlText(`https://www.${niche.site.domain}/${niche.productPath}/${slug}`);
-    const paddle = flag("name") ?? (page.title.replace(new RegExp(`\\s*review\\s*\\|\\s*${SITE}\\s*$`, "i"), "").trim() || slug);
+    const decoded = page.title.replace(/&#x([0-9a-f]+);/gi, (_, h) => String.fromCharCode(parseInt(h, 16)))
+      .replace(/&#(\d+);/g, (_, d) => String.fromCharCode(Number(d))).replace(/&quot;/g, '"').replace(/&amp;/g, "&");
+    const paddle = flag("name") ?? (decoded.replace(new RegExp(`\\s*review\\s*\\|\\s*${SITE}\\s*$`, "i"), "").trim() || slug);
     const grok = await readJson<{ sources: Record<string, string | null>[] }>(join(srcDir, `${slug}.json`));
     // Merge with what this stage already has for the product (another pack, or a re-run once transcripts exist): a URL keeps
     // its id, so its writer/checker results stay attached; new URLs get the next free id.
@@ -281,9 +283,7 @@ const estimate = (chars: number, n: number, outPer: number) => (chars / 3.5 * PR
 
 // ---------------------------------------------------------------- submit
 const client = () => new Anthropic();
-async function submit(step: "write" | "check") {
-  const state = await loadState();
-  if (state.batches.some(b => !b.collected)) throw new Error("A batch is still open: run poll first.");
+async function itemsFor(step: "write" | "check", state: State) {
   // Re-runs only send sources without a good result yet (e.g. videos whose transcript arrived later).
   const prev = existsSync(join(STAGE, `${step}-results.json`)) ? await readJson<Record<string, { error?: string }>>(join(STAGE, `${step}-results.json`)) : {};
   const sources = (await loadSources(state)).filter(s => !s.skip && s.text && (!prev[s.id] || prev[s.id].error) &&
@@ -299,6 +299,12 @@ async function submit(step: "write" | "check") {
       user: `${sourceBlock(s, "")}\n\nCard to check (JSON):\n${JSON.stringify(written[s.id].card, null, 1)}` }));
   }
   if (!items.length) throw new Error("Nothing to submit.");
+  return items;
+}
+async function submit(step: "write" | "check") {
+  const state = await loadState();
+  if (state.batches.some(b => !b.collected)) throw new Error("A batch is still open: run poll first.");
+  const items = await itemsFor(step, state);
   const est = estimate(items.reduce((a, i) => a + i.system.length + i.user.length, 0), items.length, 5000);
   const total = await runSpent(state);
   console.log(`${step}: ${items.length} requests, estimate $${est.toFixed(2)}; spent so far $${total.toFixed(2)} of $${MAX_USD} (all stages)`);
@@ -388,7 +394,7 @@ async function build() {
   const sources = await loadSources(state);
   const W = existsSync(join(STAGE, "write-results.json")) ? await readJson<Record<string, any>>(join(STAGE, "write-results.json")) : {};
   const C = existsSync(join(STAGE, "check-results.json")) ? await readJson<Record<string, any>>(join(STAGE, "check-results.json")) : {};
-  const paddles: any[] = [], rows: string[] = [], tally = { sources: 0, skipped_inputs: 0, dropped_writer: 0, pass: 0, fixed: 0, reject: 0, code_fail: 0, errors: 0, staged: 0 };
+  const paddles: any[] = [], rows: string[] = [], tally = { sources: 0, skipped_inputs: 0, dropped_writer: 0, pass: 0, fixed: 0, unchecked: 0, reject: 0, code_fail: 0, errors: 0, staged: 0 };
   const per: Record<string, { usd: number; input: number; output: number }> = {};
   for (const [k, u] of Object.entries(state.usage)) { const slug = k.split(":")[1].split("__")[0];
     per[slug] ??= { usd: 0, input: 0, output: 0 }; per[slug].usd += u.usd; per[slug].input += u.input + u.cacheRead + u.cacheWrite; per[slug].output += u.output; }
@@ -397,7 +403,8 @@ async function build() {
     for (const s of ss) {
       tally.sources++;
       if (s.skip) { tally.skipped_inputs++; skipped.push({ url: s.url, why: s.skip }); continue; }
-      const w = W[s.id], c = C[s.id];
+      // --unchecked: stage writer cards that have no second-reader result yet (code checks still run), marked "unchecked".
+      const w = W[s.id], c = C[s.id] ?? (has("unchecked") && w?.keep && w.card ? { result: "unchecked", card: w.card } : undefined);
       if (!w || w.error) { tally.errors++; skipped.push({ url: s.url, why: `writer ${w?.error ?? "missing"}` }); continue; }
       if (!w.keep) { tally.dropped_writer++; skipped.push({ url: s.url, why: `writer dropped: ${w.drop_reason}` }); continue; }
       if (!c || c.error) { tally.errors++; skipped.push({ url: s.url, why: `checker ${c?.error ?? "missing"}` }); continue; }
@@ -405,7 +412,7 @@ async function build() {
       if (c.result === "reject" || !c.card) { tally.reject++; skipped.push({ url: s.url, why: `checker rejected: ${(c.problems ?? []).join("; ")}` }); continue; }
       const card: Card = c.card, probs = codeCheck(card, s);
       if (probs.length) { tally.code_fail++; skipped.push({ url: s.url, why: `code check: ${probs.join("; ")}`, result: c.result }); continue; }
-      tally[c.result as "pass" | "fixed"]++;
+      tally[c.result as "pass" | "fixed" | "unchecked"]++;
       const qAt = card.quote && s.video_id ? await quoteAt(s.video_id, card.quote, tDir) : null;
       reviews.push({ creator: s.creator, kind: s.kind, type: card.type, channel_url: s.channel_url, language: s.language, date: s.date,
         url: s.url, video_id: s.video_id, duration_s: s.duration_s, chapters: s.chapters, starts_at: card.starts_at, version: card.version,
@@ -414,7 +421,7 @@ async function build() {
         summary_more: card.summary_more, highlights: card.highlights, key_point: card.key_point, stood_out: card.stood_out,
         trade_off: card.trade_off, compared_to: card.compared_to, ...(B.skinType ? { skin_type: card.skin_type ?? null } : {}),
         quote: s.kind === "youtube" && card.quote && !qAt ? null : card.quote, quote_at: qAt, disclosure: card.disclosure,
-        evidence_note: `${s.kind === "youtube" ? "transcript full" : "article text (script fetch)"}; API batch writer + checker (${c.result})`,
+        evidence_note: `${s.kind === "youtube" ? "transcript full" : "article text (script fetch)"}; ${c.result === "unchecked" ? "writer only, second reader pending (code checks passed)" : `writer + checker (${c.result})`}`,
         link_check: s.link_check, check: { result: c.result, problems: c.problems } });
     }
     // One card per creator: the video stays, a blog by the same creator becomes also_url.
@@ -442,7 +449,48 @@ async function build() {
   console.log(report);
 }
 
-const run: Record<string, () => Promise<void>> = { inputs, write: () => submit("write"), check: () => submit("check"), poll, build };
-if (!run[cmd]) throw new Error(`Unknown command ${cmd}: inputs | write | check | poll | build`);
+
+// ---------------------------------------------------------------- in-house runs (no API credit)
+// export: the same requests as `write`/`check`, cut into task files for Claude Code subagents (Sonnet), each writing
+// <task>.out.json mapping item id -> result. ingest: merges those files into <step>-results.json, so build and the code
+// checks run exactly as after a Message Batch. Usage: export --step write [--per 8] ; ingest --step write
+// Long transcript lines are wrapped at word breaks so the Read tool shows them whole (the source text itself is unchanged).
+const wrap = (t: string) => t.split("\n").map(l => l.length <= 400 ? l : l.match(/.{1,400}(\s|$)|\S+/g)!.join("\n")).join("\n");
+async function exportTasks() {
+  const step = need("step") as "write" | "check", per = Number(flag("per") ?? 8), state = await loadState();
+  const items = await itemsFor(step, state), dir = join(STAGE, "inhouse", step);
+  await mkdir(dir, { recursive: true });
+  const maxChars = Number(flag("max-chars") ?? 220_000);
+  const groups: typeof items[] = [];
+  for (const it of items) {
+    const g = groups[groups.length - 1];
+    if (!g || g.length >= per || g.reduce((a, x) => a + x.user.length, 0) + it.user.length > maxChars) groups.push([it]); else g.push(it);
+  }
+  for (const [k, g] of groups.entries()) {
+    const name = `${step}-${String(k + 1).padStart(3, "0")}`, out = join(dir, `${name}.out.json`);
+    const md = [`# Task ${name}: ${g.length} items`, "",
+      "Work through EVERY item below. For each item, follow the instructions exactly as if the item were its own request, and produce one result object that matches the JSON schema exactly (every required key, nothing extra).",
+      `When done, write ONE JSON object to ${out} with the Write tool, mapping each item id to its result: {"<item id>": {...}, ...}. Include every item id listed: ${g.map(i => i.id).join(", ")}.`, "",
+      "## Instructions (apply to every item)", "", g[0].system, "",
+      "## JSON schema of each result", "", "```json", JSON.stringify(g[0].schema), "```", "",
+      "## Items", "", ...g.flatMap(i => [`### ITEM ${i.id}`, "", wrap(i.user), ""])].join("\n");
+    await writeFile(join(dir, `${name}.md`), md);
+  }
+  console.log(`${step}: ${items.length} items in ${groups.length} task files under ${dir}`);
+}
+async function ingest() {
+  const step = need("step"), dir = join(STAGE, "inhouse", step), file = join(STAGE, `${step}-results.json`);
+  const results: Record<string, unknown> = existsSync(file) ? await readJson(file) : {};
+  let n = 0, bad = 0;
+  for (const f of (await readdir(dir)).filter(f => f.endsWith(".out.json")).sort()) {
+    try { for (const [id, r] of Object.entries(await readJson<Record<string, unknown>>(join(dir, f)))) { results[id] = r; n++; } }
+    catch { bad++; console.log(`unreadable: ${f}`); }
+  }
+  await writeFile(file, JSON.stringify(results, null, 1));
+  console.log(`Ingested ${n} ${step} results (${bad} unreadable files); ${Object.keys(results).length} in ${step}-results.json`);
+}
+
+const run: Record<string, () => Promise<void>> = { inputs, write: () => submit("write"), check: () => submit("check"), poll, build, export: exportTasks, ingest };
+if (!run[cmd]) throw new Error(`Unknown command ${cmd}: inputs | write | check | poll | build | export | ingest`);
 await run[cmd]();
 void createHash;
