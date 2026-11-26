@@ -179,3 +179,31 @@ body:has(.tch) .tch a.tch-ytag:hover { background: #E0322B; color: #fff; }
 }
 @media (max-width: 559px) { .tch-boards { grid-template-columns: minmax(0, 1fr); } }
 .tch-top-n { font-size: .6em; font-weight: 600; color: var(--muted); margin-left: 4px; }
+
+/* SkinRecs on the creators home (2026-11-26, PickleballRecs template in skin's own soft look): warm paper, espresso ink, a soft
+   rose accent in place of pickleball's yellow, Bricolage headings, Barlow body, soft card lines instead of black frames. The
+   same tokens as the skin creator page (creators.css .th-skin .thc). Scoped to .th-skin, so the other sites are untouched. */
+body:has(.th-skin .tch), body:has(.th-skin .tch) .th { background: #f6f1ec; }
+.th-skin .tch { --ink: #2b2221; --ink2: #5e504c; --muted: #7a6a65; --div: #ece1db; --card: #fff; --soft: #f4ebe6;
+  --acc: oklch(0.86 0.06 20); --acc-soft: oklch(0.955 0.025 20); --line: #ddcfc8;
+  font-family: 'Barlow', 'Atkinson Hyperlegible', system-ui, sans-serif; }
+.th-skin .tch :is(h1, h2, h3, .tch-rank, .tch-all, .tch-fg-h, .tch-more button, .tch-sticker > span, .tch-rank-box > div) {
+  font-family: var(--bc), 'Bricolage Grotesque', 'Arial Narrow', sans-serif; letter-spacing: -0.01em; }
+@media (min-width: 640px) { .th-skin .tch-hero-t h1 { font-size: 46px !important; } }
+.th-skin .tch a:hover { color: oklch(0.5 0.12 20); }
+/* Soft lines: cards, chips and boxes in skin's rose-beige, the ink only where a pick is on. */
+.th-skin .tch :is(.tch-card, .tch-rank-box, .thq-sec) { border: 1.5px solid var(--line); }
+.th-skin .tch :is(.tch-chip, .tch-fchip, .tch-sort > button, .tch-sort-m, .tch-type, .tch-pill, .tch-match, .tch-take, .tch-count, .tch-panel, .tch-fchips > button:not(.tch-ul), .tch-more button, .tch-new-chips span) { border-color: var(--line); }
+.th-skin .tch .tch-arm > span { border-color: #c9b8b0; }
+.th-skin .tch .tch-chip[aria-pressed="true"], .th-skin .tch .tch-arm[aria-pressed="true"] > span { border-color: var(--ink); }
+.th-skin .tch .tch-qm-sep { width: 1.5px; background: var(--line); }
+.th-skin .tch .tch-fchip[aria-pressed="true"] { background: var(--ink); color: #fbf5f2; border-color: var(--ink); }
+.th-skin .tch .tch-bar { border-color: #c9b8b0; }
+.th-skin .tch .tch-board { border-color: var(--line); }
+.th-skin .tch .tch-noimg { background: #e2d3cc; }
+.th-skin .tch .tch-ph, .th-skin .tch .tch-new-ph { background: #f6f1ec; }
+.th-skin .tch .tch-rank-box > div { background: #f4ebe6; color: var(--ink); border-bottom: 1.5px solid var(--line); }
+.th-skin .tch .tch-sticker > span { background: oklch(0.9 0.05 20); border-color: var(--ink); }
+.th-skin .tch .tch-reddit { border-color: var(--line); }
+/* The hand-drawn yellow strokes (inline in the markup) turn rose. */
+.th-skin .tch svg[stroke="oklch(0.92 0.17 105)"] { stroke: oklch(0.8 0.08 20); }

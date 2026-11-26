@@ -17,6 +17,8 @@ import { niche } from "../../../lib/niche";
 import { LAPTOP_CATEGORIES } from "../../../lib/niche/laptop";
 import { useLaptopListMatch } from "./laptop-match";
 import type { LaptopWire } from "../../../lib/laptop-match";
+import { useSkinListMatch } from "./skin-match";
+import type { SkinWire } from "../../skin/rank";
 
 const FIRST = 6, STEP = 10;
 const STYLES: [Style, string][] = [["control", "Control"], ["balance", "Balance"], ["power", "Power"]];
@@ -52,7 +54,15 @@ const LAPTOP_HOME: HomeSite = { title: "Every laptop review, summed up", one: "l
     <rect x="14" y="8" width="56" height="38" rx="4" fill="#fff"/><path d="M21 16h20M21 23h30M21 30h14"/><path d="M4 52h76l-5 8H9z" fill="#fff"/><path d="M36 56h12"/>
     <path d="M74 4 l3 -4 M78 12 l5 -2"/></svg>,
   rowIcon: <svg width="28" height="28" viewBox="0 0 30 30" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><rect x="5" y="6" width="20" height="14" rx="1.5"/><path d="M2 24h26l-2 3H4z"/></svg> };
-const HOME_SITES: Record<string, HomeSite> = { pickleball: PICKLEBALL_HOME, padel: PADEL_HOME, laptop: LAPTOP_HOME };
+/** SkinRecs (2026-11-26, onto the pickleball template in its own soft look): a jar in the same line style; Type (its product
+ *  types) and Texture (what people report) in place of Shape and Feel. */
+const SKIN_HOME: HomeSite = { title: "Every skincare review, summed up", one: "product", many: "products",
+  groups: [["shape", "Type", ["Cleanser", "Toner", "Serum", "Moisturizer", "Sunscreen", "Balm & ointment", "Eye cream", "Exfoliant", "Mask", "Treatment"]], ["feel", "Texture", ["Light", "Medium", "Rich"]]],
+  art: <svg className="tch-art" width="70" height="80" viewBox="0 0 70 80" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+    <rect x="14" y="14" width="34" height="12" rx="3" fill="#fff"/><path d="M10 30h42v38a6 6 0 0 1-6 6H16a6 6 0 0 1-6-6z" fill="#fff"/><path d="M19 44h24M19 52h16"/>
+    <path d="M57 9 l3 -5 M62 18 l6 -2 M62 29 l6 2"/></svg>,
+  rowIcon: <svg width="28" height="28" viewBox="0 0 30 30" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><rect x="9" y="3" width="12" height="5" rx="1.5"/><path d="M7 10h16v14a3 3 0 0 1-3 3H10a3 3 0 0 1-3-3z"/><path d="M11 16h8"/></svg> };
+const HOME_SITES: Record<string, HomeSite> = { pickleball: PICKLEBALL_HOME, padel: PADEL_HOME, laptop: LAPTOP_HOME, skin: SKIN_HOME };
 const HS = HOME_SITES[niche.id] ?? PICKLEBALL_HOME;
 
 /** One row's extra data from the server: its praise pill, where it links, its lowest price (lib/thread/creator-home.ts). The
@@ -60,12 +70,13 @@ const HS = HOME_SITES[niche.id] ?? PICKLEBALL_HOME;
 import type { RowExtra as HomeExtra } from "../../../lib/thread/creator-home";
 export type { HomeExtra };
 
-export function CreatorsHomeTop({ rows, extra, curated, added, total, brands, after, side, laptop }: {
+export function CreatorsHomeTop({ rows, extra, curated, added, total, brands, after, side, laptop, skin }: {
   rows: ThreadRow[]; extra: Record<string, HomeExtra>; curated: string[]; added: Record<string, string>;
   /** "247 reviews summarised". */ total: string; brands: string[]; after: ReactNode; side: ReactNode;
   /** LaptopRecs: its quick match inputs (live/laptop-match.tsx); the bar is its own. */ laptop?: LaptopWire[];
+  /** SkinRecs: its quick match inputs (live/skin-match.tsx, My skin · I want to · Sensitive skin). */ skin?: SkinWire[];
 }) {
-  const match = useLaptopListMatch(laptop);
+  const laptopMatch = useLaptopListMatch(laptop), skinMatch = useSkinListMatch(skin), match = laptopMatch ?? skinMatch;
   const l = useRacketList({ rows, curated, added, home: true, match }), { list, pcts, mine, picks, setPicks, f, toggle, chips, clearAll, pool, pass, test } = l;
   // A site's own match has no arm box (the padel-style picks are not shown there).
   const arm = !match && picks.arm;
