@@ -5,6 +5,8 @@
 // visitor from the home and the catalogue, and the match % comes from the same engine as the home.
 import { useMemo, useState, type ReactNode } from "react";
 import { th } from "../../../lib/thread/look";
+import { RowLinks } from "./row-links";
+import type { RowExtra } from "../../../lib/thread/creator-home";
 import { niche } from "../../../lib/niche";
 import { usePicks, usePayload, pctsFor, complete, LEVEL_OPTS, STYLE_OPTS, BUDGETS, styleLabel } from "./picks";
 import { useAudioPicks } from "./audio-match";
@@ -41,14 +43,17 @@ function useBestFit(rows: V5Row[], wire?: AudioWire[]) {
 /** markLoved: a list ordered by its loved count (lib/thread/vote-order.ts "loved", Best overall) puts a yellow marker stroke on
  *  "N loved" under the bar (owner 2026-11-21), the number the list goes by. */
 /** `fitId`: the best fit worked out by the site's own match (SkinRecs, live/skin-match.tsx); padel's engine when left out. */
-export function RankRows({ rows, ratingLabel, opinions, markLoved = false, wire, fitId }: { rows: V5Row[]; ratingLabel: string | null; opinions: [string, string]; markLoved?: boolean; wire?: AudioWire[]; fitId?: string | null }) {
+/** `links`: each row's See reviews and price links (app/thread/row-links.ts) on the sites that show them; none elsewhere. */
+export function RankRows({ rows, ratingLabel, opinions, markLoved = false, wire, fitId, links }: { rows: V5Row[]; ratingLabel: string | null; opinions: [string, string]; markLoved?: boolean; wire?: AudioWire[]; fitId?: string | null;
+  links?: Record<string, Pick<RowExtra, "href" | "price">> }) {
   const auto = useBestFit(rows, wire), bestId = fitId === undefined ? auto?.row.id : fitId;
-  return <>{rows.map(r => { const total = r.pos + r.mix + r.neg;
-    return <a key={r.id} className="rk5-row" href={th(r.href)}>
+  return <>{rows.map(r => { const total = r.pos + r.mix + r.neg, x = links?.[r.id];
+    // A div with the name as a stretched link (the whole row still opens the product), so the row's own links can sit in it.
+    return <div key={r.id} className="rk5-row">
       <span className="rank">{r.rank}</span>
       <span className="pic">{r.pic ? <img src={r.pic} alt=""/> : <span className="th-ph" aria-hidden="true"/>}</span>
       <span className="mid">
-        <span className="top"><span className="name">{r.name}</span>{r.shape && <span className="shape">{r.shape}</span>}
+        <span className="top"><a className="name" href={th(x?.href ?? r.href)}>{r.name}</a>{r.shape && <span className="shape">{r.shape}</span>}
           {bestId === r.id && <span className="fit">Your best fit here</span>}</span>
         {r.line && <span className="line">{r.line}</span>}
         {(r.picked || r.experts || (r.rating && ratingLabel)) && <span className="chips">
@@ -60,8 +65,9 @@ export function RankRows({ rows, ratingLabel, opinions, markLoved = false, wire,
         <span className="n">{total > 0 ? `${total} ${total === 1 ? opinions[0] : opinions[1]}` : `No ${opinions[1]} yet`}</span>
         {total > 0 && <span className="bar" aria-hidden="true"><i className="pos" style={{ flex: r.pos }}/><i className="mix" style={{ flex: r.mix }}/><i className="neg" style={{ flex: r.neg }}/></span>}
         {total > 0 && <span className="cnt">{markLoved ? <mark className="mk">{`${r.pos} loved`}</mark> : `${r.pos} loved`}{` · ${r.mix} mixed · ${r.neg} not for me`}</span>}
+        {links && <RowLinks href={r.href} x={x}/>}
       </span>
-    </a>; })}</>;
+    </div>; })}</>;
 }
 
 /** The quick match box. On phones (owner 2026-11-25) it sits above the list (thread.css, .rk5-grid order) and starts folded:

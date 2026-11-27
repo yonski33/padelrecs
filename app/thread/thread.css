@@ -1724,9 +1724,16 @@ body:has(.th) .th .rk5-pills a[aria-current="page"] { background: var(--ink); co
 .rk5-list-head { display: flex; justify-content: space-between; align-items: center; gap: 6px 12px; flex-wrap: wrap; padding-bottom: 6px; }
 .rk5-list-head .th-h2 { margin: 0; font-size: 34px; line-height: 1.1; }
 .rk5-list-head > span { font-size: 15.5px; font-weight: 500; white-space: pre; }
-body:has(.th) .th a.rk5-row { text-decoration: none; color: var(--ink); display: grid; grid-template-columns: 42px 112px minmax(0,1fr) 210px; gap: 8px 20px; align-items: center; padding: 10px 0; border-top: 1px solid var(--line); background: none; }
-body:has(.th) .th a.rk5-row:hover .name { color: var(--hover); }
+body:has(.th) .th .rk5-row { text-decoration: none; color: var(--ink); display: grid; grid-template-columns: 42px 112px minmax(0,1fr) 210px; gap: 8px 20px; align-items: center; padding: 10px 0; border-top: 1px solid var(--line); background: none; }
+body:has(.th) .th .rk5-row:hover .name { color: var(--hover); }
 .rk5-row .rank { font: 700 34px/1 var(--bc); text-align: center; }
+/* The row is a div (2026-11-27, so it can hold its own links): the name stretches over the row, the links sit above it. */
+body:has(.th) .th .rk5-row { position: relative; }
+body:has(.th) .th .rk5-row a.name { color: inherit; text-decoration: none; background: none; }
+.rk5-row a.name::after { content: ""; position: absolute; inset: 0; }
+.rk5-row .tch-links { position: relative; z-index: 1; display: flex; justify-content: center; align-items: baseline; gap: 4px 12px; flex-wrap: wrap; }
+body:has(.th) .th .rk5-row .tch-go { font-size: 13.5px; font-weight: 700; color: var(--ink); }
+body:has(.th) .th .rk5-row .tch-price { font-family: ui-monospace, 'SF Mono', Menlo, monospace; font-size: 12.5px; font-weight: 600; color: var(--ink); text-decoration: underline; text-underline-offset: 3px; white-space: nowrap; }
 .rk5-row .pic { height: 100px; border: 1px solid var(--line); border-radius: 8px; background: #fff; display: flex; align-items: center; justify-content: center; padding: 3px; }
 .rk5-row .pic img { height: 100%; width: auto; max-width: 100%; object-fit: contain; mix-blend-mode: multiply; }
 .rk5-row .pic .th-ph { width: 44%; height: 76%; border-radius: 999px 999px 10px 10px; }
@@ -1751,7 +1758,7 @@ body:has(.th) .th a.rk5-row:hover .name { color: var(--hover); }
 .rk5-row .cnt .mk { color: var(--ink); font-weight: 700; padding: 0 2px; margin-left: -2px;
   background: linear-gradient(transparent 50%, var(--marker, #FFE45C) 50%, var(--marker, #FFE45C) 92%, transparent 92%); }
 @media (max-width: 1199px) {
-  body:has(.th) .th a.rk5-row { grid-template-columns: 30px 84px minmax(0,1fr) 176px; }
+  body:has(.th) .th .rk5-row { grid-template-columns: 30px 84px minmax(0,1fr) 176px; }
   .rk5-row .rank { font-size: 28px; } .rk5-row .pic { height: 82px; } .rk5-row .name { font-size: 20px; }
 }
 /* PadelRecs v3 tokens (design_handoff_padelrecs_v3 README "Tokens", owner 2026-11-21). Padel only (.th-pr, app/thread/shell.tsx);
@@ -1894,9 +1901,10 @@ body:has(.th) .th .rk5-explore a.th-card:hover { background: #fff; color: var(--
   .rk5 { padding: 12px 12px 56px; } .rk5-hero { padding: 14px; } .rk5-hero .th-h1 { font-size: 34px !important; }
   .rk5-pills { flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none; margin: 0 -14px; padding: 1px 14px; }
   .rk5-list-head .th-h2, .rk5 .th7-disc .th-h2, .rk5-explore .th-h2 { font-size: 28px; }
-  body:has(.th) .th a.rk5-row { grid-template-columns: 26px 76px minmax(0,1fr); }
+  body:has(.th) .th .rk5-row { grid-template-columns: 26px 76px minmax(0,1fr); }
   .rk5-row .rank { font-size: 26px; } .rk5-row .pic { height: 84px; }
   .rk5-row .stat { grid-column: 1 / -1; align-items: flex-start; padding-left: 46px; }
+  .rk5-row .tch-links { justify-content: flex-start; }
 }
 @media (max-width: 559px) { .rk5-explore > div { grid-template-columns: minmax(0,1fr); } }
 

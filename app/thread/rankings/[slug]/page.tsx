@@ -34,6 +34,7 @@ import { traitCounts, traitGroup } from "../../data";
 import { listOrder, listPill } from "../../../../lib/thread/vote-order";
 import { oneShape } from "../../../../lib/thread/shape";
 import { expertLine } from "../../../../lib/thread/expert-lists";
+import { rowLinks } from "../../row-links";
 /** PadelRecs (owner 2026-11-21): no "Ranked by player score…" line, the lists as one dropdown, and phone rows with the rank
  *  inline (th-hp, as on the home page). */
 const PADEL = niche.id === "padel";
@@ -44,6 +45,8 @@ const short = (label: string) => label.replace(/^Best (for )?/, "").replace(/^./
 
 const { one: ONE, many: MANY } = niche.words;
 const PICKLEBALL = niche.id === "pickleball", DG = niche.id === "discgolf", SKIN = niche.id === "skin", SR = niche.id === "simracing", LT = niche.id === "laptop";
+/** Sites whose ranking rows carry the home rows' See reviews and price links (owner 2026-11-27). */
+const ROW_LINKS = new Set(["pickleball", "padel", "skin", "discgolf", "laptop"]);
 /** The sidebar's "See how you match": the site's own quick match, the one its home shows, or no card (lib/thread/sites.ts). */
 const QM = quickMatchFor(niche.id);
 /** Sites whose product pages use the v7b Discussion (PadelRecs, #565) use it here too, so the two never disagree; the rest
@@ -274,6 +277,9 @@ async function RankingV5({ l, lists, list, rated, label, faqs, ld, picOf }: { l:
       : DG ? votePill(Object.fromEntries(TRAIT_GROUPS.map(g => [g.key, traitGroup(t, r.id, g.key)])), W.people, DISCGOLF_PILL_LABELS, DISCGOLF_PILL_LABELS)
       : SKIN ? skinPill(r)
       : niche.id === "padel" ? padelPill(r) : pickedLine(traitGroup(t, r.id, "plays_like")), arm: !!r.arm, experts: expertLine(niche.id, r.slug), ...(au && r.audio?.kind ? { shape: r.audio.kind } : {}) }));
+  // Each row's See reviews and price links, as the creators home rows (owner 2026-11-27, app/thread/row-links.ts): read once
+  // with the page, so the quick match never fetches per row. Not in the JSON-LD.
+  const links = ROW_LINKS.has(niche.id) ? await rowLinks(list, { amazonFallback: true }) : undefined;
   const opinions: [string, string] = [W.opinions.replace(/s$/, ""), W.opinions];
   const said = rows.reduce((a, r) => a + r.pos + r.mix + r.neg, 0);
   // SkinRecs has ~30 lists: its pills and More rankings are the skin needs, this list's need and the product types (moreFor).
@@ -316,8 +322,8 @@ async function RankingV5({ l, lists, list, rated, label, faqs, ld, picOf }: { l:
           <section className="th-card rk5-list">
             <div className="rk5-list-head"><h2 className="th-h2">{l.label}</h2>
               <span>{`${AUDIO || SR || PICKLEBALL || DG || SKIN || LT ? plural(rows.length, W.item, W.items) : plural(rows.length, ONE, MANY)}  ·  ${plural(said, opinions[0], opinions[1])}`}</span></div>
-            {skinWire ? <SkinRankRows rows={rows} ratingLabel={label} opinions={opinions} markLoved={loved} wire={skinWire}/>
-              : <RankRows rows={rows} ratingLabel={label} opinions={opinions} markLoved={loved} {...(wire ? { wire } : {})}/>}
+            {skinWire ? <SkinRankRows rows={rows} ratingLabel={label} opinions={opinions} markLoved={loved} wire={skinWire} {...(links ? { links } : {})}/>
+              : <RankRows rows={rows} ratingLabel={label} opinions={opinions} markLoved={loved} {...(wire ? { wire } : {})} {...(links ? { links } : {})}/>}
           </section>
         </div>
         <aside className="rk5-side">
