@@ -41,13 +41,13 @@ const FEEL = { soft: "Soft", medium: "Medium", firm: "Hard" } as const;
  *  engine, skinRows below). StackRecs has its own pages (app/thread/stack): there they read nothing and build empty, and
  *  proxy.ts never serves them. */
 export const hasDb = () => !!process.env.DATABASE_URL && (niche.id === "padel" || niche.id === "pickleball" || niche.id === "skin"
-  || niche.id === "discgolf" || niche.id === "audio" || niche.id === "simracing" || niche.id === "tennis" || niche.id === "laptop");
+  || niche.id === "discgolf" || niche.id === "audio" || niche.id === "simracing" || niche.id === "tennis" || niche.id === "laptop" || niche.id === "coffee");
 /** The Thread home's top rows: the classic home's default order (app/home-payload.ts defaultHomeIds), as Thread rows. */
 export const homeTop = (rows: Map<string, ThreadRow>, ids: string[], size = 10) => ids.flatMap(id => rows.get(id) ?? []).slice(0, size);
 type Rows = { ctx: Ctx; rows: Map<string, ThreadRow>; all: ThreadRow[]; bySlug: Map<string, ThreadRow> };
 export const threadRows = cache(async (): Promise<Rows> => {
   if (!hasDb()) return { ctx: null as unknown as Ctx, rows: new Map(), all: [], bySlug: new Map() };
-  const [base, tallies] = await Promise.all([niche.id === "skin" ? skinRows() : niche.id === "audio" ? audioRows() : niche.id === "laptop" ? laptopRows() : countedRows(), sentimentOverrides()]);
+  const [base, tallies] = await Promise.all([niche.id === "skin" ? skinRows() : niche.id === "audio" ? audioRows() : niche.id === "laptop" ? laptopRows() : niche.id === "coffee" ? coffeeRows() : countedRows(), sentimentOverrides()]);
   // TennisRecs: Feel from the stiffness, unless the votes clearly disagree (lib/thread/tennis-notes.ts, owner OK 2026-11-22).
   const tc = niche.id === "tennis" ? await traitCounts() : null, ra = tc ? new Map(base.ctx.data.rackets.map(x => [x.id, x.surface])) : null;
   const felt = (r: ThreadRow): ThreadRow => tc ? { ...r, feel: tennisFeel(ra!.get(r.id), traitGroup(tc, r.id, "feel") as Record<string, number> | null) as ThreadRow["feel"] } : r;
@@ -111,7 +111,7 @@ function rowOf(ctx: Ctx, r: Ctx["data"]["listed"][number], brand: string, n: num
 /** "How players vote them" until trait votes exist (migration 0024, waiting for the owner): the top 3 per trait from what
  *  players mention in their reviews (lib/trait-score.ts, the same scores as the racket pages' bars), only rackets with a
  *  Player score, and only counts of 5 or more. */
-const BOARDS: [string, string][] = niche.id === "audio" || niche.id === "laptop" ? [] // AudioRecs and LaptopRecs have no review trait scores: their boards come from votes only
+const BOARDS: [string, string][] = niche.id === "audio" || niche.id === "laptop" || niche.id === "coffee" ? [] // AudioRecs and LaptopRecs have no review trait scores: their boards come from votes only
   : niche.id === "simracing"
   ? [["ffb_detail", "Most detailed feedback"], ["ffb_strength", "Most torque"], ["brake_feel", "Best brake feel"], ["rigidity", "Least flex"], ["quiet", "Quietest"], ["setup", "Easiest to set up"]]
   : niche.id === "discgolf"
@@ -317,6 +317,26 @@ async function laptopRows(): Promise<Rows> {
     rows.set(r.id, { id: r.id, slug: r.slug, name: displayName(r.name, b), href: productHref(r), pic: photoHidden(r) ? null : shopPhoto(r) ?? amazonPhoto(r)?.image ?? null,
       shape: r.shape, line: rowLine(r, takes.get(r.id)?.hook), best: null, n: reports.get(r.id) ?? 0, pos: c.positive, mix: c.mixed, neg: c.negative,
       score: sigs.get(r.id)?.signal ?? null, brand: b, year: r.year, levels: [], feel: null, arm: false, current: current.has(r.id) });
+  }
+  return { ctx, rows, all: [...rows.values()], bySlug: new Map([...rows.values()].map(x => [x.slug, x])) };
+}
+/** CoffeeRecs (2026-11-28, the v3 port): like LaptopRecs, no padel-style fit engine on these pages, so its rows come straight
+ *  from the listed catalogue (thin products already off, db/data.ts THIN_HIDE), the owner scores and the quick-take hooks; its
+ *  quick match runs on its own inputs (lib/coffee-wire.ts). Current: not marked replaced or pre-release in its maker specs
+ *  (db/specs/coffee.json `gone` / `preRelease`), so a discontinued model keeps its page but leaves the "best" lists. */
+async function coffeeRows(): Promise<Rows> {
+  const [{ catalog }, { productSignals }, { quickTakeHooks }, { coffeeSpec }] = await Promise.all([import("../../db/data"), import("../signals"),
+    import("../../db/quick-take"), import("../../lib/coffee-specs")]);
+  const [data, sigs, takes] = await Promise.all([catalog(), productSignals(), quickTakeHooks()]);
+  const ctx = { data, sigs, takes, facts: () => ({ reports: 0, tags: {} }), traits: () => ({}), expertLine: () => null } as unknown as Ctx;
+  const brand = new Map(data.brands.map(b => [b.id, b.name])), reports = new Map<string, number>();
+  for (const x of [...data.reviews, ...data.external]) reports.set(x.racketId, (reports.get(x.racketId) ?? 0) + 1);
+  const rows = new Map<string, ThreadRow>();
+  for (const r of data.listed) {
+    const c = score(data, r.id), b = brand.get(r.brandId) ?? "", spec = coffeeSpec(r);
+    rows.set(r.id, { id: r.id, slug: r.slug, name: displayName(r.name, b), href: productHref(r), pic: photoHidden(r) ? null : shopPhoto(r) ?? amazonPhoto(r)?.image ?? null,
+      shape: r.shape, line: rowLine(r, takes.get(r.id)?.hook), best: null, n: reports.get(r.id) ?? 0, pos: c.positive, mix: c.mixed, neg: c.negative,
+      score: sigs.get(r.id)?.signal ?? null, brand: b, year: r.year, levels: [], feel: null, arm: false, current: !spec?.gone && !spec?.preRelease });
   }
   return { ctx, rows, all: [...rows.values()], bySlug: new Map([...rows.values()].map(x => [x.slug, x])) };
 }

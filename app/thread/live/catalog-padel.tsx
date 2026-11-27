@@ -18,12 +18,14 @@ import type { SkinWire } from "../../skin/rank";
 import { W } from "../../../lib/thread/words";
 import type { AudioWire } from "../../../lib/audio-match";
 import { useLaptopListMatch } from "./laptop-match";
+import { useCoffeeListMatch } from "./coffee-match";
+import type { CoffeeWire } from "../../../lib/coffee-match";
 import type { LaptopWire } from "../../../lib/laptop-match";
 
 export type SideReview = { id: string; who: string; at: string; racket: string; href: string; text: string };
 const STEP = 24, NEW_N = 3;
 
-export function PadelCatalog({ rows, brands, pills, added, curated, rankings, latest, wire, skin, laptop, title = "All padel rackets", crumb = "Rackets" }: {
+export function PadelCatalog({ rows, brands, pills, added, curated, rankings, latest, wire, skin, laptop, coffee, title = "All padel rackets", crumb = "Rackets" }: {
   rows: ThreadRow[]; brands: string[];
   /** A row's vote pill ("Most picked for power · 22 players"), when it has one. */ pills: Record<string, string>;
   /** When each racket joined the catalogue (Newest, New rackets). */ added: Record<string, string>;
@@ -32,9 +34,10 @@ export function PadelCatalog({ rows, brands, pills, added, curated, rankings, la
   /** AudioRecs: its match inputs, its own title and crumb. Padel: absent (the defaults). */ wire?: AudioWire[]; title?: string; crumb?: string;
   /** SkinRecs: the skin engine's inputs for its own quick match (live/skin-match.tsx). */ skin?: SkinWire[];
   /** LaptopRecs: its quick match inputs (live/laptop-match.tsx). */ laptop?: LaptopWire[];
+  /** CoffeeRecs: its quick match inputs (live/coffee-match.tsx). */ coffee?: CoffeeWire[];
 }) {
-  const audio = useAudioListMatch(wire), skinMatch = useSkinListMatch(skin), laptopMatch = useLaptopListMatch(laptop);
-  const l = useRacketList({ rows, curated, added, search: true, match: audio ?? skinMatch ?? laptopMatch }), { q, setQ, list, pcts, older, setOlder, olderN, words, clearAll } = l;
+  const audio = useAudioListMatch(wire), skinMatch = useSkinListMatch(skin), laptopMatch = useLaptopListMatch(laptop), coffeeMatch = useCoffeeListMatch(coffee);
+  const l = useRacketList({ rows, curated, added, search: true, match: audio ?? skinMatch ?? laptopMatch ?? coffeeMatch }), { q, setQ, list, pcts, older, setOlder, olderN, words, clearAll } = l;
   const [ft, setFt] = useState(false), [n, setN] = useState(STEP);
   const newest = useMemo(() => rows.filter(r => r.current !== false).sort((a, b) => b.year - a.year || (added[b.id] ?? "").localeCompare(added[a.id] ?? "")).slice(0, NEW_N), [rows, added]);
   const isNew = useMemo(() => new Set(newest.map(r => r.id)), [newest]);

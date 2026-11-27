@@ -44,7 +44,7 @@ const cap = (s: string) => s ? s[0].toUpperCase() + s.slice(1) : s;
 const short = (label: string) => label.replace(/^Best (for )?/, "").replace(/^./, c => c.toUpperCase());
 
 const { one: ONE, many: MANY } = niche.words;
-const PICKLEBALL = niche.id === "pickleball", DG = niche.id === "discgolf", SKIN = niche.id === "skin", SR = niche.id === "simracing", LT = niche.id === "laptop";
+const PICKLEBALL = niche.id === "pickleball", DG = niche.id === "discgolf", SKIN = niche.id === "skin", SR = niche.id === "simracing", LT = niche.id === "laptop", CF = niche.id === "coffee";
 /** Sites whose ranking rows carry the home rows' See reviews and price links (owner 2026-11-27). */
 const ROW_LINKS = new Set(["pickleball", "padel", "skin", "discgolf", "laptop"]);
 /** The sidebar's "See how you match": the site's own quick match, the one its home shows, or no card (lib/thread/sites.ts). */
@@ -77,11 +77,12 @@ export async function generateMetadata({ params }: P): Promise<Metadata> {
   const { slug } = await params;
   const l = (await threadRankings()).find(x => x.slug === slug);
   if (!l) return { title: "Ranking not found", robots: { index: false } };
-  if (l.own && !LT) return liveMetadata({ params });
+  if (l.own && !LT && !CF) return liveMetadata({ params });
   // LaptopRecs (2026-11-24): its lists are ordered by most loved (lib/thread/vote-order.ts), not the live list's order, so the
   // live title's count ("Ranked by 58 Real Owner Reviews") was a different list's. Its own lists keep the live description
   // and canonical, with the title counting the opinions behind the rows the page shows.
-  if (LT && l.own) {
+  // CoffeeRecs (2026-11-28): the same, its lists are ordered by most loved too.
+  if ((LT || CF) && l.own) {
     const [live, { rows }] = await Promise.all([liveMetadata({ params }), threadRows()]);
     const n = l.ids.reduce((a, id) => { const r = rows.get(id); return a + (r ? r.pos + r.mix + r.neg : 0); }, 0);
     const t = `${l.title}, Ranked by ${n.toLocaleString("en-US")} Real ${W.Person} Opinions`;
@@ -119,7 +120,7 @@ export default async function ThreadRanking({ params }: P) {
       : { q: "What if I have tennis elbow?", a: `Players with sore arms speak best of ${names(arm)}. ${ARM_TIP}` }] : []),
     ...(SHAPE_FAQ ? [SHAPE_FAQ] : []),
     niche.id === "audio" ? { q: "How often does this ranking change?", a: `The counts update as new reviews come in, so ${W.items} can move up or down. A pair joins once it has 10 or more reviews.` }
-      : niche.id === "laptop" ? { q: "How often does this ranking change?", a: `The counts update as new reviews come in, so ${W.items} can move up or down. A ${W.item} joins once it has 5 or more reviews.` }
+      : niche.id === "laptop" || CF ? { q: "How often does this ranking change?", a: `The counts update as new reviews come in, so ${W.items} can move up or down. A ${W.item} joins once it has 5 or more reviews.` }
       : V3 && SKIN ? { q: "How often does this ranking change?", a: "The lists refresh as new reviews come in, so products can move up or down. A product joins once enough people have reviewed it." }
       : { q: "How often does this ranking change?", a: `Scores update as new reviews come in, so ${MANY} can move up or down any day. A ${ONE} joins once it has enough reviews to score fairly.` },
   ];
@@ -261,7 +262,7 @@ async function RankingV5({ l, lists, list, rated, label, faqs, ld, picOf }: { l:
   // trait's; a list without a rule there keeps the usual quality-first pill.
   const pbPill = (r: import("../../ui").ThreadRow) => { const groups = Object.fromEntries(TRAIT_GROUPS.map(g => [g.key, traitGroup(t, r.id, g.key)]));
     // LaptopRecs: the same list tags ("Loved by 12 owners"); no vote pill words yet, so lists without a rule show none.
-    const own = listPill(vo, groups, r.pos, W.people); return own === undefined ? LT ? null : votePill(groups, W.people, PICKLEBALL_PILL_WORDS, PICKLEBALL_PILL_LABELS) : own; };
+    const own = listPill(vo, groups, r.pos, W.people); return own === undefined ? LT || CF ? null : votePill(groups, W.people, PICKLEBALL_PILL_WORDS, PICKLEBALL_PILL_LABELS) : own; };
   // PadelRecs (2026-11-24, onto the pickleball template): the same list-matched tags; a list with no rule there keeps padel's
   // "Most picked for …" line.
   const padelPill = (r: import("../../ui").ThreadRow) => { const own = listPill(vo, Object.fromEntries(TRAIT_GROUPS.map(g => [g.key, traitGroup(t, r.id, g.key)])), r.pos, W.people);
@@ -272,7 +273,7 @@ async function RankingV5({ l, lists, list, rated, label, faqs, ld, picOf }: { l:
   const rows: V5Row[] = list.map((r, i) => ({ id: r.id, rank: i + 1, name: r.name, href: r.href, pic: r.pic, shape: oneShape(r.shape) ? r.shape![0].toUpperCase() + r.shape!.slice(1) : null,
     line: r.line, pos: r.pos, mix: r.mix, neg: r.neg, rating: rated?.[r.id] != null ? (rated[r.id] / 10).toFixed(1) : null,
     picked: au ? votePill(Object.fromEntries(TRAIT_GROUPS.map(g => [g.key, traitGroup(t, r.id, g.key)])), W.people, AUDIO_PILL_LABELS, AUDIO_PILL_LABELS)
-      : PICKLEBALL || LT ? pbPill(r)
+      : PICKLEBALL || LT || CF ? pbPill(r)
       : SR ? votePill(Object.fromEntries(traitGroupsForType(niche.id, r.shape, r.id).map(g => [g.key, traitGroup(t, r.id, g.key)])), W.people, SIMRACING_PILL_WORDS, SIMRACING_PILL_LABELS)
       : DG ? votePill(Object.fromEntries(TRAIT_GROUPS.map(g => [g.key, traitGroup(t, r.id, g.key)])), W.people, DISCGOLF_PILL_LABELS, DISCGOLF_PILL_LABELS)
       : SKIN ? skinPill(r)
@@ -289,7 +290,8 @@ async function RankingV5({ l, lists, list, rated, label, faqs, ld, picOf }: { l:
   // The mock's picture strip: real photos, the list's own top rackets for a ranking and this list's for the guides.
   const pics = (ids: string[], n: number) => ids.map(picOf).filter((x): x is string => !!x).slice(0, n);
   const mine = rows.map(r => r.id);
-  const explore = [SKIN ? { tag: "Guide", title: GUIDE_LINK_LABELS.racket, desc: "Skin type, texture and what to look for, in plain words.", cta: "Read guide", href: GUIDE_PATHS.racket, imgs: pics(mine, 1), tone: "dark" }
+  const explore = [CF ? { tag: "Guide", title: GUIDE_LINK_LABELS.racket, desc: "Boilers, burrs, brewers and scales, in plain words.", cta: "Read guide", href: GUIDE_PATHS.racket, imgs: pics(mine, 1), tone: "dark" }
+      : SKIN ? { tag: "Guide", title: GUIDE_LINK_LABELS.racket, desc: "Skin type, texture and what to look for, in plain words.", cta: "Read guide", href: GUIDE_PATHS.racket, imgs: pics(mine, 1), tone: "dark" }
       : AUDIO ? { tag: "Guide", title: GUIDE_LINK_LABELS.racket, desc: "Where you listen, fit and sound, in plain words.", cta: "Read guide", href: GUIDE_PATHS.racket, imgs: pics(mine, 1), tone: "dark" }
       : LT ? { tag: "Guide", title: GUIDE_LINK_LABELS.racket, desc: "Chip, screen, battery and weight, in plain words.", cta: "Read guide", href: GUIDE_PATHS.racket, imgs: pics(mine, 1), tone: "dark" }
       : PICKLEBALL ? { tag: "Guide", title: GUIDE_LINK_LABELS.racket, desc: "Shape, weight, core and face, in plain words.", cta: "Read guide", href: GUIDE_PATHS.racket, imgs: pics(mine, 1), tone: "dark" }
@@ -297,15 +299,16 @@ async function RankingV5({ l, lists, list, rated, label, faqs, ld, picOf }: { l:
       : SR ? { tag: "Guide", title: GUIDE_LINK_LABELS.racket, desc: "Base, wheel, pedals and rig, in plain words.", cta: "Read guide", href: GUIDE_PATHS.racket, imgs: pics(mine, 1), tone: "dark" }
       : niche.id === "tennis" ? { tag: "Guide", title: GUIDE_LINK_LABELS.racket, desc: "Head size, weight, pattern and stiffness, in plain words.", cta: "Read guide", href: GUIDE_PATHS.racket, imgs: pics(mine, 1), tone: "dark" }
       : { tag: "Guide", title: "How to choose a padel racket", desc: "Shape, weight, balance and feel, in plain words.", cta: "Read guide", href: GUIDE_PATHS.racket, imgs: pics(mine, 1), tone: "dark" },
-    SKIN ? { tag: "Guide", title: GUIDE_LINK_LABELS.shape, desc: "Which texture suits which skin, and when.", cta: "Read guide", href: GUIDE_PATHS.shape, imgs: pics(mine.slice(1), 3), tone: "sand" }
+    // CoffeeRecs has one guide page for now (lib/thread/copy-coffee.ts), so a ranking takes the second card.
+    ...(CF ? [] : [SKIN ? { tag: "Guide", title: GUIDE_LINK_LABELS.shape, desc: "Which texture suits which skin, and when.", cta: "Read guide", href: GUIDE_PATHS.shape, imgs: pics(mine.slice(1), 3), tone: "sand" }
       : AUDIO ? { tag: "Guide", title: GUIDE_LINK_LABELS.shape, desc: "Open or closed, and who each suits.", cta: "Read guide", href: GUIDE_PATHS.shape, imgs: pics(mine.slice(1), 3), tone: "sand" }
       : LT ? { tag: "Guide", title: GUIDE_LINK_LABELS.shape, desc: "Ultrabook, gaming, business or 2-in-1, and who each suits.", cta: "Read guide", href: GUIDE_PATHS.shape, imgs: pics(mine.slice(1), 3), tone: "sand" }
       : PICKLEBALL ? { tag: "Guide", title: GUIDE_LINK_LABELS.shape, desc: "Standard, hybrid or elongated, and who each suits.", cta: "Read guide", href: GUIDE_PATHS.shape, imgs: pics(mine.slice(1), 3), tone: "sand" }
       : DG ? { tag: "Guide", title: GUIDE_LINK_LABELS.shape, desc: "Putter, midrange or driver, and who each suits.", cta: "Read guide", href: GUIDE_PATHS.shape, imgs: pics(mine.slice(1), 3), tone: "sand" }
       : SR ? { tag: "Guide", title: GUIDE_LINK_LABELS.shape, desc: "What each drive feels like, and who each suits.", cta: "Read guide", href: GUIDE_PATHS.shape, imgs: pics(mine.slice(1), 3), tone: "sand" }
       : niche.id === "tennis" ? { tag: "Guide", title: GUIDE_LINK_LABELS.shape, desc: "97, 100 or oversize, and who each suits.", cta: "Read guide", href: GUIDE_PATHS.shape, imgs: pics(mine.slice(1), 3), tone: "sand" }
-      : { tag: "Guide", title: "Padel racket shapes explained", desc: "Round, teardrop or diamond, and who each suits.", cta: "Read guide", href: GUIDE_PATHS.shape, imgs: pics(mine.slice(1), 3), tone: "sand" },
-    ...others.filter(x => x.slug !== (SR ? "best-sim-racing-gear" : niche.id === "tennis" ? "best-tennis-rackets" : PICKLEBALL ? "best-pickleball-paddles" : LT ? "best-laptops" : DG ? "best-disc-golf-discs" : "best-padel-rackets")).slice(0, 2).map((x, i) => ({ tag: "Ranking", title: x.label, desc: x.blurb, cta: "View ranking", href: x.href,
+      : { tag: "Guide", title: "Padel racket shapes explained", desc: "Round, teardrop or diamond, and who each suits.", cta: "Read guide", href: GUIDE_PATHS.shape, imgs: pics(mine.slice(1), 3), tone: "sand" }]),
+    ...others.filter(x => x.slug !== (SR ? "best-sim-racing-gear" : niche.id === "tennis" ? "best-tennis-rackets" : PICKLEBALL ? "best-pickleball-paddles" : LT ? "best-laptops" : CF ? "best-coffee-gear" : DG ? "best-disc-golf-discs" : "best-padel-rackets")).slice(0, CF ? 3 : 2).map((x, i) => ({ tag: "Ranking", title: x.label, desc: x.blurb, cta: "View ranking", href: x.href,
       imgs: pics(x.ids, 2), tone: i ? "lime" : "sand" }))];
   return <Shell active="rankings">
     <JsonLd data={ld}/>
@@ -321,14 +324,14 @@ async function RankingV5({ l, lists, list, rated, label, faqs, ld, picOf }: { l:
           </section>
           <section className="th-card rk5-list">
             <div className="rk5-list-head"><h2 className="th-h2">{l.label}</h2>
-              <span>{`${AUDIO || SR || PICKLEBALL || DG || SKIN || LT ? plural(rows.length, W.item, W.items) : plural(rows.length, ONE, MANY)}  ·  ${plural(said, opinions[0], opinions[1])}`}</span></div>
+              <span>{`${AUDIO || SR || PICKLEBALL || DG || SKIN || LT || CF ? plural(rows.length, W.item, W.items) : plural(rows.length, ONE, MANY)}  ·  ${plural(said, opinions[0], opinions[1])}`}</span></div>
             {skinWire ? <SkinRankRows rows={rows} ratingLabel={label} opinions={opinions} markLoved={loved} wire={skinWire} {...(links ? { links } : {})}/>
               : <RankRows rows={rows} ratingLabel={label} opinions={opinions} markLoved={loved} {...(wire ? { wire } : {})} {...(links ? { links } : {})}/>}
           </section>
         </div>
         <aside className="rk5-side">
           {/* LaptopRecs: no side quick match yet (its match lives on the home, catalogue and product pages). */}
-          {skinWire ? <SkinRankMatch rows={rows} wire={skinWire}/> : LT ? null : <QuickMatch rows={rows} {...(wire ? { wire } : {})}/>}
+          {skinWire ? <SkinRankMatch rows={rows} wire={skinWire}/> : LT || CF ? null : <QuickMatch rows={rows} {...(wire ? { wire } : {})}/>}
           <section className="th-card rk5-box"><h3>About these rankings</h3>
             <div className="about">
               <span className="item"><svg className="ic" width="30" height="28" viewBox="0 0 30 28" aria-hidden="true" fill="currentColor"><circle cx="15" cy="9" r="4.5"/><circle cx="6" cy="11" r="3.5"/><circle cx="24" cy="11" r="3.5"/><path d="M7 24c0-4.5 3.6-8 8-8s8 3.5 8 8zM0 23c0-3.3 2.4-6 5.5-6 1.2 0 2.2.3 3 .9C7 19.4 6 21.3 6 23.5zM30 23c0-3.3-2.4-6-5.5-6-1.2 0-2.2.3-3 .9 1.5 1.5 2.5 3.4 2.5 5.6z"/></svg><span><strong>{`Based on ${W.person} feedback`}</strong><span>Reviews and votes on {niche.site.name}, plus summaries of Reddit threads, YouTube reviews and blogs.</span></span></span>
@@ -336,7 +339,7 @@ async function RankingV5({ l, lists, list, rated, label, faqs, ld, picOf }: { l:
                   ? `Products go by how many ${W.people} loved them, the count on each row, from products with enough reviews.` : l.own
                   ? `Products go by how consistently ${W.people} are happy with them, from products with enough reviews.`
                   : `The ${niche.site.name} match for this skin need, from what ${W.people} with that skin report. Products with a match only.`}</span></>
-                : loved ? <><strong>Ordered by most loved</strong><span>{AUDIO || DG ? `${cap(W.items)} go by how many ${W.people} loved them, the count on each row. Current models with 10+ reviews.` : SR ? `${cap(W.items)} go by how many ${W.people} loved them, the count on each row. ${new Date().getUTCFullYear()} models with 10+ reviews.` : PICKLEBALL ? `${cap(W.items)} go by how many ${W.people} loved them, the count on each row. Current models with 10+ reviews.` : LT ? `${cap(W.items)} go by how many ${W.people} loved them, the count on each row. Current generations with 5+ reviews.` : `Rackets go by how many players loved them, the count on each row. ${new Date().getUTCFullYear()} models with 10+ reviews.`}</span></>
+                : loved ? <><strong>Ordered by most loved</strong><span>{AUDIO || DG ? `${cap(W.items)} go by how many ${W.people} loved them, the count on each row. Current models with 10+ reviews.` : SR ? `${cap(W.items)} go by how many ${W.people} loved them, the count on each row. ${new Date().getUTCFullYear()} models with 10+ reviews.` : PICKLEBALL ? `${cap(W.items)} go by how many ${W.people} loved them, the count on each row. Current models with 10+ reviews.` : LT ? `${cap(W.items)} go by how many ${W.people} loved them, the count on each row. Current generations with 5+ reviews.` : CF ? `Products go by how many ${W.people} loved them, the count on each row. Current models with 5+ reviews.` : `Rackets go by how many players loved them, the count on each row. ${new Date().getUTCFullYear()} models with 10+ reviews.`}</span></>
                 : votes ? <><strong>Ordered by player votes</strong><span>{`${PICKLEBALL ? cap(W.items) : "Rackets"} go by how many ${W.people} pick them for ${votes}, the number on each row. Needs ${PICKLEBALL ? 10 : 12}+ reviews and 10+ ${W.people}.${label ? ` The number on each pick is a ${niche.site.name} rating from 0 to 10.` : ""}`}</span></> : <><strong>Picked, then checked</strong><span>{label ? `${niche.site.name} sets the order and checks it against what ${W.people} report. The number on each pick is a ${niche.site.name} rating from 0 to 10.`
                 : `${niche.site.name} sets the order and checks it against what ${W.people} report, not brand claims.`}</span></>}</span></span>
               <span className="item"><svg className="ic" width="30" height="28" viewBox="0 0 30 28" aria-hidden="true" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round"><circle cx="15" cy="14" r="11"/><path d="M15 8v6l4 3"/></svg><span><strong>Updated as new feedback arrives</strong><span>The counts change as new reviews come in.</span></span></span>

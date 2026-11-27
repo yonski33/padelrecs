@@ -37,6 +37,8 @@ const PB_RANK_LINKS = ["best-pickleball-paddles", "best-power-pickleball-paddles
 /** SkinRecs' sidebar links: the skin needs, then the product types. */
 const skinRankLinks = (lists: { slug: string; group: string; kids?: string[] }[]) =>
   [...lists.filter(l => l.kids), ...lists.filter(l => l.group === "By product type")].slice(0, 6).map(l => l.slug);
+/** CoffeeRecs: overall, then one list per category. */
+const CF_RANK_LINKS = ["best-coffee-gear", "best-espresso-machines", "best-coffee-grinders", "best-pour-over-coffee-makers", "best-coffee-kettles", "best-coffee-scales"];
 const LT_RANK_LINKS = ["best-laptops", "best-ultrabooks", "best-gaming-laptops", "best-business-laptops", "best-macbooks", "best-battery-life-laptops"];
 const RANK_LINKS = ["best-padel-rackets", "best-power-padel-rackets", "best-control-padel-rackets", "best-padel-rackets-for-beginners", "best-teardrop-padel-rackets", "best-diamond-padel-rackets"];
 export default async function ThreadCatalog() {
@@ -50,7 +52,7 @@ export default async function ThreadCatalog() {
     const brands = [...count].filter(([b, n]) => b && n >= 5).sort((a, b) => b[1] - a[1]).slice(0, 10).map(([b]) => b);
     return <Shell active="rackets">{ld}<Catalog rows={rows} brands={brands}/></Shell>;
   }
-  const { brands, pills, added, curated, wire, skin, laptop, rows: listRows } = await padelListData();
+  const { brands, pills, added, curated, wire, skin, laptop, coffee, rows: listRows } = await padelListData();
   const lists = await threadRankings(), rankings = (niche.id === "audio" ? lists.map(l => l.slug).slice(0, 6) : niche.id === "simracing" ? SR_RANK_LINKS : niche.id === "tennis" ? TN_RANK_LINKS : niche.id === "pickleball" ? PB_RANK_LINKS : niche.id === "discgolf" ? DG_RANK_LINKS : niche.id === "skin" ? skinRankLinks(lists) : niche.id === "laptop" ? LT_RANK_LINKS : RANK_LINKS).flatMap(s => { const l = lists.find(x => x.slug === s); return l ? [{ label: l.label, href: l.href }] : []; });
   // Latest reviews: the 3 newest approved player reviews with a typed name and a line to show.
   const byId = new Map(rows.map(r => [r.id, r]));
@@ -66,6 +68,8 @@ export default async function ThreadCatalog() {
     : niche.id === "discgolf" ? { rows: listRows, title: "All disc golf discs", crumb: "Discs" }
     : niche.id === "skin" ? { rows: listRows, ...(skin ? { skin } : {}), title: "All skincare products", crumb: "Products" }
     // LaptopRecs: its category as the Category filter and its own quick match (live/laptop-match.tsx).
-    : niche.id === "laptop" ? { rows: listRows, ...(laptop ? { laptop } : {}), title: "All laptops", crumb: "Laptops" } : { rows };
+    : niche.id === "laptop" ? { rows: listRows, ...(laptop ? { laptop } : {}), title: "All laptops", crumb: "Laptops" }
+    // CoffeeRecs: its category as the Category filter and its own quick match (live/coffee-match.tsx).
+    : niche.id === "coffee" ? { rows: listRows, ...(coffee ? { coffee } : {}), title: "All coffee gear", crumb: "Gear" } : { rows };
   return <Shell active="rackets">{ld}<PadelCatalog brands={brands} pills={pills} added={added} curated={curated} rankings={rankings} latest={latest} {...audio}/></Shell>;
 }

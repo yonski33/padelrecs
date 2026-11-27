@@ -35,7 +35,7 @@ const SITE_NAV = niche.id === "stackrecs" ? STACK_NAV : niche.id === "audio" ? A
 // The site's own racket search (app/racket-search.tsx: the shared name index and fuzzy matching) in the Thread look: live
 // suggestions as you type, current models first, keyboard up/down/enter; Enter with no pick filters the catalogue.
 function Search({ id, shortcut = true }: { id: string; shortcut?: boolean }) {
-  return <RacketSearch thread id={id} shortcut={shortcut} placeholder={niche.id === "audio" ? "Search headphones" : `Search ${niche.words.many}`} hidden={THREAD_DEFAULT ? {} : { look: "thread" }}/>;
+  return <RacketSearch thread id={id} shortcut={shortcut} placeholder={niche.id === "audio" ? "Search headphones" : niche.id === "coffee" ? "Search coffee gear" : `Search ${niche.words.many}`} hidden={THREAD_DEFAULT ? {} : { look: "thread" }}/>;
 }
 
 export function ThreadHeader({ active, stories = false }: { active: Section; /** Member stories are live (PadelRecs). */ stories?: boolean }) {

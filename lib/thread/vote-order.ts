@@ -56,6 +56,10 @@ export const LIST_ORDER: Record<string, Record<string, ListOrder>> = {
   // generation, no model years), each row tagged "Loved by N owners". Battery life and Budget keep their tag-based order.
   laptop: Object.fromEntries(["best-ultrabooks", "best-gaming-laptops", "best-business-laptops", "best-creator-laptops", "best-2-in-1-laptops",
     "best-chromebooks", "best-macbooks"].map(slug => [slug, { order: "loved", years: "current" } as ListOrder])),
+  // CoffeeRecs (2026-11-28, the v3 port, as LaptopRecs): each category list by most loved, products not marked replaced in the
+  // maker specs (db/specs/coffee.json), each row tagged "Loved by N owners". Budget keeps its tag-based order.
+  coffee: Object.fromEntries(["best-espresso-machines", "best-dual-boiler-espresso-machines", "best-coffee-grinders", "best-hand-coffee-grinders",
+    "best-pour-over-coffee-makers", "best-drip-coffee-makers", "best-coffee-kettles", "best-coffee-scales"].map(slug => [slug, { order: "loved", years: "current" } as ListOrder])),
   // DiscGolfRecs (wave 2): Best overall by most loved (app/thread/rankings-data.ts orders it so).
   discgolf: { "best-disc-golf-discs": { order: "loved" } },
 };

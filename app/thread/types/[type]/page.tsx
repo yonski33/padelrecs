@@ -49,6 +49,15 @@ export default async function ThreadTypePage({ params }: P) {
     return <Shell active="rackets"><script type="application/ld+json" dangerouslySetInnerHTML={{ __html: ld }}/><PadelCatalog rows={d.rows.filter(r => keep.has(r.id))} brands={d.brands} pills={d.pills} added={d.added} curated={[]}
       rankings={lists.slice(0, 6).map(l => ({ label: l.label, href: l.href }))} latest={[]} title={t.label} crumb={t.label} {...(d.laptop ? { laptop: d.laptop.filter(w => keep.has(w.id)) } : {})}/></Shell>;
   }
+  // CoffeeRecs (2026-11-28, the v3 port): the same as LaptopRecs, with its own quick match; its category lists first.
+  if (niche.id === "coffee") {
+    const d = await padelListData(), lists = await threadRankings(), keep = new Set(d.rows.filter(r => r.shape === t.shape).map(r => r.id));
+    const ld = listJsonLd([{ name: t.label, path: `/${t.slug}` }], d.rows.filter(r => keep.has(r.id)).sort((a, b) => b.n - a.n).map(r => ({ name: r.name, href: r.href })));
+    const own = lists.filter(l => (niche.topLists ?? []).find(x => x.slug === l.slug)?.filters?.some(f => f.column === "shape" && !!f.include?.includes(t.shape)));
+    return <Shell active="rackets"><script type="application/ld+json" dangerouslySetInnerHTML={{ __html: ld }}/><PadelCatalog rows={d.rows.filter(r => keep.has(r.id))} brands={d.brands} pills={d.pills} added={d.added} curated={[]}
+      rankings={[...own, ...lists.filter(l => !own.includes(l))].slice(0, 6).map(l => ({ label: l.label, href: l.href }))} latest={[]} title={t.label} crumb={t.label}
+      {...(d.coffee ? { coffee: d.coffee.filter(w => keep.has(w.id)) } : {})}/></Shell>;
+  }
   // SkinRecs (v3 rollout 2026-11-21): the v3 catalogue for one product type, with its quick match, no score.
   if (niche.id === "skin") {
     const d = await padelListData(), lists = await threadRankings(), keep = new Set(d.rows.filter(r => r.shape === t.shape).map(r => r.id));
