@@ -62,3 +62,9 @@ test("an owner alias puts a second channel's reviews on the first one's page", (
   const [one] = reviewersFrom(rows, 5, { "PADELREVIEW ENG": "Padel Review" });
   assert.deepEqual([one!.slug, one!.name, one!.n, one!.channel], ["padel-review", "Padel Review", 5, "https://www.youtube.com/@PadelReview"]);
 });
+
+test("favourites can keep current models only", () => {
+  const rows = ["a", "b", "c", "d", "e"].map(p => row("Me", p, "pos"));
+  rows[0]!.year = 2025; rows[1]!.year = 2026; rows[2]!.year = 2027; rows[3]!.year = null;
+  assert.deepEqual(favourites(reviewersFrom(rows)[0]!, undefined, 3, 2026).map(r => r.productSlug).sort(), ["b", "c"]);
+});

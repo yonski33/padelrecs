@@ -11,7 +11,7 @@ import { th } from "../../../../lib/thread/look";
 import { niche } from "../../../../lib/niche";
 import { withoutYear } from "../../../../lib/brand-name";
 import { langCode } from "../../../../lib/thread/creators";
-import { favourites, similarTaste, subsShort } from "../../../../lib/thread/reviewers";
+import { favourites, similarTaste, subsShort, FAVOURITE_MIN_YEAR } from "../../../../lib/thread/reviewers";
 import { reviewersData, profileOf } from "../../reviewers-data";
 import { Avatar } from "../../live/creator-reviews";
 import { ReviewerList, type ReviewerListRow } from "../../live/reviewer-list";
@@ -41,7 +41,7 @@ export default async function ReviewerPage({ params }: P) {
   const rows: ReviewerListRow[] = rv.reviews.map(r => { const p = d.product(r.productSlug)!;
     return { id: r.id, creator: rv.name, kind: r.kind, url: r.url, video: r.video, len: r.len, stance: r.stance, date: r.date, product: withoutYear(r.productName),
       href: p.href, pic: p.pic, shape: p.shape, line: r.line, tie: r.tie, disclosure: r.disclosure, price: d.price(r.productSlug, r.productName) }; });
-  const favs = favourites(rv, d.takes), similar = similarTaste(rv, d.list);
+  const favs = favourites(rv, d.takes, 3, FAVOURITE_MIN_YEAR[niche.id]), similar = similarTaste(rv, d.list);
   const total = rv.pos + rv.mix + rv.neg;
   const ld = { "@context": "https://schema.org", "@graph": [crumbs([{ name: "Creators", path: "/creators" }, { name: rv.name, path: `/creators/${slug}` }])] };
 
@@ -75,7 +75,7 @@ export default async function ReviewerPage({ params }: P) {
       </section>
 
       {favs.length > 0 && <section className="rvp-favs">
-        <div className="rvp-sec-h"><h2>Their favourites</h2><span>{`${ITEMS[0]!.toUpperCase()}${ITEMS.slice(1)} they loved, most praised in their review`}</span></div>
+        <div className="rvp-sec-h"><h2>Their favourites</h2><span>{`${FAVOURITE_MIN_YEAR[niche.id] ? `${FAVOURITE_MIN_YEAR[niche.id]} and newer ${ITEMS}` : `${ITEMS[0]!.toUpperCase()}${ITEMS.slice(1)}`} they loved, most praised in their review`}</span></div>
         <div className="rvp-fav-g">{favs.map((f, i) => { const p = d.product(f.productSlug)!, pr = d.price(f.productSlug, f.productName);
           return <div key={f.id} className="rvp-fav">
             <a className="pic" href={th(p.href)} tabIndex={-1} aria-hidden="true">{p.pic ? <img src={p.pic} alt="" loading="lazy"/> : <span className="th-ph"/>}</a>
