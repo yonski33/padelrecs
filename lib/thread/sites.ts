@@ -112,6 +112,11 @@ export const creatorPageOn = (nicheId: string) => CREATOR_PAGE[nicheId] ?? false
 export const CREATOR_HOME: Record<string, boolean> = { pickleball: true, padel: true, laptop: true, skin: true };
 export const creatorHomeOn = (nicheId: string) => creatorPageOn(nicheId) && (CREATOR_HOME[nicheId] ?? false);
 export const CREATOR_MIN_REVIEWS = 3;
+/** Creator (reviewer) pages at /creators and /creators/<slug> (owner 2026-11-27, PickleballRecs pilot): one per creator with
+ *  5+ live reviews (lib/thread/reviewers.ts). Padel, disc golf and skin switch on here once their profiles are filled
+ *  (db/creators/reviewer-profiles.json). */
+export const REVIEWER_PAGES: Record<string, boolean> = { pickleball: true };
+export const reviewerPagesOn = (nicheId: string) => REVIEWER_PAGES[nicheId] ?? false;
 /** Sites where every live product uses the creator page design, also under CREATOR_MIN_REVIEWS reviews (PickleballRecs, owner
  *  2026-11-27 via PM: "yes same for pickaball"; PadelRecs, owner
  *  2026-11-27: "all pages on the site to have the same look"). Such a thin page shows the head, the shops and the review

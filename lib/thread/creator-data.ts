@@ -66,3 +66,8 @@ export async function creatorHome(site: string): Promise<CreatorHome | null> {
   const r = await allPages(site);
   return r ? homeFromPages(r.v) : fixtureHome(site);
 }
+/** Every live creator review as the creator (reviewer) pages use it, or [] where the database can't be read. */
+export const reviewerRows = cache(async (site: string): Promise<import("./reviewers").ReviewerRow[]> => {
+  const r = await withDb(site, (db, m) => m.readReviewerRows(db, niche.schema));
+  return r?.v ?? [];
+});

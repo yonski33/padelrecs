@@ -10,6 +10,7 @@
 // page's ISR cache is untouched.
 import { Fragment, useEffect, useLayoutEffect, useMemo, useRef, useState, type ReactNode } from "react";
 import { atSecond, clock } from "../../../lib/thread/video-meta";
+import { th } from "../../../lib/thread/look";
 import { VideoProvider, clipOf, playClick, usePlay } from "./video-overlay";
 import { mentionNodes, useMentions } from "./mention-links";
 import { dayLabel, thumbOf } from "../../../lib/thread/web-sources";
@@ -30,7 +31,12 @@ type Src = CreatorReview["kind"] | null;
 /** A heart for Loved it only (Grok audit 2026-11-24: "♡ Not for me" read oddly); a neutral and a cross mark for the others. */
 const STANCE_MARK = { pos: "♡", mix: "~", neg: "×" } as const;
 
-export function Avatar({ name, kind, size }: { name: string; kind: CreatorReview["kind"]; size?: "sm" }) {
+/** `src`: the creator's own YouTube profile picture (db/creators/reviewer-profiles.json, owner 2026-11-27); the initials stay
+ *  as the fallback when there is none or it fails to load. */
+export function Avatar({ name, kind, size, src }: { name: string; kind: CreatorReview["kind"]; size?: "sm"; src?: string | null }) {
+  const [broken, setBroken] = useState(false);
+  if (src && !broken) return <span className={`thc-av pic${size ? ` ${size}` : ""}`} aria-hidden="true">
+    <img src={src} alt="" loading="lazy" referrerPolicy="no-referrer" onError={() => setBroken(true)}/></span>;
   return <span className={`thc-av${size ? ` ${size}` : ""}`} style={{ background: SOURCE_COLOR[kind] }} aria-hidden="true">{initials(name)}</span>;
 }
 
@@ -98,8 +104,8 @@ function Card({ x, lit, configs }: { x: ReviewEntry; lit: boolean; configs?: boo
     </div>}
     <div className="thc-card-b">
       <div className="thc-card-top">
-        <Avatar name={x.creator} kind={x.kind}/>
-        <a className="thc-name" href={x.channel} {...OUT}>{x.creator}</a>
+        <Avatar name={x.creator} kind={x.kind} src={x.avatar ?? null}/>
+        {x.profile ? <a className="thc-name" href={th(x.profile)}>{x.creator}</a> : <a className="thc-name" href={x.channel} {...OUT}>{x.creator}</a>}
         <span className="thc-meta">{`· ${platform(x)}${x.handle ? ` · ${x.handle}` : ""}${day ? ` · ${day}` : ""}`}</span>
         {!tt && <span className="thc-lang">{langCode(x.lang)}</span>}
         <span className={`thc-take ${x.stance}`}>{`${STANCE_MARK[x.stance]} ${STANCE_LABEL[x.stance]}`}</span>

@@ -63,6 +63,8 @@ export type CreatorReview = {
   /** "Long-term" or "First impressions", or null. */ note: string | null;
   /** A disclosed tie with this product's brand: "Works with <tie>". */ tie: string | null;
   stood: string | null; trade: string | null; compared: string | null;
+  /** The creator's own page on the site (/creators/<slug>) when they have one (lib/thread/reviewers.ts). */ profile?: string;
+  /** Their YouTube profile picture, when they have a creator page and one was fetched. */ avatar?: string | null;
   /** The config the reviewer tested (LaptopRecs, drizzle/0041): the short label, a note when the source covers two configs,
    *  the source's own words per field and a hand-set group; null on sites without configs. */
   config?: ReviewConfig | null;

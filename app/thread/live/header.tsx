@@ -6,7 +6,7 @@ import { useEffect, useRef, useState } from "react";
 import { th, GUIDE_PATHS, THREAD_DEFAULT } from "../../../lib/thread/look";
 import { RacketSearch } from "../../racket-search";
 import { niche, catalogPath } from "../../../lib/niche";
-import { accountSite } from "../../../lib/thread/sites";
+import { accountSite, reviewerPagesOn } from "../../../lib/thread/sites";
 import { useAccountState, signInHref } from "./use-account";
 
 /** The member zone's way in (PadelRecs accounts): "Sign in" for guests, the member's name when signed in, to /account. Read in
@@ -22,8 +22,10 @@ function AccountLink({ className }: { className?: string }) {
 
 /** The site's review flow (app/add-review): the header's "Add a review" (owner 2026-11-19, as on classic). */
 const ADD = "/add-review";
-export type Section = "rackets" | "rankings" | "brands" | "guides" | "stories" | null;
-const PADEL_NAV: [Exclude<Section, null>, string, string][] = [["rackets", niche.words.Many, catalogPath], ["rankings", "Rankings", "/rankings"], ["guides", "Guides", GUIDE_PATHS.racket]];
+export type Section = "rackets" | "rankings" | "creators" | "brands" | "guides" | "stories" | null;
+/** Creators sits after Rankings on sites with creator pages (owner mock 2026-11-27, lib/thread/sites.ts REVIEWER_PAGES). */
+const PADEL_NAV: [Exclude<Section, null>, string, string][] = [["rackets", niche.words.Many, catalogPath], ["rankings", "Rankings", "/rankings"],
+  ...(reviewerPagesOn(niche.id) ? [["creators", "Creators", "/creators"] as [Exclude<Section, null>, string, string]] : []), ["guides", "Guides", GUIDE_PATHS.racket]];
 /** StackRecs (no guides yet): Tools and Rankings. "rackets" stays the catalogue's section key. */
 const STACK_NAV: [Exclude<Section, null>, string, string][] = [["rackets", "Tools", catalogPath], ["rankings", "Rankings", "/rankings"]];
 /** AudioRecs: Headphones, Rankings, Brands, Guides. */

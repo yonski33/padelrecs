@@ -5,7 +5,7 @@
 // PickleballRecs (plans/PICKLEBALL-THREAD-PLAN.md) runs the same pages, previewed with ?look=thread until its flag is on.
 import { niche, catalogPath } from "../niche";
 
-import { threadDefaultFor, ELBOW_SLUG, storiesSite, v3Site, questionsSite, creatorPlainSite } from "./sites";
+import { threadDefaultFor, ELBOW_SLUG, storiesSite, v3Site, questionsSite, creatorPlainSite, reviewerPagesOn } from "./sites";
 export { THREAD_DEFAULTS, threadDefaultFor, threadSite, THREAD_MOVED, ELBOW_SLUG } from "./sites";
 /** The running site's flag. */
 export const THREAD_DEFAULT = threadDefaultFor(niche.id);
@@ -150,6 +150,13 @@ export function threadPath(pathname: string, catalog = catalogPath, nicheId = ni
     if (p === "/stories") return "/thread/stories";
     const story = /^\/stories\/([a-z0-9-]{1,80})(\/edit)?$/.exec(p);
     if (story) return `/thread/stories/${story[1]}${story[2] ?? ""}`;
+  }
+  // Creator (reviewer) pages (lib/thread/sites.ts REVIEWER_PAGES): the index and one page per creator. The Thread route is
+  // /thread/reviewers, since /thread/creators is the product creator page.
+  if (reviewerPagesOn(nicheId)) {
+    if (p === "/creators") return "/thread/reviewers";
+    const who = /^\/creators\/([a-z0-9-]{1,80})$/.exec(p);
+    if (who) return `/thread/reviewers/${who[1]}`;
   }
   if (p === "/brands") return "/thread/brands";
   const brand = /^\/brands\/([a-z0-9-]+)$/.exec(p);
