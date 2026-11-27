@@ -123,3 +123,5 @@ body:has(.rvp) .rvp :is(a.rvp-sim-c, a.rvp-ix-c) { display: flex; gap: 12px; ali
 /* The creator's YouTube picture in place of the initials. */
 .rvp .thc-av.pic, .rvp-av .thc-av.pic { background: #fff !important; overflow: hidden; }
 .rvp .thc-av.pic img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.rvp-aff { margin: -18px 0 0; font-size: 13px; color: var(--ink2, #666); }
+body:has(.rvp) .rvp .rvp-aff a { text-decoration: underline; text-underline-offset: 3px; color: var(--ink2, #666); }

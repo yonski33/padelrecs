@@ -41,7 +41,7 @@ export default async function ReviewerPage({ params }: P) {
   const loved = (s: string) => d.takes.get(s)?.pos ?? 0;
   const rows: ReviewerListRow[] = rv.reviews.map(r => { const p = d.product(r.productSlug)!;
     return { id: r.id, creator: rv.name, kind: r.kind, url: r.url, video: r.video, len: r.len, stance: r.stance, date: r.date, product: withoutYear(r.productName),
-      href: p.href, shape: p.shape, line: r.line, tie: r.tie, disclosure: r.disclosure, loved: loved(r.productSlug), price: d.price(r.productSlug) }; });
+      href: p.href, shape: p.shape, line: r.line, tie: r.tie, disclosure: r.disclosure, loved: loved(r.productSlug), price: d.price(r.productSlug, r.productName) }; });
   const favs = favourites(rv, d.takes), similar = similarTaste(rv, d.list);
   const total = rv.pos + rv.mix + rv.neg;
   const ld = { "@context": "https://schema.org", "@graph": [crumbs([{ name: "Creators", path: "/creators" }, { name: rv.name, path: `/creators/${slug}` }])] };
@@ -50,6 +50,9 @@ export default async function ReviewerPage({ params }: P) {
     <JsonLd data={ld}/>
     <main className="th-main rvp">
       <nav className="rvp-crumbs" aria-label="Breadcrumb"><a href={th("/creators")}>Creators</a><span aria-hidden="true">›</span><span>{rv.name}</span></nav>
+      {/* The page's price links can be affiliate links (Amazon, owner 2026-11-27): the note sits at the top. */}
+      {(rows.some(r => r.price?.rel.includes("sponsored")) || favs.some(f => d.price(f.productSlug, f.productName)?.rel.includes("sponsored"))) &&
+        <p className="rvp-aff">{`Some links on this page are affiliate links: ${niche.site.name} may earn a small commission. `}<a href={th("/affiliate-disclosure")}>Learn more</a></p>}
       <section className="rvp-head">
         <div className="rvp-who">
           <span className="rvp-av"><Avatar name={rv.name} kind={rv.kind} src={pf?.avatar ?? null}/></span>
@@ -74,7 +77,7 @@ export default async function ReviewerPage({ params }: P) {
 
       {favs.length > 0 && <section className="rvp-favs">
         <div className="rvp-sec-h"><h2>Their favourites</h2><span>{`The ${ITEMS} they loved, most reviewed first`}</span></div>
-        <div className="rvp-fav-g">{favs.map((f, i) => { const p = d.product(f.productSlug)!, pr = d.price(f.productSlug);
+        <div className="rvp-fav-g">{favs.map((f, i) => { const p = d.product(f.productSlug)!, pr = d.price(f.productSlug, f.productName);
           return <div key={f.id} className="rvp-fav">
             <a className="pic" href={th(p.href)} tabIndex={-1} aria-hidden="true">{p.pic ? <img src={p.pic} alt="" loading="lazy"/> : <span className="th-ph"/>}</a>
             <span className="b"><small>{`#${i + 1}`}</small><a className="nm" href={th(p.href)}>{withoutYear(f.productName)}</a><span className="ln">{f.line}</span>
