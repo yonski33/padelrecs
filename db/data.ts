@@ -43,13 +43,15 @@ export function forgetCatalog() { forgetKept(); bumpEditStamp(); }
 const PHOTO_TO_LIST = new Set(["pickleball"]);
 /** Sites that keep thin products off lists and search (lib/thread/padel-ready.ts): padel 2026-11-26 (#718), pickleball 2026-11-26
  *  (owner: "paddles we cant find enough reviews for will be out of the catalog"). */
-export const THIN_HIDE = new Set(["padel", "pickleball", "discgolf", "skin"]);
+export const THIN_HIDE = new Set(["padel", "pickleball", "discgolf", "skin", "coffee"]);
 /** DiscGolfRecs and SkinRecs (owner 2026-11-27, "Yes, hide from lists"): only products with nothing at all come off lists,
  *  so their bar is 1 review (creator, player, or a non-Reddit web review shown as a card) or 3 votes; the 30-day new-product
  *  exemption is the same. Reddit posts sit in the Reddit box, not as cards, so they don't count here. */
 /** Sites where a checked creator card replaces the old web row for the same video or page on every product with cards. */
-const REPLACE_ALL = new Set(["discgolf", "skin"]);
-const THIN_READY: Record<string, typeof PADEL_READY> = { discgolf: { reviews: 1, votes: 3, newDays: 30 }, skin: { reviews: 1, votes: 3, newDays: 30 } };
+const REPLACE_ALL = new Set(["discgolf", "skin", "coffee"]);
+const THIN_READY: Record<string, typeof PADEL_READY> = { discgolf: { reviews: 1, votes: 3, newDays: 30 }, skin: { reviews: 1, votes: 3, newDays: 30 },
+  // CoffeeRecs (2026-11-28, the v3 port): the same rule as disc golf and skin.
+  coffee: { reviews: 1, votes: 3, newDays: 30 } };
 export const catalog = cache(async function catalog(connection?:ReturnType<typeof getDb>) {
  return connection ? loadCatalog(connection) : kept_.get();
 });

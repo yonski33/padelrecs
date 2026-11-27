@@ -31,14 +31,16 @@ const SKIN = niche.id === "skin";
 /** LaptopRecs (owner 2026-11-24): no curated lists; Category in place of Shape and no Feel (its rows carry the category as
  *  `shape`); its own quick match (use · want · quiet fans, live/laptop-match.tsx). */
 const LT = niche.id === "laptop";
-export const SORTS: [Sort, string][] = AUDIO || SR || TN || DG || SKIN || LT ? [["loved", "Most loved"], ["new", "Newest"], ["match", "By your match"]]
+/** CoffeeRecs (2026-11-28): as LaptopRecs, Category in place of Shape, no Feel, its own quick match (live/coffee-match.tsx). */
+const CF = niche.id === "coffee";
+export const SORTS: [Sort, string][] = AUDIO || SR || TN || DG || SKIN || LT || CF ? [["loved", "Most loved"], ["new", "Newest"], ["match", "By your match"]]
   : [["picks", `${niche.site.name} picks`], ["loved", "Most loved"], ["new", "Newest"], ["match", "By your match"]];
 const BASE_SORT: Sort = SORTS[0][0];
 /** The home's menu (owner 2026-11-21: "PadelRecs picks" read as random there): Most loved (default), Most opinions, and By
  *  your match once a pick is set. The catalogue keeps SORTS. */
 export const HOME_SORTS: [Sort, string][] = [["loved", "Most loved"], ["opinions", "Most opinions"], ["match", "By your match"]];
-const FEELS = LT ? [] : AUDIO ? ["Warm", "Balanced", "Bright"] : DG ? ["Understable", "Stable", "Overstable"] : SR ? ["Direct drive", "Belt", "Gear"] : TN ? ["Soft", "Medium", "Crisp"] : SKIN ? ["Light", "Medium", "Rich"] : ["Soft", "Medium", "Hard"];
-const GROUP_TITLES: Record<Key, string> = LT ? { shape: "Category", feel: "Feel", brand: "Brand" } : AUDIO ? { shape: "Type", feel: "Sound", brand: "Brand" } : DG ? { shape: "Type", feel: "Stability", brand: "Brand" } : SR ? { shape: "Type", feel: "Drive", brand: "Brand" } : TN ? { shape: "Head size", feel: "Feel", brand: "Brand" } : SKIN ? { shape: "Type", feel: "Texture", brand: "Brand" } : { shape: "Shape", feel: "Feel", brand: "Brand" };
+const FEELS = LT || CF ? [] : AUDIO ? ["Warm", "Balanced", "Bright"] : DG ? ["Understable", "Stable", "Overstable"] : SR ? ["Direct drive", "Belt", "Gear"] : TN ? ["Soft", "Medium", "Crisp"] : SKIN ? ["Light", "Medium", "Rich"] : ["Soft", "Medium", "Hard"];
+const GROUP_TITLES: Record<Key, string> = LT || CF ? { shape: "Category", feel: "Feel", brand: "Brand" } : AUDIO ? { shape: "Type", feel: "Sound", brand: "Brand" } : DG ? { shape: "Type", feel: "Stability", brand: "Brand" } : SR ? { shape: "Type", feel: "Drive", brand: "Brand" } : TN ? { shape: "Head size", feel: "Feel", brand: "Brand" } : SKIN ? { shape: "Type", feel: "Texture", brand: "Brand" } : { shape: "Shape", feel: "Feel", brand: "Brand" };
 /** AudioRecs' match (lib/audio-match.ts), worked out by the page's own hook (live/audio-match.tsx) and handed to the list. */
 export type ListMatch = { mine: boolean; pcts: Map<string, number | null> | null; picks: AudioPicks; set: (p: Partial<AudioPicks>) => void; bar?: undefined }
   /** A site's own match bar in the same classes (SkinRecs, live/skin-match.tsx). */

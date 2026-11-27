@@ -57,5 +57,10 @@ const SITES: Record<string, Words> = {
     reviews: "owner reviews", Reviews: "Owner reviews", traitsTitle: "How does it hold up?", fitTitle: "Is it right for me?", opinions: "owner opinions",
     lovers: "Owners", triedIt: "Own one?", played: "used", item: "laptop", items: "laptops", usedIt: "Own one?", community: "The laptop community",
     tagline: "Real opinions, votes, and comments on popular laptops." },
+  // CoffeeRecs on the v3 pages (2026-11-28): "owners", as LaptopRecs ("Loved by 12 owners", "Own one?").
+  coffee: { person: "owner", people: "owners", People: "Owners", Person: "Owner", score: "owner score", Score: "Owner score",
+    reviews: "owner reviews", Reviews: "Owner reviews", traitsTitle: "How does it work for you?", fitTitle: "Is it right for me?", opinions: "owner opinions",
+    lovers: "Owners", triedIt: "Own one?", played: "used", item: "product", items: "products", usedIt: "Own one?", community: "The coffee community",
+    tagline: "Real opinions, votes, and comments on popular coffee gear." },
 };
 export const W: Readonly<Words> = SITES[niche.id] ?? PADEL;

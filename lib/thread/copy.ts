@@ -46,7 +46,8 @@ import { AUDIO_GUIDES, AUDIO_GUIDE_LINK_LABELS, audioInfo } from "./copy-audio";
 import { SR_GUIDES, SR_GUIDE_LINK_LABELS, simracingInfo } from "./copy-simracing";
 import { TN_GUIDES, TN_GUIDE_LINK_LABELS, tennisInfo } from "./copy-tennis";
 import { LT_GUIDES, LT_GUIDE_LINK_LABELS, laptopInfo } from "./copy-laptop";
-const PICKLEBALL = niche.id === "pickleball", SKIN = niche.id === "skin", DG = niche.id === "discgolf", AUDIO = niche.id === "audio", SR = niche.id === "simracing", TN = niche.id === "tennis", LT = niche.id === "laptop";
+import { CF_GUIDES, CF_GUIDE_LINK_LABELS, coffeeInfo } from "./copy-coffee";
+const PICKLEBALL = niche.id === "pickleball", SKIN = niche.id === "skin", DG = niche.id === "discgolf", AUDIO = niche.id === "audio", SR = niche.id === "simracing", TN = niche.id === "tennis", LT = niche.id === "laptop", CF = niche.id === "coffee";
 
 export type GuideStep = { title: string; body: string };
 export type GuideCopy = {
@@ -86,7 +87,7 @@ export const GUIDE_UI = {
   moreGuides: "More guides",
   footerTagline: niche.id === "skin" ? "a free, ad-light side project · built by people who love skincare"
     : niche.id === "discgolf" ? "a free, ad-light side project · built by disc golfers" : niche.id === "audio" ? "a free, ad-light side project · built by listeners"
-    : niche.id === "simracing" ? "a free, ad-light side project · built by sim racers" : niche.id === "laptop" ? "a free, ad-light side project · built by laptop owners" : `a free, ad-light side project · built by ${niche.id} players`, // padel, pickleball
+    : niche.id === "simracing" ? "a free, ad-light side project · built by sim racers" : niche.id === "laptop" ? "a free, ad-light side project · built by laptop owners" : niche.id === "coffee" ? "a free, ad-light side project · built by home baristas" : `a free, ad-light side project · built by ${niche.id} players`, // padel, pickleball
   footerLinks: ["About", "How the score works", "Affiliate disclosure", "Contact"],
 } as const;
 
@@ -579,9 +580,9 @@ const PADEL_INFO: InfoCopy[] = [
 ];
 
 /** The running site's guides, "More guides" labels and info pages (PickleballRecs: lib/thread/copy-pickleball.ts). */
-export const GUIDES: GuideCopy[] = LT ? LT_GUIDES : PICKLEBALL ? PB_GUIDES : SKIN ? SKIN_GUIDES : DG ? DG_GUIDES : AUDIO ? AUDIO_GUIDES : SR ? SR_GUIDES : TN ? TN_GUIDES : PADEL_GUIDES;
-export const GUIDE_LINK_LABELS: Record<GuideCopy["key"], string> = LT ? LT_GUIDE_LINK_LABELS : PICKLEBALL ? PB_GUIDE_LINK_LABELS : SKIN ? SKIN_GUIDE_LINK_LABELS
+export const GUIDES: GuideCopy[] = CF ? CF_GUIDES : LT ? LT_GUIDES : PICKLEBALL ? PB_GUIDES : SKIN ? SKIN_GUIDES : DG ? DG_GUIDES : AUDIO ? AUDIO_GUIDES : SR ? SR_GUIDES : TN ? TN_GUIDES : PADEL_GUIDES;
+export const GUIDE_LINK_LABELS: Record<GuideCopy["key"], string> = CF ? CF_GUIDE_LINK_LABELS : LT ? LT_GUIDE_LINK_LABELS : PICKLEBALL ? PB_GUIDE_LINK_LABELS : SKIN ? SKIN_GUIDE_LINK_LABELS
   : DG ? DG_GUIDE_LINK_LABELS : AUDIO ? AUDIO_GUIDE_LINK_LABELS : SR ? SR_GUIDE_LINK_LABELS : TN ? TN_GUIDE_LINK_LABELS : PADEL_GUIDE_LINK_LABELS;
-export const INFO: InfoCopy[] = LT ? laptopInfo(PADEL_INFO) : PICKLEBALL ? pickleballInfo(PADEL_INFO) : SKIN ? skinInfo(PADEL_INFO) : DG ? discgolfInfo(PADEL_INFO) : AUDIO ? audioInfo(PADEL_INFO) : SR ? simracingInfo(PADEL_INFO) : TN ? tennisInfo(PADEL_INFO) : PADEL_INFO;
+export const INFO: InfoCopy[] = CF ? coffeeInfo(PADEL_INFO) : LT ? laptopInfo(PADEL_INFO) : PICKLEBALL ? pickleballInfo(PADEL_INFO) : SKIN ? skinInfo(PADEL_INFO) : DG ? discgolfInfo(PADEL_INFO) : AUDIO ? audioInfo(PADEL_INFO) : SR ? simracingInfo(PADEL_INFO) : TN ? tennisInfo(PADEL_INFO) : PADEL_INFO;
 /** Padel's own copy, for tests. */
 export const PADEL_COPY = { GUIDES: PADEL_GUIDES, GUIDE_LINK_LABELS: PADEL_GUIDE_LINK_LABELS, INFO: PADEL_INFO };

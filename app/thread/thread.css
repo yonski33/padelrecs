@@ -2398,6 +2398,21 @@ body:has(.th) .th a.th-wv-chip:hover { border-color: var(--chip); }
 .th-older summary { cursor: pointer; font-weight: 600; }
 .th-older ul { margin: 8px 0 0; padding-left: 18px; columns: 2; }
 @media (max-width: 600px) { .th-older ul { columns: 1; } }
+/* CoffeeRecs (2026-11-28, the v3 port): PickleballRecs' look (.th-pb, its fonts and layout) in coffee's own colours: dark-roast
+   ink and a crema accent (lib/niche/coffee.ts theme), on a warm cream page. Scoped to .th-cf (app/thread/shell.tsx). */
+body:has(.th-cf) { background: #fbf7f2; }
+.th.th-pb.th-cf {
+  --ink: #2b1a12; --bg: #fbf7f2; --card: #fffdfa; --soft: #f8f1ea; --frame: #f4ebe2;
+  --ink2: #4d3a30; --body: #3a2a22; --muted: #6f5e55;
+  --div: #ece3db; --line: #e4d8ce; --chip: #d2c3b7; --box: #dccdc1;
+  --lime: oklch(0.82 0.11 60); --lime-box: oklch(0.97 0.03 70); --lime-bar: oklch(0.88 0.09 60); --lime-chip: oklch(0.92 0.07 65);
+  --hover: oklch(0.42 0.08 45); --idle: #a8988e; --blog: oklch(0.94 0.05 70);
+}
+.th-cf .th-ph, .th-cf .th-ph::after { background: #e4d8ce; }
+body:has(.th-cf) .th-cf a.th-add:hover, body:has(.th-cf) .th-cf a.th-add:focus-visible, body:has(.th-cf) .th-cf a.th-add-plus:hover,
+  .th-cf button.th-post:not(:disabled):hover { background: #4a2511; border-color: #4a2511; }
+.th-cf button.th-post:disabled { background: #f1e9e1; color: #6f5e55; }
+.th-cf .th-cm-act .arrow:not([aria-pressed="true"]) { color: #6f5e55; }
 
 /* Site accents (owner 2026-11-28: padel and disc golf were showing pickleball's yellow on buttons, badges and chips). Each
    site's own accent, from its logo dot (--lime): PadelRecs lime, DiscGolfRecs peach. --brand-acc is the fill for buttons,

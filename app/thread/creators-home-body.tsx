@@ -50,7 +50,9 @@ const BOARD_ICON: Record<string, keyof typeof ICON> = { sweet: "target", arm: "a
   // PadelRecs' boards (lib/thread/top-picks.ts PADEL_CATS).
   net: "ctrl", intermediate: "target", defence: "shield", trampoline: "spin",
   // SkinRecs' boards (lib/thread/top-picks.ts SKIN_CATS).
-  gentle: "shield", dry: "target", oily: "target", rich: "ctrl", light: "ctrl", dewy: "spin", matte: "spin", makeup: "target", value: "bolt" };
+  gentle: "shield", dry: "target", oily: "target", rich: "ctrl", light: "ctrl", dewy: "spin", matte: "spin", makeup: "target", value: "bolt",
+  // CoffeeRecs' boards (lib/thread/top-picks.ts COFFEE_CATS).
+  taste: "target", easy: "shield", consistent: "spin", build: "ctrl", quiet: "shield" };
 const PILL_BG = { pos: "oklch(0.93 0.08 145)", mix: "oklch(0.95 0.08 95)", neg: "oklch(0.93 0.05 35)" } as const;
 const TYPE_BG: Record<string, string> = { Widebody: "oklch(0.94 0.06 125)", Standard: "oklch(0.94 0.04 250)", Elongated: "oklch(0.93 0.05 35)", Hybrid: "oklch(0.94 0.04 250)",
   // PadelRecs' shapes.
@@ -92,7 +94,7 @@ export async function CreatorsHomeBody() {
 
   return <Shell>
     <main className="tch">
-      <CreatorsHomeTop rows={rows} extra={extra} curated={curated} added={d.added} total={total} brands={brands} {...(d.laptop ? { laptop: d.laptop } : {})} {...(d.skin ? { skin: d.skin } : {})}
+      <CreatorsHomeTop rows={rows} extra={extra} curated={curated} added={d.added} total={total} brands={brands} {...(d.laptop ? { laptop: d.laptop } : {})} {...(d.skin ? { skin: d.skin } : {})} {...(d.coffee ? { coffee: d.coffee } : {})}
         after={<>
           {bd.length > 0 && <section key="tp" className="tch-card tch-sec">
             <div className="tch-sec-h"><h2><svg width="28" height="26" viewBox="0 0 30 28" fill="none" stroke="currentColor" strokeWidth="2" strokeLinejoin="round" aria-hidden="true"><path d="M15 3C8 3 3 7.3 3 12.5c0 2.6 1.3 5 3.4 6.7L5 25l6.3-3.2c1.2.3 2.4.5 3.7.5 7 0 12-4.3 12-9.8S22 3 15 3z"/><g fill="currentColor" stroke="none"><circle cx="10" cy="12.5" r="1.5"/><circle cx="15" cy="12.5" r="1.5"/><circle cx="20" cy="12.5" r="1.5"/></g></svg>{`Top picks by ${W.people}`}

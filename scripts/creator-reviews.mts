@@ -21,8 +21,8 @@ import { niche } from "../lib/niche";
 import { forSchema, migrationsTable } from "../db/migrations";
 import { slugify } from "../lib/slug";
 
-const SITES = new Set(["pickleball", "skin", "padel", "laptop", "discgolf"]);
-if (!SITES.has(niche.id)) throw new Error(`Creator reviews are on PickleballRecs, SkinRecs, PadelRecs, LaptopRecs and DiscGolfRecs only: run with NICHE=pickleball, skin, padel, laptop or discgolf (got ${niche.id}).`);
+const SITES = new Set(["pickleball", "skin", "padel", "laptop", "discgolf", "coffee"]);
+if (!SITES.has(niche.id)) throw new Error(`Creator reviews are on PickleballRecs, SkinRecs, PadelRecs, LaptopRecs, DiscGolfRecs and CoffeeRecs only: run with NICHE=pickleball, skin, padel, laptop, discgolf or coffee (got ${niche.id}).`);
 const LAPTOP = niche.id === "laptop";
 const S = niche.schema;
 const args = process.argv.slice(2), cmd = args[0];

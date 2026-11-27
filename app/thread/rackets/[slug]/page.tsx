@@ -7,6 +7,7 @@ import { racketData } from "../../racket-data";
 import { playersWord } from "../../../../lib/thread/web-sources";
 import { AudioFitCard } from "../../live/audio-match";
 import { LaptopFitCard } from "../../live/laptop-match";
+import { CoffeeFitCard } from "../../live/coffee-match";
 import { NewerVersion } from "../../newer-version";
 import { padelListData } from "../../padel-list-data";
 import { audioGroupsFor } from "../../../../lib/thread/traits";
@@ -77,6 +78,15 @@ const SKIN = niche.id === "skin", DG = niche.id === "discgolf", AUDIO = niche.id
 /** LaptopRecs (owner 2026-11-24, PickleballRecs as the template): the v3 page under its category, its specs, tag-based TL;DR
  *  lines, its nine vote groups and its own fit card (live/laptop-match.tsx). No score. */
 const LT = niche.id === "laptop";
+/** CoffeeRecs (2026-11-28, the v3 port): the v3 page under its category, its specs (no "Released": its year column is a
+ *  placeholder until the catalogue year fix), tag-based TL;DR lines, its own fit card (live/coffee-match.tsx). No score. */
+const CF = niche.id === "coffee";
+/** CoffeeRecs' TL;DR words per tag (lib/niche/coffee.ts tags), as LaptopRecs' below. */
+const COFFEE_SAYS: Record<string, string> = { "great espresso": "praise the espresso it makes", "great taste": "praise the taste in the cup", consistent: "call it consistent",
+  "easy to use": "find it easy to use", "fast heat-up": "like how fast it heats up", "great steam": "praise the steam for milk", "low retention": "say little coffee stays behind in it",
+  quiet: "call it quiet", "well built": "say it is well built", "great value": "call it good value", inconsistent: "find it inconsistent", messy: "find it messy",
+  loud: "find it loud", static: "complain about static", "durability issues": "report it breaking or wearing out", overpriced: "find it overpriced",
+  "learning curve": "say it takes time to learn" };
 /** The v3 sites show no score (owner 2026-11-22 sweep): an AudioRecs product with no audio-match data still gets this page, so
  *  its score badges hide here too. */
 const V3 = v3Site(niche.id);
@@ -146,7 +156,7 @@ export default async function ThreadRacket({ params }: P) {
   const skinAttrs = sk?.attrs.get(r.id), tex = skinAttrs?.scores.texture, fin = skinAttrs?.scores.finish;
   const skinTex = tex && tex.n >= 3 ? (tex.score >= 62 ? "Rich" : tex.score <= 38 ? "Light" : null) : null;
   const skinFin = fin && fin.n >= 3 ? (fin.score >= 62 ? "Dewy" : fin.score <= 38 ? "Matte" : null) : null;
-  const skinType = (SKIN || DG || AUDIO || SR || LT) && r.shape ? (niche.typePages ?? []).find(t => t.shape === r.shape) ?? null : null;
+  const skinType = (SKIN || DG || AUDIO || SR || LT || CF) && r.shape ? (niche.typePages ?? []).find(t => t.shape === r.shape) ?? null : null;
   // DiscGolfRecs (its disc mock): the flight numbers as pills, the stability they give, and the engine's stability in its words.
   const flight = DG ? flightOf(r.weight) : null, stab = flight ? stabilityOfFlight(flight) : null;
   const dgStyle = DG && style ? SITE_FIT.styleLabels[style] : null;
@@ -183,7 +193,7 @@ export default async function ThreadRacket({ params }: P) {
   const specsBox = specs.length > 0 && <section className="th-card th-specs th-only-m">{specs.map(([k, v]) => <span key={k} className="th-kv"><span>{k}</span><strong>{v}</strong></span>)}</section>;
   // The live page's structured data: its breadcrumbs (the catalogue, the brand, the racket).
   const ld = { "@context": "https://schema.org", "@graph": [crumbs([{ name: catalogLabel, path: catalogPath }, ...(brand ? [{ name: brand.name, path: `/brands/${brand.slug}` }] : []), { name: r.name, path: productHref(r) }])] };
-  const crumbsEl = <div className="th-crumbs"><a href={th(catalogPath)}>{catalogLabel}</a>{SKIN || DG || AUDIO || SR || LT ? skinType && <><span>/</span><a href={th(`/${skinType.slug}`)}>{AUDIO ? audioOf(ctx)?.wire.get(r.id)?.kind ?? skinType.label : skinType.label}</a></> : style && <><span>/</span><a href={th(STYLE_HREF[style])}>{STYLE_WORD[style]}</a></>}{brand && <><span>/</span><a href={`/brands/${brand.slug}`}>{brand.name}</a></>}</div>;
+  const crumbsEl = <div className="th-crumbs"><a href={th(catalogPath)}>{catalogLabel}</a>{SKIN || DG || AUDIO || SR || LT || CF ? skinType && <><span>/</span><a href={th(`/${skinType.slug}`)}>{AUDIO ? audioOf(ctx)?.wire.get(r.id)?.kind ?? skinType.label : skinType.label}</a></> : style && <><span>/</span><a href={th(STYLE_HREF[style])}>{STYLE_WORD[style]}</a></>}{brand && <><span>/</span><a href={`/brands/${brand.slug}`}>{brand.name}</a></>}</div>;
   const lineEl = line.length >= 2 && brand ? <section className="th-card th-sec">
           <div className="th-head-row"><h2 className="th-h2">{`More from ${brand.name}`}</h2><a className="th-link-b" href={`/brands/${brand.slug}`}>{`All ${brand.name} ${niche.words.many} →`}</a></div>
           <div className="th-also">{line.map(x => <Mini key={x.id} x={x} small/>)}</div>
@@ -203,20 +213,23 @@ export default async function ThreadRacket({ params }: P) {
   // LaptopRecs: its fit card compares with the laptops of the same category (padelListData's quick match inputs).
   const lw = LT ? (await padelListData()).laptop ?? [] : [], ltSame = lw.filter(w => w.category === r.shape && (w.id === r.id || rows.get(w.id)?.current !== false));
   const ltLinks = Object.fromEntries(ltSame.flatMap(w => { const t = rows.get(w.id); return t ? [[w.id, { name: t.name, href: t.href }]] : []; }));
-  if (niche.id === "padel" || (au && aw) || SR || TN || PB || DG || SKIN || LT) {
+  // CoffeeRecs: the same, with the products of its category (padelListData's coffee quick match inputs).
+  const cw = CF ? (await padelListData()).coffee ?? [] : [], cfSame = cw.filter(w => w.category === r.shape && (w.id === r.id || rows.get(w.id)?.current !== false));
+  const cfLinks = Object.fromEntries(cfSame.flatMap(w => { const t = rows.get(w.id); return t ? [[w.id, { name: t.name, href: t.href }]] : []; }));
+  if (niche.id === "padel" || (au && aw) || SR || TN || PB || DG || SKIN || LT || CF) {
     // "Released": the year in the name ("Head Radical MP 2023"), else the year field, except on TennisRecs and SimRacingRecs,
     // whose year field is a placeholder (2026 on every product, owner report 2026-11-22): there the row is left out.
     const released = r.name.match(/\b(20\d\d)\b/)?.[1] ?? (SR || (TN && !tennisYearKnown(r.slug)) ? null : r.year ? String(r.year) : null);
-    const v7Specs = (DG || SKIN ? specs : LT ? niche.specs.map(s => [s.label, r[s.column]]) : SR || TN || PB ? [...niche.specs.map(s => [s.label, r[s.column]]), ["Released", released]] : aw ? [["Type", r.balance], ["Connection", r.weight], ["Driver", r.core], ["Noise cancelling", aw.anc ? "Yes" : aw.wireless ? "No" : null], ["Notes", r.surface]] : [["Weight", r.weight], ["Shape", r.shape], ["Balance", r.balance], ["Feel", row?.feel ?? null], ["Face", r.surface], ["Released", r.year ? String(r.year) : null],
+    const v7Specs = (DG || SKIN ? specs : LT || CF ? niche.specs.map(s => [s.label, r[s.column]]) : SR || TN || PB ? [...niche.specs.map(s => [s.label, r[s.column]]), ["Released", released]] : aw ? [["Type", r.balance], ["Connection", r.weight], ["Driver", r.core], ["Noise cancelling", aw.anc ? "Yes" : aw.wireless ? "No" : null], ["Notes", r.surface]] : [["Weight", r.weight], ["Shape", r.shape], ["Balance", r.balance], ["Feel", row?.feel ?? null], ["Face", r.surface], ["Released", r.year ? String(r.year) : null],
       ...(((specNotes as unknown as Record<string, Record<string, [string, string][]>>)[niche.id] ?? {})[r.slug] ?? [])] as [string, string | null][]).filter((x): x is [string, string] => !!x[1]);
     // TL;DR with no counts (owner 2026-11-21): the written one as is; else the page's own lines without "N players mention
     // it", else the most-mentioned tags as "Players often say…". Claims still need 5+ reviews behind them (as before).
     const plain = (t: string) => marked(t).map(x => x.text).join("").trim();
     const pc = writtenTldr(r.reviewSummary) ? null : pageContent(r.slug), sum = pc || writtenTldr(r.reviewSummary) || !ctx ? null : summary(ctx.data, r.id);
-    const says = (t: string) => AUDIO && AUDIO_SAYS[t] ? `${W.People} often ${AUDIO_SAYS[t]}.` : LT && LAPTOP_SAYS[t] ? `${W.People} often ${LAPTOP_SAYS[t]}.` : `${W.People} often ${tagSays(t)}.`;
+    const says = (t: string) => AUDIO && AUDIO_SAYS[t] ? `${W.People} often ${AUDIO_SAYS[t]}.` : LT && LAPTOP_SAYS[t] ? `${W.People} often ${LAPTOP_SAYS[t]}.` : CF && COFFEE_SAYS[t] ? `${W.People} often ${COFFEE_SAYS[t]}.` : `${W.People} often ${tagSays(t)}.`;
     // AudioRecs: the tags every review carries, all time (its 12-month window leaves most pages under the 5-review rule).
     // SkinRecs the same (its old page counted every opinion's tags too), with no counts in the lines.
-    const audioTags = (au || SKIN || LT) && !pc && !writtenTldr(r.reviewSummary) && ctx ? (() => {
+    const audioTags = (au || SKIN || LT || CF) && !pc && !writtenTldr(r.reviewSummary) && ctx ? (() => {
       const n = new Map<string, number>();
       for (const x of [...ctx.data.reviews.filter(v => v.racketId === r.id), ...ctx.data.external.filter(e => e.racketId === r.id)]) for (const t of new Set(x.tags ?? [])) n.set(t, (n.get(t) ?? 0) + 1);
       const top = (tone: "pos" | "neg") => [...n].filter(([t, c]) => c >= 5 && tagTone(t) === tone).sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0])).map(([t]) => t);
@@ -233,7 +246,7 @@ export default async function ThreadRacket({ params }: P) {
     // The community sidebar (owner OK 2026-11-21): this week's counts, the newest question, who plays it (votes only), and
     // the rackets it is compared with (its compare pages' partners, then the engine's similar rackets).
     const groupOf = (k: string) => tc ? traitGroup(tc, r.id, k) : null;
-    const who = aw || SKIN ? null : whoPlays({ level: groupOf("level"), plays_like: groupOf("plays_like"), side: groupOf("side") }, { withLevel: true });
+    const who = aw || SKIN || LT || CF ? null : whoPlays({ level: groupOf("level"), plays_like: groupOf("plays_like"), side: groupOf("side") }, { withLevel: true });
     const cm = await communityFor(r.id);
     const partners = (ctx ? comparePairs(ctx.data).partners.get(r.id) ?? [] : []).map(x => rows.get(x.id)).filter((x): x is NonNullable<typeof x> => !!x && x.current !== false);
     // LaptopRecs: older generations never list (lib/thread/laptop-lines.ts), here or in the similar list below.
@@ -247,9 +260,9 @@ export default async function ThreadRacket({ params }: P) {
     })() : null;
     return <Shell active="rackets">
       <JsonLd data={ld}/>
-      <RacketV7b id={r.id} title={r.year && bare !== name ? `${bare} (${r.year})` : name} model={model} crumbs={LT ? <>{crumbsEl}<NewerVersion slug={r.slug}/></> : crumbsEl} tags={aw ? audioTagsOf(aw, r.weight) : DG && flight ? [...tags, `${flight.speed} | ${flight.glide} | ${flight.turn} | ${flight.fade}`] : tags} lime={aw ? aw.anc : !!style} row={row} judged={judged} {...(niche.id === "padel" ? { offers: await padelOffers(r.slug) } : {})} {...(aw && au ? audioPageProps(r.id, aw, au, rows, ctx) : SR ? srPageProps(r.id, r.shape) : SKIN ? { fit: <SkinFitCard id={r.id} wire={skinWire} links={skinLinks}/> } : LT ? { fit: <LaptopFitCard id={r.id} wire={ltSame} links={ltLinks}/> } : DG ? dgPageProps(r.id, cards) : fitCore ? { fit: fitCore } : {})}
+      <RacketV7b id={r.id} title={r.year && bare !== name ? `${bare} (${r.year})` : name} model={model} crumbs={LT ? <>{crumbsEl}<NewerVersion slug={r.slug}/></> : crumbsEl} tags={aw ? audioTagsOf(aw, r.weight) : DG && flight ? [...tags, `${flight.speed} | ${flight.glide} | ${flight.turn} | ${flight.fade}`] : tags} lime={aw ? aw.anc : !!style} row={row} judged={judged} {...(niche.id === "padel" ? { offers: await padelOffers(r.slug) } : {})} {...(aw && au ? audioPageProps(r.id, aw, au, rows, ctx) : SR ? srPageProps(r.id, r.shape) : SKIN ? { fit: <SkinFitCard id={r.id} wire={skinWire} links={skinLinks}/> } : LT ? { fit: <LaptopFitCard id={r.id} wire={ltSame} links={ltLinks}/> } : CF ? { fit: <CoffeeFitCard id={r.id} wire={cfSame} links={cfLinks}/> } : DG ? dgPageProps(r.id, cards) : fitCore ? { fit: fitCore } : {})}
         lead={aw && lead ? lead.replace(/(?<![\w-])([Oo])wner(s?)\b/g, (_, o: string, x: string) => `${o === "O" ? "L" : "l"}istener${x}`) : DG && lead ? playersWord(lead, W.person) : SKIN && lead ? playersWord(lead, "reviewer") : SR && lead ? lead.replace(/(?<![\w-])([Oo])wner(s?)\b/g, (_, o: string, x: string) => `${o === "O" ? "R" : "r"}acer${x}`) : TN && lead ? lead.replace(/(?<![\w-])([Oo])wner(s?)\b/g, (_, o: string, x: string) => `${o === "O" ? "P" : "p"}layer${x}`) : lead} bullets={v7Bullets} specs={v7Specs} shop={shop} cards={cards} also={also} brand={brand ? { name: brand.name, slug: brand.slug } : null}
-        sim={simSelf ? pickSimilar(simSelf, simSpecs, new Set(compared.map(c => c.row.id))).flatMap(id => rows.get(id) ?? []) : aw || SR || DG || SKIN || LT ? sim.filter(x => !compared.some(c => c.row.id === x.id) && (!LT || x.current)) : []} pill={pill} week={weekLine(cm.opinions, cm.posts)} latest={cm.latest} who={who} compared={compared} stories={tales}/>
+        sim={simSelf ? pickSimilar(simSelf, simSpecs, new Set(compared.map(c => c.row.id))).flatMap(id => rows.get(id) ?? []) : aw || SR || DG || SKIN || LT || CF ? sim.filter(x => !compared.some(c => c.row.id === x.id) && (!LT || x.current)) : []} pill={pill} week={weekLine(cm.opinions, cm.posts)} latest={cm.latest} who={who} compared={compared} stories={tales}/>
     </Shell>;
   }
   return <Shell active="rackets">

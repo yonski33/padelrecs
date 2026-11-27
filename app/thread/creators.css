@@ -737,6 +737,9 @@ body:has(.thc) .th-head a.thc-stick-cta { flex: none; font-size: 14.5px; font-we
 .thc-cons .thc-wrap p { font-size: 15px; line-height: 1.65; max-width: 72ch; }
 .thc-cons .thc-wrap mark.pos { background: linear-gradient(transparent 55%, var(--brand-mark, #F4EC6E) 55%); font-weight: 600; padding: 0; }
 .thc-cons .thc-wrap mark.neg { background: linear-gradient(transparent 55%, #FBD8D0 55%); font-weight: 600; padding: 0; }
+.thc-cons .thc-blocks { display: flex; flex-direction: column; gap: 12px; }
+.thc-cons .thc-block strong { display: block; font-size: 12.5px; font-weight: 800; letter-spacing: .04em; text-transform: uppercase; color: var(--muted); margin-bottom: 2px; }
+.thc-cons .thc-blocks p { max-width: 65ch; line-height: 1.75; }
 .thc-cons-r { flex: 1 1 240px; max-width: 320px; min-width: 0; display: flex; flex-direction: column; gap: 10px; }
 .thc-cons-n { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 4px 10px; font-size: 15px; font-weight: 800; }
 .thc-cons-n > span { white-space: nowrap; }

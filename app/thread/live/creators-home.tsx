@@ -19,6 +19,8 @@ import { LAPTOP_CATEGORIES } from "../../../lib/niche/laptop";
 import { useLaptopListMatch } from "./laptop-match";
 import type { LaptopWire } from "../../../lib/laptop-match";
 import { useSkinListMatch } from "./skin-match";
+import { useCoffeeListMatch } from "./coffee-match";
+import type { CoffeeWire } from "../../../lib/coffee-match";
 import type { SkinWire } from "../../skin/rank";
 
 const FIRST = 6, STEP = 10;
@@ -63,7 +65,13 @@ const SKIN_HOME: HomeSite = { title: "Every skincare review, summed up", one: "p
     <rect x="14" y="14" width="34" height="12" rx="3" fill="#fff"/><path d="M10 30h42v38a6 6 0 0 1-6 6H16a6 6 0 0 1-6-6z" fill="#fff"/><path d="M19 44h24M19 52h16"/>
     <path d="M57 9 l3 -5 M62 18 l6 -2 M62 29 l6 2"/></svg>,
   rowIcon: <svg width="28" height="28" viewBox="0 0 30 30" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><rect x="9" y="3" width="12" height="5" rx="1.5"/><path d="M7 10h16v14a3 3 0 0 1-3 3H10a3 3 0 0 1-3-3z"/><path d="M11 16h8"/></svg> };
-const HOME_SITES: Record<string, HomeSite> = { pickleball: PICKLEBALL_HOME, padel: PADEL_HOME, laptop: LAPTOP_HOME, skin: SKIN_HOME };
+/** CoffeeRecs (2026-11-28, the v3 port): a cup on its saucer, steam above, in the same line style; Category in place of Shape. */
+const COFFEE_HOME: HomeSite = { title: "Every coffee gear review, summed up", one: "product", many: "coffee gear", groups: [["shape", "Category", ["Espresso machine", "Grinder", "Brewer", "Kettle", "Scale"]]],
+  art: <svg className="tch-art" width="80" height="76" viewBox="0 0 80 76" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+    <path d="M12 34h44v12a20 20 0 0 1-20 20h-4a20 20 0 0 1-20-20z" fill="#fff"/><path d="M56 38h6a7 7 0 0 1 0 14h-7"/><path d="M6 70h64"/>
+    <path d="M26 26c-3-4 3-7 0-12M36 26c-3-4 3-7 0-12M46 26c-3-4 3-7 0-12"/><path d="M66 8 l3 -5 M71 17 l6 -2"/></svg>,
+  rowIcon: <svg width="28" height="28" viewBox="0 0 30 30" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M5 12h16v5a7 7 0 0 1-7 7h-2a7 7 0 0 1-7-7z"/><path d="M21 14h2a3 3 0 0 1 0 6h-2.5"/><path d="M10 9c-1-1.5 1-2.5 0-4M15 9c-1-1.5 1-2.5 0-4"/></svg> };
+const HOME_SITES: Record<string, HomeSite> = { pickleball: PICKLEBALL_HOME, padel: PADEL_HOME, laptop: LAPTOP_HOME, skin: SKIN_HOME, coffee: COFFEE_HOME };
 const HS = HOME_SITES[niche.id] ?? PICKLEBALL_HOME;
 
 /** One row's extra data from the server: its praise pill, where it links, its lowest price (lib/thread/creator-home.ts). The
@@ -71,13 +79,14 @@ const HS = HOME_SITES[niche.id] ?? PICKLEBALL_HOME;
 import type { RowExtra as HomeExtra } from "../../../lib/thread/creator-home";
 export type { HomeExtra };
 
-export function CreatorsHomeTop({ rows, extra, curated, added, total, brands, after, side, laptop, skin }: {
+export function CreatorsHomeTop({ rows, extra, curated, added, total, brands, after, side, laptop, skin, coffee }: {
   rows: ThreadRow[]; extra: Record<string, HomeExtra>; curated: string[]; added: Record<string, string>;
   /** "247 reviews summarised". */ total: string; brands: string[]; after: ReactNode; side: ReactNode;
   /** LaptopRecs: its quick match inputs (live/laptop-match.tsx); the bar is its own. */ laptop?: LaptopWire[];
   /** SkinRecs: its quick match inputs (live/skin-match.tsx, My skin · I want to · Sensitive skin). */ skin?: SkinWire[];
+  /** CoffeeRecs: its quick match inputs (live/coffee-match.tsx, I make · I want · Quiet). */ coffee?: CoffeeWire[];
 }) {
-  const laptopMatch = useLaptopListMatch(laptop), skinMatch = useSkinListMatch(skin), match = laptopMatch ?? skinMatch;
+  const laptopMatch = useLaptopListMatch(laptop), skinMatch = useSkinListMatch(skin), coffeeMatch = useCoffeeListMatch(coffee), match = laptopMatch ?? skinMatch ?? coffeeMatch;
   const l = useRacketList({ rows, curated, added, home: true, match }), { list, pcts, mine, picks, setPicks, f, toggle, chips, clearAll, pool, pass, test } = l;
   // A site's own match has no arm box (the padel-style picks are not shown there).
   const arm = !match && picks.arm;
