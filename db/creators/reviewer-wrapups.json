@@ -3842,6 +3842,171 @@
      "tone": "neg"
     }
    ]
+  },
+  "luzz-probladz-2": {
+   "paras": [
+    "Reviewers who liked it praise the fast hands and hand battles at the kitchen, and say it suits higher level players who can place the ball and make their own power. Takes split on feel: some find it stiffer and less forgiving than the Luzz Inferno, with off-center hits that feel harsh, while others like the calm control and shaping and add weight to widen the sweet spot. Several reviewers say the Luzz Inferno is the safer pick for most players."
+   ],
+   "highlights": [
+    {
+     "text": "fast hands and hand battles",
+     "tone": "pos"
+    },
+    {
+     "text": "stiffer and less forgiving than the Luzz Inferno",
+     "tone": "neg"
+    }
+   ]
+  },
+  "11six24-hurache-x-jelly-bean-2": {
+   "paras": [
+    "Reviewers who liked it praise the spin, reach and soft, dense feel, and say it suits players who create their own pace and want easy resets. The sweet spot is the common complaint, with the lowest twist weight in the line and one reviewer who kept shanking the top corners. Takes differ on control, since one reviewer calls it low-tier all-court rather than a control paddle, and others point to the 11SIX24 Hurache-X Power 2 for more reactive pop."
+   ],
+   "highlights": [
+    {
+     "text": "soft, dense feel",
+     "tone": "pos"
+    },
+    {
+     "text": "lowest twist weight in the line",
+     "tone": "neg"
+    }
+   ]
+  },
+  "luzz-inferno2-m1": {
+   "paras": [
+    "Reviewers mostly call it the best Luzz Inferno so far, praising more spin, a wide sweet spot and pop that is easier to predict than on the original Luzz Inferno. Disagreements are about feel and power: one reviewer finds stock stability lower than on the Luzz Inferno Frozen, another finds it poppier with less dwell than the Luzz Inferno, and one finds the original has slightly higher top end power. Most reviewers say grit durability is still unproven."
+   ],
+   "highlights": [
+    {
+     "text": "more spin, a wide sweet spot",
+     "tone": "pos"
+    },
+    {
+     "text": "grit durability is still unproven",
+     "tone": "neg"
+    }
+   ]
+  },
+  "aireo-cyclone-hybrid": {
+   "paras": [
+    "Reviewers praise the fast hands, wide sweet spot and easy pop, and recommend it to intermediate and higher level players who can keep the ball down. Most reviewers prefer it to the elongated Aireo Cyclone for stability and speed, though one puts the elongated slightly ahead for power and whip. Grit is the open question: one lab test found the roughness dropped about 23% over 30 hours of play, while another reviewer says the Nanograph surface lasts about twice as long as carbon fiber."
+   ],
+   "highlights": [
+    {
+     "text": "wide sweet spot",
+     "tone": "pos"
+    },
+    {
+     "text": "roughness dropped about 23%",
+     "tone": "neg"
+    }
+   ]
+  },
+  "crbn2-trufoam-barrage": {
+   "paras": [
+    "Reviewers like the fast hands, spin and firm, predictable feel, and say it suits players who want an offense first paddle for counters and hand battles. It is called a clear step up in firepower over earlier TruFoam models and the most forgiving yet, but the sweet spot still falls off toward the edges and gets a slight edge to the softer Volair Shift. Three reviewers question the value, with one noting that cheaper rivals match the performance, and one warns off players who want a soft, pocketing feel."
+   ],
+   "highlights": [
+    {
+     "text": "fast hands, spin and firm, predictable feel",
+     "tone": "pos"
+    },
+    {
+     "text": "sweet spot still falls off toward the edges",
+     "tone": "neg"
+    }
+   ]
+  },
+  "aireo-cyclone-x-hybrid": {
+   "paras": [
+    "Reviewers praise the easy, consistent power and wide sweet spot, and say it suits advanced players who want pace without a heavy swing. Takes differ on touch: one finds blocks and soft drops harder to control, another says resets and blocks came off hotter than wanted before break-in, and a third warns against it for players who want dwell or big spin numbers. None of the three has confirmed how well the grit lasts."
+   ],
+   "highlights": [
+    {
+     "text": "wide sweet spot",
+     "tone": "pos"
+    },
+    {
+     "text": "finds blocks and soft drops harder to control",
+     "tone": "neg"
+    }
+   ]
+  },
+  "ronbus-tenon-r4-16": {
+   "paras": [
+    "Reviewers who liked it praise the soft, dense feel, ball dwell and comfort on drops, resets and dinks, and say it suits players who like a plush face with pace underneath. Power is where takes split: one reviewer calls it a power paddle with the best spin in the series, another puts it at the bottom of the power category, and a third calls it too muted for pure bangers. Control splits takes too, since one reviewer hit balls long and left resets high, while another finds it reliable with an above average sweet spot, and a third finds it noticeably head heavy with some wrist fatigue."
+   ],
+   "highlights": [
+    {
+     "text": "soft, dense feel",
+     "tone": "pos"
+    },
+    {
+     "text": "left resets high",
+     "tone": "neg"
+    }
+   ]
+  },
+  "ronbus-tenon-r3-16": {
+   "paras": [
+    "Reviewers who like it praise power that arrives with a soft, dense feel and without hollow feedback, and say it suits mid to higher level players who want reach on drives and serves. Takes differ on tuning: one reviewer prefers it stock, another says it needs weight at 3 and 9 o'clock to show its potential, and a third advises modest added weight there. The grit is rated Tier 3, a step up from raw carbon fiber but short of the best durable surfaces, and one reviewer calls this the least forgiving shape in the line."
+   ],
+   "highlights": [
+    {
+     "text": "power that arrives with a soft, dense feel",
+     "tone": "pos"
+    },
+    {
+     "text": "the least forgiving shape",
+     "tone": "neg"
+    }
+   ]
+  },
+  "ronbus-quanta-pro-r4-16": {
+   "paras": [
+    "Two reviewers pick it as the best balanced Quanta Pro shape, and say it suits all-court players who want stability and plow through without losing control. The disagreements are mild: one reviewer finds the head shape less confidence-inspiring than the other two Pro shapes, and another says players who need the fastest hands may prefer the standard Quanta. Grit gets a Tier 3 rating from one reviewer, better than raw carbon but behind the best durable surfaces."
+   ],
+   "highlights": [
+    {
+     "text": "stability and plow through",
+     "tone": "pos"
+    },
+    {
+     "text": "less confidence-inspiring",
+     "tone": "neg"
+    }
+   ]
+  },
+  "pickle-poppers-pop-n-rush-elongated": {
+   "paras": [
+    "Reviewers say it suits aggressive players who want fast, poppy contact, with strong counters and putaways, and some find the sweet spot generous. Feel is where takes split: one reviewer finds it soft and plush with good dwell, another finds a stiff face with no amazing dwell, and a third calls it soft and hollow rather than dense and plush. Two reviewers expect the MAGMAGRIT grit to last, but none has had enough hours on it to confirm."
+   ],
+   "highlights": [
+    {
+     "text": "fast, poppy contact",
+     "tone": "pos"
+    },
+    {
+     "text": "a stiff face with no amazing dwell",
+     "tone": "neg"
+    }
+   ]
+  },
+  "head-radical-pro-ex15": {
+   "paras": [
+    "Reviewers who liked it praise the excellent control and touch on soft shots and a plush feel, and say it suits intermediates, tennis converts and all-court recreational players. Takes split on the sweet spot and break-in: one reviewer found it larger over several weeks with mishits staying playable, while another says it needs break-in and feels harsh on off-center hits. Two reviewers suggest adding weight for more plow through and power."
+   ],
+   "highlights": [
+    {
+     "text": "excellent control and touch",
+     "tone": "pos"
+    },
+    {
+     "text": "feels harsh on off-center hits",
+     "tone": "neg"
+    }
+   ]
   }
  },
  "padel": {
