@@ -3,7 +3,8 @@
 import { cache } from "react";
 import { niche, catalogPath } from "../../lib/niche";
 import { reviewerRows, creatorHome } from "../../lib/thread/creator-data";
-import { productTakes, reviewersFrom, type Reviewer, type ReviewerRow } from "../../lib/thread/reviewers";
+import { productTakes, reviewersFrom, REVIEWER_ALIASES, REVIEWER_MIN, type Reviewer, type ReviewerRow } from "../../lib/thread/reviewers";
+import { padelOfferMap } from "../../lib/padel-offers";
 import { reviewerPagesOn } from "../../lib/thread/sites";
 import { oneShape } from "../../lib/thread/shape";
 import { threadRows } from "./data";
@@ -18,15 +19,18 @@ export const profileOf = (slug: string): ReviewerProfile | null => PROFILES[nich
 
 export const reviewersData = cache(async () => {
   if (!reviewerPagesOn(niche.id)) return { rows: [] as ReviewerRow[], list: [] as Reviewer[], takes: new Map(), product: () => null, price: () => null };
-  const [rows, { bySlug }, home] = await Promise.all([reviewerRows(niche.id), threadRows(), creatorHome(niche.id)]);
-  const list = reviewersFrom(rows), takes = productTakes(rows);
+  // PadelRecs: prices are its padel-shop box (lib/padel-offers.ts, the first in-stock shop, as on its home rows).
+  const [rows, { bySlug }, home, shops] = await Promise.all([reviewerRows(niche.id), threadRows(), creatorHome(niche.id), niche.id === "padel" ? padelOfferMap() : {}]);
+  const list = reviewersFrom(rows, REVIEWER_MIN, REVIEWER_ALIASES[niche.id] ?? {}), takes = productTakes(rows);
   /** The product's page, photo and shape (the catalogue's row), or its plain address. */
   const product = (slug: string) => { const r = bySlug.get(slug), s = oneShape(r?.shape ?? null);
     return { href: r?.href ?? `${catalogPath}/${slug}`, pic: r?.pic ?? null, shape: s ? s[0]!.toUpperCase() + s.slice(1) : null }; };
   /** The product's current lowest price link (the creator pages' offers, lib/thread/creator-home.ts); without one, an Amazon
    *  search for its name with the site's tag (owner 2026-11-27), where the site has Amazon links. No amount shown. */
   const tag = niche.amazon ? affiliateTag() : "";
-  const price = (slug: string, name: string) => { const p = home?.paddles[slug]?.price;
+  const price = (slug: string, name: string) => { const shop = (shops as Awaited<ReturnType<typeof padelOfferMap>>)[slug]?.find(o => o.inStock);
+    if (shop) return { url: shop.href, rel: shop.rel };
+    const p = home?.paddles[slug]?.price;
     if (p) return { url: p.url, rel: p.affiliate ? "sponsored nofollow noopener" : "nofollow noopener" };
     return tag ? { url: amazonSearchLink(withoutYear(name), tag, niche.amazon!.marketplace), rel: "sponsored nofollow noopener" } : null; };
   return { rows, list, takes, product, price };

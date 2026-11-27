@@ -54,3 +54,10 @@ test("row line from existing fields; subscribers; social links", () => {
   assert.equal(subsShort(58100), "58.1K"); assert.equal(subsShort(212000), "212K"); assert.equal(subsShort(1250000), "1.3M"); assert.equal(subsShort(null), null);
   assert.deepEqual(socialLinks(["Follow https://instagram.com/foo and https://www.tiktok.com/@bar. Shop https://shop.example.com"]).map(l => l.label), ["Instagram", "TikTok"]);
 });
+
+test("an owner alias puts a second channel's reviews on the first one's page", () => {
+  const rows = [...["a", "b", "c"].map(p => row("Padel Review", p, "pos")), ...["d", "e"].map(p => row("PADELREVIEW ENG", p, "mix"))];
+  assert.deepEqual(reviewersFrom(rows).map(r => r.slug), []);
+  const [one] = reviewersFrom(rows, 5, { "PADELREVIEW ENG": "Padel Review" });
+  assert.deepEqual([one!.slug, one!.name, one!.n, one!.channel], ["padel-review", "Padel Review", 5, "https://www.youtube.com/@PadelReview"]);
+});

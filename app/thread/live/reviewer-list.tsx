@@ -11,7 +11,7 @@ import { STANCE_LABEL, type Stance } from "../../../lib/thread/creators";
 import { VideoProvider, clipOf, playClick, usePlay } from "./video-overlay";
 
 export type ReviewerListRow = { id: string; creator: string; kind: "youtube" | "blog" | "tiktok"; url: string; video: string | null; len: number | null;
-  stance: Stance; date: string; product: string; href: string; shape: string | null; line: string; tie: string | null; disclosure: string | null;
+  stance: Stance; date: string; product: string; href: string; pic: string | null; shape: string | null; line: string; tie: string | null; disclosure: string | null;
   /** How many of the site's creator reviews loved this product (Most loved sorts by it). */ loved: number;
   price: { url: string; rel: string } | null };
 
@@ -22,7 +22,9 @@ const OUT = { target: "_blank", rel: "noopener nofollow" } as const;
 function Row({ r }: { r: ReviewerListRow }) {
   const play = usePlay(), clip = clipOf(r), thumb = r.kind === "youtube" ? thumbOf(r.url) : null;
   return <div className="rvp-row">
-    {r.kind === "blog" ? <a className="rvp-tile art" href={r.url} {...OUT} aria-label={`Read ${r.creator}'s article`}><span>Article</span></a>
+    {/* Blog rows show the product's own photo (owner 2026-11-27: the empty Article tiles looked sad), labelled Article. */}
+    {r.kind === "blog" ? <a className={`rvp-tile art${r.pic ? " pic" : ""}`} href={r.url} {...OUT} aria-label={`Read ${r.creator}'s article`}>
+        {r.pic && <img src={r.pic} alt="" loading="lazy"/>}<span>Article</span></a>
       : <a className={`rvp-tile${thumb ? "" : " tt"}`} href={r.url} {...OUT} onClick={playClick(play, clip)} aria-label={`Play ${r.creator}'s ${r.kind === "tiktok" ? "TikTok" : "video"}`}>
         {thumb ? <img src={thumb} alt="" loading="lazy" width={160} height={90}/> : <span className="logo">TikTok</span>}
         <span className="play" aria-hidden="true"/>{r.len ? <span className="len">{clock(r.len)}</span> : null}</a>}

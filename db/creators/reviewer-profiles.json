@@ -1530,5 +1530,460 @@
     "Casual comparisons"
    ]
   }
+ },
+ "padel": {
+  "canary-padel": {
+   "name": "Canary Padel",
+   "subs": 517,
+   "channel": "https://www.youtube.com/@CanaryPadel",
+   "joined": "Jul 22, 2024",
+   "site": null,
+   "links": [],
+   "avatar": "https://yt3.googleusercontent.com/mV-ms9eBe7xkkllRpgl8MI5MCvpw00e9SvBEh5H8Q7kcoYFfokwbfW-mKxXMbhzYMZvKLio4JA=s176-c-k-c0x00ffffff-no-rj",
+   "bio": "Spanish-language padel channel that describes itself as a trusted place for racket analysis and games. Reviews are on-court tests by zone: defense, volley, bandeja, víbora and smash, with several Nox models among them.",
+   "topics": [
+    "Racket tests",
+    "Zone-by-zone play",
+    "Nox rackets"
+   ]
+  },
+  "dani-13": {
+   "name": "Dani 13",
+   "subs": 32400,
+   "channel": "https://www.youtube.com/@Dani_13",
+   "joined": "Mar 28, 2014",
+   "site": "NULL",
+   "links": [],
+   "avatar": "https://yt3.googleusercontent.com/1PWrML1bmNYEmApRn8aBP0_uCEXSD4ZxWuQzY_HP4-PsvQw4v-gsR_wbIdaYZlc8L6OwamiCjNQ=s176-c-k-c0x00ffffff-no-rj",
+   "bio": "Spanish-language channel covering padel material reviews, tests and racket comparisons. Reviews are detailed on-court tests that report weight, balance and hardness, and compare feel across defense, volley, bandeja and smash.",
+   "topics": [
+    "Racket reviews",
+    "Weight and balance",
+    "Racket comparisons",
+    "Hardness ratings"
+   ]
+  },
+  "el-chini-consejo": {
+   "name": "El chini consejo",
+   "subs": 15100,
+   "channel": "https://www.youtube.com/@Elchiniconsejo",
+   "joined": "Dec 30, 2020",
+   "site": null,
+   "links": [],
+   "avatar": "https://yt3.googleusercontent.com/ytc/AIdro_l-Z6E2pD_727wSdlaNGDxsfxfoUQ0u1j6ORjM7t0uE_w=s176-c-k-c0x00ffffff-no-rj",
+   "bio": "Padel channel with no written description. Reviews are multi-day tests of a racket, often with measured weight and balance, and many end with a note on whether it suits intermediate or advanced players.",
+   "topics": [
+    "Racket reviews",
+    "Weight and balance",
+    "Player level fit"
+   ]
+  },
+  "extreme-padel": {
+   "name": "Extreme Padel",
+   "subs": 5870,
+   "channel": "https://www.youtube.com/@ExtremePadel",
+   "joined": "Mar 14, 2024",
+   "site": null,
+   "links": [],
+   "avatar": "https://yt3.googleusercontent.com/nGO88vVmw7Xg6hdHZ1DLdy2GghEH-IZ0i9sanqMv01wWNdg8QYh-AhWo81_J71I7GCkfqidH=s176-c-k-c0x00ffffff-no-rj",
+   "bio": "French-language channel that says it exists to help players play better and choose their padel equipment. Reviews combine lab measurements such as weight, balance and stiffness with on-court play, often comparing several rackets in a range.",
+   "topics": [
+    "Lab measurements",
+    "Range comparisons",
+    "Racket reviews"
+   ]
+  },
+  "fabio-ferro": {
+   "name": "Fabio Ferro",
+   "subs": 38200,
+   "channel": "https://www.youtube.com/@FabioFerro82",
+   "joined": "Jan 22, 2014",
+   "site": null,
+   "links": [],
+   "avatar": "https://yt3.googleusercontent.com/tJAiKZ54S9WXl3uz9P2GXcJpqRha5eeQ1pZoTihZJI1R4HljP5x4KSuA2vmtjTRyx_0QXTO1=s176-c-k-c0x00ffffff-no-rj",
+   "bio": "Italian-language channel about padel and tennis, covering rackets, tournaments, training and travel. Padel reviews report measured weight and balance, rate control, power and spin, and often compare against the previous model year.",
+   "topics": [
+    "Racket reviews",
+    "Measured specs",
+    "Year-to-year changes"
+   ]
+  },
+  "hotel-palas-la-suite-del-padel": {
+   "name": "Hotel Palas | La Suite del Padel",
+   "subs": 8960,
+   "channel": "https://www.youtube.com/@Hotel_Palas",
+   "joined": "Jun 25, 2023",
+   "site": null,
+   "links": [],
+   "avatar": "https://yt3.googleusercontent.com/uoZyqNRQ--p4gMkD7jAOu_AyTD7hOtuKM1hRGhGRZtpmq2QR5XVz4qcdLIrKX5HoskjW96so=s176-c-k-c0x00ffffff-no-rj",
+   "bio": "Spanish-language channel about padel rackets and Premier Padel. Reviews test a racket area by area on court, often head to head with another model, and note weight, balance and sweet spot on the unit played.",
+   "topics": [
+    "Racket reviews",
+    "Head-to-head tests",
+    "Premier Padel"
+   ]
+  },
+  "julien-padel-passion": {
+   "name": "Julien / Padel Passion",
+   "subs": null,
+   "channel": null,
+   "joined": null,
+   "site": "https://www.padel-passion.net",
+   "links": [],
+   "avatar": null,
+   "bio": "Blog author whose racket reviews rate power, control, maneuverability and comfort, and finish with a score out of ten. Reviews also state which player level a racket suits.",
+   "topics": [
+    "Blog reviews",
+    "Scored ratings",
+    "Player level fit",
+    "Comfort"
+   ]
+  },
+  "mejora-tu-padel": {
+   "name": "Mejora Tu Padel",
+   "subs": 351000,
+   "channel": "https://www.youtube.com/@mejoratupadelmanumartin",
+   "joined": "Feb 4, 2013",
+   "site": null,
+   "links": [],
+   "avatar": "https://yt3.googleusercontent.com/ytc/AIdro_m46R1fxdDZkjPr0G9kH-tpTtYKF0TrosbyauReV_yhY4c=s176-c-k-c0x00ffffff-no-rj",
+   "bio": "Padel channel that describes weekly videos with tips on technique, tactics and physical condition. Racket reviews are on-court tests, often with a second player, that compare models within a range and note hardness and balance.",
+   "topics": [
+    "Racket reviews",
+    "Technique tips",
+    "Range comparisons"
+   ]
+  },
+  "nmscontrolpadel": {
+   "name": "Nmscontrolpadel",
+   "subs": 600,
+   "channel": "https://www.youtube.com/@nmscontrolpadel",
+   "joined": "Dec 21, 2021",
+   "site": null,
+   "links": [],
+   "avatar": "https://yt3.googleusercontent.com/mwfIVTEMt8TWGkVAhnPm5HCJIYEpwBvJhlHJzvXZt5mWxqwuXkPSTGQJi2ff-Kw8Z-K5rOYdvA=s176-c-k-c0x00ffffff-no-rj",
+   "bio": "Channel run by Nacho, who describes themself as an instructor and amateur player in Huelva, Andalucía. Reviews are on-court impressions of rackets, covering feel, balance, sweet spot and who the racket suits.",
+   "topics": [
+    "Racket reviews",
+    "Feel and balance",
+    "Amateur player view"
+   ]
+  },
+  "ongoalsweden": {
+   "name": "OngoalSweden",
+   "subs": 380,
+   "channel": "https://www.youtube.com/@OngoalSweden",
+   "joined": "May 14, 2025",
+   "site": "NULL",
+   "links": [],
+   "avatar": "https://yt3.googleusercontent.com/TdJB7lpKHc5htWeQTEZlKfQmKC9HFUKNcwDYoQymnHh59fMcDv2_39TE7i3w-QpkKpy1d9cP9Q=s176-c-k-c0x00ffffff-no-rj",
+   "bio": "Channel with no written description whose racket reviews are on-court sessions, often covering a full brand range such as StarVie or Siux in one visit. Reviews focus on volleys, overheads and spin.",
+   "topics": [
+    "Brand range sessions",
+    "Volleys and overheads",
+    "Racket reviews"
+   ]
+  },
+  "otro-nivel-padel": {
+   "name": "Otro Nivel Padel",
+   "subs": 80800,
+   "channel": "https://www.youtube.com/@OtroNivelPadel",
+   "joined": "Apr 3, 2019",
+   "site": null,
+   "links": [],
+   "avatar": "https://yt3.googleusercontent.com/PaZ4hk2ZzgHjdmLHV9kuprRtcR7vdaj3oYULtfFM05tDvmwUoAU8bhRHwsmrkJ6oYHDMVNMCKA=s176-c-k-c0x00ffffff-no-rj",
+   "bio": "Channel that describes its content as funny, energetic and easy to understand, aimed at helping players level up. Racket reviews compare models in a line, such as Head Radical or Siux Elite, and give each a score out of ten.",
+   "topics": [
+    "Racket reviews",
+    "Line comparisons",
+    "Scored ratings"
+   ]
+  },
+  "padel-market": {
+   "name": "Padel Market",
+   "subs": 4370,
+   "channel": "https://www.youtube.com/@padelmarket_com",
+   "joined": "Nov 28, 2022",
+   "site": null,
+   "links": [],
+   "avatar": "https://yt3.googleusercontent.com/e2JcnDJoy_4qCJNp_ObD3-kddCMiW242LecTgM3sghqH0InX_wrD2InIx0w0MNL084JMtEPx=s176-c-k-c0x00ffffff-no-rj",
+   "bio": "Spanish-language channel of a padel shop selling rackets, shoes and more, with international shipping. Reviews are on-court impressions of mostly Nox rackets, covering defense, volley and overhead play at different ball speeds.",
+   "topics": [
+    "Racket reviews",
+    "Nox rackets",
+    "Padel shop"
+   ]
+  },
+  "padel-review": {
+   "name": "Padel Review",
+   "subs": 25100,
+   "channel": "https://www.youtube.com/@PadelReview",
+   "joined": "Oct 11, 2020",
+   "site": null,
+   "links": [],
+   "avatar": "https://yt3.googleusercontent.com/vudjVPkI1SZknkvBxZMEGCyIJIfh9Ix7SaB1dnAWrZ0x0scdhJ96CvayJsHArOpwm8fJwC-58A=s176-c-k-c0x00ffffff-no-rj",
+   "bio": "Italian-language channel with reviews and presentations of padel rackets, plus gear such as shoes and bags. Rackets are played with a partner from the baseline, at the net and overhead, with notes on which level and side of the court each suits.",
+   "topics": [
+    "Racket reviews",
+    "Level and side fit",
+    "Padel gear"
+   ]
+  },
+  "padel-smash-tv": {
+   "name": "Padel Smash TV",
+   "subs": 1020000,
+   "channel": "https://www.youtube.com/@padelsmashtv",
+   "joined": "Sep 30, 2022",
+   "site": null,
+   "links": [],
+   "avatar": "https://yt3.googleusercontent.com/_eDvgsJA5DBpYOF7WLelpoxRhQhcmml45rT3eegWEehdb9Rd0uD-SYjjwLG42uCgHnKntcywX-g=s176-c-k-c0x00ffffff-no-rj",
+   "bio": "English-language media channel of the Padel Smash platform, focused on the people, stories and innovation in padel. Racket reviews are on-court tests with two players and often list shape, weight and balance.",
+   "topics": [
+    "Racket reviews",
+    "Two-player tests",
+    "Padel media"
+   ]
+  },
+  "padel-test-by-roberto-cardi": {
+   "name": "Padel Test by Roberto Cardi",
+   "subs": 109000,
+   "channel": "https://www.youtube.com/@PADELTESTBYROBERTOCARDI",
+   "joined": "Mar 8, 2011",
+   "site": null,
+   "links": [],
+   "avatar": "https://yt3.googleusercontent.com/0Ph_Shsg2pKrjQ3kFahFJvM7dFa6b6FQwTF5l4dd4RSKchudiIW5KyExf4ZHzpI9NBI5yuO44A=s176-c-k-c0x00ffffff-no-rj",
+   "bio": "Official Italian-language channel of Roberto Cardinali, who is called a maestro in the channel description, dedicated to padel racket reviews. Rackets are tested shot by shot and scored out of ten for volleys, wall exits, blocks and smashes.",
+   "topics": [
+    "Racket reviews",
+    "Shot-by-shot scores",
+    "Wall exits"
+   ]
+  },
+  "padelcritic": {
+   "name": "PadelCritic",
+   "subs": null,
+   "channel": null,
+   "joined": null,
+   "site": "https://padelcritic.com",
+   "links": [],
+   "avatar": null,
+   "bio": "PadelCritic is a blog that reviews padel rackets, giving scores out of ten for traits such as power, control, comfort and spin. Reviews also say which kind of player each racket suits.",
+   "topics": [
+    "Scored reviews",
+    "Comfort",
+    "Player level"
+   ]
+  },
+  "pdhsports": {
+   "name": "pdhsports",
+   "subs": 15600,
+   "channel": "https://www.youtube.com/@pdhsports",
+   "joined": "May 22, 2009",
+   "site": null,
+   "links": [],
+   "avatar": "https://yt3.googleusercontent.com/7At-LngJJvJw2oaZ3_eYzv9yqI0Je9g691EGJfVgbjdM58nYsYDFvIdmQY6MCyW7kXTom63DTQ=s176-c-k-c0x00ffffff-no-rj",
+   "bio": "The channel of pdhsports, a European racket sports retailer, which films on-court reviews of Bullpadel, Babolat and other rackets. Reviews cover volleys, defence and overheads, plus balance, feel and sweet spot.",
+   "topics": [
+    "Bullpadel",
+    "Babolat",
+    "Balance and weight",
+    "Sweet spot"
+   ]
+  },
+  "peter-consuegra": {
+   "name": "Peter Consuegra",
+   "subs": 14800,
+   "channel": "https://www.youtube.com/@peterconsuegra",
+   "joined": "May 21, 2012",
+   "site": null,
+   "links": [],
+   "avatar": "https://yt3.googleusercontent.com/fpV3E2E2-Gl8MC4raaMCLmzwF1k8MpssDnE0Z5bPER_LnQPi11y9i57kZVwhrbOAYISm3tTaPQ=s176-c-k-c0x00ffffff-no-rj",
+   "bio": "Peter Consuegra makes Spanish-language padel videos, including racket reviews. Tests cover defence, volleys, overheads and smashes, with notes on feel, balance and which type of player the racket suits.",
+   "topics": [
+    "Nox",
+    "Feel and hardness",
+    "Shot-by-shot tests",
+    "Player level"
+   ]
+  },
+  "practica-padel-team": {
+   "name": "Practica Padel Team",
+   "subs": null,
+   "channel": null,
+   "joined": null,
+   "site": "https://practicapadel.com",
+   "links": [],
+   "avatar": null,
+   "bio": "Practica Padel Team is a padel blog that reviews rackets with scores for individual shots, comfort, sweet spot and value. Reviews often include measured weight and say which players each racket suits.",
+   "topics": [
+    "Shot scores",
+    "Adidas Metalbone",
+    "Weight and balance",
+    "Value"
+   ]
+  },
+  "probando-palas": {
+   "name": "Probando Palas",
+   "subs": 20700,
+   "channel": "https://www.youtube.com/@ProbandoPalas",
+   "joined": "Jan 7, 2022",
+   "site": null,
+   "links": [],
+   "avatar": "https://yt3.googleusercontent.com/q9wtxCi9ADttfaJzQiFgPM0QW2-zRplaatLDaU4btf6_4jwyN9SknzACF31KcpTGmrFvV5BeKA=s176-c-k-c0x00ffffff-no-rj",
+   "bio": "Probando Palas is a Spanish-language channel that tests many padel rackets and compares them in each video. Reviews give measured weight and balance, a hardness rating and notes from the back, the net and the air game.",
+   "topics": [
+    "Racket comparisons",
+    "Weight and balance",
+    "Hardness",
+    "Siux and Oxdog"
+   ]
+  },
+  "setup-padel-mario-pazos": {
+   "name": "Setup Padel | Mario Pazos",
+   "subs": 13800,
+   "channel": "https://www.youtube.com/@Setuppadel",
+   "joined": "Jan 12, 2025",
+   "site": "NULL",
+   "links": [],
+   "avatar": "https://yt3.googleusercontent.com/rKQkjWeHVWZRZ14o98XmcjAznrYMjSDH6h2FKf54DIt56PL-xCYLP_G67suD-dSRFlksOfTYiw=s176-c-k-c0x00ffffff-no-rj",
+   "bio": "Setup Padel | Mario Pazos is a Spanish-language channel with the tagline \"Padel sin filtros\". Its racket reviews give weight and balance and rate hardness, sweet spot and power. They often say which side of the court a racket suits.",
+   "topics": [
+    "Bullpadel",
+    "Hardness",
+    "Court side",
+    "Weight and balance"
+   ]
+  },
+  "simone-mazzola-padel": {
+   "name": "Simone Mazzola Padel",
+   "subs": 7370,
+   "channel": "https://www.youtube.com/@sm_padel",
+   "joined": "Aug 22, 2021",
+   "site": null,
+   "links": [],
+   "avatar": "https://yt3.googleusercontent.com/8z0ygQGJyV9ijT1DozlXjZDy3Jub03ZH-vC83ysas6xireCChqPv2Zb2Kglzgf9YsqYQF4T7aQ=s176-c-k-c0x00ffffff-no-rj",
+   "bio": "Simone Mazzola Padel is an Italian-language channel that describes itself as offering complete and honest racket reviews. Each racket is played over about three matches, often on both sides of the court, with notes on arm comfort.",
+   "topics": [
+    "Three-match tests",
+    "Arm comfort",
+    "Court side"
+   ]
+  },
+  "stephane-penso-padel-magazine": {
+   "name": "Stéphane Penso / Padel Magazine",
+   "subs": null,
+   "channel": null,
+   "joined": null,
+   "site": "https://padelmagazine.fr",
+   "links": [],
+   "avatar": null,
+   "bio": "Stéphane Penso writes racket reviews for the Padel Magazine website. Pieces compare rackets within a brand range, covering shape, core and face materials, maneuverability, power and the player profile each one fits.",
+   "topics": [
+    "Range comparisons",
+    "Siux",
+    "Bullpadel",
+    "Maneuverability"
+   ]
+  },
+  "super-padel-bros": {
+   "name": "Super Padel Bros",
+   "subs": 403,
+   "channel": "https://www.youtube.com/@SuperPadelBros",
+   "joined": "Aug 2, 2025",
+   "site": null,
+   "links": [
+    {
+     "label": "Instagram",
+     "url": "https://www.instagram.com/superpadelbros25"
+    }
+   ],
+   "avatar": "https://yt3.googleusercontent.com/_ybBJXWGmRDjp8H1U5ozcCEXI9qM2iMKLkQhb8IebqZElrz8d-_7zinEbowsfv535yVSQINV=s176-c-k-c0x00ffffff-no-rj",
+   "bio": "Super Padel Bros is an Italian padel channel covering reviews and advice. Racket reviews give scores for baseline play, volleys and overheads, with notes on comfort and vibrations.",
+   "topics": [
+    "Shot scores",
+    "Comfort",
+    "Nox",
+    "Bullpadel"
+   ]
+  },
+  "the-padel-school": {
+   "name": "The Padel School",
+   "subs": 226000,
+   "channel": "https://www.youtube.com/@ThePadelSchool",
+   "joined": "Oct 6, 2016",
+   "site": null,
+   "links": [],
+   "avatar": "https://yt3.googleusercontent.com/ytc/AIdro_njKMOZqc1LUVumRK8uuH6iVy7J-oRWyQ6f-Gk8rosP2dw=s176-c-k-c0x00ffffff-no-rj",
+   "bio": "The Padel School is an English-language channel that aims to help every player improve their game. Its racket reviews compare models within a range, mainly Bullpadel, and describe control, power and the type of player each suits.",
+   "topics": [
+    "Bullpadel",
+    "Model comparisons",
+    "Control and power",
+    "Player type"
+   ]
+  },
+  "the4set": {
+   "name": "the4Set",
+   "subs": 66100,
+   "channel": "https://www.youtube.com/@the4Set",
+   "joined": "Mar 22, 2022",
+   "site": null,
+   "links": [],
+   "avatar": "https://yt3.googleusercontent.com/bFobGcEIwhVlASOXWhckElJuzzXxLwG_RUKnH4v3F0iMU24EEtWDRmpeu86cwTjOE7390KxHO7g=s176-c-k-c0x00ffffff-no-rj",
+   "bio": "the4Set is a padel channel run by Pablo. Racket reviews put several models side by side, often with smash distance tests, and cover Head, Babolat, Nox and Bullpadel rackets.",
+   "topics": [
+    "Smash tests",
+    "Head Coello",
+    "Babolat Viper",
+    "Racket comparisons"
+   ]
+  },
+  "tino": {
+   "name": "Tino",
+   "subs": 3250,
+   "channel": "https://www.youtube.com/@Bartholomeusac",
+   "joined": "Nov 13, 2020",
+   "site": null,
+   "links": [],
+   "avatar": "https://yt3.googleusercontent.com/TR_RX6UW4xrVv77ZZN_aNxHS_5nejOkE0aAnvtCNom_7NX0bxnu0E2IX-GF_vtP6Y1CyMmuKzTo=s176-c-k-c0x00ffffff-no-rj",
+   "bio": "Tino is a channel covering padel, vlogs, grooming and lifestyle. Its racket reviews are personal, often after renting or buying the racket, and focus on control, power and fit with the player's side of the court.",
+   "topics": [
+    "Personal impressions",
+    "Control",
+    "Right side play",
+    "Nox and Siux"
+   ]
+  },
+  "xeexi1707": {
+   "name": "Xeexi1707",
+   "subs": 4610,
+   "channel": "https://www.youtube.com/@xeexi1707",
+   "joined": "Sep 3, 2015",
+   "site": null,
+   "links": [],
+   "avatar": "https://yt3.googleusercontent.com/_zJQtXPKXXmNCDj1GJj1erE9LIlNm1QkAxsqfquk561aV2KE1-_LXwe4OuM_K9os2CWtxctMpg=s176-c-k-c0x00ffffff-no-rj",
+   "bio": "Xeexi1707 makes padel vlogs of tournaments, events and play, mainly in Spanish. Racket reviews are on-court tests of defence, volleys, bandeja, víbora and smash, with notes on comfort and elbow feel.",
+   "topics": [
+    "Tournament vlogs",
+    "Head",
+    "Comfort",
+    "Bandeja and víbora"
+   ]
+  },
+  "zona-de-padel-tienda-padel": {
+   "name": "Zona de Pádel - Tienda Pádel",
+   "subs": 34600,
+   "channel": "https://www.youtube.com/@zonadepadelesp",
+   "joined": "Nov 16, 2013",
+   "site": null,
+   "links": [],
+   "avatar": "https://yt3.googleusercontent.com/BqbO7WLcFWrDBoBb8erjSSZ0am2sM63Aet82cQKecAQj5LYx8ffVqXdsz_E27JS2fn7EtDYKiA=s176-c-k-c0x00ffffff-no-rj",
+   "bio": "Zona de Padel | Padel Shop is a padel retailer's channel selling rackets, shoes, bags and clothing. Its racket reviews are on-court tests, often comparing two models in challenges, and cover Nox, Siux, Babolat, Adidas and Bullpadel.",
+   "topics": [
+    "Side-by-side tests",
+    "Maneuverability",
+    "Precision challenges"
+   ]
+  }
  }
 }

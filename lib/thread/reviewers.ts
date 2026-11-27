@@ -58,22 +58,27 @@ export function consensusWithout(counts: Record<Stance, number>, own: Stance): S
 }
 
 /** Every creator with `min` or more live reviews, most reviews first. */
-export function reviewersFrom(rows: ReviewerRow[], min = REVIEWER_MIN): Reviewer[] {
+/** Two channels the owner counts as one creator (owner 2026-11-27: "PADELREVIEW ENG" is the same people as "Padel Review",
+ *  shown as @PadelReview): every review under the second name counts on the first one's page. Per site. */
+export const REVIEWER_ALIASES: Record<string, Record<string, string>> = { padel: { "PADELREVIEW ENG": "Padel Review" } };
+
+export function reviewersFrom(rows: ReviewerRow[], min = REVIEWER_MIN, aliases: Record<string, string> = {}): Reviewer[] {
+  const canon = (n: string) => aliases[n.trim()] ?? n;
   // One creator per slug: name spellings of the same channel ("STS PICKLEBALL" / "STS Pickleball", with or without an emoji)
   // count together, under the spelling most of their reviews use.
   const by = new Map<string, ReviewerRow[]>();
-  for (const r of rows) { const k = reviewerSlug(r.creator); by.set(k, [...(by.get(k) ?? []), r]); }
+  for (const r of rows) { const k = reviewerSlug(canon(r.creator)); by.set(k, [...(by.get(k) ?? []), r]); }
   const takes = productTakes(rows);
   const out: Reviewer[] = [];
   for (const [slug, rs] of by) {
     if (rs.length < min) continue;
-    const name = most(rs.map(r => r.creator.trim()))!;
+    const name = most(rs.map(r => canon(r.creator).trim()))!;
     const sorted = [...rs].sort((a, b) => b.date.localeCompare(a.date) || a.id.localeCompare(b.id));
     const kind = most(rs.map(r => r.kind))!, judged = rs.map(r => consensusWithout(takes.get(r.productSlug)!, r.stance)).map((c, i) => c && c === rs[i]!.stance);
     const comparable = rs.filter(r => consensusWithout(takes.get(r.productSlug)!, r.stance) !== null).length;
     const dates = rs.map(r => r.date).filter(Boolean).sort();
     out.push({ slug, name, kind, lang: most(rs.map(r => r.lang || "en"))!,
-      channel: most(rs.filter(r => r.kind === kind).map(r => r.channel))!, n: rs.length,
+      channel: most(rs.filter(r => r.kind === kind && canon(r.creator) === r.creator).map(r => r.channel)) ?? most(rs.filter(r => r.kind === kind).map(r => r.channel))!, n: rs.length,
       pos: rs.filter(r => r.stance === "pos").length, mix: rs.filter(r => r.stance === "mix").length, neg: rs.filter(r => r.stance === "neg").length,
       since: dates[0]?.slice(0, 4) ?? null, agree: comparable >= AGREE_MIN ? Math.round(100 * judged.filter(Boolean).length / comparable) : null, reviews: sorted });
   }
