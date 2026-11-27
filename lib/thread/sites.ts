@@ -108,7 +108,9 @@ export const creatorPageFor = (nicheId: string, slug: string) => CREATOR_PAGE_SI
  *  page. Set a site to false to switch it all off at once. */
 // DiscGolfRecs (2026-11-24, #695): the 20 discs with creator reviews switch on once the cards are in discgolfrecs.creator_reviews.
 // CoffeeRecs (2026-11-28): on from the port; a product shows the creator page once its cards are in coffeerecs.creator_reviews.
-export const CREATOR_PAGE: Record<string, boolean> = { pickleball: true, skin: true, padel: true, laptop: true, discgolf: true, coffee: true };
+// AudioRecs (2026-11-28, wave 1): a product shows the creator page once it has 3+ cards in audiorecs.creator_reviews; every
+// other product keeps today's v3 page (no thin template and no creators home until the wave is in).
+export const CREATOR_PAGE: Record<string, boolean> = { pickleball: true, skin: true, padel: true, laptop: true, discgolf: true, coffee: true, audio: true };
 export const creatorPageOn = (nicheId: string) => CREATOR_PAGE[nicheId] ?? false;
 /** The creators home at "/" (app/thread/creators-home-body.tsx), apart from the product page switch: SkinRecs (owner "Yes,
  *  Skin next" 2026-11-23) moves its product pages first and keeps its own home for now. PadelRecs (owner 2026-11-24: "we can

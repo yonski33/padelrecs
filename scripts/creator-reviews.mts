@@ -21,8 +21,8 @@ import { niche } from "../lib/niche";
 import { forSchema, migrationsTable } from "../db/migrations";
 import { slugify } from "../lib/slug";
 
-const SITES = new Set(["pickleball", "skin", "padel", "laptop", "discgolf", "coffee"]);
-if (!SITES.has(niche.id)) throw new Error(`Creator reviews are on PickleballRecs, SkinRecs, PadelRecs, LaptopRecs, DiscGolfRecs and CoffeeRecs only: run with NICHE=pickleball, skin, padel, laptop, discgolf or coffee (got ${niche.id}).`);
+const SITES = new Set(["pickleball", "skin", "padel", "laptop", "discgolf", "coffee", "audio"]);
+if (!SITES.has(niche.id)) throw new Error(`Creator reviews are on PickleballRecs, SkinRecs, PadelRecs, LaptopRecs, DiscGolfRecs, CoffeeRecs and AudioRecs only: run with NICHE=pickleball, skin, padel, laptop, discgolf, coffee or audio (got ${niche.id}).`);
 const LAPTOP = niche.id === "laptop";
 const S = niche.schema;
 const args = process.argv.slice(2), cmd = args[0];
@@ -55,7 +55,11 @@ const LAPTOP_ATTR: Record<string, string> = Object.fromEntries(["performance", "
 /** DiscGolfRecs' attribute words (the disc golf reader brief, 2026-11-22), stored under the same keys. */
 const DISCGOLF_ATTR: Record<string, string> = Object.fromEntries(["glide", "turn", "fade", "stability", "grip", "durability", "distance",
   "accuracy", "value"].map(k => [k, k]));
-const ATTR = niche.id === "skin" ? SKIN_ATTR : niche.id === "padel" ? PADEL_ATTR : niche.id === "discgolf" ? DISCGOLF_ATTR : LAPTOP ? LAPTOP_ATTR : PICKLEBALL_ATTR;
+/** AudioRecs' attribute words (the audio card brief, 2026-11-28), stored under the same keys. */
+const AUDIO_ATTR: Record<string, string> = Object.fromEntries(["bass", "mids", "treble", "soundstage", "comfort", "anc", "build", "battery",
+  "mic", "value"].map(k => [k, k]));
+const ATTR = niche.id === "skin" ? SKIN_ATTR : niche.id === "padel" ? PADEL_ATTR : niche.id === "discgolf" ? DISCGOLF_ATTR : niche.id === "audio" ? AUDIO_ATTR
+  : LAPTOP ? LAPTOP_ATTR : PICKLEBALL_ATTR;
 const WORDS = new Set(["Excellent", "Great", "Good", "Okay", "Weak"]);
 const STANCE: Record<string, "pos" | "mix" | "neg"> = { "Loved it": "pos", Mixed: "mix", "Not for me": "neg" };
 /** Chapters that say nothing about the paddle. */
@@ -83,7 +87,7 @@ async function loadInputs() {
   // Each site's own inputs: PickleballRecs the three paddle sweeps, TikTok and prices; SkinRecs one file per product (--skin).
   // LaptopRecs reads only its staged card files (--laptop); the other inputs belong to the pickleball sweeps.
   // DiscGolfRecs (2026-11-24) reads one file per disc too, in the skin shape (--skin <dir>).
-  const skinSite = niche.id === "skin" || niche.id === "discgolf" || LAPTOP;
+  const skinSite = niche.id === "skin" || niche.id === "discgolf" || niche.id === "audio" || LAPTOP;
   const need = (n: string) => { const v = flag(n); if (!v) throw new Error(`--${n} is required`); return v; };
   const dir = async (d: string | undefined) => d ? Promise.all((await readdir(d)).filter(f => f.endsWith(".json") && !f.startsWith("tokens"))
     .map(async f => JSON.parse(await readFile(join(d, f), "utf8")))) : [];
@@ -94,7 +98,7 @@ async function loadInputs() {
   const staging = skinSite || cardsOnly ? { paddles: [] } : JSON.parse(await readFile(need("staging"), "utf8"));
   const verified = await dir(skinSite || cardsOnly ? flag("verified") : need("verified"));
   const tiktok = await dir(skinSite || cardsOnly ? flag("tiktok") : need("tiktok"));
-  const skin = niche.id === "skin" || niche.id === "discgolf" ? await dir(need("skin")) : [];
+  const skin = niche.id === "skin" || niche.id === "discgolf" || niche.id === "audio" ? await dir(need("skin")) : [];
   const videoChannels: Record<string, string> = flag("video-channels") ? JSON.parse(await readFile(flag("video-channels")!, "utf8")) : {};
   const prices = flag("prices") || !(skinSite || cardsOnly) ? JSON.parse(await readFile(need("prices"), "utf8")) : { paddles: [], checked_date: null };
   const fixture: Fixture | null = flag("fixture") ? JSON.parse(await readFile(flag("fixture")!, "utf8")) : null;
@@ -177,7 +181,7 @@ function buildRows(inp: Awaited<ReturnType<typeof loadInputs>>, brandOf: (slug: 
       measured: r.skin_type ? { skin_type: r.skin_type } : r.measured ?? {}, also_url: r.also_url ?? null, version: r.version ?? null, edition: null,
       note: r.type === "long-term" ? "Long-term" : null, brand_tie: null, disclosure: r.disclosure ?? null,
       evidence_note: r.evidence_note ?? null, check_result: "checked", status: "live",
-      source: niche.id === "skin" ? "skin-creator-reviews 2026-11-22" : niche.id === "discgolf" ? "discgolf-creator-reviews 2026-11-24 (API batch recheck)" : niche.id === "padel" ? "padel-creator-reviews 2026-11-23 (API batch, transcripts)" : "pb-creator-reviews-51-80 2026-11-23",
+      source: niche.id === "skin" ? "skin-creator-reviews 2026-11-22" : niche.id === "audio" ? "audio-creator-reviews 2026-11-28 (in-house Sonnet, passage check)" : niche.id === "discgolf" ? "discgolf-creator-reviews 2026-11-24 (API batch recheck)" : niche.id === "padel" ? "padel-creator-reviews 2026-11-23 (API batch, transcripts)" : "pb-creator-reviews-51-80 2026-11-23",
       key_point: kp ? (/[.!?]$/.test(kp) ? kp : `${kp}.`) : null, created_at: now, updated_at: now });
   }
   // LaptopRecs (2026-11-24): the staged laptop cards, each with the config the reviewer tested (drizzle/0041). Its key points

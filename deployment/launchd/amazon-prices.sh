@@ -1,5 +1,5 @@
 #!/bin/zsh
-# Amazon prices twice a day for SkinRecs, DiscGolfRecs and PickleballRecs (owner 2026-11-27: "Yes, set it up"). Pages show a
+# Amazon prices twice a day for SkinRecs, DiscGolfRecs, PickleballRecs and AudioRecs (audio added 2026-11-28) (owner 2026-11-27: "Yes, set it up"). Pages show a
 # saved Amazon price only while it is under 24 hours old (Amazon's rule), so two runs a day keep it on the page; if this job
 # stops, the prices drop off by themselves and pages show a plain Amazon link. Current price only, no history. No AI.
 # Run by launchd (com.padelrecs.amazon-prices.plist), never by a Claude task, in its own checkout of main
@@ -14,6 +14,6 @@ git checkout -q --detach origin/main
 LOCK=$(shasum package-lock.json | cut -d' ' -f1)
 if [[ ! -d node_modules || "$(cat .lock-hash 2>/dev/null)" != "$LOCK" ]]; then npm ci --silent --no-audit --no-fund && echo "$LOCK" > .lock-hash; fi
 echo "== $(date -u +%FT%TZ) Amazon prices"
-for site in skin discgolf pickleball; do
+for site in skin discgolf pickleball audio; do
   NICHE=$site npx tsx --env-file=.env.local scripts/amazon-prices.mts --apply --saved-only | tail -1 || echo "$site Amazon prices failed"
 done
