@@ -13,7 +13,7 @@ import { creatorPageOn, CREATOR_MIN_REVIEWS } from "../lib/thread/sites";
 import { dropReplacedYouTube } from "../lib/thread/replaced-youtube";
 import { shopPhoto } from "../lib/shop-photos";
 import { amazonPhoto } from "../lib/amazon-photos";
-import { padelReadyIds } from "../lib/thread/padel-ready";
+import { padelReadyIds, PADEL_READY } from "../lib/thread/padel-ready";
 export async function database() { return getDb(); }
 
 type RacketRef = { id: string; brandId: string; createdAt: string };
@@ -43,7 +43,11 @@ export function forgetCatalog() { forgetKept(); bumpEditStamp(); }
 const PHOTO_TO_LIST = new Set(["pickleball"]);
 /** Sites that keep thin products off lists and search (lib/thread/padel-ready.ts): padel 2026-11-26 (#718), pickleball 2026-11-26
  *  (owner: "paddles we cant find enough reviews for will be out of the catalog"). */
-export const THIN_HIDE = new Set(["padel", "pickleball"]);
+export const THIN_HIDE = new Set(["padel", "pickleball", "discgolf", "skin"]);
+/** DiscGolfRecs and SkinRecs (owner 2026-11-27, "Yes, hide from lists"): only products with nothing at all come off lists,
+ *  so their bar is 1 review (creator, player, or a non-Reddit web review shown as a card) or 3 votes; the 30-day new-product
+ *  exemption is the same. Reddit posts sit in the Reddit box, not as cards, so they don't count here. */
+const THIN_READY: Record<string, typeof PADEL_READY> = { discgolf: { reviews: 1, votes: 3, newDays: 30 }, skin: { reviews: 1, votes: 3, newDays: 30 } };
 export const catalog = cache(async function catalog(connection?:ReturnType<typeof getDb>) {
  return connection ? loadCatalog(connection) : kept_.get();
 });
@@ -73,7 +77,8 @@ async function loadCatalog(connection?:ReturnType<typeof getDb>) {
  const photoOk = (r: typeof allRackets[number]) => !PHOTO_TO_LIST.has(niche.id) || !!(shopPhoto(r) ?? amazonPhoto(r)?.image);
  // PadelRecs and PickleballRecs (owner 2026-11-26, lib/thread/padel-ready.ts): a product with fewer than 3 reviews and fewer than 3 votes is not
  // listed either, unless it was added in the last 30 days. Its page still works; it lists itself once it passes either bar.
- const padelOk = padelExtra ? padelReadyOf(visible.rackets, publicReviews, external, padelExtra) : null;
+ const padelOk = padelExtra ? padelReadyOf(visible.rackets, publicReviews, THIN_READY[niche.id] ? external.filter(e => e.sourcePlatform !== "Reddit") : external,
+  padelExtra, Date.now(), THIN_READY[niche.id]) : null;
  const listed = visible.rackets.filter(r => reviewed.has(r.id) && photoOk(r) && (!padelOk || padelOk.has(r.id)));
  const listedBrands = visible.brands.filter(b => listed.some(r => r.brandId === b.id));
  return { brands: visible.brands, rackets: visible.rackets, listed, listedBrands, creatorIds, padelReady: padelOk,
@@ -102,11 +107,11 @@ async function padelCounts(db: ReturnType<typeof getDb>) {
 }
 /** The PadelRecs ids ready to list (lib/thread/padel-ready.ts), from the catalogue's reviews and the counts above. */
 export function padelReadyOf(items: { id: string; createdAt: string }[], playerReviews: { racketId: string }[], web: { racketId: string }[],
- extra: { creators: Map<string, number>; quick: Map<string, number>; trait: Map<string, number> }, now = Date.now()) {
+ extra: { creators: Map<string, number>; quick: Map<string, number>; trait: Map<string, number> }, now = Date.now(), cfg = PADEL_READY) {
  const reviews = new Map<string, number>(extra.creators), votes = new Map<string, number>();
  for (const x of [...playerReviews, ...web]) reviews.set(x.racketId, (reviews.get(x.racketId) ?? 0) + 1);
  for (const m of [extra.quick, extra.trait]) for (const [id, n] of m) votes.set(id, (votes.get(id) ?? 0) + n);
- return padelReadyIds(items, { reviews, votes }, now);
+ return padelReadyIds(items, { reviews, votes }, now, cfg);
 }
 /** The products with a live creator page (db/creator-reviews.ts tables), on sites with the creator page switch on; none
  *  where the tables don't exist yet or can't be read, so the catalogue never fails over them. */

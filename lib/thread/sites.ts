@@ -117,7 +117,8 @@ export const CREATOR_MIN_REVIEWS = 3;
  *  2026-11-27: "all pages on the site to have the same look"). Such a thin page shows the head, the shops and the review
  *  cards it has, and leaves out everything that sums up across reviews (TL;DR, review consensus, the at-a-glance table):
  *  "a summary for 1 or 2 reviews is silly". False brings back the usual product page under the minimum. */
-export const THIN_CREATOR_PAGE: Record<string, boolean> = { pickleball: true, padel: true };
+// DiscGolfRecs and SkinRecs (owner 2026-11-27): every live product on the new design too.
+export const THIN_CREATOR_PAGE: Record<string, boolean> = { pickleball: true, padel: true, discgolf: true, skin: true };
 export const thinCreatorPageOn = (nicheId: string) => creatorPageOn(nicheId) && (THIN_CREATOR_PAGE[nicheId] ?? false);
 /** Creator pages on a site that is not a Thread site (LaptopRecs, 2026-11-24): proxy.ts serves its product addresses for the
  *  products in db/creators/<site>-pages.json from app/thread/creator-product/[slug], which shows the creator page when the
