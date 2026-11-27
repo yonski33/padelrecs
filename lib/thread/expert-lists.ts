@@ -54,7 +54,10 @@ export const outletKey = (s: string) => s.toLowerCase().replace(/\.(com|net|org|
 export type Badge = { text: string; tone: "top" | "soft" | "plain" };
 const AWARD_WORDS: [RegExp, string][] = [[/budget|cheap|value/, "Value"], [/spin|grit/, "Spin"], [/power/, "Power"], [/control/, "Control"],
   [/forgiv/, "Forgiving"], [/beginner/, "Beginner"], [/widebody|wide body/, "Wide"], [/elongated/, "Long"], [/portable|travel|ultraportable/, "Portable"],
-  [/battery/, "Battery"], [/gaming/, "Gaming"], [/student/, "Students"], [/2-in-1|touch/, "2-in-1"], [/fast hands/, "Hands"]];
+  [/battery/, "Battery"], [/gaming/, "Gaming"], [/student/, "Students"], [/2-in-1|touch/, "2-in-1"], [/fast hands/, "Hands"],
+  // SkinRecs (2026-11-27): skin types and needs.
+  [/\bdry\b/, "Dry skin"], [/\boily\b/, "Oily skin"], [/sensitive/, "Sensitive"], [/acne|blemish|breakout/, "Acne"], [/drugstore/, "Drugstore"],
+  [/matur|aging|ageing|wrinkle/, "Aging"], [/k-beauty|korean/, "K-beauty"], [/splurge|luxury/, "Splurge"]];
 export function badgeOf(p: Pick<ShownPick, "label" | "position">): Badge {
   const l = (p.label ?? "").trim(), low = l.toLowerCase();
   if (!l) return { text: `#${p.position}`, tone: p.position === 1 ? "top" : "plain" };
