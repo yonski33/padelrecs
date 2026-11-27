@@ -1,8 +1,8 @@
 /* The creators home preview (app/thread/creators-home), copied from the owner's handoff "PickleballRecs Home Thread v6":
    its tokens, sizes, spacing and breakpoints (phone under 640px, sidebar from 1000px, wide rows from 1200px). Scoped to .tch,
    so no other page changes. The mock set its breakpoints in script; here they are media queries with the same values. */
-.tch { --ink: #17203a; --ink2: #4a5068; --div: #e6e7ec; --soft: #F6F0E6; --card: #FFFCF8; --acc: oklch(0.92 0.17 105);
-  --acc-soft: oklch(0.975 0.05 105); --pos: oklch(0.72 0.15 145); --mix: oklch(0.85 0.14 90); --neg: oklch(0.7 0.15 30);
+.tch { --ink: #17203a; --ink2: #4a5068; --div: #e6e7ec; --soft: #F6F0E6; --card: #FFFCF8; --acc: var(--brand-acc, oklch(0.92 0.17 105));
+  --acc-soft: var(--brand-soft, oklch(0.975 0.05 105)); --pos: oklch(0.72 0.15 145); --mix: oklch(0.85 0.14 90); --neg: oklch(0.7 0.15 30);
   max-width: 1380px; margin: 0 auto; padding: 16px 28px 56px; box-sizing: border-box; display: flex; flex-direction: column; gap: 16px;
   color: var(--ink); font-family: Inter, system-ui, sans-serif; font-size: 16px; line-height: 1.45; font-variant-numeric: tabular-nums; }
 body:has(.tch), body:has(.tch) .th { background: #FEFAF4; }
@@ -32,7 +32,7 @@ body:has(.tch), body:has(.tch) .th { background: #FEFAF4; }
 .tch-arm > span { width: 16px; height: 16px; border: 1.5px solid var(--ink); border-radius: 4px; display: flex; align-items: center; justify-content: center; font-size: 12.5px; font-weight: 700; background: #fff; }
 .tch-arm[aria-pressed="true"] > span { background: var(--acc); }
 .tch-sticker { flex: none; display: inline-flex; align-items: center; gap: 4px; margin-left: 6px; transform: rotate(-3deg); }
-.tch-sticker > span { font-family: 'Barlow Condensed', var(--bc, sans-serif); font-weight: 800; font-size: 21px; line-height: 1; white-space: nowrap; background: #FFE45C; border: 1.5px solid var(--ink); border-radius: 6px; padding: 3px 8px 4px; }
+.tch-sticker > span { font-family: 'Barlow Condensed', var(--bc, sans-serif); font-weight: 800; font-size: 21px; line-height: 1; white-space: nowrap; background: var(--brand-mark, #FFE45C); border: 1.5px solid var(--ink); border-radius: 6px; padding: 3px 8px 4px; }
 .tch-reset, .tch-ul { all: unset; cursor: pointer; flex: none; font-size: 14.5px; font-weight: 600; text-decoration: underline; text-underline-offset: 3px; margin-left: 8px; }
 .tch-ul { font-size: 13.5px; margin-left: 4px; }
 .tch-ft { all: unset; cursor: pointer; flex: none; font-size: 14px; font-weight: 600; margin-left: auto; padding-left: 4px; white-space: nowrap; }
