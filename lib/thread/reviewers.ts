@@ -16,7 +16,8 @@ export const SIMILAR_SHARED = 3, SIMILAR_AGREE = 0.6;
 export type ReviewerRow = { id: string; creator: string; kind: "youtube" | "blog" | "tiktok"; url: string; channel: string; lang: string;
   date: string; video: string | null; len: number | null; stance: Stance; productSlug: string; productName: string;
   /** The row's line: the review's short summary, else its key point and trade-off (no new writing per review). */ line: string;
-  /** A disclosed tie with the product's brand, or the review's disclosure note (discount code, sponsored), or null. */ tie: string | null; disclosure: string | null };
+  /** A disclosed tie with the product's brand, or the review's disclosure note (discount code, sponsored), or null. */ tie: string | null; disclosure: string | null;
+  /** How many traits their own review rates Excellent or Great (their favourites go by it). */ praise?: number };
 
 export type Reviewer = { slug: string; name: string; kind: ReviewerRow["kind"]; lang: string; channel: string; n: number;
   pos: number; mix: number; neg: number; since: string | null;
@@ -85,11 +86,11 @@ export function reviewersFrom(rows: ReviewerRow[], min = REVIEWER_MIN, aliases: 
   return out.sort((a, b) => b.n - a.n || a.name.localeCompare(b.name));
 }
 
-/** Their favourites: the products they loved, the most-reviewed first (no scores to rank by), newest on a tie. */
-export function favourites(rv: Reviewer, takes: Map<string, Record<Stance, number>>, size = 3): ReviewerRow[] {
-  const n = (s: string) => { const c = takes.get(s); return c ? c.pos + c.mix + c.neg : 0; };
+/** Their favourites (owner 2026-11-27: from their own words only): the products they loved, the ones their own review praises
+ *  most first (traits rated Excellent or Great), newest on a tie. No site-wide counts, no numbered ranking. */
+export function favourites(rv: Reviewer, _takes?: unknown, size = 3): ReviewerRow[] {
   const seen = new Set<string>();
-  return rv.reviews.filter(r => r.stance === "pos").sort((a, b) => n(b.productSlug) - n(a.productSlug) || b.date.localeCompare(a.date))
+  return rv.reviews.filter(r => r.stance === "pos").sort((a, b) => (b.praise ?? 0) - (a.praise ?? 0) || b.date.localeCompare(a.date))
     .filter(r => !seen.has(r.productSlug) && seen.add(r.productSlug)).slice(0, size);
 }
 

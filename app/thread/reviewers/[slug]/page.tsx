@@ -76,11 +76,11 @@ export default async function ReviewerPage({ params }: P) {
       </section>
 
       {favs.length > 0 && <section className="rvp-favs">
-        <div className="rvp-sec-h"><h2>Their favourites</h2><span>{`The ${ITEMS} they loved, most reviewed first`}</span></div>
+        <div className="rvp-sec-h"><h2>Their favourites</h2><span>{`${ITEMS[0]!.toUpperCase()}${ITEMS.slice(1)} they loved, most praised in their review`}</span></div>
         <div className="rvp-fav-g">{favs.map((f, i) => { const p = d.product(f.productSlug)!, pr = d.price(f.productSlug, f.productName);
           return <div key={f.id} className="rvp-fav">
             <a className="pic" href={th(p.href)} tabIndex={-1} aria-hidden="true">{p.pic ? <img src={p.pic} alt="" loading="lazy"/> : <span className="th-ph"/>}</a>
-            <span className="b"><small>{`#${i + 1}`}</small><a className="nm" href={th(p.href)}>{withoutYear(f.productName)}</a><span className="ln">{f.line}</span>
+            <span className="b"><a className="nm" href={th(p.href)}>{withoutYear(f.productName)}</a><span className="ln">{f.line}</span>
               {pr && <a className="buy" href={pr.url} target="_blank" rel={pr.rel}>check price ↗</a>}</span>
           </div>; })}</div>
       </section>}
