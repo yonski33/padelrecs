@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+  <key>Label</key><string>com.padelrecs.amazon-prices</string>
+  <key>ProgramArguments</key>
+  <array>
+    <string>/bin/zsh</string>
+    <string>-lc</string>
+    <string>"$HOME/padelrecs-jobs/deployment/launchd/amazon-prices.sh"</string>
+  </array>
+  <!-- Twice a day at 06:30 and 18:30 local time (the shop-price job runs at 06:00 in the same checkout); a run missed
+       while the Mac sleeps runs when it wakes. -->
+  <key>StartCalendarInterval</key>
+  <array>
+    <dict><key>Hour</key><integer>6</integer><key>Minute</key><integer>30</integer></dict>
+    <dict><key>Hour</key><integer>18</integer><key>Minute</key><integer>30</integer></dict>
+  </array>
+  <key>StandardOutPath</key><string>/tmp/padelrecs-amazon-prices.log</string>
+  <key>StandardErrorPath</key><string>/tmp/padelrecs-amazon-prices.log</string>
+  <key>LowPriorityIO</key><true/>
+</dict>
+</plist>

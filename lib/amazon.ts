@@ -12,9 +12,11 @@
  */
 import { looksLikeOtherProduct } from "./amazon-match";
 
-export type AmazonOffer = { asin: string; title: string; price: string | null; url: string; image: string | null };
+/** match: "name" when every word of the name is in the listing title, "loose" when only the key words are
+ *  (matchesProductLoose); a loose match is worth a look before its ASIN is saved. */
+export type AmazonOffer = { asin: string; title: string; price: string | null; url: string; image: string | null; match?: "name" | "loose"; /** Why the match needs a look before its ASIN is saved. */ doubt?: string };
 export type AmazonCredentials = { id: string; secret: string; partnerTag: string };
-export type AmazonSettings = { searchIndex: string; marketplace?: string };
+export type AmazonSettings = { searchIndex: string; marketplace?: string; match?: "loose" | "variants" };
 type Fetch = typeof fetch;
 
 const API = "https://creatorsapi.amazon";
@@ -74,6 +76,68 @@ export function matchesProduct(product: { name: string; brand: string }, result:
   if (model.some(w => /\d/.test(w) && !title.has(w))) return false;
   const missing = model.filter(w => !title.has(w)).length;
   return missing === 0 || (model.length >= 4 && missing === 1);
+}
+
+/** Words that describe rather than name a product: Amazon writes "Face" for "Facial", drops "Broad-Spectrum" and adds
+ *  "Korean"; a loose match ignores them on both sides. */
+const SOFT = new Set(["face", "facial", "skin", "skincare", "care", "daily", "gentle", "broad", "spectrum", "korean", "k", "beauty",
+  "low", "molecular", "advanced", "original", "classic", "new", "formula", "the"]);
+/** Formula and finish words that mark a sibling (Hydrating vs Foaming Cleanser, tinted vs untinted, AM vs PM): a loose
+ *  match rejects a listing whose name part has one the catalogue name lacks. */
+const SIBLING = /^(foaming|foam|cream|lotion|gel|oil|balm|tinted|mineral|matte|night|pm|am|eye|body|lip|baby|kids|sensitive|acne|salicylic|renewing|smoothing|sa|retinol|intensive|intense|rich|light|fluid|stick|spray|mist|sheer|glow|toner|mask|pads?|cushion|aqua|fresh|airy|watery|brightening|tone)$/;
+/** Title words plus the split of letter-number runs ("spf50" also gives "spf" and "50"). */
+const titleWords = (t: string) => { const w = words(t); return new Set([...w, ...w.flatMap(x => x.split(/(?<=[a-z])(?=\d)|(?<=\d)(?=[a-z])/))]); };
+
+/**
+ * The forgiving check, used only when no result passes matchesProduct (owner 2026-11-26, SkinRecs): the brand must
+ * match and every number in the name (SPF 46, 96, 10%) must appear, sizes, pack words and the SOFT words are ignored,
+ * and a third of the remaining key words may be missing ("Torriden DIVE IN Hyaluronic Acid Serum" for the "DIVE-IN Low
+ * Molecular" one). A sibling formula word in the listing's name part (before the first comma or "|") still rejects it.
+ */
+export function matchesProductLoose(product: { name: string; brand: string }, result: { title: string; brand?: string | null }, allMustMatch = false) {
+  const title = titleWords(result.title), brand = words(product.brand), resultBrand = words(result.brand ?? "").join(" ");
+  const brandOk = brand.length > 0 && (resultBrand ? resultBrand.includes(brand.join(" ")) || brand.join(" ").includes(resultBrand) : brand.every(w => title.has(w)));
+  if (!brandOk) return false;
+  const brandWords = new Set(brand.flatMap(w => [w, ...w.split(/(?<=[a-z])(?=\d)|(?<=\d)(?=[a-z])/)]));
+  if (title.has("wide") && title.has("body")) title.add("widebody");
+  const key = words(product.name).flatMap(w => w.split(/(?<=[a-z])(?=\d)|(?<=\d)(?=[a-z])/)).filter(w => !brandWords.has(w) && !SOFT.has(w));
+  if (key.length < 2) return false;
+  if (key.some(w => /\d/.test(w) && !title.has(w) && !title.has(w.replace(/s$/, "")))) return false;
+  const has = (w: string) => title.has(w) || title.has(w.replace(/s$/, "")) || title.has(`${w}s`);
+  const missing = key.filter(w => !has(w));
+  // The first two key words name the line ("UV Restore", "DIVE IN"): never missing, so UV Daily isn't taken for UV Restore.
+  if (missing.length > (allMustMatch ? 0 : Math.floor(key.length / 3)) || missing.some(w => key.indexOf(w) < 2)) return false;
+  return !isSiblingListing(product, result.title);
+}
+
+/** The listing's name part (before the first comma or "|") has a formula or variant word the catalogue name lacks:
+ *  "Relief Sun Aqua-Fresh" for Relief Sun: Rice + Probiotics, "Hydrating Cream-to-Foam" for Hydrating Facial Cleanser. */
+export function isSiblingListing(product: { name: string }, title: string) {
+  const own = new Set(words(product.name)), head = words(title.split(/[,|]/)[0] ?? "");
+  return head.some(w => SIBLING.test(w) && !own.has(w) && !own.has(w.replace(/s$/, "")) && !own.has(`${w}s`)
+    && !(w === "tinted" && head.includes("untinted")));
+}
+
+/** PickleballRecs variants (owner 2026-11-26): shape, thickness and generation must match both ways. */
+const SHAPE = /^(elongated|hybrid|widebody|standard)$/, THICK = /^\d{2}mm$/, GEN = /^(ii|iii|iv|v|vi|vii|[2-9]|gen\d*|\d\.0)$/;
+/** Edition words that name another paddle in the same line (Hurache X Power vs Jelly Bean, Coral vs Coral Pro). */
+const EDITION = /^(power|control|jelly|bean|pro|plus|max|lite|ultra|alpha|elite|x)$/;
+const shapeWords = (ws: string[]) => ws.map(w => w === "wide" ? "widebody" : w).filter(w => SHAPE.test(w));
+/** Why a listing is another variant (reject) or a parent listing of several (doubt), for "variants" niches. */
+export function variantCheck(product: { name: string; brand: string }, title: string): { reject?: string; doubt?: string } {
+  const own = words(product.name), all = words(title), head = words(title.split(/[,|(]/)[0] ?? "");
+  for (const [label, test] of [["shape", (w: string) => SHAPE.test(w)], ["thickness", (w: string) => THICK.test(w)], ["generation", (w: string) => GEN.test(w)], ["edition", (w: string) => EDITION.test(w)]] as const) {
+    const mine = own.filter(test);
+    const extra = (label === "shape" ? shapeWords(head) : head.filter(test)).filter(w => !mine.includes(w));
+    if (extra.length) return { reject: `${label} ${extra[0]} in the listing name, not in ours` };
+    const lacking = mine.filter(w => !(label === "shape" ? shapeWords(all) : all).includes(w));
+    if (lacking.length) return { reject: `${label} ${lacking[0]} not in the listing` };
+  }
+  const shapes = new Set(shapeWords(all)), thick = new Set(all.filter(w => THICK.test(w)));
+  if (shapes.size > 1 || thick.size > 1) return { doubt: `parent listing with variants (${[...shapes, ...thick].join(", ")})` };
+  // "R1.16/R2.16/R3.16", "R1.14/R2.14/R4.14": one listing for several models.
+  if (/\b[a-z]*\d[\w.]*\s?\/\s?[a-z]*\d/i.test(title)) return { doubt: "parent listing for several models" };
+  return {};
 }
 
 /** Thrown for answers that should be retried later (throttling, outages), so a cache never keeps them as "not on Amazon". */
@@ -136,10 +200,16 @@ export async function findAmazonOffer(product: { name: string; brand: string }, 
   const found = await call("/catalog/v1/searchItems", {
     keywords: product.name.trim(), searchIndex: settings.searchIndex, itemCount: 5, resources: ["itemInfo.title", "itemInfo.byLineInfo"],
   }, credentials, marketplace, fetcher);
-  const match = (found.searchResult?.items ?? []).find(item => item.asin && isAsin(item.asin) && item.itemInfo?.title?.displayValue
-    && matchesProduct(product, { title: item.itemInfo.title.displayValue, brand: item.itemInfo.byLineInfo?.brand?.displayValue })
+  const mode = settings.match;
+  const items = (found.searchResult?.items ?? []).filter(item => item.asin && isAsin(item.asin) && item.itemInfo?.title?.displayValue
     // The name alone isn't enough: "CeraVe Healing Ointment Lip Balm" carries every word of "CeraVe Healing Ointment".
-    && !looksLikeOtherProduct(product, item.itemInfo.title.displayValue));
+    && !looksLikeOtherProduct(product, item.itemInfo.title.displayValue)
+    && (mode !== "loose" || !isSiblingListing(product, item.itemInfo.title.displayValue))
+    && (mode !== "variants" || !variantCheck(product, item.itemInfo.title.displayValue).reject));
+  const pick = (test: typeof matchesProduct) => items.find(item => test(product, { title: item.itemInfo!.title!.displayValue!, brand: item.itemInfo!.byLineInfo?.brand?.displayValue }));
+  // "variants" niches (pickleball) ignore only sizes and marketing words; every other word of the name must be there.
+  const exact = pick(matchesProduct), match = exact ?? (mode ? pick((p, r) => matchesProductLoose(p, r, mode === "variants")) : undefined), how: "name" | "loose" = exact ? "name" : "loose";
+  const doubt = match && mode === "variants" ? variantCheck(product, match.itemInfo!.title!.displayValue!).doubt : undefined;
   if (!match?.asin) {
     const titles = (found.searchResult?.items ?? []).map(item => `${item.asin} "${item.itemInfo?.title?.displayValue ?? ""}"`);
     log(`[amazon] No matching result for ${product.name}${titles.length ? `; Amazon returned ${titles.join(", ")}` : found.errors?.[0]?.code ? ` (${found.errors[0].code})` : "; Amazon returned nothing"}`);
@@ -151,7 +221,7 @@ export async function findAmazonOffer(product: { name: string; brand: string }, 
   const item = details.itemsResult?.items?.find(i => i.asin === match.asin);
   const price = item ? listingPrice(item) : null;
   if (!price) log(`[amazon] ${product.name} matched ${match.asin} but Amazon lists no price for it`);
-  return { asin: match.asin, title: item?.itemInfo?.title?.displayValue ?? match.itemInfo!.title!.displayValue!, price, url: amazonLink(match.asin, credentials.partnerTag, marketplace), image: item?.images?.primary?.large?.url ?? null };
+  return { asin: match.asin, title: item?.itemInfo?.title?.displayValue ?? match.itemInfo!.title!.displayValue!, price, url: amazonLink(match.asin, credentials.partnerTag, marketplace), image: item?.images?.primary?.large?.url ?? null, match: how, ...(doubt ? { doubt } : {}) };
 }
 
 /** One known ASIN's live offer (getItems with OffersV2), for the daily price job (scripts/amazon-prices.mts): no search,

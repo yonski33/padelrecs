@@ -71,7 +71,7 @@ export const pickleball: Niche = {
   // Match audit 2026-11-16: every row was its own family, so versions sat side by side and "show older models" did nothing.
   familiesByName: true,
   productPath: "paddles",
-  amazon: { searchIndex: "SportsAndOutdoors", photos: true },
+  amazon: { searchIndex: "SportsAndOutdoors", photos: true, match: "variants" },
   scoreUnit: { one: "ball", many: "balls" },
   // White page, hard-court blue, one optic-yellow accent. Token names are shared with padel ("green" = primary, "lime" = accent).
   theme: {

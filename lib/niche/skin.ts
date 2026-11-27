@@ -49,7 +49,7 @@ export const skin: Niche = {
   recentMonths: 36,
   productYears: false,
   productPath: "products",
-  amazon: { searchIndex: "Beauty", photos: true },
+  amazon: { searchIndex: "Beauty", photos: true, match: "loose" },
   scoreUnit: { one: "drop", many: "drops" },
   // White page, soft berry, one peach accent. Token names are shared with padel ("green" = primary, "lime" = accent).
   theme: {
