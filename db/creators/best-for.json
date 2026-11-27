@@ -6129,6 +6129,290 @@
   "cr_65003d4c8ea1ae33": {
    "who": "More powerful arms picking the Hybrid",
    "why": "Sees the Hybrid fade a decent amount and suggests it suits stronger arms."
+  },
+  "cr_b91d1ffe0d96b58d": {
+   "who": "Players facing tight, low-ceiling corridors",
+   "why": "Calls it a go-to on a tight, low-ceiling hole and likes the late turn."
+  },
+  "cr_55c5d32e09d55c95": {
+   "who": "Players wanting turnover without full power",
+   "why": "Finds it turns easily where another understable mid needs full power."
+  },
+  "cr_56e2595b26235b5a": {
+   "who": "New players learning angle control",
+   "why": "Finds it flips to flat with little power and punishes any off-axis torque."
+  },
+  "cr_a590adf66eb20eb7": {
+   "who": "Throwers maxing out at 250 to 300 ft",
+   "why": "Calls it a great tool for slower arms and for working on angles."
+  },
+  "cr_ac016fc6c1b73d55": {
+   "who": "Beginners learning touch and speed control",
+   "why": "Finds it flies straight at low arm speed and teaches finesse."
+  },
+  "cr_6ff43b3f318e83ec": {
+   "who": "Beginners with about 200 ft of power",
+   "why": "Suggests it for low-power throwers, and for advanced players willing to practice finesse."
+  },
+  "cr_782c50b8f96dbcfe": {
+   "who": "Players who understand flippy discs",
+   "why": "Finds the forehand useful in the woods with a soft flip up."
+  },
+  "cr_c508568b5398d2e2": {
+   "who": "Players wanting an easy neutral mid",
+   "why": "Finds it easy to throw on hyzer or flat whatever the arm speed."
+  },
+  "cr_5e4868452385adb8": {
+   "who": "Beginners wanting easy distance",
+   "why": "Says beginners get a lot of distance where a straighter mid might hyzer out early."
+  },
+  "cr_b8e719c84bd790cd": {
+   "who": "Players learning to hyzer flip",
+   "why": "Calls it the perfect tool for hyzer flips, with a flip to flat and little fade."
+  },
+  "cr_cf3d155a79c66d31": {
+   "who": "Players choosing a run by stability",
+   "why": "Suggests the new run or Neo for stable flights, the first run for flippier."
+  },
+  "cr_e0e04d7c66b95a65": {
+   "who": "Players wanting a point and shoot woods disc",
+   "why": "Feels like the woods disc wanted, with stability and some flip but not super flippy."
+  },
+  "cr_f6f95fd91ff3335c": {
+   "who": "Finesse players wanting a neutral driver",
+   "why": "Calls it the perfect fairway driver for finesse players, very neutral and great when new."
+  },
+  "cr_3b0c6adb2906c692": {
+   "who": "Players on tight, wooded holes",
+   "why": "Likes that it holds a lot of hyzer without dumping early and flies very straight."
+  },
+  "cr_d363ddd3c417886d": {
+   "who": "Players wanting hyzer flips and straight shots",
+   "why": "Finds it a good hyzer flip disc, dead straight with a baby hyzer."
+  },
+  "cr_cc89314a6d139a1f": {
+   "who": "Beginners and slower arm speeds",
+   "why": "Says it holds just about any line and flips up with a lot of glide."
+  },
+  "cr_cebc89be77e09611": {
+   "who": "Players whose current mids are not working",
+   "why": "Suggests it where Discraft Buzzz, Innova Roc3 or Discmania MD3 fall short, especially for driver-feel fans."
+  },
+  "cr_97cdf4a54b7df5df": {
+   "who": "Players wanting a far-flying neutral mid",
+   "why": "Finds it throws over 300 on a pretty consistent basis and trusts it down tunnels."
+  },
+  "cr_c30c81b77c663a26": {
+   "who": "Players wanting a comfortable do-it-all mid",
+   "why": "Calls it solid, with slight stability that can stand a little wind."
+  },
+  "cr_ea211c74a743269a": {
+   "who": "Players wanting a steadier flat release",
+   "why": "Finds it stays on the thrown angle flat and hard, and goes further."
+  },
+  "cr_ae52de43e7ef9cc5": {
+   "who": "Players with shallower hands",
+   "why": "Finds the shallower profile might fit shallower hands, though it flew too stable on hyzer."
+  },
+  "cr_4039d6a4ea447b8c": {
+   "who": "Players wanting a go-to workhorse",
+   "why": "Reaches for it on the tee and everywhere else for its straight, angle-holding flight."
+  },
+  "cr_6c705faeb05bf70b": {
+   "who": "Players needing straight backhand skip shots",
+   "why": "Finds it stays straight even after a kick on a backhand skip line."
+  },
+  "cr_4cde67305fdae5b2": {
+   "who": "Forehand and wind throwers",
+   "why": "Calls an overstable nine speed a staple for wind or forehands that must not turn."
+  },
+  "cr_633cbea67779de8c": {
+   "who": "Players wanting an overstable but workable Felon",
+   "why": "Says Hybrid X stays workable in wind where Lucid X dumps every time."
+  },
+  "cr_3f2235a132afc03b": {
+   "who": "Throwers wanting a long straight line",
+   "why": "Likes how it holds the line longer before it hooks up at the end."
+  },
+  "cr_e70811d8957aa375": {
+   "who": "Wind fighters and forehand throwers",
+   "why": "Calls the new blend a wind fighter and the old one a workable forehand disc."
+  },
+  "cr_3fb4a2eb1c417ae3": {
+   "who": "Sidearm throwers in wind",
+   "why": "Finds it very flat and reliable in most wind, with a controllable skip finish."
+  },
+  "cr_46824973c7f1f7d7": {
+   "who": "Intermediate to experienced forehand throwers",
+   "why": "Throws it mostly on forehand and trusts the fade in headwinds."
+  },
+  "cr_5698d055fb0abb3a": {
+   "who": "Advanced players needing wind and short high shots",
+   "why": "Calls it great for advanced players, perfect in wind and on short high shots."
+  },
+  "cr_f3a173a63e7e4bae": {
+   "who": "Advanced players wanting an approach utility disc",
+   "why": "Calls it a utility disc for approaches, low skip shots around corners and headwinds."
+  },
+  "cr_df8986a4cfcf65ab": {
+   "who": "Smooth throwers with good touch",
+   "why": "Thinks smooth throwers with touch will shape it well, while hard throwers will struggle."
+  },
+  "cr_420861090485d8ce": {
+   "who": "Slower arms in woods and low ceilings",
+   "why": "Sees Star as good for scramble shots, low ceilings, woods and slower arms."
+  },
+  "cr_0824b8a40028bfa4": {
+   "who": "Newer players wanting a far flight",
+   "why": "Calls it probably one of the best discs for newer players who want distance."
+  },
+  "cr_41b93a8524aa9ccb": {
+   "who": "Players choosing a first disc",
+   "why": "Picks it as the better first disc because everything is easier with it."
+  },
+  "cr_9786c02892fa12b3": {
+   "who": "Lower arm speeds wanting mid distance",
+   "why": "Sees it suiting lower arm speeds that still want distance from a mid."
+  },
+  "cr_7330ff824c6a1c70": {
+   "who": "Low wrap-around shots to the left",
+   "why": "Sees it only as a low left curve when a putter is too short."
+  },
+  "cr_3a541d9c83014eb7": {
+   "who": "Big arms on windy days",
+   "why": "Calls it a windy day disc, not a straight one, maybe better for big arms."
+  },
+  "cr_63419e84b8e0ebf7": {
+   "who": "Most arms wanting a utility mid",
+   "why": "Reads it as a workably overstable mid that most players would use regularly."
+  },
+  "cr_31070316a795ed49": {
+   "who": "Forehand or backhand throwers wanting a stable mid",
+   "why": "Finds it fast, reliable and stable, good thrown either way, and probably worth bagging."
+  },
+  "cr_063eb2e150a1e903": {
+   "who": "Wind, forehand and trouble shots",
+   "why": "Sees a controllable, accurate approach disc for wind, forehand flexes and getting out of trouble."
+  },
+  "cr_892b6cd4a8f005c2": {
+   "who": "Stiff headwind days needing a left move",
+   "why": "Keeps one for stiff headwinds that need a quick move left."
+  },
+  "cr_e1c188a4de24501f": {
+   "who": "Beginners and slow arm speeds",
+   "why": "Finds it flips easily on not very hard throws at about 60 mph arm speed."
+  },
+  "cr_a781222236b87a11": {
+   "who": "Shots that cannot fade",
+   "why": "Keeps the Halo copy in the bag for turnover shots that cannot be allowed to fade."
+  },
+  "cr_9749f3bee9e376dc": {
+   "who": "Beginners without a turnover or forehand",
+   "why": "Finds it rolls with very little effort, even at about half power or off angle."
+  },
+  "cr_91dc7bca7eb7cbee": {
+   "who": "Learning hyzer flips, escaping the woods",
+   "why": "Calls it a great tool for learning hyzer flips and getting out of the woods."
+  },
+  "cr_eb5558ccff4d9da3": {
+   "who": "First disc for nose-up throwers",
+   "why": "Sees a first disc for slow arm speeds or beginners still throwing nose up."
+  },
+  "cr_1d702b7a4504ab63": {
+   "who": "Headwind and crosswind shots",
+   "why": "Holds the horizon into a headwind and stays flat in a crosswind without drifting."
+  },
+  "cr_fe873c0825aa1c3b": {
+   "who": "Utility shots and forced anhyzers",
+   "why": "Treats it as a utility disc, with a beautiful low line from a forced anhyzer."
+  },
+  "cr_cf04cece4892b8e8": {
+   "who": "Forehand drives and gap shots",
+   "why": "Throws it well on forehand and parks it on a hyzer flip up gap shot."
+  },
+  "cr_763c801677d40e87": {
+   "who": "Putting in soft Electron",
+   "why": "Finds the soft plastic grippy for putting, though less suited to throwing."
+  },
+  "cr_f15a903a0ed14340": {
+   "who": "Main putting and approach putter",
+   "why": "Uses it as a main putter and finds it felt best of the lineup."
+  },
+  "cr_aa0b0ba40f28ae9d": {
+   "who": "Gamer putter for field and basket",
+   "why": "Throws the soft copy as a gamer putter and grades every throw an A."
+  },
+  "cr_87b9e4bd110b606e": {
+   "who": "Throwers wanting glide and a straight push",
+   "why": "Likes it more for throwing than putting, with good glide and a straight push."
+  },
+  "cr_98407b901ce84282": {
+   "who": "Longer putts and drives with power",
+   "why": "Likes the stability and glide for longer putts and for drives that can take power."
+  },
+  "cr_20d8719b3e42ebb0": {
+   "who": "Touchy forehand and hyzer approaches",
+   "why": "Sees it handling touchy forehand approaches and hyzer approaches with a flight that stays true."
+  },
+  "cr_07a15f62f8848b39": {
+   "who": "Mold minimalists wanting one utility approach",
+   "why": "Likes the thin profile and bead for clean forehand releases, though it overlaps other discs."
+  },
+  "cr_17b719068ad0c267": {
+   "who": "Low, driven approach shots",
+   "why": "Parks it well on a 198 ft approach with a lower, more driven flight."
+  },
+  "cr_208a76daac7fc494": {
+   "who": "Wooded rounds and forehand lines",
+   "why": "Plans to bag it after a wooded round where it held a forehand line a little better."
+  },
+  "cr_92b5dc52dff0c378": {
+   "who": "Overstable partner to a Zone",
+   "why": "Finishes well on uphill approaches where a Zone just drops, and plans to bag it."
+  },
+  "cr_9ea991f5d209beaa": {
+   "who": "Players wanting a Zone with more glide",
+   "why": "Bought it as a Zone-like disc that pushes a little further, and got that."
+  },
+  "cr_54ee59859f4c04de": {
+   "who": "Turnovers, highs and first fairway driver",
+   "why": "Calls it a great understable fairway driver, and a possible first fairway driver."
+  },
+  "cr_758725f0e008c615": {
+   "who": "Players wanting one mold for several slots",
+   "why": "Throws Stags of different plastic and wear to fill understable, neutral and stable roles."
+  },
+  "cr_bec8e42bff652186": {
+   "who": "Woods with little wind, or tailwinds",
+   "why": "Says it flies with regular stability in the woods with little wind or a tailwind."
+  },
+  "cr_c36b2e911c4da4fd": {
+   "who": "Beginners and smaller hands",
+   "why": "Calls them point and shoot fairway drivers with a good feel for smaller hands."
+  },
+  "cr_f540d6d387f68527": {
+   "who": "Beginners wanting lower speed success",
+   "why": "Recommends it as a lower speed disc that gives beginners a lot of success."
+  },
+  "cr_dbc519593cad665d": {
+   "who": "Intermediate arms wanting S-curves",
+   "why": "Suggests a flatter, sunken Stag for turnovers and S-curves at intermediate arm speed."
+  },
+  "cr_d38eb8c01ec05859": {
+   "who": "Arms wanting a flip up driver",
+   "why": "Calls it a favorite driver for their arm strength, with nice glide at lighter weights."
+  },
+  "cr_6412e45d0e96fb1d": {
+   "who": "Players with good arm speed",
+   "why": "Calls it usable and reliable once thrown with good arm speed."
+  },
+  "cr_09aac4817e63341c": {
+   "who": "Medium to slower arm speeds",
+   "why": "Calls it a good 12 speed for medium to slower arm speeds, probably underrated."
+  },
+  "cr_e64169cb70fe401d": {
+   "who": "Slower arms moving up to speed",
+   "why": "Calls it good for control and a way to work up toward higher speed discs."
   }
  }
 }
