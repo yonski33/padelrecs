@@ -1,0 +1,439 @@
+{
+ "brands": [
+  {
+   "id": "dga",
+   "name": "DGA"
+  },
+  {
+   "id": "infinite-discs",
+   "name": "Infinite Discs"
+  },
+  {
+   "id": "climo-discs",
+   "name": "Climo Discs"
+  },
+  {
+   "id": "doomsday-discs",
+   "name": "Doomsday Discs"
+  },
+  {
+   "id": "hooligan-discs",
+   "name": "Hooligan Discs"
+  },
+  {
+   "id": "mint-discs",
+   "name": "Mint Discs"
+  },
+  {
+   "id": "tefat",
+   "name": "Tefat"
+  }
+ ],
+ "products": [
+  {
+   "brand": "trash-panda",
+   "name": "Trash Panda Canyon",
+   "slug": "trash-panda-canyon",
+   "year": 2026,
+   "shape": "Midrange",
+   "weight": "4 / 3 / 0 / 2",
+   "balance": null,
+   "surface": null,
+   "core": "Premium, Rubber, Crocs Baseline",
+   "swingWeight": null,
+   "sources": [
+    "https://trashpandadiscgolf.com/products/canyon"
+   ]
+  },
+  {
+   "brand": "dga",
+   "name": "DGA Quake",
+   "slug": "dga-quake",
+   "year": 2026,
+   "shape": "Midrange",
+   "weight": "5 / 3 / 0 / 3",
+   "balance": "1.2 cm",
+   "surface": null,
+   "core": "ProLine, D-Line, Spark, Atmos, Tour Series",
+   "swingWeight": null,
+   "sources": [
+    "https://store.discgolf.com/collections/quake"
+   ]
+  },
+  {
+   "brand": "trash-panda",
+   "name": "Trash Panda Ozone",
+   "slug": "trash-panda-ozone",
+   "year": 2026,
+   "shape": "Fairway driver",
+   "weight": "8 / 6 / -3 / 1",
+   "balance": null,
+   "surface": null,
+   "core": "Premium",
+   "swingWeight": null,
+   "sources": [
+    "https://trashpandadiscgolf.com/products/ozone-premium-recycled-disc-golf-fairway-driver"
+   ]
+  },
+  {
+   "brand": "infinite-discs",
+   "name": "Infinite Discs Centurion",
+   "slug": "infinite-discs-centurion",
+   "year": 2026,
+   "shape": "Fairway driver",
+   "weight": "7 / 5 / -1 / 2",
+   "balance": "1.1 cm",
+   "surface": null,
+   "core": "C-Blend Glow, D-Blend, D-Blend Glow, Gummy C-Blend, Halo C-Blend Glow, Halo S-Blend, I-Blend, Metal Flake C-Blend, Metal Flake Glow C-Blend, S-Blend, Splatter S-Blend, Swirly S-Blend",
+   "swingWeight": null,
+   "sources": [
+    "https://infinitediscs.com/infinite-discs-centurion"
+   ]
+  },
+  {
+   "brand": "infinite-discs",
+   "name": "Infinite Discs Pharaoh",
+   "slug": "infinite-discs-pharaoh",
+   "year": 2026,
+   "shape": "Distance driver",
+   "weight": "13 / 6 / -1 / 2",
+   "balance": "1.1 cm",
+   "surface": null,
+   "core": "C-Blend, C-Blend Glow, G-Blend, Gummy C-Blend, Halo G-Blend, Halo I-Blend, Halo Metal Flake C-Blend, Halo S-Blend, I-Blend, Luster C-Blend, Metal Flake C-Blend, Metal Flake Glow C-Blend, S-Blend, Splatter S-Blend, Swirly S-Blend",
+   "swingWeight": null,
+   "sources": [
+    "https://infinitediscs.com/infinite-discs-pharaoh"
+   ]
+  },
+  {
+   "brand": "trash-panda",
+   "name": "Trash Panda Procyon",
+   "slug": "trash-panda-procyon",
+   "year": 2026,
+   "shape": "Distance driver",
+   "weight": "11.5 / 4 / -1 / 2",
+   "balance": null,
+   "surface": null,
+   "core": "Premium, Crocs",
+   "swingWeight": null,
+   "sources": [
+    "https://trashpandadiscgolf.com/products/procyon"
+   ]
+  },
+  {
+   "brand": "climo-discs",
+   "name": "Climo Discs Osprey",
+   "slug": "climo-discs-osprey",
+   "year": 2026,
+   "shape": "Distance driver",
+   "weight": "10 / 6 / -3 / 1",
+   "balance": null,
+   "surface": null,
+   "core": "Major Line, Confetti Major Line, Victory Line, Jawbreaker Victory Line, 5x Glow Victory Line, Signature Line, 5x Glow",
+   "swingWeight": null,
+   "sources": [
+    "https://climodiscgolf.com/collections/osprey"
+   ]
+  },
+  {
+   "brand": "dga",
+   "name": "DGA Vortex",
+   "slug": "dga-vortex",
+   "year": 2026,
+   "shape": "Fairway driver",
+   "weight": "7 / 6 / -3 / 1",
+   "balance": "1.1 cm",
+   "surface": null,
+   "core": "ProLine, ProLine Swirl, Spark, Cloud Spark, Atmos",
+   "swingWeight": null,
+   "sources": [
+    "https://store.discgolf.com/collections/vortex"
+   ]
+  },
+  {
+   "brand": "dga",
+   "name": "DGA Hurricane",
+   "slug": "dga-hurricane",
+   "year": 2026,
+   "shape": "Distance driver",
+   "weight": "12 / 5 / -1 / 3",
+   "balance": "1.2 cm",
+   "surface": null,
+   "core": "ProLine, SP Line, Spark, Atmos, Tour Series",
+   "swingWeight": null,
+   "sources": [
+    "https://store.discgolf.com/collections/hurricane"
+   ]
+  },
+  {
+   "brand": "dga",
+   "name": "DGA Rift",
+   "slug": "dga-rift",
+   "year": 2026,
+   "shape": "Midrange",
+   "weight": "5 / 4 / -1 / 1.5",
+   "balance": "1.3 cm",
+   "surface": null,
+   "core": "ProLine, ProLine Glow, SP Line, Spark, Atmos, Tour Series",
+   "swingWeight": null,
+   "sources": [
+    "https://store.discgolf.com/collections/rift"
+   ]
+  },
+  {
+   "brand": "infinite-discs",
+   "name": "Infinite Discs Alpaca",
+   "slug": "infinite-discs-alpaca",
+   "year": 2026,
+   "shape": "Putter",
+   "weight": "3 / 3 / 0 / 1",
+   "balance": "1.5 cm",
+   "surface": null,
+   "core": "C-Blend, D-Blend, D-Blend Glow, G-Blend, Gummy C-Blend, Halo N-Blend, Halo S-Blend, I-Blend, Metal Flake C-Blend, Metal Flake Glow C-Blend, N-Blend, N-Blend Glow, P-Blend, P-Blend Glow, R-Blend, R-Blend Soft, S-Blend, Splatter S-Blend, X-Blend",
+   "swingWeight": null,
+   "sources": [
+    "https://infinitediscs.com/infinite-discs-alpaca"
+   ]
+  },
+  {
+   "brand": "trash-panda",
+   "name": "Trash Panda Dune",
+   "slug": "trash-panda-dune",
+   "year": 2026,
+   "shape": "Midrange",
+   "weight": "5 / 5 / -1 / 0",
+   "balance": null,
+   "surface": null,
+   "core": "Premium",
+   "swingWeight": null,
+   "sources": [
+    "https://trashpandadiscgolf.com/products/dune-premium-recycled-disc-golf-midrange"
+   ]
+  },
+  {
+   "brand": "discraft",
+   "name": "Discraft Kratos",
+   "slug": "discraft-kratos",
+   "year": 2026,
+   "shape": "Putter",
+   "weight": null,
+   "balance": null,
+   "surface": null,
+   "core": "Rubber Blend, Putter Line Hard, Putter Line Soft",
+   "swingWeight": null,
+   "sources": [
+    "https://factorystore.discraft.com/products/kratos-second-shot-copy"
+   ]
+  },
+  {
+   "brand": "dga",
+   "name": "DGA Sail",
+   "slug": "dga-sail",
+   "year": 2026,
+   "shape": "Distance driver",
+   "weight": "11 / 5 / -5 / 1",
+   "balance": "1.1 cm",
+   "surface": null,
+   "core": "ProLine, SP Line, Spark, Atmos, Woah! Glow, Tour Series",
+   "swingWeight": null,
+   "sources": [
+    "https://store.discgolf.com/collections/sail"
+   ]
+  },
+  {
+   "brand": "dga",
+   "name": "DGA Blast",
+   "slug": "dga-blast",
+   "year": 2026,
+   "shape": "Putter",
+   "weight": "4 / 2 / 0 / 4",
+   "balance": "1.3 cm",
+   "surface": null,
+   "core": "D-Line, Spark, Atmos, Woah! Glow, Tour Series",
+   "swingWeight": null,
+   "sources": [
+    "https://store.discgolf.com/collections/blast-putt-approach-disc"
+   ]
+  },
+  {
+   "brand": "doomsday-discs",
+   "name": "Doomsday Discs Chemtrail",
+   "slug": "doomsday-discs-chemtrail",
+   "year": 2026,
+   "shape": "Fairway driver",
+   "weight": "7 / 6 / -2 / 1",
+   "balance": null,
+   "surface": null,
+   "core": "Retina, Retina Glow, Survival, Ration",
+   "swingWeight": null,
+   "sources": [
+    "https://doomsdaydiscs.com/collections/chemtrail"
+   ]
+  },
+  {
+   "brand": "dga",
+   "name": "DGA Avalanche",
+   "slug": "dga-avalanche",
+   "year": 2026,
+   "shape": "Fairway driver",
+   "weight": "9 / 3 / 0 / 4",
+   "balance": "1.1 cm",
+   "surface": null,
+   "core": "ProLine, ProLine Swirl, Spark, Atmos, Tour Series",
+   "swingWeight": null,
+   "sources": [
+    "https://store.discgolf.com/collections/avalanche"
+   ]
+  },
+  {
+   "brand": "hooligan-discs",
+   "name": "Hooligan Discs Flip",
+   "slug": "hooligan-discs-flip",
+   "year": 2026,
+   "shape": "Midrange",
+   "weight": "5 / 6 / -4 / 1",
+   "balance": null,
+   "surface": null,
+   "core": "Primo, Vision, Hard",
+   "swingWeight": null,
+   "sources": [
+    "https://hooligandiscs.com/collections/flip-5-6-4-1"
+   ]
+  },
+  {
+   "brand": "mint-discs",
+   "name": "Mint Discs Jackalope",
+   "slug": "mint-discs-jackalope",
+   "year": 2026,
+   "shape": "Fairway driver",
+   "weight": "8 / 5 / -2 / 1",
+   "balance": null,
+   "surface": null,
+   "core": "Eternal, Apex, Apex Lightweight, Apex Swirl, Nocturnal Glow, Soft Flex Sublime",
+   "swingWeight": null,
+   "sources": [
+    "https://mintdiscs.com/collections/jackalope"
+   ]
+  },
+  {
+   "brand": "infinite-discs",
+   "name": "Infinite Discs Anubis",
+   "slug": "infinite-discs-anubis",
+   "year": 2026,
+   "shape": "Midrange",
+   "weight": "5 / 5 / 0 / 0",
+   "balance": "1.3 cm",
+   "surface": null,
+   "core": "C-Blend, C-Blend Glow, Concrete, D-Blend, Halo S-Blend, I-Blend, Metal Flake C-Blend, Metal Flake Glow C-Blend, P-Blend, P-Blend Glow, Shimmer S-Blend, Splatter S-Blend",
+   "swingWeight": null,
+   "sources": [
+    "https://infinitediscs.com/infinite-discs-anubis"
+   ]
+  },
+  {
+   "brand": "mint-discs",
+   "name": "Mint Discs Lobster",
+   "slug": "mint-discs-lobster",
+   "year": 2026,
+   "shape": "Midrange",
+   "weight": "5 / 5 / -3 / 1",
+   "balance": null,
+   "surface": null,
+   "core": "Sublime, Nocturnal Glow",
+   "swingWeight": null,
+   "sources": [
+    "https://mintdiscs.com/products/lobster-sublime-plastic-sb-lb04-26-hott-bar-logo"
+   ]
+  },
+  {
+   "brand": "dga",
+   "name": "DGA Tsunami",
+   "slug": "dga-tsunami",
+   "year": 2026,
+   "shape": "Distance driver",
+   "weight": "10 / 3 / 0 / 4",
+   "balance": null,
+   "surface": null,
+   "core": "Tour Series",
+   "swingWeight": null,
+   "sources": [
+    "https://store.discgolf.com/products/2026-jake-monn-tour-series-tsunami"
+   ]
+  },
+  {
+   "brand": "dga",
+   "name": "DGA Surf",
+   "slug": "dga-surf",
+   "year": 2026,
+   "shape": "Putter",
+   "weight": "3 / 4 / -1 / 1",
+   "balance": null,
+   "surface": null,
+   "core": "D-Line, D-Line Stone, Atmos, Tour Series",
+   "swingWeight": null,
+   "sources": [
+    "https://store.discgolf.com/collections/surf-putt-and-approach-disc-1"
+   ]
+  },
+  {
+   "brand": "dga",
+   "name": "DGA Aftershock",
+   "slug": "dga-aftershock",
+   "year": 2026,
+   "shape": "Midrange",
+   "weight": "5 / 4 / 0 / 2",
+   "balance": "1.2 cm",
+   "surface": null,
+   "core": "ProLine, Spark, Tour Series",
+   "swingWeight": null,
+   "sources": [
+    "https://store.discgolf.com/collections/aftershock"
+   ]
+  },
+  {
+   "brand": "infinite-discs",
+   "name": "Infinite Discs Scepter",
+   "slug": "infinite-discs-scepter",
+   "year": 2026,
+   "shape": "Fairway driver",
+   "weight": "9 / 4 / 0 / 4",
+   "balance": "1.1 cm",
+   "surface": null,
+   "core": "C-Blend, C-Blend Glow, G-Blend, Halo C-Blend, Halo S-Blend, I-Blend, Metal Flake Glow C-Blend, S-Blend, Splatter S-Blend, Swirly S-Blend",
+   "swingWeight": null,
+   "sources": [
+    "https://infinitediscs.com/infinite-discs-scepter"
+   ]
+  },
+  {
+   "brand": "dga",
+   "name": "DGA Banzai",
+   "slug": "dga-banzai",
+   "year": 2026,
+   "shape": "Fairway driver",
+   "weight": "8 / 4 / 0 / 3",
+   "balance": "1.2 cm",
+   "surface": null,
+   "core": "ProLine, SP Line, Spark, Color Shift, Atmos",
+   "swingWeight": null,
+   "sources": [
+    "https://store.discgolf.com/collections/banzai"
+   ]
+  },
+  {
+   "brand": "tefat",
+   "name": "Tefat M3.0",
+   "slug": "tefat-m3-0",
+   "year": 2026,
+   "shape": "Fairway driver",
+   "weight": "8 / 6 / -2 / 2",
+   "balance": "1.1 cm",
+   "surface": null,
+   "core": "ET",
+   "swingWeight": null,
+   "sources": [
+    "https://tefat.myshopify.com/products/m-3-0-xxxxx"
+   ]
+  }
+ ]
+}

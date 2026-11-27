@@ -12,8 +12,8 @@ import { slugify } from "../lib/slug";
 
 type Product = { brand: string; name: string; year: number; shape: string | null; weight: string | null; core: string | null;
   surface: string | null; swingWeight: string | null; balance?: string | null; slug?: string; sources: string[] };
-/** Sites whose product ids are the slug with no year (LaptopRecs). */
-const SLUG_IDS = new Set(["laptop"]);
+/** Sites whose product ids are the slug with no year (LaptopRecs, DiscGolfRecs). */
+const SLUG_IDS = new Set(["laptop", "discgolf"]);
 const file = process.argv[2], apply = process.argv.includes("--apply");
 if (!file) throw new Error("Usage: add-catalog-products.mts <adds.json> [--apply]");
 const adds = JSON.parse(await readFile(file, "utf8")) as { brands: { id: string; name: string }[]; products: Product[] };
