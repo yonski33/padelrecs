@@ -9,6 +9,7 @@ export type ListOrder = {
   /** The vote group this list counts (default plays_like) and the answer in it (power, control, lots, very, beginner). */ trait?: string; option?: string;
   /** The row tag's words: "Most picked for <word> · N players" (default: the plays_like words). */ word?: string;
   /** The row tag's own words for a "keep" list, in place of "Picked for <word>" (SkinRecs: "No irritation · 14 people"). */ say?: string;
+  /** "keep": a "votes" list whose row tag still reads as a "keep" list's ("Picked for oily skin · 12 people"), SkinRecs. */ tag?: "keep";
   /** "all": every racket that passes the floors below; "curated": the curated top 10, reordered. */ pool?: "all" | "curated";
   /** "loved" lists: "season" (default) is this year's models only; "current" is each model's current year (PickleballRecs:
    *  its catalogue mixes 2024-2026 models). */ years?: "season" | "current";
@@ -37,14 +38,17 @@ export const LIST_ORDER: Record<string, Record<string, ListOrder>> = {
     "best-hybrid-pickleball-paddles": { order: "loved", years: "current" },
   },
   // SkinRecs (2026-11-26, onto the pickleball template): each product-type list by most loved, every product listed (no model
-  // years); the skin-need lists keep their own order (the skin engine's match) and only their row tag follows the list.
+  // years). The skin-need lists (owner 2026-11-27, "Yes, order by picks") go by the count their row tag shows ("Picked for
+  // oily skin · N people"): the list's own matches (its product type, the hubs without EVERYTHING_SKIP types) reordered by
+  // that vote, then loved; products without a vote stay below in match order (rankings-data.ts, voteSort). Acne lists have no
+  // vote to count and keep the skin match.
   skin: {
     ...Object.fromEntries(["best-face-moisturizers", "best-face-cleansers", "best-face-sunscreens", "best-skincare-treatments", "best-balms-ointments"]
       .map(slug => [slug, { order: "loved", years: "current" } as ListOrder])),
-    "best-skincare-for-sensitive-skin": { order: "keep", trait: "irritation", option: "none", say: "No irritation" },
+    ...Object.fromEntries(["", ...["moisturizers", "cleansers", "sunscreens", "serums"].map(t => `best-${t}-for-sensitive-skin`)].map(slug => [slug || "best-skincare-for-sensitive-skin",
+      { order: "votes", tag: "keep", trait: "irritation", option: "none", say: "No irritation", word: "no irritation" } as ListOrder])),
     ...Object.fromEntries(["dry", "oily"].flatMap(need => [`best-skincare-for-${need}-skin`, ...["moisturizers", "cleansers", "sunscreens", "serums"].map(t => `best-${t}-for-${need}-skin`)]
-      .map(slug => [slug, { order: "keep", trait: "skin_type", option: need, word: `${need} skin` } as ListOrder]))),
-    ...Object.fromEntries(["moisturizers", "cleansers", "sunscreens", "serums"].map(t => [`best-${t}-for-sensitive-skin`, { order: "keep", trait: "irritation", option: "none", say: "No irritation" } as ListOrder])),
+      .map(slug => [slug, { order: "votes", tag: "keep", trait: "skin_type", option: need, word: `${need} skin` } as ListOrder]))),
   },
   // SimRacingRecs (v3 rollout 2026-11-21): Best overall by most loved, like padel; the rest keep their order.
   simracing: { "best-sim-racing-gear": { order: "loved" } },
@@ -68,6 +72,14 @@ export const lovedOrdered = (site: string, slug: string) => listOrder(site, slug
 /** A "loved" list: this season's models (the current year only) with the list's review floor, one row per model; ties go to
  *  the higher loved share of the racket's opinions, then more reviews, then the name. */
 export const LOVED_ORDER = { minReviews: 10, size: 10 };
+
+/** SkinRecs' vote-ordered need lists: the list's own ids reordered by this list's vote count, then loved; ids without a vote
+ *  keep their given (match) order below the ones with votes. Pure. */
+export function voteSort(ids: string[], votes: (id: string) => number, loved: (id: string) => number): string[] {
+  const pos = new Map(ids.map((id, i) => [id, i]));
+  return [...ids].sort((a, b) => { const va = votes(a), vb = votes(b);
+    return vb - va || (va && vb ? loved(b) - loved(a) : 0) || pos.get(a)! - pos.get(b)!; });
+}
 
 export type VoteCandidate = { id: string; name: string; family: string; year: number; reviews: number; group: Record<string, number> };
 /** The list's ids by votes: the floors, one row per model (its newest year that passes them), then the order above. */
@@ -102,6 +114,6 @@ export function listPill(o: ListOrder | null, groups: Record<string, Record<stri
   if (o.order === "loved") return loved > 0 ? `Loved by ${n(loved)}` : null;
   const g = groups[o.trait ?? VOTE_ORDER.trait] ?? {}, v = g[o.option ?? ""] ?? 0, word = o.word ?? o.option;
   if (v < 5) return null;
-  if (o.order === "keep") return `${o.say ?? `Picked for ${word}`} · ${n(v)}`;
+  if (o.order === "keep" || o.tag === "keep") return `${o.say ?? `Picked for ${word}`} · ${n(v)}`;
   return Object.entries(g).every(([k, x]) => k === o.option || v > x) ? `Most picked for ${word} · ${n(v)}` : null;
 }
