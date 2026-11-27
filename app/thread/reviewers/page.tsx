@@ -26,7 +26,7 @@ export default async function ReviewersIndex() {
       <section className="rvp-ix-h"><h1>Creators</h1><p>{LEAD}</p><small>{`${list.length} creators with ${REVIEWER_MIN} or more reviews.`}</small></section>
       <div className="rvp-ix">{list.map(r => { const subs = r.kind === "youtube" ? subsShort(profileOf(r.slug)?.subs) : null;
         return <a key={r.slug} className="rvp-ix-c" href={th(`/creators/${r.slug}`)}>
-          <Avatar name={r.name} kind={r.kind}/>
+          <Avatar name={r.name} kind={r.kind} src={profileOf(r.slug)?.avatar ?? null}/>
           <span className="b"><strong>{r.name}</strong>
             <span className="m">{[PLATFORM[r.kind], subs ? `${subs} subscribers` : null, `${r.n} reviews`].filter(Boolean).join(" · ")}</span>
             <span className="rvp-bar sm" aria-hidden="true"><i className="p" style={{ flex: r.pos }}/><i className="m" style={{ flex: r.mix }}/><i className="n" style={{ flex: r.neg }}/></span>

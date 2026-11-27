@@ -81,6 +81,7 @@ body:has(.thc) .thc a.thc-cta { background: var(--acc); color: var(--ink); borde
 .thc-take.pos { background: #EDFACF; color: #2F6E22; } .thc-take.mix { background: #F8E7A6; color: #7A5A00; } .thc-take.neg { background: #FBD3CB; color: #A3301F; }
 .thc-av { flex: none; width: 28px; height: 28px; border-radius: 50%; color: #fff; display: flex; align-items: center; justify-content: center; font-size: 10.5px; font-weight: 700; }
 .thc-av.sm { width: 24px; height: 24px; font-size: 9.5px; }
+.thc-av.pic { overflow: hidden; background: #fff; } .thc-av.pic img { width: 100%; height: 100%; object-fit: cover; display: block; }
 
 /* Table beside How it plays and Where to buy */
 .thc-row { display: flex; flex-wrap: wrap; gap: 20px; align-items: flex-start; }

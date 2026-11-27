@@ -119,3 +119,7 @@ body:has(.rvp) .rvp :is(a.rvp-sim-c, a.rvp-ix-c) { display: flex; gap: 12px; ali
   .rvp-take { grid-column: 2; justify-self: start; } .rvp-buy { grid-column: 2; justify-self: start; }
   .rvp-sort { border-left: 0; padding-left: 0; }
 }
+
+/* The creator's YouTube picture in place of the initials. */
+.rvp .thc-av.pic, .rvp-av .thc-av.pic { background: #fff !important; overflow: hidden; }
+.rvp .thc-av.pic img { width: 100%; height: 100%; object-fit: cover; display: block; }

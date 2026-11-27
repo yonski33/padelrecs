@@ -144,7 +144,7 @@ export async function CreatorProductBody({ slug }: { slug: string }) {
   // Thin pages also show the older YouTube summaries as cards (oldYouTubeCards), after the checked reviews.
   // A creator with their own page (5+ reviews, lib/thread/reviewers.ts) links there by name; the rest keep the channel link.
   const profiles = await reviewerHrefs();
-  const shownFeed = (thin ? [...feed, ...oldYouTubeCards(cards, feed)] : feed).map(x => { const p = profiles.get(x.creator); return p ? { ...x, profile: p } : x; });
+  const shownFeed = (thin ? [...feed, ...oldYouTubeCards(cards, feed)] : feed).map(x => { const p = profiles.get(x.creator); return p ? { ...x, profile: p.href, avatar: p.avatar } : x; });
   const [tales, shops] = await Promise.all([storiesSite(niche.id) ? racketStories(r.id) : [], PADEL ? padelOffers(slug) : []]);
   // The TL;DR sentence (owner 2026-11-23): the creator page's own line where it has one, else the same line the usual
   // product page shows (racketData: the written "In short" summary, the page content's tagline, the short or list line).

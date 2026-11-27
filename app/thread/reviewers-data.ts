@@ -10,7 +10,7 @@ import { threadRows } from "./data";
 import profiles from "../../db/creators/reviewer-profiles.json";
 
 export type ReviewerProfile = { name: string; subs: number | null; channel: string | null; joined: string | null; site: string | null;
-  links: { label: string; url: string }[]; bio: string | null; topics: string[] };
+  links: { label: string; url: string }[]; bio: string | null; topics: string[]; avatar?: string | null };
 const PROFILES = profiles as unknown as Record<string, Record<string, ReviewerProfile>>;
 export const profileOf = (slug: string): ReviewerProfile | null => PROFILES[niche.id]?.[slug] ?? null;
 
@@ -27,8 +27,8 @@ export const reviewersData = cache(async () => {
   return { rows, list, takes, product, price };
 });
 
-/** The creator page's address for a review's creator name, or null when they have no page (they keep the channel link). */
-export const reviewerHrefs = cache(async (): Promise<Map<string, string>> => {
+/** A review's creator name → their page and profile picture, for creators with a page (the rest keep the channel link). */
+export const reviewerHrefs = cache(async (): Promise<Map<string, { href: string; avatar: string | null }>> => {
   const { list } = await reviewersData();
-  return new Map(list.flatMap(r => r.reviews.map(x => [x.creator, `/creators/${r.slug}`] as [string, string])));
+  return new Map(list.flatMap(r => r.reviews.map(x => [x.creator, { href: `/creators/${r.slug}`, avatar: profileOf(r.slug)?.avatar ?? null }] as const)));
 });

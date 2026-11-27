@@ -52,7 +52,7 @@ export default async function ReviewerPage({ params }: P) {
       <nav className="rvp-crumbs" aria-label="Breadcrumb"><a href={th("/creators")}>Creators</a><span aria-hidden="true">›</span><span>{rv.name}</span></nav>
       <section className="rvp-head">
         <div className="rvp-who">
-          <span className="rvp-av"><Avatar name={rv.name} kind={rv.kind}/></span>
+          <span className="rvp-av"><Avatar name={rv.name} kind={rv.kind} src={pf?.avatar ?? null}/></span>
           <div className="rvp-who-b">
             <span className="rvp-plat"><i className={rv.kind} aria-hidden="true"/>{[PLATFORM[rv.kind], subs ? `${subs} subscribers` : null].filter(Boolean).join(" · ")}<span className="rvp-lang">{langCode(rv.lang)}</span></span>
             <h1>{rv.name}</h1>
@@ -88,7 +88,7 @@ export default async function ReviewerPage({ params }: P) {
       {similar.length > 0 && <section className="rvp-sim">
         <h2>Creators with a similar taste</h2>
         <div className="rvp-sim-g">{similar.map(s => <a key={s.reviewer.slug} className="rvp-sim-c" href={th(`/creators/${s.reviewer.slug}`)}>
-          <Avatar name={s.reviewer.name} kind={s.reviewer.kind} size="sm"/>
+          <Avatar name={s.reviewer.name} kind={s.reviewer.kind} size="sm" src={profileOf(s.reviewer.slug)?.avatar ?? null}/>
           <span><strong>{s.reviewer.name}</strong><span>{`Same take on ${s.same} of ${s.shared} shared ${ITEMS}`}</span></span>
         </a>)}</div>
       </section>}
