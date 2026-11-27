@@ -23,6 +23,8 @@ export const CREATOR_VOTE_KEYS: Record<string, string[]> = {
   // (lib/thread/traits.ts DISCGOLF_TRAIT_GROUPS), the flight traits plus plastic durability, all prefilled from reviews in
   // db/thread/discgolf-traits.json; votes save to trait_votes as on the disc pages.
   discgolf: ["stability", "glide", "arm_speed", "wind", "grip", "durability"],
+  // CoffeeRecs (2026-11-28): six of its seven (lib/thread/traits.ts COFFEE_TRAIT_GROUPS); noise stays on the full page.
+  coffee: ["best_for", "taste", "ease", "consistency", "build", "value"],
 };
 /** The box titles the creator page uses where they differ from the site's own (paddle page v3 mockup, PickleballRecs). The
  *  stored keys and options stay the same; other pages keep their titles. */

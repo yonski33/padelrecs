@@ -5,13 +5,13 @@
 /** THE go-live flags, per site (owner 2026-11-19): true = Thread is the default look on the normal addresses and
  *  ?look=classic shows the current live pages; false = the live pages are the default and ?look=thread previews Thread.
  *  Roll a site back by setting it to false. */
-export const THREAD_DEFAULTS: Record<string, boolean> = { padel: true, pickleball: true, stackrecs: true, skin: true, discgolf: true, audio: true, simracing: true, tennis: true, laptop: true };
+export const THREAD_DEFAULTS: Record<string, boolean> = { padel: true, pickleball: true, stackrecs: true, skin: true, discgolf: true, audio: true, simracing: true, tennis: true, laptop: true, coffee: true };
 export const threadDefaultFor = (nicheId: string) => THREAD_DEFAULTS[nicheId] ?? false;
 /** PadelRecs (the pilot), PickleballRecs (owner 2026-11-19: next after padel), StackRecs (Build + Grow pilot, owner
  *  2026-11-19), which is built on the Thread pages from the start, SkinRecs and DiscGolfRecs (owner 2026-11-20), AudioRecs
  *  (owner design handoff 2026-11-21). */
 export const threadSite = (nicheId: string) => nicheId === "padel" || nicheId === "pickleball" || nicheId === "stackrecs" || nicheId === "skin"
-  || nicheId === "discgolf" || nicheId === "audio" || nicheId === "simracing" || nicheId === "tennis" || nicheId === "laptop";
+  || nicheId === "discgolf" || nicheId === "audio" || nicheId === "simracing" || nicheId === "tennis" || nicheId === "laptop" || nicheId === "coffee";
 /** Thread addresses that moved (a 301 from the old one, next.config.ts redirects): the sore-arms ranking is named for tennis
  *  elbow (owner 2026-11-19). */
 /** The tennis elbow ranking's slug: the ranking, the elbow guide's picks and links, and the home's Top picks all read it. */
@@ -44,12 +44,15 @@ export const accountSite = (nicheId: string) => ACCOUNT_SITES.includes(nicheId);
  *  with the site's own styles and arm words), "skin" = skin type · goal · sensitive (live/skin-match.tsx). A site not listed
  *  has none, so its ranking pages show no "See how you match" card (owner report 2026-11-21: SkinRecs showed padel's). */
 /** "laptop" = what you use it for · what you want · quiet fans (lib/laptop-match.ts, app/thread/live/laptop-match.tsx). */
-export const QUICK_MATCH: Record<string, "engine" | "skin" | "laptop"> = { padel: "engine", pickleball: "engine", discgolf: "engine", skin: "skin", tennis: "engine", laptop: "laptop" };
+/** "coffee" = what you make · what you want · quiet (lib/coffee-match.ts, app/thread/live/coffee-match.tsx). */
+export const QUICK_MATCH: Record<string, "engine" | "skin" | "laptop" | "coffee"> = { padel: "engine", pickleball: "engine", discgolf: "engine", skin: "skin", tennis: "engine", laptop: "laptop",
+  coffee: "coffee" };
 export const quickMatchFor = (nicheId: string) => QUICK_MATCH[nicheId] ?? null;
 /** The PadelRecs v3 pages (home, catalogue, product page, compare, rankings; owner 2026-11-21) and the sites rolled onto them
  *  (V3-ROLLOUT-BRIEF: AudioRecs first). No score anywhere on these. */
 // LaptopRecs (owner 2026-11-24: "change laptop ... to the new design", PickleballRecs as the default copy).
-export const V3_SITES = ["padel", "audio", "simracing", "tennis", "pickleball", "discgolf", "skin", "laptop"];
+// CoffeeRecs (owner 2026-11-28: coffee is the next fully built site, the same path as pickleball, skin and disc golf).
+export const V3_SITES = ["padel", "audio", "simracing", "tennis", "pickleball", "discgolf", "skin", "laptop", "coffee"];
 export const v3Site = (nicheId: string) => V3_SITES.includes(nicheId);
 
 /** The v3 home's two community sections, per site (owner 2026-11-22). "Just in" only where model years are real (padel,
@@ -71,6 +74,7 @@ const QUESTION_WORDS: Record<string, { one: string; many: string; page: string }
   audio: { one: "headphone or IEM", many: "headphones and IEMs", page: "product" },
   skin: { one: "product", many: "skincare", page: "product" },
   laptop: { one: "laptop", many: "laptops", page: "laptop" },
+  coffee: { one: "product", many: "coffee gear", page: "product" },
 };
 export const questionWords = (nicheId: string) => QUESTION_WORDS[nicheId] ?? QUESTION_WORDS.padel!;
 
@@ -103,13 +107,14 @@ export const creatorPageFor = (nicheId: string, slug: string) => CREATOR_PAGE_SI
  *  normal address, and "/" gets the creators home (app/thread/creators-home-body.tsx). Every other product keeps today's
  *  page. Set a site to false to switch it all off at once. */
 // DiscGolfRecs (2026-11-24, #695): the 20 discs with creator reviews switch on once the cards are in discgolfrecs.creator_reviews.
-export const CREATOR_PAGE: Record<string, boolean> = { pickleball: true, skin: true, padel: true, laptop: true, discgolf: true };
+// CoffeeRecs (2026-11-28): on from the port; a product shows the creator page once its cards are in coffeerecs.creator_reviews.
+export const CREATOR_PAGE: Record<string, boolean> = { pickleball: true, skin: true, padel: true, laptop: true, discgolf: true, coffee: true };
 export const creatorPageOn = (nicheId: string) => CREATOR_PAGE[nicheId] ?? false;
 /** The creators home at "/" (app/thread/creators-home-body.tsx), apart from the product page switch: SkinRecs (owner "Yes,
  *  Skin next" 2026-11-23) moves its product pages first and keeps its own home for now. PadelRecs (owner 2026-11-24: "we can
  *  use pickleball from now on as the default copy for the sites"): false brings back padel's v3 home. */
 // SkinRecs (2026-11-26, PM brief: the whole site onto the PickleballRecs template, its own soft look): false brings back its v3 home.
-export const CREATOR_HOME: Record<string, boolean> = { pickleball: true, padel: true, laptop: true, skin: true };
+export const CREATOR_HOME: Record<string, boolean> = { pickleball: true, padel: true, laptop: true, skin: true, coffee: true };
 export const creatorHomeOn = (nicheId: string) => creatorPageOn(nicheId) && (CREATOR_HOME[nicheId] ?? false);
 export const CREATOR_MIN_REVIEWS = 3;
 /** Creator (reviewer) pages at /creators and /creators/<slug> (owner 2026-11-27, PickleballRecs pilot): one per creator with
@@ -123,7 +128,8 @@ export const reviewerPagesOn = (nicheId: string) => REVIEWER_PAGES[nicheId] ?? f
  *  cards it has, and leaves out everything that sums up across reviews (TL;DR, review consensus, the at-a-glance table):
  *  "a summary for 1 or 2 reviews is silly". False brings back the usual product page under the minimum. */
 // DiscGolfRecs and SkinRecs (owner 2026-11-27): every live product on the new design too.
-export const THIN_CREATOR_PAGE: Record<string, boolean> = { pickleball: true, padel: true, discgolf: true, skin: true };
+// CoffeeRecs (2026-11-28, the same as disc golf and skin): every live product on the new design.
+export const THIN_CREATOR_PAGE: Record<string, boolean> = { pickleball: true, padel: true, discgolf: true, skin: true, coffee: true };
 export const thinCreatorPageOn = (nicheId: string) => creatorPageOn(nicheId) && (THIN_CREATOR_PAGE[nicheId] ?? false);
 /** Creator pages on a site that is not a Thread site (LaptopRecs, 2026-11-24): proxy.ts serves its product addresses for the
  *  products in db/creators/<site>-pages.json from app/thread/creator-product/[slug], which shows the creator page when the

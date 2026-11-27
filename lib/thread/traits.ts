@@ -54,6 +54,18 @@ export const SKIN_TRAIT_GROUPS: TraitGroup[] = [
 ];
 /** LaptopRecs' nine ("How does it hold up?", owner 2026-11-24: battery, screen, keyboard, thermals, build and performance,
  *  plus what it suits, portability and value). Its own schema (needs drizzle/0024 there). */
+/** CoffeeRecs' seven ("How does it work for you?", proposed 2026-11-28 with the v3 port, owner to confirm): what it suits,
+ *  then the parts the creator cards rate (lib/thread/creators.ts COFFEE_ATTRS) in owners' words. Milk steaming stays a card
+ *  word only (most products have no steam wand). Its own schema (needs drizzle/0024 there). */
+export const COFFEE_TRAIT_GROUPS: TraitGroup[] = [
+  { key: "best_for", title: "Best for", options: [["espresso", "Espresso"], ["milk", "Milk drinks"], ["filter", "Filter coffee"]] },
+  { key: "taste", title: "Taste in the cup", options: [["great", "Great"], ["good", "Good"], ["meh", "Meh"]] },
+  { key: "ease", title: "Ease of use", options: [["easy", "Easy"], ["practice", "Takes practice"], ["fiddly", "Fiddly"]] },
+  { key: "consistency", title: "Consistency", options: [["very", "Very"], ["mostly", "Mostly"], ["not_really", "Not really"]] },
+  { key: "build", title: "Build", options: [["solid", "Solid"], ["average", "Average"], ["flimsy", "Flimsy"]] },
+  { key: "noise", title: "Noise", options: [["quiet", "Quiet"], ["ok", "OK"], ["loud", "Loud"]] },
+  { key: "value", title: "Value", options: [["worth_it", "Worth it"], ["ok", "OK"], ["overpriced", "Overpriced"]] },
+];
 export const LAPTOP_TRAIT_GROUPS: TraitGroup[] = [
   { key: "best_for", title: "Best for", options: [["gaming", "Gaming"], ["work", "Work and school"], ["creative", "Creative work"]] },
   { key: "performance", title: "Performance", options: [["fast", "Fast"], ["fine", "Fine"], ["slow", "Slow"]] },
@@ -186,6 +198,7 @@ export function traitGroupsFor(nicheId: string): TraitGroup[] {
   if (nicheId === "skin") return SKIN_TRAIT_GROUPS;
   if (nicheId === "audio") return AUDIO_TRAIT_GROUPS;
   if (nicheId === "laptop") return LAPTOP_TRAIT_GROUPS;
+  if (nicheId === "coffee") return COFFEE_TRAIT_GROUPS;
   return PADEL_TRAIT_GROUPS;
 }
 /** The running site's groups. */
@@ -242,6 +255,12 @@ const LAPTOP_BOARDS: VoteBoard[] = [
   { title: "Best screen", trait: "screen", choice: "great" }, { title: "Best keyboard", trait: "keyboard", choice: "great" },
   { title: "Easiest to carry", trait: "portability", choice: "very" }, { title: "Best value", trait: "value", choice: "worth_it" },
 ];
-export const voteBoardsFor = (nicheId: string) => nicheId === "laptop" ? LAPTOP_BOARDS : nicheId === "pickleball" ? PICKLEBALL_BOARDS : nicheId === "skin" ? SKIN_BOARDS
+/** CoffeeRecs' ("How owners vote them"). */
+const COFFEE_BOARDS: VoteBoard[] = [
+  { title: "Best taste", trait: "taste", choice: "great" }, { title: "Easiest to use", trait: "ease", choice: "easy" },
+  { title: "Most consistent", trait: "consistency", choice: "very" }, { title: "Best build", trait: "build", choice: "solid" },
+  { title: "Quietest", trait: "noise", choice: "quiet" }, { title: "Best value", trait: "value", choice: "worth_it" },
+];
+export const voteBoardsFor = (nicheId: string) => nicheId === "coffee" ? COFFEE_BOARDS : nicheId === "laptop" ? LAPTOP_BOARDS : nicheId === "pickleball" ? PICKLEBALL_BOARDS : nicheId === "skin" ? SKIN_BOARDS
   : nicheId === "discgolf" ? DISCGOLF_BOARDS : nicheId === "audio" ? AUDIO_BOARDS : nicheId === "simracing" ? SIMRACING_BOARDS : nicheId === "tennis" ? TENNIS_BOARDS : PADEL_BOARDS;
 export const VOTE_BOARDS = voteBoardsFor(niche.id);
