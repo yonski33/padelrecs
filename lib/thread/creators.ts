@@ -20,17 +20,27 @@ const PADEL_ATTRS = [["power", "Power"], ["control", "Control"], ["sweet", "Swee
 /** LaptopRecs' words (the laptop reader brief, 2026-11-24): how the reviewer rated each part of the laptop. */
 const LAPTOP_ATTRS = [["performance", "Performance"], ["thermals", "Thermals"], ["battery", "Battery"], ["display", "Display"],
   ["keyboard", "Keyboard"], ["build", "Build"], ["portability", "Portability"], ["value", "Value"]] as const;
+/** DiscGolfRecs' words (the disc golf reader brief, 2026-11-22): the traits where a higher word reads plainly as better.
+ *  Turn, fade and stability are left out: the cards rate them too, but "Great fade" says nothing about which way the disc
+ *  flies, so those stay in the flight notes and the stability label. Value (4 cards) is too thin to show. */
+const DISCGOLF_ATTRS = [["glide", "Glide"], ["distance", "Distance"], ["grip", "Grip"], ["accuracy", "Accuracy"],
+  ["durability", "Durability"]] as const;
 export type AttrKey = (typeof PICKLEBALL_ATTRS)[number][0] | (typeof SKIN_ATTRS)[number][0] | (typeof PADEL_ATTRS)[number][0]
-  | (typeof LAPTOP_ATTRS)[number][0];
+  | (typeof LAPTOP_ATTRS)[number][0] | (typeof DISCGOLF_ATTRS)[number][0];
 /** Each site's attribute set (pickleball's paddle words unless a site has its own). */
-const SITE_ATTRS: Record<string, readonly (readonly [AttrKey, string])[]> = { skin: SKIN_ATTRS, padel: PADEL_ATTRS, laptop: LAPTOP_ATTRS };
+const SITE_ATTRS: Record<string, readonly (readonly [AttrKey, string])[]> = { skin: SKIN_ATTRS, padel: PADEL_ATTRS, laptop: LAPTOP_ATTRS,
+  discgolf: DISCGOLF_ATTRS };
 export const attrsFor = (site: string): readonly (readonly [AttrKey, string])[] => SITE_ATTRS[site] ?? PICKLEBALL_ATTRS;
 /** The site's own set: NICHE is inlined at build (next.config env), so the browser cards get the same list (padel when unset,
  *  the niche default). */
 export const ATTRS: readonly (readonly [AttrKey, string])[] = attrsFor(process.env.NICHE || "padel");
 /** The heading over the per-attribute words ("How it plays"), per site. */
-const HOW_TITLE: Record<string, string> = { skin: "How it works", laptop: "How it holds up" };
+const HOW_TITLE: Record<string, string> = { skin: "How it works", laptop: "How it holds up", discgolf: "How it flies" };
 export const howTitleFor = (site: string) => HOW_TITLE[site] ?? "How it plays";
+/** The fewest rated traits a page needs before the row shows (owner 2026-11-27: disc golf shows it only with 3 or more, so
+ *  thin one- or two-word rows stay off). */
+const HOW_MIN: Record<string, number> = { discgolf: 3 };
+export const howMinFor = (site: string) => HOW_MIN[site] ?? 1;
 export type Stance = "pos" | "mix" | "neg";
 export const STANCE_LABEL: Record<Stance, string> = { pos: "Loved it", mix: "Mixed", neg: "Not for me" };
 
@@ -184,8 +194,8 @@ const HIGH: Word[] = ["Excellent", "Great"], LOW: Word[] = ["Okay", "Weak"];
 
 /** "How it plays": per attribute, the middle word of all the creators' words (the lower one on an even count, the
  *  cautious read) and one plain line with the counts ("12 of 15 call it Excellent or Great; 2 Okay or weaker."). */
-export function howItPlays(rs: Pick<CreatorReview, "attrs">[]) {
-  return ATTRS.flatMap(([k, l]) => {
+export function howItPlays(rs: Pick<CreatorReview, "attrs">[], min = 1) {
+  const rows = ATTRS.flatMap(([k, l]) => {
     const s = attrSummary(rs, k);
     if (!s) return [];
     const words = WORDS.flatMap((w, i) => Array<Word>(s.counts[i]!).fill(w)), word = words[Math.floor(words.length / 2)]!;
@@ -194,6 +204,7 @@ export function howItPlays(rs: Pick<CreatorReview, "attrs">[]) {
       low ? `${low} Okay or weaker` : null].filter(Boolean).join("; ") + ".";
     return [{ k, label: l, word, line }];
   });
+  return rows.length >= min ? rows : [];
 }
 
 /** "The big picture": what creators like (attributes most call Excellent or Great) and common concerns (attributes at
@@ -271,7 +282,8 @@ const LIKE: Record<AttrKey, string> = { power: "Strong power", control: "Strong 
   results: "Visible results", scent: "Pleasant or no scent", white_cast: "No white cast", sun_protection: "Solid sun protection",
   adhesion: "Stays on well", packaging: "Handy packaging", value: "Good value",
   performance: "Fast for its class", thermals: "Runs cool and quiet", battery: "Long battery life", display: "A good screen",
-  keyboard: "A good keyboard", build: "Solid build", portability: "Easy to carry" };
+  keyboard: "A good keyboard", build: "Solid build", portability: "Easy to carry",
+  glide: "Lots of glide", distance: "Goes far", grip: "Good grip", accuracy: "Hits its lines" };
 const CONCERN: Record<AttrKey, string> = { power: "Low on power for some", control: "Harder to control for some", spin: "Less spin than some rivals",
   pop: "Muted pop for some", sweet: "Smaller sweet spot for some", comfort: "Firm on the arm for some", durability: "Durability doubts",
   maneuver: "Heavy or slow to move for some",
@@ -279,7 +291,9 @@ const CONCERN: Record<AttrKey, string> = { power: "Low on power for some", contr
   absorption: "Slow to absorb for some", irritation: "Irritated some skin", results: "Little change for some", scent: "Scent bothered some",
   white_cast: "Some white cast", sun_protection: "Protection doubts", adhesion: "Comes off for some", packaging: "Packaging gripes",
   value: "Pricey for some", performance: "Slower than rivals for some", thermals: "Hot or loud for some", battery: "Short battery life for some",
-  display: "Screen gripes", keyboard: "Keyboard gripes", build: "Build doubts", portability: "Heavy for some" };
+  display: "Screen gripes", keyboard: "Keyboard gripes", build: "Build doubts", portability: "Heavy for some",
+  glide: "Short on glide for some", distance: "Short on distance for some", grip: "Slick in the hand for some",
+  accuracy: "Hard to place for some" };
 export function agreeChips(rs: Pick<CreatorReview, "attrs">[], max = 3) {
   const rows = ATTRS.map(([k]) => ({ k, hi: rs.filter(r => r.attrs[k] && HIGH.includes(r.attrs[k]!)).length, lo: rs.filter(r => r.attrs[k] && LOW.includes(r.attrs[k]!)).length }));
   const likes = rows.filter(x => x.hi >= 2 && x.hi > x.lo).sort((a, b) => b.hi - a.hi).slice(0, max).map(x => LIKE[x.k]);
