@@ -23,12 +23,12 @@ import { websiteButton } from "../../lib/product-links";
 import { JsonLd, crumbs } from "./seo";
 import { catalogLabel, catalogPath, productHref } from "../../lib/niche";
 import { STANCE_LABEL, lowestOffer, shortShop, usd, reviewLists, cardList, agreeChips, stanceLine, stanceCounts, howItPlays, langCode, platform, scoreText, takeaway,
-  wordTone, howTitleFor, attrSummary, type AttrKey, type CreatorReview } from "../../lib/thread/creators";
+  wordTone, howTitleFor, attrSummary, type AttrKey, type CreatorReview, type CreatorPage } from "../../lib/thread/creators";
 import { LaptopFitCard } from "./live/laptop-match";
 import { NewerVersion } from "./newer-version";
 import { padelListData } from "./padel-list-data";
 import { configAxisFor, configCell, configSite, textSlugs } from "../../lib/thread/creator-config";
-import { creatorPage, creatorSlugs, creatorHome } from "../../lib/thread/creator-data";
+import { creatorPage, creatorSlugs, creatorHome, thinCreatorPage } from "../../lib/thread/creator-data";
 import { threadTitle } from "../../lib/thread/web-sources";
 import roundups from "../../db/creators/reddit-roundups.json";
 import wrapups from "../../db/creators/reviewer-wrapups.json";
@@ -36,7 +36,7 @@ import tldrs from "../../db/creators/tldrs.json";
 import aliases from "../../db/creators/aliases.json";
 import bestFor from "../../db/creators/best-for.json";
 import { expertPicks, outletKey, placeText, badgeOf, picksSummary, type ShownPick } from "../../lib/thread/expert-lists";
-import { creatorPageFor, CREATOR_VIEW, CREATOR_MIN_REVIEWS, creatorPageOn, creatorPlainSite } from "../../lib/thread/sites";
+import { creatorPageFor, CREATOR_VIEW, CREATOR_MIN_REVIEWS, creatorPageOn, creatorPlainSite, thinCreatorPageOn } from "../../lib/thread/sites";
 import { Avatar, CreatorReviews } from "./live/creator-reviews";
 import { MentionsProvider, MentionText, type MentionTarget } from "./live/mention-links";
 import padelMentions from "../../db/creators/padel-mentions.json";
@@ -103,7 +103,11 @@ const shown = (name: string, year?: number | null) => { const b = withoutYear(na
 
 /** The creator page for one product, or null when it has no creator data (the caller then shows the usual page). */
 export async function CreatorProductBody({ slug }: { slug: string }) {
-  const [page, d] = await Promise.all([creatorPage(niche.id, slug), racketData(slug)]);
+  const [page0, d] = await Promise.all([creatorPage(niche.id, slug), racketData(slug)]);
+  // Thin pages (lib/thread/sites.ts THIN_CREATOR_PAGE): a live product without a creator page still gets this design, with
+  // the reviews and prices it has (lib/thread/creator-data.ts thinCreatorPage).
+  const THIN_ON = thinCreatorPageOn(niche.id);
+  const page: CreatorPage | null = page0 ?? (THIN_ON && d ? await thinCreatorPage(niche.id, slug) : null);
   if (!page || !d) return null;
   // Reviews include the TikTok takes (owner 2026-11-22): `rs` counts one per reviewer, `feed` holds every card.
   // Paddle page v3 (owner handoff 2026-11-26: every review count on the page agrees): one card per counted review, a TikTok
@@ -118,8 +122,10 @@ export async function CreatorProductBody({ slug }: { slug: string }) {
   const feed = feed0.map(x => { const p = byOutlet.get(outletKey(x.creator)); if (p) carded.add(outletKey(x.creator));
     const y = bf[x.id] ? { ...x, bestFor: bf[x.id] } : x; return p ? { ...y, badge: p.label ? `${p.label} · ${p.l.title}` : placeText(p) } : y; });
   const listPicks = picks.filter(p => !carded.has(outletKey(p.l.outlet)));
-  // Under CREATOR_MIN_REVIEWS reviews the product keeps its usual page.
-  if (rs.length < CREATOR_MIN_REVIEWS) return null;
+  // Under CREATOR_MIN_REVIEWS reviews the product keeps its usual page, or (THIN_CREATOR_PAGE sites) gets the thin version
+  // of this one: no TL;DR, no consensus, no at-a-glance table, only the cards it has.
+  const thin = rs.length < CREATOR_MIN_REVIEWS;
+  if (thin && !THIN_ON) return null;
   const { r, row, brand, style, sim, cards } = d;
   const [tales, shops] = await Promise.all([storiesSite(niche.id) ? racketStories(r.id) : [], PADEL ? padelOffers(slug) : []]);
   // The TL;DR sentence (owner 2026-11-23): the creator page's own line where it has one, else the same line the usual
@@ -278,7 +284,7 @@ export async function CreatorProductBody({ slug }: { slug: string }) {
           {row?.newer && <span className="thc-specline">{"Previous model. Replaced by the "}<a href={th(row.newer.href)}>{withoutYear(row.newer.name)}</a>{"."}</span>}
           {/* LaptopRecs: an older generation links to the newest of its line (app/thread/newer-version.tsx). */}
           {LT && <NewerVersion slug={slug} className="thc-newer"/>}
-          {(tldr || plus.length > 0 || minus) && <div className="thc-tldr">
+          {!thin && (tldr || plus.length > 0 || minus) && <div className="thc-tldr">
             <span className="thc-tldr-h"><b>TL;DR</b><span>{`From ${plural(rs.length, "review")}`}</span></span>
             {tldr && <span className="thc-tldr-t">{yc ? <MentionsProvider {...mxProps}><MentionText text={tldr}/></MentionsProvider> : tldr}</span>}
             {(plus.length > 0 || minus) && <span className="thc-pts2">{plus.map(t => <span key={t} className="pos">{`✓ ${t}`}</span>)}{minus && <span className="neg">{`✕ ${minus}`}</span>}</span>}
@@ -359,7 +365,8 @@ export async function CreatorProductBody({ slug }: { slug: string }) {
         {/* Review consensus (paddle page v3, in place of The short version and How it plays): the written wrap-up with its
             yellow (pros) and pink (cons) marks, or the stance lines where none is written; the takes and their bar; How it
             plays in words along the bottom. No +/- lines here (the TL;DR has them). */}
-        <section id="sentiment" className="thc-box1 flush thc-cons">
+        {thin ? rs.length === 0 && <p className="thc-none thc-thin-empty">{`No ${niche.words.one} reviews summarized here yet.`}</p>
+        : <section id="sentiment" className="thc-box1 flush thc-cons">
           <div className="thc-cons-top">
             <div className="thc-cons-l">
               <strong className="thc-cons-t">Review consensus</strong>
@@ -374,18 +381,18 @@ export async function CreatorProductBody({ slug }: { slug: string }) {
           </div>
           {how.length > 0 && <div className="thc-cons-g" aria-label={howTitleFor(niche.id)}>{how.map(h => <span key={h.k} title={h.line}>
             <span>{h.label}</span><strong className={h.word ? wordTone(h.word) : "none"}>{h.word ?? "–"}</strong></span>)}</div>}
-        </section>
+        </section>}
 
         {/* Picked in expert lists (owner mockup 2026-11-26): under the consensus, above the table. */}
         {listPicks.length > 0 && <ExpertPicks picks={listPicks}/>}
 
         {/* N reviews at a glance: three rows, then Show all N (live/glance-table.tsx). */}
-        <GlanceTable title={`${plural(rs.length, "review")} at a glance`} sub="Tap a row to jump to the full summary"
+        {!thin && <GlanceTable title={`${plural(rs.length, "review")} at a glance`} sub="Tap a row to jump to the full summary"
           head={<div className={`thc-g-row thc-g-head${CONFIGS ? " cfg" : ""}`}><span>Reviewer</span><span>Take</span>{CONFIGS && <span className="cfg-l">Config</span>}<span className="kp">Key point</span></div>}
-          rows={glance.map(gRow)}/>
+          rows={glance.map(gRow)}/>}
 
         <MentionsProvider {...mxProps}>
-          <CreatorReviews reviews={feed} count={rs.length} roundup={null} {...(CONFIGS ? { configs: true, axis: configAxisFor(niche.id, slug) } : {})}/>
+          {feed.length > 0 && <CreatorReviews reviews={feed} count={rs.length} roundup={null} {...(CONFIGS ? { configs: true, axis: configAxisFor(niche.id, slug) } : {})}/>}
         </MentionsProvider>
 
         {/* PadelRecs' member stories that name this racket (the pilot), as on its v7b racket page. */}
