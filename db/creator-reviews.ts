@@ -105,6 +105,20 @@ export async function readCreatorPage(db: Pick<Database, "execute">, schema: str
   ]);
   return pageFromRows(pages[0]!, rowsOf(reviews), rowsOf(prices), String(pages[0]!.product_name));
 }
+/** A product's live reviews and prices without a creator_pages row (the thin creator page, lib/thread/sites.ts
+ *  THIN_CREATOR_PAGE): the same page model with no written text (no TL;DR, no group lines). Null when the slug is unknown. */
+export async function readThinCreatorPage(db: Pick<Database, "execute">, schema: string, slug: string): Promise<CreatorPage | null> {
+  if (!SCHEMA.test(schema)) throw new Error("bad schema");
+  const s = sql.raw(`"${schema}"`);
+  const products = rowsOf(await db.execute(sql`select id, name from ${s}.rackets where slug = ${slug}`));
+  if (!products.length) return null;
+  const id = String(products[0]!.id);
+  const [reviews, prices] = await Promise.all([
+    db.execute(sql`select * from ${s}.creator_reviews where racket_id = ${id} and status = 'live' order by published_on desc nulls last`),
+    db.execute(sql`select * from ${s}.creator_prices where racket_id = ${id} and status = 'live'`),
+  ]);
+  return pageFromRows({}, rowsOf(reviews), rowsOf(prices), String(products[0]!.name));
+}
 /** Every live creator page's slug. */
 export async function readCreatorSlugs(db: Pick<Database, "execute">, schema: string): Promise<string[]> {
   if (!SCHEMA.test(schema)) throw new Error("bad schema");

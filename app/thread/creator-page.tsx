@@ -28,7 +28,7 @@ import { LaptopFitCard } from "./live/laptop-match";
 import { NewerVersion } from "./newer-version";
 import { padelListData } from "./padel-list-data";
 import { configAxisFor, configCell, configSite, textSlugs } from "../../lib/thread/creator-config";
-import { creatorPage, creatorSlugs, creatorHome } from "../../lib/thread/creator-data";
+import { creatorPage, creatorSlugs, creatorHome, thinCreatorPage } from "../../lib/thread/creator-data";
 import { threadTitle } from "../../lib/thread/web-sources";
 import roundups from "../../db/creators/reddit-roundups.json";
 import wrapups from "../../db/creators/reviewer-wrapups.json";
@@ -104,9 +104,10 @@ const shown = (name: string, year?: number | null) => { const b = withoutYear(na
 /** The creator page for one product, or null when it has no creator data (the caller then shows the usual page). */
 export async function CreatorProductBody({ slug }: { slug: string }) {
   const [page0, d] = await Promise.all([creatorPage(niche.id, slug), racketData(slug)]);
-  // Thin pages (lib/thread/sites.ts THIN_CREATOR_PAGE, PadelRecs): a live product without creator data still gets this design.
+  // Thin pages (lib/thread/sites.ts THIN_CREATOR_PAGE): a live product without a creator page still gets this design, with
+  // the reviews and prices it has (lib/thread/creator-data.ts thinCreatorPage).
   const THIN_ON = thinCreatorPageOn(niche.id);
-  const page: CreatorPage | null = page0 ?? (THIN_ON && d ? { paddle: slug, tldr: "", groups: { pos: "", mix: "", neg: "" }, prices: null, reviews: [] } : null);
+  const page: CreatorPage | null = page0 ?? (THIN_ON && d ? await thinCreatorPage(niche.id, slug) : null);
   if (!page || !d) return null;
   // Reviews include the TikTok takes (owner 2026-11-22): `rs` counts one per reviewer, `feed` holds every card.
   // Paddle page v3 (owner handoff 2026-11-26: every review count on the page agrees): one card per counted review, a TikTok
@@ -364,7 +365,7 @@ export async function CreatorProductBody({ slug }: { slug: string }) {
         {/* Review consensus (paddle page v3, in place of The short version and How it plays): the written wrap-up with its
             yellow (pros) and pink (cons) marks, or the stance lines where none is written; the takes and their bar; How it
             plays in words along the bottom. No +/- lines here (the TL;DR has them). */}
-        {thin ? rs.length === 0 && <p className="thc-none thc-thin-empty">No reviews from around the web yet.</p>
+        {thin ? rs.length === 0 && <p className="thc-none thc-thin-empty">{`No ${niche.words.one} reviews summarized here yet.`}</p>
         : <section id="sentiment" className="thc-box1 flush thc-cons">
           <div className="thc-cons-top">
             <div className="thc-cons-l">
