@@ -2,7 +2,7 @@
 // A creator page's "All reviews · N" (owner mock 2026-11-27): filter chips (All / Loved it / Mixed / Not for me), sort
 // (Newest / Most loved) and Show 10 more (owner 2026-11-27), all in the browser on the rows the page already has (instant filters rule: no request,
 // the page's ISR cache untouched). Each row: the video thumbnail with its length (plays in the page, the same player as the
-// product page, live/video-overlay.tsx) or an Article tile, the product with its shape, the review's line, date, the take and a check price link. A disclosed brand tie or disclosure note shows on the row.
+// product page, live/video-overlay.tsx) or an Article tile, the product with its shape, the review's line, date, the take and a check price link. No disclosure line on the rows (owner 2026-11-27: they cluttered the page).
 import { useMemo, useState } from "react";
 import { th } from "../../../lib/thread/look";
 import { clock } from "../../../lib/thread/video-meta";
@@ -21,7 +21,6 @@ const OUT = { target: "_blank", rel: "noopener nofollow" } as const;
 
 function Row({ r }: { r: ReviewerListRow }) {
   const play = usePlay(), clip = clipOf(r), thumb = r.kind === "youtube" ? thumbOf(r.url) : null;
-  const note = r.tie ? `Works with ${r.tie}` : r.disclosure;
   return <div className="rvp-row">
     {r.kind === "blog" ? <a className="rvp-tile art" href={r.url} {...OUT} aria-label={`Read ${r.creator}'s article`}><span>Article</span></a>
       : <a className={`rvp-tile${thumb ? "" : " tt"}`} href={r.url} {...OUT} onClick={playClick(play, clip)} aria-label={`Play ${r.creator}'s ${r.kind === "tiktok" ? "TikTok" : "video"}`}>
@@ -32,7 +31,6 @@ function Row({ r }: { r: ReviewerListRow }) {
       <p>{r.line}</p>
       {/* Owner 2026-11-27: no links on this line; the name opens the paddle's page and the thumbnail the video. */}
       <span className="rvp-meta">{dayLabel(r.date)}</span>
-      {note && <span className="rvp-disc">{`Disclosure: ${note}`}</span>}
     </div>
     <span className={`rvp-take ${r.stance}`}>{STANCE_LABEL[r.stance]}</span>
     <span className="rvp-buy">{r.price && <a href={r.price.url} target="_blank" rel={r.price.rel}>check price ↗</a>}</span>
