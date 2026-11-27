@@ -38,10 +38,9 @@ export default async function ReviewerPage({ params }: P) {
   if (!rv) notFound();
   const pf = profileOf(slug), subs = rv.kind === "youtube" ? subsShort(pf?.subs) : null;
   const channel = pf?.channel ?? rv.channel, links = [...(pf?.site && pf.site !== channel ? [{ label: "Website", url: pf.site }] : []), ...(pf?.links ?? [])];
-  const loved = (s: string) => d.takes.get(s)?.pos ?? 0;
   const rows: ReviewerListRow[] = rv.reviews.map(r => { const p = d.product(r.productSlug)!;
     return { id: r.id, creator: rv.name, kind: r.kind, url: r.url, video: r.video, len: r.len, stance: r.stance, date: r.date, product: withoutYear(r.productName),
-      href: p.href, pic: p.pic, shape: p.shape, line: r.line, tie: r.tie, disclosure: r.disclosure, loved: loved(r.productSlug), price: d.price(r.productSlug, r.productName) }; });
+      href: p.href, pic: p.pic, shape: p.shape, line: r.line, tie: r.tie, disclosure: r.disclosure, price: d.price(r.productSlug, r.productName) }; });
   const favs = favourites(rv, d.takes), similar = similarTaste(rv, d.list);
   const total = rv.pos + rv.mix + rv.neg;
   const ld = { "@context": "https://schema.org", "@graph": [crumbs([{ name: "Creators", path: "/creators" }, { name: rv.name, path: `/creators/${slug}` }])] };
