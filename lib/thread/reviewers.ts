@@ -23,9 +23,13 @@ export type Reviewer = { slug: string; name: string; kind: ReviewerRow["kind"]; 
   /** Share (0-100) of their reviews whose take matches the other reviewers' consensus on that product; null under AGREE_MIN. */
   agree: number | null; reviews: ReviewerRow[] };
 
-/** "Matt's Pickleball" → "matts-pickleball"; emoji and accents dropped. */
+/** "Matt's Pickleball" → "matts-pickleball"; emoji and accents dropped. A name with no Latin letters or digits (Korean
+ *  channels) gets "creator-" plus a short stable hash of the name, so two such creators never share a page. */
 export function reviewerSlug(name: string): string {
-  return name.normalize("NFKD").replace(/[̀-ͯ]/g, "").toLowerCase().replace(/['’]/g, "").replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "") || "creator";
+  const s = name.normalize("NFKD").replace(/[\u0300-\u036f]/g, "").toLowerCase().replace(/['’]/g, "").replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "");
+  if (s) return s;
+  let h = 0x811c9dc5; for (const c of name.trim()) { h ^= c.codePointAt(0)!; h = Math.imul(h, 0x01000193) >>> 0; }
+  return `creator-${h.toString(36)}`;
 }
 const first = (t: string) => t.match(/^[\s\S]*?[.!?](?=\s|$)/)?.[0] ?? t;
 /** The row's 1-2 sentences from existing fields: summary_short, else key point plus trade-off, else the summary's first sentence. */

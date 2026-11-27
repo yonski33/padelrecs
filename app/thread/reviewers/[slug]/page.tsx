@@ -36,7 +36,7 @@ export default async function ReviewerPage({ params }: P) {
   const { slug } = await params;
   const d = await reviewersData(), rv = d.list.find(r => r.slug === slug);
   if (!rv) notFound();
-  const pf = profileOf(slug), subs = subsShort(pf?.subs);
+  const pf = profileOf(slug), subs = rv.kind === "youtube" ? subsShort(pf?.subs) : null;
   const channel = pf?.channel ?? rv.channel, links = [...(pf?.site && pf.site !== channel ? [{ label: "Website", url: pf.site }] : []), ...(pf?.links ?? [])];
   const loved = (s: string) => d.takes.get(s)?.pos ?? 0;
   const rows: ReviewerListRow[] = rv.reviews.map(r => { const p = d.product(r.productSlug)!;

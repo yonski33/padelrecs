@@ -24,7 +24,7 @@ export default async function ReviewersIndex() {
     <JsonLd data={{ "@context": "https://schema.org", "@graph": [crumbs([{ name: "Creators", path: "/creators" }])] }}/>
     <main className="th-main rvp">
       <section className="rvp-ix-h"><h1>Creators</h1><p>{LEAD}</p><small>{`${list.length} creators with ${REVIEWER_MIN} or more reviews.`}</small></section>
-      <div className="rvp-ix">{list.map(r => { const subs = subsShort(profileOf(r.slug)?.subs);
+      <div className="rvp-ix">{list.map(r => { const subs = r.kind === "youtube" ? subsShort(profileOf(r.slug)?.subs) : null;
         return <a key={r.slug} className="rvp-ix-c" href={th(`/creators/${r.slug}`)}>
           <Avatar name={r.name} kind={r.kind}/>
           <span className="b"><strong>{r.name}</strong>

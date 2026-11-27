@@ -12,6 +12,8 @@ test("slugs drop emoji, apostrophes and case, so name spellings merge", () => {
   assert.equal(reviewerSlug("Matt's Pickleball"), "matts-pickleball");
   assert.equal(reviewerSlug("Pickleball Medicine 💊"), reviewerSlug("Pickleball Medicine"));
   assert.equal(reviewerSlug("STS PICKLEBALL"), reviewerSlug("STS Pickleball"));
+  assert.notEqual(reviewerSlug("패들러"), reviewerSlug("수달피클볼"));
+  assert.match(reviewerSlug("패들러"), /^creator-[a-z0-9]+$/);
 });
 
 test("only 5+ reviews get a page; spellings count together", () => {
