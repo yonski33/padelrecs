@@ -22,7 +22,7 @@ import { oneShape } from "../../lib/thread/shape";
 import { ago } from "./ui";
 import { Ago } from "./live/ago";
 import { STANCE_LABEL } from "../../lib/thread/creators";
-import { rowExtras } from "../../lib/thread/creator-home";
+import { rowLinks } from "./row-links";
 import { opinionsLabel } from "../../lib/thread/site-sentiment";
 import { SHOWN } from "../../lib/thread/top-picks";
 import { W } from "../../lib/thread/words";
@@ -32,7 +32,6 @@ import { CreatorsHomeTop, type HomeExtra } from "./live/creators-home";
 import { storiesSite } from "../../lib/thread/sites";
 import { threadStories } from "./stories-data";
 import { MemberMark } from "./live/member-mark";
-import { padelOfferMap } from "../../lib/padel-offers";
 import "./creators-home.css";
 
 
@@ -56,9 +55,6 @@ const PILL_BG = { pos: "oklch(0.93 0.08 145)", mix: "oklch(0.95 0.08 95)", neg: 
 const TYPE_BG: Record<string, string> = { Widebody: "oklch(0.94 0.06 125)", Standard: "oklch(0.94 0.04 250)", Elongated: "oklch(0.93 0.05 35)", Hybrid: "oklch(0.94 0.04 250)",
   // PadelRecs' shapes.
   Round: "oklch(0.94 0.06 125)", Teardrop: "oklch(0.94 0.04 250)", Diamond: "oklch(0.93 0.05 35)" };
-/** PadelRecs (2026-11-24): a row's price is its cheapest in-stock padel shop (lib/padel-offers.ts, the racket page's Where to
- *  buy box), in that shop's own currency; the creator data holds no padel prices. */
-const PADEL = niche.id === "padel";
 
 /** The creators home (the owner's Home Thread v6 handoff). */
 export async function CreatorsHomeBody() {
@@ -71,10 +67,8 @@ export async function CreatorsHomeBody() {
   // Ranked by the site's own players (owner 2026-11-22, after #649 went live): the same rows, votes, curated order and filters
   // as the catalogue list (padelListData, PR #600). Creator reviews add a praise line and a price, never the order or counts.
   const rows = d.rows, curated = d.curated, brands = d.brands;
-  const extra0: Record<string, HomeExtra> = rowExtras(rows, home?.paddles ?? {}, d.pills ?? {}, hrefOf);
-  const shopMap = PADEL ? await padelOfferMap() : {};
-  const extra: Record<string, HomeExtra> = PADEL ? Object.fromEntries(rows.map(r => { const x = extra0[r.id]!, o = (shopMap[r.slug] ?? []).find(y => y.inStock);
-    return [r.id, o ? { ...x, price: { label: `from ${o.price} · check price ↗`, url: o.href, rel: o.rel } } : x]; })) : extra0;
+  // Each row's links (app/thread/row-links.ts, shared with the ranking lists): praise pill, See reviews, the current price.
+  const extra: Record<string, HomeExtra> = await rowLinks(rows, { pills: d.pills ?? {}, hrefOf });
   const now = Date.now();
   const total = home ? `${home.total.toLocaleString("en-US")} reviews ${niche.id === "pickleball" || niche.id === "skin" ? "summarized" : "summarised"}` : "";
   const name = (slug: string) => { const r = bySlug.get(slug); return r ? withoutYear(r.name) : slug; };

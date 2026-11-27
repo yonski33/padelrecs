@@ -10,6 +10,7 @@ import { type ThreadRow } from "../ui";
 import { th } from "../../../lib/thread/look";
 import { oneShape } from "../../../lib/thread/shape";
 import { useRacketList, named, type Key } from "./padel-list";
+import { RowLinks } from "./row-links";
 import { LEVEL_OPTS, type Level, type Style } from "./picks";
 import { countsLine, opinionsLabel, siteSentiment } from "../../../lib/thread/site-sentiment";
 import { W } from "../../../lib/thread/words";
@@ -151,8 +152,7 @@ export function CreatorsHomeTop({ rows, extra, curated, added, total, brands, af
                   : <span className="tch-n">{opinionsLabel(t, W.person)}</span>}
                 <span className="tch-bar" aria-hidden="true"><i className="p" style={{ flex: r.pos }}/><i className="m" style={{ flex: r.mix }}/><i className="n" style={{ flex: r.neg }}/></span>
                 <span className="tch-counts">{countsLine(siteSentiment(r))}</span>
-                <span className="tch-links"><a className="tch-go" href={th(x?.href ?? r.href)}>See reviews ›</a>
-                  {x?.price && <a className="tch-price" href={x.price.url} target="_blank" rel={x.price.rel}>{x.price.label}</a>}</span>
+                <RowLinks href={r.href} x={x}/>
               </div>
             </div>; })}
           {list.length === 0 && <div className="tch-none">{`No ${HS.many} match. `}<button type="button" onClick={clearAll}>Clear all</button></div>}
