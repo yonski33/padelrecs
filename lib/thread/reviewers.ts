@@ -17,7 +17,8 @@ export type ReviewerRow = { id: string; creator: string; kind: "youtube" | "blog
   date: string; video: string | null; len: number | null; stance: Stance; productSlug: string; productName: string;
   /** The row's line: the review's short summary, else its key point and trade-off (no new writing per review). */ line: string;
   /** A disclosed tie with the product's brand, or the review's disclosure note (discount code, sponsored), or null. */ tie: string | null; disclosure: string | null;
-  /** How many traits their own review rates Excellent or Great (their favourites go by it). */ praise?: number };
+  /** How many traits their own review rates Excellent or Great (their favourites go by it). */ praise?: number;
+  /** The product's model year (rackets.year). */ year?: number | null };
 
 export type Reviewer = { slug: string; name: string; kind: ReviewerRow["kind"]; lang: string; channel: string; n: number;
   pos: number; mix: number; neg: number; since: string | null;
@@ -61,7 +62,11 @@ export function consensusWithout(counts: Record<Stance, number>, own: Stance): S
 /** Every creator with `min` or more live reviews, most reviews first. */
 /** Two channels the owner counts as one creator (owner 2026-11-27: "PADELREVIEW ENG" is the same people as "Padel Review",
  *  shown as @PadelReview): every review under the second name counts on the first one's page. Per site. */
-export const REVIEWER_ALIASES: Record<string, Record<string, string>> = { padel: { "PADELREVIEW ENG": "Padel Review" } };
+export const REVIEWER_ALIASES: Record<string, Record<string, string>> = {
+  // Owner 2026-11-27: "Padel Market" is the same person as Peter Consuegra; only his own channel is shown.
+  padel: { "PADELREVIEW ENG": "Padel Review", "Padel Market": "Peter Consuegra" } };
+/** Their favourites show current models only, where the site has model years (owner 2026-11-27, PadelRecs: 2026/2027). */
+export const FAVOURITE_MIN_YEAR: Record<string, number> = { padel: 2026 };
 
 export function reviewersFrom(rows: ReviewerRow[], min = REVIEWER_MIN, aliases: Record<string, string> = {}): Reviewer[] {
   const canon = (n: string) => aliases[n.trim()] ?? n;
@@ -88,9 +93,9 @@ export function reviewersFrom(rows: ReviewerRow[], min = REVIEWER_MIN, aliases: 
 
 /** Their favourites (owner 2026-11-27: from their own words only): the products they loved, the ones their own review praises
  *  most first (traits rated Excellent or Great), newest on a tie. No site-wide counts, no numbered ranking. */
-export function favourites(rv: Reviewer, _takes?: unknown, size = 3): ReviewerRow[] {
+export function favourites(rv: Reviewer, _takes?: unknown, size = 3, minYear?: number): ReviewerRow[] {
   const seen = new Set<string>();
-  return rv.reviews.filter(r => r.stance === "pos").sort((a, b) => (b.praise ?? 0) - (a.praise ?? 0) || b.date.localeCompare(a.date))
+  return rv.reviews.filter(r => r.stance === "pos" && (minYear == null || (r.year ?? 0) >= minYear)).sort((a, b) => (b.praise ?? 0) - (a.praise ?? 0) || b.date.localeCompare(a.date))
     .filter(r => !seen.has(r.productSlug) && seen.add(r.productSlug)).slice(0, size);
 }
 

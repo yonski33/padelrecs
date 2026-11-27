@@ -1,6 +1,5 @@
 "use client";
-// A creator page's "All reviews · N" (owner mock 2026-11-27): filter chips (All / Loved it / Mixed / Not for me), sort
-// (Newest / Most loved) and Show 10 more (owner 2026-11-27), all in the browser on the rows the page already has (instant filters rule: no request,
+// A creator page's "All reviews · N" (owner mock 2026-11-27): filter chips (All / Loved it / Mixed / Not for me), newest first, and Show 10 more (owner 2026-11-27), all in the browser on the rows the page already has (instant filters rule: no request,
 // the page's ISR cache untouched). Each row: the video thumbnail with its length (plays in the page, the same player as the
 // product page, live/video-overlay.tsx) or an Article tile, the product with its shape, the review's line, date, the take and a check price link. No disclosure line on the rows (owner 2026-11-27: they cluttered the page).
 import { useMemo, useState } from "react";
@@ -12,7 +11,6 @@ import { VideoProvider, clipOf, playClick, usePlay } from "./video-overlay";
 
 export type ReviewerListRow = { id: string; creator: string; kind: "youtube" | "blog" | "tiktok"; url: string; video: string | null; len: number | null;
   stance: Stance; date: string; product: string; href: string; pic: string | null; shape: string | null; line: string; tie: string | null; disclosure: string | null;
-  /** How many of the site's creator reviews loved this product (Most loved sorts by it). */ loved: number;
   price: { url: string; rel: string } | null };
 
 const FIRST = 8, STEP = 10;
@@ -40,12 +38,10 @@ function Row({ r }: { r: ReviewerListRow }) {
 }
 
 export function ReviewerList({ rows }: { rows: ReviewerListRow[] }) {
-  const [f, setF] = useState<Stance | "all">("all"), [sort, setSort] = useState<"new" | "loved">("new"), [count, setCount] = useState(FIRST);
+  const [f, setF] = useState<Stance | "all">("all"), [count, setCount] = useState(FIRST);
   const n = { all: rows.length, pos: rows.filter(r => r.stance === "pos").length, mix: rows.filter(r => r.stance === "mix").length, neg: rows.filter(r => r.stance === "neg").length };
-  const list = useMemo(() => {
-    const xs = rows.filter(r => f === "all" || r.stance === f);
-    return sort === "new" ? xs : [...xs].sort((a, b) => b.loved - a.loved || b.date.localeCompare(a.date));
-  }, [rows, f, sort]);
+  // Newest first only (owner 2026-11-27: "Most loved" went by site-wide counts, not this creator's own take, so it is gone).
+  const list = useMemo(() => rows.filter(r => f === "all" || r.stance === f), [rows, f]);
   const shown = list.slice(0, count), left = list.length - shown.length, next = Math.min(STEP, left);
   const chips: [Stance | "all", string][] = [["all", "All"], ["pos", "Loved it"], ["mix", "Mixed"], ["neg", "Not for me"]];
   return <VideoProvider>
@@ -54,9 +50,6 @@ export function ReviewerList({ rows }: { rows: ReviewerListRow[] }) {
         <div className="rvp-ctl">
           <div className="rvp-chips" role="group" aria-label="Filter by take">{chips.filter(([k]) => k === "all" || n[k] > 0).map(([k, l]) =>
             <button key={k} type="button" aria-pressed={f === k} onClick={() => { setF(k); setCount(FIRST); }}><i style={{ background: DOT[k] }} aria-hidden="true"/>{k === "all" ? `${l} ${n.all}` : `${l} (${n[k]})`}</button>)}</div>
-          <span className="rvp-sort" role="group" aria-label="Sort">
-            <button type="button" aria-pressed={sort === "new"} onClick={() => setSort("new")}>Newest</button>
-            <button type="button" aria-pressed={sort === "loved"} onClick={() => setSort("loved")}>Most loved</button></span>
         </div></div>
       <div className="rvp-box">
         {shown.map(r => <Row key={r.id} r={r}/>)}

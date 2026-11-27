@@ -143,11 +143,12 @@ export async function readAllCreatorPages(db: Pick<Database, "execute">, schema:
 export async function readReviewerRows(db: Pick<Database, "execute">, schema: string): Promise<ReviewerRow[]> {
   if (!SCHEMA.test(schema)) throw new Error("bad schema");
   const s = sql.raw(`"${schema}"`);
-  const rows = rowsOf(await db.execute(sql`select r.*, p.slug as product_slug, p.name as product_name from ${s}.creator_reviews r
+  const rows = rowsOf(await db.execute(sql`select r.*, p.slug as product_slug, p.name as product_name, p.year as product_year from ${s}.creator_reviews r
     join ${s}.rackets p on p.id = r.racket_id where r.status = 'live' order by r.published_on desc nulls last, r.id`));
   return rows.map(r => { const x = reviewFromRow(r);
     return { id: x.id, creator: x.creator, kind: x.kind, url: x.url, channel: x.channel, lang: x.lang, date: x.date, video: x.video, len: x.len,
       stance: x.stance, productSlug: String(r.product_slug), productName: String(r.product_name),
       line: rowLine({ short: txt(r.summary_short), keyPoint: x.keyPoint ?? null, trade: x.trade, summary: x.summary }),
-      tie: x.tie, disclosure: str(r.disclosure), praise: Object.values(x.attrs).filter(w => w === "Excellent" || w === "Great").length }; });
+      tie: x.tie, disclosure: str(r.disclosure), praise: Object.values(x.attrs).filter(w => w === "Excellent" || w === "Great").length,
+      year: r.product_year == null ? null : Number(r.product_year) }; });
 }
