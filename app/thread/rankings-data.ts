@@ -11,7 +11,7 @@ import { rankHome } from "../../lib/home-rank";
 import { RANK_SETUP, NEGATIVE_TAGS } from "../../lib/rank-seed";
 import type { QuickChoice } from "../../lib/quick-match";
 import { niche } from "../../lib/niche";
-import { listOrder, voteOrder, VOTE_ORDER, lovedOrder, LOVED_ORDER } from "../../lib/thread/vote-order";
+import { listOrder, voteOrder, voteSort, VOTE_ORDER, lovedOrder, LOVED_ORDER } from "../../lib/thread/vote-order";
 import { modelFamily } from "../../lib/compare-pairs";
 import { inShape } from "../../lib/thread/primary-shape";
 import { LAPTOP_LINES } from "../../lib/thread/laptop-lines";
@@ -120,7 +120,7 @@ export const threadRankings = cache(async (): Promise<ThreadRanking[]> => {
     ids: all.filter(r => r.score != null && r.current && r.n >= MIN_REVIEWS && (PICKLEBALL ? inShape(niche.id, r.id, r.shape, k) : r.shape?.toLowerCase() === k))
       .sort(listOrder(niche.id, `best-${k}-${LIST}`)?.order === "loved" ? (a, b) => b.pos - a.pos || b.n - a.n : (a, b) => b.score! - a.score! || b.n - a.n).slice(0, SIZE).map(r => r.id) }));
   // The site's own lists keep their live rule (5+); a Thread-only list is a new page, so it needs a full 10 (owner 2026-11-19).
-  const skin = SKIN ? await skinLists(ctx, new Set(all.filter(r => r.current).map(r => r.id))) : [];
+  const skin = SKIN ? await skinLists(ctx, new Set(all.filter(r => r.current).map(r => r.id)), new Map(all.map(r => [r.id, r.pos]))) : [];
   // DiscGolfRecs' "Best overall" (its hub mock): the highest thrower scores, current discs with 10+ reviews.
   const [oSlug, oTitle] = SR ? ["best-sim-racing-gear", "Best sim racing gear"] : LT ? ["best-laptops", "Best laptops"] : ["best-disc-golf-discs", "Best disc golf discs"];
   const overall = DG || SR || LT ? [{ slug: oSlug, href: `/rankings/${oSlug}`, label: "Best overall", title: `${oTitle} ${YEAR()}`,
@@ -156,6 +156,9 @@ async function votesFor(lists: Awaited<ReturnType<typeof threadLists>>, all: Awa
   if (!wanted.length) return out;
   const t = await traitCounts();
   for (const { l, o } of wanted) {
+    // SkinRecs' need lists: the list's own ids by this vote, then loved; no floors (vote-order.ts voteSort).
+    if (SKIN) { const loved = new Map(all.map(r => [r.id, r.pos]));
+      out.set(l.slug, voteSort(l.ids, id => traitGroup(t, id, o.trait!)[o.option!] ?? 0, id => loved.get(id) ?? 0).slice(0, SIZE)); continue; }
     const cfg = niche.topLists?.find(x => x.slug === l.slug), oldest = cfg?.maxAgeYears === undefined ? -Infinity : YEAR() - cfg.maxAgeYears;
     const pool = o.pool === "curated" ? l.ids.slice(0, SIZE).flatMap(id => all.filter(r => r.id === id)) : all.filter(r => r.year >= oldest && (!PICKLEBALL || r.current !== false));
     const ids = voteOrder(pool.flatMap(r => { const p = listed.get(r.id); return p ? [{ id: r.id, name: r.name, family: modelFamily(p), year: r.year, reviews: r.n,
@@ -172,17 +175,22 @@ export const GROUPS = LT ? ["Most popular", "By type", "By what matters"] : AUDI
  *  that pick (app/skin/rank.ts rankSkin, as the live home ranks it), current products with a match only, a full 10 needed.
  *  The dry, oily and acne hubs keep their old mixed top 10 as `ids` (the guides and Top picks read it); their pages show the
  *  per-type lists. Sensitive skin's hub is the site's own list. */
-async function skinLists(ctx: unknown, current: Set<string>): Promise<ThreadRanking[]> {
+async function skinLists(ctx: unknown, current: Set<string>, loved: Map<string, number>): Promise<ThreadRanking[]> {
   const sk = skinOf(ctx as Parameters<typeof skinOf>[0]);
   if (!sk) return [];
   const [{ rankSkin }, { readSkinChoice }] = await Promise.all([import("../skin/rank"), import("../../lib/skin-choice")]);
   const types = niche.typePages ?? [];
-  const top = (q: Record<string, string>) => rankSkin(sk, readSkinChoice(q, types)).filter(x => x.pct !== null && current.has(x.r.id)).slice(0, SIZE).map(x => x.r.id);
+  // A list set to "votes" (lib/thread/vote-order.ts, owner 2026-11-27): every match of its pick (same product type and
+  // EVERYTHING_SKIP rule), reordered by its vote, then loved; the rest stay below in match order.
+  const t = await traitCounts();
+  const top = (q: Record<string, string>, slug: string) => { const ids = rankSkin(sk, readSkinChoice(q, types)).filter(x => x.pct !== null && current.has(x.r.id)).map(x => x.r.id);
+    const o = listOrder(niche.id, slug);
+    return (o?.order === "votes" && o.trait && o.option ? voteSort(ids, id => traitGroup(t, id, o.trait!)[o.option!] ?? 0, id => loved.get(id) ?? 0) : ids).slice(0, SIZE); };
   const hubs = SKIN_NEEDS.filter(n => n.key !== "sensitive").map(n => ({ slug: n.hub, href: `/rankings/${n.hub}`, label: n.group.replace(/^For/, "Best for"),
-    title: `${n.group.replace(/^For/, "Best for")} ${YEAR()}`, blurb: BLURB[n.key], own: false, group: HUBS, ids: top(n.q) }));
+    title: `${n.group.replace(/^For/, "Best for")} ${YEAR()}`, blurb: BLURB[n.key], own: false, group: HUBS, ids: top(n.q, n.hub) }));
   const label = (t: string) => types.find(x => x.slug === t)?.label ?? t;
   const splits = skinSplits(label).map(x => ({ slug: x.slug, href: `/rankings/${x.slug}`, label: x.label, short: x.short, title: `${x.title} ${YEAR()}`,
-    blurb: x.need.blurb, own: false, group: x.need.group, ids: top({ ...x.need.q, type: x.type }) }));
+    blurb: x.need.blurb, own: false, group: x.need.group, ids: top({ ...x.need.q, type: x.type }, x.slug) }));
   return [...hubs, ...splits];
 }
 
