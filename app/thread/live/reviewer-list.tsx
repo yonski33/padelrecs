@@ -2,10 +2,11 @@
 // A creator page's "All reviews · N" (owner mock 2026-11-27): filter chips (All / Loved it / Mixed / Not for me), sort
 // (Newest / Most loved) and Show 10 more (owner 2026-11-27), all in the browser on the rows the page already has (instant filters rule: no request,
 // the page's ISR cache untouched). Each row: the video thumbnail with its length (plays in the page, the same player as the
-// product page, live/video-overlay.tsx) or an Article tile, the product with its shape, the review's line, date, the link
-// to the original, the take and a check price link. A disclosed brand tie or disclosure note shows on the row.
+// product page, live/video-overlay.tsx) or an Article tile, the product with its shape, the review's line, date, a link
+// to the paddle's review page, the take and a check price link. A disclosed brand tie or disclosure note shows on the row.
 import { useMemo, useState } from "react";
 import { th } from "../../../lib/thread/look";
+import { niche } from "../../../lib/niche";
 import { clock } from "../../../lib/thread/video-meta";
 import { thumbOf, dayLabel } from "../../../lib/thread/web-sources";
 import { STANCE_LABEL, type Stance } from "../../../lib/thread/creators";
@@ -22,7 +23,6 @@ const OUT = { target: "_blank", rel: "noopener nofollow" } as const;
 
 function Row({ r }: { r: ReviewerListRow }) {
   const play = usePlay(), clip = clipOf(r), thumb = r.kind === "youtube" ? thumbOf(r.url) : null;
-  const what = r.kind === "blog" ? "Read the article" : r.kind === "tiktok" ? "Watch the TikTok" : "Watch the video";
   const note = r.tie ? `Works with ${r.tie}` : r.disclosure;
   return <div className="rvp-row">
     {r.kind === "blog" ? <a className="rvp-tile art" href={r.url} {...OUT} aria-label={`Read ${r.creator}'s article`}><span>Article</span></a>
@@ -32,7 +32,8 @@ function Row({ r }: { r: ReviewerListRow }) {
     <div className="rvp-mid">
       <span className="rvp-top"><a className="rvp-prod" href={th(r.href)}>{r.product}</a>{r.shape && <span className="rvp-shape">{r.shape}</span>}</span>
       <p>{r.line}</p>
-      <span className="rvp-meta">{dayLabel(r.date)}{" · "}<a href={th(`${r.href}#cr-${r.id}`)}>Read the summary</a>{" · "}<a href={r.url} {...OUT}>{`${what} ↗`}</a></span>
+      {/* Owner 2026-11-27: the thumbnail opens the video, so the row links to the paddle's own review page instead. */}
+      <span className="rvp-meta">{dayLabel(r.date)}{" · "}<a href={th(r.href)}>{`See ${niche.words.one} reviews ›`}</a></span>
       {note && <span className="rvp-disc">{`Disclosure: ${note}`}</span>}
     </div>
     <span className={`rvp-take ${r.stance}`}>{STANCE_LABEL[r.stance]}</span>
