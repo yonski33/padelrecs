@@ -113,11 +113,11 @@ export const CREATOR_HOME: Record<string, boolean> = { pickleball: true, padel: 
 export const creatorHomeOn = (nicheId: string) => creatorPageOn(nicheId) && (CREATOR_HOME[nicheId] ?? false);
 export const CREATOR_MIN_REVIEWS = 3;
 /** Sites where every live product uses the creator page design, also under CREATOR_MIN_REVIEWS reviews (PickleballRecs, owner
- *  2026-11-27 via PM: "yes same for pickaball"; PadelRecs gets the same in its own PR, owner
+ *  2026-11-27 via PM: "yes same for pickaball"; PadelRecs, owner
  *  2026-11-27: "all pages on the site to have the same look"). Such a thin page shows the head, the shops and the review
  *  cards it has, and leaves out everything that sums up across reviews (TL;DR, review consensus, the at-a-glance table):
  *  "a summary for 1 or 2 reviews is silly". False brings back the usual product page under the minimum. */
-export const THIN_CREATOR_PAGE: Record<string, boolean> = { pickleball: true };
+export const THIN_CREATOR_PAGE: Record<string, boolean> = { pickleball: true, padel: true };
 export const thinCreatorPageOn = (nicheId: string) => creatorPageOn(nicheId) && (THIN_CREATOR_PAGE[nicheId] ?? false);
 /** Creator pages on a site that is not a Thread site (LaptopRecs, 2026-11-24): proxy.ts serves its product addresses for the
  *  products in db/creators/<site>-pages.json from app/thread/creator-product/[slug], which shows the creator page when the
