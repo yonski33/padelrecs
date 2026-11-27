@@ -2,7 +2,7 @@ import { test } from "node:test";
 import assert from "node:assert/strict";
 import { configAxisFor, configCell, configGroupOf, configGroups, configLine, configSite, OTHER_GROUP, textSlugs } from "../lib/thread/creator-config";
 import aliases from "../db/creators/laptop-slug-aliases.json";
-import { attrsFor, howTitleFor, measuredLine, type ReviewConfig } from "../lib/thread/creators";
+import { attrsFor, howMinFor, howTitleFor, measuredLine, type ReviewConfig } from "../lib/thread/creators";
 import { reviewFromRow, configFromRow } from "../db/creator-reviews";
 import { creatorPlainSite, creatorPageOn } from "../lib/thread/sites";
 import tldrs from "../db/creators/tldrs.json";
@@ -56,6 +56,7 @@ test("laptop config: the chips show only with two or more groups, in the axis or
 
 test("laptop creator page: its own trait words, not paddle words", () => {
   assert.deepEqual(attrsFor("laptop").map(([k]) => k), ["performance", "thermals", "battery", "display", "keyboard", "build", "portability", "value"]);
+  assert.equal(howMinFor("discgolf"), 3); assert.equal(howMinFor("pickleball"), 1);
   assert.deepEqual(attrsFor("discgolf").map(([k]) => k), ["glide", "distance", "grip", "accuracy", "durability"]);
   assert.deepEqual(attrsFor("pickleball").map(([k]) => k), ["power", "control", "spin", "pop", "sweet", "comfort", "durability"]);
   assert.equal(howTitleFor("laptop"), "How it holds up");

@@ -37,6 +37,10 @@ export const ATTRS: readonly (readonly [AttrKey, string])[] = attrsFor(process.e
 /** The heading over the per-attribute words ("How it plays"), per site. */
 const HOW_TITLE: Record<string, string> = { skin: "How it works", laptop: "How it holds up", discgolf: "How it flies" };
 export const howTitleFor = (site: string) => HOW_TITLE[site] ?? "How it plays";
+/** The fewest rated traits a page needs before the row shows (owner 2026-11-27: disc golf shows it only with 3 or more, so
+ *  thin one- or two-word rows stay off). */
+const HOW_MIN: Record<string, number> = { discgolf: 3 };
+export const howMinFor = (site: string) => HOW_MIN[site] ?? 1;
 export type Stance = "pos" | "mix" | "neg";
 export const STANCE_LABEL: Record<Stance, string> = { pos: "Loved it", mix: "Mixed", neg: "Not for me" };
 
@@ -190,8 +194,8 @@ const HIGH: Word[] = ["Excellent", "Great"], LOW: Word[] = ["Okay", "Weak"];
 
 /** "How it plays": per attribute, the middle word of all the creators' words (the lower one on an even count, the
  *  cautious read) and one plain line with the counts ("12 of 15 call it Excellent or Great; 2 Okay or weaker."). */
-export function howItPlays(rs: Pick<CreatorReview, "attrs">[]) {
-  return ATTRS.flatMap(([k, l]) => {
+export function howItPlays(rs: Pick<CreatorReview, "attrs">[], min = 1) {
+  const rows = ATTRS.flatMap(([k, l]) => {
     const s = attrSummary(rs, k);
     if (!s) return [];
     const words = WORDS.flatMap((w, i) => Array<Word>(s.counts[i]!).fill(w)), word = words[Math.floor(words.length / 2)]!;
@@ -200,6 +204,7 @@ export function howItPlays(rs: Pick<CreatorReview, "attrs">[]) {
       low ? `${low} Okay or weaker` : null].filter(Boolean).join("; ") + ".";
     return [{ k, label: l, word, line }];
   });
+  return rows.length >= min ? rows : [];
 }
 
 /** "The big picture": what creators like (attributes most call Excellent or Great) and common concerns (attributes at

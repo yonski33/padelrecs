@@ -53,6 +53,10 @@ test("creator page: helpers", () => {
   assert.deepEqual(bigPicture(many), { likes: ["Excellent spin"], concerns: ["Control Okay or weaker for 2 of 4"] });
   assert.deepEqual(howItPlays(many).find(h => h.k === "control"), { k: "control", label: "Control", word: "Okay", line: "1 of 4 call it Excellent or Great; 2 Okay or weaker." });
   assert.equal(howItPlays(many).find(h => h.k === "spin")!.word, "Excellent");
+  // A site minimum (disc golf: 3 rated traits) drops the whole row when fewer are rated.
+  const rated = howItPlays(many).length;
+  assert.equal(howItPlays(many, rated).length, rated);
+  assert.deepEqual(howItPlays(many, rated + 1), []);
   assert.deepEqual(cardChips({ control: "Okay", spin: "Excellent", power: "Good" }), [{ tone: "pos", text: "Excellent spin" }, { tone: "neg", text: "Okay control" }]);
   assert.deepEqual(marks("a big hit, a soft touch", ["big hit", "soft"]), [{ t: "a ", on: false }, { t: "big hit", on: true }, { t: ", a ", on: false }, { t: "soft", on: true }, { t: " touch", on: false }]);
   const o = (shop: string, price: number, inStock = true) => ({ shop, url: "https://x.test", price, inStock, edition: null, affiliate: false });

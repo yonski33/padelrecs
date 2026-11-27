@@ -22,7 +22,7 @@ import { amazonPhoto } from "../../lib/amazon-photos";
 import { websiteButton } from "../../lib/product-links";
 import { JsonLd, crumbs } from "./seo";
 import { catalogLabel, catalogPath, productHref } from "../../lib/niche";
-import { STANCE_LABEL, lowestOffer, shortShop, usd, reviewLists, cardList, agreeChips, stanceLine, stanceCounts, howItPlays, langCode, platform, scoreText, takeaway,
+import { STANCE_LABEL, lowestOffer, shortShop, usd, reviewLists, cardList, agreeChips, stanceLine, stanceCounts, howItPlays, howMinFor, langCode, platform, scoreText, takeaway,
   wordTone, howTitleFor, attrSummary, type AttrKey, type CreatorReview, type CreatorPage, type ReviewEntry } from "../../lib/thread/creators";
 import { LaptopFitCard } from "./live/laptop-match";
 import { NewerVersion } from "./newer-version";
@@ -219,7 +219,7 @@ export async function CreatorProductBody({ slug }: { slug: string }) {
     : low ? low.shops.find(o => o.shop === "Amazon" || o.affiliate) ?? low.shops[0]! : null;
   const cta = top ? { url: top.url, rel: relOf(top.affiliate || top.shop === "Amazon") } : shop;
   const ctaText = top ? `${shortShop(top.shop)} ›` : (SKIN || amazonFirst) && shop ? `${shop.where} ›` : "Check price ↗";
-  const how = howItPlays(rs), agree = agreeChips(rs);
+  const how = howItPlays(rs, howMinFor(niche.id)), agree = agreeChips(rs);
   // The at-a-glance table (owner 2026-11-23): reviewer, take and the short key point only, in the reviews' own order.
   const glance = rs;
   const gRow = (x: (typeof rs)[number]) => <a key={x.id} className={`thc-g-row${CONFIGS ? " cfg" : ""}`} href={`#cr-${x.id}`}>
