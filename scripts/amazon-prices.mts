@@ -4,8 +4,10 @@
 // Dry run by default (calls Amazon, writes nothing); --apply upserts creator_prices rows (shop "Amazon") and saves the ASIN
 // a name search found to the product's amazon_asin (only where none is saved), so later runs use "saved ASIN".
 //   NICHE=skin npx tsx --env-file=.env.local scripts/amazon-prices.mts [--apply] [--asins <file.json>] [--out <dry-run.json>]
-//        [--skip <slug,slug>] [--slugs <file>]   # products by slug (comma or newline separated) instead of the live creator pages, e.g.
+//        [--skip <slug,slug>] [--slugs <file>] [--saved-only]   # products by slug (comma or newline separated) instead of the live creator pages, e.g.
 //                           # pages about to go live; prices are written for live pages only, ASINs for all
+// --saved-only: only products with a saved (or --asins) ASIN; no name search, so no new ASIN is ever saved. The scheduled
+// run (deployment/launchd/amazon-prices.sh, twice a day) uses it: new ASINs only come in through a reviewed run.
 // --asins: { "<slug>": "<ASIN>" } hand-checked ASINs, used before the saved one and before a name search.
 // A "loose" match (lib/amazon.ts matchesProductLoose) is flagged in the output: check those before --apply.
 import { createHash } from "node:crypto";
@@ -45,7 +47,9 @@ try {
   const out: Record<string, any>[] = [];
   // --skip <slug,slug>: products the owner's review left out (no lookup, nothing written).
   const skip = new Set((flag("skip") ?? "").split(",").map(x => x.trim()).filter(Boolean));
-  for (const r of rows.filter((x: any) => !skip.has(x.slug))) {
+  const savedOnly = args.includes("--saved-only");
+  const todo = rows.filter((x: any) => !skip.has(x.slug) && (!savedOnly || manual[x.slug] || x.amazon_asin));
+  for (const r of todo) {
     const asin = manual[r.slug] ?? r.amazon_asin ?? null;
     let res: { asin: string; title: string; price: string | null; url: string; match?: "name" | "loose"; doubt?: string } | null = null, how = asin ? (manual[r.slug] ? "hand-checked ASIN" : "saved ASIN") : "name search", err: string | null = null;
     try { res = asin ? await paced(() => amazonOfferByAsin(asin, settings, creds)) : await paced(() => findAmazonOffer({ name: r.name, brand: r.brand }, settings, creds, fetch, m => { err = m.slice(0, 240); })); }
@@ -60,7 +64,7 @@ try {
   const byFound = new Map<string, string[]>();
   for (const o of out) if (o.found) byFound.set(o.found, [...(byFound.get(o.found) ?? []), o.slug]);
   for (const o of out) if (o.found && byFound.get(o.found)!.length > 1) o.doubts.push(`same ASIN found for ${byFound.get(o.found)!.filter((s: string) => s !== o.slug).join(", ")}`);
-  for (const [i, r] of rows.filter((x: any) => !skip.has(x.slug)).entries()) {
+  for (const [i, r] of todo.entries()) {
     const o = out[i], res = o.asin && o.title ? { asin: o.asin as string, title: o.title as string, url: amazonLink(o.asin, creds.partnerTag, settings.marketplace ?? "www.amazon.com") } : null;
     const price = o.price ? Number(String(o.price).replace(/[^0-9.]/g, "")) : null;
     o.save_asin = o.found && !o.doubts.length ? o.found : null;
@@ -75,7 +79,7 @@ try {
   }
   const got = out.filter(o => o.price).length, saves = out.filter(o => o.save_asin).length, doubtful = out.filter(o => o.found && o.doubts.length);
   for (const o of doubtful) console.log(`CHECK ${o.slug} ${o.found}: ${o.doubts.join("; ")} | "${String(o.title).slice(0, 110)}"`);
-  console.log(`\n${rows.length} products, ${got} Amazon prices, ${saves} ASINs to save, ${doubtful.length} doubtful (listed, not saved), ${calls} calls, ${throttled} throttled (429) and retried.${apply ? " Written." : " Dry run: nothing written."}`);
+  console.log(`\n${todo.length} products${savedOnly ? " (saved ASINs only)" : ""}, ${got} Amazon prices, ${saves} ASINs to save, ${doubtful.length} doubtful (listed, not saved), ${calls} calls, ${throttled} throttled (429) and retried.${apply ? " Written." : " Dry run: nothing written."}`);
   if (flag("out")) await writeFile(flag("out")!, JSON.stringify({ at: new Date().toISOString(), calls, throttled, results: out }, null, 1));
 } finally { await client.end(); }
 process.exit(0);
