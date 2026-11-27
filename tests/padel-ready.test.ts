@@ -26,3 +26,13 @@ test("counts per id; a racket comes back once it passes a bar", () => {
   reviews.set("a", 3);
   assert.deepEqual([...padelReadyIds(items, { reviews, votes }, NOW)], ["a"]);
 });
+
+// DiscGolfRecs and SkinRecs (owner 2026-11-27): only products with nothing come off lists (1 review or 3 votes, 30-day exemption).
+test("disc golf / skin bar: one review or three votes lists a product; new products stay listed", () => {
+  const cfg = { reviews: 1, votes: 3, newDays: 30 }, now = Date.parse("2026-11-27T00:00:00Z"), old = "2026-09-01T00:00:00Z";
+  assert.equal(padelReady({ reviews: 0, votes: 0, createdAt: old }, now, cfg), false);
+  assert.equal(padelReady({ reviews: 1, votes: 0, createdAt: old }, now, cfg), true);
+  assert.equal(padelReady({ reviews: 0, votes: 2, createdAt: old }, now, cfg), false);
+  assert.equal(padelReady({ reviews: 0, votes: 3, createdAt: old }, now, cfg), true);
+  assert.equal(padelReady({ reviews: 0, votes: 0, createdAt: "2026-11-20T00:00:00Z" }, now, cfg), true);
+});
