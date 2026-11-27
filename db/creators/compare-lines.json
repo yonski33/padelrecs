@@ -6330,6 +6330,520 @@
      "cr_fc652f7b9f5a98da"
     ]
    }
+  },
+  "axiom-paradox": {
+   "innova-rollo": {
+    "line": "Throws an almost identical anhyzer line, flipping up to straight with a curl",
+    "n": 1,
+    "by": [
+     "cr_b91d1ffe0d96b58d"
+    ]
+   },
+   "discmania-founder": {
+    "line": "Flippier and a better roller than the Paradox, and less stable overall",
+    "n": 1,
+    "by": [
+     "cr_b91d1ffe0d96b58d"
+    ]
+   },
+   "discraft-archer": {
+    "line": "More stable than the Paradox, and the better fit for the reviewer's arm speed",
+    "n": 1,
+    "by": [
+     "cr_b91d1ffe0d96b58d"
+    ]
+   },
+   "mvp-detour": {
+    "line": "Sits a little higher on the parting line and flies a little more stable",
+    "n": 1,
+    "by": [
+     "cr_a590adf66eb20eb7"
+    ]
+   },
+   "axiom-hex": {
+    "line": "Sits in the middle on the parting line and flies dead straight, unlike the Paradox",
+    "n": 1,
+    "by": [
+     "cr_a590adf66eb20eb7"
+    ]
+   },
+   "latitude-64-fuse": {
+    "line": "Flips slower than the Paradox but has more late turn",
+    "n": 1,
+    "by": [
+     "cr_ac016fc6c1b73d55"
+    ]
+   },
+   "latitude-64-pure": {
+    "line": "A very beat-in one flips slower than the Paradox with more late turn",
+    "n": 1,
+    "by": [
+     "cr_ac016fc6c1b73d55"
+    ]
+   },
+   "innova-mako3": {
+    "line": "Fades faster on beginners, so it is less forgiving than the Paradox",
+    "n": 1,
+    "by": [
+     "cr_ac016fc6c1b73d55"
+    ]
+   }
+  },
+  "discmania-origin": {
+   "axiom-hex": {
+    "line": "Same listed numbers as the Origin, but flies less flippy and was easier to throw",
+    "n": 1,
+    "by": [
+     "cr_782c50b8f96dbcfe"
+    ]
+   },
+   "discmania-md1": {
+    "line": "Flies straighter than the Origin, which has more turn and flips up on hyzer",
+    "n": 1,
+    "by": [
+     "cr_5e4868452385adb8"
+    ]
+   },
+   "mvp-detour": {
+    "line": "The last neutral mid the reviewer enjoyed as much as the Origin",
+    "n": 1,
+    "by": [
+     "cr_c508568b5398d2e2"
+    ]
+   }
+  },
+  "discraft-passion": {
+   "discraft-scorch": {
+    "line": "Ranked for stability on one side of the Passion, with Discraft Thrasher on the other",
+    "n": 1,
+    "by": [
+     "cr_e0e04d7c66b95a65"
+    ]
+   },
+   "discraft-thrasher": {
+    "line": "Ranked for stability on one side of the Passion, with Discraft Scorch on the other",
+    "n": 1,
+    "by": [
+     "cr_e0e04d7c66b95a65"
+    ]
+   },
+   "discraft-cicada": {
+    "line": "Turns a bit more mid-flight and comes back at the end, going a little shorter",
+    "n": 1,
+    "by": [
+     "cr_3b0c6adb2906c692"
+    ]
+   },
+   "discraft-stalker": {
+    "line": "Goes a little shorter than the Passion, and may be flippier when beat in",
+    "n": 1,
+    "by": [
+     "cr_82d83ec27c35ee46"
+    ]
+   },
+   "mvp-servo": {
+    "line": "Flies very similar to the Passion",
+    "n": 1,
+    "by": [
+     "cr_82d83ec27c35ee46"
+    ]
+   },
+   "latitude-64-explorer": {
+    "line": "An old copy feels much like the Passion in the hand",
+    "n": 1,
+    "by": [
+     "cr_d363ddd3c417886d"
+    ]
+   },
+   "dynamic-discs-escape": {
+    "line": "Probably goes farther than the Passion",
+    "n": 1,
+    "by": [
+     "cr_d363ddd3c417886d"
+    ]
+   },
+   "discraft-cyclone": {
+    "line": "Flies like the Passion but with a bit more bead",
+    "n": 1,
+    "by": [
+     "cr_cc89314a6d139a1f"
+    ]
+   }
+  },
+  "dynamic-discs-emac-truth": {
+   "dynamic-discs-truth": {
+    "line": "Slightly less overstable than the EMac Truth, flying neutral for throwers at 250 to 320 ft",
+    "n": 1,
+    "by": [
+     "cr_cebc89be77e09611"
+    ]
+   },
+   "discraft-buzzz": {
+    "line": "Less stable and a bit shorter than the EMac Truth, flipping to flat on baby hyzers",
+    "n": 2,
+    "by": [
+     "cr_ea211c74a743269a",
+     "cr_4039d6a4ea447b8c"
+    ]
+   },
+   "westside-warship": {
+    "line": "Flips to flat much easier than the EMac Truth, and feels better in the hand",
+    "n": 1,
+    "by": [
+     "cr_ae52de43e7ef9cc5"
+    ]
+   }
+  },
+  "dynamic-discs-felon": {
+   "dynamic-discs-maverick": {
+    "line": "Picked as the better disc of the day over the Felon in a team series Lucid",
+    "n": 1,
+    "by": [
+     "cr_3049a96008f928ab"
+    ]
+   },
+   "innova-firebird": {
+    "line": "Flies very similar to the Felon, with more glide than expected",
+    "n": 1,
+    "by": [
+     "cr_6c705faeb05bf70b"
+    ]
+   },
+   "discraft-raptor": {
+    "line": "Flies very similar to the Felon, closer to FD3 style than a typical overstable driver",
+    "n": 1,
+    "by": [
+     "cr_6c705faeb05bf70b"
+    ]
+   },
+   "axiom-fireball": {
+    "line": "By far the most overstable of the four, much more than the Felon",
+    "n": 1,
+    "by": [
+     "cr_6c705faeb05bf70b"
+    ]
+   },
+   "discmania-splice": {
+    "line": "Hooks up earlier than the Felon, which is more of a straight flight",
+    "n": 1,
+    "by": [
+     "cr_3f2235a132afc03b"
+    ]
+   }
+  },
+  "innova-caiman": {
+   "innova-gator": {
+    "line": "Has a bigger bead than the Caiman, and reviewers split on which is more stable",
+    "n": 3,
+    "by": [
+     "cr_afe72c18062a1791",
+     "cr_46824973c7f1f7d7",
+     "cr_f3a173a63e7e4bae"
+    ]
+   },
+   "innova-rat": {
+    "line": "Pops up and flattens out on a slight hyzer, far less overstable than the Caiman",
+    "n": 1,
+    "by": [
+     "cr_f3a173a63e7e4bae"
+    ]
+   },
+   "westside-anvil": {
+    "line": "Never turns over, weighed against the Caiman for the overstable mid slot",
+    "n": 1,
+    "by": [
+     "cr_f3a173a63e7e4bae"
+    ]
+   }
+  },
+  "innova-fox": {
+   "mvp-detour": {
+    "line": "A click or two less flippy than the Fox, and close to the Halo Star version",
+    "n": 2,
+    "by": [
+     "cr_df8986a4cfcf65ab",
+     "cr_420861090485d8ce"
+    ]
+   },
+   "prodigy-m5": {
+    "line": "Chunkier with a bigger bead than the Fox, and straighter than understable on the day",
+    "n": 1,
+    "by": [
+     "cr_a198c279b8d5e3e5"
+    ]
+   },
+   "discraft-buzzz-ss": {
+    "line": "Flew straighter than understable on the day, without the reliable turn of the Fox",
+    "n": 1,
+    "by": [
+     "cr_a198c279b8d5e3e5"
+    ]
+   },
+   "innova-rollo": {
+    "line": "Quicker, more understable and touchier than the Fox, which is more straight to neutral",
+    "n": 1,
+    "by": [
+     "cr_9786c02892fa12b3"
+    ]
+   },
+   "innova-manta": {
+    "line": "Understable in Champion but clearly less so than the Fox",
+    "n": 1,
+    "by": [
+     "cr_0824b8a40028bfa4"
+    ]
+   },
+   "discraft-malita": {
+    "line": "Less flippy than the Fox, with the edge in hand feel and shot shaping",
+    "n": 1,
+    "by": [
+     "cr_41b93a8524aa9ccb"
+    ]
+   }
+  },
+  "innova-gator": {
+   "discraft-buzzz": {
+    "line": "Goes further and flies better than the Gator, according to one reviewer.",
+    "n": 1,
+    "by": [
+     "cr_7330ff824c6a1c70"
+    ]
+   },
+   "innova-pig": {
+    "line": "Goes further than the Gator despite having less glide.",
+    "n": 1,
+    "by": [
+     "cr_7330ff824c6a1c70"
+    ]
+   },
+   "discraft-zone-os": {
+    "line": "Likened to the glow Champion Gator, which hooks early and dives in wind.",
+    "n": 1,
+    "by": [
+     "cr_3a541d9c83014eb7"
+    ]
+   },
+   "prodigy-a2": {
+    "line": "More overstable and beefier than the Gator, with a shorter flight.",
+    "n": 1,
+    "by": [
+     "cr_63419e84b8e0ebf7"
+    ]
+   },
+   "discraft-zone": {
+    "line": "More overstable and beefier than the Gator, with a shorter flight.",
+    "n": 1,
+    "by": [
+     "cr_63419e84b8e0ebf7"
+    ]
+   },
+   "discmania-mutant": {
+    "line": "More overstable and beefier than the Gator, with a shorter flight.",
+    "n": 1,
+    "by": [
+     "cr_63419e84b8e0ebf7"
+    ]
+   },
+   "innova-rhyno": {
+    "line": "Gives the Gator a run for its money as a favourite mold.",
+    "n": 1,
+    "by": [
+     "cr_63419e84b8e0ebf7"
+    ]
+   },
+   "innova-caiman": {
+    "line": "Beadless alternative to the Gator for players who dislike beads.",
+    "n": 1,
+    "by": [
+     "cr_63419e84b8e0ebf7"
+    ]
+   },
+   "prodigy-a3": {
+    "line": "Less overstable than the Gator, which sits between it and the Dynamic Discs Justice.",
+    "n": 1,
+    "by": [
+     "cr_063eb2e150a1e903"
+    ]
+   },
+   "dynamic-discs-justice": {
+    "line": "More overstable than the Gator, with a flatter top and board flat feel.",
+    "n": 1,
+    "by": [
+     "cr_063eb2e150a1e903"
+    ]
+   }
+  },
+  "innova-rollo": {
+   "discmania-founder": {
+    "line": "Slightly less stable than the Rollo, with a parting line that rolls more easily.",
+    "n": 1,
+    "by": [
+     "cr_e1c188a4de24501f"
+    ]
+   },
+   "mvp-glitch": {
+    "line": "Like the Rollo, fun in the bag but seldom thrown, by one reviewer's account.",
+    "n": 1,
+    "by": [
+     "cr_6ab6e1b492783567"
+    ]
+   },
+   "axiom-paradox": {
+    "line": "Starts straight, turns, then fights a little at the end, like the Halo Rollo.",
+    "n": 1,
+    "by": [
+     "cr_91dc7bca7eb7cbee"
+    ]
+   },
+   "discraft-stratus": {
+    "line": "Rides straighter for longer, then holds its turn much like the Rollo.",
+    "n": 1,
+    "by": [
+     "cr_91dc7bca7eb7cbee"
+    ]
+   }
+  },
+  "innova-tl3": {
+   "discraft-passion": {
+    "line": "Turns more and is slightly less stable than the TL3, and drifts in crosswind.",
+    "n": 2,
+    "by": [
+     "cr_1d702b7a4504ab63",
+     "cr_cf04cece4892b8e8"
+    ]
+   }
+  },
+  "mvp-nomad": {
+   "discmania-p2": {
+    "line": "Close to the Nomad in stability, though the Nomad flips up and holds its line.",
+    "n": 1,
+    "by": [
+     "cr_763c801677d40e87"
+    ]
+   },
+   "axiom-pixel": {
+    "line": "Nearly identical to the Nomad, which is a touch more stable in a crosswind.",
+    "n": 2,
+    "by": [
+     "cr_f15a903a0ed14340",
+     "cr_aa0b0ba40f28ae9d"
+    ]
+   },
+   "streamline-pilot": {
+    "line": "Flies pretty similar to the Nomad, which is perhaps a smidge more stable.",
+    "n": 1,
+    "by": [
+     "cr_aa0b0ba40f28ae9d"
+    ]
+   },
+   "dynamic-discs-judge": {
+    "line": "Putts very similarly to the Nomad, with the same flight characteristics.",
+    "n": 1,
+    "by": [
+     "cr_98407b901ce84282"
+    ]
+   }
+  },
+  "prodigy-a3": {
+   "discraft-zone": {
+    "line": "Flies much like the A3 but with less glide and less overstability.",
+    "n": 4,
+    "by": [
+     "cr_07a15f62f8848b39",
+     "cr_17b719068ad0c267",
+     "cr_92b5dc52dff0c378",
+     "cr_9ea991f5d209beaa"
+    ]
+   },
+   "mvp-deflector": {
+    "line": "More overstable than the A3, which sits between it and the Discraft Zone.",
+    "n": 1,
+    "by": [
+     "cr_07a15f62f8848b39"
+    ]
+   },
+   "prodigy-a2": {
+    "line": "Flies almost like the A3 with a sharper edge, and held up better in wind.",
+    "n": 2,
+    "by": [
+     "cr_17b719068ad0c267",
+     "cr_208a76daac7fc494"
+    ]
+   },
+   "prodigy-a4": {
+    "line": "A little deeper than the A3 with more glide, and the reviewer's pick.",
+    "n": 1,
+    "by": [
+     "cr_17b719068ad0c267"
+    ]
+   },
+   "prodigy-a1": {
+    "line": "Flew shorter than the brand new A3 in one first impressions session.",
+    "n": 1,
+    "by": [
+     "cr_b136016af3bdb5bf"
+    ]
+   },
+   "prodigy-a5": {
+    "line": "Flew shorter than the brand new A3 in one first impressions session.",
+    "n": 1,
+    "by": [
+     "cr_b136016af3bdb5bf"
+    ]
+   },
+   "innova-gator": {
+    "line": "Feels like a bigger A3, which one reviewer calls a mini Gator in feel.",
+    "n": 1,
+    "by": [
+     "cr_17b719068ad0c267"
+    ]
+   }
+  },
+  "westside-stag": {
+   "discmania-fd": {
+    "line": "Flips less than the Stag, according to one reviewer.",
+    "n": 1,
+    "by": [
+     "cr_54ee59859f4c04de"
+    ]
+   },
+   "discraft-passion": {
+    "line": "Sits a bit more stable than the Stag, by one reviewer's account.",
+    "n": 1,
+    "by": [
+     "cr_54ee59859f4c04de"
+    ]
+   },
+   "latitude-64-river": {
+    "line": "Fades less and slows down more slowly than the Stag, with less stability.",
+    "n": 1,
+    "by": [
+     "cr_c36b2e911c4da4fd"
+    ]
+   },
+   "innova-teebird": {
+    "line": "Flies with the regular stability the Stag shows in a tailwind or woods.",
+    "n": 1,
+    "by": [
+     "cr_bec8e42bff652186"
+    ]
+   }
+  },
+  "westside-sword": {
+   "innova-destroyer": {
+    "line": "Likened to the stable, domey Sword in one reviewer's test of four copies.",
+    "n": 1,
+    "by": [
+     "cr_c17efdd649686a97"
+    ]
+   },
+   "latitude-64-rive": {
+    "line": "Gets the reviewer more distance than the Sword on the same shot shape.",
+    "n": 1,
+    "by": [
+     "cr_6412e45d0e96fb1d"
+    ]
+   }
   }
  }
 }
