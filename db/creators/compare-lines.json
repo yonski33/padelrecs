@@ -8656,6 +8656,786 @@
      "cr_a7d53ed7e2ddb2a5"
     ]
    }
+  },
+  "climo-discs-osprey": {
+   "discraft-avenger-ss": {
+    "line": "Was expected to fly the way the Osprey does out of the box.",
+    "n": 1,
+    "by": [
+     "cr_17316d617d3a31a8"
+    ]
+   },
+   "innova-gorgon": {
+    "line": "Harder to flip than the Osprey, with a smoother flight that is easier to trust.",
+    "n": 1,
+    "by": [
+     "cr_6eb3de7526812f68"
+    ]
+   },
+   "discraft-scorch": {
+    "line": "Has a rim width similar to the Osprey.",
+    "n": 1,
+    "by": [
+     "cr_c3045c2935c31e80"
+    ]
+   }
+  },
+  "dga-aftershock": {
+   "discraft-buzzz": {
+    "line": "Slightly faster in the hand than the Aftershock, which one reviewer pairs with it.",
+    "n": 2,
+    "by": [
+     "cr_c41a1ac270fe0427",
+     "cr_e2b49347066694c3"
+    ]
+   },
+   "dga-quake": {
+    "line": "Slow to medium arms may find the Aftershock a longer version of it.",
+    "n": 1,
+    "by": [
+     "cr_e2b49347066694c3"
+    ]
+   }
+  },
+  "dga-avalanche": {
+   "innova-firebird": {
+    "line": "Flies much like the Avalanche, which reviewers find a little beefier and stiffer.",
+    "n": 4,
+    "by": [
+     "cr_cdd08b2d153a05e1",
+     "cr_c3a0f503f7e7dbe4",
+     "cr_6db870118b493216",
+     "cr_d6c4504cb6130324"
+    ]
+   },
+   "discraft-raptor": {
+    "line": "Glides a little more than the Avalanche, which is beefier and fades earlier.",
+    "n": 4,
+    "by": [
+     "cr_cdd08b2d153a05e1",
+     "cr_c3a0f503f7e7dbe4",
+     "cr_6db870118b493216",
+     "cr_d6c4504cb6130324"
+    ]
+   },
+   "dga-banzai": {
+    "line": "The brand's other overstable option, but less beefy than the Avalanche.",
+    "n": 1,
+    "by": [
+     "cr_c3a0f503f7e7dbe4"
+    ]
+   }
+  },
+  "dga-banzai": {
+   "innova-firebird": {
+    "line": "More overstable than the Banzai, which gets much more distance.",
+    "n": 2,
+    "by": [
+     "cr_f4016a78af516ed5",
+     "cr_eff014cbee699505"
+    ]
+   },
+   "discraft-raptor": {
+    "line": "Glides less than the Banzai does for medium arms.",
+    "n": 1,
+    "by": [
+     "cr_bf0d748d3bdfb60c"
+    ]
+   },
+   "discraft-predator": {
+    "line": "Glides less than the Banzai does for medium arms.",
+    "n": 1,
+    "by": [
+     "cr_bf0d748d3bdfb60c"
+    ]
+   },
+   "latitude-64-explorer": {
+    "line": "Compared on flight with the Banzai, and showed more fade than expected.",
+    "n": 1,
+    "by": [
+     "cr_eff014cbee699505"
+    ]
+   },
+   "innova-teebird3": {
+    "line": "Likened to the Banzai in flight, with a flat line and then a fade.",
+    "n": 1,
+    "by": [
+     "cr_eff014cbee699505"
+    ]
+   },
+   "dynamic-discs-convict": {
+    "line": "Flies like the Banzai, except the Banzai never turns, with a predictable fade.",
+    "n": 1,
+    "by": [
+     "cr_eff014cbee699505"
+    ]
+   },
+   "dynamic-discs-felon": {
+    "line": "Slower arms can use the Banzai much like this disc.",
+    "n": 1,
+    "by": [
+     "cr_eff014cbee699505"
+    ]
+   }
+  },
+  "dga-blast": {
+   "discraft-zone": {
+    "line": "A touch less overstable than the Blast, though one reviewer trusts it a bit more.",
+    "n": 3,
+    "by": [
+     "cr_58785c8d4b21f5cf",
+     "cr_76e1f23c02e53529",
+     "cr_42dc53bfc8979823"
+    ]
+   },
+   "discraft-zone-os": {
+    "line": "More overstable than the Blast, which fills the gap between it and the Discraft Zone.",
+    "n": 2,
+    "by": [
+     "cr_76e1f23c02e53529",
+     "cr_42dc53bfc8979823"
+    ]
+   },
+   "mvp-entropy": {
+    "line": "Flies less overstable on forehand than the Blast despite similar numbers.",
+    "n": 1,
+    "by": [
+     "cr_58785c8d4b21f5cf"
+    ]
+   }
+  },
+  "dga-hurricane": {
+   "innova-destroyer": {
+    "line": "Flies a little farther with more flip than the Hurricane, which is otherwise similar.",
+    "n": 2,
+    "by": [
+     "cr_3ecb750a6788378a",
+     "cr_a2ecc6d39bfbf4f2"
+    ]
+   },
+   "innova-wraith": {
+    "line": "The Hurricane could replace it in an all DGA bag.",
+    "n": 1,
+    "by": [
+     "cr_a2ecc6d39bfbf4f2"
+    ]
+   }
+  },
+  "dga-quake": {
+   "discraft-zone": {
+    "line": "A little less overstable than the Quake, which is a faster, more stable partner.",
+    "n": 2,
+    "by": [
+     "cr_a8bec1f04365eea6",
+     "cr_388d0a5597c18353"
+    ]
+   },
+   "dga-avalanche": {
+    "line": "A little more overstable than the Quake, by one reviewer.",
+    "n": 1,
+    "by": [
+     "cr_a8bec1f04365eea6"
+    ]
+   },
+   "discraft-buzzz": {
+    "line": "Feels similar in the hand to the Quake but gummier.",
+    "n": 1,
+    "by": [
+     "cr_6b3bd37a32eec498"
+    ]
+   },
+   "discraft-buzzz-os": {
+    "line": "Flies much like the Quake but is a touch less overstable.",
+    "n": 2,
+    "by": [
+     "cr_6b3bd37a32eec498",
+     "cr_911ceedc76b21a78"
+    ]
+   },
+   "axiom-pyro": {
+    "line": "Went a little shorter than the Quake on flat throws, in the high 280s.",
+    "n": 1,
+    "by": [
+     "cr_7c4bccded0be1a42"
+    ]
+   },
+   "discmania-md5": {
+    "line": "Flew about 280 feet on flat throws, shorter than the Quake's roughly 295.",
+    "n": 1,
+    "by": [
+     "cr_7c4bccded0be1a42"
+    ]
+   },
+   "discraft-malta": {
+    "line": "Meant to be very overstable, but flips over on forehand where the Quake does not.",
+    "n": 1,
+    "by": [
+     "cr_193463be211732b0"
+    ]
+   },
+   "dynamic-discs-justice": {
+    "line": "Goes a little shorter and holds less straight at speed than the Quake.",
+    "n": 2,
+    "by": [
+     "cr_911ceedc76b21a78",
+     "cr_388d0a5597c18353"
+    ]
+   },
+   "westside-anvil": {
+    "line": "Rated less overstable than the Quake by a reviewer.",
+    "n": 1,
+    "by": [
+     "cr_388d0a5597c18353"
+    ]
+   },
+   "latitude-64-anchor": {
+    "line": "Less overstable than the Quake, which could replace it or sit beside it.",
+    "n": 1,
+    "by": [
+     "cr_388d0a5597c18353"
+    ]
+   }
+  },
+  "dga-rift": {
+   "discraft-buzzz": {
+    "line": "Deeper rim, fades more reliably and goes shorter than the Rift, which turns more.",
+    "n": 4,
+    "by": [
+     "cr_78d2277ace6a50be",
+     "cr_620e126d25931723",
+     "cr_0d512e43c452ee01",
+     "cr_ff1c0b3374ede646"
+    ]
+   },
+   "innova-mako3": {
+    "line": "Turns a little where the Rift stays straight and torque resistant.",
+    "n": 1,
+    "by": [
+     "cr_0d512e43c452ee01"
+    ]
+   },
+   "innova-teebird": {
+    "line": "A fairway driver that the Rift nearly matches for distance.",
+    "n": 1,
+    "by": [
+     "cr_0d512e43c452ee01"
+    ]
+   },
+   "discraft-buzzz-ss": {
+    "line": "Finishes with less late stability than the Rift, so the two overlap little.",
+    "n": 1,
+    "by": [
+     "cr_ff1c0b3374ede646"
+    ]
+   }
+  },
+  "dga-sail": {
+   "innova-sidewinder": {
+    "line": "About as flippy as the Sail, which is less flippy than its rating.",
+    "n": 1,
+    "by": [
+     "cr_fb45842a1ed9060c"
+    ]
+   },
+   "innova-mamba": {
+    "line": "Flies almost identically to the Sail, maybe a little faster and flippier.",
+    "n": 1,
+    "by": [
+     "cr_b4286c596fa80ce7"
+    ]
+   },
+   "dynamic-discs-escape": {
+    "line": "Ranks near the Sail among one reviewer's top drivers.",
+    "n": 1,
+    "by": [
+     "cr_a30704e2266c0c60"
+    ]
+   }
+  },
+  "dga-surf": {
+   "streamline-pilot": {
+    "line": "Reminds a reviewer of the Surf in how it flies.",
+    "n": 1,
+    "by": [
+     "cr_b74dec78016c2ebb"
+    ]
+   },
+   "latitude-64-pure": {
+    "line": "A little less overstable than the Surf.",
+    "n": 1,
+    "by": [
+     "cr_b74dec78016c2ebb"
+    ]
+   },
+   "axiom-envy": {
+    "line": "Deep like the Surf, which flies a little straighter.",
+    "n": 1,
+    "by": [
+     "cr_3d5983c0b8f549ab"
+    ]
+   },
+   "axiom-proxy": {
+    "line": "Has a similarly straight flight to the Surf.",
+    "n": 1,
+    "by": [
+     "cr_3d5983c0b8f549ab"
+    ]
+   },
+   "kastaplast-berg": {
+    "line": "Pushes and dies like the Surf, which may suit a bigger arm.",
+    "n": 1,
+    "by": [
+     "cr_3d5983c0b8f549ab"
+    ]
+   }
+  },
+  "dga-tsunami": {
+   "discmania-pd": {
+    "line": "Very similar numbers to the Tsunami, which is more overstable.",
+    "n": 1,
+    "by": [
+     "cr_e8f4ed36979e3661"
+    ]
+   }
+  },
+  "dga-vortex": {
+   "mvp-signal": {
+    "line": "Turns over more readily than the Vortex, which flipped up and went flat in Atmos.",
+    "n": 1,
+    "by": [
+     "cr_87984f5f69f716f5"
+    ]
+   },
+   "prodigy-f7": {
+    "line": "Reminds one reviewer of the Vortex.",
+    "n": 1,
+    "by": [
+     "cr_eb1387aef7013bf3"
+    ]
+   },
+   "innova-leopard": {
+    "line": "Slightly more stable and deeper in the hand than the Vortex.",
+    "n": 2,
+    "by": [
+     "cr_9ad4b3663b21b476",
+     "cr_940e9893d4f7113b"
+    ]
+   }
+  },
+  "discraft-kratos": {
+   "discraft-luna": {
+    "line": "Same numbers and top shape as the Kratos, but no bead and a little less stable.",
+    "n": 3,
+    "by": [
+     "cr_4771fd9c56199342",
+     "cr_c417cbf480de4707",
+     "cr_1356104b4b7567b8"
+    ]
+   },
+   "mvp-atom": {
+    "line": "Less stable than the Kratos on some lines, with similar distance.",
+    "n": 1,
+    "by": [
+     "cr_306e2f29b2178015"
+    ]
+   },
+   "dynamic-discs-judge": {
+    "line": "Reminds reviewers of the Kratos, which has a big bead and is not super deep.",
+    "n": 2,
+    "by": [
+     "cr_306e2f29b2178015",
+     "cr_92582f00ff957908"
+    ]
+   },
+   "discraft-zone": {
+    "line": "Dumps harder at the end of the flight than the Kratos.",
+    "n": 1,
+    "by": [
+     "cr_4771fd9c56199342"
+    ]
+   },
+   "axiom-envy": {
+    "line": "Putts much like the Kratos from 15 to 30 feet.",
+    "n": 1,
+    "by": [
+     "cr_1356104b4b7567b8"
+    ]
+   }
+  },
+  "doomsday-discs-chemtrail": {
+   "discraft-stalker": {
+    "line": "Has a little more fade than the Chemtrail and fights wind harder.",
+    "n": 1,
+    "by": [
+     "cr_10165e436628c07d"
+    ]
+   },
+   "discraft-cigarra": {
+    "line": "Flies close to the Chemtrail but with a little more fade.",
+    "n": 1,
+    "by": [
+     "cr_10165e436628c07d"
+    ]
+   },
+   "discmania-essence": {
+    "line": "More stable than the Chemtrail, though one reviewer sees similar flights.",
+    "n": 2,
+    "by": [
+     "cr_edd68aa175959b13",
+     "cr_16282404990f2f9c"
+    ]
+   },
+   "discmania-fd": {
+    "line": "Flies much like the Chemtrail on backhand, with a slightly wider feel.",
+    "n": 1,
+    "by": [
+     "cr_57850a000e2ec399"
+    ]
+   },
+   "innova-leopard": {
+    "line": "Gives similar backhand performance to the Chemtrail.",
+    "n": 1,
+    "by": [
+     "cr_57850a000e2ec399"
+    ]
+   },
+   "discraft-cicada": {
+    "line": "Straighter than the Chemtrail, kept as the straight disc in the bag.",
+    "n": 1,
+    "by": [
+     "cr_16282404990f2f9c"
+    ]
+   },
+   "mvp-trail": {
+    "line": "One reviewer calls the Chemtrail a fairway version of it, for lower arm speeds.",
+    "n": 1,
+    "by": [
+     "cr_16282404990f2f9c"
+    ]
+   },
+   "infinite-discs-centurion": {
+    "line": "Less controllable and consistent than the Chemtrail in a flip to drift slot.",
+    "n": 1,
+    "by": [
+     "cr_5bf5d47f1bae66e4"
+    ]
+   },
+   "mint-discs-jackalope": {
+    "line": "Less controllable and consistent than the Chemtrail in a flip to drift slot.",
+    "n": 1,
+    "by": [
+     "cr_5bf5d47f1bae66e4"
+    ]
+   }
+  },
+  "hooligan-discs-flip": {
+   "axiom-paradox": {
+    "line": "Flies much like the Flip, though one finds it more understable and prone to nose dive.",
+    "n": 2,
+    "by": [
+     "cr_30b44848d3ab52a8",
+     "cr_3a1e9194c80d281a"
+    ]
+   },
+   "innova-rollo": {
+    "line": "More understable than the Flip, though it won the closest-to-pin contest.",
+    "n": 1,
+    "by": [
+     "cr_30b44848d3ab52a8"
+    ]
+   },
+   "mvp-uplink": {
+    "line": "Needs a harder throw than the Flip to turn, and fades out late.",
+    "n": 2,
+    "by": [
+     "cr_231ae253dc492db1",
+     "cr_3a1e9194c80d281a"
+    ]
+   }
+  },
+  "infinite-discs-alpaca": {
+   "discmania-p2": {
+    "line": "Extremely similar to the Alpaca, which is slightly lighter and smaller in diameter.",
+    "n": 4,
+    "by": [
+     "cr_536a45ad5cb2c61f",
+     "cr_48cfd4003585eb7f",
+     "cr_c324a5ebb9a13004",
+     "cr_8265ab2009191d67"
+    ]
+   },
+   "discraft-luna": {
+    "line": "A little less stable than the Alpaca in Halo plastic.",
+    "n": 1,
+    "by": [
+     "cr_04bf104d893c2989"
+    ]
+   },
+   "mvp-watt": {
+    "line": "Flatter on top and better at turnovers than the Alpaca out of the box.",
+    "n": 1,
+    "by": [
+     "cr_04bf104d893c2989"
+    ]
+   },
+   "innova-aviar": {
+    "line": "Feels much like the Alpaca, which one reviewer calls a beadless version.",
+    "n": 1,
+    "by": [
+     "cr_8265ab2009191d67"
+    ]
+   },
+   "dynamic-discs-warden": {
+    "line": "Feels like the Alpaca, which has a smaller diameter.",
+    "n": 1,
+    "by": [
+     "cr_8265ab2009191d67"
+    ]
+   }
+  },
+  "infinite-discs-anubis": {
+   "innova-mako3": {
+    "line": "Similar stability to the Anubis, which is a little flatter.",
+    "n": 1,
+    "by": [
+     "cr_9136a38b4f698c21"
+    ]
+   },
+   "discmania-md1": {
+    "line": "Same stability as the Anubis, which has a bit more dome.",
+    "n": 1,
+    "by": [
+     "cr_9136a38b4f698c21"
+    ]
+   },
+   "discraft-comet": {
+    "line": "Turns more than the Anubis, which flies straighter.",
+    "n": 1,
+    "by": [
+     "cr_38ae20e3bd876e80"
+    ]
+   },
+   "dynamic-discs-evidence": {
+    "line": "Very similar to the Anubis, which has a little more fade.",
+    "n": 1,
+    "by": [
+     "cr_38ae20e3bd876e80"
+    ]
+   }
+  },
+  "infinite-discs-centurion": {
+   "discraft-cigarra": {
+    "line": "Flatter than the Centurion with more glide on paper, but flies very similar.",
+    "n": 1,
+    "by": [
+     "cr_d6b82ee53be06f67"
+    ]
+   },
+   "discmania-fd": {
+    "line": "A beat-up FD flies much like the Centurion, which is flippier when new.",
+    "n": 1,
+    "by": [
+     "cr_c6c1500b19c13464"
+    ]
+   }
+  },
+  "infinite-discs-pharaoh": {
+   "discraft-nuke": {
+    "line": "One player likens it to the Pharaoh, which goes when ripped.",
+    "n": 1,
+    "by": [
+     "cr_8dd9132f936cc0d7"
+    ]
+   },
+   "innova-wraith": {
+    "line": "One player likens it to the Pharaoh, which goes when ripped.",
+    "n": 1,
+    "by": [
+     "cr_8dd9132f936cc0d7"
+    ]
+   },
+   "innova-shryke": {
+    "line": "Flips up and rides right more than the Pharaoh in a headwind.",
+    "n": 1,
+    "by": [
+     "cr_5e98c0d57e3ff4f6"
+    ]
+   }
+  },
+  "infinite-discs-scepter": {
+   "innova-firebird": {
+    "line": "Closest overstable driver to the Scepter, which blends it with the Innova Thunderbird.",
+    "n": 2,
+    "by": [
+     "cr_c27eac9180f9cf3a",
+     "cr_fc31b82025b252c6"
+    ]
+   },
+   "innova-thunderbird": {
+    "line": "Blended with the Firebird in the Scepter, which suits slower arm speeds.",
+    "n": 1,
+    "by": [
+     "cr_fc31b82025b252c6"
+    ]
+   }
+  },
+  "mint-discs-jackalope": {
+   "axiom-trance": {
+    "line": "Flies almost the same as the Jackalope, landing within about fifteen feet of it.",
+    "n": 1,
+    "by": [
+     "cr_a3f5f6fbb9a0aab3"
+    ]
+   },
+   "trash-panda-ozone": {
+    "line": "Flies almost the same as the Jackalope and is easier to find.",
+    "n": 1,
+    "by": [
+     "cr_a3f5f6fbb9a0aab3"
+    ]
+   },
+   "discmania-essence": {
+    "line": "More overstable than the Jackalope, so it flips up less.",
+    "n": 2,
+    "by": [
+     "cr_f189b8617245471b",
+     "cr_3cafb1703ca53314"
+    ]
+   },
+   "mvp-servo": {
+    "line": "May keep its bag spot over the Jackalope, with another head to head planned.",
+    "n": 1,
+    "by": [
+     "cr_20b6830010b78e3c"
+    ]
+   },
+   "innova-leopard3": {
+    "line": "A little slower than the Jackalope, which is an 8-speed driver.",
+    "n": 1,
+    "by": [
+     "cr_20b6830010b78e3c"
+    ]
+   }
+  },
+  "mint-discs-lobster": {
+   "axiom-paradox": {
+    "line": "More understable than the Lobster, so it turns over more.",
+    "n": 1,
+    "by": [
+     "cr_819e585e764f7e30"
+    ]
+   }
+  },
+  "trash-panda-canyon": {
+   "discraft-zone": {
+    "line": "Closest comparison to the Canyon, though one reviewer found the Zone much more overstable.",
+    "n": 4,
+    "by": [
+     "cr_b91b948f48b53bcd",
+     "cr_e0d9dbe9f6944cd4",
+     "cr_2b8b55819bc41666",
+     "cr_68b15cc3f40a883b"
+    ]
+   },
+   "axiom-balance": {
+    "line": "Straighter than the Canyon, which has a firmer overstable finish.",
+    "n": 1,
+    "by": [
+     "cr_92a09ef6db4aaa64"
+    ]
+   },
+   "dga-quake": {
+    "line": "More overstable than the Canyon, with a harder finish.",
+    "n": 1,
+    "by": [
+     "cr_92a09ef6db4aaa64"
+    ]
+   },
+   "dynamic-discs-justice": {
+    "line": "Does the same job as the Canyon: getting left quickly.",
+    "n": 1,
+    "by": [
+     "cr_20c01ccd961e6180"
+    ]
+   },
+   "axiom-tempo": {
+    "line": "Sits in the same stable-to-overstable slot as the Canyon.",
+    "n": 1,
+    "by": [
+     "cr_68b15cc3f40a883b"
+    ]
+   }
+  },
+  "trash-panda-dune": {
+   "discmania-md1": {
+    "line": "Flies nearly the same as the Dune, with a touch less mid-flight turn.",
+    "n": 1,
+    "by": [
+     "cr_637fefa160f3a109"
+    ]
+   },
+   "discraft-buzzz-ss": {
+    "line": "Closest match to the Dune in flight, a straight and torque resistant mid.",
+    "n": 1,
+    "by": [
+     "cr_2c8edfb3c9ff7358"
+    ]
+   },
+   "discraft-buzzz": {
+    "line": "Shallower than the Dune, slightly less understable and with less glide.",
+    "n": 1,
+    "by": [
+     "cr_35043f84785617f3"
+    ]
+   },
+   "discmania-origin": {
+    "line": "Kept its competition bag spot ahead of the Dune for one reviewer.",
+    "n": 1,
+    "by": [
+     "cr_2c8edfb3c9ff7358"
+    ]
+   }
+  },
+  "trash-panda-ozone": {
+   "discraft-heat": {
+    "line": "More understable than the Ozone, with less glide and a less consistent flip point.",
+    "n": 1,
+    "by": [
+     "cr_7002959de5185427"
+    ]
+   },
+   "discmania-function": {
+    "line": "Goes farther and glides more than the Ozone for a slow arm in a headwind.",
+    "n": 1,
+    "by": [
+     "cr_d59a3a4fc27266d2"
+    ]
+   },
+   "mvp-inertia": {
+    "line": "Very close to the Ozone for hyzer flips.",
+    "n": 1,
+    "by": [
+     "cr_9283cc1d09a6a00b"
+    ]
+   }
+  },
+  "trash-panda-procyon": {
+   "innova-wraith": {
+    "line": "Close flight to the Procyon, with Star Wraith a bit more stable and glidier.",
+    "n": 3,
+    "by": [
+     "cr_fc1605b07763ed58",
+     "cr_a9fe69b7e7bd8114",
+     "cr_b821767a0c46c431"
+    ]
+   },
+   "innova-destroyer": {
+    "line": "Pushes a little further than the Procyon in Star plastic.",
+    "n": 1,
+    "by": [
+     "cr_fc1605b07763ed58"
+    ]
+   }
   }
  },
  "skin": {
