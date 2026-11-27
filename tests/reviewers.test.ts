@@ -38,11 +38,12 @@ test("agreement share over reviews with a consensus, only from 5", () => {
   assert.equal(few.agree, null);
 });
 
-test("favourites are loved products, most reviewed first; similar taste is smoothed", () => {
+test("favourites are loved products, most praised in their own review first; similar taste is smoothed", () => {
   const rows = [row("Me", "a", "pos"), row("Me", "b", "pos"), row("Me", "c", "neg"), row("Me", "d", "pos"), row("Me", "e", "mix"),
     row("X", "b", "pos"), row("Y", "b", "pos"), row("X", "a", "pos"), row("X", "c", "neg"), row("X", "d", "pos"), row("X", "e", "pos")];
   const list = reviewersFrom(rows, 1), me = list.find(r => r.slug === "me")!;
-  assert.deepEqual(favourites(me, productTakes(rows)).map(r => r.productSlug), ["b", "a", "d"]);
+  rows.find(r => r.creator === "Me" && r.productSlug === "d")!.praise = 3; rows.find(r => r.creator === "Me" && r.productSlug === "a")!.praise = 1;
+  assert.deepEqual(favourites(reviewersFrom(rows, 1).find(r => r.slug === "me")!).map(r => r.productSlug), ["d", "a", "b"]);
   const sim = similarTaste(me, list);
   assert.deepEqual(sim.map(s => [s.reviewer.slug, s.same, s.shared]), [["x", 4, 5]]);
 });

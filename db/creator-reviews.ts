@@ -149,5 +149,5 @@ export async function readReviewerRows(db: Pick<Database, "execute">, schema: st
     return { id: x.id, creator: x.creator, kind: x.kind, url: x.url, channel: x.channel, lang: x.lang, date: x.date, video: x.video, len: x.len,
       stance: x.stance, productSlug: String(r.product_slug), productName: String(r.product_name),
       line: rowLine({ short: txt(r.summary_short), keyPoint: x.keyPoint ?? null, trade: x.trade, summary: x.summary }),
-      tie: x.tie, disclosure: str(r.disclosure) }; });
+      tie: x.tie, disclosure: str(r.disclosure), praise: Object.values(x.attrs).filter(w => w === "Excellent" || w === "Great").length }; });
 }
