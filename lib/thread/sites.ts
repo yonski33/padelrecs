@@ -122,6 +122,11 @@ export const CREATOR_MIN_REVIEWS = 3;
  *  (db/creators/reviewer-profiles.json). */
 export const REVIEWER_PAGES: Record<string, boolean> = { pickleball: true, padel: true };
 export const reviewerPagesOn = (nicheId: string) => REVIEWER_PAGES[nicheId] ?? false;
+/** Review consensus as 2-3 labelled blocks (owner pilot 2026-11-28, "Why reviewers like it" / "Watch out for" / one optional
+ *  note) in place of one paragraph, where db/creators/reviewer-wrapups.json has `blocks`. Padel, skin and disc golf switch on
+ *  here once theirs are rewritten. */
+export const CONSENSUS_BLOCKS: Record<string, boolean> = { pickleball: true };
+export const consensusBlocksOn = (nicheId: string) => CONSENSUS_BLOCKS[nicheId] ?? false;
 /** Sites where every live product uses the creator page design, also under CREATOR_MIN_REVIEWS reviews (PickleballRecs, owner
  *  2026-11-27 via PM: "yes same for pickaball"; PadelRecs, owner
  *  2026-11-27: "all pages on the site to have the same look"). Such a thin page shows the head, the shops and the review

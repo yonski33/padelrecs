@@ -58,7 +58,7 @@ import { siteSentiment } from "../../lib/thread/site-sentiment";
 import { W } from "../../lib/thread/words";
 import { mentions } from "../../lib/thread/mentions";
 import { padelOffers, newestCheck, type ShopOffer } from "../../lib/padel-offers";
-import { storiesSite, VOTE_SOURCE_NOTE } from "../../lib/thread/sites";
+import { storiesSite, VOTE_SOURCE_NOTE, consensusBlocksOn } from "../../lib/thread/sites";
 import { specPills } from "../../lib/thread/spec-pills";
 import { racketStories } from "./stories-data";
 import { MemberMark } from "./live/member-mark";
@@ -481,7 +481,9 @@ function ShopBox({ offers }: { offers: ShopOffer[] }) {
   </section>;
 }
 
-type Wrapup = { paras: string[]; highlights: { text: string; tone: "pos" | "neg" }[] };
+/** `blocks` (consensus pilot, owner 2026-11-28): 2-3 labelled blocks of 1-2 sentences each; shown in place of `paras` on
+ *  sites with lib/thread/sites.ts CONSENSUS_BLOCKS. */
+type Wrapup = { paras: string[]; highlights: { text: string; tone: "pos" | "neg" }[]; blocks?: { label: string; text: string }[] };
 
 /** "In more detail" (pilot, owner OK 2026-11-23): 2-3 sentences on what the counts and tags can't show (who it suits, where
  *  the mixed takes come from, what it's compared with), written from all the reviews and checked by a second reader. */
@@ -496,6 +498,9 @@ function Wrap({ w, links = false }: { w: Wrapup; /** PadelRecs: racket names in 
       out.push(plain(rest.slice(0, best)), <mark key={k++} className={h.tone}>{h.text}</mark>);
       rest = rest.slice(best + h.text.length); } };
   // Under The short version title (owner 2026-11-23: one section), above the count boxes and tags.
+  if (w.blocks?.length && consensusBlocksOn(niche.id)) return <div className="thc-wrap thc-blocks">
+    {w.blocks.map((b, i) => <div key={i} className={`thc-block b${i}`}><strong>{b.label}</strong><p>{mark(b.text)}</p></div>)}
+  </div>;
   return <div className="thc-wrap">
     {w.paras.map((p, i) => <p key={i}>{mark(p)}</p>)}
   </div>;
