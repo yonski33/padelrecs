@@ -180,7 +180,7 @@ body:has(.thc) .thc .thc-chap a:hover span:last-child { text-decoration: underli
 .thc .thc-show { all: unset; cursor: pointer; align-self: center; font-size: 14px; font-weight: 700; border: 1.5px solid var(--ink); border-radius: 999px; padding: 10px 24px; }
 
 /* Summary marker (README: yellow #FFE45C, lower half) */
-.thc-sum mark { background: linear-gradient(transparent 50%, #FFE45C 50%, #FFE45C 92%, transparent 92%); color: inherit; font-weight: 600; padding: 0 2px; border-radius: 3px; }
+.thc-sum mark { background: linear-gradient(transparent 50%, var(--brand-mark, #FFE45C) 50%, var(--brand-mark, #FFE45C) 92%, transparent 92%); color: inherit; font-weight: 600; padding: 0 2px; border-radius: 3px; }
 .thc-mono { font-family: 'JetBrains Mono', ui-monospace, monospace; }
 
 /* Comments and Similar paddles (the mock's sections 7 and 8): a rule above, a 32px heading. */
@@ -593,7 +593,7 @@ body:has(.thc) .thc-v19 .thc-hd4 .thc-pbox a.thc-cta.wide { background: var(--h4
 .thc-v19 .thc-hd4 .thc-shop2 > strong { font-weight: 600; } .thc-v19 .thc-hd4 .thc-shop2 .thc-price { font-weight: 800; }
 .thc-v19 .thc-hd4 .thc-shop2 .thc-mono { font: 600 12px 'JetBrains Mono', ui-monospace, monospace; }
 .thc-v19 .thc-hd4 .thc-note { font-size: 12px; color: var(--h4-muted); }
-.thc-v19 .thc-hd4 { --h4-ink: #17171A; --h4-photo: #FEFCF6; --h4-soft: #FFFDF4; --h4-line: #E9E4D2; --h4-acc: #F4EC6E; --h4-muted: #6E6A5E;
+.thc-v19 .thc-hd4 { --h4-ink: #17171A; --h4-photo: #FEFCF6; --h4-soft: #FFFDF4; --h4-line: #E9E4D2; --h4-acc: var(--brand-acc, #F4EC6E); --h4-muted: #6E6A5E;
   --h4-name-font: 'Barlow Condensed', var(--bc, sans-serif); --h4-name-size: 52px; --h4-name-ls: 0; }
 .th-skin .thc-v19 .thc-hd4 { --h4-ink: #2A1F1F; --h4-photo: #F6F1EC; --h4-soft: #FFFCF8; --h4-line: #E6D9D2; --h4-acc: #F5C6C6; --h4-muted: #7A6E68;
   --h4-name-font: Inter, 'Barlow', system-ui, sans-serif; --h4-name-size: 40px; --h4-name-ls: -.02em; }
@@ -646,7 +646,7 @@ body:has(.thc) .thc .thc-pbox-on a, body:has(.thc) .thc .thc-sim-aff a { color: 
 .thc-xp-b { flex: none; width: 46px; height: 46px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; text-align: center;
   border: 2px solid var(--ink); border-radius: 10px; font: 800 22px/1 'Barlow Condensed', var(--bc, sans-serif); background: #fff; }
 .thc-xp-b.word { font-size: 13px; line-height: 1.05; padding: 2px; }
-.thc-xp-b.top { background: #F4EC6E; } .thc-xp-b.soft { background: #FAF7D6; }
+.thc-xp-b.top { background: var(--brand-acc, #F4EC6E); } .thc-xp-b.soft { background: var(--brand-soft, #FAF7D6); }
 .thc-xp-m { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 2px; }
 .thc-xp-top { display: flex; justify-content: space-between; align-items: baseline; gap: 10px; }
 .thc-xp-top strong { font-size: 15px; min-width: 0; overflow-wrap: anywhere; }
@@ -735,7 +735,7 @@ body:has(.thc) .th-head a.thc-stick-cta { flex: none; font-size: 14.5px; font-we
 .thc-cons-t { font: 800 26px/1 'Barlow Condensed', var(--bc, sans-serif); }
 .thc-cons .thc-wrap { margin: 0; }
 .thc-cons .thc-wrap p { font-size: 15px; line-height: 1.65; max-width: 72ch; }
-.thc-cons .thc-wrap mark.pos { background: linear-gradient(transparent 55%, #F4EC6E 55%); font-weight: 600; padding: 0; }
+.thc-cons .thc-wrap mark.pos { background: linear-gradient(transparent 55%, var(--brand-mark, #F4EC6E) 55%); font-weight: 600; padding: 0; }
 .thc-cons .thc-wrap mark.neg { background: linear-gradient(transparent 55%, #FBD8D0 55%); font-weight: 600; padding: 0; }
 .thc-cons .thc-blocks { display: flex; flex-direction: column; gap: 12px; }
 .thc-cons .thc-block strong { display: block; font-size: 12.5px; font-weight: 800; letter-spacing: .04em; text-transform: uppercase; color: var(--muted); margin-bottom: 2px; }
