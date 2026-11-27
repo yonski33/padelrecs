@@ -13,4 +13,5 @@ LOCK=$(shasum package-lock.json | cut -d' ' -f1)
 if [[ ! -d node_modules || "$(cat .lock-hash 2>/dev/null)" != "$LOCK" ]]; then npm ci --silent --no-audit --no-fund && echo "$LOCK" > .lock-hash; fi
 NICHE=padel npx tsx --env-file=.env.local scripts/padel-shop-prices.mts --apply || echo "padel shop prices failed"
 # PickleballRecs (owner 2026-11-26): every non-Amazon shop row, same rules (no AI, current price only, 3-day hide).
-NICHE=pickleball npx tsx --env-file=.env.local scripts/pickleball-shop-prices.mts --apply || echo "pickleball shop prices failed"
+# PAUSED 2026-11-27 (owner): Shopify shops answered in Thai baht from the Mac's IP; resumes with the USD fix.
+# NICHE=pickleball npx tsx --env-file=.env.local scripts/pickleball-shop-prices.mts --apply || echo "pickleball shop prices failed"
