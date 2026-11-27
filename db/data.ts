@@ -44,6 +44,9 @@ const PHOTO_TO_LIST = new Set(["pickleball"]);
 /** Sites that keep thin products off lists and search (lib/thread/padel-ready.ts): padel 2026-11-26 (#718), pickleball 2026-11-26
  *  (owner: "paddles we cant find enough reviews for will be out of the catalog"). */
 export const THIN_HIDE = new Set(["padel", "pickleball"]);
+/** Sites whose old web summaries step aside once a checked creator review covers the same video or article
+ *  (lib/thread/replaced-youtube.ts): padel 2026-11-26, skin 2026-11-27 (old-summary redo). */
+const REPLACE_OLD = new Set(["padel", "skin"]);
 export const catalog = cache(async function catalog(connection?:ReturnType<typeof getDb>) {
  return connection ? loadCatalog(connection) : kept_.get();
 });
@@ -58,9 +61,10 @@ async function loadCatalog(connection?:ReturnType<typeof getDb>) {
  voteCounts(db), creatorBacked(db)]);
  // Thin-hide sites (THIN_HIDE): their thin-product counts (creator reviewers and votes).
  const padelExtra = THIN_HIDE.has(niche.id) ? await padelCounts(db) : null;
- // PadelRecs (lib/thread/replaced-youtube.ts): old YouTube summaries a checked creator review replaced on a creator-page
- // racket drop out here, so nothing shows or counts the same video twice. Padel only.
- const external = niche.id === "padel" && padelExtra ? dropReplacedYouTube(allExternal, padelExtra.cards, padelExtra.pages) : allExternal;
+ // REPLACE_OLD sites (lib/thread/replaced-youtube.ts): old summaries a checked creator review replaced on a creator-page
+ // product drop out here, so nothing shows or counts the same video or article twice.
+ const replaceExtra = REPLACE_OLD.has(niche.id) ? padelExtra ?? await padelCounts(db) : null;
+ const external = replaceExtra ? dropReplacedYouTube(allExternal, replaceExtra.cards, replaceExtra.pages) : allExternal;
  const visible = publicCatalogItems(allBrands, allRackets, publicReviews.map(r => r.racketId), external.map(e => e.racketId), unapproved);
  // Listings (catalogue, type and brand pages, sidebar, sitemap) only show products somebody has reviewed. Every visible
  // product still has its page and can be picked when adding a review, so `rackets` stays the full list for lookups.
@@ -87,9 +91,9 @@ async function padelCounts(db: ReturnType<typeof getDb>) {
  const rows = async (q: ReturnType<typeof sql>) => { try { const r = await db.execute(q);
    return ((Array.isArray(r) ? r : (r as { rows?: unknown[] }).rows ?? []) as { id: unknown; n: unknown }[]).map(x => [String(x.id), Number(x.n)] as const); } catch { return []; } };
  const s = sql.raw(`"${niche.schema}"`);
- const live = async () => { try { const r = await db.execute(sql`select racket_id, video_id from ${s}.creator_reviews where status = 'live'`);
-   return ((Array.isArray(r) ? r : (r as { rows?: unknown[] }).rows ?? []) as { racket_id: unknown; video_id: unknown }[])
-    .map(x => ({ racketId: String(x.racket_id), videoId: x.video_id == null ? null : String(x.video_id) })); } catch { return []; } };
+ const live = async () => { try { const r = await db.execute(sql`select racket_id, video_id, url from ${s}.creator_reviews where status = 'live'`);
+   return ((Array.isArray(r) ? r : (r as { rows?: unknown[] }).rows ?? []) as { racket_id: unknown; video_id: unknown; url: unknown }[])
+    .map(x => ({ racketId: String(x.racket_id), videoId: x.video_id == null ? null : String(x.video_id), url: x.url == null ? null : String(x.url) })); } catch { return []; } };
  const [creators, quick, trait, cards] = await Promise.all([
   rows(sql`select racket_id as id, count(distinct creator) as n from ${s}.creator_reviews where status = 'live' group by racket_id`),
   rows(sql`select racket_id as id, count(*) as n from ${s}.product_votes group by racket_id`),

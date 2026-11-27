@@ -20,3 +20,14 @@ test("drops only old YouTube rows a creator review replaced on a creator-page ra
 test("no creator pages: nothing changes", () => {
   assert.equal(dropReplacedYouTube(ROWS, CARDS, new Set()), ROWS);
 });
+
+test("an old blog summary steps aside when its article is a creator review on a creator-page product (skin 2026-11-27)", () => {
+  const rows = [
+    { id: "blog-old", racketId: "a", sourcePlatform: "Blog", sourceUrl: "http://example.com/2020/04/review-of-it/" },
+    { id: "blog-other", racketId: "a", sourcePlatform: "Blog", sourceUrl: "https://example.com/another-post" },
+    { id: "blog-b", racketId: "b", sourcePlatform: "Blog", sourceUrl: "https://example.com/2020/04/review-of-it" },
+    { id: "reddit", racketId: "a", sourcePlatform: "Reddit", sourceUrl: "https://www.reddit.com/r/x/y" },
+  ];
+  const cards = [{ racketId: "a", videoId: null, url: "https://www.example.com/2020/04/review-of-it" }];
+  assert.deepEqual(dropReplacedYouTube(rows, cards, new Set(["a"])).map(r => r.id), ["blog-other", "blog-b", "reddit"]);
+});
