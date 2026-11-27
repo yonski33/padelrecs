@@ -1,0 +1,34 @@
+// Server data for the creator (reviewer) pages (lib/thread/reviewers.ts): every live creator review read once per render
+// (react cache), the creators with a page, each product's takes, links and price, and the profiles file.
+import { cache } from "react";
+import { niche, catalogPath } from "../../lib/niche";
+import { reviewerRows, creatorHome } from "../../lib/thread/creator-data";
+import { productTakes, reviewersFrom, type Reviewer, type ReviewerRow } from "../../lib/thread/reviewers";
+import { reviewerPagesOn } from "../../lib/thread/sites";
+import { oneShape } from "../../lib/thread/shape";
+import { threadRows } from "./data";
+import profiles from "../../db/creators/reviewer-profiles.json";
+
+export type ReviewerProfile = { name: string; subs: number | null; channel: string | null; joined: string | null; site: string | null;
+  links: { label: string; url: string }[]; bio: string | null; topics: string[] };
+const PROFILES = profiles as unknown as Record<string, Record<string, ReviewerProfile>>;
+export const profileOf = (slug: string): ReviewerProfile | null => PROFILES[niche.id]?.[slug] ?? null;
+
+export const reviewersData = cache(async () => {
+  if (!reviewerPagesOn(niche.id)) return { rows: [] as ReviewerRow[], list: [] as Reviewer[], takes: new Map(), product: () => null, price: () => null };
+  const [rows, { bySlug }, home] = await Promise.all([reviewerRows(niche.id), threadRows(), creatorHome(niche.id)]);
+  const list = reviewersFrom(rows), takes = productTakes(rows);
+  /** The product's page, photo and shape (the catalogue's row), or its plain address. */
+  const product = (slug: string) => { const r = bySlug.get(slug), s = oneShape(r?.shape ?? null);
+    return { href: r?.href ?? `${catalogPath}/${slug}`, pic: r?.pic ?? null, shape: s ? s[0]!.toUpperCase() + s.slice(1) : null }; };
+  /** The product's current lowest price link (the creator pages' offers, lib/thread/creator-home.ts), or null. No amount shown. */
+  const price = (slug: string) => { const p = home?.paddles[slug]?.price;
+    return p ? { url: p.url, rel: p.affiliate ? "sponsored nofollow noopener" : "nofollow noopener" } : null; };
+  return { rows, list, takes, product, price };
+});
+
+/** The creator page's address for a review's creator name, or null when they have no page (they keep the channel link). */
+export const reviewerHrefs = cache(async (): Promise<Map<string, string>> => {
+  const { list } = await reviewersData();
+  return new Map(list.flatMap(r => r.reviews.map(x => [x.creator, `/creators/${r.slug}`] as [string, string])));
+});

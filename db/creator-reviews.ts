@@ -9,6 +9,7 @@ import type { AttrKey, CreatorPage, CreatorReview, Offer, ReviewConfig, Stance, 
 import { ATTRS, WORDS, PRICE_TEXT } from "../lib/thread/creators";
 import { PADEL_SHOP_SOURCE } from "../lib/padel-shops";
 import { niche } from "../lib/niche";
+import { rowLine, type ReviewerRow } from "../lib/thread/reviewers";
 import { cleanCreatorText, catalogSpelling, shopName, shownShop } from "../lib/thread/creator-text";
 
 type Database = ReturnType<typeof getDb>;
@@ -137,4 +138,16 @@ export async function readAllCreatorPages(db: Pick<Database, "execute">, schema:
   const by = <T extends Record<string, unknown>>(xs: T[]) => { const m = new Map<string, T[]>(); for (const x of xs) { const k = String(x.racket_id); m.set(k, [...(m.get(k) ?? []), x]); } return m; };
   const rv = by(rowsOf(reviews)), pr = by(rowsOf(prices));
   return new Map(rowsOf(pages).map(p => [String(p.product_slug), pageFromRows(p, rv.get(String(p.racket_id)) ?? [], pr.get(String(p.racket_id)) ?? [], String(p.product_name))]));
+}
+/** Every live creator review with its product's slug and name, for the creator (reviewer) pages (lib/thread/reviewers.ts). */
+export async function readReviewerRows(db: Pick<Database, "execute">, schema: string): Promise<ReviewerRow[]> {
+  if (!SCHEMA.test(schema)) throw new Error("bad schema");
+  const s = sql.raw(`"${schema}"`);
+  const rows = rowsOf(await db.execute(sql`select r.*, p.slug as product_slug, p.name as product_name from ${s}.creator_reviews r
+    join ${s}.rackets p on p.id = r.racket_id where r.status = 'live' order by r.published_on desc nulls last, r.id`));
+  return rows.map(r => { const x = reviewFromRow(r);
+    return { id: x.id, creator: x.creator, kind: x.kind, url: x.url, channel: x.channel, lang: x.lang, date: x.date, video: x.video, len: x.len,
+      stance: x.stance, productSlug: String(r.product_slug), productName: String(r.product_name),
+      line: rowLine({ short: txt(r.summary_short), keyPoint: x.keyPoint ?? null, trade: x.trade, summary: x.summary }),
+      tie: x.tie, disclosure: str(r.disclosure) }; });
 }
