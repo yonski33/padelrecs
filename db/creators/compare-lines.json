@@ -6845,5 +6845,1647 @@
     ]
    }
   }
+ },
+ "skin": {
+  "anua-azelaic-acid-10-hyaluron-redness-soothing-serum": {
+   "paulas-choice-10-azelaic-acid-booster": {
+    "line": "Adds salicylic acid, so it is the stronger pick for heavy, inflamed breakouts.",
+    "n": 2,
+    "by": [
+     "cr_58e88b86020583bf",
+     "cr_024d610c02995091"
+    ]
+   },
+   "the-ordinary-azelaic-acid-suspension-10": {
+    "line": "Silicone-based suspension that some find grainy, and heavier than this light serum.",
+    "n": 1,
+    "by": [
+     "cr_58e88b86020583bf"
+    ]
+   },
+   "anua-niacinamide-10-txa-4-serum": {
+    "line": "Felt less gentle on acne-prone skin and calmed breakouts less well than this serum.",
+    "n": 1,
+    "by": [
+     "cr_5ea55272a9d6abaf"
+    ]
+   }
+  },
+  "anua-heartleaf-77-soothing-toner": {
+   "torriden-dive-in-toner": {
+    "line": "More hydrating than this toner, but less soothing for sensitized, redness-prone skin.",
+    "n": 1,
+    "by": [
+     "cr_5f49d8cb621d504f"
+    ]
+   }
+  },
+  "anua-rice-70-glow-milky-toner": {
+   "anua-heartleaf-77-soothing-toner": {
+    "line": "Plainer, a bland but solid first step, and ranked lower than this toner.",
+    "n": 1,
+    "by": [
+     "cr_3352fb02351f0163"
+    ]
+   }
+  },
+  "aveeno-calm-restore-nourishing-oat-cleanser": {
+   "cerave-hydrating-facial-cleanser": {
+    "line": "Lost out to this cleanser as one reviewer's go-to for textured, breakout-prone skin.",
+    "n": 1,
+    "by": [
+     "cr_83176b3a3ef5b0e8"
+    ]
+   },
+   "aveeno-calm-restore-oat-gel-moisturizer": {
+    "line": "A leave-on step from the same line that reviewers rank above this cleanser.",
+    "n": 3,
+    "by": [
+     "cr_d2d5a0d0353e0486",
+     "cr_5886da68b5dd4d06",
+     "cr_743d1d0d6fa99202"
+    ]
+   },
+   "aveeno-calm-restore-triple-oat-serum": {
+    "line": "Preferred over this cleanser by one reviewer because it is a leave-on product.",
+    "n": 1,
+    "by": [
+     "cr_5886da68b5dd4d06"
+    ]
+   }
+  },
+  "aveeno-calm-restore-oat-gel-moisturizer": {
+   "neutrogena-hydro-boost-gel-cream-extra-dry": {
+    "line": "Plainer and a bit lighter than this one, preferred for summer and simple moisturizing.",
+    "n": 1,
+    "by": [
+     "cr_ce41fc974ff50558"
+    ]
+   },
+   "kravebeauty-oat-so-simple-water-cream": {
+    "line": "A similar option for irritated or sensitised skin, according to one reviewer.",
+    "n": 1,
+    "by": [
+     "cr_4fcc7eda96d6a87a"
+    ]
+   },
+   "aveeno-calm-restore-triple-oat-serum": {
+    "line": "Lighter than this gel and layered under it for extra hydration.",
+    "n": 2,
+    "by": [
+     "cr_ce41fc974ff50558",
+     "cr_10976a3701a03eaa"
+    ]
+   }
+  },
+  "avene-cicalfate-restorative-protective-cream": {
+   "avene-tolerance-control-soothing-skin-recovery-cream": {
+    "line": "Suggested instead for rosacea flares, irritated skin or anyone who dislikes this cream's thick, pasty feel.",
+    "n": 1,
+    "by": [
+     "cr_7b03c1bc2dc5a901"
+    ]
+   }
+  },
+  "avene-thermal-spring-water": {},
+  "avene-tolerance-extremely-gentle-cleanser": {},
+  "axis-y-dark-spot-correcting-glow-serum": {
+   "the-ordinary-niacinamide-10-zinc-1": {
+    "line": "Worked faster on marks, while this serum gives extra glow and hydration.",
+    "n": 1,
+    "by": [
+     "cr_3312e65311e477dc"
+    ]
+   }
+  },
+  "axis-y-pha-resurfacing-glow-peel": {},
+  "axis-y-quinoa-one-step-balanced-gel-cleanser": {},
+  "axis-y-vegan-collagen-eye-serum": {
+   "beauty-of-joseon-revive-eye-serum-ginseng-retinal": {
+    "line": "Preferred at night, while this serum is kept for mornings only",
+    "n": 1,
+    "by": [
+     "cr_71f6936b3f9d8778"
+    ]
+   }
+  },
+  "beauty-of-joseon-dynasty-cream": {
+   "beauty-of-joseon-red-bean-water-gel": {
+    "line": "Lighter and less sticky, preferred by some reviewers, especially for oily or sensitive skin",
+    "n": 3,
+    "by": [
+     "cr_8621d0e7e498d39d",
+     "cr_0dd5d024dc00c2be",
+     "cr_8df26ab758a3a970"
+    ]
+   }
+  },
+  "beauty-of-joseon-ginseng-cleansing-oil": {
+   "skin1004-centella-light-cleansing-oil": {
+    "line": "Similar in texture to this oil, but described as scented",
+    "n": 1,
+    "by": [
+     "cr_63e7305afd9ef7b6"
+    ]
+   }
+  },
+  "beauty-of-joseon-ginseng-essence-water": {
+   "beauty-of-joseon-green-plum-refreshing-toner-aha-bha": {
+    "line": "Slightly thinner, and an exfoliating step to use before this toner",
+    "n": 1,
+    "by": [
+     "cr_03eee515bfd88349"
+    ]
+   },
+   "beauty-of-joseon-glow-replenishing-rice-milk": {
+    "line": "Found less hydrating than this toner in extreme winter, with no plumping or brightening",
+    "n": 1,
+    "by": [
+     "cr_03eee515bfd88349"
+    ]
+   },
+   "beauty-of-joseon-ginseng-cleansing-oil": {
+    "line": "Also rated highly, but ranked behind this toner as the brand favorite",
+    "n": 1,
+    "by": [
+     "cr_84a6a4c7c1d26c41"
+    ]
+   }
+  },
+  "beauty-of-joseon-glow-deep-serum-rice-alpha-arbutin": {
+   "beauty-of-joseon-glow-serum-propolis-niacinamide": {
+    "line": "Almost identical in feel, but better for texture and acne, slower on hyperpigmentation",
+    "n": 1,
+    "by": [
+     "cr_8f5fb737f81fcea6"
+    ]
+   },
+   "the-inkey-list-hyaluronic-acid-serum": {
+    "line": "Does a much better job adding moisture than this serum",
+    "n": 1,
+    "by": [
+     "cr_e6c01851e4889d9b"
+    ]
+   }
+  },
+  "beauty-of-joseon-glow-replenishing-rice-milk": {},
+  "beauty-of-joseon-glow-serum-propolis-niacinamide": {
+   "cosrx-advanced-snail-96-mucin-power-essence": {
+    "line": "Similar feel to this serum: slightly tacky first, then quick to absorb",
+    "n": 1,
+    "by": [
+     "cr_52482230459fc28b"
+    ]
+   }
+  },
+  "beauty-of-joseon-green-plum-refreshing-cleanser": {
+   "beauty-of-joseon-radiance-cleansing-balm": {
+    "line": "Used as the first cleanse, with this gel as the second step",
+    "n": 1,
+    "by": [
+     "cr_181fea8ddb87c4be"
+    ]
+   }
+  },
+  "beauty-of-joseon-green-plum-refreshing-toner-aha-bha": {
+   "beauty-of-joseon-ginseng-essence-water": {
+    "line": "Slightly thicker, naturally scented and better for irritated skin and redness",
+    "n": 1,
+    "by": [
+     "cr_a4115ed269f40faa"
+    ]
+   },
+   "beauty-of-joseon-glow-replenishing-rice-milk": {
+    "line": "Rated a miss and skippable, unlike this exfoliating toner",
+    "n": 1,
+    "by": [
+     "cr_a4115ed269f40faa"
+    ]
+   }
+  },
+  "beauty-of-joseon-ground-rice-and-honey-glow-mask": {
+   "beauty-of-joseon-red-bean-refreshing-pore-mask": {
+    "line": "Suits oily, combination or acne-prone skin better, but hydrates less than this honey mask",
+    "n": 1,
+    "by": [
+     "cr_ebd974723e0d7406"
+    ]
+   },
+   "beauty-of-joseon-glow-replenishing-rice-milk": {
+    "line": "Clay formula that left one reviewer's skin tight, unlike this honey mask",
+    "n": 1,
+    "by": [
+     "cr_be395edcfac59351"
+    ]
+   }
+  },
+  "beauty-of-joseon-matte-sun-stick-mugwort-camelia-spf-50": {},
+  "beauty-of-joseon-red-bean-refreshing-pore-mask": {
+   "beauty-of-joseon-ground-rice-and-honey-glow-mask": {
+    "line": "More hydrating and better for dull, dry or sensitive skin, though a little sticky",
+    "n": 1,
+    "by": [
+     "cr_6d19fbe25895b135"
+    ]
+   }
+  },
+  "beauty-of-joseon-red-bean-water-gel": {
+   "beauty-of-joseon-dynasty-cream": {
+    "line": "Richer and a little tacky, better for dry skin but heavier than this gel",
+    "n": 3,
+    "by": [
+     "cr_a1a11f06b89f3d1a",
+     "cr_f59133388a830fec",
+     "cr_672eaeadd27cb4d0"
+    ]
+   }
+  },
+  "beauty-of-joseon-relief-sun-aqua-fresh-rice-b5-spf-50": {
+   "beauty-of-joseon-relief-sun-rice-probiotics-spf-50": {
+    "line": "Creamier and more hydrating with a dewier finish, better for dry skin or winter",
+    "n": 5,
+    "by": [
+     "cr_ec2850f3b9c275fa",
+     "cr_3c18dc46f1e43da4",
+     "cr_b59ada90299603af",
+     "cr_e7c450c1b4873dcb",
+     "cr_077c67da2566a6fe"
+    ]
+   },
+   "haruharu-wonder-black-rice-moisture-airyfit-daily-sunscreen": {
+    "line": "Named the overall winner against this one among four Korean sunscreens",
+    "n": 1,
+    "by": [
+     "cr_cc5e4e4bf63984b8"
+    ]
+   }
+  },
+  "beauty-of-joseon-relief-sun-rice-probiotics-spf-50": {
+   "beauty-of-joseon-relief-sun-aqua-fresh-rice-b5-spf-50": {
+    "line": "Slightly lighter and better at shine control, but less luminous and can pill",
+    "n": 1,
+    "by": [
+     "cr_c8cdf2a9afdc710f"
+    ]
+   }
+  },
+  "beauty-of-joseon-revive-eye-serum-ginseng-retinal": {},
+  "bioderma-sensibio-h2o-micellar-water": {},
+  "byoma-milky-toner": {
+   "haruharu-wonder-black-rice-hyaluronic-toner": {
+    "line": "Ranked just ahead of this toner, with this one a close second",
+    "n": 1,
+    "by": [
+     "cr_a85fd834dc16229d"
+    ]
+   }
+  },
+  "cerave-acne-foaming-cream-cleanser": {},
+  "cerave-am-facial-moisturizing-lotion-with-sunscreen": {
+   "cerave-pm-facial-moisturizing-lotion": {
+    "line": "Lighter, clearer and more cooling than the AM lotion, and the one they would always rebuy.",
+    "n": 1,
+    "by": [
+     "cr_2c07d6b4c0027532"
+    ]
+   }
+  },
+  "cerave-daily-moisturizing-lotion": {
+   "cerave-moisturizing-cream": {
+    "line": "Thicker and richer than the lotion, preferred for very dry skin and winter.",
+    "n": 3,
+    "by": [
+     "cr_8583d1c5f06dcfdb",
+     "cr_4a20dbca9e29d3ae",
+     "cr_bdf5d0c372c8002a"
+    ]
+   }
+  },
+  "cerave-eye-repair-cream": {
+   "cerave-pm-facial-moisturizing-lotion": {
+    "line": "Same key ingredients, only slightly thinner, so two layers could do the eye cream's job.",
+    "n": 1,
+    "by": [
+     "cr_996ec4be656db2eb"
+    ]
+   }
+  },
+  "cerave-foaming-facial-cleanser": {
+   "cerave-renewing-sa-cleanser": {
+    "line": "Thicker, exfoliating with salicylic acid and meant for breakouts, only a few days a week.",
+    "n": 1,
+    "by": [
+     "cr_6a27fbcfd92ed7e5"
+    ]
+   },
+   "cerave-hydrating-facial-cleanser": {
+    "line": "Suits normal to dry skin and has no niacinamide, so less of a pick for acne.",
+    "n": 2,
+    "by": [
+     "cr_8be647425d54ca21",
+     "cr_09ea16c024f71a75"
+    ]
+   },
+   "la-roche-posay-toleriane-purifying-foaming-facial-wash": {
+    "line": "Similar foaming cleanser with added prebiotic thermal water, at a slightly higher cost.",
+    "n": 1,
+    "by": [
+     "cr_8be647425d54ca21"
+    ]
+   }
+  },
+  "cerave-healing-ointment": {},
+  "cerave-hydrating-cream-to-foam-cleanser": {
+   "cerave-hydrating-facial-cleanser": {
+    "line": "Does not foam and makes no makeup claim, so it removes makeup less well.",
+    "n": 5,
+    "by": [
+     "cr_8c499be91ff36f22",
+     "cr_d2227a05e53cb23a",
+     "cr_a045871d05e0c28e",
+     "cr_1f110fb5990be500",
+     "cr_caa9d04ce50f2e33"
+    ]
+   },
+   "cerave-foaming-facial-cleanser": {
+    "line": "Foams more and lifts a lot of makeup, but can leave skin slightly dry or tight.",
+    "n": 5,
+    "by": [
+     "cr_8c499be91ff36f22",
+     "cr_a045871d05e0c28e",
+     "cr_1f110fb5990be500",
+     "cr_c130a147a2f182ba",
+     "cr_caa9d04ce50f2e33"
+    ]
+   }
+  },
+  "cerave-hydrating-facial-cleanser": {
+   "cetaphil-gentle-skin-cleanser": {
+    "line": "Thinner and gentler with niacinamide, but leaves skin less soft and less hydrated.",
+    "n": 2,
+    "by": [
+     "cr_f207761170da2ad4",
+     "cr_0fcb66ae090fed63"
+    ]
+   },
+   "cerave-foaming-facial-cleanser": {
+    "line": "Adds niacinamide and foams, which suits oily skin and acne better than this one.",
+    "n": 3,
+    "by": [
+     "cr_58269c00fe2fde65",
+     "cr_0d0bb9a640d53b74",
+     "cr_a219fc631a0f7df1"
+    ]
+   },
+   "la-roche-posay-toleriane-hydrating-gentle-facial-cleanser": {
+    "line": "Similar hydrating formula, but adds prebiotic thermal water that this one lacks.",
+    "n": 1,
+    "by": [
+     "cr_58269c00fe2fde65"
+    ]
+   }
+  },
+  "cerave-moisturizing-cream": {
+   "cerave-daily-moisturizing-lotion": {
+    "line": "Lighter and faster absorbing than the cream, better for oily or normal skin.",
+    "n": 4,
+    "by": [
+     "cr_b62ca38342756bed",
+     "cr_e56719303b5ec1e7",
+     "cr_375ef09c79ee46f1",
+     "cr_318cc3e9ca99fe23"
+    ]
+   },
+   "cerave-pm-facial-moisturizing-lotion": {
+    "line": "Gives less value for the amount than this tub, according to one dermatologist.",
+    "n": 1,
+    "by": [
+     "cr_84f0d4278c8d646a"
+    ]
+   }
+  },
+  "cerave-pm-facial-moisturizing-lotion": {
+   "cerave-am-facial-moisturizing-lotion-with-sunscreen": {
+    "line": "Adds SPF 30 but feels thicker, absorbs slower and can leave a white cast.",
+    "n": 3,
+    "by": [
+     "cr_e58f683597ed7a53",
+     "cr_3cfcab753972b627",
+     "cr_2fe87dc4d85ab0f6"
+    ]
+   },
+   "cerave-daily-moisturizing-lotion": {
+    "line": "Lighter, with no niacinamide, but builds a film at first before sinking in.",
+    "n": 2,
+    "by": [
+     "cr_010084a84147f328",
+     "cr_cf3879b7e14813b6"
+    ]
+   },
+   "cerave-moisturizing-cream": {
+    "line": "Richer and heavier than this lotion, better for winter, very dry skin or the body.",
+    "n": 4,
+    "by": [
+     "cr_e58f683597ed7a53",
+     "cr_e9f9adb640594507",
+     "cr_010084a84147f328",
+     "cr_3cfcab753972b627"
+    ]
+   }
+  },
+  "cerave-renewing-sa-cleanser": {
+   "cerave-foaming-facial-cleanser": {
+    "line": "Same foaming base without the exfoliating acids, so gentler.",
+    "n": 1,
+    "by": [
+     "cr_abe03ea9880c4aab"
+    ]
+   },
+   "cerave-acne-foaming-cream-cleanser": {
+    "line": "Drier on skin than this cleanser, according to one reviewer with an oily T-zone.",
+    "n": 1,
+    "by": [
+     "cr_f4328f69f7e8baa6"
+    ]
+   },
+   "cerave-hydrating-facial-cleanser": {
+    "line": "Suggested for sensitive and dry skin instead of this exfoliating cleanser.",
+    "n": 1,
+    "by": [
+     "cr_777d8cf490dadc99"
+    ]
+   }
+  },
+  "cerave-resurfacing-retinol-serum": {},
+  "cerave-skin-renewing-night-cream": {},
+  "cerave-skin-renewing-vitamin-c-serum": {},
+  "cerave-ultra-light-moisturizing-lotion-spf-30": {
+   "cerave-am-facial-moisturizing-lotion-with-sunscreen": {
+    "line": "Thicker and richer, with niacinamide and more hydration, but it pilled for one reviewer.",
+    "n": 4,
+    "by": [
+     "cr_f59c0274e0bd4e4f",
+     "cr_dbcc02dc7e5a0bde",
+     "cr_e9d088c9222f5162",
+     "cr_44da9c2672f39b63"
+    ]
+   }
+  },
+  "cetaphil-gentle-skin-cleanser": {
+   "cetaphil-daily-facial-cleanser": {
+    "line": "More ingredients and a higher irritation risk than this one in a four-way comparison.",
+    "n": 1,
+    "by": [
+     "cr_1a3647d6e3b02255"
+    ]
+   }
+  },
+  "cetaphil-hydrating-eye-gel-cream": {
+   "cerave-eye-repair-cream": {
+    "line": "Richer and slower to absorb, better for night use on very dry, crepey under-eyes.",
+    "n": 1,
+    "by": [
+     "cr_0396e25453f1e876"
+    ]
+   },
+   "cosrx-advanced-snail-peptide-eye-cream": {
+    "line": "Preferred for day wear by one reviewer, because sunscreen sits better over it.",
+    "n": 1,
+    "by": [
+     "cr_aaf22b2b92a01614"
+    ]
+   }
+  },
+  "cetaphil-moisturizing-cream": {},
+  "cosrx-acne-pimple-master-patch": {
+   "mario-badescu-drying-lotion": {
+    "line": "Worked better and faster than these patches for one reviewer's big pimple.",
+    "n": 1,
+    "by": [
+     "cr_d0b7dd8a3be58cbe"
+    ]
+   }
+  },
+  "cosrx-advanced-snail-92-all-in-one-cream": {
+   "cosrx-advanced-snail-96-mucin-power-essence": {
+    "line": "Same slightly tacky, hydrating feel, but a thin essence rather than a thicker cream.",
+    "n": 2,
+    "by": [
+     "cr_0eb20676a675d8c8",
+     "cr_d75ed277e2263d61"
+    ]
+   },
+   "beauty-of-joseon-dynasty-cream": {
+    "line": "Similar jelly-like texture, and loved by a reviewer for whom this cream dried out skin.",
+    "n": 1,
+    "by": [
+     "cr_1c7f4ff653c4cf06"
+    ]
+   }
+  },
+  "cosrx-advanced-snail-96-mucin-power-essence": {},
+  "cosrx-advanced-snail-peptide-eye-cream": {
+   "cosrx-advanced-snail-96-mucin-power-essence": {
+    "line": "Gave one reviewer the same results and was judged the better pick.",
+    "n": 1,
+    "by": [
+     "cr_379c46654b358b2e"
+    ]
+   },
+   "cosrx-advanced-snail-92-all-in-one-cream": {
+    "line": "Slimier and a little less moisturizing around the eyes than this peptide eye cream.",
+    "n": 2,
+    "by": [
+     "cr_29e4742a6cb3d36d",
+     "cr_72da8227b65e2585"
+    ]
+   }
+  },
+  "cosrx-aha-7-whitehead-power-liquid": {
+   "sunday-riley-good-genes-lactic-acid-treatment": {
+    "line": "More expensive and less plain, with less product than this liquid.",
+    "n": 1,
+    "by": [
+     "cr_070df82e84d2aeb6"
+    ]
+   },
+   "the-ordinary-glycolic-acid-7-exfoliating-toner": {
+    "line": "Same 7% glycolic acid, which one reviewer felt already covered this liquid's job.",
+    "n": 1,
+    "by": [
+     "cr_5f3199ed530a288b"
+    ]
+   }
+  },
+  "cosrx-aha-bha-clarifying-treatment-toner": {
+   "cosrx-bha-blackhead-power-liquid": {
+    "line": "Thicker, more essence-like and better for redness than this toner, though only a BHA.",
+    "n": 1,
+    "by": [
+     "cr_ec2bfc37646ea772"
+    ]
+   }
+  },
+  "cosrx-aloe-soothing-sun-cream-spf-50": {},
+  "cosrx-balancium-comfort-ceramide-cream": {},
+  "cosrx-bha-blackhead-power-liquid": {
+   "paulas-choice-skin-perfecting-2-bha-liquid-exfoliant": {
+    "line": "Shrank pimples overnight and gave a glow, where this one showed nothing for them.",
+    "n": 1,
+    "by": [
+     "cr_e54738a3bcd314de"
+    ]
+   }
+  },
+  "cosrx-full-fit-propolis-synergy-toner": {
+   "cosrx-advanced-snail-96-mucin-power-essence": {
+    "line": "Seen as more basic hydration than this toner, and ranked below it.",
+    "n": 2,
+    "by": [
+     "cr_f452669a7d92c7ce",
+     "cr_a4219f13c7d06d9d"
+    ]
+   },
+   "cosrx-full-fit-propolis-honey-overnight-mask": {
+    "line": "Ranked third in the COSRX range, below this toner in first place.",
+    "n": 1,
+    "by": [
+     "cr_a4219f13c7d06d9d"
+    ]
+   }
+  },
+  "cosrx-low-ph-good-morning-gel-cleanser": {},
+  "cosrx-one-step-original-clear-pad": {
+   "cosrx-aha-bha-clarifying-treatment-toner": {
+    "line": "Very similar liquid formula with apple fruit water, aimed at glow for all skin types.",
+    "n": 1,
+    "by": [
+     "cr_398d8f3c223ac56b"
+    ]
+   }
+  },
+  "cosrx-salicylic-acid-daily-gentle-cleanser": {},
+  "cosrx-the-6-peptide-skin-booster-serum": {
+   "the-ordinary-multi-peptide-ha-serum": {
+    "line": "Faster results than this booster for one reviewer, who suspects a lower peptide level here.",
+    "n": 1,
+    "by": [
+     "cr_1f3b9d35630bef3f"
+    ]
+   }
+  },
+  "cosrx-the-ceramide-skin-barrier-moisturizer": {
+   "cerave-moisturizing-cream": {
+    "line": "Similar cream texture to this moisturizer, though this one feels thicker.",
+    "n": 1,
+    "by": [
+     "cr_0c524f395b8eff36"
+    ]
+   }
+  },
+  "cosrx-the-retinol-0-1-cream": {
+   "cosrx-the-retinol-0-5-oil": {
+    "line": "A stronger step up from this cream, which reviewers plan to try next.",
+    "n": 2,
+    "by": [
+     "cr_02f10300e7002ee9",
+     "cr_6a7fd2397870d6d1"
+    ]
+   }
+  },
+  "cosrx-the-retinol-0-5-oil": {
+   "cosrx-the-retinol-0-1-cream": {
+    "line": "Gentler choice for beginners than this stronger oil.",
+    "n": 1,
+    "by": [
+     "cr_c69b976fb470b876"
+    ]
+   }
+  },
+  "cosrx-ultimate-nourishing-rice-overnight-spa-mask": {},
+  "cosrx-ultra-light-invisible-sunscreen-spf-50": {
+   "cosrx-aloe-soothing-sun-cream-spf-50": {
+    "line": "Silky but richer and greasier in heat, and not as light as this one.",
+    "n": 2,
+    "by": [
+     "cr_818aa7c7492ef9a6",
+     "cr_9bc7145958cfbbf0"
+    ]
+   }
+  },
+  "drunk-elephant-a-passioni-retinol-cream": {
+   "paulas-choice-clinical-1-retinol-treatment": {
+    "line": "Gave fewer results than this cream in one reviewer's near four months of use.",
+    "n": 1,
+    "by": [
+     "cr_b27de0fc73b554e9"
+    ]
+   }
+  },
+  "drunk-elephant-b-hydra-intensive-hydration-serum": {},
+  "drunk-elephant-lala-retro-whipped-cream": {
+   "cerave-moisturizing-cream": {
+    "line": "Plainer, with ceramides, cholesterol, hyaluronic acid and petrolatum, as an alternative to this cream.",
+    "n": 1,
+    "by": [
+     "cr_3bcfdaa5400f0824"
+    ]
+   }
+  },
+  "drunk-elephant-t-l-c-framboos-glycolic-night-serum": {
+   "the-ordinary-glycolic-acid-7-exfoliating-toner": {
+    "line": "Harsher, more irritating and stripping than this serum for one reviewer's dry, sensitive skin.",
+    "n": 1,
+    "by": [
+     "cr_0236cb5f6ba60609"
+    ]
+   },
+   "sunday-riley-good-genes-lactic-acid-treatment": {
+    "line": "Gentler, usable every night, and said to beat this serum for very dry skin.",
+    "n": 1,
+    "by": [
+     "cr_40e64a4c3ea5e6f9"
+    ]
+   }
+  },
+  "eltamd-uv-clear-broad-spectrum-spf-46": {},
+  "eltamd-uv-physical-broad-spectrum-spf-41": {},
+  "eltamd-uv-restore-broad-spectrum-spf-40": {
+   "eltamd-uv-clear-broad-spectrum-spf-46": {
+    "line": "Picked for acne-prone and rosacea-prone skin, where UV Restore is the pick for dry, mature skin",
+    "n": 1,
+    "by": [
+     "cr_913ef973176747fa"
+    ]
+   }
+  },
+  "eucerin-clear-skin-spf-50-face-sunscreen": {},
+  "first-aid-beauty-pure-skin-face-cleanser": {},
+  "first-aid-beauty-ultra-repair-cream": {
+   "kiehls-ultra-facial-cream": {
+    "line": "Heavier and oilier-feeling than First Aid Beauty Ultra Repair Cream, with extras like avocado oil",
+    "n": 1,
+    "by": [
+     "cr_cc2d4a83b8b660ed"
+    ]
+   }
+  },
+  "glow-recipe-avocado-ceramide-moisture-barrier-cleanser": {},
+  "glow-recipe-guava-vitamin-c-bright-eye-gel-cream": {},
+  "glow-recipe-plum-plump-hyaluronic-cream": {
+   "kiehls-ultra-facial-cream": {
+    "line": "Thicker cream used at night instead of Glow Recipe Plum Plump Hyaluronic Cream, for dry parts",
+    "n": 1,
+    "by": [
+     "cr_7e813ffe2fcec0b9"
+    ]
+   }
+  },
+  "glow-recipe-strawberry-smooth-bha-aha-salicylic-serum": {
+   "the-ordinary-aha-30-bha-2-peeling-solution": {
+    "line": "Stronger weekly peel; the Glow Recipe Strawberry Smooth BHA+AHA Salicylic Serum fills the off days",
+    "n": 1,
+    "by": [
+     "cr_8e637e3233ddba51"
+    ]
+   }
+  },
+  "glow-recipe-watermelon-glow-aha-night-treatment": {},
+  "glow-recipe-watermelon-glow-jelly-sheet-mask": {
+   "glow-recipe-watermelon-glow-niacinamide-dew-drops": {
+    "line": "Leaves a similarly slightly sticky feel, though it is a serum rather than a sheet.",
+    "n": 1,
+    "by": [
+     "cr_cedbf981c6a25924"
+    ]
+   }
+  },
+  "glow-recipe-watermelon-glow-niacinamide-dew-drops": {
+   "the-ordinary-niacinamide-10-zinc-1": {
+    "line": "Chosen over the Dew Drops by one reviewer, who found the Dew Drops sticky.",
+    "n": 1,
+    "by": [
+     "cr_c537f36bf04027a5"
+    ]
+   }
+  },
+  "glow-recipe-watermelon-glow-pha-bha-pore-tight-toner": {
+   "the-inkey-list-pha-toner": {
+    "line": "Seen as a cheaper option with similar results, according to some users.",
+    "n": 1,
+    "by": [
+     "cr_31482d6c3778cbed"
+    ]
+   }
+  },
+  "glow-recipe-watermelon-glow-ultra-fine-mist": {},
+  "haruharu-wonder-black-rice-hyaluronic-toner": {},
+  "haruharu-wonder-black-rice-moisture-airyfit-daily-sunscreen": {
+   "beauty-of-joseon-relief-sun-rice-probiotics-spf-50": {
+    "line": "Slightly less moisturizing and creamy than this sunscreen, according to one reviewer.",
+    "n": 1,
+    "by": [
+     "cr_2007724ca0412abc"
+    ]
+   },
+   "beauty-of-joseon-relief-sun-aqua-fresh-rice-b5-spf-50": {
+    "line": "Ranked below this sunscreen by one reviewer in a four-sunscreen comparison.",
+    "n": 1,
+    "by": [
+     "cr_bbebc87f5556441d"
+    ]
+   },
+   "skin1004-hyalu-cica-water-fit-sun-serum": {
+    "line": "Listed by one reviewer as a dupe of this sunscreen.",
+    "n": 1,
+    "by": [
+     "cr_cb450a7d2e1f9ba5"
+    ]
+   }
+  },
+  "kiehls-ultra-facial-cream": {},
+  "kravebeauty-beet-the-sun-spf-40": {
+   "supergoop-unseen-sunscreen-spf-50": {
+    "line": "Left one reviewer teary-eyed within fifteen minutes, where this sunscreen was gentler.",
+    "n": 1,
+    "by": [
+     "cr_bb37b73a1ce7f6c3"
+    ]
+   }
+  },
+  "kravebeauty-great-barrier-relief": {},
+  "kravebeauty-kale-lalu-yaha": {},
+  "kravebeauty-matcha-hemp-hydrating-cleanser": {},
+  "la-roche-posay-anthelios-melt-in-milk-sunscreen-spf-60": {},
+  "la-roche-posay-cicaplast-balm-b5": {
+   "cerave-healing-ointment": {
+    "line": "Heavier and slower to absorb than La Roche-Posay Cicaplast Balm B5+.",
+    "n": 1,
+    "by": [
+     "cr_ae70e58c1246a0d5"
+    ]
+   }
+  },
+  "la-roche-posay-effaclar-gel-cleanser-for-oily-skin": {
+   "la-roche-posay-toleriane-purifying-foaming-facial-wash": {
+    "line": "Preferred over this one for acne-prone, sensitive skin, partly because it has niacinamide.",
+    "n": 1,
+    "by": [
+     "cr_07783f1d523cd320"
+    ]
+   }
+  },
+  "la-roche-posay-retinol-b3-pure-retinol-serum": {},
+  "la-roche-posay-toleriane-double-repair-face-moisturizer": {
+   "cerave-pm-facial-moisturizing-lotion": {
+    "line": "Recommended over this moisturizer by one reviewer who found it pilled, dull and not hydrating.",
+    "n": 1,
+    "by": [
+     "cr_e09a6182434e646c"
+    ]
+   }
+  },
+  "la-roche-posay-toleriane-hydrating-gentle-facial-cleanser": {
+   "cerave-hydrating-facial-cleanser": {
+    "line": "Less creamy, leaves skin less soft, and was rated below this cleanser.",
+    "n": 2,
+    "by": [
+     "cr_9d29ba7b64769ffa",
+     "cr_dcba699856f56ac6"
+    ]
+   },
+   "vanicream-gentle-facial-cleanser": {
+    "line": "Picked as overall favorite for every season; this cleanser suits drier winter months better.",
+    "n": 1,
+    "by": [
+     "cr_c4fe86d6610a5eb6"
+    ]
+   }
+  },
+  "la-roche-posay-toleriane-purifying-foaming-facial-wash": {
+   "cerave-foaming-facial-cleanser": {
+    "line": "Does much the same job, though reviewers differ on which is more hydrating.",
+    "n": 2,
+    "by": [
+     "cr_b83ce0d65fcb1451",
+     "cr_d804c26136386626"
+    ]
+   },
+   "neutrogena-ultra-gentle-daily-cleanser": {
+    "line": "Seen as a little less refined than this foaming wash.",
+    "n": 1,
+    "by": [
+     "cr_d804c26136386626"
+    ]
+   },
+   "vanicream-gentle-facial-cleanser": {
+    "line": "Suggested as a cheaper alternative that does not always match this silky foam.",
+    "n": 1,
+    "by": [
+     "cr_d804c26136386626"
+    ]
+   },
+   "la-roche-posay-toleriane-hydrating-gentle-facial-cleanser": {
+    "line": "Non-foaming and lotion-like, the pick for dry skin or retinol users instead.",
+    "n": 1,
+    "by": [
+     "cr_af7e706340d22979"
+    ]
+   }
+  },
+  "laneige-cream-skin-toner-moisturizer": {},
+  "laneige-water-sleeping-mask": {},
+  "mario-badescu-drying-lotion": {},
+  "mario-badescu-facial-spray-with-aloe-herbs-and-rosewater": {},
+  "mario-badescu-super-collagen-mask": {},
+  "missha-time-revolution-the-first-essence-5x": {},
+  "mixsoon-bean-cream": {
+   "mixsoon-bean-essence": {
+    "line": "The viral essence, which did not suit dry skin as well as this cream.",
+    "n": 1,
+    "by": [
+     "cr_9df87d9dabf84aec"
+    ]
+   }
+  },
+  "mixsoon-bean-essence": {
+   "cosrx-advanced-snail-96-mucin-power-essence": {
+    "line": "More hydrating with a stronger glass-skin look, better for very dry or mature skin.",
+    "n": 3,
+    "by": [
+     "cr_06fcb8de8d222f78",
+     "cr_7c6a88a45c588eed",
+     "cr_f9482bc81cc6dc5a"
+    ]
+   }
+  },
+  "naturium-bha-liquid-exfoliant-2": {
+   "paulas-choice-skin-perfecting-2-bha-liquid-exfoliant": {
+    "line": "Seen as the stronger treatment with no citrus extracts, but harsher for some first-time users.",
+    "n": 4,
+    "by": [
+     "cr_3b3e33c4defcf294",
+     "cr_e613650a331a5ab7",
+     "cr_edcde2e21337f873",
+     "cr_3e57987101f3fac9"
+    ]
+   }
+  },
+  "naturium-dew-glow-moisturizer-spf-50": {
+   "naturium-uv-reflect-antioxidant-spf-50": {
+    "line": "Thinner and serum-like, better for summer and acne-prone skin, and less dewy than this one.",
+    "n": 2,
+    "by": [
+     "cr_bd6a6455f192d7b2",
+     "cr_7e8a467a0153a907"
+    ]
+   }
+  },
+  "naturium-glycolic-acid-resurfacing-gel-10": {},
+  "naturium-mandelic-topical-acid-12": {
+   "the-ordinary-lactic-acid-10-ha": {
+    "line": "Stronger than this mandelic acid, and too harsh for one reviewer at times",
+    "n": 1,
+    "by": [
+     "cr_13a0a816b995d3a4"
+    ]
+   }
+  },
+  "naturium-multi-peptide-eye-cream": {},
+  "naturium-retinaldehyde-cream-serum": {},
+  "neutrogena-hydro-boost-eye-gel-cream": {},
+  "neutrogena-hydro-boost-gel-cream-extra-dry": {},
+  "neutrogena-hydro-boost-hyaluronic-acid-water-gel": {},
+  "neutrogena-oil-free-acne-wash": {
+   "kravebeauty-matcha-hemp-hydrating-cleanser": {
+    "line": "Gentler cleanser suggested for dry, acne-prone skin instead of this stripping wash",
+    "n": 1,
+    "by": [
+     "cr_a7ab81d2cbc7f2d7"
+    ]
+   }
+  },
+  "numbuzin-no-3-super-glowing-essence-toner": {},
+  "numbuzin-no-5-glutathione-vitamin-concentrated-serum": {
+   "anua-niacinamide-10-txa-4-serum": {
+    "line": "Works faster on dark spots, but feels harsher on sensitive skin than this serum",
+    "n": 1,
+    "by": [
+     "cr_5074aa18487876ec"
+    ]
+   }
+  },
+  "numbuzin-no-9-nad-retinal-volumetox-eye-cream": {},
+  "paulas-choice-10-azelaic-acid-booster": {
+   "anua-azelaic-acid-10-hyaluron-redness-soothing-serum": {
+    "line": "Lighter, more hydrating Korean-style serum, favored for sensitive dry skin over the booster.",
+    "n": 1,
+    "by": [
+     "cr_20e43d849a533ba0"
+    ]
+   },
+   "the-ordinary-azelaic-acid-suspension-10": {
+    "line": "Heavier, slightly gritty silicone texture, but the pick for rosacea-type redness or a tight budget.",
+    "n": 3,
+    "by": [
+     "cr_20e43d849a533ba0",
+     "cr_7cabd77f768dbed6",
+     "cr_bc9aafac1da366a5"
+    ]
+   },
+   "paulas-choice-skin-perfecting-2-bha-liquid-exfoliant": {
+    "line": "Stronger salicylic acid that clears breakouts within a couple of days, where the booster felt weak.",
+    "n": 1,
+    "by": [
+     "cr_bc9aafac1da366a5"
+    ]
+   }
+  },
+  "paulas-choice-c5-super-boost-eye-cream": {},
+  "paulas-choice-clinical-0-3-retinol-2-bakuchiol-treatment": {
+   "paulas-choice-clinical-1-retinol-treatment": {
+    "line": "Stronger and more drying than this gentler, less irritating 0.3% version.",
+    "n": 1,
+    "by": [
+     "cr_aaf2f648c8c26481"
+    ]
+   }
+  },
+  "paulas-choice-clinical-1-retinol-treatment": {},
+  "paulas-choice-resist-advanced-replenishing-toner": {
+   "paulas-choice-skin-balancing-pore-reducing-toner": {
+    "line": "Similar watery weight, but less lasting hydration and glow than this one.",
+    "n": 1,
+    "by": [
+     "cr_c8d1f44a6ae2f85b"
+    ]
+   },
+   "byoma-milky-toner": {
+    "line": "Cheaper, felt a little more hydrating and worked slightly better for them.",
+    "n": 1,
+    "by": [
+     "cr_c8d1f44a6ae2f85b"
+    ]
+   }
+  },
+  "paulas-choice-resist-youth-extending-daily-hydrating-fluid-spf-50": {
+   "naturium-dew-glow-moisturizer-spf-50": {
+    "line": "Similar moisturizer-like texture, named as a beautiful alternative to this fluid.",
+    "n": 1,
+    "by": [
+     "cr_7db6b5bf783332c3"
+    ]
+   }
+  },
+  "paulas-choice-skin-balancing-pore-reducing-toner": {
+   "glow-recipe-watermelon-glow-pha-bha-pore-tight-toner": {
+    "line": "More hydrating, with added BHAs and PHAs, but rated lower on value than this.",
+    "n": 1,
+    "by": [
+     "cr_d582f5037e9e61b6"
+    ]
+   }
+  },
+  "paulas-choice-skin-perfecting-2-bha-gel-exfoliant": {
+   "cosrx-bha-blackhead-power-liquid": {
+    "line": "Milder and better for maintaining clear skin, but less effective on congested skin than this gel.",
+    "n": 1,
+    "by": [
+     "cr_30049b808c1c9437"
+    ]
+   }
+  },
+  "paulas-choice-skin-perfecting-2-bha-liquid-exfoliant": {
+   "the-ordinary-salicylic-acid-2-solution": {
+    "line": "Looks less oily on skin than this liquid, which leaves a slight oil slick finish.",
+    "n": 1,
+    "by": [
+     "cr_99430c1efb0a20ca"
+    ]
+   }
+  },
+  "paulas-choice-skin-perfecting-8-aha-gel-exfoliant": {},
+  "paulas-choice-skin-recovery-enriched-calming-toner": {},
+  "peach-lily-glass-skin-refining-serum": {},
+  "peach-slices-acne-spot-dots": {},
+  "skin1004-centella-toning-toner": {
+   "skin1004-madagascar-centella-ampoule": {
+    "line": "Feels more like a face oil than this toner, and has no niacinamide",
+    "n": 1,
+    "by": [
+     "cr_5ff22f50f697216f"
+    ]
+   }
+  },
+  "skin1004-hyalu-cica-water-fit-sun-serum": {
+   "skin1004-centella-air-fit-suncream-plus": {
+    "line": "Soft-tinted mineral cream that left a white cast on darker areas, unlike this serum",
+    "n": 1,
+    "by": [
+     "cr_6ddd42a564d2744d"
+    ]
+   }
+  },
+  "skin1004-madagascar-centella-ampoule": {},
+  "skin1004-poremizing-quick-clay-stick-mask": {},
+  "skin1004-probio-cica-bakuchiol-eye-cream": {
+   "paulas-choice-c5-super-boost-eye-cream": {
+    "line": "Lighter and plumper than this eye cream, also a brightening pick",
+    "n": 1,
+    "by": [
+     "cr_be92a960f777ed6c"
+    ]
+   }
+  },
+  "stratia-soft-touch-aha": {},
+  "stratia-velvet-cleansing-milk": {
+   "cerave-hydrating-facial-cleanser": {
+    "line": "Jelly-textured and better at cleansing, so preferred over this creamy milk",
+    "n": 1,
+    "by": [
+     "cr_d80e997a87d2a130"
+    ]
+   }
+  },
+  "sunday-riley-a-high-dose-retinoid-serum": {
+   "drunk-elephant-a-passioni-retinol-cream": {
+    "line": "Stronger and more effective for people used to retinol, but more redness in a half-face test.",
+    "n": 2,
+    "by": [
+     "cr_50261de71a675620",
+     "cr_9555bd311fa53692"
+    ]
+   }
+  },
+  "sunday-riley-auto-correct-brightening-depuffing-eye-cream": {
+   "the-ordinary-caffeine-solution-5-egcg": {
+    "line": "Does the same depuffing with caffeine for much less, per one reviewer.",
+    "n": 1,
+    "by": [
+     "cr_f4e8fd9e5cadcd4c"
+    ]
+   }
+  },
+  "sunday-riley-c-e-o-15-vitamin-c-brightening-serum": {},
+  "sunday-riley-good-genes-lactic-acid-treatment": {
+   "the-ordinary-lactic-acid-10-ha": {
+    "line": "Cheaper, thinner and slightly less acidic smelling, with results that looked almost the same.",
+    "n": 1,
+    "by": [
+     "cr_974a0bc436b52e93"
+    ]
+   }
+  },
+  "sunday-riley-u-f-o-acne-treatment-face-oil": {},
+  "supergoop-bright-eyed-mineral-eye-cream-spf-40": {},
+  "supergoop-glowscreen-spf-40": {},
+  "supergoop-mineral-mattescreen-spf-40": {},
+  "supergoop-play-everyday-lotion-spf-50": {
+   "supergoop-unseen-sunscreen-spf-50": {
+    "line": "Feels more like a primer, where this one is clearly a lotion.",
+    "n": 1,
+    "by": [
+     "cr_c3852342547120d1"
+    ]
+   }
+  },
+  "supergoop-unseen-sunscreen-spf-50": {
+   "supergoop-glowscreen-spf-40": {
+    "line": "Glowier and creamier than this, so a better pick for cooler seasons.",
+    "n": 1,
+    "by": [
+     "cr_4ca45afca2160684"
+    ]
+   },
+   "supergoop-mineral-mattescreen-spf-40": {
+    "line": "Sets faster than this one, so it needs quicker blending.",
+    "n": 1,
+    "by": [
+     "cr_071db64c9647ce86"
+    ]
+   }
+  },
+  "tatcha-the-dewy-skin-cream": {
+   "tatcha-the-water-cream": {
+    "line": "Thinner, softer and matte, better for daytime and combination or sensitive skin.",
+    "n": 1,
+    "by": [
+     "cr_2bf3438663364b22"
+    ]
+   }
+  },
+  "tatcha-the-rice-wash": {},
+  "tatcha-the-silk-sunscreen-spf-50": {},
+  "tatcha-the-water-cream": {
+   "tatcha-the-dewy-skin-cream": {
+    "line": "Richer than the Water Cream, so it suits night rather than daytime.",
+    "n": 1,
+    "by": [
+     "cr_9b7d6db25ac310e2"
+    ]
+   }
+  },
+  "the-inkey-list-10-azelaic-acid-serum": {
+   "the-ordinary-azelaic-acid-suspension-10": {
+    "line": "Showed redness results sooner and more noticeably, though its tube does not last as long.",
+    "n": 1,
+    "by": [
+     "cr_cad9e6c1cf04fd38"
+    ]
+   }
+  },
+  "the-inkey-list-beta-hydroxy-acid-bha-serum": {
+   "the-inkey-list-salicylic-acid-cleanser": {
+    "line": "Less effective than this serum for targeted blackheads, since a cleanser stays on shorter.",
+    "n": 1,
+    "by": [
+     "cr_7dc411a6b36551a7"
+    ]
+   }
+  },
+  "the-inkey-list-caffeine-eye-cream": {},
+  "the-inkey-list-glycolic-acid-toner": {
+   "the-ordinary-glycolic-acid-7-exfoliating-toner": {
+    "line": "Lower strength with more soothing ingredients, so sensitive skin and beginners are steered toward it.",
+    "n": 5,
+    "by": [
+     "cr_683477150f37fe9f",
+     "cr_22bd2db21b8f4616",
+     "cr_9034f757df794770",
+     "cr_8808360974188239",
+     "cr_d5f3a2901b1ae381"
+    ]
+   },
+   "the-inkey-list-pha-toner": {
+    "line": "Gentler than the Glycolic Acid Toner, better for drier or very sensitive skin.",
+    "n": 1,
+    "by": [
+     "cr_56e738038f91598a"
+    ]
+   }
+  },
+  "the-inkey-list-hyaluronic-acid-serum": {
+   "the-ordinary-hyaluronic-acid-2-b5": {
+    "line": "Thicker and stickier, and flaky for some, but may suit very dry skin better.",
+    "n": 3,
+    "by": [
+     "cr_55ef2063c940a8c3",
+     "cr_8828df3a12615b42",
+     "cr_2907fd73e3eb812c"
+    ]
+   }
+  },
+  "the-inkey-list-oat-cleansing-balm": {},
+  "the-inkey-list-pha-toner": {
+   "the-ordinary-niacinamide-10-zinc-1": {
+    "line": "Higher percentage gives more visible results than this toner's lower niacinamide level",
+    "n": 1,
+    "by": [
+     "cr_0c75a552e44fd9d7"
+    ]
+   }
+  },
+  "the-inkey-list-retinol-eye-cream": {
+   "the-inkey-list-caffeine-eye-cream": {
+    "line": "Creamier and more hydrating than this one, better for dry climates and dark circles",
+    "n": 2,
+    "by": [
+     "cr_97c333641f037b3b",
+     "cr_7dfb9b4721658bf1"
+    ]
+   },
+   "beauty-of-joseon-revive-eye-serum-ginseng-retinal": {
+    "line": "Smoother, more refined texture, named as the current pick over this eye cream",
+    "n": 1,
+    "by": [
+     "cr_c5c812f5ca20fb24"
+    ]
+   }
+  },
+  "the-inkey-list-salicylic-acid-cleanser": {
+   "cerave-renewing-sa-cleanser": {
+    "line": "Thicker and creamier, but less moisturizing, more stinging and slower to remove mineral sunscreen",
+    "n": 2,
+    "by": [
+     "cr_1b362d08793a7c05",
+     "cr_a06bba1ce2ae57c4"
+    ]
+   }
+  },
+  "the-inkey-list-succinic-acid-treatment": {
+   "the-ordinary-salicylic-acid-2-solution": {
+    "line": "Dries spots in one to three days, faster than this gentler treatment",
+    "n": 1,
+    "by": [
+     "cr_2e6767002dc50d57"
+    ]
+   }
+  },
+  "the-inkey-list-tranexamic-acid-serum": {},
+  "the-ordinary-100-plant-derived-squalane": {},
+  "the-ordinary-aha-30-bha-2-peeling-solution": {
+   "the-ordinary-lactic-acid-10-ha": {
+    "line": "Usable daily or every other day, but ranked below this peel for dead skin",
+    "n": 1,
+    "by": [
+     "cr_67fb2a6ac56da4f9"
+    ]
+   },
+   "the-ordinary-niacinamide-10-zinc-1": {
+    "line": "Usable daily, but ranked below this peel for removing dead skin and glow",
+    "n": 1,
+    "by": [
+     "cr_67fb2a6ac56da4f9"
+    ]
+   }
+  },
+  "the-ordinary-ascorbyl-glucoside-solution-12": {},
+  "the-ordinary-azelaic-acid-suspension-10": {
+   "paulas-choice-10-azelaic-acid-booster": {
+    "line": "Creamier and stings less, but pricier; one reviewer favors it for acne and discoloration",
+    "n": 2,
+    "by": [
+     "cr_f376fba6b4616fb1",
+     "cr_494027e45ea0b785"
+    ]
+   },
+   "the-ordinary-salicylic-acid-2-solution": {
+    "line": "Absorbed faster and controlled pimples better than this azelaic suspension for oily combination skin",
+    "n": 1,
+    "by": [
+     "cr_901ffd718b70267c"
+    ]
+   }
+  },
+  "the-ordinary-caffeine-solution-5-egcg": {},
+  "the-ordinary-glucoside-foaming-cleanser": {
+   "the-ordinary-squalane-cleanser": {
+    "line": "Greasy on acne-prone skin for one reviewer, but leaves no tight feeling and smells milder",
+    "n": 2,
+    "by": [
+     "cr_c483754987ad8ee2",
+     "cr_17cc4d9395e12302"
+    ]
+   }
+  },
+  "the-ordinary-glycolic-acid-7-exfoliating-toner": {
+   "the-ordinary-aha-30-bha-2-peeling-solution": {
+    "line": "Stronger and more dramatic than this toner, but much easier to overdo",
+    "n": 1,
+    "by": [
+     "cr_ebfc960b0cba3ab9"
+    ]
+   },
+   "paulas-choice-skin-perfecting-8-aha-gel-exfoliant": {
+    "line": "Pricier AHA gel that this reviewer prefers over the glycolic toner",
+    "n": 1,
+    "by": [
+     "cr_251114822405888a"
+    ]
+   }
+  },
+  "the-ordinary-glycolipid-cream": {
+   "the-ordinary-squalane-cleanser": {
+    "line": "Richer for dry skin and better at dissolving makeup, which this cleanser cannot do well",
+    "n": 4,
+    "by": [
+     "cr_9a4c5e896bac8948",
+     "cr_42cddf88f5953457",
+     "cr_8966f04e40232ca5",
+     "cr_0eeb8188ca7d925a"
+    ]
+   },
+   "the-ordinary-glucoside-foaming-cleanser": {
+    "line": "Foaming gel for oily skin that left dry skin slightly dry and cleans makeup less well",
+    "n": 3,
+    "by": [
+     "cr_9a4c5e896bac8948",
+     "cr_ec8ffd8734ffb476",
+     "cr_946c145cf4755df5"
+    ]
+   }
+  },
+  "the-ordinary-granactive-retinoid-2-emulsion": {},
+  "the-ordinary-granactive-retinoid-5-in-squalane": {
+   "the-ordinary-granactive-retinoid-2-emulsion": {
+    "line": "Lower strength, suits anyone wanting to start even more slowly than this 5% version",
+    "n": 2,
+    "by": [
+     "cr_7a8e69f85af4e220",
+     "cr_dbca3dac435edfee"
+    ]
+   }
+  },
+  "the-ordinary-hyaluronic-acid-2-b5": {},
+  "the-ordinary-lactic-acid-10-ha": {
+   "the-ordinary-aha-30-bha-2-peeling-solution": {
+    "line": "Harsher peel that must be rinsed off after a few minutes, unlike this leave-on serum",
+    "n": 1,
+    "by": [
+     "cr_1e01a1df939a64de"
+    ]
+   }
+  },
+  "the-ordinary-multi-peptide-eye-serum": {
+   "the-ordinary-caffeine-solution-5-egcg": {
+    "line": "Stronger on puffiness and dark circles, but fewer extras for texture and fine lines",
+    "n": 2,
+    "by": [
+     "cr_7e01b993030f3bdc",
+     "cr_e6fea955335bfe68"
+    ]
+   },
+   "cosrx-advanced-snail-peptide-eye-cream": {
+    "line": "More hydrating, and preferred by one reviewer who still layers it over this serum",
+    "n": 1,
+    "by": [
+     "cr_cbfd0e1f50dd3f49"
+    ]
+   }
+  },
+  "the-ordinary-multi-peptide-ha-serum": {
+   "the-ordinary-matrixyl-10-ha": {
+    "line": "Slightly thinner, equally hydrating and gentle, suits those who want to save money",
+    "n": 1,
+    "by": [
+     "cr_ba6865652d7a7808"
+    ]
+   }
+  },
+  "the-ordinary-natural-moisturizing-factors-beta-glucan": {
+   "the-ordinary-natural-moisturizing-factors-ha": {
+    "line": "Richer, longer lasting moisture than this gel, better for dry skin and winter",
+    "n": 2,
+    "by": [
+     "cr_bb5d80d7a6809aae",
+     "cr_9e5dacd5d7b87f9b"
+    ]
+   }
+  },
+  "the-ordinary-natural-moisturizing-factors-ha": {},
+  "the-ordinary-niacinamide-10-zinc-1": {},
+  "the-ordinary-retinal-0-2-emulsion": {
+   "the-ordinary-granactive-retinoid-2-emulsion": {
+    "line": "Suggested experience to have before moving up to this stronger retinal emulsion.",
+    "n": 1,
+    "by": [
+     "cr_2171bdac176bba36"
+    ]
+   }
+  },
+  "the-ordinary-retinol-0-5-in-squalane": {},
+  "the-ordinary-saccharomyces-ferment-30-milky-toner": {
+   "the-ordinary-glycolic-acid-7-exfoliating-toner": {
+    "line": "Acid exfoliating toner that one reviewer rarely applies, unlike this much milder milky toner.",
+    "n": 1,
+    "by": [
+     "cr_5b42afed09c2a5cd"
+    ]
+   },
+   "the-ordinary-aha-30-bha-2-peeling-solution": {
+    "line": "Far more potent peeling solution that irritated them, the polar opposite of this toner.",
+    "n": 1,
+    "by": [
+     "cr_5b42afed09c2a5cd"
+    ]
+   }
+  },
+  "the-ordinary-salicylic-acid-2-anhydrous-solution": {
+   "the-ordinary-salicylic-acid-2-solution": {
+    "line": "Watery, faster-absorbing base with a matte finish that reviewers pick for oily skin and summer.",
+    "n": 3,
+    "by": [
+     "cr_143460659f0254bb",
+     "cr_7956f7c05dde63e0",
+     "cr_235e053c29aea251"
+    ]
+   },
+   "the-ordinary-salicylic-acid-2-masque": {
+    "line": "Rinse-off weekly pick for blackheads and sebaceous filaments on the nose, not a leave-on serum.",
+    "n": 1,
+    "by": [
+     "cr_235e053c29aea251"
+    ]
+   },
+   "paulas-choice-skin-perfecting-2-bha-liquid-exfoliant": {
+    "line": "A toner rather than a serum, called the pricier option next to this one.",
+    "n": 1,
+    "by": [
+     "cr_9e6dc6f8db5ccc03"
+    ]
+   }
+  },
+  "the-ordinary-salicylic-acid-2-masque": {
+   "the-ordinary-salicylic-acid-2-solution": {
+    "line": "Leave-on option that covers the rest of the face, while this mask targets nose blackheads.",
+    "n": 1,
+    "by": [
+     "cr_1bf775b6efec7996"
+    ]
+   },
+   "the-ordinary-salicylic-acid-2-anhydrous-solution": {
+    "line": "Leave-on option for the rest of the face, unlike this mask's nose and blackhead focus.",
+    "n": 1,
+    "by": [
+     "cr_1bf775b6efec7996"
+    ]
+   }
+  },
+  "the-ordinary-salicylic-acid-2-solution": {
+   "the-ordinary-salicylic-acid-2-anhydrous-solution": {
+    "line": "Oil-based and gentler, picked for dry or sensitive skin and winter over this solution.",
+    "n": 5,
+    "by": [
+     "cr_b136f4531e718588",
+     "cr_6cd3705e3b6c9a63",
+     "cr_2d078a389f296ee0",
+     "cr_c29ab066d4829999",
+     "cr_d0ed3cd8869b805a"
+    ]
+   },
+   "paulas-choice-skin-perfecting-2-bha-liquid-exfoliant": {
+    "line": "Similar results with a silkier, more elegant texture than this foamy, tacky solution.",
+    "n": 2,
+    "by": [
+     "cr_b136f4531e718588",
+     "cr_5aac90aa387dc14e"
+    ]
+   }
+  },
+  "the-ordinary-soothing-barrier-support-serum": {
+   "the-ordinary-niacinamide-10-zinc-1": {
+    "line": "Much higher niacinamide strength that may be too potent for sensitive skin.",
+    "n": 1,
+    "by": [
+     "cr_5b851a3683dd062b"
+    ]
+   },
+   "the-ordinary-hyaluronic-acid-2-b5": {
+    "line": "Listed as a simpler hydration alternative to this serum.",
+    "n": 1,
+    "by": [
+     "cr_5b851a3683dd062b"
+    ]
+   },
+   "the-ordinary-aha-30-bha-2-peeling-solution": {
+    "line": "Deep red peeling solution that often disrupted skin barriers when overused, not this serum.",
+    "n": 1,
+    "by": [
+     "cr_388f10d5ce112d6c"
+    ]
+   },
+   "the-ordinary-granactive-retinoid-2-emulsion": {
+    "line": "Has a creamy texture similar to this serum's.",
+    "n": 1,
+    "by": [
+     "cr_c5a3f24149bd4d10"
+    ]
+   }
+  },
+  "the-ordinary-squalane-cleanser": {
+   "the-ordinary-glucoside-foaming-cleanser": {
+    "line": "Foaming cleanser that ranked behind this balm as a first cleanse.",
+    "n": 1,
+    "by": [
+     "cr_aa6f8081d7869ace"
+    ]
+   },
+   "the-ordinary-glycolipid-cream": {
+    "line": "Suggested as the second cleanse after this balm for a moisturizing routine.",
+    "n": 1,
+    "by": [
+     "cr_aa6f8081d7869ace"
+    ]
+   },
+   "kravebeauty-matcha-hemp-hydrating-cleanser": {
+    "line": "Gel cleanser that rinses clean and removes makeup, judged better for sensitive, reactive skin.",
+    "n": 1,
+    "by": [
+     "cr_0f76a34b3f97ad84"
+    ]
+   }
+  },
+  "the-ordinary-uv-filters-spf-45-serum": {},
+  "the-ordinary-vitamin-c-suspension-23-ha-spheres-2": {},
+  "torriden-dive-in-low-molecular-hyaluronic-acid-serum": {},
+  "torriden-dive-in-soothing-cream": {
+   "skin1004-centella-soothing-cream": {
+    "line": "Thicker and slightly stickier than this one, equally moisturizing next morning, easier to travel with.",
+    "n": 1,
+    "by": [
+     "cr_bc229a9c6a048b70"
+    ]
+   }
+  },
+  "torriden-solid-in-ceramide-cream": {},
+  "vanicream-daily-facial-moisturizer": {
+   "vanicream-moisturizing-cream": {
+    "line": "Thicker and more petrolatum-based than this lotion, which some oily or sensitive skin finds too heavy.",
+    "n": 3,
+    "by": [
+     "cr_8a60ce4ece77a91b",
+     "cr_848655646e51bf4d",
+     "cr_c8701f5137318801"
+    ]
+   },
+   "cerave-daily-moisturizing-lotion": {
+    "line": "Nearly identical consistency to this lotion in a side-by-side, with less glow and fewer ceramides listed.",
+    "n": 2,
+    "by": [
+     "cr_3f996c7e39b9fb66",
+     "cr_756f96f0ce4d1cda"
+    ]
+   }
+  },
+  "vanicream-facial-moisturizer-with-sunscreen-spf-30": {},
+  "vanicream-gentle-facial-cleanser": {
+   "aveeno-calm-restore-nourishing-oat-cleanser": {
+    "line": "Jelly-like gel with no lather that hydrates but removes less makeup than this cleanser.",
+    "n": 1,
+    "by": [
+     "cr_6b28a9fe9619cff9"
+    ]
+   },
+   "la-roche-posay-toleriane-hydrating-gentle-facial-cleanser": {
+    "line": "Milkier and more hydrating than this cleanser, with a lighter clean, less suited to oily skin.",
+    "n": 2,
+    "by": [
+     "cr_6b28a9fe9619cff9",
+     "cr_74228a3dc0218128"
+    ]
+   },
+   "cetaphil-gentle-skin-cleanser": {
+    "line": "Likened to this cleanser, but judged not as good by one reviewer.",
+    "n": 1,
+    "by": [
+     "cr_6b28a9fe9619cff9"
+    ]
+   },
+   "cerave-hydrating-facial-cleanser": {
+    "line": "Adds ceramides and hyaluronic acid but does not foam, and can leave a film.",
+    "n": 2,
+    "by": [
+     "cr_74228a3dc0218128",
+     "cr_ec3c89eedefd2b3b"
+    ]
+   },
+   "cerave-foaming-facial-cleanser": {
+    "line": "Slightly thinner, a bit less gentle and better at removing makeup, with ceramides and hyaluronic acid.",
+    "n": 1,
+    "by": [
+     "cr_935256226cc95108"
+    ]
+   }
+  },
+  "vanicream-moisturizing-cream": {
+   "cerave-moisturizing-cream": {
+    "line": "Similar rich texture for dry skin, and preferred on a regular day by one reviewer.",
+    "n": 2,
+    "by": [
+     "cr_c7c3a4f624f04ea1",
+     "cr_14e9f2d5ab9e091b"
+    ]
+   }
+  }
  }
 }
