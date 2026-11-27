@@ -7,6 +7,8 @@ import { productTakes, reviewersFrom, type Reviewer, type ReviewerRow } from "..
 import { reviewerPagesOn } from "../../lib/thread/sites";
 import { oneShape } from "../../lib/thread/shape";
 import { threadRows } from "./data";
+import { affiliateTag, amazonSearchLink } from "../../lib/amazon";
+import { withoutYear } from "../../lib/brand-name";
 import profiles from "../../db/creators/reviewer-profiles.json";
 
 export type ReviewerProfile = { name: string; subs: number | null; channel: string | null; joined: string | null; site: string | null;
@@ -21,9 +23,12 @@ export const reviewersData = cache(async () => {
   /** The product's page, photo and shape (the catalogue's row), or its plain address. */
   const product = (slug: string) => { const r = bySlug.get(slug), s = oneShape(r?.shape ?? null);
     return { href: r?.href ?? `${catalogPath}/${slug}`, pic: r?.pic ?? null, shape: s ? s[0]!.toUpperCase() + s.slice(1) : null }; };
-  /** The product's current lowest price link (the creator pages' offers, lib/thread/creator-home.ts), or null. No amount shown. */
-  const price = (slug: string) => { const p = home?.paddles[slug]?.price;
-    return p ? { url: p.url, rel: p.affiliate ? "sponsored nofollow noopener" : "nofollow noopener" } : null; };
+  /** The product's current lowest price link (the creator pages' offers, lib/thread/creator-home.ts); without one, an Amazon
+   *  search for its name with the site's tag (owner 2026-11-27), where the site has Amazon links. No amount shown. */
+  const tag = niche.amazon ? affiliateTag() : "";
+  const price = (slug: string, name: string) => { const p = home?.paddles[slug]?.price;
+    if (p) return { url: p.url, rel: p.affiliate ? "sponsored nofollow noopener" : "nofollow noopener" };
+    return tag ? { url: amazonSearchLink(withoutYear(name), tag, niche.amazon!.marketplace), rel: "sponsored nofollow noopener" } : null; };
   return { rows, list, takes, product, price };
 });
 
