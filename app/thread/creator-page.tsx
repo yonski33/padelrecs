@@ -151,7 +151,11 @@ export async function CreatorProductBody({ slug }: { slug: string }) {
   // A written TL;DR for products whose creator import came without one (db/creators/tldrs.json, 2026-11-23).
   // A laptop staged under another slug keeps its text under that slug (lib/thread/creator-config.ts textSlugs).
   const textKeys = textSlugs(niche.id, slug), siteTldrs = (tldrs as Record<string, Record<string, string>>)[niche.id];
-  const tldr = page.tldr || textKeys.map(k => siteTldrs?.[k]).find(Boolean) || (SKIN && d.lead ? playersWord(d.lead, "reviewer") : d.lead) || null;
+  const written = page.tldr || textKeys.map(k => siteTldrs?.[k]).find(Boolean) || null;
+  const tldr = written || (SKIN && d.lead ? playersWord(d.lead, "reviewer") : d.lead) || null;
+  // PadelRecs (owner 2026-11-28, "Yes, 2 and 3"): a thin page with 2 reviews shows its written TL;DR (db/creators/tldrs.json),
+  // the text only: no +/- points, which need agreement, and never the usual page's fallback line.
+  const thinTldr = thin && PADEL && rs.length >= 2 ? written : null;
   // The bar and its counts are the site's own players (lib/thread/site-sentiment.ts, owner 2026-11-22); the creator reviews
   // keep their cards and a praise line ("Praised for spin in 13 reviews").
   const votes = siteSentiment(row);
@@ -302,6 +306,10 @@ export async function CreatorProductBody({ slug }: { slug: string }) {
           {row?.newer && <span className="thc-specline">{"Previous model. Replaced by the "}<a href={th(row.newer.href)}>{withoutYear(row.newer.name)}</a>{"."}</span>}
           {/* LaptopRecs: an older generation links to the newest of its line (app/thread/newer-version.tsx). */}
           {LT && <NewerVersion slug={slug} className="thc-newer"/>}
+          {thinTldr && <div className="thc-tldr">
+            <span className="thc-tldr-h"><b>TL;DR</b><span>{`From ${plural(rs.length, "review")}`}</span></span>
+            <span className="thc-tldr-t">{yc ? <MentionsProvider {...mxProps}><MentionText text={thinTldr}/></MentionsProvider> : thinTldr}</span>
+          </div>}
           {!thin && (tldr || plus.length > 0 || minus) && <div className="thc-tldr">
             <span className="thc-tldr-h"><b>TL;DR</b><span>{`From ${plural(rs.length, "review")}`}</span></span>
             {tldr && <span className="thc-tldr-t">{yc ? <MentionsProvider {...mxProps}><MentionText text={tldr}/></MentionsProvider> : tldr}</span>}
