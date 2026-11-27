@@ -7,14 +7,16 @@ import { GUIDE_UI } from "../../lib/thread/copy";
 import { amazonLinksOn } from "../../lib/amazon-offer";
 import { niche } from "../../lib/niche";
 import { liveStoryTotal } from "./stories-data";
+const STORIES_IN_MENU = false;
 
 /** The v3 sites (padel, audio, sim racing): "How rankings work" in place of the score page (no score on their pages; the old
  *  address 308s there, next.config.ts). */
 export const FOOTER_LINKS = [{ label: "About", href: "/about" }, v3Site(niche.id) ? { label: "How rankings work", href: "/how-rankings-work" } : { label: "How the score works", href: "/how-we-make-these" }, { label: "Affiliate disclosure", href: "/affiliate-disclosure" }, { label: "Contact", href: "/contact" }, { label: "Privacy", href: "/privacy" }];
 
 export async function Shell({ active = null, children }: { active?: Section; children: ReactNode }) {
-  // Member stories (PadelRecs pilot): the header link shows once one story is live (0 elsewhere, or before the migration).
-  const stories = (await liveStoryTotal()) > 0;
+  // Member stories (PadelRecs pilot): no header link (owner 2026-11-27: "remove the stories from padel menu"); the /stories
+  // pages stay. Set STORIES_IN_MENU to bring it back.
+  const stories = STORIES_IN_MENU && (await liveStoryTotal()) > 0;
   // PickleballRecs has its own colours and fonts (owner 2026-11-19: the handoff README tokens), scoped by th-pb in thread.css.
   return <div className={niche.id === "pickleball" ? "th th-pb" : niche.id === "laptop" ? "th th-pb th-lt" : niche.id === "skin" ? "th th-skin" : niche.id === "stackrecs" ? "th th-stack"
     : niche.id === "discgolf" ? "th th-dg" : niche.id === "padel" ? "th th-pr" : niche.id === "audio" ? "th th-audio" : niche.id === "simracing" ? "th th-pr th-srv3" : niche.id === "tennis" ? "th th-pr th-tnv3" : "th"}>
