@@ -336,7 +336,9 @@ async function coffeeRows(): Promise<Rows> {
     const c = score(data, r.id), b = brand.get(r.brandId) ?? "", spec = coffeeSpec(r);
     rows.set(r.id, { id: r.id, slug: r.slug, name: displayName(r.name, b), href: productHref(r), pic: photoHidden(r) ? null : shopPhoto(r) ?? amazonPhoto(r)?.image ?? null,
       shape: r.shape, line: rowLine(r, takes.get(r.id)?.hook), best: null, n: reports.get(r.id) ?? 0, pos: c.positive, mix: c.mixed, neg: c.negative,
-      score: sigs.get(r.id)?.signal ?? null, brand: b, year: r.year, levels: [], feel: null, arm: false, current: !spec?.gone && !spec?.preRelease });
+      // The real release year where known (db/specs/coffee.json `released`); 0 otherwise, so Newest puts unknowns last and no
+      // placeholder year shows (the catalogue's 2026 is a placeholder, 2026-11-28).
+      score: sigs.get(r.id)?.signal ?? null, brand: b, year: spec?.released ?? 0, levels: [], feel: null, arm: false, current: !spec?.gone && !spec?.preRelease });
   }
   return { ctx, rows, all: [...rows.values()], bySlug: new Map([...rows.values()].map(x => [x.slug, x])) };
 }

@@ -179,7 +179,7 @@
   "app": true,
   "level": "middle",
   "source": "https://acaia.co/blogs/news/new-pearl-model-s-2022",
-  "gone": "replaced by Pearl S 2022 (if site data is the 2019 model)"
+  "released": 2022
  },
  "acaia-pyxis": {
   "name": "Acaia Pyxis",
@@ -211,7 +211,8 @@
   "water": true,
   "app": true,
   "level": "middle",
-  "source": "https://help.acaia.co/hc/en-us/articles/37124113074452-About-the-Umbra"
+  "source": "https://help.acaia.co/hc/en-us/articles/37124113074452-About-the-Umbra",
+  "released": 2025
  },
  "aeropress-clear": {
   "name": "AeroPress Clear",
@@ -225,7 +226,8 @@
   "filter": "paper",
   "sca": null,
   "level": "beginner",
-  "source": "https://aeropress.com/"
+  "source": "https://aeropress.com/",
+  "released": 2023
  },
  "aeropress-clear-xl": {
   "name": "AeroPress Clear XL",
@@ -239,7 +241,8 @@
   "filter": "paper",
   "sca": null,
   "level": "beginner",
-  "source": "https://aeropress.com/"
+  "source": "https://aeropress.com/",
+  "released": 2025
  },
  "aeropress-go": {
   "name": "AeroPress Go",
@@ -253,7 +256,8 @@
   "filter": "paper",
   "sca": null,
   "level": "beginner",
-  "source": "https://aeropress.com/"
+  "source": "https://aeropress.com/",
+  "released": 2019
  },
  "aeropress-go-plus": {
   "name": "AeroPress Go Plus",
@@ -267,7 +271,8 @@
   "filter": "paper",
   "sca": null,
   "level": "beginner",
-  "source": "https://aeropress.com/"
+  "source": "https://aeropress.com/",
+  "released": 2024
  },
  "aeropress-manual-coffee-grinder": {
   "name": "AeroPress Manual Coffee Grinder",
@@ -285,7 +290,8 @@
   "gbw": false,
   "variableSpeed": false,
   "level": "beginner",
-  "source": "https://aeropress.com/"
+  "source": "https://aeropress.com/",
+  "released": 2025
  },
  "aeropress-original": {
   "name": "AeroPress Original",
@@ -299,7 +305,8 @@
   "filter": "paper",
   "sca": null,
   "level": "beginner",
-  "source": "https://aeropress.com/"
+  "source": "https://aeropress.com/",
+  "released": 2005
  },
  "aeropress-premium": {
   "name": "AeroPress Premium",
@@ -314,7 +321,8 @@
   "filter": "paper",
   "sca": null,
   "level": "beginner",
-  "source": "https://aeropress.com/products/aeropress-coffee-maker-premium"
+  "source": "https://aeropress.com/products/aeropress-coffee-maker-premium",
+  "released": 2024
  },
  "aeropress-steel": {
   "name": "AeroPress Steel",
@@ -328,7 +336,8 @@
   "filter": "paper",
   "sca": null,
   "level": "beginner",
-  "source": "https://aeropress.com/products/aeropress-coffee-maker-steel"
+  "source": "https://aeropress.com/products/aeropress-coffee-maker-steel",
+  "released": 2026
  },
  "aeropress-xl": {
   "name": "AeroPress XL",
@@ -342,7 +351,8 @@
   "filter": "paper",
   "sca": null,
   "level": "beginner",
-  "source": "https://aeropress.com/"
+  "source": "https://aeropress.com/",
+  "released": 2023
  },
  "baratza-encore": {
   "name": "Baratza Encore",
@@ -570,7 +580,8 @@
   "e61": false,
   "portable": false,
   "level": "beginner",
-  "source": "https://www.breville.com/en-us/product/bes876"
+  "source": "https://www.breville.com/en-us/product/bes876",
+  "released": 2022
  },
  "breville-barista-pro": {
   "name": "Breville Barista Pro",
@@ -660,7 +671,8 @@
   "e61": false,
   "portable": false,
   "level": "beginner",
-  "source": "https://www.breville.com/en-us/product/bes985"
+  "source": "https://www.breville.com/en-us/product/bes985",
+  "released": 2024
  },
  "breville-oracle-touch": {
   "name": "Breville Oracle Touch",
@@ -678,7 +690,8 @@
   "e61": false,
   "portable": false,
   "level": "beginner",
-  "source": "https://www.breville.com/en-us/product/bes990"
+  "source": "https://www.breville.com/en-us/product/bes990",
+  "released": 2017
  },
  "breville-precision-brewer-thermal": {
   "name": "Breville Precision Brewer Thermal",
@@ -772,7 +785,8 @@
   "filter": "paper",
   "sca": null,
   "level": "middle",
-  "source": "https://chemexcoffeemaker.com/"
+  "source": "https://chemexcoffeemaker.com/",
+  "released": 1942
  },
  "chemex-glass-handle": {
   "name": "Chemex Glass Handle",
@@ -818,7 +832,8 @@
   "gbw": false,
   "variableSpeed": false,
   "level": "middle",
-  "source": "https://comandantegrinder.com/"
+  "source": "https://comandantegrinder.com/",
+  "released": 2021
  },
  "comandante-c60-baracuda": {
   "name": "Comandante C60 Baracuda",
@@ -893,7 +908,8 @@
   "e61": false,
   "portable": false,
   "level": "enthusiast",
-  "source": "https://decentespresso.com/de1"
+  "source": "https://decentespresso.com/de1",
+  "released": 2018
  },
  "delonghi-dedica-duo": {
   "name": "De'Longhi Dedica Duo",
@@ -911,7 +927,8 @@
   "e61": false,
   "portable": false,
   "level": "beginner",
-  "source": "https://www.delonghi.com/en-us/p/dedica-duo-dedica-duo-espresso-machine--metal/EC890M.html?pid=0132106347"
+  "source": "https://www.delonghi.com/en-us/p/dedica-duo-dedica-duo-espresso-machine--metal/EC890M.html?pid=0132106347",
+  "released": 2025
  },
  "delonghi-dedica-maestro": {
   "name": "De'Longhi Dedica Maestro",
@@ -947,7 +964,8 @@
   "e61": false,
   "portable": false,
   "level": "beginner",
-  "source": "https://www.delonghi.com/en-us/search?q=arte%20evo"
+  "source": "https://www.delonghi.com/en-us/search?q=arte%20evo",
+  "released": 2023
  },
  "delonghi-la-specialista-opera": {
   "name": "De'Longhi La Specialista Opera",
@@ -965,7 +983,8 @@
   "e61": false,
   "portable": false,
   "level": "beginner",
-  "source": "https://www.delonghi.com/en-us/search?q=specialista%20opera"
+  "source": "https://www.delonghi.com/en-us/search?q=specialista%20opera",
+  "released": 2024
  },
  "ecm-casa-v": {
   "name": "ECM Casa V",
@@ -1143,7 +1162,8 @@
   "filter": "paper",
   "sca": true,
   "level": "middle",
-  "source": "https://fellowproducts.com/products/aiden-precision-coffee-maker"
+  "source": "https://fellowproducts.com/products/aiden-precision-coffee-maker",
+  "released": 2024
  },
  "fellow-clara": {
   "name": "Fellow Clara",
@@ -1169,7 +1189,8 @@
   "temp": false,
   "hold": false,
   "level": "beginner",
-  "source": "https://fellowproducts.com/pages/compare-kettles"
+  "source": "https://fellowproducts.com/pages/compare-kettles",
+  "released": 2024
  },
  "fellow-corvo-ekg-pro": {
   "name": "Fellow Corvo EKG Pro",
@@ -1217,7 +1238,8 @@
   "gbw": false,
   "variableSpeed": false,
   "level": "middle",
-  "source": "https://fellowproducts.com/products/ode-brew-grinder-gen-2"
+  "source": "https://fellowproducts.com/products/ode-brew-grinder-gen-2",
+  "released": 2022
  },
  "fellow-opus-2": {
   "name": "Fellow Opus 2",
@@ -1247,7 +1269,8 @@
   "temp": true,
   "hold": true,
   "level": "enthusiast",
-  "source": "https://fellowproducts.com/products/stagg-ekg-electric-pour-over-kettle"
+  "source": "https://fellowproducts.com/products/stagg-ekg-electric-pour-over-kettle",
+  "released": 2022
  },
  "fellow-stagg-pour-over-kettle": {
   "name": "Fellow Stagg Pour-Over Kettle",
@@ -1273,7 +1296,8 @@
   "filter": "paper",
   "sca": null,
   "level": "enthusiast",
-  "source": "https://fellowproducts.com/"
+  "source": "https://fellowproducts.com/",
+  "released": 2019
  },
  "fellow-stagg-xf": {
   "name": "Fellow Stagg [XF]",
@@ -1304,7 +1328,8 @@
   "water": false,
   "app": false,
   "level": "beginner",
-  "source": "https://fellowproducts.com/products/tally-coffee-scale"
+  "source": "https://fellowproducts.com/products/tally-coffee-scale",
+  "released": 2023
  },
  "flair-2go": {
   "name": "Flair 2GO",
@@ -1340,7 +1365,8 @@
   "e61": false,
   "portable": false,
   "level": "middle",
-  "source": "https://flairespresso.com/products/flair-49-pro"
+  "source": "https://flairespresso.com/products/flair-49-pro",
+  "released": 2026
  },
  "flair-58-plus-2": {
   "name": "Flair 58 Plus 2",
@@ -1461,7 +1487,8 @@
   "filter": "paper",
   "sca": null,
   "level": "beginner",
-  "source": "https://global.hario.com/"
+  "source": "https://global.hario.com/",
+  "released": 2019
  },
  "hario-v60": {
   "name": "Hario V60",
@@ -1476,7 +1503,8 @@
   "filter": "paper",
   "sca": null,
   "level": "middle",
-  "source": "https://global.hario.com/"
+  "source": "https://global.hario.com/",
+  "released": 2005
  },
  "hario-v60-buono-drip-kettle": {
   "name": "Hario V60 Buono Drip Kettle",
@@ -1530,7 +1558,8 @@
   "filter": "paper",
   "sca": null,
   "level": "middle",
-  "source": "https://global.hario.com/"
+  "source": "https://global.hario.com/",
+  "released": 2021
  },
  "kalita-wave-155": {
   "name": "Kalita Wave 155",
@@ -1577,7 +1606,8 @@
   "e61": false,
   "portable": false,
   "level": "middle",
-  "source": "https://home.lamarzoccousa.com/product/linea-micra/"
+  "source": "https://home.lamarzoccousa.com/product/linea-micra/",
+  "released": 2022
  },
  "lelit-bianca-v3": {
   "name": "Lelit Bianca V3",
@@ -1631,7 +1661,8 @@
   "e61": true,
   "portable": false,
   "level": "middle",
-  "source": "https://lelit.com/"
+  "source": "https://lelit.com/",
+  "released": 2020
  },
  "lelit-mara-x3": {
   "name": "Lelit Mara X3",
@@ -1685,7 +1716,8 @@
   "gbw": false,
   "variableSpeed": false,
   "level": "middle",
-  "source": "https://www.mahlkoenig.us/products/x54-allround-home-grinder"
+  "source": "https://www.mahlkoenig.us/products/x54-allround-home-grinder",
+  "released": 2021
  },
  "moccamaster-cup-one": {
   "name": "Moccamaster Cup-One",
@@ -1699,7 +1731,8 @@
   "filter": "paper",
   "sca": true,
   "level": "middle",
-  "source": "https://us.moccamaster.com/products/cup-one"
+  "source": "https://us.moccamaster.com/products/cup-one",
+  "released": 2014
  },
  "moccamaster-kbgt": {
   "name": "Moccamaster KBGT",
@@ -1820,7 +1853,8 @@
   "e61": false,
   "portable": false,
   "level": "middle",
-  "source": "https://www.profitec-espresso.com/en/products/go-2-0"
+  "source": "https://www.profitec-espresso.com/en/products/go-2-0",
+  "released": 2026
  },
  "profitec-move": {
   "name": "Profitec Move",
@@ -1874,7 +1908,8 @@
   "e61": true,
   "portable": false,
   "level": "middle",
-  "source": "https://www.profitec-espresso.com/en/products"
+  "source": "https://www.profitec-espresso.com/en/products",
+  "gone": "discontinued (not in the maker range, 2026-11-28)"
  },
  "profitec-pro-700": {
   "name": "Profitec Pro 700",
@@ -1892,7 +1927,8 @@
   "e61": true,
   "portable": false,
   "level": "middle",
-  "source": "https://www.profitec-espresso.com/en/products"
+  "source": "https://www.profitec-espresso.com/en/products",
+  "gone": "discontinued (not in the maker range, 2026-11-28)"
  },
  "rancilio-silvia": {
   "name": "Rancilio Silvia",
@@ -1925,7 +1961,8 @@
   "filter": "paper",
   "sca": false,
   "level": "middle",
-  "source": "https://ratiocoffee.com/"
+  "source": "https://ratiocoffee.com/",
+  "released": 2025
  },
  "ratio-four": {
   "name": "Ratio Four",
@@ -1940,7 +1977,8 @@
   "filter": "paper",
   "sca": false,
   "level": "middle",
-  "source": "https://ratiocoffee.com/"
+  "source": "https://ratiocoffee.com/",
+  "released": 2024
  },
  "ratio-six-series-2": {
   "name": "Ratio Six Series 2",
@@ -2454,7 +2492,8 @@
   "e61": false,
   "portable": true,
   "level": "middle",
-  "source": "https://www.wacaco.com/products/nanopresso"
+  "source": "https://www.wacaco.com/products/nanopresso",
+  "released": 2017
  },
  "wacaco-picopresso": {
   "name": "Wacaco Picopresso",
@@ -2472,7 +2511,8 @@
   "e61": false,
   "portable": true,
   "level": "middle",
-  "source": "https://www.wacaco.com/products/picopresso"
+  "source": "https://www.wacaco.com/products/picopresso",
+  "released": 2021
  },
  "weber-workshops-eg-1": {
   "name": "Weber Workshops EG-1",
@@ -2490,8 +2530,7 @@
   "gbw": false,
   "variableSpeed": false,
   "level": "enthusiast",
-  "source": "https://weberworkshops.com/products/eg-1",
-  "gone": "replaced by EG-1 (2026 redesign); Mk.3 sold as 'Renewed' overstock"
+  "source": "https://weberworkshops.com/products/eg-1"
  },
  "weber-workshops-key-mk-2": {
   "name": "Weber Workshops Key Mk.2",

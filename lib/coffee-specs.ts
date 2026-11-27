@@ -12,6 +12,9 @@ export type CoffeeLevel = "beginner" | "middle" | "enthusiast";
 export type CoffeeSpec = {
   name: string; cat: CoffeeCat; type: string | null; tier: "$" | "$$" | "$$$" | "$$$$" | null; tierEst?: boolean; level: CoffeeLevel; source: string;
   /** "replaced by …": the maker no longer makes it; out of the match and lists. */ gone?: string;
+  /** The year it first went on sale, from a dated maker page, press release or launch news (checked 2026-11-28,
+   *  grok-share/jobs/coffee-catalog-years). Absent = unknown: the pages show no year (the catalogue's 2026 is a placeholder). */
+  released?: number;
   /** Announced, not shipping yet (Decent Bengle): out of the match, and its page labels the impressions as pre-release. */ preRelease?: string;
   // Espresso machines
   heat?: string | null; pid?: boolean | null; profiling?: boolean; flowControl?: boolean; preinfusion?: boolean | null;
@@ -27,6 +30,8 @@ export type CoffeeSpec = {
   res?: number; maxG?: number | null; timer?: boolean; autoStart?: boolean; flow?: boolean; espressoFit?: boolean | null; water?: boolean | null; app?: boolean;
 };
 export const COFFEE_SPECS = data as unknown as Record<string, CoffeeSpec>;
+/** The real release year, or null where unknown (never the catalogue's placeholder). */
+export const coffeeYear = (slug: string) => COFFEE_SPECS[slug]?.released ?? null;
 const BY_NAME = new Map(Object.values(COFFEE_SPECS).map(s => [s.name, s]));
 /** A product's specs by slug, or by name where only the name is at hand (the match's fact rows). */
 export const coffeeSpec = (p: { slug?: string | null; name?: string | null }): CoffeeSpec | undefined =>

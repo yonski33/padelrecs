@@ -8,6 +8,7 @@ import { playersWord } from "../../../../lib/thread/web-sources";
 import { AudioFitCard } from "../../live/audio-match";
 import { LaptopFitCard } from "../../live/laptop-match";
 import { CoffeeFitCard } from "../../live/coffee-match";
+import { coffeeYear } from "../../../../lib/coffee-specs";
 import { NewerVersion } from "../../newer-version";
 import { padelListData } from "../../padel-list-data";
 import { audioGroupsFor } from "../../../../lib/thread/traits";
@@ -220,7 +221,7 @@ export default async function ThreadRacket({ params }: P) {
     // "Released": the year in the name ("Head Radical MP 2023"), else the year field, except on TennisRecs and SimRacingRecs,
     // whose year field is a placeholder (2026 on every product, owner report 2026-11-22): there the row is left out.
     const released = r.name.match(/\b(20\d\d)\b/)?.[1] ?? (SR || (TN && !tennisYearKnown(r.slug)) ? null : r.year ? String(r.year) : null);
-    const v7Specs = (DG || SKIN ? specs : LT || CF ? niche.specs.map(s => [s.label, r[s.column]]) : SR || TN || PB ? [...niche.specs.map(s => [s.label, r[s.column]]), ["Released", released]] : aw ? [["Type", r.balance], ["Connection", r.weight], ["Driver", r.core], ["Noise cancelling", aw.anc ? "Yes" : aw.wireless ? "No" : null], ["Notes", r.surface]] : [["Weight", r.weight], ["Shape", r.shape], ["Balance", r.balance], ["Feel", row?.feel ?? null], ["Face", r.surface], ["Released", r.year ? String(r.year) : null],
+    const v7Specs = (DG || SKIN ? specs : LT ? niche.specs.map(s => [s.label, r[s.column]]) : CF ? [...niche.specs.map(s => [s.label, r[s.column]]), ["Released", coffeeYear(r.slug)?.toString() ?? null]] : SR || TN || PB ? [...niche.specs.map(s => [s.label, r[s.column]]), ["Released", released]] : aw ? [["Type", r.balance], ["Connection", r.weight], ["Driver", r.core], ["Noise cancelling", aw.anc ? "Yes" : aw.wireless ? "No" : null], ["Notes", r.surface]] : [["Weight", r.weight], ["Shape", r.shape], ["Balance", r.balance], ["Feel", row?.feel ?? null], ["Face", r.surface], ["Released", r.year ? String(r.year) : null],
       ...(((specNotes as unknown as Record<string, Record<string, [string, string][]>>)[niche.id] ?? {})[r.slug] ?? [])] as [string, string | null][]).filter((x): x is [string, string] => !!x[1]);
     // TL;DR with no counts (owner 2026-11-21): the written one as is; else the page's own lines without "N players mention
     // it", else the most-mentioned tags as "Players often say…". Claims still need 5+ reviews behind them (as before).
