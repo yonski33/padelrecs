@@ -10,7 +10,7 @@
 // (none are stored yet); no Reddit card (no Reddit data staged for these paddles yet).
 import { Fragment, type ReactNode } from "react";
 import { Shell } from "./shell";
-import { racketData } from "./racket-data";
+import { racketData, type RvCard } from "./racket-data";
 import { threadRows, skinOf, traitCounts, traitGroup } from "./data";
 import { styleTag, reviewerLean, voteLean, levelTag } from "../../lib/thread/style-tag";
 import { plural } from "./ui";
@@ -23,7 +23,7 @@ import { websiteButton } from "../../lib/product-links";
 import { JsonLd, crumbs } from "./seo";
 import { catalogLabel, catalogPath, productHref } from "../../lib/niche";
 import { STANCE_LABEL, lowestOffer, shortShop, usd, reviewLists, cardList, agreeChips, stanceLine, stanceCounts, howItPlays, langCode, platform, scoreText, takeaway,
-  wordTone, howTitleFor, attrSummary, type AttrKey, type CreatorReview, type CreatorPage } from "../../lib/thread/creators";
+  wordTone, howTitleFor, attrSummary, type AttrKey, type CreatorReview, type CreatorPage, type ReviewEntry } from "../../lib/thread/creators";
 import { LaptopFitCard } from "./live/laptop-match";
 import { NewerVersion } from "./newer-version";
 import { padelListData } from "./padel-list-data";
@@ -101,6 +101,19 @@ const PADEL = niche.id === "padel";
  *  other pages, padel-list named()); the other sites drop it (one row per model, no years in their names). */
 const shown = (name: string, year?: number | null) => { const b = withoutYear(name); return PADEL && year && b !== name ? `${b} (${year})` : PADEL ? name : b; };
 
+/** The older YouTube summaries (the earlier lane's web reviews, one per channel, racketData cards) as review cards on a thin
+ *  page (owner 2026-11-27: "dont hide them"). Same card look; never counted as reviews (no TL;DR, table or count uses them).
+ *  A video that already has a checked creator review on this product is left out (db/data.ts drops those rows too). */
+function oldYouTubeCards(cards: RvCard[], have: ReviewEntry[]): ReviewEntry[] {
+  const seen = new Set(have.map(x => x.video).filter(Boolean));
+  const stance = (v: RvCard["verdict"]) => v === "positive" ? "pos" : v === "negative" ? "neg" : "mix";
+  return cards.filter(c => c.kind === "youtube" && c.url && !(c.video && seen.has(c.video))).map(c => ({
+    id: c.id, creator: c.who, kind: "youtube", type: "review", url: c.url!, channel: c.url!, lang: "en", date: c.at, video: c.video,
+    len: c.len ?? null, chapters: c.chips ?? [], quote: null, quoteAt: null, stance: stance(c.verdict), summary: c.text, more: null,
+    highlights: [], short: c.text, keyPoint: null, attrs: {}, score: null, measured: {}, alsoUrl: null, version: null, note: null,
+    tie: null, stood: null, trade: null, compared: null }));
+}
+
 /** The creator page for one product, or null when it has no creator data (the caller then shows the usual page). */
 export async function CreatorProductBody({ slug }: { slug: string }) {
   const [page0, d] = await Promise.all([creatorPage(niche.id, slug), racketData(slug)]);
@@ -127,6 +140,8 @@ export async function CreatorProductBody({ slug }: { slug: string }) {
   const thin = rs.length < CREATOR_MIN_REVIEWS;
   if (thin && !THIN_ON) return null;
   const { r, row, brand, style, sim, cards } = d;
+  // Thin pages also show the older YouTube summaries as cards (oldYouTubeCards), after the checked reviews.
+  const shownFeed = thin ? [...feed, ...oldYouTubeCards(cards, feed)] : feed;
   const [tales, shops] = await Promise.all([storiesSite(niche.id) ? racketStories(r.id) : [], PADEL ? padelOffers(slug) : []]);
   // The TL;DR sentence (owner 2026-11-23): the creator page's own line where it has one, else the same line the usual
   // product page shows (racketData: the written "In short" summary, the page content's tagline, the short or list line).
@@ -365,7 +380,7 @@ export async function CreatorProductBody({ slug }: { slug: string }) {
         {/* Review consensus (paddle page v3, in place of The short version and How it plays): the written wrap-up with its
             yellow (pros) and pink (cons) marks, or the stance lines where none is written; the takes and their bar; How it
             plays in words along the bottom. No +/- lines here (the TL;DR has them). */}
-        {thin ? rs.length === 0 && <p className="thc-none thc-thin-empty">{`No ${niche.words.one} reviews summarized here yet.`}</p>
+        {thin ? shownFeed.length === 0 && <p className="thc-none thc-thin-empty">{`No ${niche.words.one} reviews summarized here yet.`}</p>
         : <section id="sentiment" className="thc-box1 flush thc-cons">
           <div className="thc-cons-top">
             <div className="thc-cons-l">
@@ -392,7 +407,7 @@ export async function CreatorProductBody({ slug }: { slug: string }) {
           rows={glance.map(gRow)}/>}
 
         <MentionsProvider {...mxProps}>
-          {feed.length > 0 && <CreatorReviews reviews={feed} count={rs.length} roundup={null} {...(CONFIGS ? { configs: true, axis: configAxisFor(niche.id, slug) } : {})}/>}
+          {shownFeed.length > 0 && <CreatorReviews reviews={shownFeed} count={rs.length} roundup={null} {...(CONFIGS ? { configs: true, axis: configAxisFor(niche.id, slug) } : {})}/>}
         </MentionsProvider>
 
         {/* PadelRecs' member stories that name this racket (the pilot), as on its v7b racket page. */}
