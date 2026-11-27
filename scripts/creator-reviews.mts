@@ -21,8 +21,8 @@ import { niche } from "../lib/niche";
 import { forSchema, migrationsTable } from "../db/migrations";
 import { slugify } from "../lib/slug";
 
-const SITES = new Set(["pickleball", "skin", "padel", "laptop", "discgolf", "coffee"]);
-if (!SITES.has(niche.id)) throw new Error(`Creator reviews are on PickleballRecs, SkinRecs, PadelRecs, LaptopRecs, DiscGolfRecs and CoffeeRecs only: run with NICHE=pickleball, skin, padel, laptop, discgolf or coffee (got ${niche.id}).`);
+const SITES = new Set(["pickleball", "skin", "padel", "laptop", "discgolf", "coffee", "audio"]);
+if (!SITES.has(niche.id)) throw new Error(`Creator reviews are on PickleballRecs, SkinRecs, PadelRecs, LaptopRecs, DiscGolfRecs, CoffeeRecs and AudioRecs only: run with NICHE=pickleball, skin, padel, laptop, discgolf, coffee or audio (got ${niche.id}).`);
 const LAPTOP = niche.id === "laptop";
 const S = niche.schema;
 const args = process.argv.slice(2), cmd = args[0];
@@ -55,7 +55,11 @@ const LAPTOP_ATTR: Record<string, string> = Object.fromEntries(["performance", "
 /** DiscGolfRecs' attribute words (the disc golf reader brief, 2026-11-22), stored under the same keys. */
 const DISCGOLF_ATTR: Record<string, string> = Object.fromEntries(["glide", "turn", "fade", "stability", "grip", "durability", "distance",
   "accuracy", "value"].map(k => [k, k]));
-const ATTR = niche.id === "skin" ? SKIN_ATTR : niche.id === "padel" ? PADEL_ATTR : niche.id === "discgolf" ? DISCGOLF_ATTR : LAPTOP ? LAPTOP_ATTR : PICKLEBALL_ATTR;
+/** AudioRecs' attribute words (the audio card brief, 2026-11-28), stored under the same keys. */
+const AUDIO_ATTR: Record<string, string> = Object.fromEntries(["bass", "mids", "treble", "soundstage", "comfort", "anc", "build", "battery",
+  "mic", "value"].map(k => [k, k]));
+const ATTR = niche.id === "skin" ? SKIN_ATTR : niche.id === "padel" ? PADEL_ATTR : niche.id === "discgolf" ? DISCGOLF_ATTR : niche.id === "audio" ? AUDIO_ATTR
+  : LAPTOP ? LAPTOP_ATTR : PICKLEBALL_ATTR;
 const WORDS = new Set(["Excellent", "Great", "Good", "Okay", "Weak"]);
 const STANCE: Record<string, "pos" | "mix" | "neg"> = { "Loved it": "pos", Mixed: "mix", "Not for me": "neg" };
 /** Chapters that say nothing about the paddle. */

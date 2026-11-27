@@ -97,6 +97,8 @@ const PLAIN = creatorPlainSite(niche.id);
 const LT = niche.id === "laptop";
 /** CoffeeRecs on the Thread pages (2026-11-28): its own fit check (live/coffee-match.tsx), its category as the tag. */
 const CF = niche.id === "coffee";
+/** AudioRecs on the creator page (2026-11-28): no fit card yet (its quick match lives on the home), its category as the tag. */
+const AU = niche.id === "audio";
 const CONFIGS = configSite(niche.id);
 /** PadelRecs (2026-11-24, onto this page from its v7b racket page): the padel shops' own prices in the price box (lib/padel-offers.ts, from
  *  padelrecs.creator_prices since 2026-11-26), the Follow button in the head and the member stories that name the racket. */
@@ -262,7 +264,7 @@ export async function CreatorProductBody({ slug }: { slug: string }) {
     voteLean(traitGroup(await traitCounts(), r.id, "plays_like"))) : style;
   const level = PB ? levelTag(row?.best) : row?.best?.split(",")[0]?.replace(/\s*(→|->)\s*/g, " to ").trim() ?? null;
   const tags = (SKIN ? [r.shape, skinAttrs?.facts.fragrance_free === "free" ? "Fragrance free" : null, skinTex ? `${skinTex} texture` : null]
-    : PLAIN || LT || CF ? [r.shape]
+    : PLAIN || LT || CF || AU ? [r.shape]
     : [shownStyle ? STYLE_WORD[shownStyle] : null, row?.feel ? `${row.feel} feel` : null, level ? `${level[0]!.toUpperCase()}${level.slice(1)}` : null]).filter((x): x is string => !!x);
   // The catalogue's specs as a plain grey line under the tags (owner 2026-11-24, padel and pickleball).
   const specs = specPills(niche.id, r);
@@ -359,7 +361,7 @@ export async function CreatorProductBody({ slug }: { slug: string }) {
       {/* SkinRecs with store prices (owner 2026-11-23): the price list fills the right column, so its fit check moves to
           this full-width row, as on PickleballRecs; Amazon-only products keep it under the button. */}
       {SKIN ? low && <div className="thc-fitrow"><SkinCompactFit id={r.id} wire={skinWire} links={skinLinks}/></div>
-        : PLAIN ? null : LT ? ltWire.length > 0 && <div className="thc-fitrow"><LaptopFitCard id={r.id} wire={ltWire} links={ltLinks} compact/></div>
+        : PLAIN || AU ? null : LT ? ltWire.length > 0 && <div className="thc-fitrow"><LaptopFitCard id={r.id} wire={ltWire} links={ltLinks} compact/></div>
         : CF ? cfWire.length > 0 && <div className="thc-fitrow"><CoffeeFitCard id={r.id} wire={cfWire} links={cfLinks} compact/></div>
         : <div className="thc-fitrow"><CompactFit id={r.id} title={`Is this ${niche.words.one} right for me?`} sub="Pick your level and style" bar/></div>}
       <div className="thc-rule"/>
@@ -379,7 +381,7 @@ export async function CreatorProductBody({ slug }: { slug: string }) {
           {/* Played it? Vote and rate it: the would-you-buy-it-again bars and the site's vote boxes (lib/thread/creator-votes.ts;
               PickleballRecs four), the stored votes loading live, one tap, no account. */}
           <section id="vote" className="thc-box1 thc-vote">
-            <PollCard id={r.id} reviews={{ positive: row?.pos ?? 0, mixed: row?.mix ?? 0, negative: row?.neg ?? 0 }} question={SKIN ? "Tried it? Vote and rate it." : LT || CF ? `${W.usedIt} Vote and rate it.` : "Played it? Vote and rate it."} countLine/>
+            <PollCard id={r.id} reviews={{ positive: row?.pos ?? 0, mixed: row?.mix ?? 0, negative: row?.neg ?? 0 }} question={SKIN ? "Tried it? Vote and rate it." : LT || CF || AU ? `${W.usedIt} Vote and rate it.` : "Played it? Vote and rate it."} countLine/>
             {voteGroups.length > 0 && <TraitVotes id={r.id} seed={traitSeed(niche.id, r.id)} groups={voteGroups} title={W.traitsTitle} tieNone {...(SKIN ? { of: d.judged } : {})}/>}
             {VOTE_SOURCE_NOTE[niche.id] && <p className="thc-vote-note">{VOTE_SOURCE_NOTE[niche.id]}</p>}
           </section>
