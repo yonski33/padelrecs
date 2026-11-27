@@ -6844,6 +6844,247 @@
      "cr_6412e45d0e96fb1d"
     ]
    }
+  },
+  "axiom-aspect": {
+   "innova-firebird": {
+    "line": "Flexes like the Aspect on forehand, so it flies about as overstable.",
+    "n": 1,
+    "by": [
+     "cr_753f8e8f593125e8"
+    ]
+   },
+   "innova-thunderbird": {
+    "line": "Slightly more overstable and domey than the Aspect, with a little more glide and carry.",
+    "n": 2,
+    "by": [
+     "cr_753f8e8f593125e8",
+     "cr_ede69472228ceabc"
+    ]
+   },
+   "mvp-tesla": {
+    "line": "Throws pretty similar to the Axiom Aspect but gets more distance because it turns.",
+    "n": 1,
+    "by": [
+     "cr_7348965445e48e34"
+    ]
+   },
+   "axiom-bokeh": {
+    "line": "Glides more and turns more than the Aspect, but is the worse forehand disc.",
+    "n": 1,
+    "by": [
+     "cr_7348965445e48e34"
+    ]
+   }
+  },
+  "innova-kc-aviar": {
+   "gateway-wizard": {
+    "line": "More stable, with less glide than the Innova KC Aviar, and preferred by one reviewer.",
+    "n": 2,
+    "by": [
+     "cr_ac1082712aae22a5",
+     "cr_40471036f37d8910"
+    ]
+   },
+   "innova-aviar": {
+    "line": "Much less stable than the Innova KC Aviar, which shows no turn before fade.",
+    "n": 1,
+    "by": [
+     "cr_40471036f37d8910"
+    ]
+   }
+  },
+  "innova-lynx": {
+   "innova-leopard": {
+    "line": "Shorter by about 10 to 15 feet and harder to grip than the Innova Lynx.",
+    "n": 1,
+    "by": [
+     "cr_5f8d0386dc8bcacb"
+    ]
+   },
+   "innova-roadrunner": {
+    "line": "Harder to use than the Innova Lynx, which feels closer to the Innova Leopard.",
+    "n": 1,
+    "by": [
+     "cr_5f8d0386dc8bcacb"
+    ]
+   },
+   "innova-leopard3": {
+    "line": "A little more stable turning driver than the Innova Lynx, which replaced it in one bag.",
+    "n": 1,
+    "by": [
+     "cr_5f8d0386dc8bcacb"
+    ]
+   }
+  },
+  "innova-shark": {
+   "discraft-zone": {
+    "line": "Similar overstability to the Innova Shark, which is also definitely an approach disc.",
+    "n": 1,
+    "by": [
+     "cr_a8e17c69927fa9b9"
+    ]
+   },
+   "westside-tursas": {
+    "line": "Stays the group favorite over the Innova Shark across a back nine round.",
+    "n": 1,
+    "by": [
+     "cr_a8e17c69927fa9b9"
+    ]
+   }
+  },
+  "latitude-64-brave": {
+   "latitude-64-grace": {
+    "line": "Very similar to the Brave in flight, just a little faster.",
+    "n": 1,
+    "by": [
+     "cr_0a70b9c936708a0d"
+    ]
+   },
+   "latitude-64-rive": {
+    "line": "More stable than the Brave, the most stable of the three compared.",
+    "n": 1,
+    "by": [
+     "cr_0a5901994e3ab450"
+    ]
+   },
+   "latitude-64-sweep": {
+    "line": "Slightly more stable than the Brave, a step below the Rive.",
+    "n": 1,
+    "by": [
+     "cr_0a5901994e3ab450"
+    ]
+   },
+   "latitude-64-river": {
+    "line": "Flies much like the Brave, closer to it than the Explorer is.",
+    "n": 2,
+    "by": [
+     "cr_172c7e6063e3f07b",
+     "cr_71dae3b3655ff95d"
+    ]
+   },
+   "dynamic-discs-maverick": {
+    "line": "Likely offers more control than the Brave but less glide.",
+    "n": 1,
+    "by": [
+     "cr_172c7e6063e3f07b"
+    ]
+   },
+   "latitude-64-strive": {
+    "line": "Flies much like the Brave, only faster.",
+    "n": 1,
+    "by": [
+     "cr_6180f541d847884e"
+    ]
+   },
+   "innova-teebird": {
+    "line": "Beaten in, flips up much like the Brave does straight from the box.",
+    "n": 1,
+    "by": [
+     "cr_0a5901994e3ab450"
+    ]
+   },
+   "westside-stag": {
+    "line": "Flies similarly to the Brave in a low arm speed comparison.",
+    "n": 1,
+    "by": [
+     "cr_172c7e6063e3f07b"
+    ]
+   }
+  },
+  "latitude-64-peak": {
+   "latitude-64-pure": {
+    "line": "Flies much like the Peak but a bit less stable, without a bead.",
+    "n": 4,
+    "by": [
+     "cr_63e25c3ec9c62755",
+     "cr_54b0246560faf57b",
+     "cr_519b9d2e693cd474",
+     "cr_2d61d870600e3e29"
+    ]
+   },
+   "discraft-luna": {
+    "line": "Flips up at the start where the Peak holds its release angle.",
+    "n": 1,
+    "by": [
+     "cr_5f9bae87051d1e94"
+    ]
+   },
+   "latitude-64-keystone": {
+    "line": "Glides farther than the Peak and has less bite at the end.",
+    "n": 1,
+    "by": [
+     "cr_1364f431c96fc3b2"
+    ]
+   },
+   "prodigy-pa-3": {
+    "line": "More stable than the Peak, which turns over better and holds the turn.",
+    "n": 1,
+    "by": [
+     "cr_df1b99c5c0ece351"
+    ]
+   },
+   "dynamic-discs-judge": {
+    "line": "Similar in speed to the premium Peak, which may be a little faster.",
+    "n": 1,
+    "by": [
+     "cr_2d61d870600e3e29"
+    ]
+   },
+   "mvp-reactor": {
+    "line": "Similar to the Peak in stability and good torque resistance.",
+    "n": 1,
+    "by": [
+     "cr_2d61d870600e3e29"
+    ]
+   }
+  },
+  "prodigy-d-model-s": {
+   "prodigy-d3": {
+    "line": "Flies very similar to the D Model S, though a new one holds straight longer.",
+    "n": 2,
+    "by": [
+     "cr_977fe97b30d8cf71",
+     "cr_0e21d71129824de4"
+    ]
+   },
+   "prodigy-x3": {
+    "line": "Wing and feel very close to this disc, so plastic preference decides.",
+    "n": 1,
+    "by": [
+     "cr_977fe97b30d8cf71"
+    ]
+   }
+  },
+  "prodigy-p-model-us": {
+   "prodigy-pa-4": {
+    "line": "More understable and always turns, with a deeper grip than this putter.",
+    "n": 2,
+    "by": [
+     "cr_c9539882441fd99e",
+     "cr_b96fd2ad4b695de1"
+    ]
+   },
+   "discraft-luna": {
+    "line": "Firmer, a bit more overstable on the green, and preferred for consistency.",
+    "n": 1,
+    "by": [
+     "cr_da0c28207f37b6a5"
+    ]
+   },
+   "latitude-64-pure": {
+    "line": "Shallower in the hand than this putter, with a similar flight at low speed.",
+    "n": 1,
+    "by": [
+     "cr_cd50b295dbdcc176"
+    ]
+   },
+   "discmania-sensei": {
+    "line": "Fairly close in depth to this putter and also holds a good hyzer.",
+    "n": 1,
+    "by": [
+     "cr_cd50b295dbdcc176"
+    ]
+   }
   }
  },
  "skin": {

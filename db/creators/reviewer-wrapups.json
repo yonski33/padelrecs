@@ -10602,6 +10602,142 @@
      "tone": "neg"
     }
    ]
+  },
+  "axiom-aspect": {
+   "paras": [
+    "Reviewers praise a very overstable driver that fights out of anhyzer, and one finds it holds its line in wind. Russell Disc Golf finds it flies more like an Innova Firebird than an Innova Thunderbird, while Pete Collins Disc Golf finds it very close to the Innova Thunderbird but a touch less overstable, flatter and less domey. TBH Disc Golf calls the prototype a beefier MVP Tesla that gives up distance because it has no turn."
+   ],
+   "highlights": [
+    {
+     "text": "holds its line in wind",
+     "tone": "pos"
+    },
+    {
+     "text": "gives up distance because it has no turn",
+     "tone": "neg"
+    }
+   ]
+  },
+  "innova-kc-aviar": {
+   "paras": [
+    "Reviewers call it a stable, predictable putter that glides well and breaks in nicely, with the bead taking the wear. Most dislike the slick, stiff plastic: one found it brittle enough to split after a tree hit, others lose grip or release consistency, and putting results are mixed. Disc Golf Puttheads finds it much more stable than a regular Innova Aviar and like a Gateway Wizard in upshots, while IceBerg TV finds it glides farther than the more stable Gateway Wizard."
+   ],
+   "highlights": [
+    {
+     "text": "stable, predictable putter",
+     "tone": "pos"
+    },
+    {
+     "text": "slick, stiff plastic",
+     "tone": "neg"
+    }
+   ]
+  },
+  "innova-lynx": {
+   "paras": [
+    "Reviewers praise a glidey, understable fairway driver that is easy to throw and suits slower to medium arm speeds and beginners. Reviewers split on the rim and forehands: one reviewer finds the bulgy rim comfortable and forehands easy, while another calls the rim bulbous and forehands poor, with rollers the likely result. Nick Carroll Disc Golf finds it closer to the Innova Leopard than the Innova Roadrunner, gains about 10 to 15 feet over the Innova Leopard, and bagged it in place of the Innova Leopard3. One reviewer finds GStar gummier and a tick more understable than Champion."
+   ],
+   "highlights": [
+    {
+     "text": "easy to throw",
+     "tone": "pos"
+    },
+    {
+     "text": "forehands poor",
+     "tone": "neg"
+    }
+   ]
+  },
+  "innova-shark": {
+   "paras": [
+    "Reviewers use it for approaches, putts and some drives, and one finds it glidier than expected with some bite at the end. Takes split on stability: one calls it very overstable and definitely an approach disc, while another finds the baseline plastic pretty flippy, with no fade on some throws, and a third flips it over on a forehand flick. Cam Hoff DG finds it very overstable like a Discraft Zone and says the Westside Tursas stays the group favorite over the Innova Shark. Plastic notes are mixed: DX felt a bit gummier than usual, while baseline plastic felt fake and light."
+   ],
+   "highlights": [
+    {
+     "text": "glidier than expected",
+     "tone": "pos"
+    },
+    {
+     "text": "pretty flippy",
+     "tone": "neg"
+    }
+   ]
+  },
+  "latitude-64-brave": {
+   "paras": [
+    "Reviewers mostly praise it as a flippy, glidey fairway driver that flips up from a hyzer and holds anhyzer lines through the whole flight. Takes split on how much turn is too much, since a second thrower found it too flippy for their angles, and one reviewer finds Orbit plastic flies close to Grand with little added stability. Disc Golf Deals USA calls it very similar to the Latitude 64 Grace, just a little slower. Part Time Disc Golf believes it is slightly less stable than the Latitude 64 Sweep, with the Latitude 64 Rive the most stable of the three."
+   ],
+   "highlights": [
+    {
+     "text": "flippy, glidey fairway driver",
+     "tone": "pos"
+    },
+    {
+     "text": "too flippy for their angles",
+     "tone": "neg"
+    },
+    {
+     "text": "very similar to the Latitude 64 Grace",
+     "tone": "pos"
+    }
+   ]
+  },
+  "latitude-64-peak": {
+   "paras": [
+    "Reviewers mostly describe it as a Latitude 64 Pure with a bead, a little more stable, and a good fit for slower arms as a throwing putter. Takes split on putting, since some love the depth and feel while others find it too deep or too rounded over to love for putting. Disc Golf Deals USA says it flies like a Latitude 64 Pure but a bit more stable, and Part Time Disc Golf finds it less stable than the Prodigy PA-3, turning over better and holding the turn. Bodanza Disc Golf prefers the Latitude 64 Pure and finds the bead adds only a little stability."
+   ],
+   "highlights": [
+    {
+     "text": "a Latitude 64 Pure with a bead",
+     "tone": "pos"
+    },
+    {
+     "text": "love the depth and feel",
+     "tone": "pos"
+    },
+    {
+     "text": "too rounded over to love for putting",
+     "tone": "neg"
+    }
+   ]
+  },
+  "prodigy-d-model-s": {
+   "paras": [
+    "Reviewers like the hand feel and rim profile, and find the flight stable and fairly neutral, suited to stronger arms. Takes differ on plastic, since BaseGrip flips up quickly and one finds it too stiff for a driver, while DuraFlex gets good flex lines on a lot of hyzer angle. Whyzer Productions finds the flight super similar to the Prodigy D3 and the feel close to the Prodigy X3, and J3 Disc Golf finds it flies like a beaten-in Prodigy D3."
+   ],
+   "highlights": [
+    {
+     "text": "stable and fairly neutral",
+     "tone": "pos"
+    },
+    {
+     "text": "too stiff for a driver",
+     "tone": "neg"
+    },
+    {
+     "text": "flies like a beaten-in Prodigy D3",
+     "tone": "pos"
+    }
+   ]
+  },
+  "prodigy-p-model-us": {
+   "paras": [
+    "Reviewers mostly praise it as a straight putter that holds whatever line it goes on, with a good hyzer hold at low speed. BaseGrip is reported as a little straighter than DuraFlex, though one finds the BaseGrip plastic surprisingly stiff and slick. Vegan Disc Golfer finds it less understable than a Prodigy PA-4, and Whyzer Productions finds it holds the angle it is thrown on where the Prodigy PA-4 always turns. Disc Golf Reviewer finds the flat top slightly less comfortable and would pick the Discraft Luna for consistency."
+   ],
+   "highlights": [
+    {
+     "text": "holds whatever line it goes on",
+     "tone": "pos"
+    },
+    {
+     "text": "surprisingly stiff and slick",
+     "tone": "neg"
+    },
+    {
+     "text": "slightly less comfortable",
+     "tone": "neg"
+    }
+   ]
   }
  },
  "skin": {
