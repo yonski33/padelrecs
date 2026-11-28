@@ -466,7 +466,9 @@ export async function CreatorProductBody({ slug }: { slug: string }) {
                 {rd && <div className="thc-block v13-rdb"><strong>On Reddit and forums</strong><p className="v13-prose">{rdLead(rd)}</p></div>}
               </div>
               {compared.length > 0 && <aside className="v13-side">
-                {([["Often compared to", compared.filter(x => x.men > 0)], ["Similar feel", compared.filter(x => x.men === 0)]] as const).filter(g => g[1].length > 0).map(([h, xs]) =>
+                {/* Phones (owner 2026-11-28): one heading and the cards as a horizontal scroll strip under the text. */}
+                <strong className="v13-side-ph">Often compared to</strong>
+                <div className="v13-strip">{([["Often compared to", compared.filter(x => x.men > 0)], ["Similar feel", compared.filter(x => x.men === 0)]] as const).filter(g => g[1].length > 0).map(([h, xs]) =>
                   <div key={h} className="v13-sg"><strong className={h === "Similar feel" ? "q" : undefined}>{h}</strong>
                     {xs.map(({ x, href, men, price, line, plus: pl, minus: mi }) => <div key={x.id} className="v13-cmp-c">
                       <span className="v13-cmp-top"><a className="pic" href={th(href)} tabIndex={-1} aria-hidden="true">{x.pic ? <img src={x.pic} alt="" loading="lazy"/> : null}</a>
@@ -474,7 +476,7 @@ export async function CreatorProductBody({ slug }: { slug: string }) {
                         {price && <a className="thc-mono buy" href={price.url} target="_blank" rel={price.rel}>check ↗</a>}</span>
                       {line && <span className="ln">{line}</span>}
                       {(pl || mi) && <span className="pm">{pl && <span className="pos"><b>+</b>{` ${pl}`}</span>}{mi && <span className="neg"><b>−</b>{` ${mi}`}</span>}</span>}
-                    </div>)}</div>)}
+                    </div>)}</div>)}</div>
                 {compared.some(x => x.price?.rel.includes("sponsored")) && <span className="thc-note">{"Some links are affiliate links. "}<a href={th("/affiliate-disclosure")}>Learn more</a></span>}
               </aside>}
             </div>

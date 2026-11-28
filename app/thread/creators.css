@@ -931,3 +931,13 @@ body:has(.thc) .thc a.v13-cta { text-decoration: none; text-align: center; font-
 .v13-hero-l { align-items: center; }
 .v13-cmp-c .pm { display: flex; flex-direction: column; gap: 2px; font-size: 13px; line-height: 1.4; }
 .v13-cmp-c .pm .pos { color: #2F6E22; } .v13-cmp-c .pm .neg { color: #A3301F; }
+.v13-strip { display: flex; flex-direction: column; gap: 14px; }
+.v13-side-ph { display: none; }
+@media (max-width: 900px) {
+  .v13-side-ph { display: block; font-family: 'Barlow Condensed', var(--bc, sans-serif); font-size: 22px; font-weight: 800; line-height: 1; }
+  .v13-strip { flex-direction: row; gap: 10px; overflow-x: auto; scroll-snap-type: x mandatory; margin: 0 -16px; padding: 0 16px 6px; scrollbar-width: none; }
+  .v13-strip::-webkit-scrollbar { display: none; }
+  .v13-strip .v13-sg { display: contents; }
+  .v13-strip .v13-sg > strong { display: none; }
+  .v13-strip .v13-cmp-c { flex: 0 0 240px; scroll-snap-align: start; }
+}
