@@ -10508,64 +10508,68 @@
   },
   "innova-kc-aviar": {
    "at": "2026-07-31",
-   "headline": "Players like the stiff, stable feel for putting, but many find the plastic slick",
+   "headline": "Players like the stiff, stable putter but many find the plastic slick",
    "tags": [
     {
-     "tone": "pos",
-     "text": "Stiff, consistent, stable plastic"
-    },
-    {
-     "tone": "pos",
-     "text": "Glide and straight flight"
-    },
-    {
      "tone": "neg",
-     "text": "Slick, slippery plastic"
+     "text": "Plastic feels slick"
+    },
+    {
+     "tone": "pos",
+     "text": "Stiff, stable, smooth release"
+    },
+    {
+     "tone": "pos",
+     "text": "Big bead feels good"
     }
    ],
    "paras": [
-    "Players agree it is a stiff, stable putter with a smooth release, and some like the glide. The recurring complaint is slippery plastic: one finds the stiffness uncomfortable for most of the year and another dislikes the bead. One player putts with a softer JK blend, while another prefers the stiffer plastic for fewer bounce outs.",
-    "One player picks it for a tunnel shot because it is dead straight at about the perfect max distance. Another questions its pro reputation because the plastic feels pretty slick. Another moved from the Gateway Wizard and found the change small, with the same bead in a stiffer, more consistent plastic."
+    "Most players who putt with it like the stiff, stable feel and smooth release, and some like the big bead in the hand. The recurring complaint is slick plastic, and a few say newer copies or colder days make it worse. Some go looking for a grippier plastic that keeps the same shape, and one player misses the waxy older KC Pro plastic.",
+    "One player putts with it for the glide and stability but finds the stiff blend uncomfortable for most of the year. Another throws a KC Aviar but putts with a JK as it was a softer blend. One player picks it for a tunnel shot because it is about the perfect max distance and dead straight. Another prefers the stiffer plastic because they get less bounce outs and less roll aways, while one player says the plastic feels pretty slick and asks what the benefit is."
    ],
    "highlights": [
     {
-     "text": "dead straight",
+     "text": "perfect max distance",
      "url": "https://www.reddit.com/r/discgolf/comments/1vb5565/230_foot_tunnel_shot_what_disc_are_you_throwing/p0sy0cl/"
     },
     {
-     "text": "feels pretty slick",
-     "url": "https://www.reddit.com/r/discgolf/comments/q6xcla/help_picking_a_putting_putter/"
+     "text": "less bounce outs",
+     "url": "https://www.reddit.com/r/discgolf/comments/j2wys/what_putter_do_you_use_do_you_find_theyre_the/c28pjqt/"
     },
     {
-     "text": "stiffer, more consistent plastic",
-     "url": "https://www.reddit.com/r/discgolf/comments/j2wys/what_putter_do_you_use_do_you_find_theyre_the/c28qphs/"
+     "text": "plastic feels pretty slick",
+     "url": "https://www.reddit.com/r/discgolf/comments/q6xcla/help_picking_a_putting_putter/"
     }
    ]
   },
   "innova-lynx": {
    "at": "2026-10-05",
-   "headline": "Players like the comfortable rim and easy turnover flight, but not everyone gets consistency",
+   "headline": "Players like the easy turnover flight and rim, but flip varies a lot",
    "tags": [
     {
      "tone": "pos",
-     "text": "Comfortable rim in the hand"
+     "text": "Easy hyzer flips and turnovers"
     },
     {
      "tone": "pos",
-     "text": "Easy turnover and beginner disc"
+     "text": "Good for low arm speeds"
     },
     {
      "tone": "pos",
-     "text": "Well liked by players"
+     "text": "Rim feels great in hand"
+    },
+    {
+     "tone": "neg",
+     "text": "Too flippy or inconsistent"
     }
    ],
    "paras": [
-    "Players mostly like it as an easy, understable fairway driver and praise the rim over the Innova Leopard for feel in the hand. Plastic matters: one player calls Halo the most stable and prefers 168 to 170 grams in Halo or a max weight Star. One player cannot get a consistent shape out of it.",
-    "One player bags a Star version with a perfect pop. Another carries it for get out of jail scenarios when deep in the woods. Another calls it a fantastic beginner disc, or backhand turnover disc, with a rim that feels way better than the Innova Leopard in the hand."
+    "Most players like it as an easy, understable fairway driver for hyzer flips, backhand turnovers and long right lines, and many say it suits low arm speeds or beginners. A few praise the rounded rim for feel in the hand and say it beats the Innova Leopard. Plastic matters, since one player calls Halo the most stable and prefers 168 to 170 grams in Halo or a max weight Star. Not everyone gets reliable results, and some find it too flippy or cannot get a consistent shape out of it.",
+    "One player bags a Star version with a perfect pop. Another carries it for get out of jail scenarios when deep in the woods. A third calls it a fantastic beginner disc, or backhand turnover disc. Another found it extremely flippy and could see it useful only under about 225ft of power as a flip up hyzer, while one player cannot get a consistent shape out of it."
    ],
    "highlights": [
     {
-     "text": "a perfect pop",
+     "text": "perfect pop",
      "url": "https://www.reddit.com/r/discgolf/comments/1wyhi3x/thoughts_on_the_lynx/pe2zzew/"
     },
     {
@@ -10577,14 +10581,14 @@
      "url": "https://www.reddit.com/r/discgolf/comments/16q5p1k/a_quick_guide_to_every_single_innova_discs_part/k1wv06p/"
     },
     {
-     "text": "the most stable",
-     "url": "https://www.reddit.com/r/discgolf/comments/1rj32dn/itlynx/o8acda3/"
+     "text": "extremely flippy",
+     "url": "https://www.reddit.com/r/discgolf/comments/x2c6um/new_innova_fairway_driver_the_it/impksl7"
     }
    ]
   },
   "innova-shark": {
    "at": "2026-11-02",
-   "headline": "Players love it as a straight, versatile mid, but starter pack versions draw complaints",
+   "headline": "Players love it as a straight, predictable mid, but light starter copies disappoint",
    "tags": [
     {
      "tone": "pos",
@@ -10592,47 +10596,51 @@
     },
     {
      "tone": "pos",
-     "text": "Great for upshots"
+     "text": "Great for upshots and long putts"
     },
     {
      "tone": "pos",
-     "text": "Kept in the bag for years"
+     "text": "Good first disc players keep"
     },
     {
      "tone": "neg",
-     "text": "Flippy once beaten in"
+     "text": "Light starter pack copies disappoint"
     },
     {
      "tone": "neg",
-     "text": "Light starter pack weights disappoint"
+     "text": "Turns over once beat in"
     }
    ],
    "paras": [
-    "Most players like it as a straight, predictable mid-range for upshots and long putts, and many call it a great first disc. Opinions split on stability and weight: light starter pack copies are described as almost useless or the lightest in the bag, while Star and GStar versions at heavier weights get more praise. Beating it in makes it turn over more, and one player says it is not recommended in wind situations. Some dislike it, and one calls it awful at everything.",
-    "One player aced a 270 foot tunnel shot with a DX Shark. Another has a beat up DX Shark that will turn right just thinking about it, and still likes it after 15 years. Another throws a GStar max weight Shark that has scored more birdies than any other disc in the bag."
+    "Most players like the Innova Shark as a straight, predictable mid for upshots and long putts, and many call it a great first disc that they still keep. Weight and plastic split opinions. Light starter pack copies are described as almost useless, unpredictable, or the lightest in the bag, while Star and GStar versions get more praise. Beating it in makes it turn over more, and one player says it is not recommended in wind situations. One player says it throws like a beat-in Innova Roc but feels worse in the hand, and another calls it awful at everything.",
+    "One player aced a tunnel shot with a DX Shark. Another has a beat up DX Shark that will turn right just thinking about it, and still likes it after many years. Another throws a GStar max weight Shark that has scored more birdies than any other disc in the bag. One more uses it as a highly-predictable long putter, and another says the light copy from a starter pack is almost useless to them."
    ],
    "highlights": [
-    {
-     "text": "not recommended in wind situations",
-     "url": "https://www.reddit.com/r/discgolf/comments/k84okx/i_am_new_to_the_sport_yesterday_i_got_my_first/gez3rxh/"
-    },
     {
      "text": "will turn right just thinking about it",
      "url": "https://www.reddit.com/r/discgolf/comments/1wr8rga/do_you_still_have_your_first_disc/pcart2j/"
     },
     {
-     "text": "more birdies than any other disc",
-     "url": "https://www.reddit.com/r/discgolf/comments/4mqt4y/battle_of_the_reliable_midranges/d3y9uv4/"
+     "text": "not recommended in wind situations",
+     "url": "https://www.reddit.com/r/discgolf/comments/k84okx/i_am_new_to_the_sport_yesterday_i_got_my_first/gez3rxh/"
+    },
+    {
+     "text": "highly-predictable long putter",
+     "url": "https://www.reddit.com/r/discgolf/comments/k84okx/i_am_new_to_the_sport_yesterday_i_got_my_first/gewhvqt/"
+    },
+    {
+     "text": "almost useless",
+     "url": "https://www.reddit.com/r/discgolf/comments/ojtnjw/newer_player_not_looking_to_pick_up_any_more/h5527jb/"
     }
    ]
   },
   "latitude-64-brave": {
    "at": "2026-10-15",
-   "headline": "Loved fairway driver, but it flips more than its numbers suggest",
+   "headline": "Loved for glide and distance, but it flips more than the numbers say",
    "tags": [
     {
      "tone": "pos",
-     "text": "Flips up easily from hyzer"
+     "text": "Great glide and distance"
     },
     {
      "tone": "neg",
@@ -10640,39 +10648,39 @@
     },
     {
      "tone": "pos",
-     "text": "Suits slower arms and new players"
+     "text": "Easy hyzer flip to flat"
     },
     {
      "tone": "pos",
-     "text": "Stays in the bag"
+     "text": "Works well for slower arms"
     }
    ],
    "paras": [
-    "Players mostly agree the Brave is a favorite fairway driver that flies more understable than its numbers suggest, with an easy flip up from a hyzer. Some say it suits slower arms best, while others keep one in the bag well past the beginner stage. Clear plastic comes up as a good version, and one player says their stock run was less stable than the prototype.",
-    "One player calls it a less touchy Latitude 64 River with a step more consistent fade. Another throws it for hyzerflips with a mild turn, and a third says the clear plastic fights out nicely at the end. A player with a noodle arm finds it mostly a neutral straight flyer, and another rebuilt their bag around it."
+    "Players mostly love the Latitude 64 Brave for its glide and easy distance, and many say it flies more understable than its numbers suggest. Opinions differ on how much. Some call it a flippy fairway driver that is easy to hyzer flip, while a few find it close to a neutral straight flyer, especially with a slower arm. Plastic and beat-in matter: one player says a fresh one is understable while a beat-in one goes dead straight, and another says the stock run is less stable than the prototype. Royal and clear plastics get praise, and one player finds new ones not great in the wind but great in heavily treed areas.",
+    "One player says it is a laser beam and what they hoped the Latitude 64 River would be. Another says every Brave they have thrown flies much more understable than the numbers would suggest. One throws it for hyzerflips with a mild turn, and another says the Brave will launch forever with a tailwind. In the woods, one player grabs a Latitude 64 Maverick for a hard turnover and the Brave for a more gradual one. A player with a noodle arm finds the Royal Grand version mostly a neutral straight flyer, and another says the clear plastic fights out nicely at the end."
    ],
    "highlights": [
     {
-     "text": "a step more consistent fade",
-     "url": "https://www.reddit.com/r/discgolf/comments/1ordmhi/what_is_a_disc_that_genuinely_improved_your/nnqr32u/"
+     "text": "is a laser beam",
+     "url": "https://www.reddit.com/r/discgolf/comments/1du9mmf/best_straight_fairway/lbfet7b"
+    },
+    {
+     "text": "flies much more understable than the numbers",
+     "url": "https://www.reddit.com/r/discgolf/comments/1ssl2vc/mighty_vs_brave/ohmlosy/"
     },
     {
      "text": "hyzerflips with a mild turn",
      "url": "https://www.reddit.com/r/discgolf/comments/1wkahxh/favorite_understable_79_speed/papexbd/"
     },
     {
-     "text": "fights out nicely",
-     "url": "https://www.reddit.com/r/discgolf/comments/1t6tk1p/cheetah_alternative_recommendations_6422/okk8k89/"
-    },
-    {
-     "text": "mostly a neutral straight flyer",
-     "url": "https://www.reddit.com/r/discgolf/comments/1x65sbj/latitude_royal_grand_vs_royal_clear_plastic/pgsyw5q/"
+     "text": "launch forever with a tailwind",
+     "url": "https://www.reddit.com/r/discgolf/comments/1kqc6u2/discs_for_progression_latitude_64/mtagvtr"
     }
    ]
   },
   "latitude-64-peak": {
    "at": "2026-10-10",
-   "headline": "Grippy, well-liked putter that also throws well; few complaints come up",
+   "headline": "Players love the grippy beaded putter that also throws; plastic can ding",
    "tags": [
     {
      "tone": "pos",
@@ -10680,61 +10688,73 @@
     },
     {
      "tone": "pos",
-     "text": "Loved by players who use it"
+     "text": "Works for putting and throwing"
     },
     {
      "tone": "pos",
-     "text": "Works as a throwing putter"
+     "text": "Straight to stable flight"
     }
    ],
    "paras": [
-    "Players mostly like the Peak and no complaints come up in these posts. They call it grippy and good both for putting and for throwing, and it comes in a wide range of plastics, with Zero Medium and Royal Clear versions mentioned. One player likes it in both base and premium plastic.",
-    "One player calls it super tacky after playing only nine holes. Another uses a Zero Medium version and has loved it. A player who tried a premium Peak as a throwing putter says it gets stable distance, and another calls the Royal Clear version a straight to understable thrower."
+    "Most players like the Peak as a grippy, shallow putter with a small bead, and many use it both for putting and as a throwing putter. It comes in a wide range of plastics, and players report good results in the Sense, Zero and Grand blends. Opinion on flight varies: some find it stable, with late stability and better wind holding than a Latitude 64 Pure, while another calls the Royal Clear version a great straight to understable thrower.",
+    "One player putts only with Zero Pro versions and likes the plastic. Another calls the Sense version hard plastic that is still soft enough for grip, but weak, since it was all dinged up after one round of putting. One player tried a premium Peak as a throwing putter and says it gets stable distance. Another says it is not quite as perfect feeling in the hand as a Prodigy PA-3, very close though, and a player who played only a short first round calls theirs super tacky."
    ],
    "highlights": [
+    {
+     "text": "gets stable distance",
+     "url": "https://www.reddit.com/r/discgolf/comments/1lk77uo/premium_peak_most_slept_on_driving_putter"
+    },
     {
      "text": "super tacky",
      "url": "https://www.reddit.com/r/discgolf/comments/1wq4tit/anyone_try_the_project_chaingrip_putters_yet/"
     },
     {
-     "text": "gets stable distance",
-     "url": "https://www.reddit.com/r/discgolf/comments/1lk77uo/premium_peak_most_slept_on_driving_putter/"
-    },
-    {
-     "text": "straight to understable thrower",
-     "url": "https://www.reddit.com/r/discgolf/comments/1wxl2ln/1_whats_the_latest_disc_to_have_earned_a_spot_in/pdx80yc/"
+     "text": "very close though",
+     "url": "https://www.reddit.com/r/discgolf/comments/1sohkwh/what_is_your_favorite_putting_putter_and_why_did/ogyg4wa"
     }
    ]
   },
   "prodigy-p-model-us": {
    "at": "2026-04-06",
-   "headline": "Players like it as a straight putter; one wishes it were shallower",
+   "headline": "Players like it as a straight throwing putter, though it runs overstable",
    "tags": [
     {
      "tone": "pos",
-     "text": "Good for putting"
+     "text": "Straight throwing putter"
     },
     {
      "tone": "pos",
-     "text": "Straight, holds its line"
+     "text": "Putts well and feels nice"
+    },
+    {
+     "tone": "neg",
+     "text": "Flies more overstable than numbers"
+    },
+    {
+     "tone": "pos",
+     "text": "DuraFlex plastic liked"
     }
    ],
    "paras": [
-    "Players mostly like the P Model US as a putter and as a straight throwing putter. One says they start out a little more overstable than the numbers suggest but beat in well. Some mention base grip and DuraFlex versions, and one says new ones putt very similar to a Dynamic Discs Judge or Prodigy PA-3.",
-    "One player mostly bags it and finds they start out a little more overstable than the numbers suggest but beat in real nice. Another putts with it and says they just wish it was a bit shallower. A third calls the DuraFlex glow version the best point and shoot, while holding the line you throw."
+    "Players mostly like the Prodigy P Model US for putting and as a straight throwing putter. Stability is where opinions differ. Some find it flies more overstable than the numbers suggest, while one player calls it dead straight. Basegrip is described as stiff and tacky and beating in quicker, while DuraFlex is described as close to Star plastic with a little more tack. One player says it beats in nicely, and another finds it excellent even in the wind.",
+    "One player was surprised that it is just a dead straight thrower, while another says it is wayyy more overstable than the numbers. One player mostly bags it and finds they start out a little more overstable than the numbers suggest but beat in real nice. Another putts with it and says they just wish it was a bit shallower. A third calls the DuraFlex Glow version the best point and shoot, while holding the line you throw. One more found a new DuraFlex Glow one slippery until they washed off the mold release, and then liked it."
    ],
    "highlights": [
     {
-     "text": "beat in real nice",
-     "url": "https://www.reddit.com/r/discgolf/comments/1p9sixy/prodigy_a_series_and_pa_series/nreoh2d/"
+     "text": "dead straight thrower",
+     "url": "https://www.reddit.com/r/discgolf/comments/11gpu3w/throwing_putters/jarloca"
+    },
+    {
+     "text": "more overstable than the numbers",
+     "url": "https://www.reddit.com/r/discgolf/comments/yxu5my/i_tell_ya_ace_line_gets_no_respect/iwrvwvx"
     },
     {
      "text": "wish it was a bit shallower",
      "url": "https://www.reddit.com/r/discgolf/comments/wghcp9/does_anyone_putt_with_the_p_model_us/m8wqndy/"
     },
     {
-     "text": "best point and shoot",
-     "url": "https://www.reddit.com/r/discgolf/comments/tchtjo/waco_prodigy/i0f2dmt/"
+     "text": "beat in real nice",
+     "url": "https://www.reddit.com/r/discgolf/comments/1p9sixy/prodigy_a_series_and_pa_series/nreoh2d/"
     }
    ]
   },
@@ -12235,6 +12255,130 @@
     {
      "text": "instantly loved it",
      "url": "https://www.reddit.com/r/discgolf/comments/1wgiylv/im_putting_with_a_trash_panda_inner_core_is_that/pa160xd/"
+    }
+   ]
+  },
+  "discmania-founder": {
+   "at": "2026-09-11",
+   "headline": "Players find it fun and very flippy for turnovers, but hard to control",
+   "tags": [
+    {
+     "tone": "pos",
+     "text": "Easy hyzer flips and turnovers"
+    },
+    {
+     "tone": "pos",
+     "text": "Helps players with weak forehand"
+    },
+    {
+     "tone": "pos",
+     "text": "Roller and escape disc"
+    },
+    {
+     "tone": "neg",
+     "text": "Hard to control, narrow use"
+    }
+   ],
+   "paras": [
+    "Most players describe a very flippy, easy to turn mid that gives them hyzer flips, backhand turnovers and rollers without much effort, and it helps those with a weak forehand finish to the right. Some compare it to the Innova Rollo and the Discmania Paradox and say it flips as much or more, while a few others rank it a bit more stable than the Innova Rollo and the Discmania Paradox. The drawback is control, since a few find it hard to control or useful for only a narrow set of shots.",
+    "One player loves it for a hyzer flip on a putt and calls it insanely easy to throw. Another calls it a great roller and get-out-of-jail disc. Another says no matter how much hyzer they put on it, it just dumps over, and backing off to control it makes it no better than a putter. One player found it good for only one shot, deep in the thick with no room for a full backhand or forehand, and another says it is great for somebody with less than zero forehand game."
+   ],
+   "highlights": [
+    {
+     "text": "insanely easy to throw",
+     "url": "https://www.reddit.com/r/discgolf/comments/1w84m0w/what_discs_have_the_greatest_impact_in_your/p83flv1"
+    },
+    {
+     "text": "get-out-of-jail disc",
+     "url": "https://www.reddit.com/r/discgolf/comments/1vqdas4/fav_flippy_mid/p45gxda/"
+    },
+    {
+     "text": "it just dumps over",
+     "url": "https://www.reddit.com/r/discmania/comments/1wd3y60/help_with_the_founder"
+    },
+    {
+     "text": "less than zero forehand game",
+     "url": "https://www.reddit.com/r/discmania/comments/1n19vae/founder/nax161s"
+    }
+   ]
+  },
+  "prodigy-d-model-s": {
+   "at": "2023-11-10",
+   "headline": "Players use it for wind and hyzers, but it flies less stable than rated",
+   "tags": [
+    {
+     "tone": "pos",
+     "text": "Handles wind and long hyzers"
+    },
+    {
+     "tone": "pos",
+     "text": "Good Duraflex and grip plastic"
+    },
+    {
+     "tone": "neg",
+     "text": "Less stable than the numbers"
+    }
+   ],
+   "paras": [
+    "Players mostly like it as a workable, comfortable driver, and some use it for wind, long hyzers or as a turnover. The main disagreement is stability: some find it less stable than its numbers and a bit flippy, while one player calls it a really overstable driver that handles hard wind. Some praise Duraflex and the base grip plastic.",
+    "One player bagged the Duraflex version as a long hyzer or wind disc and found it flew well for their arm speed, though it was not as stable as the numbers. Another says it has less high speed turn, but when thrown hard they can force it over as a long distance turnover disc. One player loves how grippy the base plastic is, and another found a base line copy a bit flippy for their tastes."
+   ],
+   "highlights": [
+    {
+     "text": "force it over",
+     "url": "https://www.reddit.com/r/discgolf/comments/nur19q/prodigy_d_model_s/h0ze613/"
+    },
+    {
+     "text": "really overstable driver",
+     "url": "https://www.reddit.com/r/discgolf/comments/qu5ici/d_model_s/k8lkbrf/"
+    },
+    {
+     "text": "a bit flippy",
+     "url": "https://www.reddit.com/r/discgolf/comments/hqhkqw/prodigy_bag_complete/fxxvxw1/"
+    }
+   ]
+  },
+  "westside-gatekeeper": {
+   "at": "2026-11-04",
+   "headline": "Players like it as a straight, glidey mid, but stability varies by plastic",
+   "tags": [
+    {
+     "tone": "pos",
+     "text": "Straight, Buzzz-like flight"
+    },
+    {
+     "tone": "pos",
+     "text": "Glidy with a reliable fade"
+    },
+    {
+     "tone": "neg",
+     "text": "Stability varies by plastic"
+    },
+    {
+     "tone": "pos",
+     "text": "Underrated workhorse mid"
+    }
+   ],
+   "paras": [
+    "Players mostly describe the Westside Gatekeeper as a straight to slightly overstable mid with good glide and a reliable fade, often compared to the Discraft Buzzz. Opinions split on how it compares: one player calls it one tick less stable than a Buzzz, while another says Tournament ones fade out more. Plastic is the main disagreement, with Tournament described as stable and straight for longer, VIP runs differing from each other, and glimmer and Special Edition versions getting flippier. One player says slower arm speeds make it very slightly overstable.",
+    "One player says the Westside Gatekeeper flies close to an Innova Roc but feels way nicer. Another says release it flat and it is straight, hyzer and it will hold it, and anhyzer and it will hold it until it flattens out at the end. One has a Special Edition that got understable pretty quick, so it is used for hyzer flips in the woods. Another calls it the most underrated Trilogy mid, while one more finds it great but it just has not felt right in the hand."
+   ],
+   "highlights": [
+    {
+     "text": "feels way nicer",
+     "url": "https://www.reddit.com/r/discgolf/comments/1ir7b38/westside_pine/md6xq6h"
+    },
+    {
+     "text": "most underrated Trilogy mid",
+     "url": "https://www.reddit.com/r/discgolf/comments/1ooin7d/dynamic_and_westside_mids/nn4mskz"
+    },
+    {
+     "text": "until it flattens out at the end",
+     "url": "https://www.reddit.com/r/discgolf/comments/1n454s4/favorite_nonbuzzz_midrange/nbp2cd0/"
+    },
+    {
+     "text": "got understable pretty quick",
+     "url": "https://www.reddit.com/r/discgolf/comments/hsp1ds/westside_throwers_please_help_me_with_my_midrange/fybzsyh"
     }
    ]
   }
