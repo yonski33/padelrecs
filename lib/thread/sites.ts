@@ -132,7 +132,7 @@ export const consensusBlocksOn = (nicheId: string) => CONSENSUS_BLOCKS[nicheId] 
 /** Paddle page v13 (owner handoff 2026-11-28, "yes lets do it on pickaball"): one "What everyone says" card (the short
  *  version, what they agree on, often compared to, at a glance), then "One by one" and "Community". Only products with
  *  PADDLE_V13_MIN or more reviews; thinner ones keep the current layout. false brings the current layout back everywhere. */
-export const PADDLE_V13: Record<string, boolean> = { pickleball: true };
+export const PADDLE_V13: Record<string, boolean> = { pickleball: true, padel: true };
 export const PADDLE_V13_MIN = 5;
 export const paddleV13On = (nicheId: string, reviews: number) => (PADDLE_V13[nicheId] ?? false) && reviews >= PADDLE_V13_MIN;
 /** Sites where every live product uses the creator page design, also under CREATOR_MIN_REVIEWS reviews (PickleballRecs, owner
