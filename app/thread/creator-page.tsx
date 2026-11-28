@@ -55,7 +55,6 @@ import { StickyPrice } from "./live/sticky-price";
 import { GlanceTable } from "./live/glance-table";
 import { TraitVotes } from "./live/trait-votes";
 import { PointVote } from "./live/point-vote";
-import { atSecond, clock } from "../../lib/thread/video-meta";
 import { traitGroupsFor } from "../../lib/thread/traits";
 import { traitSeed } from "../../lib/thread/trait-seed";
 import { creatorVoteGroups } from "../../lib/thread/creator-votes";
@@ -631,7 +630,7 @@ const PLAYERS_MIN = 20;
 /** A point shows once this many of the paddle's reviews cover it. */
 const POINT_MIN = 3;
 type PtReview = { id: string; creator: string; kind: string; avatar?: string | null; url: string; quote: string | null; quoteAt: number | null; chapters: [number, string][] };
-/** Words that tie a quote, chapter or Reddit phrase to a point. */
+/** Words that tie a quote, chapter or Reddit phrase to a point. The cards' links stay on the page (owner 2026-11-28). */
 const POINT_WORDS: Record<string, RegExp> = { resets: /reset|dink|drop|touch|soft game|block|kitchen/i, spin: /spin|grit|rpm|texture/i,
   sweet: /sweet ?spot|forgiv|dead ?spot|off.?cent|mishit/i, power: /power|pop|drive|put.?away|pace|speed/i, comfort: /\barm\b|elbow|wrist|shoulder|vibrat|comfort/i };
 type RdPhrase = { text: string; url: string; sub: string };
@@ -679,13 +678,12 @@ function AgreePoints({ points, total, rs, id, players, voteGroups, votes, reddit
           return <div key={x.review_id} className={`v13-rc ${x.stance}`}>
             <span className="who"><strong>{v.creator}</strong><span>{` · ${v.kind === "youtube" ? "YouTube" : v.kind === "tiktok" ? "TikTok" : "Blog"}`}</span></span>
             <span className="q">{own ? `“${own}”` : `${x.evidence[0]!.toUpperCase()}${x.evidence.slice(1)}${/[.!?]$/.test(x.evidence) ? "" : "."}`}</span>
-            {v.kind === "youtube" ? <a className="go yt" href={ch ? atSecond(v.url, ch[0]) : own && v.quoteAt != null ? atSecond(v.url, v.quoteAt) : v.url} target="_blank" rel="noopener nofollow">
-              <i className="yt-ic" aria-hidden="true"/>{ch ? `▶ ${clock(ch[0])} ${chapterTitle(ch[1])}` : own && v.quoteAt != null ? `▶ ${clock(v.quoteAt)} Watch this part` : "Watch the video ↗"}</a>
-              : <a className="go" href={v.url} target="_blank" rel="noopener nofollow">{v.kind === "tiktok" ? "Watch on TikTok ↗" : "Read the article ↗"}</a>}
+            {/* Owner 2026-11-28: keep people on the site; the link jumps to this review's card on the page. */}
+            <a className="go" href={`#cr-${x.review_id}`}>{v.kind === "blog" ? "Read the summary ↓" : ch ? `${chapterTitle(ch[1])}: see the review ↓` : "See the review ↓"}</a>
           </div>; })}
           {rdp && <div className="v13-rc rd"><span className="who"><i className="v13-av rd sq" aria-hidden="true">r/</i><strong>{rdp.sub}</strong><span> · Reddit</span></span>
             <span className="q">{`“${rdp.text[0]!.toUpperCase()}${rdp.text.slice(1)}”`}</span>
-            <a className="go" href={rdp.url} target="_blank" rel="noopener nofollow">Read the thread ↗</a></div>}
+            <a className="go" href="#reddit-card">See what players say ↓</a></div>}
           {vg && <PointVote id={id} trait={vg.key} options={vg.options as [string, string][]} base={votes[p.key] ?? {}}/>}</div>
       </details>; })}
   </div>;
