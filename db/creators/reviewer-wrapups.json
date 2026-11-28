@@ -16601,6 +16601,732 @@
      "tone": "neg"
     }
    ]
+  },
+  "climo-discs-osprey": {
+   "blocks": [
+    {
+     "label": "Why reviewers like it",
+     "text": "Reviewers find it flips and turns with very little effort and holds anhyzer lines well, giving easy distance to slower arms. Several like the gummy, grippy plastic."
+    },
+    {
+     "label": "Watch out for",
+     "text": "It is hard to overpower, so it needs a smooth throw, and it can keep flipping when the angle is wrong. Headwinds are a bad place for it."
+    },
+    {
+     "label": "Who it suits",
+     "text": "Slower arms get the most from it. One reviewer calls it a great disc for players who struggle with forehands, while another says bigger arms mostly use it for hyzer flips and in the woods."
+    }
+   ],
+   "paras": [
+    "Reviewers find it flips and turns with very little effort and holds anhyzer lines well, giving easy distance to slower arms. Several like the gummy, grippy plastic. It is hard to overpower, so it needs a smooth throw, and it can keep flipping when the angle is wrong. Headwinds are a bad place for it. Slower arms get the most from it. One reviewer calls it a great disc for players who struggle with forehands, while another says bigger arms mostly use it for hyzer flips and in the woods."
+   ],
+   "highlights": [
+    {
+     "text": "flips and turns with very little effort",
+     "tone": "pos"
+    },
+    {
+     "text": "keep flipping when the angle is wrong",
+     "tone": "neg"
+    }
+   ]
+  },
+  "dga-aftershock": {
+   "blocks": [
+    {
+     "label": "Why reviewers like it",
+     "text": "Reviewers call it a reliable straight midrange that flips up from a small hyzer and rides straight with a forward push. One reviewer calls it a workhorse for approaches, and another finds it strong on wooded courses."
+    },
+    {
+     "label": "Watch out for",
+     "text": "The caveats are small: one reviewer finds it easy to overpower, so it needs a smooth throw, and it can turn a little for faster arms."
+    },
+    {
+     "label": "Plastic note",
+     "text": "One reviewer finds ProLine gummier and flippier, which suits lower arm speeds wanting more turn, while SP Line is slightly more stable."
+    }
+   ],
+   "paras": [
+    "Reviewers call it a reliable straight midrange that flips up from a small hyzer and rides straight with a forward push. One reviewer calls it a workhorse for approaches, and another finds it strong on wooded courses. The caveats are small: one reviewer finds it easy to overpower, so it needs a smooth throw, and it can turn a little for faster arms. One reviewer finds ProLine gummier and flippier, which suits lower arm speeds wanting more turn, while SP Line is slightly more stable."
+   ],
+   "highlights": [
+    {
+     "text": "flips up from a small hyzer",
+     "tone": "pos"
+    },
+    {
+     "text": "easy to overpower",
+     "tone": "neg"
+    }
+   ]
+  },
+  "dga-avalanche": {
+   "blocks": [
+    {
+     "label": "Why reviewers like it",
+     "text": "Reviewers find it beefy, flying like an Innova Firebird or Discraft Raptor, and say it holds hyzers and fights headwinds. One reviewer calls it a missing piece of the brand's lineup."
+    },
+    {
+     "label": "Watch out for",
+     "text": "Two reviewers find little glide, and one adds that it dumps out and skips hard on flat throws. Another says it does not go very far. One reviewer found the new disc slick, which made it harder to throw as wanted."
+    },
+    {
+     "label": "Who it suits",
+     "text": "One reviewer says it takes a lot of power without turning over and is a reliable overstable fairway for medium and lower arm speeds."
+    }
+   ],
+   "paras": [
+    "Reviewers find it beefy, flying like an Innova Firebird or Discraft Raptor, and say it holds hyzers and fights headwinds. One reviewer calls it a missing piece of the brand's lineup. Two reviewers find little glide, and one adds that it dumps out and skips hard on flat throws. Another says it does not go very far. One reviewer found the new disc slick, which made it harder to throw as wanted. One reviewer says it takes a lot of power without turning over and is a reliable overstable fairway for medium and lower arm speeds."
+   ],
+   "highlights": [
+    {
+     "text": "holds hyzers and fights headwinds",
+     "tone": "pos"
+    },
+    {
+     "text": "does not go very far",
+     "tone": "neg"
+    }
+   ]
+  },
+  "dga-banzai": {
+   "blocks": [
+    {
+     "label": "Why reviewers like it",
+     "text": "Reviewers call it a workable, predictable overstable fairway driver that holds its line and finishes with a dependable fade, with good glide for an overstable disc. It handles headwinds and works on both forehand and backhand."
+    },
+    {
+     "label": "Watch out for",
+     "text": "The caveats are small: the dome and bead-like rim feel took getting used to, one reviewer found a little less bite at the end than the numbers suggest, and one says strong headwinds call for something beefier or faster."
+    },
+    {
+     "label": "Who it suits",
+     "text": "Reviewers see it fitting slower arms, average players and strong arms alike, and one calls it neutral and good for beginners."
+    }
+   ],
+   "paras": [
+    "Reviewers call it a workable, predictable overstable fairway driver that holds its line and finishes with a dependable fade, with good glide for an overstable disc. It handles headwinds and works on both forehand and backhand. The caveats are small: the dome and bead-like rim feel took getting used to, one reviewer found a little less bite at the end than the numbers suggest, and one says strong headwinds call for something beefier or faster. Reviewers see it fitting slower arms, average players and strong arms alike, and one calls it neutral and good for beginners."
+   ],
+   "highlights": [
+    {
+     "text": "workable, predictable overstable fairway driver",
+     "tone": "pos"
+    },
+    {
+     "text": "took getting used to",
+     "tone": "neg"
+    }
+   ]
+  },
+  "dga-blast": {
+   "blocks": [
+    {
+     "label": "Why reviewers like it",
+     "text": "Reviewers find it a touch more overstable than a Discraft Zone, filling the gap between the Discraft Zone and the Discraft Zone OS. It holds anhyzer lines and fights out of them, and one reviewer rips it on forehand without it turning over."
+    },
+    {
+     "label": "Watch out for",
+     "text": "Two reviewers say it may not fly as far as a Discraft Zone, one blaming the puddle top and the other the thumb track. One forehand hyzer flipped up on a first throw in a headwind."
+    },
+    {
+     "label": "Plastic note",
+     "text": "Reviewers describe stiff, grippy plastic with a subtle thumb track, and one says the slick start beats in well."
+    }
+   ],
+   "paras": [
+    "Reviewers find it a touch more overstable than a Discraft Zone, filling the gap between the Discraft Zone and the Discraft Zone OS. It holds anhyzer lines and fights out of them, and one reviewer rips it on forehand without it turning over. Two reviewers say it may not fly as far as a Discraft Zone, one blaming the puddle top and the other the thumb track. One forehand hyzer flipped up on a first throw in a headwind. Reviewers describe stiff, grippy plastic with a subtle thumb track, and one says the slick start beats in well."
+   ],
+   "highlights": [
+    {
+     "text": "a touch more overstable",
+     "tone": "pos"
+    },
+    {
+     "text": "may not fly as far",
+     "tone": "neg"
+    }
+   ]
+  },
+  "dga-hurricane": {
+   "blocks": [
+    {
+     "label": "Why reviewers like it",
+     "text": "Reviewers call it a speed 12 that holds its line, turns easily and finishes with a reliable fade, with little effect from headwinds."
+    },
+    {
+     "label": "Watch out for",
+     "text": "One reviewer finds it too much disc for their arm, and another found it does not go quite as far as an Innova Destroyer. One reviewer dislikes the nose bead feel and another the lack of dome."
+    },
+    {
+     "label": "Plastic note",
+     "text": "Plastics differ: one reviewer found a gummy Tour Series copy turned over gently and held straight, while another found a stiff ProLine copy very overstable."
+    }
+   ],
+   "paras": [
+    "Reviewers call it a speed 12 that holds its line, turns easily and finishes with a reliable fade, with little effect from headwinds. One reviewer finds it too much disc for their arm, and another found it does not go quite as far as an Innova Destroyer. One reviewer dislikes the nose bead feel and another the lack of dome. Plastics differ: one reviewer found a gummy Tour Series copy turned over gently and held straight, while another found a stiff ProLine copy very overstable."
+   ],
+   "highlights": [
+    {
+     "text": "little effect from headwinds",
+     "tone": "pos"
+    },
+    {
+     "text": "too much disc for their arm",
+     "tone": "neg"
+    }
+   ]
+  },
+  "dga-quake": {
+   "blocks": [
+    {
+     "label": "Why reviewers like it",
+     "text": "Reviewers call it a reliable overstable midrange for wind and forehand throws, and several like the flat top."
+    },
+    {
+     "label": "Watch out for",
+     "text": "It is a specialist rather than a disc for every hole, and distance is limited, with one reviewer finding 300 feet takes too much work. Backhand feel did not click for one reviewer."
+    },
+    {
+     "label": "Where it sits",
+     "text": "One reviewer places it a tad more overstable than a Discraft Zone and a little less than a DGA Avalanche, and another a touch more overstable than a Discraft Buzzz OS."
+    }
+   ],
+   "paras": [
+    "Reviewers call it a reliable overstable midrange for wind and forehand throws, and several like the flat top. It is a specialist rather than a disc for every hole, and distance is limited, with one reviewer finding 300 feet takes too much work. Backhand feel did not click for one reviewer. One reviewer places it a tad more overstable than a Discraft Zone and a little less than a DGA Avalanche, and another a touch more overstable than a Discraft Buzzz OS."
+   ],
+   "highlights": [
+    {
+     "text": "reliable overstable midrange",
+     "tone": "pos"
+    },
+    {
+     "text": "disc for every hole",
+     "tone": "neg"
+    }
+   ]
+  },
+  "dga-rift": {
+   "blocks": [
+    {
+     "label": "Why reviewers like it",
+     "text": "Reviewers call it a controllable midrange that flips up to flat from a hyzer, glides well past what is usual for mids and suits shaping lines in the woods. The slim, shallow rim and grippy plastic also get praise."
+    },
+    {
+     "label": "Watch out for",
+     "text": "The caveats are modest: it turns a little on flat releases, and one reviewer found it more understable than the numbers, which may relate to weight."
+    },
+    {
+     "label": "Who it suits",
+     "text": "Two reviewers expect slower arms to find it stable and workable, while one expects faster arms to get a nice understable midrange."
+    }
+   ],
+   "paras": [
+    "Reviewers call it a controllable midrange that flips up to flat from a hyzer, glides well past what is usual for mids and suits shaping lines in the woods. The slim, shallow rim and grippy plastic also get praise. The caveats are modest: it turns a little on flat releases, and one reviewer found it more understable than the numbers, which may relate to weight. Two reviewers expect slower arms to find it stable and workable, while one expects faster arms to get a nice understable midrange."
+   ],
+   "highlights": [
+    {
+     "text": "flips up to flat from a hyzer",
+     "tone": "pos"
+    },
+    {
+     "text": "turns a little on flat releases",
+     "tone": "neg"
+    }
+   ]
+  },
+  "dga-sail": {
+   "blocks": [
+    {
+     "label": "Why reviewers like it",
+     "text": "Reviewers say the glide carries low-power throws and turnovers a long way, giving slower arms extra distance and easy rollers, with a hint of fade at the end."
+    },
+    {
+     "label": "Watch out for",
+     "text": "It takes some adjustment of release angle and power to dial in, and one reviewer found it can flip too much or fade off the line. Another found the very shallow rim hard to grip with a thick finger, and one does not enjoy the dome top feel."
+    },
+    {
+     "label": "Who it suits",
+     "text": "Beginners and slower arms get the most from it, while strong arms use it mostly for rollers and turnovers."
+    }
+   ],
+   "paras": [
+    "Reviewers say the glide carries low-power throws and turnovers a long way, giving slower arms extra distance and easy rollers, with a hint of fade at the end. It takes some adjustment of release angle and power to dial in, and one reviewer found it can flip too much or fade off the line. Another found the very shallow rim hard to grip with a thick finger, and one does not enjoy the dome top feel. Beginners and slower arms get the most from it, while strong arms use it mostly for rollers and turnovers."
+   ],
+   "highlights": [
+    {
+     "text": "low-power throws and turnovers",
+     "tone": "pos"
+    },
+    {
+     "text": "takes some adjustment of release angle",
+     "tone": "neg"
+    }
+   ]
+  },
+  "dga-surf": {
+   "blocks": [
+    {
+     "label": "Why reviewers like it",
+     "text": "Reviewers like the stiff, tacky feel and the straight, neutral flight with a fade, and use it as a putter or an approach disc that holds up better than its turn number suggests."
+    },
+    {
+     "label": "Watch out for",
+     "text": "Opinions differ on rim depth and glide: two reviewers find the rim deep, one of them with little glide, while another found a shallow rim and a ton of glide."
+    },
+    {
+     "label": "Plastic note",
+     "text": "One reviewer finds stiff Baseline plastic grippy and tacky but likely to beat up fast, and another says Tour Series plastic stays grippy in the heat."
+    }
+   ],
+   "paras": [
+    "Reviewers like the stiff, tacky feel and the straight, neutral flight with a fade, and use it as a putter or an approach disc that holds up better than its turn number suggests. Opinions differ on rim depth and glide: two reviewers find the rim deep, one of them with little glide, while another found a shallow rim and a ton of glide. One reviewer finds stiff Baseline plastic grippy and tacky but likely to beat up fast, and another says Tour Series plastic stays grippy in the heat."
+   ],
+   "highlights": [
+    {
+     "text": "stiff, tacky feel",
+     "tone": "pos"
+    },
+    {
+     "text": "find the rim deep",
+     "tone": "neg"
+    }
+   ]
+  },
+  "dga-tsunami": {
+   "blocks": [
+    {
+     "label": "Why reviewers like it",
+     "text": "Reviewers call it an overstable control driver. One finds it holds a line and stays consistent on a pull-over drift, and another finds it reliable into strong headwinds, with a flex on forehand."
+    },
+    {
+     "label": "Watch out for",
+     "text": "One reviewer found it not quite as overstable as expected at full speed, and another thinks it needs a little more power to flex."
+    }
+   ],
+   "paras": [
+    "Reviewers call it an overstable control driver. One finds it holds a line and stays consistent on a pull-over drift, and another finds it reliable into strong headwinds, with a flex on forehand. One reviewer found it not quite as overstable as expected at full speed, and another thinks it needs a little more power to flex."
+   ],
+   "highlights": [
+    {
+     "text": "overstable control driver",
+     "tone": "pos"
+    },
+    {
+     "text": "not quite as overstable as expected",
+     "tone": "neg"
+    }
+   ]
+  },
+  "dga-vortex": {
+   "blocks": [
+    {
+     "label": "Why reviewers like it",
+     "text": "Reviewers praise an understable fairway driver that stands up from a hyzer with little effort, glides far and doubles as an easy roller."
+    },
+    {
+     "label": "Watch out for",
+     "text": "Players who release flat or on anhyzer may get less use out of it, and one reviewer says faster arms mostly get a tailwind bomber. In Atmos plastic one reviewer found it flew less understable than its numbers suggest."
+    },
+    {
+     "label": "Who it suits",
+     "text": "Lower arm speeds and newer players learning the hyzer flip, plus stronger players wanting a utility disc for woods and tunnel shots."
+    }
+   ],
+   "paras": [
+    "Reviewers praise an understable fairway driver that stands up from a hyzer with little effort, glides far and doubles as an easy roller. Players who release flat or on anhyzer may get less use out of it, and one reviewer says faster arms mostly get a tailwind bomber. In Atmos plastic one reviewer found it flew less understable than its numbers suggest. Lower arm speeds and newer players learning the hyzer flip, plus stronger players wanting a utility disc for woods and tunnel shots."
+   ],
+   "highlights": [
+    {
+     "text": "stands up from a hyzer",
+     "tone": "pos"
+    },
+    {
+     "text": "release flat or on anhyzer",
+     "tone": "neg"
+    }
+   ]
+  },
+  "discraft-kratos": {
+   "blocks": [
+    {
+     "label": "Why reviewers like it",
+     "text": "Reviewers call it the Luna mold with a bead: controllable, holding hyzer and anhyzer lines and running straight when thrown flat. Several find it comfortable to putt and a touch more stable at the end of the flight than the Luna."
+    },
+    {
+     "label": "Watch out for",
+     "text": "Several find the fade closer to two than three, and one finds the bead clips the pinky and makes putts wobbly. One reviewer found anhyzer lines take a lot of power and another found it not great for flexing around obstacles."
+    }
+   ],
+   "paras": [
+    "Reviewers call it the Luna mold with a bead: controllable, holding hyzer and anhyzer lines and running straight when thrown flat. Several find it comfortable to putt and a touch more stable at the end of the flight than the Luna. Several find the fade closer to two than three, and one finds the bead clips the pinky and makes putts wobbly. One reviewer found anhyzer lines take a lot of power and another found it not great for flexing around obstacles."
+   ],
+   "highlights": [
+    {
+     "text": "the Luna mold with a bead",
+     "tone": "pos"
+    },
+    {
+     "text": "fade closer to two than three",
+     "tone": "neg"
+    }
+   ]
+  },
+  "doomsday-discs-chemtrail": {
+   "blocks": [
+    {
+     "label": "Why reviewers like it",
+     "text": "Reviewers find a controlled, flippy fairway driver that pops up from a hyzer and rides, with a comfortable feel and a flight better than expected from the brand."
+    },
+    {
+     "label": "Watch out for",
+     "text": "Hard forehands, especially into headwinds, can flip it over, and one reviewer finds it does not fight wind as hard as stabler fairway drivers. Stability reads differ: one finds the glow copy more overstable than the numbers suggest, another finds a flat throw turns a good bit."
+    },
+    {
+     "label": "Who it suits",
+     "text": "Lower arm speeds and newer players, plus hyzer flip shots down tight tunnels."
+    }
+   ],
+   "paras": [
+    "Reviewers find a controlled, flippy fairway driver that pops up from a hyzer and rides, with a comfortable feel and a flight better than expected from the brand. Hard forehands, especially into headwinds, can flip it over, and one reviewer finds it does not fight wind as hard as stabler fairway drivers. Stability reads differ: one finds the glow copy more overstable than the numbers suggest, another finds a flat throw turns a good bit. Lower arm speeds and newer players, plus hyzer flip shots down tight tunnels."
+   ],
+   "highlights": [
+    {
+     "text": "pops up from a hyzer and rides",
+     "tone": "pos"
+    },
+    {
+     "text": "Hard forehands, especially into headwinds",
+     "tone": "neg"
+    }
+   ]
+  },
+  "hooligan-discs-flip": {
+   "blocks": [
+    {
+     "label": "Why reviewers like it",
+     "text": "Reviewers find a flippy midrange that flips up and turns easily, with a comfortable, grippy feel. Two chose it over the MVP Uplink."
+    },
+    {
+     "label": "Watch out for",
+     "text": "One reviewer finds flippy mids like this hard to set on a straight line and easy to over-rotate, and another needed more power than expected to get turn on forehands. One reviewer also notes it may be hard to find now that it is not in production."
+    }
+   ],
+   "paras": [
+    "Reviewers find a flippy midrange that flips up and turns easily, with a comfortable, grippy feel. Two chose it over the MVP Uplink. One reviewer finds flippy mids like this hard to set on a straight line and easy to over-rotate, and another needed more power than expected to get turn on forehands. One reviewer also notes it may be hard to find now that it is not in production."
+   ],
+   "highlights": [
+    {
+     "text": "flips up and turns easily",
+     "tone": "pos"
+    },
+    {
+     "text": "easy to over-rotate",
+     "tone": "neg"
+    }
+   ]
+  },
+  "infinite-discs-alpaca": {
+   "blocks": [
+    {
+     "label": "Why reviewers like it",
+     "text": "Reviewers compare it to the Discmania P2 and find a stable, beadless putter that fades reliably, holds anhyzer lines and keeps its integrity in wind."
+    },
+    {
+     "label": "Watch out for",
+     "text": "The deep rim is awkward for some grips: one reviewer finds the hand feel wrong for putting, another finds it a little deep for sidearm and not torque resistant, and one dislikes the slippery plastic."
+    },
+    {
+     "label": "Stability note",
+     "text": "Stability reads vary: one finds it a little more stable than the Discraft Luna and another surprisingly overstable on flat throws, while a third says it is not super overstable by any means."
+    }
+   ],
+   "paras": [
+    "Reviewers compare it to the Discmania P2 and find a stable, beadless putter that fades reliably, holds anhyzer lines and keeps its integrity in wind. The deep rim is awkward for some grips: one reviewer finds the hand feel wrong for putting, another finds it a little deep for sidearm and not torque resistant, and one dislikes the slippery plastic. Stability reads vary: one finds it a little more stable than the Discraft Luna and another surprisingly overstable on flat throws, while a third says it is not super overstable by any means."
+   ],
+   "highlights": [
+    {
+     "text": "stable, beadless putter",
+     "tone": "pos"
+    },
+    {
+     "text": "deep rim is awkward for some grips",
+     "tone": "neg"
+    }
+   ]
+  },
+  "infinite-discs-anubis": {
+   "blocks": [
+    {
+     "label": "Why reviewers like it",
+     "text": "Reviewers find a comfortable control midrange with decent glide. One finds it holds its line on flat, hyzer and anhyzer throws, and another a repeatable anhyzer turnover."
+    },
+    {
+     "label": "Watch out for",
+     "text": "One reviewer finds the depth and dome a little too much for a power grip, and another finds it straighter than the Discraft Comet, with less propensity to turn."
+    },
+    {
+     "label": "Plastic note",
+     "text": "One reviewer praises the I-Blend as comfortable with rounded edges and no bead, and finds it a little more domed than the D-Blend."
+    }
+   ],
+   "paras": [
+    "Reviewers find a comfortable control midrange with decent glide. One finds it holds its line on flat, hyzer and anhyzer throws, and another a repeatable anhyzer turnover. One reviewer finds the depth and dome a little too much for a power grip, and another finds it straighter than the Discraft Comet, with less propensity to turn. One reviewer praises the I-Blend as comfortable with rounded edges and no bead, and finds it a little more domed than the D-Blend."
+   ],
+   "highlights": [
+    {
+     "text": "holds its line on flat, hyzer",
+     "tone": "pos"
+    },
+    {
+     "text": "too much for a power grip",
+     "tone": "neg"
+    }
+   ]
+  },
+  "infinite-discs-centurion": {
+   "blocks": [
+    {
+     "label": "Why reviewers like it",
+     "text": "Reviewers find a fairway driver that goes far for little effort and flies fairly straight. One finds lots of glide that turns little effort into long distance, and another a middle stability that suits forehand and backhand."
+    },
+    {
+     "label": "Watch out for",
+     "text": "No review was negative, and the caveats are small: one reviewer finds stability changes between plastics, with the Metal Flake copy more overstable than the Swirly S-Blend and the I-Blend less so, and another says to take whichever copy feels best in the hand."
+    }
+   ],
+   "paras": [
+    "Reviewers find a fairway driver that goes far for little effort and flies fairly straight. One finds lots of glide that turns little effort into long distance, and another a middle stability that suits forehand and backhand. No review was negative, and the caveats are small: one reviewer finds stability changes between plastics, with the Metal Flake copy more overstable than the Swirly S-Blend and the I-Blend less so, and another says to take whichever copy feels best in the hand."
+   ],
+   "highlights": [
+    {
+     "text": "lots of glide",
+     "tone": "pos"
+    },
+    {
+     "text": "stability changes between plastics",
+     "tone": "neg"
+    }
+   ]
+  },
+  "infinite-discs-pharaoh": {
+   "blocks": [
+    {
+     "label": "Why reviewers like it",
+     "text": "Reviewers find a driver that carries far on little effort, flipping up from a hyzer and riding for a long way, and one finds plenty of glide."
+    },
+    {
+     "label": "Watch out for",
+     "text": "The large speed 13 rim is less comfortable for some hands, and one reviewer finds the forehand shoulder a little tall. One reviewer calls it touchy, and another finds it beats in quickly, flipping and diving right more into headwinds."
+    },
+    {
+     "label": "Plastic note",
+     "text": "One reviewer finds the Halo G-Blend tacky and flippy and the Splatter S-Blend flatter and more overstable with less glide, and another finds a Halo S-Blend domier than an earlier Swirly S-Blend run."
+    }
+   ],
+   "paras": [
+    "Reviewers find a driver that carries far on little effort, flipping up from a hyzer and riding for a long way, and one finds plenty of glide. The large speed 13 rim is less comfortable for some hands, and one reviewer finds the forehand shoulder a little tall. One reviewer calls it touchy, and another finds it beats in quickly, flipping and diving right more into headwinds. One reviewer finds the Halo G-Blend tacky and flippy and the Splatter S-Blend flatter and more overstable with less glide, and another finds a Halo S-Blend domier than an earlier Swirly S-Blend run."
+   ],
+   "highlights": [
+    {
+     "text": "carries far on little effort",
+     "tone": "pos"
+    },
+    {
+     "text": "large speed 13 rim is less comfortable",
+     "tone": "neg"
+    }
+   ]
+  },
+  "infinite-discs-scepter": {
+   "blocks": [
+    {
+     "label": "Why reviewers like it",
+     "text": "Reviewers call it a very overstable control driver that fights out at the end from every angle. One finds it steady in strong wind, and another likes it for skip shots, flex lines and escapes."
+    },
+    {
+     "label": "Watch out for",
+     "text": "New copies may be more overstable than some players need, and one reviewer warns that headwinds and power throwers should beware until it beats in. One reviewer names trees as the one real limit."
+    },
+    {
+     "label": "Version note",
+     "text": "One reviewer finds an older, well beat-in copy significantly straighter than the new ones and says recent runs have tended to come out a little straighter with some dome."
+    }
+   ],
+   "paras": [
+    "Reviewers call it a very overstable control driver that fights out at the end from every angle. One finds it steady in strong wind, and another likes it for skip shots, flex lines and escapes. New copies may be more overstable than some players need, and one reviewer warns that headwinds and power throwers should beware until it beats in. One reviewer names trees as the one real limit. One reviewer finds an older, well beat-in copy significantly straighter than the new ones and says recent runs have tended to come out a little straighter with some dome."
+   ],
+   "highlights": [
+    {
+     "text": "very overstable control driver",
+     "tone": "pos"
+    },
+    {
+     "text": "headwinds and power throwers should beware",
+     "tone": "neg"
+    }
+   ]
+  },
+  "mint-discs-jackalope": {
+   "blocks": [
+    {
+     "label": "Why reviewers like it",
+     "text": "Easy to throw at modest power, with a flip up to flat that suits slower arms and newer players. Reviewers also find it useful for softer throws and half-power throws."
+    },
+    {
+     "label": "Watch out for",
+     "text": "Flips fast, and more than the numbers suggest for some, especially into a headwind. One reviewer found it too unpredictable in wind, and another found heavier copies in the 170s harder to throw at speed."
+    }
+   ],
+   "paras": [
+    "Easy to throw at modest power, with a flip up to flat that suits slower arms and newer players. Reviewers also find it useful for softer throws and half-power throws. Flips fast, and more than the numbers suggest for some, especially into a headwind. One reviewer found it too unpredictable in wind, and another found heavier copies in the 170s harder to throw at speed."
+   ],
+   "highlights": [
+    {
+     "text": "suits slower arms and newer players",
+     "tone": "pos"
+    },
+    {
+     "text": "too unpredictable in wind",
+     "tone": "neg"
+    }
+   ]
+  },
+  "mint-discs-lobster": {
+   "blocks": [
+    {
+     "label": "Why reviewers like it",
+     "text": "Hyzer flips come out easy and long, and anhyzer lines hold around corners without rolling away. Reviewers also praise the grip and rim feel."
+    },
+    {
+     "label": "Watch out for",
+     "text": "One reviewer found flat and hyzer throws went short with little glide, and the turn swings with wind direction. The minus three turn may put some players off."
+    },
+    {
+     "label": "Plastic note",
+     "text": "Eternal Flex is gummy and flexy, the glow plastic a little stiffer, and Royal Soft smooth and tacky."
+    }
+   ],
+   "paras": [
+    "Hyzer flips come out easy and long, and anhyzer lines hold around corners without rolling away. Reviewers also praise the grip and rim feel. One reviewer found flat and hyzer throws went short with little glide, and the turn swings with wind direction. The minus three turn may put some players off. Eternal Flex is gummy and flexy, the glow plastic a little stiffer, and Royal Soft smooth and tacky."
+   ],
+   "highlights": [
+    {
+     "text": "anhyzer lines hold around corners",
+     "tone": "pos"
+    },
+    {
+     "text": "went short with little glide",
+     "tone": "neg"
+    }
+   ]
+  },
+  "trash-panda-canyon": {
+   "blocks": [
+    {
+     "label": "Why reviewers like it",
+     "text": "Resists torque, holds a line in headwinds and finishes with a dependable fade that does not dump hard. The gummy plastic grips well and absorbs impact, so it sits where it lands."
+    },
+    {
+     "label": "Watch out for",
+     "text": "Fairly sluggish, with less glide and distance than faster overstable mids. Several reviewers would not putt with it."
+    },
+    {
+     "label": "Plastic note",
+     "text": "The recycled plastic felt a bit too soft for some, especially on forehand."
+    }
+   ],
+   "paras": [
+    "Resists torque, holds a line in headwinds and finishes with a dependable fade that does not dump hard. The gummy plastic grips well and absorbs impact, so it sits where it lands. Fairly sluggish, with less glide and distance than faster overstable mids. Several reviewers would not putt with it. The recycled plastic felt a bit too soft for some, especially on forehand."
+   ],
+   "highlights": [
+    {
+     "text": "dependable fade",
+     "tone": "pos"
+    },
+    {
+     "text": "less glide and distance",
+     "tone": "neg"
+    }
+   ]
+  },
+  "trash-panda-dune": {
+   "blocks": [
+    {
+     "label": "Why reviewers like it",
+     "text": "Flies flat and nearly dead straight, holds the angle it is thrown on and resists torque. Reviewers call it beginner friendly and like how the deep shape comes out of the hand."
+    },
+    {
+     "label": "Watch out for",
+     "text": "Forehand throws turned or needed extra hyzer, and one reviewer found low releases lost distance. Copies differed, with one weight noticeably more understable, and one pair noted edge flashing out of the box."
+    }
+   ],
+   "paras": [
+    "Flies flat and nearly dead straight, holds the angle it is thrown on and resists torque. Reviewers call it beginner friendly and like how the deep shape comes out of the hand. Forehand throws turned or needed extra hyzer, and one reviewer found low releases lost distance. Copies differed, with one weight noticeably more understable, and one pair noted edge flashing out of the box."
+   ],
+   "highlights": [
+    {
+     "text": "nearly dead straight",
+     "tone": "pos"
+    },
+    {
+     "text": "needed extra hyzer",
+     "tone": "neg"
+    }
+   ]
+  },
+  "trash-panda-ozone": {
+   "blocks": [
+    {
+     "label": "Why reviewers like it",
+     "text": "Flips easily from hyzer to straight and turns over on flat and anhyzer lines. One reviewer likes the grip on backhand and another the controllable flip point."
+    },
+    {
+     "label": "Watch out for",
+     "text": "Flat throws can turn over and tail off a long way. One reviewer found it stayed low and dropped quickly and disliked the soft plastic, and another is unsure how stability holds with wear."
+    }
+   ],
+   "paras": [
+    "Flips easily from hyzer to straight and turns over on flat and anhyzer lines. One reviewer likes the grip on backhand and another the controllable flip point. Flat throws can turn over and tail off a long way. One reviewer found it stayed low and dropped quickly and disliked the soft plastic, and another is unsure how stability holds with wear."
+   ],
+   "highlights": [
+    {
+     "text": "Flips easily from hyzer to straight",
+     "tone": "pos"
+    },
+    {
+     "text": "stayed low and dropped quickly",
+     "tone": "neg"
+    }
+   ]
+  },
+  "trash-panda-procyon": {
+   "blocks": [
+    {
+     "label": "Why reviewers like it",
+     "text": "Stays on its line and finishes with a consistent fade that does not skip far, with forehand flight close to backhand. Reviewers also like the plastic feel and comfortable shape."
+    },
+    {
+     "label": "Watch out for",
+     "text": "Little turn shows out of the box, and one reviewer expects slower arms to get little distance. One reviewer found it gave up a little distance and glide to a Star Innova Wraith, while another found it pushed further."
+    },
+    {
+     "label": "Beat-in note",
+     "text": "Two reviewers expect more turn once it is beaten in, and one found seasoning cost some late stability."
+    }
+   ],
+   "paras": [
+    "Stays on its line and finishes with a consistent fade that does not skip far, with forehand flight close to backhand. Reviewers also like the plastic feel and comfortable shape. Little turn shows out of the box, and one reviewer expects slower arms to get little distance. One reviewer found it gave up a little distance and glide to a Star Innova Wraith, while another found it pushed further. Two reviewers expect more turn once it is beaten in, and one found seasoning cost some late stability."
+   ],
+   "highlights": [
+    {
+     "text": "Stays on its line",
+     "tone": "pos"
+    },
+    {
+     "text": "Little turn shows out of the box",
+     "tone": "neg"
+    }
+   ]
   }
  },
  "skin": {
