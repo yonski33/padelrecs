@@ -5395,42 +5395,6 @@
     "date": "2026-11-23",
     "checked": "2026-11-26"
    },
-   "paddlecompare-beginners": {
-    "url": "https://paddlecompare.com/best/beginners",
-    "outlet": "PaddleCompare",
-    "title": "Best Pickleball Paddles for Beginners, Ranked by Forgiveness",
-    "platform": "blog",
-    "topic": "beginners",
-    "date": "2026-11-18",
-    "checked": "2026-11-26"
-   },
-   "paddlecompare-control": {
-    "url": "https://paddlecompare.com/best/control",
-    "outlet": "PaddleCompare",
-    "title": "Best Pickleball Paddles for Control, Ranked From Hands-On Reviews",
-    "platform": "blog",
-    "topic": "control",
-    "date": "2026-11-18",
-    "checked": "2026-11-26"
-   },
-   "paddlecompare-power": {
-    "url": "https://paddlecompare.com/best/power",
-    "outlet": "PaddleCompare",
-    "title": "Best Pickleball Paddles for Power, Ranked From Hands-On Reviews",
-    "platform": "blog",
-    "topic": "power",
-    "date": "2026-11-18",
-    "checked": "2026-11-26"
-   },
-   "paddlecompare-spin": {
-    "url": "https://paddlecompare.com/best/spin",
-    "outlet": "PaddleCompare",
-    "title": "Best Pickleball Paddles for Spin, Ranked From Hands-On Reviews",
-    "platform": "blog",
-    "topic": "spin",
-    "date": "2026-11-18",
-    "checked": "2026-11-26"
-   },
    "bepickleballer-11six24": {
     "url": "https://bepickleballer.com/best-11six24-pickleball-paddles/",
     "outlet": "PickleBaller",
@@ -5501,69 +5465,6 @@
     "platform": "blog",
     "topic": "other: tennis players",
     "date": "2026-06-30",
-    "checked": "2026-11-26"
-   },
-   "pickletip-awards-2025": {
-    "url": "https://www.pickletip.com/2025-pickleball-paddle-awards/",
-    "outlet": "PickleTip",
-    "title": "2025 Pickleball Paddle Awards: Winners for Stability, Control, Power, & Feel",
-    "platform": "blog",
-    "topic": "overall",
-    "date": "2026-08-29",
-    "checked": "2026-11-26"
-   },
-   "pickletip-beginners": {
-    "url": "https://www.pickletip.com/best-pickleball-paddles-for-beginners/",
-    "outlet": "PickleTip",
-    "title": "Best Pickleball Paddles for Beginners: 10 Picks That Make Learning Easier",
-    "platform": "blog",
-    "topic": "beginners",
-    "date": "2026-08-19",
-    "checked": "2026-11-26"
-   },
-   "pickletip-control": {
-    "url": "https://www.pickletip.com/best-control-pickleball-paddles/",
-    "outlet": "PickleTip",
-    "title": "Best Control Pickleball Paddles for Doubles: 8 Picks for 2026",
-    "platform": "blog",
-    "topic": "control",
-    "date": "2026-09-14",
-    "checked": "2026-11-26"
-   },
-   "pickletip-foam": {
-    "url": "https://www.pickletip.com/best-foam-core-pickleball-paddle/",
-    "outlet": "PickleTip",
-    "title": "Best Foam Core Pickleball Paddles: 8 Tested Picks for 2026",
-    "platform": "blog",
-    "topic": "other: foam core",
-    "date": "2026-08-19",
-    "checked": "2026-11-26"
-   },
-   "pickletip-overall": {
-    "url": "https://www.pickletip.com/best-pickleball-paddles/",
-    "outlet": "PickleTip",
-    "title": "15 Best Pickleball Paddles of 2026: Tested and Ranked",
-    "platform": "blog",
-    "topic": "overall",
-    "date": "2026-11-21",
-    "checked": "2026-11-26"
-   },
-   "pickletip-spin": {
-    "url": "https://www.pickletip.com/best-spin-pickleball-paddles/",
-    "outlet": "PickleTip",
-    "title": "12 Best Pickleball Paddles for Spin in 2026: Tested for Usable Spin",
-    "platform": "blog",
-    "topic": "spin",
-    "date": "2026-08-19",
-    "checked": "2026-11-26"
-   },
-   "pickletip-tennis-players": {
-    "url": "https://www.pickletip.com/best-pickleball-paddles-for-tennis-players/",
-    "outlet": "PickleTip",
-    "title": "Best Pickleball Paddles for Tennis Players: 7 Tested Picks for 2026",
-    "platform": "blog",
-    "topic": "other: tennis players",
-    "date": "2026-08-19",
     "checked": "2026-11-26"
    },
    "pickleball-blast-awards-2025": {
@@ -7673,12 +7574,6 @@
      "reason": "Serves as an all-around benchmark whose dampened foam core absorbs pace on blocks and resets despite an aggressive frame."
     },
     {
-     "list": "pickletip-tennis-players",
-     "position": 5,
-     "label": "Best drive-first option",
-     "reason": "Forgiving face stays playable when contact drifts, though swing weight can tire the hands."
-    },
-    {
      "list": "the-dink-foam-power",
      "position": 5,
      "label": null,
@@ -7761,12 +7656,6 @@
      "position": 14,
      "label": "Best feeling paddle",
      "reason": "Offers the crispest, deepest hollow feedback with a massive sweet spot, so contact feels good across the whole face."
-    },
-    {
-     "list": "pickletip-overall",
-     "position": 15,
-     "label": null,
-     "reason": "Forgiving power and depth on late or off-center contact, though the feel is head-forward and loud."
     },
     {
      "list": "yt-bk-pickleball-awards-2025",
@@ -8105,12 +7994,6 @@
      "reason": "Serves as the lone polypropylene pick, giving reliable entry-level power in an elongated shape."
     },
     {
-     "list": "paddlecompare-power",
-     "position": 10,
-     "label": "Tied 3rd for power",
-     "reason": "Delivers big put-away power, crisp pop and solid spin, trading hand speed and off-center forgiveness on defense."
-    },
-    {
      "list": "sts-pickleball-under-100",
      "position": 10,
      "label": "Best budget pick",
@@ -8171,28 +8054,10 @@
      "reason": "Delivers a clean hollow feel with good spin, decent dwell and really good pop, though it swings a little heavy."
     },
     {
-     "list": "paddlecompare-spin",
-     "position": 18,
-     "label": "Tied 4th for spin",
-     "reason": "Big put-away power, crisp pop and solid spin, trading hand speed and off-center forgiveness on defense."
-    },
-    {
      "list": "yt-pickleball-studio-top-recommendations-2026",
      "position": 23,
      "label": "Honeycomb power pick",
      "reason": "Serves as the honeycomb Gen 3 power recommendation for players who prefer that feel over full foam."
-    },
-    {
-     "list": "paddlecompare-beginners",
-     "position": 32,
-     "label": "Joint 5th for forgiveness",
-     "reason": "Brings big put-away power and crisp pop with solid spin, trading off hand speed and defensive forgiveness."
-    },
-    {
-     "list": "paddlecompare-control",
-     "position": 34,
-     "label": "Tied 6th for control",
-     "reason": "Big put-away power, crisp pop and solid spin, trading hand speed and off-center forgiveness on defense."
     }
    ],
    "honolulu-j6cr": [
@@ -8455,12 +8320,6 @@
      "reason": "Takes light perimeter tape along the sides for extra stability and keeps its grit face durable over time."
     },
     {
-     "list": "pickletip-beginners",
-     "position": 6,
-     "label": "Best for pace-hungry beginners",
-     "reason": "Adds offense for players who struggle to create depth, but demands timing discipline."
-    },
-    {
      "list": "yt-john-kew-leaderboard-feb-2026",
      "position": 7,
      "label": null,
@@ -8492,18 +8351,6 @@
     }
    ],
    "11six24-ultre-power-2": [
-    {
-     "list": "pickletip-overall",
-     "position": 1,
-     "label": null,
-     "reason": "Connected offense, fast counters and reliable resets make it a strong all-round pick for advanced doubles."
-    },
-    {
-     "list": "pickletip-tennis-players",
-     "position": 1,
-     "label": "Best skilled tennis pick",
-     "reason": "Keeps familiar elongated reach while adding quick hands, controlled power and reliable resets."
-    },
     {
      "list": "pickleball-effect-overall",
      "position": 1,
@@ -8765,30 +8612,6 @@
      "position": 10,
      "label": "Top 5 pick",
      "reason": "Offers a balanced feel, large sweet spot and smooth impact in the hybrid shape of the Aura Pro."
-    },
-    {
-     "list": "paddlecompare-power",
-     "position": 15,
-     "label": "Tied 4th for power",
-     "reason": "Offers solid spin and attacking pace with forgiving, soft-game feel, but slower hand speed than the elongated version."
-    },
-    {
-     "list": "paddlecompare-spin",
-     "position": 16,
-     "label": "Tied 4th for spin",
-     "reason": "Offers solid spin and attacking pace with forgiving soft-game feel, but slower hand speed than the elongated version."
-    },
-    {
-     "list": "paddlecompare-control",
-     "position": 29,
-     "label": "Tied 5th for control",
-     "reason": "Offers solid spin and attacking pace with similar forgiveness to the elongated version, but slower hand speed."
-    },
-    {
-     "list": "paddlecompare-beginners",
-     "position": 30,
-     "label": "Joint 5th for forgiveness",
-     "reason": "Offers solid spin and attacking pace with forgiveness similar to the elongated version, but slower hand speed."
     }
    ],
    "honolulu-j2cr": [
@@ -8857,12 +8680,6 @@
      "position": 2,
      "label": "Runner-up for tennis players",
      "reason": "Nearly matches the Honolulu J6CR for power and spin while offering more control for defense, resets and dinks."
-    },
-    {
-     "list": "pickletip-foam",
-     "position": 2,
-     "label": "Best for fast hands",
-     "reason": "Quick hybrid handling with useful pop and a more direct next ball."
     },
     {
      "list": "pickleball-union-intermediate",
@@ -8995,12 +8812,6 @@
      "position": 7,
      "label": "Most pop",
      "reason": "Delivers lots of pop and spin for players wanting pace, but approved only for UPA-A events."
-    },
-    {
-     "list": "pickletip-overall",
-     "position": 8,
-     "label": null,
-     "reason": "Stable and forgiving frame that keeps rushed and off-center contact playable."
     },
     {
      "list": "yt-sweet-spot-pickleball-durable-grit-may-2026",
@@ -9237,12 +9048,6 @@
    ],
    "flik-f3": [
     {
-     "list": "paddlecompare-beginners",
-     "position": 1,
-     "label": "Joint 1st for forgiveness",
-     "reason": "Rescues off-center contact with top-tier forgiveness for newer players, though its muted feel makes soft-shot height harder to judge."
-    },
-    {
      "list": "yt-not-dead-yet-pickleball-wicked-pissah-2026",
      "position": 2,
      "label": "Approved pick",
@@ -9259,18 +9064,6 @@
      "position": 4,
      "label": "Honorable mention",
      "reason": "Feels buttery smooth and easy to control, leaning all-court, a foam paddle for players wanting soft touch."
-    },
-    {
-     "list": "paddlecompare-beginners",
-     "position": 5,
-     "label": "Joint 2nd for forgiveness",
-     "reason": "Adds reach to a forgiving, muted-feeling face, though with less finishing power."
-    },
-    {
-     "list": "pickletip-beginners",
-     "position": 7,
-     "label": "Best for calmer response",
-     "reason": "Predictable, calm response suits beginners learning drops, resets and placement."
     },
     {
      "list": "yt-all-drive-no-drop-tier-list-fall-2026",
@@ -9303,46 +9096,10 @@
      "reason": "Performs well with a very soft, dense, muted feel, but short handle, wide taper and high balance hold it back."
     },
     {
-     "list": "paddlecompare-control",
-     "position": 13,
-     "label": "Tied 4th for control",
-     "reason": "Adds reach and muted, reassuring resets with forgiving off-center contact, but less finishing power."
-    },
-    {
      "list": "yt-all-drive-no-drop-tier-list-mid-2026",
      "position": 18,
      "label": "B tier",
      "reason": "Softer all-court paddle in all three shapes that controls well, but lacks enhanced grit and top-end punch."
-    },
-    {
-     "list": "paddlecompare-power",
-     "position": 22,
-     "label": "Tied 6th for power",
-     "reason": "Adds reach and forgiving off-center contact with muted resets, but less finishing power."
-    },
-    {
-     "list": "paddlecompare-spin",
-     "position": 25,
-     "label": "Tied for spin access",
-     "reason": "Adds reach and forgiving off-center contact with muted resets, but less finishing power."
-    },
-    {
-     "list": "paddlecompare-control",
-     "position": 26,
-     "label": "Tied 5th for control",
-     "reason": "Rescues imperfect contact with top-level forgiveness, though its muted feel makes soft-shot height harder to judge."
-    },
-    {
-     "list": "paddlecompare-spin",
-     "position": 30,
-     "label": "Tied for spin access",
-     "reason": "Rescues imperfect contact with top-level forgiveness, though its muted feel limits spin and soft-shot judgment."
-    },
-    {
-     "list": "paddlecompare-power",
-     "position": 32,
-     "label": "Tied 7th for power",
-     "reason": "Rescues imperfect contact with top-level forgiveness, though its muted feel limits finishing power."
     }
    ],
    "selkirk-labs-project-boomstik-widebody": [
@@ -9351,18 +9108,6 @@
      "position": 1,
      "label": "Best all-around",
      "reason": "Gives a very large, stable sweet spot with a firm, loud response in a widebody shape."
-    },
-    {
-     "list": "paddlecompare-beginners",
-     "position": 2,
-     "label": "Joint 1st for forgiveness",
-     "reason": "Pairs strong power with easy handling and high forgiveness, but needs touch to tame its pop on soft shots."
-    },
-    {
-     "list": "paddlecompare-power",
-     "position": 2,
-     "label": "Tied 1st for power",
-     "reason": "Matches top-tier power with high forgiveness and easier handling, needing touch on soft shots."
     },
     {
      "list": "pickleball-union-forgiving",
@@ -9389,37 +9134,13 @@
      "reason": "Chosen as best widebody on the strength of the Boomstik design, with only limited time on the widebody itself."
     },
     {
-     "list": "pickletip-tennis-players",
-     "position": 6,
-     "label": "Best maximum-power option",
-     "reason": "Wide stability window and strong pace suit advanced players, though loud contact and size limit its audience."
-    },
-    {
      "list": "yt-west-side-pickleball-widebody-2026",
      "position": 6,
      "label": null,
      "reason": "Delivers the biggest sweet spot and hard counters at the net, but excess pop costs touch near the kitchen."
-    },
-    {
-     "list": "paddlecompare-spin",
-     "position": 9,
-     "label": "Tied 3rd for spin",
-     "reason": "Good spin with top-tier power and high forgiveness, needing touch to tame pop on soft shots."
-    },
-    {
-     "list": "paddlecompare-control",
-     "position": 36,
-     "label": "Tied 6th for control",
-     "reason": "Pairs heavy power with high forgiveness and easier handling, needing touch to tame its pop on soft shots."
     }
    ],
    "joola-kosmos-pro-v": [
-    {
-     "list": "paddlecompare-control",
-     "position": 2,
-     "label": "Tied 2nd for control",
-     "reason": "Calm, forgiving 14mm hybrid that eases resets and finesse shots, giving up some put-away pop."
-    },
     {
      "list": "yt-christy-price-gen3-playtester-picks-2026",
      "position": 4,
@@ -9439,18 +9160,6 @@
      "reason": "Stands out among the Joola Pro V shapes for predictable control and deep serves."
     },
     {
-     "list": "paddlecompare-beginners",
-     "position": 6,
-     "label": "Joint 2nd for forgiveness",
-     "reason": "Feels calm and easy to control on resets, giving up some put-away pop."
-    },
-    {
-     "list": "paddlecompare-spin",
-     "position": 6,
-     "label": "Tied 3rd for spin",
-     "reason": "Calm, forgiving 14mm hybrid with good spin access that gives up some max put-away pop."
-    },
-    {
      "list": "yt-pickleball-rx-gen3-2026",
      "position": 8,
      "label": "#3 Gen 3 paddle",
@@ -9461,27 +9170,9 @@
      "position": 10,
      "label": "Favorite Gen 3",
      "reason": "Hybrid shape with a well balanced swing and twist weight and dual USAP and UPA-A certification."
-    },
-    {
-     "list": "paddlecompare-power",
-     "position": 24,
-     "label": "Tied 6th for power",
-     "reason": "Plays calmer and more forgiving as a 14mm hybrid, trading some max put-away pop for control."
     }
    ],
    "luzz-cannon-xpp-m1": [
-    {
-     "list": "paddlecompare-spin",
-     "position": 1,
-     "label": "Tied 1st for spin",
-     "reason": "Offers maximum topspin angles alongside lively power and controlled resets."
-    },
-    {
-     "list": "paddlecompare-control",
-     "position": 3,
-     "label": "Tied 2nd for control",
-     "reason": "Pairs big topspin angles with lively power while keeping resets controlled for players who attack."
-    },
     {
      "list": "yt-sweet-spot-pickleball-nov-2026",
      "position": 4,
@@ -9489,22 +9180,10 @@
      "reason": "Gives a spinny, grippy durable face for flicks and rolls with mid-level pop, though the 120-plus swing weight feels heavy."
     },
     {
-     "list": "paddlecompare-power",
-     "position": 5,
-     "label": "Tied 2nd for power",
-     "reason": "Combines lively power with big topspin angles while keeping resets controlled."
-    },
-    {
      "list": "the-dink-durable-spin",
      "position": 5,
      "label": null,
      "reason": "Holds spin through wear, with test data showing it rising after 100 impacts, on a soft full-foam core."
-    },
-    {
-     "list": "paddlecompare-beginners",
-     "position": 7,
-     "label": "Joint 2nd for forgiveness",
-     "reason": "Combines big topspin angles with lively power and controlled resets, without the ball running away."
     },
     {
      "list": "yt-west-side-pickleball-spin-2026",
@@ -9539,30 +9218,6 @@
      "reason": "Offers a predictable polymer-core response that makes touch shots easy to trust, with less firepower than foam paddles."
     },
     {
-     "list": "paddlecompare-beginners",
-     "position": 8,
-     "label": "Joint 2nd for forgiveness",
-     "reason": "Handles quickly with steady control and useful pace, though its lively pop needs care on dinks and blocks."
-    },
-    {
-     "list": "paddlecompare-control",
-     "position": 9,
-     "label": "Tied 3rd for control",
-     "reason": "Combines quick hands with strong spin and solid resets, though a demanding sweet spot punishes mishits."
-    },
-    {
-     "list": "paddlecompare-control",
-     "position": 10,
-     "label": "Tied 3rd for control",
-     "reason": "Blends quick handling and forgiving contact with steady control, though lively pop needs care on dinks and blocks."
-    },
-    {
-     "list": "paddlecompare-spin",
-     "position": 11,
-     "label": "Tied 3rd for spin",
-     "reason": "Strong spin and quick hands with solid resets, though a demanding sweet spot punishes mishits."
-    },
-    {
      "list": "pickleball-effect-overall",
      "position": 11,
      "label": "Best for control",
@@ -9573,30 +9228,6 @@
      "position": 13,
      "label": "Best all-court",
      "reason": "Sits at the top end of all-court paddles, a power-leaning option, though a heavy setup slowed hand battles."
-    },
-    {
-     "list": "paddlecompare-spin",
-     "position": 23,
-     "label": "Tied 4th for spin",
-     "reason": "Quick handling and forgiving contact with steady control and useful spin, though lively pop needs care on dinks."
-    },
-    {
-     "list": "paddlecompare-power",
-     "position": 28,
-     "label": "Tied 6th for power",
-     "reason": "Quick hands and strong spin with solid control, though a demanding sweet spot punishes mishits."
-    },
-    {
-     "list": "paddlecompare-power",
-     "position": 29,
-     "label": "Tied 6th for power",
-     "reason": "Quick handling and forgiving contact with useful pace, though lively pop needs care on dinks and blocks."
-    },
-    {
-     "list": "paddlecompare-beginners",
-     "position": 37,
-     "label": "Joint 6th for forgiveness",
-     "reason": "Gives quick hands, strong spin and solid resets, but a demanding sweet spot punishes mishits."
     }
    ],
    "aireo-cyclone-elongated": [
@@ -9643,34 +9274,10 @@
      "reason": "Delivers very stiff, responsive pop and high-tier power, finishing just behind the winning power paddle."
     },
     {
-     "list": "paddlecompare-beginners",
-     "position": 9,
-     "label": "Joint 3rd for forgiveness",
-     "reason": "Plays light and fast with strong attacking pace and well-rounded resets, spin and forgiveness."
-    },
-    {
-     "list": "paddlecompare-control",
-     "position": 11,
-     "label": "Tied 4th for control",
-     "reason": "Feels light and fast with strong attacking pace and well-rounded resets, spin and forgiveness."
-    },
-    {
-     "list": "paddlecompare-spin",
-     "position": 12,
-     "label": "Tied 4th for spin",
-     "reason": "Feels light and fast with strong attacking pace and well-rounded spin, resets and forgiveness."
-    },
-    {
      "list": "yt-christy-price-top-5-by-shape-2026",
      "position": 12,
      "label": "#5 elongated",
      "reason": "Light, fast elongated power paddle whose Nano surface holds the ball well, still a top-five playtester favorite."
-    },
-    {
-     "list": "paddlecompare-power",
-     "position": 13,
-     "label": "Tied 4th for power",
-     "reason": "Feels light and fast with strong attacking pace and well-rounded resets, spin and forgiveness."
     }
    ],
    "luzz-inferno2-m1": [
@@ -9685,30 +9292,6 @@
      "position": 3,
      "label": "Most elongated power",
      "reason": "Gives the highest power of any elongated on the list for heavy drives, with very little control."
-    },
-    {
-     "list": "paddlecompare-control",
-     "position": 6,
-     "label": "Tied 3rd for control",
-     "reason": "Offers heavy power with quick hands and steadier resets for aggressive players."
-    },
-    {
-     "list": "paddlecompare-power",
-     "position": 9,
-     "label": "Tied 3rd for power",
-     "reason": "Brings heavy power in a quicker, steadier package that stays easier to control on resets."
-    },
-    {
-     "list": "paddlecompare-beginners",
-     "position": 11,
-     "label": "Joint 3rd for forgiveness",
-     "reason": "Keeps heavy power while feeling quicker in hand and easier to control on resets."
-    },
-    {
-     "list": "paddlecompare-spin",
-     "position": 17,
-     "label": "Tied 4th for spin",
-     "reason": "Heavy power and good spin in a quicker, steadier package that is easier to control on resets."
     }
    ],
    "pakle-fuse-hybrid-w": [
@@ -9719,48 +9302,18 @@
      "reason": "Hits with the most power and spin of the group in a wide hybrid shape, with durable grit now fixed."
     },
     {
-     "list": "paddlecompare-control",
-     "position": 4,
-     "label": "Tied 2nd for control",
-     "reason": "Suits control players wanting quick kitchen reactions, reassuring resets and varied placement over raw put-away speed."
-    },
-    {
      "list": "yt-christy-price-top-5-by-shape-2026",
      "position": 6,
      "label": "Hybrid honorable mention",
      "reason": "Ultra-light, crisp and very hollow with heavy spin for advanced players who add weight; grit still being refined."
-    },
-    {
-     "list": "paddlecompare-beginners",
-     "position": 12,
-     "label": "Joint 3rd for forgiveness",
-     "reason": "Favors quick kitchen reactions, reassuring resets and varied placement over raw speed in a control-oriented hybrid."
-    },
-    {
-     "list": "paddlecompare-power",
-     "position": 34,
-     "label": "Tied 7th for power",
-     "reason": "Control-minded paddle with quick kitchen reactions and varied placement, relying on angles rather than raw put-away speed."
     }
    ],
    "vatic-pro-prism-flash": [
-    {
-     "list": "pickletip-control",
-     "position": 1,
-     "label": "Best overall control",
-     "reason": "Light contact gets little surprise lift, keeping dinks, drops and resets low."
-    },
     {
      "list": "pickleball-effect-control",
      "position": 2,
      "label": "Best pure control",
      "reason": "Gives the most control-first feel on the list with very low pop, though its age and surface wear spin sooner."
-    },
-    {
-     "list": "pickletip-beginners",
-     "position": 3,
-     "label": "Best budget pick",
-     "reason": "Controlled and consistent for learning drops and placement, though the sweet spot is slightly uneven."
     },
     {
      "list": "bepickleballer-intermediate",
@@ -9793,60 +9346,10 @@
      "reason": "Plays as the softest, calmest paddle on the list, giving touch-focused players big margin on drops and resets."
     },
     {
-     "list": "paddlecompare-beginners",
-     "position": 16,
-     "label": "Joint 3rd for forgiveness",
-     "reason": "Consistent hybrid all-rounder that excels on blocks, resets and placement, needing more effort to create put-away pace."
-    },
-    {
-     "list": "paddlecompare-control",
-     "position": 17,
-     "label": "Tied 4th for control",
-     "reason": "Consistent, forgiving hybrid all-rounder that shines on blocks, resets and placement but needs effort to create pace."
-    },
-    {
      "list": "pickleball-effect-overall",
      "position": 18,
      "label": "Best budget pick",
      "reason": "Delivers an ultra-calm, plush response with generous margin in the soft game, aimed at control-first players."
-    },
-    {
-     "list": "paddlecompare-spin",
-     "position": 21,
-     "label": "Tied 4th for spin",
-     "reason": "Consistent, forgiving hybrid all-rounder with good spin that needs more player effort to create pace."
-    },
-    {
-     "list": "paddlecompare-power",
-     "position": 35,
-     "label": "Tied 7th for power",
-     "reason": "Consistent, forgiving hybrid all-rounder that needs more player effort to create put-away pace."
-    }
-   ],
-   "rpm-jade-elongated": [
-    {
-     "list": "paddlecompare-spin",
-     "position": 2,
-     "label": "Tied 1st for spin",
-     "reason": "Heavy topspin on drives and serves with fast hands, strong power and reliable resets."
-    },
-    {
-     "list": "paddlecompare-control",
-     "position": 8,
-     "label": "Tied 3rd for control",
-     "reason": "Delivers heavy topspin with fast hands and dependable resets, suiting spin-first attackers who still want control."
-    },
-    {
-     "list": "paddlecompare-power",
-     "position": 11,
-     "label": "Tied 3rd for power",
-     "reason": "Pairs heavy topspin on drives and serves with fast hands, strong power and reliable resets."
-    },
-    {
-     "list": "paddlecompare-beginners",
-     "position": 18,
-     "label": "Joint 3rd for forgiveness",
-     "reason": "Delivers heavy topspin on drives and serves with fast hands, strong power and reliable resets."
     }
    ],
    "aireo-cyclone-hybrid": [
@@ -9855,65 +9358,9 @@
      "position": 7,
      "label": "Best kitchen line paddle",
      "reason": "Pairs stiff, crisp response and quick hands with huge pop, making it a weapon in kitchen hand battles."
-    },
-    {
-     "list": "paddlecompare-spin",
-     "position": 13,
-     "label": "Tied 4th for spin",
-     "reason": "Offers useful attacking power and predictable direction with manageable handling, though soft kitchen touches need adjusting."
-    },
-    {
-     "list": "paddlecompare-power",
-     "position": 14,
-     "label": "Tied 4th for power",
-     "reason": "Offers useful attacking power and predictable direction with manageable handling, though soft kitchen touches need adjusting."
-    },
-    {
-     "list": "paddlecompare-beginners",
-     "position": 20,
-     "label": "Joint 4th for forgiveness",
-     "reason": "Offers useful attacking power and predictable direction, though soft kitchen touches take adjustment."
-    },
-    {
-     "list": "paddlecompare-control",
-     "position": 32,
-     "label": "Tied 6th for control",
-     "reason": "Offers useful attacking power and predictable direction with manageable handling, though soft kitchen touches need adjusting."
-    }
-   ],
-   "joola-magnus-pro-iv": [
-    {
-     "list": "paddlecompare-power",
-     "position": 4,
-     "label": "Tied 2nd for power",
-     "reason": "High-pace attacking paddle with quick net handling and strong spin, though soft touches can pop up."
-    },
-    {
-     "list": "paddlecompare-spin",
-     "position": 8,
-     "label": "Tied 3rd for spin",
-     "reason": "High-pace attacking paddle with strong spin and quick net handling, though soft touches can pop up."
-    },
-    {
-     "list": "paddlecompare-beginners",
-     "position": 23,
-     "label": "Joint 4th for forgiveness",
-     "reason": "High-pace attacking paddle with a compact handle, quick net handling and strong spin, but soft touches can pop up."
-    },
-    {
-     "list": "paddlecompare-control",
-     "position": 30,
-     "label": "Tied 5th for control",
-     "reason": "High-pace attacking paddle with quick net handling and strong spin, though soft touches can pop up."
     }
    ],
    "selkirk-labs-project-boomstik-elongated": [
-    {
-     "list": "paddlecompare-power",
-     "position": 1,
-     "label": "Tied 1st for power",
-     "reason": "Top power pick with strong spin and extra reach, but heavier handling and less forgiveness than the widebody."
-    },
     {
      "list": "sts-pickleball-advanced",
      "position": 1,
@@ -9955,12 +9402,6 @@
      "position": 3,
      "label": "Tied #3",
      "reason": "Hits nearly as hard as the Selkirk LABS Project Boomstik, with quicker hands and more spin, for 4.0 players."
-    },
-    {
-     "list": "paddlecompare-spin",
-     "position": 4,
-     "label": "Tied 2nd for spin",
-     "reason": "Strong spin with top-level power and extra reach, but heavier handling and less forgiveness than the widebody."
     },
     {
      "list": "sts-pickleball-power",
@@ -10033,18 +9474,6 @@
      "position": 19,
      "label": "Best paddle of 2025",
      "reason": "Leading power paddle of 2025, with a huge sweet spot, strong power, spin and handle, backed by strong quality control."
-    },
-    {
-     "list": "paddlecompare-beginners",
-     "position": 24,
-     "label": "Joint 4th for forgiveness",
-     "reason": "Delivers big power and spin plus extra reach, but handles heavier and forgives less than the widebody version."
-    },
-    {
-     "list": "paddlecompare-control",
-     "position": 35,
-     "label": "Tied 6th for control",
-     "reason": "Heavy power and strong spin with extra reach, but weightier handling and less forgiveness than the widebody."
     }
    ],
    "luzz-glider-2026-hybrid": [
@@ -10109,28 +9538,10 @@
      "reason": "Sneaks into the lower power category once weighted up, in the hybrid shape."
     },
     {
-     "list": "paddlecompare-control",
-     "position": 14,
-     "label": "Tied 4th for control",
-     "reason": "Gives steady net control and forgiving contact with quick hand battles, at the cost of put-away power."
-    },
-    {
      "list": "pickleball-effect-overall",
      "position": 17,
      "label": "Best budget pick",
      "reason": "Pairs a fast swing and high spin with balanced offense, chosen as the all-court pick for lighter-hitting hybrid fans."
-    },
-    {
-     "list": "paddlecompare-spin",
-     "position": 31,
-     "label": "Tied for spin access",
-     "reason": "Steady net control and forgiving contact with quick hand battles, at the cost of put-away power."
-    },
-    {
-     "list": "paddlecompare-power",
-     "position": 33,
-     "label": "Tied 7th for power",
-     "reason": "Gives steady net control and forgiving contact, at the cost of put-away power."
     }
    ],
    "pakle-fuse-elongated": [
@@ -10139,24 +9550,6 @@
      "position": 1,
      "label": "Best budget pick",
      "reason": "Durable grit surface softens the poppy original, adding dwell and pocketing, with a loud hollow thonk and sticky face."
-    },
-    {
-     "list": "paddlecompare-power",
-     "position": 16,
-     "label": "Tied 4th for power",
-     "reason": "Strong pace, solid spin and a generous hitting zone, with a slightly stiff, hollow contact feel."
-    },
-    {
-     "list": "paddlecompare-spin",
-     "position": 19,
-     "label": "Tied 4th for spin",
-     "reason": "Solid spin with strong pace and a generous hitting zone, with a slightly stiff, hollow contact feel."
-    },
-    {
-     "list": "paddlecompare-control",
-     "position": 31,
-     "label": "Tied 5th for control",
-     "reason": "Strong pace, solid spin and a generous hitting zone, with a slightly stiff, hollow contact feel."
     }
    ],
    "11six24-vapor-power-2": [
@@ -10183,12 +9576,6 @@
      "position": 1,
      "label": null,
      "reason": "Earns its place mainly on long-lasting HexGrit spin, with solid power and sweet spot but a lukewarm feel."
-    },
-    {
-     "list": "pickletip-spin",
-     "position": 2,
-     "label": "Best for fast hands",
-     "reason": "Quick acceleration and durable HexGrit bite come close to the top spin pick."
     },
     {
      "list": "yt-sts-pickleball-spin-2026",
@@ -10269,12 +9656,6 @@
      "reason": "Light swing and strong spin for fast hands, though control is low."
     },
     {
-     "list": "pickletip-foam",
-     "position": 8,
-     "label": "Best aggressive foam hybrid",
-     "reason": "Gives fast hands and bite for early pressure, but punishes open blocks."
-    },
-    {
      "list": "yt-west-side-pickleball-gen4-tier-list-1-2026",
      "position": 8,
      "label": "A tier",
@@ -10293,12 +9674,6 @@
      "reason": "Combines easy handling, a huge sweet spot and strong spin from a rough surface that resists wear; UPA-A only."
     },
     {
-     "list": "pickletip-overall",
-     "position": 14,
-     "label": null,
-     "reason": "Fast, connected hybrid pop with good timing, but less usable face above center than the 11SIX24 Ultré Power 2."
-    },
-    {
      "list": "yt-west-side-pickleball-gen4-tier-list-2-2026",
      "position": 19,
      "label": "A tier",
@@ -10306,12 +9681,6 @@
     }
    ],
    "11six24-vapor-jelly-bean": [
-    {
-     "list": "pickletip-beginners",
-     "position": 1,
-     "label": "Best first paddle",
-     "reason": "Balanced hybrid that supports the full doubles game while a new player finds their style."
-    },
     {
      "list": "pickleball-effect-beginners",
      "position": 1,
@@ -10333,12 +9702,6 @@
      "reason": "Familiar elongated Jelly Bean mixing predictable touch, reliable slice and topspin grip, and balanced singles and doubles pace."
     },
     {
-     "list": "pickletip-awards-2025",
-     "position": 5,
-     "label": "Best control of 2025",
-     "reason": "Absorbs pace with a plush feel, suiting players who want a soft, composed response."
-    },
-    {
      "list": "yt-pickleball-studio-awards-2025",
      "position": 6,
      "label": "Best elongated control paddle",
@@ -10351,12 +9714,6 @@
      "position": 1,
      "label": "Best for beginners",
      "reason": "Keeps the ball in play with very high control and a large sweet spot, ideal for beginners."
-    },
-    {
-     "list": "pickletip-beginners",
-     "position": 2,
-     "label": "Most forgiving for beginners",
-     "reason": "Large usable sweet spot protects contact that drifts toward the outside of the face."
     },
     {
      "list": "pickleheads-beginners",
@@ -10467,12 +9824,6 @@
      "position": 3,
      "label": "Best all-court paddle",
      "reason": "Multi-density pivoting foam core gives a forgiving touch and solid power with a great hybrid sweet spot."
-    },
-    {
-     "list": "pickletip-foam",
-     "position": 4,
-     "label": "Best plush-control foam paddle",
-     "reason": "Offers controlled depth and a steady response in tight exchanges."
     },
     {
      "list": "pickleball-union-beginners",
@@ -10599,12 +9950,6 @@
    ],
    "honolulu-j2nf": [
     {
-     "list": "pickletip-awards-2025",
-     "position": 1,
-     "label": "Best overall of 2025",
-     "reason": "Cuts the worst outcomes with corner stability, a strong low sweet spot and predictable resets."
-    },
-    {
      "list": "pickleheads-carbon-fiber",
      "position": 1,
      "label": "Best overall",
@@ -10659,12 +10004,6 @@
      "reason": "Balances stability and sweet spot size for wide-range ease of use, but lacks crisp immediate pop."
     },
     {
-     "list": "pickletip-foam",
-     "position": 3,
-     "label": "Most forgiving foam paddle",
-     "reason": "Gives calmer resets and stable defensive contact across a broad face."
-    },
-    {
      "list": "pickleheads-beginners",
      "position": 3,
      "label": null,
@@ -10683,22 +10022,10 @@
      "reason": "Gives power with a safer feel and confident resets, a good choice for anyone wary of too much pop."
     },
     {
-     "list": "pickletip-control",
-     "position": 4,
-     "label": "Best counter-control paddle",
-     "reason": "Keeps touch predictable while still allowing a usable counter on fast balls."
-    },
-    {
      "list": "yt-pickleballer-overall-2025",
      "position": 4,
      "label": "#4 overall",
      "reason": "Mixes forgiving control with noticeably more drive and serve power than older control paddles, plus strong slice and knuckle spin."
-    },
-    {
-     "list": "pickletip-beginners",
-     "position": 5,
-     "label": "Best for learning spin",
-     "reason": "Strong spin potential with consistent depth and a forgiving sweet spot for learning shaped shots."
     },
     {
      "list": "yt-sts-pickleball-spin-2026",
@@ -10781,12 +10108,6 @@
    ],
    "crbn1-trufoam-waves": [
     {
-     "list": "pickletip-awards-2025",
-     "position": 9,
-     "label": "Best for singles",
-     "reason": "Dwell time and heavy ball behavior suit baseline drives and shaping the ball in singles."
-    },
-    {
      "list": "yt-west-side-pickleball-awards-2025",
      "position": 11,
      "label": "Best singles paddle",
@@ -10805,12 +10126,6 @@
      "position": 2,
      "label": "Personal top 5 pick",
      "reason": "Gives an easy upper all-court hybrid with durable grit and damped yet connected feedback that works across skill levels."
-    },
-    {
-     "list": "pickletip-beginners",
-     "position": 4,
-     "label": "Best for fast improvers",
-     "reason": "Adds extra offense for athletic or racket-sport players who will progress quickly, without feeling chaotic."
     },
     {
      "list": "yt-matts-pickleball-best-2026",
@@ -10839,12 +10154,6 @@
    ],
    "11six24-pegasus-jelly-bean-2": [
     {
-     "list": "pickletip-control",
-     "position": 3,
-     "label": "Best control widebody",
-     "reason": "Steady widebody face with a low, linear response for drops and resets."
-    },
-    {
      "list": "sts-pickleball-beginners",
      "position": 3,
      "label": "Control with most spin",
@@ -10867,41 +10176,17 @@
      "position": 10,
      "label": "Most forgiving spin",
      "reason": "Gives the largest sweet spot and strong control with big spin, though power is low."
-    },
-    {
-     "list": "pickletip-overall",
-     "position": 13,
-     "label": null,
-     "reason": "Stable, easy-swinging widebody that is forgiving on resets but gives limited automatic pace."
     }
    ],
    "11six24-hurache-x-jelly-bean-2": [
-    {
-     "list": "pickletip-overall",
-     "position": 7,
-     "label": null,
-     "reason": "Combines soft control, excellent spin and dependable resets with enough offense on full swings."
-    },
     {
      "list": "sts-pickleball-spin",
      "position": 7,
      "label": "Soft spin with reach",
      "reason": "Pairs soft spin with extra reach and a lighter swing, though its sweet spot is the smallest listed."
-    },
-    {
-     "list": "pickletip-control",
-     "position": 8,
-     "label": "Best elongated defensive control",
-     "reason": "Soft foam absorbs pace while the elongated shape adds reach for defensive doubles play."
     }
    ],
    "rpm-q2-elongated": [
-    {
-     "list": "pickletip-overall",
-     "position": 2,
-     "label": null,
-     "reason": "Adds reach, leverage and pace, but demands better launch control on short strokes."
-    },
     {
      "list": "the-dink-foam-power",
      "position": 2,
@@ -10971,12 +10256,6 @@
      "reason": "Elastic foam pockets the ball slightly longer, giving smoother drops and better shot shaping with plenty of power."
     },
     {
-     "list": "pickletip-spin",
-     "position": 5,
-     "label": "Best budget pick",
-     "reason": "Delivers high-level spin and off-center forgiveness in a foam build."
-    },
-    {
      "list": "sts-pickleball-under-100",
      "position": 5,
      "label": "Long handle, big power",
@@ -11037,21 +10316,9 @@
      "position": 2,
      "label": "Spin plus power",
      "reason": "Pairs top-tier spin with above-average foam-core power and dependable consistency in an elongated shape."
-    },
-    {
-     "list": "pickletip-spin",
-     "position": 7,
-     "label": "Best foam-assisted spin",
-     "reason": "Pairs strong face grip with foam compression, keeping fuller swings controllable."
     }
    ],
    "six-zero-double-black-diamond-control-15mm-elongated": [
-    {
-     "list": "pickletip-tennis-players",
-     "position": 4,
-     "label": "Best heavier elongated swing",
-     "reason": "Six-inch handle and a heavier, connected swing give racket-like leverage."
-    },
     {
      "list": "pickleball-union-advanced",
      "position": 4,
