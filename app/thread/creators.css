@@ -872,7 +872,7 @@ body:has(.thc) .thc a.thc-g-row.v13-g { grid-template-columns: minmax(150px, 220
 /* v13 top (handoff 7): no outlined panel; photo, meta, name, +/- points, vote bar; the white price box on the right. */
 .v13-hero { max-width: 1120px; width: 100%; box-sizing: border-box; margin: 0 auto; padding: 26px 24px 0; display: grid; grid-template-columns: minmax(0, 1fr) 320px; gap: 24px; align-items: start; }
 .v13-hero-l { display: flex; gap: 32px; align-items: center; min-width: 0; }
-.v13-photo { flex: none; width: 150px; height: 260px; display: flex; align-items: center; justify-content: center; }
+.v13-photo { flex: none; width: 150px; height: 216px; display: flex; align-items: center; justify-content: center; }
 .v13-photo img { max-width: 100%; max-height: 100%; object-fit: contain; }
 .v13-hero-m { flex: 1 1 220px; min-width: 0; display: flex; flex-direction: column; gap: 8px; }
 .v13-meta { font-size: 13px; color: var(--muted); }
@@ -896,7 +896,6 @@ body:has(.thc) .thc a.v13-cta { text-decoration: none; text-align: center; font-
 .v13-shops .row .nm { flex: 1; min-width: 0; }
 .thc-v13top .thc-fitrow > .thc-fit { border: 0; border-top: 1.5px solid #E7DFD5; border-bottom: 1.5px solid #E7DFD5; border-radius: 0; background: transparent; box-shadow: none; padding-left: 0; padding-right: 0; }
 .thc-v13top .thc-rule { display: none; }
-@media (min-width: 1180px) { .v13-photo { width: 230px; height: 420px; } }
 @media (max-width: 900px) { .v13-hero { grid-template-columns: minmax(0, 1fr); } }
 @media (max-width: 640px) {
   .v13-hero { padding: 16px 16px 0; }
@@ -928,3 +927,5 @@ body:has(.thc) .thc a.v13-cta { text-decoration: none; text-align: center; font-
 .v13-side .v13-cmp-c .buy { margin: 0; align-self: center; white-space: nowrap; }
 .v13-side .v13-cmp-c .ln { font-size: 13px; color: #3F3C36; }
 @media (max-width: 900px) { .v13-cols { grid-template-columns: minmax(0, 1fr); } }
+.v13-tldr { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+.v13-hero-l { align-items: center; }

@@ -356,7 +356,8 @@ export async function CreatorProductBody({ slug }: { slug: string }) {
               `from ${plural(rs.length, "review")} and ${votes.total.toLocaleString("en-US")} ${W.person} ${votes.total === 1 ? "vote" : "votes"}`].filter(Boolean).join(" · ")}</span>
             <h1>{name}</h1>
             {/* The TL;DR as a smaller line under the name (owner 2026-11-28, as the mock), no label and no +/- points. */}
-            {tldr && <p className="v13-tldr">{tldr}</p>}
+            {/* Two lines at most (owner 2026-11-28): the TL;DR's first sentence, clamped in CSS. */}
+            {tldr && <p className="v13-tldr">{tldr.split(/(?<=[.!?])\s+(?=[A-Z])/)[0]}</p>}
             {row?.newer && <span className="thc-specline">{"Previous model. Replaced by the "}<a href={th(row.newer.href)}>{withoutYear(row.newer.name)}</a>{"."}</span>}
             <div className="v13-votes">
               <span className="h"><strong>{`${votes.total.toLocaleString("en-US")} ${W.person} ${votes.total === 1 ? "vote" : "votes"}`}</strong><a href="#vote">Vote ↓</a></span>
