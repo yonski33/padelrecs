@@ -24,9 +24,9 @@ test("no-praise: the swap patterns", () => {
 
 /** The copy guard (owner 2026-11-28): sites whose stored text has been through scripts/no-praise.mts. A site joins once its
  *  swap is written; every word left over must be one of its flagged, hand-checked texts. */
-const PRAISE_FREE: string[] = ["pickleball"];
+const PRAISE_FREE: string[] = ["pickleball", "padel"];
 /** The flagged uses left on purpose (2026-11-28 run: nouns like "the most common praise" and passives like "the version praised", for a hand check). */
-const ALLOWED: Record<string, number> = { pickleball: 8 };
+const ALLOWED: Record<string, number> = { pickleball: 8, padel: 8 };
 test("no-praise: stored copy on praise-free sites", () => {
   for (const site of PRAISE_FREE) {
     const texts = [wrapups, roundups, tldrs, compareLines].map(d => JSON.stringify((d as Record<string, unknown>)[site] ?? {}));
