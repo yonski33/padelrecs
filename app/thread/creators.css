@@ -1072,3 +1072,16 @@ body:has(.thc) .thc a.v13-cc2:hover { border-color: var(--ink); }
 .v13-pv .t { font-size: 13.5px; color: var(--muted); }
 .v13-pt-b { grid-template-columns: repeat(3, minmax(0, 1fr)); }
 @media (max-width: 900px) { .v13-pt-b { grid-template-columns: minmax(0, 1fr); } }
+/* Receipt cards in an open point (owner mock 2026-11-28): reviewer · platform, the quote, one link to the original (a YouTube
+   chapter at its time where one matches); a warm Reddit card with a real phrase and its thread. Links in ink, never blue. */
+.v13-rc { display: flex; flex-direction: column; gap: 10px; background: #fff; border: 1.5px solid #E7DFD5; border-radius: 16px; padding: 16px 20px; min-width: 0; }
+.v13-rc .who { display: flex; gap: 6px; align-items: center; flex-wrap: wrap; font-size: 15px; }
+.v13-rc .who strong { color: var(--ink); } .v13-rc .who span { color: var(--muted); }
+.v13-rc .who .v13-av.rd.sq { width: 20px; height: 20px; font-size: 10px; font-style: normal; }
+.v13-rc .q { font-size: 17px; line-height: 1.55; color: var(--ink); }
+body:has(.thc) .thc .v13-rc a.go, body:has(.thc) .thc .v13-rc a.go:visited { align-self: flex-start; display: inline-flex; gap: 8px; align-items: center; font-size: 15px; font-weight: 700; color: var(--ink); text-decoration: underline; text-underline-offset: 4px; }
+.v13-rc .yt-ic { width: 22px; height: 15px; border-radius: 4px; background: #FF0033; display: inline-flex; align-items: center; justify-content: center; }
+.v13-rc .yt-ic::after { content: ""; border-left: 6px solid #fff; border-top: 4px solid transparent; border-bottom: 4px solid transparent; margin-left: 1px; }
+.v13-rc.rd { background: #FFF6F1; border-color: #F4D3C2; }
+@media (max-width: 900px) { .v13-pt-b { grid-template-columns: minmax(0, 1fr) !important; } }
+body:has(.thc) .thc .v13-pt-b .v13-rc a.go { flex-direction: row; border: 0; border-radius: 0; padding: 0; background: none; gap: 8px; line-height: 1.4; }
