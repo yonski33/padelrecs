@@ -53,6 +53,7 @@ import { playersWord } from "../../lib/thread/web-sources";
 import { StickyPrice } from "./live/sticky-price";
 import { GlanceTable } from "./live/glance-table";
 import { TraitVotes } from "./live/trait-votes";
+import { traitGroupsFor } from "../../lib/thread/traits";
 import { traitSeed } from "../../lib/thread/trait-seed";
 import { creatorVoteGroups } from "../../lib/thread/creator-votes";
 import { siteSentiment } from "../../lib/thread/site-sentiment";
@@ -318,6 +319,13 @@ export async function CreatorProductBody({ slug }: { slug: string }) {
   // What they agree on: only products with per-point tags (db/creators/review-points.json, none yet, so hidden).
   const points = ((reviewPoints as Record<string, Record<string, { points: AgreePoint[] }>>)[niche.id]?.[slug]?.points ?? [])
     .map(p => ({ ...p, reviews: p.reviews.filter(x => rs.some(y => y.id === x.review_id)) })).filter(p => p.reviews.length >= POINT_MIN);
+  // Players' share per point: real votes only (never the review-based seed), the "rates it well" option's share.
+  const tc = points.length ? await traitCounts() : null;
+  const pointPlayers: Record<string, { pct: number; n: number } | null> = Object.fromEntries(points.map(p => { const pv = POINT_VOTES[p.key];
+    if (!pv || !tc) return [p.key, null];
+    let n = 0, good = 0;
+    for (const [k, c] of tc.votes) { const [rid, tr, ch] = k.split("|"); if (rid === r.id && tr === pv.key) { n += c; if (ch === pv.good) good += c; } }
+    return [p.key, n ? { pct: Math.round(100 * good / n), n } : null]; }));
   const srcIcons = <span className="v13-ics" aria-hidden="true">{srcN.youtube > 0 && <span className="yt"/>}{srcN.tiktok > 0 && <span className="tt">♪</span>}{srcN.blog > 0 && <span className="bl">B</span>}</span>;
   // At a glance (v13): an index, one row per source, each jumping to its card. No text that repeats the cards.
   const g13 = [
@@ -453,41 +461,38 @@ export async function CreatorProductBody({ slug }: { slug: string }) {
       {v13 ? <main className="thc-body thc-v13">
         <h2 className="v13-big" id="everyone">What everyone says</h2>
         <section className="v13-card">
-          <div className="v13-short">
-            <strong className="v13-t">The short version</strong>
-            {/* Handoff 7 (2026-11-28): the sources line in the yellow box (no headline written yet, so the box holds this line
-                only), then plain text: the reviewers' paragraphs and one Reddit paragraph, no icons, labels or divider. */}
-            <div className="v13-hbox"><span className="v13-based">{`Based on ${plural(rs.length, "review")}: `}
-              {KEYS.filter(k => n[k] > 0).map((k, i, a) => <Fragment key={k}><i className={k} aria-hidden="true"/><strong>{`${n[k]} ${k === "pos" ? "loved it" : k === "mix" ? "mixed" : "not for me"}`}</strong>{i < a.length - 1 ? ", " : "."}</Fragment>)}
-              {rdTone && <>{" Reddit and forums: "}<i className={rdTone.k} aria-hidden="true"/><strong>{rdTone.word.toLowerCase()}</strong>{"."}</>}</span></div>
-            {/* Owner 2026-11-28: the text as blocks (Why reviewers like it, Watch out for, then a small note), Reddit as its own
-                small block; Often compared to in the right column. */}
-            <div className={`v13-cols${compared.length ? "" : " one"}`}>
-              <div className="v13-text">
-                {wrap ? <Wrap w={wrap} v13/> : <div className="thc-wrap">{KEYS.filter(k => n[k] > 0).map(k => <p key={k}><strong>{`${STANCE_LABEL[k]}. `}</strong>{page.groups[k] || stanceLine(rs, k)}</p>)}</div>}
-                {/* Reddit once (PM 2026-11-28): the summary's +/- pills and its one-liner here; the paragraph lives only in
-                    the long Reddit card, and At a glance links to it. */}
-                {rdLine && <div className="thc-block v13-rdb"><strong>On Reddit and forums</strong>
-                  {rd && rd.tags.length > 0 && <span className="thc-rd-tags">{rd.tags.map(t => <span key={t.text} className={`thc-rd-tag ${t.tone}`}><i aria-hidden="true">{t.tone === "pos" ? "+" : "−"}</i>{t.text}</span>)}</span>}
-                  <p>{rdLine}</p></div>}
+          {/* Short version v2 (owner mock 2026-11-28): two columns. Left: the title, the yellow box (a headline where one is
+              written, then the sources line), and label/text rows split by rules (the consensus blocks, then Reddit with its
+              icon). Right, behind a rule: Often compared to. */}
+          <div className={`v13-short2${compared.length ? "" : " one"}`}>
+            <div className="v13-main">
+              <strong className="v13-t">The short version</strong>
+              <div className="v13-hbox">{wrap?.headline && <strong className="v13-head">{wrap.headline}</strong>}
+                <span className="v13-based">{`Based on ${plural(rs.length, "review")}: `}
+                {KEYS.filter(k => n[k] > 0).map((k, i, a) => <Fragment key={k}><i className={k} aria-hidden="true"/><strong>{`${n[k]} ${k === "pos" ? "loved it" : k === "mix" ? "mixed" : "not for me"}`}</strong>{i < a.length - 1 ? ", " : "."}</Fragment>)}
+                {rdTone && <>{" Reddit and forums: "}<i className={rdTone.k} aria-hidden="true"/><strong>{rdTone.word.toLowerCase()}</strong>{"."}</>}</span></div>
+              <div className="v13-rows">
+                {wrap?.blocks?.length ? wrap.blocks.map((b, bi) => <div key={bi} className="v13-row"><span className="lb">{b.label}</span><p>{markAll(b.text, wrap.highlights.map(h => h.text))}</p></div>)
+                  : KEYS.filter(k => n[k] > 0).map(k => <div key={k} className="v13-row"><span className="lb">{STANCE_LABEL[k]}</span><p>{page.groups[k] || stanceLine(rs, k)}</p></div>)}
+                {rdLine && <div className="v13-row rd"><span className="lb"><i className="v13-av rd" aria-hidden="true">r/</i>On Reddit and forums</span>
+                  <p>{rd ? markAll(rdLeadText(rd), rd.highlights.map(h => h.text)) : rdLine}</p></div>}
               </div>
-              {compared.length > 0 && <aside className="v13-side">
-                {/* Phones (owner 2026-11-28): one heading and the cards as a horizontal scroll strip under the text. */}
-                <strong className="v13-side-ph">Often compared to</strong>
-                <div className="v13-strip">{([["Often compared to", compared.filter(x => x.men > 0)], ["Similar feel", compared.filter(x => x.men === 0)]] as const).filter(g => g[1].length > 0).map(([h, xs]) =>
-                  <div key={h} className="v13-sg"><strong className={h === "Similar feel" ? "q" : undefined}>{h}</strong>
-                    {xs.map(({ x, href, men, price, line, plus: pl, minus: mi }) => <div key={x.id} className="v13-cmp-c">
-                      <span className="v13-cmp-top"><a className="pic" href={th(href)} tabIndex={-1} aria-hidden="true">{x.pic ? <img src={x.pic} alt="" loading="lazy"/> : null}</a>
-                        <span className="b"><a className="nm" href={th(href)}>{shown(x.name, x.year)}</a>{men > 0 && <span className="m">{`In ${plural(men, "review")}`}</span>}</span>
-                        {price && <a className="thc-mono buy" href={price.url} target="_blank" rel={price.rel}>check ↗</a>}</span>
-                      {line && <span className="ln">{line}</span>}
-                      {(pl || mi) && <span className="pm">{pl && <span className="pos"><b>+</b>{` ${pl}`}</span>}{mi && <span className="neg"><b>−</b>{` ${mi}`}</span>}</span>}
-                    </div>)}</div>)}</div>
-                {compared.some(x => x.price?.rel.includes("sponsored")) && <span className="thc-note">{"Some links are affiliate links. "}<a href={th("/affiliate-disclosure")}>Learn more</a></span>}
-              </aside>}
             </div>
+            {compared.length > 0 && <aside className="v13-side2">
+              <strong className="v13-side-h">Often compared to</strong>
+              <div className="v13-strip">{compared.map(({ x, href, men, price, line, plus: pl, minus: mi }) => <div key={x.id} className="v13-cc">
+                <a className="pic" href={th(href)} tabIndex={-1} aria-hidden="true">{x.pic ? <img src={x.pic} alt="" loading="lazy"/> : null}</a>
+                <span className="b"><a className="nm" href={th(href)}>{shown(x.name, x.year)}</a>
+                  {men > 0 && <span className="m">{`In ${plural(men, "review")}`}</span>}
+                  {line && <span className="ln">{line}</span>}
+                  <span className="ft">{(pl || mi) && <span className="pm">{pl && <span className="pos">{`+ ${pl}`}</span>}{mi && <span className="neg">{`− ${mi}`}</span>}</span>}
+                    {price && <a className="thc-mono buy" href={price.url} target="_blank" rel={price.rel}>check ↗</a>}</span></span>
+              </div>)}</div>
+              {compared.some(x => x.price?.rel.includes("sponsored")) && <span className="thc-note">{"Some links are affiliate links. "}<a href={th("/affiliate-disclosure")}>Learn more</a></span>}
+            </aside>}
           </div>
-          {points.length > 0 && <AgreePoints points={points} total={rs.length} rs={rs.map(x => ({ id: x.id, creator: x.creator, kind: x.kind, avatar: profiles.get(x.creator)?.avatar ?? null }))}/>}
+          {points.length > 0 && <AgreePoints points={points} total={rs.length} id={r.id} players={pointPlayers} voteGroups={traitGroupsFor(niche.id)}
+            rs={rs.map(x => ({ id: x.id, creator: x.creator, kind: x.kind, avatar: profiles.get(x.creator)?.avatar ?? null }))}/>}
           <GlanceTable className="v13-part v13-glance" title="At a glance" sub="One line from each reviewer, Reddit and the expert lists. Tap to jump to the full summary." head={null} rows={g13} first={5}/>
         </section>
 
@@ -591,6 +596,16 @@ export async function CreatorProductBody({ slug }: { slug: string }) {
   </Shell>;
 }
 
+/** Text with each phrase marked (the short version's one yellow marker). */
+function markAll(t: string, phrases: string[]): ReactNode[] {
+  const out: ReactNode[] = []; let rest = t, k = 0;
+  for (;;) { let best = -1, hit = "";
+    for (const h of phrases) { const at = h ? rest.indexOf(h) : -1; if (at >= 0 && (best < 0 || at < best)) { best = at; hit = h; } }
+    if (best < 0) { out.push(rest); return out; }
+    out.push(rest.slice(0, best), <mark key={k++}>{hit}</mark>); rest = rest.slice(best + hit.length); }
+}
+/** The short version's Reddit row: the summary's first paragraph, its first two sentences. */
+const rdLeadText = (rd: Roundup) => (rd.paras[0] ?? rd.headline).split(/(?<=[.!?]["”’)]*)\s+(?=[A-Z"“])/).slice(0, 2).join(" ");
 /** The Reddit line's word (paddle page v13): from the posts' own takes, the same rule as the Reddit card's headline, never a number. */
 const toneOf = (pos: number, neg: number, all: number) => pos * 2 > all ? { k: "pos", word: "Mostly positive" } as const
   : neg * 2 > all ? { k: "neg", word: "Mostly negative" } as const : { k: "mix", word: "Mixed" } as const;
@@ -610,28 +625,43 @@ const PLAYERS_MIN = 20;
 /** A point shows once this many of the paddle's reviews cover it. */
 const POINT_MIN = 3;
 type PtReview = { id: string; creator: string; kind: string; avatar?: string | null };
-function AgreePoints({ points, total, rs }: { points: AgreePoint[]; total: number; rs: PtReview[] }) {
+/** The vote box behind each point (pickleball's stored groups) and its "rates it well" option; Resets and dinks has none. */
+const POINT_VOTES: Record<string, { key: string; good: string }> = { spin: { key: "spin", good: "lots" }, sweet: { key: "sweet_spot", good: "big" },
+  comfort: { key: "arm", good: "very" }, power: { key: "pop", good: "high" } };
+/** The grade under a point's name, from the share of all reviews that rate it well among those that cover it. */
+const gradeOf = (yes: number, n: number) => { const s = n ? yes / n : 0;
+  return s >= 0.85 ? { word: "Excellent", k: "g1" } : s >= 0.7 ? { word: "Great", k: "g1" } : s >= 0.55 ? { word: "Good", k: "g2" } : s >= 0.4 ? { word: "Okay", k: "g3" } : { word: "Weak", k: "g4" }; };
+type PlayerShare = { pct: number; n: number } | null;
+function AgreePoints({ points, total, rs, id, players, voteGroups }: { points: AgreePoint[]; total: number; rs: PtReview[]; id: string;
+  /** Real player votes per point (never the review-based seed), shown from PLAYERS_MIN votes. */ players: Record<string, PlayerShare>;
+  voteGroups: import("../../lib/thread/traits").TraitGroup[] }) {
   return <div className="v13-part">
-    <div className="v13-ph"><strong>What they agree on</strong><span>{`From the ${total} reviews. Tap a point to see the reviews behind it.`}</span></div>
-    {points.map((p, pi) => { const n = p.reviews.length, yes = p.reviews.filter(x => x.stance === "pos").length;
-      const pl = p.players && p.players.n >= PLAYERS_MIN ? p.players : null;
+    <div className="v13-ph"><strong>What they agree on</strong><span>Bars show how many rate it well. Tap for the reviews behind it.</span></div>
+    {points.map((p, pi) => { const n = p.reviews.length, yes = p.reviews.filter(x => x.stance === "pos").length, g = gradeOf(yes, n);
+      const pl = players[p.key] && players[p.key]!.n >= PLAYERS_MIN ? players[p.key] : null;
       // The disagreement pill: players at least 25 points off the reviewers' share.
       const apart = pl && Math.abs(pl.pct - Math.round(100 * yes / n)) >= 25 ? pl : null;
+      const low = g.k === "g3" || g.k === "g4";
       // The receipts: up to two reviews on the majority side, from different platforms where there are.
       const side = yes * 2 >= n ? "pos" : p.reviews.filter(x => x.stance === "neg").length * 2 >= n ? "neg" : "mix";
       const pool = [...p.reviews.filter(x => x.stance === side), ...p.reviews.filter(x => x.stance !== side)];
-      const first = pool[0], second = pool.slice(1).find(x => rs.find(r => r.id === x.review_id)?.kind !== rs.find(r => r.id === first?.review_id)?.kind) ?? pool[1];
+      const kindOf = (rid?: string) => rs.find(r => r.id === rid)?.kind;
+      const first = pool[0], second = pool.slice(1).find(x => kindOf(x.review_id) !== kindOf(first?.review_id)) ?? pool[1];
       const receipts = [first, second].filter((x): x is NonNullable<typeof x> => !!x);
-      return <details key={p.key} className="v13-pt" open={pi === 0}>
-        <summary><span className="k"><strong>{p.label}</strong></span>
-          <span className="l">{p.line}{apart && <span className={`v13-pill ${apart.pct >= 50 ? "pos" : "neg"}`}>{`${apart.pct}% of ${W.people}`}</span>}</span>
-          <span className="n"><span className="dots" aria-hidden="true">{p.reviews.map(x => <i key={x.review_id} className={x.stance}/>)}</span>
-            {`${yes} of ${plural(n, "review")} that cover ${p.label.toLowerCase()}`}{pl && !apart && <span>{` · ${pl.pct}% of ${W.people}`}</span>}</span>
-          <span className="pl" aria-hidden="true">+</span></summary>
+      const vg = POINT_VOTES[p.key] ? voteGroups.find(v => v.key === POINT_VOTES[p.key]!.key) : undefined;
+      return <details key={p.key} className="v13-pt">
+        <summary><span className="k"><strong>{p.label}</strong><span className={`gr ${g.k}`}>{g.word}</span></span>
+          <span className="l">{p.line}{apart && <>{" "}<span className={`v13-pill ${apart.pct >= 50 ? "pos" : "neg"}`}>{`${apart.pct}% of ${W.people}`}</span></>}</span>
+          <span className="bars">
+            <span className="who">Reviewers</span><span className={`seg${low ? " low" : ""}`} aria-hidden="true">{Array.from({ length: total }, (_, i) => <i key={i} className={i < yes ? "on" : undefined}/>)}</span><strong>{`${yes}/${total}`}</strong>
+            {pl && <><span className="who">{W.People}</span><span className={`bar${pl.pct < 40 ? " low" : ""}`} aria-hidden="true"><i style={{ width: `${pl.pct}%` }}/></span><strong>{`${pl.pct}%`}</strong></>}
+          </span>
+          <span className="pl" aria-hidden="true"/></summary>
         <div className="v13-pt-b">{receipts.map(x => { const v = rs.find(y => y.id === x.review_id)!;
           return <a key={x.review_id} href={`#cr-${x.review_id}`} className={x.stance}>
-            <span className="who"><Avatar name={v.creator} kind={v.kind as CreatorReview["kind"]} size="sm" src={v.avatar ?? null}/><strong>{v.creator}</strong></span>
-            <span className="q">{x.evidence}</span><span className="go">Read the review ↓</span></a>; })}</div>
+            <span className="who"><strong>{v.creator}</strong><span>{` · ${v.kind === "youtube" ? "YouTube" : v.kind === "tiktok" ? "TikTok" : "Blog"}`}</span></span>
+            <span className="q">{x.evidence[0]!.toUpperCase() + x.evidence.slice(1)}{/[.!?]$/.test(x.evidence) ? "" : "."}</span><span className="go">Read the review ↓</span></a>; })}
+          {vg && <div className="v13-pt-vote"><TraitVotes id={id} seed={null} groups={[vg]} title="Players voted" tieNone/></div>}</div>
       </details>; })}
   </div>;
 }
@@ -658,7 +688,7 @@ function ShopBox({ offers }: { offers: ShopOffer[] }) {
 
 /** `blocks` (consensus pilot, owner 2026-11-28): 2-3 labelled blocks of 1-2 sentences each; shown in place of `paras` on
  *  sites with lib/thread/sites.ts CONSENSUS_BLOCKS. */
-type Wrapup = { paras: string[]; highlights: { text: string; tone: "pos" | "neg" }[]; blocks?: { label: string; text: string }[] };
+type Wrapup = { /** A one-line headline for the yellow box (owner mock 2026-11-28), where one is written. */ headline?: string; paras: string[]; highlights: { text: string; tone: "pos" | "neg" }[]; blocks?: { label: string; text: string }[] };
 
 /** "In more detail" (pilot, owner OK 2026-11-23): 2-3 sentences on what the counts and tags can't show (who it suits, where
  *  the mixed takes come from, what it's compared with), written from all the reviews and checked by a second reader. */

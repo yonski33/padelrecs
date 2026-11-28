@@ -35,7 +35,8 @@
      "text": "stock hybrid light",
      "tone": "neg"
     }
-   ]
+   ],
+   "headline": "Strong pop and a roomy sweet spot. Control takes some getting used to."
   },
   "honolulu-j2cr": {
    "blocks": [
@@ -72,7 +73,8 @@
      "text": "not USAP approved",
      "tone": "neg"
     }
-   ]
+   ],
+   "headline": "Big spin, quick hands, lots of pop. Not USAP approved."
   },
   "six-zero-coral-pro-16mm": {
    "blocks": [
@@ -105,7 +107,8 @@
      "text": "approved by UPA only",
      "tone": "neg"
     }
-   ]
+   ],
+   "headline": "Heavy spin and soft touch that last. Power is moderate."
   },
   "spartus-p1-hybrid": {
    "blocks": [
@@ -138,7 +141,8 @@
      "text": "swings heavy and head heavy",
      "tone": "neg"
     }
-   ]
+   ],
+   "headline": "Spin that lasts through wear. Heavy swing costs hand speed."
   },
   "vatic-pro-prism-flash": {
    "blocks": [
@@ -171,7 +175,8 @@
      "text": "inconsistent sweet spot",
      "tone": "neg"
     }
-   ]
+   ],
+   "headline": "Soft, forgiving and spinny, great for dinks. Power takes extra work."
   },
   "11six24-pegasus-jelly-bean-2": {
    "blocks": [
@@ -204,7 +209,8 @@
      "text": "must supply the pace",
      "tone": "neg"
     }
-   ]
+   ],
+   "headline": "Soft feel, huge sweet spot, durable spin. You supply the pace."
   },
   "11six24-pegasus-power-2": {
    "blocks": [
@@ -241,7 +247,8 @@
      "text": "dead zone above the corners",
      "tone": "neg"
     }
-   ]
+   ],
+   "headline": "Huge sweet spot and lasting spin. Power runs low, so add weight."
   },
   "11six24-ultre-power-2": {
    "blocks": [
@@ -278,7 +285,8 @@
      "text": "sweet spot hit or miss",
      "tone": "neg"
     }
-   ]
+   ],
+   "headline": "Elite spin and easy power. Soft shots take work."
   },
   "11six24-vapor-power-2": {
    "blocks": [
@@ -311,7 +319,8 @@
      "text": "UPA-A approved only",
      "tone": "neg"
     }
-   ]
+   ],
+   "headline": "Elite spin that lasts, quick hands. Feel splits reviewers, and it's UPA-A only."
   },
   "honolulu-j6cr": {
    "blocks": [
@@ -348,7 +357,8 @@
      "text": "low twist weight",
      "tone": "neg"
     }
-   ]
+   ],
+   "headline": "Big sweet spot, loads of spin. Takes time to dial in."
   },
   "joola-perseus-pro-iv": {
    "blocks": [
@@ -381,7 +391,8 @@
      "text": "durability is still unproven",
      "tone": "neg"
     }
-   ]
+   ],
+   "headline": "Big power and spin. Easy to overhit, and durability is unproven."
   },
   "pickleball-apes-pulse": {
    "blocks": [
@@ -418,7 +429,8 @@
      "text": "short on power for finishing easy balls",
      "tone": "neg"
     }
-   ]
+   ],
+   "headline": "Roomy, forgiving sweet spot and easy touch shots. Power players may want more pop."
   },
   "six-zero-black-opal-14mm": {
    "blocks": [
@@ -451,7 +463,8 @@
      "text": "small and unforgiving off center",
      "tone": "neg"
     }
-   ]
+   ],
+   "headline": "Huge power and spin. Small sweet spot punishes mishits."
   },
   "six-zero-coral-16mm": {
    "blocks": [
@@ -484,7 +497,8 @@
      "text": "Power is modest",
      "tone": "neg"
     }
-   ]
+   ],
+   "headline": "Soft, spinny and great at dinks. Power is the trade."
   },
   "six-zero-double-black-diamond-control": {
    "blocks": [
@@ -517,7 +531,8 @@
      "text": "stiffer until lead tape was added",
      "tone": "neg"
     }
-   ]
+   ],
+   "headline": "Wide sweet spot, strong spin and control. Bring your own power."
   },
   "six-zero-ruby-pro-14mm": {
    "blocks": [
@@ -546,7 +561,8 @@
      "text": "Power sits at the low end",
      "tone": "neg"
     }
-   ]
+   ],
+   "headline": "Gritty spin and soft touch. Power runs low, sweet spot runs small."
   },
   "six-zero-ruby": {
    "blocks": [
@@ -579,7 +595,8 @@
      "text": "Grit durability is unproven",
      "tone": "neg"
     }
-   ]
+   ],
+   "headline": "Loads of spin and a plush, roomy feel. Pop runs low."
   },
   "spartus-apollo": {
    "blocks": [
@@ -616,7 +633,8 @@
      "text": "vibrates in stock form",
      "tone": "neg"
     }
-   ]
+   ],
+   "headline": "Big sweet spot, plenty of spin and pop. Tape it first."
   },
   "vatic-pro-saga": {
    "blocks": [
@@ -649,7 +667,8 @@
      "text": "head heavy and slower",
      "tone": "neg"
     }
-   ]
+   ],
+   "headline": "Soft feel, good spin, real power on full swings. Heavy in hand battles."
   },
   "vatic-pro-v-sol-pro": {
    "blocks": [
@@ -686,7 +705,8 @@
      "text": "the grit wears down",
      "tone": "neg"
     }
-   ]
+   ],
+   "headline": "Easy drops and dinks, big sweet spot. Expect to add weight."
   },
   "11six24-hurache-x-power-2": {
    "blocks": [
@@ -719,7 +739,8 @@
      "text": "less pop at the top of the face",
      "tone": "neg"
     }
-   ]
+   ],
+   "headline": "Heavy spin and real power. Small sweet spot, so aim well."
   },
   "bread-butter-loco-elongated": {
    "blocks": [
@@ -756,7 +777,8 @@
      "text": "wants clean contact",
      "tone": "neg"
     }
-   ]
+   ],
+   "headline": "Real pop for an elongated shape. Swing weight runs high out of the box."
   },
   "bread-butter-loco-standard": {
    "blocks": [
@@ -785,7 +807,8 @@
      "text": "pop takes time to control",
      "tone": "neg"
     }
-   ]
+   ],
+   "headline": "Big sweet spot and fast hands. Pop takes time to tame."
   },
   "crbn1-trufoam-genesis": {
    "blocks": [
@@ -814,7 +837,8 @@
      "text": "slow the hands in fast exchanges",
      "tone": "neg"
     }
-   ]
+   ],
+   "headline": "Soft feel and big spin. Heavy swing weight slows fast hands."
   },
   "crbn2-trufoam-genesis": {
    "blocks": [
@@ -851,7 +875,8 @@
      "text": "first session underwhelming",
      "tone": "neg"
     }
-   ]
+   ],
+   "headline": "Heavy spin, soft control, no break-in. Power runs modest, so add weight."
   },
   "crbn3-trufoam-genesis": {
    "blocks": [
@@ -888,7 +913,8 @@
      "text": "drives landed short",
      "tone": "neg"
     }
-   ]
+   ],
+   "headline": "Loads of spin, easy soft game. Heavy head slows your hands."
   },
   "enhance-duo": {
    "blocks": [
@@ -925,7 +951,8 @@
      "text": "less forgiving off center",
      "tone": "neg"
     }
-   ]
+   ],
+   "headline": "Dense, controlled feel with good spin. Don't expect big power."
   },
   "enhance-mpp-turbo": {
    "blocks": [
@@ -958,7 +985,8 @@
      "text": "The grit does not last",
      "tone": "neg"
     }
-   ]
+   ],
+   "headline": "Big power and pop. The spin grit wears off."
   },
   "friday-aura-pro-elongated": {
    "blocks": [
@@ -995,7 +1023,8 @@
      "text": "grit to fade",
      "tone": "neg"
     }
-   ]
+   ],
+   "headline": "Real pace, plenty of spin, forgiving. Resets take work."
   },
   "gearbox-gx2-power-hybrid": {
    "blocks": [
@@ -1028,7 +1057,8 @@
      "text": "returns and resets harder to place",
      "tone": "neg"
     }
-   ]
+   ],
+   "headline": "Big power, plush feel, roomy sweet spot. Resets take adjusting."
   },
   "joola-agassi-pro": {
    "blocks": [
@@ -1065,7 +1095,8 @@
      "text": "durability is unproven",
      "tone": "neg"
     }
-   ]
+   ],
+   "headline": "Big power, plenty of spin. High sweet spot makes soft shots tricky."
   },
   "joola-hyperion-pro-iv": {
    "blocks": [
@@ -1102,7 +1133,8 @@
      "text": "almost no grit",
      "tone": "neg"
     }
-   ]
+   ],
+   "headline": "Balanced power and control, quick at the kitchen. Watch the durability."
   },
   "joola-kosmos-pro-v": {
    "blocks": [
@@ -1139,7 +1171,8 @@
      "text": "core crush is a worry",
      "tone": "neg"
     }
-   ]
+   ],
+   "headline": "Soft, controllable, stable shape. Only a small update though."
   },
   "joola-perseus-pro-v": {
    "blocks": [
@@ -1176,7 +1209,8 @@
      "text": "core crush worries",
      "tone": "neg"
     }
-   ]
+   ],
+   "headline": "Soft, controlled and spinny. Only a small update though."
   },
   "luzz-cannon": {
    "blocks": [
@@ -1209,7 +1243,8 @@
      "text": "Core crush durability is a worry",
      "tone": "neg"
     }
-   ]
+   ],
+   "headline": "Big power and gritty spin. Sweet spot runs small."
   },
   "luzz-pro-4-inferno": {
    "blocks": [
@@ -1246,7 +1281,8 @@
      "text": "the grit wears quickly",
      "tone": "neg"
     }
-   ]
+   ],
+   "headline": "Big power, roomy sweet spot. Soft shots and grit take a hit."
   },
   "paddletek-bantam-esq-c": {
    "blocks": [
@@ -1279,7 +1315,8 @@
      "text": "harder to control",
      "tone": "neg"
     }
-   ]
+   ],
+   "headline": "Big pop, lots of spin, quick hands. Soft game takes more skill."
   },
   "paddletek-bantam-tko-c": {
    "blocks": [
@@ -1312,7 +1349,8 @@
      "text": "Resets are the hardest shot",
      "tone": "neg"
     }
-   ]
+   ],
+   "headline": "Big pop and heavy spin. Small sweet spot makes resets tough."
   },
   "paddletek-bantam-tko-cx": {
    "blocks": [
@@ -1489,7 +1527,8 @@
      "text": "spin is lower than earlier Ripples",
      "tone": "neg"
     }
-   ]
+   ],
+   "headline": "Loads of pop and reach. Soft shots and resets take work."
   },
   "rpm-jade-elongated": {
    "blocks": [
@@ -1526,7 +1565,8 @@
      "text": "falls short of the hype",
      "tone": "neg"
     }
-   ]
+   ],
+   "headline": "Elite spin and a soft, roomy feel. Grit durability is debated."
   },
   "rpm-q2-elongated": {
    "blocks": [
@@ -1559,7 +1599,8 @@
      "text": "textured face wears fast",
      "tone": "neg"
     }
-   ]
+   ],
+   "headline": "Big power and spin, soft feel. Grit wears fast, mishits fly."
   },
   "selkirk-labs-project-007": {
    "blocks": [
@@ -1592,7 +1633,8 @@
      "text": "boardy, jarring feel",
      "tone": "neg"
     }
-   ]
+   ],
+   "headline": "Serious pop and spin. Small sweet spot, harsh off center."
   },
   "selkirk-labs-project-boomstik-elongated": {
    "blocks": [
@@ -1629,7 +1671,8 @@
      "text": "loose or lifting edge guards",
      "tone": "neg"
     }
-   ]
+   ],
+   "headline": "Big power and a roomy sweet spot. Soft resets take work."
   },
   "spartus-olympus": {
    "blocks": [
@@ -1695,7 +1738,8 @@
      "text": "13 percent spin drop",
      "tone": "neg"
     }
-   ]
+   ],
+   "headline": "Elite spin and a forgiving sweet spot. The grit wears down."
   },
   "vatic-pro-v-sol-tour": {
    "blocks": [
@@ -1728,7 +1772,8 @@
      "text": "Control suffers for players below 4.0",
      "tone": "neg"
     }
-   ]
+   ],
+   "headline": "Pop and spin out of the box. Grit may wear fast."
   },
   "11six24-vapor-alpha-pro-power": {
    "blocks": [
@@ -1761,7 +1806,8 @@
      "text": "too much power for beginners",
      "tone": "neg"
     }
-   ]
+   ],
+   "headline": "Plush, forgiving touch for resets and drops. Plays like the cheaper original."
   },
   "gearbox-gbx-power-elongated": {
    "blocks": [
@@ -1798,7 +1844,8 @@
      "text": "slow break in",
      "tone": "neg"
     }
-   ]
+   ],
+   "headline": "Hits hard with crisp pop. Soft shots take time to control."
   },
   "bread-butter-filth-hybrid": {
    "blocks": [
@@ -1897,7 +1944,8 @@
      "text": "small sweet spot",
      "tone": "neg"
     }
-   ]
+   ],
+   "headline": "Soft feel, long dwell time, extra reach. Tiny sweet spot though."
   },
   "crbn1-trufoam-waves": {
    "blocks": [
@@ -1930,7 +1978,8 @@
      "text": "dead zones",
      "tone": "neg"
     }
-   ]
+   ],
+   "headline": "Soft feel, plenty of drive and spin. Small sweet spot, steep drop off."
   },
   "gearbox-pro-ultimate-power-elongated-14mm": {
    "blocks": [
@@ -2066,7 +2115,8 @@
      "text": "grit durability is unproven",
      "tone": "neg"
     }
-   ]
+   ],
+   "headline": "Heavy spin and dipping drives. Head heavy and slow in hand battles."
   },
   "joola-perseus-power-fx": {
    "blocks": [
@@ -2103,7 +2153,8 @@
      "text": "grit wears faster than rivals",
      "tone": "neg"
     }
-   ]
+   ],
+   "headline": "Poppy and gritty, built for aggressive players. Soft game suffers."
   },
   "neonic-flare-prime-x": {
    "blocks": [
@@ -2136,7 +2187,8 @@
      "text": "makes drops and resets harder",
      "tone": "neg"
     }
-   ]
+   ],
+   "headline": "Lots of pop and quick hands. Drops and resets take work."
   },
   "paddletek-the-reserve-honeyfoam": {
    "blocks": [
@@ -2173,7 +2225,8 @@
      "text": "head heavy and clunky",
      "tone": "neg"
     }
-   ]
+   ],
+   "headline": "Soft, plush control for dinks and drops. Power is on you."
   },
   "prokennex-black-ace-pro": {
    "blocks": [
@@ -2272,7 +2325,8 @@
      "text": "slow hands in fast exchanges",
      "tone": "neg"
     }
-   ]
+   ],
+   "headline": "Big pop on drives and overheads. Slow hands, small sweet spot."
   },
   "rpm-q2-widebody": {
    "blocks": [
@@ -2367,7 +2421,8 @@
      "text": "low twist weight",
      "tone": "neg"
     }
-   ]
+   ],
+   "headline": "Quick hands and big spin. Off-center hits twist, so lead tape helps."
   },
   "six-zero-boulder-opal-14mm": {
    "blocks": [
@@ -2400,7 +2455,8 @@
      "text": "grit durability is unproven",
      "tone": "neg"
     }
-   ]
+   ],
+   "headline": "Dense and spinny with real pop. Sweet spot can be small."
   },
   "volair-shift-el": {
    "blocks": [
@@ -2433,7 +2489,8 @@
      "text": "sweet spot is small",
      "tone": "neg"
     }
-   ]
+   ],
+   "headline": "Strong spin and shot shaping. Small sweet spot, so aim well."
   },
   "pakle-fuse-elongated": {
    "blocks": [
@@ -2573,7 +2630,8 @@
      "text": "Stock weight is light",
      "tone": "neg"
     }
-   ]
+   ],
+   "headline": "Elite spin and a soft touch. Light on power, so add weight."
   },
   "engage-alpha-pro": {
    "blocks": [
@@ -2606,7 +2664,8 @@
      "text": "curved top shape puts off many players",
      "tone": "neg"
     }
-   ]
+   ],
+   "headline": "Pop and spin with solid control. Sweet spot runs small."
   },
   "franklin-c45-dynasty": {
    "blocks": [
@@ -2639,7 +2698,8 @@
      "text": "scuffs easily",
      "tone": "neg"
     }
-   ]
+   ],
+   "headline": "Light, quick, and full of spin. Add weight for stability."
   },
   "pickleball-apes-zen": {
    "blocks": [
@@ -2845,7 +2905,8 @@
      "text": "wear reported near the center",
      "tone": "neg"
     }
-   ]
+   ],
+   "headline": "Control, spin and a big sweet spot. Power and grit life are the catch."
   },
   "diadem-hush": {
    "blocks": [
@@ -2878,7 +2939,8 @@
      "text": "hard to dial back",
      "tone": "neg"
     }
-   ]
+   ],
+   "headline": "Quiet, easy on the arm, and plenty of pop. Soft touch takes adjusting."
   },
   "gearbox-pro-ultimate-elongated-16mm": {
    "blocks": [
@@ -2944,7 +3006,8 @@
      "text": "Power and pop are low",
      "tone": "neg"
     }
-   ]
+   ],
+   "headline": "Plush, easy control for beginners. Finishing points takes extra help."
   },
   "six-zero-black-diamond-power": {
    "blocks": [
@@ -3014,7 +3077,8 @@
      "text": "price rivals undercut",
      "tone": "neg"
     }
-   ]
+   ],
+   "headline": "Quick hands and plenty of spin. Sweet spot runs small."
   },
   "engage-pursuit-pro1-innovation-15-2": {
    "blocks": [
@@ -3150,7 +3214,8 @@
      "text": "smaller sweet spot",
      "tone": "neg"
     }
-   ]
+   ],
+   "headline": "Soft, spinny, easy resets. Low pop, so supply your own pace."
   },
   "pakle-fuse-hybrid-w": {
    "blocks": [
@@ -3224,7 +3289,8 @@
      "text": "short adjustment period",
      "tone": "neg"
     }
-   ]
+   ],
+   "headline": "Lots of pop and a roomy sweet spot. Soft game takes work."
   },
   "selkirk-slk-halo-power-xl": {
    "blocks": [
@@ -3294,7 +3360,8 @@
      "text": "only average",
      "tone": "neg"
     }
-   ]
+   ],
+   "headline": "Fast hands and plenty of spin. Feels light, so add weight."
   },
   "crbn2-trufoam-waves": {
    "blocks": [
@@ -3327,7 +3394,8 @@
      "text": "drops off steeply on mishits",
      "tone": "neg"
     }
-   ]
+   ],
+   "headline": "Strong spin and controlled power. Small sweet spot punishes mishits."
   },
   "11six24-pegasus-power": {
    "blocks": [
@@ -3360,7 +3428,8 @@
      "text": "pop takes adjusting on resets",
      "tone": "neg"
     }
-   ]
+   ],
+   "headline": "Huge forgiving sweet spot, quick hands. Pop takes adjusting on resets."
   },
   "11six24-ultre-jelly-bean-2": {
    "blocks": [
@@ -3393,7 +3462,8 @@
      "text": "heavy swing weight",
      "tone": "neg"
     }
-   ]
+   ],
+   "headline": "Soft feel, easy spin and resets. Low pop, so supply your own power."
   },
   "11six24-hurache-x-power": {
    "blocks": [
@@ -3422,7 +3492,8 @@
      "text": "tighter or narrower",
      "tone": "neg"
     }
-   ]
+   ],
+   "headline": "Strong power and spin, not sluggish. Sweet spot runs tight."
   },
   "volair-shift-wb": {
    "blocks": [
@@ -3488,7 +3559,8 @@
      "text": "stiff or muted",
      "tone": "neg"
     }
-   ]
+   ],
+   "headline": "Strong power and spin, easy on the arm. Soft game takes more care."
   },
   "selkirk-luxx-control-air-invikta": {
    "blocks": [
@@ -3587,7 +3659,8 @@
      "text": "Durability is unproven",
      "tone": "neg"
     }
-   ]
+   ],
+   "headline": "Good power, control and spin overall. Durability is still unproven."
   },
   "joola-perseus-cfs": {
    "blocks": [
@@ -3620,7 +3693,8 @@
      "text": "punishes off-center hits",
      "tone": "neg"
     }
-   ]
+   ],
+   "headline": "Soft touch and quick hands. Miss the center and it bites."
   },
   "pickleball-apes-harmony": {
    "blocks": [
@@ -3653,7 +3727,8 @@
      "text": "baseline power short",
      "tone": "neg"
     }
-   ]
+   ],
+   "headline": "Soft, controllable feel with a big sweet spot. Power runs modest."
   },
   "bread-butter-loco-2-elongated": {
    "blocks": [
@@ -3686,7 +3761,8 @@
      "text": "less forgiving off center",
      "tone": "neg"
     }
-   ]
+   ],
+   "headline": "Hard hitting with lasting spin. Soft shots and resets take work."
   },
   "holbrook-arma-t": {
    "blocks": [
@@ -3719,7 +3795,8 @@
      "text": "jarring off-center hits",
      "tone": "neg"
     }
-   ]
+   ],
+   "headline": "Big pop, lots of spin, roomy sweet spot. Durability doubts linger."
   },
   "11six24-vapor-power": {
    "blocks": [
@@ -3748,7 +3825,8 @@
      "text": "less power and pop",
      "tone": "neg"
     }
-   ]
+   ],
+   "headline": "Big sweet spot and plenty of spin. Power trails the hottest paddles."
   },
   "diadem-edge-blucore-hybrid": {
    "blocks": [
@@ -3814,7 +3892,8 @@
      "text": "core durability complaints",
      "tone": "neg"
     }
-   ]
+   ],
+   "headline": "Big power, stable sweet spot. The short handle's tight."
   },
   "rpm-friction-pro-v2-elongated": {
    "blocks": [
@@ -3847,7 +3926,8 @@
      "text": "texture is not long lasting",
      "tone": "neg"
     }
-   ]
+   ],
+   "headline": "Elite spin and plenty of reach. Watch for core crush."
   },
   "selkirk-labs-project-boomstik-widebody": {
    "blocks": [
@@ -3880,7 +3960,8 @@
      "text": "edge guard or grit wear",
      "tone": "neg"
     }
-   ]
+   ],
+   "headline": "Huge sweet spot and loads of pop. Soft shots get harder."
   },
   "franklin-c45-aurelius": {
    "blocks": [
@@ -3950,7 +4031,8 @@
      "text": "still pick the Honolulu J2CR",
      "tone": "neg"
     }
-   ]
+   ],
+   "headline": "Big sweet spot, quick hands, plenty of pop. Grit durability is a question."
   },
   "neonic-flare-titanium": {
    "blocks": [
@@ -3987,7 +4069,8 @@
      "text": "heavy and slow at the net",
      "tone": "neg"
     }
-   ]
+   ],
+   "headline": "Soft, forgiving and easy to control. Power runs modest."
   },
   "enhance-epp-turbo": {
    "blocks": [
@@ -4020,7 +4103,8 @@
      "text": "Drops and resets can pop up",
      "tone": "neg"
     }
-   ]
+   ],
+   "headline": "Big sweet spot and plenty of pop. Soft hands needed for drops."
   },
   "pickleball-apes-charm": {
    "blocks": [
@@ -4057,7 +4141,8 @@
      "text": "swing weight of roughly 121 to 124",
      "tone": "neg"
     }
-   ]
+   ],
+   "headline": "Soft, plush feel makes dinks and resets easy. Power's modest."
   },
   "selkirk-omni": {
    "blocks": [
@@ -4094,7 +4179,8 @@
      "text": "grit and edge guard wear",
      "tone": "neg"
     }
-   ]
+   ],
+   "headline": "Easy control on drops and resets. Power comes up short."
   },
   "mark-unmarked": {
    "blocks": [
@@ -4127,7 +4213,8 @@
      "text": "dinks and resets tricky",
      "tone": "neg"
     }
-   ]
+   ],
+   "headline": "Big pop and a big sweet spot. Dinks take soft hands."
   },
   "bread-butter-loco-2-hybrid": {
    "blocks": [
@@ -4164,7 +4251,8 @@
      "text": "control below average for a hybrid",
      "tone": "neg"
     }
-   ]
+   ],
+   "headline": "Grippy face, roomy sweet spot, plenty of spin. Soft shots get poppy."
   },
   "honolulu-j2nf": {
    "blocks": [
@@ -4201,7 +4289,8 @@
      "text": "power and pop only decent",
      "tone": "neg"
     }
-   ]
+   ],
+   "headline": "Big sweet spot, strong spin, easy control. The short handle annoys some."
   },
   "honolulu-j2fc-plus": {
    "blocks": [
@@ -4234,7 +4323,8 @@
      "text": "Power and pop sit below",
      "tone": "neg"
     }
-   ]
+   ],
+   "headline": "Soft, plush control with good spin. Winners need a full swing."
   },
   "gearbox-pressure-x-8e": {
    "blocks": [
@@ -4267,7 +4357,8 @@
      "text": "call the price high",
      "tone": "neg"
     }
-   ]
+   ],
+   "headline": "Soft, controlled feel with a big sweet spot. Power and spin are just okay."
   },
   "selkirk-boomstik-st": {
    "blocks": [
@@ -4300,7 +4391,8 @@
      "text": "about 25 percent less roughness",
      "tone": "neg"
     }
-   ]
+   ],
+   "headline": "Stiff power paddle with real spin. Grit wear is the worry."
   },
   "honolulu-j2ti-plus": {
    "blocks": [
@@ -4337,7 +4429,8 @@
      "text": "less predictable",
      "tone": "neg"
     }
-   ]
+   ],
+   "headline": "More pop, plush feel, roomy sweet spot. Control and durability are the catch."
   },
   "vanwin-alpha-power": {
    "blocks": [
@@ -4370,7 +4463,8 @@
      "text": "muted feel gave no feedback",
      "tone": "neg"
     }
-   ]
+   ],
+   "headline": "Big sweet spot, gritty spin. Power and feel vary."
   },
   "pickleball-apes-zen-s-plus": {
    "blocks": [
@@ -4403,7 +4497,8 @@
      "text": "Pop is low at slow speeds",
      "tone": "neg"
     }
-   ]
+   ],
+   "headline": "Strong power and a big sweet spot. Soft shots take adjusting."
   },
   "honolulu-j6cr-m105": {
    "blocks": [
@@ -4440,7 +4535,8 @@
      "text": "underpowered without added weight",
      "tone": "neg"
     }
-   ]
+   ],
+   "headline": "Soft touch, big sweet spot, good spin. Power runs low."
   },
   "speedup-tide-14": {
    "blocks": [
@@ -4473,7 +4569,8 @@
      "text": "doubt the rough grit will last",
      "tone": "neg"
     }
-   ]
+   ],
+   "headline": "Elite spin and real power. Doubts that the grit lasts."
   },
   "engage-x2-elongated": {
    "blocks": [
@@ -4510,7 +4607,8 @@
      "text": "hot spot that sent balls long",
      "tone": "neg"
     }
-   ]
+   ],
+   "headline": "Top tier spin and controllable power. The face loses its grit."
   },
   "honolulu-j2k-plus": {
    "blocks": [
@@ -4547,7 +4645,8 @@
      "text": "resets and dinks harder",
      "tone": "neg"
     }
-   ]
+   ],
+   "headline": "More pop and spin, big sweet spot. Core durability is shaky."
   },
   "paddletek-bantam-gto-c": {
    "blocks": [
@@ -4580,7 +4679,8 @@
      "text": "little forgiveness off center",
      "tone": "neg"
     }
-   ]
+   ],
+   "headline": "Real pop and spin. Tight sweet spot, rough on resets."
   },
   "element-6-ignis": {
    "blocks": [
@@ -4613,7 +4713,8 @@
      "text": "grit wears quickly",
      "tone": "neg"
     }
-   ]
+   ],
+   "headline": "Big sweet spot and real power. Control-only players should look elsewhere."
   },
   "proton-project-coyote": {
    "blocks": [
@@ -4646,7 +4747,8 @@
      "text": "no durable grit",
      "tone": "neg"
     }
-   ]
+   ],
+   "headline": "Crisp, stiff and spinny with good pop. Grit may not last."
   },
   "selkirk-slk-dauntless": {
    "blocks": [
@@ -4683,7 +4785,8 @@
      "text": "dead spots toward the edges",
      "tone": "neg"
     }
-   ]
+   ],
+   "headline": "Soft, forgiving feel with a huge sweet spot. Don't expect pop."
   },
   "pickle-poppers-pop-n-treasure-elongated": {
    "blocks": [
@@ -4753,7 +4856,8 @@
      "text": "handle thick",
      "tone": "neg"
     }
-   ]
+   ],
+   "headline": "Strong pop, big sweet spot, quick hands. Soft game takes a few sessions."
   },
   "honolulu-j3nf": {
    "blocks": [
@@ -4926,7 +5030,8 @@
      "text": "no durable grit",
      "tone": "neg"
     }
-   ]
+   ],
+   "headline": "Light, quick and easy to control. Add weight for power."
   },
   "chorus-coda": {
    "blocks": [
@@ -5689,7 +5794,8 @@
      "text": "top corners punish high contact",
      "tone": "neg"
     }
-   ]
+   ],
+   "headline": "Lots of spin and pop, quick hands. Sweet spot can bite."
   },
   "pickleball-apes-joy-s-plus": {
    "blocks": [
@@ -6332,7 +6438,8 @@
      "text": "spin loss after 10 hours",
      "tone": "neg"
     }
-   ]
+   ],
+   "headline": "Soft, calm and spin-friendly, easy to control. Gives up some pop."
   },
   "mark-02r3": {
    "blocks": [
@@ -6365,7 +6472,8 @@
      "text": "dense and stiff with little dwell",
      "tone": "neg"
     }
-   ]
+   ],
+   "headline": "Big spin, huge sweet spot, easy control. Power is modest."
   },
   "nox-x-foam-jc6-16mm": {
    "blocks": [

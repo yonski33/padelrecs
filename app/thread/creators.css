@@ -951,3 +951,91 @@ body:has(.thc) .thc a.v13-cta { text-decoration: none; text-align: center; font-
 .v13-pt-b a .who { display: flex; gap: 8px; align-items: center; font-size: 13px; }
 .v13-pt-b a .q { font-size: 14.5px; line-height: 1.5; }
 .v13-pt-b a .go { font-size: 12.5px; font-weight: 700; text-decoration: underline; text-underline-offset: 3px; color: var(--muted); }
+/* Short version v2 (owner mock 2026-11-28): two columns split by a rule; label/text rows; Often compared to on the right. */
+.v13-short2 { display: grid; grid-template-columns: minmax(0, 1fr) 340px; }
+.v13-short2.one { grid-template-columns: minmax(0, 1fr); }
+.v13-main { display: flex; flex-direction: column; gap: 16px; padding: 22px 24px 8px; min-width: 0; }
+.v13-hbox .v13-head { font-size: 18px; font-weight: 700; line-height: 1.35; color: var(--ink); }
+.v13-hbox .v13-based { font-size: 14.5px; }
+.v13-rows { display: flex; flex-direction: column; }
+.v13-row { display: grid; grid-template-columns: 170px minmax(0, 1fr); gap: 8px 24px; padding: 18px 0; border-top: 1.5px solid #E7DFD5; }
+.v13-row .lb { display: flex; gap: 8px; align-items: flex-start; font-size: 12.5px; font-weight: 800; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); line-height: 1.5; padding-top: 3px; }
+.v13-row .lb .v13-av.rd { text-transform: none; flex: none; width: 18px; height: 18px; font-size: 8.5px; font-style: normal; letter-spacing: 0; }
+.v13-row p { margin: 0; font-size: 16.5px; line-height: 1.75; max-width: 68ch; }
+.v13-row mark, .v13-row mark.pos, .v13-row mark.neg { background: linear-gradient(transparent 55%, #F4EC6E 55%, #F4EC6E 92%, transparent 92%); color: inherit; padding: 0; border-radius: 0; font-weight: 600; }
+.v13-side2 { display: flex; flex-direction: column; gap: 14px; padding: 22px 20px; border-left: 1.5px solid #E7DFD5; min-width: 0; }
+.v13-side-h { font-family: 'Barlow Condensed', var(--bc, sans-serif); font-size: 24px; font-weight: 800; line-height: 1; }
+.v13-side2 .v13-strip { display: flex; flex-direction: column; gap: 12px; }
+.v13-cc { display: flex; gap: 14px; align-items: flex-start; background: #fff; border: 1.5px solid #E7DFD5; border-radius: 16px; padding: 14px 16px; min-width: 0; }
+.v13-cc .pic { flex: none; width: 44px; height: 64px; display: flex; align-items: center; justify-content: center; }
+.v13-cc .pic img { max-width: 100%; max-height: 100%; object-fit: contain; }
+.v13-cc .b { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 3px; }
+body:has(.thc) .thc .v13-cc a.nm { font-size: 15.5px; font-weight: 700; line-height: 1.25; color: var(--ink); text-decoration: none; }
+body:has(.thc) .thc .v13-cc a.nm:hover { text-decoration: underline; }
+.v13-cc .m { font-size: 13px; color: var(--muted); }
+.v13-cc .ln { font-size: 13px; color: #3F3C36; line-height: 1.4; }
+.v13-cc .ft { display: flex; justify-content: space-between; align-items: flex-end; gap: 8px; margin-top: 4px; }
+.v13-cc .pm { display: flex; flex-direction: column; gap: 1px; font-size: 14px; font-weight: 600; }
+.v13-cc .pm .pos { color: #2F6E22; } .v13-cc .pm .neg { color: #A3401C; }
+.v13-cc .buy { margin-left: auto; font-size: 12.5px; white-space: nowrap; }
+@media (max-width: 900px) {
+  .v13-short2 { grid-template-columns: minmax(0, 1fr); }
+  .v13-side2 { border-left: 0; border-top: 1.5px solid #E7DFD5; padding: 16px; }
+  .v13-side2 .v13-strip { flex-direction: row; overflow-x: auto; scroll-snap-type: x mandatory; margin: 0 -16px; padding: 0 16px 6px; scrollbar-width: none; }
+  .v13-side2 .v13-strip::-webkit-scrollbar { display: none; }
+  .v13-side2 .v13-cc { flex: 0 0 260px; scroll-snap-align: start; }
+}
+@media (max-width: 640px) {
+  .v13-main { padding: 18px 16px 4px; }
+  .v13-row { grid-template-columns: minmax(0, 1fr); padding: 14px 0; gap: 6px; }
+}
+/* What they agree on rows aligned (owner 2026-11-28: "all the elements should align"): the same fixed columns on every row. */
+.v13-pt summary { grid-template-columns: 180px minmax(0, 1fr) 300px 26px; gap: 8px 24px; align-items: center; padding: 16px 20px; }
+.v13-pt .k, .v13-pt .l { align-self: center; }
+.v13-pt .n { align-items: flex-start; text-align: left; }
+.v13-pt .dots { width: 100%; max-width: 300px; }
+@media (max-width: 900px) { .v13-pt summary { grid-template-columns: 150px minmax(0, 1fr) 220px 26px; } .v13-pt .dots { max-width: 220px; } }
+@media (max-width: 640px) {
+  .v13-pt summary { grid-template-columns: minmax(0, 1fr) 26px; padding: 14px 16px; }
+  .v13-pt .l, .v13-pt .n { grid-column: 1; }
+  .v13-pt .pl { grid-row: 1; grid-column: 2; }
+  .v13-pt .dots { max-width: 220px; }
+}
+.v13-pt .dots i { max-width: 18px; }
+/* What they agree on to the owner's mock (2026-11-28): name + grade, the line, Reviewers (one green segment per review that
+   rates it well, grey for the rest, orange when few do) and Players (a share bar), a +/- circle; open: cards in one row. */
+.v13-pt summary { grid-template-columns: 240px minmax(0, 1fr) 400px 40px; gap: 8px 28px; padding: 18px 24px; }
+.v13-pt .k { display: flex; flex-direction: column; gap: 3px; }
+.v13-pt .k strong { font-size: 18px; }
+.v13-pt .gr { font-size: 14px; font-weight: 800; }
+.v13-pt .gr.g1 { color: #2F6E22; } .v13-pt .gr.g2 { color: #4A463F; } .v13-pt .gr.g3 { color: #8A5A00; } .v13-pt .gr.g4 { color: #A3401C; }
+.v13-pt .l { font-size: 16.5px; line-height: 1.55; font-weight: 500; }
+.v13-pt .bars { display: grid; grid-template-columns: auto minmax(0, 1fr) 46px; gap: 8px 14px; align-items: center; font-size: 14.5px; }
+.v13-pt .bars .who { color: var(--muted); }
+.v13-pt .bars strong { font-size: 15px; }
+.v13-pt .seg { display: flex; gap: 2px; height: 14px; }
+.v13-pt .seg i { flex: 1; border-radius: 2px; background: #ECE6DA; max-width: none; }
+.v13-pt .seg i.on { background: #62C878; } .v13-pt .seg.low i.on { background: #E8A06A; }
+.v13-pt .bar { display: block; height: 12px; border-radius: 999px; background: #ECE6DA; overflow: hidden; }
+.v13-pt .bar i { display: block; height: 100%; background: #62C878; } .v13-pt .bar.low i { background: #E8A06A; }
+.v13-pt .pl { width: 34px; height: 34px; border-radius: 50%; border: 2px solid var(--ink); background: #fff; display: flex; align-items: center; justify-content: center; transform: none !important; }
+.v13-pt .pl::before { content: "+"; font-size: 20px; font-weight: 800; line-height: 1; }
+.v13-pt[open] .pl::before { content: "−"; }
+.v13-pt .v13-pill { border: 1.5px solid var(--ink); font-size: 14px; padding: 1px 10px; }
+.v13-pt-b { grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); padding: 0 24px 20px; gap: 14px; }
+.v13-pt-b a { border-radius: 16px; padding: 14px 18px; gap: 8px; }
+.v13-pt-b a .who { font-size: 14px; } .v13-pt-b a .who span { color: var(--muted); }
+.v13-pt-b a .q { font-size: 16px; line-height: 1.55; }
+.v13-pt-vote { background: #fff; border: 1.5px solid #E7DFD5; border-radius: 16px; padding: 12px 16px; min-width: 0; }
+.v13-pt-vote > * { margin: 0 !important; border: 0 !important; padding: 0 !important; background: none !important; box-shadow: none !important; }
+@media (max-width: 1100px) { .v13-pt summary { grid-template-columns: 180px minmax(0, 1fr) 320px 40px; } }
+@media (max-width: 900px) {
+  .v13-pt summary { grid-template-columns: minmax(0, 1fr) 40px; }
+  .v13-pt .l, .v13-pt .bars { grid-column: 1; }
+  .v13-pt .pl { grid-row: 1; grid-column: 2; }
+}
+@media (max-width: 640px) { .v13-pt summary { padding: 14px 16px; } .v13-pt-b { padding: 0 16px 16px; } }
+.thc-v13 .v13-pt { margin: 0; }
+.v13-pt summary { grid-template-columns: 200px minmax(0, 1fr) 340px 40px; }
+@media (max-width: 1100px) { .v13-pt summary { grid-template-columns: 170px minmax(0, 1fr) 280px 40px; } }
+@media (max-width: 900px) { .v13-pt summary { grid-template-columns: minmax(0, 1fr) 40px; } }
