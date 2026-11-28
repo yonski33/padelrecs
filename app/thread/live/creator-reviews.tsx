@@ -94,7 +94,8 @@ function Card({ x, lit, configs }: { x: ReviewEntry; lit: boolean; configs?: boo
         {x.len ? <span className="len">{clock(x.len)}</span> : null}</a>
       {x.chapters.length > 0 && <div className={`thc-chap${chOpen ? " open" : ""}`}>
         <button type="button" className="thc-chap-t" aria-expanded={chOpen} onClick={() => setChOpen(o => !o)}>{`${chOpen ? "▾" : "▸"} ${x.chapters.length} chapter${x.chapters.length === 1 ? "" : "s"}`}</button>
-        {chOpen && x.chapters.map(([s, t]) => <a key={s} href={atSecond(x.url, s)} {...OUT} title={t} onClick={playClick(play, clipOf(x, s))}><strong>{clock(s)}</strong><span>{t}</span></a>)}</div>}
+        {chOpen && x.chapters.map(([s, t0]) => { const t = chapterTitle(t0);
+          return <a key={s} href={atSecond(x.url, s)} {...OUT} title={t} onClick={playClick(play, clipOf(x, s))}><strong>{clock(s)}</strong><span>{t}</span></a>; })}</div>}
     </div>}
     {/* TikTok: a plain 9:16 tile (TikTok's oEmbed gives no cover) where the thumbnail sits. */}
     {tt && <div className="thc-media thc-tt-m">
@@ -146,8 +147,17 @@ function Card({ x, lit, configs }: { x: ReviewEntry; lit: boolean; configs?: boo
 /** `roundup`: the "Players on Reddit and forums" card, placed after the third card under All (never counted). */
 /** `configs` and `axis` (LaptopRecs): each card's "Reviewed: ..." line, and the model's config axis for the "All (n) · <group>
  *  (n)" chips, shown only when 2 or more groups have cards; the chips filter in the browser like the other pills. */
-export function CreatorReviews({ reviews, roundup, configs, axis }: { reviews: ReviewEntry[]; count: number; roundup?: ReactNode;
-  configs?: boolean; axis?: ConfigAxis | null }) {
+/** A creator's chapter title without the word "verdict" (owner rule, every site; paddle page v13 handoff 2026-11-28): a
+ *  chapter that is only the verdict reads "Final thoughts", elsewhere the word becomes "final thoughts". */
+export function chapterTitle(t: string): string {
+  if (/^\s*(the |final |my |our |overall |quick )?verdicts?\s*[:!.?]*\s*$/i.test(t)) return "Final thoughts";
+  return t.replace(/\b(final )?verdicts?\b/gi, m => /^[A-Z]/.test(m) ? "Final thoughts" : "final thoughts");
+}
+
+export function CreatorReviews({ reviews, roundup, configs, axis, title = "Reviews", lead }: { reviews: ReviewEntry[]; count: number; roundup?: ReactNode;
+  configs?: boolean; axis?: ConfigAxis | null;
+  /** Paddle page v13: the heading ("One by one") and the Reddit and expert lists cards shown first, under All only. */
+  title?: string; lead?: ReactNode }) {
   const [only, setOnly] = useState<Stance | "all">("all"), [src, setSrc] = useState<Src>(null), [by, setBy] = useState<"stance" | "newest">("stance");
   const [grp, setGrp] = useState<string | null>(null);
   const groups = useMemo(() => configs ? configGroups(reviews, axis ?? null) : [], [reviews, configs, axis]);
@@ -193,7 +203,7 @@ export function CreatorReviews({ reviews, roundup, configs, axis }: { reviews: R
   return <VideoProvider><section id="reviews" className="thc-reviews">
     {/* Paddle page v3: the heading on the same row as the filter chips; a chip only when it has cards; Sort at the end. */}
     <div className="thc-rv-h v3">
-      <h2>Reviews</h2>
+      <h2>{title}</h2>
     <div className="thc-pills" role="group" aria-label="Filter reviews">{pills.map(([k, l, c]) =>
       <button key={k} type="button" aria-pressed={only === k && (k !== "all" || !src)} onClick={() => { setOnly(k); if (k === "all") setSrc(null); }}>
         <span style={{ color: only === k && k === "all" && !src ? "#fff" : DOT[k] }} aria-hidden="true">●</span>{`${l} (${c})`}</button>)}
@@ -207,6 +217,7 @@ export function CreatorReviews({ reviews, roundup, configs, axis }: { reviews: R
     {groups.length > 0 && <div className="thc-pills thc-cfg-chips" role="group" aria-label={`Filter by ${axis!.axis}`}>
       <button type="button" aria-pressed={!grp} onClick={() => setGrp(null)}>{`All (${reviews.length})`}</button>
       {groups.map(g => <button key={g.label} type="button" aria-pressed={grp === g.label} onClick={() => setGrp(grp === g.label ? null : g.label)}>{`${g.label} (${g.n})`}</button>)}</div>}
+    {lead && only === "all" && !src && !grp && lead}
     {shown.map((x, i) => <Fragment key={x.id}><Card x={x} lit={lit === x.id} configs={configs}/>{roundup && i === Math.min(2, shown.length - 1) && only === "all" && !src && !grp && roundup}</Fragment>)}
     {list.length > shown.length && <button type="button" className="thc-show" onClick={() => setAll(true)}>{`Show ${list.length - shown.length} more ${list.length - shown.length === 1 ? "review" : "reviews"}`}</button>}
   </section></VideoProvider>;

@@ -778,3 +778,78 @@ body:has(.thc) .thc .thc-cons-r a.thc-wrap-all { margin-top: auto; font-size: 13
 /* The fit row's better matches (owner 2026-11-26): named, linked, with their %, on their own line under the result. */
 .thc-fit-better { flex: 1 1 100%; font-size: 13.5px; line-height: 1.45; color: var(--body2); }
 .thc-fit-better > span { white-space: nowrap; }
+
+/* Paddle page v13 (owner handoff 2026-11-28, PickleballRecs, lib/thread/sites.ts PADDLE_V13): one "What everyone says"
+   card (The short version, What they agree on, Often compared to, At a glance), then One by one and Community. */
+.thc-v13 { gap: 22px; }
+.thc-v13 .v13-big { margin: 0; font-family: 'Barlow Condensed', var(--bc, sans-serif); font-size: 38px !important; font-weight: 800; line-height: 1; }
+.thc-v13 #everyone, .thc-v13 .v13-anchor, .thc-v13 #expert-lists, .thc-v13 #vote { scroll-margin-top: 20px; }
+.v13-card { display: flex; flex-direction: column; background: #FFFCF8; border: 2px solid var(--ink); border-radius: 20px; overflow: hidden; }
+.v13-short { display: flex; flex-direction: column; gap: 14px; padding: 22px 24px; }
+.v13-t { font-family: 'Barlow Condensed', var(--bc, sans-serif); font-size: 30px; font-weight: 800; line-height: 1; }
+.v13-src { display: flex; flex-wrap: wrap; gap: 6px 8px; align-items: center; font-size: 14px; margin-bottom: -4px; }
+.v13-dot { color: #B5AFA3; }
+.v13-cnt { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 14px; font-size: 13.5px; }
+.v13-cnt > span { display: inline-flex; align-items: center; gap: 6px; font-weight: 700; }
+.v13-cnt > span.of { font-weight: 400; color: var(--muted); }
+.v13-cnt i { width: 8px; height: 8px; border-radius: 50%; } .v13-cnt i.pos { background: #62C878; } .v13-cnt i.mix { background: #F0D16B; } .v13-cnt i.neg { background: #F0796A; }
+.v13-ics { display: inline-flex; align-items: center; }
+.v13-ics > span { display: inline-flex; width: 20px; height: 20px; border-radius: 5px; border: 1.5px solid #FFFCF8; box-sizing: border-box; align-items: center; justify-content: center; color: #fff; font-weight: 800; line-height: 1; }
+.v13-ics > span + span { margin-left: -6px; }
+.v13-ics .yt { background: #FF0033; } .v13-ics .yt::after { content: ""; border-left: 6px solid #fff; border-top: 4px solid transparent; border-bottom: 4px solid transparent; margin-left: 1px; }
+.v13-ics .tt { background: #000; font-size: 10px; text-shadow: -1px -.5px 0 #25F4EE, 1px .5px 0 #FE2C55; }
+.v13-ics .bl { background: #3D5A99; font-size: 9px; }
+.v13-short .thc-wrap p { font-size: 16.5px; line-height: 1.75; max-width: 72ch; }
+.v13-rd { display: flex; flex-direction: column; gap: 8px; padding-top: 14px; margin-top: 4px; border-top: 1.5px solid #E7DFD5; }
+.v13-rd p { margin: 0; font-size: 16.5px; line-height: 1.75; max-width: 72ch; }
+.v13-av { flex: none; width: 28px; height: 28px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-size: 10.5px; font-weight: 800; box-sizing: border-box; }
+.v13-av.rd { background: #E8622C; color: #fff; } .v13-av.rd.sq { width: 20px; height: 20px; border-radius: 5px; font-size: 10px; }
+.v13-av.xp { background: #F4EC6E; border: 1.5px solid var(--ink); font-size: 13px; }
+.v13-part { display: flex; flex-direction: column; border-top: 2px solid var(--ink); }
+.v13-ph, .v13-glance .thc-h { display: flex; justify-content: space-between; align-items: baseline; gap: 8px; flex-wrap: wrap; padding: 14px 20px 10px; border: 0 !important; }
+.v13-ph > strong, .v13-glance .thc-h > strong { font-family: 'Barlow Condensed', var(--bc, sans-serif); font-size: 24px; font-weight: 800; line-height: 1; }
+.v13-ph > span, .v13-glance .thc-h > span { font-size: 13px; color: var(--muted); }
+/* What they agree on (hidden until db/creators/review-points.json has points). */
+.v13-pt { border-top: 1px solid #E7DFD5; }
+.v13-pt summary { list-style: none; cursor: pointer; display: grid; grid-template-columns: minmax(120px, 1fr) minmax(0, 2.4fr) auto 26px; gap: 8px 16px; align-items: center; padding: 14px 18px; }
+.v13-pt summary::-webkit-details-marker { display: none; }
+.v13-pt .k strong { font-size: 16px; } .v13-pt .l { font-size: 15px; line-height: 1.6; } .v13-pt .n { font-size: 12.5px; color: var(--muted); }
+.v13-pt .pl { width: 26px; height: 26px; border-radius: 50%; border: 1.5px solid var(--ink); background: #fff; display: flex; align-items: center; justify-content: center; font-weight: 800; }
+.v13-pt[open] .pl { transform: rotate(45deg); }
+.v13-pill { display: inline-block; margin-left: 6px; font-size: 12px; font-weight: 800; border-radius: 999px; padding: 0 8px; white-space: nowrap; }
+.v13-pill.pos { background: #EDFACF; color: #2F6E22; } .v13-pill.neg { background: #FDE7DC; color: #A3401C; }
+.v13-pt-b { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 10px; padding: 0 18px 16px; }
+.v13-pt-b a { display: flex; flex-direction: column; gap: 4px; background: #fff; border: 1.5px solid #E7DFD5; border-radius: 14px; padding: 12px 14px; color: var(--ink); text-decoration: none; font-size: 14.5px; line-height: 1.5; }
+/* Often compared to */
+.v13-cmp { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 12px; padding: 0 20px 14px; }
+.v13-cmp-c { display: flex; flex-direction: column; gap: 8px; background: #fff; border: 1.5px solid #E7DFD5; border-radius: 14px; padding: 12px; min-width: 0; }
+.v13-cmp-top { display: flex; gap: 12px; align-items: center; }
+.v13-cmp-c .pic { flex: none; width: 36px; height: 52px; display: flex; align-items: center; justify-content: center; }
+.v13-cmp-c .pic img { max-width: 100%; max-height: 100%; object-fit: contain; }
+.v13-cmp-c .b { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+body:has(.thc) .thc .v13-cmp-c a.nm { font-size: 15px; font-weight: 700; line-height: 1.25; color: var(--ink); text-decoration: none; }
+body:has(.thc) .thc .v13-cmp-c a.nm:hover { text-decoration: underline; }
+.v13-cmp-c .m { font-size: 12px; color: var(--muted); }
+.v13-cmp-c .ln { font-size: 13.5px; line-height: 1.4; }
+.v13-cmp-c .buy { margin-top: auto; align-self: flex-start; font-size: 12px; }
+.v13-part > .thc-note { padding: 0 20px 14px; }
+/* At a glance: an index, so no key point column. */
+body:has(.thc) .thc a.thc-g-row.v13-g { grid-template-columns: minmax(0, 1fr) auto; gap: 8px 14px; padding: 12px 32px 12px 20px; border-top: 1px solid #EFE8DC; border-bottom: 0; }
+.v13-g .thc-g-who { min-width: 0; }
+.thc-take.xp { background: #FAF7D6; color: #5E5700; }
+.v13-glance .thc-g-tog { margin: 12px auto; }
+.v13-comm { display: flex; flex-direction: column; gap: 4px; padding-top: 26px; border-top: 2px solid var(--ink); }
+.v13-comm > span { font-size: 14px; color: var(--muted); }
+.thc-v13 .thc-reviews > .v13-anchor, .thc-v13 .thc-reviews > #expert-lists { margin-bottom: 0; }
+@media (max-width: 640px) {
+  .thc-v13 .v13-big { font-size: 32px !important; }
+  .v13-short { padding: 18px 16px; }
+  .v13-ph, .v13-glance .thc-h { padding: 12px 16px 8px; }
+  .v13-cmp { padding: 0 16px 12px; grid-template-columns: minmax(0, 1fr); }
+  body:has(.thc) .thc a.thc-g-row.v13-g { padding: 10px 28px 10px 16px; }
+  .v13-pt summary { grid-template-columns: minmax(0, 1fr) 26px; }
+  .v13-pt .l, .v13-pt .n { grid-column: 1; }
+  .v13-pt .pl { grid-row: 1; grid-column: 2; }
+}
+/* The mockup's one marker for every highlight in The short version. */
+.v13-prose mark, .v13-prose mark.pos, .v13-prose mark.neg { background: linear-gradient(transparent 55%, #F4EC6E 55%, #F4EC6E 92%, transparent 92%); color: inherit; padding: 0; border-radius: 0; }

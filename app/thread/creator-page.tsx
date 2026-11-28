@@ -58,7 +58,9 @@ import { siteSentiment } from "../../lib/thread/site-sentiment";
 import { W } from "../../lib/thread/words";
 import { mentions } from "../../lib/thread/mentions";
 import { padelOffers, newestCheck, type ShopOffer } from "../../lib/padel-offers";
-import { storiesSite, VOTE_SOURCE_NOTE, consensusBlocksOn } from "../../lib/thread/sites";
+import { storiesSite, VOTE_SOURCE_NOTE, consensusBlocksOn, paddleV13On } from "../../lib/thread/sites";
+import compareLines from "../../db/creators/compare-lines.json";
+import reviewPoints from "../../db/creators/review-points.json";
 import { specPills } from "../../lib/thread/spec-pills";
 import { racketStories } from "./stories-data";
 import { MemberMark } from "./live/member-mark";
@@ -294,6 +296,40 @@ export async function CreatorProductBody({ slug }: { slug: string }) {
       price: staged[x.slug]?.price?.usd ?? null }]]; }));
   const mxProps = { index: mxIndex, targets: mxTargets, selfId: r.id, selfSlug: slug, unit: W.people, noun: niche.words.one };
 
+  // Paddle page v13 (owner handoff 2026-11-28): PickleballRecs products with 5+ reviews (lib/thread/sites.ts PADDLE_V13).
+  const v13 = !thin && paddleV13On(niche.id, rs.length);
+  // The Reddit line in The short version: a word for the tone only, never a count or a % (owner 2026-11-28).
+  // From the takes of all the paddle's stored Reddit posts (the summary's +/- tags are topics, not a balance).
+  const rdAll = enoughReddit ? cards.filter(c => c.kind === "reddit") : [];
+  const rdTone = (rd || reddit.length > 0) && rdAll.length > 0 ? toneOf(rdAll.filter(c => c.verdict === "positive").length, rdAll.filter(c => c.verdict === "negative").length, rdAll.length) : null;
+  // Often compared to: the paddles the reviews mention (Similar's lead rows), with the reviews' own comparison line where
+  // db/creators/compare-lines.json has one, never a price comparison. No mentions, no section.
+  const cmpOf = (compareLines as Record<string, Record<string, Record<string, { line: string }>>>)[niche.id]?.[slug] ?? {};
+  const compared = similar.filter(x => x.men > 0).map(x => { const l = cmpOf[x.x.slug]?.line ?? null;
+    return { ...x, line: l && !PRICE_WORDS.test(l) ? l : null }; });
+  // What they agree on: only products with per-point tags (db/creators/review-points.json, none yet, so hidden).
+  const points = ((reviewPoints as Record<string, Record<string, { points: AgreePoint[] }>>)[niche.id]?.[slug]?.points ?? [])
+    .map(p => ({ ...p, reviews: p.reviews.filter(x => rs.some(y => y.id === x.review_id)) })).filter(p => p.reviews.length > 0);
+  const srcIcons = <span className="v13-ics" aria-hidden="true">{srcN.youtube > 0 && <span className="yt"/>}{srcN.tiktok > 0 && <span className="tt">♪</span>}{srcN.blog > 0 && <span className="bl">B</span>}</span>;
+  // At a glance (v13): an index, one row per source, each jumping to its card. No text that repeats the cards.
+  const g13 = [
+    ...(rdTone ? [<a key="rd" className="thc-g-row v13-g" href="#reddit-card"><span className="thc-g-who"><span className="v13-av rd" aria-hidden="true">r/</span>
+      <span><strong>{`${W.People} on Reddit and forums`}</strong><span>{`${niche.site.name} summary of ${W.person} posts`}</span></span></span>
+      <span className={`thc-take sm ${rdTone.k}`}>{rdTone.word}</span></a>] : []),
+    ...(listPicks.length > 0 ? [<a key="xp" className="thc-g-row v13-g" href="#expert-lists"><span className="thc-g-who"><span className="v13-av xp" aria-hidden="true">★</span>
+      <span><strong>Expert lists</strong><span>{picksSummary(listPicks)}</span></span></span><span className="thc-take sm xp">Picked</span></a>] : []),
+    ...rs.map(x => <a key={x.id} className="thc-g-row v13-g" href={`#cr-${x.id}`}>
+      <span className="thc-g-who"><Avatar name={x.creator} kind={x.kind} size="sm" src={profiles.get(x.creator)?.avatar ?? null}/><span><strong>{x.creator}</strong>
+        <span>{`${platform(x)} · ${langCode(x.lang)}`}{x.score && ` · ${scoreText(x.score)}`}</span></span></span>
+      <span className={`thc-take sm ${x.stance}`}>{STANCE_LABEL[x.stance]}</span></a>)];
+  const voteBox = <section id="vote" className="thc-box1 thc-vote">
+    <PollCard id={r.id} reviews={{ positive: row?.pos ?? 0, mixed: row?.mix ?? 0, negative: row?.neg ?? 0 }} question={SKIN ? "Tried it? Vote and rate it." : LT || CF || AU ? `${W.usedIt} Vote and rate it.` : "Played it? Vote and rate it."} countLine/>
+    {voteGroups.length > 0 && <TraitVotes id={r.id} seed={traitSeed(niche.id, r.id)} groups={voteGroups} title={W.traitsTitle} tieNone {...(SKIN ? { of: d.judged } : {})}/>}
+    {VOTE_SOURCE_NOTE[niche.id] && <p className="thc-vote-note">{VOTE_SOURCE_NOTE[niche.id]}</p>}
+  </section>;
+  const redditCard = rd ? <div id="reddit-card" className="v13-anchor"><RedditBox rd={rd}/></div>
+    : reddit.length > 0 ? <div id="reddit-card" className="v13-anchor"><RedditRoundup items={reddit}/></div> : null;
+
   return <Shell active="rackets">
     <JsonLd data={ld}/>
     {/* The mock's third font (README tokens): JetBrains Mono for the small "check price ↗" links, this page only. */}
@@ -366,9 +402,47 @@ export async function CreatorProductBody({ slug }: { slug: string }) {
         : <div className="thc-fitrow"><CompactFit id={r.id} title={`Is this ${niche.words.one} right for me?`} sub="Pick your level and style" bar/></div>}
       <div className="thc-rule"/>
       {/* The quiet sticky price bar (paddle page v3): the same price and button as the head, once the head is off screen. */}
-      {stick && <StickyPrice name={name} pic={pic} price={stick.price} priceWord={stick.word} cta={stick.cta}/>}
+      {stick && !v13 && <StickyPrice name={name} pic={pic} price={stick.price} priceWord={stick.word} cta={stick.cta}/>}
 
-      <main className="thc-body">
+      {v13 ? <main className="thc-body thc-v13">
+        <h2 className="v13-big" id="everyone">What everyone says</h2>
+        <section className="v13-card">
+          <div className="v13-short">
+            <strong className="v13-t">The short version</strong>
+            <span className="v13-src">{srcIcons}<strong>Reviewers</strong><span className="v13-dot" aria-hidden="true">·</span>
+              <span className="v13-cnt">{KEYS.filter(k => n[k] > 0).map(k => <span key={k}><i className={k} aria-hidden="true"/>{`${n[k]} ${k === "pos" ? "loved it" : k === "mix" ? "mixed" : "not for me"}`}</span>)}
+                <span className="of">{`of ${rs.length}`}</span></span></span>
+            {wrap ? <Wrap w={wrap} prose/> : <div className="thc-wrap v13-prose">{KEYS.filter(k => n[k] > 0).map(k => <p key={k}><strong>{`${STANCE_LABEL[k]}. `}</strong>{page.groups[k] || stanceLine(rs, k)}</p>)}</div>}
+            {rdTone && <div className="v13-rd">
+              <span className="v13-src"><span className="v13-av rd sq" aria-hidden="true">r/</span><strong>Reddit and forums</strong><span className="v13-dot" aria-hidden="true">·</span>
+                <span className="v13-cnt"><span><i className={rdTone.k} aria-hidden="true"/>{rdTone.word}</span></span></span>
+              {rd && <p className="v13-prose">{rdLead(rd)}</p>}
+            </div>}
+          </div>
+          {points.length > 0 && <AgreePoints points={points} total={rs.length} rs={rs}/>}
+          {compared.length > 0 && <div className="v13-part">
+            <div className="v13-ph"><strong>Often compared to</strong><span>{`${niche.words.Many} the reviews held up against this one`}</span></div>
+            <div className="v13-cmp">{compared.map(({ x, href, men, price, line }) => <div key={x.id} className="v13-cmp-c">
+              <span className="v13-cmp-top"><a className="pic" href={th(href)} tabIndex={-1} aria-hidden="true">{x.pic ? <img src={x.pic} alt="" loading="lazy"/> : null}</a>
+                <span className="b"><a className="nm" href={th(href)}>{shown(x.name, x.year)}</a><span className="m">{`In ${plural(men, "review")}`}</span></span></span>
+              {line && <span className="ln">{line}</span>}
+              {price && <a className="thc-mono buy" href={price.url} target="_blank" rel={price.rel}>check ↗</a>}
+            </div>)}</div>
+            {compared.some(x => x.price?.rel.includes("sponsored")) && <span className="thc-note">{`Some links are affiliate links: ${niche.site.name} may earn a small commission. `}<a href={th("/affiliate-disclosure")}>Learn more</a></span>}
+          </div>}
+          <GlanceTable className="v13-part v13-glance" title="At a glance" sub="Every source on this page. Tap one to jump to its card." head={null} rows={g13} first={5}/>
+        </section>
+
+        <MentionsProvider {...mxProps}>
+          <CreatorReviews reviews={shownFeed} count={rs.length} roundup={null} title="One by one"
+            lead={(redditCard || listPicks.length > 0) && <>{redditCard}{listPicks.length > 0 && <ExpertPicks picks={listPicks}/>}</>}/>
+        </MentionsProvider>
+
+        <div className="v13-comm"><h2 className="v13-big">Community</h2><span>{`Votes and comments from ${niche.site.name} ${W.people}.`}</span></div>
+        {voteBox}
+        <section className="thc-sec2 thc-comments"><Comments page={`racket:${r.id}`} title="Discussion" avatars nicknames={niche.form.quickVote?.nicknames ?? []}/></section>
+      </main>
+      : <main className="thc-body">
         {/* From players (paddle page v3): what players say on Reddit and forums, and the site's own vote, side by side. */}
         {(!PLAIN || rd || reddit.length > 0) && <div className="thc-sech">
           <h2>{`From ${W.people}`}</h2>
@@ -380,11 +454,7 @@ export async function CreatorProductBody({ slug }: { slug: string }) {
           {rd ? <RedditBox rd={rd}/> : reddit.length > 0 && <RedditRoundup items={reddit}/>}
           {/* Played it? Vote and rate it: the would-you-buy-it-again bars and the site's vote boxes (lib/thread/creator-votes.ts;
               PickleballRecs four), the stored votes loading live, one tap, no account. */}
-          <section id="vote" className="thc-box1 thc-vote">
-            <PollCard id={r.id} reviews={{ positive: row?.pos ?? 0, mixed: row?.mix ?? 0, negative: row?.neg ?? 0 }} question={SKIN ? "Tried it? Vote and rate it." : LT || CF || AU ? `${W.usedIt} Vote and rate it.` : "Played it? Vote and rate it."} countLine/>
-            {voteGroups.length > 0 && <TraitVotes id={r.id} seed={traitSeed(niche.id, r.id)} groups={voteGroups} title={W.traitsTitle} tieNone {...(SKIN ? { of: d.judged } : {})}/>}
-            {VOTE_SOURCE_NOTE[niche.id] && <p className="thc-vote-note">{VOTE_SOURCE_NOTE[niche.id]}</p>}
-          </section>
+          {voteBox}
         </div>}
 
         {/* Reviews from around the web: the heading and where the reviews come from (the counted reviews, so the parts add
@@ -458,9 +528,47 @@ export async function CreatorProductBody({ slug }: { slug: string }) {
 
         {/* Comments (the mock's last section): the site's own discussion for this paddle, the same thread as its product page. */}
         {!PLAIN && <section className="thc-sec2 thc-comments"><Comments page={`racket:${r.id}`} title="Discussion" avatars nicknames={niche.form.quickVote?.nicknames ?? []}/></section>}
-      </main>
+      </main>}
     </div>
   </Shell>;
+}
+
+/** The Reddit line's word (paddle page v13): from the posts' own takes, the same rule as the Reddit card's headline, never a number. */
+const toneOf = (pos: number, neg: number, all: number) => pos * 2 > all ? { k: "pos", word: "Mostly positive" } as const
+  : neg * 2 > all ? { k: "neg", word: "Mostly negative" } as const : { k: "mix", word: "Mixed" } as const;
+/** The short version's Reddit text (owner 2026-11-28: the headline alone was too short next to the reviewers' part): the
+ *  summary's first paragraph, its first two sentences, its quotes marked. */
+function rdLead(rd: Roundup): ReactNode[] {
+  const p = rd.paras[0] ?? rd.headline, parts = p.split(/(?<=[.!?]["”’)]*)\s+(?=[A-Z"“])/);
+  const t = parts.slice(0, 2).join(" "), out: ReactNode[] = []; let rest = t, k = 0;
+  for (;;) { let best = -1, hi = -1;
+    rd.highlights.forEach((h, i) => { const at = rest.indexOf(h.text); if (at >= 0 && (best < 0 || at < best)) { best = at; hi = i; } });
+    if (hi < 0) { out.push(rest); return out; }
+    out.push(rest.slice(0, best), <mark key={k++}>{rd.highlights[hi].text}</mark>); rest = rest.slice(best + rd.highlights[hi].text.length); }
+}
+/** A comparison line about price is left out (owner 2026-11-28: no dollar comparisons in Often compared to). */
+const PRICE_WORDS = /\$|\bdollars?\b|\bbucks\b|\bcheaper\b|\bpricier\b|\bexpensive\b|\bprice/i;
+/** One "What they agree on" point (db/creators/review-points.json, planned shape, owner 2026-11-28): the point, one line,
+ *  and the reviews tagged with it, each agreeing or not. `players` (a vote share on the same point) shows only from
+ *  PLAYERS_MIN votes. */
+type AgreePoint = { key: string; label: string; line: string; reviews: { review_id: string; stance: "agree" | "disagree" }[];
+  players?: { pct: number; n: number } };
+const PLAYERS_MIN = 20;
+function AgreePoints({ points, total, rs }: { points: AgreePoint[]; total: number; rs: { id: string; creator: string; keyPoint?: string | null; short: string }[] }) {
+  return <div className="v13-part">
+    <div className="v13-ph"><strong>What they agree on</strong><span>{`From the ${total} reviews. Tap a point for the reviews behind it.`}</span></div>
+    {points.map(p => { const yes = p.reviews.filter(x => x.stance === "agree").length, pl = p.players && p.players.n >= PLAYERS_MIN ? p.players : null;
+      // The disagreement pill: players at least 25 points off the reviewers' share.
+      const apart = pl && Math.abs(pl.pct - Math.round(100 * yes / p.reviews.length)) >= 25 ? pl : null;
+      return <details key={p.key} className="v13-pt">
+        <summary><span className="k"><strong>{p.label}</strong></span>
+          <span className="l">{p.line}{apart && <span className={`v13-pill ${apart.pct >= 50 ? "pos" : "neg"}`}>{`${apart.pct}% of ${W.people}`}</span>}</span>
+          <span className="n">{`${yes} of ${plural(p.reviews.length, "review")} that cover ${p.label.toLowerCase()}`}{pl && !apart && <span>{` · ${pl.pct}% of ${W.people}`}</span>}</span>
+          <span className="pl" aria-hidden="true">+</span></summary>
+        <div className="v13-pt-b">{p.reviews.map(x => { const v = rs.find(y => y.id === x.review_id)!;
+          return <a key={x.review_id} href={`#cr-${x.review_id}`} className={x.stance}><strong>{v.creator}</strong><span>{keyPoint(v)}</span></a>; })}</div>
+      </details>; })}
+  </div>;
 }
 
 /** PadelRecs' price box: the padel shops (#679 data), in stock and cheapest first. The first in-stock shop is the one filled
@@ -489,7 +597,9 @@ type Wrapup = { paras: string[]; highlights: { text: string; tone: "pos" | "neg"
 
 /** "In more detail" (pilot, owner OK 2026-11-23): 2-3 sentences on what the counts and tags can't show (who it suits, where
  *  the mixed takes come from, what it's compared with), written from all the reviews and checked by a second reader. */
-function Wrap({ w, links = false }: { w: Wrapup; /** PadelRecs: racket names in the plain text link. */ links?: boolean }) {
+function Wrap({ w, links = false, prose = false }: { w: Wrapup; /** PadelRecs: racket names in the plain text link. */ links?: boolean;
+  /** Paddle page v13 (owner 2026-11-28: "just write the text like in the mockup"): plain paragraphs, no block labels. The
+   *  blocks' own text where there are blocks: the first two as one paragraph, the rest as a second. */ prose?: boolean }) {
   let pk = 0;
   const plain = (t: string): ReactNode => links && t ? <MentionText key={`t${pk++}`} text={t}/> : t;
   const mark = (t: string) => { const out: ReactNode[] = []; let rest = t, k = 0;
@@ -500,6 +610,8 @@ function Wrap({ w, links = false }: { w: Wrapup; /** PadelRecs: racket names in 
       out.push(plain(rest.slice(0, best)), <mark key={k++} className={h.tone}>{h.text}</mark>);
       rest = rest.slice(best + h.text.length); } };
   // Under The short version title (owner 2026-11-23: one section), above the count boxes and tags.
+  if (prose) { const b = w.blocks ?? [], paras = b.length ? [b.slice(0, 2).map(x => x.text).join(" "), b.slice(2).map(x => x.text).join(" ")].filter(Boolean) : w.paras;
+    return <div className="thc-wrap v13-prose">{paras.map((p, i) => <p key={i}>{mark(p)}</p>)}</div>; }
   if (w.blocks?.length && consensusBlocksOn(niche.id)) return <div className="thc-wrap thc-blocks">
     {w.blocks.map((b, i) => <div key={i} className={`thc-block b${i}`}><strong>{b.label}</strong><p>{mark(b.text)}</p></div>)}
   </div>;

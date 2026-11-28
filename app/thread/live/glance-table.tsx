@@ -4,9 +4,10 @@
 // toggles how many show, in the browser, so the page's cache is untouched.
 import { useState, type ReactNode } from "react";
 
-export function GlanceTable({ title, sub, head, rows, first = 3 }: { title: string; sub: string; head: ReactNode; rows: ReactNode[]; first?: number }) {
+export function GlanceTable({ title, sub, head, rows, first = 3, className = "thc-box1 flush thc-glance" }: { title: string; sub: string; head: ReactNode; rows: ReactNode[]; first?: number;
+  /** Paddle page v13: a part of the "What everyone says" card, not a box of its own. */ className?: string }) {
   const [all, setAll] = useState(false);
-  return <section id="creators" className="thc-box1 flush thc-glance">
+  return <section id="creators" className={className}>
     <div className="thc-h rule"><strong>{title}</strong><span>{sub}</span></div>
     {head}
     {all ? rows : rows.slice(0, first)}
