@@ -493,7 +493,7 @@ export async function CreatorProductBody({ slug }: { slug: string }) {
             </div>
           </div>
           {points.length > 0 && <AgreePoints points={points} total={rs.length} id={r.id} players={pointPlayers} votes={pointVotes} voteGroups={traitGroupsFor(niche.id)}
-            reddit={(rd?.highlights ?? []).map(h => ({ text: h.text, url: h.url, sub: /reddit\.com\/r\/([^/]+)/i.exec(h.url)?.[1] ? `r/${/reddit\.com\/r\/([^/]+)/i.exec(h.url)![1]}` : "Reddit" }))}
+            reddit={(rd?.highlights ?? []).map(h => ({ text: h.text, url: h.url, side: h.side === "neg" ? "neg" : "pos", sub: /reddit\.com\/r\/([^/]+)/i.exec(h.url)?.[1] ? `r/${/reddit\.com\/r\/([^/]+)/i.exec(h.url)![1]}` : "Reddit" }))}
             rs={rs.map(x => ({ id: x.id, creator: x.creator, kind: x.kind, avatar: profiles.get(x.creator)?.avatar ?? null, url: x.url, quote: x.quote, quoteAt: x.quoteAt, chapters: x.chapters }))}/>}
           {/* Often compared to (owner mock 2026-11-28): a row of cards under What they agree on, each linking to that
               paddle's page here (no shop links). Photo, name, "In N reviews", the +/- lines. */}
@@ -640,7 +640,9 @@ type PtReview = { id: string; creator: string; kind: string; avatar?: string | n
 /** Words that tie a quote, chapter or Reddit phrase to a point. The cards' links stay on the page (owner 2026-11-28). */
 const POINT_WORDS: Record<string, RegExp> = { resets: /reset|dink|drop|touch|soft game|block|kitchen/i, spin: /spin|grit|rpm|texture/i,
   sweet: /sweet ?spot|forgiv|dead ?spot|off.?cent|mishit/i, power: /power|pop|drive|put.?away|pace|speed/i, comfort: /\barm\b|elbow|wrist|shoulder|vibrat|comfort/i };
-type RdPhrase = { text: string; url: string; sub: string };
+/** Which side a Reddit phrase is on (owner 2026-11-28: "Lack of grit" sat under "Lots of spin"): reddit-roundups.json marks
+ *  the complaints, hand-checked against each phrase's sentence; everything else counts as positive. */
+type RdPhrase = { text: string; url: string; sub: string; side: "pos" | "neg" };
 /** The vote box behind each point (pickleball's stored groups) and its "rates it well" option; Resets and dinks has none. */
 const POINT_VOTES: Record<string, { key: string; good: string }> = { spin: { key: "spin", good: "lots" }, sweet: { key: "sweet_spot", good: "big" },
   comfort: { key: "arm", good: "very" }, power: { key: "pop", good: "high" } };
@@ -671,7 +673,8 @@ function AgreePoints({ points, total, rs, id, players, voteGroups, votes, reddit
       const first = pool[0], second = pool.slice(1).find(x => kindOf(x.review_id) !== kindOf(first?.review_id)) ?? pool[1];
       const receipts = [first, second].filter((x): x is NonNullable<typeof x> => !!x);
       const vg = POINT_VOTES[p.key] ? voteGroups.find(v => v.key === POINT_VOTES[p.key]!.key) : undefined;
-      const words = POINT_WORDS[p.key] ?? /$^/, rdp = reddit.find(h => words.test(h.text)) ?? null;
+      // The Reddit phrase must be on the row's side (a "mix" row takes either): never "lack of grit" under good spin.
+      const words = POINT_WORDS[p.key] ?? /$^/, rdp = reddit.find(h => words.test(h.text) && (side === "mix" || h.side === side)) ?? null;
       return <details key={p.key} className="v13-pt">
         <summary><span className="k"><strong>{p.label}</strong><span className={`gr ${g.k}`}>{g.word}</span></span>
           <span className="l">{p.line}{apart && <>{" "}<span className={`v13-pill ${apart.pct >= 50 ? "pos" : "neg"}`}>{`${apart.pct}% of ${W.people}`}</span></>}</span>
@@ -754,7 +757,7 @@ function Wrap({ w, links = false, prose = false, v13 = false }: { w: Wrapup; /**
 
 // No post or thread counts (owner 2026-11-24, every site): the box says "summary of player posts", never how many.
 type Roundup = { /** The short version's Reddit sum-up (owner 2026-11-28), worded apart from the card. */ short?: { text: string; mark: string }; at: string | null; headline: string; tags: { tone: "pos" | "neg"; text: string; n?: number }[];
-  paras: string[]; highlights: { text: string; url: string }[] };
+  paras: string[]; highlights: { text: string; url: string; /** Complaints only (owner 2026-11-28, hand-checked): kept off rows rated well. */ side?: "neg" }[] };
 
 /** "Players on Reddit and forums", written from ALL the paddle's stored Reddit posts (pilot, owner OK 2026-11-23): a
  *  one-line headline, +/- tags each backed by 2+ posts, two short paragraphs (what players agree on, then what they raise
