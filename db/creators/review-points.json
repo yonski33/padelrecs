@@ -1,1 +1,3340 @@
-{}
+{
+ "pickleball": {
+  "11six24-vapor-power-2": {
+   "points": [
+    {
+     "key": "spin",
+     "label": "Spin",
+     "line": "Elite spin with grit that barely wore over 40 hours.",
+     "reviews": [
+      {
+       "review_id": "cr_ec1c1a7de508759c",
+       "stance": "pos",
+       "evidence": "Elite spin with grit that barely wore over 40 hours"
+      },
+      {
+       "review_id": "cr_54684a1a6331ad09",
+       "stance": "pos",
+       "evidence": "Off the charts spin"
+      },
+      {
+       "review_id": "cr_e861849f88abeb65",
+       "stance": "pos",
+       "evidence": "Huge spin and unworn grit"
+      },
+      {
+       "review_id": "cr_feaa65fd68abf67e",
+       "stance": "pos",
+       "evidence": "gives spin even to players who cannot spin the ball"
+      },
+      {
+       "review_id": "cr_31c437bea2beb14e",
+       "stance": "pos",
+       "evidence": "Grit and grab on the ball"
+      },
+      {
+       "review_id": "cr_74a5389410b826ba",
+       "stance": "pos",
+       "evidence": "spin retention above 95 percent"
+      },
+      {
+       "review_id": "cr_f673da5075d90b5e",
+       "stance": "pos",
+       "evidence": "Heavy spin from a durable grit surface"
+      },
+      {
+       "review_id": "cr_036f64406ae89865",
+       "stance": "pos",
+       "evidence": "good power, great pop and amazing spin"
+      },
+      {
+       "review_id": "cr_b1203c03852c75fe",
+       "stance": "pos",
+       "evidence": "Spin near the legal maximum"
+      },
+      {
+       "review_id": "cr_a0d47fb49d09548a",
+       "stance": "pos",
+       "evidence": "keeps the spin of the P1 without that heft"
+      },
+      {
+       "review_id": "cr_34f5f591e3bd6cb7",
+       "stance": "mix",
+       "evidence": "spin weak until weight is added"
+      },
+      {
+       "review_id": "cr_7e2e7d3545ddc1ff",
+       "stance": "pos",
+       "evidence": "very low spin loss, with elite stock spin"
+      },
+      {
+       "review_id": "cr_c6e1fa1bcab70f2b",
+       "stance": "pos",
+       "evidence": "one of the spinniest they have tested"
+      },
+      {
+       "review_id": "cr_3c07631837b01b80",
+       "stance": "pos",
+       "evidence": "Elite spin and top-tier serve speed"
+      },
+      {
+       "review_id": "cr_cb208d202289da4d",
+       "stance": "pos",
+       "evidence": "Calls spin one of the best they have hit"
+      },
+      {
+       "review_id": "cr_261da3583e5708c2",
+       "stance": "pos",
+       "evidence": "finds spin helps drive the ball down"
+      },
+      {
+       "review_id": "cr_1f902420186c6988",
+       "stance": "pos",
+       "evidence": "Elite spin and high firepower"
+      },
+      {
+       "review_id": "cr_90b9773c226f7e0a",
+       "stance": "pos",
+       "evidence": "a good sweet spot and strong spin"
+      },
+      {
+       "review_id": "cr_2f82714d049be3a1",
+       "stance": "pos",
+       "evidence": "good spin from the fine hex grit"
+      },
+      {
+       "review_id": "cr_aa9398a01c152417",
+       "stance": "pos",
+       "evidence": "Excellent hex grit spin"
+      },
+      {
+       "review_id": "cr_51cbb41054a159e6",
+       "stance": "pos",
+       "evidence": "HexGrit bite staying usable"
+      },
+      {
+       "review_id": "cr_740b9dd47b3aa807",
+       "stance": "pos",
+       "evidence": "Calls spin the standout"
+      },
+      {
+       "review_id": "tt-cr_30f45a5e1b5b07cf",
+       "stance": "pos",
+       "evidence": "elite shot shaping"
+      },
+      {
+       "review_id": "tt-cr_c2bd9685497c2e95",
+       "stance": "pos",
+       "evidence": "Edges it ahead on spin as well"
+      },
+      {
+       "review_id": "tt-cr_78cdfb7c127ec78c",
+       "stance": "pos",
+       "evidence": "spin on full swings, dinks and shaped shots"
+      }
+     ]
+    },
+    {
+     "key": "power",
+     "label": "Power",
+     "line": "Less pop and more control while keeping power for putaways.",
+     "reviews": [
+      {
+       "review_id": "cr_801975cea63b6d63",
+       "stance": "pos",
+       "evidence": "Strong power and pop from very little effort"
+      },
+      {
+       "review_id": "cr_e861849f88abeb65",
+       "stance": "mix",
+       "evidence": "less pop and more control while keeping power for putaways"
+      },
+      {
+       "review_id": "cr_feaa65fd68abf67e",
+       "stance": "mix",
+       "evidence": "The spin takes a little off the power"
+      },
+      {
+       "review_id": "cr_31c437bea2beb14e",
+       "stance": "pos",
+       "evidence": "a good amount of pop and power"
+      },
+      {
+       "review_id": "cr_74a5389410b826ba",
+       "stance": "mix",
+       "evidence": "power in the low to mid tier"
+      },
+      {
+       "review_id": "cr_f673da5075d90b5e",
+       "stance": "mix",
+       "evidence": "pop very high but driving power lower"
+      },
+      {
+       "review_id": "cr_036f64406ae89865",
+       "stance": "pos",
+       "evidence": "good power, great pop and amazing spin"
+      },
+      {
+       "review_id": "cr_b1203c03852c75fe",
+       "stance": "mix",
+       "evidence": "Baseline power is mid to low"
+      },
+      {
+       "review_id": "cr_a0d47fb49d09548a",
+       "stance": "pos",
+       "evidence": "clearly above the Spartis P1"
+      },
+      {
+       "review_id": "cr_34f5f591e3bd6cb7",
+       "stance": "mix",
+       "evidence": "Rates power as mid tier"
+      },
+      {
+       "review_id": "cr_7e2e7d3545ddc1ff",
+       "stance": "mix",
+       "evidence": "Places power in the lower to middle tier"
+      },
+      {
+       "review_id": "cr_c6e1fa1bcab70f2b",
+       "stance": "mix",
+       "evidence": "Power is mid to lower, though enough to finish points"
+      },
+      {
+       "review_id": "cr_3c07631837b01b80",
+       "stance": "pos",
+       "evidence": "Calls the power controllable and scaling with the swing"
+      },
+      {
+       "review_id": "cr_cb208d202289da4d",
+       "stance": "mix",
+       "evidence": "Rates power as mid-tier, more pop than power"
+      },
+      {
+       "review_id": "cr_261da3583e5708c2",
+       "stance": "mix",
+       "evidence": "Not an explosive power paddle"
+      },
+      {
+       "review_id": "cr_1f902420186c6988",
+       "stance": "pos",
+       "evidence": "Rates power and pop as high"
+      },
+      {
+       "review_id": "cr_90b9773c226f7e0a",
+       "stance": "pos",
+       "evidence": "Rates power and pop as high"
+      },
+      {
+       "review_id": "cr_2f82714d049be3a1",
+       "stance": "mix",
+       "evidence": "a power paddle at the lower end"
+      },
+      {
+       "review_id": "cr_aa9398a01c152417",
+       "stance": "neg",
+       "evidence": "Stock power sits at the low end"
+      },
+      {
+       "review_id": "cr_51cbb41054a159e6",
+       "stance": "pos",
+       "evidence": "faster hands, more bite and more pop potential"
+      },
+      {
+       "review_id": "cr_740b9dd47b3aa807",
+       "stance": "mix",
+       "evidence": "Finds drives have enough pace and good hand speed"
+      },
+      {
+       "review_id": "tt-cr_30f45a5e1b5b07cf",
+       "stance": "pos",
+       "evidence": "little more pop than the P1 with similar power"
+      },
+      {
+       "review_id": "tt-cr_c2bd9685497c2e95",
+       "stance": "pos",
+       "evidence": "More power than the Spartus P1"
+      },
+      {
+       "review_id": "tt-cr_78cdfb7c127ec78c",
+       "stance": "pos",
+       "evidence": "real power on baseline drives"
+      }
+     ]
+    },
+    {
+     "key": "resets",
+     "label": "Resets and dinks",
+     "line": "Rates defense to offense and dinks as very good.",
+     "reviews": [
+      {
+       "review_id": "cr_54684a1a6331ad09",
+       "stance": "pos",
+       "evidence": "Rates defense to offense and dinks as very good"
+      },
+      {
+       "review_id": "cr_801975cea63b6d63",
+       "stance": "neg",
+       "evidence": "blocks and control take getting used to"
+      },
+      {
+       "review_id": "cr_e861849f88abeb65",
+       "stance": "pos",
+       "evidence": "dinks and drives easier to shape"
+      },
+      {
+       "review_id": "cr_feaa65fd68abf67e",
+       "stance": "pos",
+       "evidence": "easy control on drops, resets and dinks"
+      },
+      {
+       "review_id": "cr_74a5389410b826ba",
+       "stance": "neg",
+       "evidence": "the challenge is creating enough arc"
+      },
+      {
+       "review_id": "cr_f673da5075d90b5e",
+       "stance": "pos",
+       "evidence": "volleys, blocks and counters are easy"
+      },
+      {
+       "review_id": "cr_036f64406ae89865",
+       "stance": "mix",
+       "evidence": "Some inconsistency dropping thirds"
+      },
+      {
+       "review_id": "cr_b1203c03852c75fe",
+       "stance": "mix",
+       "evidence": "topspin dinks push opponents wide"
+      },
+      {
+       "review_id": "cr_34f5f591e3bd6cb7",
+       "stance": "pos",
+       "evidence": "Finds the sweet spot and resets the best parts"
+      },
+      {
+       "review_id": "cr_c6e1fa1bcab70f2b",
+       "stance": "pos",
+       "evidence": "elite shot shaping on dinks, drops, resets and counters"
+      },
+      {
+       "review_id": "cr_cb208d202289da4d",
+       "stance": "neg",
+       "evidence": "Slightly more misses than expected on dinks and thirds"
+      },
+      {
+       "review_id": "cr_261da3583e5708c2",
+       "stance": "pos",
+       "evidence": "Control and touch on drops and dinks"
+      },
+      {
+       "review_id": "cr_90b9773c226f7e0a",
+       "stance": "neg",
+       "evidence": "Dinks and resets need touch to avoid pop-ups"
+      },
+      {
+       "review_id": "cr_2f82714d049be3a1",
+       "stance": "neg",
+       "evidence": "popups on soft dinks"
+      },
+      {
+       "review_id": "cr_aa9398a01c152417",
+       "stance": "pos",
+       "evidence": "touch on dinks, rolls, serves and drives"
+      },
+      {
+       "review_id": "cr_51cbb41054a159e6",
+       "stance": "neg",
+       "evidence": "open-face blocks and soft resets pop up or fly long"
+      },
+      {
+       "review_id": "cr_740b9dd47b3aa807",
+       "stance": "neg",
+       "evidence": "Notes it still needs clean touch on resets"
+      },
+      {
+       "review_id": "tt-cr_78cdfb7c127ec78c",
+       "stance": "pos",
+       "evidence": "a light touch at the net"
+      }
+     ]
+    },
+    {
+     "key": "sweet",
+     "label": "Sweet spot",
+     "line": "A large sweet spot.",
+     "reviews": [
+      {
+       "review_id": "cr_ec1c1a7de508759c",
+       "stance": "neg",
+       "evidence": "a hit or miss sweet spot"
+      },
+      {
+       "review_id": "cr_54684a1a6331ad09",
+       "stance": "pos",
+       "evidence": "a large sweet spot"
+      },
+      {
+       "review_id": "cr_e861849f88abeb65",
+       "stance": "pos",
+       "evidence": "bigger sweet spot and more forgiveness"
+      },
+      {
+       "review_id": "cr_feaa65fd68abf67e",
+       "stance": "pos",
+       "evidence": "with a big sweet spot"
+      },
+      {
+       "review_id": "cr_74a5389410b826ba",
+       "stance": "mix",
+       "evidence": "notes a dead zone near the top"
+      },
+      {
+       "review_id": "cr_036f64406ae89865",
+       "stance": "mix",
+       "evidence": "the stock sweet spot in line with the rest of the market"
+      },
+      {
+       "review_id": "cr_a0d47fb49d09548a",
+       "stance": "pos",
+       "evidence": "no loss of forgiveness or power when hitting higher on the face"
+      },
+      {
+       "review_id": "cr_34f5f591e3bd6cb7",
+       "stance": "pos",
+       "evidence": "Great sweet spot"
+      },
+      {
+       "review_id": "cr_c6e1fa1bcab70f2b",
+       "stance": "mix",
+       "evidence": "the sweet spot okay stock and very large with perimeter weight"
+      },
+      {
+       "review_id": "cr_3c07631837b01b80",
+       "stance": "pos",
+       "evidence": "the sweet spot generous"
+      },
+      {
+       "review_id": "cr_1f902420186c6988",
+       "stance": "pos",
+       "evidence": "Finds off-centre stability strong"
+      },
+      {
+       "review_id": "cr_90b9773c226f7e0a",
+       "stance": "pos",
+       "evidence": "with a good sweet spot"
+      },
+      {
+       "review_id": "cr_aa9398a01c152417",
+       "stance": "pos",
+       "evidence": "a slightly above average sweet spot"
+      },
+      {
+       "review_id": "cr_740b9dd47b3aa807",
+       "stance": "mix",
+       "evidence": "less forgiving than the Pegasus"
+      },
+      {
+       "review_id": "tt-cr_78cdfb7c127ec78c",
+       "stance": "neg",
+       "evidence": "plow-through and forgiveness out of the box should look elsewhere"
+      }
+     ]
+    },
+    {
+     "key": "comfort",
+     "label": "Arm comfort",
+     "line": "Easier on a sore elbow.",
+     "reviews": [
+      {
+       "review_id": "cr_54684a1a6331ad09",
+       "stance": "pos",
+       "evidence": "the ride plush with no jarring"
+      },
+      {
+       "review_id": "cr_801975cea63b6d63",
+       "stance": "pos",
+       "evidence": "easier on a sore elbow"
+      },
+      {
+       "review_id": "cr_b1203c03852c75fe",
+       "stance": "pos",
+       "evidence": "enough response without being jarring"
+      }
+     ]
+    }
+   ]
+  },
+  "honolulu-j2cr": {
+   "points": [
+    {
+     "key": "spin",
+     "label": "Spin",
+     "line": "Spin grit that lasts.",
+     "reviews": [
+      {
+       "review_id": "cr_5f4cc8b9f78a903c",
+       "stance": "pos",
+       "evidence": "spin grit that lasts"
+      },
+      {
+       "review_id": "cr_978d958670c8175d",
+       "stance": "pos",
+       "evidence": "Loves the spin"
+      },
+      {
+       "review_id": "cr_1c86070d4bd5f2af",
+       "stance": "pos",
+       "evidence": "Spin and grip called insane"
+      },
+      {
+       "review_id": "cr_9ec25258e7300c20",
+       "stance": "pos",
+       "evidence": "Spin held up, only about 4 percent lower after 100 games"
+      },
+      {
+       "review_id": "cr_359413e06f793a1e",
+       "stance": "pos",
+       "evidence": "Finds the surface gives top tier spin"
+      },
+      {
+       "review_id": "cr_a8310d9be663b650",
+       "stance": "pos",
+       "evidence": "Finds all three elite for spin"
+      },
+      {
+       "review_id": "cr_f51732542c71fd46",
+       "stance": "pos",
+       "evidence": "highest surface roughness and spin in their database"
+      },
+      {
+       "review_id": "cr_c95d816760d84a4a",
+       "stance": "pos",
+       "evidence": "Elite spin"
+      },
+      {
+       "review_id": "cr_325e8a1426af73f2",
+       "stance": "pos",
+       "evidence": "Best spin of the group"
+      },
+      {
+       "review_id": "cr_6086bc4231b0be01",
+       "stance": "pos",
+       "evidence": "Calls the spin top of market"
+      },
+      {
+       "review_id": "cr_574d296b8442781a",
+       "stance": "pos",
+       "evidence": "the elite spin group"
+      },
+      {
+       "review_id": "cr_7ac40d2dbf4d9549",
+       "stance": "pos",
+       "evidence": "Standout spin and long lasting grit"
+      },
+      {
+       "review_id": "cr_fa6cfb31a67e8256",
+       "stance": "pos",
+       "evidence": "Gets crazy spin"
+      },
+      {
+       "review_id": "cr_60ad2c2828c45da8",
+       "stance": "pos",
+       "evidence": "spins the ball very well on slower shots"
+      },
+      {
+       "review_id": "cr_6479ceda572a7252",
+       "stance": "pos",
+       "evidence": "Finds spin very good on slower shots"
+      },
+      {
+       "review_id": "cr_f0f32becd6fad2ca",
+       "stance": "pos",
+       "evidence": "a bit more spin on drives and serves"
+      },
+      {
+       "review_id": "cr_b99c0942e687c3e5",
+       "stance": "pos",
+       "evidence": "the spin as crazy"
+      },
+      {
+       "review_id": "cr_be634a9fb7e10b3b",
+       "stance": "pos",
+       "evidence": "the grittiest of four enhanced grit Gen 4 paddles"
+      },
+      {
+       "review_id": "cr_14da45f526b736f4",
+       "stance": "pos",
+       "evidence": "spin holds with no major drop off"
+      },
+      {
+       "review_id": "cr_9f8c826849b2fe35",
+       "stance": "pos",
+       "evidence": "elite for spin variety"
+      },
+      {
+       "review_id": "tt-cr_1aa4924e6172dd83",
+       "stance": "pos",
+       "evidence": "the grit helped shape the ball"
+      },
+      {
+       "review_id": "tt-cr_9f6c8046ec2a3f30",
+       "stance": "pos",
+       "evidence": "grit that still grabs after heavy use"
+      },
+      {
+       "review_id": "tt-cr_2c7bd1e96903191e",
+       "stance": "mix",
+       "evidence": "Finds the grit less rough after a couple of hours"
+      },
+      {
+       "review_id": "tt-cr_00db06a8fdc11334",
+       "stance": "pos",
+       "evidence": "gives this one the win on raw grit"
+      }
+     ]
+    },
+    {
+     "key": "power",
+     "label": "Power",
+     "line": "Power-paddle output from a light swing.",
+     "reviews": [
+      {
+       "review_id": "cr_5f4cc8b9f78a903c",
+       "stance": "pos",
+       "evidence": "Power-paddle output from a light swing"
+      },
+      {
+       "review_id": "cr_978d958670c8175d",
+       "stance": "mix",
+       "evidence": "less poppy than the J3"
+      },
+      {
+       "review_id": "cr_1c86070d4bd5f2af",
+       "stance": "mix",
+       "evidence": "mid tier power paddles"
+      },
+      {
+       "review_id": "cr_9ec25258e7300c20",
+       "stance": "pos",
+       "evidence": "more power and pop"
+      },
+      {
+       "review_id": "cr_359413e06f793a1e",
+       "stance": "pos",
+       "evidence": "aggressive power with touch"
+      },
+      {
+       "review_id": "cr_a8310d9be663b650",
+       "stance": "pos",
+       "evidence": "clear winner for power and pop"
+      },
+      {
+       "review_id": "cr_c95d816760d84a4a",
+       "stance": "pos",
+       "evidence": "Powerful paddle with elite spin"
+      },
+      {
+       "review_id": "cr_325e8a1426af73f2",
+       "stance": "pos",
+       "evidence": "with strong power and control"
+      },
+      {
+       "review_id": "cr_6086bc4231b0be01",
+       "stance": "mix",
+       "evidence": "Power below the top power paddles"
+      },
+      {
+       "review_id": "cr_574d296b8442781a",
+       "stance": "pos",
+       "evidence": "Most explosive paddle of the group"
+      },
+      {
+       "review_id": "cr_7ac40d2dbf4d9549",
+       "stance": "pos",
+       "evidence": "Finds drives, serves, overheads and putaways strong"
+      },
+      {
+       "review_id": "cr_fa6cfb31a67e8256",
+       "stance": "pos",
+       "evidence": "plenty of power on serves, drives and counters"
+      },
+      {
+       "review_id": "cr_60ad2c2828c45da8",
+       "stance": "pos",
+       "evidence": "calls drives awesome"
+      },
+      {
+       "review_id": "cr_6479ceda572a7252",
+       "stance": "pos",
+       "evidence": "says drives were awesome"
+      },
+      {
+       "review_id": "cr_f0f32becd6fad2ca",
+       "stance": "mix",
+       "evidence": "medium to high pop"
+      },
+      {
+       "review_id": "cr_b99c0942e687c3e5",
+       "stance": "mix",
+       "evidence": "Rates the power as very solid"
+      },
+      {
+       "review_id": "cr_be634a9fb7e10b3b",
+       "stance": "mix",
+       "evidence": "Not for top pop or drive speed with minimal effort"
+      },
+      {
+       "review_id": "cr_14da45f526b736f4",
+       "stance": "mix",
+       "evidence": "Places power in the middle of the power category"
+      },
+      {
+       "review_id": "cr_9f8c826849b2fe35",
+       "stance": "pos",
+       "evidence": "one of the most powerful paddles on the market"
+      },
+      {
+       "review_id": "cr_e43f371a8576406b",
+       "stance": "mix",
+       "evidence": "mid-tier power"
+      },
+      {
+       "review_id": "cr_829bb2b4d253e737",
+       "stance": "pos",
+       "evidence": "good power on drives, flicks and rolls"
+      },
+      {
+       "review_id": "tt-cr_1aa4924e6172dd83",
+       "stance": "mix",
+       "evidence": "gives that paddle the power edge"
+      },
+      {
+       "review_id": "tt-cr_9f6c8046ec2a3f30",
+       "stance": "pos",
+       "evidence": "enough pop to finish points"
+      },
+      {
+       "review_id": "tt-cr_f8e09c237f8f411f",
+       "stance": "pos",
+       "evidence": "most firepower on drive serves and putaways"
+      }
+     ]
+    },
+    {
+     "key": "sweet",
+     "label": "Sweet spot",
+     "line": "Large sweet spots.",
+     "reviews": [
+      {
+       "review_id": "cr_5f4cc8b9f78a903c",
+       "stance": "neg",
+       "evidence": "shows on edge mishits"
+      },
+      {
+       "review_id": "cr_1c86070d4bd5f2af",
+       "stance": "pos",
+       "evidence": "large sweet spots"
+      },
+      {
+       "review_id": "cr_9ec25258e7300c20",
+       "stance": "pos",
+       "evidence": "a good sweet spot"
+      },
+      {
+       "review_id": "cr_359413e06f793a1e",
+       "stance": "pos",
+       "evidence": "slightly more forgiving"
+      },
+      {
+       "review_id": "cr_a8310d9be663b650",
+       "stance": "pos",
+       "evidence": "Finds the sweet spot longest on the vertical axis"
+      },
+      {
+       "review_id": "cr_f51732542c71fd46",
+       "stance": "neg",
+       "evidence": "Warns that off center hits are felt"
+      },
+      {
+       "review_id": "cr_c95d816760d84a4a",
+       "stance": "pos",
+       "evidence": "very large, forgiving sweet spot"
+      },
+      {
+       "review_id": "cr_574d296b8442781a",
+       "stance": "mix",
+       "evidence": "average sweet spot"
+      },
+      {
+       "review_id": "cr_7ac40d2dbf4d9549",
+       "stance": "pos",
+       "evidence": "forgiveness good for a hybrid"
+      },
+      {
+       "review_id": "cr_fa6cfb31a67e8256",
+       "stance": "pos",
+       "evidence": "Forgiving sweet spot"
+      },
+      {
+       "review_id": "cr_f0f32becd6fad2ca",
+       "stance": "pos",
+       "evidence": "Elite sweet spot and stability"
+      },
+      {
+       "review_id": "cr_be634a9fb7e10b3b",
+       "stance": "pos",
+       "evidence": "stable, consistent sweet spot"
+      },
+      {
+       "review_id": "cr_14da45f526b736f4",
+       "stance": "pos",
+       "evidence": "Massive sweet spot"
+      },
+      {
+       "review_id": "cr_9f8c826849b2fe35",
+       "stance": "mix",
+       "evidence": "less solid off center than the Boomstik"
+      },
+      {
+       "review_id": "cr_e43f371a8576406b",
+       "stance": "pos",
+       "evidence": "Large sweet spot"
+      },
+      {
+       "review_id": "tt-cr_1aa4924e6172dd83",
+       "stance": "pos",
+       "evidence": "has the biggest sweet spot"
+      },
+      {
+       "review_id": "tt-cr_f8e09c237f8f411f",
+       "stance": "pos",
+       "evidence": "a longer vertical sweet spot"
+      }
+     ]
+    },
+    {
+     "key": "resets",
+     "label": "Resets and dinks",
+     "line": "Drives, drops, resets and finishes.",
+     "reviews": [
+      {
+       "review_id": "cr_5f4cc8b9f78a903c",
+       "stance": "pos",
+       "evidence": "drives, drops, resets and finishes"
+      },
+      {
+       "review_id": "cr_978d958670c8175d",
+       "stance": "pos",
+       "evidence": "easier to dink than the J6"
+      },
+      {
+       "review_id": "cr_c95d816760d84a4a",
+       "stance": "pos",
+       "evidence": "finds blocks and resets surprisingly predictable"
+      },
+      {
+       "review_id": "cr_325e8a1426af73f2",
+       "stance": "pos",
+       "evidence": "Calls drops natural and dinks easy"
+      },
+      {
+       "review_id": "cr_6086bc4231b0be01",
+       "stance": "pos",
+       "evidence": "crisp resets and easy dinks"
+      },
+      {
+       "review_id": "cr_574d296b8442781a",
+       "stance": "neg",
+       "evidence": "Pop can be hard to manage when absorbing pace"
+      },
+      {
+       "review_id": "cr_fa6cfb31a67e8256",
+       "stance": "pos",
+       "evidence": "good soft touch"
+      },
+      {
+       "review_id": "cr_60ad2c2828c45da8",
+       "stance": "neg",
+       "evidence": "volley dinks lose energy and die"
+      },
+      {
+       "review_id": "cr_6479ceda572a7252",
+       "stance": "neg",
+       "evidence": "the ball died on volley dinks with little energy return"
+      },
+      {
+       "review_id": "cr_f0f32becd6fad2ca",
+       "stance": "pos",
+       "evidence": "tames the pop on dinks, flicks and rolls"
+      },
+      {
+       "review_id": "cr_b99c0942e687c3e5",
+       "stance": "pos",
+       "evidence": "Honeycomb-like hold on dinks, drops and resets"
+      },
+      {
+       "review_id": "cr_14da45f526b736f4",
+       "stance": "pos",
+       "evidence": "quick hands at the kitchen line"
+      },
+      {
+       "review_id": "cr_9f8c826849b2fe35",
+       "stance": "pos",
+       "evidence": "grabby sense of control on drops and resets"
+      },
+      {
+       "review_id": "tt-cr_9f6c8046ec2a3f30",
+       "stance": "pos",
+       "evidence": "resets that can be trusted"
+      }
+     ]
+    }
+   ]
+  },
+  "joola-perseus-pro-iv": {
+   "points": [
+    {
+     "key": "power",
+     "label": "Power",
+     "line": "Finds its pop clearly faster in fast hand battles at the net.",
+     "reviews": [
+      {
+       "review_id": "cr_a668fa8870e2911e",
+       "stance": "pos",
+       "evidence": "Finds power, control, dinks, resets and counters all good"
+      },
+      {
+       "review_id": "cr_01974d007ad83966",
+       "stance": "pos",
+       "evidence": "finds its pop clearly faster in fast hand battles at the net"
+      },
+      {
+       "review_id": "cr_3a7682757b2192db",
+       "stance": "pos",
+       "evidence": "Still the power leader, with extra dwell time"
+      },
+      {
+       "review_id": "cr_cb03f4fce75188ee",
+       "stance": "pos",
+       "evidence": "calls it one of the most powerful paddles available"
+      },
+      {
+       "review_id": "cr_ab6a0ef48e77d310",
+       "stance": "pos",
+       "evidence": "the 14mm feels firmer and has more power and pop"
+      },
+      {
+       "review_id": "cr_6360d8b05fe850d2",
+       "stance": "pos",
+       "evidence": "Reports high power and pop"
+      },
+      {
+       "review_id": "cr_6ad8e808bc7acf67",
+       "stance": "pos",
+       "evidence": "Plenty of pop on serves and returns"
+      },
+      {
+       "review_id": "cr_7ebf809411479327",
+       "stance": "pos",
+       "evidence": "Top three or four pop and strong power with high spin"
+      },
+      {
+       "review_id": "cr_cbf4a3ccb9c584d8",
+       "stance": "pos",
+       "evidence": "Same power and pop as the 3S models"
+      },
+      {
+       "review_id": "cr_2f2141b81dc550ce",
+       "stance": "pos",
+       "evidence": "Predictable power that scales with swing speed"
+      },
+      {
+       "review_id": "cr_4808b8e031fbd059",
+       "stance": "mix",
+       "evidence": "enough power when needed"
+      },
+      {
+       "review_id": "cr_dedd31140a643c34",
+       "stance": "pos",
+       "evidence": "nice resets and drives"
+      },
+      {
+       "review_id": "cr_c930d9f744e58d43",
+       "stance": "pos",
+       "evidence": "still plenty of power"
+      },
+      {
+       "review_id": "cr_cfe4fa72e46e298d",
+       "stance": "pos",
+       "evidence": "one of the most explosive paddles played"
+      },
+      {
+       "review_id": "cr_222c46e1028978b5",
+       "stance": "mix",
+       "evidence": "Hits less big than the Agassi on serves, drives and volleys"
+      },
+      {
+       "review_id": "cr_7f28db14cf62050e",
+       "stance": "pos",
+       "evidence": "power on hard shots"
+      },
+      {
+       "review_id": "cr_30e8043eaddd4de9",
+       "stance": "pos",
+       "evidence": "Very high power and pop"
+      },
+      {
+       "review_id": "cr_47d829f9203786a4",
+       "stance": "mix",
+       "evidence": "hits slightly less hard than the 3S"
+      },
+      {
+       "review_id": "cr_64bc515453d775b5",
+       "stance": "pos",
+       "evidence": "plenty of power without wrecking control"
+      },
+      {
+       "review_id": "cr_e6f78302be0ef2f8",
+       "stance": "pos",
+       "evidence": "with 3s level power"
+      },
+      {
+       "review_id": "cr_825e2baaf98ce3aa",
+       "stance": "pos",
+       "evidence": "Higher drive speed"
+      },
+      {
+       "review_id": "cr_282d2843fe8cf82d",
+       "stance": "pos",
+       "evidence": "Same power as the 3s with a lower swing weight"
+      },
+      {
+       "review_id": "tt-cr_f95a2a92b3033f9c",
+       "stance": "pos",
+       "evidence": "finds a noticeable power gap in its favour"
+      }
+     ]
+    },
+    {
+     "key": "sweet",
+     "label": "Sweet spot",
+     "line": "More forgiveness and fewer vibrations.",
+     "reviews": [
+      {
+       "review_id": "cr_01974d007ad83966",
+       "stance": "pos",
+       "evidence": "plenty of spin and a slightly bigger sweet spot"
+      },
+      {
+       "review_id": "cr_3a7682757b2192db",
+       "stance": "neg",
+       "evidence": "Dead spots off-centre"
+      },
+      {
+       "review_id": "cr_ab6a0ef48e77d310",
+       "stance": "neg",
+       "evidence": "Smaller sweet spot, loses power off-center"
+      },
+      {
+       "review_id": "cr_6ad8e808bc7acf67",
+       "stance": "neg",
+       "evidence": "the sweet spot smaller and less forgiving"
+      },
+      {
+       "review_id": "cr_7ebf809411479327",
+       "stance": "neg",
+       "evidence": "a small sweet spot until dialed in"
+      },
+      {
+       "review_id": "cr_cbf4a3ccb9c584d8",
+       "stance": "pos",
+       "evidence": "more forgiveness and fewer vibrations"
+      },
+      {
+       "review_id": "cr_2f2141b81dc550ce",
+       "stance": "pos",
+       "evidence": "a good sweet spot they credit to the Tech Flex foam"
+      },
+      {
+       "review_id": "cr_dedd31140a643c34",
+       "stance": "pos",
+       "evidence": "Huge sweet spot"
+      },
+      {
+       "review_id": "cr_c930d9f744e58d43",
+       "stance": "mix",
+       "evidence": "sweet spot is slightly smaller than the 3S"
+      },
+      {
+       "review_id": "cr_cfe4fa72e46e298d",
+       "stance": "mix",
+       "evidence": "a medium sweet spot with slight dead spots near the handle"
+      },
+      {
+       "review_id": "cr_222c46e1028978b5",
+       "stance": "pos",
+       "evidence": "Reports almost no mishits"
+      },
+      {
+       "review_id": "cr_30e8043eaddd4de9",
+       "stance": "neg",
+       "evidence": "Lower sweet spot only improves a little"
+      },
+      {
+       "review_id": "cr_47d829f9203786a4",
+       "stance": "pos",
+       "evidence": "a more stable sweet spot low on the paddle"
+      },
+      {
+       "review_id": "cr_64bc515453d775b5",
+       "stance": "pos",
+       "evidence": "a large sweet spot"
+      },
+      {
+       "review_id": "cr_e6f78302be0ef2f8",
+       "stance": "pos",
+       "evidence": "a slightly larger sweet spot"
+      },
+      {
+       "review_id": "cr_825e2baaf98ce3aa",
+       "stance": "pos",
+       "evidence": "both plush with great sweet spots and high spin"
+      },
+      {
+       "review_id": "cr_282d2843fe8cf82d",
+       "stance": "pos",
+       "evidence": "with better forgiveness than the Bantam"
+      }
+     ]
+    },
+    {
+     "key": "spin",
+     "label": "Spin",
+     "line": "Plenty of spin and a slightly bigger sweet spot.",
+     "reviews": [
+      {
+       "review_id": "cr_01974d007ad83966",
+       "stance": "pos",
+       "evidence": "plenty of spin and a slightly bigger sweet spot"
+      },
+      {
+       "review_id": "cr_3a7682757b2192db",
+       "stance": "mix",
+       "evidence": "Rates spin as near a tie"
+      },
+      {
+       "review_id": "cr_cb03f4fce75188ee",
+       "stance": "neg",
+       "evidence": "felt smooth, without the expected grit"
+      },
+      {
+       "review_id": "cr_ab6a0ef48e77d310",
+       "stance": "pos",
+       "evidence": "spin easy to produce without much arm effort"
+      },
+      {
+       "review_id": "cr_6ad8e808bc7acf67",
+       "stance": "pos",
+       "evidence": "Rates spin as impressive, especially on topspin serves"
+      },
+      {
+       "review_id": "cr_7ebf809411479327",
+       "stance": "pos",
+       "evidence": "strong power with high spin"
+      },
+      {
+       "review_id": "cr_dedd31140a643c34",
+       "stance": "pos",
+       "evidence": "plenty of spin from the foam edge"
+      },
+      {
+       "review_id": "cr_c930d9f744e58d43",
+       "stance": "pos",
+       "evidence": "Calls spin top tier but not new"
+      },
+      {
+       "review_id": "cr_cfe4fa72e46e298d",
+       "stance": "pos",
+       "evidence": "Reports heavy topspin, sharp dips and kicking serves"
+      },
+      {
+       "review_id": "cr_222c46e1028978b5",
+       "stance": "pos",
+       "evidence": "higher spin potential"
+      },
+      {
+       "review_id": "cr_7f28db14cf62050e",
+       "stance": "mix",
+       "evidence": "so spin is good despite modest grit"
+      },
+      {
+       "review_id": "cr_47d829f9203786a4",
+       "stance": "pos",
+       "evidence": "rates spin as solid, in the low to mid 2000s"
+      },
+      {
+       "review_id": "cr_e6f78302be0ef2f8",
+       "stance": "mix",
+       "evidence": "sees about 70 fewer RPM on average"
+      },
+      {
+       "review_id": "cr_825e2baaf98ce3aa",
+       "stance": "pos",
+       "evidence": "both plush with great sweet spots and high spin"
+      },
+      {
+       "review_id": "cr_282d2843fe8cf82d",
+       "stance": "mix",
+       "evidence": "spin tests in the high 1900s that did not stand out"
+      },
+      {
+       "review_id": "tt-cr_3e041e7ff1582ec7",
+       "stance": "neg",
+       "evidence": "finds the spin better on the RPM"
+      }
+     ]
+    },
+    {
+     "key": "resets",
+     "label": "Resets and dinks",
+     "line": "Finds power, control, dinks, resets and counters all good.",
+     "reviews": [
+      {
+       "review_id": "cr_a668fa8870e2911e",
+       "stance": "pos",
+       "evidence": "Finds power, control, dinks, resets and counters all good"
+      },
+      {
+       "review_id": "cr_01974d007ad83966",
+       "stance": "mix",
+       "evidence": "hard to control on drops and resets"
+      },
+      {
+       "review_id": "cr_3a7682757b2192db",
+       "stance": "pos",
+       "evidence": "good aggressive dinks from both"
+      },
+      {
+       "review_id": "cr_6ad8e808bc7acf67",
+       "stance": "neg",
+       "evidence": "slightly less refined touch than the Agassi 16"
+      },
+      {
+       "review_id": "cr_2f2141b81dc550ce",
+       "stance": "neg",
+       "evidence": "a little slow at the kitchen on volleys and flicks"
+      },
+      {
+       "review_id": "cr_4808b8e031fbd059",
+       "stance": "pos",
+       "evidence": "Plenty of control on baseline drops and dinks"
+      },
+      {
+       "review_id": "cr_dedd31140a643c34",
+       "stance": "pos",
+       "evidence": "nice resets and drives"
+      },
+      {
+       "review_id": "cr_222c46e1028978b5",
+       "stance": "pos",
+       "evidence": "Notes floatier dinks, fewer pop-ups"
+      },
+      {
+       "review_id": "cr_7f28db14cf62050e",
+       "stance": "pos",
+       "evidence": "Soft touch on dinks"
+      },
+      {
+       "review_id": "cr_47d829f9203786a4",
+       "stance": "neg",
+       "evidence": "popups and soft game are harder"
+      },
+      {
+       "review_id": "cr_282d2843fe8cf82d",
+       "stance": "mix",
+       "evidence": "less developed soft game may lose more control"
+      }
+     ]
+    },
+    {
+     "key": "comfort",
+     "label": "Arm comfort",
+     "line": "Very little vibration.",
+     "reviews": [
+      {
+       "review_id": "cr_cbf4a3ccb9c584d8",
+       "stance": "pos",
+       "evidence": "more forgiveness and fewer vibrations"
+      },
+      {
+       "review_id": "cr_64bc515453d775b5",
+       "stance": "pos",
+       "evidence": "very little vibration"
+      },
+      {
+       "review_id": "cr_825e2baaf98ce3aa",
+       "stance": "pos",
+       "evidence": "less vibration than the 3s"
+      }
+     ]
+    }
+   ]
+  },
+  "luzz-cannon": {
+   "points": [
+    {
+     "key": "power",
+     "label": "Power",
+     "line": "Big power and spin.",
+     "reviews": [
+      {
+       "review_id": "cr_8c96316aef431be0",
+       "stance": "pos",
+       "evidence": "Big power and spin"
+      },
+      {
+       "review_id": "cr_3ab2437a611807df",
+       "stance": "pos",
+       "evidence": "Outstanding rebound that makes serves and drives easy to put away"
+      },
+      {
+       "review_id": "cr_d77ceedb69ed4010",
+       "stance": "pos",
+       "evidence": "Effortless power and fast hands at the net"
+      },
+      {
+       "review_id": "cr_a1a57ed37846d2bf",
+       "stance": "pos",
+       "evidence": "Strong power and pop"
+      },
+      {
+       "review_id": "cr_88664cef2b00e1a1",
+       "stance": "pos",
+       "evidence": "the power impressive, linear and crisp"
+      },
+      {
+       "review_id": "cr_8b3e533949c2260d",
+       "stance": "pos",
+       "evidence": "easy power on drives and serves"
+      },
+      {
+       "review_id": "cr_c7c711341daf90c8",
+       "stance": "pos",
+       "evidence": "Immediate crisp pop and strong power at a budget level"
+      },
+      {
+       "review_id": "cr_7bf9066fb1d4b9e1",
+       "stance": "pos",
+       "evidence": "effortless power at the price"
+      },
+      {
+       "review_id": "cr_e612bf9538fb18b5",
+       "stance": "mix",
+       "evidence": "Calls the power almost the same on big swings"
+      },
+      {
+       "review_id": "cr_f8d3f27ae8b9b425",
+       "stance": "pos",
+       "evidence": "Lots of power, spin and putaway ability with a faster feel"
+      },
+      {
+       "review_id": "cr_7e2d56e198c87459",
+       "stance": "pos",
+       "evidence": "Calls the power controlled"
+      },
+      {
+       "review_id": "cr_cc17c3e052285759",
+       "stance": "pos",
+       "evidence": "power close to a 16mm paddle many compare it to"
+      },
+      {
+       "review_id": "cr_98506969092ee0f4",
+       "stance": "pos",
+       "evidence": "hits insanely hard"
+      },
+      {
+       "review_id": "cr_20c694774459f0f8",
+       "stance": "pos",
+       "evidence": "Big power on drives and put aways"
+      },
+      {
+       "review_id": "cr_fbb806a4942f0431",
+       "stance": "pos",
+       "evidence": "Pop and power rivaling the Hurache-X"
+      },
+      {
+       "review_id": "cr_2e104f233b91ec40",
+       "stance": "pos",
+       "evidence": "nearly the same power, pop and spin as the Joola"
+      },
+      {
+       "review_id": "cr_9b313d705f31cc60",
+       "stance": "pos",
+       "evidence": "Crisp Gen 3 rebound with top tier power"
+      },
+      {
+       "review_id": "cr_c97039afa4e26123",
+       "stance": "pos",
+       "evidence": "Puts power on par with the Perseus Pro 4"
+      },
+      {
+       "review_id": "cr_14c151f6d4e82c5f",
+       "stance": "pos",
+       "evidence": "Powerful drives and counters at a budget price"
+      },
+      {
+       "review_id": "cr_592810d28e53a13b",
+       "stance": "pos",
+       "evidence": "Heavy spin and power from a gritty carbon face"
+      },
+      {
+       "review_id": "cr_7fa3c956c55a6249",
+       "stance": "pos",
+       "evidence": "finds more power and pop"
+      },
+      {
+       "review_id": "cr_08760111545c0a67",
+       "stance": "pos",
+       "evidence": "Puts the power comparable to the Joola Pro 4, maybe a little more"
+      },
+      {
+       "review_id": "tt-cr_d6b08c85f4d8010d",
+       "stance": "pos",
+       "evidence": "elite pop and power"
+      },
+      {
+       "review_id": "tt-cr_f452f09096820415",
+       "stance": "pos",
+       "evidence": "still giving enough power for put-aways"
+      },
+      {
+       "review_id": "tt-cr_93a3b07430f4c14f",
+       "stance": "pos",
+       "evidence": "slightly more firepower"
+      },
+      {
+       "review_id": "tt-cr_9994e5e70c665f58",
+       "stance": "mix",
+       "evidence": "Rates punch volleys solid but not explosive"
+      },
+      {
+       "review_id": "tt-cr_9211c01d32e1aa12",
+       "stance": "pos",
+       "evidence": "loving insane power that saves energy in hot weather"
+      }
+     ]
+    },
+    {
+     "key": "spin",
+     "label": "Spin",
+     "line": "Rates spin as real bite without being top of the market.",
+     "reviews": [
+      {
+       "review_id": "cr_8c96316aef431be0",
+       "stance": "pos",
+       "evidence": "Rates spin as real bite without being top of the market"
+      },
+      {
+       "review_id": "cr_3ab2437a611807df",
+       "stance": "pos",
+       "evidence": "Finds spin solid on topspin strokes and flat pushes"
+      },
+      {
+       "review_id": "cr_d77ceedb69ed4010",
+       "stance": "pos",
+       "evidence": "Calls the spin above average"
+      },
+      {
+       "review_id": "cr_a1a57ed37846d2bf",
+       "stance": "pos",
+       "evidence": "Rates the spin as good"
+      },
+      {
+       "review_id": "cr_88664cef2b00e1a1",
+       "stance": "pos",
+       "evidence": "the heavy grit makes topspin easy"
+      },
+      {
+       "review_id": "cr_8b3e533949c2260d",
+       "stance": "pos",
+       "evidence": "Heavy topspin and easy power on drives and serves"
+      },
+      {
+       "review_id": "cr_c7c711341daf90c8",
+       "stance": "mix",
+       "evidence": "Rates its spin as good for a budget paddle"
+      },
+      {
+       "review_id": "cr_7bf9066fb1d4b9e1",
+       "stance": "pos",
+       "evidence": "Finds the spin great"
+      },
+      {
+       "review_id": "cr_e612bf9538fb18b5",
+       "stance": "pos",
+       "evidence": "Reports more topspin and more grit"
+      },
+      {
+       "review_id": "cr_f8d3f27ae8b9b425",
+       "stance": "pos",
+       "evidence": "heavy spin on a slice dink"
+      },
+      {
+       "review_id": "cr_cc17c3e052285759",
+       "stance": "pos",
+       "evidence": "Good spin, tournament legal"
+      },
+      {
+       "review_id": "cr_98506969092ee0f4",
+       "stance": "pos",
+       "evidence": "really good spin"
+      },
+      {
+       "review_id": "cr_20c694774459f0f8",
+       "stance": "pos",
+       "evidence": "the gritty carbon fiber shapes the ball and helps drives dip"
+      },
+      {
+       "review_id": "cr_f8c2376bd905b891",
+       "stance": "pos",
+       "evidence": "says the grit has lasted"
+      },
+      {
+       "review_id": "cr_fbb806a4942f0431",
+       "stance": "pos",
+       "evidence": "Finds the grit higher than the Hurache-X"
+      },
+      {
+       "review_id": "cr_2e104f233b91ec40",
+       "stance": "pos",
+       "evidence": "nearly the same power, pop and spin as the Joola"
+      },
+      {
+       "review_id": "cr_9b313d705f31cc60",
+       "stance": "mix",
+       "evidence": "the spin at the 56th percentile"
+      },
+      {
+       "review_id": "cr_c97039afa4e26123",
+       "stance": "pos",
+       "evidence": "pop right there and great spin"
+      },
+      {
+       "review_id": "cr_14c151f6d4e82c5f",
+       "stance": "pos",
+       "evidence": "effective spin for kitchen rolls and dinks"
+      },
+      {
+       "review_id": "cr_592810d28e53a13b",
+       "stance": "pos",
+       "evidence": "produces a lot of spin"
+      },
+      {
+       "review_id": "cr_7fa3c956c55a6249",
+       "stance": "pos",
+       "evidence": "better spin from the floating core"
+      },
+      {
+       "review_id": "cr_08760111545c0a67",
+       "stance": "pos",
+       "evidence": "very gritty surface for the first 5 hours"
+      },
+      {
+       "review_id": "tt-cr_93a3b07430f4c14f",
+       "stance": "pos",
+       "evidence": "slightly more spin"
+      },
+      {
+       "review_id": "tt-cr_9994e5e70c665f58",
+       "stance": "mix",
+       "evidence": "spin respectable for the price"
+      }
+     ]
+    },
+    {
+     "key": "sweet",
+     "label": "Sweet spot",
+     "line": "The sweet spot bigger than expected for an elongated paddle.",
+     "reviews": [
+      {
+       "review_id": "cr_8c96316aef431be0",
+       "stance": "neg",
+       "evidence": "off-center hits spray"
+      },
+      {
+       "review_id": "cr_3ab2437a611807df",
+       "stance": "pos",
+       "evidence": "the mass steadies off-centre hits"
+      },
+      {
+       "review_id": "cr_d77ceedb69ed4010",
+       "stance": "mix",
+       "evidence": "calls the sweet spot fairly forgiving there"
+      },
+      {
+       "review_id": "cr_a1a57ed37846d2bf",
+       "stance": "neg",
+       "evidence": "a smaller true sweet spot"
+      },
+      {
+       "review_id": "cr_88664cef2b00e1a1",
+       "stance": "pos",
+       "evidence": "bails out late contact"
+      },
+      {
+       "review_id": "cr_8b3e533949c2260d",
+       "stance": "pos",
+       "evidence": "the sweet spot bigger than expected for an elongated paddle"
+      },
+      {
+       "review_id": "cr_c7c711341daf90c8",
+       "stance": "mix",
+       "evidence": "sharper off-center feedback"
+      },
+      {
+       "review_id": "cr_e612bf9538fb18b5",
+       "stance": "pos",
+       "evidence": "prefers the full EVA foam ring for control and sweet spot"
+      },
+      {
+       "review_id": "cr_f8d3f27ae8b9b425",
+       "stance": "neg",
+       "evidence": "Notes the sweet spot is not as large"
+      },
+      {
+       "review_id": "cr_7e2d56e198c87459",
+       "stance": "pos",
+       "evidence": "Describes the sweet spot as generous"
+      },
+      {
+       "review_id": "cr_cc17c3e052285759",
+       "stance": "mix",
+       "evidence": "the sweet spot average for a Gen 3 elongated shape"
+      },
+      {
+       "review_id": "cr_20c694774459f0f8",
+       "stance": "pos",
+       "evidence": "Finds the sweet spot surprisingly large and forgiving"
+      },
+      {
+       "review_id": "cr_f8c2376bd905b891",
+       "stance": "neg",
+       "evidence": "Finds it stiff with a very small sweet spot"
+      },
+      {
+       "review_id": "cr_fbb806a4942f0431",
+       "stance": "mix",
+       "evidence": "Rates the sweet spot average to slightly above average"
+      },
+      {
+       "review_id": "cr_9b313d705f31cc60",
+       "stance": "pos",
+       "evidence": "a forgiving sweet spot for an elongated build"
+      },
+      {
+       "review_id": "cr_14c151f6d4e82c5f",
+       "stance": "neg",
+       "evidence": "the sweet spot is tight and centered"
+      },
+      {
+       "review_id": "cr_7fa3c956c55a6249",
+       "stance": "pos",
+       "evidence": "a more consistent face and a better sweet spot"
+      },
+      {
+       "review_id": "cr_08760111545c0a67",
+       "stance": "neg",
+       "evidence": "some dead spots near the bottom"
+      },
+      {
+       "review_id": "tt-cr_93a3b07430f4c14f",
+       "stance": "pos",
+       "evidence": "a much better sweet spot"
+      },
+      {
+       "review_id": "tt-cr_9994e5e70c665f58",
+       "stance": "pos",
+       "evidence": "a generous sweet spot"
+      },
+      {
+       "review_id": "tt-cr_9211c01d32e1aa12",
+       "stance": "pos",
+       "evidence": "a big sweet spot that makes resets easy"
+      }
+     ]
+    },
+    {
+     "key": "resets",
+     "label": "Resets and dinks",
+     "line": "The soft game clean and connected.",
+     "reviews": [
+      {
+       "review_id": "cr_8c96316aef431be0",
+       "stance": "neg",
+       "evidence": "Heavy head floats dinks and arrives late"
+      },
+      {
+       "review_id": "cr_d77ceedb69ed4010",
+       "stance": "neg",
+       "evidence": "resets and drops feel dead off the sweet spot"
+      },
+      {
+       "review_id": "cr_a1a57ed37846d2bf",
+       "stance": "neg",
+       "evidence": "finds resets harder than normal"
+      },
+      {
+       "review_id": "cr_88664cef2b00e1a1",
+       "stance": "mix",
+       "evidence": "needs adjusting on resets, drops and dinks"
+      },
+      {
+       "review_id": "cr_8b3e533949c2260d",
+       "stance": "pos",
+       "evidence": "the soft game clean and connected"
+      },
+      {
+       "review_id": "cr_c7c711341daf90c8",
+       "stance": "mix",
+       "evidence": "soft game playable but needing more hand discipline on blocks"
+      },
+      {
+       "review_id": "cr_7bf9066fb1d4b9e1",
+       "stance": "pos",
+       "evidence": "control excellent on slice dinks into the back corner"
+      },
+      {
+       "review_id": "cr_e612bf9538fb18b5",
+       "stance": "pos",
+       "evidence": "better command of drops, resets, dinks and blocks"
+      },
+      {
+       "review_id": "cr_7e2d56e198c87459",
+       "stance": "pos",
+       "evidence": "gives precision on resets, dinks and third shots"
+      },
+      {
+       "review_id": "cr_20c694774459f0f8",
+       "stance": "mix",
+       "evidence": "softer shots need dialing in"
+      },
+      {
+       "review_id": "cr_9b313d705f31cc60",
+       "stance": "pos",
+       "evidence": "a quick feel through the kitchen"
+      },
+      {
+       "review_id": "cr_c97039afa4e26123",
+       "stance": "pos",
+       "evidence": "a soft touch for control"
+      },
+      {
+       "review_id": "cr_08760111545c0a67",
+       "stance": "pos",
+       "evidence": "Finds the soft game fine"
+      },
+      {
+       "review_id": "tt-cr_d6b08c85f4d8010d",
+       "stance": "pos",
+       "evidence": "good dinks, resets and drives"
+      },
+      {
+       "review_id": "tt-cr_f452f09096820415",
+       "stance": "pos",
+       "evidence": "makes touch shots, soft shots and resets easy"
+      },
+      {
+       "review_id": "tt-cr_9211c01d32e1aa12",
+       "stance": "pos",
+       "evidence": "a big sweet spot that makes resets easy"
+      }
+     ]
+    },
+    {
+     "key": "comfort",
+     "label": "Arm comfort",
+     "line": "The weight brings some arm fatigue after long doubles sessions.",
+     "reviews": [
+      {
+       "review_id": "cr_3ab2437a611807df",
+       "stance": "neg",
+       "evidence": "the weight brings some arm fatigue after long doubles sessions"
+      },
+      {
+       "review_id": "cr_a1a57ed37846d2bf",
+       "stance": "neg",
+       "evidence": "a lot of vibration"
+      },
+      {
+       "review_id": "cr_7bf9066fb1d4b9e1",
+       "stance": "mix",
+       "evidence": "Reports no wrist pain with arthritis"
+      },
+      {
+       "review_id": "cr_14c151f6d4e82c5f",
+       "stance": "neg",
+       "evidence": "the head weight can strain the wrist"
+      },
+      {
+       "review_id": "cr_592810d28e53a13b",
+       "stance": "neg",
+       "evidence": "Vibration bothers an arm prone to elbow pain"
+      },
+      {
+       "review_id": "cr_08760111545c0a67",
+       "stance": "neg",
+       "evidence": "Notes vibration on off center hits"
+      }
+     ]
+    }
+   ]
+  },
+  "selkirk-omni": {
+   "points": [
+    {
+     "key": "power",
+     "label": "Power",
+     "line": "Widebody pop feels a little too immediate.",
+     "reviews": [
+      {
+       "review_id": "cr_37c7e214023b242a",
+       "stance": "pos",
+       "evidence": "hits harder than expected"
+      },
+      {
+       "review_id": "cr_76bbcffd431ea99c",
+       "stance": "mix",
+       "evidence": "Widebody pop feels a little too immediate"
+      },
+      {
+       "review_id": "cr_a40ea969e81ebdc3",
+       "stance": "neg",
+       "evidence": "Less power and pop than the Selkirk Boomstik"
+      },
+      {
+       "review_id": "cr_a0a18408088cb917",
+       "stance": "mix",
+       "evidence": "power on demand"
+      },
+      {
+       "review_id": "cr_2554c260bed59a52",
+       "stance": "pos",
+       "evidence": "plenty of power"
+      },
+      {
+       "review_id": "cr_2aa9139dbbc76432",
+       "stance": "neg",
+       "evidence": "Less power than a Boomstik"
+      },
+      {
+       "review_id": "cr_0af9a34d7d660df4",
+       "stance": "pos",
+       "evidence": "plenty of pop"
+      },
+      {
+       "review_id": "cr_97b33cae8da6f9e4",
+       "stance": "mix",
+       "evidence": "a power paddle with less pop than the Boomstik"
+      },
+      {
+       "review_id": "cr_85afa600274814b1",
+       "stance": "mix",
+       "evidence": "a power loss that is small at 52 mph serves"
+      },
+      {
+       "review_id": "cr_02b245c63412e778",
+       "stance": "neg",
+       "evidence": "Capped power and slower put-aways"
+      },
+      {
+       "review_id": "cr_09add3bcdcd8b7e0",
+       "stance": "mix",
+       "evidence": "easy touch shots with still strong power"
+      },
+      {
+       "review_id": "cr_d5f9b6b0ef4bbec1",
+       "stance": "mix",
+       "evidence": "good power that sits just below the Boomstik"
+      },
+      {
+       "review_id": "cr_62cf1a85a6bd3ccf",
+       "stance": "pos",
+       "evidence": "Finds it more powerful than it looks"
+      },
+      {
+       "review_id": "cr_c0df34179a05cfc3",
+       "stance": "mix",
+       "evidence": "Calls power low to mid"
+      },
+      {
+       "review_id": "cr_90089e0c9f000e98",
+       "stance": "mix",
+       "evidence": "Better control than the Boomstik while still hitting hard"
+      },
+      {
+       "review_id": "cr_8578ce8d0eb53d15",
+       "stance": "neg",
+       "evidence": "power lacking"
+      },
+      {
+       "review_id": "cr_e0c97ad1ebbd5984",
+       "stance": "mix",
+       "evidence": "power as more than enough for most players but somewhat below"
+      },
+      {
+       "review_id": "cr_6ac01253078f80ee",
+       "stance": "pos",
+       "evidence": "a lot of pop at the net"
+      },
+      {
+       "review_id": "cr_c8023b7b05426bcc",
+       "stance": "mix",
+       "evidence": "plenty of power on drives"
+      },
+      {
+       "review_id": "cr_d2aa8e95917576ba",
+       "stance": "neg",
+       "evidence": "Finds firepower clearly lower"
+      },
+      {
+       "review_id": "cr_dcd23b43b42c1e64",
+       "stance": "mix",
+       "evidence": "Rates pop as above average, but only just"
+      },
+      {
+       "review_id": "cr_4a32bf2ed58b0103",
+       "stance": "pos",
+       "evidence": "Huge, stable sweet spot with strong power"
+      },
+      {
+       "review_id": "cr_052a6197546701a1",
+       "stance": "pos",
+       "evidence": "drives and serves that can be hit hard"
+      },
+      {
+       "review_id": "cr_5f33b1a0082fae07",
+       "stance": "pos",
+       "evidence": "very poppy and close to a Boomstik"
+      },
+      {
+       "review_id": "cr_f78abc599f158134",
+       "stance": "neg",
+       "evidence": "has less power"
+      },
+      {
+       "review_id": "cr_4fba0bdda02a0c12",
+       "stance": "mix",
+       "evidence": "but pop that is still dramatic"
+      },
+      {
+       "review_id": "cr_4101eb621a9b0ab3",
+       "stance": "neg",
+       "evidence": "power trails the Selkirk Boomstik"
+      },
+      {
+       "review_id": "tt-cr_8685c4c8a5b5af7f",
+       "stance": "pos",
+       "evidence": "enough baseline power to apply pressure"
+      },
+      {
+       "review_id": "tt-cr_0fe49674e26cdb5f",
+       "stance": "pos",
+       "evidence": "strong power out of the box"
+      },
+      {
+       "review_id": "tt-cr_62f823392f3c1bd0",
+       "stance": "mix",
+       "evidence": "about 90 percent of the power"
+      },
+      {
+       "review_id": "tt-cr_81b16cb6e0c89f9e",
+       "stance": "mix",
+       "evidence": "the power is not bad"
+      },
+      {
+       "review_id": "tt-cr_2dc8fe824bbf2f54",
+       "stance": "neg",
+       "evidence": "on the lower end of power"
+      }
+     ]
+    },
+    {
+     "key": "spin",
+     "label": "Spin",
+     "line": "Spin higher on paper but under 50 RPM apart in practice.",
+     "reviews": [
+      {
+       "review_id": "cr_37c7e214023b242a",
+       "stance": "neg",
+       "evidence": "InfiniGrit face loses spin quickly"
+      },
+      {
+       "review_id": "cr_a40ea969e81ebdc3",
+       "stance": "mix",
+       "evidence": "spin higher on paper but under 50 RPM apart in practice"
+      },
+      {
+       "review_id": "cr_2554c260bed59a52",
+       "stance": "neg",
+       "evidence": "the grit surface does not last as advertised"
+      },
+      {
+       "review_id": "cr_2aa9139dbbc76432",
+       "stance": "pos",
+       "evidence": "the grit adding dip and spin"
+      },
+      {
+       "review_id": "cr_fd43c70376515fb6",
+       "stance": "mix",
+       "evidence": "spin and control good but only slightly above average"
+      },
+      {
+       "review_id": "cr_0af9a34d7d660df4",
+       "stance": "pos",
+       "evidence": "keeps useful spin past the first few sessions"
+      },
+      {
+       "review_id": "cr_97b33cae8da6f9e4",
+       "stance": "pos",
+       "evidence": "about 100 RPM more spin"
+      },
+      {
+       "review_id": "cr_85afa600274814b1",
+       "stance": "mix",
+       "evidence": "spin nice but not tremendous"
+      },
+      {
+       "review_id": "cr_02b245c63412e778",
+       "stance": "pos",
+       "evidence": "Notes spin stays plentiful"
+      },
+      {
+       "review_id": "cr_09add3bcdcd8b7e0",
+       "stance": "mix",
+       "evidence": "spin as excellent but less trusted than on the Boomstik"
+      },
+      {
+       "review_id": "cr_d5f9b6b0ef4bbec1",
+       "stance": "pos",
+       "evidence": "possible slight edge on spin"
+      },
+      {
+       "review_id": "cr_62cf1a85a6bd3ccf",
+       "stance": "mix",
+       "evidence": "gives good spin when fresh"
+      },
+      {
+       "review_id": "cr_c0df34179a05cfc3",
+       "stance": "pos",
+       "evidence": "spin pretty good"
+      },
+      {
+       "review_id": "cr_8578ce8d0eb53d15",
+       "stance": "mix",
+       "evidence": "spin as decent but below the top spin paddles"
+      },
+      {
+       "review_id": "cr_e0c97ad1ebbd5984",
+       "stance": "pos",
+       "evidence": "spin as fantastic though slightly behind"
+      },
+      {
+       "review_id": "cr_6ac01253078f80ee",
+       "stance": "mix",
+       "evidence": "Gets just over 2,000 RPM"
+      },
+      {
+       "review_id": "cr_c8023b7b05426bcc",
+       "stance": "mix",
+       "evidence": "spin is good but the grit feels average"
+      },
+      {
+       "review_id": "cr_dcd23b43b42c1e64",
+       "stance": "mix",
+       "evidence": "spin as just above average"
+      },
+      {
+       "review_id": "cr_4a32bf2ed58b0103",
+       "stance": "mix",
+       "evidence": "not crazy but not lacking"
+      },
+      {
+       "review_id": "cr_5f33b1a0082fae07",
+       "stance": "mix",
+       "evidence": "Measures 2,138 RPM on an elongated unit"
+      },
+      {
+       "review_id": "cr_f78abc599f158134",
+       "stance": "pos",
+       "evidence": "grabs the ball better"
+      },
+      {
+       "review_id": "cr_4fba0bdda02a0c12",
+       "stance": "neg",
+       "evidence": "a little less grab on the ball"
+      },
+      {
+       "review_id": "cr_4101eb621a9b0ab3",
+       "stance": "pos",
+       "evidence": "liked its performance and spin"
+      },
+      {
+       "review_id": "tt-cr_8685c4c8a5b5af7f",
+       "stance": "pos",
+       "evidence": "Finds spin pretty good"
+      },
+      {
+       "review_id": "tt-cr_0fe49674e26cdb5f",
+       "stance": "pos",
+       "evidence": "Loves shot placement, dwell, grit, a long and maneuverable handle"
+      },
+      {
+       "review_id": "tt-cr_81b16cb6e0c89f9e",
+       "stance": "pos",
+       "evidence": "Likes the infinite grit and versatility"
+      }
+     ]
+    },
+    {
+     "key": "resets",
+     "label": "Resets and dinks",
+     "line": "The better choice at the kitchen for dinking.",
+     "reviews": [
+      {
+       "review_id": "cr_a40ea969e81ebdc3",
+       "stance": "neg",
+       "evidence": "the top of the face can feel dead on resets"
+      },
+      {
+       "review_id": "cr_a0a18408088cb917",
+       "stance": "pos",
+       "evidence": "the better choice at the kitchen for dinking"
+      },
+      {
+       "review_id": "cr_2aa9139dbbc76432",
+       "stance": "pos",
+       "evidence": "Control on serves, dinks and resets"
+      },
+      {
+       "review_id": "cr_fd43c70376515fb6",
+       "stance": "neg",
+       "evidence": "easy volleys and dinks flying in unintended directions"
+      },
+      {
+       "review_id": "cr_0af9a34d7d660df4",
+       "stance": "pos",
+       "evidence": "still keeps soft shots controlled"
+      },
+      {
+       "review_id": "cr_97b33cae8da6f9e4",
+       "stance": "pos",
+       "evidence": "Much better control on drops and resets than the Boomstik"
+      },
+      {
+       "review_id": "cr_85afa600274814b1",
+       "stance": "pos",
+       "evidence": "touch good at the net"
+      },
+      {
+       "review_id": "cr_02b245c63412e778",
+       "stance": "pos",
+       "evidence": "drops, resets and hands battles as clearly easier"
+      },
+      {
+       "review_id": "cr_09add3bcdcd8b7e0",
+       "stance": "pos",
+       "evidence": "flat dinks, drops and resets feeling hard to miss"
+      },
+      {
+       "review_id": "cr_d5f9b6b0ef4bbec1",
+       "stance": "pos",
+       "evidence": "the Omni resets a little better"
+      },
+      {
+       "review_id": "cr_c0df34179a05cfc3",
+       "stance": "mix",
+       "evidence": "Finds resets a bit easier since it pops up less"
+      },
+      {
+       "review_id": "cr_8578ce8d0eb53d15",
+       "stance": "pos",
+       "evidence": "reliable drops and resets"
+      },
+      {
+       "review_id": "cr_e0c97ad1ebbd5984",
+       "stance": "pos",
+       "evidence": "Drops landing in the kitchen"
+      },
+      {
+       "review_id": "cr_d2aa8e95917576ba",
+       "stance": "pos",
+       "evidence": "Rates resets and dinks as good"
+      },
+      {
+       "review_id": "cr_dcd23b43b42c1e64",
+       "stance": "pos",
+       "evidence": "Finds drops and resets stay low"
+      },
+      {
+       "review_id": "cr_4a32bf2ed58b0103",
+       "stance": "pos",
+       "evidence": "then finds resets easy"
+      },
+      {
+       "review_id": "cr_052a6197546701a1",
+       "stance": "neg",
+       "evidence": "Soft game is less consistent"
+      },
+      {
+       "review_id": "cr_5f33b1a0082fae07",
+       "stance": "pos",
+       "evidence": "prefers dinks, drops and resets that way"
+      },
+      {
+       "review_id": "cr_4fba0bdda02a0c12",
+       "stance": "pos",
+       "evidence": "more finesse for dinking and the short game"
+      },
+      {
+       "review_id": "tt-cr_62f823392f3c1bd0",
+       "stance": "pos",
+       "evidence": "roughly 50 percent more control, felt after one dink"
+      }
+     ]
+    },
+    {
+     "key": "sweet",
+     "label": "Sweet spot",
+     "line": "Steady twist resistance on off-center hits.",
+     "reviews": [
+      {
+       "review_id": "cr_a40ea969e81ebdc3",
+       "stance": "pos",
+       "evidence": "steady twist resistance on off-center hits"
+      },
+      {
+       "review_id": "cr_0af9a34d7d660df4",
+       "stance": "pos",
+       "evidence": "with a larger sweet spot"
+      },
+      {
+       "review_id": "cr_97b33cae8da6f9e4",
+       "stance": "neg",
+       "evidence": "Slightly smaller sweet spot"
+      },
+      {
+       "review_id": "cr_85afa600274814b1",
+       "stance": "pos",
+       "evidence": "Large, plush sweet spot"
+      },
+      {
+       "review_id": "cr_02b245c63412e778",
+       "stance": "pos",
+       "evidence": "the Omni sweet spot feels big"
+      },
+      {
+       "review_id": "cr_09add3bcdcd8b7e0",
+       "stance": "pos",
+       "evidence": "Massive sweet spot"
+      },
+      {
+       "review_id": "cr_62cf1a85a6bd3ccf",
+       "stance": "pos",
+       "evidence": "Calls control and forgiveness outstanding"
+      },
+      {
+       "review_id": "cr_c0df34179a05cfc3",
+       "stance": "pos",
+       "evidence": "Finds the sweet spot consistent across the face"
+      },
+      {
+       "review_id": "cr_8578ce8d0eb53d15",
+       "stance": "pos",
+       "evidence": "Finds forgiveness good once weighted"
+      },
+      {
+       "review_id": "cr_c8023b7b05426bcc",
+       "stance": "pos",
+       "evidence": "broad, consistent sweet spot"
+      },
+      {
+       "review_id": "cr_d2aa8e95917576ba",
+       "stance": "neg",
+       "evidence": "Smaller sweet spot"
+      },
+      {
+       "review_id": "cr_4a32bf2ed58b0103",
+       "stance": "pos",
+       "evidence": "Huge, stable sweet spot"
+      },
+      {
+       "review_id": "cr_052a6197546701a1",
+       "stance": "pos",
+       "evidence": "Rates the sweet spot as massive"
+      },
+      {
+       "review_id": "cr_5f33b1a0082fae07",
+       "stance": "neg",
+       "evidence": "the sweet spot only slightly smaller"
+      },
+      {
+       "review_id": "cr_4101eb621a9b0ab3",
+       "stance": "mix",
+       "evidence": "slightly smaller, with a more noticeable dead spot toward the neck"
+      },
+      {
+       "review_id": "tt-cr_8685c4c8a5b5af7f",
+       "stance": "neg",
+       "evidence": "dislikes dead spots in the top and bottom corners"
+      }
+     ]
+    }
+   ]
+  },
+  "six-zero-black-opal-14mm": {
+   "points": [
+    {
+     "key": "power",
+     "label": "Power",
+     "line": "Strong power and pop.",
+     "reviews": [
+      {
+       "review_id": "cr_dad80e0c5cf2a917",
+       "stance": "pos",
+       "evidence": "Strong power and pop"
+      },
+      {
+       "review_id": "cr_9a409bfbe0b0d652",
+       "stance": "pos",
+       "evidence": "Calls power the biggest strength"
+      },
+      {
+       "review_id": "cr_cdd54455fdd56f3a",
+       "stance": "pos",
+       "evidence": "rates power as really good"
+      },
+      {
+       "review_id": "cr_5f7b403e8bb96d99",
+       "stance": "pos",
+       "evidence": "Top-tier power that rivals the best"
+      },
+      {
+       "review_id": "cr_de20d34df645f097",
+       "stance": "pos",
+       "evidence": "Phenomenal inherent power with a long dwell"
+      },
+      {
+       "review_id": "cr_e85a58c596e0cbd2",
+       "stance": "pos",
+       "evidence": "just about as powerful as legally possible"
+      },
+      {
+       "review_id": "cr_42eea38a4436754e",
+       "stance": "pos",
+       "evidence": "Power that sometimes beats the Boomstik"
+      },
+      {
+       "review_id": "cr_cac78f2afa755965",
+       "stance": "pos",
+       "evidence": "One of the hardest legal hitters"
+      },
+      {
+       "review_id": "cr_3d7a730e5776bf89",
+       "stance": "pos",
+       "evidence": "One of the hardest-hitting legal paddles"
+      },
+      {
+       "review_id": "cr_20b9d67bda5ff840",
+       "stance": "pos",
+       "evidence": "pop and power right up against the PBCoR limit"
+      },
+      {
+       "review_id": "cr_79df163fb886ec99",
+       "stance": "pos",
+       "evidence": "One of the hardest-hitting, highest-spinning paddles tested"
+      },
+      {
+       "review_id": "cr_7e9c28bb0a9eddc4",
+       "stance": "pos",
+       "evidence": "Top-percentile power and pop"
+      },
+      {
+       "review_id": "cr_2ea0e22b45feacfc",
+       "stance": "pos",
+       "evidence": "Elite-tier power"
+      },
+      {
+       "review_id": "cr_79810264ac56ebeb",
+       "stance": "pos",
+       "evidence": "Calls the power explosive"
+      },
+      {
+       "review_id": "cr_50bf0cfd399a0669",
+       "stance": "pos",
+       "evidence": "Power on par with the Boomstik"
+      },
+      {
+       "review_id": "cr_b1661a4b97768a7f",
+       "stance": "pos",
+       "evidence": "Big power for putaways, drives and serves"
+      },
+      {
+       "review_id": "cr_fd7317fd31d9ae2f",
+       "stance": "pos",
+       "evidence": "Cannon-like pop"
+      },
+      {
+       "review_id": "tt-cr_ccc44dbe19182ba3",
+       "stance": "pos",
+       "evidence": "Pure power and pop"
+      },
+      {
+       "review_id": "tt-cr_733afc9451c9a9b9",
+       "stance": "pos",
+       "evidence": "it hits slightly harder"
+      }
+     ]
+    },
+    {
+     "key": "sweet",
+     "label": "Sweet spot",
+     "line": "Calls the sweet spot small despite the foam core.",
+     "reviews": [
+      {
+       "review_id": "cr_dad80e0c5cf2a917",
+       "stance": "neg",
+       "evidence": "Calls the sweet spot small despite the foam core"
+      },
+      {
+       "review_id": "cr_f4e59a9b7ed4daaf",
+       "stance": "mix",
+       "evidence": "A rewarding sweet spot when you find it"
+      },
+      {
+       "review_id": "cr_cdd54455fdd56f3a",
+       "stance": "neg",
+       "evidence": "Much smaller sweet spot causes more mishits"
+      },
+      {
+       "review_id": "cr_5f7b403e8bb96d99",
+       "stance": "neg",
+       "evidence": "The sweet spot drops off sharply"
+      },
+      {
+       "review_id": "cr_de20d34df645f097",
+       "stance": "mix",
+       "evidence": "the sweet spot standard rather than large"
+      },
+      {
+       "review_id": "cr_e90c19bbbf3c86c9",
+       "stance": "pos",
+       "evidence": "a large, accessible sweet spot"
+      },
+      {
+       "review_id": "cr_e85a58c596e0cbd2",
+       "stance": "neg",
+       "evidence": "Calls the sweet spot very small"
+      },
+      {
+       "review_id": "cr_42eea38a4436754e",
+       "stance": "neg",
+       "evidence": "with a small sweet spot"
+      },
+      {
+       "review_id": "cr_cac78f2afa755965",
+       "stance": "mix",
+       "evidence": "still not the best on the market, only sufficient"
+      },
+      {
+       "review_id": "cr_3d7a730e5776bf89",
+       "stance": "neg",
+       "evidence": "Finds the sweet spot below average"
+      },
+      {
+       "review_id": "cr_79df163fb886ec99",
+       "stance": "neg",
+       "evidence": "Finds the stock sweet spot slightly small"
+      },
+      {
+       "review_id": "cr_7e9c28bb0a9eddc4",
+       "stance": "mix",
+       "evidence": "the sweet spot decent but less forgiving than floating full foam cores"
+      },
+      {
+       "review_id": "cr_2ea0e22b45feacfc",
+       "stance": "mix",
+       "evidence": "Finds the stock sweet spot average"
+      },
+      {
+       "review_id": "cr_79810264ac56ebeb",
+       "stance": "mix",
+       "evidence": "calls the sweet spot average"
+      },
+      {
+       "review_id": "cr_b1661a4b97768a7f",
+       "stance": "neg",
+       "evidence": "Struggles at first with off-center hits"
+      },
+      {
+       "review_id": "cr_fd7317fd31d9ae2f",
+       "stance": "pos",
+       "evidence": "Finds control and forgiveness good"
+      },
+      {
+       "review_id": "tt-cr_733afc9451c9a9b9",
+       "stance": "neg",
+       "evidence": "dead spots low on the face and in the top corners"
+      }
+     ]
+    },
+    {
+     "key": "spin",
+     "label": "Spin",
+     "line": "Reports spin numbers over 2,000 RPM from the raw carbon face.",
+     "reviews": [
+      {
+       "review_id": "cr_dad80e0c5cf2a917",
+       "stance": "mix",
+       "evidence": "Finds spin lower than newer paddles"
+      },
+      {
+       "review_id": "cr_9a409bfbe0b0d652",
+       "stance": "pos",
+       "evidence": "Reports spin numbers over 2,000 RPM from the raw carbon face"
+      },
+      {
+       "review_id": "cr_cdd54455fdd56f3a",
+       "stance": "pos",
+       "evidence": "spin like a fresh 16mm hybrid"
+      },
+      {
+       "review_id": "cr_de20d34df645f097",
+       "stance": "mix",
+       "evidence": "Rates spin as elite on big swings but weaker on soft shots"
+      },
+      {
+       "review_id": "cr_e90c19bbbf3c86c9",
+       "stance": "mix",
+       "evidence": "Calls the spin good rather than great"
+      },
+      {
+       "review_id": "cr_e85a58c596e0cbd2",
+       "stance": "pos",
+       "evidence": "elite spin"
+      },
+      {
+       "review_id": "cr_42eea38a4436754e",
+       "stance": "pos",
+       "evidence": "spin as elite on drives and serves"
+      },
+      {
+       "review_id": "cr_79df163fb886ec99",
+       "stance": "pos",
+       "evidence": "One of the hardest-hitting, highest-spinning paddles tested"
+      },
+      {
+       "review_id": "cr_7e9c28bb0a9eddc4",
+       "stance": "pos",
+       "evidence": "elite spin"
+      },
+      {
+       "review_id": "cr_2ea0e22b45feacfc",
+       "stance": "pos",
+       "evidence": "some of the highest spin recorded"
+      },
+      {
+       "review_id": "cr_79810264ac56ebeb",
+       "stance": "pos",
+       "evidence": "Rates spin above most other top paddles"
+      },
+      {
+       "review_id": "cr_50bf0cfd399a0669",
+       "stance": "pos",
+       "evidence": "Rates spin great"
+      },
+      {
+       "review_id": "cr_b1661a4b97768a7f",
+       "stance": "mix",
+       "evidence": "though spin is still available"
+      },
+      {
+       "review_id": "cr_fd7317fd31d9ae2f",
+       "stance": "pos",
+       "evidence": "big dipping topspin from strong grit"
+      }
+     ]
+    },
+    {
+     "key": "resets",
+     "label": "Resets and dinks",
+     "line": "Finds enough control for dinks, resets and blocks if technique is clean.",
+     "reviews": [
+      {
+       "review_id": "cr_9a409bfbe0b0d652",
+       "stance": "mix",
+       "evidence": "Finds enough control for dinks, resets and blocks if technique is clean"
+      },
+      {
+       "review_id": "cr_f4e59a9b7ed4daaf",
+       "stance": "neg",
+       "evidence": "caused trouble on returns of serve and resets"
+      },
+      {
+       "review_id": "cr_5f7b403e8bb96d99",
+       "stance": "neg",
+       "evidence": "Struggles with resets"
+      },
+      {
+       "review_id": "cr_de20d34df645f097",
+       "stance": "mix",
+       "evidence": "control as inconsistent, since a dink can suddenly fly"
+      },
+      {
+       "review_id": "cr_e85a58c596e0cbd2",
+       "stance": "neg",
+       "evidence": "Finds dinks, resets and counters inconsistent"
+      },
+      {
+       "review_id": "cr_42eea38a4436754e",
+       "stance": "mix",
+       "evidence": "Finds dinks workable but pops up dead center dinks"
+      },
+      {
+       "review_id": "cr_cac78f2afa755965",
+       "stance": "neg",
+       "evidence": "Not for players who need kitchen control"
+      },
+      {
+       "review_id": "cr_3d7a730e5776bf89",
+       "stance": "mix",
+       "evidence": "controls drops and dinks well but stays delicate on resets"
+      },
+      {
+       "review_id": "cr_20b9d67bda5ff840",
+       "stance": "pos",
+       "evidence": "a better all court paddle with great touch"
+      },
+      {
+       "review_id": "cr_79df163fb886ec99",
+       "stance": "neg",
+       "evidence": "stop overhitting resets and blocks"
+      },
+      {
+       "review_id": "cr_2ea0e22b45feacfc",
+       "stance": "mix",
+       "evidence": "resets from low transition balls are the hardest part"
+      },
+      {
+       "review_id": "cr_79810264ac56ebeb",
+       "stance": "pos",
+       "evidence": "Finds the plush foam core intuitive for resets and dinks"
+      },
+      {
+       "review_id": "cr_50bf0cfd399a0669",
+       "stance": "mix",
+       "evidence": "control confident when set up for dinks, drops and anticipated resets"
+      }
+     ]
+    },
+    {
+     "key": "comfort",
+     "label": "Arm comfort",
+     "line": "Make it gentler on tennis or golf elbow.",
+     "reviews": [
+      {
+       "review_id": "cr_dad80e0c5cf2a917",
+       "stance": "pos",
+       "evidence": "make it gentler on tennis or golf elbow"
+      },
+      {
+       "review_id": "cr_f4e59a9b7ed4daaf",
+       "stance": "neg",
+       "evidence": "Reports strong vibration and little forgiveness off center"
+      }
+     ]
+    }
+   ]
+  },
+  "six-zero-coral-pro-16mm": {
+   "points": [
+    {
+     "key": "spin",
+     "label": "Spin",
+     "line": "Heavy spin and shape on serves.",
+     "reviews": [
+      {
+       "review_id": "cr_3a36b02825db3327",
+       "stance": "pos",
+       "evidence": "heavy spin and shape on serves"
+      },
+      {
+       "review_id": "cr_c495c18bd8741da1",
+       "stance": "pos",
+       "evidence": "Only 10.2 percent spin loss after 176 hours of play"
+      },
+      {
+       "review_id": "cr_6bbcdfb4a6a7a381",
+       "stance": "pos",
+       "evidence": "Standout spin and long-lasting grit"
+      },
+      {
+       "review_id": "cr_6ec7df6dd8017839",
+       "stance": "mix",
+       "evidence": "Says spin is better than before but not top tier"
+      },
+      {
+       "review_id": "cr_60f6ee34a67b3d2d",
+       "stance": "mix",
+       "evidence": "grit is good but not the best durable grit for spin"
+      },
+      {
+       "review_id": "cr_dbb3e3d3c520af27",
+       "stance": "pos",
+       "evidence": "Very rough durable grit with spin"
+      },
+      {
+       "review_id": "cr_1c29bc79e7ba5765",
+       "stance": "pos",
+       "evidence": "Rates the spin very good with grit that lasts"
+      },
+      {
+       "review_id": "cr_d4397ea12b2eaccc",
+       "stance": "pos",
+       "evidence": "Elite spin with easy control"
+      },
+      {
+       "review_id": "cr_ab1b83c5c63434a9",
+       "stance": "mix",
+       "evidence": "sees no big spin gain over other paddles"
+      },
+      {
+       "review_id": "cr_b0ce073eedff31fd",
+       "stance": "pos",
+       "evidence": "drives with a ton of spin and shape"
+      },
+      {
+       "review_id": "cr_10d6ff8f48a7037f",
+       "stance": "pos",
+       "evidence": "More spin and crisper feedback than the original Coral"
+      },
+      {
+       "review_id": "cr_fa351154278d225d",
+       "stance": "pos",
+       "evidence": "crazy spin from the UPA only grit"
+      },
+      {
+       "review_id": "cr_7f28ece6ee7d1964",
+       "stance": "pos",
+       "evidence": "Averages about 50 RPM more spin than the original Coral"
+      },
+      {
+       "review_id": "cr_379bc27d7015c3df",
+       "stance": "pos",
+       "evidence": "sees very little to no spin loss"
+      },
+      {
+       "review_id": "cr_dc30b0221302d9f6",
+       "stance": "pos",
+       "evidence": "Finds strong spin even on short rolls and counters"
+      },
+      {
+       "review_id": "cr_fec7708d369a7594",
+       "stance": "pos",
+       "evidence": "Elite spin that holds up"
+      },
+      {
+       "review_id": "cr_4873602570808e05",
+       "stance": "pos",
+       "evidence": "High spin with grit that barely wears"
+      },
+      {
+       "review_id": "cr_5cb1dceb1255ea1c",
+       "stance": "pos",
+       "evidence": "Huge spin and 97 percent grit retention"
+      },
+      {
+       "review_id": "tt-cr_86dd272a0c8027d8",
+       "stance": "pos",
+       "evidence": "rates both surfaces S tier"
+      },
+      {
+       "review_id": "tt-cr_3218e8a430b7d842",
+       "stance": "pos",
+       "evidence": "Diamond grit that does not stop spinning"
+      },
+      {
+       "review_id": "tt-cr_a373a303f0f29709",
+       "stance": "pos",
+       "evidence": "upgraded surface adds bite for shaping the ball"
+      },
+      {
+       "review_id": "tt-cr_d9d67a1b945fdba2",
+       "stance": "pos",
+       "evidence": "excellent spin and soft touch on drops and dinks"
+      },
+      {
+       "review_id": "tt-cr_b72690e2d792d479",
+       "stance": "pos",
+       "evidence": "great spin and strong grit durability"
+      }
+     ]
+    },
+    {
+     "key": "power",
+     "label": "Power",
+     "line": "Close to perfect drives.",
+     "reviews": [
+      {
+       "review_id": "cr_3a36b02825db3327",
+       "stance": "pos",
+       "evidence": "close to perfect drives"
+      },
+      {
+       "review_id": "cr_c495c18bd8741da1",
+       "stance": "mix",
+       "evidence": "Power is adequate only, below the Black Opal"
+      },
+      {
+       "review_id": "cr_6bbcdfb4a6a7a381",
+       "stance": "mix",
+       "evidence": "not explosive, and short on putaway power"
+      },
+      {
+       "review_id": "cr_6ec7df6dd8017839",
+       "stance": "pos",
+       "evidence": "says it plays as a power paddle"
+      },
+      {
+       "review_id": "cr_dbb3e3d3c520af27",
+       "stance": "pos",
+       "evidence": "more powerful than the original Coral"
+      },
+      {
+       "review_id": "cr_1c29bc79e7ba5765",
+       "stance": "neg",
+       "evidence": "Calls the power limited at the baseline and at the net"
+      },
+      {
+       "review_id": "cr_d4397ea12b2eaccc",
+       "stance": "pos",
+       "evidence": "good on drive serves and put aways"
+      },
+      {
+       "review_id": "cr_ab1b83c5c63434a9",
+       "stance": "mix",
+       "evidence": "Finds pop about average"
+      },
+      {
+       "review_id": "cr_b0ce073eedff31fd",
+       "stance": "pos",
+       "evidence": "Finds more pop and power on serves than expected"
+      },
+      {
+       "review_id": "cr_10d6ff8f48a7037f",
+       "stance": "pos",
+       "evidence": "a little more pop off the face"
+      },
+      {
+       "review_id": "cr_fa351154278d225d",
+       "stance": "pos",
+       "evidence": "Finds plenty of power, control and pop"
+      },
+      {
+       "review_id": "cr_7f28ece6ee7d1964",
+       "stance": "mix",
+       "evidence": "power only slightly higher"
+      },
+      {
+       "review_id": "cr_379bc27d7015c3df",
+       "stance": "pos",
+       "evidence": "a slight bump in power and pop"
+      },
+      {
+       "review_id": "cr_dc30b0221302d9f6",
+       "stance": "mix",
+       "evidence": "enough to finish points but not a pure power paddle"
+      },
+      {
+       "review_id": "cr_fec7708d369a7594",
+       "stance": "pos",
+       "evidence": "a little more firepower than the original Coral"
+      },
+      {
+       "review_id": "cr_4873602570808e05",
+       "stance": "neg",
+       "evidence": "not for power players"
+      },
+      {
+       "review_id": "cr_5cb1dceb1255ea1c",
+       "stance": "mix",
+       "evidence": "Rates pop at 5 out of 10"
+      },
+      {
+       "review_id": "tt-cr_86dd272a0c8027d8",
+       "stance": "neg",
+       "evidence": "Warns of limited pop and power"
+      },
+      {
+       "review_id": "tt-cr_a373a303f0f29709",
+       "stance": "neg",
+       "evidence": "not the pick for someone who only wants to hit super hard"
+      },
+      {
+       "review_id": "tt-cr_d9d67a1b945fdba2",
+       "stance": "pos",
+       "evidence": "Gives it slightly more power and pop"
+      },
+      {
+       "review_id": "tt-cr_0c3ee32d55134f3b",
+       "stance": "mix",
+       "evidence": "Notes it lacks the kick of the Opal"
+      },
+      {
+       "review_id": "tt-cr_b72690e2d792d479",
+       "stance": "pos",
+       "evidence": "plenty of power on drives and put-aways"
+      }
+     ]
+    },
+    {
+     "key": "resets",
+     "label": "Resets and dinks",
+     "line": "Fantastic drops, resets and dinks.",
+     "reviews": [
+      {
+       "review_id": "cr_3a36b02825db3327",
+       "stance": "pos",
+       "evidence": "fantastic drops, resets and dinks"
+      },
+      {
+       "review_id": "cr_c495c18bd8741da1",
+       "stance": "pos",
+       "evidence": "great touch"
+      },
+      {
+       "review_id": "cr_6bbcdfb4a6a7a381",
+       "stance": "mix",
+       "evidence": "needs adjustment on touch shots"
+      },
+      {
+       "review_id": "cr_6ec7df6dd8017839",
+       "stance": "pos",
+       "evidence": "Kitchen play rated 4.5"
+      },
+      {
+       "review_id": "cr_dbb3e3d3c520af27",
+       "stance": "pos",
+       "evidence": "quick through the air and in kitchen exchanges"
+      },
+      {
+       "review_id": "cr_1c29bc79e7ba5765",
+       "stance": "mix",
+       "evidence": "which made drops and resets inconsistent when out of rhythm"
+      },
+      {
+       "review_id": "cr_d4397ea12b2eaccc",
+       "stance": "pos",
+       "evidence": "Finds drops, dinks and resets still easy and predictable"
+      },
+      {
+       "review_id": "cr_ab1b83c5c63434a9",
+       "stance": "pos",
+       "evidence": "resets stay low and easy"
+      },
+      {
+       "review_id": "cr_b0ce073eedff31fd",
+       "stance": "pos",
+       "evidence": "standout dinks, resets that absorb pace"
+      },
+      {
+       "review_id": "cr_10d6ff8f48a7037f",
+       "stance": "pos",
+       "evidence": "helps on aggressive topspin dinks"
+      },
+      {
+       "review_id": "cr_379bc27d7015c3df",
+       "stance": "pos",
+       "evidence": "helps dinks, flicks and touch shots"
+      },
+      {
+       "review_id": "cr_dc30b0221302d9f6",
+       "stance": "neg",
+       "evidence": "a few early drops and dinks move more than expected"
+      },
+      {
+       "review_id": "cr_4873602570808e05",
+       "stance": "pos",
+       "evidence": "keeping the Coral touch game"
+      },
+      {
+       "review_id": "cr_5cb1dceb1255ea1c",
+       "stance": "pos",
+       "evidence": "Finds push and under spin drops very consistent"
+      },
+      {
+       "review_id": "tt-cr_a373a303f0f29709",
+       "stance": "pos",
+       "evidence": "Treats it as a control paddle for drops, resets and drives"
+      },
+      {
+       "review_id": "tt-cr_d9d67a1b945fdba2",
+       "stance": "pos",
+       "evidence": "excellent spin and soft touch on drops and dinks"
+      },
+      {
+       "review_id": "tt-cr_b72690e2d792d479",
+       "stance": "pos",
+       "evidence": "easy control on drops and resets"
+      }
+     ]
+    },
+    {
+     "key": "sweet",
+     "label": "Sweet spot",
+     "line": "Calls the sweet spot decent but dead near the side edges.",
+     "reviews": [
+      {
+       "review_id": "cr_6bbcdfb4a6a7a381",
+       "stance": "mix",
+       "evidence": "Calls the sweet spot decent but dead near the side edges"
+      },
+      {
+       "review_id": "cr_6ec7df6dd8017839",
+       "stance": "pos",
+       "evidence": "most of the face a sweet spot"
+      },
+      {
+       "review_id": "cr_1c29bc79e7ba5765",
+       "stance": "mix",
+       "evidence": "Not stable enough off center"
+      },
+      {
+       "review_id": "cr_d4397ea12b2eaccc",
+       "stance": "neg",
+       "evidence": "wants a bigger sweet spot"
+      },
+      {
+       "review_id": "cr_ab1b83c5c63434a9",
+       "stance": "mix",
+       "evidence": "Rates the sweet spot average to slightly above"
+      },
+      {
+       "review_id": "cr_b0ce073eedff31fd",
+       "stance": "mix",
+       "evidence": "Calls the sweet spot solid but not edge to edge"
+      },
+      {
+       "review_id": "cr_fa351154278d225d",
+       "stance": "pos",
+       "evidence": "no hot or dead spots and a really good sweet spot"
+      },
+      {
+       "review_id": "cr_7f28ece6ee7d1964",
+       "stance": "neg",
+       "evidence": "Sweet spot is not as big as a weighted Glider"
+      },
+      {
+       "review_id": "cr_379bc27d7015c3df",
+       "stance": "pos",
+       "evidence": "Finds the sweet spot still really good"
+      },
+      {
+       "review_id": "cr_dc30b0221302d9f6",
+       "stance": "mix",
+       "evidence": "the Elongated punishes edge contact"
+      },
+      {
+       "review_id": "cr_5cb1dceb1255ea1c",
+       "stance": "pos",
+       "evidence": "a massive sweet spot on volleys once broken in"
+      }
+     ]
+    }
+   ]
+  },
+  "vatic-pro-prism-flash": {
+   "points": [
+    {
+     "key": "power",
+     "label": "Power",
+     "line": "Solid pace on drives and overheads but is not a power paddle.",
+     "reviews": [
+      {
+       "review_id": "cr_0f2969d889fb5026",
+       "stance": "neg",
+       "evidence": "power and hand speed a step lower"
+      },
+      {
+       "review_id": "cr_28c4d3f91674c4aa",
+       "stance": "mix",
+       "evidence": "solid pace on drives and overheads but is not a power paddle"
+      },
+      {
+       "review_id": "cr_d92de6798a653323",
+       "stance": "pos",
+       "evidence": "and a lot of pop"
+      },
+      {
+       "review_id": "cr_3b1b9e7a52b1690f",
+       "stance": "pos",
+       "evidence": "plus pop on smashes"
+      },
+      {
+       "review_id": "cr_01b9f57411fb91df",
+       "stance": "pos",
+       "evidence": "plenty of power"
+      },
+      {
+       "review_id": "cr_0799983664ae88cf",
+       "stance": "pos",
+       "evidence": "plenty of power to put away shots"
+      },
+      {
+       "review_id": "cr_0595a37f508663ea",
+       "stance": "neg",
+       "evidence": "Limited power and pop"
+      },
+      {
+       "review_id": "cr_7b7b990df2c0005a",
+       "stance": "neg",
+       "evidence": "Finds power lower than thermoform"
+      },
+      {
+       "review_id": "cr_23c17403df5f07db",
+       "stance": "pos",
+       "evidence": "surprising power for a control paddle"
+      },
+      {
+       "review_id": "cr_c6fc5d629142c41f",
+       "stance": "mix",
+       "evidence": "power as above gen 1 raw carbon and below thermoformed"
+      },
+      {
+       "review_id": "cr_a44470b2153df9e3",
+       "stance": "neg",
+       "evidence": "Power is gen 1 level, so hand battles and drives take more effort"
+      },
+      {
+       "review_id": "cr_fddc5b36bf2eff6a",
+       "stance": "pos",
+       "evidence": "Scores power 8.3 and pop 7.9 out of 10"
+      },
+      {
+       "review_id": "cr_c5b3df95c844c269",
+       "stance": "mix",
+       "evidence": "more pop than gen 1 but less than thermoformed foam edge paddles"
+      },
+      {
+       "review_id": "cr_cf5a292ef31d0cae",
+       "stance": "mix",
+       "evidence": "modest power, a little more pop than first gen carbon paddles"
+      }
+     ]
+    },
+    {
+     "key": "resets",
+     "label": "Resets and dinks",
+     "line": "Reliable blocks, resets and placement.",
+     "reviews": [
+      {
+       "review_id": "cr_0f2969d889fb5026",
+       "stance": "pos",
+       "evidence": "Reliable blocks, resets and placement"
+      },
+      {
+       "review_id": "cr_28c4d3f91674c4aa",
+       "stance": "pos",
+       "evidence": "which suits dinking battles, blocks and resets"
+      },
+      {
+       "review_id": "cr_cdce7a5b1e9d9132",
+       "stance": "pos",
+       "evidence": "Preferred the nimble 16 mm Flash for kitchen play"
+      },
+      {
+       "review_id": "cr_d92de6798a653323",
+       "stance": "pos",
+       "evidence": "thinner core gives faster hands in kitchen hand battles"
+      },
+      {
+       "review_id": "cr_01b9f57411fb91df",
+       "stance": "pos",
+       "evidence": "good control at the kitchen line"
+      },
+      {
+       "review_id": "cr_0799983664ae88cf",
+       "stance": "pos",
+       "evidence": "super soft plush feel for dinks, resets and blocks"
+      },
+      {
+       "review_id": "cr_0595a37f508663ea",
+       "stance": "pos",
+       "evidence": "plush feel for dinks, resets, drops and blocks"
+      },
+      {
+       "review_id": "cr_7b7b990df2c0005a",
+       "stance": "pos",
+       "evidence": "helping drops and deep slice returns"
+      },
+      {
+       "review_id": "cr_c6fc5d629142c41f",
+       "stance": "pos",
+       "evidence": "working well for drops, dinks, blocks and resets"
+      },
+      {
+       "review_id": "cr_a44470b2153df9e3",
+       "stance": "pos",
+       "evidence": "easy dinks, resets and third shot drops"
+      },
+      {
+       "review_id": "cr_fddc5b36bf2eff6a",
+       "stance": "pos",
+       "evidence": "Scores feel and soft game 8.3 out of 10"
+      },
+      {
+       "review_id": "cr_cf5a292ef31d0cae",
+       "stance": "pos",
+       "evidence": "Hits thirds and resets into the kitchen well"
+      }
+     ]
+    },
+    {
+     "key": "spin",
+     "label": "Spin",
+     "line": "Rates spin, forgiveness and control well.",
+     "reviews": [
+      {
+       "review_id": "cr_0f2969d889fb5026",
+       "stance": "pos",
+       "evidence": "Rates spin, forgiveness and control well"
+      },
+      {
+       "review_id": "cr_28c4d3f91674c4aa",
+       "stance": "pos",
+       "evidence": "gives strong spin on topspin drives, dinks and third shot drives"
+      },
+      {
+       "review_id": "cr_3b1b9e7a52b1690f",
+       "stance": "pos",
+       "evidence": "Extra spin for topspin forehands and slice approaches"
+      },
+      {
+       "review_id": "cr_01b9f57411fb91df",
+       "stance": "pos",
+       "evidence": "the spin wanted"
+      },
+      {
+       "review_id": "cr_0799983664ae88cf",
+       "stance": "pos",
+       "evidence": "Says both give great power, spin and control"
+      },
+      {
+       "review_id": "cr_0595a37f508663ea",
+       "stance": "pos",
+       "evidence": "Rates the spin as very high"
+      },
+      {
+       "review_id": "cr_7b7b990df2c0005a",
+       "stance": "mix",
+       "evidence": "best among standard molded paddles but below any thermoform paddle"
+      },
+      {
+       "review_id": "cr_23c17403df5f07db",
+       "stance": "pos",
+       "evidence": "Finds spin strong on topspin, backspin and sidespin"
+      },
+      {
+       "review_id": "cr_fddc5b36bf2eff6a",
+       "stance": "pos",
+       "evidence": "gives spin 9 out of 10"
+      },
+      {
+       "review_id": "cr_c5b3df95c844c269",
+       "stance": "pos",
+       "evidence": "Finds the spin great"
+      },
+      {
+       "review_id": "cr_cf5a292ef31d0cae",
+       "stance": "mix",
+       "evidence": "which is called great but not top of the charts"
+      }
+     ]
+    },
+    {
+     "key": "sweet",
+     "label": "Sweet spot",
+     "line": "Calls the sweet spot comfortable at the kitchen line.",
+     "reviews": [
+      {
+       "review_id": "cr_0f2969d889fb5026",
+       "stance": "pos",
+       "evidence": "Rates spin, forgiveness and control well"
+      },
+      {
+       "review_id": "cr_28c4d3f91674c4aa",
+       "stance": "pos",
+       "evidence": "Calls the sweet spot comfortable at the kitchen line"
+      },
+      {
+       "review_id": "cr_cdce7a5b1e9d9132",
+       "stance": "pos",
+       "evidence": "gives a larger sweet spot"
+      },
+      {
+       "review_id": "cr_d92de6798a653323",
+       "stance": "mix",
+       "evidence": "Wobbles on fast drives until weighted tape is added to the sides"
+      },
+      {
+       "review_id": "cr_0595a37f508663ea",
+       "stance": "pos",
+       "evidence": "Calls the sweet spot quite large for a non thermoform paddle"
+      },
+      {
+       "review_id": "cr_7b7b990df2c0005a",
+       "stance": "pos",
+       "evidence": "Calls the sweet spot big and the stability fantastic"
+      },
+      {
+       "review_id": "cr_23c17403df5f07db",
+       "stance": "neg",
+       "evidence": "the sweet spot is inconsistent, with more mishits"
+      },
+      {
+       "review_id": "cr_c6fc5d629142c41f",
+       "stance": "pos",
+       "evidence": "a forgiving sweet spot credited to the foam injected edges"
+      },
+      {
+       "review_id": "cr_a44470b2153df9e3",
+       "stance": "pos",
+       "evidence": "Forgiving sweet spot"
+      },
+      {
+       "review_id": "cr_fddc5b36bf2eff6a",
+       "stance": "pos",
+       "evidence": "Rates the sweet spot 8.2 out of 10"
+      },
+      {
+       "review_id": "cr_cf5a292ef31d0cae",
+       "stance": "pos",
+       "evidence": "feels a good sweet spot on a windy day"
+      }
+     ]
+    },
+    {
+     "key": "comfort",
+     "label": "Arm comfort",
+     "line": "With vibration not noticeable.",
+     "reviews": [
+      {
+       "review_id": "cr_d92de6798a653323",
+       "stance": "pos",
+       "evidence": "with vibration not noticeable"
+      }
+     ]
+    }
+   ]
+  }
+ }
+}

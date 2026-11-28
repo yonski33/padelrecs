@@ -317,7 +317,7 @@ export async function CreatorProductBody({ slug }: { slug: string }) {
   const compared = [...cmpAll.filter(x => x.men > 0), ...cmpAll.filter(x => x.men === 0 && (x.plus || x.minus || x.line)), ...cmpAll.filter(x => x.men === 0 && !x.plus && !x.minus && !x.line)].slice(0, 3);
   // What they agree on: only products with per-point tags (db/creators/review-points.json, none yet, so hidden).
   const points = ((reviewPoints as Record<string, Record<string, { points: AgreePoint[] }>>)[niche.id]?.[slug]?.points ?? [])
-    .map(p => ({ ...p, reviews: p.reviews.filter(x => rs.some(y => y.id === x.review_id)) })).filter(p => p.reviews.length > 0);
+    .map(p => ({ ...p, reviews: p.reviews.filter(x => rs.some(y => y.id === x.review_id)) })).filter(p => p.reviews.length >= POINT_MIN);
   const srcIcons = <span className="v13-ics" aria-hidden="true">{srcN.youtube > 0 && <span className="yt"/>}{srcN.tiktok > 0 && <span className="tt">♪</span>}{srcN.blog > 0 && <span className="bl">B</span>}</span>;
   // At a glance (v13): an index, one row per source, each jumping to its card. No text that repeats the cards.
   const g13 = [
@@ -487,7 +487,7 @@ export async function CreatorProductBody({ slug }: { slug: string }) {
               </aside>}
             </div>
           </div>
-          {points.length > 0 && <AgreePoints points={points} total={rs.length} rs={rs}/>}
+          {points.length > 0 && <AgreePoints points={points} total={rs.length} rs={rs.map(x => ({ id: x.id, creator: x.creator, kind: x.kind, avatar: profiles.get(x.creator)?.avatar ?? null }))}/>}
           <GlanceTable className="v13-part v13-glance" title="At a glance" sub="One line from each reviewer, Reddit and the expert lists. Tap to jump to the full summary." head={null} rows={g13} first={5}/>
         </section>
 
@@ -601,22 +601,37 @@ const PRICE_WORDS = /\$|\bdollars?\b|\bbucks\b|\bcheaper\b|\bpricier\b|\bexpensi
 /** One "What they agree on" point (db/creators/review-points.json, planned shape, owner 2026-11-28): the point, one line,
  *  and the reviews tagged with it, each agreeing or not. `players` (a vote share on the same point) shows only from
  *  PLAYERS_MIN votes. */
-type AgreePoint = { key: string; label: string; line: string; reviews: { review_id: string; stance: "agree" | "disagree" }[];
+/** One "What they agree on" point (pilot 2026-11-28, db/creators/review-points.json): the reviews that cover it, each tagged
+ *  pos / mix / neg with a short phrase copied word for word from our own summary of that review. `line` is one of those
+ *  phrases (never written for the page). `players` (a vote share on the same point) shows only from PLAYERS_MIN votes. */
+type AgreePoint = { key: string; label: string; line: string; reviews: { review_id: string; stance: "pos" | "mix" | "neg"; evidence: string }[];
   players?: { pct: number; n: number } };
 const PLAYERS_MIN = 20;
-function AgreePoints({ points, total, rs }: { points: AgreePoint[]; total: number; rs: { id: string; creator: string; keyPoint?: string | null; short: string }[] }) {
+/** A point shows once this many of the paddle's reviews cover it. */
+const POINT_MIN = 3;
+type PtReview = { id: string; creator: string; kind: string; avatar?: string | null };
+function AgreePoints({ points, total, rs }: { points: AgreePoint[]; total: number; rs: PtReview[] }) {
   return <div className="v13-part">
-    <div className="v13-ph"><strong>What they agree on</strong><span>{`From the ${total} reviews. Tap a point for the reviews behind it.`}</span></div>
-    {points.map((p, pi) => { const yes = p.reviews.filter(x => x.stance === "agree").length, pl = p.players && p.players.n >= PLAYERS_MIN ? p.players : null;
+    <div className="v13-ph"><strong>What they agree on</strong><span>{`From the ${total} reviews. Tap a point to see the reviews behind it.`}</span></div>
+    {points.map((p, pi) => { const n = p.reviews.length, yes = p.reviews.filter(x => x.stance === "pos").length;
+      const pl = p.players && p.players.n >= PLAYERS_MIN ? p.players : null;
       // The disagreement pill: players at least 25 points off the reviewers' share.
-      const apart = pl && Math.abs(pl.pct - Math.round(100 * yes / p.reviews.length)) >= 25 ? pl : null;
+      const apart = pl && Math.abs(pl.pct - Math.round(100 * yes / n)) >= 25 ? pl : null;
+      // The receipts: up to two reviews on the majority side, from different platforms where there are.
+      const side = yes * 2 >= n ? "pos" : p.reviews.filter(x => x.stance === "neg").length * 2 >= n ? "neg" : "mix";
+      const pool = [...p.reviews.filter(x => x.stance === side), ...p.reviews.filter(x => x.stance !== side)];
+      const first = pool[0], second = pool.slice(1).find(x => rs.find(r => r.id === x.review_id)?.kind !== rs.find(r => r.id === first?.review_id)?.kind) ?? pool[1];
+      const receipts = [first, second].filter((x): x is NonNullable<typeof x> => !!x);
       return <details key={p.key} className="v13-pt" open={pi === 0}>
         <summary><span className="k"><strong>{p.label}</strong></span>
           <span className="l">{p.line}{apart && <span className={`v13-pill ${apart.pct >= 50 ? "pos" : "neg"}`}>{`${apart.pct}% of ${W.people}`}</span>}</span>
-          <span className="n">{`${yes} of ${plural(p.reviews.length, "review")} that cover ${p.label.toLowerCase()}`}{pl && !apart && <span>{` · ${pl.pct}% of ${W.people}`}</span>}</span>
+          <span className="n"><span className="dots" aria-hidden="true">{p.reviews.map(x => <i key={x.review_id} className={x.stance}/>)}</span>
+            {`${yes} of ${plural(n, "review")} that cover ${p.label.toLowerCase()}`}{pl && !apart && <span>{` · ${pl.pct}% of ${W.people}`}</span>}</span>
           <span className="pl" aria-hidden="true">+</span></summary>
-        <div className="v13-pt-b">{p.reviews.map(x => { const v = rs.find(y => y.id === x.review_id)!;
-          return <a key={x.review_id} href={`#cr-${x.review_id}`} className={x.stance}><strong>{v.creator}</strong><span>{keyPoint(v)}</span></a>; })}</div>
+        <div className="v13-pt-b">{receipts.map(x => { const v = rs.find(y => y.id === x.review_id)!;
+          return <a key={x.review_id} href={`#cr-${x.review_id}`} className={x.stance}>
+            <span className="who"><Avatar name={v.creator} kind={v.kind as CreatorReview["kind"]} size="sm" src={v.avatar ?? null}/><strong>{v.creator}</strong></span>
+            <span className="q">{x.evidence}</span><span className="go">Read the review ↓</span></a>; })}</div>
       </details>; })}
   </div>;
 }
