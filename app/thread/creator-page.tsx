@@ -30,6 +30,7 @@ import { NewerVersion } from "./newer-version";
 import { padelListData } from "./padel-list-data";
 import { configAxisFor, configCell, configSite, textSlugs } from "../../lib/thread/creator-config";
 import { creatorPage, creatorSlugs, creatorHome, thinCreatorPage } from "../../lib/thread/creator-data";
+import { contrast } from "../../lib/thread/creator-home";
 import { threadTitle } from "../../lib/thread/web-sources";
 import roundups from "../../db/creators/reddit-roundups.json";
 import wrapups from "../../db/creators/reviewer-wrapups.json";
@@ -197,10 +198,11 @@ export async function CreatorProductBody({ slug }: { slug: string }) {
   const menRows = [...menN.keys()].map(id => allRows.find(x => x.id === id)).filter((x): x is NonNullable<typeof x> => !!x && x.id !== r.id && x.current !== false && (!LT || !!x.current))
     .sort((a, b) => (menN.get(b.id) ?? 0) - (menN.get(a.id) ?? 0));
   const simRows = [...menRows, ...sims.filter(x => !menN.has(x.id))];
-  const similar = simRows.slice(0, 4).map(x => { const p = staged[x.slug];
+  const toSim = (x: (typeof simRows)[number]) => { const p = staged[x.slug];
     return { x, href: !creatorPageOn(niche.id) && creatorPageFor(niche.id, x.slug) ? `${x.href}?view=${CREATOR_VIEW}` : x.href,
       pos: x.pos, mix: x.mix, neg: x.neg, unit: W.people, men: menN.get(x.id) ?? 0,
-      price: p?.price ? { label: `from ${usd(p.price.usd)} · check price ↗`, url: p.price.url, rel: p.price.affiliate ? "sponsored nofollow noopener" : "nofollow noopener" } : null }; });
+      price: p?.price ? { label: `from ${usd(p.price.usd)} · check price ↗`, url: p.price.url, rel: p.price.affiliate ? "sponsored nofollow noopener" : "nofollow noopener" } : null }; };
+  const similar = simRows.slice(0, 4).map(toSim);
   // "Players on Reddit and forums" (the mock's roundup card): the live page's Reddit summaries for this paddle, as one card in
   // the feed. Never counted as a review (not in N reviews, the table or the sentiment bar). Real short quotes only.
   // Either Reddit box only from REDDIT_MIN_POSTS or more stored posts (Grok audit 2026-11-24: a box built from one post read
@@ -305,8 +307,12 @@ export async function CreatorProductBody({ slug }: { slug: string }) {
   // Often compared to: the paddles the reviews mention (Similar's lead rows), with the reviews' own comparison line where
   // db/creators/compare-lines.json has one, never a price comparison. No mentions, no section.
   const cmpOf = (compareLines as Record<string, Record<string, Record<string, { line: string }>>>)[niche.id]?.[slug] ?? {};
-  const compared = similar.map(x => { const l = cmpOf[x.x.slug]?.line ?? null;
-    return { ...x, line: l && !PRICE_WORDS.test(l) ? l : null }; });
+  // Three paddles (owner 2026-11-28): the ones the reviews mention, then the closest with a +/- line, then the rest. Each
+  // with the reviews' own comparison line where one is stored, and what the reviews praise it for more and less.
+  const selfHome = staged[slug];
+  const cmpAll = simRows.map(toSim).map(x => { const l = cmpOf[x.x.slug]?.line ?? null, o = staged[x.x.slug];
+    return { ...x, line: l && !PRICE_WORDS.test(l) ? l : null, ...(o && selfHome ? contrast(o, selfHome) : { plus: null, minus: null }) }; });
+  const compared = [...cmpAll.filter(x => x.men > 0), ...cmpAll.filter(x => x.men === 0 && (x.plus || x.minus || x.line)), ...cmpAll.filter(x => x.men === 0 && !x.plus && !x.minus && !x.line)].slice(0, 3);
   // What they agree on: only products with per-point tags (db/creators/review-points.json, none yet, so hidden).
   const points = ((reviewPoints as Record<string, Record<string, { points: AgreePoint[] }>>)[niche.id]?.[slug]?.points ?? [])
     .map(p => ({ ...p, reviews: p.reviews.filter(x => rs.some(y => y.id === x.review_id)) })).filter(p => p.reviews.length > 0);
@@ -462,11 +468,12 @@ export async function CreatorProductBody({ slug }: { slug: string }) {
               {compared.length > 0 && <aside className="v13-side">
                 {([["Often compared to", compared.filter(x => x.men > 0)], ["Similar feel", compared.filter(x => x.men === 0)]] as const).filter(g => g[1].length > 0).map(([h, xs]) =>
                   <div key={h} className="v13-sg"><strong className={h === "Similar feel" ? "q" : undefined}>{h}</strong>
-                    {xs.map(({ x, href, men, price, line }) => <div key={x.id} className="v13-cmp-c">
+                    {xs.map(({ x, href, men, price, line, plus: pl, minus: mi }) => <div key={x.id} className="v13-cmp-c">
                       <span className="v13-cmp-top"><a className="pic" href={th(href)} tabIndex={-1} aria-hidden="true">{x.pic ? <img src={x.pic} alt="" loading="lazy"/> : null}</a>
                         <span className="b"><a className="nm" href={th(href)}>{shown(x.name, x.year)}</a>{men > 0 && <span className="m">{`In ${plural(men, "review")}`}</span>}</span>
                         {price && <a className="thc-mono buy" href={price.url} target="_blank" rel={price.rel}>check ↗</a>}</span>
                       {line && <span className="ln">{line}</span>}
+                      {(pl || mi) && <span className="pm">{pl && <span className="pos"><b>+</b>{` ${pl}`}</span>}{mi && <span className="neg"><b>−</b>{` ${mi}`}</span>}</span>}
                     </div>)}</div>)}
                 {compared.some(x => x.price?.rel.includes("sponsored")) && <span className="thc-note">{"Some links are affiliate links. "}<a href={th("/affiliate-disclosure")}>Learn more</a></span>}
               </aside>}
