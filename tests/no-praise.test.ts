@@ -18,12 +18,15 @@ test("no-praise: the swap patterns", () => {
   // Uses the patterns don't cover stay as they are, flagged.
   const f = noPraise("The grit gets praised as durable.");
   assert.equal(f.changed, false); assert.equal(f.flags.length, 1);
+  // A use right before punctuation is flagged, never skipped.
+  assert.equal(noPraise("Spin is the most common praise, with power.").flags.length, 1);
 });
 
 /** The copy guard (owner 2026-11-28): sites whose stored text has been through scripts/no-praise.mts. A site joins once its
  *  swap is written; every word left over must be one of its flagged, hand-checked texts. */
-const PRAISE_FREE: string[] = [];
-const ALLOWED: Record<string, number> = {};
+const PRAISE_FREE: string[] = ["pickleball"];
+/** The flagged uses left on purpose (2026-11-28 run: nouns like "the most common praise" and passives like "the version praised", for a hand check). */
+const ALLOWED: Record<string, number> = { pickleball: 8 };
 test("no-praise: stored copy on praise-free sites", () => {
   for (const site of PRAISE_FREE) {
     const texts = [wrapups, roundups, tldrs, compareLines].map(d => JSON.stringify((d as Record<string, unknown>)[site] ?? {}));

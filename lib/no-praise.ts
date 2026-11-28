@@ -30,7 +30,7 @@ const cap = (from: string, to: string) => /^[A-Z]/.test(from) ? to[0]!.toUpperCa
 export function noPraise(t: string, extra = true): Swap {
   if (!PRAISE_RE.test(t)) return { text: t, changed: false, flags: [], rules: [] };
   const flags: string[] = [], rules: string[] = [];
-  const out = t.replace(/\b(prais(?:e|es|ed|ing))\b(\s+)(\w+)?/gi, (m, word: string, sp: string, next: string | undefined, at: number) => {
+  const out = t.replace(/\b(prais(?:e|es|ed|ing))\b(\s*)(\w+)?/gi, (m, word: string, sp: string, next: string | undefined, at: number) => {
     const w = word.toLowerCase(), before = t.slice(Math.max(0, at - 40), at), nx = (next ?? "").toLowerCase();
     const v = VERB[w]!;
     // "call it a/an" only when the phrase names the product ("praise a plush control paddle"); a feature ("praises a
