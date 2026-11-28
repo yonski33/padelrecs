@@ -319,13 +319,13 @@ export async function CreatorProductBody({ slug }: { slug: string }) {
   // What they agree on: only products with per-point tags (db/creators/review-points.json, none yet, so hidden).
   const points = ((reviewPoints as Record<string, Record<string, { points: AgreePoint[] }>>)[niche.id]?.[slug]?.points ?? [])
     .map(p => ({ ...p, reviews: p.reviews.filter(x => rs.some(y => y.id === x.review_id)) })).filter(p => p.reviews.length >= POINT_MIN);
-  // Players' share per point: real votes only (never the review-based seed), the "rates it well" option's share.
+  // Players' share per point: the same counts the page's vote boxes show (traitGroup: stored and admin-set counts plus live
+  // votes; owner 2026-11-28), the "rates it well" option's share.
   const tc = points.length ? await traitCounts() : null;
   const pointPlayers: Record<string, { pct: number; n: number } | null> = Object.fromEntries(points.map(p => { const pv = POINT_VOTES[p.key];
     if (!pv || !tc) return [p.key, null];
-    let n = 0, good = 0;
-    for (const [k, c] of tc.votes) { const [rid, tr, ch] = k.split("|"); if (rid === r.id && tr === pv.key) { n += c; if (ch === pv.good) good += c; } }
-    return [p.key, n ? { pct: Math.round(100 * good / n), n } : null]; }));
+    const g = traitGroup(tc, r.id, pv.key), n = Object.values(g).reduce((a, b) => a + b, 0);
+    return [p.key, n ? { pct: Math.round(100 * (g[pv.good] ?? 0) / n), n } : null]; }));
   const srcIcons = <span className="v13-ics" aria-hidden="true">{srcN.youtube > 0 && <span className="yt"/>}{srcN.tiktok > 0 && <span className="tt">♪</span>}{srcN.blog > 0 && <span className="bl">B</span>}</span>;
   // At a glance (v13): an index, one row per source, each jumping to its card. No text that repeats the cards.
   const g13 = [
@@ -633,7 +633,7 @@ const gradeOf = (yes: number, n: number) => { const s = n ? yes / n : 0;
   return s >= 0.85 ? { word: "Excellent", k: "g1" } : s >= 0.7 ? { word: "Great", k: "g1" } : s >= 0.55 ? { word: "Good", k: "g2" } : s >= 0.4 ? { word: "Okay", k: "g3" } : { word: "Weak", k: "g4" }; };
 type PlayerShare = { pct: number; n: number } | null;
 function AgreePoints({ points, total, rs, id, players, voteGroups }: { points: AgreePoint[]; total: number; rs: PtReview[]; id: string;
-  /** Real player votes per point (never the review-based seed), shown from PLAYERS_MIN votes. */ players: Record<string, PlayerShare>;
+  /** Players' share per point (the vote boxes' own counts), shown from PLAYERS_MIN votes. */ players: Record<string, PlayerShare>;
   voteGroups: import("../../lib/thread/traits").TraitGroup[] }) {
   return <div className="v13-part">
     <div className="v13-ph"><strong>What they agree on</strong><span>Bars show how many rate it well. Tap for the reviews behind it.</span></div>
