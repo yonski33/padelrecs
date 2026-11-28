@@ -200,7 +200,7 @@ export function CreatorReviews({ reviews, roundup, configs, axis, title = "Revie
     setLit(goTo); setGoTo(null);
   }, [goTo, shown]);
   useEffect(() => { if (!lit) return; const t = setTimeout(() => setLit(null), 2600); return () => clearTimeout(t); }, [lit]);
-  return <VideoProvider><section id="reviews" className="thc-reviews">
+  return <VideoProvider><section id={title === "The long version" ? "long" : "reviews"} className="thc-reviews">
     {/* Paddle page v3: the heading on the same row as the filter chips; a chip only when it has cards; Sort at the end. */}
     <div className="thc-rv-h v3">
       <h2>{title}</h2>

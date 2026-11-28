@@ -853,3 +853,19 @@ body:has(.thc) .thc a.thc-g-row.v13-g { grid-template-columns: minmax(0, 1fr) au
 }
 /* The mockup's one marker for every highlight in The short version. */
 .v13-prose mark, .v13-prose mark.pos, .v13-prose mark.neg { background: linear-gradient(transparent 55%, #F4EC6E 55%, #F4EC6E 92%, transparent 92%); color: inherit; padding: 0; border-radius: 0; }
+/* At a glance with its one line per source (PM correction 2026-11-28): who · take · the line. */
+body:has(.thc) .thc a.thc-g-row.v13-g { grid-template-columns: minmax(150px, 220px) 96px minmax(0, 1fr); }
+.v13-g .kp { font-size: 15px; line-height: 1.45; font-weight: 500; min-width: 0; }
+@media (max-width: 640px) {
+  body:has(.thc) .thc a.thc-g-row.v13-g { grid-template-columns: minmax(0, 1fr) auto; }
+  .v13-g .kp { grid-column: 1 / -1; font-size: 14.5px; }
+}
+/* Handoff 7: the yellow box with the sources line; the Reddit paragraph's bold marked opener. */
+.v13-hbox { display: flex; flex-direction: column; gap: 6px; padding: 12px 16px; background: #FAF7D6; border-radius: 12px; }
+.v13-based { font-size: 13.5px; color: #4A463F; line-height: 1.5; }
+.v13-based strong { color: var(--ink); }
+.v13-based i { display: inline-block; width: 8px; height: 8px; border-radius: 50%; margin-right: 5px; vertical-align: 1px; }
+.v13-based i.pos { background: #62C878; } .v13-based i.mix { background: #F0D16B; } .v13-based i.neg { background: #F0796A; }
+.v13-rdp { margin: 0; font-size: 16.5px; line-height: 1.75; max-width: 72ch; }
+.v13-rdp mark.v13-on { font-weight: 700; }
+.thc-v13 #long { scroll-margin-top: 20px; }
