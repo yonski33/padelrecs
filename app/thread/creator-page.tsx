@@ -323,7 +323,7 @@ export async function CreatorProductBody({ slug }: { slug: string }) {
   const g13 = [
     ...(rdTone ? [<a key="rd" className="thc-g-row v13-g" href="#reddit-card"><span className="thc-g-who"><span className="v13-av rd" aria-hidden="true">r/</span>
       <span><strong>Reddit and forums</strong><span>{`Summary of ${W.person} posts`}</span></span></span>
-      <span className={`thc-take sm ${rdTone.k}`}>{rdTone.word}</span><span className="kp v13-see">{`See what ${W.people} say ›`}</span></a>] : []),
+      <span className={`thc-take sm ${rdTone.k}`}>{rdTone.word}</span><span className="kp">{rdLine}</span></a>] : []),
     ...(listPicks.length > 0 ? [<a key="xp" className="thc-g-row v13-g" href="#expert-lists"><span className="thc-g-who"><span className="v13-av xp" aria-hidden="true">★</span>
       <span><strong>Expert lists</strong><span>{picksSummary(listPicks)}</span></span></span><span className="thc-take sm xp">Picked</span>
       <span className="kp">{listPicks.map(p => `${p.l.outlet}: ${p.label ?? p.l.title}`).join(" · ")}</span></a>] : []),

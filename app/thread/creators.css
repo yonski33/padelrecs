@@ -941,6 +941,5 @@ body:has(.thc) .thc a.v13-cta { text-decoration: none; text-align: center; font-
   .v13-strip .v13-sg > strong { display: none; }
   .v13-strip .v13-cmp-c { flex: 0 0 240px; scroll-snap-align: start; }
 }
-/* Reddit once (PM 2026-11-28): pills + one-liner in The short version; a quiet link in At a glance. */
+/* Reddit in The short version (PM 2026-11-28): the +/- pills and the one-liner. */
 .v13-rdb .thc-rd-tags { margin: 4px 0 6px; }
-.v13-g .kp.v13-see { font-size: 14px; font-weight: 600; color: var(--muted); text-decoration: underline; text-underline-offset: 3px; }
