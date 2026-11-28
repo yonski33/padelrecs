@@ -12,4 +12,10 @@ test("pickleball: shape, core thickness and surface; no year; lists and long val
   assert.deepEqual(specPills("pickleball", { shape: "Hybrid, Widebody, or Elongated", core: "14 or 16 mm", surface: "Multi-layer composite with Toray T-700 carbon top layer" }), []);
   assert.deepEqual(specPills("pickleball", { shape: null, core: null, surface: null }), []);
 });
+test("coffee: type, weight and the checked release year only", () => {
+  assert.deepEqual(specPills("coffee", { balance: "Dual boiler, E61 group", weight: "21 kg (46 lb)", slug: "la-marzocco-linea-micra", year: 2022 }),
+    ["Dual boiler", "21 kg", "Released 2022"]);
+  // No checked year: no year at all, never the catalogue's placeholder.
+  assert.deepEqual(specPills("coffee", { balance: "Hand grinder", weight: null, slug: "1zpresso-j-ultra", year: 2026 }), ["Hand grinder"]);
+});
 test("other sites get no spec pills", () => assert.deepEqual(specPills("skin", { shape: "Serum" }), []));
