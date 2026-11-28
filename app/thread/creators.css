@@ -1085,6 +1085,14 @@ body:has(.thc) .thc .v13-rc a.go, body:has(.thc) .thc .v13-rc a.go:visited { ali
 .v13-rc.rd { background: #FFF6F1; border-color: #F4D3C2; }
 @media (max-width: 900px) { .v13-pt-b { grid-template-columns: minmax(0, 1fr) !important; } }
 body:has(.thc) .thc .v13-pt-b .v13-rc a.go { flex-direction: row; border: 0; border-radius: 0; padding: 0; background: none; gap: 8px; line-height: 1.4; }
+/* v13 warm white (owner handoff 8, 2026-11-28): a lighter warm page and pure white cards so text reads better. v13 pages only. */
+body:has(.thc-v13top), body:has(.thc-v13top) .th { background: #FBF8F2; }
+.th:has(.thc-v13top) { --bg: #FBF8F2; --card: #FFFFFF; --soft: #F7F3EC; }
+.thc-v13top { --card: #FFFFFF; }
+.thc-v13top .v13-card, .thc-v13top .thc-card, .thc-v13top .thc-box1, .thc-v13top .v13-buy, .thc-v13top .thc-hd4 { background: #FFFFFF; }
+.thc-v13top .thc-rd { background: #FFFFFF; }
+.thc-v13top .v13-pt-b .v13-rc.rd { background: #FFF6F1; }
+.thc-v13top .v13-text .v13-note { background: #F7F3EC; }
 /* Short version as prose (owner mock 2026-11-28). */
 .v13-prose3 { display: flex; flex-direction: column; gap: 18px; }
 .v13-prose3 p { margin: 0; font-size: 17px; line-height: 1.75; max-width: 76ch; }
