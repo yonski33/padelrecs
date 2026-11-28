@@ -6378,40 +6378,6 @@
    }
   ]
  },
- "adidas-cross-it-ctrl-3-5-2026": {
-  "strengths": [
-   {
-    "t": "Pinpoint placement: the ball comes back predictably, so you can aim from anywhere.",
-    "for": [
-     "control"
-    ],
-    "src": [
-     "https://padelguru.app/racket/adidas-cross-it-ctrl-35-2026",
-     "https://justpadel.com/en/products/adidas-cross-it-ctrl-3-5"
-    ]
-   },
-   {
-    "t": "Calm in defence: blocks and lobs stay composed under pressure at the back.",
-    "for": [],
-    "src": [
-     "https://justpadel.com/en/products/adidas-cross-it-ctrl-3-5",
-     "https://padelguru.app/racket/adidas-cross-it-ctrl-35-2026"
-    ]
-   }
-  ],
-  "catches": [
-   {
-    "t": "Limited free power: finishing smashes need a committed swing; rebound is modest.",
-    "for": [
-     "power"
-    ],
-    "src": [
-     "https://justpadel.com/en/products/adidas-cross-it-ctrl-3-5",
-     "https://padelguru.app/racket/adidas-cross-it-ctrl-35-2026"
-    ]
-   }
-  ]
- },
  "bullpadel-icon-2026": {
   "strengths": [
    {
@@ -6716,8 +6682,7 @@
     ],
     "src": [
      "https://padeltestlab.com/en/rackets/adidas-cross-it-carbon-2026",
-     "https://padeltennisrackets.com/reviews/adidas-cross-it-carbon-2026-review",
-     "https://chingoland.es/palas/adidas-cross-it-carbon-2026/"
+     "https://padeltennisrackets.com/reviews/adidas-cross-it-carbon-2026-review"
     ]
    },
    {
@@ -6735,7 +6700,6 @@
     "for": [],
     "src": [
      "https://padeltestlab.com/en/rackets/adidas-cross-it-carbon-2026",
-     "https://chingoland.es/palas/adidas-cross-it-carbon-2026/",
      "https://padeltennisrackets.com/reviews/adidas-cross-it-carbon-2026-review"
     ]
    },
@@ -6744,106 +6708,7 @@
     "for": [],
     "src": [
      "https://padeltestlab.com/en/rackets/adidas-cross-it-carbon-2026",
-     "https://chingoland.es/palas/adidas-cross-it-carbon-2026/",
      "https://padeltennisrackets.com/reviews/adidas-cross-it-carbon-2026-review"
-    ],
-    "alt": {
-     "slug": "nox-at10-genius-18k-2026",
-     "t": "Want easier defence? The Nox AT10 Genius 18K 2026 is a forgiving control teardrop.",
-     "src": [
-      "https://padeltestlab.com/en/rackets/adidas-cross-it-carbon-2026",
-      "https://chingoland.es/palas/adidas-cross-it-carbon-2026/"
-     ]
-    }
-   },
-   {
-    "t": "Not a first racket: developing technique will struggle to time it over long sessions.",
-    "for": [
-     "beginner"
-    ],
-    "src": [
-     "https://chingoland.es/palas/adidas-cross-it-carbon-2026/",
-     "https://padeltestlab.com/en/rackets/adidas-cross-it-carbon-2026"
-    ]
-   }
-  ]
- },
- "bullpadel-hack-04-comfort-2026": {
-  "strengths": [
-   {
-    "t": "Calmer strike: damping and a gentler face make impact less harsh than the standard Hack.",
-    "for": [
-     "arm"
-    ],
-    "src": [
-     "https://chingoland.es/palas/bullpadel-hack-04-comfort-2026/",
-     "https://www.padel-passion.net/test-de-la-raquette-bullpadel-hack-04-comfort-2026/",
-     "https://www.padelracketreviews.com/bullpadel/hack-04-comfort/"
-    ],
-    "only": [
-     "arm"
-    ]
-   },
-   {
-    "t": "Overhead punch: the diamond head still sends a heavy ball on smashes.",
-    "for": [
-     "power"
-    ],
-    "src": [
-     "https://chingoland.es/palas/bullpadel-hack-04-comfort-2026/",
-     "https://www.padel-passion.net/test-de-la-raquette-bullpadel-hack-04-comfort-2026/",
-     "https://www.padelracketreviews.com/bullpadel/hack-04-comfort/"
-    ]
-   },
-   {
-    "t": "Handy for a diamond: lighter build keeps it quick in transitions and at the net.",
-    "for": [],
-    "src": [
-     "https://www.padel-passion.net/test-de-la-raquette-bullpadel-hack-04-comfort-2026/",
-     "https://simplepadel.com/bullpadel-hack-04-comfort-review/"
-    ]
-   }
-  ],
-  "catches": [
-   {
-    "t": "Not a first racket: a high, reduced sweet spot still asks for clean, trained technique.",
-    "for": [
-     "beginner"
-    ],
-    "src": [
-     "https://chingoland.es/palas/bullpadel-hack-04-comfort-2026/",
-     "https://simplepadel.com/bullpadel-hack-04-comfort-review/",
-     "https://www.padel-passion.net/test-de-la-raquette-bullpadel-hack-04-comfort-2026/"
-    ],
-    "alt": {
-     "slug": "nox-at10-genius-18k-2026",
-     "t": "Want more margin? The Nox AT10 Genius 18K 2026 is a forgiving control racket.",
-     "src": [
-      "https://chingoland.es/palas/bullpadel-hack-04-comfort-2026/",
-      "https://simplepadel.com/bullpadel-hack-04-comfort-review/"
-     ]
-    }
-   },
-   {
-    "t": "Frame stays stiff: splits opinion: comfier than the Hack, yet rated stiff for a sore arm.",
-    "for": [
-     "arm"
-    ],
-    "src": [
-     "https://chingoland.es/palas/bullpadel-hack-04-comfort-2026/",
-     "https://simplepadel.com/bullpadel-hack-04-comfort-review/",
-     "https://www.padelracketreviews.com/bullpadel/hack-04-comfort/"
-    ],
-    "only": [
-     "arm"
-    ]
-   },
-   {
-    "t": "Back-wall exits: deep balls off the back glass are hard to send long, as with most diamonds.",
-    "for": [],
-    "src": [
-     "https://chingoland.es/palas/bullpadel-hack-04-comfort-2026/",
-     "https://simplepadel.com/bullpadel-hack-04-comfort-review/"
     ]
    }
   ]
@@ -6866,8 +6731,7 @@
     ],
     "src": [
      "https://www.padelcourtslocator.com/rackets/bullpadel-pearl-2026",
-     "https://padelguru.app/racket/bullpadel-pearl-26",
-     "https://padelmesh.com/en/products/bullpadel-pearl-2026"
+     "https://padelguru.app/racket/bullpadel-pearl-26"
     ]
    }
   ],
@@ -6880,8 +6744,7 @@
     "src": [
      "https://padelverdict.com/rackets/bullpadel-pearl-2026/",
      "https://www.padelcourtslocator.com/rackets/bullpadel-pearl-2026",
-     "https://padel-review.com/test-raquette-padel-bullpadel-pearl-2026/",
-     "https://padelmesh.com/en/products/bullpadel-pearl-2026"
+     "https://padel-review.com/test-raquette-padel-bullpadel-pearl-2026/"
     ],
     "alt": {
      "slug": "nox-at10-genius-18k-2026",
@@ -6899,21 +6762,10 @@
     ],
     "src": [
      "https://padelguru.app/racket/bullpadel-pearl-26",
-     "https://www.padelcourtslocator.com/rackets/bullpadel-pearl-2026",
-     "https://padelmesh.com/en/products/bullpadel-pearl-2026"
+     "https://www.padelcourtslocator.com/rackets/bullpadel-pearl-2026"
     ],
     "only": [
      "arm"
-    ]
-   },
-   {
-    "t": "Lively at speed: blocks can float long when rallies speed up; keep the tip down.",
-    "for": [
-     "control"
-    ],
-    "src": [
-     "https://padelmesh.com/en/products/bullpadel-pearl-2026",
-     "https://padelguru.app/racket/bullpadel-pearl-26"
     ]
    }
   ]
@@ -6970,25 +6822,8 @@
      "control"
     ],
     "src": [
-     "https://www.padel-passion.net/test-de-la-raquette-nox-vk10-ventus-control-12k-2026/",
      "https://www.whatthepadel.app/reviews/nox-vk10-ventus-control-12k-2026",
      "https://padelverdict.com/rackets/nox-vk10-ventus-control-12k-2026/"
-    ]
-   },
-   {
-    "t": "Quick resets: moves easily for fast volleys and low defensive balls.",
-    "for": [],
-    "src": [
-     "https://www.padel-passion.net/test-de-la-raquette-nox-vk10-ventus-control-12k-2026/",
-     "https://padelverdict.com/rackets/nox-vk10-ventus-control-12k-2026/"
-    ]
-   },
-   {
-    "t": "Textured bite: the face grips the ball on bandejas and víboras.",
-    "for": [],
-    "src": [
-     "https://www.whatthepadel.app/reviews/nox-vk10-ventus-control-12k-2026",
-     "https://www.padel-passion.net/test-de-la-raquette-nox-vk10-ventus-control-12k-2026/"
     ]
    }
   ],
@@ -6999,7 +6834,6 @@
      "power"
     ],
     "src": [
-     "https://www.padel-passion.net/test-de-la-raquette-nox-vk10-ventus-control-12k-2026/",
      "https://www.whatthepadel.app/reviews/nox-vk10-ventus-control-12k-2026",
      "https://padelverdict.com/rackets/nox-vk10-ventus-control-12k-2026/"
     ]
@@ -7011,7 +6845,6 @@
     ],
     "src": [
      "https://www.whatthepadel.app/reviews/nox-vk10-ventus-control-12k-2026",
-     "https://www.padel-passion.net/test-de-la-raquette-nox-vk10-ventus-control-12k-2026/",
      "https://padell.io/rackets/nox/vk10-ventus-control-12k/"
     ],
     "only": [
@@ -7025,16 +6858,6 @@
       "https://padell.io/rackets/nox/vk10-ventus-control-12k/"
      ]
     }
-   },
-   {
-    "t": "Not a first racket: its medium-hard touch needs real technique to get the best out of it.",
-    "for": [
-     "beginner"
-    ],
-    "src": [
-     "https://padelverdict.com/rackets/nox-vk10-ventus-control-12k-2026/",
-     "https://www.padel-passion.net/test-de-la-raquette-nox-vk10-ventus-control-12k-2026/"
-    ]
    }
   ]
  },
@@ -7832,8 +7655,7 @@
     "for": [],
     "src": [
      "https://racketloop.com/p/bullpadel-vertex-05-hybrid-2027-review",
-     "https://www.padelracketreviews.com/bullpadel/vertex-05-hybrid/",
-     "https://www.padel-passion.net/bullpadel-vertex-05-hybrid-2027-la-raquette-secrete-des-pros-pour-dominer-en-controle-test-complet/"
+     "https://www.padelracketreviews.com/bullpadel/vertex-05-hybrid/"
     ]
    },
    {
@@ -7865,8 +7687,7 @@
     ],
     "src": [
      "https://racketloop.com/p/bullpadel-vertex-05-hybrid-2027-review",
-     "https://www.padelracketreviews.com/bullpadel/vertex-05-hybrid/",
-     "https://www.padel-passion.net/bullpadel-vertex-05-hybrid-2027-la-raquette-secrete-des-pros-pour-dominer-en-controle-test-complet/"
+     "https://www.padelracketreviews.com/bullpadel/vertex-05-hybrid/"
     ]
    },
    {
@@ -7889,7 +7710,6 @@
     "src": [
      "https://padelverdict.com/rackets/starvie-eternal-2027/",
      "https://padelshop.com/products/starvie-eternal-2027",
-     "https://padelmesh.com/en/products/starvie-enternal-2027",
      "https://www.padelspain.net/material/834046/todos-los-detalles-de-la-eternal-de-sanyo-gutierrez-como-es-la-pala-del-mago-de-san-luis/"
     ]
    },
@@ -7899,15 +7719,6 @@
     "src": [
      "https://padelverdict.com/rackets/starvie-eternal-2027/",
      "https://padelshop.com/products/starvie-eternal-2027",
-     "https://padelmesh.com/en/products/starvie-enternal-2027",
-     "https://www.padelspain.net/material/834046/todos-los-detalles-de-la-eternal-de-sanyo-gutierrez-como-es-la-pala-del-mago-de-san-luis/"
-    ]
-   },
-   {
-    "t": "Solid volleys: punch volleys and blocks stay firm and well placed at the net.",
-    "for": [],
-    "src": [
-     "https://padelmesh.com/en/products/starvie-enternal-2027",
      "https://www.padelspain.net/material/834046/todos-los-detalles-de-la-eternal-de-sanyo-gutierrez-como-es-la-pala-del-mago-de-san-luis/"
     ]
    }
@@ -7920,17 +7731,8 @@
     ],
     "src": [
      "https://padelverdict.com/rackets/starvie-eternal-2027/",
-     "https://padelmesh.com/en/products/starvie-enternal-2027",
      "https://www.padelspain.net/material/834046/todos-los-detalles-de-la-eternal-de-sanyo-gutierrez-como-es-la-pala-del-mago-de-san-luis/"
-    ],
-    "alt": {
-     "slug": "siux-electra-pro-st4-2025",
-     "t": "Want freer pace? The Siux Electra Pro ST4 2025 is a hybrid known for easy power.",
-     "src": [
-      "https://padelverdict.com/rackets/starvie-eternal-2027/",
-      "https://padelmesh.com/en/products/starvie-enternal-2027"
-     ]
-    }
+    ]
    },
    {
     "t": "Debated sweet spot: splits opinion: some rate it wide, others say off-centre hits lose pace.",
@@ -7939,8 +7741,7 @@
     ],
     "src": [
      "https://www.padelspain.net/material/834046/todos-los-detalles-de-la-eternal-de-sanyo-gutierrez-como-es-la-pala-del-mago-de-san-luis/",
-     "https://padelverdict.com/rackets/starvie-eternal-2027/",
-     "https://padelmesh.com/en/products/starvie-enternal-2027"
+     "https://padelverdict.com/rackets/starvie-eternal-2027/"
     ]
    }
   ]
@@ -8132,64 +7933,6 @@
       "https://padeltestlab.com/en/rackets/nox-genius-12k-alum-xtrem-by-agustin-tapia-2027"
      ]
     }
-   }
-  ]
- },
- "bullpadel-pearl-2027": {
-  "strengths": [
-   {
-    "t": "Easy overhead pace: víboras and flat smashes carry weight without a full swing.",
-    "for": [
-     "power"
-    ],
-    "src": [
-     "https://padelverdict.com/rackets/bullpadel-pearl-27/",
-     "https://padelblend.de/padel-equipment/schlaeger/bullpadel-pearl-27/"
-    ]
-   },
-   {
-    "t": "Medium, not board-hard: fibrix faces over MultiEVA keep the hit medium for a diamond.",
-    "for": [],
-    "src": [
-     "https://padelblend.de/padel-equipment/schlaeger/bullpadel-pearl-27/",
-     "https://padelverdict.com/rackets/bullpadel-pearl-27/"
-    ]
-   }
-  ],
-  "catches": [
-   {
-    "t": "High sweet spot: late or low contact sends the ball long or flat.",
-    "for": [],
-    "src": [
-     "https://padelverdict.com/rackets/bullpadel-pearl-27/",
-     "https://padelblend.de/padel-equipment/schlaeger/bullpadel-pearl-27/"
-    ]
-   },
-   {
-    "t": "Not a first racket: assumes clean, early technique that newer players lack.",
-    "for": [
-     "beginner"
-    ],
-    "src": [
-     "https://padelblend.de/padel-equipment/schlaeger/bullpadel-pearl-27/",
-     "https://padelverdict.com/rackets/bullpadel-pearl-27/"
-    ],
-    "alt": {
-     "slug": "adidas-metalbone-ctrl-2026",
-     "t": "Newer to padel? The Adidas Metalbone CTRL 2026 is a round racket known for forgiveness.",
-     "src": [
-      "https://padelblend.de/padel-equipment/schlaeger/bullpadel-pearl-27/",
-      "https://padelverdict.com/rackets/bullpadel-pearl-27/"
-     ]
-    }
-   },
-   {
-    "t": "Handling divides: splits opinion: the head can feel slow in rapid net exchanges.",
-    "for": [],
-    "src": [
-     "https://padelblend.de/padel-equipment/schlaeger/bullpadel-pearl-27/",
-     "https://padelverdict.com/rackets/bullpadel-pearl-27/"
-    ]
    }
   ]
  },
@@ -8525,7 +8268,6 @@
      "control"
     ],
     "src": [
-     "https://padelmesh.com/en/products/starvie-raptor-plus-2027",
      "https://padeltestlab.com/en/rackets/starvie-raptor-2027",
      "https://padelverdict.com/rackets/starvie-raptor-plus-2027/"
     ]
@@ -8543,7 +8285,6 @@
     "for": [],
     "src": [
      "https://padeltestlab.com/en/rackets/starvie-raptor-2027",
-     "https://padelmesh.com/en/products/starvie-raptor-plus-2027",
      "https://padelverdict.com/rackets/starvie-raptor-plus-2027/"
     ]
    }
@@ -8554,7 +8295,6 @@
     "for": [],
     "src": [
      "https://padelverdict.com/rackets/starvie-raptor-plus-2027/",
-     "https://padelmesh.com/en/products/starvie-raptor-plus-2027",
      "https://padeltestlab.com/en/rackets/starvie-raptor-2027"
     ]
    },
@@ -8565,35 +8305,8 @@
     ],
     "src": [
      "https://padelverdict.com/rackets/starvie-raptor-plus-2027/",
-     "https://padelmesh.com/en/products/starvie-raptor-plus-2027",
      "https://padeltestlab.com/en/rackets/starvie-raptor-2027"
-    ],
-    "alt": {
-     "slug": "head-coello-pro-2026",
-     "t": "Want free smash power? The Head Coello Pro 2026 is a head-heavy power diamond.",
-     "src": [
-      "https://padelmesh.com/en/products/starvie-raptor-plus-2027",
-      "https://padelverdict.com/rackets/starvie-raptor-plus-2027/"
-     ]
-    }
-   },
-   {
-    "t": "Not a first racket: its medium-firm feel needs clean, settled technique.",
-    "for": [
-     "beginner"
-    ],
-    "src": [
-     "https://padeltestlab.com/en/rackets/starvie-raptor-2027",
-     "https://padelmesh.com/en/products/starvie-raptor-plus-2027"
-    ],
-    "alt": {
-     "slug": "nox-at10-genius-18k-2026",
-     "t": "Still learning? The Nox AT10 Genius 18K 2026 is a forgiving control teardrop.",
-     "src": [
-      "https://padeltestlab.com/en/rackets/starvie-raptor-2027",
-      "https://padelmesh.com/en/products/starvie-raptor-plus-2027"
-     ]
-    }
+    ]
    }
   ]
  },
@@ -8917,7 +8630,6 @@
      "power"
     ],
     "src": [
-     "https://practicapadel.com/racket-reviews/oxdog-ultimate-pro-2025-padel-racket-favors-smashers/",
      "https://oxdogpadel.com/en-eu/products/ultimate-pro-2025",
      "https://www.racketguide.com/se-en/padel/oxdog/ultimate-pro-2025/"
     ]
@@ -8925,26 +8637,9 @@
   ],
   "catches": [
    {
-    "t": "Slow in defence: head weight can feel heavy when defending off the glass.",
-    "for": [],
-    "src": [
-     "https://www.racketguide.com/se-en/padel/oxdog/ultimate-pro-2025/",
-     "https://practicapadel.com/racket-reviews/oxdog-ultimate-pro-2025-padel-racket-favors-smashers/"
-    ],
-    "alt": {
-     "slug": "adidas-metalbone-carbon-ctrl-3-4-2025",
-     "t": "Defend a lot? The Adidas Metalbone Carbon CTRL 3.4 2025 is a round racket known for control.",
-     "src": [
-      "https://www.racketguide.com/se-en/padel/oxdog/ultimate-pro-2025/",
-      "https://practicapadel.com/racket-reviews/oxdog-ultimate-pro-2025-padel-racket-favors-smashers/"
-     ]
-    }
-   },
-   {
     "t": "Little grip for spin: the glossy face bites less on cut shots unless technique is precise.",
     "for": [],
     "src": [
-     "https://practicapadel.com/fr/tests-raquettes-padel/test-joueurs-reels-meilleures-raquettes-padel-pala-padel-nola/",
      "https://www.racketguide.com/se-en/padel/oxdog/ultimate-pro-2025/",
      "https://oxdogpadel.com/en-eu/products/ultimate-pro-2025"
     ]

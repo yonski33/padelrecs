@@ -621,22 +621,6 @@
     "Power tier"
    ]
   },
-  "paddle-review-hub": {
-   "name": "Paddle Review Hub",
-   "subs": 191,
-   "channel": "https://www.youtube.com/@PaddleReviewHub",
-   "joined": "Apr 20, 2026",
-   "site": "https://paddlereviewhub.com",
-   "links": [],
-   "avatar": "https://yt3.googleusercontent.com/-j0_j23dqA4KWIeYIsWWdFhvFkpQo3vGOMMrUDpd3bpdYFIsUrKw5SNNr-PJOX9z0hyXo1_utA=s176-c-k-c0x00ffffff-no-rj",
-   "bio": "A YouTube channel and website describing independent paddle reviews built on court testing, scores and community input. Reviews list weight, swing weight, twist weight and spin RPM, and some cite independent lab spin loss.",
-   "topics": [
-    "Lab spin data",
-    "Twist weight",
-    "Honolulu and 11SIX24",
-    "Court testing"
-   ]
-  },
   "pbvinny": {
    "name": "PBVinny",
    "subs": null,
@@ -725,22 +709,6 @@
     "Grit comparisons",
     "Selkirk and Luzz",
     "Paddle construction"
-   ]
-  },
-  "pickleball-blast": {
-   "name": "Pickleball Blast",
-   "subs": 2410,
-   "channel": "https://www.youtube.com/@ThePickleballBlast",
-   "joined": "Jul 18, 2024",
-   "site": "https://www.thepickleballblast.com",
-   "links": [],
-   "avatar": "https://yt3.googleusercontent.com/6zZOdJ0_RR38KbnyC_6eZspef5BkbntFGYKbQO5BwRVaESeqhLAZjTz3uZh1VJEkxTOASkwTQg=s176-c-k-c0x00ffffff-no-rj",
-   "bio": "A YouTube channel and blog giving opinions on paddles and related gear. Reviews report static weight, swing weight and twist weight, place paddles in a power tier, and cover Six Zero and 11SIX24 lines.",
-   "topics": [
-    "Measured specs",
-    "Power tier",
-    "Six Zero paddles",
-    "Shape comparisons"
    ]
   },
   "pickleball-effect": {
@@ -879,22 +847,6 @@
     "Category scores",
     "Skinny singles",
     "Spin and pop"
-   ]
-  },
-  "pickleball-portal": {
-   "name": "Pickleball Portal",
-   "subs": null,
-   "channel": null,
-   "joined": null,
-   "site": "https://www.pickleballportal.com",
-   "links": [],
-   "avatar": null,
-   "bio": "Blog with hands-on paddle write-ups after a week or more of play. Reviews report serve speed, spin, sweet spot and noise, and often say which type of player a paddle suits.",
-   "topics": [
-    "Serve speed",
-    "Noise and vibration",
-    "Weeks of play",
-    "Sweet spot"
    ]
   },
   "pickleball-pursuit": {
@@ -1575,22 +1527,6 @@
     "Premier Padel"
    ]
   },
-  "julien-padel-passion": {
-   "name": "Julien / Padel Passion",
-   "subs": null,
-   "channel": null,
-   "joined": null,
-   "site": "https://www.padel-passion.net",
-   "links": [],
-   "avatar": null,
-   "bio": "Blog author whose racket reviews rate power, control, maneuverability and comfort, and finish with a score out of ten. Reviews also state which player level a racket suits.",
-   "topics": [
-    "Blog reviews",
-    "Scored ratings",
-    "Player level fit",
-    "Comfort"
-   ]
-  },
   "mejora-tu-padel": {
    "name": "Mejora Tu Padel",
    "subs": 351000,
@@ -1696,21 +1632,6 @@
     "Wall exits"
    ]
   },
-  "padelcritic": {
-   "name": "PadelCritic",
-   "subs": null,
-   "channel": null,
-   "joined": null,
-   "site": "https://padelcritic.com",
-   "links": [],
-   "avatar": null,
-   "bio": "PadelCritic is a blog that reviews padel rackets, giving scores out of ten for traits such as power, control, comfort and spin. Reviews also say which kind of player each racket suits.",
-   "topics": [
-    "Scored reviews",
-    "Comfort",
-    "Player level"
-   ]
-  },
   "pdhsports": {
    "name": "pdhsports",
    "subs": 15600,
@@ -1741,22 +1662,6 @@
     "Feel and hardness",
     "Shot-by-shot tests",
     "Player level"
-   ]
-  },
-  "practica-padel-team": {
-   "name": "Practica Padel Team",
-   "subs": null,
-   "channel": null,
-   "joined": null,
-   "site": "https://practicapadel.com",
-   "links": [],
-   "avatar": null,
-   "bio": "Practica Padel Team is a padel blog that reviews rackets with scores for individual shots, comfort, sweet spot and value. Reviews often include measured weight and say which players each racket suits.",
-   "topics": [
-    "Shot scores",
-    "Adidas Metalbone",
-    "Weight and balance",
-    "Value"
    ]
   },
   "probando-palas": {

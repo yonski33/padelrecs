@@ -5467,42 +5467,6 @@
     "date": "2026-06-30",
     "checked": "2026-11-26"
    },
-   "pickleball-blast-awards-2025": {
-    "url": "https://www.thepickleballblast.com/blog/best-pickleball-paddles-of-2025-paddle-of-the-year-awards",
-    "outlet": "Pickleball Blast",
-    "title": "Best Pickleball Paddles of 2025: Paddle of the Year Awards",
-    "platform": "blog",
-    "topic": "overall",
-    "date": "2025-12-26",
-    "checked": "2026-11-26"
-   },
-   "pickleball-blast-feb-2026": {
-    "url": "https://www.thepickleballblast.com/blog/paddle-roundup-5-february-was-crazy",
-    "outlet": "Pickleball Blast",
-    "title": "Best New Pickleball Paddles – February Paddle Roundup",
-    "platform": "blog",
-    "topic": "overall",
-    "date": "2026-03-10",
-    "checked": "2026-11-26"
-   },
-   "pickleball-blast-hidden-gems-2025": {
-    "url": "https://www.thepickleballblast.com/blog/the-best-pickleball-paddles-youve-never-heard-of",
-    "outlet": "Pickleball Blast",
-    "title": "The Best Pickleball Paddles You’ve Never Heard Of",
-    "platform": "blog",
-    "topic": "other: hidden gems",
-    "date": "2025-09-02",
-    "checked": "2026-11-26"
-   },
-   "pickleball-blast-underrated-2025": {
-    "url": "https://www.thepickleballblast.com/blog/underrated-pickleball-paddles-that-deserve-more-love-paddle-roundup-2025",
-    "outlet": "Pickleball Blast",
-    "title": "Underrated Pickleball Paddles That Deserve More Love– Paddle Roundup 2025",
-    "platform": "blog",
-    "topic": "other: underrated paddles",
-    "date": "2025-10-28",
-    "checked": "2026-11-26"
-   },
    "pickleball-effect-all-court": {
     "url": "https://pickleballeffect.com/equipment-reviews/best-all-court-pickleball-paddles-pickleball-effects-hot-list/",
     "outlet": "Pickleball Effect",
@@ -5636,24 +5600,6 @@
     "platform": "blog",
     "topic": "power",
     "date": "2026-11",
-    "checked": "2026-11-26"
-   },
-   "pickleball-triangle-overall": {
-    "url": "https://pickleballtriangle.com/best/best-pickleball-paddles",
-    "outlet": "Pickleball Triangle",
-    "title": "Best Pickleball Paddles of 2026",
-    "platform": "blog",
-    "topic": "overall",
-    "date": "2026-07-07",
-    "checked": "2026-11-26"
-   },
-   "pickleball-triangle-under-250": {
-    "url": "https://pickleballtriangle.com/best/best-pickleball-paddles-under-250",
-    "outlet": "Pickleball Triangle",
-    "title": "Best Pickleball Paddles Under $250 (2026)",
-    "platform": "blog",
-    "topic": "budget",
-    "date": "2026-11-18",
     "checked": "2026-11-26"
    },
    "pickleball-union-advanced": {
@@ -7616,12 +7562,6 @@
      "reason": "Offers low-pitched full-foam power with a strong sweet spot, but just misses the top five on spin and control."
     },
     {
-     "list": "pickleball-triangle-under-250",
-     "position": 9,
-     "label": null,
-     "reason": "Plays as a head-heavy foam power elongated with solid spin, ranked just behind the Luzz Pro Cannon."
-    },
-    {
      "list": "yt-pickleball-studio-top-picks-oct-2025",
      "position": 9,
      "label": "Top pick",
@@ -7750,12 +7690,6 @@
      "reason": "Adds reach, spin and point-finishing pop to an elongated foam build, but needs sound technique to control launch."
     },
     {
-     "list": "pickleball-blast-underrated-2025",
-     "position": 6,
-     "label": null,
-     "reason": "Blends top-tier power with excellent feel and ball-shaping ability in a floating full-foam elongated build."
-    },
-    {
      "list": "yt-pickleballer-premium-6-way-jul-2026",
      "position": 6,
      "label": "Best plush power",
@@ -7874,12 +7808,6 @@
      "reason": "Reached the finalist round of a reader-voted paddle of the year award, showing wide audience support."
     },
     {
-     "list": "pickleball-blast-hidden-gems-2025",
-     "position": 3,
-     "label": null,
-     "reason": "Brings loud, hollow elongated power to players who want pace and pop without a reinvented design."
-    },
-    {
      "list": "the-dink-under-150",
      "position": 3,
      "label": null,
@@ -7938,12 +7866,6 @@
      "position": 6,
      "label": "Best budget pick",
      "reason": "Gives power-first players top-tier firepower with strong spin and a big sweet spot, though less approachable."
-    },
-    {
-     "list": "pickleball-triangle-under-250",
-     "position": 7,
-     "label": "Best budget pick",
-     "reason": "Brings big pop and strong spin, but its head-heavy balance leaves thin kitchen margins best for aggressive drivers."
     },
     {
      "list": "yt-bk-pickleball-awards-2025",
@@ -8010,12 +7932,6 @@
      "position": 10,
      "label": "Best Gen 3 paddle",
      "reason": "Offers most of a flagship Gen 3's performance, though long-term durability is still unproven."
-    },
-    {
-     "list": "pickleball-blast-awards-2025",
-     "position": 12,
-     "label": "Best budget pick",
-     "reason": "Delivers pace and pop that rival top power paddles in a loud elongated build."
     },
     {
      "list": "yt-bk-pickleball-awards-2025",
@@ -8476,18 +8392,6 @@
      "position": 4,
      "label": "Top power pick",
      "reason": "Packs the most power and pop of four in a flat-top near-elongated hybrid, built for aggressive net play."
-    },
-    {
-     "list": "pickleball-triangle-overall",
-     "position": 5,
-     "label": "Best widebody",
-     "reason": "Offers a friendlier, wider upper sweet spot with durable HexGrit spin and accessible power for intermediates."
-    },
-    {
-     "list": "pickleball-triangle-under-250",
-     "position": 5,
-     "label": "Best for intermediates",
-     "reason": "Offers an honest, forgiving sweet spot and season-proof HexGrit spin that suits developing players."
     },
     {
      "list": "yt-dwell-time-durable-grit-2026",
@@ -9206,12 +9110,6 @@
      "reason": "Offers a slightly denser feel in a low-fuss, lower-tier power paddle."
     },
     {
-     "list": "pickleball-blast-underrated-2025",
-     "position": 4,
-     "label": null,
-     "reason": "Delivers high-end 16mm performance in elongated or widebody shapes that deserve more attention."
-    },
-    {
      "list": "pickleball-effect-all-court",
      "position": 5,
      "label": "Best for control",
@@ -9626,18 +9524,6 @@
      "reason": "Holds its durable grit well and competes strongly, though routine drops and dinks felt a little inconsistent."
     },
     {
-     "list": "pickleball-triangle-overall",
-     "position": 6,
-     "label": "Best budget pick",
-     "reason": "Gives fast hands and elite HexGrit spin that keeps biting after months of play."
-    },
-    {
-     "list": "pickleball-triangle-under-250",
-     "position": 6,
-     "label": "Best for lasting spin",
-     "reason": "Delivers fast net speed and long-lasting HexGrit bite for players who prize quick hands over elongated reach."
-    },
-    {
      "list": "pickleheads-intermediate",
      "position": 6,
      "label": "Best control",
@@ -9814,12 +9700,6 @@
      "reason": "Pairs a full foam core with a buttery plush feel, extra power and grit that adds net spin."
     },
     {
-     "list": "pickleball-blast-awards-2025",
-     "position": 3,
-     "label": "Best all-court of 2025",
-     "reason": "Suits all-court players wanting a large sweet spot, safe resets and counters, and enough pop to finish points."
-    },
-    {
      "list": "yt-pickleball-blast-awards-2025",
      "position": 3,
      "label": "Best all-court paddle",
@@ -9877,18 +9757,6 @@
     }
    ],
    "rpm-friction-pro-v2-elongated": [
-    {
-     "list": "pickleball-triangle-overall",
-     "position": 1,
-     "label": "Best overall",
-     "reason": "Tops the list by pairing the grittiest spin face with soft resets and good off-center forgiveness for an elongated shape."
-    },
-    {
-     "list": "pickleball-triangle-under-250",
-     "position": 1,
-     "label": "Best budget pick",
-     "reason": "Combines elite surface grit, soft kitchen resets and generous forgiveness in a 16mm elongated frame."
-    },
     {
      "list": "yt-christy-price-gen3-playtester-picks-2026",
      "position": 2,
@@ -10352,12 +10220,6 @@
      "reason": "Pairs a strong swing weight to twist weight balance with a firmer, more connected feel and easy tuning."
     },
     {
-     "list": "pickleball-blast-awards-2025",
-     "position": 5,
-     "label": "Best hybrid of 2025",
-     "reason": "Pairs a poppy hybrid strike with good dwell time and a solid sweet spot from its dual-density foam core."
-    },
-    {
      "list": "yt-pickleball-blast-awards-2025",
      "position": 5,
      "label": "Best hybrid paddle",
@@ -10384,12 +10246,6 @@
      "reason": "Offers an easy swing and good control, with customizable side weight clips."
     },
     {
-     "list": "pickleball-blast-feb-2026",
-     "position": 8,
-     "label": null,
-     "reason": "Offers a light, quick 14mm feel with less power and stability, leaving room to add weight and customize."
-    },
-    {
      "list": "yt-west-side-pickleball-gen4-tier-list-1-2026",
      "position": 33,
      "label": "C tier",
@@ -10408,12 +10264,6 @@
      "position": 1,
      "label": "Best overall",
      "reason": "Rounds out spin, power and consistency better than most intermediate options, with above-average but not elite forgiveness."
-    },
-    {
-     "list": "pickleball-blast-underrated-2025",
-     "position": 2,
-     "label": null,
-     "reason": "Gives a 14mm hybrid a very gritty face for heavy spin, with a quick swing weight."
     },
     {
      "list": "yt-west-side-pickleball-awards-2025",
@@ -10602,12 +10452,6 @@
      "position": 3,
      "label": "Most approachable power",
      "reason": "Offers the most approachable power of the three, with a soft, hollow feel and class-leading grit retention."
-    },
-    {
-     "list": "pickleball-triangle-under-250",
-     "position": 3,
-     "label": null,
-     "reason": "Brings top-tier lasting grit and a softer, calmer feel than most power paddles, giving up a little baseline speed."
     },
     {
      "list": "yt-pickleballer-elongated-oct-2026",
@@ -11002,12 +10846,6 @@
    ],
    "joola-scorpeus-pro-iv": [
     {
-     "list": "pickleball-triangle-overall",
-     "position": 2,
-     "label": "Best power",
-     "reason": "Delivers hot drives and overheads for net finishers while keeping mishits playable and dinks controlled."
-    },
-    {
      "list": "pickleball-union-intermediate",
      "position": 4,
      "label": "Best for fast hands",
@@ -11040,12 +10878,6 @@
      "reason": "Hybrid shape with moderate power and very high forgiveness, named the most forgiving by one host."
     },
     {
-     "list": "pickleball-triangle-overall",
-     "position": 3,
-     "label": "Best all-court",
-     "reason": "Works as the most balanced foam hybrid in its line: fast, spinny, soft enough for the kitchen, with no break-in."
-    },
-    {
      "list": "yt-farmer-lanky-favorites-2025",
      "position": 4,
      "label": "#4 favorite",
@@ -11070,12 +10902,6 @@
      "reason": "Jumps clearly above early control foam paddles in ball speed, giving hybrid players aggressive all-court pop."
     },
     {
-     "list": "pickleball-triangle-under-250",
-     "position": 10,
-     "label": null,
-     "reason": "Handles fast with reliable spin and balanced out-of-the-box TruFoam touch."
-    },
-    {
      "list": "yt-ddog-pickleball-best-2025",
      "position": 14,
      "label": "Best control",
@@ -11088,12 +10914,6 @@
      "position": 3,
      "label": "Third of three hybrids",
      "reason": "Gives a stiff, dense, blocky feel that pops counters off the face, though it is not a true power paddle."
-    },
-    {
-     "list": "pickleball-triangle-overall",
-     "position": 4,
-     "label": "Best for counters",
-     "reason": "Tunes the foam hybrid core for crisp pop over touch, excelling on punch blocks and fast counters."
     },
     {
      "list": "pickleheads-overall",
@@ -11112,12 +10932,6 @@
      "position": 5,
      "label": "Fastest hand speed",
      "reason": "Offers very fast hands for a hybrid and takes added weight well while keeping dense put-away punch."
-    },
-    {
-     "list": "pickleball-triangle-under-250",
-     "position": 8,
-     "label": null,
-     "reason": "Punches harder than its TruFoam siblings, built for crisp counters and fast blocks over soft touch."
     },
     {
      "list": "sts-pickleball-intermediate",
@@ -11144,12 +10958,6 @@
      "position": 1,
      "label": "Honorable mention",
      "reason": "Spins well on the ArmorGrit face, but feels stiffer with less dwell than the original, and coating quality varies."
-    },
-    {
-     "list": "pickleball-triangle-under-250",
-     "position": 2,
-     "label": null,
-     "reason": "Pairs high power and spin with fast hybrid hands in a soft, hollow foam build, with mixed durability reports."
     },
     {
      "list": "yt-john-kew-leaderboard-feb-2026",
