@@ -53,6 +53,7 @@ import { playersWord } from "../../lib/thread/web-sources";
 import { StickyPrice } from "./live/sticky-price";
 import { GlanceTable } from "./live/glance-table";
 import { TraitVotes } from "./live/trait-votes";
+import { PointVote } from "./live/point-vote";
 import { traitGroupsFor } from "../../lib/thread/traits";
 import { traitSeed } from "../../lib/thread/trait-seed";
 import { creatorVoteGroups } from "../../lib/thread/creator-votes";
@@ -326,6 +327,8 @@ export async function CreatorProductBody({ slug }: { slug: string }) {
     if (!pv || !tc) return [p.key, null];
     const g = traitGroup(tc, r.id, pv.key), n = Object.values(g).reduce((a, b) => a + b, 0);
     return [p.key, n ? { pct: Math.round(100 * (g[pv.good] ?? 0) / n), n } : null]; }));
+  const pointVotes: Record<string, Record<string, number>> = Object.fromEntries(points.flatMap(p => { const pv = POINT_VOTES[p.key];
+    return pv && tc ? [[p.key, traitGroup(tc, r.id, pv.key)]] : []; }));
   const srcIcons = <span className="v13-ics" aria-hidden="true">{srcN.youtube > 0 && <span className="yt"/>}{srcN.tiktok > 0 && <span className="tt">♪</span>}{srcN.blog > 0 && <span className="bl">B</span>}</span>;
   // At a glance (v13): an index, one row per source, each jumping to its card. No text that repeats the cards.
   const g13 = [
@@ -464,7 +467,7 @@ export async function CreatorProductBody({ slug }: { slug: string }) {
           {/* Short version v2 (owner mock 2026-11-28): two columns. Left: the title, the yellow box (a headline where one is
               written, then the sources line), and label/text rows split by rules (the consensus blocks, then Reddit with its
               icon). Right, behind a rule: Often compared to. */}
-          <div className={`v13-short2${compared.length ? "" : " one"}`}>
+          <div className="v13-short2 one">
             <div className="v13-main">
               <strong className="v13-t">The short version</strong>
               <div className="v13-hbox">{wrap?.headline && <strong className="v13-head">{wrap.headline}</strong>}
@@ -478,21 +481,21 @@ export async function CreatorProductBody({ slug }: { slug: string }) {
                   <p>{rd ? markAll(rdLeadText(rd), rd.highlights.map(h => h.text)) : rdLine}</p></div>}
               </div>
             </div>
-            {compared.length > 0 && <aside className="v13-side2">
-              <strong className="v13-side-h">Often compared to</strong>
-              <div className="v13-strip">{compared.map(({ x, href, men, price, line, plus: pl, minus: mi }) => <div key={x.id} className="v13-cc">
-                <a className="pic" href={th(href)} tabIndex={-1} aria-hidden="true">{x.pic ? <img src={x.pic} alt="" loading="lazy"/> : null}</a>
-                <span className="b"><a className="nm" href={th(href)}>{shown(x.name, x.year)}</a>
-                  {men > 0 && <span className="m">{`In ${plural(men, "review")}`}</span>}
-                  {line && <span className="ln">{line}</span>}
-                  <span className="ft">{(pl || mi) && <span className="pm">{pl && <span className="pos">{`+ ${pl}`}</span>}{mi && <span className="neg">{`− ${mi}`}</span>}</span>}
-                    {price && <a className="thc-mono buy" href={price.url} target="_blank" rel={price.rel}>check ↗</a>}</span></span>
-              </div>)}</div>
-              {compared.some(x => x.price?.rel.includes("sponsored")) && <span className="thc-note">{"Some links are affiliate links. "}<a href={th("/affiliate-disclosure")}>Learn more</a></span>}
-            </aside>}
           </div>
-          {points.length > 0 && <AgreePoints points={points} total={rs.length} id={r.id} players={pointPlayers} voteGroups={traitGroupsFor(niche.id)}
+          {points.length > 0 && <AgreePoints points={points} total={rs.length} id={r.id} players={pointPlayers} votes={pointVotes} voteGroups={traitGroupsFor(niche.id)}
             rs={rs.map(x => ({ id: x.id, creator: x.creator, kind: x.kind, avatar: profiles.get(x.creator)?.avatar ?? null }))}/>}
+          {/* Often compared to (owner mock 2026-11-28): a row of cards under What they agree on, each linking to that
+              paddle's page here (no shop links). Photo, name, "In N reviews", the +/- lines. */}
+          {compared.length > 0 && <div className="v13-part">
+            <div className="v13-ph"><strong>Often compared to</strong><span>{`${niche.words.Many} the reviews held up against this one`}</span></div>
+            <div className="v13-cmp2">{compared.map(({ x, href, men, line, plus: pl, minus: mi }) => <a key={x.id} className="v13-cc2" href={th(href)}>
+              <span className="top"><span className="pic">{x.pic ? <img src={x.pic} alt="" loading="lazy"/> : null}</span>
+                <span className="b"><strong>{shown(x.name, x.year)}</strong>{men > 0 && <span className="m">{`In ${plural(men, "review")}`}</span>}</span></span>
+              {line && <span className="ln">{line}</span>}
+              {(pl || mi) && <span className="pm">{pl && <span className="pos"><b>+</b>{` ${pl}`}</span>}{mi && <span className="neg"><b>−</b>{` ${mi}`}</span>}</span>}
+              <span className="go">{`See the ${niche.words.one} →`}</span>
+            </a>)}</div>
+          </div>}
           <GlanceTable className="v13-part v13-glance" title="At a glance" sub="One line from each reviewer, Reddit and the expert lists. Tap to jump to the full summary." head={null} rows={g13} first={5}/>
         </section>
 
@@ -632,7 +635,8 @@ const POINT_VOTES: Record<string, { key: string; good: string }> = { spin: { key
 const gradeOf = (yes: number, n: number) => { const s = n ? yes / n : 0;
   return s >= 0.85 ? { word: "Excellent", k: "g1" } : s >= 0.7 ? { word: "Great", k: "g1" } : s >= 0.55 ? { word: "Good", k: "g2" } : s >= 0.4 ? { word: "Okay", k: "g3" } : { word: "Weak", k: "g4" }; };
 type PlayerShare = { pct: number; n: number } | null;
-function AgreePoints({ points, total, rs, id, players, voteGroups }: { points: AgreePoint[]; total: number; rs: PtReview[]; id: string;
+function AgreePoints({ points, total, rs, id, players, voteGroups, votes }: { points: AgreePoint[]; total: number; rs: PtReview[]; id: string;
+  /** Each point's vote group counts as the vote boxes show them. */ votes: Record<string, Record<string, number>>;
   /** Players' share per point (the vote boxes' own counts), shown from PLAYERS_MIN votes. */ players: Record<string, PlayerShare>;
   voteGroups: import("../../lib/thread/traits").TraitGroup[] }) {
   return <div className="v13-part">
@@ -644,7 +648,9 @@ function AgreePoints({ points, total, rs, id, players, voteGroups }: { points: A
       const low = g.k === "g3" || g.k === "g4";
       // The receipts: up to two reviews on the majority side, from different platforms where there are.
       const side = yes * 2 >= n ? "pos" : p.reviews.filter(x => x.stance === "neg").length * 2 >= n ? "neg" : "mix";
-      const pool = [...p.reviews.filter(x => x.stance === side), ...p.reviews.filter(x => x.stance !== side)];
+      // Never the phrase the row's line already shows.
+      const same = (e: string) => e.replace(/[.!?]$/, "").toLowerCase() === p.line.replace(/[.!?]$/, "").toLowerCase();
+      const pool = [...p.reviews.filter(x => x.stance === side), ...p.reviews.filter(x => x.stance !== side)].filter(x => !same(x.evidence));
       const kindOf = (rid?: string) => rs.find(r => r.id === rid)?.kind;
       const first = pool[0], second = pool.slice(1).find(x => kindOf(x.review_id) !== kindOf(first?.review_id)) ?? pool[1];
       const receipts = [first, second].filter((x): x is NonNullable<typeof x> => !!x);
@@ -661,7 +667,7 @@ function AgreePoints({ points, total, rs, id, players, voteGroups }: { points: A
           return <a key={x.review_id} href={`#cr-${x.review_id}`} className={x.stance}>
             <span className="who"><strong>{v.creator}</strong><span>{` · ${v.kind === "youtube" ? "YouTube" : v.kind === "tiktok" ? "TikTok" : "Blog"}`}</span></span>
             <span className="q">{x.evidence[0]!.toUpperCase() + x.evidence.slice(1)}{/[.!?]$/.test(x.evidence) ? "" : "."}</span><span className="go">Read the review ↓</span></a>; })}
-          {vg && <div className="v13-pt-vote"><TraitVotes id={id} seed={null} groups={[vg]} title="Players voted" tieNone/></div>}</div>
+          {vg && <PointVote id={id} trait={vg.key} options={vg.options as [string, string][]} base={votes[p.key] ?? {}}/>}</div>
       </details>; })}
   </div>;
 }

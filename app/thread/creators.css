@@ -1039,3 +1039,36 @@ body:has(.thc) .thc .v13-cc a.nm:hover { text-decoration: underline; }
 .v13-pt summary { grid-template-columns: 200px minmax(0, 1fr) 340px 40px; }
 @media (max-width: 1100px) { .v13-pt summary { grid-template-columns: 170px minmax(0, 1fr) 280px 40px; } }
 @media (max-width: 900px) { .v13-pt summary { grid-template-columns: minmax(0, 1fr) 40px; } }
+/* Often compared to as a row of cards (owner mock 2026-11-28), each one a link to that paddle's page on the site. */
+.v13-cmp2 { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; padding: 4px 24px 22px; }
+body:has(.thc) .thc a.v13-cc2 { display: flex; flex-direction: column; gap: 10px; background: #fff; border: 1.5px solid #E7DFD5; border-radius: 16px; padding: 18px 20px; color: var(--ink); text-decoration: none; min-width: 0; }
+body:has(.thc) .thc a.v13-cc2:hover { border-color: var(--ink); }
+.v13-cc2 .top { display: flex; gap: 16px; align-items: center; }
+.v13-cc2 .pic { flex: none; width: 56px; height: 80px; display: flex; align-items: center; justify-content: center; }
+.v13-cc2 .pic img { max-width: 100%; max-height: 100%; object-fit: contain; }
+.v13-cc2 .b { display: flex; flex-direction: column; gap: 3px; min-width: 0; }
+.v13-cc2 .b strong { font-size: 18px; line-height: 1.25; }
+.v13-cc2 .m { font-size: 14.5px; color: var(--muted); }
+.v13-cc2 .ln { font-size: 14.5px; line-height: 1.45; color: #3F3C36; }
+.v13-cc2 .pm { display: flex; flex-direction: column; gap: 4px; font-size: 16px; }
+.v13-cc2 .pm .pos { color: #2F6E22; } .v13-cc2 .pm .neg { color: #A3401C; } .v13-cc2 .pm b { font-weight: 800; }
+.v13-cc2 .go { margin-top: auto; font-size: 15px; font-weight: 700; text-decoration: underline; text-underline-offset: 3px; }
+@media (max-width: 900px) {
+  .v13-cmp2 { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; padding: 4px 16px 18px; scrollbar-width: none; }
+  .v13-cmp2::-webkit-scrollbar { display: none; }
+  body:has(.thc) .thc a.v13-cc2 { flex: 0 0 270px; scroll-snap-align: start; }
+}
+/* Players voted inside an open point (owner mock 2026-11-28): full-width bars, count on the right, leader filled yellow. */
+.v13-pv { display: flex; flex-direction: column; gap: 8px; background: #fff; border: 1.5px solid #E7DFD5; border-radius: 16px; padding: 14px 18px; min-width: 0; }
+.v13-pv .h { display: flex; justify-content: space-between; align-items: baseline; gap: 8px; font-size: 15px; }
+.v13-pv .h span { color: var(--muted); font-size: 14px; }
+.v13-pv button { all: unset; cursor: pointer; position: relative; display: flex; justify-content: space-between; align-items: center; border: 1.5px solid #E7DFD5; border-radius: 10px; padding: 7px 12px; background: #fff; overflow: hidden; font-size: 15px; }
+.v13-pv button i { position: absolute; left: 0; top: 0; bottom: 0; background: #F3EFE6; }
+.v13-pv button.lead i { background: #F4EC6E; }
+.v13-pv button span, .v13-pv button b { position: relative; }
+.v13-pv button.lead span { font-weight: 700; }
+.v13-pv button[aria-pressed="true"] { border-color: var(--ink); }
+.v13-pv button:disabled { cursor: default; }
+.v13-pv .t { font-size: 13.5px; color: var(--muted); }
+.v13-pt-b { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+@media (max-width: 900px) { .v13-pt-b { grid-template-columns: minmax(0, 1fr); } }
