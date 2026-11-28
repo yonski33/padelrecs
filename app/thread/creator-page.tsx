@@ -453,39 +453,35 @@ export async function CreatorProductBody({ slug }: { slug: string }) {
       {v13 ? <main className="thc-body thc-v13">
         <h2 className="v13-big" id="everyone">What everyone says</h2>
         <section className="v13-card">
-          <div className="v13-short">
-            <strong className="v13-t">The short version</strong>
-            {/* Handoff 7 (2026-11-28): the sources line in the yellow box (no headline written yet, so the box holds this line
-                only), then plain text: the reviewers' paragraphs and one Reddit paragraph, no icons, labels or divider. */}
-            <div className="v13-hbox"><span className="v13-based">{`Based on ${plural(rs.length, "review")}: `}
-              {KEYS.filter(k => n[k] > 0).map((k, i, a) => <Fragment key={k}><i className={k} aria-hidden="true"/><strong>{`${n[k]} ${k === "pos" ? "loved it" : k === "mix" ? "mixed" : "not for me"}`}</strong>{i < a.length - 1 ? ", " : "."}</Fragment>)}
-              {rdTone && <>{" Reddit and forums: "}<i className={rdTone.k} aria-hidden="true"/><strong>{rdTone.word.toLowerCase()}</strong>{"."}</>}</span></div>
-            {/* Owner 2026-11-28: the text as blocks (Why reviewers like it, Watch out for, then a small note), Reddit as its own
-                small block; Often compared to in the right column. */}
-            <div className={`v13-cols${compared.length ? "" : " one"}`}>
-              <div className="v13-text">
-                {wrap ? <Wrap w={wrap} v13/> : <div className="thc-wrap">{KEYS.filter(k => n[k] > 0).map(k => <p key={k}><strong>{`${STANCE_LABEL[k]}. `}</strong>{page.groups[k] || stanceLine(rs, k)}</p>)}</div>}
-                {/* Reddit once (PM 2026-11-28): the summary's +/- pills and its one-liner here; the paragraph lives only in
-                    the long Reddit card, and At a glance links to it. */}
-                {rdLine && <div className="thc-block v13-rdb"><strong>On Reddit and forums</strong>
-                  {rd && rd.tags.length > 0 && <span className="thc-rd-tags">{rd.tags.map(t => <span key={t.text} className={`thc-rd-tag ${t.tone}`}><i aria-hidden="true">{t.tone === "pos" ? "+" : "−"}</i>{t.text}</span>)}</span>}
-                  <p>{rdLine}</p></div>}
+          {/* Short version v2 (owner mock 2026-11-28): two columns. Left: the title, the yellow box (a headline where one is
+              written, then the sources line), and label/text rows split by rules (the consensus blocks, then Reddit with its
+              icon). Right, behind a rule: Often compared to. */}
+          <div className={`v13-short2${compared.length ? "" : " one"}`}>
+            <div className="v13-main">
+              <strong className="v13-t">The short version</strong>
+              <div className="v13-hbox">{wrap?.headline && <strong className="v13-head">{wrap.headline}</strong>}
+                <span className="v13-based">{`Based on ${plural(rs.length, "review")}: `}
+                {KEYS.filter(k => n[k] > 0).map((k, i, a) => <Fragment key={k}><i className={k} aria-hidden="true"/><strong>{`${n[k]} ${k === "pos" ? "loved it" : k === "mix" ? "mixed" : "not for me"}`}</strong>{i < a.length - 1 ? ", " : "."}</Fragment>)}
+                {rdTone && <>{" Reddit and forums: "}<i className={rdTone.k} aria-hidden="true"/><strong>{rdTone.word.toLowerCase()}</strong>{"."}</>}</span></div>
+              <div className="v13-rows">
+                {wrap?.blocks?.length ? wrap.blocks.map((b, bi) => <div key={bi} className="v13-row"><span className="lb">{b.label}</span><p>{markAll(b.text, wrap.highlights.map(h => h.text))}</p></div>)
+                  : KEYS.filter(k => n[k] > 0).map(k => <div key={k} className="v13-row"><span className="lb">{STANCE_LABEL[k]}</span><p>{page.groups[k] || stanceLine(rs, k)}</p></div>)}
+                {rdLine && <div className="v13-row rd"><span className="lb"><i className="v13-av rd" aria-hidden="true">r/</i>On Reddit and forums</span>
+                  <p>{rd ? markAll(rdLeadText(rd), rd.highlights.map(h => h.text)) : rdLine}</p></div>}
               </div>
-              {compared.length > 0 && <aside className="v13-side">
-                {/* Phones (owner 2026-11-28): one heading and the cards as a horizontal scroll strip under the text. */}
-                <strong className="v13-side-ph">Often compared to</strong>
-                <div className="v13-strip">{([["Often compared to", compared.filter(x => x.men > 0)], ["Similar feel", compared.filter(x => x.men === 0)]] as const).filter(g => g[1].length > 0).map(([h, xs]) =>
-                  <div key={h} className="v13-sg"><strong className={h === "Similar feel" ? "q" : undefined}>{h}</strong>
-                    {xs.map(({ x, href, men, price, line, plus: pl, minus: mi }) => <div key={x.id} className="v13-cmp-c">
-                      <span className="v13-cmp-top"><a className="pic" href={th(href)} tabIndex={-1} aria-hidden="true">{x.pic ? <img src={x.pic} alt="" loading="lazy"/> : null}</a>
-                        <span className="b"><a className="nm" href={th(href)}>{shown(x.name, x.year)}</a>{men > 0 && <span className="m">{`In ${plural(men, "review")}`}</span>}</span>
-                        {price && <a className="thc-mono buy" href={price.url} target="_blank" rel={price.rel}>check ↗</a>}</span>
-                      {line && <span className="ln">{line}</span>}
-                      {(pl || mi) && <span className="pm">{pl && <span className="pos"><b>+</b>{` ${pl}`}</span>}{mi && <span className="neg"><b>−</b>{` ${mi}`}</span>}</span>}
-                    </div>)}</div>)}</div>
-                {compared.some(x => x.price?.rel.includes("sponsored")) && <span className="thc-note">{"Some links are affiliate links. "}<a href={th("/affiliate-disclosure")}>Learn more</a></span>}
-              </aside>}
             </div>
+            {compared.length > 0 && <aside className="v13-side2">
+              <strong className="v13-side-h">Often compared to</strong>
+              <div className="v13-strip">{compared.map(({ x, href, men, price, line, plus: pl, minus: mi }) => <div key={x.id} className="v13-cc">
+                <a className="pic" href={th(href)} tabIndex={-1} aria-hidden="true">{x.pic ? <img src={x.pic} alt="" loading="lazy"/> : null}</a>
+                <span className="b"><a className="nm" href={th(href)}>{shown(x.name, x.year)}</a>
+                  {men > 0 && <span className="m">{`In ${plural(men, "review")}`}</span>}
+                  {line && <span className="ln">{line}</span>}
+                  <span className="ft">{(pl || mi) && <span className="pm">{pl && <span className="pos">{`+ ${pl}`}</span>}{mi && <span className="neg">{`− ${mi}`}</span>}</span>}
+                    {price && <a className="thc-mono buy" href={price.url} target="_blank" rel={price.rel}>check ↗</a>}</span></span>
+              </div>)}</div>
+              {compared.some(x => x.price?.rel.includes("sponsored")) && <span className="thc-note">{"Some links are affiliate links. "}<a href={th("/affiliate-disclosure")}>Learn more</a></span>}
+            </aside>}
           </div>
           {points.length > 0 && <AgreePoints points={points} total={rs.length} rs={rs.map(x => ({ id: x.id, creator: x.creator, kind: x.kind, avatar: profiles.get(x.creator)?.avatar ?? null }))}/>}
           <GlanceTable className="v13-part v13-glance" title="At a glance" sub="One line from each reviewer, Reddit and the expert lists. Tap to jump to the full summary." head={null} rows={g13} first={5}/>
@@ -591,6 +587,16 @@ export async function CreatorProductBody({ slug }: { slug: string }) {
   </Shell>;
 }
 
+/** Text with each phrase marked (the short version's one yellow marker). */
+function markAll(t: string, phrases: string[]): ReactNode[] {
+  const out: ReactNode[] = []; let rest = t, k = 0;
+  for (;;) { let best = -1, hit = "";
+    for (const h of phrases) { const at = h ? rest.indexOf(h) : -1; if (at >= 0 && (best < 0 || at < best)) { best = at; hit = h; } }
+    if (best < 0) { out.push(rest); return out; }
+    out.push(rest.slice(0, best), <mark key={k++}>{hit}</mark>); rest = rest.slice(best + hit.length); }
+}
+/** The short version's Reddit row: the summary's first paragraph, its first two sentences. */
+const rdLeadText = (rd: Roundup) => (rd.paras[0] ?? rd.headline).split(/(?<=[.!?]["”’)]*)\s+(?=[A-Z"“])/).slice(0, 2).join(" ");
 /** The Reddit line's word (paddle page v13): from the posts' own takes, the same rule as the Reddit card's headline, never a number. */
 const toneOf = (pos: number, neg: number, all: number) => pos * 2 > all ? { k: "pos", word: "Mostly positive" } as const
   : neg * 2 > all ? { k: "neg", word: "Mostly negative" } as const : { k: "mix", word: "Mixed" } as const;
@@ -658,7 +664,7 @@ function ShopBox({ offers }: { offers: ShopOffer[] }) {
 
 /** `blocks` (consensus pilot, owner 2026-11-28): 2-3 labelled blocks of 1-2 sentences each; shown in place of `paras` on
  *  sites with lib/thread/sites.ts CONSENSUS_BLOCKS. */
-type Wrapup = { paras: string[]; highlights: { text: string; tone: "pos" | "neg" }[]; blocks?: { label: string; text: string }[] };
+type Wrapup = { /** A one-line headline for the yellow box (owner mock 2026-11-28), where one is written. */ headline?: string; paras: string[]; highlights: { text: string; tone: "pos" | "neg" }[]; blocks?: { label: string; text: string }[] };
 
 /** "In more detail" (pilot, owner OK 2026-11-23): 2-3 sentences on what the counts and tags can't show (who it suits, where
  *  the mixed takes come from, what it's compared with), written from all the reviews and checked by a second reader. */
