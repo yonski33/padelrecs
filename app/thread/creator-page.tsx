@@ -650,8 +650,10 @@ function AgreePoints({ points, total, rs, id, players, voteGroups, votes, reddit
     <div className="v13-ph"><strong>What they agree on</strong><span>Bars show how many rate it well. Tap for the reviews behind it.</span></div>
     {points.map((p, pi) => { const n = p.reviews.length, yes = p.reviews.filter(x => x.stance === "pos").length, g = gradeOf(yes, n);
       const pl = players[p.key] && players[p.key]!.n >= PLAYERS_MIN ? players[p.key] : null;
-      // The disagreement pill: players at least 25 points off the reviewers' share.
-      const apart = pl && Math.abs(pl.pct - Math.round(100 * yes / n)) >= 25 ? pl : null;
+      // The disagreement pill, only when reviewers and players conflict (owner 2026-11-28): one side rates it well (half or
+      // more) and the other is low (under 40%, where the bars turn orange), using the shares the bars show.
+      const rvPct = 100 * yes / total;
+      const apart = pl && ((rvPct >= 50 && pl.pct < 40) || (rvPct < 40 && pl.pct >= 50)) ? pl : null;
       const low = g.k === "g3" || g.k === "g4";
       // The receipts: up to two reviews on the majority side, from different platforms where there are.
       const side = yes * 2 >= n ? "pos" : p.reviews.filter(x => x.stance === "neg").length * 2 >= n ? "neg" : "mix";
