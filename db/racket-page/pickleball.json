@@ -11272,7 +11272,6 @@
     ],
     "src": [
      "https://pickleballcentral.com/blog/engage-pursuit-pro1-innovation-player-review/",
-     "https://www.pickletip.com/engage-pursuit-pro1-innovation/",
      "https://thepickleballwise.com/engage-pursuit-pro1-innovation-15-2mm-review/"
     ]
    },
@@ -11284,19 +11283,7 @@
     ],
     "src": [
      "https://thepickleballwise.com/engage-pursuit-pro1-innovation-15-2mm-review/",
-     "https://www.pickletip.com/engage-pursuit-pro1-innovation/",
      "https://pickleballcentral.com/blog/engage-pursuit-pro1-innovation-player-review/"
-    ]
-   },
-   {
-    "title": "Steady contact",
-    "t": "The thicker core ==feels planted under pressure== with fewer wild mishits.",
-    "for": [
-     "control"
-    ],
-    "src": [
-     "https://www.pickletip.com/engage-pursuit-pro1-innovation/",
-     "https://thepickleballwise.com/engage-pursuit-pro1-innovation-15-2mm-review/"
     ]
    }
   ],
@@ -12077,32 +12064,8 @@
  "joola-magnus-3s": {
   "tagline": "A 14 mm elongated power paddle with a short handle. The catch: a tight, firm sweet spot.",
   "bottom": "For advanced one-handed attackers with clean contact. Two-handers and newer players should pass.",
-  "yes": [
-   {
-    "title": "Big power",
-    "t": "The thin core and long head ==hit drives with real pace==.",
-    "for": [
-     "power"
-    ],
-    "src": [
-     "https://paddlecompare.com/reviews/joola-magnus-3s-14mm",
-     "https://pickleballeffect.com/equipment-reviews/joola-3s-paddle-series-review-includes-perseus-3s-magnus-3s-and-scorpeus-3s-models/"
-    ]
-   }
-  ],
-  "no": [
-   {
-    "title": "Tight sweet spot",
-    "t": "Mishits ==lose pace and direction fast==, so it rewards clean contact.",
-    "for": [
-     "beginner"
-    ],
-    "src": [
-     "https://paddlecompare.com/reviews/joola-magnus-3s-14mm",
-     "https://pickleballeffect.com/equipment-reviews/joola-3s-paddle-series-review-includes-perseus-3s-magnus-3s-and-scorpeus-3s-models/"
-    ]
-   }
-  ],
+  "yes": [],
+  "no": [],
   "source": "research"
  },
  "bread-butter-psycho": {
@@ -12181,19 +12144,7 @@
     ],
     "src": [
      "https://www.thepickleballblast.com/blog/pickleball-apes-charm-first-look-and-initial-impressions",
-     "https://www.pickletip.com/pickleball-apes-charm/",
      "https://www.ticklemypickleball35.com/blog/1030-pb-apes-charm-enhance-duo-and-bampb-loco"
-    ]
-   },
-   {
-    "title": "Stable Charm V",
-    "t": "The square V shape ==resists twisting on wide balls==.",
-    "for": [
-     "intermediate"
-    ],
-    "src": [
-     "https://www.mattspickleball.com/paddle/charm-v-16mm",
-     "https://www.pickletip.com/pickleball-apes-charm/"
     ]
    }
   ],
@@ -12216,7 +12167,6 @@
     "for": [],
     "src": [
      "https://www.ticklemypickleball35.com/blog/1030-pb-apes-charm-enhance-duo-and-bampb-loco",
-     "https://www.pickletip.com/pickleball-apes-charm/",
      "https://www.mattspickleball.com/paddle/charm-v-16mm"
     ]
    }

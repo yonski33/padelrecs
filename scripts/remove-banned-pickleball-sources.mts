@@ -1,5 +1,5 @@
 // PickleballRecs: takes the banned review sources out of the live database (pickleball3.com, The Kitchen Pickle: blog
-// thekitchenpickle.com and YouTube channel UC8Kri-ozieZq01LLzQSNavQ). Creator reviews are set to 'hidden'; evidence and
+// thekitchenpickle.com and YouTube channel UC8Kri-ozieZq01LLzQSNavQ; PickleTip pickletip.com, PaddleCompare paddlecompare.com and Dash Pickleball dashpickleball.com, AI-written: owner 2026-11-28). Creator reviews are set to 'hidden'; evidence and
 // external reviews (no status column) are deleted. Tickle My Pickleball (ticklemypickleball35.com) and Pickleball3en stay.
 // Dry run by default; --write --backup <dir> saves every touched row first, then changes all in one transaction.
 //   NICHE=pickleball npx tsx --conditions=react-server --env-file=.env.local scripts/remove-banned-pickleball-sources.mts [--write --backup <dir>]
@@ -9,7 +9,7 @@ import { database } from "../db/data";
 import { niche } from "../lib/niche";
 import { assertSchemaName } from "../db/migrations";
 
-const BANNED = "((^|[^a-z0-9])pickleball3\\.com|thekitchenpickle|the kitchen pickle|UC8Kri-ozieZq01LLzQSNavQ)";
+const BANNED = "((^|[^a-z0-9])pickleball3\\.com|thekitchenpickle|the kitchen pickle|UC8Kri-ozieZq01LLzQSNavQ|pickletip|paddlecompare|dash ?pickleball)";
 if (niche.id !== "pickleball") throw new Error("NICHE=pickleball only");
 const args = process.argv.slice(2), write = args.includes("--write"), backupDir = args[args.indexOf("--backup") + 1];
 if (write && (!args.includes("--backup") || !backupDir)) throw new Error("--write needs --backup <dir>");

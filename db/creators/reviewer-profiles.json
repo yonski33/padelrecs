@@ -637,38 +637,6 @@
     "Court testing"
    ]
   },
-  "paddlecompare": {
-   "name": "PaddleCompare",
-   "subs": null,
-   "channel": null,
-   "joined": null,
-   "site": "https://paddlecompare.com",
-   "links": [],
-   "avatar": null,
-   "bio": "A paddle review blog that reports estimated game counts and compares paddles within the same line, such as elongated against widebody shapes. Reviews weigh power, resets, hand speed and forgiveness, and name who each paddle suits.",
-   "topics": [
-    "Shape comparisons",
-    "Hand speed",
-    "Resets and blocks",
-    "Game counts"
-   ]
-  },
-  "paddlecompare-johnny-pickleball": {
-   "name": "PaddleCompare (Johnny Pickleball)",
-   "subs": null,
-   "channel": null,
-   "joined": null,
-   "site": "https://paddlecompare.com",
-   "links": [],
-   "avatar": null,
-   "bio": "Blog reviews on PaddleCompare based on league, open and recreational play. They rate power, spin, control, resets and hand speed, sometimes out of ten, mostly test paddles stock, and note when a paddle suits defensive or control-first players.",
-   "topics": [
-    "Category ratings",
-    "Stock paddle tests",
-    "Hand speed",
-    "League play"
-   ]
-  },
   "pbvinny": {
    "name": "PBVinny",
    "subs": null,
@@ -1094,22 +1062,6 @@
     "Category ratings",
     "Grit durability",
     "Lead tape setups"
-   ]
-  },
-  "pickletip": {
-   "name": "PickleTip",
-   "subs": null,
-   "channel": null,
-   "joined": null,
-   "site": "https://www.pickletip.com",
-   "links": [],
-   "avatar": null,
-   "bio": "Blog publishing long paddle tests, often 12 to 44 hours and sometimes shared between two testers. Reviews compare paddle shapes side by side and cover break-in, grit wear, swing weight and weighted setups.",
-   "topics": [
-    "Shape comparisons",
-    "Long-term testing",
-    "Grit wear",
-    "Weighted setups"
    ]
   },
   "rackets-runners-pickleball": {
