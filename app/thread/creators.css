@@ -1086,7 +1086,7 @@ body:has(.thc) .thc .v13-rc a.go, body:has(.thc) .thc .v13-rc a.go:visited { ali
 @media (max-width: 900px) { .v13-pt-b { grid-template-columns: minmax(0, 1fr) !important; } }
 body:has(.thc) .thc .v13-pt-b .v13-rc a.go { flex-direction: row; border: 0; border-radius: 0; padding: 0; background: none; gap: 8px; line-height: 1.4; }
 /* At a glance, copied from the mock (owner 2026-11-28): who 220px · take 100px · the line; zebra white / #F6F0E6; no chevron.
-   Under 1000px the line drops to its own row. */
+   Only on phones (under 700px) does the line drop to its own row (owner 2026-11-28: one row on laptops). */
 body:has(.thc) .thc a.v13-gr { display: grid; grid-template-columns: 220px 100px minmax(0, 1fr); gap: 8px 14px; align-items: center; padding: 12px 20px;
   border-top: 1px solid #EFE8DC; background: #FFFFFF; color: var(--ink); text-decoration: none; }
 body:has(.thc) .thc a.v13-gr:nth-of-type(even) { background: #F6F0E6; }
@@ -1104,7 +1104,8 @@ body:has(.thc) .thc a.v13-gr:hover .nm strong { text-decoration: underline; }
 .v13-gr .tk.mix { background: #FBF1D6; color: #7A5A00; } .v13-gr .tk.neg { background: #FBD3CB; color: #A3301F; }
 .v13-gr .pt { font-size: 15.5px; line-height: 1.45; font-weight: 500; min-width: 0; }
 .thc .v13-glance .thc-g-tog { margin: 12px auto; font-size: 14px; border-width: 2px; padding: 7px 20px; }
-@media (max-width: 999px) {
+@media (max-width: 1100px) { body:has(.thc) .thc a.v13-gr { grid-template-columns: 190px 100px minmax(0, 1fr); } }
+@media (max-width: 699px) {
   body:has(.thc) .thc a.v13-gr { grid-template-columns: minmax(0, 1fr) auto; }
   .v13-gr .pt { grid-column: 1 / -1; }
 }
