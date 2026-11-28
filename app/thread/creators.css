@@ -1085,6 +1085,35 @@ body:has(.thc) .thc .v13-rc a.go, body:has(.thc) .thc .v13-rc a.go:visited { ali
 .v13-rc.rd { background: #FFF6F1; border-color: #F4D3C2; }
 @media (max-width: 900px) { .v13-pt-b { grid-template-columns: minmax(0, 1fr) !important; } }
 body:has(.thc) .thc .v13-pt-b .v13-rc a.go { flex-direction: row; border: 0; border-radius: 0; padding: 0; background: none; gap: 8px; line-height: 1.4; }
+/* At a glance, copied from the mock (owner 2026-11-28): who 220px · take 100px · the line; zebra white / #F6F0E6; no chevron.
+   Only on phones (under 700px) does the line drop to its own row (owner 2026-11-28: one row on laptops). */
+body:has(.thc) .thc a.v13-gr { display: grid; grid-template-columns: 220px 100px minmax(0, 1fr); gap: 8px 14px; align-items: center; padding: 12px 20px;
+  border-top: 1px solid #EFE8DC; background: #FFFFFF; color: var(--ink); text-decoration: none; }
+/* Owner 2026-11-28: the mock's beige zebra was busy; back to the old rows: a near-white stripe, a beige hover and the › arrow. */
+body:has(.thc) .thc a.v13-gr { position: relative; padding-right: 36px; cursor: pointer; transition: background .15s; }
+body:has(.thc) .thc a.v13-gr:nth-of-type(even) { background: #FBFBF9; }
+body:has(.thc) .thc a.v13-gr:hover { background: #F6F0E6; }
+body:has(.thc) .thc a.v13-gr::after { content: "›"; position: absolute; right: 14px; top: 50%; transform: translateY(-50%); font-weight: 700; color: var(--faint); }
+body:has(.thc) .thc a.v13-gr:hover::after { color: var(--ink); }
+.v13-gr .who { display: flex; gap: 10px; align-items: center; min-width: 0; }
+.v13-gr .av { flex: none; width: 28px; height: 28px; border-radius: 50%; border: 1.5px solid #17171A; box-sizing: border-box; display: flex; align-items: center;
+  justify-content: center; font-size: 10.5px; font-weight: 800; color: #17171A; background: #CDEFD4; object-fit: cover; }
+.v13-gr .av.y, .v13-gr .av.xp { background: #F4EC6E; } .v13-gr .av.xp { font-size: 13px; }
+.v13-gr .av.mix { background: #F8E7A6; } .v13-gr .av.neg { background: #FBD3CB; }
+.v13-gr .av.rd { background: #E8622C; color: #fff; }
+.v13-gr .nm { display: flex; flex-direction: column; min-width: 0; }
+.v13-gr .nm strong { font-size: 14.5px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.v13-gr .nm span { font-size: 12.5px; color: #7E786D; }
+.v13-gr .tk { width: max-content; font-size: 12.5px; font-weight: 700; border-radius: 999px; padding: 2px 10px; background: #EDFACF; color: #2F6E22; }
+.v13-gr .tk.mix { background: #FBF1D6; color: #7A5A00; } .v13-gr .tk.neg { background: #FBD3CB; color: #A3301F; }
+.v13-gr .pt { font-size: 15.5px; line-height: 1.45; font-weight: 500; min-width: 0; }
+.thc .v13-glance .thc-g-tog { margin: 12px auto; font-size: 14px; border-width: 2px; padding: 7px 20px; }
+@media (max-width: 1100px) { body:has(.thc) .thc a.v13-gr { grid-template-columns: 190px 100px minmax(0, 1fr); } }
+@media (max-width: 699px) {
+  body:has(.thc) .thc a.v13-gr { grid-template-columns: minmax(0, 1fr) auto; }
+  .v13-gr .pt { grid-column: 1 / -1; }
+}
+@media (max-width: 640px) { body:has(.thc) .thc a.v13-gr { padding: 12px 32px 12px 16px; } body:has(.thc) .thc a.v13-gr::after { right: 12px; } }
 /* v13 warm white (owner handoff 8, 2026-11-28): a lighter warm page and pure white cards so text reads better. v13 pages only. */
 body:has(.thc-v13top), body:has(.thc-v13top) .th { background: #FBF8F2; }
 .th:has(.thc-v13top) { --bg: #FBF8F2; --card: #FFFFFF; --soft: #F7F3EC; }

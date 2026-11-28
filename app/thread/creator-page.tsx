@@ -331,18 +331,24 @@ export async function CreatorProductBody({ slug }: { slug: string }) {
   const pointVotes: Record<string, Record<string, number>> = Object.fromEntries(points.flatMap(p => { const pv = POINT_VOTES[p.key];
     return pv && tc ? [[p.key, traitGroup(tc, r.id, pv.key)]] : []; }));
   const srcIcons = <span className="v13-ics" aria-hidden="true">{srcN.youtube > 0 && <span className="yt"/>}{srcN.tiktok > 0 && <span className="tt">♪</span>}{srcN.blog > 0 && <span className="bl">B</span>}</span>;
-  // At a glance (v13): an index, one row per source, each jumping to its card. No text that repeats the cards.
+  // At a glance (v13), copied from the mock (owner 2026-11-28): the expert lists, Reddit (lists first, owner 2026-11-28), then each reviewer; a round avatar
+  // (r/, ★, the reviewer's photo or initials), the name over its source, the take pill, then the one line. Zebra rows.
+  const ini = (n: string) => n.replace(/^the\s+/i, "").split(/\s+/).filter(Boolean).slice(0, 2).map(w => w[0]!.toUpperCase()).join("");
+  const xpTop = listPicks.some(p => badgeOf(p).tone === "top"), xpPlace = listPicks.map(p => badgeOf(p).text).find(t => /^#\d+$/.test(t));
+  const xpTake = xpTop ? "Top pick" : xpPlace ? `${xpPlace} pick` : "Picked";
+  // Only the two strongest picks (owner 2026-11-28: a long list of lists was messy), then how many more.
+  const xpTwo = listPicks.slice(0, 2).map(p => `${p.label ?? `#${p.position}`} at ${p.l.outlet}`), xpMore = listPicks.length - xpTwo.length;
+  const xpLine = xpMore > 0 ? `${xpTwo.join(", ")}, and ${plural(xpMore, "more list")}.` : `${xpTwo.join(", ")}.`;
+  const gRow13 = (key: string, href: string, av: ReactNode, name: string, src: string, take: string, tone: string, line: string | null) =>
+    <a key={key} className="v13-gr" href={href}><span className="who">{av}<span className="nm"><strong>{name}</strong><span>{src}</span></span></span>
+      <span className={`tk ${tone}`}>{take}</span><span className="pt">{line}</span></a>;
   const g13 = [
-    ...(rdTone ? [<a key="rd" className="thc-g-row v13-g" href="#reddit-card"><span className="thc-g-who"><span className="v13-av rd" aria-hidden="true">r/</span>
-      <span><strong>Reddit and forums</strong><span>{`Summary of ${W.person} posts`}</span></span></span>
-      <span className={`thc-take sm ${rdTone.k}`}>{rdTone.word}</span><span className="kp">{rdLine}</span></a>] : []),
-    ...(listPicks.length > 0 ? [<a key="xp" className="thc-g-row v13-g" href="#expert-lists"><span className="thc-g-who"><span className="v13-av xp" aria-hidden="true">★</span>
-      <span><strong>Expert lists</strong><span>{picksSummary(listPicks)}</span></span></span><span className="thc-take sm xp">Picked</span>
-      <span className="kp">{listPicks.map(p => `${p.l.outlet}: ${p.label ?? p.l.title}`).join(" · ")}</span></a>] : []),
-    ...rs.map(x => <a key={x.id} className="thc-g-row v13-g" href={`#cr-${x.id}`}>
-      <span className="thc-g-who"><Avatar name={x.creator} kind={x.kind} size="sm" src={profiles.get(x.creator)?.avatar ?? null}/><span><strong>{x.creator}</strong>
-        <span>{`${platform(x)} · ${langCode(x.lang)}`}{x.score && ` · ${scoreText(x.score)}`}</span></span></span>
-      <span className={`thc-take sm ${x.stance}`}>{STANCE_LABEL[x.stance]}</span><span className="kp">{keyPoint(x)}</span></a>)];
+    ...(listPicks.length > 0 ? [gRow13("xp", "#expert-lists", <span className="av xp" aria-hidden="true">★</span>, "Expert lists", plural(listPicks.length, "list"), xpTake, "pos", xpLine)] : []),
+    ...(rdTone ? [gRow13("rd", "#reddit-card", <span className="av rd" aria-hidden="true">r/</span>, "Reddit and forums", `Summary of ${W.person} posts`, rdTone.word, rdTone.k, rdLine)] : []),
+    ...rs.map((x, i) => { const pic = profiles.get(x.creator)?.avatar ?? null;
+      return gRow13(x.id, `#cr-${x.id}`, pic ? <img className="av" src={pic} alt="" width={28} height={28} loading="lazy"/>
+        : <span className={`av ${i === 0 && x.stance === "pos" ? "y" : x.stance}`} aria-hidden="true">{ini(x.creator)}</span>,
+        x.creator, `${platform(x)} · ${langCode(x.lang)}`, STANCE_LABEL[x.stance], x.stance, keyPoint(x)); })];
   // The cards under At a glance never repeat its line (PM correction 2026-11-28): a quote or box that is the key point is
   // left out, and so is a summary's first sentence when it is the key point; the card keeps its quote and fuller summary.
   const v13Feed = v13 ? shownFeed.map(x => { const kp = norm(keyPoint(x)); if (!kp) return x;
@@ -501,12 +507,12 @@ export async function CreatorProductBody({ slug }: { slug: string }) {
               <span className="go">{`See the ${niche.words.one} →`}</span>
             </a>)}</div>
           </div>}
-          <GlanceTable className="v13-part v13-glance" title="At a glance" sub="One line from each reviewer, Reddit and the expert lists. Tap to jump to the full summary." head={null} rows={g13} first={5}/>
+          <GlanceTable className="v13-part v13-glance" title="At a glance" sub="One line from each reviewer, Reddit and the expert lists. Tap to jump to the full summary." head={null} rows={g13} first={4}/>
         </section>
 
         <MentionsProvider {...mxProps}>
           <CreatorReviews reviews={v13Feed} count={rs.length} roundup={null} title="The long version"
-            lead={(redditCard || listPicks.length > 0) && <>{redditCard}{listPicks.length > 0 && <ExpertPicks picks={listPicks}/>}</>}/>
+            lead={(redditCard || listPicks.length > 0) && <>{listPicks.length > 0 && <ExpertPicks picks={listPicks}/>}{redditCard}</>}/>
         </MentionsProvider>
 
         <div className="v13-comm"><h2 className="v13-big">Community</h2><span>{`Votes and comments from ${niche.site.name} ${W.people}.`}</span></div>
