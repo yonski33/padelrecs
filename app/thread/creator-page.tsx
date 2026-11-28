@@ -459,8 +459,8 @@ export async function CreatorProductBody({ slug }: { slug: string }) {
         : CF ? cfWire.length > 0 && <div className="thc-fitrow"><CoffeeFitCard id={r.id} wire={cfWire} links={cfLinks} compact/></div>
         : <div className="thc-fitrow"><CompactFit id={r.id} title={`Is this ${niche.words.one} right for me?`} sub="Pick your level and style" bar/></div>}
       <div className="thc-rule"/>
-      {/* The quiet sticky price bar (paddle page v3): the same price and button as the head, once the head is off screen. */}
-      {stick && !v13 && <StickyPrice name={name} pic={pic} price={stick.price} priceWord={stick.word} cta={stick.cta}/>}
+      {/* The quiet sticky price bar (paddle page v3): the same price and button as the head, once the head is off screen. Back on v13 too (owner 2026-11-28). */}
+      {stick && <StickyPrice name={name} pic={pic} price={stick.price} priceWord={stick.word} cta={stick.cta}/>}
 
       {v13 ? <main className="thc-body thc-v13">
         <h2 className="v13-big" id="everyone">What everyone says</h2>
