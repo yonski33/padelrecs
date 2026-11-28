@@ -475,11 +475,14 @@ export async function CreatorProductBody({ slug }: { slug: string }) {
                 <span className="v13-based">{`Based on ${plural(rs.length, "review")}: `}
                 {KEYS.filter(k => n[k] > 0).map((k, i, a) => <Fragment key={k}><i className={k} aria-hidden="true"/><strong>{`${n[k]} ${k === "pos" ? "loved it" : k === "mix" ? "mixed" : "not for me"}`}</strong>{i < a.length - 1 ? ", " : "."}</Fragment>)}
                 {rdTone && <>{" Reddit and forums: "}<i className={rdTone.k} aria-hidden="true"/><strong>{rdTone.word.toLowerCase()}</strong>{"."}</>}</span></div>
-              <div className="v13-rows">
-                {wrap?.blocks?.length ? wrap.blocks.map((b, bi) => <div key={bi} className="v13-row"><span className="lb">{b.label}</span><p>{markAll(b.text, wrap.highlights.map(h => h.text))}</p></div>)
-                  : KEYS.filter(k => n[k] > 0).map(k => <div key={k} className="v13-row"><span className="lb">{STANCE_LABEL[k]}</span><p>{page.groups[k] || stanceLine(rs, k)}</p></div>)}
-                {rdLine && <div className="v13-row rd"><span className="lb"><i className="v13-av rd" aria-hidden="true">r/</i>On Reddit and forums</span>
-                  <p>{rd ? markAll(rdLeadText(rd), rd.highlights.map(h => h.text)) : rdLine}</p></div>}
+              {/* Short version prose (owner mock 2026-11-28): what reviewers like, the catch, then Reddit in its own words,
+                  never the long Reddit card's opening (reddit-roundups.json `short`). One yellow marker throughout. */}
+              <div className="v13-prose3">
+                {wrap?.blocks?.length ? <>
+                  <p>{markAll([wrap.blocks[0]!.text, ...wrap.blocks.slice(2).map(x => x.text)].join(" "), wrap.highlights.map(h => h.text))}</p>
+                  {wrap.blocks[1] && <p>{markAll(wrap.blocks[1].text, wrap.highlights.map(h => h.text))}</p>}</>
+                  : KEYS.filter(k => n[k] > 0).map(k => <p key={k}>{page.groups[k] || stanceLine(rs, k)}</p>)}
+                {rdLine && <p><mark className="on">On Reddit and forums</mark>{", "}{rd?.short ? markAll(rd.short.text, [rd.short.mark]) : rdLine[0]!.toLowerCase() + rdLine.slice(1)}</p>}
               </div>
             </div>
           </div>
@@ -609,8 +612,6 @@ function markAll(t: string, phrases: string[]): ReactNode[] {
     if (best < 0) { out.push(rest); return out; }
     out.push(rest.slice(0, best), <mark key={k++}>{hit}</mark>); rest = rest.slice(best + hit.length); }
 }
-/** The short version's Reddit row: the summary's first paragraph, its first two sentences. */
-const rdLeadText = (rd: Roundup) => (rd.paras[0] ?? rd.headline).split(/(?<=[.!?]["”’)]*)\s+(?=[A-Z"“])/).slice(0, 2).join(" ");
 /** The Reddit line's word (paddle page v13): from the posts' own takes, the same rule as the Reddit card's headline, never a number. */
 const toneOf = (pos: number, neg: number, all: number) => pos * 2 > all ? { k: "pos", word: "Mostly positive" } as const
   : neg * 2 > all ? { k: "neg", word: "Mostly negative" } as const : { k: "mix", word: "Mixed" } as const;
@@ -746,7 +747,7 @@ function Wrap({ w, links = false, prose = false, v13 = false }: { w: Wrapup; /**
 }
 
 // No post or thread counts (owner 2026-11-24, every site): the box says "summary of player posts", never how many.
-type Roundup = { at: string | null; headline: string; tags: { tone: "pos" | "neg"; text: string; n?: number }[];
+type Roundup = { /** The short version's Reddit sum-up (owner 2026-11-28), worded apart from the card. */ short?: { text: string; mark: string }; at: string | null; headline: string; tags: { tone: "pos" | "neg"; text: string; n?: number }[];
   paras: string[]; highlights: { text: string; url: string }[] };
 
 /** "Players on Reddit and forums", written from ALL the paddle's stored Reddit posts (pilot, owner OK 2026-11-23): a
