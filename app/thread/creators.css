@@ -1114,3 +1114,8 @@ body:has(.thc) .thc a.v13-gr:hover::after { color: var(--ink); }
   .v13-gr .pt { grid-column: 1 / -1; }
 }
 @media (max-width: 640px) { body:has(.thc) .thc a.v13-gr { padding: 12px 32px 12px 16px; } body:has(.thc) .thc a.v13-gr::after { right: 12px; } }
+/* Short version as prose (owner mock 2026-11-28). */
+.v13-prose3 { display: flex; flex-direction: column; gap: 18px; }
+.v13-prose3 p { margin: 0; font-size: 17px; line-height: 1.75; max-width: 76ch; }
+.v13-prose3 mark, .v13-prose3 mark.pos, .v13-prose3 mark.neg { background: linear-gradient(transparent 55%, #F4EC6E 55%, #F4EC6E 92%, transparent 92%); color: inherit; padding: 0; border-radius: 0; font-weight: 600; }
+.v13-prose3 mark.on { font-weight: 700; }
