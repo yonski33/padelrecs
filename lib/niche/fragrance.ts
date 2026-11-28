@@ -19,7 +19,7 @@ const ogBottle = (juice: string, cap: string, stroke: string) => `<svg xmlns="ht
 /** Who a fragrance is sold for: the catalogue shape, the type pages and the product drawing. */
 export const FRAGRANCE_FOR = ["Men", "Women", "Unisex"];
 /** Concentrations as makers and retailers write them. The catalogue keeps a value only where its source states it. */
-export const CONCENTRATIONS = ["Cologne", "Eau de Toilette", "Eau de Toilette Intense", "Eau de Parfum", "Eau de Parfum Intense", "Parfum", "Parfum Intense", "Elixir", "Elixir de Parfum", "Extrait de Parfum"];
+export const CONCENTRATIONS = ["Cologne", "Eau de Toilette", "Eau de Toilette Intense", "Eau de Parfum", "Eau de Parfum Intense", "Parfum", "Parfum Intense", "Elixir", "Elixir de Parfum", "Extrait de Parfum", "Pure Parfum"];
 
 export const fragrance: Niche = {
   id: "fragrance",
