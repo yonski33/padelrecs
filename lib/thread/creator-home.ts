@@ -11,6 +11,21 @@ export type HomePaddle = { pos: number; mix: number; neg: number; reviews: numbe
 export type HomeSummary = { slug: string; creator: string; stance: Stance; date: string; url: string; text: string };
 export type CreatorHome = { generated: string; pricesChecked: string; total: number; paddles: Record<string, HomePaddle>; latest: HomeSummary[] };
 
+const MORE: Partial<Record<AttrKey, string>> = { sweet: "Bigger sweet spot", comfort: "Easier on the arm", durability: "Holds up better" };
+const LESS: Partial<Record<AttrKey, string>> = { sweet: "Smaller sweet spot", comfort: "Harder on the arm", durability: "Wears faster" };
+/** Often compared to (paddle page v13, owner 2026-11-28): where the reviews rate another paddle higher, and lower, than
+ *  this one: each attribute's share of reviews calling it Excellent or Great, the biggest gap each way of 20 points or more.
+ *  Both need 3+ reviews. Words only, never a price. */
+export function contrast(other: HomePaddle, self: HomePaddle): { plus: string | null; minus: string | null } {
+  if (other.reviews < 3 || self.reviews < 3) return { plus: null, minus: null };
+  const gaps = ATTRS.map(([k]) => [k, (other.high[k] ?? 0) / other.reviews - (self.high[k] ?? 0) / self.reviews] as const);
+  const up = gaps.reduce((a, g) => g[1] > a[1] ? g : a, gaps[0]!), down = gaps.reduce((a, g) => g[1] < a[1] ? g : a, gaps[0]!);
+  // Plain trait words (owner 2026-11-28: no "praise" here).
+  const word = (k: AttrKey) => (ATTRS.find(a => a[0] === k)?.[1] ?? k).toLowerCase();
+  const more = (k: AttrKey) => MORE[k] ?? `More ${word(k)}`, less = (k: AttrKey) => LESS[k] ?? `Less ${word(k)}`;
+  return { plus: up[1] >= 0.2 ? more(up[0]) : null, minus: down[1] <= -0.2 ? less(down[0]) : null };
+}
+
 /** "Praised for spin in 14 reviews". */
 export const praiseLine = (p: HomePaddle) => p.praise ? `Praised for ${p.praise.words} in ${p.praise.n} reviews` : null;
 

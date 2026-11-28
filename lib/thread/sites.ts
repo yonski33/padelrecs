@@ -129,6 +129,12 @@ export const reviewerPagesOn = (nicheId: string) => REVIEWER_PAGES[nicheId] ?? f
  *  here once theirs are rewritten. */
 export const CONSENSUS_BLOCKS: Record<string, boolean> = { pickleball: true, padel: true, skin: true, discgolf: true };
 export const consensusBlocksOn = (nicheId: string) => CONSENSUS_BLOCKS[nicheId] ?? false;
+/** Paddle page v13 (owner handoff 2026-11-28, "yes lets do it on pickaball"): one "What everyone says" card (the short
+ *  version, what they agree on, often compared to, at a glance), then "One by one" and "Community". Only products with
+ *  PADDLE_V13_MIN or more reviews; thinner ones keep the current layout. false brings the current layout back everywhere. */
+export const PADDLE_V13: Record<string, boolean> = { pickleball: true };
+export const PADDLE_V13_MIN = 5;
+export const paddleV13On = (nicheId: string, reviews: number) => (PADDLE_V13[nicheId] ?? false) && reviews >= PADDLE_V13_MIN;
 /** Sites where every live product uses the creator page design, also under CREATOR_MIN_REVIEWS reviews (PickleballRecs, owner
  *  2026-11-27 via PM: "yes same for pickaball"; PadelRecs, owner
  *  2026-11-27: "all pages on the site to have the same look"). Such a thin page shows the head, the shops and the review
