@@ -943,3 +943,11 @@ body:has(.thc) .thc a.v13-cta { text-decoration: none; text-align: center; font-
 }
 /* Reddit in The short version (PM 2026-11-28): the +/- pills and the one-liner. */
 .v13-rdb .thc-rd-tags { margin: 4px 0 6px; }
+/* What they agree on (pilot 2026-11-28): one dot per review that covers the point, and two evidence cards. */
+.v13-pt .n { display: flex; flex-direction: column; gap: 5px; }
+.v13-pt .dots { display: flex; gap: 2px; width: 140px; }
+.v13-pt .dots i { flex: 1; height: 10px; border-radius: 2px; background: #ECE6DA; }
+.v13-pt .dots i.pos { background: #62C878; } .v13-pt .dots i.mix { background: #F0D16B; } .v13-pt .dots i.neg { background: #F0796A; }
+.v13-pt-b a .who { display: flex; gap: 8px; align-items: center; font-size: 13px; }
+.v13-pt-b a .q { font-size: 14.5px; line-height: 1.5; }
+.v13-pt-b a .go { font-size: 12.5px; font-weight: 700; text-decoration: underline; text-underline-offset: 3px; color: var(--muted); }
