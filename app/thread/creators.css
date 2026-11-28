@@ -1089,8 +1089,12 @@ body:has(.thc) .thc .v13-pt-b .v13-rc a.go { flex-direction: row; border: 0; bor
    Only on phones (under 700px) does the line drop to its own row (owner 2026-11-28: one row on laptops). */
 body:has(.thc) .thc a.v13-gr { display: grid; grid-template-columns: 220px 100px minmax(0, 1fr); gap: 8px 14px; align-items: center; padding: 12px 20px;
   border-top: 1px solid #EFE8DC; background: #FFFFFF; color: var(--ink); text-decoration: none; }
-body:has(.thc) .thc a.v13-gr:nth-of-type(even) { background: #F6F0E6; }
-body:has(.thc) .thc a.v13-gr:hover .nm strong { text-decoration: underline; }
+/* Owner 2026-11-28: the mock's beige zebra was busy; back to the old rows: a near-white stripe, a beige hover and the › arrow. */
+body:has(.thc) .thc a.v13-gr { position: relative; padding-right: 36px; cursor: pointer; transition: background .15s; }
+body:has(.thc) .thc a.v13-gr:nth-of-type(even) { background: #FBFBF9; }
+body:has(.thc) .thc a.v13-gr:hover { background: #F6F0E6; }
+body:has(.thc) .thc a.v13-gr::after { content: "›"; position: absolute; right: 14px; top: 50%; transform: translateY(-50%); font-weight: 700; color: var(--faint); }
+body:has(.thc) .thc a.v13-gr:hover::after { color: var(--ink); }
 .v13-gr .who { display: flex; gap: 10px; align-items: center; min-width: 0; }
 .v13-gr .av { flex: none; width: 28px; height: 28px; border-radius: 50%; border: 1.5px solid #17171A; box-sizing: border-box; display: flex; align-items: center;
   justify-content: center; font-size: 10.5px; font-weight: 800; color: #17171A; background: #CDEFD4; object-fit: cover; }
@@ -1109,4 +1113,4 @@ body:has(.thc) .thc a.v13-gr:hover .nm strong { text-decoration: underline; }
   body:has(.thc) .thc a.v13-gr { grid-template-columns: minmax(0, 1fr) auto; }
   .v13-gr .pt { grid-column: 1 / -1; }
 }
-@media (max-width: 640px) { body:has(.thc) .thc a.v13-gr { padding: 12px 16px; } }
+@media (max-width: 640px) { body:has(.thc) .thc a.v13-gr { padding: 12px 32px 12px 16px; } body:has(.thc) .thc a.v13-gr::after { right: 12px; } }
