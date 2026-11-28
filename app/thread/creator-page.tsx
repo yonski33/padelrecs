@@ -300,10 +300,12 @@ export async function CreatorProductBody({ slug }: { slug: string }) {
 
   // Paddle page v13 (owner handoff 2026-11-28): PickleballRecs products with 5+ reviews (lib/thread/sites.ts PADDLE_V13).
   const v13 = !thin && paddleV13On(niche.id, rs.length);
-  // The Reddit line in The short version: a word for the tone only, never a count or a % (owner 2026-11-28).
+  // The Reddit stance: one value for the sources line and At a glance alike (PM 2026-11-28). A word only, never a count or a % (owner 2026-11-28).
   // From the takes of all the paddle's stored Reddit posts (the summary's +/- tags are topics, not a balance).
   const rdAll = enoughReddit ? cards.filter(c => c.kind === "reddit") : [];
   const rdTone = (rd || reddit.length > 0) && rdAll.length > 0 ? toneOf(rdAll.filter(c => c.verdict === "positive").length, rdAll.filter(c => c.verdict === "negative").length, rdAll.length) : null;
+  // The Reddit one-liner, shown once, in The short version (PM 2026-11-28: Reddit said the same thing three times).
+  const rdLine = rd?.headline ?? (rdTone ? `${W.People} ${rdTone.k === "pos" ? "mostly like it" : rdTone.k === "neg" ? "mostly have doubts" : "are split on it"}.` : null);
   // Often compared to: the paddles the reviews mention (Similar's lead rows), with the reviews' own comparison line where
   // db/creators/compare-lines.json has one, never a price comparison. No mentions, no section.
   const cmpOf = (compareLines as Record<string, Record<string, Record<string, { line: string }>>>)[niche.id]?.[slug] ?? {};
@@ -321,7 +323,7 @@ export async function CreatorProductBody({ slug }: { slug: string }) {
   const g13 = [
     ...(rdTone ? [<a key="rd" className="thc-g-row v13-g" href="#reddit-card"><span className="thc-g-who"><span className="v13-av rd" aria-hidden="true">r/</span>
       <span><strong>Reddit and forums</strong><span>{`Summary of ${W.person} posts`}</span></span></span>
-      <span className={`thc-take sm ${rdTone.k}`}>{rdTone.word}</span><span className="kp">{rd?.headline ?? `${W.People} ${rdTone.k === "pos" ? "mostly like it" : rdTone.k === "neg" ? "mostly have doubts" : "are split on it"}.`}</span></a>] : []),
+      <span className={`thc-take sm ${rdTone.k}`}>{rdTone.word}</span><span className="kp v13-see">{`See what ${W.people} say ›`}</span></a>] : []),
     ...(listPicks.length > 0 ? [<a key="xp" className="thc-g-row v13-g" href="#expert-lists"><span className="thc-g-who"><span className="v13-av xp" aria-hidden="true">★</span>
       <span><strong>Expert lists</strong><span>{picksSummary(listPicks)}</span></span></span><span className="thc-take sm xp">Picked</span>
       <span className="kp">{listPicks.map(p => `${p.l.outlet}: ${p.label ?? p.l.title}`).join(" · ")}</span></a>] : []),
@@ -463,7 +465,11 @@ export async function CreatorProductBody({ slug }: { slug: string }) {
             <div className={`v13-cols${compared.length ? "" : " one"}`}>
               <div className="v13-text">
                 {wrap ? <Wrap w={wrap} v13/> : <div className="thc-wrap">{KEYS.filter(k => n[k] > 0).map(k => <p key={k}><strong>{`${STANCE_LABEL[k]}. `}</strong>{page.groups[k] || stanceLine(rs, k)}</p>)}</div>}
-                {rd && <div className="thc-block v13-rdb"><strong>On Reddit and forums</strong><p className="v13-prose">{rdLead(rd)}</p></div>}
+                {/* Reddit once (PM 2026-11-28): the summary's +/- pills and its one-liner here; the paragraph lives only in
+                    the long Reddit card, and At a glance links to it. */}
+                {rdLine && <div className="thc-block v13-rdb"><strong>On Reddit and forums</strong>
+                  {rd && rd.tags.length > 0 && <span className="thc-rd-tags">{rd.tags.map(t => <span key={t.text} className={`thc-rd-tag ${t.tone}`}><i aria-hidden="true">{t.tone === "pos" ? "+" : "−"}</i>{t.text}</span>)}</span>}
+                  <p>{rdLine}</p></div>}
               </div>
               {compared.length > 0 && <aside className="v13-side">
                 {/* Phones (owner 2026-11-28): one heading and the cards as a horizontal scroll strip under the text. */}
@@ -588,16 +594,6 @@ export async function CreatorProductBody({ slug }: { slug: string }) {
 /** The Reddit line's word (paddle page v13): from the posts' own takes, the same rule as the Reddit card's headline, never a number. */
 const toneOf = (pos: number, neg: number, all: number) => pos * 2 > all ? { k: "pos", word: "Mostly positive" } as const
   : neg * 2 > all ? { k: "neg", word: "Mostly negative" } as const : { k: "mix", word: "Mixed" } as const;
-/** The short version's Reddit text (owner 2026-11-28: the headline alone was too short next to the reviewers' part): the
- *  summary's first paragraph, its first two sentences, its quotes marked. */
-function rdLead(rd: Roundup, lower = false): ReactNode[] {
-  const p = rd.paras[0] ?? rd.headline, parts = p.split(/(?<=[.!?]["”’)]*)\s+(?=[A-Z"“])/);
-  const t0 = parts.slice(0, 2).join(" "), t = lower && /^[A-Z][a-z]/.test(t0) ? t0[0]!.toLowerCase() + t0.slice(1) : t0, out: ReactNode[] = []; let rest = t, k = 0;
-  for (;;) { let best = -1, hi = -1;
-    rd.highlights.forEach((h, i) => { const at = rest.indexOf(h.text); if (at >= 0 && (best < 0 || at < best)) { best = at; hi = i; } });
-    if (hi < 0) { out.push(rest); return out; }
-    out.push(rest.slice(0, best), <mark key={k++}>{rd.highlights[hi].text}</mark>); rest = rest.slice(best + rd.highlights[hi].text.length); }
-}
 /** Text compared as words only (case, punctuation and quote marks ignored). */
 const norm = (t: string) => t.toLowerCase().replace(/[^a-z0-9 ]+/g, " ").replace(/\s+/g, " ").trim();
 /** A comparison line about price is left out (owner 2026-11-28: no dollar comparisons in Often compared to). */
