@@ -679,7 +679,7 @@ function AgreePoints({ points, total, rs, id, players, voteGroups, votes, reddit
             <span className="who"><strong>{v.creator}</strong><span>{` · ${v.kind === "youtube" ? "YouTube" : v.kind === "tiktok" ? "TikTok" : "Blog"}`}</span></span>
             <span className="q">{own ? `“${own}”` : `${x.evidence[0]!.toUpperCase()}${x.evidence.slice(1)}${/[.!?]$/.test(x.evidence) ? "" : "."}`}</span>
             {/* Owner 2026-11-28: keep people on the site; the link jumps to this review's card on the page. */}
-            <a className="go" href={`#cr-${x.review_id}`}>{v.kind === "blog" ? "Read the summary ↓" : ch ? `${chapterTitle(ch[1])}: see the review ↓` : "See the review ↓"}</a>
+            <a className="go" href={`#cr-${x.review_id}`}>{v.kind === "youtube" && <i className="yt-ic" aria-hidden="true"/>}{v.kind === "blog" ? "Read the summary ↓" : ch ? `${chapterTitle(ch[1])}: see the review ↓` : "See the review ↓"}</a>
           </div>; })}
           {rdp && <div className="v13-rc rd"><span className="who"><i className="v13-av rd sq" aria-hidden="true">r/</i><strong>{rdp.sub}</strong><span> · Reddit</span></span>
             <span className="q">{`“${rdp.text[0]!.toUpperCase()}${rdp.text.slice(1)}”`}</span>
