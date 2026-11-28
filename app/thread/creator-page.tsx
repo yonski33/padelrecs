@@ -305,7 +305,7 @@ export async function CreatorProductBody({ slug }: { slug: string }) {
   // Often compared to: the paddles the reviews mention (Similar's lead rows), with the reviews' own comparison line where
   // db/creators/compare-lines.json has one, never a price comparison. No mentions, no section.
   const cmpOf = (compareLines as Record<string, Record<string, Record<string, { line: string }>>>)[niche.id]?.[slug] ?? {};
-  const compared = similar.filter(x => x.men > 0).map(x => { const l = cmpOf[x.x.slug]?.line ?? null;
+  const compared = similar.map(x => { const l = cmpOf[x.x.slug]?.line ?? null;
     return { ...x, line: l && !PRICE_WORDS.test(l) ? l : null }; });
   // What they agree on: only products with per-point tags (db/creators/review-points.json, none yet, so hidden).
   const points = ((reviewPoints as Record<string, Record<string, { points: AgreePoint[] }>>)[niche.id]?.[slug]?.points ?? [])
@@ -343,10 +343,40 @@ export async function CreatorProductBody({ slug }: { slug: string }) {
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500;700&display=swap" precedence="default"/>
     {/* SkinRecs header 4a (owner handoff 2026-11-23): Inter 800 for the name, Barlow Condensed 800 for TL;DR and the price. */}
     {SKIN && <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=Barlow+Condensed:wght@800&display=swap" precedence="default"/>}
-    <div className="thc thc-v19">
+    <div className={`thc thc-v19${v13 ? " thc-v13top" : ""}`}>
       {/* Head (owner mock 2026-11-23): photo · name, tags, TL;DR with ✓ and ✗ points, the players' vote box · the price box. */}
       {/* Header 4a (owner handoffs 2026-11-23, skin then pickleball): one outlined panel, photo / main / prices columns (creators.css .thc-hd4). */}
-      <header id="thc-top" className="thc-head thc-hd3 thc-hd4">
+      {v13 ? <header id="thc-top" className="v13-hero">
+        {/* Handoff 7 top (2026-11-28): the photo, a grey meta line, the name, the TL;DR as one bold line (no label, no +/-
+            points), the players' vote bar; the white price box on the right with the page's one filled button. */}
+        <div className="v13-hero-l">
+          <div className="v13-photo">{pic ? <img src={pic} alt={name}/> : <span className="th-ph" aria-hidden="true"/>}</div>
+          <div className="v13-hero-m">
+            <span className="v13-meta">{[brand?.name, shownStyle ? STYLE_WORD[shownStyle] : null, ...specs.slice(0, 2),
+              `from ${plural(rs.length, "review")} and ${votes.total.toLocaleString("en-US")} ${W.person} ${votes.total === 1 ? "vote" : "votes"}`].filter(Boolean).join(" · ")}</span>
+            <h1>{name}</h1>
+            {/* The TL;DR as a smaller line under the name (owner 2026-11-28, as the mock), no label and no +/- points. */}
+            {tldr && <p className="v13-tldr">{tldr}</p>}
+            {row?.newer && <span className="thc-specline">{"Previous model. Replaced by the "}<a href={th(row.newer.href)}>{withoutYear(row.newer.name)}</a>{"."}</span>}
+            <div className="v13-votes">
+              <span className="h"><strong>{`${votes.total.toLocaleString("en-US")} ${W.person} ${votes.total === 1 ? "vote" : "votes"}`}</strong><a href="#vote">Vote ↓</a></span>
+              {votes.total > 0 ? <><span className="bar" aria-hidden="true">{KEYS.map(k => votes[k] > 0 && <i key={k} className={k} style={{ flex: votes[k] }}/>)}</span>
+                <span className="cnt">{KEYS.map(k => <span key={k}><i className={k} aria-hidden="true"/>{`${votes[k].toLocaleString("en-US")} ${k === "pos" ? "loved" : k === "mix" ? "mixed" : "not for me"}`}</span>)}</span></>
+                : <span className="thc-none">No votes yet. Be the first.</span>}
+            </div>
+          </div>
+        </div>
+        {(cta || buy.length > 0) && <section id="buy" className="v13-buy">
+          {low && <span className="p"><strong>{usd(low.price)}</strong><span>{`lowest of ${plural(buy.length, "shop")}`}</span></span>}
+          {cta && <a className="v13-cta" href={cta.url} target="_blank" rel={cta.rel}>{`Check price at ${top ? shortShop(top.shop) : shop?.where ?? "the shop"} ↗`}</a>}
+          {(!low || (amazonFirst && !top)) && shop?.rel.includes("sponsored") && <span className="thc-pbox-on">{`Affiliate link: ${niche.site.name} may earn a small commission. `}<a href={th("/affiliate-disclosure")}>Learn more</a></span>}
+          {listed.length > 0 && <details className="v13-shops"><summary>{`Show ${plural(listed.length, "other shop")}`}</summary>
+            {listed.map(o => <span key={o.shop} className="row"><span className="nm" title={o.shop}>{shortShop(o.shop)}</span><strong>{usd(o.price)}</strong>
+              <a className="thc-mono" href={o.url} target="_blank" rel={relOf(o.affiliate)}>check ↗</a></span>)}
+            {page.prices && <span className="thc-note">{`Checked ${shortDay(page.prices.checked)}.${amazonAsOf ? ` Amazon price as of ${amazonAsOf} UTC.` : ""}${buy.some(o => o.affiliate || o.shop === "Amazon") ? " Some links are affiliate links." : ""}`}</span>}</details>}
+        </section>}
+      </header>
+      : <header id="thc-top" className="thc-head thc-hd3 thc-hd4">
         <div className="thc-photo">{pic ? <img src={pic} alt={name}/> : <span className="th-ph" aria-hidden="true"/>}</div>
         <div className="thc-head-m">
           <h1>{name}</h1>
@@ -399,7 +429,7 @@ export async function CreatorProductBody({ slug }: { slug: string }) {
           {/* SkinRecs (owner mock 2026-11-23): the fit check sits under Check price, where one shop leaves room. */}
           {SKIN && !low && <SkinCompactFit id={r.id} wire={skinWire} links={skinLinks} side/>}
         </div>}
-      </header>
+      </header>}
       {/* Is this paddle right for me? as one row under the head (owner mock 2026-11-23). */}
       {/* SkinRecs with store prices (owner 2026-11-23): the price list fills the right column, so its fit check moves to
           this full-width row, as on PickleballRecs; Amazon-only products keep it under the button. */}
@@ -421,20 +451,27 @@ export async function CreatorProductBody({ slug }: { slug: string }) {
             <div className="v13-hbox"><span className="v13-based">{`Based on ${plural(rs.length, "review")}: `}
               {KEYS.filter(k => n[k] > 0).map((k, i, a) => <Fragment key={k}><i className={k} aria-hidden="true"/><strong>{`${n[k]} ${k === "pos" ? "loved it" : k === "mix" ? "mixed" : "not for me"}`}</strong>{i < a.length - 1 ? ", " : "."}</Fragment>)}
               {rdTone && <>{" Reddit and forums: "}<i className={rdTone.k} aria-hidden="true"/><strong>{rdTone.word.toLowerCase()}</strong>{"."}</>}</span></div>
-            {wrap ? <Wrap w={wrap} prose/> : <div className="thc-wrap v13-prose">{KEYS.filter(k => n[k] > 0).map(k => <p key={k}><strong>{`${STANCE_LABEL[k]}. `}</strong>{page.groups[k] || stanceLine(rs, k)}</p>)}</div>}
-            {rd && <p className="v13-prose v13-rdp"><mark className="v13-on">On Reddit and forums</mark>{", "}{rdLead(rd, true)}</p>}
+            {/* Owner 2026-11-28: the text as blocks (Why reviewers like it, Watch out for, then a small note), Reddit as its own
+                small block; Often compared to in the right column. */}
+            <div className={`v13-cols${compared.length ? "" : " one"}`}>
+              <div className="v13-text">
+                {wrap ? <Wrap w={wrap} v13/> : <div className="thc-wrap">{KEYS.filter(k => n[k] > 0).map(k => <p key={k}><strong>{`${STANCE_LABEL[k]}. `}</strong>{page.groups[k] || stanceLine(rs, k)}</p>)}</div>}
+                {rd && <div className="thc-block v13-rdb"><strong>On Reddit and forums</strong><p className="v13-prose">{rdLead(rd)}</p></div>}
+              </div>
+              {compared.length > 0 && <aside className="v13-side">
+                {([["Often compared to", compared.filter(x => x.men > 0)], ["Similar feel", compared.filter(x => x.men === 0)]] as const).filter(g => g[1].length > 0).map(([h, xs]) =>
+                  <div key={h} className="v13-sg"><strong className={h === "Similar feel" ? "q" : undefined}>{h}</strong>
+                    {xs.map(({ x, href, men, price, line }) => <div key={x.id} className="v13-cmp-c">
+                      <span className="v13-cmp-top"><a className="pic" href={th(href)} tabIndex={-1} aria-hidden="true">{x.pic ? <img src={x.pic} alt="" loading="lazy"/> : null}</a>
+                        <span className="b"><a className="nm" href={th(href)}>{shown(x.name, x.year)}</a>{men > 0 && <span className="m">{`In ${plural(men, "review")}`}</span>}</span>
+                        {price && <a className="thc-mono buy" href={price.url} target="_blank" rel={price.rel}>check ↗</a>}</span>
+                      {line && <span className="ln">{line}</span>}
+                    </div>)}</div>)}
+                {compared.some(x => x.price?.rel.includes("sponsored")) && <span className="thc-note">{"Some links are affiliate links. "}<a href={th("/affiliate-disclosure")}>Learn more</a></span>}
+              </aside>}
+            </div>
           </div>
           {points.length > 0 && <AgreePoints points={points} total={rs.length} rs={rs}/>}
-          {compared.length > 0 && <div className="v13-part">
-            <div className="v13-ph"><strong>Often compared to</strong><span>{`${niche.words.Many} the reviews held up against this one`}</span></div>
-            <div className="v13-cmp">{compared.map(({ x, href, men, price, line }) => <div key={x.id} className="v13-cmp-c">
-              <span className="v13-cmp-top"><a className="pic" href={th(href)} tabIndex={-1} aria-hidden="true">{x.pic ? <img src={x.pic} alt="" loading="lazy"/> : null}</a>
-                <span className="b"><a className="nm" href={th(href)}>{shown(x.name, x.year)}</a><span className="m">{`In ${plural(men, "review")}`}</span></span></span>
-              {line && <span className="ln">{line}</span>}
-              {price && <a className="thc-mono buy" href={price.url} target="_blank" rel={price.rel}>check ↗</a>}
-            </div>)}</div>
-            {compared.some(x => x.price?.rel.includes("sponsored")) && <span className="thc-note">{`Some links are affiliate links: ${niche.site.name} may earn a small commission. `}<a href={th("/affiliate-disclosure")}>Learn more</a></span>}
-          </div>}
           <GlanceTable className="v13-part v13-glance" title="At a glance" sub="One line from each reviewer, Reddit and the expert lists. Tap to jump to the full summary." head={null} rows={g13} first={5}/>
         </section>
 
@@ -604,9 +641,10 @@ type Wrapup = { paras: string[]; highlights: { text: string; tone: "pos" | "neg"
 
 /** "In more detail" (pilot, owner OK 2026-11-23): 2-3 sentences on what the counts and tags can't show (who it suits, where
  *  the mixed takes come from, what it's compared with), written from all the reviews and checked by a second reader. */
-function Wrap({ w, links = false, prose = false }: { w: Wrapup; /** PadelRecs: racket names in the plain text link. */ links?: boolean;
+function Wrap({ w, links = false, prose = false, v13 = false }: { w: Wrapup; /** PadelRecs: racket names in the plain text link. */ links?: boolean;
   /** Paddle page v13 (owner 2026-11-28: "just write the text like in the mockup"): plain paragraphs, no block labels. The
-   *  blocks' own text where there are blocks: the first two as one paragraph, the rest as a second. */ prose?: boolean }) {
+   *  blocks' own text where there are blocks: the first two as one paragraph, the rest as a second. */ prose?: boolean;
+  /** Paddle page v13 (owner 2026-11-28, later): the first two blocks as blocks, any further one as a small grey note. */ v13?: boolean }) {
   let pk = 0;
   const plain = (t: string): ReactNode => links && t ? <MentionText key={`t${pk++}`} text={t}/> : t;
   const mark = (t: string) => { const out: ReactNode[] = []; let rest = t, k = 0;
@@ -617,6 +655,10 @@ function Wrap({ w, links = false, prose = false }: { w: Wrapup; /** PadelRecs: r
       out.push(plain(rest.slice(0, best)), <mark key={k++} className={h.tone}>{h.text}</mark>);
       rest = rest.slice(best + h.text.length); } };
   // Under The short version title (owner 2026-11-23: one section), above the count boxes and tags.
+  if (v13 && w.blocks?.length) return <div className="thc-wrap thc-blocks v13-blocks">
+    {w.blocks.slice(0, 2).map((b, i) => <div key={i} className={`thc-block b${i}`}><strong>{b.label}</strong><p>{mark(b.text)}</p></div>)}
+    {w.blocks.slice(2).map((b, i) => <p key={`n${i}`} className="v13-note"><strong>{`${b.label}: `}</strong>{mark(b.text)}</p>)}
+  </div>;
   if (prose) { const b = w.blocks ?? [], paras = b.length ? [b.slice(0, 2).map(x => x.text).join(" "), b.slice(2).map(x => x.text).join(" ")].filter(Boolean) : w.paras;
     return <div className="thc-wrap v13-prose">{paras.map((p, i) => <p key={i}>{mark(p)}</p>)}</div>; }
   if (w.blocks?.length && consensusBlocksOn(niche.id)) return <div className="thc-wrap thc-blocks">
