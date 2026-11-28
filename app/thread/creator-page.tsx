@@ -393,7 +393,9 @@ export async function CreatorProductBody({ slug }: { slug: string }) {
             </div>
           </div>
         </div>
-        {(cta || buy.length > 0) && <section id="buy" className="v13-buy">
+        {/* PadelRecs: the padel shops' box (each shop's own price and currency), as on the current layout. */}
+        {shops.length > 0 ? <div className="v13-buy v13-shopbox"><ShopBox offers={shops}/></div>
+        : (cta || buy.length > 0) && <section id="buy" className="v13-buy">
           {low && <span className="p"><strong>{usd(low.price)}</strong><span>{`lowest of ${plural(buy.length, "shop")}`}</span></span>}
           {cta && <a className="v13-cta" href={cta.url} target="_blank" rel={cta.rel}>{`Check price at ${top ? shortShop(top.shop) : shop?.where ?? "the shop"} ↗`}</a>}
           {(!low || (amazonFirst && !top)) && shop?.rel.includes("sponsored") && <span className="thc-pbox-on">{`Affiliate link: ${niche.site.name} may earn a small commission. `}<a href={th("/affiliate-disclosure")}>Learn more</a></span>}
@@ -638,14 +640,24 @@ const PLAYERS_MIN = 20;
 const POINT_MIN = 3;
 type PtReview = { id: string; creator: string; kind: string; avatar?: string | null; url: string; quote: string | null; quoteAt: number | null; chapters: [number, string][] };
 /** Words that tie a quote, chapter or Reddit phrase to a point. The cards' links stay on the page (owner 2026-11-28). */
-const POINT_WORDS: Record<string, RegExp> = { resets: /reset|dink|drop|touch|soft game|block|kitchen/i, spin: /spin|grit|rpm|texture/i,
+const PB_POINT_WORDS: Record<string, RegExp> = { resets: /reset|dink|drop|touch|soft game|block|kitchen/i, spin: /spin|grit|rpm|texture/i,
   sweet: /sweet ?spot|forgiv|dead ?spot|off.?cent|mishit/i, power: /power|pop|drive|put.?away|pace|speed/i, comfort: /\barm\b|elbow|wrist|shoulder|vibrat|comfort/i };
 /** Which side a Reddit phrase is on (owner 2026-11-28: "Lack of grit" sat under "Lots of spin"): reddit-roundups.json marks
  *  the complaints, hand-checked against each phrase's sentence; everything else counts as positive. */
 type RdPhrase = { text: string; url: string; sub: string; side: "pos" | "neg" };
 /** The vote box behind each point (pickleball's stored groups) and its "rates it well" option; Resets and dinks has none. */
-const POINT_VOTES: Record<string, { key: string; good: string }> = { spin: { key: "spin", good: "lots" }, sweet: { key: "sweet_spot", good: "big" },
+const PB_POINT_VOTES: Record<string, { key: string; good: string }> = { spin: { key: "spin", good: "lots" }, sweet: { key: "sweet_spot", good: "big" },
   comfort: { key: "arm", good: "very" }, power: { key: "pop", good: "high" } };
+/** PadelRecs' five points (PM 2026-11-28, v13 on padel): power, control, sweet spot, arm comfort, maneuverability. Only the
+ *  three with a matching vote box (lib/thread/traits.ts PADEL_TRAIT_GROUPS) get a players' share; "Plays like" is a style,
+ *  not a rating, so power and control stay reviewers only. */
+const PADEL_POINT_WORDS: Record<string, RegExp> = { power: /power|smash|pop|exit|punch|pace|x3|x4|by 3|by 4/i, control: /control|precis|placement|accura|lob|defen/i,
+  sweet: /sweet ?spot|forgiv|off.?cent|mishit|tolerant/i, comfort: /\barm\b|elbow|wrist|shoulder|vibrat|comfort/i, maneuver: /maneuv|manoeuv|handl|light|quick|nimble|wield/i };
+const PADEL_POINT_VOTES: Record<string, { key: string; good: string }> = { sweet: { key: "sweet_spot", good: "big" },
+  comfort: { key: "arm", good: "very" }, maneuver: { key: "maneuver", good: "very" } };
+const POINT_WORDS_BY: Record<string, Record<string, RegExp>> = { pickleball: PB_POINT_WORDS, padel: PADEL_POINT_WORDS };
+const POINT_VOTES_BY: Record<string, Record<string, { key: string; good: string }>> = { pickleball: PB_POINT_VOTES, padel: PADEL_POINT_VOTES };
+const POINT_WORDS = POINT_WORDS_BY[niche.id] ?? PB_POINT_WORDS, POINT_VOTES = POINT_VOTES_BY[niche.id] ?? PB_POINT_VOTES;
 /** The grade under a point's name, from the share of all reviews that rate it well among those that cover it. */
 const gradeOf = (yes: number, n: number) => { const s = n ? yes / n : 0;
   return s >= 0.85 ? { word: "Excellent", k: "g1" } : s >= 0.7 ? { word: "Great", k: "g1" } : s >= 0.55 ? { word: "Good", k: "g2" } : s >= 0.4 ? { word: "Okay", k: "g3" } : { word: "Weak", k: "g4" }; };
