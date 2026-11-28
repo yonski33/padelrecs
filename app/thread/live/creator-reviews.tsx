@@ -10,6 +10,8 @@
 // page's ISR cache is untouched.
 import { Fragment, useEffect, useLayoutEffect, useMemo, useRef, useState, type ReactNode } from "react";
 import { atSecond, clock } from "../../../lib/thread/video-meta";
+import { chapterTitle } from "../../../lib/thread/chapter-title";
+export { chapterTitle };
 import { th } from "../../../lib/thread/look";
 import { VideoProvider, clipOf, playClick, usePlay } from "./video-overlay";
 import { mentionNodes, useMentions } from "./mention-links";
@@ -147,12 +149,6 @@ function Card({ x, lit, configs }: { x: ReviewEntry; lit: boolean; configs?: boo
 /** `roundup`: the "Players on Reddit and forums" card, placed after the third card under All (never counted). */
 /** `configs` and `axis` (LaptopRecs): each card's "Reviewed: ..." line, and the model's config axis for the "All (n) · <group>
  *  (n)" chips, shown only when 2 or more groups have cards; the chips filter in the browser like the other pills. */
-/** A creator's chapter title without the word "verdict" (owner rule, every site; paddle page v13 handoff 2026-11-28): a
- *  chapter that is only the verdict reads "Final thoughts", elsewhere the word becomes "final thoughts". */
-export function chapterTitle(t: string): string {
-  if (/^\s*(the |final |my |our |overall |quick )?verdicts?\s*[:!.?]*\s*$/i.test(t)) return "Final thoughts";
-  return t.replace(/\b(final )?verdicts?\b/gi, m => /^[A-Z]/.test(m) ? "Final thoughts" : "final thoughts");
-}
 
 export function CreatorReviews({ reviews, roundup, configs, axis, title = "Reviews", lead }: { reviews: ReviewEntry[]; count: number; roundup?: ReactNode;
   configs?: boolean; axis?: ConfigAxis | null;

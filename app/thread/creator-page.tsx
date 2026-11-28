@@ -40,6 +40,7 @@ import bestFor from "../../db/creators/best-for.json";
 import { expertPicks, outletKey, placeText, badgeOf, picksSummary, type ShownPick } from "../../lib/thread/expert-lists";
 import { creatorPageFor, CREATOR_VIEW, CREATOR_MIN_REVIEWS, creatorPageOn, creatorPlainSite, thinCreatorPageOn } from "../../lib/thread/sites";
 import { Avatar, CreatorReviews } from "./live/creator-reviews";
+import { chapterTitle } from "../../lib/thread/chapter-title";
 import { MentionsProvider, MentionText, type MentionTarget } from "./live/mention-links";
 import padelMentions from "../../db/creators/padel-mentions.json";
 import { selfFamily, yearContext, type MentionYears } from "../../lib/thread/mention-years";
@@ -54,6 +55,7 @@ import { StickyPrice } from "./live/sticky-price";
 import { GlanceTable } from "./live/glance-table";
 import { TraitVotes } from "./live/trait-votes";
 import { PointVote } from "./live/point-vote";
+import { atSecond, clock } from "../../lib/thread/video-meta";
 import { traitGroupsFor } from "../../lib/thread/traits";
 import { traitSeed } from "../../lib/thread/trait-seed";
 import { creatorVoteGroups } from "../../lib/thread/creator-votes";
@@ -483,7 +485,8 @@ export async function CreatorProductBody({ slug }: { slug: string }) {
             </div>
           </div>
           {points.length > 0 && <AgreePoints points={points} total={rs.length} id={r.id} players={pointPlayers} votes={pointVotes} voteGroups={traitGroupsFor(niche.id)}
-            rs={rs.map(x => ({ id: x.id, creator: x.creator, kind: x.kind, avatar: profiles.get(x.creator)?.avatar ?? null }))}/>}
+            reddit={(rd?.highlights ?? []).map(h => ({ text: h.text, url: h.url, sub: /reddit\.com\/r\/([^/]+)/i.exec(h.url)?.[1] ? `r/${/reddit\.com\/r\/([^/]+)/i.exec(h.url)![1]}` : "Reddit" }))}
+            rs={rs.map(x => ({ id: x.id, creator: x.creator, kind: x.kind, avatar: profiles.get(x.creator)?.avatar ?? null, url: x.url, quote: x.quote, quoteAt: x.quoteAt, chapters: x.chapters }))}/>}
           {/* Often compared to (owner mock 2026-11-28): a row of cards under What they agree on, each linking to that
               paddle's page here (no shop links). Photo, name, "In N reviews", the +/- lines. */}
           {compared.length > 0 && <div className="v13-part">
@@ -627,7 +630,11 @@ type AgreePoint = { key: string; label: string; line: string; reviews: { review_
 const PLAYERS_MIN = 20;
 /** A point shows once this many of the paddle's reviews cover it. */
 const POINT_MIN = 3;
-type PtReview = { id: string; creator: string; kind: string; avatar?: string | null };
+type PtReview = { id: string; creator: string; kind: string; avatar?: string | null; url: string; quote: string | null; quoteAt: number | null; chapters: [number, string][] };
+/** Words that tie a quote, chapter or Reddit phrase to a point. */
+const POINT_WORDS: Record<string, RegExp> = { resets: /reset|dink|drop|touch|soft game|block|kitchen/i, spin: /spin|grit|rpm|texture/i,
+  sweet: /sweet ?spot|forgiv|dead ?spot|off.?cent|mishit/i, power: /power|pop|drive|put.?away|pace|speed/i, comfort: /\barm\b|elbow|wrist|shoulder|vibrat|comfort/i };
+type RdPhrase = { text: string; url: string; sub: string };
 /** The vote box behind each point (pickleball's stored groups) and its "rates it well" option; Resets and dinks has none. */
 const POINT_VOTES: Record<string, { key: string; good: string }> = { spin: { key: "spin", good: "lots" }, sweet: { key: "sweet_spot", good: "big" },
   comfort: { key: "arm", good: "very" }, power: { key: "pop", good: "high" } };
@@ -635,7 +642,8 @@ const POINT_VOTES: Record<string, { key: string; good: string }> = { spin: { key
 const gradeOf = (yes: number, n: number) => { const s = n ? yes / n : 0;
   return s >= 0.85 ? { word: "Excellent", k: "g1" } : s >= 0.7 ? { word: "Great", k: "g1" } : s >= 0.55 ? { word: "Good", k: "g2" } : s >= 0.4 ? { word: "Okay", k: "g3" } : { word: "Weak", k: "g4" }; };
 type PlayerShare = { pct: number; n: number } | null;
-function AgreePoints({ points, total, rs, id, players, voteGroups, votes }: { points: AgreePoint[]; total: number; rs: PtReview[]; id: string;
+function AgreePoints({ points, total, rs, id, players, voteGroups, votes, reddit }: { points: AgreePoint[]; total: number; rs: PtReview[]; id: string;
+  /** The Reddit summary's real phrases (each with its thread), for a Reddit card on the point it speaks to. */ reddit: RdPhrase[];
   /** Each point's vote group counts as the vote boxes show them. */ votes: Record<string, Record<string, number>>;
   /** Players' share per point (the vote boxes' own counts), shown from PLAYERS_MIN votes. */ players: Record<string, PlayerShare>;
   voteGroups: import("../../lib/thread/traits").TraitGroup[] }) {
@@ -655,6 +663,7 @@ function AgreePoints({ points, total, rs, id, players, voteGroups, votes }: { po
       const first = pool[0], second = pool.slice(1).find(x => kindOf(x.review_id) !== kindOf(first?.review_id)) ?? pool[1];
       const receipts = [first, second].filter((x): x is NonNullable<typeof x> => !!x);
       const vg = POINT_VOTES[p.key] ? voteGroups.find(v => v.key === POINT_VOTES[p.key]!.key) : undefined;
+      const words = POINT_WORDS[p.key] ?? /$^/, rdp = reddit.find(h => words.test(h.text)) ?? null;
       return <details key={p.key} className="v13-pt">
         <summary><span className="k"><strong>{p.label}</strong><span className={`gr ${g.k}`}>{g.word}</span></span>
           <span className="l">{p.line}{apart && <>{" "}<span className={`v13-pill ${apart.pct >= 50 ? "pos" : "neg"}`}>{`${apart.pct}% of ${W.people}`}</span></>}</span>
@@ -663,10 +672,20 @@ function AgreePoints({ points, total, rs, id, players, voteGroups, votes }: { po
             {pl && <><span className="who">{W.People}</span><span className={`bar${pl.pct < 40 ? " low" : ""}`} aria-hidden="true"><i style={{ width: `${pl.pct}%` }}/></span><strong>{`${pl.pct}%`}</strong></>}
           </span>
           <span className="pl" aria-hidden="true"/></summary>
-        <div className="v13-pt-b">{receipts.map(x => { const v = rs.find(y => y.id === x.review_id)!;
-          return <a key={x.review_id} href={`#cr-${x.review_id}`} className={x.stance}>
+        <div className="v13-pt-b" style={{ gridTemplateColumns: `repeat(${receipts.length + (rdp ? 1 : 0) + (vg ? 1 : 0)}, minmax(0, 1fr))` }}>{receipts.map(x => { const v = rs.find(y => y.id === x.review_id)!;
+          // The reviewer's own words when their stored quote speaks to this point; else our summary phrase, no quote marks.
+          const own = v.quote && words.test(v.quote) ? v.quote : null;
+          const ch = v.kind === "youtube" ? v.chapters.find(([, t]) => words.test(t)) : undefined;
+          return <div key={x.review_id} className={`v13-rc ${x.stance}`}>
             <span className="who"><strong>{v.creator}</strong><span>{` · ${v.kind === "youtube" ? "YouTube" : v.kind === "tiktok" ? "TikTok" : "Blog"}`}</span></span>
-            <span className="q">{x.evidence[0]!.toUpperCase() + x.evidence.slice(1)}{/[.!?]$/.test(x.evidence) ? "" : "."}</span><span className="go">Read the review ↓</span></a>; })}
+            <span className="q">{own ? `“${own}”` : `${x.evidence[0]!.toUpperCase()}${x.evidence.slice(1)}${/[.!?]$/.test(x.evidence) ? "" : "."}`}</span>
+            {v.kind === "youtube" ? <a className="go yt" href={ch ? atSecond(v.url, ch[0]) : own && v.quoteAt != null ? atSecond(v.url, v.quoteAt) : v.url} target="_blank" rel="noopener nofollow">
+              <i className="yt-ic" aria-hidden="true"/>{ch ? `▶ ${clock(ch[0])} ${chapterTitle(ch[1])}` : own && v.quoteAt != null ? `▶ ${clock(v.quoteAt)} Watch this part` : "Watch the video ↗"}</a>
+              : <a className="go" href={v.url} target="_blank" rel="noopener nofollow">{v.kind === "tiktok" ? "Watch on TikTok ↗" : "Read the article ↗"}</a>}
+          </div>; })}
+          {rdp && <div className="v13-rc rd"><span className="who"><i className="v13-av rd sq" aria-hidden="true">r/</i><strong>{rdp.sub}</strong><span> · Reddit</span></span>
+            <span className="q">{`“${rdp.text[0]!.toUpperCase()}${rdp.text.slice(1)}”`}</span>
+            <a className="go" href={rdp.url} target="_blank" rel="noopener nofollow">Read the thread ↗</a></div>}
           {vg && <PointVote id={id} trait={vg.key} options={vg.options as [string, string][]} base={votes[p.key] ?? {}}/>}</div>
       </details>; })}
   </div>;
