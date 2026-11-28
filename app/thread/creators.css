@@ -1093,3 +1093,8 @@ body:has(.thc-v13top), body:has(.thc-v13top) .th { background: #FBF8F2; }
 .thc-v13top .thc-rd { background: #FFFFFF; }
 .thc-v13top .v13-pt-b .v13-rc.rd { background: #FFF6F1; }
 .thc-v13top .v13-text .v13-note { background: #F7F3EC; }
+/* Short version as prose (owner mock 2026-11-28). */
+.v13-prose3 { display: flex; flex-direction: column; gap: 18px; }
+.v13-prose3 p { margin: 0; font-size: 17px; line-height: 1.75; max-width: 76ch; }
+.v13-prose3 mark, .v13-prose3 mark.pos, .v13-prose3 mark.neg { background: linear-gradient(transparent 55%, #F4EC6E 55%, #F4EC6E 92%, transparent 92%); color: inherit; padding: 0; border-radius: 0; font-weight: 600; }
+.v13-prose3 mark.on { font-weight: 700; }

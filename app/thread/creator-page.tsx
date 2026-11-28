@@ -459,8 +459,8 @@ export async function CreatorProductBody({ slug }: { slug: string }) {
         : CF ? cfWire.length > 0 && <div className="thc-fitrow"><CoffeeFitCard id={r.id} wire={cfWire} links={cfLinks} compact/></div>
         : <div className="thc-fitrow"><CompactFit id={r.id} title={`Is this ${niche.words.one} right for me?`} sub="Pick your level and style" bar/></div>}
       <div className="thc-rule"/>
-      {/* The quiet sticky price bar (paddle page v3): the same price and button as the head, once the head is off screen. */}
-      {stick && !v13 && <StickyPrice name={name} pic={pic} price={stick.price} priceWord={stick.word} cta={stick.cta}/>}
+      {/* The quiet sticky price bar (paddle page v3): the same price and button as the head, once the head is off screen. Back on v13 too (owner 2026-11-28). */}
+      {stick && <StickyPrice name={name} pic={pic} price={stick.price} priceWord={stick.word} cta={stick.cta}/>}
 
       {v13 ? <main className="thc-body thc-v13">
         <h2 className="v13-big" id="everyone">What everyone says</h2>
@@ -475,11 +475,14 @@ export async function CreatorProductBody({ slug }: { slug: string }) {
                 <span className="v13-based">{`Based on ${plural(rs.length, "review")}: `}
                 {KEYS.filter(k => n[k] > 0).map((k, i, a) => <Fragment key={k}><i className={k} aria-hidden="true"/><strong>{`${n[k]} ${k === "pos" ? "loved it" : k === "mix" ? "mixed" : "not for me"}`}</strong>{i < a.length - 1 ? ", " : "."}</Fragment>)}
                 {rdTone && <>{" Reddit and forums: "}<i className={rdTone.k} aria-hidden="true"/><strong>{rdTone.word.toLowerCase()}</strong>{"."}</>}</span></div>
-              <div className="v13-rows">
-                {wrap?.blocks?.length ? wrap.blocks.map((b, bi) => <div key={bi} className="v13-row"><span className="lb">{b.label}</span><p>{markAll(b.text, wrap.highlights.map(h => h.text))}</p></div>)
-                  : KEYS.filter(k => n[k] > 0).map(k => <div key={k} className="v13-row"><span className="lb">{STANCE_LABEL[k]}</span><p>{page.groups[k] || stanceLine(rs, k)}</p></div>)}
-                {rdLine && <div className="v13-row rd"><span className="lb"><i className="v13-av rd" aria-hidden="true">r/</i>On Reddit and forums</span>
-                  <p>{rd ? markAll(rdLeadText(rd), rd.highlights.map(h => h.text)) : rdLine}</p></div>}
+              {/* Short version prose (owner mock 2026-11-28): what reviewers like, the catch, then Reddit in its own words,
+                  never the long Reddit card's opening (reddit-roundups.json `short`). One yellow marker throughout. */}
+              <div className="v13-prose3">
+                {wrap?.blocks?.length ? <>
+                  <p>{markAll([wrap.blocks[0]!.text, ...wrap.blocks.slice(2).map(x => x.text)].join(" "), wrap.highlights.map(h => h.text))}</p>
+                  {wrap.blocks[1] && <p>{markAll(wrap.blocks[1].text, wrap.highlights.map(h => h.text))}</p>}</>
+                  : KEYS.filter(k => n[k] > 0).map(k => <p key={k}>{page.groups[k] || stanceLine(rs, k)}</p>)}
+                {rdLine && <p><mark className="on">On Reddit and forums</mark>{", "}{rd?.short ? markAll(rd.short.text, [rd.short.mark]) : rdLine[0]!.toLowerCase() + rdLine.slice(1)}</p>}
               </div>
             </div>
           </div>
@@ -609,8 +612,6 @@ function markAll(t: string, phrases: string[]): ReactNode[] {
     if (best < 0) { out.push(rest); return out; }
     out.push(rest.slice(0, best), <mark key={k++}>{hit}</mark>); rest = rest.slice(best + hit.length); }
 }
-/** The short version's Reddit row: the summary's first paragraph, its first two sentences. */
-const rdLeadText = (rd: Roundup) => (rd.paras[0] ?? rd.headline).split(/(?<=[.!?]["”’)]*)\s+(?=[A-Z"“])/).slice(0, 2).join(" ");
 /** The Reddit line's word (paddle page v13): from the posts' own takes, the same rule as the Reddit card's headline, never a number. */
 const toneOf = (pos: number, neg: number, all: number) => pos * 2 > all ? { k: "pos", word: "Mostly positive" } as const
   : neg * 2 > all ? { k: "neg", word: "Mostly negative" } as const : { k: "mix", word: "Mixed" } as const;
@@ -650,8 +651,10 @@ function AgreePoints({ points, total, rs, id, players, voteGroups, votes, reddit
     <div className="v13-ph"><strong>What they agree on</strong><span>Bars show how many rate it well. Tap for the reviews behind it.</span></div>
     {points.map((p, pi) => { const n = p.reviews.length, yes = p.reviews.filter(x => x.stance === "pos").length, g = gradeOf(yes, n);
       const pl = players[p.key] && players[p.key]!.n >= PLAYERS_MIN ? players[p.key] : null;
-      // The disagreement pill: players at least 25 points off the reviewers' share.
-      const apart = pl && Math.abs(pl.pct - Math.round(100 * yes / n)) >= 25 ? pl : null;
+      // The disagreement pill, only when reviewers and players conflict (owner 2026-11-28): one side rates it well (half or
+      // more) and the other is low (under 40%, where the bars turn orange), using the shares the bars show.
+      const rvPct = 100 * yes / total;
+      const apart = pl && ((rvPct >= 50 && pl.pct < 40) || (rvPct < 40 && pl.pct >= 50)) ? pl : null;
       const low = g.k === "g3" || g.k === "g4";
       // The receipts: up to two reviews on the majority side, from different platforms where there are.
       const side = yes * 2 >= n ? "pos" : p.reviews.filter(x => x.stance === "neg").length * 2 >= n ? "neg" : "mix";
@@ -744,7 +747,7 @@ function Wrap({ w, links = false, prose = false, v13 = false }: { w: Wrapup; /**
 }
 
 // No post or thread counts (owner 2026-11-24, every site): the box says "summary of player posts", never how many.
-type Roundup = { at: string | null; headline: string; tags: { tone: "pos" | "neg"; text: string; n?: number }[];
+type Roundup = { /** The short version's Reddit sum-up (owner 2026-11-28), worded apart from the card. */ short?: { text: string; mark: string }; at: string | null; headline: string; tags: { tone: "pos" | "neg"; text: string; n?: number }[];
   paras: string[]; highlights: { text: string; url: string }[] };
 
 /** "Players on Reddit and forums", written from ALL the paddle's stored Reddit posts (pilot, owner OK 2026-11-23): a
