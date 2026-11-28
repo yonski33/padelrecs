@@ -243,7 +243,8 @@ function copyProblems(rows: Row[]) {
     const v = r[k];
     if (typeof v !== "string") continue;
     if (/[—–]/.test(v)) out.push(`em/en dash: ${r.slug} ${r.creator ?? ""} ${k}`);
-    if (/\bverdict\b/i.test(v)) out.push(`"verdict": ${r.slug} ${r.creator ?? ""} ${k}`);
+    // "Dynamic Discs Verdict" is a disc name, not the banned word.
+    if (/\bverdict\b/i.test(v.replace(/Dynamic Discs Verdict/g, ""))) out.push(`"verdict": ${r.slug} ${r.creator ?? ""} ${k}`);
   }
   for (const r of rows) if (r.stance !== undefined && !r.stance) out.push(`no stance: ${r.slug} ${r.creator}`);
   return out;
@@ -261,7 +262,7 @@ export function keyPointProblems(line: string) {
   if (line.length > 70) out.push(`${line.length} chars`);
   if (!/\.$/.test(line)) out.push("no final period");
   if (/[—–]/.test(line)) out.push("dash");
-  if (/\bverdict\b/i.test(line)) out.push("verdict");
+  if (/\bverdict\b/i.test(line.replace(/Dynamic Discs Verdict/g, ""))) out.push("verdict");
   if (/\b(we|us|our|I|he|she|his|her)\b/.test(line)) out.push("pronoun");
   // LaptopRecs: "creator laptop" is a laptop type there, so only "owners" is flagged.
   if (niche.id === "laptop" ? /\bowners?\b/i.test(line) : /\b(owners?|creators?)\b/i.test(line)) out.push(niche.id === "laptop" ? "owners" : "owners/creators");
