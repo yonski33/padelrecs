@@ -34,6 +34,12 @@ export type EngineProfile = {
   /** Score from the verdict counts the product page shows (the owner's typed tally where saved, db/sentiment-tally.ts) instead
    *  of the counted reviews alone. PadelRecs first (owner report 2026-11-26); other sites' lists reorder with it, so theirs wait. */
   pageTally?: boolean;
+  /** Creator reviews shape the style and fit profile (owner "yes we should", 2026-11-26): each live creator card's attribute
+   *  word counts as a weighted voice on the matching trait (app/match-context.ts CREATOR_WORD: Excellent 1, Great 0.8, Good 0.4
+   *  praise; Okay 0.5, Weak 1 complaint), so a
+   *  product with many creator reviews has more evidence for what it is and a smaller caution cut. Never the Loved it / Mixed
+   *  / Not for me counts, which stay the players' (hybrid ranking). Attribute key → engine trait. */
+  creatorVoices?: Record<string, string>;
   /** Share of the style fit that is the axis position (the rest: how positively players talk about the trait). */ ax: number;
   /** Maker label words (matched in the lower-cased name, as written, spaces included) for each end of the axis. */
   controlLabels: string[]; powerLabels: string[];

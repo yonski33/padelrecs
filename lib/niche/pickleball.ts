@@ -196,6 +196,8 @@ export const pickleball: Niche = {
       // Grok audit 2026-11-17 (owner-approved plan): bars span the catalogue (108 of 178 read "Moderate power" at a floor of 3).
       // and a bar never reads the opposite of its own page's Why yes / Why not (#8 #9).
       lowShare: 0.2, pageBars: true,
+      // Owner 2026-11-26 ("yes we should"): creator reviews shape the style and fit profile (paddle attribute words → traits).
+      creatorVoices: { power: "power", control: "control", spin: "spin", pop: "pop", sweet: "forgiveness", comfort: "arm" },
       // and a power, control or spin pick needs that bar above 3 for a Strong fit (padel #438, audit #3 #4 #12).
       styleBarMax: 3,
       // A paddle's own style never scores under "balance", the opposite style never over it (#15).
