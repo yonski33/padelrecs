@@ -331,7 +331,7 @@ export async function CreatorProductBody({ slug }: { slug: string }) {
   const pointVotes: Record<string, Record<string, number>> = Object.fromEntries(points.flatMap(p => { const pv = POINT_VOTES[p.key];
     return pv && tc ? [[p.key, traitGroup(tc, r.id, pv.key)]] : []; }));
   const srcIcons = <span className="v13-ics" aria-hidden="true">{srcN.youtube > 0 && <span className="yt"/>}{srcN.tiktok > 0 && <span className="tt">♪</span>}{srcN.blog > 0 && <span className="bl">B</span>}</span>;
-  // At a glance (v13), copied from the mock (owner 2026-11-28): Reddit, the expert lists, then each reviewer; a round avatar
+  // At a glance (v13), copied from the mock (owner 2026-11-28): the expert lists, Reddit (lists first, owner 2026-11-28), then each reviewer; a round avatar
   // (r/, ★, the reviewer's photo or initials), the name over its source, the take pill, then the one line. Zebra rows.
   const ini = (n: string) => n.replace(/^the\s+/i, "").split(/\s+/).filter(Boolean).slice(0, 2).map(w => w[0]!.toUpperCase()).join("");
   const xpTop = listPicks.some(p => badgeOf(p).tone === "top"), xpPlace = listPicks.map(p => badgeOf(p).text).find(t => /^#\d+$/.test(t));
@@ -343,8 +343,8 @@ export async function CreatorProductBody({ slug }: { slug: string }) {
     <a key={key} className="v13-gr" href={href}><span className="who">{av}<span className="nm"><strong>{name}</strong><span>{src}</span></span></span>
       <span className={`tk ${tone}`}>{take}</span><span className="pt">{line}</span></a>;
   const g13 = [
-    ...(rdTone ? [gRow13("rd", "#reddit-card", <span className="av rd" aria-hidden="true">r/</span>, "Reddit and forums", `Summary of ${W.person} posts`, rdTone.word, rdTone.k, rdLine)] : []),
     ...(listPicks.length > 0 ? [gRow13("xp", "#expert-lists", <span className="av xp" aria-hidden="true">★</span>, "Expert lists", plural(listPicks.length, "list"), xpTake, "pos", xpLine)] : []),
+    ...(rdTone ? [gRow13("rd", "#reddit-card", <span className="av rd" aria-hidden="true">r/</span>, "Reddit and forums", `Summary of ${W.person} posts`, rdTone.word, rdTone.k, rdLine)] : []),
     ...rs.map((x, i) => { const pic = profiles.get(x.creator)?.avatar ?? null;
       return gRow13(x.id, `#cr-${x.id}`, pic ? <img className="av" src={pic} alt="" width={28} height={28} loading="lazy"/>
         : <span className={`av ${i === 0 && x.stance === "pos" ? "y" : x.stance}`} aria-hidden="true">{ini(x.creator)}</span>,
@@ -509,7 +509,7 @@ export async function CreatorProductBody({ slug }: { slug: string }) {
 
         <MentionsProvider {...mxProps}>
           <CreatorReviews reviews={v13Feed} count={rs.length} roundup={null} title="The long version"
-            lead={(redditCard || listPicks.length > 0) && <>{redditCard}{listPicks.length > 0 && <ExpertPicks picks={listPicks}/>}</>}/>
+            lead={(redditCard || listPicks.length > 0) && <>{listPicks.length > 0 && <ExpertPicks picks={listPicks}/>}{redditCard}</>}/>
         </MentionsProvider>
 
         <div className="v13-comm"><h2 className="v13-big">Community</h2><span>{`Votes and comments from ${niche.site.name} ${W.people}.`}</span></div>
