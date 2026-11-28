@@ -53,6 +53,7 @@ import { playersWord } from "../../lib/thread/web-sources";
 import { StickyPrice } from "./live/sticky-price";
 import { GlanceTable } from "./live/glance-table";
 import { TraitVotes } from "./live/trait-votes";
+import { traitGroupsFor } from "../../lib/thread/traits";
 import { traitSeed } from "../../lib/thread/trait-seed";
 import { creatorVoteGroups } from "../../lib/thread/creator-votes";
 import { siteSentiment } from "../../lib/thread/site-sentiment";
@@ -318,6 +319,13 @@ export async function CreatorProductBody({ slug }: { slug: string }) {
   // What they agree on: only products with per-point tags (db/creators/review-points.json, none yet, so hidden).
   const points = ((reviewPoints as Record<string, Record<string, { points: AgreePoint[] }>>)[niche.id]?.[slug]?.points ?? [])
     .map(p => ({ ...p, reviews: p.reviews.filter(x => rs.some(y => y.id === x.review_id)) })).filter(p => p.reviews.length >= POINT_MIN);
+  // Players' share per point: real votes only (never the review-based seed), the "rates it well" option's share.
+  const tc = points.length ? await traitCounts() : null;
+  const pointPlayers: Record<string, { pct: number; n: number } | null> = Object.fromEntries(points.map(p => { const pv = POINT_VOTES[p.key];
+    if (!pv || !tc) return [p.key, null];
+    let n = 0, good = 0;
+    for (const [k, c] of tc.votes) { const [rid, tr, ch] = k.split("|"); if (rid === r.id && tr === pv.key) { n += c; if (ch === pv.good) good += c; } }
+    return [p.key, n ? { pct: Math.round(100 * good / n), n } : null]; }));
   const srcIcons = <span className="v13-ics" aria-hidden="true">{srcN.youtube > 0 && <span className="yt"/>}{srcN.tiktok > 0 && <span className="tt">♪</span>}{srcN.blog > 0 && <span className="bl">B</span>}</span>;
   // At a glance (v13): an index, one row per source, each jumping to its card. No text that repeats the cards.
   const g13 = [
@@ -483,7 +491,8 @@ export async function CreatorProductBody({ slug }: { slug: string }) {
               {compared.some(x => x.price?.rel.includes("sponsored")) && <span className="thc-note">{"Some links are affiliate links. "}<a href={th("/affiliate-disclosure")}>Learn more</a></span>}
             </aside>}
           </div>
-          {points.length > 0 && <AgreePoints points={points} total={rs.length} rs={rs.map(x => ({ id: x.id, creator: x.creator, kind: x.kind, avatar: profiles.get(x.creator)?.avatar ?? null }))}/>}
+          {points.length > 0 && <AgreePoints points={points} total={rs.length} id={r.id} players={pointPlayers} voteGroups={traitGroupsFor(niche.id)}
+            rs={rs.map(x => ({ id: x.id, creator: x.creator, kind: x.kind, avatar: profiles.get(x.creator)?.avatar ?? null }))}/>}
           <GlanceTable className="v13-part v13-glance" title="At a glance" sub="One line from each reviewer, Reddit and the expert lists. Tap to jump to the full summary." head={null} rows={g13} first={5}/>
         </section>
 
@@ -616,28 +625,43 @@ const PLAYERS_MIN = 20;
 /** A point shows once this many of the paddle's reviews cover it. */
 const POINT_MIN = 3;
 type PtReview = { id: string; creator: string; kind: string; avatar?: string | null };
-function AgreePoints({ points, total, rs }: { points: AgreePoint[]; total: number; rs: PtReview[] }) {
+/** The vote box behind each point (pickleball's stored groups) and its "rates it well" option; Resets and dinks has none. */
+const POINT_VOTES: Record<string, { key: string; good: string }> = { spin: { key: "spin", good: "lots" }, sweet: { key: "sweet_spot", good: "big" },
+  comfort: { key: "arm", good: "very" }, power: { key: "pop", good: "high" } };
+/** The grade under a point's name, from the share of all reviews that rate it well among those that cover it. */
+const gradeOf = (yes: number, n: number) => { const s = n ? yes / n : 0;
+  return s >= 0.85 ? { word: "Excellent", k: "g1" } : s >= 0.7 ? { word: "Great", k: "g1" } : s >= 0.55 ? { word: "Good", k: "g2" } : s >= 0.4 ? { word: "Okay", k: "g3" } : { word: "Weak", k: "g4" }; };
+type PlayerShare = { pct: number; n: number } | null;
+function AgreePoints({ points, total, rs, id, players, voteGroups }: { points: AgreePoint[]; total: number; rs: PtReview[]; id: string;
+  /** Real player votes per point (never the review-based seed), shown from PLAYERS_MIN votes. */ players: Record<string, PlayerShare>;
+  voteGroups: import("../../lib/thread/traits").TraitGroup[] }) {
   return <div className="v13-part">
-    <div className="v13-ph"><strong>What they agree on</strong><span>{`From the ${total} reviews. Tap a point to see the reviews behind it.`}</span></div>
-    {points.map((p, pi) => { const n = p.reviews.length, yes = p.reviews.filter(x => x.stance === "pos").length;
-      const pl = p.players && p.players.n >= PLAYERS_MIN ? p.players : null;
+    <div className="v13-ph"><strong>What they agree on</strong><span>Bars show how many rate it well. Tap for the reviews behind it.</span></div>
+    {points.map((p, pi) => { const n = p.reviews.length, yes = p.reviews.filter(x => x.stance === "pos").length, g = gradeOf(yes, n);
+      const pl = players[p.key] && players[p.key]!.n >= PLAYERS_MIN ? players[p.key] : null;
       // The disagreement pill: players at least 25 points off the reviewers' share.
       const apart = pl && Math.abs(pl.pct - Math.round(100 * yes / n)) >= 25 ? pl : null;
+      const low = g.k === "g3" || g.k === "g4";
       // The receipts: up to two reviews on the majority side, from different platforms where there are.
       const side = yes * 2 >= n ? "pos" : p.reviews.filter(x => x.stance === "neg").length * 2 >= n ? "neg" : "mix";
       const pool = [...p.reviews.filter(x => x.stance === side), ...p.reviews.filter(x => x.stance !== side)];
-      const first = pool[0], second = pool.slice(1).find(x => rs.find(r => r.id === x.review_id)?.kind !== rs.find(r => r.id === first?.review_id)?.kind) ?? pool[1];
+      const kindOf = (rid?: string) => rs.find(r => r.id === rid)?.kind;
+      const first = pool[0], second = pool.slice(1).find(x => kindOf(x.review_id) !== kindOf(first?.review_id)) ?? pool[1];
       const receipts = [first, second].filter((x): x is NonNullable<typeof x> => !!x);
-      return <details key={p.key} className="v13-pt" open={pi === 0}>
-        <summary><span className="k"><strong>{p.label}</strong></span>
-          <span className="l">{p.line}{apart && <span className={`v13-pill ${apart.pct >= 50 ? "pos" : "neg"}`}>{`${apart.pct}% of ${W.people}`}</span>}</span>
-          <span className="n"><span className="dots" aria-hidden="true">{p.reviews.map(x => <i key={x.review_id} className={x.stance}/>)}</span>
-            {`${yes} of ${plural(n, "review")} that cover ${p.label.toLowerCase()}`}{pl && !apart && <span>{` · ${pl.pct}% of ${W.people}`}</span>}</span>
-          <span className="pl" aria-hidden="true">+</span></summary>
+      const vg = POINT_VOTES[p.key] ? voteGroups.find(v => v.key === POINT_VOTES[p.key]!.key) : undefined;
+      return <details key={p.key} className="v13-pt">
+        <summary><span className="k"><strong>{p.label}</strong><span className={`gr ${g.k}`}>{g.word}</span></span>
+          <span className="l">{p.line}{apart && <>{" "}<span className={`v13-pill ${apart.pct >= 50 ? "pos" : "neg"}`}>{`${apart.pct}% of ${W.people}`}</span></>}</span>
+          <span className="bars">
+            <span className="who">Reviewers</span><span className={`seg${low ? " low" : ""}`} aria-hidden="true">{Array.from({ length: total }, (_, i) => <i key={i} className={i < yes ? "on" : undefined}/>)}</span><strong>{`${yes}/${total}`}</strong>
+            {pl && <><span className="who">{W.People}</span><span className={`bar${pl.pct < 40 ? " low" : ""}`} aria-hidden="true"><i style={{ width: `${pl.pct}%` }}/></span><strong>{`${pl.pct}%`}</strong></>}
+          </span>
+          <span className="pl" aria-hidden="true"/></summary>
         <div className="v13-pt-b">{receipts.map(x => { const v = rs.find(y => y.id === x.review_id)!;
           return <a key={x.review_id} href={`#cr-${x.review_id}`} className={x.stance}>
-            <span className="who"><Avatar name={v.creator} kind={v.kind as CreatorReview["kind"]} size="sm" src={v.avatar ?? null}/><strong>{v.creator}</strong></span>
-            <span className="q">{x.evidence}</span><span className="go">Read the review ↓</span></a>; })}</div>
+            <span className="who"><strong>{v.creator}</strong><span>{` · ${v.kind === "youtube" ? "YouTube" : v.kind === "tiktok" ? "TikTok" : "Blog"}`}</span></span>
+            <span className="q">{x.evidence[0]!.toUpperCase() + x.evidence.slice(1)}{/[.!?]$/.test(x.evidence) ? "" : "."}</span><span className="go">Read the review ↓</span></a>; })}
+          {vg && <div className="v13-pt-vote"><TraitVotes id={id} seed={null} groups={[vg]} title="Players voted" tieNone/></div>}</div>
       </details>; })}
   </div>;
 }
