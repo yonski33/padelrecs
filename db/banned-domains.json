@@ -1,0 +1,63 @@
+{
+ "_note": "Blog/web domains banned as review sources per site schema (AI-written, content farms, or shops that don't test). Owner-approved list 2026-11-28 from grok-share/jobs/blog-domain-vet (48 domains) plus PickleTip and Dash Pickleball (#796). scripts/hide-banned-blog-domains.mts hides their reviews; tests/banned-domains.test.ts keeps them out of the content files.",
+ "pickleballrecs": [
+  "dashpickleball.com",
+  "paddlecompare.com",
+  "paddlereviewhub.com",
+  "paddlereviewhub.pages.dev",
+  "pickleballnation.com",
+  "pickleballogist.com",
+  "pickleballportal.com",
+  "pickleballr.io",
+  "pickleballrookie.com",
+  "pickleballtriangle.com",
+  "pickleballwired.com",
+  "pickletip.com",
+  "pickypaddle.com",
+  "propickleballer.com",
+  "thepickleballblast.com"
+ ],
+ "padelrecs": [
+  "chingoland.es",
+  "justpadel.com",
+  "padel-passion.net",
+  "padelblend.de",
+  "padelchiquito.com",
+  "padelcritic.com",
+  "padelhouse.ma",
+  "padelmesh.com",
+  "padelnox.com",
+  "pala-hack.com",
+  "practicapadel.com",
+  "tenniszon.com"
+ ],
+ "discgolfrecs": [
+  "discgolfaround.com"
+ ],
+ "skinrecs": [
+  "allaboutthegloss.com",
+  "aorinkobeauty.com",
+  "beauty-detective.com",
+  "beautyblogwales.com",
+  "kbeautytruth.com",
+  "meiskincare.com",
+  "moisturizers.com",
+  "mybeautyclan.com",
+  "newsletter.skincarestacy.com",
+  "ontheharp.com",
+  "peppyblog.com",
+  "portucarabonita.com",
+  "pureskinguide.com",
+  "readheadmakeup.com",
+  "skincarestacy.com",
+  "tealmagazine.com",
+  "theglowyskinlab.com",
+  "theskinroutine.com",
+  "umenotabi.hatenablog.com",
+  "unniespicking.com",
+  "yourbestskin8.blogspot.com"
+ ],
+ "laptoprecs": [
+  "orneil.com"
+ ]
+}
